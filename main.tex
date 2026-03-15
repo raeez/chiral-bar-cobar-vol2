@@ -1,34 +1,138 @@
-\documentclass[12pt]{amsart}
+\documentclass[11pt]{memoir}
+\setcounter{secnumdepth}{3}
+\setcounter{tocdepth}{2}
 
-\usepackage{amsmath,amsthm,amssymb,amsfonts,mathrsfs,bm}
-\usepackage{geometry,hyperref,mathtools}
+% ==========================================
+% FONTS: EB Garamond (matching Volume I)
+% ==========================================
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\frenchspacing
+
+\usepackage[
+  cmintegrals,
+  cmbraces,
+  noamssymbols
+]{newtxmath}
+\usepackage{ebgaramond}
+
+\usepackage[
+  activate={true,nocompatibility},
+  final,
+  tracking=true,
+  kerning=true,
+  spacing=true,
+  factor=1100,
+  stretch=10,
+  shrink=10
+]{microtype}
+
+\SetExtraKerning[unit=space]
+  {encoding={*}, family={*}, series={*}, size={footnotesize,small,normalsize}}
+  {\textemdash={400,400},
+   "28={,150},
+   "29={150,},
+   \textquotedblleft={,150},
+   \textquotedblright={150,}}
+
+% ==========================================
+% PACKAGES
+% ==========================================
+
+\usepackage{mleftright}
+\mleftright
+\let\Bbbk\undefined
+\let\openbox\undefined
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathtools}
+\mathtoolsset{showonlyrefs,showmanualtags}
 \usepackage{tikz-cd}
+\usetikzlibrary{positioning,arrows.meta,calc}
+\makeatletter
+\def\hyper@nopatch@caption{}
+\makeatother
+\usepackage[unicode,pdfencoding=auto,psdextra]{hyperref}
+\usepackage{geometry}
+\geometry{top=1.2in, bottom=1.2in, left=1.25in, right=1.25in, footskip=0.5in}
+\setlength{\headheight}{28pt}
+\setlength{\emergencystretch}{3em}
+\setlength{\hfuzz}{1pt}
+\hbadness=3000
+\raggedbottom
 \usepackage{enumitem}
-\usepackage{cleveref}
-\usepackage{xcolor}
-\usepackage{comment} % temporary: to quarantine legacy semidirect blocks during transition
+\usepackage{longtable}
+\usepackage{multicol}
+\usepackage{mathrsfs}
+\usepackage{bm}
 
-\geometry{margin=1.2in}
+% ==========================================
+% THEOREM ENVIRONMENTS (Garamond style, matching Vol I)
+% ==========================================
 
-\theoremstyle{plain}
-\newtheorem{theorem}{Theorem}[section]
-\newtheorem{proposition}[theorem]{Proposition}
-\newtheorem{lemma}[theorem]{Lemma}
-\newtheorem{corollary}[theorem]{Corollary}
+\usepackage{thmtools}
 
-\theoremstyle{definition}
-\newtheorem{definition}[theorem]{Definition}
-\newtheorem{example}[theorem]{Example}
-\newtheorem{remark}[theorem]{Remark}
-\newtheorem{construction}[theorem]{Construction}
-\newtheorem{conjecture}[theorem]{Conjecture}
-\newtheorem{warning}[theorem]{Warning}
-\newtheorem{notation}[theorem]{Notation}
-\newtheorem{hypothesis}[theorem]{Hypothesis}
-\newtheorem{assumption}[theorem]{Assumption}
-\newtheorem{convention}[theorem]{Convention}
-\newtheorem{computation}[theorem]{Computation}
+\declaretheoremstyle[
+  spaceabove=\topsep,
+  spacebelow=\topsep,
+  headfont=\normalfont\scshape,
+  notefont=\normalfont\itshape,
+  bodyfont=\normalfont,
+  postheadspace=0.5em,
+  headpunct={.}
+]{garamondthm}
 
+\declaretheoremstyle[
+  spaceabove=\topsep,
+  spacebelow=\topsep,
+  headfont=\normalfont\itshape,
+  notefont=\normalfont\itshape,
+  bodyfont=\normalfont,
+  postheadspace=0.5em,
+  headpunct={.}
+]{garamonddef}
+
+% Claim provenance tags (matching Vol I)
+\newcommand{\ClaimStatusProvedHere}{\textnormal{[proved here]}}
+\newcommand{\ClaimStatusProvedElsewhere}{\textnormal{[proved elsewhere]}}
+\newcommand{\ClaimStatusOpen}{\textnormal{[open]}}
+\newcommand{\ClaimStatusConjectured}{\textnormal{[conjectured]}}
+\newcommand{\ClaimStatusHeuristic}{\textnormal{[physical heuristic]}}
+
+% Plain-style environments
+\declaretheorem[style=garamondthm, name=Theorem, numberwithin=section]{theorem}
+\declaretheorem[style=garamondthm, name=Lemma, sibling=theorem]{lemma}
+\declaretheorem[style=garamondthm, name=Proposition, sibling=theorem]{proposition}
+\declaretheorem[style=garamondthm, name=Corollary, sibling=theorem]{corollary}
+\declaretheorem[style=garamondthm, name=Verification, sibling=theorem]{verification}
+\declaretheorem[style=garamondthm, name=Computation, sibling=theorem]{computation}
+\declaretheorem[style=garamondthm, name=Main Theorem, sibling=theorem]{maintheorem}
+
+% Definition-style environments
+\declaretheorem[style=garamonddef, name=Definition, sibling=theorem]{definition}
+\declaretheorem[style=garamonddef, name=Example, sibling=theorem]{example}
+\declaretheorem[style=garamonddef, name=Remark, sibling=theorem]{remark}
+\declaretheorem[style=garamonddef, name=Conjecture, sibling=theorem]{conjecture}
+\declaretheorem[style=garamonddef, name=Notation, sibling=theorem]{notation}
+\declaretheorem[style=garamonddef, name=Convention, sibling=theorem]{convention}
+\declaretheorem[style=garamonddef, name=Construction, sibling=theorem]{construction}
+\declaretheorem[style=garamonddef, name=Warning, sibling=theorem]{warning}
+\declaretheorem[style=garamonddef, name=Hypothesis, sibling=theorem]{hypothesis}
+\declaretheorem[style=garamonddef, name=Assumption, sibling=theorem]{assumption}
+\declaretheorem[style=garamonddef, name=Technique, sibling=theorem]{technique}
+\declaretheorem[style=garamonddef, name=Interpretation, sibling=theorem]{interpretation}
+
+% Hyperref anchors for theorem counters
+\makeatletter
+\@ifundefined{theHtheorem}{\newcommand{\theHtheorem}{\thesection.\arabic{theorem}}}{}
+\makeatother
+
+% ==========================================
+% MATHEMATICAL NOTATION
+% ==========================================
+
+% Operators
 \DeclareMathOperator{\Conf}{Conf}
 \DeclareMathOperator{\FM}{FM}
 \DeclareMathOperator{\Obs}{Obs}
@@ -45,97 +149,152 @@
 \DeclareMathOperator{\CYBE}{CYBE}
 \DeclareMathOperator{\RavConf}{RavConf}
 \DeclareMathOperator{\Fact}{Fact}
+\DeclareMathOperator{\Tot}{Tot}
+\DeclareMathOperator{\holim}{holim}
+\DeclareMathOperator{\hocolim}{hocolim}
+\DeclareMathOperator{\Ran}{Ran}
+\DeclareMathOperator{\Spec}{Spec}
+\DeclareMathOperator{\Ext}{Ext}
 
+% Calligraphic and blackboard
 \newcommand{\A}{\mathcal{A}}
 \newcommand{\V}{\mathcal{V}}
 \newcommand{\cP}{\mathcal{P}}
 \newcommand{\cE}{\mathcal{E}}
 \newcommand{\cO}{\mathcal{O}}
-\newcommand{\Ass}{\mathsf{Ass}}
+\newcommand{\cA}{\mathcal{A}}
+\newcommand{\OO}{\mathcal{O}}
 \newcommand{\C}{\mathbb{C}}
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\Z}{\mathbb{Z}}
 \newcommand{\N}{\mathbb{N}}
-\newcommand{\hh}{\hbar}
-\newcommand{\dbar}{\bar{\partial}}
 
+% Operads (sans-serif, matching Vol I convention)
+\newcommand{\Ass}{\mathsf{Ass}}
+\newcommand{\Com}{\mathsf{Com}}
+\newcommand{\Lie}{\mathsf{Lie}}
+\newcommand{\Pois}{\mathsf{Pois}}
+\newcommand{\BV}{\mathsf{BV}}
+\newcommand{\Eone}{\mathsf{E}_1}
+\newcommand{\Etwo}{\mathsf{E}_2}
+\newcommand{\En}{\mathsf{E}_n}
+\newcommand{\Einf}{\mathsf{E}_{\infty}}
+\newcommand{\Linf}{\mathsf{L}_{\infty}}
+\newcommand{\Ainf}{\mathsf{A}_{\infty}}
+\newcommand{\Cinf}{\mathsf{C}_{\infty}}
+\newcommand{\Pinf}{\mathsf{P}_{\infty}}
+\newcommand{\chirLie}{\mathsf{Lie}^{\mathrm{ch}}}
+\newcommand{\chirAss}{\mathsf{Ass}^{\mathrm{ch}}}
+\newcommand{\chirCom}{\mathsf{Com}^{\mathrm{ch}}}
 
-% Lightweight macros:
-
-\newcommand{\OO}{\mathcal{O}}
-\newcommand{\ASym}{\mathrm{ASym}}
-\newcommand{\gr}{\mathrm{gr}}
-\newcommand{\sgn}{\mathrm{sgn}}
-
-% graded-commutator/bracket conventions:
-\newcommand{\llbracket}{[\![}
-\newcommand{\rrbracket}{]\!]}
-\newcommand{\degree}[1]{\lvert #1 \rvert}
-
-% Operators used in factorization/functoriality:
-\DeclareMathOperator{\Tot}{Tot}
-\DeclareMathOperator{\holim}{holim}
-\DeclareMathOperator{\hocolim}{hocolim}
-
-\DeclareMathOperator{\Ran}{Ran}
+% HT-specific
 \newcommand{\SCchtop}{\mathsf{SC}^{\mathrm{ch,top}}}
 \newcommand{\OHT}{C_\ast\!\bigl(W(\SCchtop)\bigr)}
 
+% Shorthand
+\newcommand{\hh}{\hbar}
+\newcommand{\dbar}{\bar{\partial}}
+\newcommand{\ASym}{\mathrm{ASym}}
+\newcommand{\gr}{\mathrm{gr}}
+\newcommand{\sgn}{\mathrm{sgn}}
+\providecommand{\llbracket}{[\![}
+\providecommand{\rrbracket}{]\!]}
+\newcommand{\degree}[1]{\lvert #1 \rvert}
 
-\title{$A_\infty$ Chiral Algebras and Chiral Hochschild Cohomology in 3D Holomorphic--Topological QFT}
+% Bar-cobar (matching Vol I)
+\newcommand{\barB}{\bar{B}}
+\newcommand{\barBgeom}{\bar{B}_{\mathrm{geom}}}
+\newcommand{\Omegach}{\Omega^{\mathrm{ch}}}
+
+% Categories
+\newcommand{\cat}[1]{\mathbf{#1}}
+\newcommand{\DMod}{\cat{D}\text{-}\cat{Mod}}
+\newcommand{\DX}{\mathcal{D}_X}
+\newcommand{\OX}{\mathcal{O}_X}
+
+% Differentials (matching Vol I notation)
+\newcommand{\dzero}{d_0}
+\newcommand{\dfib}{d_{\mathrm{fib}}}
+\newcommand{\Dg}[1]{D_{#1}}
+
+% ==========================================
+% FRONT MATTER
+% ==========================================
+
+\title{\textit{Modular Homotopy Theory for Factorization Algebras on Curves}\\[0.5em]
+\large Volume~2: $\Ainf$~Chiral Algebras and 3D Holomorphic--Topological QFT}
 
 \author{Raeez Lorgat}
 
-\date{\today}
+\date{March 2026}
 
 \begin{document}
 
 \maketitle
 
 \begin{abstract}
-We introduce and develop the notion of an \emph{$A_\infty$ chiral algebra}, the algebraic structure present on bulk quantum local operators of three–dimensional holomorphic–topological quantum field theories on $\C\times\R$. We give two equivalent, fully rigorous formulations.
+An $\Ainf$ chiral algebra is the algebraic structure present on bulk local operators of a three-dimensional holomorphic--topological quantum field theory on $\C \times \R$.  This volume develops the theory from two equivalent starting points.
 
-\smallskip
-\noindent
-(1) \emph{Operadic model.} We construct a two–colored Swiss–cheese operad $\mathsf{SC}^{\mathrm{ch,top}}$ whose closed color encodes holomorphic (BD–chiral) operations in the $\C$–direction and whose open color encodes $E_1$–operations in the $\R$–direction, together with their homotopy–coherent compatibilities via the Boardman–Vogt resolution $W(\mathsf{SC}^{\mathrm{ch,top}})$. We show that BV quantization of HT theories produces algebras over $C_\ast\!\bigl(W(\mathsf{SC}^{\mathrm{ch,top}})\bigr)$.
+The \emph{operadic model} constructs a two-colored Swiss-cheese operad $\SCchtop$ whose closed color encodes holomorphic (BD-chiral) operations in the $\C$-direction and whose open color encodes $\Eone$-operations in the $\R$-direction.  BV quantization of HT theories produces algebras over the Boardman--Vogt resolution $\OHT$.
 
-\smallskip
-\noindent
-(2) \emph{Concrete axioms.} We provide an explicit axiomatization on a dg vector space $(A,Q,\partial)$ by higher operations
-$m_k\colon A^{\otimes k}\!\to A((\lambda_1))\cdots((\lambda_{k-1}))$ of degree $1-k$, satisfying: (i) sesquilinearity in the spectral parameters (translation covariance), and (ii) planar $A_\infty$ identities written with precise spectral substitution maps determined by difference (momentum) coordinates. We prove the equivalence between this axiomatic notion and algebras over $C_\ast\!\bigl(W(\mathsf{SC}^{\mathrm{ch,top}})\bigr)$.
+The \emph{concrete axioms} work directly with higher operations $m_k \colon A^{\otimes k} \to A((\lambda_1))\cdots((\lambda_{k-1}))$ of degree $1-k$, satisfying sesquilinearity in the spectral parameters and planar $\Ainf$ identities with spectral substitution determined by difference coordinates.  The two formulations are equivalent.
 
-\smallskip
-\noindent
-From either viewpoint we establish that $H^\bullet(A,Q)$ carries a canonical $(-1)$–shifted Poisson vertex algebra: the commutative product is the symmetric regular part of $m_2$, and the $\lambda$–bracket is the antisymmetric singular part; the Jacobi and Leibniz axioms follow from configuration–space Stokes identities and Arnold–Orlik–Solomon relations. We construct the \emph{chiral Hochschild cochains} as a brace algebra on $\FM(\C)\times\Conf(\R)$, identify deformations with Maurer–Cartan elements, and develop a filtered bar–cobar/Koszul duality for the two–colored operad.
+From either viewpoint, $H^\bullet(A,Q)$ carries a canonical $(-1)$-shifted Poisson vertex algebra: the commutative product is the symmetric regular part of $m_2$ and the $\lambda$-bracket is the antisymmetric singular part, with Jacobi and Leibniz following from configuration-space Stokes identities and Arnold relations.  The chiral Hochschild cochains form a brace algebra on $\FM(\C) \times \Conf(\R)$, deformations correspond to Maurer--Cartan elements, and a filtered bar-cobar duality governs the two-colored operad.
 
-We further formulate bulk–boundary functoriality: boundary factorization modules yield a meromorphic spectral braiding $R(z)$ solving the Yang–Baxter equation, with classical limit $r(z)$ given by a Laplace transform of the bulk $\lambda$–bracket kernel. Restriction to time–slices recovers (dg) raviolo vertex algebras. We illustrate the theory in three families: the free multiplet (commutative VA), Landau–Ginzburg with cubic superpotential (nontrivial shifted PVA), and abelian Chern–Simons with boundary (current algebras and explicit $R(z)$).
+Bulk--boundary functoriality produces a meromorphic spectral braiding $R(z)$ solving the Yang--Baxter equation, whose classical limit is a Laplace transform of the bulk $\lambda$-bracket kernel.  Restriction to time-slices recovers raviolo vertex algebras.  The theory is illustrated in three families: the free multiplet, Landau--Ginzburg models with cubic superpotential, and abelian Chern--Simons theory with boundary.
+
+\smallskip\noindent
+\textit{Keywords}: $A_\infty$ chiral algebra, holomorphic--topological field theory, Swiss-cheese operad, Poisson vertex algebra, chiral Hochschild cohomology, bar-cobar duality, spectral $R$-matrix, raviolo vertex algebra.
+
+\smallskip\noindent
+\textit{MSC 2020}: 18M75, 81T70, 17B69, 18N70, 81T30.
 \end{abstract}
 
 \tableofcontents
 
+\section*{Notation and conventions}
+\begin{itemize}[leftmargin=2em]
+\item All algebraic structures are over $\C$ unless stated otherwise.
+\item Grading is \emph{cohomological}: differentials have degree $+1$.
+\item $\Ainf$ denotes the $A_\infty$ operad; $\Eone$, $\Etwo$, $\Einf$ the little-disks operads.
+\item $\SCchtop$ is the holomorphic--topological Swiss-cheese operad (Definition~\ref{def:SC}).
+\item $\FM(X)$ denotes the Fulton--MacPherson compactification of $\Conf(X)$.
+\item $m_k$ are the $\Ainf$ chiral operations; $\lambda_i$ are spectral parameters.
+\item Volume~I notation: $\cA$ for chiral algebras, $\barB(\cA)$ for bar, $\Omegach(C)$ for cobar, $\cA^!$ for Koszul dual.
+\end{itemize}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% PART I — FROM PHYSICS TO ALGEBRA
+\part{From Physics to Algebra}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\noindent
+A three-dimensional holomorphic--topological field theory on $\C \times \R$ has two directions: the holomorphic $\C$-plane, where local operators form a chiral algebra, and the topological $\R$-line, where they compose associatively.  The interplay between these two structures --- holomorphic fusion in the plane, homotopy-coherent composition along the line --- is encoded by a single algebraic object: an algebra over the Swiss-cheese operad $\SCchtop$.  This part constructs the operad, extracts concrete axioms for the higher operations $m_k$, and identifies the BV quantization functor that produces these structures from physics.
 
 \input{chapters/theory/foundations}
 \input{chapters/theory/locality}
-\input{chapters/theory/axioms}          % includes equivalence (operad ↔ axioms)
+\input{chapters/theory/axioms}
 \input{chapters/theory/bv-construction}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% PART II — DESCENT AND DUALITY
+\part{Descent and Duality}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\noindent
+The higher operations $m_k$ of Part~I encode the full quantum content of the HT theory.  This part extracts classical invariants by descent: the regular part of $m_2$ is a commutative product, the singular part is a $\lambda$-bracket, and together they form a $(-1)$-shifted Poisson vertex algebra on cohomology.  The proof uses Fulton--MacPherson calculus and Arnold relations --- the same configuration-space geometry that governs Volume~I's bar complex.  We then develop chiral Hochschild cohomology as a brace algebra, review bar-cobar duality in the two-colored setting, and construct the bulk--boundary spectral braiding.
 
 \input{chapters/theory/fm-calculus}
 \input{chapters/theory/pva-descent}
-\input{chapters/connections/hochschild} % includes brace algebra + bulk=HH
+\input{chapters/connections/hochschild}
 \input{chapters/connections/bar-cobar-review}
 \input{chapters/connections/line-operators}
 \input{chapters/connections/spectral-braiding}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% PART III — THE STANDARD LANDSCAPE
+\part{The Standard Landscape}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\noindent
+Parts~I and~II developed the general theory; this part puts it to work.  Three families of examples --- the free multiplet (where all $m_k$ for $k \geq 3$ vanish), the Landau--Ginzburg model (where the shifted PVA is nontrivial), and abelian Chern--Simons with boundary (where the spectral $R$-matrix is explicit) --- test every moving part of the machine.  We then extend the computations to $\mathcal{W}$-algebras, connecting to Volume~I's Drinfeld--Sokolov framework.
 
 \input{chapters/examples/examples-computing}
 \input{chapters/examples/examples-complete}
@@ -166,73 +325,71 @@ We further formulate bulk–boundary functoriality: boundary factorization modul
 % BIBLIOGRAPHY
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\begin{thebibliography}{99}
+\begin{thebibliography}{999}
 
-\bibitem{BD04} A. Beilinson and V. Drinfeld, \textit{Chiral Algebras}, American Mathematical Society Colloquium Publications 51, AMS, Providence, RI, 2004.
+\bibitem{AF15} D.~Ayala and J.~Francis, \emph{Factorization homology of topological manifolds}, J.~Topol.\ \textbf{8} (2015), 1045--1084.
 
-\bibitem{BouFeiMal90} P. Bouwknegt, J. McCarthy, and K. Pilch, \textit{The $W_3$ Algebra: Modules, Semi-infinite Cohomology and BV Algebras}, Lecture Notes in Physics Monographs 42, Springer, 1996.
+\bibitem{AKY24} L.~Alfonsi, H.~Kim, and C.\,A.\,S.~Young, \emph{Raviolo vertex algebras, cochains and conformal blocks}, Int.\ Math.\ Res.\ Not.\ \textbf{2025}(4).
 
-\bibitem{CDG20} K. Costello, T. Dimofte, and D. Gaiotto, \textit{Boundary Chiral Algebras and Holomorphic Twists}, arXiv:2005.00083 [hep-th], 2020.
+\bibitem{BD04} A.~Beilinson and V.~Drinfeld, \emph{Chiral Algebras}, Amer.\ Math.\ Soc.\ Colloq.\ Publ., vol.~51, AMS, Providence, RI, 2004.
 
-\bibitem{CG17} K. Costello and O. Gwilliam, \textit{Factorization Algebras in Quantum Field Theory}, Vol. 1 and 2, Cambridge University Press, 2017, 2021.
+\bibitem{BM03} C.~Berger and I.~Moerdijk, \emph{Axiomatic homotopy theory for operads}, Comment.\ Math.\ Helv.\ \textbf{78} (2003), 805--831.
 
-\bibitem{GKW25} D. Gaiotto, J. Kulp, and J. Wu, \textit{Formality in Holomorphic-Topological Theories}, arXiv:2312.16573 [hep-th], 2024.
+\bibitem{BV73} J.\,M.~Boardman and R.\,M.~Vogt, \emph{Homotopy Invariant Algebraic Structures on Topological Spaces}, Lecture Notes in Math., vol.~347, Springer, 1973.
 
-\bibitem{KZ25} A. Z. Khan and K. Zeng, \textit{Poisson Vertex Algebras and Three Dimensional Gauge Theory}, arXiv:2502.13227 [hep-th], 2025.
+\bibitem{CDG20} K.~Costello, T.~Dimofte, and D.~Gaiotto, \emph{Boundary chiral algebras and holomorphic twists}, arXiv:2005.00083, 2020.
 
-\bibitem{GLZ} Z. Gui, S. Li, and K. Zeng, \textit{Quadratic Duality for Chiral Algebras}, arXiv:2208.14233 [math.QA], 2022.
+\bibitem{CG17} K.~Costello and O.~Gwilliam, \emph{Factorization Algebras in Quantum Field Theory}, vols.~1--2, Cambridge Univ.\ Press, 2017, 2021.
 
-\bibitem{GRW21} O. Gwilliam, V. Rabinovich, and B. Williams, \textit{One-loop Finiteness of Chiral Perturbation Theory}, Adv. Math. 395 (2022) 108128, arXiv:2105.12734 [math-ph], 2021.
+\bibitem{CM14} G.~Caviglia and I.~Moerdijk, \emph{A model structure for enriched coloured operads}, arXiv:1401.6983, 2014.
 
-\bibitem{GGW21} O. Gwilliam, R. Grady, and B. Williams, \textit{Renormalization of holomorphic field theories}, Selecta Math. (N.S.) 27 (2021), Paper No. 69, 68 pp., arXiv:2007.00589 [math-ph].
+\bibitem{DNP25} T.~Dimofte, W.~Niu, and V.~Py, \emph{Line operators in 3d holomorphic QFT: meromorphic tensor categories and dg-shifted Yangians}, arXiv:2506.09728, 2025.
 
-\bibitem{OY20} J. Oh and J. Yagi, \textit{Poisson Vertex Algebras in Supersymmetric Field Theories}, Lett. Math. Phys. 110 (2020) 2245--2275, arXiv:1908.05791 [hep-th], 2019.
+\bibitem{FG12} J.~Francis and D.~Gaitsgory, \emph{Chiral Koszul duality}, Selecta Math.\ \textbf{18} (2012), no.~1, 27--87.
 
-\bibitem{Tam03} D. Tamarkin, \textit{Deformations of Chiral Algebras}, Proc. Int. Congress Math. (ICM Beijing 2002), Vol. II, 105--116, Higher Ed. Press, Beijing, 2002.
+\bibitem{FM94} W.~Fulton and R.~MacPherson, \emph{A compactification of configuration spaces}, Ann.\ of Math.\ \textbf{139} (1994), 183--225.
 
-\bibitem{Kac98} V. Kac, \textit{Vertex Algebras for Beginners}, 2nd ed., University Lecture Series 10, AMS, Providence, RI, 1998.
+\bibitem{FMS86} D.~Friedan, E.~Martinec, and S.~Shenker, \emph{Conformal invariance, supersymmetry and string theory}, Nucl.\ Phys.\ B \textbf{271} (1986), 93--165.
 
-\bibitem{Kon03} M. Kontsevich, \textit{Deformation Quantization of Poisson Manifolds}, Lett. Math. Phys. 66 (2003) 157--216, arXiv:q-alg/9709040, 1997.
+\bibitem{GGW21} O.~Gwilliam, R.~Grady, and B.~Williams, \emph{Renormalization of holomorphic field theories}, Selecta Math.\ \textbf{27} (2021), Paper No.~69.
 
-\bibitem{Lat} A. Latyntsev, \textit{Factorisation Quantum Groups}, arXiv:2312.07274 [math.QA], 2023.
+\bibitem{GJ94} E.~Getzler and J.\,D.\,S.~Jones, \emph{Operads, homotopy algebra and iterated integrals for double loop spaces}, arXiv:hep-th/9403055, 1994.
 
-\bibitem{DNP} T. Dimofte, W. Niu, and V. Py, \textit{Line Operators in 3d Holomorphic QFT: Meromorphic Tensor Categories and dg-Shifted Yangians}, arXiv:2506.09728 [hep-th], 2025.
+\bibitem{GK94} V.~Ginzburg and M.~Kapranov, \emph{Koszul duality for operads}, Duke Math.\ J.\ \textbf{76} (1994), 203--272.
 
-\bibitem{BV73} J. M. Boardman and R. M. Vogt, \textit{Homotopy Invariant Algebraic Structures on Topological Spaces}, Lecture Notes in Mathematics 347, Springer, 1973.
+\bibitem{GKW25} D.~Gaiotto, J.~Kulp, and J.~Wu, \emph{Formality in holomorphic--topological theories}, arXiv:2312.16573, 2024.
 
-\bibitem{MSS02} M. Markl, S. Shnider, and J. Stasheff, \textit{Operads in Algebra, Topology and Physics}, Mathematical Surveys and Monographs 96, AMS, 2002.
+\bibitem{GLZ22} Z.~Gui, S.~Li, and K.~Zeng, \emph{Quadratic duality for chiral algebras}, arXiv:2208.14233, 2022.
 
-\bibitem{FM94} W. Fulton and R. MacPherson, \textit{A Compactification of Configuration Spaces}, Ann. of Math. (2) 139 (1994) 183--225.
+\bibitem{GRW21} N.~Garner, S.~Raghavendran, and B.~Williams, \emph{Factorization algebras from topological--holomorphic twists of supersymmetric gauge theory}, arXiv:2310.17761, 2023.
 
-\bibitem{AF15} D. Ayala and J. Francis, \textit{Factorization Homology of Topological Manifolds}, J. Topol. 8 (2015) 1045--1084, arXiv:1206.5522 [math.AT].
+\bibitem{GW23} N.~Garner and B.\,R.~Williams, \emph{Raviolo vertex algebras}, arXiv:2308.04414, 2023.
 
-\bibitem{FG12} J. Francis and D. Gaitsgory, \textit{Chiral Koszul Duality}, Selecta Math. (N.S.) 18 (2012) 27--87, arXiv:1103.5803 [math.QA].
+\bibitem{GrRW22} O.~Gwilliam, V.~Rabinovich, and B.~Williams, \emph{One-loop finiteness of chiral perturbation theory}, Adv.\ Math.\ \textbf{395} (2022), 108128.
 
-\bibitem{AlfonsiKimYoung2024} L. Alfonsi, H. Kim, and C. A. S. Young, \textit{Raviolo Vertex Algebras, Cochains and Conformal Blocks}, Int. Math. Res. Not. 2025(4), arXiv:2401.11917 [math.QA], 2024.
+\bibitem{Kac98} V.~Kac, \emph{Vertex Algebras for Beginners}, 2nd ed., Univ.\ Lecture Ser., vol.~10, AMS, Providence, RI, 1998.
 
-\bibitem{BergerMoerdijk2003} C. Berger and I. Moerdijk, \textit{Axiomatic Homotopy Theory for Operads}, Comment. Math. Helv. 78 (2003) 805--831.
+\bibitem{KZ25} A.\,Z.~Khan and K.~Zeng, \emph{Poisson vertex algebras and three-dimensional gauge theory}, arXiv:2502.13227, 2025.
 
-\bibitem{CavigliaMoerdijk2014} G. Caviglia and I. Moerdijk, \textit{A Model Structure for Enriched Coloured Operads}, arXiv:1401.6983 [math.AT], 2014.
+\bibitem{Kon03} M.~Kontsevich, \emph{Deformation quantization of Poisson manifolds}, Lett.\ Math.\ Phys.\ \textbf{66} (2003), 157--216.
 
-\bibitem{FriedanMartinecShenker1986} D. Friedan, E. Martinec, and S. Shenker, \textit{Conformal Invariance, Supersymmetry and String Theory}, Nucl. Phys. B 271 (1986) 93--165.
+\bibitem{Lat23} A.~Latyntsev, \emph{Factorisation quantum groups}, arXiv:2312.07274, 2023.
 
-\bibitem{GarnerRaghavendranWilliams2023} N. Garner, S. Raghavendran, and B. Williams, \textit{Factorization Algebras from Topological--Holomorphic Twists of Supersymmetric Gauge Theory}, arXiv:2310.17761 [math-ph], 2023.
+\bibitem{Liv06} M.~Livernet, \emph{A rigidity theorem for pre-Lie algebras}, J.\ Pure Appl.\ Algebra \textbf{207} (2006), 1--18.
 
-\bibitem{GarnerWilliams2023} N. Garner and B. R. Williams, \textit{Raviolo Vertex Algebras}, arXiv:2308.04414 [math.QA], 2023.
+\bibitem{HA} J.~Lurie, \emph{Higher Algebra}, available at \texttt{https://www.math.ias.edu/\~{}lurie/papers/HA.pdf}, 2017.
 
-\bibitem{GetzlerJones1994} E. Getzler and J. D. S. Jones, \textit{Operads, Homotopy Algebra and Iterated Integrals for Double Loop Spaces}, arXiv:hep-th/9403055, 1994.
+\bibitem{MSS02} M.~Markl, S.~Shnider, and J.~Stasheff, \emph{Operads in Algebra, Topology and Physics}, Math.\ Surveys Monogr., vol.~96, AMS, 2002.
 
-\bibitem{GinzburgKapranov1994} V. Ginzburg and M. Kapranov, \textit{Koszul Duality for Operads}, Duke Math. J. 76 (1994) 203--272.
+\bibitem{OY20} J.~Oh and J.~Yagi, \emph{Poisson vertex algebras in supersymmetric field theories}, Lett.\ Math.\ Phys.\ \textbf{110} (2020), 2245--2275.
 
-\bibitem{Livernet2006} M. Livernet, \textit{A Rigidity Theorem for Pre-Lie Algebras}, J. Pure Appl. Algebra 207 (2006) 1--18.
+\bibitem{Pol98} J.~Polchinski, \emph{String Theory}, vols.~1--2, Cambridge Univ.\ Press, 1998.
 
-\bibitem{LurieHA} J. Lurie, \textit{Higher Algebra}, available at \texttt{https://www.math.ias.edu/\~{}lurie/papers/HA.pdf}, 2017.
+\bibitem{Tam02} D.~Tamarkin, \emph{Deformations of chiral algebras}, Proc.\ ICM (Beijing 2002), Vol.~II, 105--116, Higher Ed.\ Press, Beijing, 2002.
 
-\bibitem{PolchinskiStringTheory} J. Polchinski, \textit{String Theory}, Vol. 1 and 2, Cambridge University Press, 1998.
+\bibitem{Val07} B.~Vallette, \emph{A Koszul duality for PROPs}, Trans.\ Amer.\ Math.\ Soc.\ \textbf{359} (2007), 4865--4943.
 
-\bibitem{Vallette2007} B. Vallette, \textit{A Koszul Duality for PROPs}, Trans. Amer. Math. Soc. 359 (2007) 4865--4943.
-
-\bibitem{Voronov2005} A. A. Voronov, \textit{The Swiss-Cheese Operad}, in ``Homotopy Invariant Algebraic Structures'' (Baltimore, 1998), Contemp. Math. 239, AMS, 1999, 365--373.
+\bibitem{Vor99} A.\,A.~Voronov, \emph{The Swiss-cheese operad}, Contemp.\ Math., vol.~239, AMS, 1999, 365--373.
 
 \end{thebibliography}
 
