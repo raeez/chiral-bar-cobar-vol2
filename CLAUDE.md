@@ -1,57 +1,141 @@
-# CLAUDE.md — Volume II: A-infinity Chiral Algebras and 3D HT QFT
+# CLAUDE.md — Volume II: A∞ Chiral Algebras and 3D Holomorphic-Topological QFT
 
-## What This Is
+## What the Engine Computes
 
-Volume II of Raeez Lorgat's monograph *Modular Homotopy Theory for Factorization Algebras on Curves*. Vol I (~1,700pp, at ~/chiral-bar-cobar) builds the algebraic engine: bar-cobar duality for chiral algebras, proved at all genera. Vol II (~400pp) asks what the engine computes in three dimensions.
+Volume I built the categorical logarithm — the bar construction B(A) for chiral algebras on curves, with five theorems proving its existence, invertibility, branch structure, leading coefficient, and coefficient ring. Volume II reads the output in three dimensions.
 
-**Title**: *Volume 2: A-infinity Chiral Algebras and 3D Holomorphic-Topological QFT*
+The bar complex carries two structures: a **differential** d_B from OPE residues on FM_k(ℂ), encoding the holomorphic chiral product, and a **coproduct** Δ from ordered deconcatenation on Conf_k(ℝ), encoding the topological interval-cutting. The differential lives in the ℂ-direction; the coproduct lives in the ℝ-direction. Together, a bar element of degree k is parametrized by FM_k(ℂ) × Conf_k(ℝ) — the product of holomorphic and topological configuration spaces.
 
-## The Central Insight
+This product is the operadic fingerprint of a 3d holomorphic-topological QFT on ℂ_z × ℝ_t, where observables factorize holomorphically in z and associatively in t. The two-colored Swiss-cheese operad SC^{ch,top} has operation spaces FM_k(ℂ) × E₁(m). The bar differential is the closed (holomorphic) color. The bar coproduct is the open (topological) color. The no-open-to-closed rule reflects that bulk interactions restrict to boundaries but not conversely. **The bar complex presents the Swiss-cheese algebra, as the Steinberg variety presents the Hecke algebra.**
 
-The bar complex's differential sees the holomorphic C-direction. Its coproduct sees the topological R-direction. Together: a Swiss-cheese algebra on FM_k(C) x Conf_k(R). At genus g >= 1: curved Swiss-cheese with curvature kappa(A) * omega_g from the Hodge bundle. The bar complex presents the Swiss-cheese algebra, as the Steinberg variety presents the Hecke algebra.
+At genus g ≥ 1: curved Swiss-cheese with curvature κ(A)·ω_g from the Hodge bundle. The non-vanishing of higher A∞ operations IS the curved bar structure d² = κ(A)·ω₁ — formality fails precisely because the logarithm acquires monodromy.
 
-**Vol I**: "the categorical logarithm exists" (five main theorems proving the machine).
-**Vol II**: "here is what the machine computes, and here is how to read the output."
+## The Monograph
+
+Two volumes by Raeez Lorgat. Vol I (~1,960pp, ~/chiral-bar-cobar) proves the machine. Vol II (~450pp, this repo) shows what it computes and how to read the output.
+
+Every theorem proved, every physical identification precise, every construction functorial. When claims outrun proofs, strengthen the proof first. Target: Annals/Astérisque grade.
+
+## Vol I Theorems Used Here
+
+Every chapter depends on Vol I's five theorems. Cross-references to Vol I labels resolve as "undefined" — expected for a multi-volume work.
+
+| Vol I Theorem | What it supplies to Vol II |
+|---------------|---------------------------|
+| **(A)** Bar-cobar adjunction | The bar complex exists as a factorization coalgebra; reinterpreted as SC^{ch,top}-algebra structure — the bridge theorem |
+| **(B)** Koszul inversion | Bar-cobar equivalence on the Koszul locus; lifted to raviolo VA setting and completed towers |
+| **(C)** Complementarity | Genus-g obstructions decompose as complementary Lagrangians; the bulk-boundary-line triangle inherits this (−1)-shifted symplectic structure |
+| **(D)** Leading coefficient | Curvature κ(A)·ω_g governs the genus tower; curved Swiss-cheese = Swiss-cheese + Hodge deformation |
+| **(H)** Hochschild ring | BV-BRST origin of the deformation ring; bulk ≃ chiral Hochschild (Theorem H gets its physical explanation) |
 
 ## Five Parts
 
-1. **From the Bar Complex to the Swiss-Cheese Operad** — the bridge from Vol I
-2. **Descent, Duality, and the Genus Tower** — PVA descent, bulk-boundary-line triangle, genus-Clifford completion
-3. **The Standard Landscape** — free multiplet, LG, Chern-Simons examples
-4. **The Quantization Programme** — PVA quantization via modular bar complex, half-space BV (affine case solved), planted-forest L-infinity obstructions
-5. **The Holographic Programme** — YM boundary packages, celestial holography, logarithmic HT monodromy, anomaly-completed Koszul duality (transgression algebra B_Theta, secondary anomaly u=eta^2, genus-Clifford dichotomy)
+**I. From the Bar Complex to the Swiss-Cheese Operad.** The bridge from Vol I to three dimensions. SC^{ch,top} is constructed: closed color = FM_k(ℂ), open color = FM_k(ℂ) × E₁(m). The closed color recovers BD chiral algebras (ProvedHere). Recognition theorem: an A∞ chiral algebra satisfying (H1)–(H4) is an SC^{ch,top}-algebra (Conjectured). Raviolo descent: SC-algebra → raviolo vertex algebra → Poisson vertex algebra on cohomology (ProvedHere). The raviolo is the algebraic avatar of the ℂ × ℝ geometry. Axiomatics: sesquilinearity, A∞ relations with spectral substitution, cluster factorization from Stokes on FM compactifications.
+
+**II. Descent, Duality, and the Genus Tower.** Two descent mechanisms: cohomological (bar → PVA via Arnold/Stokes) and genus (curved bar over M̄_g). PVA on cohomology H•(A,Q) is a (−1)-shifted Poisson vertex algebra — all axioms verified (ProvedHere). The **bulk-boundary-line Koszul triangle**: bulk algebra A, boundary algebra A! (Koszul dual), line operators as A!-modules — three vertices of a single triangle, with Koszul duality mediating each edge. Corrected form: bulk ≃ derived center of boundary, NOT bulk = boundary. Spectral braiding: R(z) from bulk-boundary composition solves Yang-Baxter via Stokes on FM₃; classical limit r(z) = Laplace of λ-bracket. Celestial transfer: the boundary PVA descends to a celestial OPE algebra.
+
+**III. The Standard Landscape.** Three worked examples verify (H1)–(H4) and ground the abstract machinery:
+- *Free multiplet*: all m_{k≥3} = 0 (no interaction vertices). The trivial case that calibrates signs.
+- *Landau-Ginzburg cubic*: truncation at m₃ by degree counting. The simplest interacting example.
+- *Abelian Chern-Simons*: boundary = û(1)_k, OPE computed directly from propagator.
+- Plus: *Virasoro* (truncation at m₇, Q² = 0, recursive m_k from BV master equation), *W₃* (classical YBE from λ-bracket Jacobi, central charge shift from ghost counting).
+
+**IV. The Quantization Programme.** PVA quantization via the modular bar complex. Affine half-space BV (solved for the affine case). Planted-forest L∞ obstructions parametrize the higher-genus deformation: the FM₃ planted forest residues give the first nontrivial obstruction class. The formality failure at d' = 1 is not a pathology — it IS the genus-1 curvature d² = κ(A)·ω₁. Existence → computation: given a classical PVA, does the logarithm have an exponential?
+
+**V. The Holographic Programme.** YM boundary packages: the Koszul dual of a bulk 3d HT theory produces boundary chiral algebras. Celestial holography: the celestial OPE algebra is the PVA descended from the boundary. Logarithmic HT monodromy: the logarithm's monodromy (from Vol I) reappears as log-monodromy in the HT direction. The **anomaly-completed Koszul triangle**: transgression algebra B_Θ, secondary anomaly u = η², genus-Clifford dichotomy — the holographic dictionary is presented by the transgression algebra, as the Swiss-cheese algebra is presented by the bar complex. Filtration is the universal organizing force: bar filtration for obstruction towers, weight filtration for spectral convergence.
+
+## Standing Hypotheses
+
+All results conditional on four analytic axioms, verified in the three worked examples but not proved in general:
+
+| | Content | Status |
+|---|---------|--------|
+| (H1) | BV data, HT gauge fixing, one-loop finiteness | Physical axiom |
+| (H2) | Propagator: meromorphic in ℂ, exponential decay in ℝ | Physical axiom |
+| (H3) | FM compactification, logarithmic forms, AOS relations, Stokes exactness | Physical axiom |
+| (H4) | Factorization compatibility with C_*(W(SC^{ch,top})) | Physical axiom |
+
+## Critical Pitfalls
+
+**Inherited from Vol I (NEVER VIOLATE):**
+- Four objects: A (algebra), B(A) (bar coalgebra), A^i (dual coalgebra), A^! (dual algebra). NEVER conflate.
+- Ω(B(A)) = A is inversion. A^! via Verdier duality. Cobar does NOT produce A^!.
+- COHOMOLOGICAL grading (|d| = +1). Bar uses DESUSPENSION. m₁²(a) = [m₀, a] (commutator, MINUS sign). Bar d² = 0 always.
+- Sugawara UNDEFINED at critical level k = −h∨ (not "c diverges"). Feigin-Frenkel: k ↔ −k−2h∨.
+- Virasoro self-dual at c = 13, NOT c = 26. Vir_c^! = Vir_{26−c}.
+
+**Specific to Vol II:**
+- Swiss-cheese **directionality is strict**: open-to-closed is EMPTY. No open inputs produce closed outputs. This is the mathematical expression of bulk→boundary directionality.
+- PVA on cohomology H•(A,Q) is **(−1)-shifted**: the λ-bracket has shifted parity relative to classical PVA conventions.
+- The R-matrix R(z) comes from **bulk-boundary composition**, NOT from the universal R-matrix of a quantum group (though they agree on the evaluation locus — this is DK-0).
+- Formality fails at d' = 1: this is NOT a defect. The non-vanishing of higher A∞ operations IS the curved bar structure d² = κ(A)·ω₁ from Vol I.
+- The corrected bulk/boundary/line triangle: **bulk ≃ derived CENTER of boundary**, NOT bulk = boundary.
+- Chiral Koszulness from physics is **OPEN**: (H1)–(H4) + BV-BRST should imply it, but this is not proved.
+- Line operators ≃ A!-modules is **CONDITIONAL** on homotopy-Koszulity of SC^{ch,top} (Conjectured, evidence in three examples).
+- The **Koszul dual is the boundary**, not the bulk: A! lives on the boundary ℝ, not in the bulk ℂ × ℝ.
+
+## Cross-Volume Bridges
+
+| Bridge | Vol II claim | Vol I anchor | Status |
+|--------|-------------|--------------|--------|
+| Bar-cobar | SC^{ch,top} bar-cobar specializes Vol I Thm A when curve = ℂ, topological = ℝ | Theorem A | Conjectured |
+| Hochschild | BV-BRST origin of Vol I's Theorem H complex | Theorem H | Conjectured |
+| DK/YBE | r(z) = Laplace of λ-bracket provides DK-0 shadow | MC3 (DK extension) | Conjectured |
+| W-algebras | Feynman-diagrammatic m_k matches bar differential at genus 0 | MC5 (BRST = bar) | Conjectured |
 
 ## Build
 
 ```
-make                    # Full build (single pass usually suffices)
+pkill -9 -f pdflatex 2>/dev/null || true; sleep 2; make    # Full build (single pass usually suffices)
 ```
 
-Kill competing pdflatex before building: `pkill -9 -f pdflatex 2>/dev/null || true; sleep 2; make`
-
-## Vol I Theorems Used Here
-
-Every chapter depends on Vol I's five theorems (A/B/C/D/H). The Swiss-cheese operad SC^{ch,top} lives in Vol I's E_n Koszul duality chapter. Cross-references to Vol I labels resolve as "undefined" — expected for a multi-volume work.
+Same engine as Vol I: memoir, EB Garamond, newtxmath, thmtools, microtype.
 
 ## LaTeX Rules
 
-- Same engine as Vol I: memoir, EB Garamond, newtxmath, thmtools, microtype
-- Use `\providecommand` (not `\newcommand`) for macros — many are pre-defined in the compatibility block
-- Moved chapters from Vol I retain their mathematical content verbatim; cite keys are mapped to Vol II's bibliography
+- Use `\providecommand` (not `\newcommand`) for macros — many pre-defined in the compatibility block
 - Do NOT add `\newtheorem` in chapter files — all theorem environments defined in main.tex preamble
-
-## Critical Pitfalls (inherited from Vol I)
-
-- Four objects: A (algebra), B(A) (bar coalgebra), A^i (dual coalgebra), A^! (dual algebra). Never conflate.
-- Omega(B(A)) = A (inversion). A^! via Verdier duality. Cobar does NOT produce A^!.
-- COHOMOLOGICAL grading (|d|=+1). Bar uses DESUSPENSION.
-- m_1^2 = [m_0, -] (commutator, MINUS sign). Bar d^2=0 always.
-- Sugawara UNDEFINED at critical level. Feigin-Frenkel: k <-> -k-2h^v.
+- Claim tags match Vol I: \ClaimStatusProvedHere, \ClaimStatusProvedElsewhere, \ClaimStatusConjectured, \ClaimStatusHeuristic, \ClaimStatusOpen
+- Key macros: \cA, \Ainf, \Linf, \barB, \Omegach, \hh, \HH, \Sym, \End
+- Chapters moved from Vol I retain mathematical content verbatim; cite keys mapped to Vol II bibliography
+- Do not add packages without checking preamble
+- Do not create new files when content belongs in existing chapters
+- Do not duplicate definitions from Vol I — reference them textually
 
 ## Git — HARD RULE
 
-All commits authored by Raeez Lorgat. Never credit an LLM. No "co-authored-by", no "generated by", no AI attribution.
+All commits authored by Raeez Lorgat. **Never credit an LLM.** No "co-authored-by", no "generated by", no AI attribution anywhere in the repo.
+
+## File Map
+
+**Theory** (chapters/theory/, 10 files): The operadic foundations and equivalence theorems.
+- foundations: **the bridge** — bar complex as Swiss-cheese algebra, SC^{ch,top} operad construction
+- raviolo, raviolo-restriction: algebraic avatar of ℂ × ℝ geometry, raviolo VA from SC-algebra
+- pva-descent, pva-preview: PVA on cohomology, (−1)-shifted Poisson structure, all axioms verified
+- axioms: sesquilinearity, A∞ relations with spectral substitution, cluster factorization
+- equivalence: operad ⟹ axioms and axioms ⟹ operad (rectification)
+- bv-construction: chain-level A∞ from BV-BRST, conditional on (H1)–(H4)
+- fm-calculus: A∞ from Stokes on FM compactifications, AOS corner cancellations
+- locality: HT prefactorization structure
+
+**Examples** (chapters/examples/, 4 files): Free multiplet, LG, CS, Virasoro, W₃ — complete computations.
+
+**Connections** (chapters/connections/, 19 files): The programme and frontier.
+- concordance: **status ledger** and cross-volume bridges (constitutional for Vol II)
+- bar-cobar-review: bar-cobar adjunction and filtered Koszul duality in the SC setting
+- hochschild: brace algebra on HC cochains, Gerstenhaber bracket, bulk ≃ chiral Hochschild
+- line-operators: C_line ≃ A!-mod (conditional on homotopy-Koszulity)
+- spectral-braiding: R(z) from bulk-boundary, Yang-Baxter from Stokes on FM₃
+- ht_bulk_boundary_line: the Koszul triangle — bulk, boundary, line
+- celestial_holography, celestial_boundary_transfer: celestial OPE and boundary transfer
+- anomaly_completed_topological_holography: B_Θ, secondary anomaly u = η², genus-Clifford
+- log_ht_monodromy: logarithmic monodromy in the HT direction
+- modular_pva_quantization, affine_half_space_bv: quantization programme
+- fm3_planted_forest_synthesis: planted-forest L∞ obstructions
+- bv_ht_physics, physical_origins, holomorphic_topological: physics bridges
+- ym_synthesis, brace: YM boundary, brace structures
+- conclusion: synthesis and open problems
 
 ## The Aesthetic
 
-Show, don't tell. Synthesize disparate mathematical domains to bring out their inner wonder and music. Every construction should feel inevitable — a single phenomenon viewed from different angles, not parts assembled. The Steinberg variety presents the Hecke algebra; the bar complex presents the Swiss-cheese algebra; the transgression algebra presents the holographic dictionary.
+Show, don't tell. Every construction should feel inevitable — a single phenomenon viewed from different angles, not parts assembled. The Steinberg variety presents the Hecke algebra; the bar complex presents the Swiss-cheese algebra; the transgression algebra presents the holographic dictionary; the complementarity potential presents the nonlinear modular shadows. Synthesize disparate mathematical domains to bring out their inner wonder and music.
