@@ -124,6 +124,11 @@
 \declaretheorem[style=garamonddef, name=Interpretation, sibling=theorem]{interpretation}
 \declaretheorem[style=garamonddef, name=Evidence, sibling=theorem]{evidence}
 \declaretheorem[style=garamonddef, name=Principle, sibling=theorem]{principle}
+\declaretheorem[style=garamonddef, name=Question, sibling=theorem]{question}
+\declaretheorem[style=garamonddef, name=Summary, sibling=theorem]{summary}
+\declaretheorem[style=garamonddef, name=Problem, sibling=theorem]{problem}
+\declaretheorem[style=garamonddef, name=Setup, sibling=theorem]{setup}
+\declaretheorem[style=garamonddef, name=Strategy, sibling=theorem]{strategy}
 
 % Hyperref anchors for theorem counters
 \makeatletter
@@ -157,6 +162,23 @@
 \DeclareMathOperator{\Ran}{Ran}
 \DeclareMathOperator{\Spec}{Spec}
 \DeclareMathOperator{\Ext}{Ext}
+\DeclareMathOperator{\Coder}{Coder}
+\newcommand{\Bmod}{B_{\mathrm{mod}}}
+\newcommand{\Bch}{B_{\mathrm{ch}}}
+\newcommand{\Defmod}{\operatorname{Def}_{\mathrm{mod}}}
+\newcommand{\Deftop}{\operatorname{Def}_{\mathrm{top}}}
+\DeclareMathOperator{\Ob}{Ob}
+\newcommand{\cl}{\mathrm{cl}}
+\newcommand{\orline}{\mathfrak{o}}
+\newcommand{\StGraph}{\mathsf{SGraph}}
+\providecommand{\cref}[1]{\ref{#1}}
+\DeclareMathOperator{\Koszul}{Koszul}
+\DeclareMathOperator{\Aut}{Aut}
+\newcommand{\Xloc}{\mathfrak{X}_{\mathrm{loc}}}
+\newcommand{\barBch}{\bar{B}^{\mathrm{ch}}}
+\newcommand{\Vect}{\cat{Vect}}
+\newcommand{\Mod}{\mathrm{Mod}}
+\newcommand{\ClaimStatusConditional}{\textnormal{[conditional]}}
 
 % Calligraphic and blackboard
 \newcommand{\A}{\mathcal{A}}
@@ -165,6 +187,7 @@
 \newcommand{\cE}{\mathcal{E}}
 \newcommand{\cO}{\mathcal{O}}
 \newcommand{\cA}{\mathcal{A}}
+\newcommand{\cV}{\mathcal{V}}
 \newcommand{\OO}{\mathcal{O}}
 \newcommand{\C}{\mathbb{C}}
 \newcommand{\R}{\mathbb{R}}
@@ -362,25 +385,25 @@ Swiss-cheese setting, and here is how to read the output.''
 \subsection*{Conditional and unconditional results}
 \label{subsec:conditional-roadmap}
 
-This volume has two conjectural inputs:
+This volume has one conjectural input:
 \begin{enumerate}
-\item \textbf{Recognition}
-  (Conjecture~\ref{conj:recognition}): the BV observables of an HT
-  theory form an algebra over the Boardman--Vogt resolution
-  $C_\ast(W(\SCchtop))$.
 \item \textbf{Homotopy--Koszulity}
   (Conjecture~\ref{conj:homotopy-Koszul}): the two-colored operad
   $\SCchtop$ is homotopy--Koszul, i.e., the bar--cobar adjunction
   for $\SCchtop$-algebras is a Quillen equivalence.
 \end{enumerate}
+The \textbf{Recognition} statement
+(Theorem~\ref{thm:recognition}) is now proved:
+the BV observables of an HT theory form an algebra over
+$C_\ast(W(\SCchtop))$.
 All results not listed below are unconditional.
 
 \begin{remark}[Conditional results]
 \label{rem:conditional-list}
-The following results depend on the conjectural inputs above.
+The following results depend on the conjectural input above.
 \begin{itemize}
-\item \emph{Conditional on Recognition
-  \textup{(Conjecture~\ref{conj:recognition})}:}
+\item \emph{Now unconditional (Recognition proved,
+  Theorem~\ref{thm:recognition}):}
   Proposition~\ref{prop:compatibility} (prefactorization $\Rightarrow$
   $W(\SCchtop)$-algebra),
   Theorem~\ref{thm:Obs-is-SC} (BV observables as Swiss-cheese
@@ -429,7 +452,7 @@ on $\C \times \R$ produces exactly these bar complexes.
 \input{chapters/theory/bv-construction}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\part{Descent, Duality, and the Genus Tower}
+\part{The Descent Calculus}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \noindent
@@ -447,7 +470,19 @@ curvature $\kappa(\cA) \cdot \omega_g$ controlled by Volume~I's
 Theorem~D.  The convolution Lie algebra
 $\Hom(\barB(\cA), \cA)$---whose Maurer--Cartan elements are the
 twisting morphisms of Volume~I---governs deformations via the brace
-algebra on $\FM(\C) \times \Conf(\R)$.  Bar--cobar duality in the two-colored setting yields three further
+algebra on $\FM(\C) \times \Conf(\R)$.
+
+\input{chapters/theory/fm-calculus}
+\input{chapters/theory/pva-descent}
+\input{chapters/connections/hochschild}
+\input{chapters/connections/bar-cobar-review}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\part{Dualities and the Bulk-Boundary-Line Triangle}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\noindent
+Bar--cobar duality in the two-colored setting yields three further
 constructions.  The spectral braiding chapter extracts the spectral
 $R$-matrix $R(z)$ solving Yang--Baxter directly from the
 $\lambda$-bracket.  The bulk/boundary/line chapter
@@ -457,19 +492,11 @@ $A_{\mathrm{bulk}}\simeq
 \operatorname{Z}_{\mathrm{der}}(B_\partial)\simeq
 \operatorname{HH}^\bullet(A^!)$
 from first principles of locality, Koszul duality, and Hochschild
-theory, with the microlocal algebraic core (Kuranishi elimination,
-Mather--Yau classification, fortified local triangle) proved in the
-exact boundary-linear sector.  The celestial boundary transfer
-chapter lifts this to celestial and twisted holography via
-Kaluza--Klein reduction, constructing the wedge $\Ainf$-algebra,
-the nonlinear obstruction tower, exact highest-weight ladder
-formulas, and the Airy--Witt realization of the odd positive Witt
-modes on the density line.
+theory, with the microlocal algebraic core proved in the exact
+boundary-linear sector.  The celestial boundary transfer chapter
+lifts this to celestial and twisted holography via Kaluza--Klein
+reduction.
 
-\input{chapters/theory/fm-calculus}
-\input{chapters/theory/pva-descent}
-\input{chapters/connections/hochschild}
-\input{chapters/connections/bar-cobar-review}
 \input{chapters/connections/line-operators}
 \input{chapters/connections/spectral-braiding}
 \input{chapters/connections/ht_bulk_boundary_line}
@@ -506,57 +533,39 @@ through the BRST functor.
 \input{chapters/examples/w-algebras}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\part{The Quantization Programme}
+\part{Quantization and Holography}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \noindent
 Volume~I's five main theorems establish the \emph{existence} of
-modular Koszul duality.  This part and the next ask what the
+modular Koszul duality.  This part asks what the
 machine \emph{computes}---the qualitative shift from ``the
 categorical logarithm exists'' to ``here is what its Taylor jets
 produce, and here is how to read the output.''
 
-This part addresses the quantization question.
-Volume~I proves that the bar complex is a categorical logarithm.
-The inverse question: \emph{given a classical Poisson vertex
-algebra, does the logarithm have an exponential?}  That is,
-does there exist a chiral algebra whose bar complex recovers the
-given PVA as its cohomological shadow?  The affine case is
-already a theorem: the half-space BV quantization of the PVA
-sigma model produces the affine Kac--Moody vertex algebra at a
-shifted level, one-loop exact, with Drinfeld--Sokolov reduction
-transporting the single formal modulus to Virasoro
-and~$\mathcal{W}_3$.  The planted-forest $L_\infty$ model
-on~$\FM_3$ isolates the first nonlinear obstruction in the
-general case---the cubic jet of the complementarity potential
-$S_\cA$, which is the first place where genuine complementarity
-departs from a fake linear splitting (Volume~I,
-Remark~\ref*{rem:fake-complementarity}).
+The quantization question comes first: \emph{given a classical Poisson
+vertex algebra, does the logarithm have an exponential?}  The affine
+case is already a theorem: half-space BV quantization produces the
+affine Kac--Moody vertex algebra at a shifted level, with
+Drinfeld--Sokolov reduction transporting the modulus to Virasoro
+and~$\mathcal{W}_3$.  The planted-forest $L_\infty$ model on~$\FM_3$
+isolates the first nonlinear obstruction.
 
 \input{chapters/connections/modular_pva_quantization}
 \input{chapters/connections/affine_half_space_bv}
 \input{chapters/connections/fm3_planted_forest_synthesis}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\part{The Holographic Programme}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\medskip\noindent
+The holographic question comes second.  A three-dimensional
+holomorphic--topological theory on $\C \times \R$ produces three
+algebraic objects: a bulk chiral algebra, a boundary vertex algebra,
+and a line category.  The relationship between them is
+\emph{anomaly-completed Koszul duality}: the transgression algebra
+$B_\Theta$ of Volume~I's universal class packages the obstruction
+into a single dg algebra with genus-Clifford completion.
 
-\noindent
-A three-dimensional holomorphic--topological theory on
-$\C \times \R$ produces three algebraic objects: a bulk
-chiral algebra (commutative, shifted Poisson), a boundary
-vertex algebra (quantum, noncommutative), and a line category
-(controlled by the Koszul dual).  The relationship between
-them is not naive equality but \emph{anomaly-completed Koszul
-duality}: the bar coalgebra of the bulk algebra is the
-boundary algebra's Koszul dual, and the anomaly
-completion---the transgression algebra $B_\Theta$ of
-Volume~I's universal class---packages the obstruction to
-strictifying this identification into a single dg algebra
-with genus-Clifford completion.
-
-This part develops the full holographic programme through
-four movements.  First, Yang--Mills boundary packages with
+The holographic programme proceeds through four movements.  First,
+Yang--Mills boundary packages with
 instanton completion and screening, reducing the mass-gap
 question to a screening domination estimate internal to the
 formalism.  Second, celestial and twisted holography made
