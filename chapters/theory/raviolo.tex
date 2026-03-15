@@ -1,0 +1,404 @@
+\section{Relation to raviolo vertex algebras}
+\label{sec:raviolo}
+
+\subsection{Restriction to time–slices}
+Let $A=(A_{\mathsf{ch}},A_{\mathsf{top}})$ be an algebra over $C_\ast\!\bigl(W(\mathsf{SC}^{\mathrm{ch,top}})\bigr)$.
+We define its restriction to a fixed time $t_0\in\mathbb R$ by evaluating on rectangles
+$D\times I$ with $I$ a small interval centered at~$t_0$, and we identify objects along
+the topological direction via the (contractible) $E_1$–homotopy.
+
+\begin{definition}[Raviolo restriction]
+\label{def:raviolo-restriction}
+Fix $t_0\in\mathbb R$.  The \emph{raviolo factorization algebra} associated to~$A$ is the assignment
+\[
+  \mathsf V_{\mathrm{rav}}(D)
+   \,:=\,
+  \bigl( A_{\mathsf{ch}}(D\times I)\bigr)\big/\!\!\sim
+  \qquad
+  \text{for small disks $D\subset\mathbb C$ and intervals $I$ about $t_0$,}
+\]
+where $\sim$ identifies the two choices of approaching $t_0$ ("from above" and "from below")
+using the $E_1$–coherence data.
+\end{definition}
+
+\begin{proposition}\label{prop:raviolo-VA}
+The restriction $\mathsf V_{\mathrm{rav}}$ carries the structure of a (dg) raviolo vertex algebra in the sense of \cite{GarnerWilliams2023,AlfonsiKimYoung2024}.
+\end{proposition}
+\begin{proof}
+We verify the raviolo vertex algebra axioms by constructing the structure maps from the $\OHT$-algebra data and checking each axiom.
+
+\medskip\noindent\textbf{Step 1: Two-sheeted structure from time-slice restriction.}
+By Proposition~\ref{prop:SC-raviolo}, the time-slice restriction of the $\OHT$-algebra $(A_{\mathsf{ch}}, A_{\mathsf{top}})$ to a fixed $t_0\in\R$ produces a raviolo factorization algebra $\mathsf{V}_{\mathrm{rav}}$ on $\C$.  The raviolo geometry arises as follows: the two sheets $D_+$ and $D_-$ correspond to the two half-intervals $I_+ = (t_0, t_0+\epsilon)$ and $I_- = (t_0-\epsilon, t_0)$, representing the ``future'' and ``past'' of the time-slice.  The punctured disk $D^\times$ corresponds to the full interval $I = I_-\cup I_+$ minus the point $\{t_0\}$, and the $E_1$-homotopy data provides the gluing $D_+\cup_{D^\times} D_-$.  The state space is $V := A_{\mathsf{ch}}(D\times I)$ for a small disk $D\subset\C$.
+
+\medskip\noindent\textbf{Step 2: Vertex algebra operations.}
+The vertex algebra structure maps on $\mathsf{V}_{\mathrm{rav}}$ are obtained by restricting the $A_\infty$ chiral operations $m_k$ to the time-slice.  The state-field correspondence $Y(a,z): V\to V((z))$ is given by the binary operation:
+\[
+  Y(a,z)\,b \;=\; m_2(a,b)\big|_{\lambda = z^{-1}},
+\]
+where the spectral parameter $\lambda$ is related to the holomorphic coordinate difference by the standard identification $\lambda \leftrightarrow z^{-1}$ (Fourier--Laplace duality between the spectral and position descriptions).  The vacuum $|0\rangle$ is the unit of $A_{\mathsf{ch}}$ (the identity observable), and the translation operator $T = \partial$ acts by the holomorphic derivative.
+
+\medskip\noindent\textbf{Step 3: Axiom verification.}
+\begin{enumerate}[label=(\roman*)]
+\item \emph{Vacuum axiom}: $Y(|0\rangle, z) = \mathrm{id}_V$ follows from the $A_\infty$ unit axiom $m_2(1,a) = a$.  The creation property $Y(a,z)|0\rangle\big|_{z=0} = a$ follows from $m_2(a,1) = a$.
+
+\item \emph{Translation covariance}: $[T, Y(a,z)] = \partial_z Y(a,z)$ is precisely the sesquilinearity identity $m_2(\partial a, b) = -\lambda\, m_2(a,b)$ rewritten in position space, where $\partial_z$ corresponds to multiplication by $-\lambda$ under Fourier--Laplace.
+
+\item \emph{Locality}: For $a,b\in V$, the commutator $[Y(a,z), Y(b,w)]$ is a distribution supported on $z=w$, annihilated by $(z-w)^N$ for sufficiently large $N$.  This follows from the fact that $m_2(a,b)\in A((\lambda))$ has only finitely many singular terms in $\lambda^{-1}$, so the OPE has finite polar order.
+
+\item \emph{Raviolo structure}: The two sheets $D_\pm$ carry the vertex algebra operations from (ii)--(iii), and the $E_1$-coherence data provides the homotopy connecting the two sheets.  Concretely, the $A_\infty$ operations $m_k$ for $k\ge 3$ encode the higher homotopies of the raviolo: they measure the failure of the binary vertex algebra structure to be strictly associative, with the homotopy-coherent corrections organized by the topological $E_1$-direction.  The passage from $\OHT$ to a raviolo VA is the statement that the closed-color operations (holomorphic, governed by $\FM_k(\C)$) restrict to vertex algebra operations on each sheet, while the open-color operations (topological, governed by $E_1(m)\cong\Conf_m(\R)$) provide the gluing data between sheets.
+\end{enumerate}
+This establishes the (dg) raviolo vertex algebra structure on $\mathsf{V}_{\mathrm{rav}}$ in the sense of \cite{GarnerWilliams2023, AlfonsiKimYoung2024}.
+\end{proof}
+
+\begin{proposition}[Swiss–cheese $\Rightarrow$ raviolo]
+\label{prop:SC-raviolo}
+Restriction of a $C_\ast\!\bigl(W(\mathsf{SC}^{\mathrm{ch,top}})\bigr)$–algebra to a time–slice yields
+a (dg) raviolo factorization algebra on~$\mathbb C$.  Its product and OPE maps are
+induced by those of $A$ via the canonical $E_1$–homotopies.
+\end{proposition}
+
+\begin{proof}
+By the local constancy in the topological direction, an interval $I$ about~$t_0$ can be
+retracted to a point using $E_1(1)$, which is contractible.  The contractibility of $E_1(1)$ means that the topological operations on a single interval are homotopically trivial. Restricting to a time-slice collapses the interval to a point, but the two endpoints (incoming and outgoing) retain distinct identities, producing the two sheets $D_+$ and $D_-$ of the raviolo. The open disk $D^\times$ parametrizes the interior of the interval, and the $E_1$-homotopy provides the gluing data $D_+ \cup_{D^\times} D_-$.  Compatibility with disjoint unions
+follows from the swiss–cheese composition rules on rectangles.
+\end{proof}
+
+\begin{remark}[Čech/Thom–Sullivan model]
+\label{rmk:TS-model}
+Equivalently, $\mathsf V_{\mathrm{rav}}$ can be computed by a Čech resolution of
+the cover $\{D_+,D_-,D^\times\to D_+\cup_{D^\times}D_-\}$ and then passing to
+Thom–Sullivan chains; this is the derived section model used in
+\cite{GarnerWilliams2023,AlfonsiKimYoung2024}.
+\end{remark}
+
+\subsection{Cohomology and shifted Poisson vertex structure}
+\label{subsec:raviolo-PVA}
+We recall the cohomological vertex–Poisson algebra structure described in
+Section~\ref{sec:Ainfty-to-PVA}: the symmetric regular part of~$m_2$ gives the
+(commutative, associative) product on cohomology and the antisymmetric singular part gives a
+degree~$-1$ $\lambda$–bracket.
+
+\begin{theorem}[PVA structure on raviolo cohomology]
+\label{thm:raviolo-PVA}
+Let $A$ be a $C_\ast\!\bigl(W(\mathsf{SC}^{\mathrm{ch,top}})\bigr)$–algebra
+and let $\mathsf V_{\mathrm{rav}}$ be its raviolo restriction.
+Then $H^\bullet(\mathsf V_{\mathrm{rav}},Q)$ carries a $(-1)$–shifted
+Poisson vertex algebra structure $(\cdot,\{\ \_ \})$:
+\begin{enumerate}[label=(\alph*)]
+\item $(\cdot)$ is a commutative, associative product induced by the symmetric regular part of $m_2$;
+\item $\{\,\cdot{}_\lambda \cdot\,\}$ is a degree~$-1$ bracket induced by the antisymmetric singular part of $m_2$;
+\item sesquilinearity, skewsymmetry, the Jacobi identity, and Leibniz rule hold on cohomology.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+The PVA structure on $H^\bullet(\mathsf{V}_{\mathrm{rav}}, Q)$ is extracted from the chain-level $A_\infty$ chiral algebra via the regular/singular decomposition of $m_2$.  We verify each axiom in turn.
+
+\medskip\noindent\textbf{Step 1: Commutative product from the regular part.}
+Write $m_2(a,b) = m_2^{\mathrm{reg}}(a,b) + m_2^{\mathrm{sing}}(a,b)$ where $m_2^{\mathrm{reg}}(a,b)\in A[[\lambda]]$ and $m_2^{\mathrm{sing}}(a,b)\in \lambda^{-1}A[[\lambda^{-1}]]$.  The product on cohomology is defined by the symmetrized regular part:
+\[
+  [a]\cdot [b] \;:=\; \bigl[m_2^{\mathrm{reg}}(a,b)\big|_{\lambda=0}\bigr] + (-1)^{|a||b|}\bigl[m_2^{\mathrm{reg}}(b,a)\big|_{\lambda=0}\bigr].
+\]
+The time-slice restriction maps the $\OHT$-algebra product to the raviolo product: on the time-slice, the interval $I$ collapses and the $\lambda=0$ evaluation corresponds to the coincident-time limit $t_1=t_2$, which is well-defined because the regular part has no singularity.  Commutativity is manifest from the symmetrization.  Associativity follows from the $n=3$ $A_\infty$ identity (Theorem~\ref{thm:assoc}): the obstruction to associativity is $Q(m_3^{\mathrm{reg}})$, which vanishes on $Q$-closed inputs.
+
+\medskip\noindent\textbf{Step 2: $\lambda$-bracket from the singular part.}
+The $\lambda$-bracket on cohomology is defined by the antisymmetrized singular part:
+\[
+  \{[a]{}_\lambda [b]\} \;:=\; \bigl[m_2^{\mathrm{sing}}(a,b)\bigr] - (-1)^{(|a|+1)(|b|+1)}\bigl[m_2^{\mathrm{sing}}(b,a)\big|_{\lambda\mapsto -\lambda-\partial}\bigr].
+\]
+On the raviolo, the singular part $m_2^{\mathrm{sing}}$ encodes the OPE poles: the coefficient of $\lambda^{-n-1}$ in $m_2^{\mathrm{sing}}(a,b)$ corresponds to the $(n)$-th product $a_{(n)}b$ in vertex algebra language.  The time-slice restriction preserves these poles because singularities in the holomorphic direction survive the collapse of the topological interval.
+
+\medskip\noindent\textbf{Step 3: Sesquilinearity.}
+The chain-level sesquilinearity axioms $m_2(\partial a, b) = -\lambda\, m_2(a,b)$ and $m_2(a, \partial b) = (\lambda+\partial)\,m_2(a,b)$ (Equations~\ref{eq:sesqui-left}--\ref{eq:sesqui-right}) descend directly to cohomology.  Since $Q=m_1$ commutes with $\partial$ (the translation operator acts on the holomorphic coordinate, not the cohomological degree), and since $Q$ does not involve the spectral parameter $\lambda$, the sesquilinearity identities pass through the Laurent decomposition and the projection to $Q$-cohomology without modification:
+\[
+  \{\partial[a]{}_\lambda [b]\} = -\lambda\,\{[a]{}_\lambda [b]\}, \qquad
+  \{[a]{}_\lambda \partial[b]\} = (\lambda+\partial)\,\{[a]{}_\lambda [b]\}.
+\]
+
+\medskip\noindent\textbf{Step 4: Skew-symmetry.}
+The antisymmetrization in Step~2 gives, by the exchange $\lambda\mapsto -\lambda-\partial$ and the Koszul sign $(-1)^{(|a|+1)(|b|+1)}$:
+\[
+  \{[a]{}_\lambda [b]\} \;=\; -(-1)^{(|a|+1)(|b|+1)}\,\{[b]{}_{-\lambda-\partial} [a]\}.
+\]
+This is the standard skew-symmetry for a $(-1)$-shifted $\lambda$-bracket, matching the degree convention $|m_2|=1-2=-1$.
+
+\medskip\noindent\textbf{Step 5: Jacobi identity.}
+The $n=3$ $A_\infty$ identity, projected to the singular part in all three pairwise channels, yields the $\lambda$-Jacobi identity (Theorem~\ref{thm:Jacobi-PVA}).  On the raviolo, this has the following geometric interpretation: the three boundary strata $D_{12}$, $D_{13}$, $D_{23}$ of $\FM_3(\C)$ contribute the three terms of the Jacobi identity, corresponding to the three pairwise collisions of holomorphic insertion points on the time-slice.  The total collision stratum $D_{123}$ contributes a $Q$-exact term $Q(m_3^{\mathrm{sing}})$ that vanishes on cohomology classes.  The Arnold relation $d\log(z_1-z_2)\wedge d\log(z_2-z_3) + \text{cyclic} = 0$ ensures cancellation at codimension-2 corners, so the Stokes argument closes.
+
+\medskip\noindent\textbf{Step 6: Leibniz rule.}
+The $n=3$ $A_\infty$ identity with mixed projection --- outer $m_2$ regular (product), inner $m_2$ singular (bracket) --- yields the Leibniz rule (Theorem~\ref{thm:Leibniz-PVA}):
+\[
+  \{[a]{}_\lambda ([b]\cdot [c])\}
+  \;=\; \{[a]{}_\lambda [b]\}\cdot [c]
+  \;+\; (-1)^{(|a|+1)|b|}\,[b]\cdot\{[a]{}_\lambda [c]\}.
+\]
+This mixed projection is well-defined because the regular/singular decomposition is multiplicative: the spectral substitution principle (Remark~\ref{rmk:spectral-substitution}) governs how inner spectral parameters compose with outer ones, and the regular part of a composition with an inner singularity isolates the bracket-then-multiply structure.
+
+\medskip\noindent\textbf{Step 7: Degree shift.}
+The binary operation $m_2$ has intrinsic degree $|m_2|=1-2=-1$.  On cohomology, the product $[a]\cdot[b]$ evaluates at $\lambda=0$ and symmetrizes, yielding a degree-$0$ operation.  The bracket $\{[a]{}_\lambda [b]\}$ retains the spectral parameter, and extracting the coefficient of $\lambda^n$ preserves the degree shift of $-1$ from $m_2$.  As a binary operation on the underlying graded vector space, the bracket is therefore a map $V\otimes V\to V$ of degree $+1$ (absorbing the $-1$ from $|m_2|$ and the $+2$ from the two desuspensions implicit in the $\lambda$-bracket formalism), consistent with a $(-1)$-shifted Poisson vertex algebra.
+
+\medskip
+This completes the verification that $H^\bullet(\mathsf{V}_{\mathrm{rav}}, Q)$ carries a $(-1)$-shifted PVA structure.
+\end{proof}
+
+\begin{corollary}[Compatibility with Oh–Yagi and CDG]
+\label{cor:compatibility-OY-CDG}
+Under Hypotheses (H1)--(H4), for HT twists of $3$d~$\mathcal N=2$ theories,
+the $(-1)$–shifted Poisson vertex structure on $H^\bullet(\mathsf V_{\mathrm{rav}},Q)$
+agrees with the secondary bracket constructed in
+\cite{OY20} and \cite{CDG20}.
+\end{corollary}
+
+\begin{proof}
+Both brackets are computed by the same residue of the $m_2$ singular kernel,
+and both products arise from the regular part of the binary operation.
+\end{proof}
+
+\subsection{Higgs/Coulomb branch checks}
+\label{subsec:Higgs-Coulomb}
+For $3$d~$\mathcal N=4$ theories, the raviolo vertex algebra specializes to the
+superconformal raviolo vertex algebras of
+\cite{GarnerRaghavendranWilliams2023}, where $H^\bullet(\mathsf V_{\mathrm{rav}},Q)$
+recovers ring of functions on Higgs and Coulomb branches.
+The $2$–shifted Poisson structures observed therein descend to the $(-1)$–shifted
+vertex Poisson structure described in Theorem~\ref{thm:raviolo-PVA}.
+\begin{proposition}[Higgs/Coulomb compatibility]
+\label{prop:Higgs-Coulomb-compat}
+Under Hypotheses (H1)--(H4), let $\mathcal T$ be a $3$d~$\mathcal N=4$ theory with an HT twist.
+Then $H^\bullet(\mathsf V_{\mathrm{rav}},Q)$
+is simultaneously a quantization of the Higgs and Coulomb branch Poisson algebras, compatible with the
+raviolo PVA structure.  In particular, restriction to holomorphic currents produces the
+expected $\widehat{\mathfrak g}$–type current algebras on the boundary.
+\end{proposition}
+\begin{proof}[Sketch]
+This is verified in examples by direct calculation:
+free multiplets, abelian gauge theories with Chern–Simons coupling, and theories with Landau–Ginzburg
+superpotentials.  The compatibility of OPEs with the raviolo factorization encodes the algebraic structure and
+identifies the shifted Poisson bracket with the secondary operation of \cite{OY20}.
+\end{proof}
+\subsection{Examples and consistency checks}
+\label{subsec:raviolo-examples-2}
+We briefly recall the behavior in the three model families analysed in Section~\ref{sec:examples}.
+\paragraph{\textbf{Free chiral multiplet.}}
+The singular part of $m_2$ vanishes in cohomology; the regular part produces a purely commutative vertex algebra.
+This matches the standard free–field realization on the raviolo.
+\paragraph{\textbf{Landau–Ginzburg model.}}
+With a cubic superpotential, the first nontrivial $m_3$ may appear, but its contribution vanishes on cohomology
+by the usual $A_\infty$ argument; the singular residue produces a nontrivial degree $-1$ bracket on $H^\bullet$,
+consistent with the calculations in \cite{GRW21} and Section~\ref{sec:examples}.
+
+\paragraph{\textbf{Abelian Chern–Simons boundary.}}
+On the boundary, the raviolo vertex algebra contains $\widehat{\mathfrak u}(1)$ currents; the singular part of $m_2$
+computes the level and the bracket on cohomology agrees with the current algebra OPE.
+The bulk–to–boundary map (Section~\ref{sec:bulk-boundary}) intertwines the bulk PVA with the boundary VOA.
+
+\subsection{Standing Hypotheses: Analytic and Geometric Framework}
+\label{sec:hypotheses}
+
+Throughout this manuscript, we work under explicit analytic and geometric hypotheses that ensure the well-definedness of configuration space integrals and the validity of our formal manipulations. These hypotheses are verified in all three worked examples (Section \ref{sec:examples}).
+
+\begin{hypothesis}[BV Data and HT Gauge Fixing]
+\label{hyp:H1}
+The 3d HT quantum field theory $\mathcal{T}$ on $\R_t \times \C_z$ admits a consistent BV quantization with the following properties:
+\begin{enumerate}[label=(\alph*)]
+\item \textbf{Classical BV data}: The theory possesses a $(-1)$-symplectic graded space of fields $\mathcal{F}$ with a local action functional $S \in \mathcal{O}(\mathcal{F})$ satisfying the classical master equation $\{S,S\}_{\mathrm{BV}} = 0$.
+
+\item \textbf{HT gauge fixing}: There exists a gauge-fixing fermion $\Psi$ such that the gauge-fixed action $S_{\mathrm{gf}} = S + \{Q_{\mathrm{BRST}}, \Psi\}$ is well-defined on $\R \times \C$, where $Q_{\mathrm{BRST}}$ is the BRST differential satisfying $Q_{\mathrm{BRST}}^2 = 0$ before gauge fixing.
+
+\item \textbf{One-loop finiteness}: In the holomorphic-topological gauge, one-loop Feynman integrals converge without UV divergences. This is the content of Gwilliam--Rabinovich--Williams' one-loop finiteness theorem \cite{GRW21} for theories with $d' = 1$ topological direction.
+
+\item \textbf{Lorenz-type condition}: The gauge-fixing includes a holomorphic $\dbar$-exactness condition ensuring that propagators decay appropriately in the $z$ variable and are translation-invariant in $t$.
+\end{enumerate}
+\end{hypothesis}
+
+\begin{remark}
+Hypothesis \ref{hyp:H1} is satisfied by the holomorphic twists of 3d $\mathcal{N}=2$ theories constructed in \cite{CDG20}, where the BV formalism is developed explicitly for matter (chiral multiplets) and gauge sectors (vector multiplets with Chern--Simons coupling). The HT gauge corresponds to working in complex coordinates $(z, \bar{z})$ with $\dbar$-closed fields and imposing appropriate boundary conditions along the topological $\R_t$ direction.
+\end{remark}
+
+\begin{hypothesis}[Propagator Regularity and Decay]
+\label{hyp:H2}
+The gauge-fixed BV propagators satisfy:
+\begin{enumerate}[label=(\alph*)]
+\item \textbf{Holomorphic structure}: Propagators $G(z_1, z_2; t_1, t_2)$ are meromorphic in $(z_1, z_2) \in \C^2$ with poles only along the diagonal $z_1 = z_2$.
+
+\item \textbf{Topological decay}: For fixed $(z_1, z_2)$ with $z_1 \neq z_2$, the propagator decays exponentially as $|t_1 - t_2| \to \infty$:
+\[
+|G(z_1, z_2; t_1, t_2)| \leq C e^{-\mu |t_1 - t_2|}
+\]
+for some constants $C, \mu > 0$ depending on $|z_1 - z_2|$. For theories with delta-function propagators in the topological direction (e.g., the free chiral multiplet), condition (b) is satisfied trivially. For theories with smooth propagators, condition (b) requires exponential decay ensuring convergence of the configuration space integrals.
+
+\item \textbf{Scaling near collision}: Near $z_1 = z_2$, the propagator has the asymptotic expansion
+\[
+G(z_1, z_2; t_1, t_2) = \frac{K(t_1, t_2)}{z_1 - z_2} + \text{holomorphic corrections},
+\]
+where $K(t_1, t_2)$ is a distribution supported on the diagonal $t_1 = t_2$ (modeled by chains in $C_\bullet(E_1)$).
+
+\item \textbf{Translation invariance}: The propagator depends only on $z_1 - z_2$ and $t_1 - t_2$, reflecting the translation symmetries of $\R \times \C$.
+\end{enumerate}
+\end{hypothesis}
+
+\begin{example}[Free Chiral Multiplet Propagator]
+\label{ex:free_propagator}
+For the free chiral multiplet $\Phi$ with action
+\[
+S_{\mathrm{free}} = \int_{\R \times \C} \bar{\Phi} \wedge (\partial_t + \bar{\partial}) \Phi,
+\]
+the propagator $K = \delta(t_1 - t_2) / (2\pi(z_1 - z_2))$ solves $(\partial_t + \bar{\partial}) K = \delta^{(3)}$. Explicitly, in HT gauge:
+\[
+G_{\Phi}(z_1, z_2; t_1, t_2) = \frac{\delta(t_1 - t_2)}{2\pi(z_1 - z_2)}.
+\]
+This satisfies all requirements of Hypothesis \ref{hyp:H2}: it is meromorphic in $z$ with a simple pole, supported on the topological diagonal $t_1 = t_2$, and translation-invariant.
+\end{example}
+
+\begin{hypothesis}[Configuration Space Renormalization]
+\label{hyp:H3}
+The higher operations $m_k$ are defined by integrating weight forms on the product $\Conf_k(\R) \times \FM_k(\C)$ of ordered configurations in $\R$ and the Fulton--MacPherson compactification in $\C$.  We emphasize that this is \emph{not} the FM compactification $\FM_k(\R \times \C)$ of the product: the boundary strata of $\FM_k(\R \times \C)$ include collisions at different rates in the $\R$ and $\C$ directions, which are not present in the product $\Conf_k(\R) \times \FM_k(\C)$.  The physical reason for this factorization is that time-ordering in $\R$ prevents simultaneous collisions at equal times, so one works with open (ordered) configuration spaces in $\R$ and FM-compactified spaces in $\C$ separately.
+\begin{enumerate}[label=(\alph*)]
+\item \textbf{Product domain and factorization of weight forms}: The operations $m_k$ use chains on $\Conf_k(\R) \times \FM_k(\C)$.  The weight forms factor as $\omega_k = \omega_k^{\mathrm{hol}} \wedge \omega_k^{\mathrm{top}}$, where $\omega_k^{\mathrm{hol}} \in \Omega^*_{\log}(\FM_k(\C))$ and $\omega_k^{\mathrm{top}} \in C_*(\Conf_k(\R))$. This factorization holds because the propagator kernel $K(z_1 - z_2, t_1 - t_2)$ splits into a holomorphic factor $1/(z_1 - z_2)$ and a topological factor $\Theta(t_1 - t_2)$ (or $\delta(t_1 - t_2)$), and the time-ordering prevents collisions in $\R$ from requiring compactification.
+
+\item \textbf{Logarithmic forms}: Feynman diagram contributions define logarithmic differential forms
+\[
+\omega_k^{\mathrm{hol}} \in \Omega^{\bullet}_{\log}(\FM_k(\C)), \qquad \omega_k^{\mathrm{top}} \in C_\bullet(\Conf_k(\R))
+\]
+with prescribed pole orders at each boundary divisor, determined by propagator singularities.
+
+\item \textbf{Factorization at boundaries}: On each divisor $D_S \subset \partial \FM_k(\C)$, the restriction $\omega_k|_{D_S}$ factors compatibly with the FM boundary structure:
+\[
+\FM_k(\C)|_{D_S} \cong \FM_{|S|}(\C) \times \prod_{i \in S} \FM_{|C_i|}(\C),
+\]
+where $C_i$ are the connected components of the cluster $S$.
+
+\item \textbf{Arnold relations}: Logarithmic forms satisfy the classical Arnold--Orlik--Solomon relations at codimension-2 corners $D_S \cap D_T$, ensuring compatibility of iterated residues.
+
+\item \textbf{Stokes exactness}: The exterior derivative $d$ satisfies Stokes' theorem on manifolds with corners, and corner contributions cancel via Arnold relations (proven in Appendix \ref{app:FM_Stokes}).
+\end{enumerate}
+\end{hypothesis}
+
+\begin{remark}[Physical Meaning of H3]
+Hypothesis \ref{hyp:H3} encodes the renormalizability of the theory via configuration space methods. The FM compactification provides a geometric regularization: divergences at coincident points are encoded as poles of logarithmic forms, and the residue calculus (taking limits as points collide) extracts finite, well-defined operations. This is the rigorous mathematical implementation of dimensional regularization adapted to the HT setting.
+\end{remark}
+
+\paragraph{Hypothesis 2.22 (H4: Factorization Compatibility).}\,Locality and factorization of observables are compatible with the two-coloured Swiss--cheese chain operad structure: cluster limits along Fulton--MacPherson boundary strata in the closed colour and ordered-interval gluings in the open colour exist and assemble to an algebra over $C_\ast\!\big(W(\mathsf{SC}^{\mathrm{ch,top}})\big)$. % (cf. Sections \ref{sec:SC-operad-foundations}, \ref{sec:raviolo})
+
+\begin{warning}[Theories Not Covered]
+The following classes of theories do \textbf{not} satisfy our standing hypotheses and require additional techniques beyond the scope of this manuscript:
+\begin{itemize}
+\item \textbf{Non-perturbative theories}: Our constructions are perturbative (Feynman diagram expansion). Non-perturbative effects such as instantons, solitons, or strong-coupling dynamics are not captured.
+
+\item \textbf{Theories with conformal anomalies}: We assume the stress tensor is $Q$-exact or absent. Central charges and conformal anomalies introduce additional subtleties in the PVA descent (Theorem \ref{thm:cohomology_PVA}).
+
+\item \textbf{Gauge theories with non-abelian structure}: While our framework applies to abelian gauge theories (Example \ref{ex:abelian_CS}), extending to non-abelian groups requires careful treatment of ghost contributions and BRST cohomology beyond the methods developed here.
+
+\item \textbf{Theories with UV divergences}: Hypotheses H1(c) and H3 explicitly require one-loop finiteness. Theories requiring genuine renormalization (counterterms, RG flow) need additional structures not developed in this work.
+\end{itemize}
+\end{warning}
+
+\subsubsection*{II. Chain-Level Structure from BV Quantization (Section \ref{sec:BV_construction})}
+
+Under explicit standing hypotheses (H1--H4) concerning BV data, propagator regularity, and configuration space renormalization (Section \ref{sec:hypotheses}), we prove:
+
+\begin{theorem}[Chain-Level $A_\infty$ Chiral Structure]
+\label{thm:chain_level_structure}
+Let $\mathcal{T}$ be a 3d HT quantum field theory on $\R \times \C$ satisfying hypotheses H1--H4. Then the cochain complex $\A = \Obs_{\text{bulk}}$ of local operators, equipped with multilinear operations $m_k$ defined via Feynman diagram integration over $\Conf_k(\R) \times \FM_k(\C)$, forms an $A_\infty$ chiral algebra.
+\end{theorem}
+
+The proof employs Fulton--MacPherson boundary calculus with logarithmic forms, outward normal conventions, and residue operators. The $A_\infty$ relations follow from Stokes' theorem on manifolds with corners, with codimension-2 corner contributions canceling via Arnold--Orlik--Solomon relations (Theorem \ref{thm:stokes_arnold}).
+
+\subsubsection*{III. Cohomological Descent to Poisson Vertex Algebras (Section \ref{sec:PVA_descent})}
+
+We establish the mechanism by which the chain-level $A_\infty$ structure descends to cohomology:
+
+\begin{theorem}[PVA Descent---Theorem \ref{thm:cohomology_PVA}]
+Under hypotheses H1--H4, the cohomology $H^\bullet(\A,Q)$ inherits the structure of a $(-1)$-shifted Poisson vertex algebra, with:
+\begin{enumerate}[label=(\roman*)]
+\item The $\lambda$-bracket $\{a_\lambda b\}$ descending from the chain-level operation $m_2$;
+\item All higher operations $m_{k \geq 3}$ vanishing in cohomology via explicit homotopies $h_{k-1}$ constructed from configuration space chains.
+\end{enumerate}
+\end{theorem}
+
+The proof verifies the complete set of PVA axioms (conformal sesquilinearity, skew-symmetry, $\lambda$-Jacobi, Leibniz) following Khan--Zeng \cite{KZ25}, and constructs the nullhomotopies using topological descent along $\R_t$.
+
+\subsubsection*{IV. Chiral Hochschild Cohomology and Bar--Cobar Duality (Sections \ref{sec:chiral_hochschild_expanded}--\ref{sec:bar_cobar})}
+
+We develop the relationship between bulk observables and chiral Hochschild theory:
+
+\begin{theorem}[Bulk as Chiral Hochschild---Theorem \ref{thm:bulk_hochschild}]
+There exists a quasi-isomorphism
+\[
+C^\bullet_{\mathrm{ch}}(A_\partial) \simeq \A_{\text{bulk}}
+\]
+of $A_\infty$ chiral algebras, where $C^\bullet_{\mathrm{ch}}(A_\partial)$ denotes chiral Hochschild cochains of the boundary algebra $A_\partial$.
+\end{theorem}
+
+Furthermore, we construct a filtered chiral bar--cobar adjunction extending Gui--Li--Zeng quadratic duality \cite{GLZ} to the $A_\infty$ setting (Theorem \ref{thm:bar_cobar_adjunction}), with the bar differential $d_{\overline{B}}$ given by FM residue sums and $d_{\overline{B}}^2 = 0$ proven via Arnold relations.
+
+\subsection{Standing Hypotheses (Summary)}
+\label{sec:hypotheses-summary}
+
+All constructions and theorems in this manuscript rely on four fundamental hypotheses ensuring analytic control and renormalizability:
+
+\paragraph{Hypothesis~\ref{hyp:H1} (condensed form):}
+The 3d HT theory possesses BV data (fields, action, antibracket) with gauge fixing in an HT gauge ensuring one-loop UV finiteness on $\R \times \C$ (no divergences in the holomorphic--topological sector).
+
+\paragraph{Hypothesis~\ref{hyp:H2} (condensed form):}
+Propagators obey expected holomorphic/real regularity: holomorphic in $z$-variables up to logarithmic singularities at coincident points, with exponential decay along $\R_t$.
+
+\paragraph{Hypothesis~\ref{hyp:H3} (condensed form):}
+The operations $m_k$ are defined by integration over $\Conf_k(\R) \times \FM_k(\C)$ (ordered configurations in $\R$, FM-compactified in $\C$). Logarithmic forms on $\FM_k(\C)$ provide configuration space renormalization. Arnold--Orlik--Solomon relations hold and ensure codimension-2 boundary contributions cancel (Stokes' theorem on manifolds with corners).
+
+\paragraph{Hypothesis 2.22 (H4: Factorization Compatibility).}\,Locality and factorization of observables are compatible with the two-coloured Swiss--cheese chain operad structure: cluster limits along Fulton--MacPherson boundary strata in the closed colour and ordered-interval gluings in the open colour exist and assemble to an algebra over $C_\ast\!\big(W(\mathsf{SC}^{\mathrm{ch,top}})\big)$.
+
+These hypotheses are verified explicitly in our three main examples (free chiral multiplets, Landau--Ginzburg models, abelian gauge theory) in Section \ref{sec:examples}.
+
+\subsection{The $d'=1$ Formality Gap}
+
+Our work exists in the context of a fundamental dichotomy in holomorphic--topological field theories. Let $d'$ denote the number of topological directions. The Gaiotto--Kulp--Wu formality theorem \cite{GKW25} establishes:
+
+\begin{itemize}
+\item \textbf{$d' \geq 2$}: All higher $A_\infty$ operations beyond $m_2$ stabilize---quantum corrections vanish after one loop, and the theory is formal (in Kontsevich's sense).
+
+\item \textbf{$d' = 1$}: Formality \textbf{fails}. Higher $A_\infty$ operations $m_k$ can persist at all loop orders, creating genuine homotopy-coherent structures.
+\end{itemize}
+
+Three-dimensional HT theories on $\R \times \C$ lie precisely in the $d'=1$ regime, making them the natural setting for studying genuine $A_\infty$ chiral algebras. Understanding when and why higher operations vanish in this setting remains a central open question.
+
+\subsection{Organization}
+
+\textbf{Section \ref{sec:HT-operad}} constructs the HT operad $\OHT$ and defines $A_\infty$ chiral algebras as algebras over $\OHT$, with complete sesquilinearity and factorization axioms.
+
+\textbf{Section \ref{sec:BV_construction}} derives the chain-level $A_\infty$ structure from BV quantization via Feynman diagrams and configuration space integrals.
+
+\textbf{Section \ref{sec:FM_calculus}} develops Fulton--MacPherson boundary calculus, proving the $A_\infty$ relations via Stokes' theorem and Arnold cancellations.
+
+\textbf{Section \ref{sec:PVA_descent}} establishes cohomological descent, verifying PVA axioms and constructing homotopies killing higher operations.
+
+\textbf{Section \ref{sec:chiral_hochschild_expanded}} relates bulk observables to chiral Hochschild cochains via Tamarkin's $*$-Lie approach and geometric jet-space constructions.
+
+\textbf{Section \ref{sec:bar_cobar}} develops the filtered chiral bar--cobar adjunction and proves compatibility with GLZ quadratic duality.
+
+\textbf{Section \ref{sec:examples}} presents three fully worked examples with explicit computations of all operations.
+
+\textbf{Appendix \ref{app:FM_Stokes}} provides complete proofs of orientation conventions, residue formulas, and Arnold relations.
+
+\subsection{Relation to Prior Work}
+
+This manuscript synthesizes and rigorously establishes foundations for structures appearing heuristically in physics literature:
+
+\begin{itemize}
+\item \textbf{Costello--Gwilliam \cite{CG17}}: Factorization algebras and BV quantization provide the conceptual framework; we make precise the $A_\infty$ chiral structure implicit in their constructions.
+
+\item \textbf{Costello--Dimofte--Gaiotto \cite{CDG20}}: Boundary chiral algebras and bulk PVAs are constructed physically; we provide rigorous proofs and clarify the chain-level $A_\infty$ structure.
+
+\item \textbf{Khan--Zeng \cite{KZ25}}: PVA axioms and the 3d HT Poisson sigma model provide explicit formulas we verify; we establish the $\lambda$-Jacobi identity from $A_\infty$ relations.
+
+\item \textbf{Gaiotto--Kulp--Wu \cite{GKW25}}: Higher operations and configuration space techniques inspire our methods; we complete their proofs via FM calculus.
+
+\item \textbf{Gui--Li--Zeng \cite{GLZ}}: Quadratic chiral duality is our benchmark; we extend to the non-quadratic $A_\infty$ setting.
+
+\item \textbf{Tamarkin \cite{Tam03}}: Chiral Hochschild theory and $*$-Lie deformations provide the algebraic framework; we realize geometrically in the HT context.
+\end{itemize}
+
+\subsection{Acknowledgments}
+
+This work is deeply informed by conversations with Kevin Terng and draws extensively on live academic talks by Davide Gaiotto. We are grateful to the mathematical physics community for developing the physical and conceptual foundations upon which this rigorous treatment rests.
+

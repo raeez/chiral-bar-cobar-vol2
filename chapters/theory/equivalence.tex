@@ -1,0 +1,81 @@
+\section{From $W(\mathsf{SC}^{\mathrm{ch,top}})$ to axioms and back}
+\label{sec:operad-to-axioms}
+\label{sec:equivalence}
+
+\subsection{From the operad to explicit $m_k$ with spectral substitution}
+\label{subsec:operad-to-mk}
+Let $(A_{\mathsf{ch}},A_{\mathsf{top}})$ be a $C_\ast\!\bigl(W(\mathsf{SC}^{\mathrm{ch,top}})\bigr)$–algebra with underlying complex $A$ and translation operator $\partial$ (from the holomorphic \(\C\)–action). Choose, for each $k\ge1$, a fundamental chain $[\FM_k(\C)]\in C_\ast(\FM_k(\C))$ and similarly for $E_1$ (recording the $t$–ordering). Define
+\[
+m_k(a_1,\dots,a_k)
+:= \bigl\langle\ \rho\bigl([\FM_k(\C)]\times [E_1(\text{ordering})]\bigr)\,,\, a_1\otimes\cdots\otimes a_k\ \bigr\rangle
+\ \in\ A((\lambda_1))\cdots((\lambda_{k-1})),
+\]
+where $\rho$ is the operad action and the \(\lambda\)–dependence is the generating function of the log‑forms (residue degrees) on $\FM_k(\C)$ prescribed by the operad.
+Then:
+\begin{enumerate}[label=(\alph*)]
+  \item sesquilinearity \eqref{eq:sesqui-left}–\eqref{eq:sesqui-right} follows from equivariance under translations in $\C$ (the \(\C\)–action generates $\partial$ and gives \(\lambda\)-multiplications),
+  \item the spectral substitution law in \eqref{eq:ainfty-relation-raw} is the image of the boundary identification of faces in $\partial\FM_k(\C)$ where a consecutive block collapses (the effective parameter is the sum of inner ones).
+\end{enumerate}
+
+\begin{proposition}[Operad $\Rightarrow$ axioms]
+\label{prop:operad-implies-axioms}
+The $m_k$ produced by the $W(\mathsf{SC}^{\mathrm{ch,top}})$–action satisfy the axioms in Section~\ref{sec:axioms-Ainfty-chiral}.
+\end{proposition}
+
+\begin{proof}
+Unitality is inherited from the operadic units in $\FM_1(\C)$ and $E_1(1)$. Sesquilinearity follows from Lemma~\ref{lem:sesquilinearity_explicit}, where the spectral parameter convention is that $\lambda_i$ records the difference $z_i - z_{i+1}$; this arises from the holomorphic translation action: $z\mapsto z+\epsilon$ induces \eqref{eq:sesqui-left}–\eqref{eq:sesqui-right}. The $A_\infty$ relations \eqref{eq:ainfty-relation-raw} are Stokes' identities on the boundary stratification of $\FM_k(\C)$ with the spectral substitution reflecting the block collapse (Remark~\ref{rmk:spectral-substitution}).
+\end{proof}
+
+\subsection{Rectification: from axioms to a $W(\mathsf{SC}^{\mathrm{ch,top}})$–algebra}
+\label{subsec:rectification}
+Conversely, suppose $A$ carries $(Q,\partial,\{m_k\})$ satisfying the axioms of Section~\ref{sec:axioms-Ainfty-chiral}.
+
+\begin{definition}[Tameness]\label{def:tameness}
+We say that an $A_\infty$ chiral algebra $(A, \{m_k\})$ is \emph{tame} if:
+\begin{enumerate}[label=(\alph*)]
+\item the spectral parameter dependence of $m_k$ is polynomial in $\lambda_i$ (regular part) plus a Laurent tail in $\lambda_i^{-1}$ (singular part) with finitely many negative powers;
+\item the operations $m_k$ are continuous with respect to the natural topology on $A((\lambda_1)) \cdots ((\lambda_{k-1}))$;
+\item for sufficiently large $k$, the operations $m_k$ vanish (truncation).
+\end{enumerate}
+\end{definition}
+
+\begin{theorem}[Axioms $\Rightarrow$ operad]
+\label{thm:rectification}
+Assume $A$ is tame in the sense of Definition~\ref{def:tameness}. Then there exists a (canonically defined up to contractible choice) $C_\ast\!\bigl(W(\mathsf{SC}^{\mathrm{ch,top}})\bigr)$–algebra structure on $A$ inducing the given $m_k$ by evaluation on fundamental chains as above. In particular, the category of tame axiomatic $A_\infty$ chiral algebras is equivalent to the category of $W(\mathsf{SC}^{\mathrm{ch,top}})$–algebras with translation and unit.
+\end{theorem}
+
+\begin{proof}
+We construct the $C_\ast\!\bigl(W(\mathsf{SC}^{\mathrm{ch,top}})\bigr)$--algebra structure in three steps.
+
+\textbf{Step 1 (Structure maps on corollas).}
+For each $k \ge 1$, the corolla $c_k$ (the tree with one vertex and $k$ leaves) represents a generator of $W(\mathsf{SC}^{\mathrm{ch,top}})$. Define the structure map
+\[
+\rho(c_k) : C_\ast(\FM_k(\C)) \otimes C_\ast(E_1(\text{ord})) \otimes A^{\otimes k} \longrightarrow A((\lambda_1))\cdots((\lambda_{k-1}))
+\]
+by sending the fundamental chain $[\FM_k(\C)] \times [\text{ord}]$ to the given operation $m_k$. The spectral parameters $\lambda_i$ encode the Laurent expansion of the log--forms on $\FM_k(\C)$ via the residue pairing, and the $E_1$ factor records the time--ordering of inputs along $\R$.
+
+\textbf{Step 2 (Extension to trees via grafting).}
+A general element of $W(\mathsf{SC}^{\mathrm{ch,top}})$ is a tree $T$ with internal edges carrying parameters $s_e \in [0,1]$. The structure map $\rho(T)$ is defined by iterating the corolla maps along the tree: for each internal edge $e$ of $T$ connecting vertex $v_1$ (output) to $v_2$ (input at slot $i$), the composite
+\[
+\rho(T) = \rho(c_{v_1}) \circ_i \rho(c_{v_2})
+\]
+uses the $\circ_i$--composition induced by the boundary identification $D_{\{i, \ldots\}} \subset \partial \FM_k(\C)$. The key compatibility conditions are:
+
+\begin{enumerate}[label=(\roman*)]
+\item \emph{$A_\infty$ relations ensure grafting consistency}: the relation $\sum m_i \circ m_j = 0$ from \eqref{eq:ainfty-relation-raw} is precisely the statement that the boundary of $\FM_k(\C)$ maps correctly under $\rho$, i.e., $\rho \circ \partial = d \circ \rho$ where $\partial$ is the boundary operator on $C_\ast(\FM_k(\C))$ and $d$ is the differential on $\End(A)$.
+
+\item \emph{Sesquilinearity ensures spectral compatibility}: the translation equivariance $m_k(\ldots, \partial a_i, \ldots) = -\lambda_i \cdot m_k(\ldots)$ guarantees that the $\C$--action on $\FM_k(\C)$ (translations) is intertwined by $\rho$ with the $\partial$--action on $A$, so $\rho$ commutes with the holomorphic symmetry.
+
+\item \emph{Spectral substitution ensures homotopy compatibility}: when an internal edge $e$ has parameter $s_e \to 0$ (a cluster collapses), the block--sum rule $\Lambda_I = \sum_{i \in I} \lambda_i$ ensures the composite structure map matches the boundary face $D_I \cong \FM_r(\C) \times \FM_{|I|}(\C)$.
+\end{enumerate}
+
+\textbf{Step 3 (Tameness ensures convergence and uniqueness).}
+Conditions (a)--(b) of Definition~\ref{def:tameness} ensure the structure maps extend continuously to the completed spaces $A((\lambda_1))\cdots((\lambda_{k-1}))$. Condition (c) ensures that the sum over trees terminates, so the bar complex is well-defined. The universal property of the Boardman--Vogt resolution $W$ (as the cofibrant replacement of $\mathsf{SC}^{\mathrm{ch,top}}$) then guarantees that any two extensions of the corolla data are related by a contractible space of homotopies, giving uniqueness up to contractible choice.
+
+The equivalence of categories follows: the forgetful functor (extracting $m_k$ from the operadic data) is the construction of Proposition~\ref{prop:operad-implies-axioms}, and the present construction provides its inverse up to natural equivalence.
+\end{proof}
+
+\subsection{Compatibility with the PVA construction}
+\label{subsec:compat-PVA}
+The proof of the PVA structure on cohomology in Section~\ref{sec:axioms-Ainfty-chiral} can be interpreted operadically as the statement that the associated graded (holomorphic filtration) of $W(\mathsf{SC}^{\mathrm{ch,top}})$ is the free product of BD chiral and $E_1$, so the cohomological operations descend from the closed color; the bracket is the classical limit (residue) of the operadic composites, and associativity is the regular part of the $m_2$ identity.
+

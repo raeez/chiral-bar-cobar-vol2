@@ -1,0 +1,242 @@
+\section{Holomorphic--Topological Locality}
+\label{sec:HT-operad}
+
+\subsection{Overview and Strategy}
+
+The central mathematical object of this manuscript is the \emph{$A_\infty$ chiral algebra}, which we now define with full rigor. Our strategy proceeds in three steps:
+
+\begin{enumerate}[label=(\arabic*)]
+\item \textbf{Chiral operad $\cP^{\mathrm{ch}}$} (Section \ref{sec:chiral_operad}): Construct an operad governing holomorphic operations with iterated Laurent jets, using logarithmic forms on Fulton--MacPherson compactifications $\overline{\Conf}_n(\C)$.
+
+\item \textbf{HT operad via Swiss--cheese} (Section~\ref{sec:SC-operad-foundations}; see also Appendix~\ref{sec:raviolo}): define the two--coloured operad $\mathsf{SC}^{\mathrm{ch,top}}$ and set $\OHT:=C_\ast\!\big(W(\mathsf{SC}^{\mathrm{ch,top}})\big)$.
+
+\item \textbf{$A_\infty$ chiral algebras} (Section \ref{sec:ainfty_chiral_defn}): Define as algebras over $\OHT$, with explicit sesquilinearity and factorization axioms.
+\end{enumerate}
+
+This framework makes precise the heuristic notion that ``$A_\infty$ chiral algebras combine vertex-algebra structures (holomorphic OPE in $z$) with $A_\infty$ structures (higher coherences in the topological direction $t$).'' This perspective complements the direct axiomatic definition and provides the appropriate language for studying boundary conditions, line operators, and higher categorical structures in holomorphic-topological field theories.
+
+\subsection{The Chiral Operad}
+\label{sec:chiral_operad}
+
+We begin by constructing the operad governing chiral (holomorphic) operations.
+
+\subsubsection{Configuration Spaces and Fulton--MacPherson Compactifications}
+
+\begin{definition}[Configuration Spaces]
+For $n \geq 1$, the \emph{configuration space} of $n$ distinct ordered points in $\C$ is
+\[
+\Conf_n(\C) := \{(z_1,\ldots,z_n) \in \C^n \mid z_i \neq z_j \text{ for } i \neq j\},
+\]
+equipped with the subspace topology from $\C^n \cong \R^{2n}$.
+\end{definition}
+
+The configuration space $\Conf_n(\C)$ is a smooth manifold of real dimension $2n$, but it is \emph{not compact}. Points can escape to infinity or collide. To obtain a compact space suitable for integration theory, we employ the Fulton--MacPherson compactification \cite{FM94}:
+
+\begin{definition}[Fulton--MacPherson Compactification]
+\label{def:FM_compactification}
+The \emph{Fulton--MacPherson compactification} $\overline{\Conf}_n(\C) := \FM_n(\C)$ is a compact manifold with corners, obtained by adding boundary divisors $D_S$ for each subset $S \subseteq \{1,\ldots,n\}$ with $|S| \geq 2$, parametrizing configurations where points indexed by $S$ approach a common limit (forming a ``cluster'') while remaining separated from points outside $S$.
+\end{definition}
+
+\begin{remark}[Local Structure Near Boundaries]
+Near a boundary divisor $D_S$, the FM compactification admits local coordinates $(\varepsilon_S, u_S, \theta_S, \ldots)$ where:
+\begin{itemize}
+\item $\varepsilon_S \geq 0$ is a real radial parameter measuring the ``size'' of cluster $S$ ($\varepsilon_S = 0$ on $D_S$);
+\item $u_S \in \C$ is the cluster center;
+\item $\theta_S$ are angular variables parametrizing relative positions within the cluster.
+\end{itemize}
+The boundary $D_S$ itself is naturally isomorphic to $\Conf_r(\C) \times \prod_{j=1}^r \FM_{|S_j|}(\C)$ where $r = n - |S| + 1$ and $\{S_j\}$ partition $S$.
+\end{remark}
+
+\subsubsection{Logarithmic Forms and Residues}
+
+\begin{definition}[Logarithmic Forms]
+Let $\Omega^\bullet_{\log}(\FM_n(\C))$ denote the complex of differential forms on $\FM_n(\C)$ with at most \emph{logarithmic singularities} along boundary divisors. These are forms that locally near $D_S$ have the form
+\[
+\omega = \alpha + \frac{d\varepsilon_S}{\varepsilon_S} \wedge \beta,
+\]
+where $\alpha, \beta$ extend smoothly to $\varepsilon_S = 0$.
+\end{definition}
+
+Logarithmic forms are the natural habitat for configuration space integrals in quantum field theory, encoding pole structures from operator collisions.
+
+\begin{definition}[Residue Operator]
+\label{def:residue_operator}
+For each boundary divisor $D_S$, define the \emph{residue operator}
+\[
+\Res_{D_S} : \Omega^\bullet_{\log}(\FM_n(\C)) \longrightarrow \Omega^{\bullet-1}_{\log}(D_S)
+\]
+by writing $\omega = d\log\varepsilon_S \wedge \beta + \alpha$ with $\alpha, \beta$ smooth at $\varepsilon_S = 0$ and setting
+\[
+\Res_{D_S}(\omega) := \beta\big|_{\varepsilon_S = 0} = \lim_{\varepsilon_S \to 0}\bigl(\varepsilon_S \cdot \iota_{\partial_{\varepsilon_S}} \omega\bigr)\big|_{D_S}.
+\]
+This extracts the coefficient of the logarithmic $1$-form $d\log\varepsilon_S = d\varepsilon_S/\varepsilon_S$, not the naive contraction $\iota_{\partial_{\varepsilon_S}}\omega|_{D_S}$ (which diverges for logarithmic forms).
+\end{definition}
+
+The residue operator extracts the singular part of a form as points collide, implementing the physical notion of operator product expansion (OPE).
+
+\subsubsection{Construction of the Chiral Operad}
+
+\begin{construction}[Chiral Operad $\cP^{\mathrm{ch}}$]
+\label{def:chiral_operad}
+The \emph{chiral operad} $\cP^{\mathrm{ch}}$ is defined as follows:
+
+\textbf{Colors:} A single color, representing a generic vertex algebra or chiral algebra.
+
+\textbf{Operations:} For $n \geq 1$, the $n$th component is
+\[
+\cP^{\mathrm{ch}}(n) := \Omega^{2n-3}_{\log}(\FM_n(\C)) \hat{\otimes} \C((\lambda_1)) \cdots ((\lambda_{n-1})),
+\]
+where $\FM_n(\C)$ denotes the Fulton-MacPherson compactification modulo translations and dilations, of real dimension $2n-3$. The forms are top-degree on this moduli space to allow integration over the fundamental class, and $\C((\lambda_1)) \cdots ((\lambda_{n-1}))$ represents iterated Laurent series in spectral parameters $\lambda_i$ (encoding derivatives via generating functions $e^{\lambda(z-w)}$).
+
+\textbf{Operadic composition:} Given $\alpha \in \cP^{\mathrm{ch}}(k)$ and $\beta \in \cP^{\mathrm{ch}}(\ell)$, composition $\alpha \circ_i \beta$ is defined by:
+\begin{enumerate}[label=(\roman*)]
+\item Restrict $\alpha$ to the boundary stratum where the $i$th input collides with the newly inserted cluster, obtaining $\Res_{D_{\{i, n+1\}}}(\alpha) \in \Omega^{k-2}_{\log}(D_{\{i, n+1\}})$, where $D_{\{i, n+1\}}$ is the divisor parametrizing the collision of the $i$th point with the inserted cluster (requiring $|S| \geq 2$);
+\item Pull back $\beta$ to the collision divisor;
+\item Wedge the resulting forms and adjust spectral parameters via $\lambda_{\text{new},j} = \lambda_{\text{old},j} + \partial_z$ (translation at cluster center).
+\end{enumerate}
+
+\textbf{Completion:} We complete with respect to the pole-order filtration: forms with poles of order $\leq N$ at each divisor form a filtered subsystem.
+\end{construction}
+
+\begin{remark}[Relationship to Vertex Algebras]
+The chiral operad $\cP^{\mathrm{ch}}$ encodes the operadic structure underlying vertex algebras, but in a ``fat'' form including configuration space geometry. The completion and spectral parameters implement the formal calculus of $\lambda$-brackets.
+\end{remark}
+
+\subsection{Introducing the 2-colored Swiss--cheese operad and its algebras: Model category and operadic conventions}
+\label{sec:SC-operad-foundations}
+
+We work in a presentable, stable, symmetric monoidal dg-category $(\mathcal C,\otimes,\mathbf 1)$ (e.g.\ $\mathrm{Ch}_k$ for a field $k$ of char $0$), with $\otimes$ exact and preserving colimits in each variable.
+Topological operads $O$ are replaced by dg-operads $C_\ast(O)$ via singular chains (or de Rham forms if convenient); we silently identify these.
+
+\begin{notation}
+\label{not:fm-e1}
+Let $\FM_k(\C)$ denote the Fulton--MacPherson compactification of $\Conf_k(\C)$; let $E_1(m)$ be the little-intervals operad. We set $C_\ast(\FM_k(\C))$ and $C_\ast(E_1(m))$ for their chains.
+\end{notation}
+
+\subsection{Definition of the 2-colored operad $\mathsf{SC}^{\mathrm{ch,top}}$}
+\label{subsec:sc-def}
+\begin{definition}[Colors and spaces of operations]
+\label{def:SC}
+Let $\mathbf{Col}=\{\mathsf{ch},\mathsf{top}\}$. Define a 2-colored topological operad $\mathsf{SC}^{\mathrm{ch,top}}$ by:
+\begin{align*}
+\mathsf{SC}^{\mathrm{ch,top}}\bigl((\underbrace{\mathsf{ch},\dots,\mathsf{ch}}_{k});\mathsf{ch}\bigr) &:= \FM_k(\C),\\
+\mathsf{SC}^{\mathrm{ch,top}}\bigl((\underbrace{\mathsf{ch},\dots,\mathsf{ch}}_{k},\underbrace{\mathsf{top},\dots,\mathsf{top}}_{m});\mathsf{top}\bigr) &:= \FM_k(\C)\times E_1(m),\\
+\mathsf{SC}^{\mathrm{ch,top}}(\ldots;\mathsf{ch}) &= \varnothing \ \text{ if any input is $\mathsf{top}$}.
+\end{align*}
+Composition is induced componentwise by the standard insertion maps for $\FM_\bullet(\C)$ and $E_1$, with symmetric-group actions on labeled inputs. Units are the arity–$1$ points in $\FM_1(\C)$ and $E_1(1)$.
+\end{definition}
+
+\begin{proposition}
+\label{prop:SC-operad}
+$\mathsf{SC}^{\mathrm{ch,top}}$ is a well-defined strict 2-colored topological operad. In particular: associativity, unitality, and symmetric-group actions hold strictly.
+\end{proposition}
+
+\begin{proof}
+This is standard: $\FM_\bullet(\C)$ and $E_1$ are topological operads; their product compositions satisfy operadic axioms. The "no open-to-closed" rule is closed under composition by design.
+\end{proof}
+
+\subsection{Algebras over $\mathsf{SC}^{\mathrm{ch,top}}$ and its $W$-resolution}
+\label{subsec:WSC-alg}
+\begin{definition}[Strict and homotopy algebras]
+\label{def:SC-alg}
+A \emph{strict} $\mathsf{SC}^{\mathrm{ch,top}}$-algebra in $\mathcal C$ is a pair $(A_{\mathsf{ch}},A_{\mathsf{top}})$ with structure maps
+\[
+C_\ast(\FM_k(\C))\otimes A_{\mathsf{ch}}^{\otimes k}\to A_{\mathsf{ch}},\qquad
+C_\ast(\FM_k(\C)\times E_1(m))\otimes A_{\mathsf{ch}}^{\otimes k}\otimes A_{\mathsf{top}}^{\otimes m}\to A_{\mathsf{top}}
+\]
+satisfying operadic identities. The \emph{homotopy} notion is defined via the Boardman--Vogt resolution $W(\mathsf{SC}^{\mathrm{ch,top}})$: a \emph{$W(\mathsf{SC}^{\mathrm{ch,top}})$–algebra} is an algebra over $C_\ast(W(\mathsf{SC}^{\mathrm{ch,top}}))$, encoding all higher coherences.
+\end{definition}
+
+\begin{remark}[Homotopy coherence]
+The $W$–resolution equips trees indexing compositional patterns with edge-length parameters, turning strict equalities into explicit higher homotopies. This is the standard device to encode $A_\infty$/$E_1$ coherence in the operadic setting.
+\end{remark}
+
+\subsection{Comparison with BD chiral operad on the closed color}
+\label{subsec:BD-compare}
+\begin{theorem}[Closed color comparison]
+\label{thm:closed-BD}
+There exists a zigzag of quasi-isomorphisms of operads between the BD chiral operad $\mathsf P_{\mathrm{ch}}$ and the dg-operad $C_\ast(\FM_\bullet(\C);\mathscr L_{\log})$ of chains on $\FM_\bullet(\C)$ with appropriate logarithmic local systems. Hence, restricting $W(\mathsf{SC}^{\mathrm{ch,top}})$ to the closed color recovers $\mathsf P_{\mathrm{ch}}$ up to weak equivalence.
+\end{theorem}
+
+\begin{proof}
+The argument proceeds in three steps, constructing a zigzag through an intermediate category of factorization algebras on the Ran space.
+
+\medskip\noindent
+\textbf{Step 1: The Ran space and factorization algebras.}
+Consider the Ran space
+\[
+\Ran(\C) \;=\; \operatorname{colim}_{S \in \mathrm{Fin}^{\mathrm{surj}}} \C^S,
+\]
+the space of finite non-empty subsets of $\C$, topologized so that points can collide but not separate.  A \emph{factorization algebra} on $\C$ is a cosheaf $\mathcal{F}$ on $\Ran(\C)$ equipped with factorization isomorphisms
+\[
+\mathcal{F}(S_1 \sqcup S_2) \;\xrightarrow{\;\sim\;}\; \mathcal{F}(S_1) \otimes \mathcal{F}(S_2)
+\]
+for disjoint subsets, satisfying associativity and locality constraints.  Denote by $\Fact(\C)$ the $(\infty,1)$-category of factorization algebras on $\C$.
+
+\medskip\noindent
+\textbf{Step 2: The zigzag.}
+We construct a zigzag of quasi-isomorphisms of operads
+\[
+C_\ast(\FM_\bullet(\C);\mathscr{L}_{\log}) \;\xleftarrow{\;\;\alpha\;\;}\; \Fact(\C)^{\otimes} \;\xrightarrow{\;\;\beta\;\;}\; \mathsf{P}_{\mathrm{ch}}.
+\]
+
+\emph{Arrow $\alpha$ (left leg):} The FM compactification $\FM_n(\C)$ provides a model for the configuration space strata of $\Ran(\C)$.  The logarithmic local system $\mathscr{L}_{\log}$ on $\FM_n(\C)$ encodes the meromorphic OPE poles: near the boundary divisor $D_S$ where points indexed by $S$ collide, the logarithmic $1$-form $d\log\varepsilon_S$ captures the pole $z_i \to z_j$.  Integration of factorization algebra structure maps over the fundamental classes $[\FM_n(\C)]$ with coefficients in $\mathscr{L}_{\log}$ yields operadic compositions in $C_\ast(\FM_\bullet(\C);\mathscr{L}_{\log})$.  This map is a quasi-isomorphism because $\FM_n(\C)$ is a homotopy-theoretic model for the $n$-point stratum of $\Ran(\C)$, and the logarithmic local systems encode precisely the singular behavior permitted by the factorization locality axiom.
+
+\emph{Arrow $\beta$ (right leg):} Beilinson--Drinfeld's main theorem \cite{BD04} establishes that the pseudo-tensor category of chiral algebras (formulated via $D$-modules on $\Ran(\C)$) is equivalent to the category of factorization algebras on $\C$.  Concretely, the BD chiral operad $\mathsf{P}_{\mathrm{ch}}$ governs chiral algebras via the $\ast$-operations $\mu^{(n)}\colon j_\ast j^\ast(\mathcal{A}^{\boxtimes n}) \to \Delta_\ast \mathcal{A}$ on the $n$th power of $\C$.  These $\ast$-operations correspond, under the BD equivalence, to the factorization structure maps evaluated at colliding configurations.  Francis--Gaitsgory \cite{FG12} provide the derived/homotopical refinement, yielding $\beta$ as a quasi-isomorphism of operads.
+
+\medskip\noindent
+\textbf{Step 3: Conclusion.}
+Both arrows $\alpha$ and $\beta$ are quasi-isomorphisms of operads, so we obtain a weak equivalence
+\[
+C_\ast(\FM_\bullet(\C);\mathscr{L}_{\log}) \;\simeq\; \mathsf{P}_{\mathrm{ch}}.
+\]
+Since restricting $\SCchtop$ to the closed color $\mathsf{ch}$ yields precisely the operad with $n$th component $\FM_n(\C)$ (Definition~\ref{def:SC}), and the Boardman--Vogt resolution $W(-)$ preserves weak equivalences of well-pointed $\Sigma$-cofibrant operads, restricting $W(\SCchtop)$ to the closed color recovers $\mathsf{P}_{\mathrm{ch}}$ up to weak equivalence.
+\end{proof}
+
+\subsection{Equivalence with HT prefactorization algebras}
+\label{subsec:SC-vs-prefactorization}
+\begin{definition}[HT prefactorization]
+\label{def:prefact}
+A \emph{holomorphic–topological prefactorization algebra} on $\C\times\R$ is a functor $\mathsf{Obs}$ from disjoint unions of open rectangles $D\times I$ to $\mathcal C$, with structure maps $\bigotimes\mathsf{Obs}(U_i)\to \mathsf{Obs}(\bigsqcup U_i)$, satisfying: holomorphic factorization along~$\C$, local constancy along~$\R$, and excision/gluing coherent with shape composition.
+\end{definition}
+
+\begin{theorem}[Operadic recognition]
+\label{thm:recognition-SC}
+To give a $C_\ast(W(\mathsf{SC}^{\mathrm{ch,top}}))$–algebra $(A_{\mathsf{ch}},A_{\mathsf{top}})$ in $\mathcal C$ is equivalent to giving an HT prefactorization algebra $\mathsf{Obs}$ on small rectangles $D\times I$ in $\C\times\R$. The assignment $D\mapsto \mathsf{Obs}(D\times\{t\})$ and $I\mapsto \mathsf{Obs}(\{z\}\times I)$ recovers the two colors.
+\end{theorem}
+
+\begin{proof}
+We construct the equivalence by matching Swiss-cheese operadic compositions with the geometric data of rectangle inclusions, then verifying that Boardman--Vogt coherences account for all higher homotopies.
+
+\medskip\noindent
+\textbf{Step 1: Swiss-cheese composition as nested rectangle inclusions.}
+An HT prefactorization algebra $\Obs$ assigns to each open rectangle $D \times I \subset \C \times \R$ a cochain complex $\Obs(D \times I)$, with structure maps for disjoint inclusions.  Decomposing a rectangle $D \times I$ into sub-rectangles $D_i \times I_j$ corresponds precisely to an element of the operadic composition in $\SCchtop$:
+\begin{itemize}
+\item Nesting of holomorphic disks $D_1,\ldots,D_k \hookrightarrow D$ in $\C$ specifies a point in $\FM_k(\C)$, recording the relative positions and scales of the inserted clusters.
+\item Nesting of intervals $I_1,\ldots,I_m \hookrightarrow I$ in $\R$ specifies a point in $E_1(m)$, recording the linear ordering and separations of the subintervals.
+\end{itemize}
+The product $\FM_k(\C) \times E_1(m)$ thus parametrizes all ways to decompose $D \times I$ into $k$ holomorphic subclusters and $m$ topological subintervals, which is exactly the space of operations $\SCchtop((\mathsf{ch}^k,\mathsf{top}^m);\mathsf{top})$.
+
+\medskip\noindent
+\textbf{Step 2: $W$-coherences and homotopy-coherent associativity.}
+The Boardman--Vogt resolution $W(\SCchtop)$ decorates each internal edge $e$ of a composition tree with a parameter $s_e \in [0,1]$.  These parameters encode the rate at which successive compositions are performed:
+\begin{itemize}
+\item $s_e = 0$: the two operations sharing edge $e$ are composed \emph{simultaneously} --- the sub-rectangles are inserted in a single step.
+\item $s_e = 1$: the compositions are performed \emph{sequentially} --- one first inserts the inner sub-rectangle, then the outer.
+\end{itemize}
+As $s_e$ varies over $[0,1]$, the resulting family of rectangle decompositions traces out a homotopy between the two extreme composition orders.  The cubical structure $[0,1]^{|E_{\mathrm{int}}|}$ over all internal edges $E_{\mathrm{int}}$ of a tree provides precisely the higher homotopies required by the coherent associativity of iterated rectangle inclusions.  This matches the standard Boardman--Vogt construction \cite{BV73}: the $W$-resolution is cofibrant, and its algebras encode all coherent homotopies between iterated compositions.
+
+\medskip\noindent
+\textbf{Step 3: Two-color recovery.}
+Given a $C_\ast(W(\SCchtop))$-algebra $(A_{\mathsf{ch}}, A_{\mathsf{top}})$, we define $\Obs$ on rectangles by:
+\begin{itemize}
+\item \emph{Closed color (holomorphic):} $D \mapsto \Obs(D \times \{t\})$ evaluates the prefactorization algebra at a time-slice $\{t\} \subset \R$.  The resulting structure maps, parametrized by $\FM_k(\C)$, encode the chiral/holomorphic OPE operations on $A_{\mathsf{ch}}$.
+\item \emph{Open color (topological):} $I \mapsto \Obs(\{z\} \times I)$ evaluates the prefactorization algebra at a point $\{z\} \subset \C$.  The resulting structure maps, parametrized by $E_1(m)$, encode the $A_\infty$/topological operations on $A_{\mathsf{top}}$.
+\end{itemize}
+Conversely, given an HT prefactorization algebra $\Obs$, the structure maps on rectangle decompositions assemble into a $C_\ast(W(\SCchtop))$-algebra by the Ayala--Francis recognition principle \cite{AF15}: locally constant factorization algebras on $\R$ are equivalent to $E_1$-algebras, and holomorphic factorization algebras on $\C$ are equivalent to algebras over $C_\ast(\FM_\bullet(\C))$ (Costello--Gwilliam \cite{CG17}).  The two-colored Swiss-cheese structure intertwines these via the mixed operations $\FM_k(\C) \times E_1(m)$, yielding the full equivalence.
+\end{proof}
+
+\begin{corollary}[Clean replacement of the semidirect slogan]
+\label{cor:clean-replacement}
+The two–colored operad $W(\mathsf{SC}^{\mathrm{ch,top}})$ replaces the ambiguous $W(\mathsf P_{\mathrm{ch}}\rtimes E_1)$ and precisely governs "chiral in~$z$ + $E_1$ along~$t$ + all compatibilities."
+\end{corollary}

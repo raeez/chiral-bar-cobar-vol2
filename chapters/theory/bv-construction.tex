@@ -1,0 +1,163 @@
+\section{BV-BRST Construction: From Quantum Field Theory to $A_\infty$ Chiral Algebras}
+\label{sec:BV_construction}
+
+\subsection{Field content, action, and BV data}
+\label{subsec:BV-data}
+Let $\Phi$ denote the graded space of fields/ghosts/antifields for the 3d HT theory on $\R_t\times \C_z$, with classical action $S[\Phi]$ and BRST operator $Q$ of degree $+1$ satisfying the classical master equation $\{S,S\}=0$ in the BV bracket. We work perturbatively about a translation-invariant background on $\R\times\C$.
+
+\begin{definition}[Local observables]
+\label{def:local-obs}
+For an open $U\subset \R\times\C$, define $\mathsf{Obs}(U)$ as the completed symmetric algebra $\widehat{\operatorname{Sym}}(\mathcal{E}^\vee)$ of distributional sections of the dual field bundle, equipped with the BV differential $Q_{\mathrm{BRST}}$ and the BV antibracket. The renormalized time-ordered product $\star_U$ is built from the propagator and interaction vertices via the standard perturbative expansion (see e.g.\ \cite{CG17}).
+\end{definition}
+
+\subsection{Renormalization and analytic hypotheses}
+\label{subsec:analytic}
+We assume the analytic conditions (H1)–(H4) of \cite{GRW21}: meromorphicity in $\C$, local constancy in $\R$, factorization under disjoint unions, and one-loop anomaly vanishing/removability so that renormalization choices are $Q$–exact.
+
+\begin{proposition}[Prefactorization structure]
+\label{prop:prefact-Obs}
+Under (H1)–(H4), $U\mapsto \mathsf{Obs}(U)$ defines a holomorphic–topological prefactorization algebra on $\R\times\C$, locally constant on rectangles $D\times I$.
+\end{proposition}
+
+\begin{proof}
+We construct the prefactorization structure maps and verify the axioms, using each hypothesis in turn.
+
+\medskip\noindent\textbf{Step 1: BV data from (H1).}
+Hypothesis~\ref{hyp:H1} provides the BV data $({\mathcal F}, S, \{-,-\}_{\mathrm{BV}}, \Delta_{\mathrm{BV}})$: a $(-1)$-symplectic graded space of fields ${\mathcal F}$ on $\R\times\C$, a local action functional $S\in{\mathcal O}({\mathcal F})$ satisfying the quantum master equation $\hbar\Delta_{\mathrm{BV}}S + \tfrac{1}{2}\{S,S\}_{\mathrm{BV}}=0$, and the BRST differential $Q_{\mathrm{BRST}} = \{S,-\}_{\mathrm{BV}} + \hbar\Delta_{\mathrm{BV}}$ with $Q_{\mathrm{BRST}}^2=0$.  The HT gauge fixing (H1b) selects a Lagrangian complement to the gauge orbits compatible with the product structure $\R\times\C$, and one-loop finiteness (H1c) ensures that the BV Laplacian $\Delta_{\mathrm{BV}}$ acting on local functionals produces well-defined operators without UV counterterms.  For each open $U\subset \R\times\C$, the cochain complex $(\Obs(U), Q_{\mathrm{BRST}})$ is therefore well-defined.
+
+\medskip\noindent\textbf{Step 2: Propagator from (H2).}
+Hypothesis~\ref{hyp:H2} controls the propagator $G(z_1-z_2;\, t_1-t_2)$ obtained from the gauge-fixed kinetic term.  Meromorphicity in $z$ with a simple pole at $z_1=z_2$ (H2a,c) ensures that correlators are rational functions of the holomorphic insertion points, with singularities governed by the OPE.  Exponential decay $|G|\le C\,e^{-\mu|t_1-t_2|}$ in the topological direction (H2b) ensures absolute convergence of loop integrals over ordered intervals in $\R$.  Translation invariance (H2d) guarantees that the resulting operations depend only on relative positions, as required by the factorization axioms.
+
+\medskip\noindent\textbf{Step 3: Factorization structure maps.}
+Let $U_1,\ldots,U_n \subset \R\times\C$ be pairwise disjoint opens contained in a larger open $V$.  The factorization product
+\[
+  \mu_{U_1,\ldots,U_n}^V \;:\;
+  \Obs(U_1)\otimes \cdots \otimes \Obs(U_n)
+  \;\longrightarrow\;
+  \Obs(V)
+\]
+is defined by the renormalized time-ordered product: given observables ${\mathcal O}_i\in\Obs(U_i)$ supported in $U_i$, the product $\mu({\mathcal O}_1\otimes\cdots\otimes{\mathcal O}_n)$ is computed by the sum over Feynman diagrams with vertices at the insertion points and internal edges weighted by the propagator $G$.  Since the $U_i$ are disjoint, propagators connecting different opens have non-coincident holomorphic arguments $z_j\ne z_k$, so the meromorphic singularity in $G$ is never encountered, and the exponential decay in $t$ from (H2b) gives convergence of the integrals over the topological separations.  The BRST compatibility $Q_{\mathrm{BRST}}\circ\mu = \mu\circ Q_{\mathrm{BRST}}^{\otimes n}$ follows from the quantum master equation.
+
+\medskip\noindent\textbf{Step 4: Convergence from (H3).}
+When insertions approach coincidence (i.e.\ when points in two disjoint opens are brought together by shrinking the opens), the Fulton--MacPherson compactification $\FM_k(\C)$ resolves the resulting singularities.  Hypothesis~\ref{hyp:H3} ensures that the weight forms associated to Feynman diagrams extend to logarithmic forms $\omega_k^{\mathrm{hol}}\in\Omega^\bullet_{\log}(\FM_k(\C))$, which are integrable on the compact space $\FM_k(\C)$.  The factored structure $\omega_k = \omega_k^{\mathrm{hol}}\wedge\omega_k^{\mathrm{top}}$ with $\omega_k^{\mathrm{top}}\in C_\bullet(\Conf_k(\R))$ means the integrals converge separately in each direction.  The Arnold--Orlik--Solomon relations (H3d) ensure that boundary contributions from codimension-2 strata cancel, so the renormalized products are well-defined and satisfy Stokes' theorem on manifolds with corners.  In particular, any ambiguity in the renormalization scheme is $Q_{\mathrm{BRST}}$-exact, preserving the quasi-isomorphism class.
+
+\medskip\noindent\textbf{Step 5: Swiss-cheese structure from (H4).}
+Hypothesis~(H4) connects the factorization products to the two-colored operad $\SCchtop$.  The holomorphic insertions are governed by $\FM_k(\C)$: the boundary strata of the FM compactification encode the operadic composition maps $\gamma_{\mathrm{ch}}$ of the closed color, recording how clusters of holomorphic points collide.  The topological insertions are governed by $E_1(m) \cong \Conf_m(\R)$: the ordered-interval structure of configurations on $\R$ provides the operadic composition $\gamma_{\mathrm{top}}$ of the open color.  The factorization maps $\mu^V_{U_1,\ldots,U_n}$ on rectangles $D_i\times I_j$ (disks in $\C$, intervals in $\R$) are therefore controlled by the insertion maps of $\FM_k(\C)\times E_1(m)$, which are precisely the spaces of operations of $\SCchtop$.  The no-open-to-closed constraint (operations $\SCchtop(\ldots,\mathrm{top},\ldots;\mathrm{ch})=\varnothing$) is automatic: bulk-to-boundary correlators are well-defined, but boundary operators cannot create bulk insertions because the topological direction is oriented (time flows from boundary to bulk, not conversely).
+
+\medskip\noindent\textbf{Conclusion.}
+The assignment $U\mapsto (\Obs(U), Q_{\mathrm{BRST}})$ with the factorization products $\mu^V_{U_1,\ldots,U_n}$ satisfies the axioms of a holomorphic--topological prefactorization algebra: isotopy invariance along $\R$ follows from local constancy (the propagator depends on $t$ only through a step function or exponential kernel), and holomorphic dependence on $\C$-positions follows from the meromorphicity of $G$.  On rectangles $D\times I$ the structure is locally constant, as claimed.
+\end{proof}
+
+\subsection{From prefactorization to $W(\mathsf{SC}^{\mathrm{ch,top}})$–algebra}
+\label{subsec:from-prefact}
+\begin{theorem}[Swiss–cheese algebra of observables]
+\label{thm:Obs-is-SC}
+The BV observable prefactorization algebra $\mathsf{Obs}$ under (H1)–(H4) determines canonically a $C_\ast\!\bigl(W(\mathsf{SC}^{\mathrm{ch,top}})\bigr)$–algebra $(A_{\mathsf{ch}},A_{\mathsf{top}})$ in $\mathcal C$, functorial with respect to quasi-isomorphisms of HT theories.
+\end{theorem}
+
+\begin{proof}
+Combine Proposition~\ref{prop:prefact-Obs} with Theorem~\ref{thm:recognition-SC}.
+\end{proof}
+
+\subsection{Higher operations via configuration–space integrals}
+\label{subsec:mk-integrals}
+Denote $A:=\mathsf{Obs}(D\times I)$ for small rectangles. The higher multiplications
+\[
+m_k : A^{\otimes k}\longrightarrow A((\lambda_1))\cdots((\lambda_{k-1}))
+\]
+of degree $1-k$ are given by integrating the product of renormalized propagators over $\FM_k(\C)\times E_1(m)$ with suitable log kernels in $\C$ and ordered‑interval data in $\R$; see Section~\ref{sec:FM_calculus}.
+The boundary faces yield Stokes' identities matching the $A_\infty$ relations.
+
+\subsection{Well-definedness and sesquilinearity on cohomology}
+\label{subsec:well-def-sesqui}
+\begin{lemma}[Well-definedness]
+\label{lem:well-definedness-prod-bracket}
+Definitions \eqref{eq:prod-def} and \eqref{eq:bracket-def} are independent of the choice of representatives of $[a]$ and $[b]$.
+\end{lemma}
+
+\begin{proof}
+Replace $a\mapsto a+Qx$ (and similarly for $b$). The $n=2$ $A_\infty$ identity $m_1(m_2(a,b)) + m_2(m_1(a), b) + m_2(a, m_1(b)) = 0$ (all Koszul signs are $+1$ at arity $2$), together with sesquilinearity \eqref{eq:sesqui-left}--\eqref{eq:sesqui-right}, shows that the variation of $m_2$ is $Q$--exact, hence the classes of $m_2^{\mathrm{reg}}$ and $m_2^{\mathrm{sing}}$ are invariant. Since $Q = m_1$ acts on the algebra elements and does not involve the spectral parameter $\lambda$, it commutes with the Laurent decomposition into regular and singular parts.
+\end{proof}
+
+\begin{proposition}[Sesquilinearity on $H$]
+\label{prop:sesqui-H}
+The bracket satisfies the vertex sesquilinearity on cohomology:
+\[
+\{\partial[a]{}_\lambda [b]\} = -\lambda \{[a]{}_\lambda [b]\},\qquad
+\{[a]{}_\lambda \partial[b]\} = (\lambda+\partial)\{[a]{}_\lambda [b]\}.
+\]
+\end{proposition}
+
+\begin{proof}
+Apply \eqref{eq:sesqui-left}–\eqref{eq:sesqui-right} to $m_2$, take regular/singular projections, and pass to cohomology.
+\end{proof}
+
+\subsection{Commutativity and associativity of the product}
+\label{subsec:comm-assoc}
+\begin{lemma}[Graded commutativity]
+\label{lem:commutative}
+$[a]\cdot[b] = (-1)^{|a||b|}[b]\cdot[a]$.
+\end{lemma}
+
+\begin{proof}
+Trivial from the symmetrization in \eqref{eq:prod-def}.
+\end{proof}
+
+\begin{theorem}[Associativity of the product on cohomology]
+\label{thm:assoc}
+The product $\cdot$ is associative on $H^\bullet(A,Q)$.
+\end{theorem}
+
+\begin{proof}
+The $n=3$ $A_\infty$ identity (Equation~\ref{eq:ainfty-relation-raw}) gives, for $Q$-closed inputs $a$, $b$, $c$:
+\[
+Q(m_3(a,b,c)) + m_2(m_2(a,b), c) + (-1)^{\varepsilon(1,2)} m_2(a, m_2(b,c)) = 0
+\]
+where $\varepsilon(1,2) = (2-1)|a| = |a|$. Projecting to the regular part and symmetrizing, the first term $Q(m_3^{\mathrm{reg}})$ is $Q$-exact and vanishes in cohomology. The remaining terms give the associator $[a] \cdot ([b] \cdot [c]) - ([a] \cdot [b]) \cdot [c]$ up to signs from the symmetrization. Hence the associator vanishes in cohomology.
+\end{proof}
+
+\subsection{Skewsymmetry and Jacobi for the bracket}
+\label{subsec:skew-Jacobi}
+\begin{proposition}[Skewsymmetry]
+\label{prop:skewsym}
+$\{[a]{}_\lambda [b]\} = -(-1)^{(|a|+1)(|b|+1)}\{[b]{}_{-\lambda-\partial} [a]\}$.
+\end{proposition}
+
+\begin{proof}
+This is a restatement of the transformation $m_2^{\mathrm{sing}}(b,a)$ under $\lambda\mapsto -\lambda-\partial$, which follows from sesquilinearity \eqref{eq:sesqui-left}–\eqref{eq:sesqui-right}.
+\end{proof}
+
+\begin{theorem}[Jacobi identity]
+\label{thm:Jacobi-PVA}
+\label{thm:Jacobi}
+For all $[a],[b],[c]\in H^\bullet(A,Q)$,
+\[
+\{[a]{}_\lambda \{[b]{}_\mu [c]\}\} - (-1)^{(|a|+1)(|b|+1)} \{[b]{}_\mu \{[a]{}_\lambda [c]\}\} = \{\{[a]{}_\lambda [b]\}{}_{\lambda+\mu} [c]\}.
+\]
+\end{theorem}
+
+\begin{proof}
+Consider \eqref{eq:ainfty-relation-raw} with $n=3$ and project each term to the \emph{singular} part. The inner $m_2^{\mathrm{sing}}$ produces brackets; the outer $m_2$ composes them. The four boundary strata of $\FM_3(\C)$ contribute as follows. The three pairwise collision strata $D_{12}$, $D_{13}$, $D_{23}$ contribute the three terms of the Jacobi identity. The total collision stratum $D_{123}$ contributes $Q(m_3(a,b,c))$, which vanishes on cohomology classes. The three pairwise collision contributions satisfy the Arnold relation $d\log(z_1-z_2) \wedge d\log(z_2-z_3) + \text{cyclic} = 0$, which yields the Jacobi identity for the $\lambda$-bracket. Passing to cohomology eliminates the $Q$--exact remainder.
+\end{proof}
+
+\subsection{Leibniz rule}
+\label{subsec:Leibniz}
+\begin{theorem}[Leibniz rule]
+\label{thm:Leibniz-PVA}
+\label{thm:Leibniz}
+For all $[a],[b],[c]\in H^\bullet(A,Q)$,
+\[
+\{[a]{}_\lambda ([b]\cdot [c])\} = \{[a]{}_\lambda [b]\}\cdot [c] + (-1)^{(|a|+1)|b|}\,[b]\cdot \{[a]{}_\lambda [c]\}.
+\]
+\end{theorem}
+
+\begin{proof}
+Consider \eqref{eq:ainfty-relation-raw} with $n=3$ and project the \emph{outer} $m_2$ to the regular part and the \emph{inner} $m_2$ to the singular part. This mixed projection is well-defined because the regular/singular decomposition is multiplicative: the regular part of a composition $m_2^{\mathrm{reg}}(-, m_2^{\mathrm{sing}}(-,-))$ isolates the term where the inner operation produces a singularity (bracket) and the outer operation produces a regular product. This is the usual derivation of the vertex Poisson Leibniz rule, here encoded in the spectral substitution of Remark~\ref{rmk:spectral-substitution}.
+\end{proof}
+
+\begin{corollary}[PVA on cohomology]
+\label{cor:PVA-cohomology}
+\label{cor:PVA-structure}
+The operations \eqref{eq:prod-def}–\eqref{eq:bracket-def} define a $(-1)$–shifted Poisson vertex algebra structure on $H^\bullet(A,Q)$. The degree shift arises as follows: $m_2$ has degree $|m_2| = 1-2 = -1$, but evaluating the spectral parameter at $\lambda = 0$ for the product (or extracting the coefficient of $\lambda^n$ for the bracket) adds $+1$ to the degree, yielding degree-$0$ operations on cohomology. The bracket carries an additional degree shift of $+1$ from the spectral parameter, giving it total degree $+1$ as a map $V \otimes V \to V$, consistent with a $(-1)$-shifted Lie bracket.
+\end{corollary}
+

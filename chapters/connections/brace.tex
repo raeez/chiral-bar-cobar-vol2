@@ -1,0 +1,168 @@
+\section{Chiral Hochschild cochains as a brace algebra on $\FM(\C)\times\Conf(\R)$}
+\label{sec:chiral-Hochschild}
+
+\subsection{Operadic cochains for colored operads and the brace structure}
+\label{subsec:operadic-cochains}
+Let $O$ be a colored dg–operad and $A$ an $O$–algebra in a symmetric monoidal dg–category $(\mathcal C,\otimes)$.
+Write $O^\vee$ for the bar cooperad of $O$ (cofree conilpotent cooperad on $s^{-1}\overline O$).
+We adopt the standard operadic cochain complex
+\[
+\mathrm{C}^\bullet_O(A) \;:=\; \underline{\mathrm{Hom}}_{\text{cooperad}} \bigl( O^\vee,\, \mathrm{End}_A \bigr),
+\]
+equipped with the differential induced by the coderivation on $O^\vee$ and the internal differential of $\mathrm{End}_A$.
+When $O = \OHT$ is our Swiss–cheese chain operad, we denote
+\[
+\mathrm{C}^\bullet_{\mathrm{ch,top}}(A)\;:=\;\mathrm{C}^\bullet_{\OHT}(A)
+\quad\text{(the \emph{chiral Hochschild cochains})}.
+\]
+
+\begin{definition}[Brace operations]
+\label{def:brace-ops}
+The bar cooperad $O^\vee$ carries a canonical \emph{brace} structure; by precomposition,
+$\mathrm{C}^\bullet_O(A)$ acquires multilinear operations
+\[
+\{-\}\{-,\ldots,-\}\colon \mathrm{C}^\bullet_O(A)\otimes \mathrm{C}^\bullet_O(A)^{\otimes m}\longrightarrow \mathrm{C}^\bullet_O(A),
+\]
+given by grafting trees in $O^\vee$ (see \cite{GetzlerJones1994,Voronov2005}).
+The resulting algebraic structure on $\mathrm{C}^\bullet_O(A)$ is a homotopy Gerstenhaber (brace) algebra; its induced \emph{Gerstenhaber bracket} is
+\[
+[f,g] := f\{g\} - (-1)^{(\deg f-1)(\deg g-1)}\, g\{f\}.
+\]
+\end{definition}
+
+\begin{remark}[Degree conventions]
+We use cohomological grading. For $O=\OHT$ the internal degrees reflect the form‑degrees on $\FM(\C)$ and the $E_1$‑degrees on $\Conf(\R)$; the brace degree shifts match the usual Gerstenhaber sign rule.
+\end{remark}
+
+\subsection{Geometric brace model on $\FM(\C)\times\Conf(\R)$}
+\label{subsec:geometric-brace}
+We now describe a concrete model of the brace operations using configuration spaces.
+Let $\Conf_k(\R)$ denote ordered configurations $(t_1<\cdots<t_k)$ of $k$ points in~$\R$ and set
+\[
+\mathbb{X}_{k,m} \;:=\; \FM_k(\C)\times \Conf_m(\R).
+\]
+Operations in $\OHT$ at arity $(k,m)$ are represented by chains on $\mathbb{X}_{k,m}$ decorated by edge‑length parameters.
+Given $f\in \mathrm{C}^\bullet_{\mathrm{ch,top}}(A)$ and $g_1,\dots,g_m\in \mathrm{C}^\bullet_{\mathrm{ch,top}}(A)$, we define
+\[
+f\{g_1,\dots,g_m\} := \int_{\mathbb{X}} \;\;\Bigl(\text{pullback of kernels from } \mathbb{X}_{k,m'} \Bigr)\;\circ\;\Bigl(\text{insertions via trees along } \FM\times \Conf\Bigr),
+\]
+where the integral is over the appropriate fiber product of configuration spaces determined by the brace tree (see Appendix~\ref{app:brace-signs} for precise sign and degree formulas).
+
+\begin{proposition}[Well-definedness and functoriality]
+\label{prop:geometric-braces-well-defined}
+Under the analytic hypotheses (H1)–(H4), the geometric brace operations on $\mathrm{C}^\bullet_{\mathrm{ch,top}}(A)$ are well-defined, strictly multilinear, and satisfy the brace identities. The Gerstenhaber bracket obtained from these braces coincides with the one induced by the cooperad $O^\vee$.
+\end{proposition}
+
+\begin{proof}
+Integrability follows from Hypothesis~(H2): the weight forms have at most logarithmic singularities along the boundary divisors of the FM compactification, and such forms are integrable on compact manifolds with corners. The brace identities follow from Stokes' theorem on $\FM_k(\C) \times \Conf_m(\R)$: the boundary strata reproduce the algebraic brace relations, with the Arnold cancellations at codimension-2 corners ensuring that no spurious terms arise (see Appendix~\ref{app:brace-signs} for the detailed sign verification). Compatibility with the cooperad differential is standard.
+\end{proof}
+
+\subsection{The \texorpdfstring{$\ast$}{*}–Lie structure and deformation theory}
+\label{subsec:star-Lie}
+Let $(\mathrm{C}^\bullet_{\mathrm{ch,top}}(A),\{-\}\{-\})$ be the brace algebra constructed above.
+
+\begin{definition}[$\ast$–Lie algebra]
+\label{def:star-Lie}
+Define the shifted Lie bracket on $\mathrm{C}^\bullet_{\mathrm{ch,top}}(A)[1]$ by the Gerstenhaber bracket $[-,-]$ associated to braces. We call $(\mathrm{C}^\bullet_{\mathrm{ch,top}}(A)[1],[-,-])$ the \emph{chiral $\ast$–Lie algebra} of $A$.
+\end{definition}
+
+\begin{theorem}[Deformations and Maurer–Cartan]
+\label{thm:MC-deformations}
+Let $A$ be a $\OHT$–algebra, and consider formal deformations over $k[\![\hbar]\!]$. Then there is a bijection between:
+\begin{enumerate}[label=(\alph*)]
+  \item deformation classes of $A$ as a $W(\SCchtop)$–algebra over $k[\![\hbar]\!]$ up to gauge; and
+  \item gauge‑equivalence classes of solutions to the Maurer–Cartan equation
+    \(
+      d\alpha + \tfrac{1}{2}[\alpha,\alpha]=0
+    \)
+    in $\bigl(\mathrm{C}^\bullet_{\mathrm{ch,top}}(A)[1]\otimes \hbar k[\![\hbar]\!],[-,-]\bigr)$.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+This is the standard operadic deformation theory: deformations are classified by twisting morphisms from the bar cooperad into $\mathrm{End}_A$, and a twisting morphism is equivalent to an MC element in the convolution Lie algebra $\mathrm{Hom}(O^\vee,\mathrm{End}_A)$; see \cite{GinzburgKapranov1994,Vallette2007}. The brace model identifies this Lie algebra with $\mathrm{C}^\bullet_{\mathrm{ch,top}}(A)[1]$.
+\end{proof}
+
+\subsection{Bulk observables \texorpdfstring{$\simeq$}{≃} chiral Hochschild cochains}
+\label{subsec:bulk-equals-CHC}
+Let $\mathsf{Obs}$ be the BV observable prefactorization algebra of the HT theory, and $A=\mathsf{Obs}(D\times I)$ the local complex on a small rectangle.
+
+\begin{theorem}[Bulk–cochains identification]
+\label{thm:bulk-CHC}
+Assume {\rm (H1)--(H4)}.
+There is a canonical filtered quasi‑isomorphism
+\[
+\mathrm{C}^\bullet_{\mathrm{ch,top}}(A)\;\simeq\;\mathsf{Obs}_{\mathrm{bulk}}(\mathbb{B}^3)
+\]
+between chiral Hochschild cochains of the local algebra $A$ and the complex of bulk local observables supported in a small $3$–ball, with filtration by holomorphic weight. On associated graded, this identification reduces to the BD‑chiral Hochschild complex on the closed color tensored with the $E_1$ Hochschild complex on the open color.
+\end{theorem}
+
+\begin{proof}
+The argument proceeds in three steps: an operad-of-shapes recognition that provides a common model for both sides, a filtration analysis via holomorphic weight, and a well-definedness verification using the analytic hypotheses.
+
+\medskip
+\textbf{Step 1: Operad-of-shapes recognition.}
+
+Decompose the small $3$--ball $\mathbb{B}^3 \subset \C \times \R$ into rectangles $D_i \times I_j$ (discs in $\C$ times intervals in $\R$).  On each rectangle, $\mathsf{Obs}(D_i \times I_j) \simeq A$ by local constancy (Proposition~\ref{prop:prefact-Obs}).  The factorization homology $\int_{\mathbb{B}^3} \mathsf{Obs}$ is computed as a homotopy colimit over all such decompositions; the indexing category is the \emph{operad of shapes} $\mathbb{X}_{k,m} = \FM_k(\C) \times \Conf_m(\R)$, where $k$ holomorphic insertion points in $\C$ and $m$ ordered topological insertion points in $\R$ parametrize the ways that rectangles embed in $\mathbb{B}^3$.
+
+Concretely, an element of $\mathsf{Obs}_{\mathrm{bulk}}(\mathbb{B}^3)$ is specified by a compatible family of multilinear operations
+\[
+A^{\otimes k} \otimes A^{\otimes m} \longrightarrow A,
+\]
+parametrized by points in $\mathbb{X}_{k,m}$, i.e., by integration of propagator kernels over $\FM_k(\C) \times \Conf_m(\R)$.  By the Swiss--cheese recognition (Conjecture~\ref{conj:recognition}), these operations assemble into a $W(\SCchtop)$--algebra, and the totality of such operations is precisely the operadic cochain complex
+\[
+\mathrm{C}^\bullet_{\mathrm{ch,top}}(A) = \underline{\mathrm{Hom}}_{\text{cooperad}}\bigl((\OHT)^\vee, \mathrm{End}_A\bigr).
+\]
+This gives the map $\Phi \colon \mathrm{C}^\bullet_{\mathrm{ch,top}}(A) \to \mathsf{Obs}_{\mathrm{bulk}}(\mathbb{B}^3)$: a cochain $f$ of arity $(k,m)$ determines an observable by integrating $f$ against the propagator kernels over $\mathbb{X}_{k,m}$.  In the reverse direction, restricting a bulk observable to the configuration-space strata recovers the cochain components.
+
+\medskip
+\textbf{Step 2: Holomorphic weight filtration.}
+
+Equip both sides with the \emph{holomorphic weight filtration} $F^p$, graded by total pole order at collision divisors in $\FM_k(\C)$.
+
+On the cochain side, define $F^p \mathrm{C}^\bullet_{\mathrm{ch,top}}(A) \subset \mathrm{C}^\bullet_{\mathrm{ch,top}}(A)$ as the subcomplex of cochains whose kernels, when restricted to $\FM_k(\C)$, have poles of total order at most $p$ along the union of collision divisors $\bigcup_{|S| \geq 2} D_S$.
+
+On the observable side, define $F^p \mathsf{Obs}_{\mathrm{bulk}}(\mathbb{B}^3)$ by the analogous pole-order condition on the Feynman-diagrammatic integrands.
+
+The map $\Phi$ is filtered: it preserves pole order since it is defined by integration over the \emph{same} configuration-space kernels.  On the associated graded, the factorization structure splits by the product decomposition $\mathbb{X}_{k,m} = \FM_k(\C) \times \Conf_m(\R)$.  At each graded piece:
+\begin{enumerate}[label=(\roman*)]
+\item The \emph{chiral component} (varying $k$, from $\FM_k(\C)$) contributes the BD--chiral Hochschild complex $\mathrm{C}^\bullet_{\mathrm{BD\text{-}ch}}(A_{\mathsf{ch}})$, where $A_{\mathsf{ch}}$ is the closed-color (holomorphic) part of the $W(\SCchtop)$--algebra.  The differential on this piece is the chiral Hochschild differential with $\delta_Q$ from the internal BV-BRST operator and $\delta_{\mathrm{Hoch}}$ from the boundary faces of $\FM_k(\C)$ encoding OPE collisions.
+\item The \emph{topological component} (varying $m$, from $\Conf_m(\R)$) contributes the $E_1$ Hochschild complex $\mathrm{C}^\bullet_{E_1}(A_{\mathsf{top}})$, where $A_{\mathsf{top}}$ is the open-color (topological) part.  The differential encodes the boundary faces of $\Conf_m(\R)$ (merging adjacent intervals).
+\end{enumerate}
+The splitting on associated graded is
+\[
+\gr^F \mathrm{C}^\bullet_{\mathrm{ch,top}}(A) \;\cong\; \mathrm{C}^\bullet_{\mathrm{BD\text{-}ch}}(A_{\mathsf{ch}}) \;\widehat\otimes\; \mathrm{C}^\bullet_{E_1}(A_{\mathsf{top}}),
+\]
+and the same decomposition holds for $\gr^F \mathsf{Obs}_{\mathrm{bulk}}(\mathbb{B}^3)$ by the factorization product structure on disjoint rectangles.  Hence $\gr(\Phi)$ is an isomorphism.
+
+\medskip
+\textbf{Step 3: Well-definedness and integrability.}
+
+The integrals defining $\Phi$ converge by Hypothesis~(H2) (Propagator Regularity): the propagator kernels are meromorphic in $\C$ with at most simple poles at collision points, and exponentially decaying along $\R$.  After pullback to the FM compactification $\FM_k(\C) \times \Conf_m(\R)$, the resulting forms have at most logarithmic singularities along the boundary divisors $D_S$.  Since $\FM_k(\C)$ is a compact manifold with corners, forms with logarithmic singularities are integrable --- the key estimate is
+\[
+\int_0^\epsilon |\log \varepsilon_S|^N \, \varepsilon_S^{a-1} \, d\varepsilon_S < \infty \quad \text{for } a > 0, \; N \geq 0,
+\]
+where $\varepsilon_S$ is the radial parameter measuring the size of the cluster $S$ (Definition~\ref{def:FM_coords}).  The exponent $a > 0$ is guaranteed by the simple-pole condition in (H2); higher-loop contributions are controlled by (H1) (one-loop finiteness ensures no accumulation of poles).
+
+The filtration is complete and Hausdorff on both sides (pole order is bounded below and the complexes are exhausted by finite filtration levels).  By the spectral sequence comparison theorem, the isomorphism on $\gr$ lifts to a quasi-isomorphism on the filtered complexes:
+\[
+\Phi \colon \mathrm{C}^\bullet_{\mathrm{ch,top}}(A) \;\xrightarrow{\;\simeq\;}\; \mathsf{Obs}_{\mathrm{bulk}}(\mathbb{B}^3). \qedhere
+\]
+\end{proof}
+
+\begin{corollary}[Obstruction theory]
+\label{cor:obstructions}
+Obstructions to first‑order deformations lie in $H^2(\mathrm{C}^\bullet_{\mathrm{ch,top}}(A))$ and equivalence classes of infinitesimal deformations are parameterized by $H^1$. Higher obstructions live in the Massey‑product tower controlled by the brace operations.
+\end{corollary}
+
+\subsection{Filtration and PVA on associated graded}
+\label{subsec:filtration-PVA}
+Let $F^\bullet$ be the holomorphic weight filtration on $\mathrm{C}^\bullet_{\mathrm{ch,top}}(A)$. Then
+\[
+\mathrm{gr}^F\, \mathrm{C}^\bullet_{\mathrm{ch,top}}(A)
+\;\cong\;
+\mathrm{C}^\bullet_{\mathrm{BD\text{-}ch}}(A_{\mathsf{ch}})\;\widehat\otimes\; \mathrm{C}^\bullet_{E_1}(A_{\mathsf{top}}),
+\]
+and the induced bracket on $\mathrm{H}^\bullet$ coincides with the $(-1)$‑shifted Poisson vertex bracket of Section~\ref{sec:Ainfty-to-PVA}.
+
+

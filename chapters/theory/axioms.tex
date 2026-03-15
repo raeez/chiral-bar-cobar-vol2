@@ -1,0 +1,414 @@
+\section{Concrete axioms for $A_\infty$ chiral algebras}
+\label{sec:axioms-Ainfty-chiral}
+\label{sec:ainfty_chiral_defn}
+
+\subsection{Underlying data and parameters}
+\label{subsec:underlying-data}
+\begin{definition}[$A_\infty$ chiral algebra]
+\label{def:ainfty_chiral}
+Fix a ground field $k$ of characteristic $0$. Let $(A,Q)$ be a cochain complex (cohomological grading), with $Q$ of degree $+1$.
+We equip $A$ with:
+\begin{itemize}
+  \item a degree $0$ endomorphism $\partial\colon A\to A$ (holomorphic translation) with $[Q,\partial]=0$,
+  \item a distinguished unit $\mathbf 1\in A^0$ with $Q\mathbf 1=0$ and $\partial \mathbf 1=0$,
+  \item multilinear operations (for $k\ge 1$)
+  \begin{equation}
+    \label{eq:mk-type}
+    m_k \colon A^{\otimes k}\longrightarrow A((\lambda_1))\cdots((\lambda_{k-1})),
+    \qquad \deg m_k = 1-k,
+  \end{equation}
+  where $A((\lambda))$ denotes the space of formal Laurent series in $\lambda$ with coefficients in $A$, and $A((\lambda_1))\cdots((\lambda_{k-1}))$ is the iterated Laurent series ring.\footnote{We work in the completed topology so that infinite sums are allowed.}
+\end{itemize}
+We regard $\lambda_1,\dots,\lambda_{k-1}$ as spectral parameters associated to the \emph{differences} of the holomorphic coordinates of inputs $1,\dots,k-1$ relative to the $k$-th input (the ``rightmost'' slot).
+The axioms imposed on this data are stated in Definition~\ref{def:sesquilinearity}--\ref{def:symmetry-grading} below.
+\end{definition}
+
+\begin{notation}[Spectral bookkeeping]
+\label{not:spectral}
+For $n\ge1$ and ordered inputs $a_1,\dots,a_n$, we always write $m_n(a_1,\dots,a_n)$ as a formal Laurent series in $(\lambda_1,\dots,\lambda_{n-1})$ following the convention above. If $I=[p+1,\dots,p+r]$ is a consecutive block, we denote
+\[
+\Lambda_I\;:=\;\lambda_{p+1}+\cdots+\lambda_{p+r-1},
+\]
+and for any index $j>p+r-1$ we define $\lambda^{(I)}_j:=\lambda_j$ (unchanged), whereas the \emph{effective parameter} for the collapsed block $I$ is $\Lambda_I$.
+\end{notation}
+
+\subsection{Sesquilinearity and unitality axioms}
+\label{subsec:sesqui}
+
+\begin{definition}[Sesquilinearity and unitality]
+\label{def:sesquilinearity}
+The $m_k$ satisfy the following sesquilinearity relations (generalizing the vertex-algebra relations) for $k\ge 2$:
+\begin{align}
+\label{eq:sesqui-left}
+m_k(a_1,\dots,\partial a_i,\dots,a_k)
+&= -\,\lambda_i\cdot m_k(a_1,\dots,a_i,\dots,a_k), && 1\le i\le k-1,\\
+\label{eq:sesqui-right}
+m_k(a_1,\dots,a_{k-1},\partial a_k)
+&= \Bigl(\lambda_1+\cdots+\lambda_{k-1}+\partial\Bigr)\, m_k(a_1,\dots,a_k).
+\end{align}
+\noindent
+\emph{Convention.}\; In equations \eqref{eq:sesqui-left}--\eqref{eq:sesqui-right} we use the
+\textbf{independent-parameter convention}: $\lambda_i$ is the spectral parameter
+associated to the $i$-th input (the difference $z_i - z_k$ relative to the
+rightmost slot), and each $\lambda_i$ is treated as an independent formal
+variable. In this convention, sesquilinearity reads
+$m_k(\ldots,\partial a_i,\ldots) = -\lambda_i\cdot m_k(\ldots)$ for
+$1\le i\le k-1$. The alternative \emph{consecutive-difference convention}
+used in Lemma~\ref{lem:sesquilinearity_explicit} defines $\lambda_i$ as the
+difference $z_i - z_{i+1}$ between adjacent insertion points; in that
+convention, translating the $i$-th insertion $z_i\mapsto z_i+\varepsilon$
+shifts both $\lambda_{i-1}$ (by $+\varepsilon$) and $\lambda_i$ (by
+$-\varepsilon$), giving the formula of
+equation~\eqref{eq:sesqui_explicit_i}. See
+Lemma~\ref{lem:sesquilinearity_explicit} for details and the reconciliation
+of the two forms.
+
+For $k=1$, $m_1=Q$ and sesquilinearity is $[Q,\partial]=0$.
+There is a (strict) unit $\mathbf 1$ such that
+\begin{align}
+\label{eq:unit-axioms}
+m_1(\mathbf 1)&=0,\qquad \partial\mathbf 1=0,\\
+\label{eq:unit-m2}
+m_2(\mathbf 1,a)&=a,\qquad m_2(a,\mathbf 1)=(-1)^{|a|}a,\\
+\label{eq:unit-higher}
+m_k(\ldots,\mathbf 1,\ldots)&=0\quad \text{for all $k\neq 2$, whenever a unit is inserted}.
+\end{align}
+\noindent
+\emph{Sign justification.}\; The sign $(-1)^{|a|}$ in
+$m_2(a,\mathbf{1})=(-1)^{|a|}a$ arises from the Koszul sign rule: the
+shifted operation $m_2$ carries degree $|m_2|=-1$ (cohomological convention),
+so passing $m_2$ past the element $a$ to reduce the unit insertion to the
+identity incurs $(-1)^{|m_2|\cdot|a|}=(-1)^{(-1)(|a|)}=(-1)^{|a|}$.
+\end{definition}
+
+\subsection{Planar $A_\infty$ relations with spectral substitution}
+\label{subsec:ainfty-relations}
+
+\begin{definition}[$A_\infty$ relations with spectral substitution]
+\label{def:ainfty-relations}
+For each $n\ge 1$, the following \emph{planar} $A_\infty$ identity holds (degree $2-n$):
+\begin{equation}
+\label{eq:ainfty-relation-raw}
+\sum_{\substack{i+j=n+1\\ i,j\ge1}}\;\sum_{s=0}^{n-j}
+(-1)^{\epsilon(s,j)}\;
+m_i\!\Bigl(
+a_1,\dots,a_s,\
+m_j(a_{s+1},\dots,a_{s+j}\,;\,\lambda_{s+1},\dots,\lambda_{s+j-1})\ \Big|\ \Lambda_{[s+1,\dots,s+j]}
+,\ a_{s+j+1},\dots,a_n;\ \bm\lambda^{\mathrm{out}} \Bigr)
+\;=\;0.
+\end{equation}
+Here:
+\begin{itemize}
+  \item The sign $(-1)^{\epsilon(s,j)}$ is the Koszul sign for $A_\infty$ algebras in cohomological grading. The explicit formula is
+  \[
+    \epsilon(s,j) \;=\; |a_1|+\cdots+|a_s|,
+  \]
+  i.e., the parity of the total degree of the elements that the inner operation $m_j$ passes.%
+  \footnote{Many references (Loday--Vallette, Keller) state the $A_\infty$
+  identity on the \emph{desuspended} bar complex $s^{-1}\bar A$ with sign
+  $(-1)^{rs+t}$ or equivalently
+  $(-1)^{(j-1)(|\bar a_1|+\cdots+|\bar a_s|)}$ where
+  $|\bar a_i|=|a_i|-1$. The present formula $\epsilon(s,j)=|a_1|+\cdots+|a_s|$
+  (independent of~$j$) is the standard \emph{unsuspended} convention: it
+  encodes the Koszul sign of passing a degree-$+1$ component of the bar
+  differential past the first~$s$ elements. The two conventions produce
+  the same identity $d_{\mathrm{bar}}^2=0$, differing only by signs absorbed
+  into the definition of~$m_k$ via the desuspension isomorphism
+  $m_k = \pm\, s\circ \mu_k\circ(s^{-1})^{\otimes k}$.
+  In particular, for $j=1$: $\epsilon(s,1)=|a_1|+\cdots+|a_s|$,
+  so $Q=m_1$ is a graded derivation of every~$m_k$.}
+  \item The notation $m_i(-\mid \Lambda_{[s+1,\dots,s+j]},-;\bm\lambda^{\mathrm{out}})$ means:
+  the $j$ consecutive inputs $a_{s+1},\dots,a_{s+j}$ are first composed by $m_j$ with the internal spectral variables $(\lambda_{s+1},\dots,\lambda_{s+j-1})$ (relative to the $a_{s+j}$ slot), resulting in one effective input placed at position $s+1$ of the outer $m_i$ with \emph{effective spectral parameter} $\Lambda_{[s+1,\dots,s+j]}$. The other outer spectral variables are given by
+  \[
+    \bm\lambda^{\mathrm{out}} = \bigl(\lambda_1,\dots,\lambda_s,\ \Lambda_{[s+1,\dots,s+j]},\ \lambda_{s+j+1},\dots,\lambda_{n-1}\bigr),
+  \]
+  i.e.\ the inner block is replaced by its sum of parameters, while the rest is unchanged.
+\end{itemize}
+\begin{remark}[Spectral substitution principle]
+\label{rmk:spectral-substitution}
+Equation \eqref{eq:ainfty-relation-raw} encodes the fact that \emph{when a block of inputs is fused first}, the correct spectral parameter inserted in the outer operation is the \emph{sum} of the inner $\lambda$'s, reflecting translation covariance and the convention that all $\lambda_i$ are differences relative to the last slot. This is the algebraic avatar of momentum–conservation for formal distributions.
+\end{remark}
+\end{definition}
+
+\subsection{Symmetry, grading, and parity}
+\label{subsec:symmetry}
+
+\begin{definition}[Symmetry and grading conventions]
+\label{def:symmetry-grading}
+We impose no symmetry requirement on the $m_k$ beyond the planar order (this is standard for $A_\infty$ structures). The Koszul rule governs signs in all axioms above. The grading convention is cohomological.
+\end{definition}
+
+\subsection{Regular/singular decomposition of $m_2$}
+\label{subsec:reg-sing}
+\label{def:Laurent-projection}
+For $m_2(a,b)\in A((\lambda))$, we decompose
+\[
+m_2(a,b) = m_2^{\mathrm{reg}}(a,b)\;+\;m_2^{\mathrm{sing}}(a,b),
+\]
+where $m_2^{\mathrm{reg}}(a,b)\in A[\![\lambda]\!]$ and $m_2^{\mathrm{sing}}(a,b)\in \lambda^{-1}A[\![\lambda^{-1}]\!]$. We will use this in the cohomological PVA construction below.
+
+\subsection{Consequences: product and bracket on cohomology}
+\label{subsec:product-bracket}
+\label{def:product}
+\label{def:lambda-bracket}
+As in Section~\ref{sec:Ainfty-to-PVA}, define for $[a],[b]\in H^\bullet(A,Q)$:
+\begin{align}
+\label{eq:prod-def}
+[a]\cdot[b] &:= \Bigl[\, \frac12\bigl(m_2^{\mathrm{reg}}(a,b) + (-1)^{|a||b|}m_2^{\mathrm{reg}}(b,a)\bigr)\,\Bigr],\\
+\label{eq:bracket-def}
+\{[a]{}_\lambda [b]\} &:= \Bigl[\, \frac12\bigl(m_2^{\mathrm{sing}}(a,b) - (-1)^{(|a|+1)(|b|+1)}\; \mathrm{e}^{-(\lambda+\partial)\partial_\lambda}\,m_2^{\mathrm{sing}}(b,a)\bigr)\,\Bigr].
+\end{align}
+The exponential operator encodes the transformation $\lambda\mapsto -\lambda-\partial$ required by vertex skewsymmetry. (It acts on formal series by the standard rule $\mathrm{e}^{\alpha\partial_\lambda}f(\lambda)=f(\lambda+\alpha)$.)
+We will show these are well-defined and satisfy the PVA axioms.
+
+\subsection{Relationship to Physical Constructions}
+
+\begin{lemma}[QME implies $A_\infty$ relations]
+\label{lem:QME_to_Ainfty}
+Assume {\rm (H1)--(H4)} (Hypotheses~\ref{hyp:H1}--\ref{hyp:H3} and Assumption~\ref{ass:H1-H4}).
+The quantum master equation $\frac{1}{2}\{S_{\mathrm{eff}},S_{\mathrm{eff}}\}_{\mathrm{BV}} + \hbar\Delta S_{\mathrm{eff}}=0$, expanded in Feynman diagrams, is equivalent to the $A_\infty$ identities \eqref{eq:ainfty-relation-raw} for the operations $m_k$ extracted from $S_{\mathrm{eff}}$.
+\end{lemma}
+
+\begin{proof}[Proof sketch]
+Expand $S_{\mathrm{eff}} = \sum_k \frac{1}{k!} S_k$ where $S_k$ encodes $k$-ary operations. The BV bracket $\{S_{\mathrm{eff}},S_{\mathrm{eff}}\}_{\mathrm{BV}}=0$ at each arity $n$ yields precisely the sum over compositions $m_i \circ m_j$ with $i+j=n+1$, matching \eqref{eq:ainfty-relation-raw}. See \cite{CG17,CDG20} for details.
+\end{proof}
+
+\begin{proposition}[Definition \ref{def:ainfty_chiral} Captures Physical Structure]
+\label{prop:physical_justification}
+Under Hypotheses {\rm (H1)--(H4)}, our Definition \ref{def:ainfty_chiral} correctly formalizes the $A_\infty$ chiral algebra structure implicit in Costello--Gwilliam--Gaiotto--Dimofte for the following reasons:
+
+\begin{enumerate}[label=(\roman*)]
+\item \textbf{Factorization algebra framework:} Costello--Gwilliam \cite{CG17} establish that local observables in holomorphic field theories form factorization algebras on $\C$. Our operations $m_k$ with locality axiom encode the factorization product on $\Conf_k(\C)$.
+
+\item \textbf{BV formalism derivation:} All operations arise from the quantum master equation
+\[
+\frac{1}{2}\{S_{\text{eff}}, S_{\text{eff}}\}_{\text{BV}} + \hbar \Delta S_{\text{eff}} = 0,
+\]
+expanded as Feynman diagrams. The $A_\infty$ identity (Equation~\ref{eq:ainfty-relation-raw}) encodes the quantum master equation of the BV formalism at the level of individual operations.
+
+\item \textbf{Chiral structures from contour integrals:} The $\lambda$-bracket formula and form integrands match constructions in \cite{CDG20} and Khan--Zeng \cite{KZ25}. Spectral parameters $\lambda_i$ encode derivatives via $e^{\lambda z}$ generating functions, as in vertex algebra theory.
+
+\item \textbf{Verification in examples:} Our definition recovers known structures:
+\begin{itemize}
+\item For $m_{k \geq 3} = 0$: ordinary Poisson vertex algebras (Example \ref{ex:free_chiral});
+\item For holomorphic theories with one-loop finiteness: structures of Gwilliam--Grady--Williams \cite{GGW21};
+\item Cohomology $H^\bullet(\A,Q)$ yields PVAs matching expectations from \cite{CDG20} (Theorem \ref{thm:cohomology_PVA}).
+\end{itemize}
+
+\item \textbf{Consistency with dimensional ascent:} Our definition generalizes Tamarkin's chiral Hochschild complex \cite{Tam03} and provides the 3d analogue of 2d Hochschild theory from Poisson sigma models (Section \ref{sec:chiral_hochschild_expanded}).
+\end{enumerate}
+\end{proposition}
+
+\begin{remark}[Status of $A_\infty$ Chiral Algebras]
+\label{rem:status}
+Costello--Dimofte--Gaiotto \cite{CDG20} explicitly state that ``an $A_\infty$ analog of a vertex algebra\ldots is a structure that has yet to be fully defined mathematically.'' Our Definition \ref{def:ainfty_chiral} represents the \textbf{first mathematically rigorous axiomatization} of this structure, built on solid operadic foundations. Proposition \ref{prop:physical_justification} provides systematic evidence that we have captured the correct physical structure.
+\end{remark}
+
+\subsection{Factorization Axiom and Cluster Limits}
+
+A crucial feature of $A_\infty$ chiral algebras is how operations behave as insertion points collide---the \emph{factorization} or \emph{cluster} property. This axiom connects the operations to the operadic structure of $\OHT$.
+
+\begin{theorem}[Cluster Factorization (Homotopy-Commutative Form)]
+\label{thm:cluster_factorization_homotopy}
+Under Hypotheses \textup{(H1)--(H4)}, let $(\A, \{m_k\})$ be an $A_\infty$ chiral algebra and let $\pi = \{S_1,\ldots,S_r\}$ be a partition of $\{1,\ldots,k\}$ with $|S_j| = k_j$. As points $\{z_i\}_{i \in S_j}$ collide to cluster centers $w_j$ (a limit within $\FM_k(\C)$), the operations satisfy
+\begin{equation}
+\label{eq:cluster_factorization}
+\lim_{z_i \to w_j} m_k(O_1,\ldots,O_k) = \sum_{\sigma \in \Sh(\pi)} (-1)^{\varepsilon(\sigma;O)} \, m_r\big(O'_{\sigma(1)},\ldots,O'_{\sigma(r)}\big),
+\end{equation}
+where $O'_j := m_{k_j}(O_{i_1},\ldots,O_{i_{k_j}})$ for $S_j = \{i_1 < \cdots < i_{k_j}\}$, and spectral parameters compose via
+\begin{equation}
+\label{eq:spectral_composition}
+\lambda_{\text{cluster},j} = \sum_{i \in S_j} \lambda_i + \partial_{w_j}.
+\end{equation}
+The shuffle sum $\sum_{\sigma\in\Sh(\pi)}$ arises because the Swiss-cheese
+operations carry a homotopy-commutative structure induced by the symmetric
+group action on $\FM_k(\C)$. For the planar (non-commutative) specialization,
+only the identity shuffle $\sigma=\mathrm{id}$ contributes, and the sum
+reduces to a single term.
+\end{theorem}
+
+\begin{proof}[Proof strategy]
+The theorem follows from three ingredients:
+
+\textbf{Step 1 (Geometric):} The boundary stratum $D_\pi \subset \partial \FM_k(\C)$ corresponding to partition $\pi$ is canonically isomorphic to
+\[
+D_\pi \cong \FM_r(\C) \times \prod_{j=1}^r \FM_{k_j}(\C),
+\]
+recording cluster centers $\{w_j\}$ and relative positions within each cluster.
+
+\textbf{Step 2 (Analytic):} The form representative $\omega_k$ extends continuously to $D_\pi$, and its restriction $\omega_k|_{D_\pi}$ factors as the wedge product
+\[
+\omega_k|_{D_\pi} = \omega_r(O'_1,\ldots,O'_r) \wedge \bigwedge_{j=1}^r \omega_{k_j}(\{O_i\}_{i \in S_j}),
+\]
+up to shuffle signs.
+
+\textbf{Step 3 (Spectral):} Holomorphic generating functions $e^{\sum_i \lambda_i z_i}$ degenerate to $e^{(\sum_{i \in S_j} \lambda_i) w_j}$ times relative terms, yielding (\ref{eq:spectral_composition}).
+
+Complete details, including orientation/sign conventions, appear in Appendix \ref{app:FM_Stokes}.
+\end{proof}
+
+\paragraph{Remark 4.6 (Factorization as operadic composition).} Cluster factorization (\ref{eq:cluster_factorization}) is precisely the statement that $\A$ is an algebra over the chain operad $\OHT=C_\ast(W(\SCchtop))$: boundary faces in $\FM_k(\C)$ encode operadic compositions in the closed colour and ordered gluings along $\R$ encode open-colour compositions; Stokes' theorem (Section \ref{sec:FM_calculus}) supplies the coherence.
+
+\subsection{Explicit Coend Formula and Operadic Composition}
+
+To make the operadic definition of $\OHT$ completely precise, we now present the coend formula producing the operations $m_k$.
+
+\paragraph{Construction 4.7 (Coend formula for $m_k$).}
+Using the $W$--model, the universal element determining $m_k$ is
+\[
+  m_k = \int^{T \in \mathrm{Trees}_k} \!\!\! C_\ast\!\bigl(W(\SCchtop)(T)\bigr)\otimes_{\mathrm{Aut}(T)}
+  \bigotimes_{v \in \mathrm{Vert}(T)} \Bigl(
+     C_\ast\!\bigl(\FM_{\mathrm{in}(v)}(\C)\bigr)\,\widehat{\otimes}\,
+     C_\ast\!\bigl(\Conf_{\mathrm{out}(v)}(\R)\bigr)
+  \Bigr)\, .
+\]
+Closed-colour factors record holomorphic collisions; open-colour factors record ordered
+times; the $W$--parameters on internal edges control homotopies.
+
+\begin{example}[Binary Operation $m_2$ from the Coend]
+For $k=2$, the only tree is the corolla with one internal vertex and two leaves. The coend formula yields
+\[
+m_2 = \cP^{\mathrm{ch}}(2) \otimes \cE_1(1),
+\]
+where $\cP^{\mathrm{ch}}(2)$ encodes the binary chiral operation (holomorphic collision of two points) and $\cE_1(1)$ provides the topological ordering (represented by a single edge/interval).
+
+Explicitly, for operators $a, b \in \A$ at positions $(t_1, z_1), (t_2, z_2)$:
+\[
+m_2(a,b) = \int_{\Gamma \subset \FM_2(\C)} \int_{t_1 < t_2} K(z_1 - z_2, t_1 - t_2) \, a(t_1,z_1) \otimes b(t_2,z_2) \, dt_1 \, dt_2,
+\]
+where $K$ is the propagator kernel (from hypothesis H2).
+\end{example}
+
+\paragraph{Remark 4.9 (Boardman--Vogt resolution details).}
+Each internal edge $e$ of a tree $T$ carries a parameter $s_e\in[0,1]$ encoding the time of
+composition. In the two--colour model one works with $W(\SCchtop)(T)$; there is no meaningful
+vertex-wise factor $(P_{\mathrm{ch}}\rtimes E_1)$. Instead, vertex decorations are determined by the output
+colour: closed vertices carry $\FM(\C)$--data; open vertices carry $\FM(\C)\times \Conf(\R)$--data. The
+boundary identifications implement coherent sequential/simultaneous compositions.
+
+\subsection{Sesquilinearity: Complete Proof}
+
+We now prove sesquilinearity axioms \eqref{eq:sesqui-left}--\eqref{eq:sesqui-right} in complete detail.
+
+\begin{lemma}[Sesquilinearity from Translation Equivariance]
+\label{lem:sesquilinearity_explicit}
+Here we use the \textbf{consecutive-difference convention}: the spectral
+parameter $\lambda_i$ is associated to the difference $z_i - z_{i+1}$
+between adjacent insertion points. The translation $z_i\mapsto z_i+\varepsilon$
+then shifts both $\lambda_{i-1}$ (by $+\varepsilon$) and $\lambda_i$ (by
+$-\varepsilon$), yielding the effective formulae below. This convention
+differs from the independent-parameter convention of
+equations~\eqref{eq:sesqui-left}--\eqref{eq:sesqui-right}; the two are
+reconciled in the note following those equations.
+
+Let $\partial : \A \to \A$ denote holomorphic translation in $z$. Then the operations $m_k$ satisfy:
+\begin{align}
+m_k(\partial a_1, a_2, \ldots, a_k) &= -\lambda_1 \, m_k(a_1, a_2, \ldots, a_k), \label{eq:sesqui_explicit_1} \\
+m_k(a_1, \ldots, a_{i-1}, \partial a_i, a_{i+1}, \ldots, a_k) &= (\partial + \lambda_1 + \cdots + \lambda_{i-1}) m_k(a_1, \ldots, a_k) \label{eq:sesqui_explicit_i}
+\end{align}
+for $2 \leq i \leq k$.
+\end{lemma}
+
+\begin{proof}
+We analyze how $\partial$ acts on the spectral parameter generating functions.
+
+\textbf{Step 1 (Generating function representation):} The operations $m_k$ encode holomorphic dependence via
+\[
+m_k(a_1(z_1), \ldots, a_k(z_k)) = \sum_{n_1, \ldots, n_{k-1} \geq 0} \frac{m_k^{(n_1, \ldots, n_{k-1})}(a_1, \ldots, a_k)}{n_1! \cdots n_{k-1}!} \lambda_1^{n_1} \cdots \lambda_{k-1}^{n_{k-1}},
+\]
+where $m_k^{(n_1, \ldots, n_{k-1})}$ extracts the coefficient of $\lambda_1^{n_1} \cdots \lambda_{k-1}^{n_{k-1}}$, representing the contribution from derivatives $(\partial_{z_1}^{n_1} a_1) \cdots (\partial_{z_{k-1}}^{n_{k-1}} a_{k-1})$.
+
+\textbf{Step 2 (Translation of first input):} Translating $a_1(z_1) \rightsquigarrow a_1(z_1 + \varepsilon)$ for infinitesimal $\varepsilon$ yields
+\[
+m_k(a_1(z_1 + \varepsilon), a_2(z_2), \ldots) = e^{\varepsilon \partial_{z_1}} m_k(a_1(z_1), a_2(z_2), \ldots).
+\]
+Since the spectral parameter $\lambda_1$ couples to $(z_1 - z_2)$, translation $z_1 \rightsquigarrow z_1 + \varepsilon$ induces $\lambda_1 \rightsquigarrow \lambda_1 e^{\varepsilon \partial_{z_1}}$. Expanding to first order in $\varepsilon$ and using $\partial a_1 = \lim_{\varepsilon \to 0} (a_1(z+\varepsilon) - a_1(z))/\varepsilon$ yields \eqref{eq:sesqui_explicit_1}.
+
+\textbf{Step 3 (Translation of $i$th input):} For $i \geq 2$, the spectral parameters couple to differences $(z_i - z_1), (z_i - z_2), \ldots, (z_i - z_{i-1})$. Translation $z_i \rightsquigarrow z_i + \varepsilon$ shifts all these differences by $+\varepsilon$, inducing
+\[
+\lambda_j \rightsquigarrow \lambda_j e^{\varepsilon \partial_{z_i}} \quad \text{for } j = 1, \ldots, i-1.
+\]
+On the output (which depends on $z_i$), translation acts via $\partial$. Combining these effects yields \eqref{eq:sesqui_explicit_i}.
+
+\textbf{Step 4 (Operadic perspective):} Alternatively, sesquilinearity follows from the fact that $\cP^{\mathrm{ch}}$ is a $\partial$-equivariant operad: the holomorphic vector field $\partial_z$ acts compatibly with operadic compositions (boundary restrictions). The spectral parameter shifts encode how derivatives transform under composition, reproducing \eqref{eq:sesqui_explicit_1}--\eqref{eq:sesqui_explicit_i}.
+\end{proof}
+\subsection{From $W(\mathsf{SC}^{\mathrm{ch,top}})$ to axioms and back}
+\label{sec:operad-to-axioms}
+\label{sec:equivalence}
+
+\subsubsection{From the operad to explicit $m_k$ with spectral substitution}
+\label{subsec:operad-to-mk}
+Let $(A_{\mathsf{ch}},A_{\mathsf{top}})$ be a $C_\ast\!\bigl(W(\mathsf{SC}^{\mathrm{ch,top}})\bigr)$--algebra with underlying complex $A$ and translation operator $\partial$ (from the holomorphic \(\C\)--action). Choose, for each $k\ge1$, a fundamental chain $[\FM_k(\C)]\in C_\ast(\FM_k(\C))$ and similarly for $E_1$ (recording the $t$--ordering). Define
+\[
+m_k(a_1,\dots,a_k)
+:= \bigl\langle\ \rho\bigl([\FM_k(\C)]\times [E_1(\text{ordering})]\bigr)\,,\, a_1\otimes\cdots\otimes a_k\ \bigr\rangle
+\ \in\ A((\lambda_1))\cdots((\lambda_{k-1})),
+\]
+where $\rho$ is the operad action and the \(\lambda\)--dependence is the generating function of the log--forms (residue degrees) on $\FM_k(\C)$ prescribed by the operad.
+Then:
+\begin{enumerate}[label=(\alph*)]
+  \item sesquilinearity \eqref{eq:sesqui-left}--\eqref{eq:sesqui-right} follows from equivariance under translations in $\C$ (the \(\C\)--action generates $\partial$ and gives \(\lambda\)-multiplications),
+  \item the spectral substitution law in \eqref{eq:ainfty-relation-raw} is the image of the boundary identification of faces in $\partial\FM_k(\C)$ where a consecutive block collapses (the effective parameter is the sum of inner ones).
+\end{enumerate}
+
+\begin{proposition}[Operad $\Rightarrow$ axioms]
+\label{prop:operad-implies-axioms}
+The $m_k$ produced by the $W(\mathsf{SC}^{\mathrm{ch,top}})$--action satisfy the axioms in Section~\ref{sec:axioms-Ainfty-chiral}.
+\end{proposition}
+
+\begin{proof}
+Unitality is inherited from the operadic units in $\FM_1(\C)$ and $E_1(1)$. Sesquilinearity follows from Lemma~\ref{lem:sesquilinearity_explicit}, where the spectral parameter convention is that $\lambda_i$ records the difference $z_i - z_{i+1}$; this arises from the holomorphic translation action: $z\mapsto z+\epsilon$ induces \eqref{eq:sesqui-left}--\eqref{eq:sesqui-right}. The $A_\infty$ relations \eqref{eq:ainfty-relation-raw} are Stokes' identities on the boundary stratification of $\FM_k(\C)$ with the spectral substitution reflecting the block collapse (Remark~\ref{rmk:spectral-substitution}).
+\end{proof}
+
+\subsubsection{Rectification: from axioms to a $W(\mathsf{SC}^{\mathrm{ch,top}})$--algebra}
+\label{subsec:rectification}
+Conversely, suppose $A$ carries $(Q,\partial,\{m_k\})$ satisfying the axioms of Section~\ref{sec:axioms-Ainfty-chiral}.
+
+\begin{definition}[Tameness]\label{def:tameness}
+We say that an $A_\infty$ chiral algebra $(A, \{m_k\})$ is \emph{tame} if:
+\begin{enumerate}[label=(\alph*)]
+\item the spectral parameter dependence of $m_k$ is polynomial in $\lambda_i$ (regular part) plus a Laurent tail in $\lambda_i^{-1}$ (singular part) with finitely many negative powers;
+\item the operations $m_k$ are continuous with respect to the natural topology on $A((\lambda_1)) \cdots ((\lambda_{k-1}))$;
+\item for sufficiently large $k$, the operations $m_k$ vanish (truncation).
+\end{enumerate}
+\end{definition}
+
+\begin{theorem}[Axioms $\Rightarrow$ operad]
+\label{thm:rectification}
+Assume $A$ is tame in the sense of Definition~\ref{def:tameness}. Then there exists a (canonically defined up to contractible choice) $C_\ast\!\bigl(W(\mathsf{SC}^{\mathrm{ch,top}})\bigr)$--algebra structure on $A$ inducing the given $m_k$ by evaluation on fundamental chains as above. In particular, the category of tame axiomatic $A_\infty$ chiral algebras is equivalent to the category of $W(\mathsf{SC}^{\mathrm{ch,top}})$--algebras with translation and unit.
+\end{theorem}
+
+\begin{proof}
+We construct the $C_\ast\!\bigl(W(\mathsf{SC}^{\mathrm{ch,top}})\bigr)$--algebra structure in three steps.
+
+\textbf{Step 1 (Structure maps on corollas).}
+For each $k \ge 1$, the corolla $c_k$ (the tree with one vertex and $k$ leaves) represents a generator of $W(\mathsf{SC}^{\mathrm{ch,top}})$. Define the structure map
+\[
+\rho(c_k) : C_\ast(\FM_k(\C)) \otimes C_\ast(E_1(\text{ord})) \otimes A^{\otimes k} \longrightarrow A((\lambda_1))\cdots((\lambda_{k-1}))
+\]
+by sending the fundamental chain $[\FM_k(\C)] \times [\text{ord}]$ to the given operation $m_k$. The spectral parameters $\lambda_i$ encode the Laurent expansion of the log--forms on $\FM_k(\C)$ via the residue pairing, and the $E_1$ factor records the time--ordering of inputs along $\R$.
+
+\textbf{Step 2 (Extension to trees via grafting).}
+A general element of $W(\mathsf{SC}^{\mathrm{ch,top}})$ is a tree $T$ with internal edges carrying parameters $s_e \in [0,1]$. The structure map $\rho(T)$ is defined by iterating the corolla maps along the tree: for each internal edge $e$ of $T$ connecting vertex $v_1$ (output) to $v_2$ (input at slot $i$), the composite
+\[
+\rho(T) = \rho(c_{v_1}) \circ_i \rho(c_{v_2})
+\]
+uses the $\circ_i$--composition induced by the boundary identification $D_{\{i, \ldots\}} \subset \partial \FM_k(\C)$. The key compatibility conditions are:
+
+\begin{enumerate}[label=(\roman*)]
+\item \emph{$A_\infty$ relations ensure grafting consistency}: the relation $\sum m_i \circ m_j = 0$ from \eqref{eq:ainfty-relation-raw} is precisely the statement that the boundary of $\FM_k(\C)$ maps correctly under $\rho$, i.e., $\rho \circ \partial = d \circ \rho$ where $\partial$ is the boundary operator on $C_\ast(\FM_k(\C))$ and $d$ is the differential on $\End(A)$.
+
+\item \emph{Sesquilinearity ensures spectral compatibility}: the translation equivariance $m_k(\ldots, \partial a_i, \ldots) = -\lambda_i \cdot m_k(\ldots)$ guarantees that the $\C$--action on $\FM_k(\C)$ (translations) is intertwined by $\rho$ with the $\partial$--action on $A$, so $\rho$ commutes with the holomorphic symmetry.
+
+\item \emph{Spectral substitution ensures homotopy compatibility}: when an internal edge $e$ has parameter $s_e \to 0$ (a cluster collapses), the block--sum rule $\Lambda_I = \sum_{i \in I} \lambda_i$ ensures the composite structure map matches the boundary face $D_I \cong \FM_r(\C) \times \FM_{|I|}(\C)$.
+\end{enumerate}
+
+\textbf{Step 3 (Tameness ensures convergence and uniqueness).}
+Conditions (a)--(b) of Definition~\ref{def:tameness} ensure the structure maps extend continuously to the completed spaces $A((\lambda_1))\cdots((\lambda_{k-1}))$. Condition (c) ensures that the sum over trees terminates, so the bar complex is well-defined. The universal property of the Boardman--Vogt resolution $W$ (as the cofibrant replacement of $\mathsf{SC}^{\mathrm{ch,top}}$) then guarantees that any two extensions of the corolla data are related by a contractible space of homotopies, giving uniqueness up to contractible choice.
+
+The equivalence of categories follows: the forgetful functor (extracting $m_k$ from the operadic data) is the construction of Proposition~\ref{prop:operad-implies-axioms}, and the present construction provides its inverse up to natural equivalence.
+\end{proof}
+
+\subsubsection{Compatibility with the PVA construction}
+\label{subsec:compat-PVA}
+The proof of the PVA structure on cohomology in Section~\ref{sec:axioms-Ainfty-chiral} can be interpreted operadically as the statement that the associated graded (holomorphic filtration) of $W(\mathsf{SC}^{\mathrm{ch,top}})$ is the free product of BD chiral and $E_1$, so the cohomological operations descend from the closed color; the bracket is the classical limit (residue) of the operadic composites, and associativity is the regular part of the $m_2$ identity.

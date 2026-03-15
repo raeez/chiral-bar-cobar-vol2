@@ -1,0 +1,302 @@
+\section{Foundational model: operads and factorization on $\mathbb C\times\mathbb R$}
+\label{sec:foundations}
+\label{sec:operads-factorization}
+
+\subsection{Motivation and overview}
+Local observables in a $3$-dimensional holomorphic–topological quantum field theory (HT QFT)
+on $\mathbb C_z\times \mathbb R_t$ are expected to organize into an algebraic structure that
+simultaneously combines
+\begin{itemize}
+  \item the \emph{chiral} (holomorphic) operator product expansions in the complex $z$–plane, and
+  \item the \emph{$E_1$–type associative multiplications} along the topological real $t$–direction,
+\end{itemize}
+together with their homotopy–coherent compatibilities.  A mathematically precise operadic model
+for this mixture should package holomorphic factorization in~$\mathbb C$ and topological
+factorization in~$\mathbb R$ under a single umbrella.
+
+A naive slogan one sometimes encounters is that the relevant operad is a semidirect product
+$W(\mathsf P_{\mathrm{ch}}\rtimes E_1)$, where $\mathsf P_{\mathrm{ch}}$ is the Beilinson–Drinfeld
+(“BD”) chiral operad and $E_1$ is the little intervals operad.
+However, the action of $E_1$ on $\mathsf P_{\mathrm{ch}}$ is not canonical in this setting,
+and the slogan obscures the crucial \emph{directionality} of the allowed mixed operations
+(chiral-to-topological, but not conversely).
+We therefore introduce a \emph{2–colored Swiss–cheese} operad
+$\mathsf{SC}^{\mathrm{ch,top}}$ whose $W$–resolution precisely captures the desired structure
+while avoiding the pitfalls of a semidirect product.  This approach reflects and formalizes
+the factorization–algebra toolkit for HT QFTs
+(see \cite{CG17,GRW21,GKW25}).
+
+\subsection{The two–colored Swiss–cheese operad}
+\label{subsec:SC-operad}
+
+\begin{definition}[Colors]
+\label{def:SC-colors}
+Consider the set of two colors $\mathbf{Col}=\{\mathsf{ch},\mathsf{top}\}$, thought of as the
+\emph{closed} (holomorphic) and \emph{open} (topological) colors respectively.
+\end{definition}
+
+\begin{definition}[Spaces of operations]
+\label{def:SC-operations}
+Define the topological 2–colored operad
+$\mathsf{SC}^{\mathrm{ch,top}}$ as follows.
+\begin{enumerate}[label=(\roman*)]
+\item \textbf{Closed outputs (holomorphic):} For closed output and only closed inputs,
+  set
+  \[
+     \mathsf{SC}^{\mathrm{ch,top}}\!\bigl( (\underbrace{\mathsf{ch},\ldots,\mathsf{ch}}_{k});\,\mathsf{ch} \bigr)
+     \;:=\; \FM_k(\mathbb C),
+  \]
+  the Fulton–MacPherson compactification of the configuration space of $k$ points in $\mathbb C$.
+  If any input is open, the space of operations with closed output is \emph{empty}:
+  $\mathsf{SC}^{\mathrm{ch,top}}\bigl( (\ldots,\mathsf{top},\ldots);\,\mathsf{ch} \bigr)=\varnothing$.
+  By convention, $\FM_0(\C)$ and $\FM_1(\C)$ are single points, and $E_1(0) = \emptyset$ (the empty configuration).
+\item \textbf{Open outputs (topological):} For open output and a mixture of open and closed inputs, set
+  \[
+     \mathsf{SC}^{\mathrm{ch,top}}\!\bigl( (\underbrace{\mathsf{ch},\ldots,\mathsf{ch}}_{k}, \underbrace{\mathsf{top},\ldots,\mathsf{top}}_{m});\,\mathsf{top} \bigr)
+     \;:=\; \FM_k(\mathbb C)\times E_1(m) .
+  \]
+  This encodes that an open operation may depend on closed inputs (holomorphic insertions)
+  and on open inputs (time–ordered insertions), and its structure is the product of
+  holomorphic and topological composition spaces.
+\end{enumerate}
+\end{definition}
+
+\begin{remark}[Swiss–cheese directionality]
+The absence of mixed operations $(\ldots,\mathsf{top},\ldots)\to\mathsf{ch}$ ensures a
+\emph{closed–output isolation}: holomorphic (“closed”) outputs cannot depend on open inputs.
+This is the hallmark of Swiss–cheese operads and reflects the physical directionality:
+bulk (closed) interactions can restrict to boundaries (open), but boundary interactions
+cannot produce new bulk structures.
+\end{remark}
+
+\begin{definition}[Composition]
+\label{def:SC-composition}
+Composition in $\mathsf{SC}^{\mathrm{ch,top}}$ is induced by the strict operadic insertion
+maps of $\FM_\bullet(\mathbb C)$ and $E_1$, composed \emph{componentwise} as follows.
+\begin{itemize}
+  \item For closed–into–closed insertions,
+    \[
+      \FM_k(\mathbb C)\times\prod_{i=1}^k\FM_{\ell_i}(\mathbb C)
+      \;\longrightarrow\;
+      \FM_{\sum_i\ell_i}(\mathbb C),
+    \]
+    we use the standard operadic insertion of configurations of points.
+  \item For open–into–open with $k$ closed and $m$ open inputs,
+    \[
+      \bigl(\FM_k(\mathbb C)\times E_1(m)\bigr)\times
+      \prod_{i=1}^k\FM_{\ell_i}(\mathbb C)\times\prod_{j=1}^m E_1(n_j)
+      \;\longrightarrow\;
+      \FM_{\sum_i\ell_i}(\mathbb C)\times E_1(\sum_j n_j) ,
+    \]
+    taking the product of insertion maps on $\FM_\bullet(\mathbb C)$ and on $E_1$.
+  \item For closed–into–open, we allow insertion of closed operations in the closed $\FM$–slots
+    inside open operations, but never the reverse (no open–into–closed).
+\end{itemize}
+The symmetric groups act by permuting labeled inputs of each color, and units are given by
+the arity–1 elements in $\FM_1(\mathbb C)$ and~$E_1(1)$.
+\end{definition}
+
+\begin{proposition}[Well-definedness]
+\label{prop:SC-well-defined}
+The data of Definitions~\ref{def:SC-colors}–\ref{def:SC-composition}
+endows $\mathsf{SC}^{\mathrm{ch,top}}$ with the structure of a
+strict two–colored topological operad.
+\end{proposition}
+
+\begin{proof}
+Associativity, unitality, and symmetric–group compatibility follow from the corresponding
+properties of the operads $\FM_\bullet(\mathbb C)$ and~$E_1$, and from the fact that the
+mixed composition is given by their product.  The "no open-to-closed" restriction is
+stable under composition by construction.
+\end{proof}
+
+\subsection{Algebras and the Boardman–Vogt resolution}
+\label{subsec:WSC-algebras}
+
+\begin{definition}[Algebras over $\mathsf{SC}^{\mathrm{ch,top}}$]
+\label{def:SC-algebra}
+Let $(\mathcal C,\otimes,\mathbf 1)$ be a symmetric monoidal presentable stable dg–category
+(e.g.\ chain complexes over a field $k$ of characteristic zero).  An algebra over the operad
+$C_\ast(\mathsf{SC}^{\mathrm{ch,top}})$ in $\mathcal C$ is a pair of objects
+$(A_{\mathsf{ch}},A_{\mathsf{top}})\in\mathcal C^2$
+together with structure maps
+\[
+  C_\ast(\FM_k(\mathbb C))\otimes A_{\mathsf{ch}}^{\otimes k}\longrightarrow A_{\mathsf{ch}} ,
+  \qquad
+  C_\ast(\FM_k(\mathbb C)\times E_1(m))\otimes
+  A_{\mathsf{ch}}^{\otimes k}\otimes A_{\mathsf{top}}^{\otimes m}\longrightarrow A_{\mathsf{top}} ,
+\]
+satisfying the operadic identities.
+\end{definition}
+
+\begin{definition}[Boardman–Vogt resolution]
+\label{def:WSC}
+Let $W(\mathsf{SC}^{\mathrm{ch,top}})$ denote the Boardman–Vogt resolution of the
+topological operad $\mathsf{SC}^{\mathrm{ch,top}}$.
+Its object $W(\mathsf{SC}^{\mathrm{ch,top}})$ is a cofibrant replacement in the model category of two-colored topological operads \cite{BergerMoerdijk2003,CavigliaMoerdijk2014}, encoding
+the data of \emph{homotopy–coherent} operations and relations.
+An algebra over $C_\ast\!\bigl(W(\mathsf{SC}^{\mathrm{ch,top}})\bigr)$ is called a
+\emph{homotopy holomorphic–topological algebra}.
+\end{definition}
+
+\begin{remark}[Homotopy–coherent composition]
+\label{rmk:W-homotopy}
+The $W$–resolution introduces \emph{edge lengths} on the trees that index compositions,
+allowing us to track higher homotopies between different ways of composing operations.
+This is precisely the data needed to model $A_\infty$–type structures in the topological color
+and chiral associativity up to homotopy in the closed color.
+\end{remark}
+
+\subsection{HT prefactorization algebras and Swiss–cheese algebras}
+\label{subsec:prefact-vs-operad}
+
+\begin{definition}[HT prefactorization algebra]
+\label{def:HT-prefactorization}
+A \emph{holomorphic–topological prefactorization algebra} on $\mathbb C\times\mathbb R$ with values
+in $\mathcal C$ assigns to every sufficiently nice open set $U\subset\mathbb C\times\mathbb R$ an
+object $\mathsf{Obs}(U)\in\mathcal C$ together with
+\begin{enumerate}[label=(\alph*)]
+\item \emph{multiplicative structure} for disjoint unions
+  $U=\bigsqcup_i U_i$:
+  \(
+    \bigotimes_i \mathsf{Obs}(U_i)\to \mathsf{Obs}(U),
+  \)
+\item \emph{restriction structure} for inclusions $U\subset V$:
+  \(
+    \mathsf{Obs}(U)\to \mathsf{Obs}(V),
+  \)
+\end{enumerate}
+which is (i) holomorphic in the $\mathbb C$–direction, with meromorphic singularities (OPE poles) arising from the collision of operator insertions,
+(ii) locally constant in the $\mathbb R$–direction (topological factorization),
+and (iii) compatible with iterated decomposition by rectangles $D\times I$.
+\end{definition}
+
+\begin{conjecture}[Swiss--cheese recognition]
+\label{conj:recognition}
+\label{thm:recognition}
+Let $\mathcal C$ be a symmetric monoidal presentable stable dg--category over a field $k$ of characteristic zero.
+The following data are equivalent:
+\begin{enumerate}[label=(\roman*)]
+\item A homotopy holomorphic--topological algebra over
+  $C_\ast\!\bigl(W(\mathsf{SC}^{\mathrm{ch,top}})\bigr)$ in $\mathcal C$;
+\item A holomorphic--topological prefactorization algebra
+  $\mathsf{Obs}$ on~$\mathbb C\times\mathbb R$ with values in $\mathcal C$,
+  satisfying:
+  \begin{enumerate}[label=(\alph*)]
+    \item \emph{Holomorphic factorization along $\mathbb C$:} the assignment
+      $D\mapsto\mathsf{Obs}(D\times I)$ for discs $D\subset\mathbb C$ forms a
+      prefactorization algebra on $\mathbb C$ governed by $C_\ast(\FM_\bullet(\mathbb C))$,
+      with meromorphic OPE singularities along collision diagonals;
+    \item \emph{Local constancy along $\mathbb R$:} the assignment
+      $I\mapsto\mathsf{Obs}(D\times I)$ for intervals $I\subset\mathbb R$ is locally
+      constant (i.e., restriction along inclusions of intervals is a quasi-isomorphism),
+      yielding an $E_1$--algebra structure;
+    \item \emph{Color compatibility:} the closed--color (holomorphic) factorization
+      acts on the open--color (topological) factorization via the product structure
+      $\FM_k(\mathbb C)\times E_1(m)$, but no open--to--closed operations exist
+      (Swiss--cheese directionality: $\mathsf{SC}^{\mathrm{ch,top}}(\ldots,\mathsf{top},\ldots;\mathsf{ch})=\varnothing$).
+  \end{enumerate}
+\end{enumerate}
+\emph{Status: Conjectured.}
+The two--colored, mixed holomorphic--topological recognition principle has not been established in the literature;
+all downstream results that invoke it (Proposition~\ref{prop:compatibility},
+Theorem~\ref{thm:recognition-SC}, Theorem~\ref{thm:Obs-is-SC})
+are conditional on this conjecture.
+\end{conjecture}
+
+\begin{remark}[Evidence for Conjecture~\ref{conj:recognition}]
+\label{rmk:recognition-evidence}
+The conjecture is expected to follow from existing technology by combining three
+ingredients, each of which is independently established:
+\begin{enumerate}[label=(\roman*)]
+\item \emph{Closed color:} The Ayala--Francis recognition theorem \cite{AF15} identifies
+  locally constant factorization algebras on a manifold $M$ with algebras over $E_M$, the
+  operad of embeddings.  Costello--Gwilliam \cite{CG17} extend this to holomorphic
+  factorization algebras on $\mathbb C$ governed by $C_\ast(\FM_\bullet(\mathbb C))$.
+  This handles the closed color in isolation.
+\item \emph{Open color:} For the topological direction $\mathbb R$, locally constant
+  factorization algebras are equivalent to $E_1$--algebras (associative algebras up to
+  homotopy).  This is classical \cite{AF15}.
+\item \emph{Two--colored extension:} The Boardman--Vogt resolution for colored operads
+  \cite{BergerMoerdijk2003,CavigliaMoerdijk2014} provides model--categorical machinery for
+  multi--colored operads.  Since the operation spaces of $\mathsf{SC}^{\mathrm{ch,top}}$ are products
+  $\FM_k(\mathbb C)\times E_1(m)$, and since the no--open--to--closed rule means
+  the closed color is an operadic retract (it receives no information from the open color),
+  the two--colored recognition reduces to a compatibility statement: the closed--color
+  recognition and the open--color recognition are jointly governed by $\mathsf{SC}^{\mathrm{ch,top}}$
+  via the product decomposition of its operation spaces.
+\end{enumerate}
+The absence of open--to--closed operations is the key structural feature that prevents
+obstructions to the extension: it ensures the closed--color recognition problem is not
+modified by the presence of the open color.  The remaining content of the conjecture is
+that the Swiss--cheese composition law correctly assembles the two separate recognition
+results into a single two--colored statement.
+\end{remark}
+
+\begin{remark}[Comparison with the BD chiral operad]
+\label{rmk:BD-comparison}
+There is a well–known comparison between the BD chiral operad
+$\mathsf P_{\mathrm{ch}}$ (defined algebraically by D–modules on the Ran space of~$\mathbb C$)
+and the chains on the configuration–space operad
+$C_\ast(\FM_\bullet(\mathbb C);\mathscr L_{\log})$ with logarithmic local systems, see
+\cite{LurieHA,CG17}.
+Our Swiss–cheese construction is thereby compatible with the "chiral" closed color and the
+topological $E_1$ open color in the factorization–algebra setting.
+\end{remark}
+
+\subsection{Perturbative quantization and analytic hypotheses}
+\label{subsec:analytic-hypotheses}
+The perturbative BV quantization of a holomorphic–topological field theory on
+$\mathbb C\times\mathbb R$ yields a prefactorization algebra of observables
+\cite{GRW21}.
+We recall the analytic hypotheses ensuring that renormalization is compatible with our operadic model.
+
+\begin{assumption}[(H1)–(H4)]
+\label{ass:H1-H4}
+The renormalized propagators and interactions defining correlation kernels for local
+observables obey:
+\begin{enumerate}[label=(\alph*)]
+\item \emph{Meromorphicity in~$\mathbb C$:} kernels are holomorphic in $z_1,\ldots,z_k$ away from
+  diagonals, with logarithmic poles along $\Delta\subset \mathbb C^k$ and no worse singularities;
+\item \emph{Topological locality in~$\mathbb R$:} kernels are smooth and rapidly decaying in
+  the real variables $t_1,\ldots,t_k$ and locally constant up to homotopy;
+\item \emph{Factorization:} the kernels multiplicatively factor along disjoint rectangles
+  and respect the $\FM_{\bullet}(\mathbb C)$ and $E_1$ composition laws;
+\item \emph{Anomaly finiteness:} one–loop anomalies vanish or are canonically removable,
+  and all renormalization ambiguities are $Q$–exact in the BV complex.
+\end{enumerate}
+\end{assumption}
+
+\begin{proposition}[Compatibility with $W(\mathsf{SC}^{\mathrm{ch,top}})$]
+\label{prop:compatibility}
+Under Assumption~\ref{ass:H1-H4}, the perturbative BV observables form a
+holomorphic–topological prefactorization algebra on $\mathbb C\times\mathbb R$ that is locally
+constant on rectangles and hence determine a $C_\ast\!\bigl(W(\mathsf{SC}^{\mathrm{ch,top}})\bigr)$–algebra,
+by Theorem~\ref{thm:recognition}.
+\end{proposition}
+
+\begin{proof}
+Assumption~\ref{ass:H1-H4} ensures that time–ordered products are compatible with meromorphic
+OPEs and topological gluings.  The $W$–coherence is implemented by the usual homological algebra
+of integrated propagators over $\FM_k(\mathbb C)\times E_1(m)$, and $Q$–exactness of renormalization
+ambiguities guarantees independence of auxiliary choices.
+\end{proof}
+
+\subsection{Configuration spaces and higher operations}
+\label{subsec:FM-higher-ops}
+A standard source of homotopy–coherent operations in perturbative QFT comes from integrating
+out the configurations of interaction points.  In the holomorphic–topological setting,
+the higher multiplications
+\(
+m_k: A^{\otimes k}\to A((\lambda_1))\cdots((\lambda_{k-1}))
+\)
+arise from the pushforward of the product of propagators over $\FM_k(\mathbb C)$ times
+the ordered intervals in~$E_1$.
+Boundary faces correspond to degenerations where subsets of point collide or where intervals
+shrink.  The Arnold–Orlik–Solomon identities for logarithmic forms on $\FM_k(\mathbb C)$
+ensure that Stokes' theorem reproduces the $A_\infty$~identities satisfied by $m_k$
+(see Section~\ref{sec:FM_calculus}).
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% SECTION 1.2 — RELATION TO RAVIOLO VERTEX ALGEBRAS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
