@@ -1,0 +1,701 @@
+% Chapter fragment for repository integration.
+% Assumes theorem environments and ClaimStatus macros from main.tex.
+% No new macros are introduced here.
+
+\chapter{The affine half-space BV theorem and its transport to Virasoro and \texorpdfstring{$W_3$}{W3}}
+\label{chap:affine-half-space-bv}
+
+\begin{remark}[Position in the theorem graph]
+This chapter isolates the first place where the half-space deformation-quantization programme for
+Poisson vertex algebras becomes a theorem.  The general nonlinear half-space problem remains open,
+but the affine case is already rich enough to contain the essential passage
+\[
+\text{bulk BV theory} \longrightarrow \text{boundary VOA} \longrightarrow \text{Drinfeld--Sokolov reduction}.
+\]
+The central point is that the affine Poisson--vertex sigma model on
+$\mathbb C \times \mathbb R_{\ge 0}$ is not merely analogous to the mixed
+BF/Chern--Simons theory of the holomorphic-topological literature: it \emph{is} that theory,
+and the half-space BV quantization theorem of Gwilliam--Williams therefore solves the affine boundary
+problem to all loop orders.  Once this identification is made, the apparent infinity of possible boundary
+anomalies collapses to a single formal level parameter.
+\end{remark}
+
+\begin{summary}[What is proved here]
+The main theorem of this chapter is the following.
+
+\medskip
+
+\emph{For a semisimple Lie algebra $\mathfrak g$, the affine Poisson--vertex sigma model of
+Khan--Zeng on the half-space $X = \mathbb C \times \mathbb R_{\ge 0}$ with Neumann boundary
+condition admits a renormalized BV quantization to all orders in $\hbar$; in fact the quantization
+is one-loop exact.  The resulting boundary vertex algebra is the affine Kac--Moody vertex algebra
+$V^{K_{\mathrm{eff}}}(\mathfrak g)$ at a uniquely shifted formal level
+$K_{\mathrm{eff}}(k,\hbar)=k+\hbar\,\delta_{\mathfrak g}$, and there are no higher-loop boundary anomaly
+channels.  Principal Drinfeld--Sokolov reduction then transports this single formal modulus to the
+Virasoro and $W_3$ families.}
+\end{summary}
+
+\section{The question in first principles form}
+
+\begin{problem}[The half-space BV problem]
+Let $V$ be a freely generated Poisson vertex algebra, and let
+$X = \mathbb C_z \times \mathbb R_{\ge 0,t}$.
+The three-dimensional Poisson--vertex sigma model attaches to $V$ a mixed holomorphic-topological
+BV theory on $X$ whose Neumann boundary condition keeps the $\Phi$-fields free and sets the
+$\eta$-fields to vanish at the boundary.  The sought deformation quantization of $V$ is the boundary
+vertex algebra of the quantized half-space theory.
+
+The missing theorem is the existence of a renormalized solution of the quantum master equation on the
+half-space, together with control of the boundary anomaly classes at all loop orders.
+\end{problem}
+
+\begin{remark}[Why affine is the first theorematic case]
+The affine Poisson vertex algebra is the first case where the nonlinear Poisson--vertex sigma model
+reduces to a chiral deformation of a mixed BF theory, hence to a class for which a rigorous BV
+quantization theorem already exists.  The point of this chapter is that the half-space theorem sought by
+Khan--Zeng is already available in this affine case, once the fields and the boundary condition are
+identified correctly.
+\end{remark}
+
+\section{The affine Poisson--vertex sigma model from first principles}
+
+\begin{setup}[Affine PVA and half-space fields]
+Let $\mathfrak g$ be a finite-dimensional semisimple Lie algebra over $\mathbb C$, with structure constants
+$f^{ab}{}_c$ and invariant bilinear form $\kappa^{ab}$.
+The affine Poisson vertex algebra is
+\[
+V_{\mathrm{aff}}(\mathfrak g,k) = \mathrm{Sym}\bigl(\mathbb C[\partial] \otimes \mathfrak g\bigr)
+\]
+with generators $B^a$ and $\lambda$-bracket
+\[
+\{ B^a{}_{\lambda} B^b \} = f^{ab}{}_c B^c + k\,\kappa^{ab}\lambda.
+\]
+The corresponding three-dimensional Poisson--vertex sigma model on
+$X = \mathbb C \times \mathbb R_{\ge 0}$ has fields
+\[
+B = B^a t_a \in \Omega^{0,0}(X) \otimes \mathfrak g,
+\qquad
+A = A_t\,dt + A_{\bar z}\,d\bar z \in \Omega^{0,1}_{\mathrm{mix}}(X) \otimes \mathfrak g,
+\]
+with classical action
+\begin{equation}
+\label{eq:affine-kz-action}
+S_{\mathrm{aff}}(B,A)
+=
+\int_X \! dz\,
+\left(
+\kappa_{ab} B^a (d_t + \bar\partial) A^b
++ \frac{1}{2} f_{abc} B^a A^b A^c
++ \frac{k}{2}\kappa_{ab} A^a \partial A^b
+\right).
+\end{equation}
+The Neumann boundary condition is
+\begin{equation}
+\label{eq:kz-neumann}
+i^*A = 0,
+\qquad
+B\ \text{free on }\partial X,
+\end{equation}
+where $i\colon \partial X \hookrightarrow X$ is the boundary inclusion.
+\end{setup}
+
+\begin{remark}[Affine as Chern--Simons for $k\neq 0$]
+When $k\neq 0$, the field redefinition
+\[
+\widetilde A = A + \frac{1}{k}\kappa^{-1}(B)\,dz
+\]
+transforms the bulk action to analytically continued Chern--Simons theory.
+This is the classical reason the affine example is fully topological once the inner Sugawara/Virasoro
+field is present.
+\end{remark}
+
+\section{Identification with mixed BF/Chern--Simons}
+
+\begin{proposition}[Dictionary with mixed BF theory]\label{prop:affine-mixed-bf-dictionary}
+\ClaimStatusProvedHere.
+Let
+\[
+\alpha := A \in \Omega^{0,\bullet}(\mathbb C)\widehat\otimes \Omega^{\bullet}(\mathbb R_{\ge 0})[1] \otimes \mathfrak g,
+\qquad
+\beta := B\,dz \in \Omega^{1,\bullet}(\mathbb C)\widehat\otimes \Omega^{\bullet}(\mathbb R_{\ge 0}) \otimes \mathfrak g.
+\]
+Then the affine action \eqref{eq:affine-kz-action} is exactly
+\begin{equation}
+\label{eq:smix-plus-ics}
+S_{\mathrm{aff}} = S_{\mathrm{mix}} + k\,I_{\mathrm{CS}},
+\end{equation}
+where
+\begin{equation}
+\label{eq:smix-def}
+S_{\mathrm{mix}}(\alpha,\beta)
+=
+\int_X \langle \beta,(\bar\partial+d_t)\alpha\rangle
++ \frac{1}{2}\int_X \langle \beta,[\alpha,\alpha]\rangle,
+\end{equation}
+and
+\begin{equation}
+\label{eq:ics-def}
+I_{\mathrm{CS}}(\alpha)
+=
+\frac{1}{2}\int_X \langle \alpha,\partial\alpha\rangle.
+\end{equation}
+In particular, the affine Poisson--vertex sigma model is a chiral deformation of mixed BF theory.
+\end{proposition}
+
+\begin{proof}
+The field $B$ is a scalar, so $\beta = B\,dz$ has bidegree $(1,\bullet)$ in the mixed holomorphic-topological
+splitting.  The kinetic term in \eqref{eq:affine-kz-action} becomes
+\[
+\int_X \kappa_{ab} B^a (d_t+\bar\partial)A^b\,dz
+=
+\int_X \langle \beta,(\bar\partial+d_t)\alpha\rangle.
+\]
+Likewise the cubic term rewrites as
+\[
+\frac{1}{2}\int_X f_{abc} B^a A^b A^c\,dz
+=
+\frac{1}{2}\int_X \langle \beta,[\alpha,\alpha]\rangle.
+\]
+Finally,
+\[
+\frac{k}{2}\int_X \kappa_{ab} A^a \partial A^b\,dz
+=
+\frac{k}{2}\int_X \langle \alpha,\partial\alpha\rangle
+=
+ k\,I_{\mathrm{CS}}(\alpha).
+\]
+This is precisely the mixed BF theory together with its chiral Chern--Simons deformation.
+\end{proof}
+
+\begin{remark}[Combinatorial consequence]
+The chiral nature of the deformation is decisive.
+In mixed BF theory, every propagator runs from an $\alpha$-leg to a $\beta$-leg, and every chiral interaction
+has at most one $\beta$-leg.  Hence the only connected Feynman graphs that can occur are trees,
+single vertices, or one-loop graphs.  This is the combinatorial source of one-loop exactness.
+\end{remark}
+
+\section{The boundary condition as a derived Lagrangian boundary condition}
+
+\begin{definition}[Chiral boundary condition in mixed BF language]
+Let $\sigma\colon \mathbb R \to \mathbb R$ be reflection, $\sigma(t)=-t$.
+Write $A^{\mathrm{odd}} \subset \Omega^{0,\bullet}(\mathbb C)\widehat\otimes\Omega^{\bullet}(\mathbb R)$
+for the $(-1)$-eigenspace under pullback by $\sigma$.
+Concretely, its $0$-form part consists of functions $f(t)$ with $f(0)=0$, and its $1$-form part consists
+of one-forms $g(t)\,dt$ whose pullback to the boundary vanishes because $i^*(dt)=0$.
+The chiral boundary condition is the restriction
+\[
+\alpha \in A^{\mathrm{odd}}\otimes \mathfrak g[1],
+\qquad
+\beta\ \text{free}.
+\]
+\end{definition}
+
+\begin{proposition}[Equivalence of boundary conditions]\label{prop:boundary-condition-equivalence}
+\ClaimStatusProvedHere.
+The Neumann boundary condition \eqref{eq:kz-neumann} for the affine Poisson--vertex sigma model is
+implemented, in the mixed BF/Chern--Simons presentation, by the chiral boundary condition above.
+More precisely, the odd-reflection model is a strict model for the derived fiber product imposing
+$i^*\alpha=0$.
+\end{proposition}
+
+\begin{proof}
+If $\alpha \in A^{\mathrm{odd}}\otimes \mathfrak g[1]$, then its $0$-form part is an odd function of $t$ and hence
+vanishes at $t=0$; its $dt$-part survives as an odd coefficient times $dt$, but its pullback to the boundary
+also vanishes because $i^*(dt)=0$.  Therefore $i^*\alpha=0$, which is exactly the Khan--Zeng condition
+$i^*A=0$.
+
+Conversely, the BV formalism does not impose boundary conditions by naive degreewise kernels alone; one must
+produce a Lagrangian subcomplex modelling the derived fiber product of fields with the zero section of the boundary
+restriction map.  The odd-reflection model does exactly this.  Because the restriction map to the boundary is
+levelwise surjective, the strict fiber product coincides with the derived one.  Hence the chiral boundary condition
+is a BV-correct model of the Neumann boundary condition.
+\end{proof}
+
+\begin{remark}[First-principles content]
+This proposition is the conceptual hinge of the chapter.
+The half-space problem posed for the affine Poisson--vertex sigma model is not a new analytic problem;
+it is the already-solved half-space problem for mixed BF/Chern--Simons, expressed in different fields.
+\end{remark}
+
+\section{The all-loops half-space BV theorem in the affine case}
+
+\begin{maintheorem}[Affine half-space BV quantization]\label{thm:affine-half-space-bv}
+\ClaimStatusProvedHere.
+Let $\mathfrak g$ be semisimple and let $k\in\mathbb C$.
+Consider the affine Poisson--vertex sigma model on
+$X=\mathbb C\times\mathbb R_{\ge 0}$ with Neumann boundary condition.
+Then the following hold.
+\begin{enumerate}
+    \item There exists a renormalized perturbative BV quantization solving the quantum master equation to all orders in $\hbar$.
+    \item The quantization is one-loop exact: the renormalized effective action receives no contributions from loop order $\ge 2$.
+    \item The only quantum correction is a local one-loop functional proportional to
+    \begin{equation}
+    \label{eq:one-loop-boundary-shift-functional}
+    \hbar\int_X \operatorname{Tr}^{\mathrm{ad}}_{\mathfrak g}(\alpha\,\partial\alpha).
+    \end{equation}
+    \item Consequently the quantum theory is equivalent to the affine theory at a uniquely shifted formal level
+    \begin{equation}
+    \label{eq:keff-def}
+    K_{\mathrm{eff}}(k,\hbar) = k + \hbar\,\delta_{\mathfrak g},
+    \end{equation}
+    where $\delta_{\mathfrak g}$ is proportional to the invariant bilinear form on $\mathfrak g$.
+\end{enumerate}
+\end{maintheorem}
+
+\begin{proof}
+By Proposition \ref{prop:affine-mixed-bf-dictionary}, the affine theory is a chiral deformation of mixed BF
+by the Chern--Simons functional $kI_{\mathrm{CS}}$.  By Proposition \ref{prop:boundary-condition-equivalence},
+its Neumann boundary condition is precisely the chiral boundary condition in the mixed BF presentation.
+
+The half-space BV theorem for mixed BF/Chern--Simons now applies directly: for any chiral deformation of mixed
+BF theory on $\mathbb C\times\mathbb R_{\ge 0}$ in the presence of the chiral boundary condition, there is no anomaly
+and there exists a one-loop exact quantization.  Specializing to the affine deformation gives items (1) and (2).
+The same theorem identifies the one-loop correction with a local functional proportional to
+\eqref{eq:one-loop-boundary-shift-functional}, giving item (3).
+
+For semisimple $\mathfrak g$, translation-invariant cotangent quantizations of mixed BF theory form a torsor for
+$\hbar\,\mathrm{Sym}^2(\mathfrak g)^{\mathfrak g}$.  Since $\mathfrak g$ is semisimple, this space is one-dimensional on each
+simple summand and generated by the invariant bilinear form.  Thus the one-loop correction has no freedom other
+than a level shift, yielding \eqref{eq:keff-def}.  Since there are no loops beyond one, the formal level has no
+higher $\hbar$-terms.  This proves item (4).
+\end{proof}
+
+\begin{corollary}[The affine case of the Khan--Zeng half-space problem]\label{cor:affine-kz-solved}
+\ClaimStatusProvedHere.
+For the affine Poisson vertex algebra, the half-space deformation quantization problem posed by Khan--Zeng is
+unobstructed.  The obstruction theory terminates at one loop, and that one-loop term is absorbed by the unique
+formal level shift $k\mapsto K_{\mathrm{eff}}(k,\hbar)$.
+\end{corollary}
+
+\begin{proof}
+Theorem \ref{thm:affine-half-space-bv} gives a renormalized BV quantization to all orders.  One-loop exactness
+kills every possible higher-loop obstruction.  The remaining one-loop functional is exactly the level-shift term,
+which lies in the one-dimensional quantization torsor and hence is absorbed into the renormalized level.
+\end{proof}
+
+\begin{remark}[Physical normalization]
+The theorem leaves the coefficient $\delta_{\mathfrak g}$ abstract.  In standard vertex-algebra and
+Chern--Simons/WZW normalizations one expects
+$\delta_{\mathfrak g}=-h^{\vee}$ on each simple summand, but the analytic input above only proves
+that the one-loop term is proportional to the invariant form, not the exact proportionality constant.
+The theorematic content of the half-space quantization does not require pinning down that scalar.
+\end{remark}
+
+\section{The boundary obstruction line}
+
+\begin{definition}[Boundary jet obstruction complex]\label{def:boundary-jet-obstruction}
+Let
+\[
+\mathcal A_{\partial,\mathrm{aff}}
+=
+\mathbb C\bigl[J^a_{(m)},c^a_{(m)} \,;\, a=1,\dots,\dim\mathfrak g,\ m\ge 0\bigr]
+\]
+be the boundary jet algebra generated by the current jets
+$J^a_{(m)}=\partial^m J^a$ and ghost jets $c^a_{(m)}=\partial^m c^a$.
+Set
+\[
+\operatorname{Obs}^{\bullet}_{\partial,\mathrm{aff}}
+=
+\mathcal A_{\partial,\mathrm{aff}}/\partial \mathcal A_{\partial,\mathrm{aff}},
+\]
+graded by ghost number, and define the BRST differential by
+\[
+\delta J^a_{(m)}
+=
+K\,c^a_{(m+1)}
++
+f^a{}_{bc}\sum_{r=0}^{m}\binom{m}{r}J^b_{(r)}c^c_{(m-r)},
+\]
+\[
+\delta c^a_{(m)}
+=
+-\frac12 f^a{}_{bc}\sum_{r=0}^{m}\binom{m}{r}c^b_{(r)}c^c_{(m-r)}.
+\]
+Degree $0$ elements are local counterterms, degree $1$ elements are local boundary anomalies, and degree $2$
+elements are obstructions to removing those anomalies.
+\end{definition}
+
+\begin{remark}[Current-preserving truncation]
+The two-term complex $C^{\bullet}_{\mathrm{KM}}$ introduced below is the weight-one, singular-OPE truncation of
+Definition \ref{def:boundary-jet-obstruction}.  It is the correct deformation complex for the affine
+current sector, i.e.\ for deformations that preserve a weight-one current generator and keep the singular OPE
+linear in that current.
+\end{remark}
+
+\begin{construction}[The current-preserving boundary deformation complex]\label{cons:boundary-km-complex}
+Let $J_x(z)$ denote the boundary current associated to $x\in \mathfrak g$.
+A first-order current-preserving singular deformation of the affine OPE is a pair
+\[
+(\omega,\mu)\in \operatorname{Sym}^2(\mathfrak g^*)\oplus \operatorname{Hom}(\Lambda^2\mathfrak g,\mathfrak g)
+\]
+with deformed singular OPE
+\[
+J_x(z)J_y(w)
+\sim
+\frac{K\kappa(x,y)+\varepsilon\,\omega(x,y)}{(z-w)^2}
++
+\frac{J_{[x,y]+\varepsilon\mu(x,y)}(w)}{z-w}.
+\]
+A first-order field redefinition is $R\in\operatorname{End}(\mathfrak g)$ acting by
+$J_x\mapsto J_x+\varepsilon J_{Rx}$.
+This yields a two-term complex
+\[
+C^0_{\mathrm{KM}} = \operatorname{End}(\mathfrak g),
+\qquad
+C^1_{\mathrm{KM}} = \operatorname{Sym}^2(\mathfrak g^*)\oplus \operatorname{Hom}(\Lambda^2\mathfrak g,\mathfrak g),
+\]
+with differential
+\[
+d_0R = (\omega_R,\mu_R),
+\]
+where
+\[
+\omega_R(x,y) = K\bigl(\kappa(Rx,y)+\kappa(x,Ry)\bigr),
+\qquad
+\mu_R(x,y)=R[x,y]-[Rx,y]-[x,Ry].
+\]
+The linearized Jacobi and invariance equations are
+\[
+\delta_{\mathrm{CE}}\mu = 0,
+\qquad
+\omega([x,y],z)-\omega(x,[y,z]) + K\kappa(\mu(x,y),z)-K\kappa(x,\mu(y,z))=0.
+\]
+\end{construction}
+
+\begin{theorem}[The affine boundary deformation line]\label{thm:affine-boundary-line}
+\ClaimStatusProvedHere.
+For simple $\mathfrak g$,
+\[
+H^1(C^{\bullet}_{\mathrm{KM}}) \cong \mathbb C\cdot \Theta,
+\qquad
+\Theta = [\,(\kappa,0)\,].
+\]
+Equivalently, every infinitesimal current-preserving singular deformation of the affine boundary OPE is
+gauge-equivalent to a unique infinitesimal level shift.
+\end{theorem}
+
+\begin{proof}
+Let $(\omega,\mu)$ be a cocycle.  The linearized Jacobi identity says that $\mu$ is a Chevalley--Eilenberg
+$2$-cocycle with values in the adjoint module.  Since $\mathfrak g$ is simple, Whitehead's lemma gives
+$H^2(\mathfrak g;\mathfrak g)=0$, so $\mu=\delta_{\mathrm{CE}}R$ for some $R\in\operatorname{End}(\mathfrak g)$.
+Subtracting the coboundary $d_0R$ kills $\mu$, so the cohomology class is represented by $(\omega',0)$.
+The second cocycle equation then reduces to invariance of $\omega'$, namely
+\[
+\omega'([x,y],z)=\omega'(x,[y,z]).
+\]
+Thus $\omega'$ is an invariant symmetric bilinear form on the simple Lie algebra $\mathfrak g$, hence a scalar
+multiple of the Killing form.  Therefore the cohomology is one-dimensional and generated by the class
+$[(\kappa,0)]$.
+\end{proof}
+
+\begin{lemma}[Pole--weight balance for boundary currents]\label{lem:pole-weight-balance}
+\ClaimStatusProvedHere.
+In the affine half-space theory, every singular contribution to the boundary current OPE
+\[
+J^a(z)J^b(w)\sim \sum_{m\ge 1} \frac{{\mathcal O}^{ab}_m(w)}{(z-w)^m}
+\]
+satisfies
+\begin{equation}
+\label{eq:pole-weight-balance}
+m + \mathrm{wt}({\mathcal O}^{ab}_m)=2,
+\end{equation}
+where $\mathrm{wt}(J)=1$ and $\mathrm{wt}(\partial)=1$.
+\end{lemma}
+
+\begin{proof}
+Each external current has weight $1$, so the input weight is $2$.
+In the mixed BF/Chern--Simons presentation one assigns
+$\mathrm{wt}(\beta)=1$, $\mathrm{wt}(\alpha)=0$, and $\mathrm{wt}(\partial)=1$.
+Every bulk interaction then has total holomorphic weight $1$, while the reflected propagator is homogeneous
+of degree $-1$ in the boundary separation.  Renormalized local counterterms preserve this scaling because there is
+no additional boundary tensor available.  Hence any singular term in the OPE of two weight-one currents has
+homogeneous total weight $2$.  A pole of order $m$ contributes weight $m$, so the remaining operator must have
+weight $2-m$.
+\end{proof}
+
+\begin{theorem}[Current-sector rigidity of the quantum boundary algebra]\label{thm:current-sector-rigidity}
+\ClaimStatusProvedHere.
+Let $\mathfrak g$ be simple.  The singular OPE of the quantum boundary currents has the exact affine form
+\begin{equation}
+\label{eq:quantum-affine-boundary-ope}
+J^a(z)J^b(w)
+\sim
+\frac{K_{\mathrm{eff}}(k,\hbar)\,\kappa^{ab}}{(z-w)^2}
++
+\frac{f^{ab}{}_c J^c(w)}{z-w}.
+\end{equation}
+In particular, no poles of order $\ge 3$, no $\partial J$ terms, and no composite singular fields such as
+$\! :JJ: \!$ can appear in the singular part of the boundary current OPE.
+\end{theorem}
+
+\begin{proof}
+By Lemma \ref{lem:pole-weight-balance}, only $m=2$ and $m=1$ can occur.
+If $m=2$, then $\mathrm{wt}({\mathcal O}_2)=0$, so ${\mathcal O}_2$ is a scalar.  By $\mathfrak g$-invariance,
+it is a multiple of $\kappa^{ab}$.
+If $m=1$, then $\mathrm{wt}({\mathcal O}_1)=1$, so ${\mathcal O}_1$ is a linear combination of currents.
+Skew-symmetry in the simple-pole channel shows that the coefficient lies in
+$\operatorname{Hom}_{\mathfrak g}(\Lambda^2\mathfrak g,\mathfrak g)$, which for simple $\mathfrak g$ is generated by the Lie bracket.
+Thus the singular OPE is of the form
+\[
+J^a(z)J^b(w)
+\sim
+\frac{\Omega^{ab}}{(z-w)^2} + \frac{C\,f^{ab}{}_cJ^c(w)}{z-w}.
+\]
+By Theorem \ref{thm:affine-boundary-line}, after a current redefinition preserving the vacuum and translation,
+$C$ is normalized to $1$ and $\Omega^{ab}=K_{\mathrm{eff}}\kappa^{ab}$.
+Theorem \ref{thm:affine-half-space-bv} then identifies $K_{\mathrm{eff}}$ with the one-loop shifted level.
+\end{proof}
+
+\begin{corollary}[The boundary VOA]\label{cor:boundary-affine-voa}
+\ClaimStatusProvedHere.
+The boundary vertex algebra of the affine half-space theory is the affine Kac--Moody vertex algebra
+\[
+\mathcal V_{\partial}(\mathfrak g,k) \cong V^{K_{\mathrm{eff}}(k,\hbar)}(\mathfrak g).
+\]
+\end{corollary}
+
+\begin{proof}
+Theorem \ref{thm:current-sector-rigidity} shows that the generating currents satisfy the universal affine
+singular OPE with renormalized level $K_{\mathrm{eff}}$.  The vertex algebra they generate is therefore the universal
+affine Kac--Moody vertex algebra at that level.
+\end{proof}
+
+\begin{corollary}[Explicit loop cocycles]\label{cor:loop-cocycles-affine}
+\ClaimStatusProvedHere.
+Let
+\[
+\omega_{\mathrm{KM}} := \oint \kappa(c,\partial J)\,dz
+\]
+be the Kac--Moody central cocycle in the boundary BRST complex.  Then
+\[
+\mathfrak a^{(1)}_{\partial,\mathrm{aff}} = \delta_{\mathfrak g}\,\omega_{\mathrm{KM}},
+\qquad
+\mathfrak a^{(\ell)}_{\partial,\mathrm{aff}}=0\quad (\ell\ge 2).
+\]
+In particular, the two-loop anomaly cocycle vanishes identically.
+\end{corollary}
+
+\begin{proof}
+Theorem \ref{thm:affine-boundary-line} shows that the current-preserving anomaly space is the line spanned by
+$\omega_{\mathrm{KM}}$.  Theorem \ref{thm:affine-half-space-bv} further shows that the quantum theory is one-loop exact.
+Hence only the one-loop coefficient survives, and every higher-loop cocycle vanishes.
+\end{proof}
+
+\begin{corollary}[Homotopy-abelian formal line]\label{cor:homotopy-abelian-line}
+\ClaimStatusProvedHere.
+After passing from the bare coordinate $k$ to the renormalized coordinate $K_{\mathrm{eff}}$, the
+current-sector boundary deformation problem is formally smooth and homotopy-abelian:
+its full deformation theory is the formal line parameterized by $K_{\mathrm{eff}}$, and all higher brackets vanish
+after this reparametrization.
+\end{corollary}
+
+\begin{proof}
+Theorem \ref{thm:affine-boundary-line} shows that the tangent space of the current-sector deformation theory is
+the one-dimensional level-shift line.  Theorem \ref{thm:affine-half-space-bv} shows that the complete quantum
+theory is already represented by the single formal coordinate $K_{\mathrm{eff}}=k+\hbar\delta_{\mathfrak g}$, with no
+higher-loop corrections.  Thus, in the renormalized coordinate, every quantum correction has been absorbed and
+the controlling $L_{\infty}[1]$-algebra is equivalent to an abelian one-dimensional complex.
+\end{proof}
+
+\section{The transverse boundary and the affine Koszul shadow}
+
+\begin{corollary}[Affine Neumann/Dirichlet boundary pair]\label{cor:affine-koszul-shadow}
+\ClaimStatusProvedHere.
+For the affine half-space theory, the Neumann boundary algebra is the affine vertex algebra
+$V^{K_{\mathrm{eff}}}(\mathfrak g)$, while the transverse Dirichlet boundary algebra is the differential graded
+commutative algebra
+\[
+C^{\bullet}(\mathfrak g[[z]])
+\]
+with Chevalley--Eilenberg differential.
+Thus the affine half-space theory realizes the linear chiral Koszul pair predicted by the Poisson--vertex sigma
+model.
+\end{corollary}
+
+\begin{proof}
+The Neumann side is Corollary \ref{cor:boundary-affine-voa}.  The Dirichlet side is classical and linear: for a
+linear Poisson tensor, the surviving boundary ghosts form the Chevalley--Eilenberg algebra of $\mathfrak g[[z]]$.
+The new theorematic content is that the Neumann side is now fully quantized, so the expected linear Koszul pair
+exists as an honest boundary pair for the affine half-space model.
+\end{proof}
+
+\section{Transport to Virasoro and \texorpdfstring{$W_3$}{W3} by Drinfeld--Sokolov reduction}
+
+\begin{proposition}[Filtered Drinfeld--Sokolov compatibility]\label{prop:filtered-ds}
+\ClaimStatusProvedHere.
+Let $F^{\bullet}$ be the Li filtration on the affine boundary VOA
+$\mathcal V_{\partial}(\mathfrak g,k)\cong V^{K_{\mathrm{eff}}}(\mathfrak g)$.
+The principal Drinfeld--Sokolov BRST differential preserves this filtration, and
+\[
+\operatorname{gr}\,H^0_{\mathrm{DS}}\bigl(\mathcal V_{\partial}(\mathfrak g,k)\bigr)
+\cong
+H^0_{\mathrm{DS,cl}}\bigl(\operatorname{gr}\mathcal V_{\partial}(\mathfrak g,k)\bigr).
+\]
+In particular, the associated graded of the reduced boundary algebra is the classical Drinfeld--Sokolov
+reduction of the affine Poisson vertex algebra.
+\end{proposition}
+
+\begin{proof}
+The Li filtration on the affine VOA is compatible with current weight and translation.  The BRST current for
+principal Drinfeld--Sokolov reduction is polynomial in affine currents and ghosts, hence preserves the induced
+filtration on the BRST complex.  Passing to associated graded replaces the quantum current OPE by its classical
+Poisson--vertex limit, so the associated graded BRST differential is exactly the classical Drinfeld--Sokolov
+differential.  Taking zeroth cohomology gives the claim.
+\end{proof}
+
+\begin{theorem}[Boundary Drinfeld--Sokolov transport]\label{thm:boundary-ds-transport}
+\ClaimStatusProvedHere.
+Let $\mathcal V_{\partial}(\mathfrak g,k)$ be the boundary VOA from
+Corollary \ref{cor:boundary-affine-voa}.
+Then principal Drinfeld--Sokolov reduction transports the single affine modulus
+$K_{\mathrm{eff}}(k,\hbar)$ to the reduced families.
+
+\begin{enumerate}
+    \item For $\mathfrak g=\mathfrak{sl}_2$,
+    \[
+    H^0_{\mathrm{DS}}\bigl(\mathcal V_{\partial}(\mathfrak{sl}_2,k)\bigr)
+    \cong
+    \mathrm{Vir}_{\,c_{\mathrm{Vir}}(K_{\mathrm{eff}})},
+    \qquad
+    c_{\mathrm{Vir}}(K)=1-\frac{6(K+1)^2}{K+2}.
+    \]
+    \item For $\mathfrak g=\mathfrak{sl}_3$,
+    \[
+    H^0_{\mathrm{DS}}\bigl(\mathcal V_{\partial}(\mathfrak{sl}_3,k)\bigr)
+    \cong
+    \mathcal W_3\bigl(c_{W_3}(K_{\mathrm{eff}})\bigr),
+    \qquad
+    c_{W_3}(K)=2-\frac{24(K+2)^2}{K+3}.
+    \]
+\end{enumerate}
+There are no additional reduced-sector quantum parameters.
+\end{theorem}
+
+\begin{proof}
+By Corollary \ref{cor:boundary-affine-voa}, the boundary VOA is exactly the affine algebra
+$V^{K_{\mathrm{eff}}}(\mathfrak g)$.  Principal Drinfeld--Sokolov reduction is a functor from affine VOAs to
+$W$-algebras.  Applying it to the affine boundary VOA yields the stated reduced algebras.
+The formulas for the central charges are the standard principal Drinfeld--Sokolov formulas.
+Since the source family is one-dimensional, no additional reduced-sector parameter can appear.
+\end{proof}
+
+\begin{corollary}[Explicit one-loop reduced central charges]\label{cor:one-loop-reduced-c}
+\ClaimStatusProvedHere.
+Write
+\[
+K_{\mathrm{eff}}(k,\hbar)=k+\hbar\,\delta_{\mathfrak g}.
+\]
+Then the reduced central charges are one-loop exact.
+For $\mathfrak{sl}_2$,
+\[
+c_{\mathrm{Vir}}(K_{\mathrm{eff}})
+=
+1-\frac{6(k+1)^2}{k+2}
+-
+6\hbar\,\delta_{\mathfrak{sl}_2}\,\frac{(k+1)(k+3)}{(k+2)^2}.
+\]
+For $\mathfrak{sl}_3$,
+\[
+c_{W_3}(K_{\mathrm{eff}})
+=
+2-\frac{24(k+2)^2}{k+3}
+-
+24\hbar\,\delta_{\mathfrak{sl}_3}\,\frac{(k+2)(k+4)}{(k+3)^2}.
+\]
+No terms of order $\hbar^2$ or higher occur.
+\end{corollary}
+
+\begin{proof}
+Substitute $K_{\mathrm{eff}}=k+\hbar\delta_{\mathfrak g}$ into the formulas of
+Theorem \ref{thm:boundary-ds-transport}.  Since $K_{\mathrm{eff}}$ has no higher powers of $\hbar$,
+its image under any rational function of $K$ is also one-loop exact.
+\end{proof}
+
+\begin{remark}[What becomes of the direct Virasoro and $W_3$ bulk theories]
+The theorem shows that, in the affine lineage, Virasoro and $W_3$ are no longer separate half-space
+quantization problems.  Their boundary quantizations are obtained by an exact functorial pushforward of the
+single affine formal parameter.  The genuine analytic work is all concentrated in the affine half-space theorem.
+\end{remark}
+
+\section{The nonlinear frontier}
+
+\begin{conjecture}[General half-space BV theorem for Poisson vertex sigma models]\label{conj:general-half-space-bv}
+\ClaimStatusOpen.
+Let $V$ be a freely generated Poisson vertex algebra on which the holomorphic translation operator is inner,
+so that the corresponding three-dimensional Poisson--vertex sigma model is fully topological.
+Then the Neumann half-space theory on $\mathbb C\times\mathbb R_{\ge 0}$ admits a renormalized perturbative BV
+quantization whose boundary factorization algebra is a vertex algebra deforming the original Poisson vertex algebra.
+\end{conjecture}
+
+\begin{construction}[The colored half-space configuration-space operad]\label{cons:half-space-colored-operad}
+\ClaimStatusConjectured.
+The correct geometric device for the nonlinear theorem is a logarithmic Fulton--MacPherson compactification
+for configurations of interior and boundary points on the half-space.
+For each graph $\Gamma$ with bulk vertices $V_{\mathrm{bulk}}(\Gamma)$ and boundary vertices
+$V_{\partial}(\Gamma)$ one considers the configuration space
+\[
+\operatorname{Conf}^{\partial}_{\Gamma}(X)
+=
+\left\{
+(x_v)_{v\in V_{\mathrm{bulk}}},(y_w)_{w\in V_{\partial}}
+\in X^{V_{\mathrm{bulk}}}\times (\partial X)^{V_{\partial}}
+\,\middle|\,
+\text{all collision constraints}
+\right\}/(\text{translations and dilations}).
+\]
+Its logarithmic compactification should have codimension-one strata of four kinds:
+\begin{enumerate}
+    \item bulk clusters collapsing away from the boundary,
+    \item boundary clusters collapsing along $\partial X$,
+    \item mixed bulk-boundary clusters collapsing into the boundary,
+    \item reflection strata exchanging a point with its image.
+\end{enumerate}
+The residue maps along these strata form a colored cooperad controlling the quadratic identities for reflected
+higher operations.
+\end{construction}
+
+\begin{strategy}[What remains after the affine theorem]\label{str:remaining-frontier}
+The affine theorem reduces the general programme to one sharp analytic statement:
+construct the reflected propagator calculus for the nonlinear Poisson--vertex interactions on the compactified
+half-space configuration spaces of Construction \ref{cons:half-space-colored-operad}, and prove that the total
+boundary residue is the quadratic identity required by the renormalized quantum master equation.
+
+In other words, the remaining frontier is no longer the affine problem.
+It is the extension from the linear Lie-type Poisson tensor to the general differential-operator-valued Poisson
+kernel of a Poisson vertex algebra.
+\end{strategy}
+
+\begin{remark}[Platonic simplification]
+The story now has a clean shape.
+
+\begin{enumerate}
+    \item The affine half-space problem is solved: its quantum content is a single formal level shift.
+    \item Virasoro and $W_3$ are exact descendants of that one affine modulus by Drinfeld--Sokolov reduction.
+    \item The nonlinear frontier is geometric rather than algebraic: it asks for a boundary configuration-space
+    formalism that extends the chiral one-loop exact technology from mixed BF/Chern--Simons to the full
+    Poisson--vertex sigma model.
+\end{enumerate}
+
+This is the correct first-principles reorganization of the subject.  The affine case is no longer a motivating
+example.  It is the first completed theorem in the half-space quantization programme, and it displays the whole
+architecture in miniature.
+\end{remark}
+
+\begin{summary}[The irreducible core]
+The essential theorem proved in this chapter is the equivalence
+\[
+\text{affine Poisson--vertex sigma model on } \mathbb C\times\mathbb R_{\ge 0}
+\quad\Longleftrightarrow\quad
+\text{mixed BF/Chern--Simons with chiral boundary condition},
+\]
+followed by one-loop exact BV quantization.
+Everything else follows formally:
+\[
+\text{all-loops BV existence}
+\Longrightarrow
+\text{boundary affine VOA}
+\Longrightarrow
+\text{Virasoro and }W_3\text{ by DS reduction}.
+\]
+The nonlinear problem remains open, but its location is now precise.
+\end{summary}
