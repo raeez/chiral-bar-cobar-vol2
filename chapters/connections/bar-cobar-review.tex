@@ -284,6 +284,75 @@ In contrast, the Koszul dual $\mathcal{H}_k^!$ is the CE complex, which is \text
 This distinction is crucial: Koszul duality exchanges algebraic structures (commutative $\leftrightarrow$ Lie), while the quadratic projection simply "forgets" higher operations.
 \end{example}
 
+\begin{computation}[Bar differential on a degree-2 Heisenberg element;
+\ClaimStatusProvedHere]
+\label{comp:heisenberg-bar-degree2}
+We illustrate the three components of $d_{\barB} = d_Q + d_{\mathrm{res}} + d_{A_\infty}$
+acting on a degree-2 bar element (three tensor factors) for the
+Heisenberg chiral algebra $\mathcal{H}_k$ at level~$k$, generated
+by $J$ with $\{J_\lambda J\} = k$.  Write the element as
+\[
+\xi \;=\; [J \,|\, J \,|\, J]
+  \;\in\; \barB_{\mathrm{ch}}(\mathcal{H}_k),
+\]
+the bar monomial of bar degree~$2$ (three tensor factors in
+$s^{-1}\bar{\mathcal{H}}_k$) and internal degree~$0$.
+
+\medskip\noindent
+\textbf{(i) $d_Q[J\,|\,J\,|\,J]$.}
+The Heisenberg algebra has $Q = m_1 = 0$ on generators (the BV-BRST
+differential vanishes on the physical field~$J$), so $d_Q$ acts by
+applying $m_1 = 0$ to each tensor factor:
+\[
+d_Q[J\,|\,J\,|\,J]
+= [QJ\,|\,J\,|\,J]
+  + (-1)^{|J|}[J\,|\,QJ\,|\,J]
+  + (-1)^{|J|+|J|}[J\,|\,J\,|\,QJ]
+= 0.
+\]
+
+\medskip\noindent
+\textbf{(ii) $d_{\mathrm{res}}[J\,|\,J\,|\,J]$.}
+The residue differential extracts OPE poles at collision divisors.
+For three factors with labels $\{1,2,3\}$, the relevant subsets
+$S$ with $|S| \geq 2$ and \emph{consecutive} indices are
+$S = \{1,2\}$ and $S = \{2,3\}$:
+\begin{align*}
+d_{\mathrm{res}}[J\,|\,J\,|\,J]
+&= \Res_{D_{\{1,2\}}}\bigl([J\,|\,J\,|\,J]\bigr)
+  + \Res_{D_{\{2,3\}}}\bigl([J\,|\,J\,|\,J]\bigr) \\
+&= \bigl[\{J_\lambda J\}\big|_{\mathrm{res}}\,\big|\,J\bigr]
+  + (-1)^{|J|}\,\bigl[J\,\big|\,\{J_\lambda J\}\big|_{\mathrm{res}}\bigr] \\
+&= [k\,|\,J] + [J\,|\,k]
+\;=\; k\,\bigl([1\,|\,J] + [J\,|\,1]\bigr),
+\end{align*}
+where $\{J_\lambda J\}\big|_{\mathrm{res}} = k$
+(the constant OPE coefficient) and $1$ denotes the vacuum.
+In the reduced bar complex $\barB = T^c(s^{-1}\bar{\mathcal{H}})$
+(augmentation ideal only), the terms involving the vacuum reduce to
+lower-bar-degree elements.
+
+\medskip\noindent
+\textbf{(iii) $d_{A_\infty}[J\,|\,J\,|\,J]$.}
+Since the Heisenberg algebra is quadratic ($m_{k \geq 3} = 0$), the
+$A_\infty$ grafting differential vanishes identically:
+\[
+d_{A_\infty}[J\,|\,J\,|\,J] = 0.
+\]
+
+\medskip\noindent
+\textbf{Total.}
+Assembling:
+\[
+d_{\barB}[J\,|\,J\,|\,J]
+= k\,\bigl([1\,|\,J] + [J\,|\,1]\bigr).
+\]
+The result has bar degree~$1$ and records the OPE of adjacent
+Heisenberg currents.  Note that $d_{\barB}^2 = 0$ is satisfied:
+applying $d_{\barB}$ again to either $[1\,|\,J]$ or $[J\,|\,1]$
+gives zero (the OPE of $1$ with anything is regular).
+\end{computation}
+
 \begin{remark}[Curvature and Non-Flat Connections]
 For curved $A_\infty$ algebras (where $m_0 \neq 0$, i.e., a curvature term), the bar--cobar formalism extends by including a \emph{curved differential}:
 \begin{equation}
@@ -386,6 +455,22 @@ coproduct on cogenerators).  The new content is the compatibility
 statement: that these two structures jointly satisfy the
 Swiss-cheese composition law and are governed by the product
 configuration space $\FM_k(\C) \times \Conf_k(\R)$.
+\end{remark}
+
+\begin{remark}[The Steinberg analogy]
+\label{rem:steinberg-analogy}
+The Steinberg variety
+$Z = \widetilde{\mathcal{N}} \times_{\mathfrak{g}}
+\widetilde{\mathcal{N}}$ is a correspondence between two copies
+of the Springer resolution; its convolution algebra $H_*(Z)$
+recovers the Hecke algebra~$H_W$.  The bar complex
+$\barB(\cA)$ plays the same structural role: it is a
+correspondence between $\FM_n(\C)$ (holomorphic collision data)
+and $\Conf_n^{<}(\R)$ (topological ordering data), and its
+convolution algebra---via the bar-cobar counit---recovers the
+$\Ainf$ chiral algebra.  The two colors of the Swiss-cheese
+operad are the two factors of the correspondence; the bar-cobar
+adjunction is the convolution-restriction adjunction.
 \end{remark}
 
 \subsection{The genus tower: curved $\R$-factorization}
@@ -656,91 +741,38 @@ modular homotopy type and $\R$-factorization determine
 each other.
 \end{remark}
 
-\begin{theorem}[MC5 genus-zero bridge: BV-BRST $=$ bar at genus $0$;
-\ClaimStatusProvedHere]
-\label{thm:mc5-genus-zero-bridge}
-\index{BV-BRST!genus-zero identification with bar complex}
-Assume \textrm{(H1)--(H4)}.  For a 3d HT theory on
-$\C \times \R$ \textup{(}genus $0$ in the holomorphic
-direction\textup{)}, the BV-BRST differential~$Q$ acting on bulk
-observables coincides with the chiral bar differential
-$d_{\barB}$ of Volume~I:
-\begin{enumerate}[label=\textup{(\roman*)}]
-\item On $\overline{C}_2$ strata \textup{(}binary
-  operations\textup{)}: both extract OPE residues via
-  $\Res_{z_1 \to z_2} \eta_{12} \cdot a(z_1)\,b(z_2)
-  = \sum_{n \geq 0} a_{(n)}b$.
-\item On $\overline{C}_3$ strata \textup{(}ternary
-  operations\textup{)}: both factorize through binary operations
-  via the three codimension-$1$ faces of $\FM_3(\C)$, with the
-  Arnold relation
-  $\eta_{12} \wedge \eta_{23} + \eta_{23} \wedge \eta_{31}
-  + \eta_{31} \wedge \eta_{12} = 0$
-  ensuring $d_{\barB}^2 = 0$ on the bar side and the AOS
-  cancellation at codimension-$2$ corners ensuring $Q^2 = 0$ on
-  the BRST side.  The two relations are the same combinatorial
-  identity on~$\FM_3(\C)$.
-\item On $\overline{C}_k$ strata for all $k \geq 2$: the
-  bar differential $d_{\barB}$ is defined by iterated FM residues,
-  and the BV-BRST differential $Q$ is defined by perturbative
-  tree-level Feynman diagrams; both are governed by the operadic
-  composition in $\SCchtop$ \textup{(}the closed-color
-  insertions\textup{)}.
-\end{enumerate}
-\end{theorem}
-
-\begin{proof}
-\textbf{Step 1: Operadic identification.}
-The recognition theorem (Theorem~\ref{thm:recognition}) identifies
-the BV observables as an algebra over
-$C_\ast(W(\SCchtop))$.  On the closed color, the bar-cobar
-Quillen equivalence (Theorem~\ref{thm:homotopy-Koszul},
-Theorem~\ref{thm:bar-cobar-adjunction}) identifies the bar
-construction with the cofree cooperad on desuspended operations.
-
-\textbf{Step 2: Binary stratum.}
-On $\overline{C}_2 = \FM_2(\C)$, both $d_{\barB}$ and $Q$ extract
-the singular part of the OPE $a(z_1)b(z_2)$: the bar differential
-by definition (residue of $\eta_{12}$ along the collision
-divisor $D_{\{1,2\}}$), and the BV-BRST differential by the
-tree-level Feynman rule (perturbative expansion of
-$\{S, a \otimes b\}$ along the propagator).  Under~(H2), the
-propagator has the same meromorphic structure as~$\eta_{12}$, so
-both extractions give $\sum_{n \geq 0} a_{(n)}b$.
-
-\textbf{Step 3: Ternary stratum and Arnold.}
-On $\overline{C}_3 = \FM_3(\C)$, Stokes' theorem (under~(H3))
-decomposes both $d_{\barB}^2$ and $Q^2$ into boundary
-contributions along the three codimension-$1$ faces.  The
-Arnold--Orlik--Solomon relation on $\FM_3(\C)$ forces the total
-boundary contribution to vanish, simultaneously giving
-$d_{\barB}^2 = 0$ and $Q^2 = 0$.  Both sides factorize the
-same way through the three pairwise collision channels, with
-coefficients determined by the binary OPE data of Step~2.
-
-\textbf{Step 4: All strata.}
-By induction on $k$: on $\overline{C}_k = \FM_k(\C)$, the bar
-differential $d_{\barB}$ is determined by the operadic composition
-in the closed color of~$\SCchtop$, and the BV-BRST differential $Q$
-is determined by tree-level Feynman diagrams on the same
-configuration space.  The operadic bar construction
-(Definition~\ref{def:bar}) encodes exactly these compositions, so
-$d_{\barB} = Q$ at every stratum.
-\end{proof}
+\begin{remark}[MC5 genus-zero bridge]
+\label{rem:mc5-bridge-pointer}
+Theorem~\ref{thm:mc5-genus-zero-bridge} (stated and proved
+in~\S\ref{sec:concordance}) establishes the genus-$0$ BV-BRST/bar
+identification: the $A_\infty$ operations $\{m_k\}$ from Feynman
+diagram integrals over $\FM_k(\C) \times \Conf_k^{<}(\R)$
+coincide with the cogenerator projection of the bar differential
+$d_{\barB}$ of Volume~I.  The proof combines the recognition
+theorem (Theorem~\ref{thm:recognition}), the Quillen equivalence
+(Theorem~\ref{thm:homotopy-Koszul},
+Theorem~\ref{thm:bar-cobar-adjunction}), and the FM--Stokes--Arnold
+calculus of~\S\ref{sec:FM_calculus}.  On each stratum
+$\overline{C}_k$, both $d_{\barB}$ and $Q$ extract the same
+OPE residues; the Arnold relation ensures $d^2 = 0 = Q^2$.
+\end{remark}
 
 \begin{remark}[Transition to line operators]
 \label{rem:transition-to-line-operators}
-The bar--cobar adjunction $\Omega_{\mathrm{ch}} \dashv
-\barB_{\mathrm{ch}}$ and the Swiss-cheese structure of
-Theorem~\ref{thm:bar-swiss-cheese} have a direct physical
-consequence: line operators in the 3d HT theory are modules for the
-Koszul dual algebra~$\cA^!$.  The mechanism is the open-color
-structure of the Swiss-cheese operad: the bar complex's
-deconcatenation coproduct $\Delta$ governs the $E_1$-coalgebra
-along~$\R$, and Koszul duality converts $E_1$-comodules of
-$\barB(\cA)$ into modules over~$\cA^!$.  The spectral
-$R$-matrix controlling the braiding of line operators arises from
-the universal twisting morphism $\tau\colon \barB(\cA) \to \cA$.
+The bar--cobar adjunction converts bulk local operators into
+coalgebra data.  In physics, this conversion has a direct
+interpretation: line operators are modules for the Koszul dual.
+More precisely, the adjunction
+$\Omega_{\mathrm{ch}} \dashv \barB_{\mathrm{ch}}$ and the
+Swiss-cheese structure of Theorem~\ref{thm:bar-swiss-cheese} imply
+that line operators in the 3d HT theory are modules for the Koszul
+dual algebra~$\cA^!$.  The mechanism is the open-color structure of
+the Swiss-cheese operad: the bar complex's deconcatenation coproduct
+$\Delta$ governs the $E_1$-coalgebra along~$\R$, and Koszul duality
+converts $E_1$-comodules of $\barB(\cA)$ into modules
+over~$\cA^!$.  The spectral $R$-matrix controlling the braiding of
+line operators arises from the universal twisting morphism
+$\tau\colon \barB(\cA) \to \cA$.
 Section~\ref{sec:line_operators} develops this correspondence and
 constructs the $R$-matrix from the bar--cobar data.
 \end{remark}
