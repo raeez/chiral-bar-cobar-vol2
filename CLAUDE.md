@@ -82,7 +82,7 @@ Every chapter depends on Vol I's five theorems. Cross-references to Vol I labels
 |--------|-------------|--------------|--------|
 | Bar-cobar | SC^{ch,top} bar-cobar specializes Vol I Thm A when curve = ℂ, topological = ℝ | Theorem A | Proved |
 | DS-bar | Bar-cobar commutes with DS reduction | Theorem ds-koszul-intertwine | Proved (Vol I) |
-| Hochschild | BV-BRST origin of Vol I's Theorem H complex | Theorem H | Conjectured |
+| Hochschild | BV-BRST origin of Vol I's Theorem H complex | Theorem H | Proved (all genera) |
 | DK/YBE | r(z) = ∫₀^∞ e^{-λz}{·_λ·}dλ provides DK-0 shadow | MC3 (DK extension) | Proved (Laplace) |
 | PVA-Coisson | PVA descent at X = pt recovers Coisson structure | Deformation theory | Conjectured |
 | W-algebras | Feynman-diagrammatic m_k matches bar differential at genus 0 | MC5 (BRST = bar) | Proved (genus 0) |

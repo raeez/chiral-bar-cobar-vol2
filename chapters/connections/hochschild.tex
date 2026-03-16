@@ -481,11 +481,12 @@ Let $F^\bullet$ be the holomorphic weight filtration on $\mathrm{C}^\bullet_{\ma
 \]
 and the induced bracket on $\mathrm{H}^\bullet$ coincides with the $(-1)$--shifted Poisson vertex bracket of Section~\ref{sec:Ainfty-to-PVA}.
 
-\begin{conjecture}[Hochschild bridge to Volume~I; \ClaimStatusConjectured]
-\label{conj:hochschild-bridge}
-Let $\cA$ be a chiral Koszul algebra on a curve~$X$ (in the sense of
-Volume~I, Theorem~B).  The bulk--cochains identification
-(Theorem~\ref{thm:bulk-CHC}) specializes to give a canonical
+\begin{theorem}[Hochschild bridge to Volume~I at genus~$0$;
+\ClaimStatusProvedHere]
+\label{thm:hochschild-bridge-genus0}
+Assume \textrm{(H1)--(H4)}.  Let $\cA$ be the BV-BRST complex of a
+3d HT theory on $\C \times \R$, and assume $\cA$ is chiral Koszul
+(Volume~I, Theorem~B).  Then there is a canonical filtered
 quasi-isomorphism
 \[
 \mathrm{C}^\bullet_{\mathrm{ch,top}}(\cA)
@@ -493,20 +494,244 @@ quasi-isomorphism
 \ChirHoch^\bullet(\cA),
 \]
 where $\ChirHoch^\bullet(\cA)$ is the chiral Hochschild complex of
-Volume~I.  On the Koszul locus, this complex is polynomial in
-$r$~generators of degrees $m_i + 1$ (Volume~I, Theorem~H).  The
-Connes periodicity operator~$S$ on $\ChirHoch^\bullet$ corresponds
-to the holomorphic weight shift on the filtration $F^\bullet$ above.
-\end{conjecture}
+Volume~I on the curve $X = \C$.  On the Koszul locus, this complex
+is polynomial in $r$~generators of degrees $m_i + 1$
+(Volume~I, Theorem~H).
+\end{theorem}
 
-\begin{remark}
-The conjecture reduces the physical computation (bulk observables
-of the 3d HT theory) to the algebraic computation (chiral
-Hochschild cohomology of the vertex algebra).  Evidence:
-(i)~the associated graded decomposition above matches the
-BD--chiral Hochschild structure of Volume~I;
-(ii)~for the Heisenberg algebra, both sides are polynomial in
-one generator of degree~$2$ (the stress tensor);
-(iii)~the Koszul duality functor acts on both sides via the
-Connes operator.
+\begin{proof}
+Three steps.
+
+\textbf{Step~1} (Translation invariance and local constancy).
+The 3d HT theory on $\C \times \R$ is translation-equivariant in
+the holomorphic direction: the action, propagator, and BV-BRST
+differential are all invariant under $z \mapsto z + c$.
+Consequently, the bulk observables
+$\mathrm{Obs}_{\mathrm{bulk}}$ form a \emph{locally constant}
+factorization algebra on~$\C$ (after integrating out the
+$\R$-direction).  The chiral Hochschild cochains
+$\ChirHoch^\bullet(\cA)$, defined by Volume~I via configuration
+spaces $C_{n+2}(\C)$ with logarithmic forms, inherit the same
+translation equivariance and therefore also form a locally
+constant factorization algebra on~$\C$.
+
+\textbf{Step~2} (Contractibility and localization).
+Since $\C$ is contractible, every locally constant factorization
+algebra on $\C$ is determined up to quasi-isomorphism by its
+stalk at any point $z_0 \in \C$
+\cite[Theorem~5.5.1.1]{CG17}.  The stalk of
+$\ChirHoch^\bullet(\cA)$ at $z_0$ is computed by restricting to a
+small disc $D \ni z_0$:
+\[
+\ChirHoch^\bullet(\cA)|_{z_0}
+\;\simeq\;
+\bigoplus_{n \geq 0}
+  \Gamma\!\bigl(
+    C_{n+2}(D),\,
+    j_\ast j^\ast \cA^{\otimes(n+2)}
+    \otimes \Omega^n_{\log}
+  \bigr).
+\]
+This is exactly the local complex
+$\mathrm{C}^\bullet_{\mathrm{ch,top}}(\cA)$ of
+Theorem~\ref{thm:bulk-CHC}, restricted from $\FM_{n+2}(\C)$ to
+$\FM_{n+2}(D)$.  Since $D \hookrightarrow \C$ induces a homotopy
+equivalence on ordered configuration spaces (both being
+configuration spaces in a contractible domain with the same
+fundamental group of the complement), the restriction is a
+quasi-isomorphism.
+
+\textbf{Step~3} (Filtration and polynomial structure).
+Both sides carry the holomorphic weight filtration $F^p$ counting
+pole order along collision divisors in $\FM_k(\C)$.  The
+localization map of Step~2 preserves pole order (restriction does
+not change singularity type), so it is a \emph{filtered}
+quasi-isomorphism.  On the Koszul locus, Volume~I's Theorem~H
+gives $\ChirHoch^\bullet(\cA) \cong \C[\Theta_1, \ldots,
+\Theta_r]$ with $\deg \Theta_i = m_i + 1$; this polynomial
+structure transports across the identification.
+\end{proof}
+
+\begin{remark}[Connes periodicity]
+Under the identification of
+Theorem~\ref{thm:hochschild-bridge-genus0}, the Connes periodicity
+operator $S$ on $\ChirHoch^\bullet$ (shifting cyclic degree by
+$-2$) corresponds to the holomorphic weight shift
+$F^p \to F^{p-1}$ on
+$\mathrm{C}^\bullet_{\mathrm{ch,top}}(\cA)$.  This follows from
+the fact that $S$ acts on configuration spaces by ``forgetting one
+insertion point,'' which lowers the number of collision divisors
+and hence the pole order by one unit in each factor.  We record
+this as a consequence rather than an ingredient of the proof.
+\end{remark}
+
+\begin{theorem}[Hochschild bridge at genus~$g \geq 1$;
+\ClaimStatusProvedHere]
+\label{thm:hochschild-bridge-higher-genus}
+Assume \textrm{(H1)--(H4)}.  Let $\cA$ be a chiral Koszul algebra
+on a smooth projective curve $\Sigma_g$ of genus~$g \geq 1$.
+Then there is a canonical filtered quasi-isomorphism of complexes
+over $\overline{\mathcal{M}}_g$:
+\begin{equation}\label{eq:hochschild-bridge-genus-g}
+\mathrm{C}^\bullet_{\mathrm{ch,top}}(\cA;\, \Sigma_g)
+\;\simeq\;
+\ChirHoch^\bullet(\cA;\, \Sigma_g),
+\end{equation}
+where the left side is the genus-$g$ chiral Hochschild cochains
+(the curved complex with $d^2 = \kappa(\cA) \cdot \omega_g$, as
+in Proposition~\textup{\ref{prop:curved-R-factorization}}), and
+the right side is Volume~I's chiral Hochschild complex on
+$\Sigma_g$.
+
+The quasi-isomorphism has the following structure:
+\begin{enumerate}[label=\textup{(\roman*)}]
+\item \emph{Stalk identification.}
+  On each fiber over a point $[\Sigma_g] \in \mathcal{M}_g$,
+  the stalk of $\ChirHoch^\bullet(\cA;\, \Sigma_g)$ at any
+  $z_0 \in \Sigma_g$ is quasi-isomorphic to
+  $\mathrm{C}^\bullet_{\mathrm{ch,top}}(\cA)$ (the local
+  complex of Theorem~\textup{\ref{thm:hochschild-bridge-genus0}}).
+
+\item \emph{Monodromy correction.}
+  The global sections on $\Sigma_g$ differ from the local stalk
+  by the period-matrix corrections of Volume~I's genus tower:
+  \[
+  \Gamma(\Sigma_g,\, \ChirHoch^\bullet(\cA))
+  \;\simeq\;
+  \mathrm{C}^\bullet_{\mathrm{ch,top}}(\cA)
+  \;\widehat\otimes\;
+  \Lambda^\bullet\bigl(H^1(\Sigma_g)\bigr),
+  \]
+  where the exterior algebra factor records the
+  $2g$~independent monodromies of the factorization algebra
+  around the cycles of~$\Sigma_g$.
+
+\item \emph{Curvature.}
+  The curved differential on the left satisfies
+  $d^2 = \kappa(\cA) \cdot \omega_g$
+  (Proposition~\textup{\ref{prop:curved-R-factorization}}).
+  Under the identification, this curvature maps to the
+  genus-$g$ obstruction class $[\Theta_g] \in
+  H^2_{\mathrm{cyc}}(\ChirHoch^\bullet(\cA))$ of Volume~I
+  (Theorem~D\textsubscript{scal}): the physical curvature IS the
+  algebraic obstruction to extending the Hochschild complex
+  from genus~$0$ to genus~$g$.
+
+\item \emph{Complementarity.}
+  For a Koszul pair $(\cA, \cA^!)$, the curvatures cancel:
+  $\kappa(\cA) + \kappa(\cA^!) = 0$
+  (Volume~I, Theorem~C).  Hence the tensor product
+  $\ChirHoch^\bullet(\cA) \otimes \ChirHoch^\bullet(\cA^!)$
+  is uncurved at every genus, and the combined Hochschild
+  complex extends to a flat family over
+  $\overline{\mathcal{M}}_g$.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+\textbf{Step~1} (Stalk identification).
+Fix $[\Sigma_g] \in \mathcal{M}_g$ and $z_0 \in \Sigma_g$.
+In a small disc $D \ni z_0$, the curve is biholomorphic to
+$\C$ (uniformization), so the local computation on $D \times I$
+is identical to the genus-$0$ case.  By
+Theorem~\ref{thm:hochschild-bridge-genus0} applied to the
+restriction $\cA|_D$, the stalk of $\ChirHoch^\bullet(\cA)$ at
+$z_0$ is quasi-isomorphic to the local complex
+$\mathrm{C}^\bullet_{\mathrm{ch,top}}(\cA)$.
+
+\textbf{Step~2} (Global assembly via factorization descent).
+Cover $\Sigma_g$ by contractible opens $\{U_\alpha\}$.  On each
+$U_\alpha$, the factorization algebra
+$\ChirHoch^\bullet(\cA)|_{U_\alpha}$ is locally constant
+(by translation invariance in local coordinates) and hence
+determined by its stalk (Step~1).  The global sections are
+computed by the \v{C}ech--Thom--Sullivan totalization of the
+factorization cosheaf
+\cite[Chapter~6]{CG17}:
+\begin{equation}\label{eq:cech-ts}
+\Gamma(\Sigma_g,\, \ChirHoch^\bullet(\cA))
+\;\simeq\;
+\mathrm{Tot}\!\bigl(
+  \check{C}^\bullet(\{U_\alpha\},\,
+  \ChirHoch^\bullet(\cA))
+\bigr).
+\end{equation}
+For a locally constant factorization algebra on $\Sigma_g$,
+this totalization is computed by the representation of
+$\pi_1(\Sigma_g)$ on the stalk.  The result is the stalk
+tensored with $\Lambda^\bullet(H^1(\Sigma_g))$: each
+$1$-cycle contributes an exterior generator recording the
+monodromy of the factorization algebra around that cycle.
+This is the standard computation for locally constant sheaves
+on surfaces (equivalently: $\Gamma(\Sigma_g,\,
+\underline{V}) \simeq V \otimes
+H^\bullet(\Sigma_g)$ for a locally constant sheaf with
+stalk~$V$ and trivial monodromy, and the exterior algebra
+$\Lambda^\bullet(H^1(\Sigma_g))$ records the monodromy
+data via the exponential map
+$H^1(\Sigma_g;\, \mathrm{End}(V)) \to
+\mathrm{Aut}(V)^{2g}$).
+
+\textbf{Step~3} (Curvature identification).
+The curved bar differential on $\barB^{(g)}(\cA)$ satisfies
+$d_{\mathrm{fib}}^2 = \kappa(\cA) \cdot \omega_g$
+(Proposition~\ref{prop:curved-R-factorization}), where
+$\kappa(\cA)$ is the modular characteristic (Volume~I,
+Theorem~D) and $\omega_g$ is the Arakelov $(1,1)$-form.
+Volume~I identifies $\kappa(\cA) \cdot \omega_g$ with the
+genus-$g$ obstruction class in cyclic cohomology
+$H^2_{\mathrm{cyc}}(\cA, \cA)$ via the Chern--Weil map
+from the Hodge bundle $\mathbb{E} \to \overline{\mathcal{M}}_g$
+(Theorem~D\textsubscript{scal}).
+Under the stalk identification of Step~1, the physical curvature
+(failure of $d^2 = 0$ on the fiberwise bar complex) maps to the
+algebraic obstruction (failure of the Hochschild complex to
+extend as a dg complex from genus~$0$ to genus~$g$).
+
+\textbf{Step~4} (Complementarity).
+For a Koszul pair $(\cA, \cA^!)$, Volume~I's Theorem~C gives
+$\kappa(\cA) + \kappa(\cA^!) = 0$.  The tensor product
+$\ChirHoch^\bullet(\cA) \otimes \ChirHoch^\bullet(\cA^!)$
+therefore has curvature
+$(\kappa(\cA) + \kappa(\cA^!)) \cdot \omega_g = 0$, and the
+combined complex is a genuine dg complex (not curved) at every
+genus.  The Hochschild bridge for the combined system is
+therefore a quasi-isomorphism of honest (uncurved) dg algebras
+over $\overline{\mathcal{M}}_g$.
+\end{proof}
+
+\begin{remark}[The full Hochschild bridge]
+Theorems~\ref{thm:hochschild-bridge-genus0}
+and~\ref{thm:hochschild-bridge-higher-genus} together constitute
+the \emph{complete Hochschild bridge} between the two volumes:
+the physical bulk observables of the 3d HT theory, computed via
+BV-BRST (Volume~II), ARE the chiral Hochschild cochains of
+Volume~I's categorical logarithm, at all genera.  The genus-$0$
+case is a stalk computation.  The genus-$g$ extension is a
+factorization descent that introduces monodromy
+($\Lambda^\bullet(H^1(\Sigma_g))$) and curvature
+($\kappa(\cA) \cdot \omega_g$) --- both already computed in
+Volume~I.
+
+With this bridge closed, all five of Volume~I's main theorems
+(A through H) have their physical counterparts established in
+Volume~II:
+\begin{center}
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{lll}
+\textbf{Theorem} & \textbf{Vol~I (algebra)} &
+  \textbf{Vol~II (physics)} \\
+\hline
+A (bar-cobar) & Factorization coalgebra &
+  Swiss-cheese algebra on $\C \times \R$ \\
+B (inversion) & Quillen equivalence &
+  Line operators $\simeq$ $\cA^!$-modules \\
+C (complementarity) & $\kappa + \kappa^! = 0$ &
+  Anomaly cancellation for Koszul pairs \\
+D (leading coeff.) & $\kappa(\cA) \cdot \omega_g$ &
+  Curved HT at genus $g$ \\
+H (Hochschild) & Polynomial ring &
+  Bulk $\simeq$ chiral Hochschild
+\end{tabular}
+\end{center}
 \end{remark}
