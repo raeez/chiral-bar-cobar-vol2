@@ -50,75 +50,15 @@
 \providecommand{\hSym}{\widehat{\Sym}}
 
 
-\begin{abstract}
-This manuscript is a repository-grade synthesis and fortification of the entire bulk/boundary/line program developed in this thread.  It has two intertwined aims.
+\section{The bulk-boundary-line Koszul triangle}
+\label{sec:ht-bulk-boundary-line}
 
-The first aim is foundational.  Starting from first principles of locality, BV--BRST deformation theory, Koszul duality, Hochschild theory, shifted symplectic geometry, and the open/closed philosophy of topological field theory, we rebuild the 3d holomorphic--topological story so that each layer is placed in its correct home.  The bulk vertex is not the same object as the line algebra; rather the corrected global triangle is
-\[
-\Abulk
-\;\simeq\;
-\Zder(\Bbound)
-\;\simeq\;
-\Zder(\cC_{\mathrm{line}})
-\;\simeq\;
-\HH^\bullet_{\mathrm{ch}}(A^!),
-\qquad
-\cC_{\mathrm{line}}\simeq A^!\text{-mod},
-\]
-with $A^!$ the Koszul-dual algebra controlling lines and $\Zder$ the derived center.  We explain how this corrects several common confusions at once: bulk versus line, boundary-adapted local line algebras versus the absolute line algebra $A^!$, strict dg models versus genuine $A_\infty$ structures, and complement-dependent presentations versus intrinsic formal-neighborhood constructions.
-
-The second aim is new mathematics.  We consolidate and reprove, in one coherent narrative, the theorem packages developed across the previous notes:
-
-\begin{enumerate}[label=(\arabic*),leftmargin=1.8em]
-\item the intrinsic boundary $A_\infty$ algebra attached to a pair $(L\subset V,W)$ with $W|_L=0$ via intrinsic normal Taylor classes;
-\item the boundary Thom--Sebastiani theorem and the two stabilization theorems (contractible tangent-normal stabilization and hyperbolic normal/Clifford stabilization);
-\item the polarized Landau--Ginzburg theorem
-\[
-\dCrit(W)\simeq T^*[-1]Z_F^{\der},
-\qquad
-\HH^\bullet(B_{L,W})\cong H^\bullet\!\bigl(\cO(\dCrit(W))\bigr)
-\]
-for boundary-linear superpotentials $W(x,y)=\langle y,F(x)\rangle$;
-\item the one-step Jacobi coalgebra $\cJ_{F,p}$, the exact pointed line dg algebra
-\[
-K^{\ex}_{F,p}\simeq \RHom_{B_{F,p}}(\kk,\kk),
-\]
-the Maurer--Cartan/vacuum theorem, and polarized reconstruction;
-\item the boundary Kuranishi elimination theorem, giving an explicit nonlinear Schur complement for the boundary dg algebra and a minimal pointed line algebra governed by the effective obstruction map $\kappa$;
-\item the local bulk/line theorem
-\[
-\HH^\bullet(K_{F,p})\cong H^\bullet\!\left(\cO(\dCrit(W_{\eff}))\right),
-\qquad
-W_{\eff}(u,\gamma)=\langle \gamma,\kappa(u)\rangle;
-\]
-\item and a new synthesis theorem proved here: the \emph{boundary-linear line Mather--Yau theorem}, asserting that the polarized minimal pointed line $A_\infty$ algebra is a complete invariant of the reduced microlocal formal germ.
-\end{enumerate}
-
-The manuscript is explicit at every stage about status.  Literature-backed input is labeled as such.  Formal consequences are separated from new theorems proved in this manuscript.  The global, all-theory bulk/boundary/line Koszul triangle remains conjectural, but the microlocal algebraic core is now much more rigid: in the exact boundary-linear sector the local boundary vacuum is governed by a canonical coalgebra, the local pointed line algebra is its cobar, its minimal model is the Kuranishi algebra, and its derived center recovers the completed local bulk algebra.  This is the fortified local backbone from which the global theorem should be attacked.
-\end{abstract}
-
-\tableofcontents
-
-\section{Overture: what is being corrected, what is being built}
-
-The 2020 boundary-chiral-algebra paper \cite{CDG20} already contains the seed of the whole 3d holomorphic--topological story:
-\begin{itemize}[leftmargin=1.8em]
-\item bulk local operators form a commutative chiral algebra with shifted Poisson bracket;
-\item boundary local operators form a module over the bulk and carry higher $A_\infty$-like structure;
-\item the derived bulk--boundary map
-\[
-\beta_{\der}:\Abulk \longrightarrow \Zder(\Bbound)
-\]
-should exist and should be an isomorphism for sufficiently rich boundary conditions.
-\end{itemize}
-
-The 2025 line-operator paper \cite{DNP25} raises the categorical level: perturbative lines should be modules over a Koszul-dual $A_\infty$ algebra $A^!$, and their OPE is governed by a dg-shifted Yangian.
-
-The deepest theorem-level target is therefore not
-\[
-\text{bulk}\;\simeq\;\text{boundary}\;\simeq\;\text{line},
-\]
-which is false as stated, but rather the corrected triangle
+A three-dimensional holomorphic--topological theory on
+$\C \times \R$ produces three algebraic objects: bulk local
+operators, boundary local operators, and line operators.  The
+naive identification ``bulk $\simeq$ boundary $\simeq$ line'' is
+false.  The corrected triangle, derived from locality and
+Hochschild theory, is
 \begin{equation}\label{eq:global-corrected-triangle}
 \Abulk
 \;\simeq\;
@@ -130,28 +70,16 @@ which is false as stated, but rather the corrected triangle
 \qquad
 \cC_{\mathrm{line}}\simeq A^!\text{-mod}.
 \end{equation}
-That is the 3d holomorphic--topological analogue of the strongest open/closed statements in 2d TFT and the B-model.
+The bulk is the \emph{derived center} of the boundary, not the
+boundary itself; line operators are modules for the Koszul
+dual~$A^!$, not for the bulk algebra.  This is the 3d
+holomorphic--topological analogue of the strongest open/closed
+statements in 2d TFT and the B-model.
 
-This manuscript rebuilds the whole thread with three principles kept visibly in force.
-\begin{enumerate}[label=\textbf{P\arabic*}. ,leftmargin=2em]
-\item \textbf{Intrinsic before presented.}  Whenever a construction was formerly written using a splitting $V=L\oplus N$, we first reformulate it intrinsically in terms of the quotient $Q=V/L$ and the formal neighborhood of $L$.
-\item \textbf{Derived before cohomological.}  Cohomology-level OPE data are too small.  The right objects are dg or $A_\infty$ models, derived centers, bar and cobar constructions, and formal moduli problems.
-\item \textbf{Reduction before comparison.}  The path to a theorem is not to compare three gigantic global objects at once.  One first isolates a small exact sector, proves an exact local theorem there, then identifies the pieces that are contractible, Morita-trivial, or stabilization-invariant, and only then returns to the global categorical triangle.
-\end{enumerate}
-
-\subsection*{What this manuscript contains}
-
-The manuscript is organized so that the mathematics tightens progressively:
-\begin{itemize}[leftmargin=1.8em]
-\item Sections~\ref{sec:backbone}--\ref{sec:intrinsic} lay out the literature backbone and build the intrinsic boundary $A_\infty$ algebra.
-\item Section~\ref{sec:ts-knorrer} proves multiplicativity and stabilization: Thom--Sebastiani, contractible stabilization, and hyperbolic Kn\"orrer/Clifford stabilization.
-\item Section~\ref{sec:boundary-linear} treats the exact boundary-linear Landau--Ginzburg sector, including the bulk/boundary theorem and the free polarization theorem as a special case.
-\item Sections~\ref{sec:exact-lines}--\ref{sec:kuranishi} construct the exact pointed line algebra, the one-step Jacobi coalgebra, the Kuranishi reduction, and the minimal line algebra.
-\item Section~\ref{sec:classification} proves the new classification theorem for the reduced microlocal formal germ and exhibits the fortified local bulk/boundary/line triangle.
-\item Section~\ref{sec:global} returns to the global conjectural envelope and formulates the geometric Steinberg-style endpoint that should ultimately present the full line algebra by convolution.
-\end{itemize}
-
-We work over a field $\kk$ of characteristic $0$.  All tensor products are understood in the completed sense whenever formal power series appear.
+Three principles guide the constructions that follow: (P1)~intrinsic
+formulations before complement-dependent presentations;
+(P2)~derived or $A_\infty$ models before cohomology-level data;
+(P3)~local exact theorems before global categorical comparisons.
 
 
 \section{Literature backbone, formal consequences, and status ledger}\label{sec:backbone}
@@ -162,7 +90,7 @@ Before constructing anything new, we fix the status of the foundational inputs.
 
 The boundary-chiral-algebra paper \cite{CDG20} establishes the cohomology-level bulk algebra, its shifted Poisson bracket, the action of bulk on boundary operators, and the expectation of higher derived operations and of a derived bulk--boundary comparison map.  Zeng's 2023 paper \cite{Zen23} gives strong evidence for the bulk/boundary comparison by identifying boundary chiral algebras with universal defect algebras in families of examples.  The higher-operations paper \cite{GKW24} supplies the perturbative technology that constructs higher operations and proves the quadratic identities they satisfy in a broad holomorphic--topological setting.  The 2025 line paper \cite{DNP25} identifies line operators with modules over a Koszul-dual $A_\infty$ algebra and constructs the dg-shifted-Yangian structures organizing their OPE.
 
-These are the literature-backed pillars on which the present note stands.
+These are the literature-backed pillars on which the present development stands.
 
 \subsection{Formal consequences}
 
