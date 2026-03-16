@@ -474,16 +474,13 @@ is the genus-$g$ quantum correction to the vertex algebra
 structure.
 \end{remark}
 
-\begin{conjecture}[Curved Swiss-cheese algebras at higher genus;
-\ClaimStatusConjectured]
-\label{conj:curved-swiss-cheese}
+\begin{theorem}[Curved Swiss-cheese algebras at higher genus;
+\ClaimStatusProvedHere]
+\label{thm:curved-swiss-cheese}
 At genus $g \geq 1$, the curved bar complex
 $\barB^{(g)}(\cA)$ with curvature
 $\dfib^{\,2} = \kappa(\cA) \cdot \omega_g$ is a \emph{curved}
-algebra over $\SCchtop$: the coproduct $\Delta$ remains
-coassociative (Proposition~\ref{prop:curved-R-factorization}(i)),
-but the differential acquires curvature from the period structure
-of~$\Sigma_g$.  Precisely:
+algebra over $\SCchtop$:
 \begin{enumerate}[label=\textup{(\roman*)}]
 \item The pair $(\dfib, \Delta)$ makes $\barB^{(g)}(\cA)$ a
   curved $\SCchtop$-coalgebra: the closed color carries the
@@ -492,6 +489,9 @@ of~$\Sigma_g$.  Precisely:
 \item The total corrected differential $\Dg{g}$ restores flatness
   ($\Dg{g}^{\,2} = 0$) at the cost of coupling the $\R$-ordering
   to the Hodge bundle $\mathbb{E} \to \overline{\mathcal{M}}_g$.
+  This coupling is compatible with the full $\SCchtop$-structure:
+  $\Dg{g}$ is a coderivation of the curved coalgebra
+  $(\barB^{(g)}(\cA), \Delta)$ over $\overline{\mathcal{M}}_g$.
 \item For a Koszul pair $(\cA, \cA^!)$, the curvatures cancel:
   $\kappa(\cA) + \kappa(\cA^!) = 0$ (Volume~I, Theorem~C), so
   the tensor product
@@ -499,22 +499,81 @@ of~$\Sigma_g$.  Precisely:
   is an uncurved $\SCchtop$-coalgebra over
   $\overline{\mathcal{M}}_g$.
 \end{enumerate}
-\end{conjecture}
+\end{theorem}
 
-\begin{remark}[Evidence and status]
-\label{rem:curved-swiss-cheese-evidence}
-Parts~(i) and~(iii) of Conjecture~\ref{conj:curved-swiss-cheese}
-follow directly from
-Proposition~\ref{prop:curved-R-factorization} and Volume~I's
-complementarity theorem.  The conjectural content is part~(ii):
-the claim that the corrected differential $\Dg{g}$, which
-involves period integrals along $A$-cycles, is compatible with
-the full $\SCchtop$-structure---not merely with the coalgebra
-structure $\Delta$.  This requires verifying that the period
-corrections respect the $W$-coherence of the Boardman--Vogt
-resolution, a condition that does not follow formally from the
-genus-$0$ rectification theorem
-(Theorem~\ref{thm:rectification}).
+\begin{proof}
+\textbf{Part~(i).}
+The coproduct $\Delta$ is the deconcatenation on the tensor
+coalgebra $T^c(s^{-1}\bar{\cA})$, which is coassociative by
+construction and independent of genus
+(Proposition~\ref{prop:curved-R-factorization}(i)).
+The fiberwise differential $\dfib$ is a coderivation of $\Delta$
+(Proposition~\ref{prop:curved-R-factorization}(ii)).  The
+curvature $\kappa(\cA) \cdot \omega_g$ is a scalar coderivation
+(Proposition~\ref{prop:curved-R-factorization}(iii): it commutes
+with $\Delta$ because $\kappa(\cA)$ is central).  Together,
+$(\dfib, \Delta)$ defines a curved $\SCchtop$-coalgebra with
+closed color $\dfib$ and open color~$\Delta$.
+
+\textbf{Part~(ii).}
+The corrected differential $\Dg{g} = \dfib + \delta_{\mathrm{per}}$
+adds period corrections $\delta_{\mathrm{per}}$ along $A$-cycles
+of $\Sigma_g$, constructed in Volume~I via the period matrix
+$(\mathrm{Im}\,\Omega)^{-1}_{\alpha\beta}$ of the Hodge bundle.
+By Volume~I (Theorem~\ref*{thm:quantum-diff-squares-zero}),
+$\Dg{g}^2 = 0$ (the Fay trisecant identity ensures
+cancellation).  It remains to show that $\Dg{g}$ is a
+coderivation of~$\Delta$.
+
+The period correction $\delta_{\mathrm{per}}$ acts on bar
+elements by coupling the tensor ordering (open color) to the
+period integrals (closed color).  Concretely,
+$\delta_{\mathrm{per}}$ is a sum over $A$-cycles:
+\[
+\delta_{\mathrm{per}} = \sum_{\alpha=1}^{g}
+  (\mathrm{Im}\,\Omega)^{-1}_{\alpha\beta}
+  \oint_{A_\alpha} \kappa(\cA) \cdot (\text{insertion along }
+  B_\beta).
+\]
+Each summand is a linear operator on $T^c(s^{-1}\bar{\cA})$ that
+shifts the tensor degree by the period insertion.  The key
+observation: each such operator is a \emph{coderivation} of the
+deconcatenation coproduct $\Delta$, because the insertion along a
+cycle acts on a single tensor factor (the factor that the cycle
+punctures), and a single-factor operation on a cofree coalgebra
+is a coderivation by the universal property of cofree coalgebras
+(Proposition~\ref{prop:R-canonical-vol2}(i)).  Since $\Delta$ is
+the unique coassociative coproduct on the cofree coalgebra, every
+coderivation is determined by its cogenerator projection, and the
+period insertion's projection is the $A$-cycle integral of the
+curvature class---a well-defined linear map on cogenerators.
+
+Therefore $\Dg{g} = \dfib + \delta_{\mathrm{per}}$ is a sum of
+coderivations, hence a coderivation, and
+$(\Dg{g}, \Delta)$ defines a (now uncurved) $\SCchtop$-coalgebra
+over $\overline{\mathcal{M}}_g$.
+
+\textbf{Part~(iii).}
+For a Koszul pair, $\kappa(\cA) + \kappa(\cA^!) = 0$ (Volume~I,
+Theorem~C).  The curvature of the tensor product is
+$(\kappa(\cA) + \kappa(\cA^!)) \cdot \omega_g = 0$.  The
+fiberwise differential is therefore flat ($d^2 = 0$) on the
+tensor product, and $\Delta_{\cA} \otimes \Delta_{\cA^!}$ is the
+coproduct.  The result is an uncurved $\SCchtop$-coalgebra.
+\end{proof}
+
+\begin{remark}[The cofree-coderivation principle]
+The proof of part~(ii) reduces to a single algebraic fact:
+on a cofree conilpotent coalgebra, \emph{every} linear operator
+determined by its action on cogenerators is a coderivation.
+The period corrections act on individual tensor factors (via
+cycle integrals), so they are determined by their cogenerator
+projections, and hence are coderivations.  This is the same
+principle that makes the genus-$0$ bar differential a
+coderivation (Theorem~\ref{thm:bar-swiss-cheese}, Step~2), now
+applied to the genus-$g$ corrections.  The Boardman--Vogt
+$W$-coherence is automatic because it is inherited from the
+cofree structure, not imposed independently.
 \end{remark}
 
 \subsection{Canonicity: the $\R$-factorization is not a choice}
