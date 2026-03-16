@@ -1078,3 +1078,429 @@ VOA is not the end of the theory.  It is the shadow of a modular Maurer--Cartan 
 first modular class is a new invariant of the boundary algebra; and in the holomorphic BF test
 case the infinite KK problem reduces, at low modes and low modular order, to a finite and
 rigid charged jet.
+
+%% ===================================================================
+%%  THE MODULAR HOLOGRAPHY PROGRAMME
+%% ===================================================================
+
+\providecommand{\ModEnv}{\operatorname{ModEnv}}
+\providecommand{\Fact}{\operatorname{Fact}}
+\providecommand{\ot}{\widehat\otimes}
+
+\section{The modular holography programme}
+\label{sec:modular-holography-programme}
+
+The preceding sections built the abstract modular obstruction tower and tested it on a single
+example.  We now step back and formulate the broader programme that these constructions
+point toward: a systematic passage from genus-zero holographic data to a full modular
+homotopy type.
+
+\subsection{The genus-zero holographic package (synthesis)}
+\label{subsec:genus-zero-holographic-package}
+
+The first step is to collect the genus-zero data established by the recent perturbative
+literature into a single coherent package.
+
+\begin{theorem}[Genus-zero holographic package; \ClaimStatusProvedElsewhere]
+\label{thm:genus-zero-holographic-package}
+For every perturbative holomorphic--topological theory $T$ of the type considered in
+\cite{CDG20, Zeng23, GKW24, KZ25, DNP25}, the genus-zero datum
+\[
+\mathcal G_0(T;B)
+\;=\;
+\bigl(V_T,\;\{-,-\}_T,\;V_{\partial,T}(B),\;\beta_B,\;A_T^!,\;C_T,\;r_T(z),\;\{m_k^T\}_{k\ge 2}\bigr)
+\]
+is defined, where:
+\begin{enumerate}[label=\textup{(\arabic*)}]
+\item $V_T$ is a commutative chiral algebra equipped with a cohomological degree $-1$ Poisson
+bracket $\{-,-\}_T$.  For $3$d $\mathcal N=2$ holomorphic twists, there is a secondary stress
+tensor.
+
+\item $V_{\partial,T}(B)$ is a boundary chiral algebra, depending on a transverse boundary
+condition $B$, together with a bulk--boundary map
+\[
+\beta_B:V_T\longrightarrow Z\bigl(V_{\partial,T}(B)\bigr)
+\]
+into the centre of the boundary algebra.
+
+\item In Kaluza--Klein reduction one can choose $B=B_{\mathrm{univ}}$ so that the boundary algebra
+coincides with the universal defect chiral algebra of the unreduced model.
+
+\item Deformation, anomaly, and generalized OPE data are controlled by higher operations
+$\{m_k^T\}_{k\ge 2}$ satisfying quadratic (Wess--Zumino) identities.
+
+\item Perturbative line operators are $A_T^!$-modules; their OPE is controlled by a
+Maurer--Cartan kernel
+\[
+r_T(z)\;\in\;A_T^!\;\ot\;A_T^!\bigl(\!(z^{-1})\!\bigr)
+\]
+satisfying an $A_\infty$ Yang--Baxter constraint (dg-shifted Yangian).
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}[Sources]
+Item~\textup{(1)} and item~\textup{(2)} are established in
+\cite{CDG20}.  Item~\textup{(3)} is the main theorem of \cite{Zeng23}.  Item~\textup{(4)}
+follows from the higher-operation formalism of \cite{GKW24}.  Item~\textup{(5)} is the
+principal construction of \cite{DNP25}.
+\end{proof}
+
+\begin{remark}
+\label{rem:genus-zero-package-modular-context}
+The genus-zero package theorem is not a single new result; it is a deliberate assembly of five
+strands of the recent literature into one formal object $\mathcal G_0(T;B)$.  The point is
+that the components listed above are exactly the data that must be completed to higher genus.
+The next two definitions make that completion precise.
+\end{remark}
+
+\subsection{The full modular homotopy type}
+\label{subsec:full-modular-homotopy-type}
+
+\begin{definition}[Full modular homotopy type; \ClaimStatusConjectured]
+\label{def:full-modular-homotopy-type}
+A \emph{full modular homotopy type} for $T$ based at $B$ is a completion of the genus-zero
+package $\mathcal G_0(T;B)$ by multilinear maps
+\begin{equation}
+\label{eq:modular-operations}
+\mu_{g,n}^T:\;
+C_\bullet(\ov{\M}_{g,n+1})\;\otimes\;(A_T^!)^{\ot\, n}
+\;\longrightarrow\;A_T^!,
+\qquad 2g-2+n>0,
+\end{equation}
+subject to the following axioms.
+\begin{enumerate}[label=\textup{(\alph*)}]
+\item \emph{Genus-zero recovery.}  The operations $\mu_{0,n}^T$ recover the local higher
+operations $m_n^T$ of the genus-zero package.
+
+\item \emph{Stable-graph gluing.}  The family $\{\mu_{g,n}^T\}$ is compatible with the
+stable-graph composition law on the modular operad
+$C_\bullet(\ov{\M}_{\bullet,\bullet})$ in the sense of Getzler--Kapranov \cite{GeK98}.
+
+\item \emph{Line-kernel refinement.}  The genus-zero Maurer--Cartan kernel $r_T(z)$ extends to
+a formal genus expansion
+\begin{equation}
+\label{eq:modular-r-matrix}
+R_T^{\mathrm{mod}}(z;\h)
+\;=\;\sum_{g\ge 0}\h^{2g}\,r_{T,g}(z),
+\end{equation}
+with $r_{T,0}=r_T$ and
+\[
+r_{T,g}(z)\;\in\;
+H^\bullet(\ov{\M}_{g,2})\;\otimes\;A_T^!\;\ot\;A_T^!\bigl(\!(z^{-1})\!\bigr).
+\]
+\end{enumerate}
+\end{definition}
+
+\begin{definition}[Modular state spaces and partition function]
+\label{def:modular-state-spaces-partition-function}
+Given a full modular homotopy type for $T$ based at $B$ and line operators
+$L_1,\dots,L_n$, define the \emph{modular state space}
+\begin{equation}
+\label{eq:modular-state-space}
+H_{g,n}^{T;B}(L_1,\dots,L_n)
+\;:=\;
+\int_{\Sigma_{g,n}}\Fact_{T;B}[L_1,\dots,L_n],
+\end{equation}
+where the right-hand side denotes factorization (chiral) homology of the factorization algebra
+$\Fact_{T;B}$ over the stable pointed curve $\Sigma_{g,n}$, in the sense of Ayala--Francis
+\cite{AF15} and Beilinson--Drinfeld \cite{BD04}.  The \emph{partition function} is the
+generating series
+\begin{equation}
+\label{eq:partition-function}
+Z_{T;B}(\h,t)
+\;:=\;
+\sum_{\substack{g,n\ge 0\\2g-2+n>0}}
+\h^{2g-2+n}\,\frac{1}{n!}\,\chi_{\gr}\!\bigl(H_{g,n}^{T;B}(t)\bigr),
+\end{equation}
+where $\chi_{\gr}$ is the graded Euler characteristic.
+\end{definition}
+
+\subsection{The modular envelope conjecture}
+\label{subsec:modular-envelope-conjecture}
+
+\begin{conjecture}[Modular envelope; \ClaimStatusConjectured]
+\label{conj:modular-envelope}
+For the classes of theories appearing in Theorem~\ref{thm:genus-zero-holographic-package},
+every genus-zero package $\mathcal G_0(T;B)$ admits a full modular homotopy type
+$\ModEnv(T;B)$.
+\end{conjecture}
+
+\begin{remark}
+\label{rem:modular-envelope-strength}
+Conjecture~\ref{conj:modular-envelope} is deliberately stronger than the mere existence of
+genus-by-genus correlation functions.  It asks for an actual modular operadic object whose
+gluing law controls higher operations, line OPE, and defect observables in a single package.
+The factorization-homology viewpoint of Definition
+\ref{def:modular-state-spaces-partition-function} is natural for this purpose because it
+integrates local algebraic data over a manifold and comes equipped with local-to-global
+assembly, excision, and Poincar\'e/Koszul duality features \cite{AF15}.  The modular envelope
+conjecture therefore sits at the intersection of the abstract modular lifting problem
+(Conjecture~\ref{conj:modular-twisted-celestial}) and the operadic completion programme of
+Getzler--Kapranov \cite{GeK98}.
+\end{remark}
+
+\subsection{The research programme}
+\label{subsec:modular-holography-research-programme}
+
+The constructions above suggest a compact slogan:
+\begin{quote}
+\emph{Stable-graph summation $+$ logarithmic configuration geometry $+$ dg-shifted Yangian
+line algebra $=$ modular holography.}
+\end{quote}
+
+\noindent
+Three guiding questions organize the programme.
+
+\begin{problem}[Existence]
+\label{prob:modular-envelope-existence}
+Can $\ModEnv(T;B)$ be constructed from the genus-zero package $\mathcal G_0(T;B)$ by
+bar-cobar or deformation-theoretic completion over the modular operad
+$C_\bullet(\ov{\M}_{g,n})$?  In the language of this monograph, the question is whether the
+modular lift of Section~\ref{subsec:order-by-order-obstruction-theory} can be upgraded from
+an order-by-order obstruction-theory statement to an explicit algebraic construction via
+the bar-cobar machinery of Part~I.
+\end{problem}
+
+\begin{problem}[Geometry]
+\label{prob:modular-envelope-geometry}
+Can the gluing operations $\mu_{g,n}^T$ be realized by explicit integrals over logarithmic
+Fulton--MacPherson spaces \cite{Mok25} and their degeneration correspondences?  More
+precisely, does the stable-graph composition law of
+Definition~\ref{def:full-modular-homotopy-type}\textup{(b)} admit a geometric incarnation in
+which vertex insertions are integrated over logarithmic configuration strata and edge
+propagators are integrated over degeneration divisors?
+\end{problem}
+
+\begin{problem}[Computation]
+\label{prob:modular-envelope-computation}
+Can one compute the first genuinely modular coefficients of
+$R_T^{\mathrm{mod}}(z;\h)$ in the basic examples?  The holomorphic BF model
+(Section~\ref{subsec:holomorphic-bf-model-on-s3}) provides the natural test case: the finite
+charged jet $\mathfrak J_{\mathrm{ch}}^{\mathrm{low}}$ of
+Definition~\ref{def:low-mode-charged-modular-jet} should be recoverable from the genus-one
+coefficient $r_{T,1}(z)$ of the modular $R$-matrix \eqref{eq:modular-r-matrix}, restricted to
+lowest KK modes.
+\end{problem}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% WORKED EXAMPLES: THE THREE HOLOGRAPHIC ATOMS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Worked examples: the three holographic atoms}
+\label{sec:three-holographic-atoms}
+
+We now instantiate the modular holography programme on three representative examples of
+increasing complexity.  Each illustrates a distinct stratum of the machine: the free
+$\beta\gamma$ system tests the formalism at the strictest possible level, Kodaira--Spencer
+holography tests the open/closed interface with an explicit universal defect algebra, and
+the $\mathcal{W}_3$ model provides the first nonlinear higher-spin arena.
+
+\subsection{The free \texorpdfstring{$\beta\gamma$}{betagamma} holographic atom}
+\label{subsec:betagamma-holographic-atom}
+
+The simplest holographic atom is the free $\beta\gamma$ system.
+
+\begin{definition}[Free $\beta\gamma$ chiral algebra]
+\label{def:betagamma-chiral-algebra}
+Let $V_{\beta\gamma} := \Sym\bigl(\C[\partial]\beta \oplus \C[\partial]\gamma\bigr)$
+with $\lambda$-bracket $\{\beta_\lambda\,\gamma\} = 1$.  The OPE is
+$\beta(z)\gamma(w) \sim (z-w)^{-1}$; all higher products vanish.
+\end{definition}
+
+The 3d origin is Costello--Dimofte--Gaiotto's interval compactification \cite{CDG20}:
+a 3d $\N=2$ free chiral multiplet on $\C \times [0,1]$ with fields $\phi(z,t)$ and
+$\psi^{(1)}(z,t)$.  Setting
+\begin{equation}
+\label{eq:betagamma-interval}
+\beta(z) := \phi(z,0),
+\qquad
+\gamma(z) := \int_0^1 \psi^{(1)}(z,t)\,dt,
+\end{equation}
+and applying the boundary conditions produces the full $\beta\gamma$ system as the
+boundary chiral algebra.
+
+\begin{proposition}[Minimal modular content; \ClaimStatusProvedElsewhere]
+\label{prop:betagamma-modular-content}
+The free $\beta\gamma$ system is a minimal modular candidate in the following sense:
+\begin{enumerate}[label=\textup{(\roman*)}]
+\item The genus-zero Maurer--Cartan kernel $r_{\beta\gamma}(z)$ is the standard propagator
+  $(z-w)^{-1}$;
+\item the modular operation $\mu_{0,2} \neq 0$ (the OPE itself), but all higher local
+  operations $m_{k \geq 3}$ vanish identically;
+\item genus dependence enters exclusively through factorization homology over stable curves.
+\end{enumerate}
+\end{proposition}
+
+The modular state spaces take the form
+\begin{equation}
+\label{eq:betagamma-state-spaces}
+H_{g,n}^{\beta\gamma}(L_1,\dots,L_n)
+\;=\;
+\int_{\Sigma_{g,n}} \Fact_{\beta\gamma}[L_1,\dots,L_n],
+\end{equation}
+where the factorization algebra $\Fact_{\beta\gamma}$ is freely generated.  This is the
+cleanest test case: the free OPE ensures that all modular complexity resides in the
+determinant-line genus dependence and the topology of $\ov{\M}_{g,n}$.
+
+\subsection{Kodaira--Spencer holography and the open-closed modular package}
+\label{subsec:kodaira-spencer-holography}
+
+Kodaira--Spencer holography provides a richer test, with an explicit universal defect
+algebra realizing the open-closed decomposition.
+
+\begin{definition}[Zeng's boundary algebra; \ClaimStatusProvedElsewhere]
+\label{def:zeng-boundary-algebra}
+Following Zeng \cite{Zeng23}, the boundary chiral algebra for Kodaira--Spencer gravity
+in the large-$N$ limit is constructed from:
+\begin{itemize}
+\item a $(b,c)$ ghost system in $\mathfrak{gl}_N$,
+\item adjoint $\beta\gamma$ pairs $(Z_1,Z_2)$, and
+\item fundamental $\beta\gamma$ pairs $(I,J)$,
+\end{itemize}
+with BRST charge
+\begin{equation}
+\label{eq:ks-brst}
+Q_{\mathrm{BRST}}
+\;=\;
+\oint\!\Bigl(\Tr(c\,Z_1\,Z_2) + \Tr(I\,c\,J) + \tfrac{1}{2}\Tr(b\,c^2)\Bigr).
+\end{equation}
+\end{definition}
+
+\begin{proposition}[Single-trace BRST cohomology; \ClaimStatusProvedElsewhere]
+\label{prop:ks-single-trace}
+The large-$N$ BRST cohomology of the Kodaira--Spencer boundary algebra decomposes into
+single-trace towers:
+\[
+A(n),\quad B(n),\quad C(n),\quad D(n),\quad E_t(n),
+\qquad n \geq 1.
+\]
+The first four towers $A$, $B$, $C$, $D$ match the single-trace operators of
+Kodaira--Spencer gravity.  The $E$-tower matches holomorphic Chern--Simons theory.
+\end{proposition}
+
+\begin{definition}[Universal defect algebra]
+\label{def:universal-defect-algebra-ks}
+The \emph{universal defect algebra} is
+\begin{equation}
+\label{eq:universal-defect-ks}
+U_{\mathrm{KS}} := A_{\partial,\mathrm{KS}}(B_{\mathrm{univ}}),
+\end{equation}
+with \emph{closed-string sector}
+\[
+U_{\mathrm{KS}}^{\mathrm{cl}}
+\;:=\;
+\bigl\langle A(n),\;B(n),\;C(n),\;D(n) \bigr\rangle.
+\]
+The modular state spaces and partition function are
+\begin{align}
+\label{eq:ks-state-spaces}
+H_{g,n}^{\mathrm{KS}}
+&\;:=\;
+\int_{\Sigma_{g,n}} U_{\mathrm{KS}},
+&
+H_{g,n}^{\mathrm{cl,KS}}
+&\;:=\;
+\int_{\Sigma_{g,n}} U_{\mathrm{KS}}^{\mathrm{cl}},
+\\
+\label{eq:ks-partition-function}
+Z_{\mathrm{KS}}(\h)
+&\;:=\;
+\sum_{g \geq 0} \h^{2g-2}\,\chi_{\gr}\!\bigl(H_g^{\mathrm{KS}}\bigr).
+\end{align}
+\end{definition}
+
+\begin{conjecture}[Open-closed modular splitting; \ClaimStatusConjectured]
+\label{conj:ks-open-closed-splitting}
+There is a splitting of modular state spaces
+\begin{equation}
+\label{eq:ks-open-closed-splitting}
+H_{g,n}^{\mathrm{KS}}
+\;\simeq\;
+H_{g,n}^{\mathrm{cl,KS}}
+\;\hat\otimes\;
+H_{g,n}^{\mathrm{gauge,KS}},
+\end{equation}
+where the gauge factor $H_{g,n}^{\mathrm{gauge,KS}}$ is controlled by the $E$-tower
+and carries a filtration compatible with the 't~Hooft expansion.
+\end{conjecture}
+
+\subsection{The \texorpdfstring{$\mathcal{W}_3$}{W3} modular envelope}
+\label{subsec:w3-modular-envelope}
+
+The $\mathcal{W}_3$ algebra is the simplest nonlinear example and the first
+higher-spin test of the full modular machine.
+
+\begin{definition}[Classical $\mathcal{W}_3$ PVA]
+\label{def:classical-w3-pva}
+The classical $\mathcal{W}_3$ Poisson vertex algebra is
+$P_{\mathcal{W}_3} := \Sym\bigl(\C[\partial]T \oplus \C[\partial]W\bigr)$,
+with $\lambda$-brackets determined by conformal weights $(2,3)$ and the standard
+Zamolodchikov normalization.
+\end{definition}
+
+The 3d origin is the holomorphic-topological Poisson sigma model of Khan--Zeng
+\cite{KZ25}, with target space determined by $P_{\mathcal{W}_3}$ and fields
+$(T,\mu)$ (stress tensor and Beltrami differential) together with $(W,\chi)$
+(spin-3 current and spin-3 source).  The topological enhancement comes from the
+Virasoro element $T$, which provides a secondary stress tensor.
+
+\begin{proposition}[Slab reduction; \ClaimStatusConjectured]
+\label{prop:w3-slab-reduction}
+The slab reduction of the $\mathcal{W}_3$ Poisson sigma model produces effective
+central charges:
+\[
+c^{(2)} = 26,
+\qquad
+c^{(3)} = 74,
+\qquad
+c_{\mathrm{pair}} = 100,
+\qquad
+c_{\mathrm{eff}} = c + 50.
+\]
+\end{proposition}
+
+\begin{definition}[Modular $\mathcal{W}_3$ envelope]
+\label{def:modular-w3-envelope}
+The \emph{modular $\mathcal{W}_3$ envelope} is the tuple
+\begin{equation}
+\label{eq:modular-w3-envelope}
+\ModEnv(\mathcal{W}_3)
+\;=\;
+\bigl(\mathcal{W}_3^q(c_{\mathrm{eff}}),\;
+(\mathcal{W}_3^q)^!,\;
+Y_{\mathcal{W}_3}^{\mathrm{mod}},\;
+\Theta_{g,n}^{\mathcal{W}_3},\;
+F_{\mathcal{W}_3},\;
+I_{\mathcal{W}_3}^{\mathrm{def}}\bigr),
+\end{equation}
+where the modular state spaces and partition function are
+\begin{align}
+\label{eq:w3-state-spaces}
+H_{g,n}^{\mathcal{W}_3}
+&\;:=\;
+\int_{\Sigma_{g,n}} V_{\mathcal{W}_3}^q,
+\\
+\label{eq:w3-partition-function}
+Z_{\mathcal{W}_3}(\h)
+&\;:=\;
+\sum_{g \geq 0} \h^{2g-2}\,\chi_{\gr}\!\bigl(H_g^{\mathcal{W}_3}\bigr).
+\end{align}
+\end{definition}
+
+\begin{remark}[Organizing the three atoms]
+\label{rem:three-atoms-organization}
+The three examples serve complementary roles in the modular holography programme:
+\begin{enumerate}[label=\textup{(\roman*)}]
+\item The free $\beta\gamma$ system is the \emph{strict free test}: all higher
+  $A_\infty$ operations vanish, genus dependence enters only through determinant lines
+  and factorization homology, and the modular $R$-matrix is exact at tree level.
+\item Kodaira--Spencer holography is the \emph{holographic open/closed test}: the
+  explicit universal defect algebra $U_{\mathrm{KS}}$ provides a concrete arena for
+  testing open-closed modular splitting, and the single-trace decomposition gives a
+  graded handle on the partition function.
+\item The $\mathcal{W}_3$ model is the \emph{first nonlinear higher-spin test}: the
+  nonlinear OPE $W \times W \sim T + \Lambda$ produces genuinely interacting modular
+  operations, the slab reduction yields nontrivial effective central charges, and the
+  modular envelope conjecture (Conjecture~\ref{conj:modular-envelope}) faces its first
+  real obstruction-theoretic challenge.
+\end{enumerate}
+\end{remark}
