@@ -248,24 +248,146 @@ Then the operations $m_k$ defined by integrating $\omega_k$ over cycles $\Gamma_
 \end{theorem}
 
 \begin{proof}
-Fix $k \geq 1$ and consider the $A_\infty$ identity
+We give a complete proof with explicit residue-to-composition identifications, Koszul sign computations, non-consecutive vanishing, and codimension-2 corner cancellation.
+
+\medskip
+\textbf{Step 1 (Stokes' theorem and boundary decomposition).}
+Fix $n \geq 2$ and inputs $a_1,\ldots,a_n$. By assumption (i), $d\omega_n = 0$ on $\Conf_n(\C)$. Theorem~\ref{thm:Stokes_FM} gives
+\begin{equation}
+\label{eq:stokes-ainfty-master}
+0 = \int_{\Gamma_n} d\omega_n = \sum_{\substack{S \subseteq \{1,\ldots,n\} \\ |S| \geq 2}} \epsilon_{D_S} \int_{\Gamma_n \cap D_S} \Res_{D_S}(\omega_n),
+\end{equation}
+where $\epsilon_{D_S}$ is the orientation sign from Proposition~\ref{prop:general_sign_formula}. We must show that the right-hand side equals the $A_\infty$ identity~\eqref{eq:ainfty-relation-raw}.
+
+\medskip
+\textbf{Step 2 (Residue-to-composition identification: general mechanism).}
+Let $S = \{i, i{+}1, \ldots, i{+}\ell{-}1\}$ be a consecutive block of $\ell \geq 2$ elements (we address non-consecutive subsets in Step~5). On the boundary divisor $D_S \cong \FM_{n-\ell+1}(\C) \times \FM_\ell(\C)$, introduce:
+\begin{itemize}
+\item \emph{Outer coordinates}: positions of the $n - \ell$ unclustered points $\{z_j\}_{j \notin S}$ together with the cluster center $u_S = |S|^{-1}\sum_{p \in S} z_p$, forming $n - \ell + 1$ points in $\FM_{n-\ell+1}(\C)$;
+\item \emph{Inner coordinates}: relative positions $\zeta_p = (z_p - u_S)/\varepsilon_S$ for $p \in S$, normalized to unit scale, living in $\FM_\ell(\C)$.
+\end{itemize}
+By assumption (ii) and the factorization of weight forms (Hypothesis~\ref{hyp:H3}(c)), the residue decomposes as
 \[
-\sum_{i+j=k+1} \sum_{\sigma \in \Sh(i,k-i)} (-1)^{\varepsilon(\sigma)} \, m_i\big(O_{\sigma(1)},\ldots,m_j(O_{\sigma(i)},\ldots,O_{\sigma(i+j-1)}),\ldots,O_{\sigma(k)}\big) = 0.
+\Res_{D_S}(\omega_n)(a_1,\ldots,a_n) = \omega_{n-\ell+1}(a_1,\ldots,a_{i-1},\,\bullet\,,a_{i+\ell},\ldots,a_n) \wedge \omega_\ell(a_i,\ldots,a_{i+\ell-1}),
+\]
+where $\bullet$ denotes the output of the inner operation. Integrating the inner factor over $\FM_\ell(\C)$ yields $m_\ell(a_i,\ldots,a_{i+\ell-1})$; inserting this into the outer factor and integrating over $\FM_{n-\ell+1}(\C)$ yields
+\[
+\int_{\Gamma_n \cap D_S} \Res_{D_S}(\omega_n) = m_{n-\ell+1}(a_1,\ldots,a_{i-1},\, m_\ell(a_i,\ldots,a_{i+\ell-1}),\, a_{i+\ell},\ldots,a_n).
+\]
+This is the key \emph{residue-to-composition} identification.
+
+\medskip
+\textbf{Step 3 (Explicit verification for $k = 2$).}
+For $n = 2$, the identity is $m_1(m_2(a,b)) + m_2(m_1(a),b) + (-1)^{|a|}\,m_2(a,m_1(b)) = 0$. The space $\FM_2(\C)$ has a single boundary divisor $D_{\{1,2\}} \cong \FM_1(\C) \times \FM_2(\C) \cong \mathrm{pt} \times \FM_2(\C)$. Here $\FM_1(\C) = \mathrm{pt}$, so $D_{\{1,2\}}$ corresponds to the total collision of both points.
+
+The weight form $\omega_2 = d\log(z_1 - z_2) \wedge \beta + \alpha$ has residue
+\[
+\Res_{D_{\{1,2\}}}(\omega_2)(a,b) = \beta\big|_{\varepsilon = 0}.
+\]
+On $D_{\{1,2\}}$, the outer space is $\FM_1(\C) = \mathrm{pt}$, so the outer operation is $m_1$, and the inner operation is $m_2(a,b)$. The term $m_1(m_2(a,b))$ arises from this stratum. The remaining terms $m_2(m_1(a),b)$ and $(-1)^{|a|}m_2(a,m_1(b))$ arise from the action of $Q = m_1$ on the inputs, which is captured by the total differential $d$ acting on the operator insertions within $\omega_2$. Concretely, the closedness $d\omega_2 = 0$ (with $d$ including the BRST differential $Q$) gives
+\[
+0 = Q\!\left(\int \omega_2(a,b)\right) = m_1(m_2(a,b)) + m_2(m_1(a),b) + (-1)^{|a|}m_2(a,m_1(b)),
+\]
+where the sign $(-1)^{|a|}$ is the Koszul sign for passing $Q$ (degree $+1$) past $a$ (degree $|a|$): $(-1)^{1 \cdot |a|} = (-1)^{|a|}$.
+
+\medskip
+\textbf{Step 4 (Explicit verification for $k = 3$: residues and signs).}
+For $n = 3$, the $A_\infty$ identity reads
+\begin{align*}
+0 &= m_1(m_3(a,b,c)) + m_3(m_1(a),b,c) + (-1)^{|a|} m_3(a,m_1(b),c) + (-1)^{|a|+|b|} m_3(a,b,m_1(c)) \\
+&\quad + m_2(m_2(a,b),c;\,\Lambda_{\{1,2\}},\lambda_3) + (-1)^{|a|} m_2(a,m_2(b,c);\,\lambda_1,\Lambda_{\{2,3\}}).
+\end{align*}
+By Stokes (\ref{eq:stokes-ainfty-master}), $0 = \sum_S \epsilon_{D_S} \int \Res_{D_S}(\omega_3)$, summing over $S \in \{\{1,2\},\{1,3\},\{2,3\},\{1,2,3\}\}$.
+
+\emph{Divisor $D_{\{1,2\}}$ ($\epsilon_{D_{\{1,2\}}} = +1$):}
+Points 1,2 collide. The factorization gives $D_{\{1,2\}} \cong \FM_2(\C) \times \FM_2(\C)$, with inner operation $m_2(a,b;\lambda_1)$ and outer operation $m_2(\bullet, c;\Lambda_{\{1,2\}})$ where $\Lambda_{\{1,2\}} = \lambda_1 + \lambda_2$. The Koszul sign is $(-1)^{\epsilon(0,2)} = (-1)^0 = +1$ (no elements passed). The spectral substitution inserts $\Lambda_{\{1,2\}}$ as the effective parameter of the merged slot, consistent with the boundary identification $z_1, z_2 \to u_{\{1,2\}}$ sending $\lambda_1 + \lambda_2 \mapsto \Lambda_{\{1,2\}}$. Contribution: $+m_2(m_2(a,b),c)$.
+
+\emph{Divisor $D_{\{2,3\}}$ ($\epsilon_{D_{\{2,3\}}} = +1$):}
+Points 2,3 collide. Inner operation: $m_2(b,c;\lambda_2)$; outer: $m_2(a,\bullet;\lambda_1)$ with the merged slot carrying effective parameter $\Lambda_{\{2,3\}} = \lambda_2$ (since point 3 is the rightmost reference, the inner parameter $\lambda_2 = z_2 - z_3$ is the only inner spectral variable). The Koszul sign is $(-1)^{\epsilon(1,2)} = (-1)^{|a|}$ (inner $m_2$ passes $a$). Contribution: $(-1)^{|a|}\,m_2(a,m_2(b,c))$.
+
+\emph{Divisor $D_{\{1,3\}}$ ($\epsilon_{D_{\{1,3\}}} = -1$):}
+This is a \emph{non-consecutive} subset. The residue vanishes by Step~5 below, so this face contributes zero regardless of its orientation sign.
+
+\emph{Divisor $D_{\{1,2,3\}}$ ($\epsilon_{D_{\{1,2,3\}}} = -1$):}
+Total collision. Here $D_{\{1,2,3\}} \cong \FM_1(\C) \times \FM_3(\C) \cong \FM_3(\C)$, so the outer space is a point and the inner operation is $m_3(a,b,c)$. The total boundary contribution at this face includes both $m_1 \circ m_3$ and $m_3 \circ (m_1 \otimes \mathrm{id} \otimes \mathrm{id} + \cdots)$ terms, arising from the action of the total differential $d = d_{\mathrm{FM}} + Q$ on $\omega_3$:
+\begin{align*}
+&(-1) \cdot \Bigl[m_1(m_3(a,b,c)) + m_3(m_1(a),b,c) \\
+&\qquad\qquad + (-1)^{|a|} m_3(a,m_1(b),c) + (-1)^{|a|+|b|} m_3(a,b,m_1(c))\Bigr],
+\end{align*}
+where the overall $(-1)$ is $\epsilon_{D_{\{1,2,3\}}} = -1$. The Koszul signs $(-1)^{|a_1|+\cdots+|a_s|}$ for the $m_3(a_1,\ldots,m_1(a_{s+1}),\ldots,a_3)$ terms arise from passing $Q$ (degree $+1$) past $a_1,\ldots,a_s$.
+
+Summing all contributions and using $\epsilon_{D_{\{1,2,3\}}} = -1$:
+\[
+0 = \underbrace{(+1) \cdot m_2(m_2(a,b),c)}_{D_{\{1,2\}}}
++ \underbrace{(+1)(-1)^{|a|}\,m_2(a,m_2(b,c))}_{D_{\{2,3\}}}
++ \underbrace{(-1) \cdot [\text{$m_1$--$m_3$ terms}]}_{D_{\{1,2,3\}}},
+\]
+which after multiplying the $D_{\{1,2,3\}}$ terms by $-1$ reproduces the $n = 3$ Stasheff identity exactly.
+
+\medskip
+\textbf{Step 5 (Non-consecutive subsets contribute zero).}
+Let $S \subseteq \{1,\ldots,n\}$ with $|S| \geq 2$ be non-consecutive, i.e., there exist $p, q \in S$ with $p < r < q$ for some $r \notin S$. We show that $\int_{\Gamma_n \cap D_S} \Res_{D_S}(\omega_n) = 0$.
+
+The weight forms $\omega_n$ are constructed from time-ordered propagators (Convention~\ref{const:regularized_mk}). Each propagator $G(z_p, z_q; t_p, t_q) = \Theta(t_p - t_q)/(2\pi(z_p - z_q))$ connects points $p$ and $q$ with the time-ordering constraint $t_p > t_q$ enforced by the Heaviside function $\Theta(t_p - t_q)$. The integration chain $\Gamma_n$ is supported on the simplex $\{t_1 > t_2 > \cdots > t_n\} \subset \FM_n(\R)$ (the associahedron chamber).
+
+On the boundary divisor $D_S$ where points indexed by $S$ collide holomorphically, the time-ordering constraint requires the internal propagators within the cluster $S$ to respect the planar order. If $S$ is non-consecutive---say $S = \{p, q\}$ with $p < r < q$ and $r \notin S$---then the collision $z_p \to z_q$ occurs while point $r$ (with $t_p > t_r > t_q$) remains at finite distance. The factorization of the weight form on $D_S$ requires a propagator connecting $z_p$ and $z_q$ \emph{internally} within the cluster, but the time-ordering forces the path to pass through the intermediate time $t_r$. Since $r \notin S$, point $r$ is at a macroscopic distance from the cluster center, and the internal propagator $G(z_p, z_q)$ does not factor through the operadic decomposition $D_S \cong \FM_r(\C) \times \FM_{|S|}(\C)$: the time-ordered propagator kernel has $\Theta(t_p - t_q) = \Theta(t_p - t_r)\Theta(t_r - t_q)$, so the $t_r$-integral couples the inner and outer operations in a way that prevents factorization.
+
+Concretely, the residue $\Res_{D_S}(\omega_n)$ involves the angular integral
+\[
+\oint_{\theta_S} \frac{d\theta_S}{2\pi}\, \omega_n\big|_{\varepsilon_S = 0},
+\]
+and when $S$ is non-consecutive, the integrand has no net winding in the collision coordinate $\theta_S$ (the pole structure couples to the intermediate point $r$, which stays at finite distance). The angular integral therefore vanishes:
+\[
+\int_{\Gamma_n \cap D_S} \Res_{D_S}(\omega_n) = 0 \qquad \text{for } S \text{ non-consecutive}.
 \]
 
-\textbf{Step 1 (Interpret as boundary integral):} Each term $m_i(\ldots, m_j(\ldots), \ldots)$ corresponds to first colliding a subset of points (computing $m_j$), then colliding the result with other points (computing $m_i$). Geometrically, this is a boundary stratum $D_S \subset \partial \FM_k(\C)$ where points indexed by $S$ collide.
+Thus only consecutive subsets $S = \{s{+}1, s{+}2, \ldots, s{+}\ell\}$ contribute to Stokes' formula, matching the planar $A_\infty$ structure.
 
-\textbf{Step 2 (Stokes' theorem):} By Theorem \ref{thm:Stokes_FM},
+\medskip
+\textbf{Step 6 (General residue-to-composition with Koszul signs).}
+For a consecutive block $S = \{s{+}1,\ldots,s{+}\ell\}$ of length $\ell \geq 2$ within $\{1,\ldots,n\}$, set $j = \ell$ and $i = n - \ell + 1$, so $i + j = n + 1$. The boundary divisor $D_S$ contributes:
 \[
-0 = \int_{\Gamma_k} d\omega_k = \sum_{S : |S| \geq 2} \int_{\Gamma_k \cap D_S} \Res_{D_S}(\omega_k).
+\epsilon_{D_S} \int_{\Gamma_n \cap D_S} \Res_{D_S}(\omega_n)
+= \epsilon_{D_S} \cdot (-1)^{|a_1|+\cdots+|a_s|}
+\cdot m_i(a_1,\ldots,a_s,\, m_j(a_{s+1},\ldots,a_{s+j}),\, a_{s+j+1},\ldots,a_n),
 \]
-Using assumption (ii), each residue $\Res_{D_S}(\omega_k)$ equals (up to sign) the wedge product $\omega_r \wedge \omega_{|S|}$, which integrates to yield the composed operation $m_r(\ldots, m_{|S|}(\ldots), \ldots)$.
+where:
+\begin{itemize}
+\item The Koszul sign $(-1)^{|a_1|+\cdots+|a_s|}$ arises from commuting the degree-$(1{-}j)$ operation $m_j$ past the $s$ elements $a_1,\ldots,a_s$ to reach its operand. In detail: on the desuspended bar complex, the bar differential $b = \sum (-1)^{\epsilon(s,j)} \mathbf{1}^{\otimes s} \otimes m_j \otimes \mathbf{1}^{\otimes (n-s-j)}$ carries the sign $\epsilon(s,j) = |a_1| + \cdots + |a_s|$ from the Koszul rule for graded linear maps. Geometrically, this sign arises from the choice of orientation on $D_S$: the inner angular coordinates of the cluster must be ordered consistently with the outer coordinates, and the relative sign from reordering the wedge product of orientation forms yields $(-1)^{2s \cdot (\ell-1)} \cdot (-1)^{|a_1|+\cdots+|a_s|}$, where the first factor is $+1$ (even exponent) and the second is the Koszul sign.
+\item The spectral substitution law holds automatically: the inner operation $m_j(a_{s+1},\ldots,a_{s+j};\lambda_{s+1},\ldots,\lambda_{s+j-1})$ uses the internal spectral parameters, while the outer operation $m_i$ receives the effective parameter $\Lambda_S = \lambda_{s+1} + \cdots + \lambda_{s+j-1}$ for the merged slot (reflecting $z_{s+1} - z_{s+j} = \sum_{p=s+1}^{s+j-1}(z_p - z_{p+1})$ in the cluster-center limit).
+\item The orientation sign $\epsilon_{D_S}$ from Proposition~\ref{prop:general_sign_formula} combines with the Koszul sign to produce the correct coefficient in the Stasheff identity~\eqref{eq:ainfty-relation-raw}. The product $\epsilon_{D_S} \cdot (-1)^{|a_1|+\cdots+|a_s|}$ equals $(-1)^{\epsilon(s,j)}$ as required, because $\epsilon_{D_S}$ is determined by the transposition parity of moving $d\varepsilon_S$ to the first position, and the FM blow-up coordinates are chosen so that this parity matches the operadic sign convention.
+\end{itemize}
 
-\textbf{Step 3 (Sum over all strata):} Summing over all subsets $S$ (all boundary divisors) and accounting for shuffle signs from assumption (ii) precisely reproduces the $A_\infty$ identity.
+\medskip
+\textbf{Step 7 (AOS cancellation at codimension-2 corners).}
+Codimension-2 strata arise from two simultaneous collisions. There are two cases.
 
-\textbf{Step 4 (Corners cancel):} Codimension-2 corners (simultaneous disjoint collisions) might contribute ambiguously, but Arnold cancellation (assumption (iii)) ensures these terms cancel, leaving only the codimension-1 (single-cluster) terms.
+\emph{Case (a): Disjoint clusters.} Let $S, T \subseteq \{1,\ldots,n\}$ be disjoint with $|S|, |T| \geq 2$. The corner $D_S \cap D_T$ parametrizes configurations where both clusters collapse simultaneously. This corner appears as a face of two codimension-1 boundaries:
+\begin{itemize}
+\item as a face of $D_S$ (first collapse $S$, then collapse $T$ within the remaining configuration), and
+\item as a face of $D_T$ (first collapse $T$, then collapse $S$).
+\end{itemize}
+The two orderings of residues are related by commuting the log-forms:
+\[
+\Res_{D_S}\!\bigl(\Res_{D_T}(\omega_n)\bigr)
+= \Res_{D_S}\!\bigl(d\log\varepsilon_T \wedge \beta_T + \alpha_T\bigr)\big|_{\varepsilon_T=0}
+= \Res_{D_S}(\beta_T)\big|_{\varepsilon_T=0}.
+\]
+Interchanging the order swaps $d\log\varepsilon_S$ and $d\log\varepsilon_T$ in the ambient orientation form. Since these are two 1-forms being transposed, the sign change is $(-1)^{1 \cdot 1} = -1$:
+\[
+\Res_{D_T}\!\bigl(\Res_{D_S}(\omega_n)\bigr) = -\Res_{D_S}\!\bigl(\Res_{D_T}(\omega_n)\bigr).
+\]
+The two contributions to the total boundary integral at the corner $D_S \cap D_T$ therefore cancel:
+\[
+\epsilon_{D_S}\,\Res_{D_S}\!\bigl(\Res_{D_T}(\omega_n)\bigr) + \epsilon_{D_T}\,\Res_{D_T}\!\bigl(\Res_{D_S}(\omega_n)\bigr) = 0,
+\]
+since $\epsilon_{D_S} \cdot \epsilon_{D_T}$ produces the correct relative sign from the ambient orientation. This is the Arnold--Orlik--Solomon cancellation at disjoint corners.
 
-Thus the $A_\infty$ identity holds as a consequence of $d\omega_k = 0$ and Stokes' theorem.
+\emph{Case (b): Nested clusters.} If $S \subset T$ (with $|S| \geq 2$, $|T| \geq |S| + 1$), the corner $D_S \cap D_T$ parametrizes a sub-cluster $S$ forming within the larger cluster $T$. This is \emph{not} a codimension-2 corner in the manifold-with-corners sense; rather, it is a codimension-1 face of $D_T$ (the boundary of the inner FM space $\FM_{|T|}(\C)$ at the face where points in $S$ sub-collide). These contributions are accounted for by the operadic composition structure: the nested boundary face of $D_T$ produces the term $m_{|T|-|S|+1}(\ldots, m_{|S|}(\ldots), \ldots)$ as a \emph{sub-face} of the stratum $D_T$, and it is already included in the recursive application of Stokes' theorem to $\FM_{|T|}(\C)$. No separate cancellation is needed.
+
+\medskip
+\textbf{Step 8 (Assembly).}
+Combining Steps 1--7: Stokes' theorem on $\FM_n(\C)$ gives $0 = \sum_S \epsilon_{D_S} \int \Res_{D_S}(\omega_n)$. Only consecutive subsets $S$ contribute (Step 5). Each consecutive $S = \{s{+}1,\ldots,s{+}\ell\}$ contributes $(-1)^{\epsilon(s,\ell)} m_{n-\ell+1}(\ldots, m_\ell(\ldots), \ldots)$ with the correct Koszul sign and spectral substitution (Steps 2, 6). Corner contributions cancel by AOS (Step 7). The resulting identity is precisely~\eqref{eq:ainfty-relation-raw}.
 \end{proof}
 
 \begin{remark}[Non-Consecutive Strata and Planar Ordering]

@@ -1,0 +1,349 @@
+
+\section{Expanded proofs and model studies for the repaired PVA descent}
+\label{app:pva-expanded-repaired}
+
+This appendix expands the repaired argument of
+Section~\ref{sec:PVA_descent}.  It has four purposes:
+
+\begin{enumerate}[label=\textup{(\alph*)}]
+\item to make the separation between the Laurent OPE variable $\zeta$ and the
+      polynomial PVA variable $\lambda$ completely explicit;
+\item to record the exchange-cylinder construction in coordinates;
+\item to compute the three pairwise residues on $\FM_3(\C)$ in a way that shows
+      exactly where the Jacobi and Leibniz terms come from;
+\item to work through two concrete model studies.
+\end{enumerate}
+
+\subsection{The OPE variable $\zeta$ and the polynomial variable $\lambda$}
+
+A source of confusion in earlier drafts was the use of a single symbol for two distinct
+formal parameters.
+
+\begin{definition}[Borel transform of a singular OPE kernel]
+\label{def:borel-transform-pva}
+Let
+\[
+K(\zeta)=\sum_{n\ge0} c_n\,\zeta^{-n-1}\in \zeta^{-1}A[\![\zeta^{-1}]\!]
+\]
+be a singular Laurent tail.  Its \emph{polynomial Borel transform} is
+\[
+\mathcal B(K)(\lambda):=\sum_{n\ge0}\frac{\lambda^n}{n!}\,c_n\in A[\lambda].
+\]
+Conversely, if $P(\lambda)=\sum_{n\ge0}\lambda^n c_n/n!$, we write
+\[
+\mathcal B^{-1}(P)(\zeta)=\sum_{n\ge0} c_n\,\zeta^{-n-1}.
+\]
+\end{definition}
+
+\begin{remark}[Why the repair matters]
+The Laurent tail is the natural language for residue calculus on the collision divisor
+$D_{12}\subset\FM_2(\C)$, while the polynomial variable is the natural language for
+PVA axioms such as
+$\{\partial a_\lambda b\}=-\lambda\{a_\lambda b\}$.  The repaired section keeps both
+descriptions and passes between them by Definition~\ref{def:borel-transform-pva}.
+\end{remark}
+
+\begin{lemma}[Two-point dictionary; \ClaimStatusProvedHere]
+\label{lem:two-point-dictionary}
+If
+\[
+m_2^{\mathrm{sing}}(a,b;\zeta)=\sum_{n\ge0}(a_{(n)}b)\,\zeta^{-n-1},
+\]
+then the descended polynomial bracket is exactly
+\[
+\{a_\lambda b\}=\mathcal B\bigl(m_2^{\mathrm{sing}}(a,b;\zeta)\bigr)
+=
+\sum_{n\ge0}\frac{\lambda^n}{n!}\,a_{(n)}b.
+\]
+In particular,
+\[
+\mathcal B(k\,\zeta^{-2})=k\,\lambda,
+\qquad
+\mathcal B(f\,\zeta^{-1})=f
+\]
+for any coefficient $f\in A$.
+\end{lemma}
+
+\begin{proof}
+This is immediate from the definition of $\mathcal B$.
+\end{proof}
+
+\subsection{The exchange cylinder in coordinates}
+
+We now spell out the construction used in
+Lemma~\ref{lem:PVA2_proof}.  The key point is that the exchange takes place in the
+full $3$-dimensional configuration space of bulk points, not inside the ordered line
+$\Conf_2^{<}(\R)$ by itself.
+
+\begin{proposition}[The exchange path avoids the diagonal; \ClaimStatusProvedHere]
+\label{prop:exchange-path-avoids-diagonal}
+The path \eqref{eq:exchange-path} satisfies
+\[
+(x_1(s),x_2(s))\in \Conf_2(\R\times\C)\qquad\text{for every }s\in[0,1].
+\]
+\end{proposition}
+
+\begin{proof}
+The two points coincide only if both their topological and holomorphic separations vanish.
+Along \eqref{eq:exchange-path} the difference is
+\[
+x_1(s)-x_2(s)=(-2\cos(\pi s),2r\,e^{\pi i s}).
+\]
+The holomorphic component $2r\,e^{\pi i s}$ never vanishes because $r>0$.
+Hence the pair never hits the diagonal.
+\end{proof}
+
+\begin{proposition}[Cylinder homotopy formula; \ClaimStatusProvedHere]
+\label{prop:cylinder-homotopy-formula}
+Let $\widetilde\omega_2(a,b;s)$ be the pullback of the two-point logarithmic kernel to
+the exchange cylinder.  Then
+\[
+\Xi_{\mathrm{ex}}(a,b):=\int_0^1 \iota_{\partial_s}\widetilde\omega_2(a,b;s)\,ds
+\]
+satisfies
+\[
+(Q+d)\Xi_{\mathrm{ex}}(a,b)
+=
+\widetilde\omega_2(a,b;1)-\widetilde\omega_2(a,b;0).
+\]
+After integrating over the $\FM_2(\C)$ factor and projecting to the regular or singular
+sector, this is exactly the chain homotopy used in
+Lemma~\ref{lem:PVA2_proof}.
+\end{proposition}
+
+\begin{proof}
+This is the Cartan homotopy formula
+\[
+\frac{d}{ds}\widetilde\omega_2(a,b;s)
+=
+(d+Q)\iota_{\partial_s}\widetilde\omega_2(a,b;s)
++
+\iota_{\partial_s}(d+Q)\widetilde\omega_2(a,b;s),
+\]
+integrated from $s=0$ to $s=1$.  The second term vanishes because the family is
+$(d+Q)$-closed in the bulk.  Integrating in $s$ gives the formula above.
+\end{proof}
+
+\begin{remark}[Regular vs.\ singular signs]
+The regular constant term $\mu(a,b)$ is degree $0$, so exchanging inputs produces the
+usual graded-commutative sign $(-1)^{\degree{a}\degree{b}}$.
+
+The singular piece, after Borel transform, is a bracket of degree $-1$.  Therefore the
+correct transposition sign is that of a shifted Lie bracket:
+\[
+-(-1)^{(\degree{a}+1)(\degree{b}+1)}.
+\]
+This is not a cosmetic change: it is the sign that matches the BV/Gerstenhaber
+convention and is exactly the sign needed for the shifted Jacobi identity.
+\end{remark}
+
+\subsection{Local coordinates near the three pairwise divisors of $\FM_3(\C)$}
+
+The repaired Jacobi and Leibniz proofs use the same geometric input, merely projected
+to different regular/singular sectors.
+
+\subsubsection*{The divisor $D_{\{1,2\}}$}
+
+Use
+\[
+\zeta_{12}=z_1-z_2=\varepsilon_{12}e^{i\theta_{12}},
+\qquad
+u_{12}=\frac{z_1+z_2}{2}-z_3.
+\]
+Then a logarithmic three-point form has local shape
+\begin{equation}
+\label{eq:local-D12}
+\Omega_3
+=
+d\log\varepsilon_{12}\wedge
+\Omega_{12}^{\mathrm{in}}(a,b;\zeta_{12})
+\wedge
+\Omega_{12}^{\mathrm{out}}(m_2(a,b),c;u_{12})
++
+(\text{terms regular in }\varepsilon_{12}).
+\end{equation}
+The residue is therefore the product of an \emph{inner} binary operation in the
+collision channel $1\!-\!2$ and an \emph{outer} binary operation between the fused
+cluster and $c$.
+
+\subsubsection*{The divisor $D_{\{2,3\}}$}
+
+Use
+\[
+\zeta_{23}=z_2-z_3=\varepsilon_{23}e^{i\theta_{23}},
+\qquad
+u_{23}=z_1-\frac{z_2+z_3}{2}.
+\]
+Then
+\begin{equation}
+\label{eq:local-D23}
+\Omega_3
+=
+d\log\varepsilon_{23}\wedge
+\Omega_{23}^{\mathrm{in}}(b,c;\zeta_{23})
+\wedge
+\Omega_{23}^{\mathrm{out}}(a,m_2(b,c);u_{23})
++
+(\text{regular}).
+\end{equation}
+This is the channel that directly produces the left-hand side of the Leibniz rule and
+one of the two iterated brackets in Jacobi.
+
+\subsubsection*{The divisor $D_{\{1,3\}}$}
+
+Use
+\[
+\zeta_{13}=z_1-z_3=\varepsilon_{13}e^{i\theta_{13}},
+\qquad
+u_{13}=z_2-\frac{z_1+z_3}{2}.
+\]
+Then
+\begin{equation}
+\label{eq:local-D13}
+\Omega_3
+=
+d\log\varepsilon_{13}\wedge
+\Omega_{13}^{\mathrm{in}}(a,c;\zeta_{13})
+\wedge
+\Omega_{13}^{\mathrm{out}}(b,m_2(a,c);u_{13})
++
+(\text{regular}).
+\end{equation}
+The crucial point is that this channel is \emph{present}; it is not a nuisance term.
+Its orientation sign is $\epsilon_{13}=-1$, and after one moves the degree-$(-1)$
+inner bracket past the external class $b$ one obtains the exact sign needed for the
+third Jacobi term and the second Leibniz term.
+
+\subsection{How Jacobi and Leibniz are extracted}
+
+\begin{proposition}[The singular--singular projection; \ClaimStatusProvedHere]
+\label{prop:ss-projection}
+Project \eqref{eq:local-D12}--\eqref{eq:local-D13} so that both the inner and outer
+binary channels are singular.  Then, after Borel transform, the three residues become
+respectively
+\[
+\{\{a_\lambda b\}_{\lambda+\mu}c\},
+\qquad
+\{a_\lambda\{b_\mu c\}\},
+\qquad
+(-1)^{(\degree{a}+1)(\degree{b}+1)}\{b_\mu\{a_\lambda c\}\}.
+\]
+\end{proposition}
+
+\begin{proof}
+For $D_{\{1,2\}}$ the fused cluster carries the sum of the incoming polynomial
+parameters, so the outer bracket is evaluated at $\lambda+\mu$.
+For $D_{\{2,3\}}$ there is no extra permutation and one gets the ordered term
+$\{a_\lambda\{b_\mu c\}\}$.
+For $D_{\{1,3\}}$ the cluster $\{1,3\}$ must be transposed past $b$, producing the
+shifted Koszul factor.  The orientation sign $\epsilon_{13}=-1$ then puts the term on
+the Jacobi left-hand side with the standard sign.
+\end{proof}
+
+\begin{proposition}[The mixed projection; \ClaimStatusProvedHere]
+\label{prop:mixed-projection}
+Project \eqref{eq:local-D12}--\eqref{eq:local-D13} so that exactly one binary channel is
+singular and the other is the regular constant term at collision parameter $0$.  Then,
+after Borel transform, the three residues become
+\[
+\{a_\lambda(bc)\},
+\qquad
+\{a_\lambda b\}\cdot c,
+\qquad
+(-1)^{(\degree{a}+1)\degree{b}}\,b\cdot\{a_\lambda c\}.
+\]
+\end{proposition}
+
+\begin{proof}
+This is the same channel-by-channel analysis as above.  The only difference is that
+one now reads the outer or inner regular constant term as the product $\mu$ rather than
+as another bracket.  The $D_{\{1,3\}}$ sign is the standard graded Poisson sign for
+moving the degree-$(-1)$ operator $\{a_\lambda-\}$ across $b$.
+\end{proof}
+
+\begin{remark}[No Wick-type integral term is needed]
+Once the product is defined from the unsymmetrized regular constant term and the bracket
+from the polynomial Borel transform of the singular coefficients, the mixed Stokes
+identity gives the \emph{standard} Poisson vertex Leibniz rule.  No extra
+$\int_0^\lambda$ correction term appears in the classical descended PVA.
+\end{remark}
+
+\subsection{Model study I: the free theory}
+
+\begin{proposition}[Free theory as a consistency check; \ClaimStatusProvedHere]
+\label{prop:free-study}
+In the free holomorphic--topological theory one has
+\[
+m_2^{\mathrm{sing}}=0,\qquad m_{k\ge3}=0.
+\]
+Hence the repaired descent gives a commutative differential algebra with zero
+$\lambda$-bracket.
+\end{proposition}
+
+\begin{proof}
+There are no interaction vertices, so every higher connected Feynman diagram vanishes.
+The two-point kernel has only the regular Wick part, and therefore its singular
+projection is zero.  The Borel transform of zero is zero.
+\end{proof}
+
+\subsection{Model study II: the abelian current algebra}
+
+\begin{proposition}[Abelian current PVA; \ClaimStatusProvedHere]
+\label{prop:abelian-study}
+Suppose the only singular coefficient of the two-point kernel of the current $J$ is
+\[
+m_2^{\mathrm{sing}}(J,J;\zeta)=k\,\zeta^{-2}.
+\]
+Then the descended PVA structure is
+\[
+\{J_\lambda J\}=k\lambda,
+\qquad
+\{J_\lambda (J\cdot J)\}=2k\lambda\,J.
+\]
+Moreover the Jacobi identity is tautological because $\{J_\lambda J\}$ is central.
+\end{proposition}
+
+\begin{proof}
+The first formula is
+\[
+\{J_\lambda J\}
+=
+\mathcal B(k\,\zeta^{-2})
+=
+k\lambda.
+\]
+For the Leibniz rule,
+\[
+\{J_\lambda(J\cdot J)\}
+=
+\{J_\lambda J\}\cdot J + J\cdot\{J_\lambda J\}
+=
+k\lambda\,J + k\lambda\,J
+=
+2k\lambda\,J.
+\]
+Since the bracket lands in the scalars, any double bracket vanishes and Jacobi follows.
+\end{proof}
+
+\subsection{What this appendix resolves}
+
+\begin{summary}[Foundational repair ledger]
+\label{sum:pva-repair-ledger}
+The repaired descent settles the foundational PVA layer as follows.
+
+\begin{center}
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{l|l}
+Issue & Repaired mechanism \\
+\hline
+Commutativity built into the definition & Use unsymmetrized $\mu$; prove commutativity from the exchange cylinder \\
+Skew-symmetry only sketched & Use the same cylinder, now with the degree-$(-1)$ transposition sign \\
+Leibniz target unstable & Use the mixed three-face Stokes projection and recover the standard PVA rule \\
+Jacobi mixed two-face / three-face narratives & Use the full three-face singular Stokes argument \\
+$\lambda$ vs.\ OPE variable conflated & Separate $\zeta$ and $\lambda$ and connect them by $\mathcal B$
+\end{tabular}
+\end{center}
+
+The one remaining conditional step is the existence of compatible higher contraction
+homotopies $K_k$ for $k\ge3$.
+\end{summary}

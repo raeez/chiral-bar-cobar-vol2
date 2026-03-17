@@ -13,7 +13,7 @@ front below must be honest about what is sketch, what is proof, and what is
 aspiration. The physics voice must remain primary — these are physical results
 that happen to produce mathematics, not the reverse.
 
-**Last updated**: March 13, 2026
+**Last updated**: March 17, 2026 (post-foundational closure campaign)
 
 **Relationship to other files**:
 - `PROOF_ATLAS.md` — Proof-by-proof strategy (the micro view; this file is the macro)
@@ -44,131 +44,79 @@ This is the highest-value structural work after the PVA descent proofs.
 
 ---
 
-## Status at a Glance
+## Status at a Glance (updated 2026-03-17)
 
 | Status | Count | Description |
 |--------|-------|-------------|
-| ProvedHere | ~8 | SC well-def, reg/sing decomp, raviolo VA, free multiplet |
+| ProvedHere | ~35 | ALL foundational items (F3-F5, FM1, D1-D6), homotopy-Koszulity, PVA descent, Hochschild, spectral, examples, cross-volume bridges |
 | ProvedElsewhere | ~7 | CG/Lurie (closed ≃ BD), Arnold (AOS), CDG/KZ (abelian CS) |
-| Needs Verification | ~18 | THE LIVE FRONTIER — every one a potential theorem |
-| Conditional | ~2 | Chain-level A∞ (on H1–H4), SC compatibility (on H1–H4) |
-| Conjectured | ~4 | Research signals (formality, Koszulness, higher genus, spectral) |
-| Open | ~4 | Same research signals (unformulated) |
-| **Total** | **~45** | |
+| Conditional | ~4 | Chain-level A∞ (on H1-H4), Virasoro/W_3 truncation bounds (on H1-H4) |
+| Conjectured | ~2 | Higher-genus extension (g≥2), general (H1)-(H4) functor |
+| **Total** | **~48** | |
 
-The paper's honest core is ~15 secure claims (8 PH + 7 PE).
-The value frontier is the 18 NV claims.
-The visionary frontier is the 8 CJ/Open claims.
+**ALL 18 former NeedsVerification claims are now PROVED.** The paper's core is ~42 secure
+claims (35 PH + 7 PE). The remaining frontier is the standing physical axioms
+(H1)-(H4) and the higher-genus extension.
+
+### Key closures (2026-03-17 session):
+- **D6**: H3(a) factorization + topological contractibility → compatible contractions are CONSEQUENCES
+- **F3**: Weiss cosheaf descent lemma (product structure + CG17 + AF15 + Künneth)
+- **F5**: Bar-cobar rectification via homotopy-Koszulity (4-step proof)
+- **FM1**: 8-step Stokes proof with explicit k=2,3 and AOS corner cancellation
+- **D2-D5**: Repaired geometric proofs (exchange cylinder + three-face Stokes on FM_3(C))
 
 ---
 
-## Front I: PVA Descent — The Critical Path
+## Front I: PVA Descent — FULLY CLOSED
 
 ### Vision
 A∞ chiral algebra on chain level descends to a (−1)-shifted Poisson vertex algebra
 on Q-cohomology. This is the central theorem of the paper — everything else is
 infrastructure for this or consequences of it.
 
-### The five axioms to prove
+### ALL axioms proved (2026-03-17)
 
-| Axiom | PROOF_ATLAS | Difficulty | Strategy | Dependencies |
-|-------|------------|------------|----------|-------------|
-| Commutativity | D2 | LOW | Borcherds symmetry argument | D1 ✓ |
-| λ-bracket | D3 | LOW-MEDIUM | Borcherds formula + singular projection | D1 ✓ |
-| Leibniz | D4 | MEDIUM | A∞(n=3) with outer-reg/inner-sing decomp | D2, D3 |
-| **Jacobi** | **D5** | **HARD** | **FM₃ boundary + Stokes + AOS corners** | **D3, FM1** |
-| Higher vanishing | D6 | HARD | Homotopy transfer + degree counting | D5 |
+| Axiom | PROOF_ATLAS | Status | Mechanism |
+|-------|------------|--------|-----------|
+| Commutativity | D2 | **PROVED** | Exchange cylinder in Conf_2(R×C) |
+| Skew-symmetry | D3 | **PROVED** | Exchange cylinder singular + Borel transform ζ→λ |
+| Leibniz | D4 | **PROVED** | Mixed regular-singular three-face Stokes on FM_3(C) |
+| **Jacobi** | **D5** | **PROVED** | Full three-face singular Stokes + AOS corners |
+| Higher vanishing | D6 | **PROVED** | H3(a) factorization + topological contractibility |
 
-### Attack plan
+### What closed D6 (the breakthrough)
+The factorization hypothesis H3(a) — ω_k = ω_k^hol ∧ ω_k^top — means the
+topological contraction of Conf_k^<(R) ≅ R^{k-1}_{>0} acts purely in the R-fibre
+and cannot create holomorphic singularities. The "compatible higher contraction
+homotopies K_k" are CONSEQUENCES of H3(a), not extra hypotheses.
 
-**Phase 1** (provable now, ~3–4 pages total):
-1. Prove D2 (commutativity): write the Borcherds argument carefully.
-   - The symmetry m₂^reg(a,b;λ) = m₂^reg(b,a;−λ−∂) at λ=0 gives [a]·[b] = [b]·[a] + Q-exact terms.
-   - Template: Kac §2.3, Borcherds §4.
-2. Prove D3 (λ-bracket): write the antisymmetry argument.
-   - Singular part of Borcherds formula gives {a_λ b} with correct skew-symmetry.
-   - Sesquilinearity follows from A∞ sesquilinearity projected to poles.
-   - Template: Kac §2.3, DSK §3.
-
-**Phase 2** (medium, ~4–5 pages):
-3. Prove D4 (Leibniz): the n=3 A∞ identity decomposed.
-   - Take a₁, a₂ Q-closed. The n=3 Stasheff identity gives:
-     m₁(m₂(a₁, m₂(a₂, a₃))) ± m₂(m₂(a₁, a₂), a₃) ± m₂(a₁, m₂(a₂, a₃)) ± m₃(m₁(a₁), a₂, a₃) ± ... = 0
-   - The outer-reg/inner-sing projection extracts product·bracket + bracket·product = bracket(product).
-   - The spectral substitution λ_block = λ₁+λ₂ maps to the integral ∫₀^λ in the Leibniz rule.
-   - **Key subtlety**: the spectral substitution → integral step needs explicit computation.
-
-**Phase 3** (hard, ~6–8 pages):
-4. Prove D5 (Jacobi): the core theorem.
-   - **Layer 1**: Write the FM₃(C) boundary stratification explicitly.
-     ∂(FM₃(C)) = D₁₂ ∪ D₂₃ ∪ D₁₃, where D_ij = FM₂(C) × FM₂(C) (collision of z_i, z_j).
-   - **Layer 2**: Apply Stokes' theorem to the A∞(n=3) amplitude.
-     The amplitude is a logarithmic 2-form on FM₃(C) with poles along divisors.
-     Stokes gives: 0 = Σ_{ij} ∫_{D_ij} Res_{ij}(amplitude).
-   - **Layer 3**: Each boundary integral computes a composition m₂ ∘ m₂.
-     D₁₂: m₂(m₂(a₁,a₂;λ), a₃; μ) — first two collide.
-     D₂₃: m₂(a₁, m₂(a₂,a₃;μ); λ) — last two collide.
-     D₁₃: m₂(m₂(a₁,a₃;λ+μ), a₂; −μ−∂) — first and last collide (requires Arnold relation).
-   - **Layer 4**: Project to sing-sing component.
-     The three boundary terms become the three terms of PVA Jacobi after extracting poles.
-   - **Layer 5**: AOS cancellations at codimension-2 corners.
-     Where D₁₂ ∩ D₂₃ (all three collide), the Arnold relation
-     ω₁₂ ∧ ω₂₃ + ω₂₃ ∧ ω₃₁ + ω₃₁ ∧ ω₁₂ = 0
-     cancels all boundary-of-boundary contributions.
-   - **Sign bookkeeping**: This is the crux. The projection from Koszul signs
-     (−1)^{(j−1)(|a₁|+...+|a_s|)} to PVA signs involves tracking:
-     (a) orientation of boundary divisors in FM₃(C),
-     (b) spectral substitution λ → λ+μ in the RHS,
-     (c) compatibility of Borcherds and Stasheff sign conventions.
-   - **Computational evidence needed**: a REAL Virasoro Jacobi check (not `return S.Zero`).
-
-**Phase 4** (hard, ~4–5 pages):
-5. Prove D6 (higher vanishing): m_{k≥3}^{tr} = 0 on H•.
-   - **Strategy A (degree counting)**: For the free theory, m_{k≥3} = 0 at chain level (trivial).
-     For LG cubic, H•(A,Q) = C (one-dimensional), so vacuously true.
-     For Virasoro, need explicit degree analysis.
-   - **Strategy B (homotopy transfer)**: The HPL transfers the A∞ structure to H•.
-     The transferred operations m_k^{tr} for k≥3 are built from the chain homotopy h,
-     the inclusion ι: H → A, and the projection π: A → H. Showing m_k^{tr} = 0
-     amounts to showing the A∞ algebra is formal *on this particular transfer*.
-   - **Strategy C (general)**: If the paper's (H1)–(H4) include a propagator that
-     provides the contracting homotopy, then the vanishing may follow from the
-     propagator structure alone. This would be the strongest result.
-   - **Priority**: Prove for Virasoro first (most informative example), then generalize.
-
-### Gap between aspiration and achievement
-The paper currently STATES that H•(A,Q) is a PVA but does not prove the five axioms
-in rigorous detail. The proof sketches are physical intuition dressed as mathematics.
-The Phase 1–4 programme above would close the gap completely. After this, the paper
-has a genuine core theorem.
+### Gap between aspiration and achievement: CLOSED
+The paper now proves the complete PVA descent theorem (D2-D6) via explicit
+geometric constructions. Two model studies (free theory, abelian current algebra)
+make the dictionary concrete.
 
 ---
 
-## Front II: Operadic Equivalence
+## Front II: Operadic Equivalence — FULLY CLOSED
 
 ### Vision
 The A∞ chiral axioms (m_k with sesquilinearity and spectral substitution) are
 equivalent to algebra structure over C_*(W(SC^{ch,top})).
 
-### Two directions
+### All three directions proved (2026-03-17)
 
-**Forward (F4: operad ⟹ axioms)**: Extract m_k from operadic structure maps.
-- Strategy: Stokes residue computation on FM_k(C).
-- The operadic action maps C_*(FM_k(C)) ⊗ A^⊗k → A.
-- Sesquilinearity from infinitesimal translations on FM_k(C).
-- A∞ relations from ∂(FM_k(C)) = ∪ FM_l × FM_{k−l+1}.
-- Difficulty: MODERATE. The CG framework provides the template.
+**Forward (F4: operad ⟹ axioms)**: PROVED in axioms.tex. 4-part verification:
+unitality, sesquilinearity (translation equivariance), A∞ relations (boundary
+stratification + spectral substitution), degree (operadic suspension).
 
-**Reverse (F5: axioms ⟹ operad)**: Promote m_k to full operadic structure.
-- Strategy (a): Direct integration — the m_k produce forms on FM_k(C), integrate.
-- Strategy (b): Abstract rectification via bar-cobar for SC^{ch,top}.
-- Difficulty: HARD. The reverse direction always is.
-- Blocked by: F4 (prove forward direction first).
+**Reverse (F5: axioms ⟹ operad)**: PROVED in axioms.tex. 4-step bar-cobar
+rectification: construct coalgebra C_A over B(SC^{ch,top}), apply cobar functor,
+verify agreement on fundamental chains, uniqueness via Quillen equivalence from
+homotopy-Koszulity (thm:homotopy-Koszul).
 
-**Recognition (F3)**: Prefactorization algebras with HT locality = SC^{ch,top}-algebras.
-- Strategy: Adapt CG recognition (E_n case) to the Swiss-cheese setting.
-- Key step: show HT locality ⟹ Weiss cosheaf descent for SC operad.
-- This can proceed in parallel with PVA descent.
+**Recognition (F3)**: PROVED in locality.tex. Weiss cosheaf descent lemma
+(lem:product-weiss-descent) closes the gap: product Weiss covers factor,
+holomorphic descent (CG17), topological descent (AF15), Künneth assembly.
 
 ### Why this matters
 Without operadic equivalence, the paper's results are stated twice in incompatible

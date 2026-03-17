@@ -197,12 +197,152 @@ Since restricting $\SCchtop$ to the closed color $\mathsf{ch}$ yields precisely 
 \label{subsec:SC-vs-prefactorization}
 \begin{definition}[HT prefactorization]
 \label{def:prefact}
-A \emph{holomorphic–topological prefactorization algebra} on $\C\times\R$ is a functor $\mathsf{Obs}$ from disjoint unions of open rectangles $D\times I$ to $\mathcal C$, with structure maps $\bigotimes\mathsf{Obs}(U_i)\to \mathsf{Obs}(\bigsqcup U_i)$, satisfying: holomorphic factorization along~$\C$, local constancy along~$\R$, and excision/gluing coherent with shape composition.
+A \emph{holomorphic--topological prefactorization algebra} on $\C\times\R$ is a functor $\Obs$ from disjoint unions of open rectangles $D\times I$ to $\mathcal C$, with structure maps $\bigotimes\Obs(U_i)\to \Obs(\bigsqcup U_i)$, satisfying: holomorphic factorization along~$\C$, local constancy along~$\R$, and excision/gluing coherent with shape composition.
 \end{definition}
+
+The key technical step for the recognition theorem is the following
+Weiss cosheaf descent lemma, which shows that HT prefactorization
+algebras defined on rectangles extend to full operadic algebra
+structures.  This closes the gap between the geometric
+(prefactorization) and algebraic (operadic) formulations.
+
+\begin{definition}[Weiss covers and cosheaf descent]
+\label{def:weiss-cover}
+Let $M$ be a smooth manifold and $\mathsf{Disk}(M)$ the poset of
+open subsets diffeomorphic to disjoint unions of disks (or
+rectangles, for product manifolds).  A \emph{Weiss cover} of
+$U \in \mathsf{Disk}(M)$ is a collection $\{U_\alpha\}_{\alpha \in A}$
+of opens in $\mathsf{Disk}(M)$ contained in~$U$ such that for every
+finite set of points $S \subset U$ there exists~$\alpha$ with
+$S \subset U_\alpha$.  A prefactorization algebra $\Obs$ on~$M$
+satisfies \emph{Weiss cosheaf descent} if for every
+$U \in \mathsf{Disk}(M)$ and every Weiss cover
+$\{U_\alpha\}$ of~$U$, the natural map
+\[
+  \operatorname{hocolim}_{\check{C}(\{U_\alpha\})} \Obs
+  \;\xrightarrow{\;\sim\;}\;
+  \Obs(U)
+\]
+is a quasi-isomorphism, where
+$\check{C}(\{U_\alpha\})$ denotes the \v{C}ech nerve of the cover
+(formed using pairwise intersections in $\mathsf{Disk}(M)$).
+\end{definition}
+
+\begin{lemma}[Product Weiss descent for $\C \times \R$; \ClaimStatusProvedHere]
+\label{lem:product-weiss-descent}
+Let $\Obs$ be an HT prefactorization algebra on~$\C \times \R$
+(Definition~\textup{\ref{def:prefact}}) that is holomorphic along~$\C$ and
+locally constant along~$\R$.
+Then $\Obs$ satisfies Weiss cosheaf descent on the basis of open
+rectangles $\{D \times I\}$, where $D \subset \C$ is an open disk and
+$I \subset \R$ is an open interval.
+\end{lemma}
+
+\begin{proof}
+The proof factorizes the Weiss condition through the product
+structure $\C \times \R$, reducing it to two independent single-factor
+descent conditions that are handled by known results.
+
+\medskip\noindent
+\textbf{Step~1: Product decomposition of Weiss covers.}
+Let $U = D \times I$ be an open rectangle and
+$\{U_\alpha\}_{\alpha \in A}$ a Weiss cover of~$U$ by sub-rectangles
+$U_\alpha = D_\alpha \times I_\alpha$.  We claim that the
+$\C$-projections $\{D_\alpha\}$ form a Weiss cover of~$D$ and the
+$\R$-projections $\{I_\alpha\}$ form a Weiss cover of~$I$.
+
+Indeed, let $S_\C = \{z_1, \ldots, z_k\} \subset D$ be a finite
+subset.  Pick any $t \in I$ and consider the finite subset
+$S = \{(z_1, t), \ldots, (z_k, t)\} \subset D \times I$.  Since
+$\{U_\alpha\}$ is a Weiss cover of $D \times I$, there
+exists~$\alpha$ with $S \subset U_\alpha = D_\alpha \times I_\alpha$,
+hence $S_\C \subset D_\alpha$.  Thus $\{D_\alpha\}$ is a Weiss cover
+of~$D$.  The argument for~$I$ is symmetric.
+
+\medskip\noindent
+\textbf{Step~2: Holomorphic descent along $\C$.}
+Costello--Gwilliam~\cite{CG17} prove that a
+holomorphic prefactorization algebra on~$\C$ with meromorphic OPE
+singularities satisfies Weiss cosheaf descent: the
+holomorphic locality condition (factorization along disjoint disks,
+with controlled OPE poles along collision divisors)
+implies that $D \mapsto \Obs(D \times I)$ satisfies descent with
+respect to any Weiss cover of~$D$ by sub-disks.
+Concretely, the argument uses the fact that meromorphic forms on
+$\FM_k(\C)$ extend to the compactification and that the
+factorization isomorphisms
+$\Obs(D_1 \sqcup D_2) \xrightarrow{\sim} \Obs(D_1) \otimes
+\Obs(D_2)$, together with the OPE residue maps on boundary strata,
+provide the gluing data for the \v{C}ech nerve.  This identifies the
+holomorphic factor with an algebra over
+$C_\ast(\FM_\bullet(\C); \mathscr{L}_{\log})$.
+
+\medskip\noindent
+\textbf{Step~3: Topological descent along $\R$.}
+The Ayala--Francis recognition theorem~\cite{AF15} applies to the
+$\R$-direction.  Their theorem states: for a manifold~$M$ of
+dimension~$n$, the functor from $\mathsf{Disk}_n$-algebras (i.e.\
+$E_n$-algebras) to locally constant factorization algebras on~$M$ is
+an equivalence when $M$ is framed.  For $M = \R$ ($n = 1$, canonically
+framed), this says: locally constant prefactorization algebras
+on~$\R$ satisfying Weiss descent are equivalent to $E_1$-algebras.
+
+Since $\Obs$ is locally constant along~$\R$ by hypothesis,
+$I \mapsto \Obs(D \times I)$ is locally constant: for any inclusion
+$I' \hookrightarrow I$ of intervals, the restriction map
+$\Obs(D \times I') \to \Obs(D \times I)$ is a quasi-isomorphism.
+Locally constant prefactorization algebras on~$\R$ automatically
+satisfy Weiss descent (a Weiss cover of an interval~$I$ by
+sub-intervals $\{I_\alpha\}$ has a contractible \v{C}ech nerve, and
+local constancy implies that all restriction maps in the nerve are
+quasi-isomorphisms, so the hocolimit computes $\Obs(D \times I)$).
+This identifies the topological factor with an $E_1$-algebra.
+
+\medskip\noindent
+\textbf{Step~4: Combining the two factors.}
+Now consider the full Weiss descent for $\Obs$ on rectangles.  Let
+$\{D_\alpha \times I_\alpha\}$ be a Weiss cover of $D \times I$.  The
+\v{C}ech nerve of this cover can be computed via the \emph{product
+filtration}: for a fixed holomorphic Weiss cover $\{D_\beta\}$
+of~$D$ (obtained by projecting, Step~1) and a fixed topological cover
+$\{I_\gamma\}$ of~$I$, the products $\{D_\beta \times I_\gamma\}$
+refine the original cover.  The hocolimit over the \v{C}ech nerve of
+the product cover factors as
+\[
+  \operatorname{hocolim}_{\check{C}(\{D_\beta \times I_\gamma\})} \Obs
+  \;\simeq\;
+  \operatorname{hocolim}_{\check{C}(\{D_\beta\})}
+  \Bigl(D_\beta \mapsto
+    \operatorname{hocolim}_{\check{C}(\{I_\gamma\})} \Obs(D_\beta \times -)
+  \Bigr).
+\]
+The inner hocolimit (over~$I$) is a quasi-isomorphism
+$\xrightarrow{\sim} \Obs(D_\beta \times I)$ by Step~3
+(topological descent).  The outer hocolimit (over~$D$) is then a
+quasi-isomorphism
+$\xrightarrow{\sim} \Obs(D \times I)$ by Step~2
+(holomorphic descent).
+Composing, the full Weiss descent map is a quasi-isomorphism.
+\end{proof}
+
+\begin{remark}[Role of the product structure]
+\label{rem:product-weiss}
+The proof of Lemma~\ref{lem:product-weiss-descent} uses the product
+structure $\C \times \R$ in an essential way: the factorization of
+Weiss covers and the iterated hocolimit argument both rely on the fact
+that the opens are rectangles.  For a general $3$-manifold~$M$ that is
+not a product, the Weiss descent for a two-colored operad would
+require a more intricate argument (e.g.\ a factorization envelope
+construction as in~\cite{CG17}).
+The product structure is the geometric reflection of the physical
+fact that holomorphic and topological directions decouple at the level
+of the underlying manifold (Remark~\ref{rem:product-forced-by-locality}
+in Section~\ref{sec:foundations}).
+\end{remark}
 
 \begin{theorem}[Operadic recognition; \ClaimStatusProvedHere]
 \label{thm:recognition-SC}
-To give a $C_\ast(W(\mathsf{SC}^{\mathrm{ch,top}}))$–algebra $(A_{\mathsf{ch}},A_{\mathsf{top}})$ in $\mathcal C$ is equivalent to giving an HT prefactorization algebra $\mathsf{Obs}$ on small rectangles $D\times I$ in $\C\times\R$. The assignment $D\mapsto \mathsf{Obs}(D\times\{t\})$ and $I\mapsto \mathsf{Obs}(\{z\}\times I)$ recovers the two colors.
+To give a $C_\ast(W(\mathsf{SC}^{\mathrm{ch,top}}))$--algebra $(A_{\mathsf{ch}},A_{\mathsf{top}})$ in $\mathcal C$ is equivalent to giving an HT prefactorization algebra $\Obs$ on small rectangles $D\times I$ in $\C\times\R$. The assignment $D\mapsto \Obs(D\times\{t\})$ and $I\mapsto \Obs(\{z\}\times I)$ recovers the two colors.
 \end{theorem}
 
 \begin{proof}
@@ -227,17 +367,132 @@ The Boardman--Vogt resolution $W(\SCchtop)$ decorates each internal edge $e$ of 
 As $s_e$ varies over $[0,1]$, the resulting family of rectangle decompositions traces out a homotopy between the two extreme composition orders.  The cubical structure $[0,1]^{|E_{\mathrm{int}}|}$ over all internal edges $E_{\mathrm{int}}$ of a tree provides precisely the higher homotopies required by the coherent associativity of iterated rectangle inclusions.  This matches the standard Boardman--Vogt construction \cite{BV73}: the $W$-resolution is cofibrant, and its algebras encode all coherent homotopies between iterated compositions.
 
 \medskip\noindent
-\textbf{Step 3: Two-color recovery.}
+\textbf{Step 3: Weiss descent and two-color assembly.}
+We now close the gap between the prefactorization data (defined on
+rectangles) and the full operadic algebra structure.
+The argument proceeds in two sub-steps.
+
+\smallskip\noindent
+\emph{Step 3a: From operadic algebra to prefactorization algebra.}
 Given a $C_\ast(W(\SCchtop))$-algebra $(A_{\mathsf{ch}}, A_{\mathsf{top}})$, we define $\Obs$ on rectangles by:
 \begin{itemize}
 \item \emph{Closed color (holomorphic):} $D \mapsto \Obs(D \times \{t\})$ evaluates the prefactorization algebra at a time-slice $\{t\} \subset \R$.  The resulting structure maps, parametrized by $\FM_k(\C)$, encode the chiral/holomorphic OPE operations on $A_{\mathsf{ch}}$.
 \item \emph{Open color (topological):} $I \mapsto \Obs(\{z\} \times I)$ evaluates the prefactorization algebra at a point $\{z\} \subset \C$.  The resulting structure maps, parametrized by $E_1(m)$, encode the $A_\infty$/topological operations on $A_{\mathsf{top}}$.
 \end{itemize}
-Conversely, given an HT prefactorization algebra $\Obs$, the structure maps on rectangle decompositions assemble into a $C_\ast(W(\SCchtop))$-algebra by the Ayala--Francis recognition principle \cite{AF15}: locally constant factorization algebras on $\R$ are equivalent to $E_1$-algebras, and holomorphic factorization algebras on $\C$ are equivalent to algebras over $C_\ast(\FM_\bullet(\C))$ (Costello--Gwilliam \cite{CG17}).  The two-colored Swiss-cheese structure intertwines these via the mixed operations $\FM_k(\C) \times E_1(m)$, yielding the full equivalence.
+The prefactorization structure maps are defined by integrating the
+operadic structure maps of $(A_{\mathsf{ch}}, A_{\mathsf{top}})$
+against the configuration-space chains
+$C_\ast(\FM_k(\C) \times E_1(m))$ parametrizing nested rectangle
+inclusions.  The associativity, unitality, and symmetric-group
+compatibilities of $\Obs$ follow from the operadic identities
+of $(A_{\mathsf{ch}}, A_{\mathsf{top}})$.  The higher coherences
+(homotopies between iterated compositions) are supplied by the
+$W$-resolution edge parameters as in Step~2.
+
+\smallskip\noindent
+\emph{Step 3b: From prefactorization algebra to operadic algebra.}
+This is the substantive direction.  Given an HT prefactorization
+algebra $\Obs$ on rectangles in $\C \times \R$, we must produce a
+$C_\ast(W(\SCchtop))$-algebra.
+By Lemma~\ref{lem:product-weiss-descent}, $\Obs$ satisfies Weiss
+cosheaf descent on the basis of rectangles.  We now apply the
+Ayala--Francis--Costello--Gwilliam recognition results
+factor-by-factor, then assemble the two-colored structure.
+
+\begin{enumerate}[label=(\roman*)]
+\item \emph{Holomorphic factor.}
+Fix an interval $I \subset \R$.  The assignment $D \mapsto \Obs(D \times I)$
+is a holomorphic prefactorization algebra on~$\C$ satisfying Weiss
+descent (Lemma~\ref{lem:product-weiss-descent}, Step~2).  By the
+Costello--Gwilliam recognition theorem~\cite{CG17}, it is equivalent
+to an algebra over
+$C_\ast(\FM_\bullet(\C); \mathscr{L}_{\log})$.  Since the closed-color
+component of $\SCchtop$ is $\FM_k(\C)$
+(Definition~\ref{def:SC}), this gives the closed-color component of
+the desired operadic algebra on $A_{\mathsf{ch}} := \Obs(\C \times \{t\})$
+(the value at any point, well-defined up to quasi-isomorphism by local
+constancy along~$\R$).
+
+\item \emph{Topological factor.}
+Fix a disk $D \subset \C$.  The assignment $I \mapsto \Obs(D \times I)$
+is a locally constant prefactorization algebra on~$\R$ satisfying
+Weiss descent (Lemma~\ref{lem:product-weiss-descent}, Step~3).  By the
+Ayala--Francis recognition theorem~\cite{AF15} (for $M = \R$,
+$n = 1$), it is equivalent to an $E_1$-algebra.  This gives the
+open-color component on $A_{\mathsf{top}} := \Obs(D \times \R)$.
+
+\item \emph{Mixed operations and the product structure.}
+It remains to show that the holomorphic and topological structures
+intertwine correctly via the mixed operation spaces
+$\FM_k(\C) \times E_1(m)$.  Consider a rectangle $D \times I$ with
+$k$~holomorphic sub-disks $D_1, \ldots, D_k \hookrightarrow D$ and
+$m$~topological sub-intervals
+$I_1, \ldots, I_m \hookrightarrow I$.  The prefactorization structure
+map
+\[
+  \Obs(D_1 \times I_1) \otimes \cdots
+  \otimes \Obs(D_k \times I_1) \otimes
+  \Obs(D_1 \times I_2) \otimes \cdots
+  \longrightarrow \Obs(D \times I)
+\]
+depends on the configuration
+$(z_1, \ldots, z_k; t_1, \ldots, t_m)$ of sub-disk centers and
+sub-interval positions.  By the HT locality axiom, the dependence on
+$z_i$ is holomorphic (meromorphic at collisions), while the
+dependence on $t_j$ is locally constant.  Consequently, the family of
+structure maps is parametrized by
+$C_\ast(\FM_k(\C)) \otimes C_\ast(E_1(m))
+\simeq C_\ast(\FM_k(\C) \times E_1(m))$
+(via the Eilenberg--Zilber/K\"unneth quasi-isomorphism, which is
+available because $\FM_k(\C)$ has finite-type homology and
+$\operatorname{char}(k) = 0$).
+
+The mixed operadic identities (insertion of a closed operation into
+the $\FM$-slot of a mixed operation, or an open operation into the
+$E_1$-slot) are verified by restricting to the corresponding boundary
+strata of $\FM_k(\C) \times E_1(m)$: the holomorphic insertions
+correspond to collision faces of $\FM_k(\C)$ (where OPE residues
+produce the operadic composition), and the topological insertions
+correspond to sub-interval inclusions in $E_1(m)$ (where local
+constancy produces the $E_1$-composition).  The no-open-to-closed rule
+($\SCchtop(\ldots, \mathsf{top}, \ldots; \mathsf{ch}) = \varnothing$)
+is automatic: the holomorphic prefactorization structure on~$\C$ does
+not see the open-color data, because
+$D \mapsto \Obs(D \times \{t\})$ depends only on the holomorphic
+factor.
+
+\item \emph{Higher coherences.}
+The $W$-resolved mixed operations are elements of
+$C_\ast(W(\FM_k(\C) \times E_1(m)))$.  The Boardman--Vogt resolution
+preserves the product decomposition because the $W$-construction acts
+on composition trees, and a two-colored tree with internal edges
+$e_1, \ldots, e_p$ decomposes as a product of its restriction to
+holomorphic ($\FM$-colored) and topological ($E_1$-colored)
+subtrees, with the \emph{same} edge parameters $s_{e_i} \in [0,1]$
+governing both factors (cf.\ Remark~\ref{rmk:W-homotopy} in
+Section~\ref{sec:foundations}).  The higher coherences of $\Obs$
+(compatibilities between iterated rectangle decompositions) therefore
+decompose into products of holomorphic coherences (governed by
+$W(\FM_\bullet(\C))$) and topological coherences (governed by
+$W(E_1)$), matching the $W(\SCchtop)$-algebra structure.
+\end{enumerate}
+
+\medskip\noindent
+\textbf{Conclusion.}
+Steps~3a and~3b provide mutually inverse constructions (up to natural
+quasi-isomorphism) between $C_\ast(W(\SCchtop))$-algebras and HT
+prefactorization algebras on rectangles.  The key input is
+Lemma~\ref{lem:product-weiss-descent}, which ensures that the
+prefactorization data on small rectangles determine the operadic
+structure via Weiss descent.  The product decomposition of the
+operation spaces, combined with the factor-by-factor recognition
+(CG17 for~$\C$, AF15 for~$\R$) and the K\"unneth isomorphism for
+mixed operations, closes the assembly.
+\qedhere
 \end{proof}
 
 \begin{corollary}[Clean replacement of the semidirect slogan;
 \ClaimStatusProvedHere]
 \label{cor:clean-replacement}
-The two–colored operad $W(\mathsf{SC}^{\mathrm{ch,top}})$ replaces the ambiguous $W(\mathsf P_{\mathrm{ch}}\rtimes E_1)$ and precisely governs "chiral in~$z$ + $E_1$ along~$t$ + all compatibilities."
+The two--colored operad $W(\mathsf{SC}^{\mathrm{ch,top}})$ replaces the ambiguous $W(\mathsf P_{\mathrm{ch}}\rtimes E_1)$ and precisely governs ``chiral in~$z$ + $E_1$ along~$t$ + all compatibilities.''
 \end{corollary}

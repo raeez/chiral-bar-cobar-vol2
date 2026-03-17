@@ -267,7 +267,11 @@ The following data are equivalent:
 \begin{proof}
 The proof assembles three independently established recognition
 results via the product decomposition of the operation spaces of
-$\mathsf{SC}^{\mathrm{ch,top}}$.
+$\mathsf{SC}^{\mathrm{ch,top}}$.  The key technical input is the
+Weiss cosheaf descent lemma
+(Lemma~\ref{lem:product-weiss-descent}), which shows that HT
+prefactorization algebras on rectangles satisfy descent and hence
+determine operadic algebra structures.
 
 \medskip\noindent
 \textbf{Step~1: Closed-color recognition (holomorphic).}
@@ -287,10 +291,16 @@ $A_{\mathsf{ch}}$.
 \medskip\noindent
 \textbf{Step~2: Open-color recognition (topological).}
 The Ayala--Francis recognition theorem~\cite{AF15} identifies
-locally constant factorization algebras on~$\mathbb R$ with
+locally constant factorization algebras on~$\mathbb R$ satisfying
+Weiss cosheaf descent with
 $E_1$-algebras (associative algebras up to coherent homotopy).
 Condition~(ii)(b) is therefore equivalent to giving the open-color
 component of the algebra structure on $A_{\mathsf{top}}$.
+The descent condition is verified by
+Lemma~\ref{lem:product-weiss-descent}, Step~3: locally constant
+prefactorization algebras on~$\R$ automatically satisfy Weiss descent
+because the \v{C}ech nerve of any Weiss cover by intervals is
+contractible and all restriction maps are quasi-isomorphisms.
 
 \medskip\noindent
 \textbf{Step~3: Two-colored assembly via the product decomposition.}
@@ -347,10 +357,41 @@ presence of the open color, so the two single-colored recognitions
 compose without obstruction.
 
 \medskip\noindent
+\textbf{Step~4: Weiss descent for the mixed operations.}
+The remaining content is the converse direction: given an HT
+prefactorization algebra $\Obs$ satisfying (ii)(a)--(c), we must
+produce the mixed operadic structure maps
+$C_\ast(\FM_k(\C) \times E_1(m)) \otimes A_{\mathsf{ch}}^{\otimes k}
+\otimes A_{\mathsf{top}}^{\otimes m} \to A_{\mathsf{top}}$.
+By Lemma~\ref{lem:product-weiss-descent}, $\Obs$ satisfies Weiss
+cosheaf descent on the basis of rectangles
+$\{D \times I\}$.  The product Weiss descent argument
+(Lemma~\ref{lem:product-weiss-descent}, Step~4) shows that the
+\v{C}ech nerve of any Weiss cover of $D \times I$ by sub-rectangles
+computes $\Obs(D \times I)$ via an iterated hocolimit that factors
+through the holomorphic and topological directions independently.
+The mixed structure maps are then read off from the factorization
+structure on rectangles $D_1 \sqcup \cdots \sqcup D_k \times
+I_1 \sqcup \cdots \sqcup I_m \hookrightarrow D \times I$:
+the holomorphic dependence on disk positions is governed by
+$C_\ast(\FM_k(\C))$ (by Step~1 and condition~(ii)(a)),
+the topological dependence on interval positions is governed by
+$C_\ast(E_1(m))$ (by Step~2 and condition~(ii)(b)),
+and the K\"unneth quasi-isomorphism
+$C_\ast(\FM_k(\C)) \otimes C_\ast(E_1(m)) \simeq
+C_\ast(\FM_k(\C) \times E_1(m))$
+(valid in characteristic zero with finite-type homology)
+assembles these into the required mixed operation maps.
+Higher coherences are supplied by the $W$-resolution as in Step~3.
+
+\medskip\noindent
 \textbf{Conclusion.}
-Assembling the three items via the product decomposition of the
-$W$-resolved operation spaces yields the equivalence between~(i)
-and~(ii).\qedhere
+Assembling the four steps yields the equivalence between~(i)
+and~(ii): the product decomposition of the operation spaces
+(Step~3), the factor-by-factor recognition (Steps~1--2), the Weiss
+cosheaf descent (Step~4 via
+Lemma~\ref{lem:product-weiss-descent}), and the K\"unneth assembly
+of mixed operations complete the proof.\qedhere
 \end{proof}
 
 \begin{remark}[Structure of the proof]
@@ -359,13 +400,16 @@ The proof rests on three independently established results: the
 Costello--Gwilliam holomorphic recognition~\cite{CG17}, the
 Ayala--Francis topological recognition~\cite{AF15}, and the
 Berger--Moerdijk / Caviglia model structure for colored
-operads~\cite{BM03,CM14}.  The
-\emph{product decomposition} of the operation spaces of
-$\mathsf{SC}^{\mathrm{ch,top}}$ together with the \emph{retract
-property} of the closed color.  These two structural features reduce
+operads~\cite{BM03,CM14}.  Two structural features reduce
 the two-colored recognition to the product of two single-colored
-recognitions plus a compatibility datum, and the compatibility datum
-is precisely condition~(ii)(c).
+recognitions plus a compatibility datum: the
+\emph{product decomposition} of the operation spaces of
+$\mathsf{SC}^{\mathrm{ch,top}}$ and the \emph{retract
+property} of the closed color.  The compatibility datum
+is precisely condition~(ii)(c).  The Weiss cosheaf descent lemma
+(Lemma~\ref{lem:product-weiss-descent}) closes the remaining gap by
+showing that the prefactorization data on small rectangles determine
+the full operadic structure.
 \end{remark}
 
 \begin{remark}[Comparison with the BD chiral operad]
@@ -402,7 +446,7 @@ observables obey:
 \end{assumption}
 
 \begin{proposition}[Compatibility with $W(\mathsf{SC}^{\mathrm{ch,top}})$;
-\ClaimStatusProvedHere]
+\ClaimStatusConditional]
 \label{prop:compatibility}
 Under Assumption~\ref{ass:H1-H4}, the perturbative BV observables form a
 holomorphic–topological prefactorization algebra on $\mathbb C\times\mathbb R$ that is locally

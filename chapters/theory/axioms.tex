@@ -356,7 +356,51 @@ The $m_k$ produced by the $W(\mathsf{SC}^{\mathrm{ch,top}})$--action satisfy the
 \end{proposition}
 
 \begin{proof}
-Unitality is inherited from the operadic units in $\FM_1(\C)$ and $E_1(1)$. Sesquilinearity follows from Lemma~\ref{lem:sesquilinearity_explicit}, where the spectral parameter convention is that $\lambda_i$ records the difference $z_i - z_{i+1}$; this arises from the holomorphic translation action: $z\mapsto z+\epsilon$ induces \eqref{eq:sesqui-left}--\eqref{eq:sesqui-right}. The $A_\infty$ relations \eqref{eq:ainfty-relation-raw} are Stokes' identities on the boundary stratification of $\FM_k(\C)$ with the spectral substitution reflecting the block collapse (Remark~\ref{rmk:spectral-substitution}).
+Let $(A_{\mathsf{ch}}, A_{\mathsf{top}})$ be a $C_\ast(W(\mathsf{SC}^{\mathrm{ch,top}}))$-algebra with operad action $\rho$, and let $m_k$ be defined by evaluation on fundamental chains as in \S\ref{subsec:operad-to-mk}:
+\[
+m_k(a_1,\ldots,a_k) := \bigl\langle \rho\bigl([\FM_k(\C)] \times [E_1(\mathrm{ord})]\bigr),\, a_1 \otimes \cdots \otimes a_k \bigr\rangle.
+\]
+We verify each axiom of Definition~\ref{def:ainfty_chiral}.
+
+\medskip
+\textbf{(I) Unitality.}
+The operadic unit in $\mathsf{SC}^{\mathrm{ch,top}}$ is the identity element $\mathbf{1} \in \mathsf{SC}^{\mathrm{ch,top}}(1)$, represented by the point $\FM_1(\C) = \mathrm{pt}$. By the operadic unit axiom, $\rho(\mathbf{1}) = \mathrm{id}_A$, so $m_1(\mathbf{1}) = Q(\mathbf{1}) = 0$ (since the differential on the operad restricts to zero on the unit). For $m_2$: the operadic composition $\mathbf{1} \circ_1 c_2 = c_2 = c_2 \circ_2 \mathbf{1}$ (inserting the unit into either slot of the binary corolla) gives $m_2(\mathbf{1}, a) = a$ and $m_2(a, \mathbf{1}) = (-1)^{|a|} a$, where the sign arises from the Koszul rule for the degree-$(-1)$ operation $m_2$ passing element $a$. For $k \geq 3$: the operadic composition $c_k \circ_i \mathbf{1}$ factors through $c_{k-1}$ by the operadic unit law, but the corollas $c_k$ for distinct $k$ are independent generators of $W(\mathsf{SC}^{\mathrm{ch,top}})$, and the unit insertion collapses $c_k \circ_i \mathbf{1}$ to a face of the $W$-construction with Boardman--Vogt parameter $s = 0$, which is $\partial$-exact. Hence $m_k(\ldots, \mathbf{1}, \ldots) = 0$ for $k \geq 3$. This establishes~\eqref{eq:unit-axioms}--\eqref{eq:unit-higher}.
+
+\medskip
+\textbf{(II) Sesquilinearity from translation equivariance.}
+The group $\C$ acts on $\FM_k(\C)$ by simultaneous translation $z_i \mapsto z_i + w$, and this action is compatible with the operad structure. The operator $\partial \colon A \to A$ is the infinitesimal generator of the $\C$-action on $A$ via $\rho$.
+
+For the $i$-th input ($1 \leq i \leq k-1$), consider translating only the $i$-th insertion point: $z_i \mapsto z_i + \varepsilon$. This changes the relative coordinate $\lambda_i = z_i - z_{i+1}$ by $+\varepsilon$, while the generating function for $m_k$ transforms as $m_k \mapsto e^{-\varepsilon \lambda_i} m_k$ (the spectral parameter $\lambda_i$ is conjugate to $z_i - z_{i+1}$). Taking the infinitesimal ($\varepsilon \to 0$) and using $\partial a_i = \lim_{\varepsilon \to 0}(a_i(z_i+\varepsilon) - a_i(z_i))/\varepsilon$:
+\[
+m_k(a_1,\ldots,\partial a_i,\ldots,a_k) = -\lambda_i \cdot m_k(a_1,\ldots,a_k), \qquad 1 \leq i \leq k-1,
+\]
+establishing~\eqref{eq:sesqui-left}. For the last input ($i = k$): shifting $z_k \mapsto z_k + \varepsilon$ changes every $\lambda_j = z_j - z_{j+1}$ for $j < k$ (specifically, $\lambda_{k-1}$ shifts by $-\varepsilon$), and the output evaluation point shifts by $+\varepsilon$. The infinitesimal action on the output is $\partial$, while the total spectral shift is $e^{+\varepsilon(\lambda_1+\cdots+\lambda_{k-1})}$ (since each $z_j - z_k$ increases by $\varepsilon$). Combining:
+\[
+m_k(a_1,\ldots,\partial a_k) = (\lambda_1 + \cdots + \lambda_{k-1} + \partial)\, m_k(a_1,\ldots,a_k),
+\]
+establishing~\eqref{eq:sesqui-right}. This also follows from Lemma~\ref{lem:sesquilinearity_explicit} after reconciling the consecutive-difference and independent-parameter conventions.
+
+\medskip
+\textbf{(III) $A_\infty$ relations and spectral substitution from boundary faces.}
+The differential on $C_\ast(W(\mathsf{SC}^{\mathrm{ch,top}}))$ is the boundary operator $\partial$ on chains of the Boardman--Vogt resolution. On the fundamental chain $[\FM_k(\C)]$, the boundary is $\partial[\FM_k(\C)] = \sum_S \epsilon_{D_S}\,[D_S]$, summing over collision divisors $D_S$ with $|S| \geq 2$. Since $\rho$ is a chain map ($\rho \circ \partial = d \circ \rho$, where $d$ on $\End(A)$ is the commutator with $Q$), applying $\rho$ to both sides gives:
+\[
+d\bigl(\rho([\FM_k(\C)])\bigr) = \sum_S \epsilon_{D_S}\, \rho([D_S]).
+\]
+Each face $D_S \cong \FM_{k-|S|+1}(\C) \times \FM_{|S|}(\C)$ factorizes $\rho$ by operadic composition:
+\[
+\rho([D_S]) = \rho([\FM_{k-|S|+1}(\C)]) \circ_{\mathrm{ins}} \rho([\FM_{|S|}(\C)]) = m_{k-|S|+1}(\ldots, m_{|S|}(\ldots), \ldots).
+\]
+The identity $d^2 = 0$ on $\End(A)$ (equivalently $\partial^2 = 0$ on chains) then yields
+\[
+0 = d^2\bigl(\rho([\FM_k(\C)])\bigr) = \sum_{i+j=k+1}\sum_{s=0}^{k-j} (-1)^{\epsilon(s,j)}\, m_i(\ldots, m_j(\ldots), \ldots),
+\]
+which is the $A_\infty$ identity~\eqref{eq:ainfty-relation-raw}. (Only consecutive subsets $S$ contribute, by Theorem~\ref{thm:stokes_arnold}, Step~5.)
+
+The \emph{spectral substitution} law follows from the geometry of the boundary identification. On $D_S$ for $S = \{s{+}1,\ldots,s{+}\ell\}$, the cluster center $u_S$ replaces the $\ell$ points of $S$ by a single effective point. The relative coordinate from $u_S$ to the next external point is $u_S - z_{s+\ell} = \sum_{p=s+1}^{s+\ell-1}(z_p - z_{p+1}) = \Lambda_S$, so the outer operation receives effective spectral parameter $\Lambda_S = \lambda_{s+1} + \cdots + \lambda_{s+\ell-1}$, while the remaining outer parameters are unchanged. This matches the spectral substitution in~\eqref{eq:ainfty-relation-raw} and Remark~\ref{rmk:spectral-substitution}.
+
+\medskip
+\textbf{(IV) Degree.}
+The degree of $m_k$ is $1 - k$, arising from the operadic suspension: the fundamental chain $[\FM_k(\C)] \times [E_1(\mathrm{ord})]$ has dimension $2(k-1) + (k-1) = 3(k-1)$ (before quotienting by translations/dilations), and after the dimension reduction and the operadic degree shift, $\deg(m_k) = 1 - k$ as in~\eqref{eq:mk-type}.
 \end{proof}
 
 \subsubsection{Rectification: from axioms to a $W(\mathsf{SC}^{\mathrm{ch,top}})$--algebra}
@@ -378,34 +422,207 @@ Assume $A$ is tame in the sense of Definition~\ref{def:tameness}. Then there exi
 \end{theorem}
 
 \begin{proof}
-We construct the $C_\ast\!\bigl(W(\mathsf{SC}^{\mathrm{ch,top}})\bigr)$--algebra structure in three steps.
+The proof proceeds in four steps: construct a coalgebra over the bar
+cooperad $\mathbf{B}(\mathsf{SC}^{\mathrm{ch,top}})$ from the tame
+$A_\infty$ data, apply the cobar functor to obtain a strict operad
+algebra, verify agreement on fundamental chains, and invoke
+homotopy--Koszulity for essential uniqueness.
 
-\textbf{Step 1 (Structure maps on corollas).}
-For each $k \ge 1$, the corolla $c_k$ (the tree with one vertex and $k$ leaves) represents a generator of $W(\mathsf{SC}^{\mathrm{ch,top}})$. Define the structure map
+\medskip
+\textbf{Step 1 (Bar coalgebra from tame $A_\infty$ data).}
+The tame $A_\infty$ chiral data $(Q, \partial, \{m_k\}_{k \ge 1})$
+define a codifferential on the cofree conilpotent graded coalgebra
 \[
-\rho(c_k) : C_\ast(\FM_k(\C)) \otimes C_\ast(E_1(\text{ord})) \otimes A^{\otimes k} \longrightarrow A((\lambda_1))\cdots((\lambda_{k-1}))
+  \mathcal{C}_A \;:=\; T^c\!\bigl(s^{-1}\bar{A}\bigr)
+  \;=\; \bigoplus_{n \ge 1} (s^{-1}\bar{A})^{\otimes n},
 \]
-by sending the fundamental chain $[\FM_k(\C)] \times [\text{ord}]$ to the given operation $m_k$. The spectral parameters $\lambda_i$ encode the Laurent expansion of the log--forms on $\FM_k(\C)$ via the residue pairing, and the $E_1$ factor records the time--ordering of inputs along $\R$.
-
-\textbf{Step 2 (Extension to trees via grafting).}
-A general element of $W(\mathsf{SC}^{\mathrm{ch,top}})$ is a tree $T$ with internal edges carrying parameters $s_e \in [0,1]$. The structure map $\rho(T)$ is defined by iterating the corolla maps along the tree: for each internal edge $e$ of $T$ connecting vertex $v_1$ (output) to $v_2$ (input at slot $i$), the composite
+where $s^{-1}$ is desuspension and $\bar{A} = A / k\cdot\mathbf{1}$
+is the augmentation ideal.  The codifferential
+$d_{\mathcal{C}} \colon \mathcal{C}_A \to \mathcal{C}_A$
+is the unique coderivation whose cogenerator projection
+$\pi \circ d_{\mathcal{C}} \colon \mathcal{C}_A \to s^{-1}\bar{A}$
+encodes the operations $m_k$: explicitly,
 \[
-\rho(T) = \rho(c_{v_1}) \circ_i \rho(c_{v_2})
+  \pi \circ d_{\mathcal{C}}\bigl(
+    [a_1 | \cdots | a_n]\bigr)
+  \;=\; \sum_{k=1}^{n}\;\sum_{i=0}^{n-k}
+    (-1)^{\epsilon(i,k)}\,
+    s^{-1}\,m_k(a_{i+1}, \ldots, a_{i+k}).
 \]
-uses the $\circ_i$--composition induced by the boundary identification $D_{\{i, \ldots\}} \subset \partial \FM_k(\C)$. Three compatibility conditions must hold:
+\emph{Why $d_{\mathcal{C}}^2 = 0$:} The $A_\infty$ identity
+\eqref{eq:ainfty-relation-raw} is equivalent to the vanishing of
+$\pi \circ d_{\mathcal{C}}^2$. Since $d_{\mathcal{C}}$ is a
+coderivation on a cofree coalgebra, $d_{\mathcal{C}}^2$ is again a
+coderivation; a coderivation on a cofree coalgebra is zero if and
+only if its cogenerator projection is zero \cite{LV12}. Hence
+$d_{\mathcal{C}}^2 = 0$.
 
+\emph{Why $\mathcal{C}_A$ is a $\mathbf{B}(\mathsf{SC}^{\mathrm{ch,top}})$--coalgebra:}
+The operations $m_k$ take values in iterated Laurent series
+$A((\lambda_1))\cdots((\lambda_{k-1}))$, encoding the spectral
+parameter dependence along $\FM_k(\C)$. The sesquilinearity axiom
+\eqref{eq:sesqui-left}--\eqref{eq:sesqui-right} ensures that the
+cogenerator maps intertwine the $\C$--translation action on
+$\FM_k(\C)$ with $\partial$ on $A$.
+The spectral substitution rule (Remark~\ref{rmk:spectral-substitution})
+ensures that the cogenerator maps are compatible with the boundary
+stratification of $\FM_k(\C)$: when a block $I$ collapses, the
+effective spectral parameter is $\Lambda_I = \sum_{i \in I} \lambda_i$,
+matching the face map of the bar cooperad.
+Together, these equip $\mathcal{C}_A$ with the structure of a
+conilpotent coalgebra over $\mathbf{B}(\mathsf{SC}^{\mathrm{ch,top}})$.
+Tameness (Definition~\ref{def:tameness}) is essential here:
+\begin{itemize}
+  \item condition (a) (polynomial$+$Laurent spectral dependence)
+    ensures that each cogenerator map lands in the algebraic
+    completion $A((\lambda_1))\cdots((\lambda_{k-1}))$, so the
+    pairing with chains on $\FM_k(\C)$ is well-defined;
+  \item condition (b) (continuity) ensures the cogenerator maps
+    extend to the completed tensor products that arise from
+    compositions in the bar cooperad;
+  \item condition (c) (eventual truncation: $m_k = 0$ for $k \gg 0$)
+    ensures that the coalgebra is concentrated in finitely many
+    arities, so the cofree coderivation is determined by finitely
+    many cogenerator projections and all tree sums terminate.
+\end{itemize}
+
+\medskip
+\textbf{Step 2 (Cobar functor produces a strict operad algebra).}
+Apply the cobar functor $\Omega$ to $\mathcal{C}_A$:
+\[
+  \widetilde{A} \;:=\; \Omega(\mathcal{C}_A).
+\]
+By definition, $\widetilde{A}$ is the free
+$\mathsf{SC}^{\mathrm{ch,top}}$--algebra on $s\,\mathcal{C}_A$
+(the suspension of the cooperad coalgebra), equipped with the
+differential $d_\Omega$ induced by both the internal differential
+$d_{\mathcal{C}}$ and the cooperad cocompositions. Concretely,
+$\widetilde{A}$ is an algebra over
+$\Omega\mathbf{B}(\mathsf{SC}^{\mathrm{ch,top}})$.
+
+Now invoke homotopy--Koszulity
+(Theorem~\ref{thm:homotopy-Koszul}): the canonical counit
+\[
+  \epsilon \colon
+  \Omega\mathbf{B}(\mathsf{SC}^{\mathrm{ch,top}})
+  \;\xrightarrow{\;\sim\;}\;
+  \mathsf{SC}^{\mathrm{ch,top}}
+\]
+is a quasi--isomorphism of two--colored dg operads.  Therefore
+restriction of structure along $\epsilon$ converts the
+$\Omega\mathbf{B}(\mathsf{SC}^{\mathrm{ch,top}})$--algebra
+$\widetilde{A}$ into a
+$C_\ast\!\bigl(W(\mathsf{SC}^{\mathrm{ch,top}})\bigr)$--algebra,
+since $\Omega\mathbf{B}(\mathsf{SC}^{\mathrm{ch,top}})$
+\emph{is} the Boardman--Vogt resolution
+$W(\mathsf{SC}^{\mathrm{ch,top}})$ (the cobar of the bar is
+the canonical cofibrant replacement of the operad \cite{BM03}).
+Denote the resulting operad algebra structure also by
+$\widetilde{A}$.
+
+\medskip
+\textbf{Step 3 (Agreement on fundamental chains).}
+We verify that the $C_\ast\!\bigl(W(\mathsf{SC}^{\mathrm{ch,top}})\bigr)$--algebra
+$\widetilde{A}$ recovers the original operations $m_k$ on
+fundamental chains.  The cobar--bar counit
+$\eta_A \colon A \to \Omega(\mathcal{C}_A) = \widetilde{A}$
+embeds $A$ as the weight-$1$ component (single-vertex trees)
+of the cobar complex. For the $k$--corolla $c_k$, the
+structure map of $\widetilde{A}$ evaluated on the fundamental
+chain $[\FM_k(\C)] \times [\mathrm{ord}]$ reduces, on
+weight-$1$ elements, to the cogenerator projection of
+$d_{\mathcal{C}}$:
+\[
+  \widetilde{m}_k(a_1, \ldots, a_k)
+  \;=\; \pi \circ d_{\mathcal{C}}
+    \bigl([a_1 | \cdots | a_k]\bigr)
+  \;=\; m_k(a_1, \ldots, a_k).
+\]
+The spectral parameters are preserved because the
+cogenerator maps encode exactly the Laurent coefficients of
+the $\FM_k(\C)$--forms, and the bar--cobar adjunction respects
+the topology on iterated Laurent series (which is where
+tameness condition~(b) is used).
+
+For composite trees $T$ with internal edges, the structure map
+$\rho(T)$ of $\widetilde{A}$ is determined inductively by the
+operad composition from the corolla data $\{m_k\}$. The
+compatibility conditions are:
 \begin{enumerate}[label=(\roman*)]
-\item \emph{$A_\infty$ relations ensure grafting consistency}: the relation $\sum m_i \circ m_j = 0$ from \eqref{eq:ainfty-relation-raw} is precisely the statement that the boundary of $\FM_k(\C)$ maps correctly under $\rho$, i.e., $\rho \circ \partial = d \circ \rho$ where $\partial$ is the boundary operator on $C_\ast(\FM_k(\C))$ and $d$ is the differential on $\End(A)$.
-
-\item \emph{Sesquilinearity ensures spectral compatibility}: the translation equivariance $m_k(\ldots, \partial a_i, \ldots) = -\lambda_i \cdot m_k(\ldots)$ guarantees that the $\C$--action on $\FM_k(\C)$ (translations) is intertwined by $\rho$ with the $\partial$--action on $A$, so $\rho$ commutes with the holomorphic symmetry.
-
-\item \emph{Spectral substitution ensures homotopy compatibility}: when an internal edge $e$ has parameter $s_e \to 0$ (a cluster collapses), the block--sum rule $\Lambda_I = \sum_{i \in I} \lambda_i$ ensures the composite structure map matches the boundary face $D_I \cong \FM_r(\C) \times \FM_{|I|}(\C)$.
+  \item The $A_\infty$ relations \eqref{eq:ainfty-relation-raw}
+    ensure $d_{\mathcal{C}}^2 = 0$, which is exactly the
+    statement that $\rho \circ \partial_{\FM} = d_A \circ \rho$
+    on $C_\ast(\FM_k(\C))$ (boundary maps to compositions).
+  \item Sesquilinearity \eqref{eq:sesqui-left}--\eqref{eq:sesqui-right}
+    ensures that $\rho$ intertwines the $\C$--action on $\FM_k(\C)$
+    with $\partial$ on $A$.
+  \item The spectral substitution rule ensures that boundary
+    faces $D_I \cong \FM_r(\C) \times \FM_{|I|}(\C)$ map
+    correctly under $\rho$, with the block--sum
+    $\Lambda_I = \sum_{i \in I} \lambda_i$ as effective parameter.
 \end{enumerate}
+These are precisely the axioms of a
+$C_\ast(W(\mathsf{SC}^{\mathrm{ch,top}}))$--algebra
+(cf.\ the forward direction, Proposition~\ref{prop:operad-implies-axioms}).
 
-\textbf{Step 3 (Tameness ensures convergence and uniqueness).}
-Conditions (a)--(b) of Definition~\ref{def:tameness} ensure the structure maps extend continuously to the completed spaces $A((\lambda_1))\cdots((\lambda_{k-1}))$. Condition (c) ensures that the sum over trees terminates, so the bar complex is well-defined. The universal property of the Boardman--Vogt resolution $W$ (as the cofibrant replacement of $\mathsf{SC}^{\mathrm{ch,top}}$) then guarantees that any two extensions of the corolla data are related by a contractible space of homotopies, giving uniqueness up to contractible choice.
+\medskip
+\textbf{Step 4 (Uniqueness via Quillen equivalence).}
+It remains to show that the
+$C_\ast\!\bigl(W(\mathsf{SC}^{\mathrm{ch,top}})\bigr)$--algebra
+structure is unique up to contractible ambiguity. By
+Theorem~\ref{thm:homotopy-Koszul} and
+Theorem~\ref{thm:bar-cobar-adjunction}, the bar--cobar adjunction
+\[
+  \Omega \colon
+  \mathrm{Coalg}_{\mathbf{B}(\mathsf{SC}^{\mathrm{ch,top}})}
+  \rightleftarrows
+  \mathrm{Alg}_{\mathsf{SC}^{\mathrm{ch,top}}}
+  :\! \mathbf{B}
+\]
+is a \emph{Quillen equivalence}: the unit
+$A \to \Omega\mathbf{B}(A)$ and counit
+$\mathbf{B}\Omega(C) \to C$ are weak equivalences.
+Suppose $\rho, \rho'$ are two
+$C_\ast(W(\mathsf{SC}^{\mathrm{ch,top}}))$--algebra structures on
+$A$ that agree on fundamental chains (i.e., induce the same $m_k$).
+Both structures produce the same bar coalgebra $\mathcal{C}_A$
+(since the bar coalgebra is determined by the cogenerator
+projections, which are the $m_k$). The Quillen equivalence ensures
+that the cobar $\Omega(\mathcal{C}_A)$ is the unique (up to weak
+equivalence) operad algebra recovering $\mathcal{C}_A$ via the bar
+construction. More precisely, the mapping space
+\[
+  \mathrm{Map}_{\mathrm{Alg}}^{\mathbf{B}\text{-equiv}}
+  \!\bigl(\widetilde{A}, \widetilde{A}\bigr)
+\]
+of self-equivalences of $\widetilde{A}$ that induce the identity on
+$\mathbf{B}(\widetilde{A}) \cong \mathcal{C}_A$ is contractible:
+the derived unit $\eta \colon \mathrm{id} \xrightarrow{\sim}
+\Omega \circ \mathbf{B}$ of the Quillen equivalence provides a
+canonical contraction.
+(Over a field of characteristic zero, the model category
+$\mathrm{Alg}_{\mathsf{SC}^{\mathrm{ch,top}}}$ is right proper
+and the mapping spaces are computed by derived hom; contractibility
+of the fiber follows from the fact that $\eta_A$ is a weak
+equivalence \cite{Val07, BM03}.)
 
-The equivalence of categories follows: the forgetful functor (extracting $m_k$ from the operadic data) is the construction of Proposition~\ref{prop:operad-implies-axioms}, and the present construction provides its inverse up to natural equivalence.
+\medskip
+\textbf{Equivalence of categories.}
+The forgetful functor $U$ (extracting $m_k$ from
+$\rho([\FM_k(\C)] \times [\mathrm{ord}])$) is the construction of
+Proposition~\ref{prop:operad-implies-axioms}. The bar--cobar
+reconstruction of Steps~1--3 provides an inverse $R$ with
+$U \circ R \cong \mathrm{id}$ (by Step~3) and
+$R \circ U \simeq \mathrm{id}$ (by Step~4, uniqueness up to
+contractible ambiguity). Hence the homotopy categories are
+equivalent:
+\[
+  \mathrm{Ho}\bigl(\text{tame axiomatic }A_\infty\text{ chiral algebras}\bigr)
+  \;\simeq\;
+  \mathrm{Ho}\bigl(W(\mathsf{SC}^{\mathrm{ch,top}})\text{-algebras with
+  }\partial,\,\mathbf{1}\bigr).
+  \qedhere
+\]
 \end{proof}
 
 \subsubsection{Compatibility with the PVA construction}
