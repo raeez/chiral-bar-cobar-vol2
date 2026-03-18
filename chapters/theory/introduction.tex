@@ -11,47 +11,119 @@
 \providecommand{\RHom}{\operatorname{RHom}}
 \providecommand{\Perf}{\operatorname{Perf}}
 
-The bar complex of a chiral algebra carries a differential that
-lives in~$\C$ and a coproduct that lives in~$\R$.
+The bar complex of a chiral algebra carries two structures.
+This section constructs both from scratch and proves that together
+they encode the $\R$-factorisation of a 3d
+holomorphic--topological theory.
 
-The differential $d_{\barB}$ extracts OPE residues along collision
-divisors in the Fulton--MacPherson compactification $\FM_k(\C)$:
-it records how operators interact when they collide in the
-holomorphic variable~$z$.  The coproduct~$\Delta$ splits an
-ordered sequence of tensor factors into two sub-sequences: it
-records how an interval is cut at a point in the topological
-variable~$t$.  A bar element of degree~$k$ is parametrised by
-the product
+\section*{The differential: holomorphic factorisation}
+
+Let $\cA$ be a chiral algebra on a curve $X$ with OPE
+$a(z)\,b(w) \sim \sum c_n(w)/(z-w)^{n+1}$.  The bar complex
+$\barB(\cA) = T^c(s^{-1}\bar\cA)$ has a differential $d_{\barB}$
+built from OPE residues on $\FM_k(\C)$: on a degree-$2$ element,
 \[
-\FM_k(\C) \times \Conf_k(\R).
+d_{\barB}[s^{-1}a \,|\, s^{-1}b]
+\;=\;
+\Res_{z_1 = z_2}\!\bigl[a(z_1)\,b(z_2)\cdot\eta_{12}\bigr],
+\qquad
+\eta_{12} = d\log(z_1 - z_2).
 \]
-The differential sees the first factor.  The coproduct sees the
-second.  This product is the operation space of a two-coloured
-operad---the holomorphic--topological Swiss-cheese operad
-$\SCchtop$---and the bar complex, equipped with both structures,
-is an algebra over it.  That identification is the central theorem
-of this volume.
+The residue extracts the simple-pole coefficient of the OPE, which
+is the bracket $a_{(0)}b$.  Higher bar degrees involve higher
+collision strata of $\FM_n(\C)$.  The identity $d_{\barB}^2 = 0$
+at genus~$0$ is the Arnold relation on $\FM_3(\C)$.  This
+differential encodes holomorphic factorisation: it sees how
+operators collide in the $\C$-direction.
 
-If Volume~I built the categorical logarithm and its modular tower,
-Volume~II asks what that logarithm actually does in three
-dimensions.  The answer is not ``it produces a few extra
-operations.''  The answer is: it becomes a full
-holomorphic--topological organism.  The bar complex is re-read as
-a Swiss-cheese object; its cohomological shadow becomes a Poisson
-vertex algebra; its dual open sector becomes a category of lines;
-its interactions are governed by brace operations, spectral
-$R$-matrices, and bulk--boundary--line triangles; and the full
-homotopy package---$\Ainf$, $\Linf$, brace---becomes the natural
-language rather than a background correction.  Every strict dg
-structure in this volume is the visible spine of a larger
-homotopy-coherent world.  In the three-dimensional
-holomorphic--topological setting, this is exactly what physics
-forces on us: BRST anomaly brackets, defect operations, line
-OPE's, and boundary transfer are higher operations \emph{before}
-they are strict algebras.
+\section*{The coproduct: topological factorisation along $\R$}
 
-To see all of this at work, consider the simplest chiral algebra
-with nontrivial content.
+The same bar complex carries a coassociative coproduct from
+deconcatenation:
+\begin{equation}\label{eq:intro-delta}
+\Delta[s^{-1}a_1 \,|\, \cdots \,|\, s^{-1}a_n]
+\;=\;
+\sum_{i=0}^{n}
+[s^{-1}a_1 \,|\, \cdots \,|\, s^{-1}a_i]
+\;\otimes\;
+[s^{-1}a_{i+1} \,|\, \cdots \,|\, s^{-1}a_n].
+\end{equation}
+This coproduct encodes topological factorisation along~$\R$.
+The proof is direct: place the $n$ fields at
+ordered positions $t_1 < t_2 < \cdots < t_n$ on~$\R$.  Choose a
+cut point $t_i < t_* < t_{i+1}$.  The fields on
+$(-\infty, t_*)$ are $a_1, \ldots, a_i$; the fields on
+$(t_*, +\infty)$ are $a_{i+1}, \ldots, a_n$.  The observables on
+$(-\infty, t_*)$ depend only on $a_1, \ldots, a_i$; the
+observables on $(t_*, +\infty)$ depend only on
+$a_{i+1}, \ldots, a_n$.  The value of $\Delta$ at $i$
+is exactly this factorisation.
+
+The ordered configuration space $\Conf_n^<(\R) = \{t_1 < \cdots
+< t_n\}$ is contractible (it is an open simplex), so the
+$\Eone$-coalgebra structure on~$\Conf_n(\R)$ contracts to a strict
+coassociative coproduct---deconcatenation.  No higher homotopies
+survive.  The coproduct is the unique coassociative coproduct on
+the cofree conilpotent coalgebra $T^c(s^{-1}\bar\cA)$; it is
+determined by the cogenerators alone.
+
+\medskip\noindent\textbf{Verification on the Heisenberg atom.}\enspace
+Take $\cA = \cH_k$, the Heisenberg algebra with generator $J$ and
+OPE $J(z)\,J(w) \sim k/(z-w)^2$.  The bar element $[s^{-1}J \,|\,
+s^{-1}J]$ represents two operators at positions $(z_1, t_1)$ and
+$(z_2, t_2)$ on $\C \times \R$ with $t_1 < t_2$.  Apply $\Delta$:
+\[
+\Delta[s^{-1}J \,|\, s^{-1}J]
+\;=\;
+[\,] \otimes [s^{-1}J \,|\, s^{-1}J]
+\;+\;
+[s^{-1}J] \otimes [s^{-1}J]
+\;+\;
+[s^{-1}J \,|\, s^{-1}J] \otimes [\,].
+\]
+The three terms correspond to the three ways of cutting the
+interval $[t_1, t_2]$: before $t_1$ (both fields on the right),
+between $t_1$ and $t_2$ (one field on each side), and after $t_2$
+(both fields on the left).  The middle term
+$[s^{-1}J] \otimes [s^{-1}J]$ is the factorisation of the two-field
+observable into independent one-field observables on the two
+half-lines---possible because the Heisenberg OPE is a double pole
+with no simple-pole interaction: $J_{(0)}J = 0$.
+
+Now apply the differential to the middle term:
+$d_{\barB}([s^{-1}J]) = 0$ (no unary OPE), so the differential
+commutes with the cut.  The coderivation property
+$\Delta \circ d_{\barB} = (d_{\barB} \otimes \id + \id \otimes
+d_{\barB}) \circ \Delta$ is the algebraic statement that the
+holomorphic collision $z_1 \to z_2$ is independent of the
+topological cut $t_* \in (t_1, t_2)$: collisions in $\C$ commute
+with cuts in $\R$.
+
+\section*{The Swiss-cheese identification}
+
+A bar element of degree~$k$ is therefore parametrised by
+\[
+\FM_k(\C) \times \Conf_k^<(\R):
+\]
+the differential sees $\FM_k(\C)$ (holomorphic collisions) and the
+coproduct sees $\Conf_k^<(\R)$ (topological cuts).  The product is
+the operation space of a two-coloured operad $\SCchtop$: closed
+colour from $\FM_k(\C)$, open colour from $\Eone(m) =
+\Conf_m^<(\R)$, no open-to-closed operations.  The bar complex
+$(\barB(\cA), d_{\barB}, \Delta)$ is an algebra over this operad
+(Theorem~\ref{thm:rosetta-swiss-cheese} for the Heisenberg;
+Section~\ref{sec:foundations} in general).
+
+This is the $\R$-factorisation of 3d holomorphic--topological
+theories: the differential is the $\C$-direction and the coproduct
+is the $\R$-direction.  The bar complex is not
+\emph{described} by the Swiss-cheese operad as an external
+framework; it \emph{is} a Swiss-cheese algebra, and the
+differential and coproduct are the two faces of its operadic
+structure.
+
+To see the full machine at work, consider the simplest chiral
+algebra with nontrivial content.
 
 
 \section*{The Heisenberg atom}
