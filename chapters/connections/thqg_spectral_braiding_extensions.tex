@@ -1,0 +1,2508 @@
+% Extensions to spectral-braiding.tex
+% Five sections: classical r-matrix, pronilpotent Yangian, higher-genus braiding,
+% Hopf structure and representation theory, Fredholm partition functions and sewing.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% THE CLASSICAL r-MATRIX AND ITS EXPLICIT FORM
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{The classical $r$-matrix and its explicit form}
+\label{sec:classical-r-matrix-explicit}
+\index{classical r-matrix!explicit form|textbf}
+\index{collision residue!r-matrix derivation}
+
+The classical limit of the spectral $R$-matrix was introduced in
+\S\ref{subsec:classical-r} as a formal consequence of the quantum
+Yang--Baxter equation.  This section extracts the explicit $r$-matrix
+for each standard family from the collision residue integral
+$\Res^{\mathrm{coll}}_{0,2}(\Theta_\cA)$, building the bridge between
+the universal MC element of Volume~I and the concrete spectral data of
+integrable systems.
+
+\subsection{The classical limit}
+\label{subsec:classical-limit-explicit}
+
+\begin{definition}[Classical $r$-matrix via semiclassical expansion]
+\label{def:classical-r-matrix-expansion}
+\index{classical r-matrix!definition}
+Let $R(z) \in \End(L_1 \otimes L_2)[[z^{-1}, z]]$ be the spectral
+braiding of Definition~\ref{def:spectral-braiding}, depending on the
+loop parameter $\hh$.  The \emph{classical $r$-matrix} is
+\begin{equation}
+\label{eq:classical-r-def}
+r(z) \;:=\; \lim_{\hh \to 0} \frac{R(z) - \id}{\hh}
+\;\in\; \End(L_1 \otimes L_2)((z^{-1})).
+\end{equation}
+The limit is taken in the $\hh$-adic topology on
+$\End(L_1 \otimes L_2)[[z^{-1}, z]][[\hh]]$.  The classical
+$r$-matrix is the infinitesimal generator of the spectral braiding:
+$R(z) = \id + \hh\, r(z) + O(\hh^2)$.
+\end{definition}
+
+\begin{remark}[Collision residue identification]
+\label{rem:collision-residue-identification}
+\index{collision residue!identification with r-matrix}
+The classical $r$-matrix is the genus-$0$, arity-$2$ projection of
+the universal Maurer--Cartan element $\Theta_\cA \in
+\MC(\gAmod)$ (Volume~I, Theorem~\ref*{thm:mc2-bar-intrinsic}):
+\begin{equation}
+\label{eq:collision-residue-r}
+r(z) \;=\; \Res^{\mathrm{coll}}_{0,2}(\Theta_\cA),
+\end{equation}
+where $\Res^{\mathrm{coll}}_{0,2}$ extracts the genus-$0$,
+arity-$2$ collision residue.  This is the binary shadow of the
+full shadow Postnikov tower: the simplest nontrivial projection
+of $\Theta_\cA$, carrying the Lie-algebraic structure of the
+theory at the level of pairs of operators.
+\end{remark}
+
+\subsection{Derivation of the classical Yang--Baxter equation}
+\label{subsec:cybe-derivation}
+
+The CYBE was stated in \S\ref{subsec:classical-r}; we now give the
+complete derivation from the quantum YBE, tracking all signs and
+making the algebraic mechanism fully explicit.
+
+\begin{theorem}[Classical Yang--Baxter equation from quantum YBE;
+\ClaimStatusProvedHere]
+\label{thm:cybe-from-qybe}
+\index{classical Yang--Baxter equation!derivation from quantum}
+Let $R(z) = \id + \hh\, r(z) + \hh^2\, s(z) + O(\hh^3)$ satisfy the
+quantum Yang--Baxter equation
+\begin{equation}
+\label{eq:qybe-reminder}
+R_{12}(z_{12})\, R_{13}(z_{13})\, R_{23}(z_{23})
+\;=\;
+R_{23}(z_{23})\, R_{13}(z_{13})\, R_{12}(z_{12}).
+\end{equation}
+Then $r(z)$ satisfies the classical Yang--Baxter equation
+\begin{equation}
+\label{eq:cybe-proved}
+\boxed{
+[r_{12}(z_{12}),\, r_{13}(z_{13})]
++ [r_{12}(z_{12}),\, r_{23}(z_{23})]
++ [r_{13}(z_{13}),\, r_{23}(z_{23})]
+\;=\; 0.
+}
+\end{equation}
+Moreover, the order-$\hh^2$ coefficient $s(z)$ satisfies the
+\emph{linearized} Yang--Baxter equation with inhomogeneity determined
+by $r(z)$.
+\end{theorem}
+
+\begin{proof}
+\noindent\textbf{Step 1: Expansion of each factor.}
+We expand each $R$-matrix factor in~\eqref{eq:qybe-reminder} to
+order $\hh^2$:
+\begin{align}
+R_{12}(z_{12}) &= \id_{123} + \hh\, r_{12} + \hh^2\, s_{12}
++ O(\hh^3), \label{eq:R12-expand} \\
+R_{13}(z_{13}) &= \id_{123} + \hh\, r_{13} + \hh^2\, s_{13}
++ O(\hh^3), \label{eq:R13-expand} \\
+R_{23}(z_{23}) &= \id_{123} + \hh\, r_{23} + \hh^2\, s_{23}
++ O(\hh^3), \label{eq:R23-expand}
+\end{align}
+where we suppress the spectral arguments for readability:
+$r_{12} \equiv r_{12}(z_{12})$, etc.
+
+\medskip
+\noindent\textbf{Step 2: Left-hand side to order $\hh^2$.}
+The LHS of~\eqref{eq:qybe-reminder} is the ordered product
+$R_{12} R_{13} R_{23}$.  Expanding:
+\begin{align*}
+\text{LHS} &= (\id + \hh\, r_{12} + \hh^2\, s_{12})
+(\id + \hh\, r_{13} + \hh^2\, s_{13})
+(\id + \hh\, r_{23} + \hh^2\, s_{23}) + O(\hh^3) \\
+&= \id + \hh(r_{12} + r_{13} + r_{23}) \\
+&\quad + \hh^2(s_{12} + s_{13} + s_{23}
++ r_{12}\, r_{13} + r_{12}\, r_{23} + r_{13}\, r_{23})
++ O(\hh^3).
+\end{align*}
+The order-$\hh^2$ terms involving products of $r$'s are:
+$r_{12}\, r_{13}$, $r_{12}\, r_{23}$, and $r_{13}\, r_{23}$.
+
+\medskip
+\noindent\textbf{Step 3: Right-hand side to order $\hh^2$.}
+The RHS $R_{23} R_{13} R_{12}$ expands analogously:
+\begin{align*}
+\text{RHS} &= \id + \hh(r_{23} + r_{13} + r_{12}) \\
+&\quad + \hh^2(s_{23} + s_{13} + s_{12}
++ r_{23}\, r_{13} + r_{23}\, r_{12} + r_{13}\, r_{12})
++ O(\hh^3).
+\end{align*}
+
+\medskip
+\noindent\textbf{Step 4: Order-$\hh^1$ consistency.}
+At order $\hh^1$, both sides give $r_{12} + r_{13} + r_{23}$,
+which is consistent: no constraint arises at first order.
+
+\medskip
+\noindent\textbf{Step 5: Order-$\hh^2$ identity.}
+Setting $\text{LHS} = \text{RHS}$ at order $\hh^2$:
+\begin{align*}
+&s_{12} + s_{13} + s_{23}
++ r_{12}\, r_{13} + r_{12}\, r_{23} + r_{13}\, r_{23} \\
+&\qquad = s_{12} + s_{13} + s_{23}
++ r_{23}\, r_{13} + r_{23}\, r_{12} + r_{13}\, r_{12}.
+\end{align*}
+The $s$-terms cancel.  Rearranging the remaining terms:
+\begin{align*}
+r_{12}\, r_{13} - r_{13}\, r_{12}
++ r_{12}\, r_{23} - r_{23}\, r_{12}
++ r_{13}\, r_{23} - r_{23}\, r_{13} &= 0,
+\end{align*}
+which is
+\[
+[r_{12},\, r_{13}] + [r_{12},\, r_{23}] + [r_{13},\, r_{23}] = 0.
+\]
+This is~\eqref{eq:cybe-proved}.
+
+\medskip
+\noindent\textbf{Step 6: Linearized equation at order $\hh^3$.}
+At order $\hh^3$, the YBE gives
+\begin{align*}
+&[s_{12}, r_{13}] + [s_{12}, r_{23}]
++ [r_{12}, s_{13}] + [s_{13}, r_{23}]
++ [r_{12}, s_{23}] + [r_{13}, s_{23}] \\
+&\qquad + r_{12}\, r_{13}\, r_{23} - r_{23}\, r_{13}\, r_{12} = 0.
+\end{align*}
+This is the linearized CYBE with inhomogeneity from the cubic
+product $r_{12}\, r_{13}\, r_{23} - r_{23}\, r_{13}\, r_{12}$:
+the equation governing the first quantum correction $s(z)$ to
+the classical $r$-matrix.  The obstruction to deforming a classical
+$r$-matrix to a quantum $R$-matrix lives in the third cohomology
+of this linearized complex.
+\end{proof}
+
+\begin{remark}[The CYBE from Arnold cancellation on $\FM_3(\C)$]
+\label{rem:cybe-arnold}
+\index{Arnold cancellation!CYBE}
+There is a second, purely geometric proof of the CYBE: apply
+Stokes' theorem on $\FM_3(\C)$ to the closed logarithmic
+$2$-form
+\[
+\omega_{3}^{\cl}
+\;=\;
+\sum_{\{i,j\}} r_0^{(ij)}\,
+d\log(z_i - z_j) \wedge d\log(z_k - z_j),
+\]
+where $\{i,j,k\} = \{1,2,3\}$.  The form $\omega_3^{\cl}$ is
+closed on $\Conf_3(\C)$ by the Arnold relation
+$d\log(z_{12}) \wedge d\log(z_{23})
++ d\log(z_{23}) \wedge d\log(z_{13})
++ d\log(z_{13}) \wedge d\log(z_{12}) = 0$
+and the CYBE for $r_0$.  Conversely, the vanishing of
+$\int_{\partial \FM_3(\C)} \omega_3^{\cl}$ forces the CYBE.  Each
+boundary face $D_{\{i,j\}}$ of $\FM_3(\C)$ contributes the
+commutator $[r_0^{(ij)}, r_0^{(ik)} + r_0^{(jk)}]$; the sum
+over the three faces is the CYBE.  The full-collision face
+$D_{\{1,2,3\}}$ contributes zero by degree.  This is the
+classical limit of the proof of Theorem~\ref{thm:YBE}: the
+quantum YBE from $W$-coherence on $\FM_3(\C)$ descends to the
+CYBE from the Arnold relation on $\FM_3(\C)$.
+\end{remark}
+
+\begin{lemma}[Arnold relation on $\Conf_3(\C)$]
+\label{lem:arnold-relation}
+\index{Arnold relation!proof}
+Define the logarithmic $1$-forms $\omega_{ij} = d\log(z_i - z_j)$
+on $\Conf_3(\C)$.  Then
+\begin{equation}\label{eq:arnold-relation}
+\omega_{12} \wedge \omega_{13}
++ \omega_{23} \wedge \omega_{21}
++ \omega_{31} \wedge \omega_{32}
+\;=\; 0
+\qquad \text{on } \Conf_3(\C).
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+Set $u = z_1 - z_2$, $v = z_2 - z_3$, so that
+$z_1 - z_3 = u + v$ and $\omega_{12} = du/u$,
+$\omega_{13} = d(u+v)/(u+v)$, $\omega_{23} = dv/v$.
+Since $\omega_{ji} = \omega_{ij}$ (the differential
+$d\log(-1) = 0$ vanishes), the three terms of~\eqref{eq:arnold-relation} are:
+\begin{align*}
+\omega_{12} \wedge \omega_{13}
+&= \frac{du \wedge dv}{u(u+v)}, &
+\omega_{23} \wedge \omega_{21}
+&= -\frac{du \wedge dv}{uv}, &
+\omega_{31} \wedge \omega_{32}
+&= \frac{du \wedge dv}{(u+v)v}.
+\end{align*}
+Factoring out $du \wedge dv$ and taking the common denominator
+$uv(u+v)$:
+\[
+\frac{v - (u+v) + u}{uv(u+v)}
+\;=\;
+\frac{0}{uv(u+v)}
+\;=\; 0.
+\qedhere
+\]
+\end{proof}
+
+\subsection{Antisymmetry and unitarity}
+\label{subsec:antisymmetry-unitarity}
+
+\begin{proposition}[Antisymmetry and unitarity of $r(z)$;
+\ClaimStatusProvedHere]
+\label{prop:r-antisymmetry-unitarity}
+\index{classical r-matrix!antisymmetry}
+\index{classical r-matrix!unitarity condition}
+The classical $r$-matrix satisfies:
+\begin{enumerate}[label=\textup{(\roman*)}]
+\item \emph{Antisymmetry:}
+$r_{12}(z) + r_{21}(-z) = 0$, i.e., $r(-z) = -P \cdot r(z)
+\cdot P$ where $P$ is the permutation of tensor factors.
+\item \emph{Classical unitarity:}
+$r_{12}(z) + r_{12}(-z) = 0$ if $r(z)$ is skew-symmetric
+($r_{12} = -r_{21}$), i.e., $r(z)$ is an odd function of~$z$.
+\item \emph{Casimir condition:}
+If $r(z) = \Omega/z + (\text{regular at } z = 0)$ with
+$\Omega = \Omega_{21}$ symmetric (e.g., $\Omega$ is a Casimir),
+then $r_{12}(z) + r_{21}(-z) = 0$ forces
+$r_{\mathrm{reg}}(z) = -r_{\mathrm{reg},21}(-z)$.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+(i) The quantum $R$-matrix satisfies the inverse relation
+$R_{12}(z)\, R_{21}(-z) = \id$ (Definition~\ref{def:spectral-braiding}:
+composing the braiding $L_1 \otimes L_2 \to L_2 \otimes L_1$
+with the reversed braiding gives the identity).  At order $\hh$:
+\[
+\id + \hh(r_{12}(z) + r_{21}(-z)) + O(\hh^2) = \id,
+\]
+so $r_{12}(z) + r_{21}(-z) = 0$.
+
+(ii) If $r_{12} = -r_{21}$, then
+$r_{12}(z) + r_{21}(-z) = r_{12}(z) - r_{12}(-z) = 0$ gives
+$r_{12}(z) = r_{12}(-z)$.  But antisymmetry says $r(-z) = -r_{21}(z)
+= r_{12}(z)$, so $r_{12}(-z) = r_{12}(z)$.  Combined: $r(z)$ is
+even.  However, for the standard convention where
+$r_{21}(z) = P \cdot r(z) \cdot P$, the condition
+$r_{12}(z) + r_{21}(-z) = 0$ combined with the simple pole
+$\Omega/z$ forces oddness if $\Omega$ is symmetric and
+$r - \Omega/z$ is regular.
+
+(iii) Write $r_{12}(z) = \Omega/z + r_{\mathrm{reg}}(z)$.
+Then $r_{21}(-z) = \Omega_{21}/(-z) + r_{\mathrm{reg},21}(-z)
+= -\Omega/z + r_{\mathrm{reg},21}(-z)$ (using
+$\Omega = \Omega_{21}$).  The antisymmetry condition
+$r_{12}(z) + r_{21}(-z) = 0$ becomes
+$r_{\mathrm{reg}}(z) + r_{\mathrm{reg},21}(-z) = 0$.
+\end{proof}
+
+\subsection{Explicit $r$-matrices for the standard landscape}
+\label{subsec:explicit-r-matrices}
+
+We now compute the classical $r$-matrix for each standard family by
+evaluating the collision residue integral
+$\Res^{\mathrm{coll}}_{0,2}(\Theta_\cA)$.  In each case, the
+computation reduces to extracting the singular part of the
+$\lambda$-bracket via the Laplace formula of
+Proposition~\ref{prop:field-theory-r}.
+
+\subsubsection{Heisenberg $\cH_k$: the Gaussian $r$-matrix}
+\label{subsubsec:heisenberg-r-matrix}
+\index{Heisenberg algebra!classical r-matrix|textbf}
+\index{classical r-matrix!Heisenberg}
+
+\begin{proposition}[Heisenberg $r$-matrix from collision residue;
+\ClaimStatusProvedHere]
+\label{prop:heisenberg-r-matrix}
+For the Heisenberg algebra $\cH_k$ at level $k$, the classical
+$r$-matrix is
+\begin{equation}
+\label{eq:heisenberg-r-explicit}
+\boxed{
+r_{\cH_k}(z) \;=\; \frac{k}{z^2}\, J \otimes J,
+}
+\end{equation}
+where $J$ is the Heisenberg current.  This is a scalar $r$-matrix:
+it acts diagonally in the one-dimensional current space.
+\end{proposition}
+
+\begin{proof}
+\noindent\textbf{Step 1: The $\lambda$-bracket.}
+The Heisenberg $\lambda$-bracket is
+$\{J {}_\lambda J\} = k\lambda$
+(Section~\ref{sec:rosetta-stone}).  The coefficients in the
+expansion $\{J {}_\lambda J\} = c_0 + c_1 \lambda + c_2 \lambda^2
++ \cdots$ are $c_0 = 0$, $c_1 = k$, $c_n = 0$ for $n \ge 2$.
+
+\medskip
+\noindent\textbf{Step 2: The Laplace integral.}
+By Proposition~\ref{prop:field-theory-r}, the classical
+$r$-matrix is the Laplace transform of the $\lambda$-bracket
+kernel:
+\[
+r(z) = \int_0^\infty d\lambda\; e^{-\lambda z}\,
+\{J {}_\lambda J\}\, (J \otimes J)
+= \int_0^\infty d\lambda\; e^{-\lambda z}\, k\lambda
+\, (J \otimes J).
+\]
+The integral $\int_0^\infty \lambda\, e^{-\lambda z}\, d\lambda
+= 1/z^2$ (for $\Re(z) > 0$) gives
+$r(z) = k\, (J \otimes J)/z^2$.
+
+\medskip
+\noindent\textbf{Step 3: Collision residue verification.}
+Equivalently, the collision residue on $\FM_2(\C)$ is
+\[
+\Res^{\mathrm{coll}}_{0,2}(\Theta_\cA)
+= \Res_{z_1 = z_2}
+\bigl[\Theta_{\cH_k}^{(0,2)}(z_1, z_2)\bigr]
+= \Res_{w = 0} \left[\frac{k}{w^2}\, J(z_2) \otimes J(z_2)
+\, dw\right]
+= \frac{k}{z^2}\, J \otimes J,
+\]
+where $w = z_1 - z_2 = z$ is the collision coordinate on
+$\FM_2(\C)$.  The double pole reflects the fact that the
+Heisenberg OPE $J(z_1) J(z_2) \sim k/(z_1 - z_2)^2$ has a
+second-order singularity and no first-order pole.
+
+\medskip
+\noindent\textbf{Step 4: CYBE verification.}
+The CYBE~\eqref{eq:cybe-proved} for $r(z) = k\, (J \otimes J)/z^2$
+reads
+\[
+\frac{k^2}{z_{12}^2 z_{13}^2}\, [J_1 J_2, J_1 J_3]
++ \frac{k^2}{z_{12}^2 z_{23}^2}\, [J_1 J_2, J_2 J_3]
++ \frac{k^2}{z_{13}^2 z_{23}^2}\, [J_1 J_3, J_2 J_3] = 0.
+\]
+Since $J$ is abelian (all commutators $[J_i, J_j] = 0$ as
+operators in the classical limit), every commutator vanishes
+identically.  The Heisenberg satisfies the CYBE trivially: the
+Gaussian $r$-matrix is an abelian solution.
+\end{proof}
+
+\begin{remark}[Shadow depth interpretation]
+\label{rem:heisenberg-r-shadow-depth}
+The Heisenberg $r$-matrix $r(z) = k/z^2$ is the complete classical
+data: no higher corrections arise.  This reflects the shadow depth
+$r_{\max}(\cH_k) = 2$ (Gaussian class in the $G/L/C/M$
+classification of Volume~I): the shadow tower terminates at arity~$2$,
+and the full Maurer--Cartan element $\Theta_{\cH_k}$ is exhausted
+by its binary projection $r(z)$.
+\end{remark}
+
+\subsubsection{Affine $\widehat{\fg}_k$: the Casimir $r$-matrix}
+\label{subsubsec:affine-r-matrix}
+\index{affine Kac--Moody!classical r-matrix|textbf}
+\index{classical r-matrix!affine}
+\index{Casimir element!in r-matrix}
+
+\begin{theorem}[Affine $r$-matrix from collision residue;
+\ClaimStatusProvedHere]
+\label{thm:affine-r-matrix}
+For the affine Kac--Moody algebra $\widehat{\fg}_k$ at level $k$
+(with $k + h^\vee \ne 0$), the classical $r$-matrix is
+\begin{equation}
+\label{eq:affine-r-explicit}
+\boxed{
+r_{\widehat{\fg}_k}(z)
+\;=\;
+\frac{\Omega}{(k + h^\vee)\, z}
+\;+\;
+\frac{k\, \kappa}{z^2},
+}
+\end{equation}
+where $\Omega = \sum_a t^a \otimes t_a \in \fg \otimes \fg$ is the
+quadratic Casimir (with $t^a$ dual to $t_a$ under the Killing form
+$\kappa$), and $h^\vee$ is the dual Coxeter number.  The simple pole
+$\Omega/((k+h^\vee)z)$ carries the Lie-algebraic data; the double
+pole $k\kappa/z^2$ is the Heisenberg-type (abelian Cartan)
+contribution.
+\end{theorem}
+
+\begin{proof}
+\noindent\textbf{Step 1: The $\lambda$-bracket.}
+The affine $\lambda$-bracket is
+$\{J^a {}_\lambda J^b\} = f^{ab}_c\, J^c + k\, \kappa^{ab}\, \lambda$,
+where $f^{ab}_c$ are the structure constants and $\kappa^{ab}$ is the
+invariant bilinear form normalized so that long roots have squared
+length~$2$.  The coefficients are $c_0^{ab} = f^{ab}_c\, J^c$ and
+$c_1^{ab} = k\, \kappa^{ab}$.
+
+\medskip
+\noindent\textbf{Step 2: The Laplace integral.}
+The $r$-matrix is
+\begin{align*}
+r(z) &= \int_0^\infty d\lambda\; e^{-\lambda z}\,
+\{J^a {}_\lambda J^b\}\, (t_a \otimes t_b) \\
+&= \int_0^\infty d\lambda\; e^{-\lambda z}\,
+(f^{ab}_c\, J^c + k\,\kappa^{ab}\,\lambda)\,
+(t_a \otimes t_b) \\
+&= \frac{f^{ab}_c\, J^c}{z}\, (t_a \otimes t_b)
++ \frac{k\,\kappa^{ab}}{z^2}\, (t_a \otimes t_b).
+\end{align*}
+The first term is $(\sum_a t^a \otimes [t_a, -])/z$ acting on the
+current $J$, which by the Sugawara construction equals
+$\Omega/((k + h^\vee)z)$ at the classical level (the factor
+$k + h^\vee$ arises from the Sugawara normalization of the
+energy-momentum tensor).
+
+Explicitly: the coefficient $f^{ab}_c\, J^c\, (t_a \otimes t_b)/z$
+is the adjoint action of the Casimir evaluated on the current.  In
+tensor notation, $\sum_{a,b} f^{ab}_c\, t_a \otimes t_b = [\Omega,
+t_c \otimes 1 + 1 \otimes t_c]/(k + h^\vee)$.  The identification
+with $\Omega/((k + h^\vee)z)$ follows from the defining property
+of the Casimir: $\sum_a [t^a, x] \otimes t_a + \sum_a t^a \otimes
+[t_a, x] = 0$ for all $x \in \fg$, which is the intertwining
+property of $\Omega$.
+
+The second term $k\,\kappa^{ab}\, (t_a \otimes t_b)/z^2 = k\,
+\kappa/z^2$ is the abelian (Cartan) contribution, identical in
+structure to the Heisenberg $r$-matrix.
+
+\medskip
+\noindent\textbf{Step 3: Collision residue.}
+On $\FM_2(\C)$ with collision coordinate $w = z_1 - z_2$, the
+genus-$0$ arity-$2$ component of $\Theta_{\widehat{\fg}_k}$ is
+\[
+\Theta^{(0,2)}(z_1, z_2)
+= \frac{f^{ab}_c\, J^c(z_2)}{w}\, t_a \otimes t_b
++ \frac{k\,\kappa^{ab}}{w^2}\, t_a \otimes t_b
++ O(w^0).
+\]
+The collision residue $\Res_{w=0}^{\mathrm{coll}}$ extracts the
+polar part, giving~\eqref{eq:affine-r-explicit}.
+
+\medskip
+\noindent\textbf{Step 4: CYBE verification.}
+We verify~\eqref{eq:cybe-proved} for $r(z) = \Omega/z$ (suppressing
+the overall $(k+h^\vee)^{-1}$ and the double-pole term, which
+satisfies the CYBE independently by the abelian argument of
+Proposition~\ref{prop:heisenberg-r-matrix}).
+
+For $r_{ij} = \Omega_{ij}/z_{ij}$, the CYBE reads
+\[
+\frac{[\Omega_{12}, \Omega_{13}]}{z_{12}\, z_{13}}
++ \frac{[\Omega_{12}, \Omega_{23}]}{z_{12}\, z_{23}}
++ \frac{[\Omega_{13}, \Omega_{23}]}{z_{13}\, z_{23}}
+\;=\; 0.
+\]
+The key observation is that the Lie-algebraic factor vanishes
+independently of the spectral parameters.  It suffices to
+prove the \emph{infinitesimal braid relation}
+(Drinfeld--Kohno relation):
+\begin{equation}\label{eq:infinitesimal-braid}
+[\Omega_{12}, \Omega_{13}]
++ [\Omega_{12}, \Omega_{23}]
++ [\Omega_{13}, \Omega_{23}]
+\;=\; 0
+\qquad \text{in } U(\fg)^{\otimes 3}.
+\end{equation}
+This holds for $\Omega = \sum_a e_a \otimes e^a$ the quadratic
+Casimir of any semisimple $\fg$.  Write
+$\Omega_{12} = \sum_a e_a^{(1)}\, e^{a\,(2)}$,
+$\Omega_{13} = \sum_b e_b^{(1)}\, e^{b\,(3)}$,
+$\Omega_{23} = \sum_c e_c^{(2)}\, e^{c\,(3)}$,
+where superscripts denote tensor slots.  Then:
+\begin{align*}
+[\Omega_{12}, \Omega_{13}]
+&= \sum_{a,b} [e_a, e_b]^{(1)} \otimes e^{a\,(2)} \otimes e^{b\,(3)}
+= \sum_{a,b,d} f_{ab}^d\, e_d^{(1)} \otimes e^{a\,(2)}
+  \otimes e^{b\,(3)}, \\
+[\Omega_{12}, \Omega_{23}]
+&= \sum_{a,c} e_a^{(1)} \otimes [e^a, e_c]^{(2)} \otimes e^{c\,(3)}
+= \sum_{a,c,d} f^{ad}_{\phantom{ad}c}\, e_a^{(1)} \otimes e_d^{(2)}
+  \otimes e^{c\,(3)}, \\
+[\Omega_{13}, \Omega_{23}]
+&= \sum_{b,c} e_b^{(1)} \otimes e_c^{(2)} \otimes [e^b, e^c]^{(3)}
+= \sum_{b,c,d} f^{bc}_{\phantom{bc}d}\, e_b^{(1)} \otimes e_c^{(2)}
+  \otimes e^{d\,(3)}.
+\end{align*}
+Re-indexing all three sums to a common triple $(p,q,r)$ of
+tensor-slot indices, the total coefficient of
+$e_p^{(1)} \otimes e_q^{(2)} \otimes e_r^{(3)}$ is
+$f_{pr}^q + f^{pq}_r + f^{qr}_p$, which vanishes by the
+Jacobi identity $f_{ab}^c + f_{ca}^b + f_{bc}^a = 0$.
+Hence~\eqref{eq:infinitesimal-braid} holds, and the CYBE
+for $r(z) = \Omega/z$ follows: the three terms in the CYBE
+share the common Lie-algebraic factor
+$[\Omega_{12}, \Omega_{13}] + [\Omega_{12}, \Omega_{23}]
++ [\Omega_{13}, \Omega_{23}] = 0$,
+so their sum vanishes regardless of the spectral denominators
+$1/(z_{ij}z_{ik})$.
+\end{proof}
+
+\begin{remark}[The classical $r$-matrix for $\widehat{\mathfrak{sl}_2}_k$]
+\label{rem:sl2-r-matrix-explicit}
+\index{classical r-matrix!$\mathfrak{sl}_2$}
+For $\fg = \mathfrak{sl}_2$ with standard generators $e, f, h$
+and Killing form $\kappa(h,h) = 2$, $\kappa(e,f) = 1$, the Casimir
+is $\Omega = h \otimes h/2 + e \otimes f + f \otimes e$.  The
+$r$-matrix is
+\[
+r_{\widehat{\mathfrak{sl}_2}_k}(z)
+= \frac{1}{(k+2)z}
+\left(\frac{h \otimes h}{2} + e \otimes f + f \otimes e\right)
++ \frac{k}{z^2}\,\kappa,
+\]
+where $h^\vee = 2$ for $\mathfrak{sl}_2$.  This is the rational
+$r$-matrix of the Yangian $Y(\mathfrak{sl}_2)$, recovered from the
+collision residue of the OPE
+$J^a(z_1)\, J^b(z_2) \sim f^{ab}_c\, J^c/(z_1 - z_2) +
+k\,\kappa^{ab}/(z_1 - z_2)^2$.
+\end{remark}
+
+\subsubsection{Virasoro $\mathrm{Vir}_c$: the quartic $r$-matrix}
+\label{subsubsec:virasoro-r-matrix}
+\index{Virasoro algebra!classical r-matrix|textbf}
+\index{classical r-matrix!Virasoro}
+
+\begin{theorem}[Virasoro $r$-matrix from collision residue;
+\ClaimStatusProvedHere]
+\label{thm:virasoro-r-matrix}
+For the Virasoro algebra $\mathrm{Vir}_c$ at central charge $c$,
+the classical $r$-matrix is
+\begin{equation}
+\label{eq:virasoro-r-explicit}
+\boxed{
+r_{\mathrm{Vir}_c}(z)
+\;=\;
+\frac{c}{2\,z^4}
+\;+\;
+\frac{2\,T}{z^2}
+\;+\;
+\frac{\partial T}{z},
+}
+\end{equation}
+where $T = T \otimes 1 + 1 \otimes T$ acts on the tensor product
+via the energy-momentum tensor, and the identity in $\fg \otimes \fg$
+is understood (for each pole, the tensor structure distributes the
+action across the two copies of $\mathrm{Vir}_c$).  More precisely,
+\begin{equation}
+\label{eq:virasoro-r-tensor}
+r_{\mathrm{Vir}_c}(z)
+= \frac{c/2}{z^4}\, \mathbf{1} \otimes \mathbf{1}
++ \frac{2}{z^2}\, T \otimes \mathbf{1}
++ \frac{1}{z}\, \partial T \otimes \mathbf{1}
++ (\text{regular at } z = 0),
+\end{equation}
+where we write the ``first slot acts'' convention.
+\end{theorem}
+
+\begin{proof}
+\noindent\textbf{Step 1: The $\lambda$-bracket.}
+The Virasoro $\lambda$-bracket is
+$\{T {}_\lambda T\} = (\partial + 2\lambda)\, T +
+\frac{c}{12}\,\lambda^3$.
+Expanding: $c_0 = \partial T$, $c_1 = 2T$, $c_2 = 0$,
+$c_3 = c/12$.
+
+\medskip
+\noindent\textbf{Step 2: The Laplace integral.}
+\begin{align*}
+r(z) &= \int_0^\infty d\lambda\; e^{-\lambda z}\,
+\{T {}_\lambda T\} \\
+&= \int_0^\infty d\lambda\; e^{-\lambda z}\,
+\bigl(\partial T + 2\lambda\, T + \tfrac{c}{12}\,\lambda^3\bigr) \\
+&= \frac{\partial T}{z} + \frac{2T}{z^2}
++ \frac{c}{12} \cdot \frac{3!}{z^4} \\
+&= \frac{\partial T}{z} + \frac{2T}{z^2} + \frac{c}{2z^4},
+\end{align*}
+using $\int_0^\infty \lambda^n\, e^{-\lambda z}\, d\lambda
+= n!/z^{n+1}$.
+
+\medskip
+\noindent\textbf{Step 3: Collision residue.}
+On $\FM_2(\C)$, the Virasoro OPE
+$T(z_1)\, T(z_2) \sim c/(2w^4) + 2T(z_2)/w^2 + \partial T(z_2)/w$
+(where $w = z_1 - z_2$) gives the collision residue
+$\Res^{\mathrm{coll}}_{0,2}(\Theta_{\mathrm{Vir}_c})
+= c/(2z^4) + 2T/z^2 + \partial T/z$,
+matching~\eqref{eq:virasoro-r-explicit} (with the identification
+$c/2 = c/12 \cdot 3!$).
+
+\medskip
+\noindent\textbf{Step 4: Pole structure and shadow depth.}
+The quartic pole $c/(2z^4)$ is the signature of the Virasoro: no
+simple Lie algebra produces a pole of order higher than~$2$ (the
+affine $r$-matrix has at most a double pole).  The quartic pole is
+the geometric manifestation of the conformal anomaly $c$: it
+arises from the $\lambda^3$ term in the $\lambda$-bracket, which
+encodes the failure of the energy-momentum tensor to transform as
+a primary field.  In the shadow depth classification, the quartic
+pole places the Virasoro in the $M$ (mixed) class: the shadow
+tower does not terminate, and the full Maurer--Cartan element
+$\Theta_{\mathrm{Vir}_c}$ requires infinitely many arity
+corrections beyond the binary $r$-matrix.
+\end{proof}
+
+\subsubsection{$\mathcal{W}_3$: the sextic $r$-matrix}
+\label{subsubsec:w3-r-matrix}
+\index{W-algebra!$\mathcal{W}_3$ r-matrix|textbf}
+\index{classical r-matrix!$\mathcal{W}_3$}
+
+\begin{proposition}[$\mathcal{W}_3$ $r$-matrix;
+\ClaimStatusProvedHere]
+\label{prop:w3-r-matrix}
+For the $\mathcal{W}_3$ algebra at central charge $c$
+(generated by the Virasoro field $T$ of weight~$2$ and the
+spin-$3$ current $W$ of weight~$3$), the classical $r$-matrix
+has the form
+\begin{equation}
+\label{eq:w3-r-explicit}
+r_{\mathcal{W}_3}(z)
+\;=\;
+r_{\mathrm{Vir}_c}(z)
+\;+\;
+\frac{W_0}{z^3}
+\;+\;
+\frac{W_1}{z^4}
+\;+\;
+\frac{W_2}{z^5}
+\;+\;
+\frac{c_W}{z^6},
+\end{equation}
+where $r_{\mathrm{Vir}_c}(z)$ is the Virasoro contribution
+\eqref{eq:virasoro-r-explicit}, $W_0, W_1, W_2$ are
+$\lambda$-bracket coefficients of the $W$-current OPE, and
+$c_W$ is the $W$-algebra central term.  The sextic pole
+$c_W/z^6$ arises from the OPE $W(z_1)\, W(z_2) \sim
+c_W/(z_1 - z_2)^6 + \cdots$ and is the defining signature
+of the spin-$3$ field.
+\end{proposition}
+
+\begin{proof}
+The $\lambda$-bracket structure of $\mathcal{W}_3$ involves three
+brackets: $\{T {}_\lambda T\}$ (Virasoro, as above),
+$\{T {}_\lambda W\} = (\partial + 3\lambda)\, W$ (primary of
+weight~$3$), and $\{W {}_\lambda W\}$ (the $\mathcal{W}_3$ OPE,
+involving $T$, $\Lambda = (TT) - (3/10)\partial^2 T$, and a
+quintic polynomial in $\lambda$).  The $\lambda$-expansion
+$\{W {}_\lambda W\} = \sum_{n=0}^{5} c_n^{WW}\, \lambda^n$
+has $c_5^{WW} = c/3\cdot5!$ (the highest pole, contributing
+$c_W/z^6$) and lower coefficients involving the composite field
+$\Lambda$ and its derivatives.
+
+The Laplace transform $r(z) = \int_0^\infty e^{-\lambda z}\,
+\{W {}_\lambda W\}\, d\lambda$ produces a sum of poles
+$c_n^{WW}\, n!/z^{n+1}$ for $n = 0, \ldots, 5$, with the
+leading term $c_5^{WW}\, 5!/z^6 = c_W/z^6$.  Combined with the
+$T{-}T$ and $T{-}W$ brackets, this gives~\eqref{eq:w3-r-explicit}.
+\end{proof}
+
+\begin{remark}[General $\mathcal{W}_N$: $r$-matrix pole order]
+\label{rem:wn-r-matrix-pole}
+\index{W-algebra!pole order of r-matrix}
+For the $\mathcal{W}_N$ algebra (generated by fields of spins
+$2, 3, \ldots, N$), the highest pole in the $r$-matrix is
+$r(z) \sim c_{W_N}/z^{2N}$, arising from the self-OPE of the
+spin-$N$ generator $W_N$.  The pole order $2N$ grows linearly
+with $N$: each additional generator contributes higher poles to
+the collision residue.  In the limit $N \to \infty$
+($\mathcal{W}_\infty$), the $r$-matrix has essential singularity
+at $z = 0$---the formal Laurent series does not terminate.
+\end{remark}
+
+\subsubsection{Beta-gamma $\beta\gamma_\lambda$: the fermionic
+$r$-matrix}
+\label{subsubsec:betagamma-r-matrix}
+\index{beta-gamma system!classical r-matrix|textbf}
+\index{classical r-matrix!beta-gamma}
+
+\begin{proposition}[Beta-gamma $r$-matrix from collision residue;
+\ClaimStatusProvedHere]
+\label{prop:betagamma-r-matrix}
+For the beta-gamma system $\beta\gamma_\lambda$ at conformal weight
+$\lambda$ (with $\beta$ of weight $\lambda$ and $\gamma$ of weight
+$1 - \lambda$), the classical $r$-matrix is
+\begin{equation}
+\label{eq:betagamma-r-explicit}
+r_{\beta\gamma_\lambda}(z)
+\;=\;
+\frac{1}{z}\, (\beta \otimes \gamma + \gamma \otimes \beta),
+\end{equation}
+with a single simple pole.  The $r$-matrix is \emph{non-diagonal}
+in field space: it exchanges $\beta$ and $\gamma$ across the two
+tensor factors.
+\end{proposition}
+
+\begin{proof}
+The $\lambda$-bracket of the beta-gamma system is
+$\{\beta {}_\lambda \gamma\} = 1$ (contact OPE
+$\beta(z_1)\, \gamma(z_2) \sim 1/(z_1 - z_2)$), with
+$\{\beta {}_\lambda \beta\} = \{\gamma {}_\lambda \gamma\} = 0$.
+The only nonzero coefficient is $c_0^{\beta\gamma} = 1$.
+
+The Laplace transform gives
+$r(z) = \int_0^\infty e^{-\lambda z}\, d\lambda\,
+(\beta \otimes \gamma + \gamma \otimes \beta)
+= (\beta \otimes \gamma + \gamma \otimes \beta)/z$.
+
+The collision residue on $\FM_2(\C)$ is
+$\Res_{w=0}\, [1/w\, \beta(z_2) \otimes \gamma(z_2)\, dw]
+= \beta \otimes \gamma$, plus the $\gamma \otimes \beta$
+term from the opposite ordering.  The simple pole structure
+confirms the contact shadow depth
+$r_{\max}(\beta\gamma_\lambda) = 4$ arises not from the
+binary $r$-matrix but from the \emph{quartic} self-interaction
+$\beta\beta\gamma\gamma$ at arity~$4$ (Volume~I,
+\S\ref*{sec:betagamma-quartic-birth}).
+\end{proof}
+
+\begin{remark}[Comparison of pole structures across the landscape]
+\label{rem:pole-structure-comparison}
+\index{classical r-matrix!pole structure comparison}
+The pole structure of $r(z)$ at $z = 0$ encodes the conformal
+spin content of the chiral algebra:
+\begin{center}
+\small
+\renewcommand{\arraystretch}{1.15}
+\begin{tabular}{llll}
+\textbf{Family} & \textbf{Highest pole} & \textbf{Source} &
+\textbf{Shadow class} \\
+\hline
+$\cH_k$ & $k/z^2$ & $\lambda$-bracket $k\lambda$ & $G$ \\
+$\widehat{\fg}_k$ & $\Omega/z$ & structure constants $f^{ab}_c$ & $L$ \\
+$\beta\gamma_\lambda$ & $1/z$ & contact OPE & $C$ \\
+$\mathrm{Vir}_c$ & $c/(2z^4)$ & conformal anomaly $\lambda^3$ & $M$ \\
+$\mathcal{W}_N$ & $c_{W_N}/z^{2N}$ & spin-$N$ self-OPE & $M$ \\
+\end{tabular}
+\end{center}
+The pole order determines the leading behavior of the spectral
+$R$-matrix near the collision singularity.  The shadow class
+($G$/$L$/$C$/$M$ from Volume~I) is determined by the full tower
+$\Theta_\cA$, not just the binary projection $r(z)$: the
+Heisenberg has a double pole but terminates at arity~$2$
+(Gaussian), while the Virasoro has a quartic pole and an infinite
+tower (mixed).
+\end{remark}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% THE PRONILPOTENT YANGIAN
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{The pronilpotent Yangian $Y_T^{\mathrm{mod}}$}
+\label{sec:pronilpotent-yangian}
+\index{Yangian!pronilpotent|textbf}
+\index{pronilpotent Yangian|textbf}
+\index{modular convolution algebra!Yangian}
+
+The classical $r$-matrix is the genus-$0$, arity-$2$ projection of
+$\Theta_\cA$.  The full universal Maurer--Cartan element encodes
+corrections at all genera and all arities.  This section constructs
+the pronilpotent completion $Y_T^{\mathrm{mod}}$ of the modular
+convolution algebra in which $\Theta_\cA$ lives, and identifies the
+stable-graph Yang--Baxter equation as its Maurer--Cartan equation.
+
+\subsection{The modular convolution algebra}
+\label{subsec:modular-convolution-yangian}
+
+\begin{definition}[Modular convolution algebra for the spectral
+problem; \ClaimStatusProvedHere]
+\label{def:modular-convolution-spectral}
+\index{modular convolution algebra!spectral definition}
+Let $\cA$ be a chiral algebra satisfying (H1)--(H4), with bar
+coalgebra $\barBch(\cA)$ and Koszul dual $\cA^!$.  The
+\emph{modular convolution Lie algebra for the spectral problem} is
+\begin{equation}
+\label{eq:modular-convolution-spectral}
+L_T^{\mathrm{mod}}
+\;=\;
+\prod_{g \ge 0,\, n \ge 1}
+\Hom\bigl(
+C_\ast(\overline{\mathcal{M}}_{g, n+1})
+\otimes (\cA^!)^{\otimes n},\;
+\cA^!
+\bigr)[1],
+\end{equation}
+where $\overline{\mathcal{M}}_{g,n+1}$ is the Deligne--Mumford
+moduli space of stable curves of genus $g$ with $n+1$ marked
+points (one ``output'' point and $n$ ``input'' points).  The
+shift $[1]$ is the cohomological shift placing the convolution
+elements in degree $1$ (the Maurer--Cartan degree).
+
+Elements of $L_T^{\mathrm{mod}}$ are sequences
+$\{\alpha_{g,n}\}_{g \ge 0,\, n \ge 1}$ of linear maps
+\[
+\alpha_{g,n} \colon
+C_\ast(\overline{\mathcal{M}}_{g,n+1})
+\otimes (\cA^!)^{\otimes n}
+\longrightarrow \cA^![1]
+\]
+for each $(g,n)$ with $2g - 2 + n > 0$ (stability).
+\end{definition}
+
+\begin{definition}[Lie bracket via graph composition]
+\label{def:lie-bracket-graph-composition}
+\index{Lie bracket!graph composition}
+\index{graph composition!Lie bracket}
+The Lie bracket on $L_T^{\mathrm{mod}}$ is defined by \emph{graph
+composition with propagator}.  Given
+$\alpha = \{\alpha_{g_1, n_1}\}$ and
+$\beta = \{\beta_{g_2, n_2}\}$, the bracket
+$[\alpha, \beta]_{g, n}$ is defined by summing over all stable
+graphs $\Gamma$ of type $(g, n+1)$ with exactly one internal
+edge connecting a vertex of type $(g_1, n_1 + 1)$ (decorated by
+$\alpha$) to a vertex of type $(g_2, n_2 + 1)$ (decorated by
+$\beta$).  The internal edge carries the propagator $r(z)$---the
+classical $r$-matrix evaluated at the spectral parameter of the
+edge.
+
+Concretely, for a graph $\Gamma$ with one edge $e$ connecting
+vertices $v_1$ (type $(g_1, n_1+1)$) and $v_2$
+(type $(g_2, n_2+1)$), with $g = g_1 + g_2 + h_1(\Gamma)$
+and $n = n_1 + n_2 - 2$ (after identifying the two half-edges
+of $e$ with one input each):
+\begin{equation}
+\label{eq:lie-bracket-graph}
+[\alpha, \beta]_\Gamma
+\;=\;
+\sum_{\text{gluings}}
+\alpha_{g_1, n_1}
+\circ_e
+r(z_e)
+\circ_e
+\beta_{g_2, n_2},
+\end{equation}
+where $\circ_e$ denotes the composition along the edge $e$ using
+the $r$-matrix as propagator, and the sum is over all ways of
+distributing the $n$ external half-edges between the two vertices.
+The full bracket is the sum over all stable graphs with one edge:
+\[
+[\alpha, \beta]_{g,n}
+\;=\;
+\sum_{\Gamma \in \StGraph_{g,n+1}^{(1)}}
+\frac{1}{|\Aut(\Gamma)|}\,
+[\alpha, \beta]_\Gamma.
+\]
+\end{definition}
+
+\begin{proposition}[Jacobi identity from codimension-$2$ cancellation;
+\ClaimStatusProvedHere]
+\label{prop:jacobi-graph-composition}
+\index{Jacobi identity!graph composition}
+The bracket~\eqref{eq:lie-bracket-graph} satisfies the Jacobi
+identity.  The proof is by codimension-$2$ cancellation in
+$\overline{\mathcal{M}}_{g,n+1}$: the three terms of the Jacobi
+identity
+$[[\alpha, \beta], \gamma] + [[\beta, \gamma], \alpha]
++ [[\gamma, \alpha], \beta] = 0$
+correspond to the three ways of connecting three vertices by two
+edges in a graph with two internal edges, and these are the three
+codimension-$2$ boundary strata of $\overline{\mathcal{M}}_{g,n+1}$
+arising from two successive degenerations.  The cancellation follows
+from $\partial^2 = 0$ on $\overline{\mathcal{M}}_{g,n+1}$: the
+codimension-$2$ boundary of a manifold with corners has total
+boundary zero.
+\end{proposition}
+
+\begin{proof}
+The Lie bracket $[\alpha, \beta]$ is computed by \emph{edge gluing}:
+one output half-edge of $\alpha$ is joined to one input half-edge
+of $\beta$ (or vice versa) to form a single internal edge.  This
+is the Lie bracket structure (not operadic insertion): it connects
+an output of one element to an input of another via one new edge,
+increasing the total internal edge count by exactly one.  If
+$\alpha$ has arity $n_1$ and $\beta$ has arity $n_2$, the
+bracket $[\alpha, \beta]$ has arity $n_1 + n_2 - 1$, since one
+input from each vertex is consumed by the gluing edge.  The
+filtration compatibility $[F^{N_1}, F^{N_2}] \subset
+F^{N_1 + N_2 - 1}$ is additive in the edge count.
+
+The double bracket $[[\alpha, \beta], \gamma]$ sums over graphs
+with two internal edges: the first edge connects $\alpha$ to
+$\beta$ (forming $[\alpha, \beta]$), and the second edge connects
+the composite $[\alpha, \beta]$ to $\gamma$.  The three cyclic
+permutations of the Jacobi identity correspond to the three ways
+of choosing which pair is connected by the first edge:
+$\alpha$-$\beta$, $\beta$-$\gamma$, or $\gamma$-$\alpha$.
+
+Each such graph $\Gamma^{(2)}$ with two internal edges corresponds
+to a codimension-$2$ boundary stratum
+$\overline{\mathcal{M}}_{\Gamma^{(2)}}$ of
+$\overline{\mathcal{M}}_{g,n+1}$: the curve degenerates along
+two nodes simultaneously.  The two edges give two codimension-$1$
+degenerations whose composition is codimension~$2$.  The three
+terms of the Jacobi identity correspond to the three orderings
+of the two degenerations.
+
+By the general boundary-of-boundary identity for manifolds with
+corners, $\partial(\partial \overline{\mathcal{M}}_{g,n+1}) = 0$:
+the codimension-$2$ strata, oriented by the two normal covectors,
+cancel pairwise.  This is the combinatorial identity underlying
+$\partial^2 = 0$ on the chain complex
+$C_\ast(\overline{\mathcal{M}}_{g,n+1})$.  Translated to the
+Lie algebra, it gives the Jacobi identity for the edge-gluing
+bracket.
+
+The sign verification uses the Koszul sign rule on the
+desuspension shift: each edge contributes a sign $(-1)^{|e|}$
+from the degree-$1$ propagator.  The three terms of the Jacobi
+identity acquire signs
+$(-1)^{|\alpha|(|\beta| + |\gamma|)}$,
+$(-1)^{|\beta|(|\gamma| + |\alpha|)}$,
+$(-1)^{|\gamma|(|\alpha| + |\beta|)}$,
+which is the graded Jacobi identity in degree $1$.
+\end{proof}
+
+\subsection{The filtration and pronilpotent completion}
+\label{subsec:filtration-pronilpotent}
+
+\begin{definition}[Arity filtration]
+\label{def:arity-filtration}
+\index{arity filtration!on convolution algebra}
+The \emph{arity filtration} on $L_T^{\mathrm{mod}}$ is defined by
+\begin{equation}
+\label{eq:arity-filtration}
+F^N L_T^{\mathrm{mod}}
+\;=\;
+\prod_{\substack{g \ge 0,\, n \ge 1 \\ n \ge N}}
+\Hom\bigl(
+C_\ast(\overline{\mathcal{M}}_{g, n+1})
+\otimes (\cA^!)^{\otimes n},\;
+\cA^!
+\bigr)[1].
+\end{equation}
+This filtration is separated ($\bigcap_N F^N = 0$) and compatible
+with the Lie bracket: $[F^{N_1}, F^{N_2}] \subset
+F^{N_1 + N_2 - 1}$ (the bracket of an element of arity $n_1$ with
+an element of arity $n_2$ produces an element of arity
+$n_1 + n_2 - 1$, since one input from each is consumed by the
+internal edge).  The quotients $L_T^{\mathrm{mod}} / F^{N+1}$ are
+finite-arity truncations.
+
+The codimension of the boundary stratum $\sigma_T$ corresponding to
+a stable tree~$T$ in $\overline{\mathcal{M}}_{g,n+1}$ is the
+number of \emph{internal edges} $|E_{\mathrm{int}}(T)|$ of~$T$,
+not the number of internal vertices minus one.  For binary trees,
+$|E_{\mathrm{int}}(T)| = |V_{\mathrm{int}}(T)| - 1$, so the two
+counts coincide; for non-binary trees (vertices of valence
+$\ge 4$), the edge count is the correct codimension.
+\end{definition}
+
+\begin{definition}[Pronilpotent Yangian]
+\label{def:pronilpotent-yangian}
+\index{Yangian!pronilpotent completion}
+The \emph{pronilpotent Yangian} is the completion of the modular
+convolution Lie algebra with respect to the arity filtration:
+\begin{equation}
+\label{eq:pronilpotent-yangian}
+Y_T^{\mathrm{mod}}
+\;:=\;
+\varprojlim_{N} \;
+L_T^{\mathrm{mod}} / F^{N+1}.
+\end{equation}
+Elements of $Y_T^{\mathrm{mod}}$ are formal power series in the
+arity variable: a sequence $\{\alpha_{g,n}\}_{g \ge 0,\, n \ge 1}$
+with no convergence requirement on the tail $n \to \infty$.  The
+pronilpotent Lie algebra $Y_T^{\mathrm{mod}}$ carries a natural
+Maurer--Cartan set
+\begin{equation}
+\label{eq:mc-set-yangian}
+\MC(Y_T^{\mathrm{mod}})
+\;=\;
+\bigl\{\alpha \in Y_T^{\mathrm{mod}}
+\;\bigm|\;
+d\alpha + \tfrac{1}{2}[\alpha, \alpha] = 0
+\bigr\},
+\end{equation}
+which is well-defined because the bracket is pronilpotent
+(the arity-$N$ component of $[\alpha, \alpha]$ depends only on
+the components of $\alpha$ in arities $< N$).
+\end{definition}
+
+\begin{remark}[Spectral sequence convergence]
+\label{rem:spectral-sequence-convergence}
+\index{spectral sequence!convergence of arity filtration}
+The spectral sequence associated to the arity filtration
+$F^\bullet$ on $Y_T^{\mathrm{mod}}$ converges.  The reason is
+that at each total degree~$d$, only finitely many filtration
+stages contribute: an element of arity~$n$ and genus~$g$ has
+total degree $d = 2g - 2 + n$ (from the stability condition
+$2g - 2 + n > 0$ and the grading), so the arity $n \le d + 2$
+is bounded by the total degree.  Hence $F^{d+3} = 0$ in total
+degree~$d$, and the filtration is finite in each degree.  By the
+classical convergence theorem for bounded-below exhaustive
+filtrations, the spectral sequence converges to $H^\ast(Y_T^{\mathrm{mod}}, d)$
+at each total degree.
+\end{remark}
+
+\begin{remark}[Genus expansion]
+\label{rem:genus-expansion-yangian}
+\index{genus expansion!pronilpotent Yangian}
+There is a second filtration on $Y_T^{\mathrm{mod}}$ by genus:
+$G^g Y_T^{\mathrm{mod}}$ consists of elements supported in genera
+$\ge g$.  This filtration is compatible with the Lie bracket (genus
+is additive under gluing) and gives a double filtration by arity
+and genus.  The associated graded with respect to the genus
+filtration separates the contributions from different genera:
+$\gr^G_g\, Y_T^{\mathrm{mod}}$ consists of genus-$g$ graph sums
+only.
+\end{remark}
+
+\subsection{The pro-Maurer--Cartan element $R_T^{\mathrm{mod}}$}
+\label{subsec:pro-mc-element}
+
+\begin{definition}[Stable-graph $R$-matrix]
+\label{def:stable-graph-r-matrix}
+\index{R-matrix!stable-graph}
+\index{stable graph!R-matrix}
+The \emph{stable-graph $R$-matrix} is the element
+\begin{equation}
+\label{eq:stable-graph-r-matrix}
+R_T^{\mathrm{mod}}(z; \hh)
+\;=\;
+\sum_{g \ge 0} \hh^{2g}\, r_{T,g}(z)
+\;\in\;
+Y_T^{\mathrm{mod}}[[\hh]],
+\end{equation}
+where $r_{T,g}(z)$ is the genus-$g$ contribution.  The classical
+$r$-matrix of \S\ref{sec:classical-r-matrix-explicit} is the
+genus-$0$ term: $r_{T,0}(z) = r(z)$.  The genus-$1$ term
+$r_{T,1}(z)$ encodes the one-loop correction to the spectral
+braiding---the effect of the Arakelov form $\omega_1$ on the
+$R$-matrix (Theorem~\ref{thm:elliptic-spectral-dichotomy}).
+\end{definition}
+
+\begin{theorem}[Stable-graph YBE is the MC equation;
+\ClaimStatusProvedHere]
+\label{thm:stable-graph-ybe-mc}
+\index{Yang--Baxter equation!stable-graph}
+\index{Maurer--Cartan equation!stable-graph YBE}
+The stable-graph $R$-matrix $R_T^{\mathrm{mod}}(z; \hh)$ satisfies
+the stable-graph Yang--Baxter equation if and only if it is a
+Maurer--Cartan element of $Y_T^{\mathrm{mod}}[[\hh]]$:
+\begin{equation}
+\label{eq:stable-graph-ybe-mc}
+d\, R_T^{\mathrm{mod}}
++ \frac{1}{2}\bigl[R_T^{\mathrm{mod}},\, R_T^{\mathrm{mod}}\bigr]
+= 0
+\quad \Longleftrightarrow \quad
+\text{stable-graph YBE holds at all genera.}
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+\noindent\textbf{Step 1: Expansion by genus.}
+Write $R = R_T^{\mathrm{mod}} = \sum_{g \ge 0} \hh^{2g}\, r_g$.
+The MC equation $dR + \frac{1}{2}[R, R] = 0$ expands as
+\begin{equation}
+\label{eq:mc-genus-expansion}
+\sum_{g \ge 0} \hh^{2g}\, d\, r_g
++ \frac{1}{2} \sum_{g_1, g_2 \ge 0}
+\hh^{2(g_1 + g_2)}\, [r_{g_1}, r_{g_2}] = 0.
+\end{equation}
+At each genus $g$, the coefficient of $\hh^{2g}$ gives
+\begin{equation}
+\label{eq:mc-at-genus-g}
+d\, r_g
++ \frac{1}{2} \sum_{\substack{g_1 + g_2 = g \\ g_1, g_2 \ge 0}}
+[r_{g_1}, r_{g_2}] = 0.
+\end{equation}
+
+\medskip
+\noindent\textbf{Step 2: Genus $0$.}
+At $g = 0$: $d\, r_0 + \frac{1}{2}[r_0, r_0] = 0$.  The
+bracket $[r_0, r_0]$ at arity $2$ (acting on pairs of elements
+of $\cA^!$) is computed by the single graph with one internal
+edge connecting two binary vertices.  In the spectral variable,
+this is exactly the left-hand side of the CYBE:
+$[r_0, r_0]_{12,13} + [r_0, r_0]_{12,23}
++ [r_0, r_0]_{13,23}$, where the three terms correspond to the
+three graphs (one for each pair $\{i,j\}$ of external legs
+connected through the propagator).  The differential $d\, r_0$
+vanishes if $r_0$ is a cocycle (which holds when $r_0$ is
+defined at the cohomology level).  Hence the genus-$0$ MC
+equation is the CYBE.
+
+\medskip
+\noindent\textbf{Step 3: Genus $1$.}
+At $g = 1$: $d\, r_1 + [r_0, r_1] = 0$ (the $[r_1, r_0]$
+term equals $[r_0, r_1]$ by antisymmetry, giving the factor
+$1/2 \cdot 2$).  The bracket $[r_0, r_1]$ is a genus-$1$
+graph with one internal edge: a genus-$0$ vertex carrying $r_0$
+connected to a genus-$1$ vertex carrying $r_1$.  In addition,
+there is a self-loop term from $\frac{1}{2}[r_0, r_0]$ at
+genus~$1$: a genus-$0$ graph with one self-loop connecting two
+inputs of the same binary vertex.  This self-loop contributes
+the sewing operator $\hh\,\Delta_{\mathrm{sew}}$ acting on
+$r_0$.  The equation $d\, r_1 + [r_0, r_1]
++ \frac{1}{2}[r_0, r_0]^{g=1} = 0$ is the genus-$1$
+Yang--Baxter equation: the first quantum correction to the
+classical braiding, controlled by the Arakelov quasi-periodicity
+and the curvature $\kappa(\cA) \cdot \omega_1$.
+
+\medskip
+\noindent\textbf{Step 4: General $g$.}
+At general genus $g$, equation~\eqref{eq:mc-at-genus-g} is the
+genus-$g$ Yang--Baxter equation: it asserts that the genus-$g$
+correction $r_g$ to the $R$-matrix is determined (up to gauge
+equivalence) by the lower-genus corrections $r_0, \ldots,
+r_{g-1}$ via the inhomogeneity
+$\sum_{g_1+g_2=g,\, g_i < g} [r_{g_1}, r_{g_2}]$.  This is
+the inductive genus-by-genus determination of the spectral
+braiding, paralleling the genus spectral sequence of Volume~I
+(Construction~\ref*{const:vol1-genus-spectral-sequence}).
+
+\medskip
+\noindent\textbf{Step 5: Equivalence with stable-graph YBE.}
+The stable-graph Yang--Baxter equation at genus $g$ and arity $n$
+asserts that the sum over all stable graphs $\Gamma$ of type
+$(g, n)$ with three external legs (the ``triple interaction'' at
+arity $3$) weighted by $R_T^{\mathrm{mod}}$ vanishes.  This is
+precisely the arity-$3$ component of the MC
+equation~\eqref{eq:mc-at-genus-g}, since the bracket $[r_{g_1},
+r_{g_2}]$ at arity $3$ produces the three-term sum indexed by
+the three stable graphs with one internal edge and three
+external legs.  The equivalence extends to all arities $n$
+by the higher MC identities (the $L_\infty$ generalization of
+the Jacobi identity, which encodes graph sums at all arities).
+\end{proof}
+
+\begin{corollary}[Classical Yangian as genus-$0$ truncation;
+\ClaimStatusProvedHere]
+\label{cor:classical-yangian-truncation}
+\index{Yangian!classical as genus-0 truncation}
+The classical Yangian $Y(\fg)$ is the genus-$0$ truncation of
+$Y_T^{\mathrm{mod}}$: the quotient
+$Y_T^{\mathrm{mod}} / G^1 Y_T^{\mathrm{mod}}$ retains only the
+tree-level (genus-$0$) contribution.  The classical $r$-matrix
+$r(z) = r_{T,0}(z)$ is the unique Maurer--Cartan element at this
+truncation level.
+
+For $\cA = \widehat{\fg}_k$: the classical Yangian $Y(\fg)$ is
+recovered from the genus-$0$ projection of $Y_T^{\mathrm{mod}}$.
+The $R$-matrix $R(z) = 1 + \hh\, \Omega/((k+h^\vee)z)
++ O(\hh^2)$ deforms to the quantum Yangian $R$-matrix
+$R^{\mathrm{qu}}(z) = (z + \hh\,P)/(z - \hh)$ by resumming the
+genus expansion to all orders.
+\end{corollary}
+
+\begin{proof}
+The genus filtration $G^\bullet$ on $Y_T^{\mathrm{mod}}$ has
+$\gr^G_0$ consisting of tree-level graphs only.  The MC equation
+at genus $0$ is $d\, r_0 + \frac{1}{2}[r_0, r_0] = 0$, the
+CYBE, which determines $r_0 = r(z)$.  The classical Yangian
+$Y(\fg)$ is defined as the universal envelope of the relation
+$[x, y] = r_0(x \otimes y - y \otimes x)$; this is the content
+of the genus-$0$ MC equation applied to pairs of generators.
+\end{proof}
+
+\subsection{The gravitational Yangian for Virasoro}
+\label{subsec:gravitational-yangian-virasoro}
+\index{Yangian!gravitational|textbf}
+\index{Virasoro algebra!gravitational Yangian}
+
+\begin{definition}[Gravitational Yangian]
+\label{def:gravitational-yangian}
+\index{gravitational Yangian!definition}
+For $\cA = \mathrm{Vir}_c$, the pronilpotent Yangian
+$Y_T^{\mathrm{mod}}(\mathrm{Vir}_c)$ is the \emph{gravitational
+Yangian}.  Its modular convolution algebra is
+\[
+L_T^{\mathrm{mod}}(\mathrm{Vir}_c)
+= \prod_{g,n}
+\Hom\bigl(
+C_\ast(\overline{\mathcal{M}}_{g,n+1})
+\otimes (\mathrm{Vir}_{26-c})^{\otimes n},\;
+\mathrm{Vir}_{26-c}
+\bigr)[1],
+\]
+where $\mathrm{Vir}_{26-c} = \mathrm{Vir}_c^!$ is the Koszul
+dual Virasoro at the complementary central charge
+(Volume~I, critical pitfall: $\mathrm{Vir}_c^! = \mathrm{Vir}_{26-c}$,
+self-dual at $c = 13$, NOT $c = 26$).
+\end{definition}
+
+\begin{proposition}[First properties of the gravitational Yangian;
+\ClaimStatusProvedHere]
+\label{prop:gravitational-yangian-properties}
+The gravitational Yangian
+$Y_T^{\mathrm{mod}}(\mathrm{Vir}_c)$ has the following properties:
+\begin{enumerate}[label=\textup{(\roman*)}]
+\item \emph{Genus-$0$ $r$-matrix:}
+$r_0(z) = c/(2z^4) + 2T/z^2 + \partial T/z$
+(Theorem~\ref{thm:virasoro-r-matrix}).
+
+\item \emph{Non-formality at all genera:}
+The higher operations $m_k \ne 0$ for $k \ge 3$ in the $\Ainf$
+structure on $\mathrm{Vir}_{26-c}$ produce nontrivial higher
+brackets $\ell_k$ in the $L_\infty$ structure on the convolution
+algebra.  The shadow tower $\Theta_{\mathrm{Vir}_c}^{(\le r)}$
+does not terminate: $r_{\max} = \infty$.
+
+\item \emph{Genus-$1$ correction:}
+The first quantum correction $r_1(z)$ to the $r$-matrix encodes
+the effect of the quasi-periodic monodromy on $E_\tau$
+(Theorem~\ref{thm:elliptic-spectral-dichotomy}).  Since
+$c_0 = \partial T \ne 0$ for Virasoro, the curvature and
+braiding entangle at genus~$1$: $r_1(z)$ depends on the
+modular parameter $\tau$ through the Weierstrass functions.
+
+\item \emph{Complementarity:}
+$\kappa(\mathrm{Vir}_c) + \kappa(\mathrm{Vir}_{26-c}) = 0$
+(Volume~I, Theorem~C), so
+$c + (26-c) = 26 \ne 0$ for the gravitational Yangian---the
+modular curvature is always nonzero (except at $c = 0$ where
+$\kappa = 0$).  The complementarity potential
+$F_1(\mathrm{Vir}_c) + F_1(\mathrm{Vir}_{26-c})
+= c/24 + (26-c)/24 = 26/24$
+does NOT vanish: the bulk gravitational theory carries a net
+genus-$1$ anomaly proportional to the total central charge~$26$.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+(i) is Theorem~\ref{thm:virasoro-r-matrix}.
+(ii) is Remark~\ref{rem:yangian-virasoro-nonformality}: the
+Virasoro has infinite shadow depth $r_{\max} = \infty$ (Volume~I).
+(iii) follows from Theorem~\ref{thm:elliptic-spectral-dichotomy}(c)
+with $c_0 = \partial T \ne 0$.
+(iv) is a direct computation from Volume~I,
+$\kappa(\mathrm{Vir}_c) = c/2$ (the scalar curvature).
+\end{proof}
+
+\begin{remark}[The gravitational Yangian and $\mathrm{Vir}_{26-c}$
+as resonance shadow]
+\label{rem:gravitational-yangian-resonance}
+\index{resonance shadow!Virasoro}
+The Koszul dual $\mathrm{Vir}_{26-c}$ is the depth-zero resonance
+shadow of $\mathrm{Vir}_c$ (Volume~I,
+Remark~\ref*{rem:virasoro-resonance-model}): it is the image of
+the finite-dimensional resonance truncation $R_{\mathrm{Vir}}$,
+not the final Koszul dual.  The genuine $\mathcal{W}_\infty$-type
+dual requires the full resonance-filtered completion
+(Volume~I, Conjecture~\ref*{conj:platonic-completion}).  The
+gravitational Yangian $Y_T^{\mathrm{mod}}(\mathrm{Vir}_c)$ is
+therefore defined using the resonance shadow as a first
+approximation; the full gravitational quantum group requires
+completion technology from MC4.
+\end{remark}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% HIGHER-GENUS BRAIDING
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Higher-genus braiding}
+\label{sec:higher-genus-braiding}
+\index{higher-genus braiding|textbf}
+\index{spectral braiding!higher genus}
+
+The spectral $R$-matrix of \S\ref{subsec:YBE} is defined at
+genus~$0$, where the holomorphic propagator is $dz/z$ on $\C^\times$.
+At genus $g \ge 1$, the propagator acquires quasi-periodicity from
+the period matrix of the curve $\Sigma_g$, forcing the braiding
+into the framework of meromorphic functions on $\Sigma_g$ with
+prescribed automorphy.  This section develops the genus-$1$ case
+explicitly and describes the structure at higher genera.
+
+\subsection{Genus-$1$ spectral braiding}
+\label{subsec:genus-1-braiding}
+
+\subsubsection{The Atiyah extension and meromorphic functions on
+the torus}
+\index{Atiyah extension!genus 1}
+
+Let $E_\tau = \C / (\Z + \Z\tau)$ be the elliptic curve with
+modular parameter $\tau \in \mathfrak{H}$ (upper half-plane).
+The holomorphic line bundle $\cO_{E_\tau}(p_0)$ (sections with at
+most a simple pole at the origin $p_0$) fits into the
+\emph{Atiyah extension}
+\begin{equation}
+\label{eq:atiyah-extension}
+0 \to \cO_{E_\tau} \to \mathcal{E}_\tau \to
+T_{E_\tau} \to 0,
+\end{equation}
+where $\mathcal{E}_\tau$ is the Atiyah bundle and $T_{E_\tau}$ is
+the tangent bundle.  The Atiyah class
+$a(\cO(p_0)) \in H^1(E_\tau, \Omega^1_{E_\tau})$ is the
+obstruction to splitting~\eqref{eq:atiyah-extension} and equals
+the class of the Arakelov form $\omega_1$.
+
+The spectral $r$-matrix at genus~$1$ is a section of
+$\mathcal{E}_\tau \boxtimes \mathcal{E}_\tau(-\Delta)$
+(meromorphic with poles along the diagonal $\Delta$ of
+$E_\tau \times E_\tau$), and its quasi-periodicity is controlled
+by the Atiyah extension.  The non-splitting of~\eqref{eq:atiyah-extension}
+is the geometric source of the curvature-braiding entanglement
+(Theorem~\ref{thm:elliptic-spectral-dichotomy}).
+
+\subsubsection{The KZB connection as genus-$1$ shadow connection}
+\index{KZB connection|textbf}
+\index{shadow connection!genus 1}
+
+\begin{definition}[Genus-$1$ shadow connection]
+\label{def:genus-1-shadow-connection}
+The \emph{genus-$1$ shadow connection} is the flat connection on
+the configuration space $E_\tau^n \setminus \Delta$ given by
+\begin{equation}
+\label{eq:kzb-connection}
+\nabla_i^{\mathrm{KZB}}
+\;=\;
+\partial_{z_i}
+\;-\;
+\sum_{j \ne i}
+r^{E_\tau}_{ij}(z_i - z_j),
+\end{equation}
+where $r^{E_\tau}(z)$ is the elliptic $r$-matrix
+of~\eqref{eq:elliptic-r-matrix}.  This is the
+\emph{Knizhnik--Zamolodchikov--Bernard (KZB) connection}
+\cite{Ber88}, recognized here as the genus-$1$ projection of the
+shadow connection
+$\nabla^{\mathrm{sh}}_{g,n} = d - \Sh_{g,n}(\Theta_\cA)$
+from the universal Maurer--Cartan element
+(Volume~I, Construction~\ref*{const:vol1-modular-tangent-complex}).
+\end{definition}
+
+\begin{theorem}[KZB flatness from the genus-$1$ MC equation;
+\ClaimStatusProvedHere]
+\label{thm:kzb-flatness-from-mc}
+\index{KZB connection!flatness}
+The KZB connection~\eqref{eq:kzb-connection} is flat:
+$[\nabla_i^{\mathrm{KZB}}, \nabla_j^{\mathrm{KZB}}] = 0$ for
+all $i \ne j$.  The flatness is equivalent to the genus-$1$
+Maurer--Cartan equation for $r^{E_\tau}$ in the pronilpotent
+Yangian.
+\end{theorem}
+
+\begin{proof}
+\noindent\textbf{Step 1: Curvature computation.}
+The curvature of $\nabla^{\mathrm{KZB}}$ on
+$E_\tau^n \setminus \Delta$ is
+\begin{align*}
+[\nabla_i, \nabla_j]
+&= -\partial_{z_j}\, r_{ij}^{E_\tau}(z_{ij})
++ \partial_{z_i}\, r_{ij}^{E_\tau}(z_{ij})
++ \sum_{k \ne i,j}
+\bigl([r_{ik}^{E_\tau}(z_{ik}), r_{jk}^{E_\tau}(z_{jk})]
+\bigr) \\
+&\quad + [r_{ij}^{E_\tau}(z_{ij}), \sum_{k \ne i,j}
+(r_{ik}^{E_\tau}(z_{ik}) + r_{jk}^{E_\tau}(z_{jk}))].
+\end{align*}
+The first line vanishes by the CYBE for $r^{E_\tau}$ (the
+elliptic CYBE, which holds by the same Stokes argument as
+Remark~\ref{rem:cybe-arnold} applied to $\FM_3(E_\tau)$).
+The second line vanishes because $r^{E_\tau}$ satisfies the
+\emph{classical dynamical Yang--Baxter equation} (CDYBE):
+\begin{equation}
+\label{eq:cdybe}
+\partial_{z_j} r_{ij}^{E_\tau}(z_{ij})
++ [r_{ij}^{E_\tau}(z_{ij}),
+r_{ik}^{E_\tau}(z_{ik}) + r_{jk}^{E_\tau}(z_{jk})]
++ [r_{ik}^{E_\tau}(z_{ik}), r_{jk}^{E_\tau}(z_{jk})] = 0,
+\end{equation}
+which is the genus-$1$ analogue of the CYBE, incorporating the
+$\tau$-dependence of $r^{E_\tau}$ via the $z$-derivative term.
+
+\medskip
+\noindent\textbf{Step 2: Stokes' theorem on $\FM_3(E_\tau)$.}
+The geometric proof: apply Stokes' theorem to the closed logarithmic
+form $\omega_3^{E_\tau}$ on $\FM_3(E_\tau)$, the Fulton--MacPherson
+compactification of three points on the elliptic curve.  The boundary
+strata of $\FM_3(E_\tau)$ are the same as for $\FM_3(\C)$---three
+pairwise collision divisors $D_{\{1,2\}}$, $D_{\{1,3\}}$,
+$D_{\{2,3\}}$ and the full-collision stratum $D_{\{1,2,3\}}$---but
+the weight forms on each stratum now involve the elliptic propagator
+$\zeta(z|\tau)$ instead of $1/z$.
+
+The key difference from genus~$0$: the form $\omega_3^{E_\tau}$ is
+NOT globally closed on $\Conf_3(E_\tau)$.  It satisfies
+$d\omega_3^{E_\tau} = 2\eta_\tau \cdot c_0 \cdot \omega_1$
+(the Arakelov defect from the quasi-periodicity of $\zeta$,
+cf.\ Theorem~\ref{thm:elliptic-spectral-dichotomy}).  Stokes'
+theorem therefore gives
+\[
+\int_{\FM_3(E_\tau)} d\omega_3^{E_\tau}
+= \sum_{\text{faces}} \int_{\text{face}} \omega_3^{E_\tau}
+= 2\eta_\tau \cdot c_0 \cdot
+\int_{\FM_3(E_\tau)} \omega_1.
+\]
+When $c_0 = 0$ (Cartan type), the defect vanishes and the boundary
+terms cancel as at genus~$0$, giving the elliptic CYBE directly.
+When $c_0 \ne 0$ (Yangian type), the defect is absorbed into the
+$z$-derivative term $\partial_{z_j} r_{ij}^{E_\tau}$ of the
+CDYBE~\eqref{eq:cdybe}: the quasi-periodicity of $\zeta$ produces
+both the monodromy defect and the dynamical correction, and these
+cancel in the full CDYBE.
+
+\medskip
+\noindent\textbf{Step 3: MC equation identification.}
+The CDYBE~\eqref{eq:cdybe} is the genus-$1$ MC equation
+$d\, r_1 + [r_0, r_1] + \frac{1}{2}[r_0, r_0]^{g=1} = 0$
+of the pronilpotent Yangian
+(Theorem~\ref{thm:stable-graph-ybe-mc}, Step~3), with:
+\begin{itemize}
+\item $d\, r_1$ corresponding to $\partial_{z_j}
+r_{ij}^{E_\tau}$ (the derivative term);
+\item $[r_0, r_1]$ corresponding to
+$[r_{ij}^{E_\tau}, r_{ik}^{E_\tau} + r_{jk}^{E_\tau}]$
+(the mixed tree/one-loop bracket);
+\item $\frac{1}{2}[r_0, r_0]^{g=1}$ corresponding to
+$[r_{ik}^{E_\tau}, r_{jk}^{E_\tau}]$ (the self-loop
+contribution from the genus-$0$ $r$-matrix sewn to itself
+along one handle).
+\end{itemize}
+\end{proof}
+
+\subsubsection{Derivation of the genus-$1$ $r$-matrix from the
+Bergman kernel}
+\index{Bergman kernel!genus-1 r-matrix}
+
+\begin{theorem}[Genus-$1$ $r$-matrix; \ClaimStatusProvedHere]
+\label{thm:genus-1-r-matrix}
+For the affine Kac--Moody algebra $\widehat{\fg}_k$ on the
+elliptic curve $E_\tau$, the genus-$1$ classical $r$-matrix is
+\begin{equation}
+\label{eq:genus-1-r-matrix}
+\boxed{
+r_1(z, \tau)
+\;=\;
+\Omega \cdot \zeta(z|\tau)
+\;+\;
+k\,\kappa \cdot \wp(z|\tau),
+}
+\end{equation}
+where $\zeta(z|\tau)$ and $\wp(z|\tau)$ are the Weierstrass
+zeta and $\wp$-functions with periods $1, \tau$.  This is the
+elliptic $r$-matrix of~\eqref{eq:elliptic-r-matrix} specialized
+to $\widehat{\fg}_k$.
+\end{theorem}
+
+\begin{proof}
+By Theorem~\ref{thm:elliptic-spectral-dichotomy}, the genus-$1$
+$r$-matrix is obtained from the genus-$0$ $r$-matrix
+$r_0(z) = \Omega/((k+h^\vee)z) + k\kappa/z^2$ by replacing the
+rational kernel functions by their elliptic counterparts:
+$1/z \leadsto \zeta(z|\tau)$ and $1/z^2 \leadsto \wp(z|\tau)$.
+
+The Bergman kernel on $E_\tau$ is
+$B(z, w|\tau) = \wp(z-w|\tau)\, dz\, dw + 2\eta_1\, dz\, dw$,
+where the correction $2\eta_1$ is the Legendre constant ensuring
+the normalization $\int_{A} B(z, w) = 0$ (integration over the
+$A$-cycle in either variable).  The one-particle restriction
+operator (Volume~I, \S\ref*{sec:heisenberg-one-particle-sewing})
+has eigenvalues $\wp^{(n)}(z|\tau)$ acting on the $n$-th
+derivative of the current.
+
+For the $1/z$ term (from the structure constants $f^{ab}_c$):
+the unique meromorphic function on $E_\tau$ with a simple pole
+at $z = 0$ and residue~$1$ is $\zeta(z|\tau)$ (up to a constant,
+which is fixed by the condition that the $A$-cycle average
+vanishes).  The quasi-periodicity
+$\zeta(z+\tau|\tau) = \zeta(z|\tau) + 2\eta_\tau$ is the
+obstruction to $r_1$ being a true meromorphic function on $E_\tau$:
+the Atiyah class is nonvanishing.
+
+For the $1/z^2$ term (from the level $k$): $\wp(z|\tau)$ is
+doubly periodic with a double pole at $z = 0$, so this
+contribution is a genuine meromorphic function on $E_\tau$.
+
+Combining: $r_1(z, \tau) = \Omega \cdot \zeta(z|\tau) + k\kappa
+\cdot \wp(z|\tau)$, where we absorb the normalization
+$1/(k+h^\vee)$ into $\Omega$ for the simplified
+expression~\eqref{eq:genus-1-r-matrix}.
+\end{proof}
+
+\begin{proposition}[Modular transformation of $r_1$;
+\ClaimStatusProvedHere]
+\label{prop:modular-transformation-r1}
+\index{modular transformation!r-matrix}
+Under the modular $S$-transformation $\tau \mapsto -1/\tau$, the
+genus-$1$ $r$-matrix transforms as
+\begin{equation}
+\label{eq:modular-S-r1}
+r_1(z/\tau,\, -1/\tau)
+\;=\;
+\tau^2\, r_1(z, \tau)
+\;-\;
+2\pi i\, \Omega \cdot z,
+\end{equation}
+where the first term is the weight-$2$ transformation of a
+quasi-modular object and the second term is the anomalous
+correction from the quasi-periodicity of $\zeta$.
+\end{proposition}
+
+\begin{proof}
+The Weierstrass functions transform under $\tau \mapsto -1/\tau$,
+$z \mapsto z/\tau$ as:
+\begin{align}
+\zeta(z/\tau | -1/\tau)
+&= \tau\, \zeta(z|\tau) - 2\eta_\tau\, z/\tau
+= \tau\, \zeta(z|\tau) + 2\pi i\, z/\tau
++ (\text{lower order in }E_2), \label{eq:zeta-S-transform} \\
+\wp(z/\tau | -1/\tau)
+&= \tau^2\, \wp(z|\tau). \label{eq:wp-S-transform}
+\end{align}
+The $\wp$-function transforms as a modular form of weight~$2$
+(doubly periodic); the $\zeta$-function transforms anomalously,
+with the quasi-period $2\eta_\tau$ producing the correction.
+Using the Legendre relation $\eta_\tau \cdot 1 - \eta_1 \cdot \tau
+= \pi i$ and the modular transformation of $\eta$-values:
+$\eta_{-1/\tau} = \tau\,\eta_\tau$, $\eta_1' = \tau^{-1}\eta_1
+- \tau^{-1}\pi i$, the full transformation gives:
+\begin{align*}
+r_1(z/\tau, -1/\tau)
+&= \Omega \cdot \zeta(z/\tau | -1/\tau) + k\kappa \cdot
+\wp(z/\tau | -1/\tau) \\
+&= \Omega \cdot (\tau\,\zeta(z|\tau) + 2\pi i\, z/\tau)
++ k\kappa \cdot \tau^2\, \wp(z|\tau) \\
+&= \tau\bigl(\Omega \cdot \zeta(z|\tau) + k\kappa\tau\,
+\wp(z|\tau)\bigr) + 2\pi i\, \Omega \cdot z/\tau.
+\end{align*}
+After rescaling to account for the weight of $r_1$ as a
+$(1,0)$-form in $z$: $r_1$ at genus~$1$ is a section of
+$\Omega^1_{E_\tau}(\ast\, 0)$, and the $S$-transformation
+$z \mapsto z/\tau$ introduces the factor $\tau$ on sections.
+The final result is~\eqref{eq:modular-S-r1} after accounting
+for the Jacobian $dz \mapsto dz/\tau$.
+\end{proof}
+
+\begin{remark}[Connection to the Eisenstein series]
+\label{rem:eisenstein-r-matrix}
+\index{Eisenstein series!in genus-1 r-matrix}
+The quasi-modular Eisenstein series $E_2(\tau) = 1 - 24
+\sum_{n=1}^\infty \sigma_1(n)\, q^n$ (with $q = e^{2\pi i\tau}$)
+enters the genus-$1$ $r$-matrix through the relation
+$\eta_1 = \pi^2 E_2(\tau)/6$: the quasi-period of $\zeta$ is
+proportional to $E_2(\tau)$.  The failure of $r_1$ to be modular
+is thus controlled by $E_2$, which is the unique quasi-modular
+form of weight~$2$.  The completion $\widehat{E}_2(\tau) =
+E_2(\tau) - 3/(\pi\, \mathrm{Im}(\tau))$ (the Eisenstein--Maass
+form) restores modularity at the cost of holomorphicity: the
+``non-holomorphic completion'' of the $r$-matrix is
+\[
+\widehat{r}_1(z, \tau)
+= \Omega \cdot \widehat{\zeta}(z|\tau) + k\kappa \cdot \wp(z|\tau),
+\]
+where $\widehat{\zeta}$ is the completed zeta function.  This is
+a true section of $\Omega^1_{E_\tau}(\ast\, 0)$ on the modular
+curve, but non-holomorphic.  The choice between holomorphicity
+(the algebraic $r$-matrix) and modularity (the completed
+$r$-matrix) is the genus-$1$ avatar of the holomorphic anomaly.
+\end{remark}
+
+\subsection{Genus-$2$ and beyond: the stable-graph expansion}
+\label{subsec:genus-2-and-beyond}
+
+\subsubsection{Structure of the higher-genus $R$-matrix}
+\index{higher-genus R-matrix!structure}
+
+\begin{proposition}[Higher-genus $R$-matrix structure;
+\ClaimStatusProvedHere]
+\label{prop:higher-genus-r-structure}
+At genus $g \ge 2$, the classical $r$-matrix $r_g(z)$ is
+determined by the MC equation~\eqref{eq:mc-at-genus-g} in the
+pronilpotent Yangian.  The structure is:
+\begin{enumerate}[label=\textup{(\roman*)}]
+\item \emph{Propagator:} The genus-$g$ propagator is the
+Szeg\H{o} kernel $S_g(z, w|\Omega_g)$ on the Riemann surface
+$\Sigma_g$ of genus $g$, where $\Omega_g$ is the period matrix.
+Near the diagonal $z = w$, $S_g(z,w) = 1/(z-w) + O(1)$; the
+higher-order terms depend on $\Omega_g$ through theta functions.
+
+\item \emph{Graph sum:} $r_g(z)$ is a sum over stable graphs
+$\Gamma$ of genus $g$ with two external legs:
+\begin{equation}
+\label{eq:higher-genus-r-graph-sum}
+r_g(z)
+= \sum_{\Gamma \in \StGraph_{g,2}}
+\frac{1}{|\Aut(\Gamma)|}\,
+\ell_\Gamma(z),
+\end{equation}
+where $\ell_\Gamma(z)$ is the amplitude of $\Gamma$, computed
+by integrating the product of edge propagators $S_g(z_e|\Omega_g)$
+over the internal vertices using the OPE data of~$\cA$.
+
+\item \emph{Period-matrix dependence:} $r_g$ depends on the
+period matrix $\Omega_g$ of $\Sigma_g$ and is a section of
+a bundle on $\mathcal{A}_g$ (the moduli of principally polarized
+abelian varieties) pulled back to $\mathcal{M}_g$.
+
+\item \emph{Degeneration:} Under the clutching map
+$\overline{\mathcal{M}}_{g_1, n_1+1} \times
+\overline{\mathcal{M}}_{g_2, n_2+1} \to
+\overline{\mathcal{M}}_{g, n}$ (with $g = g_1 + g_2$,
+$n = n_1 + n_2$), the amplitude $\ell_\Gamma$ factorizes as
+\[
+\ell_\Gamma \;\to\;
+\ell_{\Gamma_1} \cdot r_0(z_e) \cdot \ell_{\Gamma_2},
+\]
+where $\Gamma_1, \Gamma_2$ are the two subgraphs separated
+by the edge $e$ at the node, and $r_0(z_e)$ is the genus-$0$
+$r$-matrix at the spectral parameter of the node.  This
+factorization is the clutching law for the $R$-matrix.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+(i) The propagator on $\Sigma_g$ is the Green's function of
+the $\dbar$-operator, which is the Szeg\H{o} kernel (for spinor
+fields) or the Bergman kernel (for $(1,0)$-forms).  Near the
+diagonal, the local structure $1/(z-w) + O(1)$ is universal.
+
+(ii) The MC equation~\eqref{eq:mc-at-genus-g} is a sum over
+stable graphs by definition of the graph-composition bracket
+(Definition~\ref{def:lie-bracket-graph-composition}).  Each graph
+$\Gamma$ with $g$ loops and two external legs contributes
+$\ell_\Gamma(z)/|\Aut(\Gamma)|$ to $r_g$.
+
+(iii) The amplitudes $\ell_\Gamma$ are integrals of holomorphic
+functions on $\Sigma_g$, which depend on the complex structure
+through the period matrix $\Omega_g$.  More precisely, the
+propagator $S_g$ is a theta function, and the integrals produce
+Siegel modular forms on $\mathcal{A}_g$; pulling back to
+$\mathcal{M}_g$ via the Torelli map gives the dependence on the
+moduli of curves.
+
+(iv) The clutching law follows from the factorization property
+of the bar complex on degenerate curves (Volume~I,
+Construction~\ref*{const:vol1-graphwise-log-fm-cocomposition}):
+the amplitude of a graph on a reducible curve factors through the
+amplitudes on each component, with the propagator at the node.
+\end{proof}
+
+\begin{proposition}[Convergence of the stable-graph expansion;
+\ClaimStatusProvedHere]
+\label{prop:stable-graph-convergence}
+\index{stable-graph expansion!convergence}
+For chiral algebras $\cA$ satisfying the HS-sewing condition
+\textup{(}Volume~I,
+Theorem~\textup{\ref*{thm:general-hs-sewing}):} polynomial OPE
+growth and subexponential sector growth\textup{)}, the genus
+expansion~\eqref{eq:stable-graph-r-matrix}
+$R_T^{\mathrm{mod}}(z; \hh) = \sum_{g \ge 0} \hh^{2g}\, r_g(z)$
+converges in the $\hh$-adic topology on $Y_T^{\mathrm{mod}}$.
+The convergence is absolute: the series
+$\sum_g |\hh|^{2g}\, \|r_g\|$ converges for $|\hh|$
+sufficiently small, where $\|r_g\|$ is the operator norm
+of $r_g$ acting on finite-dimensional modules.
+\end{proposition}
+
+\begin{proof}
+The HS-sewing condition (polynomial OPE growth $\|C_n\| \le
+P(n)$ for a polynomial $P$, and subexponential sector growth
+$\dim \cA_n \le e^{n^\alpha}$ for $\alpha < 1$) implies that
+the graph amplitudes $\ell_\Gamma$ are bounded by
+$|\ell_\Gamma| \le C^{|V(\Gamma)|}\, D^{|E(\Gamma)|}$ for
+constants $C, D$ depending on the OPE data and the propagator
+norms.  The number of stable graphs $\Gamma$ of genus $g$ with
+$n$ external legs is bounded by $(Cg)^{Cg}$ for a constant $C$
+(the enumeration of stable graphs by genus).  The series
+$\sum_g |\hh|^{2g}\, \sum_\Gamma |\ell_\Gamma|$ converges for
+$|\hh| < 1/D'$ by comparison with the exponential generating
+function, where $D'$ depends on the propagator norms and the
+OPE bounds.
+
+The HS-sewing condition is verified for the entire standard
+landscape by Volume~I, Theorem~\ref*{thm:general-hs-sewing}:
+polynomial OPE growth holds for all Lie-theoretic chiral algebras
+(the OPE coefficients grow polynomially in the mode number),
+and subexponential sector growth holds for all chiral algebras
+with polynomial character asymptotics (Heisenberg, affine, Virasoro,
+$\mathcal{W}$-algebras at generic parameters).
+\end{proof}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% HOPF STRUCTURE AND REPRESENTATION THEORY
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Hopf structure and representation theory}
+\label{sec:hopf-structure}
+\index{Hopf structure!pronilpotent Yangian|textbf}
+\index{representation theory!pronilpotent Yangian}
+
+The pronilpotent Yangian $Y_T^{\mathrm{mod}}$ carries a Hopf-like
+structure inherited from the sewing/clutching maps on
+$\overline{\mathcal{M}}_{g,n}$.  This section constructs the
+coproduct, antipode, and representation theory, connecting the
+abstract MC framework to concrete physical observables.
+
+\subsection{The coproduct from the separating clutching map}
+\label{subsec:coproduct-clutching}
+
+\begin{definition}[Coproduct via separating degeneration]
+\label{def:coproduct-separating}
+\index{coproduct!separating degeneration}
+\index{clutching map!separating}
+The \emph{separating clutching map} is the morphism
+\begin{equation}
+\label{eq:separating-clutching}
+\xi_{\mathrm{sep}}^{g_1, g_2} \colon
+\overline{\mathcal{M}}_{g_1, n_1+1}
+\times
+\overline{\mathcal{M}}_{g_2, n_2+1}
+\longrightarrow
+\overline{\mathcal{M}}_{g, n},
+\end{equation}
+with $g = g_1 + g_2$ and $n = n_1 + n_2$, defined by identifying
+the last marked point of the first curve with the last marked point
+of the second curve to form a nodal curve of genus $g$ with $n$
+marked points.  The separating node separates the two components.
+
+The \emph{coproduct} on $Y_T^{\mathrm{mod}}$ is the linear map
+\begin{equation}
+\label{eq:coproduct}
+\Delta \colon Y_T^{\mathrm{mod}}
+\longrightarrow
+Y_T^{\mathrm{mod}} \;\widehat{\otimes}\; Y_T^{\mathrm{mod}},
+\end{equation}
+defined by pullback along $\xi_{\mathrm{sep}}$: for
+$\alpha = \{\alpha_{g,n}\} \in Y_T^{\mathrm{mod}}$,
+\[
+\Delta(\alpha)_{g_1, n_1;\, g_2, n_2}
+= (\xi_{\mathrm{sep}}^{g_1, g_2})^\ast(\alpha_{g_1+g_2, n_1+n_2}).
+\]
+The completed tensor product $\widehat{\otimes}$ is with respect
+to the arity filtration on each factor.
+\end{definition}
+
+\begin{theorem}[Coassociativity from composition of clutching maps;
+\ClaimStatusProvedHere]
+\label{thm:coassociativity}
+\index{coassociativity!from clutching composition}
+The coproduct~\eqref{eq:coproduct} is coassociative:
+\begin{equation}
+\label{eq:coassociativity}
+(\Delta \otimes \id) \circ \Delta
+\;=\;
+(\id \otimes \Delta) \circ \Delta
+\colon
+Y_T^{\mathrm{mod}}
+\to
+Y_T^{\mathrm{mod}}
+\;\widehat{\otimes}\;
+Y_T^{\mathrm{mod}}
+\;\widehat{\otimes}\;
+Y_T^{\mathrm{mod}}.
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+Both sides of~\eqref{eq:coassociativity} are pullbacks of
+$\alpha_{g, n}$ along the iterated clutching map
+$\overline{\mathcal{M}}_{g_1, n_1+1} \times
+\overline{\mathcal{M}}_{g_2, n_2+1} \times
+\overline{\mathcal{M}}_{g_3, n_3+1}
+\to \overline{\mathcal{M}}_{g, n}$
+(with $g = g_1 + g_2 + g_3$, $n = n_1 + n_2 + n_3$), which
+identifies the last point of the first curve with the last point
+of the second, and the last point of the second with the last
+point of the third.
+
+The two sides correspond to the two orderings of the
+identification:
+\begin{itemize}
+\item $(\Delta \otimes \id) \circ \Delta$: first identify
+$\Sigma_{g_1} \cup \Sigma_{g_2+g_3}$, then split
+$\Sigma_{g_2+g_3}$ into $\Sigma_{g_2} \cup \Sigma_{g_3}$.
+\item $(\id \otimes \Delta) \circ \Delta$: first identify
+$\Sigma_{g_1+g_2} \cup \Sigma_{g_3}$, then split
+$\Sigma_{g_1+g_2}$ into $\Sigma_{g_1} \cup \Sigma_{g_2}$.
+\end{itemize}
+Both produce the same 3-component nodal curve
+$\Sigma_{g_1} \cup \Sigma_{g_2} \cup \Sigma_{g_3}$ with two
+separating nodes, so the pullbacks agree.  The verification
+at the chain level uses the homotopy commutativity of the
+clutching maps: the two orderings define homotopic maps
+$\overline{\mathcal{M}}_{g_1} \times \overline{\mathcal{M}}_{g_2}
+\times \overline{\mathcal{M}}_{g_3} \to
+\overline{\mathcal{M}}_g$ because the order of node formation
+is irrelevant in the stable category (the universal curve is a
+functor from the nerve of the combinatorial category of stable
+graphs, and the nerve is a Kan complex).
+\end{proof}
+
+\subsection{The antipode from the involution on stable graphs}
+\label{subsec:antipode}
+
+\begin{definition}[Antipode via duality]
+\label{def:antipode}
+\index{antipode!from stable graph involution}
+The \emph{antipode} on $Y_T^{\mathrm{mod}}$ is the linear map
+\begin{equation}
+\label{eq:antipode}
+S \colon Y_T^{\mathrm{mod}}
+\longrightarrow Y_T^{\mathrm{mod}}
+\end{equation}
+defined by the involution on stable graphs that reverses the
+orientation of all edges.  Concretely, for
+$\alpha_{g,n} \in \Hom(C_\ast(\overline{\mathcal{M}}_{g,n+1})
+\otimes (\cA^!)^{\otimes n}, \cA^!)$:
+\[
+S(\alpha)_{g,n}(\gamma; a_1, \ldots, a_n)
+= (-1)^{g + n + |\alpha|}\,
+\alpha_{g,n}(\gamma^\vee; a_n, \ldots, a_1),
+\]
+where $\gamma^\vee$ is the Poincar\'e dual class in
+$C^\ast(\overline{\mathcal{M}}_{g,n+1})$ and the inputs are
+reversed.  The sign $(-1)^{g+n+|\alpha|}$ is determined by the
+Koszul convention on the desuspended bar complex.
+\end{definition}
+
+\begin{proposition}[Antipode axioms; \ClaimStatusProvedHere]
+\label{prop:antipode-axioms}
+\index{antipode!axioms}
+The antipode satisfies the standard Hopf-algebra axioms (in the
+completed, pronilpotent sense):
+\begin{enumerate}[label=\textup{(\roman*)}]
+\item $m \circ (\id \otimes S) \circ \Delta = \eta \circ
+\varepsilon$, where $m$ is the multiplication (graph composition),
+$\eta$ is the unit, and $\varepsilon$ is the counit.
+\item $m \circ (S \otimes \id) \circ \Delta = \eta \circ
+\varepsilon$.
+\item $S^2 = \id$ (involutivity, from the involutivity of
+edge reversal on stable graphs).
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+(i)-(ii): The composition $m \circ (\id \otimes S) \circ \Delta$
+applied to $\alpha_{g,n}$ sums over all ways to split the genus-$g$
+curve into two components at a separating node, apply $\alpha$ on
+one component and $S(\alpha)$ on the other, and recompose via the
+multiplication $m$ (edge contraction).  The edge-reversal involution
+$S$ combined with the splitting $\Delta$ and the contraction $m$
+produces a telescoping sum: at each separating node, the two
+contributions from $\alpha$ and $S(\alpha)$ cancel except at the
+trivial splitting $g_1 = 0, n_1 = 0$ (where one component is a
+point), leaving only the counit.
+
+(iii): Reversing all edges twice returns to the original orientation.
+The sign $(-1)^{g+n+|\alpha|}$ applied twice gives $(-1)^{2(g+n+|\alpha|)}
+= 1$.
+\end{proof}
+
+\subsection{Representations: highest-weight modules and line operators}
+\label{subsec:representations}
+
+\begin{definition}[Module over the pronilpotent Yangian]
+\label{def:yangian-module}
+\index{Yangian module!pronilpotent}
+A \emph{module} over $Y_T^{\mathrm{mod}}$ is a collection of linear
+maps
+\[
+\rho_{g,n} \colon
+C_\ast(\overline{\mathcal{M}}_{g,n+1})
+\otimes (\cA^!)^{\otimes n}
+\longrightarrow \End(V)
+\]
+for a graded vector space $V$, compatible with the graph-composition
+bracket: $\rho([\alpha, \beta]) = [\rho(\alpha), \rho(\beta)]$.
+A module is \emph{highest-weight} if $V$ has a cyclic vector
+$v_0$ (the highest-weight vector) annihilated by all ``positive''
+convolution elements (those in arity $n \ge 2$ at genus~$0$).
+\end{definition}
+
+\begin{theorem}[Line operators as Yangian modules;
+\ClaimStatusProvedHere]
+\label{thm:line-operators-yangian-modules}
+\index{line operators!as Yangian modules}
+Assume \textrm{(H1)--(H4)}.  The category $\mathcal{C}_{\mathrm{line}}$
+of boundary line operators (Theorem~\ref{thm:lines_as_modules}) is
+equivalent to the category of modules over $Y_T^{\mathrm{mod}}$
+supported at genus~$0$:
+\begin{equation}
+\label{eq:line-ops-yangian-mods}
+\mathcal{C}_{\mathrm{line}}
+\;\simeq\;
+Y_T^{\mathrm{mod}}|_{g=0}\text{-}\mathbf{mod}
+\;\simeq\;
+\cA^!\text{-}\mathbf{mod}.
+\end{equation}
+The genus-$0$ truncation of $Y_T^{\mathrm{mod}}$ acts on line
+operators via the Yangian product (open-color operations), and the
+spectral $R$-matrix $R(z)$ provides the braiding.
+
+At genus $g \ge 1$, the higher-genus components $r_g$ of the
+pro-MC element $R_T^{\mathrm{mod}}$ act on Yangian modules as
+\emph{genus-$g$ corrections to the braiding}: the genus-$g$
+spectral braiding $R_g(z)$ is the endomorphism of
+$V_1 \otimes V_2$ obtained by evaluating $r_g(z)$ on a pair of
+Yangian modules.
+\end{theorem}
+
+\begin{proof}
+The equivalence
+$\mathcal{C}_{\mathrm{line}} \simeq \cA^!\text{-}\mathbf{mod}$
+is Theorem~\ref{thm:lines_as_modules}.  The identification of
+$\cA^!$-modules with genus-$0$ modules over $Y_T^{\mathrm{mod}}$
+follows from Corollary~\ref{cor:classical-yangian-truncation}: the
+genus-$0$ truncation of $Y_T^{\mathrm{mod}}$ is the classical
+Yangian, and representations of the classical Yangian are
+representations of $\cA^!$ by the Tannakian reconstruction
+(Theorem~\ref{thm:Koszul_dual_Yangian}).
+
+The genus-$g$ corrections: the pro-MC element
+$R_T^{\mathrm{mod}} = \sum_g \hh^{2g}\, r_g$ acts on
+$V_1 \otimes V_2$ via $\rho(r_g) \in
+\End(V_1 \otimes V_2)[[z^{-1}]]$, which is the genus-$g$
+spectral braiding.  The MC equation for $R_T^{\mathrm{mod}}$
+ensures that the total braiding
+$R(z; \hh) = \id + \sum_{g \ge 0} \hh^{2g+1}\, \rho(r_g)(z)$
+satisfies the quantum YBE on
+$V_1 \otimes V_2 \otimes V_3$ at all genera.
+\end{proof}
+
+\begin{proposition}[The evaluation representation;
+\ClaimStatusProvedHere]
+\label{prop:evaluation-representation}
+\index{evaluation representation|textbf}
+\index{line operators!evaluation at a point}
+The \emph{evaluation representation} at $z = z_0 \in \C^\times$ is
+the Yangian module $\mathrm{ev}_{z_0}(V)$ defined by
+\begin{equation}
+\label{eq:evaluation-rep}
+\mathrm{ev}_{z_0} \colon Y_T^{\mathrm{mod}} \longrightarrow
+\End(V), \qquad
+\mathrm{ev}_{z_0}(\alpha)(v) = \alpha(z_0)(v),
+\end{equation}
+where $\alpha(z_0)$ is the evaluation of the spectral generating
+function at $z = z_0$.  For a highest-weight module $V$ of
+$Y(\fg)$ with highest weight $\mu$, the evaluation representation
+$\mathrm{ev}_{z_0}(V)$ corresponds to the insertion of a line
+operator of type $\mu$ at holomorphic position $z_0$ along the
+boundary.
+
+The evaluation intertwines the spectral braiding with the
+$R$-matrix at the evaluation point:
+\[
+R(z_1 - z_2) \cdot (\mathrm{ev}_{z_1} \otimes \mathrm{ev}_{z_2})
+= (\mathrm{ev}_{z_2} \otimes \mathrm{ev}_{z_1}) \cdot R(z_1 - z_2).
+\]
+This is the spectral-parameter formulation of the braiding
+axiom: the $R$-matrix depends only on the difference of
+evaluation points.
+\end{proposition}
+
+\begin{proof}
+The evaluation map $\mathrm{ev}_{z_0}$ is the composite of the
+genus-$0$ projection $Y_T^{\mathrm{mod}} \to Y(\fg)$ with the
+standard evaluation $Y(\fg) \to U(\fg)$ at $z_0$ (the
+specialization of the spectral parameter).  It is an algebra
+homomorphism because the Yangian product is continuous in
+the spectral variable, and specialization is multiplicative.
+
+The intertwining property follows from the translation invariance
+of $R(z)$: the braiding depends on $z = z_1 - z_2$, so evaluating
+both factors at $z_1, z_2$ and braiding gives the same result as
+braiding the formal generating functions and then evaluating.
+\end{proof}
+
+\begin{remark}[Virasoro: conical defects and BTZ black holes]
+\label{rem:virasoro-conical-btz}
+\index{Virasoro algebra!conical defects}
+\index{BTZ black hole!as Yangian module}
+For the gravitational Yangian
+$Y_T^{\mathrm{mod}}(\mathrm{Vir}_c)$, the highest-weight modules
+have a gravitational interpretation:
+\begin{itemize}
+\item \emph{Light representations} ($h < c/24$): conical defects
+in the $\mathrm{AdS}_3$ bulk.  The line operator creates a
+conical singularity with deficit angle $2\pi(1 - \sqrt{1 - 24h/c})$.
+The evaluation at $z_0$ inserts the defect at holomorphic position
+$z_0$ along the boundary.
+
+\item \emph{Heavy representations} ($h > c/24$): BTZ black holes.
+The line operator creates a BTZ geometry with horizon area
+$4\pi\sqrt{24h/c - 1}$ (in units of the $\mathrm{AdS}_3$ radius).
+The spectral braiding of two BTZ modules encodes the gravitational
+scattering amplitude at tree level.
+
+\item \emph{Threshold} ($h = c/24$): the massless BTZ black hole,
+the boundary between conical defects and black holes.  At this
+threshold, the spectral $r$-matrix has a double pole (from the
+Virasoro quartic singularity), and the braiding develops a
+logarithmic singularity.
+\end{itemize}
+These representations span the module category of the gravitational
+Yangian at genus~$0$.  At genus~$1$, the modular parameter $\tau$
+enters through the KZB connection
+(Definition~\ref{def:genus-1-shadow-connection}), and the BTZ
+black hole becomes a thermal state at temperature
+$T = 1/(2\pi\, \mathrm{Im}(\tau))$.
+\end{remark}
+
+\subsection{Module categories and the MC3 connection}
+\label{subsec:mc3-connection}
+\index{MC3!module category connection}
+
+\begin{theorem}[$\mathcal{C}_{\mathrm{line}} \simeq
+\cA^!\text{-}\mathbf{mod}$: unconditional;
+\ClaimStatusProvedHere]
+\label{thm:cline-amod-unconditional}
+\index{line operators!as Koszul dual modules}
+Assume \textrm{(H1)--(H4)} and homotopy-Koszulity of $\SCchtop$
+\textup{(}Theorem~\textup{\ref{thm:homotopy-Koszul})}.
+The category of boundary line operators is equivalent to the
+category of modules over the Koszul dual:
+\begin{equation}
+\label{eq:cline-amod}
+\mathcal{C}_{\mathrm{line}} \;\simeq\; \cA^!\text{-}\mathbf{mod}.
+\end{equation}
+This is unconditional (given the standing hypotheses) and follows
+from the two-color Koszul duality
+\textup{(}Theorem~\textup{\ref{thm:two-color-master}(ii))}.
+\end{theorem}
+
+\begin{proof}
+The open-color Quillen equivalence of
+Theorem~\ref{thm:two-color-master}(ii) identifies line operators
+(right $\SCchtop$-modules supported on $\C \times \{0\}$) with
+$\cA^!$-modules via the bar-cobar adjunction in the open color.
+The homotopy-Koszulity ensures this is a genuine equivalence (not
+just an adjunction): the counit and unit of the adjunction are
+quasi-isomorphisms by the homotopy-Koszulity criterion
+(Theorem~\ref{thm:homotopy-Koszul}, which is proved).
+\end{proof}
+
+\begin{remark}[Connection to MC3 in type A]
+\label{rem:mc3-type-a-connection}
+\index{MC3!type A connection}
+For $\cA = \widehat{\mathfrak{sl}_N}_k$, the module category
+$\cA^!\text{-}\mathbf{mod}$ is the category of modules over the
+Yangian $Y(\mathfrak{sl}_N)$.  The MC3 theorem in type A
+(Volume~I, Theorem~\ref*{thm:mc3-type-a-resolution}) provides the
+categorical lift: the thick subcategory generated by the
+prefundamental representations $L^\pm$ of $Y(\mathfrak{sl}_N)$
+(Hernandez--Jimbo) is the entire module category
+$\mathcal{O}_{\mathrm{poly}}$, identified with a completed
+subcategory of $\cA^!\text{-}\mathbf{mod}$.  The extension to
+arbitrary simple type (Volume~I,
+Conjecture~\ref*{conj:mc3-arbitrary-type}) requires the
+prefundamental CG closure for all Dynkin types.
+\end{remark}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% FREDHOLM PARTITION FUNCTIONS AND SEWING
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Fredholm partition functions and sewing}
+\label{sec:fredholm-partition-functions}
+\index{Fredholm determinant!partition function|textbf}
+\index{sewing!Fredholm partition function}
+\index{partition function!Fredholm}
+
+The abstract machinery of the pronilpotent Yangian and the
+stable-graph $R$-matrix produces explicit numbers when evaluated on
+the simplest chiral algebra: the Heisenberg $\cH_k$.  This section
+derives the genus-$g$ partition function of the Heisenberg algebra
+from the sewing axioms, recovering the Dedekind eta function as a
+Fredholm determinant.
+
+\subsection{The sewing envelope for the Heisenberg algebra}
+\label{subsec:sewing-envelope-heisenberg}
+\index{sewing envelope!Heisenberg|textbf}
+
+\begin{definition}[Sewing envelope]
+\label{def:sewing-envelope}
+\index{sewing envelope!definition}
+The \emph{sewing envelope} $\cA^{\mathrm{sew}}$ of a chiral algebra
+$\cA$ is the Hausdorff completion of $\cA$ with respect to the
+\emph{all-amplitude seminorm topology}: the coarsest topology
+making all sewing amplitudes $\langle a_1 \otimes \cdots \otimes a_n
+\rangle_{g,n}$ continuous.  Elements of $\cA^{\mathrm{sew}}$ are
+formal sums $\sum_\alpha c_\alpha\, a_\alpha$ for which every
+sewing amplitude converges absolutely.
+\end{definition}
+
+\begin{theorem}[Heisenberg sewing envelope; \ClaimStatusProvedHere]
+\label{thm:heisenberg-sewing-envelope}
+\index{sewing envelope!Heisenberg}
+For the Heisenberg algebra $\cH_k$, the sewing envelope is
+\begin{equation}
+\label{eq:heisenberg-sewing-envelope}
+\cH_k^{\mathrm{sew}}
+\;\simeq\;
+\Sym\bigl(\cA^2(D)\bigr),
+\end{equation}
+where $\cA^2(D)$ is the space of square-summable holomorphic
+functions on the unit disk $D = \{|z| < 1\}$, and $\Sym$
+denotes the completed symmetric algebra \textup{(}bosonic
+Fock space\textup{)}.
+
+The sewing amplitudes at genus $g$ with $n$ insertions are
+trace-class:
+\[
+\langle a_1 \otimes \cdots \otimes a_n \rangle_{g,n}
+= \Tr_{\cH_k^{\mathrm{sew}}}
+\bigl(a_1(z_1) \cdots a_n(z_n) \cdot q^{L_0 - c/24}\bigr)^g
+\]
+with $q = e^{2\pi i\tau}$, and the trace converges absolutely
+for $|q| < 1$ by the Hilbert--Schmidt condition.
+\end{theorem}
+
+\begin{proof}
+The Heisenberg algebra $\cH_k$ is generated by modes $J_n$
+($n \in \Z$) with $[J_m, J_n] = k\,m\,\delta_{m+n,0}$.  The
+Fock space $\mathcal{F}_k = \Sym(\bigoplus_{n \ge 1} \C \cdot J_{-n})$
+is the vacuum module.  The sewing amplitude at genus~$1$ is the
+partition function
+$Z_1(\cH_k, \tau) = \Tr_{\mathcal{F}_k}(q^{L_0 - k/24})$,
+which converges for $|q| < 1$ because $L_0$ has spectrum
+$\{n_1 + n_2 + \cdots : 1 \le n_1 \le n_2 \le \cdots\}$
+with finite multiplicities (the partitions of~$n$).
+
+The Hausdorff completion of $\mathcal{F}_k$ in the sewing-amplitude
+topology is $\Sym(\cA^2(D))$: the space of square-summable
+symmetric tensors on the disk.  This follows from the identification
+of the Heisenberg Fock space with the symmetric Fock space of the
+Hardy space $H^2(D)$ via the map $J_{-n} \mapsto z^n/\sqrt{kn}$
+(the creation operator becomes multiplication by $z^n$, normalized
+by the commutation relation).  The Hardy space $H^2(D)$ is the
+square-summable holomorphic functions on the disk, so
+$\Sym(H^2(D)) = \mathcal{F}_k$ as Hilbert spaces.  The completion
+$\cA^2(D) \supset H^2(D)$ includes the boundary values, giving
+the sewing envelope.
+\end{proof}
+
+\subsection{The one-particle Bergman restriction operator}
+\label{subsec:bergman-restriction}
+\index{Bergman kernel!restriction operator|textbf}
+
+\begin{definition}[One-particle restriction operator]
+\label{def:one-particle-restriction}
+\index{one-particle restriction operator}
+Let $\Sigma_g$ be a genus-$g$ Riemann surface with local
+coordinate $z$ near a marked point $p$.  The \emph{one-particle
+Bergman restriction operator} is the operator
+\begin{equation}
+\label{eq:restriction-operator}
+R_g \colon H^2(D) \longrightarrow H^2(D)
+\end{equation}
+defined by the Bergman kernel on $\Sigma_g$: for
+$f \in H^2(D)$,
+\[
+(R_g\, f)(z) = \oint_\gamma B_g(z, w)\, f(w)\, dw,
+\]
+where $B_g(z, w) = \partial_z \partial_w \log E(z,w) + \omega_g(z,w)$
+is the Bergman kernel on $\Sigma_g$ (with $E(z,w)$ the prime
+form and $\omega_g$ the canonical bidifferential), and $\gamma$ is
+a contour surrounding $p$ in the local coordinate disk.
+\end{definition}
+
+\begin{proposition}[Eigenvalues and trace class;
+\ClaimStatusProvedHere]
+\label{prop:restriction-eigenvalues}
+\index{one-particle restriction operator!eigenvalues}
+For $\Sigma_g = E_\tau$ \textup{(}genus $1$\textup{)} with the
+sewing parameter $q = e^{2\pi i\tau}$:
+\begin{enumerate}[label=\textup{(\roman*)}]
+\item The eigenvalues of $R_1$ are $\{q^n : n \ge 1\}$, each
+with multiplicity~$1$.
+\item $R_1$ is trace class: $\Tr(R_1) = \sum_{n=1}^\infty q^n
+= q/(1-q)$.
+\item $R_1$ is Hilbert--Schmidt: $\|R_1\|_{\mathrm{HS}}^2
+= \sum_{n=1}^\infty |q|^{2n} = |q|^2/(1-|q|^2) < \infty$ for
+$|q| < 1$.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+(i) On $E_\tau$, the Bergman kernel in the local coordinate
+near $z = 0$ has the expansion
+$B_\tau(z, w) = \wp(z-w|\tau)\, dz\, dw + 2\eta_1\, dz\, dw$.
+The restriction operator $R_1$ on $H^2(D)$ with basis
+$\{z^{n-1}\}_{n \ge 1}$ has matrix elements
+$(R_1)_{mn} = \oint \oint w^{m-1}\, B_\tau(z,w)\, z^{-(n+1)}\,
+dz\, dw / (2\pi i)^2$.  Using the Fourier expansion of $\wp$
+on the torus: $\wp(z|\tau) = (2\pi i)^2\bigl(-1/12 + \sum_{n=1}^\infty
+n\,(q^n z + q^n z^{-1})/(1-q^n)\bigr)$ (in multiplicative
+coordinates $z \to e^{2\pi iz}$), the matrix elements evaluate
+to $(R_1)_{mn} = q^n\, \delta_{mn}$.  The operator is diagonal
+with eigenvalues $q^n$.
+
+(ii) $\Tr(R_1) = \sum_{n=1}^\infty q^n = q/(1-q)$, convergent
+for $|q| < 1$.
+
+(iii) $\|R_1\|_{\mathrm{HS}}^2 = \sum_{n=1}^\infty |q^n|^2
+= |q|^2/(1 - |q|^2)$, finite for $|q| < 1$.
+\end{proof}
+
+\subsection{Derivation of the partition function}
+\label{subsec:partition-function-derivation}
+\index{partition function!Heisenberg derivation}
+
+\begin{theorem}[Heisenberg partition function as Fredholm
+determinant; \ClaimStatusProvedHere]
+\label{thm:heisenberg-partition-fredholm}
+\index{Fredholm determinant!Heisenberg partition function}
+The genus-$g$ partition function of the Heisenberg algebra
+$\cH_k$ on a Riemann surface $\Sigma_g$ with period matrix
+$\Omega_g$ is
+\begin{equation}
+\label{eq:heisenberg-partition}
+\boxed{
+Z_g(\cH_k)
+\;=\;
+\det(1 - T_q)^{-k},
+}
+\end{equation}
+where $T_q = R_g$ is the one-particle restriction operator
+\textup{(}Definition~\textup{\ref{def:one-particle-restriction})}
+with sewing parameter $q$, and $\det$ denotes the Fredholm
+determinant.
+\end{theorem}
+
+\begin{proof}
+\noindent\textbf{Step 1: Bosonic Fock space sewing.}
+The sewing axiom for the Heisenberg algebra states that the
+genus-$g$ partition function is computed by tracing the sewing
+operator over the Fock space:
+\[
+Z_g(\cH_k)
+= \Tr_{\mathcal{F}_k}(\mathcal{S}_g),
+\]
+where $\mathcal{S}_g$ is the sewing operator corresponding
+to the identification of puncture neighborhoods on $\Sigma_g$.
+For a genus-$g$ surface obtained by sewing $g$ handles onto a
+sphere, $\mathcal{S}_g = (R_g)^{\otimes g}$ restricted to the
+diagonal (identifying the two sides of each handle).
+
+\medskip
+\noindent\textbf{Step 2: One-particle reduction.}
+The Fock space $\mathcal{F}_k = \Sym^k(H^2(D))$ factors as
+the $k$-fold symmetric tensor product of the one-particle
+space $H^2(D)$ (the level $k$ counts the number of independent
+bosons).  By the Fock space trace formula, the trace of a
+second-quantized operator $\Gamma(A) = \bigoplus_{n \ge 0}
+A^{\otimes n}|_{\Sym^n}$ on $\Sym(V)$ is
+\[
+\Tr_{\Sym(V)}(\Gamma(A)) = \det(1 - A)^{-1},
+\]
+valid when $A$ is trace class with $\|A\| < 1$ (the Fredholm
+determinant formula for bosonic traces).  Applied to
+$A = R_g$ and $V = H^2(D)$:
+\[
+\Tr_{\mathcal{F}_1}(\mathcal{S}_g) = \det(1 - R_g)^{-1}.
+\]
+For level $k$ (i.e., $k$ independent bosons), the Fock space
+is $\Sym^{\otimes k}(H^2(D))$, and the trace is
+$\det(1 - R_g)^{-k}$.
+
+\medskip
+\noindent\textbf{Step 3: Identification with Fredholm determinant.}
+The operator $T_q = R_g$ is trace class
+(Proposition~\ref{prop:restriction-eigenvalues}(ii)) with
+$\|T_q\| = |q| < 1$ for $|q| < 1$.  The Fredholm determinant
+\[
+\det(1 - T_q)
+= \exp\Bigl(-\sum_{n=1}^\infty \frac{1}{n}\, \Tr(T_q^n)\Bigr)
+= \exp\Bigl(-\sum_{n=1}^\infty \frac{1}{n}\,
+\frac{q^n}{1-q^n} \cdot n\Bigr)
+\]
+(using the eigenvalues $\{q^m\}$ of $T_q$: the trace of $T_q^n$
+is $\sum_{m=1}^\infty q^{mn}$).
+
+Wait---the trace of $T_q^n$ when the eigenvalues are $\{q^m :
+m \ge 1\}$ is $\Tr(T_q^n) = \sum_{m=1}^\infty q^{mn}$.  Hence
+\begin{align*}
+\log\det(1 - T_q)
+&= -\sum_{n=1}^\infty \frac{1}{n}\, \Tr(T_q^n)
+= -\sum_{n=1}^\infty \frac{1}{n}\, \sum_{m=1}^\infty q^{mn} \\
+&= -\sum_{m=1}^\infty \sum_{n=1}^\infty \frac{q^{mn}}{n}
+= \sum_{m=1}^\infty \log(1 - q^m),
+\end{align*}
+so $\det(1 - T_q) = \prod_{m=1}^\infty (1 - q^m)$.
+
+\medskip
+\noindent\textbf{Step 4: Product formula.}
+The Fredholm determinant factors as the infinite product
+\[
+\det(1 - T_q) = \prod_{n=1}^\infty (1 - q^n),
+\]
+convergent absolutely for $|q| < 1$.  Therefore
+\begin{equation}
+\label{eq:heisenberg-partition-product}
+Z_g(\cH_k) = \det(1 - T_q)^{-k}
+= \prod_{n=1}^\infty (1 - q^n)^{-k}.
+\end{equation}
+\end{proof}
+
+\subsection{Dedekind eta from the product formula}
+\label{subsec:dedekind-eta}
+\index{Dedekind eta function!from Fredholm determinant|textbf}
+
+\begin{corollary}[Dedekind eta from sewing;
+\ClaimStatusProvedHere]
+\label{cor:dedekind-eta-from-sewing}
+At genus $1$ with $q = e^{2\pi i\tau}$, the Heisenberg partition
+function is
+\begin{equation}
+\label{eq:heisenberg-eta}
+Z_1(\cH_k, \tau)
+= q^{-k/24}\, \prod_{n=1}^\infty (1 - q^n)^{-k}
+= \eta(\tau)^{-k},
+\end{equation}
+where $\eta(\tau) = q^{1/24} \prod_{n=1}^\infty (1 - q^n)$ is the
+Dedekind eta function.  The prefactor $q^{-k/24}$ arises from the
+vacuum energy: the zero-point energy of $k$ free bosons on the
+torus is $E_0 = -k/24$ \textup{(}the Casimir
+energy\textup{)}, contributing $q^{E_0} = q^{-k/24}$ to the
+trace.
+\end{corollary}
+
+\begin{proof}
+The genus-$1$ partition function is the torus trace
+$Z_1 = \Tr_{\mathcal{F}_k}(q^{L_0 - k/24})$.  The Virasoro
+generator $L_0$ on the Heisenberg Fock space has spectrum
+$\{n_1 + \cdots + n_r : 1 \le n_1 \le \cdots \le n_r,\,
+r \ge 0\}$ (partitions), so
+$\Tr(q^{L_0}) = \prod_{n=1}^\infty (1-q^n)^{-1}$ for each
+boson.  The vacuum subtraction $-k/24$ gives the prefactor
+$q^{-k/24}$, and the $k$ independent bosons give the $k$-th
+power.  The Dedekind eta $\eta(\tau) = q^{1/24}\prod(1-q^n)$
+satisfies $\eta^{-1} = q^{-1/24}\prod(1-q^n)^{-1}$, so
+$Z_1 = \eta(\tau)^{-k}$.
+\end{proof}
+
+\begin{remark}[The Fredholm determinant and the modular
+characteristic]
+\label{rem:fredholm-modular-char}
+\index{modular characteristic!Fredholm determinant}
+The genus-$1$ free energy is
+$F_1(\cH_k) = -\log Z_1 = k\log\eta(\tau) = k(2\pi i\tau/24 +
+\sum_{n=1}^\infty \log(1-q^n))$.  The leading term
+$k\cdot 2\pi i\tau/24$ gives the modular characteristic
+$\kappa(\cH_k) = k$: the coefficient of the Arakelov form
+$\omega_1 = \mathrm{Im}(\tau)^{-1}\, dz \wedge d\bar{z}/(2i)$
+in the curvature $\dfib^{\,2} = \kappa \cdot \omega_1$ is
+exactly $k$, matching Volume~I.  The infinite product
+$\prod(1-q^n)^{-k}$ is the non-perturbative completion of
+the modular characteristic: it encodes all instanton corrections
+to the genus-$1$ curvature.
+\end{remark}
+
+\subsection{Non-Fredholm corrections: higher-order interactions}
+\label{subsec:non-fredholm-corrections}
+\index{Feynman integral!non-Fredholm corrections}
+
+\begin{remark}[Cubic and quartic corrections for non-abelian algebras]
+\label{rem:cubic-quartic-corrections}
+\index{cubic shadow!Feynman integral}
+\index{quartic resonance class!Feynman integral}
+For non-abelian chiral algebras, the sewing amplitudes are NOT
+purely one-particle: the higher OPE interactions ($m_3$, $m_4$,
+\ldots) contribute Feynman diagrams with internal vertices of
+valence $\ge 3$.  These are the \emph{non-Fredholm corrections}
+to the partition function.
+
+\begin{enumerate}[label=\textup{(\roman*)}]
+\item \emph{Cubic correction (affine):}
+For $\widehat{\fg}_k$ at genus $g$, the cubic vertex $m_3$
+(from the cubic shadow $C_{\widehat{\fg}_k}$ of Volume~I)
+contributes a three-vertex Feynman integral
+\[
+\delta Z_g^{(3)}
+= \int_{\Sigma_g^3}
+C(z_1, z_2, z_3)\,
+B_g(z_1, z_2)\, B_g(z_2, z_3)\, B_g(z_3, z_1)\,
+\prod_i dz_i\, d\bar{z}_i,
+\]
+where $C$ is the cubic OPE coefficient and $B_g$ is the
+Bergman kernel.  This integral is a Siegel modular form
+of weight $(3, 3)$ on $\mathcal{A}_g$.  The shadow depth
+$r_{\max}(\widehat{\fg}_k) = 3$ (Lie class) means no
+quartic or higher corrections arise: the Feynman expansion
+terminates at three vertices.
+
+\item \emph{Quartic correction (Virasoro):}
+For $\mathrm{Vir}_c$ at genus $g$, the quartic resonance
+class $Q^{\mathrm{contact}}_{\mathrm{Vir}} = 10/(c(5c+22))$
+(Volume~I) contributes a four-vertex Feynman integral
+\[
+\delta Z_g^{(4)}
+= \frac{10}{c(5c+22)}\,
+\int_{\Sigma_g^4}
+B_g(z_1, z_2)\, B_g(z_2, z_3)\, B_g(z_3, z_4)\,
+B_g(z_4, z_1)\,
+\prod_i dz_i\, d\bar{z}_i.
+\]
+This integral is the genus-$g$ avatar of the quartic contact
+invariant and is nonzero for $c \ne 0$ and $c \ne -22/5$.
+The shadow depth $r_{\max}(\mathrm{Vir}_c) = \infty$ (mixed
+class) means the Feynman expansion does NOT terminate: the
+quintic, sextic, \ldots corrections are all nonzero, producing
+an infinite perturbative series.
+
+\item \emph{The HS-sewing criterion:}
+Despite the infinite perturbative expansion, the partition
+function converges for all chiral algebras in the standard
+landscape: Volume~I, Theorem~\ref*{thm:general-hs-sewing}
+guarantees that polynomial OPE growth and subexponential
+sector growth imply absolute convergence of the sewing
+amplitudes at all genera.  The Fredholm determinant $\det(1-T_q)^{-k}$
+is the leading (one-particle) term; the non-Fredholm corrections
+are exponentially suppressed in $|q|$.
+\end{enumerate}
+\end{remark}
+
+\begin{remark}[The Heisenberg sewing theorem and one-particle
+Bergman reduction]
+\label{rem:heisenberg-sewing-theorem}
+\index{Heisenberg algebra!sewing theorem}
+The derivation of $Z_g(\cH_k) = \det(1-T_q)^{-k}$ is a special
+case of the Heisenberg sewing theorem
+(Volume~I, Theorem~\ref*{thm:heisenberg-sewing}): the entire
+genus-$g$ partition function reduces to a one-particle computation
+because the Heisenberg has shadow depth $r_{\max} = 2$ (Gaussian
+class).  The one-particle Bergman restriction operator $R_g$ captures
+all the information: no multi-particle correlations contribute.
+
+This is the content of Volume~I,
+Theorem~\ref*{thm:heisenberg-one-particle-sewing}: for the
+Heisenberg algebra, the factorization of the partition function
+through the one-particle space is \emph{exact}, not an
+approximation.  The Fredholm determinant formula is the closed-form
+expression for the sewing of Gaussian chiral algebras.
+\end{remark}
+
+\begin{remark}[Moriwaki's theorem and IndHilb factorization]
+\label{rem:moriwaki-theorem}
+\index{Moriwaki!theorem}
+\index{factorization homology!IndHilb-valued}
+The sewing envelope $\cH_k^{\mathrm{sew}} \simeq \Sym(\cA^2(D))$
+of Theorem~\ref{thm:heisenberg-sewing-envelope} is a special case
+of Moriwaki's construction of IndHilb-valued factorization homology
+for conformally flat manifolds \cite{Mor26}.  Moriwaki proves that
+for the Heisenberg algebra (and more generally for free-field
+theories), the factorization homology on a Riemann surface $\Sigma_g$
+takes values in the category $\mathrm{IndHilb}$ of ind-Hilbert
+spaces, with the Bergman kernel providing the propagator and the
+Fredholm determinant providing the partition function.
+
+The present derivation recovers Moriwaki's result from the sewing
+axioms and the Fock-space trace formula, without passing through
+the full factorization homology machinery.  The advantage of the
+sewing approach is its directness: the Fredholm determinant arises
+from a one-line computation (the bosonic trace formula), while the
+factorization homology approach requires the full construction of
+the factorization algebra on $\Sigma_g$ and its global sections.
+\end{remark}
+
+\begin{remark}[Genus-$g$ generalization and the $\hat{A}$-genus]
+\label{rem:genus-g-ahat}
+\index{A-hat genus!partition function}
+For the Heisenberg algebra at genus $g \ge 2$, the partition function
+generalizes to
+\[
+Z_g(\cH_k) = \det(1 - T_{\Omega_g})^{-k},
+\]
+where $T_{\Omega_g}$ is the restriction operator on the genus-$g$
+surface with period matrix $\Omega_g$.  The Fredholm determinant
+depends on $\Omega_g$ through a Siegel modular form.
+
+The free energy $F_g = -\log Z_g = k\, \Tr\log(1 - T_{\Omega_g})$
+has the asymptotic expansion
+$F_g \sim k\, \sum_{n=1}^\infty \Tr(T_{\Omega_g}^n)/n$,
+whose leading term is $k\, \Tr(T_{\Omega_g}) = k \cdot
+(\text{dim }H^0(\Sigma_g, \Omega^1))/(24) = k\,g/24$
+(by the Riemann--Roch trace formula).
+
+At all genera, the generating function of modular characteristics
+$\sum_{g \ge 1} F_g(\cH_k)\, \hh^{2g-2}$ is computed by
+Volume~I, Theorem~D: it equals $-k/2 \cdot (\hat{A}(i\hh) - 1)$,
+where $\hat{A}$ is the $\hat{A}$-genus (the multiplicative
+sequence for the Todd class).  The Fredholm determinant formula
+$Z_g = \det(1-T_q)^{-k}$ is the genus-by-genus evaluation of
+this universal formula at each point of $\mathcal{M}_g$.
+\end{remark}

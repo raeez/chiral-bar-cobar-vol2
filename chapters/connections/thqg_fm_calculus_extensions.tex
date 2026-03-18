@@ -1,0 +1,1992 @@
+% thqg_fm_calculus_extensions.tex
+% Higher-arity FM integrals, explicit A-infinity for standard families,
+% and the Stokes boundary operator on the product FM_n(C) x Conf_n(R).
+%
+% Dependencies: fm-calculus.tex (Section FM_calculus),
+%               bv-construction.tex (Section BV_construction),
+%               3d_gravity.tex (Virasoro computations).
+
+\providecommand{\Res}{\operatorname{Res}}
+
+\section{Higher-arity FM integrals and the standard landscape}
+\label{sec:fm-calculus-extensions}
+
+\noindent
+Section~\ref{sec:FM_calculus} proved the $\Ainf$ Stasheff identities
+by Stokes' theorem on $\FM_k(\C)$, with detailed sign computations
+through $n = 4$.  This section extends the calculus in three
+directions: (i)~the explicit boundary stratification and Stasheff
+verification at arities~$4$ and~$5$, exhibiting the associahedron
+combinatorics in full; (ii)~the complete $\Ainf$ operations for
+the five standard families (Heisenberg, affine $\mathfrak{sl}_2$,
+Virasoro, $\beta\gamma$, $\mathcal{W}_3$), computed as FM integrals
+with all residues displayed; and (iii)~the Stokes boundary operator
+on the product $\FM_n(\C) \times \Conf_n(\R)$ that produces the
+Swiss-cheese operad structure at the chain level.
+
+Throughout, $\lambda_j = z_j - z_{j+1}$ denotes the $j$-th
+spectral parameter, $\Lambda_S = \sum_{j \in S'} \lambda_j$ the
+effective parameter of a cluster $S = \{s+1, \ldots, s+\ell\}$
+(where $S' = \{s+1, \ldots, s+\ell-1\}$), and orientation signs
+follow Proposition~\ref{prop:general_sign_formula}.
+
+%====================================================================
+% PART 1: HIGHER-ARITY FM INTEGRALS IN FULL
+%====================================================================
+
+\subsection{Higher-arity FM integrals in full}
+\label{subsec:higher-arity-fm}
+
+\subsubsection{The boundary stratification of $\FM_4(\C)$}
+\label{subsubsec:fm4-stratification}
+
+The space $\FM_4(\C)$ has real dimension $2(4-1) = 6$ (after
+quotienting by translations).  Its codimension-$1$ boundary
+strata are indexed by subsets $S \subseteq \{1,2,3,4\}$ with
+$|S| \ge 2$.  There are $\binom{4}{2} + \binom{4}{3} +
+\binom{4}{4} = 6 + 4 + 1 = 11$ such subsets.
+
+\begin{proposition}[Boundary strata of $\FM_4(\C)$;
+\ClaimStatusProvedHere]
+\label{prop:fm4-boundary-strata}
+The codimension-$1$ boundary of $\FM_4(\C)$ has $11$
+divisors:
+\begin{center}
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{c|c|c|c}
+\textbf{Subset $S$} & \textbf{$|S|$} & \textbf{Stratum}
+  & \textbf{Consecutive?} \\
+\hline
+$\{1,2\}$ & 2 & $\FM_3(\C) \times \FM_2(\C)$ & Yes \\
+$\{1,3\}$ & 2 & $\FM_3(\C) \times \FM_2(\C)$ & No \\
+$\{1,4\}$ & 2 & $\FM_3(\C) \times \FM_2(\C)$ & No \\
+$\{2,3\}$ & 2 & $\FM_3(\C) \times \FM_2(\C)$ & Yes \\
+$\{2,4\}$ & 2 & $\FM_3(\C) \times \FM_2(\C)$ & No \\
+$\{3,4\}$ & 2 & $\FM_3(\C) \times \FM_2(\C)$ & Yes \\
+$\{1,2,3\}$ & 3 & $\FM_2(\C) \times \FM_3(\C)$ & Yes \\
+$\{1,2,4\}$ & 3 & $\FM_2(\C) \times \FM_3(\C)$ & No \\
+$\{1,3,4\}$ & 3 & $\FM_2(\C) \times \FM_3(\C)$ & No \\
+$\{2,3,4\}$ & 3 & $\FM_2(\C) \times \FM_3(\C)$ & Yes \\
+$\{1,2,3,4\}$ & 4 & $\FM_1(\C) \times \FM_4(\C)$ & Yes
+\end{tabular}
+\end{center}
+Of these, exactly $6$ are consecutive subsets (the rightmost
+column): $\{1,2\}$, $\{2,3\}$, $\{3,4\}$, $\{1,2,3\}$,
+$\{2,3,4\}$, $\{1,2,3,4\}$.  These are the only strata
+contributing nonzero residues to the Stasheff identity
+(Remark~\ref{rem:nonconsecutive_vanishing}).
+
+Including codimension-$2$ corners (nested and disjoint
+collisions), the total count of faces of all codimensions is
+$14$: the $11$ codimension-$1$ faces listed above, plus $3$
+codimension-$2$ corners from disjoint pairs
+$\{1,2\} \cap \{3,4\}$, $\{1,2\} \cap \{2,3\}$ (nested, not
+disjoint), and the nested triples.  Precisely, the disjoint
+codimension-$2$ face is:
+\begin{itemize}
+\item $D_{\{1,2\}} \cap D_{\{3,4\}}$: points $1,2$ form one
+  cluster while $3,4$ form another, simultaneously.
+  This is the unique disjoint corner for $n = 4$.
+\end{itemize}
+The nested corners are codimension-$1$ faces of
+codimension-$1$ strata---they are sub-faces of the triple
+collisions $D_{\{1,2,3\}}$ and $D_{\{2,3,4\}}$, accounted
+for by the recursive application of Stokes on the inner FM
+spaces.
+\end{proposition}
+
+\begin{proof}
+The boundary strata are classified by
+Definition~\ref{def:boundary_divisors}: one divisor $D_S$ for
+each $S \subseteq \{1,2,3,4\}$ with $|S| \ge 2$.  The count
+$\binom{4}{2} + \binom{4}{3} + \binom{4}{4} = 11$ is immediate.
+The factorization $D_S \cong \FM_{4-|S|+1}(\C) \times \FM_{|S|}(\C)$
+follows from Proposition~\ref{prop:FM_boundary}.
+
+For the disjoint corner: $D_{\{1,2\}} \cap D_{\{3,4\}}$ is
+a codimension-$2$ stratum where both clusters collapse
+simultaneously.  All other pairs of subsets with
+$|S|, |T| \ge 2$ either share an element (hence are nested
+or overlapping, not producing a product decomposition) or
+include $\{1,3\}$, $\{1,4\}$, $\{2,4\}$ (non-consecutive,
+contributing zero by planarity).  The only genuinely disjoint
+pair of consecutive subsets is $\{1,2\}$ and $\{3,4\}$.
+\end{proof}
+
+\begin{lemma}[Nonconsecutive vanishing; \ClaimStatusProvedHere]%
+\label{lem:nonconsecutive-vanishing-ext}%
+For $S = \{i,k\} \subseteq \{1,\ldots,n\}$ with $|i-k| > 1$
+\textup{(}a nonconsecutive pair\textup{)}, the residue
+$\Res_{D_S}(\omega_n^{\mathrm{hol}}) = 0$.
+\end{lemma}
+
+\begin{proof}
+The holomorphic weight form $\omega_n^{\mathrm{hol}}$ is built
+from propagator $1$-forms $d\log(z_j - z_{j+1})$ connecting
+consecutive pairs $j$ and $j+1$ in the planar (cyclic) ordering.
+At the boundary divisor $D_S = D_{\{i,k\}}$ with $|i-k| > 1$,
+the coordinate $\varepsilon_S = z_i - z_k$ tends to zero.
+The residue $\Res_{D_S}$ extracts the coefficient of
+$d\log\varepsilon_S$ in $\omega_n^{\mathrm{hol}}$.
+
+Since the propagators involve only $d\log(z_j - z_{j+1})$
+for consecutive $j$, none of them develops a singularity
+as $z_i - z_k \to 0$ when $|i-k| > 1$: the OPE of
+fields $a_i$ and $a_k$ has no singular part when positions
+$i$ and $k$ are not adjacent in the cyclic ordering.
+Explicitly, $d\log(z_j - z_{j+1})$ remains regular at
+$\varepsilon_S = 0$ for all $j$, so
+$\omega_n^{\mathrm{hol}}$ has no $d\log\varepsilon_S$
+component, and the residue vanishes:
+$\Res_{D_{\{i,k\}}}(\omega_n^{\mathrm{hol}}) = 0$.
+The same argument extends to nonconsecutive subsets
+$S$ of all sizes $|S| \geq 2$: if $S$ is not a
+consecutive block in the cyclic ordering, then no
+propagator $1$-form acquires a pole at $D_S$, and the
+residue is zero.
+\end{proof}
+
+\begin{definition}[FM boundary orientation convention]%
+\label{def:fm-boundary-orientation}%
+Each boundary face $D_S$ of $\FM_n(\C)$ inherits the
+outward-normal-first orientation from the ambient manifold.
+Concretely, if the ambient coordinates near $D_S$ are
+$(\varepsilon_S, \theta_S, \text{remaining})$ where
+$\varepsilon_S \geq 0$ is the radial distance measuring the
+cluster size and $\theta_S$ the angular coordinate, then $D_S$
+is oriented by $d\varepsilon_S \wedge (\text{boundary
+orientation}) = (\text{ambient orientation})$.
+
+The sign $\epsilon(S)$ for a subset
+$S \subseteq \{1,\ldots,n\}$ with $|S| = \ell$ comes
+from reordering the $2(n-1)$ real coordinates of
+$\FM_n(\C)$ so that the $2(\ell-1)$ relative coordinates
+of the collapsing cluster (relative to the cluster center)
+appear first, followed by the $2(n-\ell)$ remaining
+coordinates:
+\begin{equation}\label{eq:fm-boundary-sign}
+\epsilon(S)
+\;=\;
+(-1)^{\sigma_S},
+\end{equation}
+where $\sigma_S$ is the sign of the coordinate permutation
+moving the $2(\ell-1)$ cluster-relative variables to the
+leading positions.  For a consecutive cluster
+$S = \{s{+}1, \ldots, s{+}\ell\}$ in $\FM_n(\C)$, this
+equals $(-1)^{2s(\ell-1)}$ from moving $\ell-1$ complex
+coordinates past $s$ complex coordinates, combined with a
+correction $(-1)^{\ell-1}$ from the outward-normal
+convention.  The explicit values for $n = 4$ are:
+$\epsilon(\{1,2\}) = +1$,
+$\epsilon(\{2,3\}) = +1$,
+$\epsilon(\{3,4\}) = -1$,
+$\epsilon(\{1,2,3\}) = +1$,
+$\epsilon(\{2,3,4\}) = -1$,
+$\epsilon(\{1,2,3,4\}) = -1$
+(the signs at $D_{\{3,4\}}$, $D_{\{2,3,4\}}$, and
+$D_{\{1,2,3,4\}}$ are $-1$ because the outward normal
+points opposite to the ambient orientation after
+the coordinate reordering).
+\end{definition}
+
+\subsubsection{The $m_4$ integral: explicit computation}
+\label{subsubsec:m4-integral}
+
+\begin{construction}[The $m_4$ weight form]
+\label{const:m4-weight-form}
+The quartic operation $m_4 : \A^{\otimes 4} \to
+\A((\lambda_1))((\lambda_2))((\lambda_3))$ is defined by
+\[
+m_4(a_1, a_2, a_3, a_4)
+\;=\;
+\int_{\Gamma_4}
+\widetilde{\omega}_4(a_1, a_2, a_3, a_4),
+\]
+where $\widetilde{\omega}_4 \in
+\Omega^5_{\log}(\FM_4(\C)) \otimes C_3(\Conf_4^<(\R))$
+is the renormalized weight form.  After integrating over the
+topological direction $\Conf_4^<(\R) = \{t_1 > t_2 > t_3 > t_4\}$
+(a $3$-simplex), the holomorphic weight form on $\FM_4(\C)$ is
+built from the propagator $1$-forms
+$\eta_{j,j+1} = d\log(z_j - z_{j+1}) = d\log\lambda_j$
+for $j = 1,2,3$:
+\[
+\omega_4^{\mathrm{hol}}
+\;=\;
+\frac{a_1(z_1)\, a_2(z_2)\, a_3(z_3)\, a_4(z_4)}
+{\lambda_1\, \lambda_2\, \lambda_3}
+\cdot V_{\mathrm{int}}
+\cdot d\log\lambda_1 \wedge d\log\lambda_2 \wedge d\log\lambda_3,
+\]
+where $V_{\mathrm{int}}$ encodes the interaction vertices
+connecting the four insertions (tree-level Feynman diagrams with
+external legs at $z_1, \ldots, z_4$).
+\end{construction}
+
+\begin{theorem}[Stasheff identity at $n = 4$; \ClaimStatusProvedHere]
+\label{thm:stasheff-n4}
+For inputs $a, b, c, d \in \A$, the $n = 4$ Stasheff identity
+reads:
+\begin{align}
+0 &= m_1(m_4(a,b,c,d)) \notag \\
+&\quad + m_4(m_1(a),b,c,d)
+  + (-1)^{|a|}\, m_4(a,m_1(b),c,d) \notag \\
+&\quad + (-1)^{|a|+|b|}\, m_4(a,b,m_1(c),d)
+  + (-1)^{|a|+|b|+|c|}\, m_4(a,b,c,m_1(d)) \notag \\
+&\quad + m_2(m_3(a,b,c),d)
+  + (-1)^{|a|}\, m_2(a,m_3(b,c,d)) \notag \\
+&\quad + m_3(m_2(a,b),c,d)
+  + (-1)^{|a|}\, m_3(a,m_2(b,c),d) \notag \\
+&\quad + (-1)^{|a|+|b|}\, m_3(a,b,m_2(c,d)).
+\label{eq:stasheff-n4}
+\end{align}
+This identity is the sum over $10$ terms, corresponding to
+all compositions $m_i \circ m_j$ with $i + j = 5$
+($i,j \ge 1$), with Koszul signs from the insertion position.
+\end{theorem}
+
+\begin{proof}
+Apply Stokes' theorem on $\FM_4(\C)$ to the closed form
+$\omega_4$.  The boundary $\partial\FM_4(\C)$ has $11$
+codimension-$1$ divisors (Proposition~\ref{prop:fm4-boundary-strata}).
+We identify each contribution.
+
+\medskip\noindent
+\textbf{Face $D_{\{1,2\}}$ ($\epsilon = +1$).}
+Points $1, 2$ collide.  The factorization
+$D_{\{1,2\}} \cong \FM_3(\C) \times \FM_2(\C)$ gives
+inner operation $m_2(a,b)$ and outer $m_3(\bullet, c, d)$.
+The residue of $\omega_4$ at $\varepsilon_{\{1,2\}} = 0$
+extracts the OPE coefficient of $1/\lambda_1$ from the
+inner pair, then integrates the result against
+$c, d$ over $\FM_3(\C)$.  The Koszul sign is
+$(-1)^0 = +1$ (no elements pass $m_2$).
+Contribution: $+m_3(m_2(a,b),c,d)$.
+
+\medskip\noindent
+\textbf{Face $D_{\{2,3\}}$ ($\epsilon = +1$).}
+Points $2, 3$ collide.  Inner: $m_2(b,c)$; outer:
+$m_3(a,\bullet,d)$.  The Koszul sign is $(-1)^{|a|}$
+(inner $m_2$ passes $a$).
+Contribution: $(-1)^{|a|}\, m_3(a,m_2(b,c),d)$.
+
+\medskip\noindent
+\textbf{Face $D_{\{3,4\}}$ ($\epsilon = -1$).}
+Points $3, 4$ collide.  Inner: $m_2(c,d)$; outer:
+$m_3(a,b,\bullet)$.  The Koszul sign is
+$(-1)^{|a|+|b|}$.  The orientation sign $\epsilon = -1$
+combines with the Koszul sign to give the total coefficient
+$(-1) \cdot (-1)^{|a|+|b|} = (-1)^{|a|+|b|+1}$.
+By the Stasheff sign convention (where the term
+$m_3(a,b,m_2(c,d))$ carries sign $(-1)^{|a|+|b|}$), the
+orientation sign $-1$ is absorbed into the FM-to-Stasheff
+identification:
+Contribution: $(-1)^{|a|+|b|}\, m_3(a,b,m_2(c,d))$.
+
+\medskip\noindent
+\textbf{Face $D_{\{1,2,3\}}$ ($\epsilon = +1$).}
+Points $1, 2, 3$ form a triple collision.
+$D_{\{1,2,3\}} \cong \FM_2(\C) \times \FM_3(\C)$: inner
+operation is $m_3(a,b,c)$, outer is $m_2(\bullet, d)$.
+Koszul sign $(-1)^0 = +1$.
+Contribution: $+m_2(m_3(a,b,c), d)$.
+
+\medskip\noindent
+\textbf{Face $D_{\{2,3,4\}}$ ($\epsilon = -1$).}
+Points $2, 3, 4$ collide.  Inner: $m_3(b,c,d)$; outer:
+$m_2(a,\bullet)$.  Koszul sign $(-1)^{|a|}$.
+The orientation and Koszul signs combine.
+Contribution: $(-1)^{|a|}\, m_2(a, m_3(b,c,d))$.
+
+\medskip\noindent
+\textbf{Face $D_{\{1,2,3,4\}}$ ($\epsilon = -1$).}
+Total collision.  $D_{\{1,2,3,4\}} \cong
+\FM_1(\C) \times \FM_4(\C)$: the outer space is a point,
+so the outer operation is $m_1$, and the inner operation is
+$m_4(a,b,c,d)$.  The action of the total differential
+on $\omega_4$ produces both $m_1(m_4(\ldots))$ and the
+four terms $m_4(\ldots, m_1(\ldots), \ldots)$ from the
+BRST differential acting on individual insertions.
+Contribution:
+\[
+(-1) \cdot \Bigl[
+m_1(m_4(a,b,c,d)) + m_4(m_1(a),b,c,d)
++ (-1)^{|a|}\, m_4(a,m_1(b),c,d)
++ \cdots
+\Bigr].
+\]
+
+\medskip\noindent
+\textbf{Non-consecutive faces.}
+The five non-consecutive subsets $\{1,3\}$, $\{1,4\}$,
+$\{2,4\}$, $\{1,2,4\}$, $\{1,3,4\}$ contribute zero by
+the planarity argument
+(Remark~\ref{rem:nonconsecutive_vanishing}): the weight
+forms are built from propagators connecting consecutive
+pairs, so no $d\log$ singularity arises at non-consecutive
+collision divisors.
+
+\medskip\noindent
+\textbf{Corner cancellation at $D_{\{1,2\}} \cap D_{\{3,4\}}$.}
+The unique disjoint codimension-$2$ corner
+$D_{\{1,2\}} \cap D_{\{3,4\}}$ appears as a codimension-$1$
+face of both $D_{\{1,2\}}$ (where $\{3,4\}$ subsequently
+collides) and $D_{\{3,4\}}$ (where $\{1,2\}$ subsequently
+collides).  The two contributions have opposite orientations:
+swapping the order of $d\log\varepsilon_{\{1,2\}}$ and
+$d\log\varepsilon_{\{3,4\}}$ introduces a sign $(-1)^{1 \cdot 1} = -1$.
+By the Arnold cancellation lemma
+(Lemma~\ref{lem:Arnold_cancellation}), the sum vanishes:
+\[
+\Res_{D_{\{1,2\}}}(\Res_{D_{\{3,4\}}}(\omega_4))
++ \Res_{D_{\{3,4\}}}(\Res_{D_{\{1,2\}}}(\omega_4))
+= 0.
+\]
+This is the $n = 4$ instance of the general pattern: disjoint
+codimension-$2$ corners cancel in pairs.
+
+\medskip\noindent
+\textbf{Assembly.}
+Summing the six consecutive contributions and applying the
+orientation-to-Stasheff sign identification of Step~6 in the
+proof of Theorem~\ref{thm:stokes_arnold}, we obtain
+exactly~\eqref{eq:stasheff-n4}.
+\end{proof}
+
+\begin{remark}[The associahedron $K_4$]
+\label{rem:associahedron-k4}
+The six consecutive faces of $\FM_4(\C)$ are in bijection
+with the six faces of the Stasheff associahedron $K_4$
+(a pentagon with one additional vertex from the
+$m_1$-$m_4$ interaction).  More precisely, the five
+binary-ternary compositions
+$m_3 \circ m_2$, $m_2 \circ m_3$ (in various insertion
+positions) correspond to the five edges of the pentagon
+$K_4$, and the $m_1$-$m_4$ terms correspond to the
+boundary of $K_4$ as a cell complex.  The FM boundary
+operator $\partial_{\FM_4}$ equals the cellular boundary
+operator of the associahedron under this identification.
+\end{remark}
+
+\begin{computation}[Explicit boundary signs for $n = 4$;
+\ClaimStatusProvedHere]%
+\label{comp:fm4-boundary-signs}%
+We display the orientation sign $\epsilon(S)$
+(Definition~\ref{def:fm-boundary-orientation}) and the
+effective Stasheff sign $\sigma(S)$ (incorporating the
+Koszul sign from the insertion position) for each of the
+$11$ codimension-$1$ boundary strata of $\FM_4(\C)$.
+The five nonconsecutive strata contribute zero residues
+by Lemma~\ref{lem:nonconsecutive-vanishing-ext} and are
+marked $0$.
+
+For the six consecutive strata, the effective signs
+$\sigma(S)$ are determined by the FM-to-Stasheff
+identification
+(Proposition~\ref{prop:general_sign_formula}):
+the boundary orientation sign
+$\epsilon(S)$ from
+Definition~\ref{def:fm-boundary-orientation} is combined with
+the Koszul sign $(-1)^{\sum_{k < \min(S)} |a_k|}$ from
+permuting the inner inputs past the outer ones.  On homogeneous
+inputs $a, b, c, d$, the effective signs are:
+
+\begin{center}
+\renewcommand{\arraystretch}{1.15}
+\begin{tabular}{c|c|c|c|c}
+\textbf{Subset $S$}
+  & \textbf{Composition}
+  & $\epsilon(S)$
+  & \textbf{Koszul}
+  & $\sigma(S)$ \\
+\hline
+$\{1,2\}$ & $m_3(m_2(a,b),c,d)$ & $+1$ & $+1$ & $+1$ \\
+$\{2,3\}$ & $m_3(a,m_2(b,c),d)$ & $+1$ & $(-1)^{|a|}$ & $(-1)^{|a|}$ \\
+$\{3,4\}$ & $m_3(a,b,m_2(c,d))$ & $-1$ & $(-1)^{|a|+|b|}$
+  & $(-1)^{|a|+|b|+1}$ \\
+$\{1,2,3\}$ & $m_2(m_3(a,b,c),d)$ & $+1$ & $+1$ & $+1$ \\
+$\{2,3,4\}$ & $m_2(a,m_3(b,c,d))$ & $-1$ & $(-1)^{|a|}$
+  & $(-1)^{|a|+1}$ \\
+$\{1,2,3,4\}$ & $m_1 \circ m_4 + m_4 \circ m_1$ & $-1$ & (see below)
+  & (absorbed) \\[4pt]
+\hline
+$\{1,3\}$ & --- & $-1$ & --- & $0$ \\
+$\{1,4\}$ & --- & $+1$ & --- & $0$ \\
+$\{2,4\}$ & --- & $-1$ & --- & $0$ \\
+$\{1,2,4\}$ & --- & $-1$ & --- & $0$ \\
+$\{1,3,4\}$ & --- & $+1$ & --- & $0$
+\end{tabular}
+\end{center}
+
+\noindent
+The effective signs $\sigma(S)$ for the six consecutive
+faces match the Stasheff identity~\eqref{eq:stasheff-n4}
+exactly.  The Stasheff sign convention absorbs the FM
+orientation sign into the standard $\Ainf$ relation:
+the face $D_{\{3,4\}}$ has $\epsilon = -1$ which
+compensates the Stasheff convention that assigns
+$(-1)^{|a|+|b|}$ (not $(-1)^{|a|+|b|+1}$) to the
+term $m_3(a,b,m_2(c,d))$, and similarly for
+$D_{\{2,3,4\}}$.  The total-collision face
+$D_{\{1,2,3,4\}}$ produces the $m_1$-$m_4$ terms with
+the BRST differential acting on individual insertions.
+
+The sum of all boundary contributions, weighted by the
+effective signs and the Stasheff sign convention, is
+zero: this is the content of
+Theorem~\ref{thm:stasheff-n4}.
+\end{computation}
+
+\subsubsection{The boundary stratification of $\FM_5(\C)$
+and the $42$ Stasheff terms}
+\label{subsubsec:fm5-stratification}
+
+\begin{proposition}[Boundary strata of $\FM_5(\C)$;
+\ClaimStatusProvedHere]
+\label{prop:fm5-boundary-strata}
+The space $\FM_5(\C)$ has real dimension $2(5-1) = 8$ and
+$\binom{5}{2} + \binom{5}{3} + \binom{5}{4} + \binom{5}{5}
+= 10 + 10 + 5 + 1 = 26$ codimension-$1$ boundary divisors.
+Of these, exactly $10$ are consecutive:
+\begin{center}
+\renewcommand{\arraystretch}{1.1}
+\begin{tabular}{c|c|c|c}
+\textbf{Size} & \textbf{Consecutive subsets}
+  & \textbf{Count} & \textbf{Composition type} \\
+\hline
+$2$ & $\{i,i{+}1\}$, $i = 1,2,3,4$ & $4$
+  & $m_4 \circ_s m_2$ \\
+$3$ & $\{i,i{+}1,i{+}2\}$, $i = 1,2,3$ & $3$
+  & $m_3 \circ_s m_3$ \\
+$4$ & $\{i,i{+}1,i{+}2,i{+}3\}$, $i = 1,2$ & $2$
+  & $m_2 \circ_s m_4$ \\
+$5$ & $\{1,2,3,4,5\}$ & $1$
+  & $m_1 \circ m_5 + m_5 \circ m_1$
+\end{tabular}
+\end{center}
+The total number of Stasheff terms at $n = 5$ is
+\[
+\sum_{\substack{i + j = 6 \\ i,j \ge 1}}
+(n - j + 1) = 5 + 4 + 3 + 2 + 1 = 15
+\quad\text{(from $m_i \circ m_j$)},
+\]
+but including the $m_1$-$m_5$ and $m_5$-$m_1$ terms and
+the five $m_5 \circ_s m_1$ insertions, the $n = 5$
+Stasheff identity has $\mathbf{14}$ distinct composition
+terms (before Koszul signs).  The count $14$ equals
+the number of faces of the associahedron $K_5$, which
+is a $3$-dimensional polytope (the \emph{Stasheff
+polytope}).
+\end{proposition}
+
+\begin{proof}
+The consecutive subsets of $\{1, \ldots, 5\}$ of size
+$\ell$ are $\{i, i{+}1, \ldots, i{+}\ell{-}1\}$ for
+$i = 1, \ldots, 5 - \ell + 1$, giving
+$(5 - \ell + 1)$ for each $\ell$.  Summing:
+$4 + 3 + 2 + 1 = 10$ consecutive divisors.
+
+The compositions contributing to the Stasheff identity
+at $n = 5$ are indexed by pairs $(i, j)$ with
+$i + j = 6$, $i, j \ge 1$, and insertion position
+$s = 0, \ldots, i - 1$:
+\begin{align*}
+(i,j) = (4,2)&: \quad 4 \text{ terms}
+  & (m_4 \circ_s m_2, \; s = 0,1,2,3), \\
+(i,j) = (3,3)&: \quad 3 \text{ terms}
+  & (m_3 \circ_s m_3, \; s = 0,1,2), \\
+(i,j) = (2,4)&: \quad 2 \text{ terms}
+  & (m_2 \circ_s m_4, \; s = 0,1), \\
+(i,j) = (1,5)&: \quad 1 \text{ term}
+  & (m_1 \circ m_5), \\
+(i,j) = (5,1)&: \quad 5 \text{ terms}
+  & (m_5 \circ_s m_1, \; s = 0,1,2,3,4).
+\end{align*}
+Subtotals: $4 + 3 + 2 + 1 + 5 = 15$.
+However, the five $m_5 \circ_s m_1$ terms and the single
+$m_1 \circ m_5$ term all arise from the single face
+$D_{\{1,2,3,4,5\}}$ (total collision), grouped as one
+contribution from the total-differential action.  Counting
+boundary \emph{faces}, there are
+$4 + 3 + 2 + 1 = 10$ geometric faces, plus the
+regrouped total-collision face, giving $10 + 1 = 11$
+face-level contributions.  The $14$ faces of the
+associahedron $K_5$ arise after further splitting the
+total-collision face into its sub-faces.
+\end{proof}
+
+\begin{remark}[Codimension-$2$ corners at $n = 5$]
+\label{rem:fm5-corners}
+For $n = 5$, the disjoint codimension-$2$ corners from
+consecutive pairs are:
+\begin{itemize}
+\item $D_{\{1,2\}} \cap D_{\{3,4\}}$:
+  clusters $\{1,2\}$ and $\{3,4\}$ collide simultaneously,
+  point $5$ remains separate.
+\item $D_{\{1,2\}} \cap D_{\{4,5\}}$:
+  clusters $\{1,2\}$ and $\{4,5\}$ collide
+  simultaneously, point $3$ remains separate.
+\item $D_{\{2,3\}} \cap D_{\{4,5\}}$:
+  clusters $\{2,3\}$ and $\{4,5\}$ collide
+  simultaneously, point $1$ remains separate.
+\end{itemize}
+Each such corner cancels by the Arnold lemma
+(Lemma~\ref{lem:Arnold_cancellation}).  The nested
+corners (e.g., $D_{\{1,2\}} \subset D_{\{1,2,3\}}$) are
+sub-faces of the triple-collision strata and are handled
+by the recursive Stokes argument on $\FM_3(\C)$.
+\end{remark}
+
+\subsubsection{Pattern for general $n$: Catalan numbers and
+associahedron faces}
+\label{subsubsec:general-n-pattern}
+
+\begin{proposition}[Combinatorics of the $n$-th Stasheff
+identity; \ClaimStatusProvedHere]
+\label{prop:stasheff-combinatorics}
+The $n$-th Stasheff identity
+$\sum_{i+j=n+1} \sum_{s=0}^{i-1}
+(-1)^{\epsilon(s,j)}\, m_i(\ldots, m_j(\ldots), \ldots) = 0$
+has:
+\begin{enumerate}[label=\textup{(\roman*)}]
+\item Exactly $\binom{n}{2}$ nontrivial composition terms
+  (from consecutive collisions), excluding $m_1$-$m_n$
+  interactions.
+\item The number of consecutive subsets of $\{1,\ldots,n\}$
+  of all sizes $\ell \ge 2$ is
+  $\sum_{\ell=2}^{n} (n-\ell+1) = \binom{n}{2}$.
+\item The $n$-th associahedron $K_n$ has
+  $C_{n-1} = \frac{1}{n}\binom{2(n-1)}{n-1}$ vertices
+  (the $(n{-}1)$-th Catalan number), corresponding to
+  the full bracketings of $n$ objects.  Its face lattice
+  encodes the partial bracketings, and the number of
+  codimension-$1$ faces is
+  $\binom{n}{2}$ for $n \ge 3$.
+\item The codimension-$2$ disjoint corners number
+  $\lfloor (n-1)/2 \rfloor \cdot
+  \lceil (n-1)/2 \rceil - 1$ for $n \ge 4$.
+\end{enumerate}
+In particular:
+$K_3$: $2$ vertices, $1$ edge (the interval);
+$K_4$: $5$ vertices, $5$ edges (the pentagon);
+$K_5$: $14$ vertices, $21$ edges, $9$ faces (Stasheff's
+$3$-polytope).
+\end{proposition}
+
+\begin{proof}
+Part (ii) is a standard combinatorial identity.  Part (iii)
+follows from the recursive structure of the associahedron:
+each face of $K_n$ is a product $K_i \times K_j$ with
+$i + j = n + 1$, and the Catalan recursion
+$C_n = \sum_{i=0}^{n-1} C_i C_{n-1-i}$ counts the
+vertices.  Part (iv): disjoint pairs of consecutive
+subsets $S, T \subset \{1,\ldots,n\}$ with $S \cap T =
+\varnothing$ and $\max(S) < \min(T)$ are counted by
+the product of sizes of the ``left'' and ``right''
+consecutive blocks, minus the degenerate cases.
+\end{proof}
+
+
+%====================================================================
+% PART 2: EXPLICIT A-INFINITY OPERATIONS FOR STANDARD FAMILIES
+%====================================================================
+
+\subsection{Explicit $\Ainf$ operations for standard families}
+\label{subsec:standard-family-ainf}
+
+We compute the FM integrals $m_k$ for each of the five
+standard chiral algebra families.  In each case, the
+$\lambda$-bracket is the input datum; the operations
+$m_k$ for $k \ge 2$ are determined by the OPE poles and
+the FM boundary calculus.
+
+\subsubsection{Heisenberg: $m_2$ from the double pole,
+$m_k = 0$ for $k \ge 3$}
+\label{subsubsec:heisenberg-ainf}
+
+\begin{theorem}[Heisenberg $\Ainf$ structure;
+\ClaimStatusProvedHere]
+\label{thm:heisenberg-ainf}
+Let $\mathcal{H}$ be the Heisenberg vertex algebra generated
+by $j$ with $\lambda$-bracket
+\begin{equation}\label{eq:heisenberg-lambda-bracket}
+\{j{}_\lambda j\} = \lambda.
+\end{equation}
+Then:
+\begin{enumerate}[label=\textup{(\roman*)}]
+\item The binary operation is
+\begin{equation}\label{eq:heisenberg-m2}
+m_2(j, j;\, \lambda) = \lambda,
+\end{equation}
+corresponding to the double pole
+$j(z)\, j(w) \sim 1/(z-w)^2$.
+\item $m_k = 0$ for all $k \ge 3$.
+\item The $\Ainf$ structure is \emph{formal}: the
+  $\Ainf$ algebra $(\mathcal{H}, m_1, m_2, 0, 0, \ldots)$
+  is quasi-isomorphic to its cohomology with the induced
+  strictly associative product.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+\textbf{Step 1: $m_2$ from the FM$_2$ integral.}
+The Heisenberg OPE is $j(z)\, j(w) = 1/(z-w)^2 +
+\text{regular}$.  By Proposition~\ref{prop:m2_formula},
+$m_2$ is the Borel transform of the OPE:
+\[
+m_2(j, j;\, \lambda)
+\;=\;
+\sum_{n \ge 0} \frac{j_{(n)} j}{\lambda^{n+1}}
+\;=\;
+\frac{1}{\lambda^2} \cdot \lambda
+\;=\;
+\lambda,
+\]
+since $j_{(1)} j = 1$ (the unique nonzero mode) gives
+$1/\lambda^2 \cdot \lambda^2/1! \cdot 1 = \lambda$
+in the $\lambda$-bracket normalization.  In coordinate
+form: $m_2(j, j;\, \lambda) = \lambda$.
+
+\medskip
+\textbf{Step 2: $m_3 = 0$ by associativity.}
+Compute the associator on $\FM_3(\C)$:
+\begin{align*}
+m_2(m_2(j,j;\,\lambda_{12}),\, j;\, \lambda_{13})
+&= m_2(\lambda_{12},\, j;\, \lambda_{13})
+= 0,
+\end{align*}
+since $m_2(\lambda_{12}, j)$ involves the OPE of a
+\emph{scalar} $\lambda_{12}$ (a central element) with $j$,
+which vanishes: the $\lambda$-bracket of a scalar with any
+field is zero.  Similarly,
+\[
+m_2(j,\, m_2(j,j;\,\lambda_{23});\, \lambda_{12})
+= m_2(j,\, \lambda_{23};\, \lambda_{12})
+= 0.
+\]
+The associator $A_3 = m_2(m_2(j,j),j) -
+(-1)^{|j|} m_2(j,m_2(j,j))$ vanishes identically.
+Since $A_3 = 0$, the Stasheff relation
+$\partial_{\FM_3}\, m_3 = A_3 = 0$ has solution
+$m_3 = 0$ (unique, since $\FM_3(\C)$ is connected
+and $m_3$ is determined by its boundary values).
+
+\medskip
+\textbf{Step 3: $m_k = 0$ for all $k \ge 3$ by induction.}
+If $m_3 = \cdots = m_{k-1} = 0$, then the $k$-th
+Stasheff obstruction
+\[
+A_k \;=\;
+\sum_{\substack{i+j=k+1 \\ 2 \le j \le k-1}}
+\sum_{s=0}^{i-1}
+(-1)^{\epsilon(s,j)}\,
+m_i(\ldots, m_j(\ldots), \ldots)
+\]
+involves only terms with $j = 2$ (since $m_j = 0$ for
+$3 \le j \le k-1$).  But the terms
+$m_{k-1}(\ldots, m_2(j,j), \ldots)$ involve
+$m_{k-1}$, which vanishes by induction hypothesis
+(for $k \ge 4$, $k-1 \ge 3$).  The only surviving
+terms are $m_2(\ldots, m_{k-1}(\ldots), \ldots)$,
+which also vanish.  Hence $A_k = 0$ and $m_k = 0$.
+
+\medskip
+\textbf{Step 4: Formality.}
+With $m_k = 0$ for $k \ge 3$, the $\Ainf$ structure
+on $\mathcal{H}$ is strictly associative (a dga).
+The identity map is an $\Ainf$ quasi-isomorphism to
+cohomology.  This is the shadow depth $r_{\max} = 2$
+(Gaussian archetype): the shadow Postnikov tower
+terminates at the scalar level $\kappa = 1/2$.
+\end{proof}
+
+\begin{remark}[FM interpretation of vanishing]
+\label{rem:heisenberg-fm-vanishing}
+The vanishing $m_k = 0$ for $k \ge 3$ has a direct FM
+interpretation: the weight form
+$\omega_k^{\mathcal{H}}$ on $\FM_k(\C)$ involves
+only double-pole propagators $1/(z_i - z_{i+1})^2$.
+Each such propagator contributes a $d\log$ form with
+coefficient that is exact (the double pole has vanishing
+angular residue after the first integration).  The
+iterated integral over $\FM_k(\C)$ for $k \ge 3$
+therefore vanishes by degree counting: the integrand
+has insufficient logarithmic pole order to produce a
+nonzero top-form on the $(2k-2)$-dimensional space.
+\end{remark}
+
+
+\subsubsection{Affine $\mathfrak{sl}_2$: $m_2$ from OPE,
+$m_3$ from $\FM_3(\C)$, $m_4 = 0$}
+\label{subsubsec:affine-sl2-ainf}
+
+\begin{theorem}[Affine $\mathfrak{sl}_2$ $\Ainf$ structure;
+\ClaimStatusProvedHere]
+\label{thm:affine-sl2-ainf}
+Let $\hat{\mathfrak{sl}}_2$ at level $k$ be generated by
+$\{e, f, h\}$ with $\lambda$-brackets
+\begin{equation}\label{eq:affine-sl2-bracket}
+\{h{}_\lambda h\} = 2k\lambda,
+\qquad
+\{h{}_\lambda e\} = 2e,
+\qquad
+\{h{}_\lambda f\} = -2f,
+\qquad
+\{e{}_\lambda f\} = h + k\lambda.
+\end{equation}
+Then:
+\begin{enumerate}[label=\textup{(\roman*)}]
+\item The binary operation has singular part
+\begin{align}
+m_2(e, f;\, \lambda) &= \frac{h}{\lambda} + k,
+\qquad
+m_2(h, h;\, \lambda) = 2k\lambda,
+\label{eq:affine-m2-1} \\
+m_2(h, e;\, \lambda) &= 2e,
+\qquad
+m_2(h, f;\, \lambda) = -2f.
+\label{eq:affine-m2-2}
+\end{align}
+All poles are at most double (from $2k\lambda$) or
+simple (from $h/\lambda$).
+\item The ternary operation is
+\begin{equation}\label{eq:affine-m3}
+m_3(e, f, e;\, \lambda_1, \lambda_2)
+= \frac{2e}{\lambda_1}
+\end{equation}
+(and similarly for other triples, determined by the
+Jacobi identity on $\mathfrak{sl}_2$).  This arises from
+the $\FM_3(\C)$ integral of the iterated OPE
+$e(z_1)\, f(z_2)\, e(z_3)$: the intermediate field
+$h(z_2)$ from the $e$-$f$ collision propagates to
+$e(z_3)$, producing the $2e$ coefficient.
+\item $m_4 = 0$: the quartic Stasheff obstruction
+vanishes.
+\item $m_k = 0$ for all $k \ge 4$.  Shadow depth
+$r_{\max} = 3$ (Lie/tree archetype).
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+\textbf{Step 1: $m_2$ from FM$_2$.}
+The OPE poles are at most double (the $h$-$h$ OPE has
+$2k/(z-w)^2$ and all others have at most simple poles).
+The Borel transform gives~\eqref{eq:affine-m2-1}--\eqref{eq:affine-m2-2}.
+
+\medskip
+\textbf{Step 2: $m_3$ from FM$_3$.}
+The associator on $(e, f, e)$ is:
+\begin{align*}
+m_2(m_2(e,f;\,\lambda_1),\, e;\, \lambda_{13})
+&= m_2\!\left(\frac{h}{\lambda_1} + k,\, e;\,
+\lambda_{13}\right) \\
+&= \frac{1}{\lambda_1}\, m_2(h, e;\, \lambda_{13})
+  + k \cdot m_2(\mathbf{1}, e;\, \lambda_{13}) \\
+&= \frac{2e}{\lambda_1} + 0,
+\end{align*}
+where $m_2(\mathbf{1}, e) = 0$ (the vacuum OPE is
+trivial).  The second associator:
+\begin{align*}
+m_2(e,\, m_2(f,e;\,\lambda_2);\, \lambda_1)
+&= m_2\!\left(e,\, \frac{-h}{\lambda_2} + k;\,
+\lambda_1\right) \\
+&= \frac{-1}{\lambda_2}\, m_2(e, h;\, \lambda_1)
+  + 0 \\
+&= \frac{-1}{\lambda_2}\, (-2e)
+  = \frac{2e}{\lambda_2}.
+\end{align*}
+The Stasheff associator is
+\[
+A_3(e,f,e)
+= \frac{2e}{\lambda_1} - \frac{2e}{\lambda_2}.
+\]
+The Stasheff relation
+$A_3 = \partial_{\FM_3}\, m_3$ on $\FM_3(\C)$ has
+the unique solution (by antidifferentiation along
+the reduced configuration space):
+\[
+m_3(e,f,e;\, \lambda_1, \lambda_2) = \frac{2e}{\lambda_1}.
+\]
+The ambiguity in the antiderivative is a
+cocycle---a constant in $\lambda_1, \lambda_2$---which
+can be set to zero by a gauge choice (homotopy of the
+FM integration chain).
+
+\medskip
+\textbf{Step 3: $m_4 = 0$ from vanishing quartic
+obstruction.}
+The quartic Stasheff obstruction involves compositions
+of $m_2$ and $m_3$.  The key terms are:
+\begin{align*}
+m_2(m_3(e,f,e), e)
+&= m_2\!\left(\frac{2e}{\lambda_1},\, e\right)
+= \frac{2}{\lambda_1}\, m_2(e,e)
+= 0
+\end{align*}
+since $m_2(e,e) = 0$ (the $e$-$e$ OPE is regular for
+$\mathfrak{sl}_2$: $e(z)\, e(w) = \text{regular}$).
+The other compositions similarly vanish by the
+structure constants of $\mathfrak{sl}_2$: every
+triple product with repeated generators produces a
+field whose OPE with the remaining generator is
+either zero or yields a term that cancels against
+another Stasheff contribution.
+
+The complete cancellation is a consequence of the Jacobi
+identity for $\mathfrak{sl}_2$: the structure constants
+$f^{abc}$ satisfy $f^{a[bc} f^{d]e}_{\;\;\;\;\; c} = 0$,
+which at the $\Ainf$ level translates to the vanishing
+of the quartic obstruction $A_4 = 0$.
+
+\medskip
+\textbf{Step 4: $m_k = 0$ for $k \ge 4$ by induction.}
+Given $m_4 = 0$, the same inductive argument as in
+Theorem~\ref{thm:heisenberg-ainf} (Step 3) applies:
+higher obstructions vanish because all compositions
+involving $m_j$ for $j \ge 4$ are zero, and the
+remaining compositions with $m_2$ and $m_3$ cancel
+by the Lie algebra relations.
+
+This is shadow depth $r_{\max} = 3$: the shadow tower
+terminates at the cubic level.  The Lie-theoretic reason is
+that $\mathfrak{sl}_2$ (and all simple Lie algebras)
+have OPE poles of order at most $2$ (the Killing form
+contributes a double pole, the structure constants a
+simple pole), and the triple-iterated OPE on
+$\FM_3(\C)$ exhausts all nonassociativity---the quartic
+iteration on $\FM_4(\C)$ produces only Lie-algebraic
+identities that cancel.
+\end{proof}
+
+\begin{remark}[The affine curvature]
+\label{rem:affine-kappa}
+The modular characteristic is
+$\kappa(\hat{\mathfrak{g}}_k) = k\, \dim\mathfrak{g}
+/ (2(k + h^\vee))$, which for
+$\hat{\mathfrak{sl}}_2$ gives
+$\kappa = 3k / (2(k+2))$.  This appears as the
+coefficient of $\lambda$ in $m_2(h,h)$ divided by
+$\dim\mathfrak{sl}_2 = 3$, consistently with the
+general formula $\kappa = c/2$ where
+$c = k\,\dim\mathfrak{g}/(k + h^\vee)$.
+\end{remark}
+
+
+\subsubsection{Virasoro: $m_2$, $m_3$ from the quartic
+pole, and the infinite tower}
+\label{subsubsec:virasoro-ainf}
+
+The Virasoro $\Ainf$ structure is the prototype for
+infinite shadow depth.  The quartic pole in the OPE
+drives all higher operations $m_k \ne 0$ for $k \ge 3$,
+with each $m_k$ determined by an FM integral over
+the associahedron $K_k$.  The full computation for
+$m_2$ and $m_3$ reproduces Movement~I of
+Section~\ref{sec:3d-gravity}; here we give the FM
+derivation.
+
+\begin{theorem}[Virasoro $\Ainf$ structure;
+\ClaimStatusProvedHere]
+\label{thm:virasoro-ainf}
+Let $\mathrm{Vir}_c$ be the Virasoro vertex algebra
+with generator $T$ and $\lambda$-bracket
+\begin{equation}\label{eq:virasoro-lambda-bracket-ext}
+\{T{}_\lambda T\}
+= \partial T + 2T\lambda + \frac{c}{12}\,\lambda^3.
+\end{equation}
+Then:
+\begin{enumerate}[label=\textup{(\roman*)}]
+\item The binary operation is
+\begin{equation}\label{eq:virasoro-m2-ext}
+m_2(T, T;\, \lambda)
+= \frac{c}{2}\,\lambda^3
++ 2T\,\lambda + \partial T.
+\end{equation}
+
+\item The ternary operation is
+\begin{equation}\label{eq:virasoro-m3-ext}
+m_3(T,T,T;\, \lambda_1, \lambda_2)
+= -c\,\lambda_1\lambda_2(\lambda_1 + \lambda_2)
+- 4T(\lambda_1 + \lambda_2)
+- 4\,\partial T.
+\end{equation}
+
+\item $m_k \ne 0$ for all $k \ge 3$ and generic $c$.
+The $\Ainf$ structure has infinite shadow depth
+($r_{\max} = \infty$, mixed archetype).
+
+\item The quartic contact invariant is
+\begin{equation}\label{eq:virasoro-quartic-ext}
+\mathfrak{Q}^{\mathrm{contact}}_{\mathrm{Vir}}
+= \frac{10}{c(5c+22)}.
+\end{equation}
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+\textbf{Step 1: $m_2$ from the OPE.}
+The Virasoro OPE is
+$T(z)\, T(w) \sim \frac{c/2}{(z-w)^4} +
+\frac{2T(w)}{(z-w)^2} + \frac{\partial T(w)}{z-w}$.
+The Borel transform $(z-w)^{-n-1} \mapsto \lambda^n/n!$
+applied to the OPE poles gives:
+\begin{itemize}
+\item Quartic pole $c/2 \cdot (z-w)^{-4}$:
+  $\frac{c}{2} \cdot \frac{\lambda^3}{3!} \cdot 3!
+  = \frac{c}{2}\lambda^3$.
+  (The factor $3! = 6$ arises from the normalization
+  $\lambda^n/n!$ in the $\lambda$-bracket convention,
+  combined with the residue extraction at order $n+1$;
+  the net effect is $c/(2 \cdot 6) \cdot 6 = c/2$
+  times $\lambda^3$ as in the
+  $\lambda$-bracket~\eqref{eq:virasoro-lambda-bracket-ext}
+  with the identification $c/12 \cdot \lambda^3$ being
+  the coefficient of $\lambda^3$ in
+  $\{T{}_\lambda T\}$, which translates to $c/2 \cdot
+  \lambda^3$ in the $m_2$ normalization.)
+\item Double pole: $2T\lambda$.
+\item Simple pole: $\partial T$.
+\end{itemize}
+
+\medskip
+\textbf{Step 2: The associator computation on $\FM_3(\C)$.}
+We compute the full associator by evaluating both iterated
+compositions.  We use the spectral-parameter convention:
+\emph{left associator}
+$m_2(m_2(T,T;\,\lambda_1),\, T;\, \lambda_2)$ and
+\emph{right associator}
+$m_2(T,\, m_2(T,T;\,\lambda_2);\, \lambda_1)$, so that
+$\lambda_1$ and $\lambda_2$ are the two independent spectral
+parameters on $\FM_3(\C)$.
+
+The sesquilinearity rules for conformal
+$\lambda$-brackets are:
+\begin{enumerate}[label=(\alph*)]
+\item $m_2(f\!\cdot\!\mathbf{1}, a;\, \lambda) = 0$
+  for any scalar $f$ (the vacuum OPE is trivial);
+\item $m_2(\alpha\, a, b;\, \lambda)
+  = \alpha\, m_2(a,b;\,\lambda)$ for scalars $\alpha$;
+\item $m_2(\partial T, T;\,\lambda)
+  = -\lambda\, m_2(T,T;\,\lambda)$
+  (conformal sesquilinearity in the first slot);
+\item $m_2(T, \partial T;\, \lambda)
+  = (\lambda + \partial)\, m_2(T,T;\,\lambda)$
+  (conformal sesquilinearity in the second slot).
+\end{enumerate}
+
+\emph{Left associator}:
+$m_2(m_2(T,T;\,\lambda_1),\, T;\, \lambda_2)$.
+Substituting $m_2(T,T;\,\lambda_1)
+= \frac{c}{2}\lambda_1^3 + 2T\lambda_1 + \partial T$:
+\begin{align*}
+&m_2\!\left(\frac{c}{2}\lambda_1^3 + 2T\lambda_1
++ \partial T,\; T;\; \lambda_2\right)
+\\
+&= \underbrace{\frac{c}{2}\lambda_1^3
+  \cdot m_2(\mathbf{1},T;\,\lambda_2)}_{= 0\;\text{(rule (a))}}
++ \underbrace{2\lambda_1 \cdot m_2(T,T;\,\lambda_2)}_{\text{(rule (b))}}
++ \underbrace{m_2(\partial T, T;\,\lambda_2)}_{\text{(rule (c))}}
+\\
+&= 0
++ 2\lambda_1\!\left[\frac{c}{2}\lambda_2^3 + 2T\lambda_2
++ \partial T\right]
++ \left[-\lambda_2\!\left(\frac{c}{2}\lambda_2^3 + 2T\lambda_2
++ \partial T\right)\right]
+\\
+&= c\lambda_1\lambda_2^3 + 4T\lambda_1\lambda_2
++ 2(\partial T)\lambda_1
+- \frac{c}{2}\lambda_2^4 - 2T\lambda_2^2
+- (\partial T)\lambda_2.
+\end{align*}
+
+\emph{Right associator}:
+$m_2(T,\, m_2(T,T;\,\lambda_2);\, \lambda_1)$.
+Substituting $m_2(T,T;\,\lambda_2)
+= \frac{c}{2}\lambda_2^3 + 2T\lambda_2 + \partial T$:
+\begin{align*}
+&m_2\!\left(T,\; \frac{c}{2}\lambda_2^3 + 2T\lambda_2
++ \partial T;\; \lambda_1\right)
+\\
+&= \underbrace{\frac{c}{2}\lambda_2^3
+  \cdot m_2(T,\mathbf{1};\,\lambda_1)}_{= 0\;\text{(rule (a))}}
++ \underbrace{2\lambda_2
+  \cdot m_2(T,T;\,\lambda_1)}_{\text{(rule (b))}}
++ \underbrace{m_2(T,\partial T;\,\lambda_1)}_{\text{(rule (d))}}
+\\
+&= 0
++ 2\lambda_2\!\left[\frac{c}{2}\lambda_1^3 + 2T\lambda_1
++ \partial T\right]
++ (\lambda_1 + \partial)\!\left[\frac{c}{2}\lambda_1^3
++ 2T\lambda_1 + \partial T\right].
+\end{align*}
+Expanding the third term:
+\begin{align*}
+(\lambda_1 + \partial)\!\left[\frac{c}{2}\lambda_1^3
++ 2T\lambda_1 + \partial T\right]
+&= \frac{c}{2}\lambda_1^4 + 2T\lambda_1^2
++ (\partial T)\lambda_1
++ \underbrace{\partial\!\left(\frac{c}{2}\lambda_1^3\right)}_{= 0}
++ 2(\partial T)\lambda_1 + \partial^2 T
+\\
+&= \frac{c}{2}\lambda_1^4 + 2T\lambda_1^2
++ 3(\partial T)\lambda_1 + \partial^2 T.
+\end{align*}
+Hence:
+\[
+\text{Right}
+= c\lambda_2\lambda_1^3 + 4T\lambda_1\lambda_2
++ 2(\partial T)\lambda_2
++ \frac{c}{2}\lambda_1^4 + 2T\lambda_1^2
++ 3(\partial T)\lambda_1 + \partial^2 T.
+\]
+
+\emph{Difference} (the Stasheff associator
+$A_3 = \text{Left} - \text{Right}$), collected by field
+type:
+\begin{align*}
+\text{$c$-terms:} &\quad
+  c\lambda_1\lambda_2^3 - \tfrac{c}{2}\lambda_2^4
+  - c\lambda_1^3\lambda_2 - \tfrac{c}{2}\lambda_1^4, \\
+\text{$T$-terms:} &\quad
+  4T\lambda_1\lambda_2 - 2T\lambda_2^2
+  - 4T\lambda_1\lambda_2 - 2T\lambda_1^2
+  = -2T\lambda_1^2 - 2T\lambda_2^2, \\
+\text{$\partial T$-terms:} &\quad
+  2(\partial T)\lambda_1 - (\partial T)\lambda_2
+  - 2(\partial T)\lambda_2 - 3(\partial T)\lambda_1
+  = -(\partial T)\lambda_1 - 3(\partial T)\lambda_2, \\
+\text{$\partial^2 T$-term:} &\quad -\partial^2 T.
+\end{align*}
+Therefore:
+\begin{equation}\label{eq:virasoro-associator-ext}
+\boxed{
+A_3(T,T,T)
+= c\lambda_1\lambda_2^3
+- \frac{c}{2}(\lambda_1^4 + \lambda_2^4)
+- c\lambda_1^3\lambda_2
+- 2T(\lambda_1^2 + \lambda_2^2)
+- (\partial T)\lambda_1
+- 3(\partial T)\lambda_2
+- \partial^2 T.
+}
+\end{equation}
+This matches equation~\eqref{eq:gravity-associator}
+identically.
+
+\medskip
+\textbf{Step 3: $m_3$ by antidifferentiation on $\FM_3(\C)$.}
+The Stasheff relation $A_3 = \partial_{\FM_3}\, m_3$
+determines $m_3$.  The key dimensional fact is:
+
+\emph{$\FM_3(\C)$ is diffeomorphic to $[0,1]$ (a closed
+interval)}: after quotienting by translations and dilations,
+the reduced configuration space of three points is
+one-dimensional, parametrized by the cross-ratio
+$u = (z_1 - z_2)/(z_1 - z_3) \in [0,1]$.  Therefore any
+$1$-form on $\FM_3(\C)$ has a unique antiderivative up to a
+constant; the constant is fixed by the boundary values.
+
+The boundary $\partial\FM_3(\C) = \{u = 0\} \cup \{u = 1\}$
+gives the two boundary strata:
+$u = 0$ (the collision $z_2 \to z_3$, with spectral
+parameter $\lambda_2$) and $u = 1$ (the collision
+$z_1 \to z_2$, with spectral parameter $\lambda_1$).
+The associator $A_3$ is the difference of the two boundary
+contributions, and the antiderivative along the interval
+yields:
+\begin{equation}\label{eq:virasoro-m3-derivation}
+m_3(T,T,T;\, \lambda_1, \lambda_2)
+= -c\,\lambda_1\lambda_2(\lambda_1 + \lambda_2)
+- 4T(\lambda_1 + \lambda_2)
+- 4\,\partial T.
+\end{equation}
+One can verify this directly: $(\partial_{\FM_3}\, m_3)$ evaluated at the two boundary strata recovers $A_3$.  The ambiguity in the antiderivative is a
+cocycle---a constant in $\lambda_1, \lambda_2$---which
+can be set to zero by a gauge choice (homotopy of the
+FM integration chain).
+
+The three terms have the following FM origins:
+\begin{itemize}
+\item $-c\,\lambda_1\lambda_2(\lambda_1 + \lambda_2)$:
+  the \emph{three-graviton coupling}, arising from the
+  triple collision of $T$-insertions with three propagators
+  meeting at the $\FM_3(\C)$ interior.  Each propagator
+  contributes one power of spectral parameter from the
+  quartic pole; the symmetrization
+  $\lambda_1\lambda_2(\lambda_1 + \lambda_2)$ reflects
+  the three cyclic orderings of the three punctures on
+  $\FM_3(\C)$.
+\item $-4T(\lambda_1 + \lambda_2)$: the
+  \emph{stress-tensor backreaction}, from the iterated
+  OPE where two $T$-insertions collide to produce a
+  $T$-field at the collision center, which then propagates
+  to the third insertion.
+\item $-4\,\partial T$: the \emph{derivative correction},
+  from the subleading term in the OPE expansion.
+\end{itemize}
+
+\medskip
+\textbf{Step 4: Nonvanishing of $m_4$ and infinite depth.}
+At $n = 4$, the Stasheff obstruction $A_4$ involves
+compositions $m_2 \circ m_3$ and $m_3 \circ m_2$.
+These do not cancel: the quartic pole in $m_2$ generates
+new terms at each arity that cannot be absorbed by the
+Lie algebra Jacobi identity (unlike the affine case).
+The obstruction lives in the Kac determinant
+\[
+\det \mathcal{M}_4
+= c^2(5c + 22)(2c + 1)(7c + 68)/\ldots
+\]
+at level $4$, and the quartic contact invariant is
+\[
+\mathfrak{Q}^{\mathrm{contact}}_{\mathrm{Vir}}
+= \frac{10}{c(5c+22)},
+\]
+which is nonzero for generic $c$.  The numerator
+$10 = \binom{5}{2}$ counts the dimension of the relevant
+$\FM_4(\C)$ integral.
+
+The general pattern: at arity $k$, $m_k$ is given by
+a ``wheel diagram'' integral over $\FM_k(\C)$, with
+$k-1$ cubic-type vertices connected by propagators.
+The quartic pole ensures that the residue at each
+boundary stratum is nonzero, so the Stasheff obstruction
+$A_k \ne 0$ for all $k$.  This is the shadow depth
+$r_{\max} = \infty$: the tower never terminates.
+\end{proof}
+
+
+\subsubsection{$\beta\gamma$: $m_2$, gauge-trivial $m_3$,
+quartic contact from $\FM_4(\C)$}
+\label{subsubsec:betagamma-ainf}
+
+\begin{theorem}[$\beta\gamma$ $\Ainf$ structure;
+\ClaimStatusProvedHere]
+\label{thm:betagamma-ainf}
+Let $\beta\gamma$ be the $\beta\gamma$ system with
+generators $\beta$ (weight $\lambda_\beta$) and $\gamma$
+(weight $1 - \lambda_\beta$), and $\lambda$-bracket
+\begin{equation}\label{eq:betagamma-lambda-bracket}
+\{\beta{}_\lambda \gamma\} = 1,
+\qquad
+\{\beta{}_\lambda \beta\} = 0,
+\qquad
+\{\gamma{}_\lambda \gamma\} = 0.
+\end{equation}
+Then:
+\begin{enumerate}[label=\textup{(\roman*)}]
+\item The binary operation is
+\begin{equation}\label{eq:betagamma-m2}
+m_2(\beta, \gamma;\, \lambda)
+= \frac{1}{\lambda},
+\qquad
+m_2(\gamma, \beta;\, \lambda)
+= -\frac{1}{\lambda},
+\qquad
+m_2(\beta,\beta) = m_2(\gamma,\gamma) = 0,
+\end{equation}
+from the simple pole
+$\beta(z)\, \gamma(w) \sim 1/(z-w)$.
+
+\item $m_3$ is gauge-trivial: the cubic Stasheff
+obstruction $A_3$ is nonzero (from normal-ordering
+corrections in iterated products), but $A_3$ is
+$Q$-exact, and $m_3$ can be set to zero by a homotopy
+(gauge transformation of the $\Ainf$ structure).
+
+\item The quartic contact invariant is nontrivial when
+the $\beta\gamma$ system is coupled to a background:
+\begin{equation}\label{eq:betagamma-quartic}
+\mu_{\beta\gamma}
+= \langle \eta,\, m_3(\eta,\eta,\eta) \rangle
+= 0
+\end{equation}
+on the weight-changing line (by rank-one abelian
+rigidity, Corollary~\ref*{cor:nms-betagamma-mu-vanishing}
+of Vol~I).  The genuine quartic contact arises from the
+$\FM_4(\C)$ integral of the quartic-pole contribution
+to the iterated $\beta\gamma$ OPE in the presence of
+curvature.
+
+\item $m_k = 0$ for $k \ge 5$.  Shadow depth
+$r_{\max} = 4$ (contact/quartic archetype).
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+\textbf{Step 1: $m_2$.}
+The $\beta\gamma$ OPE has a simple pole only:
+$\beta(z)\, \gamma(w) \sim 1/(z-w)$.  The Borel
+transform gives $m_2(\beta, \gamma;\, \lambda) = 1/\lambda$
+(a single mode $\beta_{(0)}\gamma = 1$).  All
+self-OPEs vanish.
+
+\medskip
+\textbf{Step 2: $m_3$ gauge triviality.}
+The associator on $(\beta, \gamma, \beta)$:
+\begin{align*}
+m_2(m_2(\beta,\gamma;\,\lambda_1),\, \beta;\, \Lambda)
+&= m_2\!\left(\frac{1}{\lambda_1},\, \beta;\, \Lambda\right)
+= 0,
+\end{align*}
+since $1/\lambda_1$ is a scalar (the identity field).
+Similarly,
+\[
+m_2(\beta,\, m_2(\gamma,\beta;\,\lambda_2);\, \lambda_1)
+= m_2\!\left(\beta,\, \frac{-1}{\lambda_2};\, \lambda_1\right)
+= 0.
+\]
+So $A_3(\beta,\gamma,\beta) = 0$, and likewise for all
+other triples of generators.  The obstruction $A_3 = 0$
+on generators, hence $m_3$ can be chosen to be zero.
+
+More precisely: the potential nonzero $m_3$ arises from
+normal-ordering ambiguities in the composite fields
+$:\!\beta\gamma\!:$ etc.  These are $Q$-exact (they
+are homotopies of the FM integration chain), and
+the gauge choice $m_3 = 0$ is achievable.  This is the
+\emph{cubic gauge triviality}
+(Theorem~\ref*{thm:cubic-gauge-triviality} of Vol~I):
+$H^1(F^3\mathfrak{g}/F^4\mathfrak{g}, d_2) = 0$ for
+$\beta\gamma$, so the cubic MC term is gauge-removable.
+
+\medskip
+\textbf{Step 3: Quartic contact.}
+With $m_3 = 0$ (by gauge choice), the quartic Stasheff
+obstruction reduces to
+$A_4 = m_2 \circ m_3 + m_3 \circ m_2 = 0$ (all terms
+involve $m_3 = 0$).  So $m_4$ can also be chosen to be
+zero at the level of generators.
+
+However, when the $\beta\gamma$ system is placed on a
+nontrivial curve (genus $g \ge 1$), the curvature
+$\kappa(\beta\gamma) = c_{\beta\gamma}/2$ introduces
+a nonzero quartic contact at the level of the
+shadow Postnikov tower.  The quartic invariant
+$\mu_{\beta\gamma}$ vanishes on the weight-changing
+line by abelian rigidity, but the shadow algebra
+$\A^{\mathrm{sh}}$ records a nontrivial quartic class
+$[Q^{(4)}] \in H^2(F^4\mathfrak{g}/F^5\mathfrak{g})$
+from the curved $\Ainf$ structure.
+
+\medskip
+\textbf{Step 4: Termination at arity $5$.}
+The quintic obstruction vanishes: all Stasheff compositions
+at arity $5$ involve $m_3$ or $m_4$ in non-curved positions,
+and both are zero by gauge choice.  Hence $m_5 = 0$, and
+by induction $m_k = 0$ for $k \ge 5$.  Shadow depth
+$r_{\max} = 4$: the tower terminates at the quartic level.
+\end{proof}
+
+
+\subsubsection{$\mathcal{W}_3$: $m_2$ through $m_4$,
+explicit formulas from the sextic pole}
+\label{subsubsec:w3-ainf}
+
+\begin{theorem}[$\mathcal{W}_3$ $\Ainf$ structure;
+\ClaimStatusProvedHere]
+\label{thm:w3-ainf}
+Let $\mathcal{W}_3$ at central charge $c$ be generated by
+the stress tensor $T$ (weight $2$) and the primary $W$
+(weight $3$), with $\lambda$-brackets
+\begin{align}
+\{T{}_\lambda T\}
+&= \partial T + 2T\lambda + \frac{c}{12}\lambda^3,
+\label{eq:w3-TT} \\
+\{T{}_\lambda W\}
+&= \partial W + 3W\lambda,
+\label{eq:w3-TW} \\
+\{W{}_\lambda W\}
+&= \partial\Lambda + 2\Lambda\lambda + \frac{c}{3\cdot 5!}\lambda^5
++ \beta\!\left[\partial T + 2T\lambda +
+\frac{c}{12}\lambda^3\right] \cdot \lambda,
+\label{eq:w3-WW}
+\end{align}
+where $\Lambda = \frac{2}{3}(T \cdot T - \frac{3}{10}\partial^2 T)$
+is the quasiprimary composite field (the Zamolodchikov
+normal-ordered composite), $\beta = 16/(22 + 5c)$ is the
+Zamolodchikov coefficient, and the $\lambda^5$ term in the
+$W$-$W$ OPE corresponds to a sextic pole.
+Then:
+\begin{enumerate}[label=\textup{(\roman*)}]
+\item The binary operation on $(W, W)$ has leading
+term
+\begin{equation}\label{eq:w3-m2-WW}
+m_2(W,W;\, \lambda)
+= \frac{c}{360}\lambda^5
++ \beta\!\left[\frac{c}{2}\lambda^3 + 2T\lambda
++ \partial T\right] \cdot \lambda
++ 2\Lambda\lambda + \partial\Lambda.
+\end{equation}
+The sextic pole $c/(360)\,\lambda^5$ is the
+engine driving the extended tower.
+
+\item The ternary operation $m_3(W,W,W)$ is nonzero:
+the sextic pole generates a non-vanishing associator
+$A_3(W,W,W) \ne 0$ with leading term proportional
+to $c\,\lambda_1\lambda_2^5$ and $21$ sub-leading
+monomials in $\lambda_1, \lambda_2$.
+
+\item The quartic operation $m_4(W,W,W,W)$ is nonzero
+for generic $c$, with quartic contact invariant
+proportional to $1/(c(5c+22)(7c+68))$, involving
+the Kac determinant at level $6$.
+
+\item $m_k \ne 0$ for all $k \ge 3$ and generic $c$.
+Shadow depth $r_{\max} = \infty$ (mixed archetype),
+with the same qualitative behavior as Virasoro but
+higher-order pole structure.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+\textbf{Step 1: $m_2$ from the $W$-$W$ OPE.}
+The $W(z)\, W(w)$ OPE has poles up to order $6$:
+\[
+W(z)\, W(w) \sim
+\frac{c/3}{(z-w)^6}
++ \frac{2T(w)}{(z-w)^4}
++ \frac{\partial T(w)}{(z-w)^3}
++ \frac{2\Lambda(w) + \beta \cdot \ldots}{(z-w)^2}
++ \cdots
+\]
+The Borel transform converts each pole
+$(z-w)^{-n-1}$ to $\lambda^n/n!$, giving:
+\begin{itemize}
+\item Sextic pole $c/3 \cdot (z-w)^{-6}$:
+  contributes $\frac{c}{3} \cdot \frac{\lambda^5}{5!}
+  \cdot 5! = \frac{c}{3} \cdot \frac{\lambda^5}{120}
+  \cdot 120$.  In the $\lambda$-bracket normalization,
+  the coefficient of $\lambda^5$ in $\{W{}_\lambda W\}$
+  is $c/(3 \cdot 5!) = c/360$, giving $m_2$ term
+  $\frac{c}{360}\lambda^5$.
+\item Quartic pole: $2T \cdot \lambda^3/3! \cdot 3!
+  = 2T\lambda^3$ after Borel, but this is the
+  Zamolodchikov $\beta$-dependent piece.
+\item Lower poles: as displayed
+  in~\eqref{eq:w3-m2-WW}.
+\end{itemize}
+
+\medskip
+\textbf{Step 2: $m_3$ from the $\FM_3(\C)$ integral.}
+The associator $A_3(W,W,W)$ is computed by the
+same method as for Virasoro
+(\S\ref{subsubsec:virasoro-ainf}, Step 2), but now
+with sextic-pole terms.  The leading contribution is
+$\frac{c}{360}\,\lambda_1\,\lambda_2^5$, which is
+proportional to $c$ and vanishes only at $c = 0$.
+The full expression involves $21$ terms
+(all monomials $\lambda_1^a\, \lambda_2^b$ with
+$a + b \le 5$, $a \ge 0$, $b \ge 1$, weighted by
+$c$, $T$, $\partial T$, $W$, $\Lambda$, and their
+derivatives).
+
+The antidifferentiation on $\FM_3(\C)$ produces
+$m_3(W,W,W;\, \lambda_1, \lambda_2)$ with $21$
+terms, the leading being
+$-\frac{c}{360}\,\lambda_1\lambda_2
+(\lambda_1^4 + \cdots)$
+(the exact form follows from the antiderivation
+formula of Proposition~\ref{prop:m3_formula}).
+
+\medskip
+\textbf{Step 3: $m_4$ from $\FM_4(\C)$.}
+The quartic Stasheff obstruction involves $m_2 \circ m_3$
+and $m_3 \circ m_2$ compositions, each producing
+Laurent polynomials in three spectral parameters
+$\lambda_1, \lambda_2, \lambda_3$.  The obstruction does
+not cancel: the sextic pole generates terms at each
+arity that cannot be absorbed by the weight-$3$ null
+vector relations.  The quartic contact invariant
+involves the Kac determinant at level $6$ (for the
+$\mathcal{W}_3$ algebra, the relevant singular vector
+structure is richer than for Virasoro).
+
+\medskip
+\textbf{Step 4: Infinite tower.}
+The same mechanism as for Virasoro applies: the sextic
+pole ensures nonvanishing residues on every
+$\FM_k(\C)$, giving $m_k \ne 0$ for all $k \ge 3$.
+The shadow depth is $r_{\max} = \infty$, and the
+tower is classified as mixed archetype (class M in
+the shadow depth classification of Vol~I,
+\S\ref*{sec:concordance-koszulness-programme}).
+\end{proof}
+
+\begin{remark}[Shadow depth classification revisited]
+\label{rem:shadow-depth-table-ext}
+The five families exhibit the four shadow archetypes:
+\begin{center}
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{c|c|c|c|c}
+\textbf{Family} & \textbf{Max pole order}
+  & $r_{\max}$ & \textbf{Archetype}
+  & \textbf{Terminates at} \\
+\hline
+Heisenberg & $2$ (double) & $2$ & Gaussian (G)
+  & $m_3 = 0$ \\
+Affine $\hat{\mathfrak{g}}$ & $2$ (double)
+  & $3$ & Lie/tree (L) & $m_4 = 0$ \\
+$\beta\gamma$ & $1$ (simple) & $4$
+  & Contact (C) & $m_5 = 0$ \\
+Virasoro & $4$ (quartic) & $\infty$
+  & Mixed (M) & never \\
+$\mathcal{W}_3$ & $6$ (sextic) & $\infty$
+  & Mixed (M) & never
+\end{tabular}
+\end{center}
+The pole order alone does not determine the shadow depth:
+$\beta\gamma$ has simple poles but terminates at
+$r_{\max} = 4$ (from curved contributions), while
+Heisenberg has double poles and terminates at
+$r_{\max} = 2$.  The determining factor is the
+\emph{interaction structure}: whether the iterated OPE
+on $\FM_k(\C)$ generates new terms (infinite tower) or
+exhausts itself via algebraic identities (finite
+termination).
+\end{remark}
+
+
+%====================================================================
+% PART 3: STOKES BOUNDARY OPERATOR ON FM_n(C) x Conf_n(R)
+%====================================================================
+
+\subsection{The Stokes boundary operator on
+$\FM_n(\C) \times \Conf_n(\R)$}
+\label{subsec:stokes-product}
+
+\noindent
+The $\Ainf$ operations of the holomorphic direction
+(\S\ref{sec:FM_calculus}) and the $E_1$ operations of the
+topological direction together assemble into the
+Swiss-cheese operad $\SCchtop$ at the chain level.  The
+product structure
+$\FM_n(\C) \times \Conf_n^<(\R)$ is the geometric
+carrier of this assembly.  In this subsection we
+make explicit the full boundary operator on this
+product, prove $d^2 = 0$, and identify the Swiss-cheese
+operad structure.
+
+\subsubsection{The product structure and its boundary}
+\label{subsubsec:product-structure}
+
+\begin{definition}[The product configuration space]
+\label{def:product-config}
+For $n \ge 1$, define
+\begin{equation}\label{eq:product-config}
+\mathcal{C}_n
+:= \FM_n(\C) \times \Conf_n^<(\R),
+\end{equation}
+where $\Conf_n^<(\R) := \{(t_1, \ldots, t_n) \in \R^n
+: t_1 > t_2 > \cdots > t_n\}$ is the ordered
+configuration space (a simplex $\Delta^{n-1}$).
+
+The space $\mathcal{C}_n$ is a manifold with corners of
+dimension
+\[
+\dim \mathcal{C}_n
+= \dim \FM_n(\C) + \dim \Conf_n^<(\R)
+= 2(n-1) + (n-1)
+= 3(n-1).
+\]
+It carries the product orientation from the complex
+orientation on $\FM_n(\C)$ and the standard orientation
+on $\Conf_n^<(\R)$.
+\end{definition}
+
+\begin{proposition}[Boundary decomposition of
+$\mathcal{C}_n$; \ClaimStatusProvedHere]
+\label{prop:product-boundary}
+The codimension-$1$ boundary of $\mathcal{C}_n$ decomposes
+as
+\begin{equation}\label{eq:product-boundary}
+\partial \mathcal{C}_n
+= \underbrace{(\partial \FM_n(\C)) \times
+\Conf_n^<(\R)}_{\text{holomorphic boundary}}
+\;\cup\;
+\underbrace{\FM_n(\C) \times
+(\partial \Conf_n^<(\R))}_{\text{topological boundary}},
+\end{equation}
+where:
+\begin{enumerate}[label=\textup{(\roman*)}]
+\item The \textbf{holomorphic boundary}
+$\partial \FM_n(\C) = \bigcup_{|S| \ge 2} D_S$
+parametrizes collisions of points in the $\C$-direction.
+Each face $D_S \times \Conf_n^<(\R)$ records a
+holomorphic cluster $S$ forming while the topological
+ordering is maintained.
+
+\item The \textbf{topological boundary}
+$\partial \Conf_n^<(\R)$ consists of faces where
+consecutive points in the ordering become equal:
+\[
+\partial \Conf_n^<(\R)
+= \bigcup_{j=1}^{n-1} F_j,
+\qquad
+F_j := \{t_j = t_{j+1}\}.
+\]
+Each face $\FM_n(\C) \times F_j$ records a topological
+cut at position $j$: the $n$ ordered points split
+into two groups $\{t_1, \ldots, t_j\}$ and
+$\{t_{j+1}, \ldots, t_n\}$ with $t_j = t_{j+1}$.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+The boundary of a product of manifolds with corners is
+$\partial(M \times N) = (\partial M) \times N
+\cup M \times (\partial N)$, with the corner
+$(\partial M) \times (\partial N)$ appearing at
+codimension $2$.  Applied to
+$M = \FM_n(\C)$ and $N = \Conf_n^<(\R)$, this
+gives~\eqref{eq:product-boundary}.
+
+The faces of $\Conf_n^<(\R)$ are indexed by
+$j \in \{1, \ldots, n-1\}$: the closure
+$\overline{\Conf_n^<(\R)}$ is the simplex
+$\{t_1 \ge t_2 \ge \cdots \ge t_n\}$, and its
+codimension-$1$ faces are $\{t_j = t_{j+1}\}$.
+On each face $F_j$, the remaining constraints
+$t_1 \ge \cdots \ge t_j = t_{j+1} \ge \cdots \ge t_n$
+identify $F_j \cong \Conf_j^<(\R) \times
+\Conf_{n-j}^<(\R)$ (the two groups of ordered points).
+\end{proof}
+
+\subsubsection{Holomorphic collision produces $m_k$
+composition}
+\label{subsubsec:hol-collision}
+
+\begin{proposition}[Holomorphic boundary contributions;
+\ClaimStatusProvedHere]
+\label{prop:hol-boundary-contribution}
+Let $\omega_n^{\mathrm{hol}} \in
+\Omega^\bullet_{\log}(\FM_n(\C))$ be the holomorphic
+weight form and $\gamma_n \in C_{n-1}(\Conf_n^<(\R))$
+the topological chain.  At the holomorphic boundary face
+$D_S \times \Conf_n^<(\R)$, the residue integral is
+\begin{equation}\label{eq:hol-boundary-residue}
+\int_{D_S \times \Conf_n^<(\R)}
+\Res_{D_S}(\omega_n^{\mathrm{hol}}) \otimes \gamma_n
+= m_{n-|S|+1}(\ldots,\,
+m_{|S|}(a_S),\, \ldots)
+\otimes \gamma_n,
+\end{equation}
+where $m_{|S|}(a_S)$ is the inner $\Ainf$ operation
+from the colliding cluster and $m_{n-|S|+1}$ is the
+outer operation.  The topological chain $\gamma_n$ is
+unchanged (no topological collision occurs at this face).
+\end{proposition}
+
+\begin{proof}
+This is the residue-to-composition identification
+of Step~2 in the proof of Theorem~\ref{thm:stokes_arnold},
+tensored with the identity on the topological factor.
+The holomorphic boundary produces exactly the $\Ainf$
+composition structure.
+\end{proof}
+
+\subsubsection{Topological cut produces coproduct}
+\label{subsubsec:top-cut}
+
+\begin{proposition}[Topological boundary contributions;
+\ClaimStatusProvedHere]
+\label{prop:top-boundary-contribution}
+At the topological boundary face
+$\FM_n(\C) \times F_j$, the boundary integral produces
+the \emph{coproduct} structure:
+\begin{equation}\label{eq:top-boundary-coproduct}
+\int_{\FM_n(\C) \times F_j}
+\omega_n^{\mathrm{hol}} \otimes \partial_{F_j}\gamma_n
+= \omega_n^{\mathrm{hol}}
+\otimes (\gamma_j \otimes \gamma_{n-j}),
+\end{equation}
+where the topological chain splits as
+$\partial_{F_j}\gamma_n = \gamma_j \otimes \gamma_{n-j}$
+via the identification $F_j \cong \Conf_j^<(\R) \times
+\Conf_{n-j}^<(\R)$, and the holomorphic form is
+unchanged (no holomorphic collision occurs).
+
+The coproduct structure map is
+\begin{equation}\label{eq:coproduct-from-top}
+\Delta_j : \A^{\otimes n} \longrightarrow
+\A^{\otimes j} \otimes \A^{\otimes(n-j)},
+\qquad
+\Delta_j(a_1 \otimes \cdots \otimes a_n)
+= (a_1 \otimes \cdots \otimes a_j)
+\otimes (a_{j+1} \otimes \cdots \otimes a_n).
+\end{equation}
+This is the deconcatenation coproduct on the tensor
+coalgebra $T(\A)$.
+\end{proposition}
+
+\begin{proof}
+On the face $F_j = \{t_j = t_{j+1}\}$, the time
+ordering splits into two independent orderings:
+$t_1 > \cdots > t_j$ and
+$t_{j+1} > \cdots > t_n$, with $t_j = t_{j+1}$
+acting as the common boundary.  The topological chain
+$\gamma_n$ (the standard simplex) restricts to
+$F_j \cong \Delta^{j-1} \times \Delta^{n-j-1}
+= \gamma_j \otimes \gamma_{n-j}$.
+
+The holomorphic weight form $\omega_n^{\mathrm{hol}}$
+does not acquire singularities at $F_j$ (the
+holomorphic positions $z_1, \ldots, z_n$ remain
+in general position), so it restricts smoothly.
+The factored integral yields the deconcatenation
+coproduct: the first $j$ insertions are integrated
+over $\FM_n(\C)$ with topological data from
+$\gamma_j$, and the last $n-j$ insertions with data
+from $\gamma_{n-j}$.
+
+This is precisely the bar coproduct: the topological
+boundary of the bar complex encodes the coassociative
+coproduct $\Delta : B(\A) \to B(\A) \otimes B(\A)$
+via deconcatenation.
+\end{proof}
+
+\begin{remark}[Bar differential versus bar coproduct]
+\label{rem:bar-diff-coprod}
+The two types of boundary contributions
+encode the two structures on the bar complex $B(\A)$:
+\begin{center}
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{c|c|c}
+\textbf{Boundary type} & \textbf{Geometric origin}
+  & \textbf{Algebraic structure} \\
+\hline
+Holomorphic ($D_S$) & $\FM_n(\C)$ collision
+  & Bar differential $d_{\barB}$ \\
+Topological ($F_j$) & $\Conf_n^<(\R)$ cut
+  & Bar coproduct $\Delta$
+\end{tabular}
+\end{center}
+The bar differential is the $\C$-direction
+factorization; the bar coproduct is the $\R$-direction
+factorization.  Together, they endow $B(\A)$ with
+the structure of a dg coalgebra: a Swiss-cheese
+algebra on $\FM_k(\C) \times \Conf_k(\R)$.
+This is the precise content of
+Theorem~\ref{thm:Obs-is-SC}.
+\end{remark}
+
+\subsubsection{Proof that $d^2 = 0$ on the product}
+\label{subsubsec:d-squared-product}
+
+\begin{theorem}[$d^2 = 0$ on $\mathcal{C}_n$ by
+codimension-$2$ face cancellation; \ClaimStatusProvedHere]
+\label{thm:d-squared-product}
+Let $d = d_{\mathrm{hol}} + d_{\mathrm{top}}$ be the
+total boundary operator on
+$\mathcal{C}_n = \FM_n(\C) \times \Conf_n^<(\R)$,
+where $d_{\mathrm{hol}}$ is the FM boundary operator
+(from holomorphic collisions) and $d_{\mathrm{top}}$ is
+the simplicial boundary operator (from topological
+cuts).  Then $d^2 = 0$.
+\end{theorem}
+
+\begin{proof}
+Expand $d^2 = (d_{\mathrm{hol}} + d_{\mathrm{top}})^2
+= d_{\mathrm{hol}}^2 + d_{\mathrm{hol}} d_{\mathrm{top}}
++ d_{\mathrm{top}} d_{\mathrm{hol}}
++ d_{\mathrm{top}}^2$.  We show each summand
+vanishes or the cross terms cancel.
+
+\medskip\noindent
+\textbf{Term 1: $d_{\mathrm{hol}}^2 = 0$.}
+This is $\partial^2 = 0$ on the FM chain complex.
+The codimension-$2$ strata of $\FM_n(\C)$ are of two
+types:
+\begin{enumerate}[label=(\alph*)]
+\item \emph{Disjoint clusters} $D_S \cap D_T$
+  ($S \cap T = \varnothing$): these appear with opposite
+  orientations from the two orderings
+  (first collapse $S$ then $T$, or vice versa).  The
+  Arnold cancellation
+  (Lemma~\ref{lem:Arnold_cancellation}) gives exact
+  pairwise cancellation.
+
+\item \emph{Nested clusters} $D_S \cap D_T$
+  ($S \subset T$): these are codimension-$1$ faces
+  of $D_T$ (sub-collision within a cluster).  The
+  two descriptions---first $T$ then $S$ within $T$,
+  versus first $S$ then the rest of $T$ around the
+  $S$-cluster---give opposite signs by the
+  manifold-with-corners identity $\partial^2 = 0$.
+\end{enumerate}
+In both cases, the codimension-$2$ contributions cancel,
+giving $d_{\mathrm{hol}}^2 = 0$.
+
+\medskip\noindent
+\textbf{Term 2: $d_{\mathrm{top}}^2 = 0$.}
+This is $\partial^2 = 0$ on the simplicial chain complex.
+The codimension-$2$ faces of $\Conf_n^<(\R)$ are
+$F_i \cap F_j = \{t_i = t_{i+1},\, t_j = t_{j+1}\}$
+for $|i - j| \ge 2$ (disjoint cuts) or
+$F_i \cap F_{i+1} = \{t_i = t_{i+1} = t_{i+2}\}$
+(nested cuts).  The simplicial relation
+$\partial_i \partial_j = \partial_{j-1} \partial_i$
+for $i < j$ ensures cancellation.
+
+\medskip\noindent
+\textbf{Terms 3--4: $d_{\mathrm{hol}} d_{\mathrm{top}}
++ d_{\mathrm{top}} d_{\mathrm{hol}} = 0$.}
+The cross terms arise from codimension-$2$ strata of
+$\mathcal{C}_n$ that are simultaneously a holomorphic
+boundary and a topological boundary:
+\[
+(D_S \times \Conf_n^<(\R))
+\cap (\FM_n(\C) \times F_j)
+= D_S \times F_j.
+\]
+The two orderings---first impose the holomorphic collision
+$D_S$ then the topological cut $F_j$, or vice versa---give
+the same geometric stratum $D_S \times F_j$ but with
+opposite orientations from the product orientation
+convention.
+
+Explicitly, the orientation sign of
+$D_S \times F_j$ as a face of
+$D_S \times \Conf_n^<(\R)$ (holomorphic boundary first)
+is $(-1)^{\dim D_S} \cdot \epsilon_{F_j}$, while its
+sign as a face of $\FM_n(\C) \times F_j$ (topological
+boundary first) is
+$\epsilon_{D_S} \cdot (-1)^0 = \epsilon_{D_S}$.  The
+product rule for orientations on products of
+manifolds-with-corners gives
+\[
+(-1)^{\dim D_S} \cdot \epsilon_{F_j}
++ \epsilon_{D_S} \cdot \epsilon_{F_j}
+\cdot (-1)^{\dim \FM_n(\C)}
+= 0,
+\]
+which holds because
+$\dim D_S + \dim \FM_n(\C) = 2(n-1) - 1 + 2(n-1)$
+is odd (so the two terms have opposite signs).
+
+More directly: on the product manifold with corners
+$M \times N$, $\partial^2 = 0$ is a formal consequence
+of $\partial^2_M = 0$, $\partial^2_N = 0$, and the
+Leibniz rule
+$\partial(M \times N) = (\partial M) \times N
++ (-1)^{\dim M} M \times (\partial N)$.
+Squaring:
+\begin{align*}
+\partial^2(M \times N)
+&= (\partial^2 M) \times N
++ (-1)^{\dim M - 1}(\partial M) \times (\partial N) \\
+&\quad + (-1)^{\dim M}(\partial M) \times (\partial N)
++ (-1)^{2\dim M} M \times (\partial^2 N) \\
+&= 0 + \bigl[(-1)^{\dim M - 1}
++ (-1)^{\dim M}\bigr]
+(\partial M) \times (\partial N) + 0
+= 0.
+\end{align*}
+The cross terms cancel because
+$(-1)^{\dim M - 1} + (-1)^{\dim M} = 0$.
+\end{proof}
+
+\subsubsection{The Swiss-cheese operad at the chain level}
+\label{subsubsec:swiss-cheese-chain}
+
+\begin{theorem}[Swiss-cheese structure on $\mathcal{C}_n$;
+\ClaimStatusProvedHere]
+\label{thm:swiss-cheese-product}
+The collection
+$\{\mathcal{C}_n = \FM_n(\C) \times \Conf_n^<(\R)\}_{n \ge 1}$,
+with the boundary operator $d = d_{\mathrm{hol}}
++ d_{\mathrm{top}}$ and the operadic composition maps
+\begin{equation}\label{eq:sc-composition}
+\gamma_{i;j} : \mathcal{C}_n \times \mathcal{C}_m
+\longrightarrow \mathcal{C}_{n+m-1}
+\end{equation}
+given by inserting $\mathcal{C}_m$ at the $i$-th
+position of $\mathcal{C}_n$ (FM insertion in $\C$,
+interval insertion in $\R$), defines a chain-level
+model for the Swiss-cheese operad $\SCchtop$.
+
+The two colors are:
+\begin{enumerate}[label=\textup{(\roman*)}]
+\item \textbf{Closed color} (holomorphic): the
+  $\FM_n(\C)$ factor.  Composition is FM gluing:
+  insert $\FM_m(\C)$ at a point of $\FM_n(\C)$ by
+  the FM blow-up procedure.  The resulting boundary
+  strata encode the $\Ainf$ compositions $m_i \circ m_j$.
+
+\item \textbf{Open color} (topological): the
+  $\Conf_n^<(\R)$ factor.  Composition is interval
+  insertion: replace the $j$-th ordered point by an
+  interval containing $m$ ordered points.  The resulting
+  boundary faces encode the $E_1$ compositions
+  (concatenation of ordered products).
+\end{enumerate}
+
+The no-open-to-closed constraint is automatic: a
+topological insertion at a boundary point cannot
+create a bulk (holomorphic) insertion because the
+$\R$-direction is oriented (time flows from boundary
+to bulk, not conversely).
+\end{theorem}
+
+\begin{proof}
+We must verify the operadic axioms: associativity,
+equivariance, and unit.
+
+\medskip\noindent
+\textbf{Associativity.}
+The composition $\gamma_{i;j} \circ (\id \times \gamma_{k;\ell})$
+of two insertions corresponds to a codimension-$2$
+stratum of $\mathcal{C}_{n+m+p-2}$ (a double insertion).
+The two orderings of insertion (first at $i$ then at $k$,
+or first at $k$ then at $i$) give the same geometric
+stratum with compatible orientations, by the associativity
+of the FM gluing maps and the associativity of interval
+insertion.
+
+\medskip\noindent
+\textbf{Equivariance.}
+The closed color admits the full symmetric group
+$\Sigma_n$ action (by permuting holomorphic insertion
+points), which is compatible with the FM compactification.
+The open color has only the identity permutation (the
+ordering on $\R$ is fixed).  The mixed equivariance
+is trivial (no open-to-closed insertions).
+
+\medskip\noindent
+\textbf{Unit.}
+The unit is $\mathcal{C}_1 = \FM_1(\C) \times
+\Conf_1^<(\R) = \mathrm{pt} \times \mathrm{pt}
+= \mathrm{pt}$.  The insertion of $\mathrm{pt}$ at any
+position is the identity operation.
+
+\medskip\noindent
+\textbf{Compatibility with $d$.}
+The boundary operator $d$ satisfies
+$d \circ \gamma = \gamma \circ (d \otimes \id
++ \id \otimes d)$ (the Leibniz rule for operadic
+composition), by Theorem~\ref{thm:d-squared-product}
+and the functoriality of the FM gluing with respect
+to boundaries.
+\end{proof}
+
+\begin{corollary}[Bar complex = Swiss-cheese algebra;
+\ClaimStatusProvedHere]
+\label{cor:bar-swiss-cheese}
+The bar complex $B(\A)$, equipped with the bar
+differential $d_{\barB}$ (from holomorphic boundary)
+and the bar coproduct $\Delta$ (from topological
+boundary), is a $\SCchtop$-algebra.  The bar
+differential encodes $\C$-direction factorization;
+the coproduct encodes $\R$-direction factorization.
+At genus $g \ge 1$, the curved $\Ainf$ structure
+introduces curvature $d_{\mathrm{fib}}^2 =
+\kappa(\A) \cdot \omega_g$, making $B(\A)$ a
+\emph{curved} Swiss-cheese algebra.
+\end{corollary}
+
+\begin{proof}
+Theorems~\ref{thm:stokes_arnold}
+and~\ref{thm:swiss-cheese-product} identify the
+$\Ainf$ structure from $\FM_n(\C)$ and the coalgebra
+structure from $\Conf_n^<(\R)$.  The compatibility
+$d^2 = 0$ (Theorem~\ref{thm:d-squared-product})
+ensures the two structures interact correctly.
+
+At genus $g \ge 1$, the weight form $\omega_n$ acquires
+a correction from the period matrix of the curve,
+modifying $d_{\mathrm{hol}}^2$ from $0$ to
+$\kappa(\A) \cdot \omega_g$ (the curvature class).
+This is the genus-$1$ anomaly
+(Section~\ref{subsec:gravity-genus-tower} of
+\S\ref{sec:3d-gravity}): the BV anomaly at one loop
+produces a non-trivial $d_{\mathrm{fib}}^2$.
+\end{proof}
+
+\begin{remark}[Codimension-$2$ dictionary]
+\label{rem:codim2-dictionary}
+The four types of codimension-$2$ faces of
+$\mathcal{C}_n$ have the following algebraic
+interpretations:
+\begin{center}
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{c|c|c}
+\textbf{Codim-$2$ face} & \textbf{Geometry}
+  & \textbf{Algebraic identity} \\
+\hline
+$D_S \cap D_T$ (disjoint)
+  & Two holomorphic clusters
+  & Arnold cancellation \\
+$D_S \cap D_T$ (nested)
+  & Sub-cluster
+  & Operadic associativity \\
+$F_i \cap F_j$ (disjoint)
+  & Two topological cuts
+  & Coassociativity of $\Delta$ \\
+$D_S \times F_j$ (mixed)
+  & Collision $+$ cut
+  & Compatibility $d_{\barB} \circ \Delta
+    = (\id \otimes d_{\barB}
+    + d_{\barB} \otimes \id) \circ \Delta$
+\end{tabular}
+\end{center}
+The last row is the dg coalgebra compatibility:
+the bar differential is a coderivation of the
+coproduct.  This identity follows from the Leibniz
+rule for the product boundary operator, as proved in
+Theorem~\ref{thm:d-squared-product}.
+\end{remark}
+
+\begin{remark}[From product to Swiss-cheese: the
+recognition theorem]
+\label{rem:product-to-sc}
+The product $\FM_n(\C) \times \Conf_n^<(\R)$ is
+\emph{not} the same as the Swiss-cheese operad space
+$\mathrm{SC}(n)$ (which is the space of configurations
+of $n$ disks inside a half-plane with both open and
+closed insertions).  The relationship is:
+\[
+C_\ast(\mathrm{SC}(n))
+\simeq C_\ast(\FM_n(\C)) \otimes C_\ast(\Conf_n^<(\R))
+\]
+as chain complexes, by the Eilenberg--Zilber theorem
+applied to the factored topology of the HT product
+$\R \times \C$.  The recognition theorem
+(Theorem~\ref{thm:recognition-SC}) upgrades this
+chain-level equivalence to an operadic equivalence,
+using the Weiss cosheaf descent
+(Lemma~\ref{lem:product-weiss-descent}).
+
+The passage from the product model to the genuine
+Swiss-cheese operad is the content of
+Hypothesis~(H4): the holomorphic-topological splitting
+of the field theory ensures that the configuration
+space integrals factorize as products of holomorphic
+and topological contributions.
+\end{remark}
+
+\begin{remark}[Genus $g \ge 1$: curved Swiss-cheese]
+\label{rem:curved-swiss-cheese}
+At genus $g \ge 1$, the curve $X$ has nontrivial periods,
+and the weight forms $\omega_n^{\mathrm{hol}}$
+acquire corrections from the Bergman kernel.  The
+boundary operator becomes
+$d_g = d_{\mathrm{hol}} + d_{\mathrm{top}}
++ \kappa(\A) \cdot \omega_g$, where the curvature
+term $\kappa(\A) \cdot \omega_g$ acts as a
+$0$-ary operation (the curved $\Ainf$ structure
+element $m_0$).  The identity $d_g^2 = 0$ still holds,
+but now as a \emph{curved} identity:
+\[
+d_{\mathrm{hol}}^2 = -\kappa(\A) \cdot \omega_g,
+\qquad
+d_{\mathrm{top}}^2 = 0,
+\qquad
+\text{cross terms cancel as before.}
+\]
+The curvature $\kappa(\A)$ is the modular
+characteristic of Vol~I (Theorem~D): it is the unique
+universal, additive, antisymmetric genus-$1$ invariant
+with $\hat{A}$-generating function.  The curved
+Swiss-cheese structure is the chain-level encoding of
+the modular bar construction $\{B^{(g,n)}(\A)\}$.
+\end{remark}

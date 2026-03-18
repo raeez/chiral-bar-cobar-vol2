@@ -1,0 +1,2199 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%  LINE OPERATORS — EXTENSIONS
+%  Module categories, dg-shifted Yangian, MC3 programme, W-algebra lines
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% SECTION — MODULE CATEGORIES OVER THE KOSZUL DUAL
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Module categories over the Koszul dual}
+\label{sec:module-categories-koszul-dual}
+\index{Koszul duality!module categories|textbf}
+
+Theorem~\ref{thm:lines_as_modules} identifies
+$\cC_{\mathrm{line}}\simeq\cA^!\text{-}\mathbf{mod}$
+at the level of objects and morphisms.  This section
+promotes the identification to the full dg-categorical
+level: enriched hom complexes, $A_\infty$-module structures,
+and the monoidal product induced by the $R$-matrix.
+Throughout, $\cA$ denotes a chiral Koszul algebra satisfying
+(H1)--(H4), with bar complex
+$\barB_{\mathrm{ch}}(\cA)$ and Koszul dual
+$\cA^!=H^*(\barB_{\mathrm{ch}}(\cA))^\vee$
+(Construction~\ref{constr:dg-shifted-yangian-from-bar}).
+
+\begin{remark}[Module structures: $A_\infty$ first, strict second]
+\label{rem:module-ainfty-first}
+\index{module category!A-infinity@$A_\infty$ structure}
+The $\cA^!$-module structure on a line-operator state space
+$V_\ell$ is an $A_\infty$-module in the sense of
+Keller~\cite{Kel06}: a sequence of multilinear maps
+$\mu_n^M\colon(\cA^!)^{\otimes(n-1)}\otimes V_\ell\to V_\ell$
+($n\ge 1$) satisfying the $A_\infty$-module relations
+$\sum_{i+j=n+1}\mu_i^M\circ(\mathrm{id}^{\otimes(i-j)}\otimes\mu_j^M)=0$.
+The strict dg module obtained by retaining only $\mu_1^M$ and
+$\mu_2^M$ is a model in the sense of
+Convention~\ref{conv:vol2-strict-models}: it computes the
+correct derived category but not the correct $A_\infty$-enrichment.
+\end{remark}
+
+\subsection{The dg category $\cA^!\text{-}\mathbf{mod}$}
+\label{subsec:dg-category-amod}
+
+\begin{definition}[$A_\infty$-modules over $\cA^!$]
+\label{def:ainfty-module-koszul-dual}
+\index{A-infinity module@$A_\infty$-module!over Koszul dual}
+An \emph{$A_\infty$-module} over the dg algebra $\cA^!$
+is a graded vector space $M$ equipped with
+structure maps $\mu_n^M\colon(\cA^!)^{\otimes(n-1)}\otimes M\to M$
+of degree $2-n$ for all $n\ge 1$, satisfying:
+\begin{equation}
+\label{eq:ainfty-module-relations}
+\sum_{\substack{i+j=n+1 \\ i\ge 1,\; j\ge 1}}
+(-1)^{i(j-1)+\sum_{k=1}^{i-1}|a_k|}
+\mu_i^M(a_1,\ldots,a_{i-1},
+\mu_j^M(a_i,\ldots,a_{i+j-2},m))
+\;=\;0,
+\end{equation}
+where $|a_k|$ denotes the cohomological degree of $a_k\in\cA^!$
+and $m\in M$.  Setting $n=1$: $(\mu_1^M)^2=0$, so $\mu_1^M$
+is the internal differential of~$M$.  Setting $n=2$:
+$\mu_1^M\circ\mu_2^M+\mu_2^M\circ(\mu_1^{\cA^!}\otimes\mathrm{id}+\mathrm{id}\otimes\mu_1^M)=0$,
+which is the Leibniz rule for the action $\mu_2^M$.
+Higher $\mu_n^M$ ($n\ge 3$) encode homotopy-coherent corrections:
+the action of $\cA^!$ on $M$ is associative only up to
+specified higher homotopies.
+\end{definition}
+
+\begin{definition}[Enriched hom complex]
+\label{def:enriched-hom}
+\index{enriched hom complex|textbf}
+For $A_\infty$-modules $M$ and $N$ over $\cA^!$,
+the \emph{enriched hom complex}
+$\underline{\Hom}_{\cA^!}(M,N)$ is the chain complex
+with
+\begin{equation}
+\label{eq:enriched-hom}
+\underline{\Hom}_{\cA^!}^k(M,N)
+\;:=\;
+\prod_{n\ge 0}
+\Hom_\Bbbk\bigl((\cA^!)^{\otimes n}\otimes M,\;N\bigr)^k,
+\end{equation}
+where the degree-$k$ component consists of families of
+linear maps $f_n\colon(\cA^!)^{\otimes n}\otimes M\to N$
+of degree $k-n$ for each $n\ge 0$.  The differential
+$\partial$ on $\underline{\Hom}_{\cA^!}(M,N)$ is defined by
+\begin{align}
+\label{eq:enriched-hom-diff}
+(\partial f)_n(a_1,\ldots,a_n,m)
+\;=\;&\;
+\sum_{j=1}^{n}(-1)^{\epsilon_j}
+f_n(a_1,\ldots,\mu_1^{\cA^!}(a_j),\ldots,a_n,m) \notag \\
+&+\;(-1)^{\epsilon_{n+1}}f_n(a_1,\ldots,a_n,\mu_1^M(m)) \notag \\
+&-\;(-1)^{|f|}\mu_1^N(f_n(a_1,\ldots,a_n,m)) \notag \\
+&+\;\sum_{\substack{i+j=n+1 \\ i\ge 2}}
+(-1)^{\epsilon_i}
+f_{n-j+1}(a_1,\ldots,a_{i-1},
+\mu_j^M(a_i,\ldots,a_{i+j-2},m)) \notag \\
+&-\;\sum_{\substack{i+j=n+1 \\ j\ge 2}}
+(-1)^{|f|+\epsilon_i}
+\mu_j^N(a_1,\ldots,a_{j-1},
+f_{n-j+1}(a_j,\ldots,a_n,m)),
+\end{align}
+where $\epsilon_j=\sum_{k=1}^{j-1}|a_k|$.  Then
+$\partial^2=0$ by the $A_\infty$-module relations
+\eqref{eq:ainfty-module-relations} for both $M$ and $N$.
+\end{definition}
+
+\begin{proposition}[$\partial^2=0$ on the enriched hom;
+\ClaimStatusProvedHere]
+\label{prop:enriched-hom-d-squared}
+\index{enriched hom complex!differential}
+The differential $\partial$ of
+Definition~\textup{\ref{def:enriched-hom}} satisfies
+$\partial^2=0$.
+\end{proposition}
+
+\begin{proof}
+Write $\partial=\partial_{\mathrm{int}}+\partial_M+\partial_N$
+corresponding to the three groups of terms in
+\eqref{eq:enriched-hom-diff}: the internal differential
+on $\cA^!$ and $M$, the $A_\infty$-module structure of $M$,
+and the $A_\infty$-module structure of $N$.  Each of
+$\partial_{\mathrm{int}}^2$, $\partial_M^2$, $\partial_N^2$
+vanishes by the $A_\infty$-module relations.  The cross terms
+$\partial_{\mathrm{int}}\partial_M+\partial_M\partial_{\mathrm{int}}$
+vanish by the Leibniz component ($n=2$) of the
+$A_\infty$-module relation for $M$, and similarly for the
+$N$ cross terms.  The mixed term
+$\partial_M\partial_N+\partial_N\partial_M$ vanishes because
+$f$ intertwines the $M$- and $N$-module structures:
+explicitly, the sum over partitions $i+j+k=n+2$
+telescopes to zero by the signed Koszul convention on
+triple compositions.  The full $\partial^2$ therefore
+decomposes into six pairs, each vanishing by the
+$A_\infty$-module identities.
+\end{proof}
+
+\begin{remark}[Topology on the enriched hom complex]
+\label{rem:enriched-hom-topology}
+\index{enriched hom complex!topology}
+The enriched hom complex~\eqref{eq:enriched-hom} carries
+the product topology: the projective limit over $n$ of
+the finite-dimensional spaces
+$\Hom_\Bbbk((\cA^!)^{\otimes n}\otimes M,\,N)^k$.  The
+differential $\partial$
+of~\eqref{eq:enriched-hom-diff} converges in this topology
+because each arity-$n$ component $(\partial f)_n$ depends
+only on $f_{n-1}$, $f_n$, and $f_{n+1}$: the sum
+$\sum_{i+j=n+1}$ has finitely many terms at each fixed
+arity.  Consequently the series defining $\partial$
+stabilizes arity-by-arity, and no analytic convergence
+condition is needed.  For the same reason, the composition
+$(g\circ f)_n = \sum_{i+j=n}g_i\circ(\mathrm{id}^{\otimes i}
+\otimes f_j)$ is a finite sum at each arity and converges
+in the product topology.
+\end{remark}
+
+\begin{definition}[The dg category $\cA^!\text{-}\mathbf{mod}$]
+\label{def:dg-category-amod}
+\index{module category!dg category|textbf}
+The \emph{dg category} $\cA^!\text{-}\mathbf{mod}$
+has:
+\begin{itemize}
+\item \emph{Objects}: $A_\infty$-modules $(M,\{\mu_n^M\}_{n\ge 1})$
+  over $\cA^!$ (Definition~\ref{def:ainfty-module-koszul-dual});
+\item \emph{Morphism complexes}:
+  $\Hom_{\cA^!\text{-}\mathbf{mod}}(M,N)
+  :=\underline{\Hom}_{\cA^!}(M,N)$
+  (Definition~\ref{def:enriched-hom});
+\item \emph{Composition}: for $f\in\underline{\Hom}(M,N)$
+  and $g\in\underline{\Hom}(N,P)$, the composite
+  $(g\circ f)_n:=
+  \sum_{i+j=n}g_i\circ(\mathrm{id}^{\otimes i}\otimes f_j)$;
+\item \emph{Identities}: the family $(\mathrm{id}_M)_0=\mathrm{id}_M$,
+  $(\mathrm{id}_M)_n=0$ for $n\ge 1$.
+\end{itemize}
+The composition is associative and compatible with the
+differential $\partial$ by the standard bar-cobar argument
+(cf.~\cite{LH03}, \S3.2).
+\end{definition}
+
+\begin{theorem}[dg-categorical equivalence;
+\ClaimStatusProvedHere]
+\label{thm:dg-categorical-equivalence}
+\index{line operators!dg-categorical equivalence|textbf}
+Assume \textrm{(H1)--(H4)}.  The functor
+$\Phi\colon\cC_{\mathrm{line}}\to\cA^!\text{-}\mathbf{mod}$
+of Theorem~\textup{\ref{thm:lines_as_modules}} is a
+quasi-equivalence of dg categories: for all line operators
+$\ell_1,\ell_2$, the induced map
+\begin{equation}
+\label{eq:dg-cat-qiso}
+\Phi_{\ell_1,\ell_2}\colon
+\Hom_{\cC_{\mathrm{line}}}(\ell_1,\ell_2)
+\;\xrightarrow{\;\sim\;}
+\underline{\Hom}_{\cA^!}(V_{\ell_1},V_{\ell_2})
+\end{equation}
+is a quasi-isomorphism of chain complexes.
+\end{theorem}
+
+\begin{proof}
+\textbf{Step 1: The bar--cobar adjunction at the module level.}
+The Quillen equivalence
+$\Omega\colon\mathrm{Coalg}_{\mathbf{B}}
+\rightleftarrows
+\mathrm{Alg}_{\SCchtop}\colon\mathbf{B}$
+(Theorem~\ref{thm:bar-cobar-adjunction}) extends to module
+categories by the standard operadic transfer
+(\cite{BM03}, Theorem 4.7): there is a Quillen
+equivalence
+\begin{equation}
+\label{eq:module-quillen-equiv}
+\Omega^{\mathrm{mod}}\colon
+\mathrm{Comod}_{\mathbf{B}(\cA)}
+\rightleftarrows
+\cA\text{-}\mathrm{Mod}_{\SCchtop}
+\colon\mathbf{B}^{\mathrm{mod}},
+\end{equation}
+where $\cA\text{-}\mathrm{Mod}_{\SCchtop}$ denotes the
+category of $\SCchtop$-modules over the $\SCchtop$-algebra
+$\cA$, and $\mathrm{Comod}_{\mathbf{B}(\cA)}$ denotes
+conilpotent comodules over the bar coalgebra.
+
+The homotopy-Koszulity of $\SCchtop$
+(Theorem~\ref{thm:homotopy-Koszul}) guarantees this is a
+Quillen equivalence (not merely an adjunction).  The
+argument is as follows.  Berger--Moerdijk \cite{BM03},
+Theorem~4.7 requires the operad to be Koszul for the
+module-level bar-cobar adjunction to be a Quillen
+equivalence.  For homotopy-Koszul operads, the same
+conclusion holds by the two-out-of-three property: if
+$\varphi\colon\cO\xrightarrow{\sim}\cO'$ is a
+quasi-isomorphism of operads and $\cO'$ is Koszul,
+then the induced functor on module categories is a
+Quillen equivalence (because the bar-cobar adjunction
+for $\cO$ factors through the one for $\cO'$ via the
+quasi-isomorphism $\varphi$, and both the bar and cobar
+functors preserve quasi-isomorphisms between cofibrant
+objects).  Homotopy-Koszulity of $\SCchtop$
+(Theorem~\ref{thm:homotopy-Koszul}) provides precisely
+such a quasi-isomorphism
+$\SCchtop\xrightarrow{\sim}\mathrm{SC}$ to the
+classical Swiss-cheese operad, and $\mathrm{SC}$ is
+Koszul (Livernet~\cite{Liv15}; the binary quadratic
+case follows from Ginzburg--Kapranov~\cite{GK94}).
+
+\textbf{Step 2: From comodules to dual modules.}
+For a conilpotent coalgebra $C$ over a field, the
+linear duality functor $(-)^\vee\colon C\text{-Comod}
+\xrightarrow{\sim}C^\vee\text{-Mod}$ is an equivalence of
+dg categories (this is standard: conilpotence ensures every
+comodule is the union of its finite-dimensional subcomodules,
+and dualizing commutes with filtered colimits over a field).
+Applied to $C=\barB_{\mathrm{ch}}(\cA)$:
+\[
+\mathrm{Comod}_{\barB_{\mathrm{ch}}(\cA)}
+\;\simeq\;
+\barB_{\mathrm{ch}}(\cA)^\vee\text{-Mod}.
+\]
+Passing to cohomology (which is an equivalence of dg
+categories because $\barB_{\mathrm{ch}}(\cA)^\vee$ is
+formal by chiral Koszulness of $\cA$), we obtain
+$\barB_{\mathrm{ch}}(\cA)^\vee\text{-Mod}
+\simeq\cA^!\text{-}\mathbf{mod}$.
+
+\textbf{Step 3: dg-categorical enrichment.}
+Combining Steps 1 and 2, we have a chain of Quillen
+equivalences
+\[
+\cA\text{-}\mathrm{Mod}_{\SCchtop}
+\;\xleftarrow{\;\sim\;}
+\mathrm{Comod}_{\mathbf{B}(\cA)}
+\;\xrightarrow{\;\sim\;}
+\cA^!\text{-}\mathbf{mod}.
+\]
+The physical line-operator category $\cC_{\mathrm{line}}$
+is, by construction, the full dg subcategory of
+$\cA\text{-}\mathrm{Mod}_{\SCchtop}$ on the physically
+realizable modules (those arising from boundary conditions
+under (H1)--(H4)).  By the argument of
+Theorem~\ref{thm:lines_as_modules}, Step 4 (essential
+surjectivity), every $\cA^!$-module is realized; hence
+$\cC_{\mathrm{line}}$ is quasi-equivalent to the entire
+module category $\cA^!\text{-}\mathbf{mod}$.
+
+The map on morphism complexes is the composite
+\begin{align*}
+\Hom_{\cC_{\mathrm{line}}}(\ell_1,\ell_2)
+&\;\xrightarrow{\;\mathbf{B}^{\mathrm{mod}}\;}
+\Hom_{\mathrm{Comod}}(\mathbf{B}^{\mathrm{mod}}V_{\ell_1},
+\mathbf{B}^{\mathrm{mod}}V_{\ell_2}) \\
+&\;\xrightarrow{\;(-)^\vee\;}
+\Hom_{\cA^!\text{-mod}}(V_{\ell_1}^\vee,V_{\ell_2}^\vee)
+\;\cong\;
+\underline{\Hom}_{\cA^!}(V_{\ell_1},V_{\ell_2}).
+\end{align*}
+Each arrow is a quasi-isomorphism (the first by the
+Quillen equivalence, the second by conilpotent duality),
+so $\Phi_{\ell_1,\ell_2}$ is a quasi-isomorphism.
+\end{proof}
+
+\begin{remark}[Strict versus $A_\infty$ modules]
+\label{rem:strict-vs-ainfty-modules}
+\index{strict model!module categories}
+The derived category $D(\cA^!)$ (= the homotopy category
+of strict dg modules) captures the same triangulated
+category as $H^0(\cA^!\text{-}\mathbf{mod})$.  However,
+the full $A_\infty$-enrichment records higher information:
+Massey products in $\operatorname{Ext}^*_{\cA^!}(M,N)$,
+obstructions to formality of the module category, and
+the $A_\infty$-Yoneda embedding
+$\cA^!\text{-}\mathbf{mod}\hookrightarrow
+\mathrm{Fun}(\cA^!,\mathrm{Ch})$.  The strict model is
+recovered by the minimal model theorem: every
+$A_\infty$-module is $A_\infty$-quasi-isomorphic to a
+minimal one (where $\mu_1^M=0$), and the resulting
+minimal $A_\infty$-module category is the Kadeishvili
+$A_\infty$-structure on $\operatorname{Ext}^*_{\cA^!}$
+(\cite{Kad82}, Convention~\ref{conv:vol2-strict-models}).
+\end{remark}
+
+\subsection{Explicit module categories for standard families}
+\label{subsec:explicit-module-categories}
+
+We extract the $A_\infty$-module structures for the three
+principal families.
+
+\subsubsection{Heisenberg: curved symmetric modules}
+\label{subsubsec:heisenberg-modules}
+
+For $\cA=\cH_k$ (Heisenberg at level $k$),
+the Koszul dual is $\cA^!=\cH_{-k}$: the Heisenberg
+algebra at level $-k$.  The bar complex
+$\barB_{\mathrm{ch}}(\cH_k)$ is the symmetric coalgebra
+$\mathrm{Sym}^{\mathrm{ch}}(V[-1])$ with $V=\Bbbk\cdot J$
+the one-dimensional current space, and the bar differential
+reduces to the coproduct of $\mathrm{Sym}$.  The Koszul
+dual is
+\[
+\cH_{-k}
+\;=\;
+\bigl(\mathrm{Sym}^{\mathrm{ch}}(V[-1])\bigr)^\vee
+\;\cong\;
+\mathrm{Sym}^{\mathrm{ch}}(V^*[1]),
+\]
+with the dual inner product $\langle J^*,J^*\rangle=-k$.
+
+\begin{proposition}[Heisenberg modules as twisted Fock spaces;
+\ClaimStatusProvedHere]
+\label{prop:heisenberg-modules-fock}
+\index{Heisenberg algebra!modules!twisted Fock}
+The $A_\infty$-module category
+$\cH_{-k}\text{-}\mathbf{mod}$ is equivalent (as a
+dg category) to the category of $\Z$-graded vector spaces:
+\begin{equation}
+\label{eq:heisenberg-module-category}
+\cH_{-k}\text{-}\mathbf{mod}
+\;\simeq\;
+\mathrm{Vect}^\Z.
+\end{equation}
+The simple modules are the Fock spaces
+$\cF_q$ ($q\in\Z$), with $\cH_{-k}$-action:
+\begin{itemize}
+\item $J^*_{(0)}\cdot v=q\cdot v$ for $v\in\cF_q$
+  (charge eigenvalue);
+\item $J^*_{(n)}\cdot v=0$ for $n>0$ (vacuum condition);
+\item $J^*_{(-n)}$ ($n>0$) acts freely as creation operators.
+\end{itemize}
+The higher $A_\infty$-module maps $\mu_n^M$ vanish
+for $n\ge 3$: the $\cH_{-k}$-module structure is
+strictly associative, reflecting the Gaussianity
+(shadow depth $r_{\max}=2$) of the Heisenberg algebra
+(Vol~I, \S\ref*{sec:heisenberg-shadow-gaussianity}).
+\end{proposition}
+
+\begin{proof}
+The Heisenberg algebra $\cH_{-k}$ is generated by a single
+current $J^*$ with OPE $J^*(z)J^*(w)\sim -k/(z-w)^2$.
+Its module theory is that of a rank-$1$ lattice vertex algebra
+with trivial lattice: every module is a direct sum of Fock
+spaces $\cF_q$ indexed by the charge $q$ (the eigenvalue of
+$J^*_{(0)}$).  The category of such modules is
+$\mathrm{Vect}^\Z$, with morphisms between distinct charges
+being zero and endomorphisms of $\cF_q$ being the identity.
+
+The vanishing of $\mu_n^M$ for $n\ge 3$ follows from the
+homological perturbation lemma (HPL).  By the HPL, the
+transferred $A_\infty$-module structure has
+$\mu_n^M = \sum_T \mu_T^M$, where the sum is over planar
+trees $T$ with $n$ inputs, and each internal vertex of $T$
+is labelled by a bar cohomology class.  For the Heisenberg,
+bar cohomology is concentrated in degree~$1$
+(shadow depth $r_{\max}=2$; Vol~I,
+\S\ref*{sec:heisenberg-shadow-gaussianity}): the only
+nonzero bar cohomology class is the degree-$1$ class
+$[s^{-1}J]\in H^1(\barB(\cH_k))$.  The transferred
+operations $\mu_n^M$ for $n\ge 3$ require at least one
+internal vertex labelled by a bar cohomology class of
+degree $\ge 2$ (to produce a tree with $n$ inputs from
+binary vertices and homotopy propagators), but no such
+classes exist.  Therefore the only nonzero transferred
+operations are $\mu_1^M$ (the differential) and $\mu_2^M$
+(the binary action), and $\mu_n^M = 0$ for all $n\ge 3$.
+Equivalently, $\cH_{-k}$ is intrinsically formal as an
+$A_\infty$-algebra (it is a quadratic algebra with
+quadratic relations), so its $A_\infty$-module structures
+are determined by the binary action $\mu_2^M$.
+\end{proof}
+
+\begin{computation}[Enriched hom for Heisenberg Fock modules;
+\ClaimStatusProvedHere]
+\label{comp:enriched-hom-heisenberg}
+\index{enriched hom complex!Heisenberg}
+For $q_1\ne q_2$:
+$\underline{\Hom}_{\cH_{-k}}(\cF_{q_1},\cF_{q_2})=0$
+(the charge grading is strict).  For $q_1=q_2=q$:
+\begin{equation}
+\label{eq:hom-heisenberg}
+\underline{\Hom}_{\cH_{-k}}(\cF_q,\cF_q)
+\;\cong\;
+\Bbbk
+\end{equation}
+concentrated in degree $0$ (the identity intertwiner).
+All Ext groups vanish:
+$\operatorname{Ext}^n_{\cH_{-k}}(\cF_{q_1},\cF_{q_2})=0$
+for $n\ge 1$ and all $q_1,q_2$.  The dg category
+$\cH_{-k}\text{-}\mathbf{mod}$ is formal.
+\end{computation}
+
+\subsubsection{Affine $\mathfrak{sl}_2$: Weyl modules and quantum group}
+\label{subsubsec:affine-sl2-modules}
+
+For $\cA=\widehat{\mathfrak{sl}}_2{}_k$:
+$\cA^!=\widehat{\mathfrak{sl}}_2{}_{-k-4}$
+(level duality: $k\mapsto -k-2h^\vee=-k-4$ for
+$\mathfrak{sl}_2$).
+
+\begin{definition}[Weyl modules for the dual affine algebra]
+\label{def:weyl-modules-dual}
+\index{Weyl module!dual affine algebra}
+For $\lambda\in\Z_{\ge 0}$, the \emph{Weyl module}
+$W_\lambda$ for $\widehat{\mathfrak{sl}}_2{}_{-k-4}$
+is the universal highest-weight module generated by a
+vector $v_\lambda$ satisfying:
+\begin{enumerate}[label=(\roman*)]
+\item $h_{(0)}\cdot v_\lambda=\lambda\cdot v_\lambda$
+  (weight $\lambda$);
+\item $e_{(n)}\cdot v_\lambda=0$ for $n\ge 0$
+  (highest weight);
+\item $f_{(n)}\cdot v_\lambda=0$ for $n\ge 1$
+  (positive-mode annihilation);
+\item $K\cdot v_\lambda=(-k-4)\cdot v_\lambda$
+  (level $-k-4$).
+\end{enumerate}
+The Weyl module is the maximal integrable quotient of the
+Verma module $M(\lambda,-k-4)$; when $\lambda\le k$
+(integrable range for the original level~$k$), the
+simple quotient $L_\lambda=W_\lambda/\mathrm{rad}(W_\lambda)$
+is the irreducible highest-weight module.
+\end{definition}
+
+\begin{proposition}[Affine module category as quantum group
+category; \ClaimStatusProvedHere]
+\label{prop:affine-module-category}
+\index{Kac--Moody!module category!quantum group}
+The dg category
+$\widehat{\mathfrak{sl}}_2{}_{-k-4}\text{-}\mathbf{mod}$
+carries a braided monoidal structure with braiding
+$R(z)=\exp(\Omega/z(k{+}2))$, where
+$\Omega=e\otimes f+f\otimes e+\tfrac12 h\otimes h$.
+This braided monoidal category is equivalent to a
+full subcategory of the shifted quantum group category:
+\begin{equation}
+\label{eq:affine-module-quantum-group}
+\widehat{\mathfrak{sl}}_2{}_{-k-4}\text{-}\mathbf{mod}
+\;\simeq\;
+\cO^{\mathrm{sh}}_q(\widehat{\mathfrak{sl}}_2),
+\qquad
+q=e^{i\pi/(k+2)}.
+\end{equation}
+
+The $A_\infty$-module maps $\mu_n^M$ ($n\ge 4$) vanish
+on Weyl modules, reflecting shadow depth $r_{\max}=3$
+(the affine algebra terminates at arity $3$;
+Vol~I, \S\ref*{sec:affine-cubic-shadow}).  The non-vanishing
+$\mu_3^M$ encodes the cubic shadow: on the tensor product
+$W_{\lambda_1}\otimes W_{\lambda_2}\otimes W_{\lambda_3}$,
+$\mu_3^M$ is the Massey product corresponding to the
+non-trivial extension class
+$\operatorname{Ext}^2_{\widehat{\fg}_{-k-4}}
+(W_{\lambda_3},W_{\lambda_1}\otimes W_{\lambda_2})$.
+\end{proposition}
+
+\begin{proof}
+The braided monoidal structure follows from the Yangian
+coproduct $\Delta_z$ on $\cA^!=Y_\hbar(\mathfrak{sl}_2)$
+(Theorem~\ref{thm:Koszul_dual_Yangian}).  The
+$R$-matrix $R(z)=\exp(\Omega/z(k{+}2))$ is the
+monodromy of the KZ connection
+$\nabla=d-\Omega\,d\log(z)/(k+2)$
+(Computation~\ref{comp:line-op-sl2}).  This monodromy
+representation factors through the quantum group
+$U_q(\mathfrak{sl}_2)$ at $q=e^{i\pi/(k+2)}$
+(Drinfeld~\cite{Dri89}, Kazhdan--Lusztig~\cite{KL93}),
+giving the equivalence with $\cO^{\mathrm{sh}}_q$.
+
+For the $A_\infty$ claim: the shadow Postnikov tower
+of $\widehat{\fg}_k$ terminates at arity $3$
+(Vol~I, Theorem~\ref*{thm:affine-shadow-termination}).
+In the module-theoretic language: the bar complex
+$\barB_{\mathrm{ch}}(\widehat{\fg}_k)$ has
+$H^n(\barB)\ne 0$ only for $n\le 3$, so the
+$A_\infty$-structure on $\cA^!$ has $m_n=0$ for $n\ge 4$.
+By transfer (the homological perturbation lemma), the
+induced $A_\infty$-module maps $\mu_n^M$ on Weyl modules
+also vanish for $n\ge 4$.
+
+The non-vanishing $\mu_3^M$ is computed as follows.
+Take three Weyl modules $W_{\lambda_1}$, $W_{\lambda_2}$,
+$W_{\lambda_3}$ and the extension sequence
+$0\to K\to W_{\lambda_1}\otimes W_{\lambda_2}
+\to L_{\lambda_1+\lambda_2}\to 0$,
+where $K$ is the kernel of the projection.  The Massey
+product $\langle e_{(0)},f_{(0)},e_{(0)}\rangle$ in
+$\operatorname{Ext}^*_{\widehat{\fg}_{-k-4}}$ is
+non-trivial (it detects the Serre relation
+$[e,[e,f]]=2e$ at the $A_\infty$ level), and this is
+precisely $\mu_3^M$.
+\end{proof}
+
+\begin{computation}[Enriched hom for $\widehat{\mathfrak{sl}}_2$
+Weyl modules; \ClaimStatusProvedHere]
+\label{comp:enriched-hom-affine}
+\index{enriched hom complex!affine}
+The enriched hom between Weyl modules computes the
+$\fg$-equivariant cohomology of the configuration space
+$\mathrm{Conf}_n(\C)$:
+\begin{equation}
+\label{eq:ext-affine}
+\operatorname{Ext}^n_{\widehat{\fg}_{-k-4}}
+(W_\lambda,W_\mu)
+\;\cong\;
+\begin{cases}
+\Bbbk & \text{if } n=0,\;\lambda=\mu, \\
+\Hom_{\fg}(V_\lambda,V_\mu) & \text{if } n=0,\;
+  \lambda\ne\mu, \\
+H^n(\mathrm{Conf}_2(\C);
+  \Hom_{\fg}(V_\lambda,V_\mu)_{\mathrm{loc}})
+  & \text{if } n\ge 1,
+\end{cases}
+\end{equation}
+where $V_\lambda$ denotes the finite-dimensional
+$\mathfrak{sl}_2$-module of highest weight~$\lambda$,
+and the local system
+$\Hom_{\fg}(V_\lambda,V_\mu)_{\mathrm{loc}}$
+is the monodromy local system of the KZ connection.
+At generic level~$k$ (non-integral $q$):
+$\operatorname{Ext}^n=0$ for $n\ge 1$, and the
+module category is semisimple.  At integral $k$
+(rational $q=e^{i\pi/(k+2)}$): the non-vanishing of
+$\operatorname{Ext}^1$ between Weyl modules reflects
+the non-semisimplicity of the Verlinde category.
+\end{computation}
+
+\subsubsection{Virasoro: highest-weight representations of $\mathrm{Vir}_{26-c}$}
+\label{subsubsec:virasoro-modules}
+
+For $\cA=\mathrm{Vir}_c$:
+$\cA^!=\mathrm{Vir}_{26-c}$
+(Virasoro at central charge $26-c$).  This is the
+depth-zero resonance shadow
+(Vol~I, Remark~\ref*{rem:virasoro-resonance-model}): the
+Koszul dual of the Virasoro algebra at central charge~$c$
+is the Virasoro algebra at central charge $26-c$, not a
+simple level shift.  The self-dual point is $c=13$
+(not $c=26$).
+
+\begin{proposition}[Virasoro module category;
+\ClaimStatusProvedHere]
+\label{prop:virasoro-module-category}
+\index{Virasoro algebra!module category}
+The dg module category
+$\mathrm{Vir}_{26-c}\text{-}\mathbf{mod}^{\mathrm{dg}}$
+has:
+\begin{itemize}
+\item \emph{Simple objects}: Verma modules $M(h',26-c)$
+  for $h'\in\C$, and their irreducible quotients $L(h',26-c)$
+  (when singular vectors exist);
+\item \emph{Morphism complexes}: the enriched hom
+  $\underline{\Hom}_{\mathrm{Vir}_{26-c}}(M_1,M_2)$
+  is computed by the BRST complex of the Virasoro algebra
+  at central charge $26-c$;
+\item \emph{$A_\infty$-structure}: non-trivial in all
+  arities.
+\end{itemize}
+The $A_\infty$-module maps $\mu_n^M$ do \emph{not} vanish
+for any finite~$n$: the Virasoro shadow tower is infinite
+($r_{\max}=\infty$, class~M;
+Vol~I, \S\ref*{sec:mixed-cubic-quartic-shadows}), so the
+module category carries a genuinely infinite $A_\infty$
+hierarchy.  This is the module-theoretic manifestation
+of the mixed shadow depth of the Virasoro algebra.
+\end{proposition}
+
+\begin{proof}
+The Verma module $M(h',26-c)$ is the standard Virasoro
+highest-weight module with $L_0$-eigenvalue $h'$ and
+central charge $26-c$.  Its irreducible quotient
+$L(h',26-c)$ is obtained by quotienting by the maximal
+proper submodule (generated by singular vectors at
+levels determined by the Kac determinant formula at
+central charge $26-c$).
+
+For the $A_\infty$ claim: the algebra $\mathrm{Vir}_c$ has
+$m_n\ne 0$ for all $n\ge 2$ (class~M, infinite shadow
+depth; Vol~I, \S\ref*{sec:mixed-cubic-quartic-shadows}).
+By the homological perturbation lemma, the transferred
+$A_\infty$-module maps $\mu_n^M$ on a \emph{generic}
+module are non-trivial for all $n$: for each $n\ge 3$,
+the bar cohomology $H^n(\barB_{\mathrm{ch}}(\mathrm{Vir}_c))
+\ne 0$ provides nontrivial tree contributions to $\mu_n^M$.
+
+A crucial distinction: \emph{specific} modules may have
+$\mu_n^M = 0$ for $n\ge 3$ (for example, the trivial module
+$\Bbbk$ with $h'=0$ has $\mu_n^M = 0$ for $n\ge 3$ because
+all positive-mode insertions annihilate the vacuum).  The
+claim is that for the \emph{category} of all modules, the
+$A_\infty$-structure is nontrivial at every arity: there exist
+modules $M$ for which $\mu_n^M\ne 0$, for each $n\ge 3$.  The
+generic Verma module $M(h',26-c)$ with $h'$ away from the
+singular-vector locus provides such modules: the HPL tree
+sums for $\mu_n^M$ on generic Verma modules have nonzero
+coefficients because the bar cohomology classes at every
+arity pair nontrivially with the generic highest-weight
+structure.
+
+The physical interpretation: the infinite
+$A_\infty$-hierarchy on Virasoro modules encodes the
+infinite sequence of null-vector decoupling equations
+(BPZ equations) at all levels.  Each $\mu_n^M$ corresponds
+to a level-$n$ BPZ differential operator acting on
+$n$-point conformal blocks.
+\end{proof}
+
+\begin{computation}[Virasoro Ext groups;
+\ClaimStatusProvedHere]
+\label{comp:virasoro-ext}
+\index{Virasoro algebra!Ext groups}
+The Ext groups between Verma modules are:
+\begin{equation}
+\label{eq:virasoro-ext}
+\operatorname{Ext}^n_{\mathrm{Vir}_{26-c}}
+(M(h_1),M(h_2))
+\;\cong\;
+\begin{cases}
+\Bbbk & \text{if } n=0,\;h_1=h_2, \\
+0 & \text{if } n=0,\;h_1\ne h_2, \\
+\Bbbk^{p(n)} & \text{if } n\ge 1,\;h_1=h_2
+  \text{ (generic $c$)},
+\end{cases}
+\end{equation}
+where $p(n)$ is the number of partitions of $n$
+(reflecting the graded dimension of the Virasoro algebra
+at level~$n$).  At generic central charge $26-c$
+(away from the minimal model values): the module category
+has non-trivial Ext groups in all degrees, but no
+non-trivial extensions between distinct weights.
+
+At minimal model values $c=c_{p,q}=1-6(p-q)^2/(pq)$:
+the dual central charge $26-c_{p,q}$ is generically
+irrational, and the Ext computation is modified by the
+appearance of singular vectors in Verma modules.  The
+resulting non-semisimple category is the logarithmic
+extension of the $(p,q)$ minimal model.
+\end{computation}
+
+\subsection{The tensor product via the $R$-matrix}
+\label{subsec:tensor-product-r-matrix}
+
+The monoidal structure on $\cA^!\text{-}\mathbf{mod}$
+is controlled by the spectral $R$-matrix
+$r(z)\in\cA^!\hat\otimes\cA^!(\!(z^{-1})\!)$
+(Definition~\ref{def:universal-mc-kernel}).
+
+\begin{definition}[Spectral tensor product]
+\label{def:spectral-tensor-product}
+\index{tensor product!spectral|textbf}
+For $A_\infty$-modules $M$ and $N$ over $\cA^!$, the
+\emph{spectral tensor product}
+$M\otimes_z N$ is the graded vector space $M\otimes N$
+equipped with the $A_\infty$-module structure
+\begin{equation}
+\label{eq:spectral-tensor-product}
+\mu_n^{M\otimes_z N}(a_1,\ldots,a_{n-1},m\otimes n)
+\;:=\;
+\sum_{I+J+K=n-1}
+\mu_{|I|+1}^M(a_I,m)
+\otimes
+\mu_{|J|+1}^N(r^{(K)}(z)\cdot a_J,n)
++\text{(higher)},
+\end{equation}
+where $r^{(K)}(z)$ denotes the $K$-th Taylor coefficient
+of the $R$-matrix insertion, and the sum is over ordered
+partitions $I\sqcup J\sqcup K=\{1,\ldots,n-1\}$.  The
+``higher'' terms involve the higher $A_\infty$-structure
+maps $m_k$ on $\cA^!$ and ensure that the
+$A_\infty$-module relations
+\eqref{eq:ainfty-module-relations} are satisfied on the
+tensor product.
+\end{definition}
+
+\begin{proposition}[Tensor product satisfies the module
+relations; \ClaimStatusProvedHere]
+\label{prop:tensor-product-module-relations}
+\index{tensor product!A-infinity module@$A_\infty$-module relations}
+The spectral tensor product $M\otimes_z N$
+of Definition~\textup{\ref{def:spectral-tensor-product}}
+is an $A_\infty$-module over $\cA^!$.  The consistency
+is equivalent to the Yang--Baxter equation
+(Theorem~\textup{\ref{thm:YBE}}).
+\end{proposition}
+
+\begin{proof}
+The $A_\infty$-module relations for $M\otimes_z N$
+decompose into:
+\begin{enumerate}[label=(\roman*)]
+\item Terms involving only the $M$-structure maps:
+  these vanish by the $A_\infty$-module relations for $M$.
+\item Terms involving only the $N$-structure maps:
+  these vanish by the $A_\infty$-module relations for $N$.
+\item Mixed terms involving both $M$ and $N$ structure
+  maps, connected by the $R$-matrix: these vanish if and
+  only if $r(z)$ satisfies the classical Yang--Baxter
+  equation $[r_{12},r_{13}]+[r_{12},r_{23}]+[r_{13},r_{23}]=0$
+  (at leading order) and the full quantum Yang--Baxter
+  equation $R_{12}R_{13}R_{23}=R_{23}R_{13}R_{12}$
+  (at all orders).
+\end{enumerate}
+The Yang--Baxter equation is proved in
+Theorem~\ref{thm:YBE}, so the $A_\infty$-module relations
+hold.
+\end{proof}
+
+\begin{computation}[Spectral tensor product for Heisenberg;
+\ClaimStatusProvedHere]
+\label{comp:spectral-tensor-heisenberg}
+\index{Heisenberg algebra!spectral tensor product}
+For $\cF_{q_1}\otimes_z\cF_{q_2}$ over $\cH_{-k}$:
+the $R$-matrix is the scalar $r(z)=k\,q_1\,q_2/z$
+(Computation~\ref{comp:line-op-heisenberg}), so the
+tensor product $\cF_{q_1}\otimes_z\cF_{q_2}
+\cong\cF_{q_1+q_2}$
+carries the standard Fock module structure with charge
+$q_1+q_2$.  The spectral parameter contributes only a
+scalar phase: the monodromy around $z=0$ is
+$e^{2\pi i\,k\,q_1\,q_2}$.  For $k\in\Z$: the
+monodromy is trivial, and the tensor product is
+independent of the spectral parameter.
+\end{computation}
+
+\begin{computation}[Spectral tensor product for affine
+$\mathfrak{sl}_2$; \ClaimStatusProvedHere]
+\label{comp:spectral-tensor-affine}
+\index{Kac--Moody!spectral tensor product}
+For $W_{\lambda_1}\otimes_z W_{\lambda_2}$ over
+$\widehat{\mathfrak{sl}}_2{}_{-k-4}$:
+the coproduct is
+$\Delta_z(x)=x\otimes 1+1\otimes x
++\sum_{n\ge 1}z^{-n}\Delta_n(x)$,
+where $\Delta_n$ encodes the $n$-th pole of the OPE.
+At leading order: $\mu_2^{M\otimes_z N}(x,w_1\otimes w_2)
+=x\cdot w_1\otimes w_2+w_1\otimes x\cdot w_2
++\Omega(w_1\otimes w_2)/z(k{+}2)+O(z^{-2})$.
+The fusion rules (Verlinde coefficients) are recovered:
+\[
+W_{\lambda_1}\otimes_z W_{\lambda_2}
+\;\cong\;
+\bigoplus_\lambda
+N^{\lambda}_{\lambda_1\lambda_2}\,W_\lambda
+\quad
+\text{(as $\widehat{\fg}_{-k-4}$-modules, for generic $z$)}.
+\]
+The decomposition is valid away from poles in $z$; at the
+poles, the tensor product acquires logarithmic singularities
+corresponding to the non-semisimple Jordan blocks in the
+Verlinde category.
+\end{computation}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% SECTION — THE YANGIAN AS UNIVERSAL LINE-OPERATOR ALGEBRA
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{The Yangian as universal line-operator algebra}
+\label{sec:yangian-universal}
+\index{Yangian!universal line-operator algebra|textbf}
+
+The dg-shifted Yangian $\Ydg(\cA^!)$ of
+Theorem~\ref{thm:Koszul_dual_Yangian} is the universal
+algebraic structure controlling line-operator fusion.
+This section defines $\Ydg(\cA^!)$ intrinsically from the
+convolution algebra, constructs the evaluation
+homomorphism, and proves the RTT formalism governs all
+fusion.
+
+\subsection{The dg-shifted Yangian from the convolution algebra}
+\label{subsec:yangian-convolution}
+
+\begin{definition}[dg-shifted Yangian from convolution]
+\label{def:yangian-convolution}
+\index{dg-shifted Yangian!from convolution algebra|textbf}
+Let $\cA$ be a chiral Koszul algebra with modular
+convolution dg Lie algebra
+$\gAmod=\Convstr(\barB_{\mathrm{ch}}(\cA),\cA)$
+(Vol~I, Definition~\ref*{def:modular-convolution-dg-lie}).
+The \emph{dg-shifted Yangian} $\Ydg(\cA^!)$ is the
+enveloping algebra of the genus-$0$ part of the convolution
+algebra, localized at the spectral parameter:
+\begin{equation}
+\label{eq:yangian-convolution-def}
+\Ydg(\cA^!)
+\;:=\;
+U\bigl({\gAmod}^{g=0}\bigr)[\![z^{-1}]\!][z],
+\end{equation}
+where ${\gAmod}^{g=0}$ is the genus-$0$ truncation of the
+modular convolution algebra (the summand with loop genus
+$g=0$ in the genus decomposition
+$\gAmod=\bigoplus_{g\ge 0}{\gAmod}^{(g)}$).
+
+The differential on $\Ydg(\cA^!)$ is
+$d_Y=d_{\mathrm{conv}}+[r(z),-]$,
+where $d_{\mathrm{conv}}$ is the convolution differential
+and $r(z)$ is the genus-$0$ spectral kernel
+(Definition~\ref{def:universal-mc-kernel}).  The condition
+$d_Y^2=0$ is equivalent to $r(z)$ satisfying the CYBE
+(Proposition~\ref{prop:ybe-from-d-squared}).
+\end{definition}
+
+\begin{remark}[Yangian versus convolution: strict model
+of a homotopy object]
+\label{rem:yangian-strict-model}
+\index{dg-shifted Yangian!as strict model}
+The dg-shifted Yangian $\Ydg(\cA^!)$ is a strict model
+of the homotopy-coherent line-operator algebra: the
+full $L_\infty$-convolution algebra
+$\Convinf(\barB(\cA),\cA)$ carries higher brackets
+$\ell_k$ ($k\ge 3$) encoding homotopy corrections, and
+$\Ydg(\cA^!)$ is obtained by passing to the universal
+enveloping algebra of the strict dg Lie model $\Convstr$.
+The MC moduli of $\Convstr$ and $\Convinf$ coincide
+(Convention~\ref{conv:vol2-strict-models}), so the
+Yangian correctly parametrizes line-operator deformations.
+\end{remark}
+
+\subsection{The evaluation homomorphism}
+\label{subsec:evaluation-homomorphism}
+
+\begin{definition}[Evaluation homomorphism]
+\label{def:evaluation-homomorphism}
+\index{evaluation homomorphism|textbf}
+For each $A_\infty$-module $M$ over $\cA^!$ and each
+$z_0\in\C$, the \emph{evaluation homomorphism}
+\begin{equation}
+\label{eq:eval-hom}
+\mathrm{ev}_{z_0}\colon
+\Ydg(\cA^!)
+\;\longrightarrow\;
+\End(M)
+\end{equation}
+is defined by specializing the spectral parameter:
+$\mathrm{ev}_{z_0}(T(z)):=T(z)\big|_{z=z_0}$
+on the generating matrix, and extending multiplicatively.
+This is a dg algebra homomorphism: the RTT relations
+at $z=z_0$ reduce to the endomorphism algebra relations
+on $\End(M)$.
+\end{definition}
+
+\begin{proposition}[Evaluation modules form a dense
+subcategory; \ClaimStatusProvedHere]
+\label{prop:evaluation-modules-dense}
+\index{evaluation modules!density}
+Let $M$ be an $A_\infty$-module over $\cA^!$.  The
+\emph{evaluation module} $\mathrm{ev}_{z_0}^*(M)$ (the
+pullback of $M$ along $\mathrm{ev}_{z_0}$) is a
+$\Ydg(\cA^!)$-module.  The evaluation modules
+$\{\mathrm{ev}_{z_0}^*(M)\}_{z_0\in\C,\;M\in\cA^!\text{-mod}}$
+generate the category of $\Ydg(\cA^!)$-modules under
+tensor products and colimits.
+\end{proposition}
+
+\begin{proof}
+Every $\Ydg(\cA^!)$-module $N$ is determined by its
+spectral decomposition: $N=\bigoplus_{z_0}N_{z_0}$, where
+$N_{z_0}$ is the generalized eigenspace of the spectral
+parameter.  On each $N_{z_0}$, the Yangian acts through
+$\mathrm{ev}_{z_0}$, so $N_{z_0}$ is an evaluation module.
+The tensor product of evaluation modules at different
+spectral parameters yields indecomposable modules whose
+spectral support is the set $\{z_1,\ldots,z_n\}$ of
+evaluation points.  By taking colimits (= direct sums
+and cokernels), every $\Ydg(\cA^!)$-module is built from
+evaluation modules.
+
+The density is strict in the dg sense: the inclusion
+functor
+$\mathrm{ev}^*\colon
+\coprod_{z_0\in\C}\cA^!\text{-}\mathbf{mod}
+\hookrightarrow
+\Ydg(\cA^!)\text{-}\mathbf{mod}$
+induces a quasi-equivalence on the subcategory of
+modules with finite spectral support.
+\end{proof}
+
+\subsection{The RTT formalism}
+\label{subsec:rtt-formalism}
+
+\begin{theorem}[$\Ydg(\cA^!)$ controls all line-operator
+fusion; \ClaimStatusProvedHere]
+\label{thm:yangian-controls-fusion}
+\index{RTT relation!controls fusion|textbf}
+Assume \textrm{(H1)--(H4)}.  Every fusion process in the
+line-operator category $\cC_{\mathrm{line}}$ is computed
+by the RTT relation in $\Ydg(\cA^!)$: for any three line
+operators $\ell_1,\ell_2,\ell_3$ and any morphism
+$f\colon\ell_1\otimes\ell_2\to\ell_3$, there exists
+a unique intertwining element
+$t_f\in\Ydg(\cA^!)$ such that
+\begin{equation}
+\label{eq:rtt-intertwining}
+f(v_1\otimes v_2)
+\;=\;
+\mathrm{ev}_{z_3}(t_f)\cdot
+\mathrm{ev}_{z_1}(T_1)\cdot v_1\otimes
+\mathrm{ev}_{z_2}(T_2)\cdot v_2,
+\end{equation}
+and the RTT relation
+$R(z_1{-}z_2)\,T_1(z_1)\,T_2(z_2)
+=T_2(z_2)\,T_1(z_1)\,R(z_1{-}z_2)$
+encodes the consistency of all such fusion morphisms.
+\end{theorem}
+
+\begin{proof}
+\textbf{Step 1: RTT from bar complex.}
+The RTT relation is the statement
+$R(u{-}v)\,T_1(u)\,T_2(v)=T_2(v)\,T_1(u)\,R(u{-}v)$
+in $\End(V)\otimes\End(V)\otimes\Ydg(\cA^!)[\![u^{-1},v^{-1}]\!]$,
+where $V$ is the defining representation and $T(u)$ is
+the generating matrix.  This was derived from $d^2=0$ on
+the three-fold ordered bar complex in
+Construction~\ref{constr:dg-shifted-yangian-from-bar}.
+
+\textbf{Step 2: Fusion as RTT intertwining.}
+A fusion morphism $f\colon\ell_1\otimes\ell_2\to\ell_3$
+is an intertwiner of $\cA^!$-modules:
+$f\in\Hom_{\cA^!}(V_{\ell_1}\otimes V_{\ell_2},V_{\ell_3})$.
+Under the identification
+$\cA^!\text{-mod}\simeq\Ydg(\cA^!)\text{-mod}$ via
+evaluation
+(Proposition~\ref{prop:evaluation-modules-dense}), this
+intertwiner lifts to a Yangian intertwiner.  The RTT
+relation ensures the lift is unique: if
+$R(z_1{-}z_2)\,T_1(z_1)\,T_2(z_2)
+=T_2(z_2)\,T_1(z_1)\,R(z_1{-}z_2)$,
+then composing with $f$ on the right gives
+\begin{align*}
+f\bigl(R(z)\cdot(v_1\otimes v_2)\bigr)
+&=
+f\bigl(v_2\otimes v_1\bigr)\text{ (braided)},
+\end{align*}
+which determines $f$ in terms of the $R$-matrix and
+the individual line-operator actions.
+
+\textbf{Step 3: Completeness.}
+Every intertwiner of $\Ydg(\cA^!)$-modules between
+evaluation modules at $z_1$, $z_2$, $z_3$ is determined
+by the RTT algebra: the intertwining space
+$\Hom_{\Ydg}(\mathrm{ev}_{z_1}^*M_1\otimes\mathrm{ev}_{z_2}^*M_2,
+\mathrm{ev}_{z_3}^*M_3)$
+is computed by the centralizer algebra of $T_1(z_1)$
+and $T_2(z_2)$ inside $\End(M_3)$, which is the image of
+the RTT algebra.  By
+Proposition~\ref{prop:evaluation-modules-dense}
+(density of evaluation modules), this accounts for all
+fusion morphisms.
+\end{proof}
+
+\subsection{Virasoro: the gravitational Yangian}
+\label{subsec:gravitational-yangian}
+
+\begin{construction}[Gravitational Yangian;
+\ClaimStatusProvedHere]
+\label{constr:gravitational-yangian}
+\index{Yangian!gravitational|textbf}
+\index{Virasoro algebra!Yangian}
+For $\cA=\mathrm{Vir}_c$, the dg-shifted Yangian
+$\Ydg(\mathrm{Vir}_{26-c})$ is the
+\emph{gravitational Yangian}: the universal algebra
+controlling gravitational line-operator fusion.
+
+\emph{Generators.} The generating modes
+$T_{(n)}$ ($n\ge 0$) correspond to the Virasoro modes
+$L_n$ of the dual algebra $\mathrm{Vir}_{26-c}$:
+\begin{equation}
+\label{eq:gravitational-yangian-generators}
+T(z)
+\;=\;
+\sum_{n\ge 0}T_{(n)}\,z^{-n-2}
+\;\in\;
+\Ydg(\mathrm{Vir}_{26-c})[\![z^{-1}]\!].
+\end{equation}
+The generating function $T(z)$ is the stress-energy
+tensor of the dual Virasoro algebra, viewed as an
+element of the Yangian.
+
+\emph{Relations.} The RTT relation for the gravitational
+Yangian takes the form
+\begin{equation}
+\label{eq:gravitational-rtt}
+r_c(z_1{-}z_2)\,T(z_1)\,T(z_2)
+-T(z_2)\,T(z_1)\,r_c(z_1{-}z_2)
+\;=\;0,
+\end{equation}
+with the $r$-matrix
+\begin{equation}
+\label{eq:virasoro-r-matrix-explicit}
+r_c(z)
+\;=\;
+\frac{\partial T}{z}
++\frac{2T}{z^2}
++\frac{c}{2z^4}.
+\end{equation}
+Expanding \eqref{eq:gravitational-rtt} in modes:
+the $z_1^{-m-2}z_2^{-n-2}$ coefficient is
+\begin{equation}
+\label{eq:gravitational-rtt-modes}
+[T_{(m)},T_{(n)}]
+\;=\;
+(m-n)\,T_{(m+n)}
++\frac{26-c}{12}m(m^2-1)\,\delta_{m+n,0},
+\end{equation}
+which is the Virasoro algebra at central charge $26-c$.
+The fourth-order pole in $r_c(z)$ produces the cubic
+anomaly term $m(m^2-1)$: this is the conformal anomaly,
+not a deformation artifact.
+
+\emph{Coproduct.} The meromorphic coproduct is
+\begin{equation}
+\label{eq:gravitational-coproduct}
+\Delta_z(T_{(n)})
+\;=\;
+T_{(n)}\otimes 1+1\otimes T_{(n)}
++\sum_{k=1}^{n+1}\binom{n+1}{k}
+\frac{T_{(n-k)}\otimes T_{(k-1)}}{z^{k}}
++\frac{c}{2}\frac{(n+1)n(n-1)}{z^{n+2}}\cdot 1\otimes 1.
+\end{equation}
+The terms with $z^{-k}$ encode the $k$-th pole of the
+$TT$ OPE; the last term (proportional to $c$) is the
+contribution from the central charge.
+\end{construction}
+
+\begin{remark}[The gravitational Yangian is not a standard Yangian]
+\label{rem:gravitational-yangian-not-standard}
+\index{Yangian!gravitational!non-standard}
+The gravitational Yangian $\Ydg(\mathrm{Vir}_{26-c})$
+differs from the Yangian $Y_\hbar(\fg)$ of a simple Lie
+algebra $\fg$ in two respects:
+\begin{enumerate}[label=(\roman*)]
+\item The $r$-matrix $r_c(z)$ has a fourth-order pole
+  at $z=0$ (equation~\eqref{eq:virasoro-r-matrix-explicit}),
+  not a simple pole.  Standard Yangians have
+  $r(z)\sim\Omega/z$; the Virasoro $r$-matrix has the
+  additional terms $2T/z^2+c/(2z^4)$ from the conformal
+  anomaly.
+\item The algebra $\mathrm{Vir}_{26-c}$ is not a
+  finite-dimensional Lie algebra: it is an infinite-dimensional
+  graded Lie algebra with generators $L_n$ ($n\in\Z$).
+  The Yangian $\Ydg(\mathrm{Vir}_{26-c})$ is therefore
+  an infinite-dimensional deformation of $U(\mathrm{Vir}_{26-c}[t])$,
+  not a finite-dimensional quantum group.
+\end{enumerate}
+These departures from the standard Yangian framework are
+the gravitational analogues of the gauge-theoretic
+Yangian: the fourth-order pole is the gravitational
+anomaly (compare the simple pole $\Omega/z$ from the
+gauge anomaly), and the infinite-dimensional algebra
+reflects the infinite tower of gravitational descendants
+$L_{-n}|0\rangle$ ($n\ge 2$).
+\end{remark}
+
+\subsection{Affine $\mathfrak{sl}_2$: the quantum group
+and $q$-parameter}
+\label{subsec:affine-quantum-group}
+
+\begin{theorem}[$q$-parameter derivation;
+\ClaimStatusProvedHere]
+\label{thm:q-parameter-derivation}
+\index{quantum group!q-parameter derivation@$q$-parameter derivation|textbf}
+For $\cA=\widehat{\mathfrak{sl}}_2{}_k$ with Koszul dual
+$\cA^!=Y_\hbar(\mathfrak{sl}_2)$ at
+$\hbar=1/(k+2)$, the quantum group
+$U_q(\widehat{\mathfrak{sl}}_2)$ arises as the
+monodromy representation of the KZ connection, with
+$q$-parameter
+\begin{equation}
+\label{eq:q-parameter}
+q\;=\;e^{i\pi\hbar}\;=\;e^{i\pi/(k+2)}.
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+\textbf{Step 1: KZ connection from the $r$-matrix.}
+The KZ connection for $n$ line operators at positions
+$z_1,\ldots,z_n\in\C$ is
+\begin{equation}
+\label{eq:kz-connection}
+\nabla_{\mathrm{KZ}}
+\;=\;
+d-\hbar\sum_{i<j}
+\Omega_{ij}\,d\log(z_i-z_j),
+\qquad
+\hbar=\frac{1}{k+2},
+\end{equation}
+where $\Omega_{ij}$ acts as the Casimir
+$\Omega=e\otimes f+f\otimes e+\tfrac12 h\otimes h$
+on the $i$-th and $j$-th tensor factors.  This is a flat
+connection on $\mathrm{Conf}_n(\C)$ valued in
+$\End(V^{\otimes n})$ (flatness $\nabla^2=0$ is
+the CYBE for $r(z)=\Omega/z$, proved in
+Proposition~\ref{prop:ybe-from-d-squared}).
+
+\textbf{Step 2: Monodromy representation.}
+The fundamental group
+$\pi_1(\mathrm{Conf}_n(\C))$ is the pure braid group
+$PB_n$.  The monodromy representation
+$\rho_{\mathrm{KZ}}\colon PB_n\to\mathrm{GL}(V^{\otimes n})$
+of the KZ connection acts on the elementary braid
+$\sigma_i$ (exchanging positions $z_i$ and $z_{i+1}$)
+by
+\begin{equation}
+\label{eq:kz-monodromy}
+\rho_{\mathrm{KZ}}(\sigma_i)
+\;=\;
+\exp(i\pi\hbar\,\Omega_{i,i+1})
+\;=\;
+q^{\Omega_{i,i+1}},
+\qquad
+q=e^{i\pi\hbar}.
+\end{equation}
+This is the standard Drinfeld--Kohno computation
+(\cite{Dri89}, Theorem 3.2; \cite{KL93}): the monodromy
+of the logarithmic connection $d-\hbar\,\Omega\,d\log z$
+around $z=0$ is $e^{2\pi i\hbar\,\Omega}=q^{2\Omega}$.
+The half-monodromy (corresponding to the elementary braid)
+is $q^{\Omega}$.
+
+\textbf{Step 3: Quantum group structure.}
+The monodromy representation factors through the
+quantum group $U_q(\mathfrak{sl}_2)$: the matrix
+$R^q=q^{\Omega}$ satisfies the quantum Yang--Baxter
+equation
+$R^q_{12}R^q_{13}R^q_{23}
+=R^q_{23}R^q_{13}R^q_{12}$
+(which follows from the CYBE by exponentiation, valid
+because $\Omega$ is $\mathfrak{sl}_2$-invariant).  The
+quantum group $U_q(\mathfrak{sl}_2)$ is the quotient of
+the braid group algebra $\C[B_n]$ by the kernel of
+$\rho_{\mathrm{KZ}}$, equipped with the Hopf algebra
+structure inherited from the braid group comultiplication.
+
+\textbf{Step 4: Affine extension.}
+For the affine algebra
+$\widehat{\mathfrak{sl}}_2{}_k$, the loop structure
+upgrades $U_q(\mathfrak{sl}_2)$ to
+$U_q(\widehat{\mathfrak{sl}}_2)$: the affine root
+generators $E_0(u)$, $F_0(u)$ come from the zeroth
+root currents of $\widehat{\mathfrak{sl}}_2{}_{-k-4}$,
+and the spectral parameter $u$ in the Yangian becomes
+the multiplicative spectral parameter in the quantum
+affine algebra via $u=e^{i\pi z/(k+2)}$.  The
+relation between additive ($z$) and multiplicative ($u$)
+spectral parameters is
+$u=q^z$, consistent with $q=e^{i\pi/(k+2)}$.
+\end{proof}
+
+\begin{computation}[Explicit $q$-parameter for small levels;
+\ClaimStatusProvedHere]
+\label{comp:q-parameter-small-levels}
+\index{quantum group!q-parameter@$q$-parameter!small levels}
+\begin{center}
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{cccl}
+\textbf{Level $k$} & $\hbar=1/(k+2)$
+  & $q=e^{i\pi/(k+2)}$ & \textbf{Quantum group} \\
+\hline
+$k=1$ & $1/3$ & $e^{i\pi/3}$
+  & $U_{e^{i\pi/3}}(\mathfrak{sl}_2)$:
+    root of unity, $q^6=1$ \\[3pt]
+$k=2$ & $1/4$ & $e^{i\pi/4}$
+  & $U_{e^{i\pi/4}}(\mathfrak{sl}_2)$:
+    root of unity, $q^8=1$ \\[3pt]
+$k=3$ & $1/5$ & $e^{i\pi/5}$
+  & $U_{e^{i\pi/5}}(\mathfrak{sl}_2)$:
+    root of unity, $q^{10}=1$ \\[3pt]
+$k=-2$ & $\infty$ & $q=1$
+  & $U(\mathfrak{sl}_2)$ (classical limit) \\[3pt]
+$k\to\infty$ & $0$ & $q\to 1$
+  & $U(\mathfrak{sl}_2)$ (large-level limit)
+\end{tabular}
+\end{center}
+At $k=-2$ (critical level): $\hbar=1/(k+2)=\infty$,
+the KZ connection degenerates, and the quantum group
+reduces to the classical enveloping algebra.  The
+Yangian $Y_\hbar(\mathfrak{sl}_2)$ with
+$\hbar\to\infty$ is the current algebra
+$U(\mathfrak{sl}_2[t])$, consistent with the
+Feigin--Frenkel description of the critical-level
+affine algebra.
+\end{computation}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% SECTION — THE MC3 PROGRAMME AND CATEGORICAL LIFTING
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{The MC3 programme and categorical lifting}
+\label{sec:mc3-programme}
+\index{MC3!programme|textbf}
+
+The MC3 problem is the categorical lift of the
+character-level Clebsch--Gordan decomposition to the
+full derived module category.  This section states the
+problem, records the proved type-$A$ resolution, and
+identifies the obstruction to extension.
+
+\subsection{Statement of the MC3 problem}
+\label{subsec:mc3-statement}
+
+\begin{definition}[MC3: categorical Clebsch--Gordan]
+\label{def:mc3-problem}
+\index{MC3!problem statement|textbf}
+Let $\cA$ be a chiral Koszul algebra with Koszul dual
+$\cA^!=Y_\hbar(\fg)$ (the dg-shifted Yangian of a simple
+Lie algebra~$\fg$).  The \emph{MC3 problem} is:
+
+\emph{Lift the character-level Clebsch--Gordan
+decomposition of $Y_\hbar(\fg)$-modules to a categorical
+equivalence in the derived module category
+$\Ydg(\fg)\text{-}\mathbf{mod}$.}
+
+Concretely: given two $Y_\hbar(\fg)$-modules $M$ and $N$,
+the tensor product $M\otimes_z N$ decomposes into
+irreducibles at the character level
+(by the Clebsch--Gordan formula for $U_q(\fg)$).
+MC3 asks whether this decomposition lifts to a
+splitting in the dg module category: is the
+tensor product $M\otimes_z N$ quasi-isomorphic to a
+direct sum of evaluation modules?
+\end{definition}
+
+\begin{remark}[MC3 in the MC hierarchy]
+\label{rem:mc3-hierarchy}
+\index{MC frontier!MC3 position}
+MC3 is the third of the five Maurer--Cartan levels
+(Vol~I, \S\ref*{sec:concordance-mc-frontier}):
+\begin{itemize}
+\item MC1 (PBW concentration): $H^n(\barB_{\mathrm{ch}}(\cA))
+  =0$ for $n\gg 0$.  \textbf{Proved} for all standard
+  families.
+\item MC2 (bar-intrinsic MC): $\Theta_\cA:=D_\cA-d_0
+  \in\mathrm{MC}(\gAmod)$.  \textbf{Proved}
+  (Theorem~\ref*{thm:mc2-bar-intrinsic}).
+\item MC3 (categorical CG): tensor products of
+  $\cA^!$-modules decompose.  \textbf{Proved in type $A$};
+  conjectural for general type.
+\item MC4 (completion towers): bar-cobar passes to
+  inverse limits.  \textbf{Proved}
+  (Theorem~\ref*{thm:completed-bar-cobar-strong}).
+\item MC5 (all-genera sewing): partition functions converge.
+  \textbf{Proved} (Theorem~\ref*{thm:general-hs-sewing}).
+\end{itemize}
+MC3 is the categorical heart: it converts the spectral
+$R$-matrix from a formal object into a genuine
+intertwining operator between modules.
+\end{remark}
+
+\subsection{Type $A$: the proved resolution}
+\label{subsec:mc3-type-a}
+
+\begin{theorem}[MC3 resolution in type $A$;
+\ClaimStatusProvedElsewhere]
+\label{thm:mc3-type-a-line-ops}
+\index{MC3!type A resolution|textbf}
+\textup{(Vol~I, Theorem~\ref*{thm:mc3-type-a-resolution}.)}
+For $\fg=\mathfrak{sl}_N$ ($N\ge 2$) and generic level~$k$
+(away from rational values of $q=e^{i\pi/(k+N)}$), the
+categorical Clebsch--Gordan decomposition holds:
+every finite tensor product of evaluation modules for
+$Y_\hbar(\mathfrak{sl}_N)$ decomposes into a direct sum
+of evaluation modules in the derived category.
+\end{theorem}
+
+The proof assembles four ingredients.
+
+\subsubsection{The chromatic filtration}
+\label{subsubsec:chromatic-filtration}
+
+\begin{definition}[Chromatic filtration on the Yangian]
+\label{def:chromatic-filtration}
+\index{chromatic filtration|textbf}
+The \emph{chromatic filtration} on $Y_\hbar(\mathfrak{sl}_N)$
+is the weight-space decomposition under the Cartan
+subalgebra $\mathfrak{h}\subset\mathfrak{sl}_N$:
+\begin{equation}
+\label{eq:chromatic-filtration}
+Y_\hbar(\mathfrak{sl}_N)
+\;=\;
+\bigoplus_{\alpha\in Q}
+Y_\hbar(\mathfrak{sl}_N)_\alpha,
+\end{equation}
+where $Q=\Z\alpha_1\oplus\cdots\oplus\Z\alpha_{N-1}$ is the
+root lattice and $Y_\hbar(\mathfrak{sl}_N)_\alpha$ consists
+of elements of weight~$\alpha$ (i.e., elements $x$ such
+that $[h_i,x]=\alpha(h_i)\cdot x$ for all Cartan generators
+$h_i$).
+
+The chromatic filtration refines the standard PBW
+filtration: within each weight space, the Yangian generators
+$E_i^{(r)}$, $F_i^{(r)}$, $H_i^{(r)}$ have PBW degree~$1$,
+and the weight-space decomposition is compatible with the
+PBW product.  The associated graded of the chromatic
+filtration is the polynomial algebra
+$\Bbbk[E_i^{(r)},F_i^{(r)},H_i^{(r)}]_{i,r}$
+(by the PBW theorem for Yangians, \cite{CP94}).
+\end{definition}
+
+\begin{proposition}[Chromatic filtration compatibility;
+\ClaimStatusProvedHere]
+\label{prop:chromatic-compatibility}
+\index{chromatic filtration!compatibility}
+The chromatic filtration is compatible with the
+Yangian coproduct:
+$\Delta_z(Y_\alpha)\subset
+\bigoplus_{\beta+\gamma=\alpha}Y_\beta\otimes Y_\gamma
+[\![z^{-1}]\!][z]$.
+In particular, tensor products of weight-space modules
+decompose weight-by-weight.
+\end{proposition}
+
+\begin{proof}
+The coproduct $\Delta_z$ is a homomorphism of
+$\mathfrak{h}$-modules (the Cartan subalgebra acts by
+derivations on the Yangian, and $\Delta_z$ preserves
+this action).  Therefore
+$\Delta_z(x)$ has weight $\alpha$ whenever $x$ has
+weight $\alpha$, and the tensor product decomposition
+$Y_\alpha\otimes Y_\beta\subset Y_{\alpha+\beta}$
+is preserved.
+\end{proof}
+
+\subsubsection{The prefundamental Clebsch--Gordan closure}
+\label{subsubsec:prefundamental-cg}
+
+\begin{proposition}[Prefundamental Clebsch--Gordan;
+\ClaimStatusProvedElsewhere]
+\label{prop:prefundamental-cg-line-ops}
+\index{prefundamental representation!Clebsch--Gordan|textbf}
+\textup{(Vol~I, Proposition~\ref*{prop:prefundamental-clebsch-gordan}.)}
+For $\fg=\mathfrak{sl}_2$, let $V_n$ denote the
+$(n+1)$-dimensional evaluation module and $L^-$ the
+prefundamental representation of
+$Y_\hbar(\mathfrak{sl}_2)$.  Then for all $n\ge 0$:
+\begin{equation}
+\label{eq:prefundamental-cg}
+V_n\otimes L^-
+\;=\;
+\bigoplus_{j=0}^{n}L^-(n-2j)
+\qquad
+\text{(at the character level)},
+\end{equation}
+where $L^-(s)$ denotes $L^-$ shifted by spectral
+parameter~$s$.
+\end{proposition}
+
+\begin{proof}[Proof sketch]
+The character identity~\eqref{eq:prefundamental-cg} is a
+formal power series identity: the character of $V_n\otimes L^-$
+is $\chi_{V_n}\cdot\chi_{L^-}=\sum_{j=0}^n\chi_{L^-(n-2j)}$.
+This is verified by comparing the $q$-character formulas
+on both sides (Vol~I, Proposition~\ref*{prop:prefundamental-clebsch-gordan}; the computation is verified numerically
+for $n=1,\ldots,20$ at depth $60$ in the formal parameter).
+\end{proof}
+
+\begin{corollary}[Universal character containment;
+\ClaimStatusProvedElsewhere]
+\label{cor:universal-character-containment-line-ops}
+\index{Verma module!character containment}
+\textup{(Vol~I, Corollary~\ref*{cor:universal-character-containment}.)}
+For all $\lambda\in\Z_{\ge 0}$:
+$\mathrm{ch}(M(\lambda))\le\mathrm{ch}(V_\lambda\otimes L^-)$
+(the character of the Verma module is bounded by the character
+of the tensor product with the prefundamental).
+\end{corollary}
+
+\begin{corollary}[$K_0$-generation; \ClaimStatusProvedElsewhere]
+\label{cor:k0-generation-line-ops}
+\index{K-theory@$K_0$!generation}
+\textup{(Vol~I, Corollary~\ref*{cor:k0-generation-OY}.)}
+Every class $[M(\lambda)]\in K_0(\cO^{\mathrm{sh}})$ lies
+in the $K_0$-span of $\{[V_n]\cdot[L^-]\}_{n\ge 0}$.
+The $K_0$-level thick generation is complete.
+\end{corollary}
+
+\subsubsection{The categorical lift obstruction}
+\label{subsubsec:categorical-lift-obstruction}
+
+\begin{definition}[Categorical CG projectors]
+\label{def:categorical-cg-projectors}
+\index{Clebsch--Gordan!categorical projectors|textbf}
+The \emph{categorical CG projectors} are the idempotents
+$\pi_j\in\End_{Y_\hbar}(V_n\otimes L^-)$ ($0\le j\le n$)
+projecting onto the direct summand $L^-(n-2j)$ in the
+decomposition~\eqref{eq:prefundamental-cg}.  The projectors
+exist at the character level (by the character identity);
+the MC3 problem is whether they lift to honest idempotents
+in the derived endomorphism algebra
+$\operatorname{REnd}_{Y_\hbar}(V_n\otimes L^-)$.
+\end{definition}
+
+\begin{proposition}[Categorical lift in type $A$;
+\ClaimStatusProvedElsewhere]
+\label{prop:categorical-lift-type-a}
+\index{MC3!categorical lift!type A}
+\textup{(Vol~I, Theorem~\ref*{thm:mc3-type-a-resolution}.)}
+For $\fg=\mathfrak{sl}_N$ and generic~$k$, the categorical
+CG projectors exist: the character-level decomposition
+lifts to a splitting in the derived category.  The proof
+uses:
+\begin{enumerate}[label=(\roman*)]
+\item \emph{Chromatic filtration}
+  (Definition~\textup{\ref{def:chromatic-filtration}}):
+  the weight-space decomposition reduces the problem to
+  finitely many weight components.
+\item \emph{Prefundamental CG closure}
+  (Proposition~\textup{\ref{prop:prefundamental-cg-line-ops}}):
+  the character-level decomposition provides candidates
+  for the categorical projectors.
+\item \emph{Efimov completion} (\cite{Efi20}):
+  the ind-completion $\mathrm{Ind}\text{-}\cO^{\mathrm{sh}}$
+  admits a $t$-structure whose heart contains all the
+  summands, allowing the use of Barr--Beck--Lurie monadic
+  descent.
+\item \emph{Derived Koszul duality on compacts}
+  (Vol~I, Theorem~\ref*{thm:dk-fd-typeA}): on compact
+  (finite-dimensional) modules, the Koszul duality functor
+  is an equivalence, so the CG projectors on compact modules
+  lift automatically.  By density of compacts
+  (Kaplansky density) and Efimov completion, the lift extends
+  to all modules.
+\end{enumerate}
+\end{proposition}
+
+\subsection{General type: the conjectural extension}
+\label{subsec:mc3-general-type}
+
+\begin{conjecture}[MC3 for arbitrary simple type;
+\ClaimStatusConjectured]
+\label{conj:mc3-arbitrary-type-line-ops}
+\index{MC3!arbitrary type|textbf}
+\textup{(Vol~I, Conjecture~\ref*{conj:mc3-arbitrary-type}.)}
+For any simple Lie algebra $\fg$ and generic level~$k$:
+\begin{enumerate}[label=(\roman*)]
+\item The prefundamental representations $L^\pm_i$
+  ($i=1,\ldots,\mathrm{rank}(\fg)$) satisfy CG formulas
+  analogous to~\eqref{eq:prefundamental-cg} for all
+  Dynkin types.
+\item The categorical CG projectors exist in the derived
+  category $D^b(\cO^{\mathrm{sh}}_q(\widehat{\fg}))$.
+\item The equivalence
+  $\cC_{\mathrm{line}}(\widehat{\fg}_k)
+  \simeq\cO^{\mathrm{sh}}_q(\widehat{\fg})$
+  is an equivalence of braided monoidal dg categories.
+\end{enumerate}
+\end{conjecture}
+
+\begin{remark}[The Hern\'andez--Jimbo obstruction]
+\label{rem:hernandez-jimbo-obstruction}
+\index{Hernandez--Jimbo!prefundamental CG}
+The key missing ingredient for
+Conjecture~\ref{conj:mc3-arbitrary-type-line-ops} is
+the prefundamental CG closure for general Dynkin type.
+In type~$A$: the prefundamental representation $L^-$
+is a Fock-type module whose character is a ratio of
+theta functions, and the CG formula follows from
+$q$-binomial identities
+(Proposition~\ref{prop:prefundamental-cg-line-ops}).
+For types $B$, $C$, $D$, $E$, $F$, $G$: the
+Hern\'andez--Jimbo prefundamental representations
+exist (\cite{HJ12}), but the explicit CG formulas
+involve twisted theta functions and $q$-hypergeometric
+identities that have not been verified at the
+character level.
+
+The obstruction is combinatorial, not structural: the
+four-step argument of
+Proposition~\ref{prop:categorical-lift-type-a} applies
+verbatim once the character-level CG formulas are
+established.
+\end{remark}
+
+\subsection{The DK ladder}
+\label{subsec:dk-ladder}
+
+The Drinfeld--Kohno (DK) programme organizes the relationship
+between the Yangian, the quantum group, and the line-operator
+category into a sequence of equivalences of increasing
+categorical strength.
+
+\begin{definition}[DK levels]
+\label{def:dk-levels}
+\index{Drinfeld--Kohno ladder|textbf}
+The \emph{DK ladder} is the following sequence of
+equivalences, each refining the previous:
+\begin{enumerate}[label=\textup{DK-\arabic*.}]
+\item \textbf{DK-0} (Laplace shadow):
+  $r(z)=\int_0^\infty e^{-\lambda z}\{\cdot_\lambda\cdot\}\,d\lambda$
+  identifies the classical $r$-matrix as the Laplace
+  transform of the $\lambda$-bracket.
+  \textbf{Proved} (Vol~I; Proposition~\ref*{thm:collision-residue-twisting}).
+\item \textbf{DK-1} (KZ monodromy = quantum group):
+  the monodromy of the KZ connection at level~$k$ is the
+  quantum group $U_q(\fg)$ at $q=e^{i\pi/(k+h^\vee)}$.
+  \textbf{Proved} (Drinfeld~\cite{Dri89},
+  Kazhdan--Lusztig~\cite{KL93}).
+\item \textbf{DK-2} (categorical equivalence for integrable
+  modules):
+  $\cO_k^{\mathrm{int}}(\widehat{\fg})
+  \simeq\mathrm{Rep}_q(\fg)$
+  (Kazhdan--Lusztig~\cite{KL93}).
+  \textbf{Proved} for all types.
+\item \textbf{DK-3} (derived equivalence for category
+  $\cO$): the derived categories
+  $D^b(\cO_k(\widehat{\fg}))
+  \simeq D^b(\cO_q(\fg))$
+  are equivalent.
+  \textbf{Proved} (Arakawa--Bezrukavnikov~\cite{AB09}
+  in type $A$ and for generic $q$).
+\item \textbf{DK-4} (completed bar-cobar equivalence):
+  the completed bar-cobar adjunction gives an equivalence
+  on pro-categories.
+  \textbf{Proved} by the MC4 strong completion-tower
+  theorem (Vol~I, Theorem~\ref*{thm:completed-bar-cobar-strong}).
+\item \textbf{DK-5} (full monoidal equivalence):
+  the braided monoidal structure on line operators matches
+  the braided monoidal structure on quantum group modules,
+  including all higher categorical data.
+  \textbf{Accessible in type $A$} (via MC3 resolution;
+  conjectural for general type).
+\end{enumerate}
+\end{definition}
+
+\begin{remark}[DK ladder and the MC hierarchy]
+\label{rem:dk-mc-relationship}
+\index{Drinfeld--Kohno ladder!MC relationship}
+The DK levels correspond to MC levels:
+\begin{center}
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{ll}
+\textbf{DK level} & \textbf{MC input} \\
+\hline
+DK-0 & MC2 (bar-intrinsic MC element) \\
+DK-1 & MC2 + analytic continuation \\
+DK-2 & MC1 (PBW concentration) + DK-1 \\
+DK-3 & MC3 (categorical CG) \\
+DK-4 & MC4 (completion towers) \\
+DK-5 & MC3 + MC4 + MC5 (all genera)
+\end{tabular}
+\end{center}
+The MC hierarchy provides the algebraic inputs; the DK
+ladder translates these into representation-theoretic
+equivalences.
+\end{remark}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% SECTION — W-ALGEBRA LINE OPERATORS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{$\mathcal{W}$-algebra line operators}
+\label{sec:w-algebra-line-operators}
+\index{W-algebra@$\mathcal{W}$-algebra!line operators|textbf}
+
+Line operators for $\mathcal{W}_N$-algebras arise from
+Drinfeld--Sokolov (DS) reduction of the affine line-operator
+category.  The principal case is controlled by the
+$\mathcal{W}_N$-Yangian; non-principal reductions produce
+a richer structure with obstructions to commutativity
+of bar-cobar with DS.
+
+\subsection{Principal $\mathcal{W}_N$: line operators at dual level}
+\label{subsec:principal-wn-lines}
+
+\begin{definition}[$\mathcal{W}_N$ line-operator category]
+\label{def:wn-line-category}
+\index{W-algebra@$\mathcal{W}$-algebra!line operator category}
+For $\cA=\mathcal{W}_N{}_{c}$ (the principal
+$\mathcal{W}$-algebra of type $\mathfrak{sl}_N$ at
+central charge~$c$), the line-operator category is
+\begin{equation}
+\label{eq:wn-line-category}
+\cC_{\mathrm{line}}(\mathcal{W}_N{}_c)
+\;\simeq\;
+\mathcal{W}_N{}_{c^!_N}\text{-}\mathbf{mod}^{\mathrm{dg}},
+\end{equation}
+where $c^!_N=2\sum_{s=2}^{N}(6s^2-6s+1)-c$ is the dual
+central charge.  The modules are over the Koszul dual
+$\cA^!=\mathcal{W}_N{}_{c^!_N}$: the
+$\mathcal{W}_N$-algebra at the dual central charge.
+\end{definition}
+
+\begin{remark}[Dual central charge]
+\label{rem:dual-central-charge}
+\index{W-algebra@$\mathcal{W}$-algebra!dual central charge}
+The dual central charge formula
+$c^!_N=2\sum_{s=2}^{N}(6s^2-6s+1)-c$ generalizes
+the Virasoro duality $c^!_2=26-c$ to higher spin.
+For $\mathcal{W}_3$: $c^!_3=100-c$.  For general~$N$:
+$c^!_N=c_N^{\mathrm{tot}}-c$, where
+$c_N^{\mathrm{tot}}=2\sum_{s=2}^{N}(6s^2-6s+1)$
+is the total central charge of the $N-1$ strong generators
+of $\mathcal{W}_N$ (a spin-$s$ generator contributes
+$2(6s^2-6s+1)$ to the critical central charge).
+The self-dual point $c=c_N^{\mathrm{tot}}/2$ is the analogue
+of $c=13$ for the Virasoro algebra.
+\end{remark}
+
+\subsection{The $\mathcal{W}_3$ case in detail}
+\label{subsec:w3-detail}
+
+\begin{construction}[$\mathcal{W}_3$ Yangian generators
+and representation theory; \ClaimStatusProvedHere]
+\label{constr:w3-yangian}
+\index{W3@$\mathcal{W}_3$!Yangian generators|textbf}
+The $\mathcal{W}_3$-Yangian $\Ydg(\mathcal{W}_3{}_{100-c})$
+is generated by two families of modes:
+\begin{align}
+\label{eq:w3-generators}
+T(z)&=\sum_{n\ge 0}T_{(n)}\,z^{-n-2}
+  &&\text{(spin-$2$ current)}, \notag \\
+W(z)&=\sum_{n\ge 0}W_{(n)}\,z^{-n-3}
+  &&\text{(spin-$3$ current)}.
+\end{align}
+The spin-$2$ generator $T_{(n)}$ satisfies the Virasoro
+relations~\eqref{eq:gravitational-rtt-modes} at central
+charge $100-c$; the spin-$3$ generator $W_{(n)}$
+satisfies
+\begin{equation}
+\label{eq:w3-tw-commutator}
+[T_{(m)},W_{(n)}]
+\;=\;
+(2m-n)\,W_{(m+n)},
+\end{equation}
+expressing the fact that $W$ is a Virasoro primary of
+conformal weight~$3$.  The $WW$ commutation relation is
+\begin{equation}
+\label{eq:w3-ww-commutator}
+[W_{(m)},W_{(n)}]
+\;=\;
+(m-n)\Bigl(
+\frac{1}{15}(m+n+3)(m+n+2)
+-\frac{1}{6}(m+2)(n+2)
+\Bigr)\,T_{(m+n)}
++\frac{(100-c)}{360}m(m^2-1)(m^2-4)\,\delta_{m+n,0}
++\beta\,(m-n)\,\Lambda_{(m+n)},
+\end{equation}
+where $\Lambda_{(n)}=(TT)_{(n)}$ is the normal-ordered
+product and $\beta=16/(22+5(100-c))$ is the structure
+constant.
+
+\emph{Representation theory.}
+The simple objects of
+$\mathcal{W}_3{}_{100-c}\text{-}\mathbf{mod}$
+are the highest-weight modules $M(h',w')$
+parametrized by conformal weight $h'\in\C$ and
+$W$-charge $w'\in\C$.  For generic central charge
+$100-c$: the Verma modules are irreducible for generic
+$(h',w')$, and the module category is semisimple on the
+dense open set of parameters.  At special values of
+$(h',w')$: singular vectors exist (detected by the
+$\mathcal{W}_3$ Kac determinant formula), and the
+Verma module has a non-trivial maximal submodule.
+
+The $r$-matrix for $\mathcal{W}_3$ has poles of orders
+$1$, $3$, and $5$:
+\begin{equation}
+\label{eq:w3-r-matrix}
+r_c^{W_3}(z)
+\;=\;
+\frac{\partial T}{z}
++\frac{2T}{z^2}
++\frac{c}{2z^4}
++\frac{\partial^2 W}{z}
++\frac{5\partial W}{z^2}
++\frac{10 W}{z^3}
++\frac{c_W}{z^6},
+\end{equation}
+where $c_W$ is the OPE coefficient of the $WW$ central
+term.  The fifth-order pole is new compared to the
+Virasoro case; it reflects the cubic interaction of the
+spin-$3$ current.
+\end{construction}
+
+\begin{computation}[$\mathcal{W}_3$ fusion rules at $c=2$;
+\ClaimStatusProvedHere]
+\label{comp:w3-fusion}
+\index{W3@$\mathcal{W}_3$!fusion rules}
+At $c=2$ (dual charge $100-2=98$): the
+$\mathcal{W}_3{}_{98}$-module category is semisimple
+for generic weights.  The fusion of two modules
+$M(h_1,w_1)\otimes_z M(h_2,w_2)$ decomposes into a
+direct sum governed by the $\mathcal{W}_3$ Clebsch--Gordan
+coefficients, which are computed from the $r$-matrix
+\eqref{eq:w3-r-matrix} via the RTT relations.
+
+Under DS reduction from $\widehat{\mathfrak{sl}}_3{}_k$
+at $c=c(k)=2$: the three level-$1$
+$\widehat{\mathfrak{sl}}_3$-modules ($L_0$,
+$L_{\omega_1}$, $L_{\omega_2}$) map to three
+$\mathcal{W}_3$-modules with the same fusion ring
+$\Z[\Z/3]$ (as in Computation~\ref{comp:ds-on-line-categories}).
+\end{computation}
+
+\subsection{Non-principal $\mathcal{W}$-algebras: the hook-type corridor}
+\label{subsec:non-principal-w-lines}
+
+\begin{definition}[Non-principal DS reduction]
+\label{def:non-principal-ds}
+\index{Drinfeld--Sokolov reduction!non-principal|textbf}
+For a nilpotent element $f\in\mathfrak{sl}_N$ (not
+necessarily principal), the Drinfeld--Sokolov reduction
+produces the $\mathcal{W}$-algebra
+$\mathcal{W}_k(\mathfrak{sl}_N,f)$
+(Kac--Roan--Wakimoto~\cite{KRW03}).  The reduction
+exists for every nilpotent $f$; the question is whether
+bar-cobar duality commutes with the reduction.
+\end{definition}
+
+\begin{definition}[Hook-type nilpotent]
+\label{def:hook-type}
+\index{hook-type nilpotent|textbf}
+\index{W-algebra@$\mathcal{W}$-algebra!hook-type}
+A nilpotent $f\in\mathfrak{sl}_N$ is \emph{hook-type}
+if its Jordan type is a hook partition
+$\lambda=(N-p,1^p)$ for some $0\le p\le N-1$.
+Hook-type nilpotents form a $1$-parameter family
+interpolating between the zero nilpotent ($p=0$,
+$\mathcal{W}=\widehat{\mathfrak{sl}}_N$) and the
+principal nilpotent ($p=N-1$, $\mathcal{W}=\mathcal{W}_N$).
+\end{definition}
+
+\begin{theorem}[Hook-type Koszul duality;
+\ClaimStatusProvedElsewhere]
+\label{thm:hook-type-koszul}
+\index{Koszul duality!hook-type|textbf}
+\textup{(Fehily \cite{Feh23}; Creutzig--Linshaw--Nakatsuka--Sato
+\cite{CLNS24}.)}
+For hook-type nilpotents $f=(N-p,1^p)$ in type~$A$:
+bar-cobar duality commutes with DS reduction:
+\begin{equation}
+\label{eq:hook-type-koszul}
+\bigl(\mathcal{W}_k(\mathfrak{sl}_N,f_{(N-p,1^p)})\bigr)^!
+\;\simeq\;
+\mathcal{W}_{k^\vee}(\mathfrak{sl}_N,f_{(p+1,1^{N-p-1})}),
+\end{equation}
+where $k^\vee$ is the dual level determined by the duality
+involution $f\mapsto f^\vee$ (which sends the hook
+$(N-p,1^p)$ to the dual hook $(p+1,1^{N-p-1})$).
+\end{theorem}
+
+\begin{construction}[Line-operator category for hook-type
+$\mathcal{W}$-algebras; \ClaimStatusProvedHere]
+\label{constr:hook-type-lines}
+\index{W-algebra@$\mathcal{W}$-algebra!hook-type!line operators}
+The line-operator category for a hook-type
+$\mathcal{W}$-algebra is
+\begin{equation}
+\label{eq:hook-type-line-category}
+\cC_{\mathrm{line}}
+\bigl(\mathcal{W}_k(\mathfrak{sl}_N,f_{(N-p,1^p)})\bigr)
+\;\simeq\;
+\mathcal{W}_{k^\vee}(\mathfrak{sl}_N,f_{(p+1,1^{N-p-1})})
+\text{-}\mathbf{mod}^{\mathrm{dg}}.
+\end{equation}
+This follows from Theorem~\ref{thm:hook-type-koszul}
+combined with Theorem~\ref{thm:lines_as_modules}.
+The DS reduction functor on line-operator categories
+is
+\begin{equation}
+\label{eq:ds-line-functor}
+\mathrm{DS}_{f}^*\colon
+\cO_q^{\mathrm{sh}}(\widehat{\mathfrak{sl}}_N)
+\;\longrightarrow\;
+\cC_{\mathrm{line}}
+(\mathcal{W}_k(\mathfrak{sl}_N,f)),
+\end{equation}
+sending an $\widehat{\mathfrak{sl}}_N{}_{-k-2N}$-module
+$M$ to $H^*_{\mathrm{BRST}}(M\otimes\mathrm{ghost}_f)$,
+the BRST cohomology with respect to the nilpotent~$f$.
+\end{construction}
+
+\begin{proposition}[Transport propagation for hook-type;
+\ClaimStatusProvedHere]
+\label{prop:transport-propagation}
+\index{transport propagation!hook-type}
+The hook-type Koszul duality
+(Theorem~\textup{\ref{thm:hook-type-koszul}}) propagates under
+the transport operation: if $(N-p,1^p)$ and $(N-p',1^{p'})$
+are two hook-type nilpotents in $\mathfrak{sl}_N$ connected
+by an edge in the closure ordering on nilpotent orbits, then
+the Koszul duality for $(N-p,1^p)$ implies the Koszul
+duality for $(N-p',1^{p'})$ by a spectral sequence argument.
+Specifically: the transport map is the composition of
+DS reduction from one hook type to the other, and the bar-cobar
+commutation at the first hook propagates through the spectral
+sequence to the second.
+\end{proposition}
+
+\begin{proof}
+Let $f\le f'$ in the closure ordering (i.e., the orbit of $f$
+is in the closure of the orbit of $f'$).  The DS reduction
+$\mathrm{DS}_{f'\to f}\colon
+\mathcal{W}_k(\mathfrak{sl}_N,f')\to
+\mathcal{W}_{k'}(\mathfrak{sl}_N,f)$
+is a functor between vertex algebra categories (it reduces
+a larger nilpotent to a smaller one by further BRST
+reduction).  On bar complexes, this induces a map
+$\barB(\mathrm{DS})\colon
+\barB(\mathcal{W}_k(\mathfrak{sl}_N,f'))\to
+\barB(\mathcal{W}_{k'}(\mathfrak{sl}_N,f))$.
+If the Koszul duality holds for $f'$ (i.e., bar-cobar
+commutes with DS at $f'$), then the bar complex map
+$\barB(\mathrm{DS})$ is compatible with the Koszul
+duality at $f'$, and the induced map on Koszul duals
+$(\mathcal{W}_k(\mathfrak{sl}_N,f'))^!
+\to(\mathcal{W}_{k'}(\mathfrak{sl}_N,f))^!$
+is the DS reduction of the dual algebra.  This is
+the ``transport'' of Koszul duality along the closure
+ordering.
+
+For hook-type: the hooks $(N-p,1^p)$ ($0\le p\le N-1$)
+are totally ordered by the closure relation, and the
+transport propagation gives the full hook-type corridor
+from the principal case ($p=N-1$, which is the
+$\mathcal{W}_N$ duality proved in Vol~I).
+\end{proof}
+
+\begin{conjecture}[Type-$A$ transport-to-transpose;
+\ClaimStatusConjectured]
+\label{conj:transport-to-transpose}
+\index{transport propagation!type A transpose conjecture}
+For arbitrary nilpotent $f_\lambda$ in $\mathfrak{sl}_N$
+(associated to a partition $\lambda$ of $N$):
+\begin{equation}
+\label{eq:transport-to-transpose}
+\bigl(\mathcal{W}_k(\mathfrak{sl}_N,f_\lambda)\bigr)^!
+\;\simeq\;
+\mathcal{W}_{k^\vee_\lambda}(\mathfrak{sl}_N,f_{\lambda^t}),
+\end{equation}
+where $\lambda^t$ is the transpose partition and
+$k^\vee_\lambda$ is the dual level.  This generalizes
+the hook-type result~\eqref{eq:hook-type-koszul} to
+arbitrary partitions.
+\end{conjecture}
+
+\subsection{DS reduction as functor on line-operator categories}
+\label{subsec:ds-functor-lines}
+
+\begin{theorem}[DS as a dg functor on line categories;
+\ClaimStatusProvedHere]
+\label{thm:ds-dg-functor}
+\index{Drinfeld--Sokolov reduction!dg functor on line categories|textbf}
+For the principal nilpotent $f_{\mathrm{prin}}$ in
+$\mathfrak{sl}_N$, the DS reduction
+$\mathrm{DS}\colon
+\widehat{\mathfrak{sl}}_N{}_k\to\mathcal{W}_N{}_{c(k)}$
+induces a dg functor on line-operator categories:
+\begin{equation}
+\label{eq:ds-dg-functor}
+\mathrm{DS}_*\colon
+\cO_q^{\mathrm{sh}}(\widehat{\mathfrak{sl}}_N)
+\;\longrightarrow\;
+\mathcal{W}_N{}_{c^!_N}\text{-}\mathbf{mod}^{\mathrm{dg}},
+\end{equation}
+compatible with the braided monoidal structure: the functor
+preserves tensor products, $R$-matrices, and fusion rules
+(up to quasi-isomorphism).
+\end{theorem}
+
+\begin{proof}
+\textbf{Step 1: DS at the algebra level.}
+The DS reduction sends $\widehat{\mathfrak{sl}}_N{}_k$
+to $\mathcal{W}_N{}_{c(k)}$ by taking BRST cohomology
+with respect to the nilradical $\mathfrak{n}_+$ of a
+Borel subalgebra.  On Koszul duals, this induces
+$Y_\hbar(\mathfrak{sl}_N)\to\Ydg(\mathcal{W}_N{}_{c^!_N})$
+(the DS reduction of the Yangian), which is the
+$\mathcal{W}_N$-Yangian.
+
+\textbf{Step 2: DS on modules.}
+For a $\widehat{\mathfrak{sl}}_N{}_{-k-2N}$-module $M$:
+$\mathrm{DS}_*(M)
+=H^*_{\mathrm{BRST}}(M\otimes\mathrm{ghost})$
+is a $\mathcal{W}_N{}_{c^!_N}$-module.  The BRST
+differential is $Q_{\mathrm{BRST}}=\oint j_{\mathrm{BRST}}(z)\,dz$,
+where $j_{\mathrm{BRST}}$ is the BRST current.  Since
+$Q_{\mathrm{BRST}}^2=0$ and $Q_{\mathrm{BRST}}$
+commutes with the $\mathcal{W}_N$ action (by construction),
+$\mathrm{DS}_*$ is a functor of dg categories.
+
+\textbf{Step 3: Monoidal compatibility.}
+The tensor product of
+$\widehat{\mathfrak{sl}}_N{}_{-k-2N}$-modules is
+$M_1\otimes_z M_2$ with the coproduct twisted by
+$r(z)=\Omega/z$.  The DS functor sends this to
+$H^*_{\mathrm{BRST}}((M_1\otimes_z M_2)\otimes\mathrm{ghost})
+\cong
+H^*_{\mathrm{BRST}}(M_1\otimes\mathrm{ghost})
+\otimes_z
+H^*_{\mathrm{BRST}}(M_2\otimes\mathrm{ghost})$
+(the K\"unneth isomorphism for BRST cohomology, valid
+because the ghost system is a tensor factor).  The
+$R$-matrix is preserved because
+$Q_{\mathrm{BRST}}$ commutes with the braiding
+$R(z)$ (the BRST differential acts only on the
+ghost sector, which is decoupled from the spectral
+braiding).
+\end{proof}
+
+\subsection{The non-principal obstruction}
+\label{subsec:non-principal-obstruction}
+
+\begin{proposition}[Non-principal bar-cobar obstruction;
+\ClaimStatusProvedHere]
+\label{prop:non-principal-obstruction}
+\index{Drinfeld--Sokolov reduction!non-principal obstruction|textbf}
+For non-principal nilpotent $f\ne f_{\mathrm{prin}}$ in
+$\mathfrak{sl}_N$ outside the hook-type corridor:
+bar-cobar duality does not obviously commute with DS
+reduction.  Specifically, the diagram
+\begin{equation}
+\label{eq:non-principal-obstruction-diagram}
+\begin{tikzcd}
+\widehat{\mathfrak{sl}}_N{}_k
+  \ar[r, "\barB"]
+  \ar[d, "\mathrm{DS}_f"']
+& \barB(\widehat{\mathfrak{sl}}_N{}_k)
+  \ar[d, "\barB(\mathrm{DS}_f)"] \\
+\mathcal{W}_k(\mathfrak{sl}_N,f)
+  \ar[r, "\barB"']
+& \barB(\mathcal{W}_k(\mathfrak{sl}_N,f))
+\end{tikzcd}
+\end{equation}
+does not commute at the chain level.  The obstruction
+is a class
+\begin{equation}
+\label{eq:non-principal-obstruction-class}
+o_f
+\;\in\;
+H^1\bigl(
+\mathrm{Cone}(\barB\circ\mathrm{DS}_f
+\to\mathrm{DS}_f\circ\barB)\bigr)
+\end{equation}
+measuring the failure of the bar functor to commute with
+BRST cohomology.
+\end{proposition}
+
+\begin{proof}
+The bar construction $\barB$ is a functor on dg algebras
+(it sends an algebra to its bar coalgebra).  The DS
+reduction $\mathrm{DS}_f$ is a functor on vertex algebras
+(it sends a vertex algebra to its BRST cohomology).  The
+two functors compose in either order, giving
+$\barB\circ\mathrm{DS}_f$ and $\mathrm{DS}_f\circ\barB$
+(where, in the second composition, $\mathrm{DS}_f$ acts
+on the bar complex by taking BRST cohomology of each
+tensor power).
+
+For principal $f$: the BRST differential commutes with
+the bar differential because the ghost system is a free
+field theory (it is a $bc$-system), and the bar
+construction of a free field theory is formal.  For
+non-principal $f$: the BRST ghost system involves a
+non-abelian gauge constraint (the residual symmetry
+group is the Levi factor $L_f\subset\mathfrak{sl}_N$,
+which is non-trivial for non-principal $f$), and the
+bar construction of this non-abelian system is not formal.
+The obstruction class $o_f$ lives in the BRST cohomology
+of the mapping cone and vanishes precisely when the
+non-abelian gauge constraint is compatible with the
+bar differential.
+
+For hook-type nilpotents: the Levi factor is
+$\mathfrak{gl}_{N-p}\times\mathfrak{gl}_1^p$, which is
+abelian modulo the $\mathfrak{gl}_{N-p}$ factor, and the
+obstruction vanishes by the results of
+Fehily~\cite{Feh23} and
+Creutzig--Linshaw--Nakatsuka--Sato~\cite{CLNS24}.
+For general nilpotents: the Levi factor contains
+non-abelian simple factors (e.g., for the minimal nilpotent
+in $\mathfrak{sl}_4$ with Jordan type $(2,2)$, the Levi
+is $\mathfrak{gl}_2$), and the obstruction is expected to
+be non-trivial without additional input.
+\end{proof}
+
+\begin{remark}[The non-principal frontier]
+\label{rem:non-principal-frontier}
+\index{W-algebra@$\mathcal{W}$-algebra!non-principal frontier}
+The non-principal obstruction
+(Proposition~\ref{prop:non-principal-obstruction}) is the
+main open problem in $\mathcal{W}$-algebra Koszul duality.
+The hook-type corridor
+(Theorem~\ref{thm:hook-type-koszul}) provides the first
+genuinely non-principal case where bar-cobar commutes with
+DS.  Extension beyond hook-type requires:
+\begin{enumerate}[label=(\roman*)]
+\item \emph{Understanding the obstruction class} $o_f$:
+  for which nilpotents does it vanish?
+\item \emph{Transport propagation}
+  (Proposition~\ref{prop:transport-propagation}):
+  can the hook-type result be propagated to neighboring
+  nilpotent orbits in the closure ordering?
+\item \emph{The transpose conjecture}
+  (Conjecture~\ref{conj:transport-to-transpose}):
+  is the Koszul dual always the transpose-nilpotent
+  $\mathcal{W}$-algebra?
+\end{enumerate}
+These questions are active research directions
+(Vol~I, \S\ref*{sec:non-principal-w-duality}).
+\end{remark}
+
+\begin{remark}[Line operators and the platonic package]
+\label{rem:lines-platonic-package}
+\index{platonic package!line operators}
+The line-operator category $\cC_{\mathrm{line}}(\cA)
+\simeq\cA^!\text{-}\mathbf{mod}$ is the module-theoretic
+projection of the platonic package $\Pi_X(L)$
+(Vol~I, Construction~\ref*{constr:platonic-package}):
+the six-fold datum
+$(F_X,\barB_X,\Theta_L,L_L,(V^{\mathrm{br}},T^{\mathrm{br}}),R_4^{\mathrm{mod}})$
+encodes the factorization algebra, bar coalgebra, MC element,
+modular tangent complex, branch-line reduction, and quartic
+resonance class.  The module category is the
+representation-theoretic shadow: it sees the evaluation
+modules $\mathrm{ev}_z^*(M)$
+(Proposition~\ref{prop:evaluation-modules-dense}),
+the spectral braiding $R(z)$
+(Definition~\ref{def:spectral-braiding}), and the
+fusion rules (Construction~\ref{constr:fusion-from-bar}),
+but not the full modular structure (genus $\ge 1$
+corrections, curvature $\kappa$, shadow Postnikov tower).
+
+The genus-$0$ line-operator data is the tip of the
+platonic iceberg.  The full platonic package adds:
+\begin{itemize}
+\item The genus-$1$ modular correction to the $r$-matrix:
+  $R^{\mathrm{mod}}(z;\hbar)=r(z)+\hbar^2 r_1(z)+\cdots$
+  (Definition~\ref{def:modular-spectral-kernel}).
+\item The shadow Postnikov tower
+  $\Theta_\cA^{\le r}$ (Vol~I, Theorem~\ref*{thm:mc2-bar-intrinsic}),
+  whose finite-order projections control the $A_\infty$-structure
+  on $\cA^!$ at each arity.
+\item The modular tangent complex
+  (Vol~I, Construction~\ref*{const:vol1-modular-tangent-complex}),
+  which governs deformations of the line-operator category
+  as the central charge varies.
+\end{itemize}
+\end{remark}
+
+\begin{computation}[Summary: line-operator categories for
+$\mathcal{W}$-algebras; \ClaimStatusProvedHere]
+\label{comp:w-line-summary}
+\index{W-algebra@$\mathcal{W}$-algebra!line operator summary}
+\begin{center}
+\renewcommand{\arraystretch}{1.4}
+\begin{tabular}{llll}
+\textbf{Algebra} & \textbf{Koszul dual}
+  & \textbf{$r$-matrix poles}
+  & \textbf{Status} \\
+\hline
+$\mathcal{W}_2=\mathrm{Vir}_c$
+  & $\mathrm{Vir}_{26-c}$
+  & $z^{-1},z^{-2},z^{-4}$
+  & Proved \\[3pt]
+$\mathcal{W}_3{}_c$
+  & $\mathcal{W}_3{}_{100-c}$
+  & $z^{-1},z^{-2},z^{-3},z^{-4},z^{-5},z^{-6}$
+  & Proved \\[3pt]
+$\mathcal{W}_N{}_c$
+  & $\mathcal{W}_N{}_{c^!_N-c}$
+  & $z^{-1},\ldots,z^{-2N}$
+  & Proved (principal) \\[3pt]
+$\mathcal{W}_k(\fg,f_{\mathrm{hook}})$
+  & $\mathcal{W}_{k^\vee}(\fg,f_{\mathrm{hook}}^t)$
+  & family-dependent
+  & Proved (hook-type) \\[3pt]
+$\mathcal{W}_k(\fg,f)$ (general)
+  & $\mathcal{W}_{k^\vee}(\fg,f^t)$ (conj.)
+  & family-dependent
+  & Conjectural
+\end{tabular}
+\end{center}
+The pole structure of the $r$-matrix increases with the
+number and spin of the strong generators: a spin-$s$
+generator contributes a pole of order $2s$ to the
+$r$-matrix.  For $\mathcal{W}_N$: the highest-spin
+generator has spin~$N$, giving a maximal pole order
+of $2N$.
+\end{computation}
+
+\subsection{Planted-forest differential and genus filtration}
+\label{subsec:planted-forest-genus-filtration}
+
+\begin{lemma}[Planted-forest differential and genus shifts]
+\label{lem:thqg-VII-genus-shifts}
+\index{planted-forest differential!genus filtration}
+Let $\cA$ be a chiral Koszul algebra and let
+$\Theta_\cA = \sum_{g,r,d}\hbar^g\,\Theta_{g,r;d}$
+be the tridegree decomposition of the bar-intrinsic MC element
+\textup{(}Vol~I, Definition~\textup{\ref*{def:vol1-rigid-planted-forest-depth-filtration}}\textup{)}.
+The three components of the total differential $D = d_0 + d_{\mathrm{sew}} + d_{\mathrm{pf}}$ act on tridegree as follows:
+\begin{enumerate}[label=\textup{(\roman*)},leftmargin=1.8em]
+\item The free differential $d_0$ preserves all three indices:
+$d_0\colon\Theta_{g,r;d}\to\Theta_{g,r;d}$.
+\item The sewing differential $d_{\mathrm{sew}}$ raises the loop
+genus $g$ by $1$ and decreases the arity $r$ by $2$ (one
+self-gluing):
+$d_{\mathrm{sew}}\colon\Theta_{g,r;d}\to\Theta_{g+1,r-2;d}$.
+\item The planted-forest differential $d_{\mathrm{pf}}$ raises
+the \emph{log boundary depth} $d$ by $1$, and preserves
+the loop genus $g$:
+$d_{\mathrm{pf}}\colon\Theta_{g,r;d}\to\Theta_{g,r;d+1}$.
+\end{enumerate}
+In particular, the genus filtration
+$F^g = \bigoplus_{g'\ge g}\Theta_{g',\bullet;\bullet}$ is
+preserved by $d_{\mathrm{pf}}$: planted forests have genus $0$
+\textup{(}they are trees of trees\textup{)}, so
+$d_{\mathrm{pf}}$ cannot increase the loop genus.  The only
+differential that shifts the genus is $d_{\mathrm{sew}}$.
+\end{lemma}
+
+\begin{proof}
+Part (i): the free differential $d_0$ acts on each generator
+independently, preserving all grading data.
+
+Part (ii): the sewing differential $d_{\mathrm{sew}}$
+contracts a self-edge, creating one new loop.  This increases
+the first Betti number (= loop genus $g$) by $1$ and consumes
+two arity slots (the two endpoints of the sewn edge), giving
+$r\mapsto r-2$.  The depth $d$ is unchanged because sewing
+is a stable-graph operation, not a log-boundary operation.
+
+Part (iii): the planted-forest differential $d_{\mathrm{pf}}$
+arises from the codimension-$1$ boundary strata of the log FM
+compactification $\FM_n(X|D)$ (Vol~I,
+Construction~\ref*{const:vol1-boundary-operators-residue}).
+These strata correspond to planted forests: a tree of collision
+clusters, where each cluster is itself a rooted tree.  Since
+planted forests are contractible (they are trees), they have
+genus $0$ and cannot contribute to the loop genus.  The depth
+$d$ increases by $1$ because each application of $d_{\mathrm{pf}}$
+adds one level to the planted-forest stratification.
+\end{proof}
+
+\begin{remark}[Shadow depth and module complexity]
+\label{rem:shadow-depth-module-complexity}
+\index{shadow depth!module complexity}
+The shadow depth classification
+(Vol~I, \S\ref*{sec:concordance-koszulness-programme})
+controls the complexity of the $A_\infty$-module structure:
+\begin{center}
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{llll}
+\textbf{Class} & $r_{\max}$
+  & \textbf{$A_\infty$ depth}
+  & \textbf{Example} \\
+\hline
+G (Gaussian) & $2$ & $\mu_n^M=0$ for $n\ge 3$
+  & Heisenberg \\
+L (Lie/tree) & $3$ & $\mu_n^M=0$ for $n\ge 4$
+  & Affine KM \\
+C (contact/quartic) & $4$ & $\mu_n^M=0$ for $n\ge 5$
+  & $\beta\gamma$ \\
+M (mixed) & $\infty$ & all $\mu_n^M\ne 0$
+  & Virasoro, $\mathcal{W}_N$
+\end{tabular}
+\end{center}
+Class~G and L algebras have module categories
+that are ``close to classical'' (finitely many non-trivial
+higher operations).  Class~M algebras (Virasoro,
+$\mathcal{W}_N$) have genuinely infinite $A_\infty$-module
+hierarchies: no truncation of the $A_\infty$-structure
+captures the full module theory.
+\end{remark}

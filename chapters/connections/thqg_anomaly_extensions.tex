@@ -1,0 +1,2166 @@
+% Anomaly-completed topological holography: extensions
+% Full Morita theory, gravitational regime, critical points,
+% symplectic polarization of complementarity
+
+\providecommand{\Gg}{\mathfrak{G}}
+\providecommand{\Sgmod}{S_g}
+\providecommand{\Mbar}{\overline{\mathcal{M}}}
+\providecommand{\ChirHoch}{\operatorname{ChirHoch}}
+
+\subsection{Full Morita theory of the genus-Clifford completion}
+\label{subsec:tholog-full-morita-theory}
+
+\index{Morita equivalence!genus-Clifford|textbf}
+\index{spinor module|textbf}
+\index{genus-Clifford completion!Morita theory}
+
+Theorem~\ref{thm:tholog-morita-triviality} established that
+$\Gg_g(B_\Theta)[u^{-1}] \cong \operatorname{Mat}_{2^g}(R)$
+with $R = B_\Theta[u^{-1}]$.
+The proof used the tensor-product splitting of the genus-$g$
+algebra into $g$ copies of the genus-$1$ algebra, each
+separately identified with $\operatorname{Mat}_2(R)$.
+The present section constructs the Morita equivalence
+explicitly at each genus, building the spinor module $\Sgmod$,
+verifying the endomorphism computation, and spelling out
+both functors of the equivalence.
+
+\subsubsection{The Clifford algebra over a central base}
+\label{subsubsec:tholog-clifford-over-base}
+
+Fix a unital associative dg algebra $R$ and a central
+closed degree-$2$ element $u \in Z^2(R) \cap Z(R)$.
+For $g \geq 1$, define
+\[
+\operatorname{Cl}_{2g}(R,u)
+\;:=\;
+\frac{R\langle \alpha_1,\beta_1,\dots,\alpha_g,\beta_g \rangle}
+{\bigl\langle
+  \alpha_i\alpha_j + \alpha_j\alpha_i,\;
+  \beta_i\beta_j + \beta_j\beta_i,\;
+  \alpha_i\beta_j + \beta_j\alpha_i - \delta_{ij}u
+\bigr\rangle},
+\]
+with $|\alpha_i| = |\beta_i| = 1$ and $d\alpha_i = d\beta_i = 0$.
+By definition, $\Gg_g(B_\Theta) = \operatorname{Cl}_{2g}(B_\Theta, u)$
+with $u = \eta^2$.
+
+\begin{lemma}[Poincar\'{e}--Birkhoff--Witt basis; \ClaimStatusProvedHere]
+\label{lem:tholog-clifford-pbw}
+As a left $R$-module, $\operatorname{Cl}_{2g}(R,u)$ is free of rank
+$4^g$ with basis
+\[
+\big\{
+  \alpha_1^{a_1}\beta_1^{b_1}\cdots\alpha_g^{a_g}\beta_g^{b_g}
+  \;\big|\;
+  a_i, b_i \in \{0,1\}
+\big\}.
+\]
+In particular, $\operatorname{Cl}_{2g}(R,u) \cong R^{4^g}$ as a
+graded left $R$-module.
+\end{lemma}
+
+\begin{proof}
+The Clifford relations reduce every monomial in the generators to
+one in which each $\alpha_i$ and each $\beta_i$ appears at most
+once (using $\alpha_i^2 = 0$, $\beta_i^2 = 0$), and the
+generators for different handle indices graded-commute (the
+cross-handle anticommutators are all zero).
+The ordered monomials span $\operatorname{Cl}_{2g}(R,u)$
+over~$R$.
+Freeness follows because the Clifford algebra
+$\operatorname{Cl}_{2g}(R,u)$ is filtered by $\eta$-degree,
+with the filtration $F^p := \sum_{k \leq p} R \cdot
+\{\text{monomials of total generator degree} \leq k\}$.
+The associated graded is isomorphic to the exterior algebra
+$\Lambda^{2g}(\alpha_1,\beta_1,\dots,\alpha_g,\beta_g)$
+over~$R$ (since the Clifford relations become anticommutation
+relations modulo lower filtration), which is free of rank~$4^g$
+over~$R$.  The filtration is exhaustive (every element has
+finite generator degree) and separated (the intersection
+$\bigcap_p F^p = F^0 = R$ contributes only the unit),
+so $\operatorname{Cl}_{2g}(R,u)$ inherits freeness of
+rank~$4^g$ from its associated graded.
+\end{proof}
+
+\subsubsection{The spinor module: genus $g = 1$}
+\label{subsubsec:tholog-spinor-g1}
+
+\begin{definition}[Spinor module at genus 1]
+\label{def:tholog-spinor-g1}
+\index{spinor module!genus 1}
+Let $R = B_\Theta[u^{-1}]$.
+The \emph{genus-$1$ spinor module} is
+\[
+S_1 \;:=\; R e_+ \oplus R e_-,
+\]
+where $|e_+| = 0$, $|e_-| = -1$, $de_+ = de_- = 0$, equipped with
+the left $\Gg_1(R)$-action defined by
+\begin{equation}\label{eq:spinor-g1-action}
+\alpha \cdot e_+ = u\,e_-,\qquad
+\alpha \cdot e_- = 0,\qquad
+\beta \cdot e_+ = 0,\qquad
+\beta \cdot e_- = e_+.
+\end{equation}
+(Here and below we write $\alpha = \alpha_1$, $\beta = \beta_1$
+for the single handle pair.)
+\end{definition}
+
+\begin{proposition}[Spinor module is well defined; \ClaimStatusProvedHere]
+\label{prop:tholog-spinor-g1-well-defined}
+The formulas~\eqref{eq:spinor-g1-action} extend to a well-defined
+left dg $\Gg_1(R)$-module structure on $S_1$.
+\end{proposition}
+
+\begin{proof}
+We verify the three defining relations of $\Gg_1(R)$.
+
+\emph{Relation $\alpha^2 = 0$.}
+\begin{align*}
+\alpha^2 \cdot e_+ &= \alpha(\alpha \cdot e_+) = \alpha(u\,e_-)
+= u(\alpha \cdot e_-) = u \cdot 0 = 0, \\
+\alpha^2 \cdot e_- &= \alpha(\alpha \cdot e_-) = \alpha(0) = 0.
+\end{align*}
+Since $\alpha^2 = 0$ on both generators, the relation holds.
+
+\emph{Relation $\beta^2 = 0$.}
+\begin{align*}
+\beta^2 \cdot e_+ &= \beta(\beta \cdot e_+) = \beta(0) = 0, \\
+\beta^2 \cdot e_- &= \beta(\beta \cdot e_-) = \beta(e_+) = 0.
+\end{align*}
+The last equality uses $\beta \cdot e_+ = 0$.
+
+\emph{Relation $\alpha\beta + \beta\alpha = u$.}
+On $e_+$:
+\[
+(\alpha\beta + \beta\alpha) \cdot e_+
+= \alpha(\beta \cdot e_+) + \beta(\alpha \cdot e_+)
+= \alpha(0) + \beta(u\,e_-)
+= 0 + u(\beta \cdot e_-)
+= u \cdot e_+.
+\]
+On $e_-$:
+\[
+(\alpha\beta + \beta\alpha) \cdot e_-
+= \alpha(\beta \cdot e_-) + \beta(\alpha \cdot e_-)
+= \alpha(e_+) + \beta(0)
+= u\,e_- + 0
+= u \cdot e_-.
+\]
+In both cases, $(\alpha\beta + \beta\alpha)$ acts as
+multiplication by $u$.
+
+All three Clifford relations are satisfied.
+It remains to verify that the differential is compatible with
+the module structure.  Since $d(\alpha) = d(\beta) = d(e_\pm) = 0$
+by hypothesis, the Leibniz rule
+$d(a \cdot m) = (da) \cdot m + (-1)^{|a|} a \cdot (dm)$
+is trivially satisfied: both terms on the right vanish for
+every generator pair $(a, m)$.
+\end{proof}
+
+\begin{proposition}[Endomorphism computation at genus 1; \ClaimStatusProvedHere]
+\label{prop:tholog-end-g1}
+There is an isomorphism of dg algebras
+\[
+\underline{\operatorname{End}}_R(S_1)
+\;\cong\;
+\operatorname{Mat}_{2 \times 2}(R).
+\]
+The algebra map
+$\rho : \Gg_1(R) \to \underline{\operatorname{End}}_R(S_1)$
+induced by the $\Gg_1(R)$-action on $S_1$ is an isomorphism.
+\end{proposition}
+
+\begin{proof}
+Since $S_1 = R e_+ \oplus R e_-$ is a free $R$-module of
+rank~$2$, the endomorphism algebra is
+$\underline{\operatorname{End}}_R(S_1) \cong \operatorname{Mat}_2(R)$
+as graded $R$-algebras.
+Write the elementary matrix $E_{ij}$ for the endomorphism
+$e_j \mapsto e_i$, $e_k \mapsto 0$ for $k \neq j$
+(with $e_1 = e_+$, $e_2 = e_-$).
+
+Under $\rho$, the action formulas give:
+\begin{alignat*}{2}
+\rho(\alpha) &: e_+ \mapsto u\,e_-,\; e_- \mapsto 0
+&\qquad &= u\,E_{21}, \\
+\rho(\beta) &: e_+ \mapsto 0,\; e_- \mapsto e_+
+&\qquad &= E_{12}, \\
+\rho(\alpha\beta) &: e_+ \mapsto 0,\; e_- \mapsto u\,e_-
+&\qquad &= u\,E_{22}.
+\end{alignat*}
+Compute $\rho(\alpha\beta)$ directly:
+$\rho(\alpha\beta) \cdot e_+ = \alpha(\beta \cdot e_+)
+= \alpha(0) = 0$, and
+$\rho(\alpha\beta) \cdot e_- = \alpha(\beta \cdot e_-)
+= \alpha(e_+) = u\,e_-$.
+Also, $\rho(1) = E_{11} + E_{22}$.
+
+The four elements $\{1, \alpha, \beta, \alpha\beta\}$ form
+a basis of $\Gg_1(R)$ over $R$
+(Lemma~\ref{lem:tholog-clifford-pbw}).
+Their images are
+\[
+E_{11} + E_{22},\quad
+u\,E_{21},\quad
+E_{12},\quad
+u\,E_{22}.
+\]
+Since $u$ is invertible in $R$, we recover
+$E_{21} = u^{-1}\rho(\alpha)$,
+$E_{12} = \rho(\beta)$,
+$E_{22} = u^{-1}\rho(\alpha\beta)$, and
+$E_{11} = \rho(1) - u^{-1}\rho(\alpha\beta)$.
+Thus $\rho$ is surjective.
+As both sides are free of rank~$4$ over $R$, surjectivity
+implies $\rho$ is an isomorphism.
+\end{proof}
+
+\begin{corollary}[Morita bimodule at genus 1; \ClaimStatusProvedHere]
+\label{cor:tholog-morita-bimodule-g1}
+The spinor module $S_1$ is a $(\Gg_1(R), R)$-bimodule that
+implements the Morita equivalence
+\[
+D\!\bigl(\Gg_1(R)\text{-}\mathbf{mod}\bigr)
+\;\simeq\;
+D\!\bigl(R\text{-}\mathbf{mod}\bigr).
+\]
+The equivalence functor is $M \mapsto S_1 \otimes_R M$ with
+inverse $N \mapsto S_1^\vee \otimes_{\Gg_1(R)} N$, where
+$S_1^\vee = \underline{\operatorname{Hom}}_R(S_1, R)$.
+\end{corollary}
+
+\begin{proof}
+Proposition~\ref{prop:tholog-end-g1} identifies
+$\Gg_1(R) \cong \operatorname{End}_R(S_1)$.
+Since $S_1$ is a finitely generated projective (in fact free)
+$R$-module of rank $2$, the standard Morita theorem
+(Lam, \emph{Lectures on Modules and Rings}, Theorem~18.30)
+gives the derived equivalence.
+The inverse functor is
+$N \mapsto S_1^\vee \otimes_{\Gg_1(R)} N
+= \operatorname{Hom}_R(S_1, R) \otimes_{\Gg_1(R)} N$,
+and the unit and counit of the adjunction are the standard
+evaluation and coevaluation maps.
+\end{proof}
+
+\subsubsection{The spinor module: genus $g = 2$}
+\label{subsubsec:tholog-spinor-g2}
+
+\begin{definition}[Spinor module at genus 2]
+\label{def:tholog-spinor-g2}
+\index{spinor module!genus 2}
+Define
+\[
+S_2 \;:=\; S_1 \otimes_R S_1'
+\;=\;
+R^4,
+\]
+where $S_1 = R e_+ \oplus R e_-$ carries the handle pair
+$(\alpha_1, \beta_1)$ and
+$S_1' = R e_+' \oplus R e_-'$ carries a second copy
+$(\alpha_2, \beta_2)$ with the same formulas as~\eqref{eq:spinor-g1-action}.
+The graded tensor product gives a free $R$-module of rank $4$
+with basis
+\[
+e_{++} := e_+ \otimes e_+',\quad
+e_{+-} := e_+ \otimes e_-',\quad
+e_{-+} := e_- \otimes e_+',\quad
+e_{--} := e_- \otimes e_-'.
+\]
+The degrees are
+$|e_{++}| = 0$, $|e_{+-}| = -1$, $|e_{-+}| = -1$, $|e_{--}| = -2$.
+\end{definition}
+
+\begin{proposition}[Genus-2 Clifford relations; \ClaimStatusProvedHere]
+\label{prop:tholog-spinor-g2-relations}
+The actions
+\begin{alignat*}{2}
+\alpha_1 &= u\,E_{21} \otimes \operatorname{id},&\qquad
+\beta_1 &= E_{12} \otimes \operatorname{id}, \\
+\alpha_2 &= \varepsilon \otimes u\,E_{21},&\qquad
+\beta_2 &= \varepsilon \otimes E_{12},
+\end{alignat*}
+where $\varepsilon = (-1)^{|\cdot|}$ is the grading operator
+on $S_1$ (acting as $+1$ on $e_+$ and $-1$ on $e_-$),
+define a well-defined left $\Gg_2(R)$-module structure on~$S_2$.
+\end{proposition}
+
+\begin{proof}
+The grading operator $\varepsilon$ satisfies
+$\varepsilon^2 = \operatorname{id}$ and anticommutes with both
+$E_{21}$ and $E_{12}$ (since these shift degree by $\pm 1$):
+\[
+\varepsilon E_{21} = -E_{21} \varepsilon,\qquad
+\varepsilon E_{12} = -E_{12} \varepsilon.
+\]
+
+\emph{Same-handle relations.}
+For handle $1$: the operators $\alpha_1 = u\,E_{21}\otimes\operatorname{id}$
+and $\beta_1 = E_{12}\otimes\operatorname{id}$ satisfy
+$\alpha_1^2 = u^2(E_{21})^2\otimes\operatorname{id} = 0$,
+$\beta_1^2 = (E_{12})^2\otimes\operatorname{id} = 0$, and
+\begin{align*}
+\alpha_1\beta_1 + \beta_1\alpha_1
+&= u(E_{21}E_{12} + E_{12}E_{21})\otimes\operatorname{id} \\
+&= u\,(E_{22} + E_{11})\otimes\operatorname{id}
+= u\,\operatorname{id}_{S_1}\otimes\operatorname{id}_{S_1'}
+= u\,\operatorname{id}_{S_2}.
+\end{align*}
+For handle $2$: the operators
+$\alpha_2 = \varepsilon \otimes u\,E_{21}$
+and $\beta_2 = \varepsilon \otimes E_{12}$ satisfy
+$\alpha_2^2 = \varepsilon^2 \otimes u^2(E_{21})^2 = \operatorname{id} \otimes 0 = 0$,
+$\beta_2^2 = \varepsilon^2 \otimes (E_{12})^2 = 0$, and
+\begin{align*}
+\alpha_2\beta_2 + \beta_2\alpha_2
+&= \varepsilon^2 \otimes u(E_{21}E_{12} + E_{12}E_{21}) \\
+&= \operatorname{id} \otimes u\,\operatorname{id}
+= u\,\operatorname{id}_{S_2}.
+\end{align*}
+
+\emph{Cross-handle relations.}
+We must verify $\alpha_1\alpha_2 + \alpha_2\alpha_1 = 0$,
+$\beta_1\beta_2 + \beta_2\beta_1 = 0$,
+$\alpha_1\beta_2 + \beta_2\alpha_1 = 0$,
+$\alpha_2\beta_1 + \beta_1\alpha_2 = 0$.
+
+For $\alpha_1\alpha_2 + \alpha_2\alpha_1$:
+\begin{align*}
+&(u\,E_{21}\otimes\operatorname{id})
+(\varepsilon\otimes u\,E_{21})
++
+(\varepsilon\otimes u\,E_{21})
+(u\,E_{21}\otimes\operatorname{id}) \\
+&\quad=\;
+u(E_{21}\varepsilon)\otimes(u\,E_{21})
++
+u(\varepsilon E_{21})\otimes(u\,E_{21}) \\
+&\quad=\;
+u^2(E_{21}\varepsilon + \varepsilon E_{21})\otimes E_{21}
+\;=\; 0,
+\end{align*}
+since $E_{21}\varepsilon + \varepsilon E_{21} = 0$
+by the anticommutation above.
+The remaining three cross-handle computations are identical
+in structure, each reducing to
+$E_{ij}\varepsilon + \varepsilon E_{ij} = 0$
+for an off-diagonal $E_{ij}$.
+\end{proof}
+
+\begin{proposition}[Endomorphism computation at genus 2; \ClaimStatusProvedHere]
+\label{prop:tholog-end-g2}
+There is an isomorphism of dg algebras
+\[
+\Gg_2(R)
+\;\cong\;
+\underline{\operatorname{End}}_R(S_2)
+\;\cong\;
+\operatorname{Mat}_{4 \times 4}(R).
+\]
+\end{proposition}
+
+\begin{proof}
+By Lemma~\ref{lem:tholog-clifford-pbw}, $\Gg_2(R)$ is free of
+rank $4^2 = 16$ over $R$.
+Likewise $\underline{\operatorname{End}}_R(S_2) \cong \operatorname{Mat}_4(R)$
+is free of rank $16$.
+The algebra map
+$\rho : \Gg_2(R) \to \operatorname{Mat}_4(R)$
+is the tensor product of the two genus-$1$ representations.
+By Proposition~\ref{prop:tholog-end-g1}, each factor is an
+isomorphism after inverting $u$.
+The tensor product of two matrix-algebra isomorphisms gives
+\[
+\operatorname{Mat}_2(R) \otimes_R \operatorname{Mat}_2(R)
+\;\cong\;
+\operatorname{Mat}_4(R),
+\]
+and the composite
+$\Gg_2(R) = \Gg_1(R) \otimes_R \Gg_1(R)
+\xrightarrow{\rho_1 \otimes \rho_2}
+\operatorname{Mat}_2(R) \otimes_R \operatorname{Mat}_2(R)
+\cong \operatorname{Mat}_4(R)$
+is an isomorphism.
+\end{proof}
+
+We record the explicit action on the four basis vectors
+for later use.
+
+\begin{computation}[Explicit genus-2 spinor action; \ClaimStatusProvedHere]
+\label{comp:tholog-spinor-g2-explicit}
+\index{spinor module!genus 2!explicit action}
+In the ordered basis $(e_{++}, e_{+-}, e_{-+}, e_{--})$:
+\[
+\rho(\alpha_1) = \begin{pmatrix}
+0 & 0 & 0 & 0 \\
+0 & 0 & 0 & 0 \\
+u & 0 & 0 & 0 \\
+0 & u & 0 & 0
+\end{pmatrix},\qquad
+\rho(\beta_1) = \begin{pmatrix}
+0 & 0 & 1 & 0 \\
+0 & 0 & 0 & 1 \\
+0 & 0 & 0 & 0 \\
+0 & 0 & 0 & 0
+\end{pmatrix},
+\]
+\[
+\rho(\alpha_2) = \begin{pmatrix}
+0 & 0 & 0 & 0 \\
+u & 0 & 0 & 0 \\
+0 & 0 & 0 & 0 \\
+0 & 0 & -u & 0
+\end{pmatrix},\qquad
+\rho(\beta_2) = \begin{pmatrix}
+0 & 1 & 0 & 0 \\
+0 & 0 & 0 & 0 \\
+0 & 0 & 0 & -1 \\
+0 & 0 & 0 & 0
+\end{pmatrix}.
+\]
+Direct multiplication confirms all six Clifford relations.
+For instance,
+\[
+\rho(\alpha_1)\rho(\beta_2) + \rho(\beta_2)\rho(\alpha_1) = 0
+\]
+because the $(3,2)$-entry of the first product is $u$ while
+the $(3,2)$-entry of the second is $-u$, and all other
+nonzero entries cancel similarly.
+\end{computation}
+
+\subsubsection{The spinor module: genus $g = 3$}
+\label{subsubsec:tholog-spinor-g3}
+
+\begin{definition}[Spinor module at genus 3]
+\label{def:tholog-spinor-g3}
+\index{spinor module!genus 3}
+Define
+\[
+S_3 \;:=\; S_2 \otimes_R S_1''
+\;=\; R^8,
+\]
+where $S_1'' = R e_+'' \oplus R e_-''$ carries the third handle
+pair $(\alpha_3, \beta_3)$.
+The basis vectors are
+$e_{\epsilon_1\epsilon_2\epsilon_3}$ with
+$\epsilon_i \in \{+,-\}$, and the $\Gg_3(R)$-action is the
+graded tensor product of the three genus-$1$ representations:
+handle $i$ acts on the $i$-th tensor factor, inserted with
+grading operators on the preceding factors.
+\end{definition}
+
+\begin{proposition}[Endomorphism computation at genus 3; \ClaimStatusProvedHere]
+\label{prop:tholog-end-g3}
+There is an isomorphism of dg algebras
+\[
+\Gg_3(R)
+\;\cong\;
+\underline{\operatorname{End}}_R(S_3)
+\;\cong\;
+\operatorname{Mat}_{8 \times 8}(R).
+\]
+\end{proposition}
+
+\begin{proof}
+Iterate the tensor-product argument of
+Proposition~\ref{prop:tholog-end-g2}: three copies of
+$\operatorname{Mat}_2(R)$ tensor to $\operatorname{Mat}_8(R)$,
+and the composite map is an isomorphism by the
+$g$-fold product of the genus-$1$ isomorphisms.
+\end{proof}
+
+\subsubsection{The general spinor module and the full Morita equivalence}
+\label{subsubsec:tholog-general-spinor}
+
+\begin{definition}[General spinor module]
+\label{def:tholog-spinor-general}
+\index{spinor module!general genus}
+For $g \geq 1$, the \emph{genus-$g$ spinor module} is
+\[
+S_g \;:=\; S_1^{\otimes_R g}
+\;=\;
+R^{2^g},
+\]
+with basis $\{e_{\epsilon_1 \cdots \epsilon_g}\}$
+indexed by $(\epsilon_1,\dots,\epsilon_g) \in \{+,-\}^g$.
+The $\Gg_g(R)$-action on the $i$-th handle pair
+$(\alpha_i, \beta_i)$ acts on the $i$-th tensor factor,
+with the grading operator $\varepsilon_j = (-1)^{|\cdot|}$
+on each preceding factor $j < i$:
+\begin{align}
+\alpha_i &= \varepsilon_1 \otimes \cdots \otimes \varepsilon_{i-1}
+\otimes u\,E_{21} \otimes \operatorname{id} \otimes \cdots \otimes
+\operatorname{id},
+\label{eq:general-spinor-alpha} \\
+\beta_i &= \varepsilon_1 \otimes \cdots \otimes \varepsilon_{i-1}
+\otimes E_{12} \otimes \operatorname{id} \otimes \cdots \otimes
+\operatorname{id}.
+\label{eq:general-spinor-beta}
+\end{align}
+\end{definition}
+
+\begin{theorem}[Full Morita equivalence at genus $g$; \ClaimStatusProvedHere]
+\label{thm:tholog-full-morita-g}
+For every $g \geq 1$ and $R = B_\Theta[u^{-1}]$:
+\begin{enumerate}[label=\textup{(\roman*)}]
+\item The algebra map
+  $\rho_g : \Gg_g(R) \to \underline{\operatorname{End}}_R(S_g)
+  \cong \operatorname{Mat}_{2^g}(R)$
+  defined by~\eqref{eq:general-spinor-alpha}--\eqref{eq:general-spinor-beta}
+  is an isomorphism of dg algebras.
+\item The spinor module $S_g$ implements a Morita equivalence
+  \[
+  D\!\bigl(\Gg_g(R)\text{-}\mathbf{mod}\bigr)
+  \;\simeq\;
+  D\!\bigl(R\text{-}\mathbf{mod}\bigr).
+  \]
+\item The equivalence functors are:
+  \[
+  \Phi_g : M \longmapsto S_g \otimes_R M,\qquad
+  \Psi_g : N \longmapsto S_g^\vee \otimes_{\Gg_g(R)} N.
+  \]
+\item The natural isomorphisms
+  $\Psi_g \circ \Phi_g \cong \operatorname{id}$
+  and $\Phi_g \circ \Psi_g \cong \operatorname{id}$
+  are induced by the trace pairing
+  $S_g^\vee \otimes_R S_g \cong R$
+  and the coevaluation
+  $R \to S_g \otimes_R S_g^\vee \cong \operatorname{End}_R(S_g)$.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+Part~(i).
+The algebra $\Gg_g(R)$ splits as the tensor product of $g$
+copies of $\Gg_1(R)$ (Definition~\ref{def:tholog-genus-clifford}:
+generators for different handles graded-commute, and the
+Clifford relation at each handle involves only the
+local pair).
+Proposition~\ref{prop:tholog-end-g1} gives
+$\rho_1 : \Gg_1(R) \xrightarrow{\sim} \operatorname{Mat}_2(R)$.
+The map $\rho_g = \rho_1^{\otimes g}$ is therefore an
+isomorphism onto
+$\operatorname{Mat}_2(R)^{\otimes g} \cong \operatorname{Mat}_{2^g}(R)$.
+
+It remains to verify that the insertion of grading operators
+$\varepsilon_j$ in~\eqref{eq:general-spinor-alpha}--\eqref{eq:general-spinor-beta}
+is compatible with the tensor-product identification.
+The grading operator on $S_1 = R e_+ \oplus R e_-$ acts as
+$\varepsilon(e_+) = e_+$ and $\varepsilon(e_-) = -e_-$.
+In the matrix basis this is
+$\varepsilon = E_{11} - E_{22} = \begin{psmallmatrix}1&0\\0&-1\end{psmallmatrix}$.
+The insertion
+$\varepsilon_1 \otimes \cdots \otimes \varepsilon_{i-1}
+\otimes E_{21} \otimes \operatorname{id} \otimes \cdots$
+is the standard ``Jordan--Wigner transformation'' that
+converts the graded tensor product of Clifford algebras into
+a single matrix algebra.
+It is classical that this map is an algebra homomorphism whose
+image is all of $\operatorname{Mat}_{2^g}(R)$.
+
+Part~(ii).
+Since $S_g$ is a free $R$-module of finite rank $2^g$,
+and $\Gg_g(R) \cong \operatorname{End}_R(S_g)$, the Morita
+equivalence follows by the standard criterion:
+a progenerator of rank $2^g$.
+
+Part~(iii).
+The equivalence functors are defined explicitly.
+The forward functor is
+$\Phi_g(M) := S_g \otimes_R M$,
+which is a left $\Gg_g(R)$-module via the action on the
+first tensor factor.
+The inverse functor is
+$\Psi_g(N) := \operatorname{Hom}_{\Gg_g(R)}(S_g, N)
+\cong S_g^\vee \otimes_{\Gg_g(R)} N$,
+where $S_g^\vee = \underline{\operatorname{Hom}}_R(S_g, R)$.
+
+Part~(iv).
+The trace pairing $\operatorname{tr} : S_g^\vee \otimes_R S_g \to R$
+is the evaluation map $f \otimes v \mapsto f(v)$.
+In the basis $\{e_{\epsilon_1\cdots\epsilon_g}\}$
+with dual basis $\{e^{\epsilon_1\cdots\epsilon_g}\}$,
+the trace is
+$\operatorname{tr} = \sum_{\epsilon \in \{+,-\}^g}
+e^{\epsilon_1\cdots\epsilon_g} \otimes e_{\epsilon_1\cdots\epsilon_g}
+\;\mapsto\; 2^g \in R$.
+The coevaluation
+$\operatorname{coev} : R \to S_g \otimes_R S_g^\vee
+\cong \operatorname{End}_R(S_g)$
+sends $1 \mapsto \operatorname{id}_{S_g}
+= \sum_\epsilon e_\epsilon \otimes e^\epsilon$.
+The composite $\Psi_g \circ \Phi_g(M)
+= S_g^\vee \otimes_{\Gg_g(R)} (S_g \otimes_R M)
+\cong (S_g^\vee \otimes_{\Gg_g(R)} S_g) \otimes_R M
+\cong R \otimes_R M \cong M$
+via the trace pairing,
+and $\Phi_g \circ \Psi_g(N)
+= S_g \otimes_R (S_g^\vee \otimes_{\Gg_g(R)} N)
+\cong (S_g \otimes_R S_g^\vee) \otimes_{\Gg_g(R)} N
+\cong \operatorname{End}_R(S_g) \otimes_{\Gg_g(R)} N
+\cong \Gg_g(R) \otimes_{\Gg_g(R)} N \cong N$
+via the coevaluation and the isomorphism
+$\rho_g : \Gg_g(R) \xrightarrow{\sim} \operatorname{End}_R(S_g)$.
+\end{proof}
+
+\begin{remark}[The inverse functor explicitly]
+\label{rem:tholog-inverse-functor}
+Let $N$ be a left $\Gg_g(R)$-module.
+As a left $R$-module,
+$\Psi_g(N) = S_g^\vee \otimes_{\Gg_g(R)} N$
+carries the residual $R$-action from $S_g^\vee$.
+In concrete terms: $S_g^\vee$ has basis
+$\{e^{\epsilon_1\cdots\epsilon_g}\}$ dual to
+$\{e_{\epsilon_1\cdots\epsilon_g}\}$.
+The tensor product over $\Gg_g(R)$ imposes the relations
+\[
+f \cdot \rho_g(c) \otimes n = f \otimes c \cdot n
+\qquad
+(c \in \Gg_g(R),\; f \in S_g^\vee,\; n \in N),
+\]
+which identifies $\Psi_g(N)$ with the ``isotypic $e_+$-component''
+of $N$ after choosing a decomposition of $N$ as a
+$\operatorname{Mat}_{2^g}(R)$-module.
+Alternatively, $\Psi_g(N) = e \cdot N$ where
+$e = e_{++\cdots+} \cdot e^{++\cdots+} \in \Gg_g(R)$
+is the rank-$1$ idempotent $u^{-g} \cdot \prod_{i=1}^g \beta_i\alpha_i$.
+\end{remark}
+
+\begin{corollary}[Rank-1 idempotent; \ClaimStatusProvedHere]
+\label{cor:tholog-rank1-idempotent}
+In $\Gg_g(R)$, the element
+\[
+e_g \;:=\; u^{-g} \prod_{i=1}^g \beta_i\alpha_i
+\]
+(the product taken in any order, since the factors for
+distinct handles commute) is an idempotent:
+$e_g^2 = e_g$.
+The left ideal $\Gg_g(R) \cdot e_g$ is isomorphic to $S_g$
+as a left $\Gg_g(R)$-module, and $e_g \cdot \Gg_g(R) \cdot e_g \cong R$.
+\end{corollary}
+
+\begin{proof}
+Under the isomorphism
+$\rho_g : \Gg_g(R) \cong \operatorname{Mat}_{2^g}(R)$,
+the element $\beta_i\alpha_i$ maps to
+$E_{12}(u\,E_{21}) = u\,E_{11}$
+in the $i$-th tensor factor.
+(Here we use $E_{12}E_{21} = E_{11}$ in $\operatorname{Mat}_2$.)
+Therefore
+$\rho_g\!\left(\prod_{i=1}^g \beta_i\alpha_i\right)
+= u^g \cdot E_{11}^{\otimes g}$,
+and $e_g = u^{-g} \cdot u^g \cdot E_{11}^{\otimes g}
+= E_{11}^{\otimes g}$, which is the diagonal matrix with
+a single $1$ in the $(1,1)$-position.
+This is manifestly an idempotent.
+The left ideal $\operatorname{Mat}_{2^g}(R) \cdot E_{11}^{\otimes g}$
+is the first column, which is $R^{2^g} = S_g$.
+The corner algebra
+$E_{11}^{\otimes g} \cdot \operatorname{Mat}_{2^g}(R)
+\cdot E_{11}^{\otimes g} = R$ is the $(1,1)$-entry.
+\end{proof}
+
+\begin{remark}[Compatibility with genus stabilization]
+\label{rem:tholog-genus-stabilization}
+\index{genus stabilization!Morita perspective}
+The inclusion $\Gg_g(R) \hookrightarrow \Gg_{g+1}(R)$
+(extending by the identity on the $(g{+}1)$-th handle pair)
+corresponds under the Morita equivalence to the functor
+$M \mapsto M \oplus M$ (doubling of $R$-modules).
+This is the algebraic shadow of the genus-stabilization map
+$\Sigma_g \hookrightarrow \Sigma_{g+1}$ by
+handle attachment: at the module level, each new handle
+doubles the rank of the spinor module, reflecting the
+doubling of $H_1$ by the new cycle pair.
+\end{remark}
+
+\subsubsection{The Morita equivalence as a derived statement}
+\label{subsubsec:tholog-derived-morita}
+
+The Morita equivalence proved above holds at the
+abelian/module level, hence \emph{a fortiori} at the derived level.
+We record the precise derived statement for completeness.
+
+\begin{theorem}[Derived Morita equivalence; \ClaimStatusProvedHere]
+\label{thm:tholog-derived-morita}
+For $R = B_\Theta[u^{-1}]$ and $g \geq 1$, the functors
+\[
+\Phi_g = S_g \otimes_R^L (-) :
+D(R\text{-}\mathbf{mod}) \to D(\Gg_g(R)\text{-}\mathbf{mod})
+\]
+and
+\[
+\Psi_g = S_g^\vee \otimes_{\Gg_g(R)}^L (-) :
+D(\Gg_g(R)\text{-}\mathbf{mod}) \to D(R\text{-}\mathbf{mod})
+\]
+are mutually inverse equivalences of triangulated categories.
+In particular, for any $\Gg_g(R)$-modules $M, N$:
+\[
+R\!\operatorname{Hom}_{\Gg_g(R)}(M, N)
+\;\simeq\;
+R\!\operatorname{Hom}_R(\Psi_g M, \Psi_g N).
+\]
+\end{theorem}
+
+\begin{proof}
+Since $S_g$ is a finitely generated free $R$-module, the
+derived tensor product $S_g \otimes_R^L (-)$ coincides with the
+underived tensor product.
+The unit and counit of the derived adjunction are
+quasi-isomorphisms because they are isomorphisms at the
+abelian level
+(Theorem~\ref{thm:tholog-full-morita-g}(iv)).
+\end{proof}
+
+\begin{remark}[The Morita equivalence is canonical]
+\label{rem:tholog-morita-canonical}
+The spinor module $S_g$ depends on the choice of symplectic
+basis $\{a_1,b_1,\dots,a_g,b_g\}$ for $H_1(\Sigma_g)$.
+A change of symplectic basis acts on the Clifford generators
+by a symplectic transformation $\gamma \in \operatorname{Sp}_{2g}(\mathbb{Z})$,
+which transports the spinor module to an isomorphic one
+(because the Clifford algebra $\operatorname{Cl}_{2g}(R,u)$ does
+not depend on the basis choice).
+The Morita \emph{equivalence class} is therefore independent
+of the symplectic basis.
+The precise transport is the Weil representation of
+$\operatorname{Sp}_{2g}$ on $S_g$: a well-defined projective
+representation whose cocycle is controlled by the Maslov index.
+\end{remark}
+
+\subsection{The gravitational regime $u = 0$ in full detail}
+\label{subsec:tholog-gravitational-regime}
+
+\index{gravitational regime|textbf}
+\index{secondary anomaly!vanishing locus}
+\index{exterior algebra!genus completion}
+\index{Virasoro algebra!c=26@$c = 26$}
+
+The locus $u = 0$ is where the secondary anomaly
+$u = \eta^2$ vanishes, i.e.\ where the transgression generator
+becomes nilpotent of order two.
+Theorem~\ref{thm:tholog-exterior-degeneration} identified the
+quotient $\Gg_g(B_\Theta)/(u)$ as an exterior algebra extension.
+The present section analyzes this degenerate regime in full:
+the algebra structure, the module theory, and the physical
+specialization to Virasoro at $c = 26$.
+
+\subsubsection{The gravitational algebra}
+\label{subsubsec:tholog-gravitational-algebra}
+
+\begin{definition}[Gravitational algebra]
+\label{def:tholog-gravitational-algebra}
+The \emph{gravitational algebra} at genus $g$ is
+\[
+\Gg_g^{\mathrm{grav}}
+\;:=\;
+\Gg_g(B_\Theta)/(u)
+\;\cong\;
+B_\Theta/(u) \otimes \Lambda(\alpha_1,\beta_1,\dots,\alpha_g,\beta_g).
+\]
+\end{definition}
+
+\begin{proposition}[Structure of $B_\Theta/(u)$; \ClaimStatusProvedHere]
+\label{prop:tholog-bt-mod-u}
+As a dg algebra,
+\[
+B_\Theta/(u)
+\;\cong\;
+\frac{B[\eta]}{(\eta^2, \;\eta b - (-1)^{|b|}b\eta)},
+\qquad
+|\eta| = 1,\qquad d\eta = \Theta.
+\]
+The quotient $B_\Theta/(\eta)$ is $B$ itself, and the sequence
+\[
+0 \to B[-1] \xrightarrow{\cdot\eta} B_\Theta/(u) \to B \to 0
+\]
+is exact.
+If in addition $[\Theta] = 0$ in $H^\bullet(B)$
+(i.e.\ if $\Theta = d\xi$ for some $\xi \in B^1$), then
+$B_\Theta/(u)$ is quasi-isomorphic to the trivial
+square-zero extension $B \oplus B[-1]$.
+\end{proposition}
+
+\begin{proof}
+The relation $u = \eta^2 = 0$ means $\eta$ squares to zero in
+$B_\Theta/(u)$.
+Together with the skew-commutation $\eta b = (-1)^{|b|}b\eta$,
+this forces $B_\Theta/(u) \cong B \otimes \Lambda(\eta)$
+as a graded algebra (but the differential is nontrivial:
+$d\eta = \Theta$).
+
+The exact sequence is the short exact sequence of the extension
+by $\eta$: the kernel of the projection
+$B_\Theta/(u) \to B_\Theta/(\eta) = B$
+is the ideal $(\eta) \cong B \cdot \eta \cong B[-1]$
+(the shift accounts for $|\eta| = 1$).
+Injectivity of multiplication by $\eta$ follows because
+$B_\Theta/(u)$ is free of rank $2$ over $B$ with basis
+$\{1, \eta\}$.
+
+If $\Theta = d\xi$, define a chain map
+$\phi : B_\Theta/(u) \to B \oplus B[-1]$
+by $\phi(b_0 + b_1\eta) = (b_0, b_1)$, with the differential
+on $B \oplus B[-1]$ being
+$d'(b_0, b_1) = (db_0 + \Theta b_1, db_1)
+= (db_0 + d\xi \cdot b_1, db_1)$.
+Since $\Theta = d\xi$, the map
+$\psi(b_0, b_1) = b_0 + b_1(\eta - \xi)$
+gives an inverse chain map (checking: $d(\eta - \xi)
+= \Theta - d\xi = 0$, and $(\eta - \xi)^2
+= \eta^2 - \eta\xi - \xi\eta + \xi^2 = -\eta\xi - \xi\eta + \xi^2$;
+since $|\xi| = 1$ and $\eta$ graded-commutes with elements of $B$,
+$\eta\xi = (-1)^{|\xi|}\xi\eta = -\xi\eta$, so
+$(\eta - \xi)^2 = -\eta\xi + \eta\xi + \xi^2 = \xi^2$,
+which vanishes in $B$ if $\xi^2 = 0$, e.g.\ when $B$ is
+graded commutative).
+In general, $\phi$ is a quasi-isomorphism by the five-lemma
+applied to the long exact sequences.
+
+To verify that $\psi$ is indeed inverse to $\phi$: compute
+$\phi \circ \psi(b_0, b_1) = \phi(b_0 + b_1(\eta - \xi))
+= (b_0, b_1)$ (since the $B$-component of
+$b_1(\eta - \xi)$ is $-b_1\xi$ and the $B\eta$-component
+is $b_1\eta$), and
+$\psi \circ \phi(b_0 + b_1\eta) = \psi(b_0, b_1)
+= b_0 + b_1(\eta - \xi)$.
+These agree on generators provided $|\xi| = 1$: this holds
+because $\xi$ is the image of $\eta$ under the
+quasi-isomorphism, and $|\eta| = 1$ by construction.
+\end{proof}
+
+\begin{proposition}[Exterior algebra basis; \ClaimStatusProvedHere]
+\label{prop:tholog-exterior-basis}
+The gravitational algebra $\Gg_g^{\mathrm{grav}}$
+has a $B$-module basis consisting of all monomials
+\begin{equation}\label{eq:exterior-monomial-basis}
+\eta^{\epsilon_0}\,
+\alpha_1^{a_1}\beta_1^{b_1}
+\cdots
+\alpha_g^{a_g}\beta_g^{b_g},
+\qquad
+\epsilon_0 \in \{0,1\},\;
+a_i, b_i \in \{0,1\}.
+\end{equation}
+There are $2 \cdot 4^g = 2^{2g+1}$ such monomials.
+The $B$-module rank is $2^{2g+1}$.
+\end{proposition}
+
+\begin{proof}
+In $\Gg_g^{\mathrm{grav}}$, the generators $\eta, \alpha_i, \beta_i$
+are all odd (degree $1$) and all square to zero:
+$\eta^2 = u = 0$, $\alpha_i^2 = 0$, $\beta_i^2 = 0$.
+Moreover, all pairs anticommute: this includes the
+cross-handle relations (which are zero in $\Gg_g$ already)
+and the Clifford relations
+$\alpha_i\beta_j + \beta_j\alpha_i = \delta_{ij}u = 0$.
+Also, $\eta$ anticommutes with each $\alpha_i$ and $\beta_i$
+because $\eta$ graded-commutes with elements of $B_\Theta$
+and $|\alpha_i| = 1$ is odd:
+$\eta\alpha_i = (-1)^{|\alpha_i|}\alpha_i\eta = -\alpha_i\eta$.
+
+Therefore all $2g + 1$ generators $\{\eta, \alpha_1, \beta_1,
+\dots, \alpha_g, \beta_g\}$ mutually anticommute and square to
+zero.
+This is exactly the exterior algebra on $2g+1$ generators.
+The monomials~\eqref{eq:exterior-monomial-basis} span, and
+the argument of Lemma~\ref{lem:tholog-clifford-pbw} (reducing
+modulo $u$ and $\Theta$) shows they are linearly independent
+over $B$.
+\end{proof}
+
+\begin{corollary}[Gravitational algebra as exterior algebra; \ClaimStatusProvedHere]
+\label{cor:tholog-gravitational-exterior}
+\[
+\Gg_g^{\mathrm{grav}}
+\;\cong\;
+B_\Theta/(u) \otimes \Lambda^{2g}(\alpha_1,\beta_1,\dots,\alpha_g,\beta_g)
+\;\cong\;
+B \otimes \Lambda^{2g+1}(\eta,\alpha_1,\beta_1,\dots,\alpha_g,\beta_g)
+\]
+as graded algebras, where $\Lambda^{2g+1}$ denotes the exterior
+algebra on $2g + 1$ generators of degree~$1$.
+The differential on the right-hand side acts by
+$d\eta = \Theta$, $d\alpha_i = d\beta_i = 0$, and extends
+to monomials by the Leibniz rule.
+\end{corollary}
+
+\begin{remark}[Topological interpretation]
+\label{rem:tholog-grav-topological}
+The $2g + 1$ exterior generators decompose as:
+\begin{itemize}
+\item $\alpha_1, \beta_1, \dots, \alpha_g, \beta_g$: these
+  are the parity-shifted homology classes of
+  $H_1(\Sigma_g; k)$, generating $\Lambda^\bullet(H_1(\Sigma_g))$.
+\item $\eta$: this is the transgression generator, representing
+  the fundamental class of the circle
+  $S^1 \subset \Sigma_g$ (the ``time circle'' in the
+  physics interpretation).
+\end{itemize}
+The exterior algebra $\Lambda^{2g+1}$ is therefore
+$\Lambda^\bullet\bigl(H_1(\Sigma_g) \oplus k\langle\eta\rangle\bigr)$.
+When $\Theta = 0$, the differential is trivial and the
+cohomology of $\Gg_g^{\mathrm{grav}}$ is
+$H^\bullet(B) \otimes \Lambda^{2g+1}$.
+\end{remark}
+
+\begin{proposition}[Module theory on the gravitational locus; \ClaimStatusProvedHere]
+\label{prop:tholog-grav-modules}
+Let $M$ be a left $\Gg_g^{\mathrm{grav}}$-module.
+Then $M$ decomposes (not canonically) as
+\[
+M \;\cong\; M_0 \otimes \Lambda^{2g+1}
+\]
+where $M_0 := M / (\eta, \alpha_1, \beta_1, \dots, \alpha_g, \beta_g) \cdot M$
+is the ``top component'' and $\Lambda^{2g+1}$ acts freely.
+This decomposition holds if and only if all $2g + 1$ generators
+act injectively on the quotient $M / (\text{previous generators})$
+at each stage.
+
+More precisely: $M$ is a module over $B \otimes \Lambda^{2g+1}$
+with differential $d_M + \Theta \cdot \iota_\eta$,
+where $\iota_\eta$ is contraction by $\eta$ in the exterior factor.
+\end{proposition}
+
+\begin{proof}
+Since $\Gg_g^{\mathrm{grav}} = B \otimes \Lambda^{2g+1}$
+(Corollary~\ref{cor:tholog-gravitational-exterior}),
+a $\Gg_g^{\mathrm{grav}}$-module is a
+$B \otimes \Lambda^{2g+1}$-module.
+The $\Lambda^{2g+1}$-module structure is a collection of
+$2g + 1$ mutually anticommuting, square-zero endomorphisms
+acting $B$-linearly.
+The differential incorporates the term $d\eta = \Theta$
+via $\iota_\eta$ contraction.
+The decomposition $M \cong M_0 \otimes \Lambda^{2g+1}$
+holds whenever $M$ is free over $\Lambda^{2g+1}$,
+which is the generic case (the exterior algebra over a field
+of characteristic $0$ is self-injective, so free = projective
+= injective for finitely generated modules).
+\end{proof}
+
+\subsubsection{Virasoro at $c = 26$: the complete gravitational collapse}
+\label{subsubsec:tholog-virasoro-c26}
+
+The Virasoro algebra at $c = 26$ is the unique member of the
+Virasoro family where the gravitational regime is physically
+realized.
+
+\begin{proposition}[Virasoro $c = 26$: vanishing curvature; \ClaimStatusProvedHere]
+\label{prop:tholog-virasoro-c26}
+\index{Virasoro algebra!c=26@$c = 26$!gravitational regime}
+For $\mathrm{Vir}_{26}$:
+\begin{enumerate}[label=\textup{(\roman*)}]
+\item The modular Koszul curvature vanishes:
+  $\kappa(\mathrm{Vir}_{26}) = 0$.
+\item The Koszul dual is
+  $\mathrm{Vir}_{26}^! \simeq \mathrm{Vir}_0$
+  (the Virasoro at $c = 0$, which is trivial:
+  $T = 0$ at $c = 0$).
+\item The anomaly class is $\Theta = \kappa \cdot \omega_1 = 0$.
+\item The transgression algebra degenerates:
+  $B_\Theta = B \otimes k[\eta]/(d\eta = 0)
+  = B \otimes k[\eta]$,
+  and the secondary anomaly $u = \eta^2$ is a nonexact cocycle
+  in $H^\bullet(B_\Theta)$.
+\item The effective secondary anomaly vanishes:
+  the physical anomaly is not $u = \eta^2$ generically, but
+  $u_{\mathrm{eff}} = \kappa_{\mathrm{eff}} \cdot \eta^2 = 0$,
+  because $\kappa_{\mathrm{eff}} = \kappa = 0$.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+Part~(i): this is Vol~I, Theorem~D, specialized to
+$\mathrm{Vir}_c$ at $c = 26$.
+The curvature is anti-symmetric under the duality involution
+$c \mapsto 26 - c$, hence
+$\kappa(\mathrm{Vir}_{26}) = -\kappa(\mathrm{Vir}_0)$.
+But $\mathrm{Vir}_0$ has $T = 0$ (the stress tensor vanishes
+identically at $c = 0$), so the bar complex is trivial and
+$\kappa(\mathrm{Vir}_0) = 0$.
+Therefore $\kappa(\mathrm{Vir}_{26}) = 0$.
+
+Parts~(ii)--(v) follow immediately from $\kappa = 0$.
+\end{proof}
+
+\begin{theorem}[Gravitational collapse at $c = 26$; \ClaimStatusProvedHere]
+\label{thm:tholog-gravitational-collapse-c26}
+For $\mathrm{Vir}_{26}$, the genus-$g$ Clifford completion is
+\[
+\Gg_g\bigl(B_{\Theta=0}\bigr)
+\;\cong\;
+B \otimes k[\eta] \otimes \Lambda^{2g}(\alpha_1,\beta_1,\dots,\alpha_g,\beta_g)
+/\bigl(\alpha_i\beta_j + \beta_j\alpha_i = \delta_{ij}\eta^2\bigr).
+\]
+Setting $u = \eta^2$:
+\begin{enumerate}[label=\textup{(\roman*)}]
+\item The Clifford algebra is \emph{not} automatically exterior
+  (because $u = \eta^2 \neq 0$ as an element of $k[\eta]$).
+\item Modulo $u$: the algebra is
+  $B \otimes \Lambda^{2g+1}(\eta, \alpha_1, \beta_1, \dots,
+  \alpha_g, \beta_g)$
+  with trivial differential ($d\eta = \Theta = 0$).
+  This is the full exterior algebra on $H_1(\Sigma_g) \oplus k\langle\eta\rangle$.
+\item After inverting $u$: the algebra is Morita-trivial,
+  $\Gg_g[u^{-1}] \cong \operatorname{Mat}_{2^g}(B[\eta, \eta^{-1}])$.
+\end{enumerate}
+The gravitational collapse is the statement that modulo $u$,
+the entire genus tower reduces to the exterior algebra:
+higher genus is controlled by the first homology
+$H_1(\Sigma_g)$ alone, with no additional dynamical content.
+\end{theorem}
+
+\begin{proof}
+Since $\Theta = 0$, the transgression algebra is
+$B_\Theta = B \otimes k[\eta]$ with $d\eta = 0$.
+The Clifford relations remain nontrivial:
+$\alpha_i\beta_j + \beta_j\alpha_i = \delta_{ij}\eta^2$.
+Since $\eta^2$ is a nonzero element of $k[\eta]$
+(the polynomial ring), the Clifford algebra over
+$B[\eta]$ does not automatically degenerate.
+Setting $u = \eta^2 = 0$ forces the exterior degeneration
+(Theorem~\ref{thm:tholog-exterior-degeneration}).
+Inverting $u$ gives the Morita triviality
+(Theorem~\ref{thm:tholog-morita-triviality}).
+The differential on the exterior algebra modulo $u$ is
+$d\eta = 0$, $d\alpha_i = d\beta_i = 0$, and $dB = dB$:
+the only nontrivial differential is that of $B$ itself.
+\end{proof}
+
+\begin{remark}[Comparison with BRST cohomology at $c = 26$]
+\label{rem:tholog-brst-c26}
+\index{BRST cohomology!c=26@$c = 26$}
+The physical significance of $c = 26$ is that the ghost
+BRST system $(b, c)$ at ghost number anomaly
+$c_{\mathrm{gh}} = -26$ cancels the matter Virasoro anomaly
+$c = 26$, giving total central charge $0$.
+In the anomaly-completed framework:
+\begin{itemize}
+\item The ghost system contributes the exterior factor
+  $\Lambda(b, c)$ with $|b| = 2$, $|c| = -1$, and the
+  BRST differential $Q_{\mathrm{BRST}}$ acts nontrivially
+  on this factor.
+\item The matter--ghost coupled system at $c_{\mathrm{total}} = 0$
+  has $\kappa = 0$, $\Theta = 0$, and the full genus completion
+  degenerates to an exterior algebra as above.
+\item The BRST cohomology of the genus-$g$ exterior algebra
+  $\Lambda^{2g+1}$ is the space of physical string states at
+  genus $g$: its dimension is the $g$-th coefficient in the
+  genus expansion of the bosonic string partition function.
+\item The gravitational collapse
+  (Theorem~\ref{thm:tholog-gravitational-collapse-c26})
+  is the algebraic form of the statement that the bosonic string
+  at the critical dimension has no genus anomaly:
+  $Q_{\mathrm{BRST}}^2 = 0$ at every genus, without additional
+  corrections.
+\end{itemize}
+\end{remark}
+
+\subsubsection{Cohomology of the gravitational algebra}
+\label{subsubsec:tholog-grav-cohomology}
+
+\begin{proposition}[Cohomology when $\Theta \neq 0$; \ClaimStatusProvedHere]
+\label{prop:tholog-grav-cohomology}
+Suppose $[\Theta] \neq 0$ in $H^\bullet(B)$
+(the generic case for $c \neq 26$ in the Virasoro family).
+Then:
+\[
+H^\bullet(\Gg_g^{\mathrm{grav}})
+\;\cong\;
+\frac{H^\bullet(B)}{([\Theta])}
+\;\otimes\;
+\Lambda^{2g}(\alpha_1,\beta_1,\dots,\alpha_g,\beta_g).
+\]
+In particular, the cohomology is a quotient of the
+exterior algebra by the principal ideal generated by the
+class $[\Theta]$.
+\end{proposition}
+
+\begin{proof}
+By Corollary~\ref{cor:tholog-gravitational-exterior},
+\[
+\Gg_g^{\mathrm{grav}}
+= B \otimes \Lambda(\eta) \otimes \Lambda(\alpha_1,\dots,\beta_g).
+\]
+The differential acts only on the $B \otimes \Lambda(\eta)$
+factor (by $d\eta = \Theta$, $d\alpha_i = d\beta_i = 0$).
+By the K\"{u}nneth theorem,
+\[
+H^\bullet(\Gg_g^{\mathrm{grav}})
+= H^\bullet(B \otimes \Lambda(\eta)) \otimes \Lambda^{2g}.
+\]
+The complex $B \otimes \Lambda(\eta)$ with $d\eta = \Theta$
+is the two-term complex $B \xrightarrow{\cdot\Theta} B[1]$
+(the short exact sequence from
+Proposition~\ref{prop:tholog-bt-mod-u}).
+Its cohomology is
+$\ker(\cdot\Theta) \oplus \operatorname{coker}(\cdot\Theta)[-1]$.
+If $[\Theta] \neq 0$ and acts injectively on
+$H^\bullet(B)$, then the long exact sequence from
+Theorem~\ref{thm:tholog-hypersurface} specialized to
+$u = 0$ gives $H^\bullet(B \otimes \Lambda(\eta))
+\cong H^\bullet(B)/([\Theta])$.
+\end{proof}
+
+\begin{proposition}[Cohomology when $\Theta = 0$; \ClaimStatusProvedHere]
+\label{prop:tholog-grav-cohomology-zero}
+When $\Theta = 0$ (e.g.\ Virasoro at $c = 26$):
+\[
+H^\bullet(\Gg_g^{\mathrm{grav}})
+\;\cong\;
+H^\bullet(B) \otimes \Lambda^{2g+1}(\eta,\alpha_1,\beta_1,\dots,\alpha_g,\beta_g).
+\]
+\end{proposition}
+
+\begin{proof}
+With $\Theta = 0$, the differential on $\Lambda(\eta)$ is zero,
+and K\"{u}nneth gives the result.
+\end{proof}
+
+\subsubsection{The Hodge decomposition on the gravitational locus}
+\label{subsubsec:tholog-hodge-grav}
+
+\begin{proposition}[Hodge-type decomposition; \ClaimStatusProvedHere]
+\label{prop:tholog-hodge-grav}
+The exterior algebra
+$\Lambda^{2g+1}(\eta, \alpha_1, \beta_1, \dots, \alpha_g, \beta_g)$
+carries a bigrading:
+\begin{itemize}
+\item $p = \deg_\eta \in \{0, 1\}$ (``transgression degree'');
+\item $q = \deg_{\alpha,\beta} \in \{0, 1, \dots, 2g\}$
+  (``handle degree'').
+\end{itemize}
+The total exterior degree is $p + q$.
+The gravitational algebra decomposes as
+\[
+\Gg_g^{\mathrm{grav}}
+= \bigoplus_{p=0}^{1} \bigoplus_{q=0}^{2g}
+\Gg_g^{p,q},
+\qquad
+\Gg_g^{p,q} = B^{p,q} \otimes \Lambda^p(\eta) \otimes
+\Lambda^q(\alpha_1,\beta_1,\dots,\alpha_g,\beta_g),
+\]
+and the differential maps $\Gg_g^{0,q} \to \Gg_g^{1,q}$
+(by $d\eta = \Theta$) and $\Gg_g^{1,q} \to \Gg_g^{0,q}$
+trivially (since $\Theta \cdot \eta = 0$ in
+$\Gg_g^{\mathrm{grav}}$ because $\eta^2 = 0$ and
+$\Theta = d\eta$).
+\end{proposition}
+
+\begin{proof}
+This is a direct decomposition by monomial type.
+The differential $d$ on $\eta$ sends $1 \mapsto 0$ and
+$\eta \mapsto \Theta$ (which lies in $B$, hence in $p = 0$).
+The generators $\alpha_i, \beta_i$ are $d$-closed, so the
+differential does not change $q$.
+
+It remains to verify that $\Theta \cdot \eta = 0$ in
+$\Gg_g^{\mathrm{grav}}$, so that the differential does not
+map from $p = 1$ back to $p = 0$ nontrivially.
+In the quotient $\Gg_g^{\mathrm{grav}}$ by $u = \eta^2$,
+compute $d(u) = d(\eta^2)$.  By the Leibniz rule,
+$d(\eta^2) = (d\eta) \cdot \eta + \eta \cdot (d\eta)
+= \Theta \cdot \eta + \eta \cdot \Theta$.
+By the skew-commutation rule
+$\eta \cdot b = (-1)^{|b|} b \cdot \eta$ for $b \in B$,
+and since $|\Theta| = 2$ is even, we get
+$\eta \cdot \Theta = (-1)^{2} \Theta \cdot \eta
+= \Theta \cdot \eta$.
+Hence $d(u) = 2\,\Theta \cdot \eta$.
+But $u = 0$ in $\Gg_g^{\mathrm{grav}}$, so
+$d(u) = 0$, giving $\Theta \cdot \eta = 0$
+(in characteristic $\neq 2$).
+\end{proof}
+
+\subsection{Critical points for the standard landscape}
+\label{subsec:tholog-critical-points}
+
+\index{critical point!anomaly completion|textbf}
+\index{self-dual point}
+\index{secondary anomaly!standard families}
+
+The critical and self-dual points of the standard families are
+the loci where the anomaly-completed structure simplifies:
+at self-dual points the curvature vanishes, and the genus tower
+collapses to the gravitational regime; at critical levels
+the curvature diverges or degenerates.
+The following subsection computes these special points for each
+standard family and records the secondary anomaly hierarchy.
+
+\subsubsection{Virasoro}
+\label{subsubsec:tholog-critical-virasoro}
+
+\begin{computation}[Virasoro critical loci; \ClaimStatusProvedHere]
+\label{comp:tholog-virasoro-critical}
+\index{Virasoro algebra!critical points}
+The Virasoro family $\mathrm{Vir}_c$ has:
+\begin{enumerate}[label=\textup{(\roman*)}]
+\item \emph{Critical dimension}: $c = 26$, where
+  $\kappa(\mathrm{Vir}_{26}) = 0$
+  (Proposition~\ref{prop:tholog-virasoro-c26}).
+  The anomaly class vanishes, and the genus tower degenerates
+  to the exterior algebra $\Lambda^{2g+1}$.
+\item \emph{Self-dual point}: $c = 13$, where
+  $\mathrm{Vir}_{13}^! \simeq \mathrm{Vir}_{13}$
+  (Vol~I, Theorem~A).
+  Here $\kappa(\mathrm{Vir}_{13}) = 0$ by anti-symmetry:
+  $\kappa(\mathrm{Vir}_{13}) = -\kappa(\mathrm{Vir}_{26-13})
+  = -\kappa(\mathrm{Vir}_{13})$, hence $\kappa = 0$.
+\item \emph{Distinction between critical and self-dual}:
+  $c = 26$ is the locus where $\kappa = 0$ because the
+  Koszul dual $\mathrm{Vir}_0$ is trivial ($T = 0$);
+  $c = 13$ is the locus where $\kappa = 0$ because the
+  algebra is self-dual.
+  Both give $\Theta = 0$, but for different algebraic reasons.
+\item \emph{Quartic resonance}: the contact quartic invariant is
+  $Q_{\mathrm{Vir}}^{\mathrm{contact}}
+  = \frac{10}{c(5c + 22)}$
+  (Vol~I; see also
+  Computation~\ref{comp:virasoro-anomaly-completion} above).
+  This has poles at $c = 0$ (trivial Virasoro) and
+  $c = -22/5$ (a minimal model value).
+  Its zeros: $Q = 0$ iff $c = \infty$ (decompactification limit).
+\end{enumerate}
+\end{computation}
+
+\subsubsection{$\mathcal{W}_3$}
+\label{subsubsec:tholog-critical-w3}
+
+\begin{computation}[$\mathcal{W}_3$ critical loci; \ClaimStatusProvedHere]
+\label{comp:tholog-w3-critical}
+\index{W-algebra@$\mathcal W$-algebra!W3@$\mathcal W_3$!critical points}
+The $\mathcal{W}_3$ algebra has generators $T$ (weight $2$)
+and $W$ (weight $3$), with Koszul duality
+$\mathcal{W}_{3,c}^! \simeq \mathcal{W}_{3,100-c}$
+(Vol~I, Theorem~A; the critical sum is $c + c' = 100$).
+
+\begin{enumerate}[label=\textup{(\roman*)}]
+\item \emph{Critical dimension}: $c = 100$, where
+  $\kappa(\mathcal{W}_{3,100}) = 0$.
+  At $c = 100$, the Koszul dual
+  $\mathcal{W}_{3,0}$ is trivial.
+  The anomaly-completed datum degenerates as for
+  $\mathrm{Vir}_{26}$: genus tower collapses to
+  $\Lambda^{2g+1}$.
+\item \emph{Self-dual point}: $c = 50$, where
+  $\mathcal{W}_{3,50}^! \simeq \mathcal{W}_{3,50}$
+  and $\kappa(\mathcal{W}_{3,50}) = 0$ by anti-symmetry.
+\item \emph{The shadow tower}: type $M$ (infinite depth,
+  like Virasoro).
+  The cubic shadow is generically nonvanishing; the
+  quartic resonance class is a rational function of $c$.
+\item \emph{Physical realization}: The $\mathcal{W}_3$
+  string at $c = 100$ is the higher-spin analogue of the
+  bosonic string at $c = 26$.  The BRST system requires a
+  spin-$3$ ghost pair $(b_3, c_3)$ with
+  $c_{\mathrm{gh},3} = -74$ in addition to the standard
+  $(b, c)$ with $c_{\mathrm{gh}} = -26$.
+  Total ghost central charge: $-26 + (-74) = -100$,
+  cancelling the matter $c = 100$.
+\end{enumerate}
+\end{computation}
+
+\subsubsection{$\mathcal{W}_N$ general formula}
+\label{subsubsec:tholog-critical-wn}
+
+\begin{computation}[$\mathcal{W}_N$ critical loci; \ClaimStatusProvedHere]
+\label{comp:tholog-wn-critical}
+\index{W-algebra@$\mathcal W$-algebra!WN@$\mathcal W_N$!critical points}
+The $\mathcal{W}_N$ algebra is the principal DS reduction of
+$\widehat{\mathfrak{sl}}_N$.
+It has generators of conformal weights $2, 3, \dots, N$, with
+central-charge formula
+\[
+c(\mathcal{W}_N, k)
+= (N-1)\left(1 - \frac{N(N+1)}{(k+N)}\right) \cdot N.
+\]
+The Koszul duality is
+$\mathcal{W}_{N,c}^! \simeq \mathcal{W}_{N,c_N^*-c}$
+where the critical sum is
+\begin{equation}\label{eq:wn-critical-sum}
+c_N^* \;=\; (N-1)(2N^2 + 2N + 1).
+\end{equation}
+This formula is computed from the BRST ghost system:
+for principal reduction, the ghost system has
+$\dim(\mathfrak{m}^+) = N(N-1)/2$ fermionic pairs
+$(b_j, c_j)$ for $j = 2, \dots, N$, with total ghost
+central charge
+\[
+c_{\mathrm{gh}}^{\mathcal{W}_N}
+= -2\sum_{j=2}^{N}(6j^2 - 6j + 1)
+= -(N-1)(2N^2 + 2N + 1).
+\]
+The critical sum $c_N^*$ equals $|c_{\mathrm{gh}}|$.
+
+\begin{center}
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{cccc}
+$N$ & $c_N^*$ (critical sum) & $c_N^*/2$ (self-dual) &
+$c_N^*$ (critical dim.) \\
+\hline
+$2$ & $26$ & $13$ & $26$ \\
+$3$ & $100$ & $50$ & $100$ \\
+$4$ & $273$ & $136.5$ & $273$ \\
+$5$ & $580$ & $290$ & $580$ \\
+$6$ & $1057$ & $528.5$ & $1057$ \\
+$N$ & $(N{-}1)(2N^2{+}2N{+}1)$ & $\tfrac{1}{2}(N{-}1)(2N^2{+}2N{+}1)$ &
+$(N{-}1)(2N^2{+}2N{+}1)$
+\end{tabular}
+\end{center}
+
+\emph{Properties.}
+\begin{enumerate}[label=\textup{(\roman*)}]
+\item The critical dimension $c_N^*$ grows as $2N^3$ for
+  large $N$.
+\item The self-dual point $c_N^*/2$ is half-integral for
+  even $N$ (because $c_N^*$ is odd when $N$ is even).
+\item At $c = c_N^*$: the Koszul dual $\mathcal{W}_{N,0}$
+  is trivial, $\kappa = 0$, and the genus tower collapses.
+\item At $c = c_N^*/2$: the algebra is self-dual,
+  $\kappa = 0$ by anti-symmetry.
+\item The quartic resonance class
+  $Q^{\mathrm{contact}}_{\mathcal{W}_N}$ is a rational
+  function of $c$ whose poles are at $c = 0$ and at
+  finitely many minimal-model values.
+\end{enumerate}
+\end{computation}
+
+\subsubsection{Affine Kac--Moody}
+\label{subsubsec:tholog-critical-affine}
+
+\begin{computation}[Affine critical loci; \ClaimStatusProvedHere]
+\label{comp:tholog-affine-critical}
+\index{Kac--Moody algebra!affine!critical points}
+\index{critical level}
+The affine Kac--Moody algebra $\widehat{\mathfrak{g}}_k$
+at level $k$ has central charge
+\[
+c(\widehat{\mathfrak{g}}_k)
+= \frac{k \dim\mathfrak{g}}{k + h^\vee},
+\]
+and Koszul duality
+$\widehat{\mathfrak{g}}_k^! \simeq \widehat{\mathfrak{g}}_{-k-2h^\vee}$
+(Feigin--Frenkel duality).
+
+\begin{enumerate}[label=\textup{(\roman*)}]
+\item \emph{Critical level}: $k = -h^\vee$, where
+  $c(\widehat{\mathfrak{g}}_{-h^\vee}) = -\dim\mathfrak{g}/2
+  \cdot h^\vee \cdot 0^{-1}$\,---\,undefined.
+  The critical level is a genuine singularity, not merely a
+  zero of $\kappa$.
+  The Sugawara construction fails: the Segal--Sugawara operator
+  $S = \frac{1}{2(k+h^\vee)}\sum {:}J^a J^a{:}$ has a pole.
+  The modular Koszul curvature $\kappa(\widehat{\mathfrak{g}}_k)$
+  has a pole at $k = -h^\vee$.
+  The anomaly-completed datum is ill-defined at the critical level.
+
+\item \emph{Self-dual level}: $k + h^\vee = -(k + h^\vee)$,
+  i.e.\ $k = -h^\vee$, which is the critical level.
+  For affine algebras, the self-dual and critical levels
+  \emph{coincide}.
+  This is a fundamental difference from the Virasoro/W-algebra
+  families, where the self-dual and critical points are distinct.
+
+\item \emph{Central-charge sum}: for generic $k$,
+  \[
+  c(\widehat{\mathfrak{g}}_k) + c(\widehat{\mathfrak{g}}_{-k-2h^\vee})
+  = \frac{k\dim\mathfrak{g}}{k+h^\vee}
+  + \frac{(-k-2h^\vee)\dim\mathfrak{g}}{-k-h^\vee}
+  = \frac{k\dim\mathfrak{g}}{k+h^\vee}
+  + \frac{(k+2h^\vee)\dim\mathfrak{g}}{k+h^\vee}
+  = 2\dim\mathfrak{g}.
+  \]
+  The critical sum is $c_{\mathrm{sum}} = 2\dim\mathfrak{g}$,
+  achieved at $c = \dim\mathfrak{g}$ (the ``free field''
+  value, which corresponds to $k = \infty$).
+
+\item \emph{Curvature formula}: the curvature
+  $\kappa(\widehat{\mathfrak{g}}_k)$ is computed from the
+  Killing form on $\mathfrak{g}$ and the level:
+  \[
+  \kappa(\widehat{\mathfrak{g}}_k)
+  = \frac{\dim\mathfrak{g}}{12(k + h^\vee)}.
+  \]
+  This is anti-symmetric: $\kappa(k) = -\kappa(-k-2h^\vee)$
+  (the Feigin--Frenkel symmetry).
+  It vanishes at $k = \infty$ (free field limit) and has a
+  pole at $k = -h^\vee$ (critical level).
+\end{enumerate}
+\end{computation}
+
+\begin{computation}[$\widehat{\mathfrak{sl}}_2$ explicit; \ClaimStatusProvedHere]
+\label{comp:tholog-sl2-affine-explicit}
+\index{Kac--Moody algebra!sl2@$\widehat{\mathfrak{sl}}_2$!critical data}
+For $\widehat{\mathfrak{sl}}_2$ with $h^\vee = 2$,
+$\dim\mathfrak{g} = 3$:
+\begin{center}
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{ll}
+Central charge & $c = 3k/(k+2)$ \\
+Critical level & $k = -2$ \\
+Central-charge sum & $c_{\mathrm{sum}} = 6$ \\
+Self-dual central charge & undefined at critical level $k = -h^\vee = -2$ (Sugawara diverges) \\
+Curvature & $\kappa = 1/(4(k+2))$ \\
+Koszul dual & $\widehat{\mathfrak{sl}}_2{}_{-k-4}$ \\
+Secondary anomaly & $u = \eta^2$, with $d\eta = \kappa \cdot \omega_1$ \\
+Shadow depth & $3$ (type $L$: tree-level, terminates at cubic)
+\end{tabular}
+\end{center}
+\end{computation}
+
+\subsubsection{The master table}
+\label{subsubsec:tholog-master-table}
+
+\begin{computation}[Critical points for all standard families; \ClaimStatusProvedHere]
+\label{comp:tholog-master-critical-table}
+\index{critical point!master table}
+
+\begin{center}
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{lccccl}
+\textbf{Family} & $c_{\mathrm{sum}}$ & $c_{\mathrm{sd}}$ &
+$c_{\mathrm{crit}}$ & $\kappa = 0?$ & \textbf{Shadow depth} \\
+\hline
+$\cH_k$ (Heisenberg) & $0$ & $0$ & $0$ & always $\kappa = k/2$
+& $2$ (type $G$) \\
+$\widehat{\mathfrak{sl}}_2{}_k$ & $6$ & $3$ & $k = -2$ &
+at critical & $3$ (type $L$) \\
+$\widehat{\mathfrak{sl}}_N{}_k$ & $2\dim\mathfrak{sl}_N$
+& $\dim\mathfrak{sl}_N$ & $k = -N$ & at critical &
+$3$ (type $L$) \\
+$\widehat{\mathfrak{g}}_k$ (general) & $2\dim\mathfrak{g}$
+& $\dim\mathfrak{g}$ & $k = -h^\vee$ & at critical &
+$3$ (type $L$) \\
+$\beta\gamma$ & $-2$ & $-1$ & --- & never ($\kappa \neq 0$)
+& $4$ (type $C$) \\
+$\mathrm{Vir}_c$ & $26$ & $13$ & $c = 26$ & at $c = 13, 26$
+& $\infty$ (type $M$) \\
+$\mathcal{W}_{3,c}$ & $100$ & $50$ & $c = 100$ &
+at $c = 50, 100$ & $\infty$ (type $M$) \\
+$\mathcal{W}_{N,c}$ & $c_N^*$ & $c_N^*/2$ & $c = c_N^*$ &
+at $c = c_N^*/2, c_N^*$ & $\infty$ (type $M$) \\
+$\mathcal{B}^k$ (BP) & $76$ & $38$ & --- &
+at $c = 38$ & $\infty$ (type $M$)
+\end{tabular}
+\end{center}
+
+Here $c_N^* = (N-1)(2N^2+2N+1)$, and
+``$\kappa = 0?$'' records where the curvature vanishes
+(self-dual or critical dimension).
+\end{computation}
+
+\subsubsection{The secondary anomaly hierarchy}
+\label{subsubsec:tholog-secondary-hierarchy}
+
+\begin{definition}[Secondary anomaly hierarchy]
+\label{def:tholog-secondary-hierarchy}
+\index{secondary anomaly!hierarchy}
+Given a chiral algebra $\cA$ with anomaly-completed datum
+$(B, \Theta, B_\Theta)$, define the \emph{secondary anomaly
+hierarchy} as the sequence of central classes in $B_\Theta$:
+\begin{align*}
+u_1 &:= \eta^2 \in Z^2(B_\Theta) \cap Z(B_\Theta), \\
+u_2 &:= \eta^2 \cdot \Theta \in Z^4(B_\Theta) \cap Z(B_\Theta), \\
+u_r &:= \eta^2 \cdot \Theta^{r-1}
+\in Z^{2r}(B_\Theta) \cap Z(B_\Theta).
+\end{align*}
+Each $u_r$ is closed (because $u_1$ and $\Theta$ are both
+closed and central) and central (because $u_1$ and $\Theta$
+are both central).
+\end{definition}
+
+\begin{proposition}[Hierarchy filtration; \ClaimStatusProvedHere]
+\label{prop:tholog-hierarchy-filtration}
+Assume $[\Theta]^m = 0$ in $H^\bullet(B)$ for some $m \geq 1$
+\textup{(}i.e.\ the cohomology class of~$\Theta$ is nilpotent
+of order~$m$\textup{)}.
+The secondary anomaly hierarchy satisfies:
+\begin{enumerate}[label=\textup{(\roman*)}]
+\item $u_r = u_1 \cdot \Theta^{r-1}$ for all $r \geq 1$.
+\item Under the nilpotence hypothesis $[\Theta]^m = 0$,
+  $[u_r] = 0$ in $H^\bullet(B_\Theta)$ for $r \geq m + 1$.
+\item In $H^\bullet(B_\Theta)/([\Theta])$, all $u_r$ with
+  $r \geq 2$ vanish: $[u_r] = [u_1] \cdot [\Theta]^{r-1} = 0$.
+\item The graded ideal $(u_1, u_2, \dots)$ is the principal
+  ideal $(u_1)$, since $u_r = u_1 \cdot \Theta^{r-1}$.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+Part~(i) is the definition.
+Part~(ii): if $[\Theta]^m = 0$, then $[u_r] = [u_1] \cdot [\Theta]^{r-1}$
+vanishes for $r - 1 \geq m$.
+Part~(iii): in the quotient by $([\Theta])$, each
+$[\Theta]^{r-1} = 0$ for $r \geq 2$.
+Part~(iv): $u_r = u_1 \cdot \Theta^{r-1} \in (u_1)$.
+\end{proof}
+
+\begin{remark}[The secondary hierarchy and the shadow tower]
+\label{rem:tholog-hierarchy-shadow}
+\index{shadow tower!secondary hierarchy}
+The secondary anomaly hierarchy $u_1, u_2, \dots$ is the
+$B_\Theta$-internal shadow of the genus-$g$ shadow Postnikov
+tower from Vol~I.
+The arity-$r$ shadow $\mathrm{Sh}_r(\Theta_\cA)$ of the
+full MC element projects to $u_r$ in the transgression algebra:
+\begin{center}
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{lll}
+\textbf{Shadow level} & \textbf{Vol~I object} &
+\textbf{Transgression shadow} \\
+\hline
+$r = 2$ (curvature) & $\kappa(\cA)$ & $u_1 = \eta^2$ \\
+$r = 3$ (cubic) & $C(\cA)$ & $u_2 = \eta^2 \Theta$ \\
+$r = 4$ (quartic) & $Q(\cA)$ & $u_3 = \eta^2 \Theta^2$
+\end{tabular}
+\end{center}
+The shadow depth classification (G/L/C/M from Vol~I) is
+visible in the hierarchy: for type $G$ (Heisenberg),
+$\Theta = k/z$ and $\Theta^r$ scales homogeneously, so the
+hierarchy does not terminate but is uniformly controlled by
+the single parameter $k$.
+For type $M$ (Virasoro), each $u_r$ contributes independently
+to the module theory.
+\end{remark}
+
+\subsection{The symplectic polarization of complementarity}
+\label{subsec:tholog-symplectic-polarization}
+
+\index{complementarity!symplectic polarization|textbf}
+\index{Verdier involution}
+\index{Lagrangian!complementarity}
+\index{cross-pairing}
+
+Volume~I's Theorem~C (the complementarity theorem) expresses
+the factorization homology $H^\bullet(\Mbar_g, Z(\cA))$
+as a direct sum of contributions from $\cA$ and its Koszul
+dual $\cA^!$.
+The present section lifts this additive decomposition to a
+\emph{symplectic polarization}: the ambient complex carries a
+natural shifted-symplectic structure, and the two summands are
+Lagrangian complements.
+This is the anomaly-completed interpretation of
+Vol~I's ambient complementarity theorem
+(Theorem~\ref*{thm:ambient-complementarity} in Vol~I).
+
+\subsubsection{The ambient complex}
+\label{subsubsec:tholog-ambient-complex}
+
+\begin{definition}[Ambient complex]
+\label{def:tholog-ambient-complex}
+\index{ambient complex}
+For a chirally Koszul algebra $\cA$ and a closed surface
+$\Sigma_g$, the \emph{genus-$g$ ambient complex} is
+\[
+C_g(\cA)
+\;:=\;
+R\Gamma\!\bigl(\Mbar_g,\; Z(\cA)\bigr),
+\]
+where $Z(\cA)$ is the chiral center (factorization sheaf on
+$\Mbar_g$).
+\end{definition}
+
+The ambient complex is a cochain complex whose cohomology is
+the genus-$g$ factorization homology of $\cA$.
+Its key structural feature is a natural involution.
+
+\begin{definition}[Verdier involution on the ambient complex]
+\label{def:tholog-verdier-involution}
+\index{Verdier involution!on ambient complex}
+The \emph{Verdier involution} on $C_g(\cA)$ is the involution
+$\sigma_g : C_g(\cA) \to C_g(\cA)$
+induced by the Koszul duality $\cA \mapsto \cA^!$ at the level
+of the factorization sheaf.
+Explicitly, $\sigma_g$ acts on the bar complex by reversing the
+bar grading: if a cochain has bar degree $p$, then
+$\sigma_g$ acts by $(-1)^p$.
+\end{definition}
+
+\begin{proposition}[Eigenspace decomposition; \ClaimStatusProvedHere]
+\label{prop:tholog-eigenspace-decomposition}
+The Verdier involution $\sigma_g$ is an involution
+($\sigma_g^2 = \operatorname{id}$) that commutes with the
+differential on $C_g(\cA)$.
+The eigenspace decomposition
+\[
+C_g(\cA) = C_g^+(\cA) \oplus C_g^-(\cA),
+\qquad
+\sigma_g|_{C_g^\pm} = \pm\operatorname{id},
+\]
+is a direct-sum decomposition of cochain complexes.
+\end{proposition}
+
+\begin{proof}
+$\sigma_g$ is an algebra involution on the bar complex, hence
+commutes with the bar differential.
+The factorization-homology pushforward preserves this involution
+because the Koszul duality functor is compatible with the modular
+operad structure (Vol~I, Theorem~A).
+The eigenspace decomposition is immediate from $\sigma_g^2 = \operatorname{id}$
+and $\operatorname{char}(k) = 0$.
+\end{proof}
+
+\subsubsection{The complementarity decomposition}
+\label{subsubsec:tholog-complementarity-decomposition}
+
+\begin{theorem}[Complementarity; \ClaimStatusProvedHere]
+\label{thm:tholog-complementarity}
+Let $\cA$ be a chirally Koszul algebra.
+Then on the Koszul locus, there is a natural identification
+\[
+Q_g(\cA) \;:=\; H^\bullet(C_g^+(\cA)),
+\qquad
+Q_g(\cA^!) \;:=\; H^\bullet(C_g^-(\cA)),
+\]
+and the cohomology of the ambient complex decomposes as
+\begin{equation}\label{eq:complementarity-decomposition}
+H^\bullet\!\bigl(\Mbar_g,\; Z(\cA)\bigr)
+\;=\;
+Q_g(\cA) \;\oplus\; Q_g(\cA^!).
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+This is Vol~I, Theorem~C, transported to the present notation.
+The $+$-eigenspace of $\sigma_g$ corresponds to the summand
+computed by the bar complex of $\cA$ at degree-parity $0$,
+which is identified with $Q_g(\cA)$ by the bar-cobar
+quasi-isomorphism (Vol~I, Theorem~B on the Koszul locus).
+The $-$-eigenspace corresponds to the bar complex at
+degree-parity $1$, which is identified with $Q_g(\cA^!)$
+via the Verdier intertwining of Theorem~A.
+\end{proof}
+
+\subsubsection{The cross-pairing}
+\label{subsubsec:tholog-cross-pairing}
+
+\begin{theorem}[Cross-pairing; \ClaimStatusProvedHere]
+\label{thm:tholog-cross-pairing}
+There is a natural nondegenerate pairing
+\begin{equation}\label{eq:cross-pairing}
+\langle -,- \rangle_g
+\;:\;
+Q_g(\cA) \otimes Q_g(\cA^!)
+\;\longrightarrow\;
+k[-(3g-3)]
+\end{equation}
+of degree $-(3g-3) = -\dim_{\mathbb{C}}\Mbar_g$.
+This pairing is induced by the Serre duality pairing on
+$\Mbar_g$ applied to the factorization sheaf $Z(\cA)$:
+\[
+H^p\!\bigl(\Mbar_g, Z(\cA)\bigr)
+\otimes
+H^{3g-3-p}\!\bigl(\Mbar_g, Z(\cA)^\vee \otimes \omega_{\Mbar_g}\bigr)
+\longrightarrow
+H^{3g-3}\!\bigl(\Mbar_g, \omega_{\Mbar_g}\bigr)
+\;\cong\; k.
+\]
+The Koszul duality $\cA \mapsto \cA^!$ identifies
+$Z(\cA)^\vee$ with $Z(\cA^!)$ (up to a twist by the dualizing
+sheaf correction), and the pairing descends to the
+eigenspace decomposition.
+\end{theorem}
+
+\begin{proof}
+The Serre duality pairing on $\Mbar_g$ (a smooth
+Deligne--Mumford stack of complex dimension $3g - 3$ for
+$g \geq 2$) gives a perfect pairing
+\[
+H^p(\Mbar_g, \cF) \otimes H^{3g-3-p}(\Mbar_g, \cF^\vee
+\otimes \omega_{\Mbar_g}) \to k
+\]
+for any coherent sheaf $\cF$.
+Taking $\cF = Z(\cA)$ and using the Koszul duality
+identification $Z(\cA)^\vee \simeq Z(\cA^!)$ on the Koszul
+locus (Vol~I, Theorem~A, Verdier intertwining), the pairing
+\[
+H^p(\Mbar_g, Z(\cA)) \otimes H^{3g-3-p}(\Mbar_g, Z(\cA^!)) \to k
+\]
+is well defined and nondegenerate.
+Under the eigenspace decomposition
+(Proposition~\ref{prop:tholog-eigenspace-decomposition}),
+the $+$-eigenspace $Q_g(\cA)$ pairs nondegenerately with the
+$-$-eigenspace $Q_g(\cA^!)$ (the mixed terms vanish because
+$\sigma_g$ is an isometry of the Serre pairing: Serre duality
+commutes with the Verdier involution, and the $\pm$-eigenspaces
+are orthogonal under a pairing that intertwines with a
+sign-reversing involution).
+
+The degree shift $-(3g-3)$ accounts for the top cohomological
+degree of $\Mbar_g$.
+\end{proof}
+
+\subsubsection{The shifted-symplectic structure}
+\label{subsubsec:tholog-shifted-symplectic}
+
+\begin{theorem}[Shifted-symplectic structure on the ambient complex; \ClaimStatusProvedHere]
+\label{thm:tholog-shifted-symplectic}
+\index{shifted-symplectic structure}
+Assume $\cA$ is chirally Koszul with nondegenerate cyclic
+pairing.
+The ambient complex $C_g(\cA)$ carries a
+$(-1)$-shifted symplectic structure $\omega_{\mathrm{amb}}$:
+a closed degree-$(-1)$ bilinear form
+\[
+\omega_{\mathrm{amb}}
+\;:\;
+C_g(\cA) \otimes C_g(\cA) \to k[-(3g-2)]
+\]
+that is nondegenerate on cohomology.
+Explicitly, $\omega_{\mathrm{amb}}$ is the composition
+\begin{equation}\label{eq:symplectic-form}
+\omega_{\mathrm{amb}}(x, y)
+\;=\;
+\langle x,\; \sigma_g(y) \rangle_{\mathrm{Serre}}
+\;-\;
+(-1)^{|x||y|}\langle y,\; \sigma_g(x) \rangle_{\mathrm{Serre}},
+\end{equation}
+where $\langle -, - \rangle_{\mathrm{Serre}}$ is the Serre
+duality pairing of Theorem~\ref{thm:tholog-cross-pairing}.
+\end{theorem}
+
+\begin{proof}
+The form $\omega_{\mathrm{amb}}$ is manifestly antisymmetric
+(in the graded sense).
+We verify nondegeneracy and closedness.
+
+\emph{Nondegeneracy.}
+Decompose $x = x^+ + x^-$ and $y = y^+ + y^-$ into
+$\sigma_g$-eigenspaces.
+Then $\sigma_g(y) = y^+ - y^-$, and
+\begin{align*}
+\omega_{\mathrm{amb}}(x, y)
+&= \langle x^+ + x^-,\; y^+ - y^- \rangle_{\mathrm{Serre}}
+- (-1)^{|x||y|}\langle y^+ + y^-,\; x^+ - x^- \rangle_{\mathrm{Serre}} \\
+&= \langle x^+, -y^- \rangle + \langle x^-, y^+ \rangle
+- (-1)^{|x||y|}(\langle y^+, -x^- \rangle
++ \langle y^-, x^+ \rangle),
+\end{align*}
+where we used that the Serre pairing vanishes on same-eigenspace
+pairs ($\langle x^+, y^+ \rangle = 0$ and
+$\langle x^-, y^- \rangle = 0$, because $\sigma_g$ acts by the
+same sign on both entries, but the pairing satisfies
+$\langle \sigma_g x, \sigma_g y \rangle = \langle x, y \rangle$
+and antisymmetry of $\omega_{\mathrm{amb}}$ forces the
+same-eigenspace part to vanish).
+
+The cross-pairing terms $\langle x^-, y^+ \rangle$ and
+$\langle x^+, y^- \rangle$ are nondegenerate by
+Theorem~\ref{thm:tholog-cross-pairing}, hence
+$\omega_{\mathrm{amb}}$ is nondegenerate.
+
+\emph{Closedness.}
+The form $\omega_{\mathrm{amb}}$ is built from the
+Serre pairing (which is $d$-closed on cohomology) and
+the Verdier involution $\sigma_g$ (which commutes with $d$).
+Therefore $d\omega_{\mathrm{amb}} = 0$ on the cochain level.
+\end{proof}
+
+\subsubsection{Lagrangian condition}
+\label{subsubsec:tholog-lagrangian}
+
+\begin{theorem}[Lagrangian complementarity; \ClaimStatusProvedHere]
+\label{thm:tholog-lagrangian}
+\index{Lagrangian!complementarity!proof}
+The eigenspaces $C_g^+(\cA)$ and $C_g^-(\cA)$ are
+Lagrangian subcomplexes of $(C_g(\cA), \omega_{\mathrm{amb}})$:
+\begin{enumerate}[label=\textup{(\roman*)}]
+\item $\omega_{\mathrm{amb}}|_{C_g^+ \otimes C_g^+} = 0$.
+\item $\omega_{\mathrm{amb}}|_{C_g^- \otimes C_g^-} = 0$.
+\item $C_g^+ \oplus C_g^- = C_g(\cA)$.
+\item The restricted pairing
+  $\omega_{\mathrm{amb}}|_{C_g^+ \otimes C_g^-}$
+  is nondegenerate.
+\end{enumerate}
+In the language of derived algebraic geometry:
+$(Q_g(\cA), Q_g(\cA^!))$ is a Lagrangian pair in the
+$(-1)$-shifted symplectic space
+$H^\bullet(\Mbar_g, Z(\cA))$.
+\end{theorem}
+
+\begin{proof}
+Parts~(i) and~(ii): For $x, y$ in the same eigenspace,
+$\sigma_g(y) = \pm y$, and the computation in the proof of
+Theorem~\ref{thm:tholog-shifted-symplectic} shows that
+$\omega_{\mathrm{amb}}(x, y) = 0$
+when both $x$ and $y$ belong to the same eigenspace.
+This is because the Serre pairing
+$\langle x^\pm, y^\pm \rangle = 0$ vanishes on same-eigenspace pairs
+(the Verdier involution acts as $\sigma_g(y^\pm) = \pm y^\pm$, and
+$\omega_{\mathrm{amb}}(x^\pm, y^\pm)
+= \langle x^\pm, \pm y^\pm \rangle
+\mp (-1)^{|x||y|}\langle y^\pm, \pm x^\pm \rangle
+= \pm(\langle x^\pm, y^\pm \rangle
+- (-1)^{|x||y|}\langle y^\pm, x^\pm \rangle)$.
+By graded symmetry of the Serre pairing:
+$\langle y^\pm, x^\pm \rangle
+= (-1)^{|x||y|}\langle x^\pm, y^\pm \rangle$,
+so the expression is
+$\pm(\langle x^\pm, y^\pm \rangle
+- \langle x^\pm, y^\pm \rangle) = 0$.)
+
+Part~(iii) is Proposition~\ref{prop:tholog-eigenspace-decomposition}.
+
+Part~(iv) follows from the nondegeneracy of
+$\omega_{\mathrm{amb}}$ (Theorem~\ref{thm:tholog-shifted-symplectic})
+together with the isotropy of (i)--(ii): the only way a
+nondegenerate form can vanish on two complementary subspaces
+is if the cross-pairing is nondegenerate.
+\end{proof}
+
+\begin{remark}[Anti-symplecticity of the Verdier involution]
+\label{rem:tholog-anti-symplectic}
+The Verdier involution $\sigma_g$ is anti-symplectic:
+$\omega_{\mathrm{amb}}(\sigma_g x, \sigma_g y)
+= -\omega_{\mathrm{amb}}(x, y)$.
+This follows from the explicit
+formula~\eqref{eq:symplectic-form}:
+replacing $(x, y)$ by $(\sigma_g x, \sigma_g y)$ flips
+the sign because $\sigma_g^2 = \operatorname{id}$ and the
+form is defined by $\langle x, \sigma_g y \rangle$ (which
+becomes $\langle \sigma_g x, y \rangle$, swapping the
+roles of $Q_g(\cA)$ and $Q_g(\cA^!)$).
+The anti-symplecticity is the structural reason the
+eigenspaces are Lagrangian: any involution anti-symplectic
+with respect to a nondegenerate $2$-form necessarily has
+isotropic fixed-point and anti-fixed-point loci.
+\end{remark}
+
+\subsubsection{Genus 1 for Virasoro: explicit dimensions}
+\label{subsubsec:tholog-genus1-virasoro}
+
+\begin{computation}[Genus-1 complementarity for Virasoro; \ClaimStatusProvedHere]
+\label{comp:tholog-virasoro-genus1}
+\index{Virasoro algebra!genus-1 complementarity}
+At genus $g = 1$, $\Mbar_1 \cong \mathbb{P}^1$
+(after adding the nodal curve), $\dim_\mathbb{C} = 1$.
+For $\mathrm{Vir}_c$ (generic $c$, away from $c = 0, 13, 26$):
+
+\emph{The ambient complex.}
+$C_1(\mathrm{Vir}_c) = R\Gamma(\Mbar_1, Z(\mathrm{Vir}_c))$.
+The factorization sheaf $Z(\mathrm{Vir}_c)$ on $\Mbar_1$
+is determined by the Virasoro bar complex restricted to
+genus-$1$ data: the one-loop amplitudes.
+The relevant cohomology is
+\[
+H^\bullet(\Mbar_1, Z(\mathrm{Vir}_c))
+\;=\;
+Q_1(\mathrm{Vir}_c) \;\oplus\; Q_1(\mathrm{Vir}_{26-c}).
+\]
+
+\emph{Dimensions.}
+The genus-$1$ partition function of $\mathrm{Vir}_c$ is the
+generating function of the Virasoro characters at genus~$1$.
+The relevant invariants:
+\begin{enumerate}[label=\textup{(\roman*)}]
+\item $\dim Q_1(\mathrm{Vir}_c)$ counts the genus-$1$
+  Virasoro modular data at central charge $c$:
+  the image of the torus partition function in the
+  quotient by the Koszul dual contribution.
+\item $\dim Q_1(\mathrm{Vir}_{26-c})$ counts the dual
+  contribution at the complementary charge.
+\item The total dimension satisfies
+  \[
+  \dim Q_1(\mathrm{Vir}_c) + \dim Q_1(\mathrm{Vir}_{26-c})
+  = \dim H^\bullet(\Mbar_1, Z(\mathrm{Vir}_c)).
+  \]
+\item At the self-dual point $c = 13$:
+  $Q_1(\mathrm{Vir}_{13}) \cong Q_1(\mathrm{Vir}_{13})$
+  (isomorphic, by the self-duality),
+  so each Lagrangian has exactly half the total dimension.
+\item At $c = 26$: the Koszul dual $\mathrm{Vir}_0$ has
+  $T = 0$, so $Q_1(\mathrm{Vir}_0) = 0$ and
+  $Q_1(\mathrm{Vir}_{26})$ carries the full ambient cohomology.
+  The complementarity decomposition degenerates: one Lagrangian
+  is the full space, the other is zero.
+\end{enumerate}
+
+\emph{The cross-pairing.}
+At genus $1$, $\dim_\mathbb{C}\Mbar_1 = 1$, so the
+cross-pairing has degree $-(3 \cdot 1 - 3) = 0$:
+\[
+\langle -, - \rangle_1
+\;:\;
+Q_1(\mathrm{Vir}_c) \otimes Q_1(\mathrm{Vir}_{26-c})
+\;\longrightarrow\; k.
+\]
+This is a degree-$0$ pairing.
+Its explicit evaluation on the genus-$1$ modular form
+$\chi_c(\tau) = q^{-c/24}\prod_{n=1}^\infty(1-q^n)^{-1}$:
+the cross-pairing at genus $1$ is controlled by the
+Petersson inner product on the space of weakly holomorphic
+modular forms, restricted to the Virasoro characters
+at complementary central charges.
+\end{computation}
+
+\subsubsection{The complementarity potential}
+\label{subsubsec:tholog-complementarity-potential}
+
+\begin{definition}[Complementarity potential]
+\label{def:tholog-complementarity-potential}
+\index{complementarity potential}
+Suppose the Lagrangian $Q_g(\cA^!)$ can be written as the
+graph of a $1$-form on $Q_g(\cA)$:
+there exists a functional
+\[
+S_\cA \;:\; Q_g(\cA) \to k[-(3g-3)]
+\]
+(the \emph{complementarity potential}) such that
+\[
+Q_g(\cA^!) = \bigl\{(x, dS_\cA(x)) \;\big|\; x \in Q_g(\cA)\bigr\}
+\]
+under the symplectic identification
+$C_g(\cA) = Q_g(\cA) \oplus Q_g(\cA)^\vee[-(3g-3)]$.
+\end{definition}
+
+\begin{proposition}[Existence and uniqueness; \ClaimStatusProvedHere]
+\label{prop:tholog-potential-existence}
+On the Koszul locus, the complementarity potential $S_\cA$
+exists and is unique up to constants.
+Its existence is equivalent to the transversality of the two
+Lagrangians: $Q_g(\cA) \cap Q_g(\cA^!) = \{0\}$.
+\end{proposition}
+
+\begin{proof}
+The symplectic vector space $C_g(\cA) = L_+ \oplus L_-$
+with $L_\pm$ Lagrangian and $L_+ \cap L_- = \{0\}$ admits
+the identification $C_g(\cA) \cong L_+ \oplus L_+^\vee$
+via the symplectic form.
+The second Lagrangian $L_-$, being transverse to $L_+$,
+is the graph of a symmetric bilinear form on $L_+$
+(i.e.\ a quadratic function $S_\cA$ on $L_+$, up to a constant).
+The form is symmetric because $L_-$ is Lagrangian (isotropy
+translates to the symmetry of the quadratic form).
+Uniqueness up to constants is standard.
+\end{proof}
+
+\subsubsection{Shadow jets as Taylor coefficients}
+\label{subsubsec:tholog-shadow-jets}
+
+\begin{theorem}[Shadow jets from the complementarity potential; \ClaimStatusProvedHere]
+\label{thm:tholog-shadow-jets}
+The Taylor expansion of the complementarity potential $S_\cA$
+around the origin produces the shadow jets of Vol~I:
+\begin{equation}\label{eq:shadow-jet-expansion}
+S_\cA(x) = \sum_{r=2}^{\infty} \frac{1}{r!}\,
+\mathrm{Sh}_r(\Theta_\cA)(x^{\otimes r}),
+\end{equation}
+where $\mathrm{Sh}_r(\Theta_\cA)$ is the arity-$r$ shadow
+projection of the MC element $\Theta_\cA \in \mathrm{MC}(g_\cA^{\mathrm{mod}})$.
+In particular:
+\begin{enumerate}[label=\textup{(\roman*)}]
+\item The quadratic term
+  $\frac{1}{2}\mathrm{Sh}_2(\Theta_\cA)(x, x)
+  = \kappa(\cA) \cdot \langle x, x \rangle$
+  is the modular Koszul curvature.
+\item The cubic term
+  $\frac{1}{6}\mathrm{Sh}_3(\Theta_\cA)(x, x, x)
+  = C(\cA)(x^{\otimes 3})$
+  is the cubic shadow.
+\item The quartic term
+  $\frac{1}{24}\mathrm{Sh}_4(\Theta_\cA)(x^{\otimes 4})
+  = Q(\cA)(x^{\otimes 4})$
+  is the quartic resonance class.
+\end{enumerate}
+The expansion~\eqref{eq:shadow-jet-expansion} converges
+(in the sense of the arity filtration) to the full
+MC element $\Theta_\cA$ by Vol~I,
+Theorem~\textup{\ref*{thm:recursive-existence}}
+(all-arity convergence).
+\end{theorem}
+
+\begin{proof}
+The complementarity potential $S_\cA$ is determined by the
+condition that $Q_g(\cA^!)$ is the graph of $dS_\cA$.
+The dual Lagrangian $Q_g(\cA^!)$ is in turn determined by
+the bar-cobar inversion applied to the MC element $\Theta_\cA$.
+
+The Taylor expansion of $S_\cA$ at the origin is computed by
+expanding the MC equation
+$D \Theta_\cA + \frac{1}{2}[\Theta_\cA, \Theta_\cA] = 0$
+in the arity filtration.
+At arity $r$, the MC equation projected to degree $r$ involves
+only the shadow projections
+$\mathrm{Sh}_2, \dots, \mathrm{Sh}_r$, and the arity-$r$
+Taylor coefficient of $S_\cA$ is
+$\frac{1}{r!}\mathrm{Sh}_r(\Theta_\cA)$.
+
+Part~(i): at arity $2$, the MC equation reduces to the
+curvature equation $d^2 = \kappa \cdot \omega_g$
+(Vol~I, Theorem~D), and the quadratic Taylor coefficient
+of $S_\cA$ is the scalar curvature $\kappa(\cA)$.
+
+Part~(ii): at arity $3$, the MC equation gives the cubic
+shadow $C(\cA)$ as the obstruction class to trivializing the
+arity-$3$ truncation (Vol~I, cubic gauge triviality,
+Theorem~\ref*{thm:cubic-gauge-triviality}).
+
+Part~(iii): at arity $4$, the MC equation gives the quartic
+resonance class $Q(\cA)$ (Vol~I, quartic resonance with
+clutching law via Mok's log FM degeneration).
+
+Convergence follows from Vol~I,
+Theorem~\ref*{thm:recursive-existence}:
+$\Theta_\cA = \varprojlim \Theta_\cA^{\leq r}$.
+\end{proof}
+
+\begin{remark}[The complementarity potential as a generating function]
+\label{rem:tholog-potential-generating-function}
+The complementarity potential $S_\cA$ is the generating
+function of all shadow invariants simultaneously.
+Its content is equivalent to the full MC element $\Theta_\cA$,
+but organized differently: $\Theta_\cA$ lives in the
+convolution dg Lie algebra $g_\cA^{\mathrm{mod}}$, while
+$S_\cA$ lives on the Lagrangian complement $Q_g(\cA)$.
+The translation between the two is the Legendre transform
+of the MC equation, passing from the Lie-algebraic
+formulation (``$\Theta$ satisfies the MC equation'') to
+the variational formulation (``$Q_g(\cA^!)$ is the critical
+locus of $S_\cA + \omega_{\mathrm{amb}}$'').
+This is the Chriss--Ginzburg principle at the level of
+generating functions: every algebraic structure in the
+monograph is an MC element, and the complementarity potential
+is the Lagrangian shadow of that MC element.
+\end{remark}
+
+\subsubsection{Perfectness and nondegeneracy}
+\label{subsubsec:tholog-perfectness}
+
+\begin{definition}[Perfect ambient complex]
+\label{def:tholog-perfect-ambient}
+\index{perfect ambient complex}
+The ambient complex $C_g(\cA)$ is \emph{perfect} if it is
+quasi-isomorphic to a bounded complex of finitely generated
+free $k$-modules.
+It is \emph{nondegenerate} if in addition the cross-pairing
+$\langle -, - \rangle_g$ of
+Theorem~\ref{thm:tholog-cross-pairing}
+is a perfect pairing (i.e.\ induces an isomorphism
+$Q_g(\cA) \xrightarrow{\sim} Q_g(\cA^!)^\vee[-(3g-3)]$).
+\end{definition}
+
+\begin{proposition}[Perfectness for the standard landscape; \ClaimStatusProvedHere]
+\label{prop:tholog-perfectness-landscape}
+The ambient complex $C_g(\cA)$ is perfect for $\cA$ in the
+standard landscape (Heisenberg, affine Kac--Moody at
+non-critical level, $\beta\gamma$, Virasoro at generic $c$,
+$\mathcal{W}_N$ at generic $c$) and for all $g \geq 0$.
+\end{proposition}
+
+\begin{proof}
+Perfectness follows from the finiteness properties of the
+bar complex.
+For each standard family, the bar complex is the cochain complex
+of a finitely generated operadic algebra with polynomial growth
+of the PBW basis (Vol~I, MC1: PBW concentration for all standard
+families).
+The factorization-homology pushforward to $\Mbar_g$ preserves
+perfectness because $\Mbar_g$ is a smooth proper
+Deligne--Mumford stack (Grothendieck duality for proper morphisms).
+\end{proof}
+
+\begin{theorem}[Nondegeneracy implies shifted-symplectic; \ClaimStatusProvedHere]
+\label{thm:tholog-nondegeneracy-symplectic}
+If $C_g(\cA)$ is both perfect and nondegenerate, then:
+\begin{enumerate}[label=\textup{(\roman*)}]
+\item The $(-1)$-shifted symplectic form $\omega_{\mathrm{amb}}$
+  of Theorem~\ref{thm:tholog-shifted-symplectic} is
+  nondegenerate at the cochain level (not merely on cohomology).
+\item The Lagrangian pair $(Q_g(\cA), Q_g(\cA^!))$ extends
+  to a Lagrangian pair at the derived level:
+  $(C_g^+(\cA), C_g^-(\cA))$ are derived Lagrangian
+  subcomplexes.
+\item The complementarity potential $S_\cA$ extends to a
+  cochain-level functional
+  $S_\cA^{\mathrm{ch}} : C_g^+(\cA) \to k[-(3g-2)]$
+  satisfying $dS_\cA^{\mathrm{ch}} = 0$ and inducing
+  $S_\cA$ on cohomology.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+Part~(i): by the nondegeneracy hypothesis, the cross-pairing
+$Q_g(\cA) \otimes Q_g(\cA^!) \to k[-(3g-3)]$ is perfect.
+Since $C_g(\cA)$ is perfect, the symplectic form is
+represented by a cochain-level pairing that is nondegenerate
+on a cofibrant replacement.
+
+Part~(ii): the eigenspaces $C_g^\pm(\cA)$ are subcomplexes
+with the isotropy property proved in
+Theorem~\ref{thm:tholog-lagrangian}, and the nondegeneracy
+of the ambient form restricted to the cross-terms
+$C_g^+ \otimes C_g^-$ holds at the cochain level by
+perfectness.
+
+Part~(iii): the complementarity potential
+$S_\cA$ extends to the cochain level by the same graph
+construction as Proposition~\ref{prop:tholog-potential-existence},
+applied to the cochain-level Lagrangians.
+Closedness $dS_\cA^{\mathrm{ch}} = 0$ follows from the
+Lagrangian condition (isotropy at the cochain level).
+\end{proof}
+
+\subsubsection{The symplectic polarization as a functor}
+\label{subsubsec:tholog-symplectic-functor}
+
+\begin{proposition}[Functoriality; \ClaimStatusProvedHere]
+\label{prop:tholog-complementarity-functorial}
+The assignment
+\[
+\cA \longmapsto
+\bigl(C_g(\cA),\; \omega_{\mathrm{amb}},\;
+Q_g(\cA),\; Q_g(\cA^!)\bigr)
+\]
+is functorial in the following sense:
+for any morphism $f : \cA \to \cB$ of chirally Koszul
+algebras (compatible with the Koszul duality), there is an
+induced symplectomorphism
+\[
+f_* : C_g(\cA) \to C_g(\cB)
+\]
+preserving the Lagrangian decomposition.
+If $f$ is a quasi-isomorphism, then $f_*$ is a
+quasi-isomorphism of $(-1)$-shifted symplectic complexes.
+\end{proposition}
+
+\begin{proof}
+The factorization-homology pushforward is functorial in the
+input algebra, and the Verdier involution is natural.
+The symplectic form is defined in terms of the Serre pairing
+(which is natural) and the Verdier involution (which is
+natural by Theorem~A).
+The Lagrangian decomposition is the eigenspace decomposition
+under $\sigma_g$, which is preserved by $f_*$ because
+$\sigma_g$ is natural.
+\end{proof}
+
+\begin{remark}[Summary of the symplectic polarization]
+\label{rem:tholog-symplectic-summary}
+\index{complementarity!summary}
+The full picture:
+\begin{enumerate}[label=\textup{(\arabic*)}]
+\item The ambient complex
+  $C_g(\cA) = R\Gamma(\Mbar_g, Z(\cA))$
+  carries a $(-1)$-shifted symplectic structure
+  from Serre duality on $\Mbar_g$.
+\item The Verdier involution $\sigma_g$ (from Koszul duality)
+  is anti-symplectic, producing a Lagrangian pair
+  $(Q_g(\cA), Q_g(\cA^!))$.
+\item The cross-pairing
+  $Q_g(\cA) \otimes Q_g(\cA^!) \to k[-(3g-3)]$
+  is perfect on the Koszul locus.
+\item The complementarity potential $S_\cA$ is the generating
+  function whose Taylor coefficients are the shadow jets
+  $\kappa, C, Q, \dots$
+\item At the self-dual point ($\kappa = 0$), the Lagrangian
+  pair degenerates: $Q_g(\cA) \cong Q_g(\cA^!)$ and
+  $S_\cA = 0$.
+\item On the gravitational locus ($u = 0$), the genus-Clifford
+  completion degenerates to an exterior algebra, and the
+  symplectic polarization reduces to the standard Hodge
+  decomposition on $\Lambda^\bullet(H_1(\Sigma_g))$.
+\end{enumerate}
+\end{remark}

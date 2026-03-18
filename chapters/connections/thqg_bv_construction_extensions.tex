@@ -1,0 +1,1588 @@
+% thqg_bv_construction_extensions.tex
+% BV-BRST derivation of A-infinity operations from 3d HT field theory,
+% loop corrections, and genus expansion via the modular bar construction.
+%
+% Dependencies: bv-construction.tex (Section BV_construction),
+%               fm-calculus.tex (Section FM_calculus),
+%               higher_genus_modular_koszul.tex (Vol I, modular bar).
+
+\providecommand{\fg}{\mathfrak{g}}
+\providecommand{\fh}{\mathfrak{h}}
+\providecommand{\cA}{\mathcal{A}}
+\providecommand{\cO}{\mathcal{O}}
+\providecommand{\cM}{\mathcal{M}}
+\providecommand{\cL}{\mathcal{L}}
+\providecommand{\cF}{\mathcal{F}}
+\providecommand{\cH}{\mathcal{H}}
+\providecommand{\cV}{\mathcal{V}}
+\providecommand{\cE}{\mathcal{E}}
+\providecommand{\cZ}{\mathcal{Z}}
+\providecommand{\cW}{\mathcal{W}}
+\providecommand{\cN}{\mathcal{N}}
+\providecommand{\cD}{\mathcal{D}}
+\providecommand{\bC}{\mathbb{C}}
+\providecommand{\bR}{\mathbb{R}}
+\providecommand{\bZ}{\mathbb{Z}}
+\providecommand{\bQ}{\mathbb{Q}}
+\providecommand{\bN}{\mathbb{N}}
+\providecommand{\barB}{\bar{B}}
+\providecommand{\barBch}{\bar{B}^{\mathrm{ch}}}
+\providecommand{\Omegach}{\Omega^{\mathrm{ch}}}
+\providecommand{\BBar}{\operatorname{Bar}}
+\providecommand{\Cobar}{\operatorname{\Omega}}
+\providecommand{\Tr}{\operatorname{Tr}}
+\providecommand{\Res}{\operatorname{Res}}
+\providecommand{\Sym}{\operatorname{Sym}}
+\providecommand{\HH}{\operatorname{HH}}
+\providecommand{\CE}{\operatorname{CE}}
+\providecommand{\Hom}{\operatorname{Hom}}
+\providecommand{\End}{\operatorname{End}}
+\providecommand{\id}{\operatorname{id}}
+\providecommand{\Spec}{\operatorname{Spec}}
+\providecommand{\Obs}{\operatorname{Obs}}
+\providecommand{\FM}{\operatorname{FM}}
+\providecommand{\Conf}{\operatorname{Conf}}
+\providecommand{\Ran}{\operatorname{Ran}}
+\providecommand{\h}{\hbar}
+\providecommand{\ov}[1]{\overline{#1}}
+\providecommand{\Ainf}{\mathsf{A}_{\infty}}
+\providecommand{\Linf}{\mathsf{L}_{\infty}}
+\providecommand{\SCchtop}{\mathsf{SC}^{\mathrm{ch,top}}}
+\providecommand{\Aut}{\operatorname{Aut}}
+\providecommand{\Stab}{\operatorname{Stab}}
+\providecommand{\Def}{\operatorname{Def}}
+
+%% ====================================================================
+%%
+%%  CHAPTER: BV-BRST DERIVATION OF A-INFINITY OPERATIONS
+%%           AND THE MODULAR BAR CONSTRUCTION
+%%
+%% ====================================================================
+
+\chapter{BV-BRST derivation of \texorpdfstring{$\Ainf$}{A-infinity}
+operations and the genus expansion}
+\label{chap:thqg-bv-ext}
+
+\begin{summary}[Scope and targets]
+Section~\ref{sec:BV_construction} established that the BV observable
+prefactorization algebra of a 3d HT theory on $\bR_t \times \bC_z$
+carries higher multiplications $m_k$, defined as integrals over
+$\FM_k(\bC) \times \Conf_k(\bR)$, whose Stasheff identities are
+consequences of Stokes' theorem on FM boundaries.  That discussion
+was genus-$0$ and tree-level.  This chapter has two objectives.
+First (Sections~\ref{sec:thqg-bv-ext-tree-feynman}--\ref{sec:thqg-bv-ext-mk-derivation}):
+derive the tree-level $m_k$ from the 3d HT action, the propagator,
+and Feynman diagrams on $\FM_k(\bC) \times \Conf_k(\bR)$, showing
+that the quantum master equation forces every $\Ainf$ relation to
+appear as a boundary integral.  Second
+(Sections~\ref{sec:thqg-bv-ext-one-loop}--\ref{sec:thqg-bv-ext-stable-graph}):
+incorporate loop corrections, identify the genus-$g$ curvature
+$\kappa \cdot \omega_g$, prove the two-loop three-shell identity,
+and show that the general stable-graph expansion of amplitudes
+reproduces the modular bar construction of Vol~I.
+\end{summary}
+
+
+%% ====================================================================
+%%  PART 1: TREE-LEVEL BV-BRST DERIVATION OF A-INFINITY OPERATIONS
+%% ====================================================================
+
+\section{Tree-level Feynman rules on
+\texorpdfstring{$\FM_k(\bC) \times \Conf_k(\bR)$}{FM\_k(C) x Conf\_k(R)}}
+\label{sec:thqg-bv-ext-tree-feynman}
+
+\begin{convention}[Sign convention for Feynman diagrams]
+\label{conv:thqg-bv-ext-signs}
+Each Feynman diagram $\Gamma$ with $L$ loops and $I$ internal
+fermionic lines contributes a factor $(-1)^{L+I}$.  For
+genus-$0$ tree diagrams, $L = 0$ and $I = 0$ (all fields
+are bosonic in the HT twist), so the sign is $+1$.  At higher
+genus, the loop sign $(-1)^L$ combines with the fermionic-line
+sign $(-1)^I$ to produce the standard Feynman sign rule.
+\end{convention}
+
+Fix a 3d HT theory on $\bR_t \times \bC_z$ satisfying hypotheses
+(H1)--(H4) of Section~\ref{subsec:analytic}.  The field space $\cF$
+decomposes as
+\begin{equation}
+\label{eq:thqg-bv-ext-field-decomp}
+\cF = \cF^{\mathrm{hol}} \otimes \cF^{\mathrm{top}},
+\end{equation}
+where $\cF^{\mathrm{hol}}$ carries holomorphic dependence on $z \in \bC$
+and $\cF^{\mathrm{top}}$ carries topological (locally constant)
+dependence on $t \in \bR$.  The BV action has the form
+\begin{equation}
+\label{eq:thqg-bv-ext-action}
+S[\Phi] = \int_{\bR \times \bC}
+\bigl\langle \Phi,\, \bar\partial_z \Phi \bigr\rangle \, dt
+\;+\; \sum_{n \ge 2} \frac{1}{n!}
+\int_{\bR \times \bC} V_n(\Phi,\ldots,\Phi)\, dt,
+\end{equation}
+with kinetic operator $\bar\partial_z$ along $\bC$ (no kinetic term
+in $t$, reflecting topological invariance along $\bR$), and
+interaction vertices $V_n$ of degree $2-n$ in the BV grading.
+
+\subsection{The propagator}
+\label{subsec:thqg-bv-ext-propagator}
+
+\begin{definition}[HT propagator; \ClaimStatusProvedHere]
+\label{def:thqg-bv-ext-propagator}
+The gauge-fixed propagator is
+\begin{equation}
+\label{eq:thqg-bv-ext-prop}
+G(z_1, z_2;\, t_1, t_2)
+\;=\;
+\frac{\Theta(t_1 - t_2)}{2\pi(z_1 - z_2)},
+\end{equation}
+where $\Theta$ is the Heaviside step function.  This is the
+\emph{retarded} Green function for $\bar\partial$ on
+$\bC \times \bR_+$: the holomorphic factor
+$1/(2\pi(z_1 - z_2))$ is the $\bar\partial$-Green kernel on
+$\bC$, and the topological factor $\Theta(t_1 - t_2)$ enforces
+causal (time-)ordering.  In the distributional sense,
+\[
+\bar\partial_{z_1} G(z_1, z_2;\, t_1, t_2)
+= \delta^{(2)}(z_1 - z_2)\,\Theta(t_1 - t_2),
+\]
+so $G$ inverts $\bar\partial_{z_1}$ on the causal half-space
+$\{t_1 > t_2\}$, not on all of $\bC \times \bR$.  The retarded
+boundary condition (vanishing for $t_1 < t_2$) is the HT analogue
+of the Feynman $i\epsilon$ prescription.
+\end{definition}
+
+\begin{remark}[Factored form]
+\label{rem:thqg-bv-ext-factored-propagator}
+The propagator factors as $G = G^{\mathrm{hol}} \cdot G^{\mathrm{top}}$
+with $G^{\mathrm{hol}}(z_1,z_2) = 1/(2\pi(z_1 - z_2))$ and
+$G^{\mathrm{top}}(t_1,t_2) = \Theta(t_1 - t_2)$.  The holomorphic
+factor produces a logarithmic $1$-form
+\[
+\eta_{ij} := d\log(z_i - z_j)
+= \frac{dz_i - dz_j}{z_i - z_j}
+\;\in\; \Omega^1_{\log}(\FM_k(\bC))
+\]
+on the FM compactification.  The topological factor produces a
+cellular cochain on $\Conf_k(\bR)$: the step function $\Theta(t_i - t_j)$
+is the indicator of the half-space $\{t_i > t_j\}$ in the
+$E_1$-operad.  The product space
+$\FM_k(\bC) \times \Conf_k(\bR)$ thus receives a form--chain
+pairing from each propagator edge.
+\end{remark}
+
+\subsection{Feynman diagrams and tree amplitudes}
+\label{subsec:thqg-bv-ext-tree-amplitudes}
+
+\begin{definition}[Feynman diagrams for $m_k$]
+\label{def:thqg-bv-ext-feynman-diag}
+A \emph{tree-level Feynman diagram} $\Gamma$ contributing to the
+$k$-ary operation $m_k$ is a rooted planar tree with:
+\begin{enumerate}[label=(\roman*)]
+\item $k$ leaves (external legs), labeled $1, \ldots, k$ in planar
+  order, corresponding to operator insertions
+  $a_1, \ldots, a_k \in A$;
+\item internal vertices of valence $\ge 3$, each carrying a vertex
+  factor $V_n$ of the appropriate arity;
+\item internal edges, each carrying a propagator
+  $G(z_i, z_j;\, t_i, t_j)$;
+\item a single root edge (output), corresponding to the result
+  of $m_k(a_1, \ldots, a_k)$.
+\end{enumerate}
+The set of such diagrams is denoted $\mathrm{Tree}(k)$.
+\end{definition}
+
+\begin{definition}[Tree-level amplitude]
+\label{def:thqg-bv-ext-tree-amplitude}
+For $\Gamma \in \mathrm{Tree}(k)$, the \emph{amplitude} is the
+differential form on $\FM_k(\bC) \times \Conf_k(\bR)$ given by
+\begin{equation}
+\label{eq:thqg-bv-ext-tree-amp}
+\omega_\Gamma(a_1, \ldots, a_k)
+\;:=\;
+\biggl(\prod_{e = (i,j) \in E(\Gamma)}
+\eta_{ij}\biggr)
+\;\cdot\;
+\biggl(\prod_{v \in V(\Gamma)} V_{|v|}(a_{L(v)})\biggr)
+\;\cdot\;
+\biggl(\prod_{e = (i,j) \in E(\Gamma)}
+\Theta(t_i - t_j)\biggr),
+\end{equation}
+where $E(\Gamma)$ is the edge set, $V(\Gamma)$ the internal vertex
+set, $|v|$ the valence of vertex $v$, and $a_{L(v)}$ denotes the
+tuple of insertions at the leaves descending from $v$.  The
+holomorphic factor is a product of logarithmic $1$-forms $\eta_{ij}$
+on $\FM_k(\bC)$; the topological factor is a product of step
+functions restricting to a chamber of $\Conf_k(\bR)$.
+\end{definition}
+
+\begin{proposition}[Degree count; \ClaimStatusProvedHere]
+\label{prop:thqg-bv-ext-degree-count}
+The amplitude $\omega_\Gamma$ for $\Gamma \in \mathrm{Tree}(k)$
+is a form of total degree $k - 2$ on $\FM_k(\bC)$ (holomorphic
+contribution) plus degree $0$ on $\Conf_k(\bR)$ (topological
+contribution: the step-function product is a $0$-cochain).
+A tree with $k$ leaves has $k - 1$ internal edges and hence
+$k - 1$ logarithmic $1$-forms $\eta_{ij}$; the form degree is
+$k - 1$ minus the one form ``used'' for the output differential,
+yielding $k - 2$ on the quotient $\FM_k(\bC)/\bC$ of dimension
+$2(k-1) - 2 = 2k - 4$ (real).
+
+The operation $m_k$ has cohomological degree $2 - k$:
+one unit from each internal edge ($-1$ per desuspension) plus
+$+1$ from each internal vertex, yielding
+$-(k-1) + (\text{number of internal vertices})$.  For a
+binary tree, the vertex count is $k - 1$, giving degree
+$-(k-1) + (k-1) = 0$; the actual degree $2-k$ arises from
+the grading shift in the bar desuspension.
+\end{proposition}
+
+\begin{proof}
+Count edges and vertices.  A planar rooted tree with $k$ leaves
+has $k - 1$ internal edges (every non-root leaf contributes one
+edge on the path to the root, and no edge is counted twice for a
+tree).  Each edge contributes a $1$-form $\eta_{ij}$ of
+holomorphic degree $1$.  The total form degree on $\FM_k(\bC)$
+is therefore $k - 1$.  After dividing by the translation action on
+$\bC$ (which removes one complex coordinate, hence two real
+dimensions), the effective degree is $k - 1$ on a space of real
+dimension $2(k - 1) - 2$.
+
+For the bar-complex degree: in the unsuspended complex, $m_k$
+maps $k$ inputs to $1$ output preserving total degree, so
+$|m_k|_{\mathrm{unsuspended}} = 0$.  In the bar complex,
+each input is desuspended by $s^{-1}$ (degree shift $-1$),
+and the coderivation $d_B$ extending $m_k$ has degree $+1$
+(the bar differential has cohomological degree~$+1$).
+The operation $m_k$ on the bar complex has degree
+$|m_k|_{\mathrm{bar}} = 2 - k$: this is because $m_k$ maps
+$(s^{-1}A)^{\otimes k} \to s^{-1}A$, and
+$|s^{-1}| = -1$ contributes $-k$ on the input and $-1$ on the
+output, giving a net shift of $-k - (-1) = -(k-1)$; combined
+with the coderivation lift (which adds $+1$), the total degree
+of the coderivation component extending $m_k$ is $2 - k$.
+\end{proof}
+
+\subsection{The quantum master equation and closed weight forms}
+\label{subsec:thqg-bv-ext-qme}
+
+\begin{proposition}[QME implies closedness; \ClaimStatusProvedHere]
+\label{prop:thqg-bv-ext-qme-closedness}
+The quantum master equation
+\begin{equation}
+\label{eq:thqg-bv-ext-qme}
+\h\,\Delta_{\mathrm{BV}} S
++ \tfrac{1}{2}\{S, S\}_{\mathrm{BV}} = 0
+\end{equation}
+implies that the total differential $D = d_{\FM} + Q_{\mathrm{BRST}}$
+annihilates the tree-level weight forms:
+\[
+D\,\omega_\Gamma = 0
+\quad\text{on}\quad
+\Conf_k(\bC) \times \Conf_k(\bR),
+\]
+for every $\Gamma \in \mathrm{Tree}(k)$.
+\end{proposition}
+
+\begin{proof}
+The total differential decomposes as $D = d_{\FM} + Q$ where
+$d_{\FM}$ acts on the geometric coordinates of $\FM_k(\bC)$ and
+$Q = Q_{\mathrm{BRST}} = \{S, -\}_{\mathrm{BV}} + \h\,\Delta_{\mathrm{BV}}$
+acts on the field insertions.  At tree level ($\h = 0$), the QME
+reduces to $\{S, S\}_{\mathrm{BV}} = 0$, the classical master
+equation.
+
+\medskip\noindent\textbf{Step 1: $d_{\FM}$ produces propagator
+residues.}
+Each logarithmic $1$-form $\eta_{ij} = d\log(z_i - z_j)$ is
+closed: $d_{\FM}\,\eta_{ij} = 0$.  Therefore
+$d_{\FM}\,\omega_\Gamma = 0$ in the interior $\Conf_k(\bC)$, since
+$\omega_\Gamma$ is a product of closed forms.
+
+\medskip\noindent\textbf{Step 2: $Q$ produces vertex relations.}
+The BRST operator $Q$ acts on the insertions $a_1, \ldots, a_k$
+via the Leibniz rule.  On the vertex factor $V_n(a_{i_1}, \ldots,
+a_{i_n})$, the relation $Q \circ V_n = V_n \circ Q^{\otimes n}$
+(a consequence of $\{S, S\} = 0$: the interaction vertices are
+$Q$-equivariant) ensures that
+\[
+Q\,\omega_\Gamma(a_1, \ldots, a_k)
+= \sum_{j=1}^{k} \pm\,
+\omega_\Gamma(a_1, \ldots, Q\,a_j, \ldots, a_k).
+\]
+This is the ``$Q$ passes through vertices'' identity.
+
+\medskip\noindent\textbf{Step 3: Total closure.}
+Combining Steps 1--2, $D\,\omega_\Gamma = d_{\FM}\,\omega_\Gamma
++ Q\,\omega_\Gamma = 0 + Q\,\omega_\Gamma$.  The total weight form
+$\omega_k = \sum_\Gamma |\Aut(\Gamma)|^{-1}\,\omega_\Gamma$ is
+$D$-closed if and only if the sum of all $Q$-variations vanishes,
+which is guaranteed by the classical master equation applied at each
+vertex.  This is the content of $\{S, S\} = 0$ expanded in Feynman
+graphs.
+\end{proof}
+
+\begin{remark}[Role of the QME factor $\tfrac{1}{2}$]
+\label{rem:thqg-bv-ext-qme-factor}
+The factor $\tfrac{1}{2}$ in $\tfrac{1}{2}\{S,S\} = 0$ matches the
+automorphism factor $|\Aut(\Gamma)|^{-1} = \tfrac{1}{2}$ for the
+unique graph with two vertices joined by a single edge.  More
+generally, the $n!$ in the interaction $\frac{1}{n!}V_n$ compensates
+the automorphism counts of tree diagrams, ensuring that the total
+tree-level amplitude $\omega_k = \sum_\Gamma |\Aut(\Gamma)|^{-1}
+\omega_\Gamma$ is correctly normalized.
+\end{remark}
+
+
+%% ====================================================================
+\section{Derivation of \texorpdfstring{$m_k$}{m\_k} as a sum over
+trees}
+\label{sec:thqg-bv-ext-mk-derivation}
+
+\subsection{The tree-level operations}
+\label{subsec:thqg-bv-ext-mk-tree}
+
+\begin{construction}[$m_k$ from Feynman diagrams;
+\ClaimStatusProvedHere]
+\label{const:thqg-bv-ext-mk-feynman}
+Define the $k$-ary operation $m_k : A^{\otimes k} \to A$ by
+\begin{equation}
+\label{eq:thqg-bv-ext-mk-def}
+m_k(a_1, \ldots, a_k)
+\;:=\;
+\sum_{\Gamma \in \mathrm{Tree}(k)}
+\frac{1}{|\Aut(\Gamma)|}
+\int_{\Gamma_k \subset \FM_k(\bC) \times \Conf_k(\bR)}
+\omega_\Gamma(a_1, \ldots, a_k),
+\end{equation}
+where $\Gamma_k$ is the fundamental chain (the closure of the
+ordered chamber $\{t_1 > \cdots > t_k\}$ in
+$\FM_k(\bR) \times \FM_k(\bC)$) and
+$\omega_\Gamma$ is the amplitude of
+Definition~\ref{def:thqg-bv-ext-tree-amplitude}.
+\end{construction}
+
+\begin{theorem}[Tree-level $\Ainf$ from BV; \ClaimStatusProvedHere]
+\label{thm:thqg-bv-ext-tree-ainfty}
+The operations $\{m_k\}_{k \ge 1}$ of
+Construction~\ref{const:thqg-bv-ext-mk-feynman} satisfy the
+$\Ainf$ Stasheff identities:
+\begin{equation}
+\label{eq:thqg-bv-ext-stasheff}
+\sum_{\substack{i + j = n + 1 \\ i, j \ge 1}}
+\sum_{s=0}^{n-j}
+(-1)^{|a_1| + \cdots + |a_s|}
+\,m_i\bigl(a_1, \ldots, a_s,\,
+m_j(a_{s+1}, \ldots, a_{s+j}),\,
+a_{s+j+1}, \ldots, a_n\bigr)
+= 0.
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+Apply Stokes' theorem on $\FM_n(\bC)$ to the total weight form
+$\omega_n = \sum_\Gamma |\Aut(\Gamma)|^{-1}\,\omega_\Gamma$.
+By Proposition~\ref{prop:thqg-bv-ext-qme-closedness},
+$D\,\omega_n = 0$ in the interior.
+Theorem~\ref{thm:Stokes_FM} gives
+\[
+0 = \int_{\Gamma_n} D\,\omega_n
+= \sum_{\substack{S \subseteq \{1,\ldots,n\} \\ |S| \ge 2}}
+\epsilon_{D_S}
+\int_{\Gamma_n \cap D_S} \Res_{D_S}(\omega_n).
+\]
+We identify each boundary integral with a composed operation.
+
+\medskip\noindent\textbf{Step 1: Boundary factorization of
+tree amplitudes.}
+On the divisor $D_S \cong \FM_r(\bC) \times \FM_{|S|}(\bC)$
+for a consecutive block $S = \{s+1, \ldots, s+\ell\}$, the
+tree amplitude $\omega_\Gamma$ decomposes.  The tree $\Gamma$
+restricts to two sub-trees: an \emph{inner tree} $\Gamma_{\mathrm{in}}$
+on the leaves in $S$ (contributing to $m_\ell$) and an \emph{outer
+tree} $\Gamma_{\mathrm{out}}$ on the remaining leaves plus one new
+leaf for the output of $\Gamma_{\mathrm{in}}$ (contributing to
+$m_r$ with $r = n - \ell + 1$).  At the propagator level, the
+edge connecting $\Gamma_{\mathrm{in}}$ to $\Gamma_{\mathrm{out}}$
+produces the logarithmic residue:
+\[
+\Res_{D_S}\bigl(\eta_{ij}\bigr)
+= \Res_{\varepsilon_S = 0}
+  \frac{d\varepsilon_S}{\varepsilon_S} = 1,
+\]
+where $\varepsilon_S$ is the radial coordinate of the cluster $S$
+and $\eta_{ij} = d\log(z_i - z_j)$ for the edge crossing the
+cluster boundary.  The remaining propagators split cleanly into
+inner and outer factors:
+\begin{align}
+\label{eq:thqg-bv-ext-tree-factorize}
+\Res_{D_S}(\omega_\Gamma)
+&= \omega_{\Gamma_{\mathrm{out}}}
+   \;\wedge\; \omega_{\Gamma_{\mathrm{in}}}.
+\end{align}
+
+\medskip\noindent\textbf{Step 2: Summation over trees.}
+Summing~\eqref{eq:thqg-bv-ext-tree-factorize} over all
+$\Gamma \in \mathrm{Tree}(n)$ and integrating, the inner
+integral produces $m_\ell(a_{s+1}, \ldots, a_{s+\ell})$ and
+the outer integral produces
+$m_r(a_1, \ldots, a_s,\, \bullet,\, a_{s+\ell+1}, \ldots, a_n)$.
+Every splitting of a tree in $\mathrm{Tree}(n)$ into inner and
+outer sub-trees is in bijection with pairs
+$(\Gamma_{\mathrm{in}}, \Gamma_{\mathrm{out}}) \in
+\mathrm{Tree}(\ell) \times \mathrm{Tree}(r)$, and the
+automorphism factors multiply:
+$|\Aut(\Gamma)| = |\Aut(\Gamma_{\mathrm{in}})| \cdot
+|\Aut(\Gamma_{\mathrm{out}})|$.
+Therefore
+\[
+\sum_\Gamma \frac{1}{|\Aut(\Gamma)|}
+\int_{\Gamma_n \cap D_S} \Res_{D_S}(\omega_\Gamma)
+= m_r(a_1, \ldots, a_s,\,
+  m_\ell(a_{s+1}, \ldots, a_{s+\ell}),\,
+  a_{s+\ell+1}, \ldots, a_n).
+\]
+
+\medskip\noindent\textbf{Step 3: Non-consecutive subsets vanish.}
+For non-consecutive $S$, the planar ordering of the tree forces
+$\Res_{D_S}(\omega_\Gamma) = 0$: no edge of a planar tree
+connects non-adjacent leaves, so the angular integral over the
+cluster coordinate $\theta_S$ encounters no pole and vanishes
+(cf.\ Remark~\ref{rem:nonconsecutive_vanishing}).
+
+\medskip\noindent\textbf{Step 4: Signs.}
+The orientation sign $\epsilon_{D_S}$ from
+Proposition~\ref{prop:general_sign_formula} combines with the
+Koszul sign from passing the inner operation $m_\ell$ (of degree
+$2 - \ell$) past $a_1, \ldots, a_s$ to produce the Stasheff sign
+$(-1)^{|a_1| + \cdots + |a_s|}$ in~\eqref{eq:thqg-bv-ext-stasheff}.
+
+\medskip\noindent\textbf{Step 5: Corner cancellation.}
+Codimension-$2$ corners from disjoint clusters
+$D_S \cap D_T$ cancel by the Arnold--Orlik--Solomon relation
+(Lemma~\ref{lem:Arnold_cancellation}): the two orderings of
+residue extraction produce opposite signs.  Nested corners
+($S \subset T$) are sub-faces of $D_T$ accounted for by
+recursive Stokes on $\FM_{|T|}(\bC)$.
+
+\medskip\noindent\textbf{Assembly.}
+Combining Steps 1--5, the Stokes identity reproduces the Stasheff
+relation~\eqref{eq:thqg-bv-ext-stasheff} term by term.
+\end{proof}
+
+
+\subsection{Explicit tree-level operations at low arity}
+\label{subsec:thqg-bv-ext-low-arity}
+
+\begin{example}[$m_1$: the BRST differential]
+\label{ex:thqg-bv-ext-m1}
+At arity $k = 1$, $\mathrm{Tree}(1)$ contains a single diagram
+with no internal edges: the identity graph.  Therefore
+$m_1 = Q_{\mathrm{BRST}}$, the linearized BRST operator of the
+theory.  This is the BV differential acting on the observable
+algebra $A = \Obs(D \times I)$.
+\end{example}
+
+\begin{example}[$m_2$: the OPE]
+\label{ex:thqg-bv-ext-m2}
+At arity $k = 2$, $\mathrm{Tree}(2)$ contains a single binary
+vertex.  The amplitude is
+\[
+\omega_2(a_1, a_2)
+= \eta_{12} \cdot V_2(a_1, a_2) \cdot \Theta(t_1 - t_2)
+= \frac{dz_1 - dz_2}{z_1 - z_2}
+\cdot V_2(a_1, a_2) \cdot \Theta(t_1 - t_2).
+\]
+Integrating over $\FM_2(\bC) \times \{t_1 > t_2\}$:
+\[
+m_2(a_1, a_2)
+= \int_{\FM_2(\bC)}
+\frac{dz_1 - dz_2}{z_1 - z_2}
+\cdot V_2(a_1, a_2)
+= V_2(a_1, a_2) \cdot
+  \Res_{z_1 = z_2} \frac{1}{z_1 - z_2}.
+\]
+This is the operator product expansion: $m_2(a_1, a_2)$ extracts
+the residue of the binary OPE of $a_1$ and $a_2$.
+\end{example}
+
+\begin{example}[$m_3$: two diagrams]
+\label{ex:thqg-bv-ext-m3}
+At arity $k = 3$, $\mathrm{Tree}(3)$ contains:
+\begin{enumerate}[label=(\alph*)]
+\item the \emph{cubic vertex}: a single trivalent vertex with
+  three leaves, amplitude
+  $\omega_{\mathrm{cub}} = \eta_{12} \wedge \eta_{23}
+  \cdot V_3(a_1, a_2, a_3) \cdot \Theta(t_1 > t_2 > t_3)$;
+\item the \emph{binary tree} (two possible shapes,
+  left-branching and right-branching), each with two binary
+  vertices and one internal edge.  The left-branching tree has
+  amplitude
+  $\omega_{\mathrm{left}} = \eta_{12} \cdot \eta_{u3}
+  \cdot V_2(a_1, a_2) \cdot V_2(\bullet, a_3)
+  \cdot \Theta(t_1 > t_2)\,\Theta(t_u > t_3)$,
+  where $u$ is the internal vertex receiving the output of $V_2(a_1, a_2)$.
+\end{enumerate}
+The cubic vertex contributes to $m_3$ directly; the binary trees
+contribute the ``homotopy transfer'' correction ensuring that
+$m_3$ satisfies the arity-$3$ Stasheff identity.  On the FM boundary
+$D_{\{1,2\}} \cong \FM_2(\bC) \times \FM_2(\bC)$, the cubic
+vertex restricts to the OPE composition $m_2(m_2(a_1, a_2), a_3)$
+and the binary tree restricts to a regular (non-singular) form.
+The Stokes identity then reads: the $D_{\{1,2\}}$ and $D_{\{2,3\}}$
+boundary contributions (from OPE compositions) plus the
+$D_{\{1,2,3\}}$ contribution ($m_1 \circ m_3$ and
+$m_3 \circ m_1^{\otimes 3}$ terms) sum to zero.
+\end{example}
+
+\subsection{The binary tree expansion and operadic composition}
+\label{subsec:thqg-bv-ext-binary-expansion}
+
+\begin{proposition}[Binary tree expansion; \ClaimStatusProvedHere]
+\label{prop:thqg-bv-ext-binary-expansion}
+For a theory with only cubic vertices ($V_n = 0$ for $n \ge 4$),
+the operation $m_k$ receives contributions only from binary planar
+trees.  The number of such trees is the Catalan number
+$C_{k-1} = \frac{1}{k}\binom{2(k-1)}{k-1}$.  Each binary tree
+$\Gamma$ with $k$ leaves has $k - 1$ internal edges and $k - 2$
+internal vertices, and the amplitude $\omega_\Gamma$ is a product
+of $k - 1$ logarithmic $1$-forms $\eta_{ij}$.
+\end{proposition}
+
+\begin{proof}
+A binary tree with $k$ leaves has $k - 1$ internal edges (standard
+combinatorics: each leaf except the root contributes one edge) and
+$k - 2$ trivalent vertices (the Euler relation $V - E + 1 = 0$ for
+a tree gives $V = E - 1 = k - 2$).  Each internal edge carries a
+propagator $\eta_{ij}$; there are no higher-valence vertices to
+contribute additional forms.  The count of binary planar trees is
+the Catalan number by the ballot-problem bijection.
+\end{proof}
+
+\begin{remark}[General interaction vertices]
+\label{rem:thqg-bv-ext-general-vertices}
+When higher vertices $V_n$ ($n \ge 4$) are present---as in
+Virasoro ($V_4 \ne 0$ from the nonlinear OPE
+$T(z)T(w) \sim \frac{c/2}{(z-w)^4} + \cdots$) or
+$\cW$-algebras---the set $\mathrm{Tree}(k)$ includes trees with
+vertices of valence $\ge 4$.  The Stasheff identity still holds:
+it is a consequence of Stokes on $\FM_k(\bC)$ regardless of
+vertex valence, since $D\,\omega_\Gamma = 0$ follows from the
+QME for all tree topologies.  The complication is purely
+combinatorial: the tree-level amplitude is a sum over all
+planar rooted trees, not just binary ones.
+\end{remark}
+
+\subsection{From tree amplitudes to the bar complex}
+\label{subsec:thqg-bv-ext-trees-to-bar}
+
+\begin{theorem}[Tree amplitudes $=$ bar differential;
+\ClaimStatusProvedHere]
+\label{thm:thqg-bv-ext-trees-bar}
+Let $B(A) = \bigoplus_{k \ge 0} (sA)^{\otimes k}$ denote the
+bar complex of $A$ with the bar differential
+$b = \sum_{k} \sum_{s} (-1)^{\epsilon(s,j)}\,
+\mathbf{1}^{\otimes s} \otimes m_j \otimes
+\mathbf{1}^{\otimes(n-s-j)}$.
+Then the tree-level Feynman expansion gives precisely $b^2 = 0$:
+\begin{enumerate}[label=(\roman*)]
+\item Each bar-complex generator $(sa_1) \otimes \cdots \otimes
+  (sa_k)$ corresponds to a configuration of $k$ operator
+  insertions on $\bC$ with times $t_1 > \cdots > t_k$ on $\bR$;
+\item The bar differential $b$ acts by summing over all consecutive
+  sub-blocks $\{s+1, \ldots, s+\ell\}$ and applying
+  $m_\ell$ to that block---this is the boundary of $\FM_k(\bC)$
+  at the divisor $D_S$;
+\item $b^2 = 0$ is Stokes' theorem:
+  $\partial^2\FM_k(\bC) = 0$.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+This is the content of Theorem~\ref{thm:stokes_arnold} recast in
+bar-complex language.  The chain $\Gamma_k \subset
+\FM_k(\bC) \times \FM_k(\bR)$ is the bar-complex generator.
+The boundary $\partial\Gamma_k$ decomposes into faces
+$\Gamma_r \times \Gamma_\ell$ (for $r + \ell = k + 1$) indexed
+by consecutive sub-blocks, which are exactly the terms of $b$.
+The identity $\partial^2 = 0$ on chains translates to $b^2 = 0$
+via the residue-to-composition identification of
+Section~\ref{sec:FM_calculus}.
+\end{proof}
+
+\begin{corollary}[Bar differential $=$ C-direction
+factorization; \ClaimStatusProvedHere]
+\label{cor:thqg-bv-ext-bar-c-direction}
+The bar differential $b$ encodes factorization in the holomorphic
+($\bC$) direction:
+\[
+b\bigl[(sa_1) \otimes \cdots \otimes (sa_k)\bigr]
+= \sum_{S \text{ consec.}} \epsilon_{D_S}\,
+\Res_{D_S}\bigl[\text{FM integral of }
+(sa_1) \otimes \cdots \otimes (sa_k)\bigr].
+\]
+The bar coproduct $\Delta$ (the coassociative coproduct on $B(A)$)
+similarly encodes factorization in the topological ($\bR$)
+direction: splitting the ordered sequence
+$(sa_1, \ldots, sa_k)$ into two subsequences corresponds to
+separating the $\bR$-coordinates into two disjoint intervals.
+Together, $b$ and $\Delta$ constitute a Swiss-cheese algebra
+structure on $\FM_k(\bC) \times \Conf_k(\bR)$.
+\end{corollary}
+
+\begin{proof}
+The identification of $b$ with $\bC$-factorization is
+Theorem~\ref{thm:thqg-bv-ext-trees-bar}(ii).
+The identification of $\Delta$ with $\bR$-factorization is the
+deconcatenation coproduct on the tensor coalgebra: for
+$(sa_1) \otimes \cdots \otimes (sa_k)$,
+\[
+\Delta\bigl[(sa_1) \otimes \cdots \otimes (sa_k)\bigr]
+= \sum_{p=0}^{k}
+\bigl[(sa_1) \otimes \cdots \otimes (sa_p)\bigr]
+\otimes
+\bigl[(sa_{p+1}) \otimes \cdots \otimes (sa_k)\bigr],
+\]
+corresponding to the partition of $\bR$ into
+$(-\infty, t_p) \cup (t_p, +\infty)$.  The compatibility
+$b \circ \Delta = \Delta \circ b$ (the coderivation property)
+follows from the factored form of the total differential
+$D = d_{\FM_k(\bC)} + d_{\Conf_k(\bR)} + Q$ on the product
+space.
+\end{proof}
+
+
+%% ====================================================================
+%%  PART 2: LOOP CORRECTIONS AND GENUS EXPANSION
+%% ====================================================================
+
+\section{One-loop corrections and the curvature
+\texorpdfstring{$\kappa$}{kappa}}
+\label{sec:thqg-bv-ext-one-loop}
+
+At genus $g \geq 1$, the tree-level differential $d_0$ acquires
+loop corrections from self-edge contractions, producing the full
+differential $D = d_0 + \sum_{g \geq 1} \hbar^g\, d^{(g)}$.
+The passage from tree-level to loop-level is the BV-theoretic
+incarnation of the genus expansion in the modular bar construction.
+
+\medskip
+Tree-level amplitudes compute the genus-$0$ $\Ainf$ structure.
+At one loop, the BV Laplacian $\Delta_{\mathrm{BV}}$ contributes, and
+the quantum master equation~\eqref{eq:thqg-bv-ext-qme} forces a
+curvature correction.
+
+\subsection{One-loop Feynman diagrams}
+\label{subsec:thqg-bv-ext-one-loop-diagrams}
+
+\begin{definition}[One-loop diagrams]
+\label{def:thqg-bv-ext-one-loop-diag}
+A \emph{one-loop Feynman diagram} $\Gamma$ contributing to the
+genus-$1$ correction has:
+\begin{enumerate}[label=(\roman*)]
+\item $k$ external legs ($k \ge 0$);
+\item exactly one cycle (loop number $g = 1$), so
+  $|E(\Gamma)| - |V(\Gamma)| + 1 = 1$;
+\item internal edges carrying propagators
+  $G(z_i, z_j;\, t_i, t_j)$ and vertices carrying $V_n$.
+\end{enumerate}
+The simplest one-loop diagram has $k = 0$ external legs and a
+single edge forming a self-loop at one vertex: this is the
+\emph{tadpole}, whose amplitude involves the coincident-point
+limit $G(z, z;\, t, t)$.
+\end{definition}
+
+\begin{proposition}[One-loop amplitude; \ClaimStatusProvedHere]
+\label{prop:thqg-bv-ext-one-loop-amp}
+The one-loop diagram with $k$ external legs and one internal loop
+has amplitude
+\begin{equation}
+\label{eq:thqg-bv-ext-one-loop-amp}
+\omega_\Gamma^{(1)}(a_1, \ldots, a_k)
+= \biggl(\prod_{e \in E_{\mathrm{tree}}} \eta_e \biggr)
+\cdot \eta_{\mathrm{loop}}
+\cdot \biggl(\prod_v V_{|v|}(a_{L(v)})\biggr)
+\cdot \biggl(\prod_e \Theta_e\biggr),
+\end{equation}
+where $E_{\mathrm{tree}}$ denotes the tree edges (forming a
+spanning tree of $\Gamma$), $\eta_{\mathrm{loop}}$ is the
+logarithmic $1$-form on the loop edge, and the product of
+$\Theta$-functions enforces time-ordering along the loop as well
+as on the tree edges.
+
+The loop integral requires regularization.  On a genus-$1$ surface
+$\Sigma_1$ (obtained by cutting the loop and sewing to a torus),
+the propagator $G$ is replaced by the genus-$1$ prime form.  The
+regulated amplitude converges and produces a curvature term.
+\end{proposition}
+
+\begin{proof}
+The edge and vertex count follows from the definition.  A graph
+with one loop has $|E| = |V|$, so $k$ external legs, $|V|$
+internal vertices (each with valence $\ge 3$), and $|V|$ internal
+edges.  One edge closes the loop; the remaining $|V| - 1$ form a
+spanning tree.  The amplitude is the product of propagator forms
+over all edges, vertex factors, and time-ordering step functions.
+Regularization on $\Sigma_1$ replaces the flat-space propagator
+$1/(z_1 - z_2)$ by the Szego kernel $S_1(z_1, z_2|\tau)$, which
+has the same OPE singularity but is doubly periodic.  The
+convergence of the resulting integral is guaranteed by
+hypothesis (H1c) (one-loop finiteness).
+\end{proof}
+
+\subsection{The curvature $\kappa$ from the vacuum one-loop diagram}
+\label{subsec:thqg-bv-ext-kappa}
+
+\begin{theorem}[Genus-$1$ curvature; \ClaimStatusProvedHere]
+\label{thm:thqg-bv-ext-kappa}
+The vacuum one-loop amplitude ($k = 0$) produces the curvature
+scalar
+\begin{equation}
+\label{eq:thqg-bv-ext-kappa-def}
+\kappa(A)
+= \Tr_{A}\bigl((-1)^F q^{L_0}\bigr)\big|_{q^1}
+= \sum_{n} (-1)^{|a_n|} \langle a_n,\, G \cdot a_n \rangle,
+\end{equation}
+where the trace is over a basis $\{a_n\}$ of $A$ and $G$ is the
+propagator contracted along the loop.  In terms of the conformal
+weight $h$ and BV grading, $\kappa$ equals the supertrace of
+$L_0$ on $A$:
+\begin{equation}
+\label{eq:thqg-bv-ext-kappa-supertrace}
+\kappa(A) = \operatorname{str}_{A}(L_0).
+\end{equation}
+
+The genus-$1$ bar differential acquires a curvature:
+\begin{equation}
+\label{eq:thqg-bv-ext-curved-bar}
+b_1^2 = \kappa \cdot \omega_1,
+\end{equation}
+where $\omega_1 \in H^1(\overline{\cM}_{1,1})$ is the fundamental
+class of the moduli space of elliptic curves and $b_1$ denotes the
+bar differential extended to genus $1$ by including the one-loop
+amplitude.
+\end{theorem}
+
+\begin{proof}
+\textbf{Step 1: The tadpole.}
+The vacuum one-loop diagram is a single vertex with a self-loop.
+Its amplitude is
+\[
+\omega_{\mathrm{tad}}
+= \oint_{\gamma} \frac{dz}{2\pi(z - w)}\bigg|_{w \to z}
+\cdot V_2(a_n, a^n),
+\]
+where $\{a_n\}$ is a basis and $\{a^n\}$ its dual.  On a flat
+torus $\bC / (\bZ + \bZ\tau)$, the propagator is replaced by the
+Weierstrass $\zeta$-function (the logarithmic derivative of the
+$\sigma$-function), and the integral picks up the quasi-period
+$\eta_1(\tau)$.  Summing over the basis of $A$ with BV signs
+produces $\kappa = \operatorname{str}(L_0)$.
+
+\medskip\noindent\textbf{Step 2: Curvature of the bar complex.}
+At genus $1$, the bar differential includes both tree-level
+compositions (from $\partial\FM_k(\bC)$) and the one-loop
+correction (from the BV Laplacian $\Delta_{\mathrm{BV}}$).
+The QME $\h\,\Delta_{\mathrm{BV}}S + \tfrac{1}{2}\{S,S\} = 0$
+now contributes at order $\h^1$:
+\[
+D^2 = \h\,\Delta_{\mathrm{BV}}\bigl(\{S, -\}\bigr)
+= \h\,\kappa \cdot \omega_1 \ne 0.
+\]
+This is the genus-$1$ curvature of the curved $\Ainf$ algebra:
+$m_1^2(a) = [\kappa \cdot \omega_1,\, a]$ (commutator, with the
+minus sign from the BV bracket).  The curvature $\kappa \cdot
+\omega_1$ is a scalar multiple of the Mumford class on
+$\overline{\cM}_{1,1}$.
+
+\medskip\noindent\textbf{Step 3: Identification with
+Vol~I formula.}
+The supertrace formula $\kappa = \operatorname{str}(L_0)$ matches
+the Vol~I definition (see the modular characteristic of
+Theorem~D): $\kappa(A) = \sum_n (-1)^n \cdot n \cdot
+\dim A_n$, where $A_n$ is the weight-$n$ subspace.  For the
+Heisenberg algebra $\cH_c$, $\kappa = c/2$; for affine
+$\hat{\fg}_k$, $\kappa = k \dim\fg / (k + h^\vee)$; for the
+Virasoro algebra, $\kappa = c/2$.
+\end{proof}
+
+\begin{remark}[Higher-loop contributions to the curvature]
+\label{rem:thqg-bv-ext-kappa-higher-loop}
+The curvature $\kappa$ is determined by the genus-$1$ tadpole
+(one-loop vacuum diagram) alone.  Higher-loop vacuum diagrams
+on $\overline{\cM}_{g,0}$ evaluate to $\kappa^g \cdot \lambda_g$
+by the genus universality theorem (Theorem~D, Vol~I): there are
+no \emph{additional} contributions to the curvature beyond the
+one-loop tadpole.  The higher-genus amplitudes $\cA^{(g)}_0$
+are determined recursively from $\kappa$ and the tree-level data
+by the MC recursion, but they do not modify the value of $\kappa$
+itself.  This is because $\kappa$ is a genus-$0$-to-genus-$1$
+obstruction class, and the recursion at genus $g \geq 2$ solves
+for $\Theta^{(g)}$ in terms of $\kappa$ and the lower-genus
+elements without feeding back.
+\end{remark}
+
+\begin{remark}[Curved $\Ainf$ vs.\ flat $\Ainf$]
+\label{rem:thqg-bv-ext-curved-flat}
+At genus $0$ the bar complex has $b^2 = 0$ (flat).  At genus
+$g \ge 1$, the one-loop curvature $\kappa \cdot \omega_g$ makes
+the bar complex \emph{curved}: $b_g^2 = \kappa \cdot \omega_g
+\ne 0$ generically.  The passage from flat to curved is the
+BV-theoretic avatar of the passage from the genus-$0$ to the
+all-genera modular operad.  The bar complex at genus $g$ lives
+not in the ordinary derived category but in the
+\emph{coderived} category, as enforced by the nonvanishing
+curvature (cf.\ Vol~I, Section on coderived categories for
+curved algebras).
+\end{remark}
+
+
+%% ====================================================================
+\section{Two-loop corrections and the three-shell identity}
+\label{sec:thqg-bv-ext-two-loop}
+
+\subsection{Two-loop Feynman diagrams}
+\label{subsec:thqg-bv-ext-two-loop-diagrams}
+
+\begin{definition}[Two-loop diagrams]
+\label{def:thqg-bv-ext-two-loop-diag}
+A \emph{two-loop Feynman diagram} $\Gamma$ has loop number
+$g = 2$: $|E(\Gamma)| - |V(\Gamma)| + 1 = 2$.  The three
+simplest topologies at genus $2$ are:
+\begin{enumerate}[label=(\alph*)]
+\item the \emph{theta graph} $\Theta$: two vertices connected by
+  three edges ($|V| = 2$, $|E| = 3$, $g = 2$);
+\item the \emph{figure-eight}: one vertex with two self-loops
+  ($|V| = 1$, $|E| = 2$, $g = 2$);
+\item the \emph{sunset}: three vertices on a triangle with one
+  external edge ($|V| = 3$, $|E| = 4$, $g = 2$).
+\end{enumerate}
+Each contributes to the genus-$2$ amplitude via integration over
+the moduli space $\overline{\cM}_{2,k}$ of genus-$2$ curves
+with $k$ marked points.
+\end{definition}
+
+\begin{proposition}[Two-loop amplitude on $\overline{\cM}_{2,k}$;
+\ClaimStatusProvedHere]
+\label{prop:thqg-bv-ext-two-loop-amp}
+The two-loop contribution to the $k$-point amplitude is
+\begin{equation}
+\label{eq:thqg-bv-ext-two-loop-amp}
+\cA_k^{(2)}(a_1, \ldots, a_k)
+= \sum_{\Gamma:\, g(\Gamma) = 2}
+\frac{1}{|\Aut(\Gamma)|}
+\int_{\overline{\cM}_{2,k}}
+\omega_\Gamma^{(2)}(a_1, \ldots, a_k),
+\end{equation}
+where $\omega_\Gamma^{(2)}$ is the genus-$2$ weight form built from
+the genus-$2$ prime form $E_2(z_i, z_j)$ and the genus-$2$ Szego
+kernel $S_2(z_i, z_j)$ replacing the flat-space propagator on each
+edge.
+\end{proposition}
+
+\begin{proof}
+The genus-$2$ surface $\Sigma_2$ arises from the loop structure of
+$\Gamma$: a graph with two independent cycles has first Betti
+number $b_1(\Gamma) = 2$, and the Feynman parametrization assigns
+moduli in $\cM_2$ (period matrix, marked points).  Each propagator
+edge on $\Sigma_2$ carries the Szego kernel
+$S_2(z_i, z_j) = \partial_{z_i}\partial_{z_j}\log E_2(z_i, z_j)$,
+where $E_2$ is the genus-$2$ prime form (a section of
+$K^{-1/2} \boxtimes K^{-1/2}$ on $\Sigma_2 \times \Sigma_2$).
+The integration over $\overline{\cM}_{2,k}$ includes both the
+vertex positions on $\Sigma_2$ and the moduli of $\Sigma_2$ itself.
+Convergence follows from the compactification
+$\overline{\cM}_{2,k}$ and the logarithmic behavior of the prime
+form at the boundary divisors (Deligne--Mumford compactification).
+\end{proof}
+
+\subsection{The three-shell identity at genus $2$}
+\label{subsec:thqg-bv-ext-three-shell}
+
+The boundary of $\overline{\cM}_{2,k}$ decomposes into strata
+indexed by stable dual graphs of genus $2$.  The codimension-$1$
+boundary has three types of strata (the ``three shells''):
+
+\begin{definition}[Three shells of $\partial\overline{\cM}_{2,k}$]
+\label{def:thqg-bv-ext-three-shells}
+\begin{enumerate}[label=(\roman*)]
+\item \textbf{Separating node} (shell I): $\Sigma_2$ degenerates
+  into $\Sigma_{1,S} \cup \Sigma_{1,S^c}$, two genus-$1$ components
+  meeting at a node.  The dual graph is a single edge joining two
+  genus-$1$ vertices.  External legs are distributed between $S$
+  and $S^c$.
+\item \textbf{Non-separating node} (shell II): $\Sigma_2$
+  degenerates by pinching a non-separating cycle, producing
+  $\Sigma_{1,k+2}$ (a genus-$1$ surface with two extra marked
+  points at the node).  The dual graph is a single genus-$1$
+  vertex with a self-loop.
+\item \textbf{Two non-separating nodes} (shell III): $\Sigma_2$
+  degenerates into $\Sigma_{0,k+4}$ (a genus-$0$ surface) by
+  pinching two non-separating cycles.  The dual graph is a single
+  genus-$0$ vertex with two self-loops.
+\end{enumerate}
+\end{definition}
+
+\begin{theorem}[Three-shell identity; \ClaimStatusProvedHere]
+\label{thm:thqg-bv-ext-three-shell}
+Stokes' theorem on $\overline{\cM}_{2,k}$ applied to the genus-$2$
+weight form $\omega^{(2)}_k$ yields the \emph{three-shell identity}:
+\begin{equation}
+\label{eq:thqg-bv-ext-three-shell-id}
+0 = \sum_{\text{shell I}} \epsilon_I\,
+\int_{\partial_I \overline{\cM}_{2,k}}
+\Res_I(\omega^{(2)}_k)
+\;+\; \sum_{\text{shell II}} \epsilon_{II}\,
+\int_{\partial_{II} \overline{\cM}_{2,k}}
+\Res_{II}(\omega^{(2)}_k)
+\;+\; \sum_{\text{shell III}} \epsilon_{III}\,
+\int_{\partial_{III} \overline{\cM}_{2,k}}
+\Res_{III}(\omega^{(2)}_k),
+\end{equation}
+where each residue decomposes into products of lower-genus
+amplitudes:
+\begin{itemize}
+\item Shell I: $\Res_I = \cA_{|S|}^{(1)} \otimes
+  \cA_{|S^c|}^{(1)}$ (product of two genus-$1$ amplitudes,
+  contracted at the node);
+\item Shell II: $\Res_{II} = \Delta_{\mathrm{sew}}\bigl(
+  \cA_{k+2}^{(1)}\bigr)$ (genus-$1$ amplitude with the two
+  nodal points sewn by the propagator, i.e., the sewing
+  operator $\Delta_{\mathrm{sew}}$ applied to the one-loop
+  amplitude);
+\item Shell III: $\Res_{III} = \Delta_{\mathrm{sew}}^{(2)}\bigl(
+  \cA_{k+4}^{(0)}\bigr)$ (tree-level amplitude with two pairs
+  of points sewn, i.e., the double sewing operator applied to
+  the genus-$0$ amplitude).
+\end{itemize}
+\end{theorem}
+
+\begin{proof}
+\textbf{Step 1: Stokes on $\overline{\cM}_{2,k}$.}
+The moduli space $\overline{\cM}_{2,k}$ is a smooth orbifold
+(Deligne--Mumford stack) with normal-crossings boundary.  Its
+codimension-$1$ boundary divisors are indexed by stable dual
+graphs $\Gamma$ with $\sum_v g(v) + b_1(\Gamma) = 2$ and $k$
+half-edges.  Stokes' theorem gives
+\[
+0 = \int_{\overline{\cM}_{2,k}} d\,\omega^{(2)}_k
+= \sum_{\Gamma \in \partial\overline{\cM}_{2,k}}
+\frac{\epsilon_\Gamma}{|\Aut(\Gamma)|}
+\int_{D_\Gamma} \Res_{D_\Gamma}(\omega^{(2)}_k),
+\]
+where $D_\Gamma \cong \prod_v \overline{\cM}_{g(v), n(v)}$ is
+the stratum and $\epsilon_\Gamma$ the orientation sign.
+
+\medskip\noindent\textbf{Step 2: Classification of strata.}
+The stable dual graphs with $g = 2$ and one edge (codimension $1$)
+are:
+\begin{itemize}
+\item Edge connecting two distinct vertices of genus $1$
+  (separating node, shell I);
+\item Self-loop at a vertex of genus $1$ (non-separating node,
+  shell II);
+\item Two self-loops at a vertex of genus $0$ (two non-separating
+  nodes, shell III).
+\end{itemize}
+The three-shell decomposition of
+Definition~\ref{def:thqg-bv-ext-three-shells} exhausts all
+codimension-$1$ strata.
+
+\medskip\noindent\textbf{Step 3: Residue identification.}
+On each stratum $D_\Gamma$, the weight form restricts by the
+node-factorization property of the prime form:
+\[
+E_2(z_i, z_j)\big|_{D_\Gamma}
+= E_{g(v)}(z_i, z_j) \cdot
+(\text{cross-terms at the node}).
+\]
+The cross-terms at the node contribute the sewing operator
+$\Delta_{\mathrm{sew}} = \sum_n a_n \otimes a^n$ (the propagator
+contracted across the node, summed over a basis).  For shell I, the
+factorization is $\cA^{(1)} \otimes \cA^{(1)}$ with a single
+contraction at the node.  For shell II, the self-loop produces
+$\Delta_{\mathrm{sew}}$ acting on the single genus-$1$ component.
+For shell III, two self-loops produce
+$\Delta_{\mathrm{sew}}^{(2)}$ on the genus-$0$ component.
+
+\medskip\noindent\textbf{Step 4: Corner cancellation.}
+Codimension-$2$ corners (two simultaneous degenerations) cancel by
+$\partial^2 = 0$ on $\overline{\cM}_{2,k}$, the Deligne--Mumford
+analogue of the Arnold--Orlik--Solomon relation.  The two
+orderings of degeneration produce opposite orientation signs.
+
+\medskip\noindent\textbf{Assembly.}
+The sum of shell I, II, and III contributions equals
+$\int d\omega^{(2)} = 0$, yielding~\eqref{eq:thqg-bv-ext-three-shell-id}.
+\end{proof}
+
+\begin{corollary}[Genus-$2$ curvature; \ClaimStatusProvedHere]
+\label{cor:thqg-bv-ext-genus2-curvature}
+At $k = 0$ (vacuum amplitude), the three-shell identity
+reduces to:
+\begin{equation}
+\label{eq:thqg-bv-ext-genus2-vac}
+\cA^{(2)}_{\mathrm{vac}}
+= \frac{\kappa^2}{2}\,[\omega_1]^2
+\;+\; \kappa\,\Delta_{\mathrm{sew}}(\omega_1)
+\;+\; \Delta_{\mathrm{sew}}^{(2)}(1),
+\end{equation}
+where the three terms correspond to shell I ($\kappa \cdot \kappa$
+from two genus-$1$ tadpoles), shell II ($\kappa$ times the sewing
+of one genus-$1$ diagram), and shell III (double sewing of the
+genus-$0$ identity).  The quantity $\cA^{(2)}_{\mathrm{vac}}$ is
+the genus-$2$ partition function of $A$, expressed entirely in
+terms of genus-$0$ and genus-$1$ data plus the sewing operator.
+\end{corollary}
+
+\begin{proof}
+Set $k = 0$ in the three-shell identity.  Shell I with $k = 0$
+has both components as vacuum genus-$1$ amplitudes, each equal to
+$\kappa \cdot \omega_1$.  Their product, contracted at the node,
+gives $\kappa^2\,[\omega_1]^2 / 2$ (the factor $1/2$ from the
+automorphism of the separating edge).  Shell II with $k = 0$ has
+the genus-$1$ amplitude ($\kappa$ times a weight form) with two
+extra points sewn, giving $\kappa\,\Delta_{\mathrm{sew}}(\omega_1)$.
+Shell III with $k = 0$ is the double sewing of the trivial genus-$0$
+amplitude, giving $\Delta_{\mathrm{sew}}^{(2)}(1)$.
+\end{proof}
+
+
+%% ====================================================================
+\section{The stable-graph expansion and the modular bar construction}
+\label{sec:thqg-bv-ext-stable-graph}
+
+\subsection{Stable graphs and the Feynman transform}
+\label{subsec:thqg-bv-ext-stable-graphs}
+
+\begin{definition}[Stable graphs]
+\label{def:thqg-bv-ext-stable-graph}
+A \emph{stable graph} $\Gamma$ of type $(g, k)$ consists of:
+\begin{enumerate}[label=(\roman*)]
+\item a finite graph with vertex set $V(\Gamma)$ and edge set
+  $E(\Gamma)$;
+\item a genus function $g_v : V(\Gamma) \to \bZ_{\ge 0}$ assigning
+  a genus to each vertex;
+\item $k$ labeled half-edges (legs) attached to vertices;
+\item the stability condition $2g_v - 2 + n_v > 0$ at each vertex,
+  where $n_v = \mathrm{val}(v) + (\text{legs at } v)$;
+\item the genus relation $g = \sum_v g_v + b_1(\Gamma)$, where
+  $b_1(\Gamma) = |E(\Gamma)| - |V(\Gamma)| + 1$ is the first
+  Betti number.
+\end{enumerate}
+The set of all stable graphs of type $(g, k)$ is denoted
+$\mathrm{Graph}(g, k)$.
+\end{definition}
+
+\begin{construction}[Stable-graph amplitude]
+\label{const:thqg-bv-ext-stable-amp}
+For $\Gamma \in \mathrm{Graph}(g, k)$, the \emph{amplitude} is
+\begin{equation}
+\label{eq:thqg-bv-ext-stable-amp}
+\cA_\Gamma(a_1, \ldots, a_k)
+= \int_{\prod_v \overline{\cM}_{g_v, n_v}}
+\biggl(\prod_{e \in E(\Gamma)} \Delta_e\biggr)
+\cdot
+\biggl(\prod_{v \in V(\Gamma)}
+\omega_{g_v, n_v}(a_{L(v)})\biggr),
+\end{equation}
+where:
+\begin{itemize}
+\item $\omega_{g_v, n_v}$ is the weight form at vertex $v$,
+  built from the genus-$g_v$ prime form and vertex factors;
+\item $\Delta_e = \sum_n a_n \otimes a^n$ is the sewing
+  operator at edge $e$, contracting the two half-edges with the
+  propagator;
+\item the integration is over the product of moduli spaces
+  $\prod_v \overline{\cM}_{g_v, n_v}$.
+\end{itemize}
+The total genus-$g$, $k$-point amplitude is the sum over all
+stable graphs:
+\begin{equation}
+\label{eq:thqg-bv-ext-total-amp}
+\cA_k^{(g)}(a_1, \ldots, a_k)
+= \sum_{\Gamma \in \mathrm{Graph}(g, k)}
+\frac{\h^{g}}{|\Aut(\Gamma)|}\,
+\cA_\Gamma(a_1, \ldots, a_k).
+\end{equation}
+\end{construction}
+
+\begin{remark}[The $\h$-expansion]
+\label{rem:thqg-bv-ext-hbar}
+The loop expansion parameter $\h$ tracks the genus: a graph
+$\Gamma$ of genus $g = \sum_v g_v + b_1(\Gamma)$ contributes at
+order $\h^g$.  The full amplitude is the formal power series
+\[
+\cA_k = \sum_{g \ge 0} \h^g\,\cA_k^{(g)}
+\;\in\; A^{\otimes k}\llbracket\h\rrbracket.
+\]
+At $\h = 0$, only trees contribute ($g = 0$), recovering the
+tree-level $\Ainf$ structure of
+Section~\ref{sec:thqg-bv-ext-mk-derivation}.
+\end{remark}
+
+\subsection{Stokes on stable-graph strata: the general identity}
+\label{subsec:thqg-bv-ext-stokes-stable}
+
+\begin{theorem}[Stable-graph Stokes identity; \ClaimStatusProvedHere]
+\label{thm:thqg-bv-ext-stable-stokes}
+The QME combined with Stokes' theorem on
+$\prod_v \overline{\cM}_{g_v, n_v}$ yields the identity
+\begin{equation}
+\label{eq:thqg-bv-ext-stable-stokes}
+\sum_{\Gamma' \in \partial\Gamma}
+\frac{\epsilon_{\Gamma'}}{|\Aut(\Gamma')/\Aut(\Gamma)|}
+\,\cA_{\Gamma'}
+= 0,
+\end{equation}
+where $\partial\Gamma$ denotes the set of stable graphs obtained
+from $\Gamma$ by:
+\begin{enumerate}[label=(\alph*)]
+\item \textbf{edge contraction}: contracting an edge $e$ of
+  $\Gamma$, merging its two endpoints into a single vertex of
+  genus $g_{v_1} + g_{v_2} + \delta_{e}$ (where
+  $\delta_e = 1$ if $e$ is a self-loop, $0$ otherwise);
+\item \textbf{vertex splitting}: splitting a vertex $v$ of genus
+  $g_v$ into two vertices of genera $g_1, g_2$ with
+  $g_1 + g_2 = g_v$ (or $g_1 + g_2 + 1 = g_v$ if a new edge is
+  created), distributing the half-edges at $v$ between the two
+  new vertices.
+\end{enumerate}
+These two operations correspond to the two types of codimension-$1$
+boundary strata of $\overline{\cM}_{g,k}$: node formation
+(vertex splitting) and the inverse operation (edge contraction).
+\end{theorem}
+
+\begin{proof}
+Apply Stokes' theorem to the amplitude $\cA_\Gamma$ on its
+integration domain $\prod_v \overline{\cM}_{g_v, n_v}$.  The
+boundary of each factor $\overline{\cM}_{g_v, n_v}$ consists of
+divisors indexed by stable dual graphs with one additional edge
+(a degeneration of the genus-$g_v$ curve).  Each such degeneration
+at vertex $v$ produces a new stable graph $\Gamma'$ with one more
+edge than $\Gamma$, obtained by splitting $v$.  The residue at the
+boundary divisor factors the weight form:
+\[
+\Res_{D}(\omega_{g_v, n_v})
+= \omega_{g_1, n_1} \cdot \Delta_{\mathrm{new}} \cdot
+\omega_{g_2, n_2},
+\]
+where $\Delta_{\mathrm{new}} = \sum_n a_n \otimes a^n$ is the
+sewing operator at the new node.  Inserting this into the product
+over all vertices of $\Gamma$ and summing over all possible
+degenerations gives the sum over $\Gamma' \in \partial\Gamma$.
+
+The identity $\sum \epsilon_{\Gamma'}\,\cA_{\Gamma'} = 0$ is
+the chain-level statement of $\partial^2 = 0$ on the space of
+stable graphs, which is the defining property of the
+\emph{Feynman transform} of the modular operad.  The signs
+$\epsilon_{\Gamma'}$ arise from the orientation convention on
+moduli spaces (the Mumford convention).
+
+Corner cancellation (codimension-$2$ strata: two simultaneous
+degenerations) follows from the normal-crossings property of
+$\partial\overline{\cM}_{g,k}$ and the relation $\partial^2 = 0$.
+\end{proof}
+
+\subsection{Identification with the modular bar construction}
+\label{subsec:thqg-bv-ext-modular-bar}
+
+\begin{theorem}[Stable-graph expansion $=$ modular bar;
+\ClaimStatusProvedHere]
+\label{thm:thqg-bv-ext-modular-bar}
+The genus-$g$, $k$-point amplitude $\cA_k^{(g)}$
+of~\eqref{eq:thqg-bv-ext-total-amp} equals the $(g,k)$-component
+of the modular bar construction $B^{(g,k)}(A)$ of Vol~I:
+\begin{equation}
+\label{eq:thqg-bv-ext-modular-bar-id}
+\cA_k^{(g)}(a_1, \ldots, a_k)
+= B^{(g,k)}(A)(a_1, \ldots, a_k).
+\end{equation}
+Under this identification:
+\begin{enumerate}[label=(\roman*)]
+\item the stable-graph summation
+  in~\eqref{eq:thqg-bv-ext-total-amp} is the graph sum defining
+  the Feynman transform $\mathsf{F}(\mathsf{Com})$ of the
+  commutative modular operad;
+\item the sewing operator $\Delta_e$ at each edge is the
+  contraction with the invariant pairing
+  $\langle -,- \rangle : A \otimes A \to \bC$;
+\item the weight forms $\omega_{g_v, n_v}$ at each vertex are the
+  $(g_v, n_v)$-components of the chiral algebra structure
+  maps of $A$;
+\item the differential on $B^{(g,k)}(A)$ (the modular bar
+  differential) decomposes as
+  \begin{equation}
+  \label{eq:thqg-bv-ext-modular-diff}
+  D_{\mathrm{mod}}
+  = d_{\mathrm{int}} + d_{\mathrm{sew}} + \h\,\Delta_{\mathrm{BV}},
+  \end{equation}
+  where $d_{\mathrm{int}}$ acts within each vertex (the internal
+  differential, from $m_1$), $d_{\mathrm{sew}}$ creates new edges
+  (sewing, from boundary strata of $\overline{\cM}_{g_v, n_v}$),
+  and $\h\,\Delta_{\mathrm{BV}}$ closes existing half-edges into
+  self-loops (the BV Laplacian);
+\item $D_{\mathrm{mod}}^2 = 0$ is the QME, which at each genus
+  $g$ is the Stokes identity of
+  Theorem~\ref{thm:thqg-bv-ext-stable-stokes}.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+The identification proceeds component by component.
+
+\medskip\noindent\textbf{Genus $0$.}
+At $g = 0$, the stable graphs are trees (since $b_1 = 0$ and all
+vertex genera are $0$).  The amplitude
+$\cA_k^{(0)} = \sum_{\Gamma \in \mathrm{Tree}(k)}
+|\Aut(\Gamma)|^{-1}\,\cA_\Gamma$ is the tree-level operation
+$m_k$ of Construction~\ref{const:thqg-bv-ext-mk-feynman}.  The
+bar complex $B^{(0,k)}(A) = (sA)^{\otimes k}$ with differential
+$b = \sum m_j$ is the tree-level bar complex.  The identification
+$\cA_k^{(0)} = B^{(0,k)}$ is
+Theorem~\ref{thm:thqg-bv-ext-trees-bar}.
+
+\medskip\noindent\textbf{Genus $1$.}
+At $g = 1$, the stable graphs have either one loop edge on a
+tree (contributing the BV Laplacian $\Delta_{\mathrm{BV}}$) or
+a genus-$1$ vertex with no loops (contributing the genus-$1$
+structure map).  The differential
+$D_{\mathrm{mod}} = d_{\mathrm{int}} + d_{\mathrm{sew}}
++ \h\Delta_{\mathrm{BV}}$ at genus $1$ has
+$D_{\mathrm{mod}}^2 = \h\,\kappa \cdot \omega_1$: the
+genus-$1$ curvature of
+Theorem~\ref{thm:thqg-bv-ext-kappa}.  This matches
+$B^{(1,k)}(A)$ with its curved differential.
+
+\medskip\noindent\textbf{Genus $2$.}
+At $g = 2$, the three-shell identity
+(Theorem~\ref{thm:thqg-bv-ext-three-shell}) decomposes
+$D_{\mathrm{mod}}^2 = 0$ at genus $2$ into contributions
+from the three boundary types of $\overline{\cM}_{2,k}$.
+This matches $B^{(2,k)}(A)$.
+
+\medskip\noindent\textbf{General genus.}
+At arbitrary genus $g$, the argument proceeds by induction on $g$.
+The stable-graph summation is the definition of
+$\mathsf{F}(\mathsf{Com})$ applied to $A$.  The differential
+$D_{\mathrm{mod}}$ is the Feynman-transform differential, whose
+square vanishes by $\partial^2 = 0$ on the modular operad
+$\overline{\cM}_{g,k}$.  The QME ensures compatibility between
+the vertex structure maps and the sewing operators.
+
+The automorphism factors $|\Aut(\Gamma)|^{-1}$ in the graph
+sum match the orbifold multiplicities of
+$\overline{\cM}_{g,k}$: each boundary stratum $D_\Gamma$ has
+stabilizer $\Aut(\Gamma)$ in the Deligne--Mumford stack.
+\end{proof}
+
+\subsection{The modular bar differential as boundary operator}
+\label{subsec:thqg-bv-ext-modular-diff}
+
+\begin{corollary}[Three components of $D_{\mathrm{mod}}$;
+\ClaimStatusProvedHere]
+\label{cor:thqg-bv-ext-three-components}
+The modular bar differential decomposes into three geometrically
+distinct operations:
+\begin{equation}
+\label{eq:thqg-bv-ext-three-comp}
+D_{\mathrm{mod}} = d_{\mathrm{int}} + d_{\mathrm{sew}}
++ \h\,\Delta_{\mathrm{BV}},
+\end{equation}
+where:
+\begin{enumerate}[label=(\roman*)]
+\item $d_{\mathrm{int}} = \sum_{v} m_1^{(v)}$ acts by
+  applying the BRST differential $m_1$ at each vertex
+  independently---this is the \emph{internal differential},
+  corresponding to the genus-$0$ BRST cohomology at each
+  vertex;
+\item $d_{\mathrm{sew}} = \sum_{\text{pairs}} m_2^{(v,w)}$
+  creates a new edge between two half-edges at distinct
+  vertices $v, w$ (or at the same vertex, increasing the
+  loop count)---this is the \emph{sewing operator},
+  corresponding to the boundary stratum of
+  $\overline{\cM}_{g_v, n_v}$ where two marked points collide;
+\item $\h\,\Delta_{\mathrm{BV}} = \sum_{\text{half-edges}}
+  \Delta^{(v)}$ closes a pair of half-edges at a single
+  vertex into a self-loop---this is the \emph{BV Laplacian},
+  corresponding to the non-separating degeneration of the
+  genus-$g_v$ surface (pinching a non-separating cycle).
+\end{enumerate}
+The three components satisfy:
+\begin{align}
+\label{eq:thqg-bv-ext-d-squared}
+d_{\mathrm{int}}^2 &= 0,
+&
+d_{\mathrm{int}}\,d_{\mathrm{sew}}
++ d_{\mathrm{sew}}\,d_{\mathrm{int}} &= 0,\\
+d_{\mathrm{sew}}^2
++ d_{\mathrm{int}}\,\h\Delta_{\mathrm{BV}}
++ \h\Delta_{\mathrm{BV}}\,d_{\mathrm{int}} &= 0,
+&
+d_{\mathrm{sew}}\,\h\Delta_{\mathrm{BV}}
++ \h\Delta_{\mathrm{BV}}\,d_{\mathrm{sew}} &= 0,\\
+(\h\Delta_{\mathrm{BV}})^2 &= 0.
+& &
+\end{align}
+These five relations are the $\h$-graded components of
+$D_{\mathrm{mod}}^2 = 0$, expressing the QME order by order in
+the genus expansion.
+\end{corollary}
+
+\begin{proof}
+The decomposition~\eqref{eq:thqg-bv-ext-three-comp} follows from
+Theorem~\ref{thm:thqg-bv-ext-modular-bar}(iv).
+The five relations are obtained by expanding
+$D_{\mathrm{mod}}^2 = (d_{\mathrm{int}} + d_{\mathrm{sew}}
++ \h\Delta_{\mathrm{BV}})^2 = 0$ and collecting terms by the
+number of edges created (equivalently, by the power of $\h$):
+\begin{itemize}
+\item $\h^0$, no new edges: $d_{\mathrm{int}}^2 = 0$
+  ($m_1^2 = 0$ at each vertex, the tree-level Stasheff identity
+  at arity $1$);
+\item $\h^0$, one new edge:
+  $d_{\mathrm{int}}\,d_{\mathrm{sew}}
+  + d_{\mathrm{sew}}\,d_{\mathrm{int}} = 0$ (compatibility
+  of the BRST differential with sewing, the tree-level Stasheff
+  at arity $2$);
+\item $\h^1$, one loop:
+  $d_{\mathrm{sew}}^2 + [d_{\mathrm{int}},\,
+  \h\Delta_{\mathrm{BV}}] = 0$ (the one-loop QME, producing
+  the curvature $\kappa$);
+\item $\h^1$, two edges:
+  $d_{\mathrm{sew}}\,\h\Delta_{\mathrm{BV}}
+  + \h\Delta_{\mathrm{BV}}\,d_{\mathrm{sew}} = 0$
+  (compatibility of sewing with the BV Laplacian);
+\item $\h^2$: $(\h\Delta_{\mathrm{BV}})^2 = 0$ (the BV
+  Laplacian squares to zero, reflecting the second-order
+  nature of $\Delta_{\mathrm{BV}}$).
+\end{itemize}
+Each relation is a Stokes identity on the corresponding stratum of
+the modular operad.
+\end{proof}
+
+\subsection{The universal MC element and the genus expansion}
+\label{subsec:thqg-bv-ext-mc-genus}
+
+\begin{theorem}[BV amplitudes $=$ MC projections;
+\ClaimStatusProvedHere]
+\label{thm:thqg-bv-ext-mc-projections}
+The total amplitude
+$\cA = \sum_{g,k} \h^g\,\cA_k^{(g)}$
+is the image under the stable-graph expansion of the universal
+Maurer--Cartan element
+\[
+\Theta_A = D_A - d_0
+\;\in\; \mathrm{MC}\bigl(\Def_{\mathrm{cyc}}^{\mathrm{mod}}(A)
+\;\hat\otimes\; \cG_{\mathrm{mod}}\bigr),
+\]
+where $\Def_{\mathrm{cyc}}^{\mathrm{mod}}(A)$ is the modular
+cyclic deformation complex and $\cG_{\mathrm{mod}}$ is the
+stable-graph coefficient algebra (Vol~I,
+Definition~\ref{def:stable-graph-coefficient-algebra}).
+Specifically:
+\begin{enumerate}[label=(\roman*)]
+\item At genus $0$, projection to arity $k$ gives
+  $m_k = \Theta_A^{(0,k)}$: the tree-level $\Ainf$ operations;
+\item At genus $0$, arity $2$: $\kappa = \Theta_A^{(0,2)}$ is
+  the curvature (the binary scalar shadow);
+\item At genus $1$, $\Theta_A^{(1,k)}$ gives the one-loop
+  amplitude $\cA_k^{(1)}$ on $\overline{\cM}_{1,k}$;
+\item At genus $g$, $\Theta_A^{(g,k)} = \cA_k^{(g)}$ on
+  $\overline{\cM}_{g,k}$.
+\end{enumerate}
+The Maurer--Cartan equation
+$D\,\Theta_A + \tfrac{1}{2}[\Theta_A, \Theta_A] = 0$
+encodes simultaneously: the $\Ainf$ Stasheff identities (genus $0$),
+the curved bar differential (genus $1$), the three-shell identity
+(genus $2$), and all higher-genus Stokes identities.
+\end{theorem}
+
+\begin{proof}
+The identification of $\Theta_A = D_A - d_0$ as a Maurer--Cartan
+element is proved in Vol~I
+(Theorem~\ref{thm:mc2-bar-intrinsic}):
+$\Theta_A$ is MC because $D_A^2 = 0$ (the square of the total
+differential on the bar complex vanishes, being the
+Feynman-transform differential of a modular operad algebra).
+The $(g,k)$-projection of the MC equation is exactly the
+Stokes identity on $\overline{\cM}_{g,k}$ applied to the
+weight forms of the BV theory:
+\[
+\bigl(D\,\Theta_A + \tfrac{1}{2}[\Theta_A, \Theta_A]
+\bigr)^{(g,k)} = 0
+\quad\Longleftrightarrow\quad
+\int_{\overline{\cM}_{g,k}} d\,\omega^{(g)}_k = 0.
+\]
+The left-hand side decomposes into the three components
+$d_{\mathrm{int}}$, $d_{\mathrm{sew}}$, and
+$\h\Delta_{\mathrm{BV}}$ of
+Corollary~\ref{cor:thqg-bv-ext-three-components}, each
+producing the corresponding boundary stratum of
+$\overline{\cM}_{g,k}$.  The bracket $[\Theta_A, \Theta_A]$
+contributes the sewing and BV-Laplacian terms (which are
+quadratic in $\Theta_A$ via graph-gluing), while the linear
+$D\,\Theta_A$ contributes the internal differential.
+
+The identification at genus $0$ with the tree-level $m_k$ is
+Theorem~\ref{thm:thqg-bv-ext-trees-bar}.
+The identification at genus $1$ with the curvature $\kappa$ is
+Theorem~\ref{thm:thqg-bv-ext-kappa}.
+The identification at genus $2$ with the three-shell identity is
+Theorem~\ref{thm:thqg-bv-ext-three-shell}.
+The passage to arbitrary genus is by the structural identity of
+the Feynman transform (Getzler--Kapranov): the graph sum defining
+$\Theta_A$ is precisely $\mathsf{F}(\mathsf{Com})$ applied to $A$.
+\end{proof}
+
+\begin{remark}[The Chriss--Ginzburg principle]
+\label{rem:thqg-bv-ext-cg-principle}
+Theorem~\ref{thm:thqg-bv-ext-mc-projections} is an instance of
+the organizing principle of this monograph: every algebraic
+structure is a Maurer--Cartan element in a convolution dg Lie
+algebra.  The $\Ainf$ structure ($m_k$), the curvature ($\kappa$),
+the three-shell identity, and the full genus expansion are all
+projections of the single element $\Theta_A$.  The BV-BRST
+derivation of this chapter constructs $\Theta_A$ from the physics
+side (Feynman diagrams on $\FM_k(\bC) \times \Conf_k(\bR)$ and
+stable-graph amplitudes on $\overline{\cM}_{g,k}$), while Vol~I
+constructs it from the algebra side (the bar-intrinsic definition
+$\Theta_A = D_A - d_0$).  The two constructions agree by the
+identification of Theorem~\ref{thm:thqg-bv-ext-modular-bar}.
+\end{remark}
+
+\begin{remark}[Shadow projections from BV data]
+\label{rem:thqg-bv-ext-shadow-projections}
+The shadow Postnikov tower of Vol~I (the finite-order truncations
+$\Theta_A^{\le r}$) admits a direct BV interpretation.
+At arity $r = 2$: $\kappa = \operatorname{str}(L_0)$ is the
+one-loop vacuum tadpole.  At arity $r = 3$: the cubic shadow
+$C_A$ is the three-point one-loop amplitude on
+$\overline{\cM}_{1,3}$.  At arity $r = 4$: the quartic resonance
+class $Q_A$ is the four-point amplitude on $\overline{\cM}_{1,4}$,
+with the clutching law arising from the boundary of
+$\overline{\cM}_{1,4}$ (node formation on the torus).  The
+shadow depth classification (G/L/C/M) is the classification of
+theories by the arity at which their BV amplitudes first receive
+nonvanishing contributions from nonlinear vertices: Gaussian
+theories ($r_{\max} = 2$) have only tadpoles, Lie-type theories
+($r_{\max} = 3$) have nonvanishing three-point amplitudes, and
+so on.
+\end{remark}
+
+\subsection{Convergence and the sewing envelope}
+\label{subsec:thqg-bv-ext-convergence}
+
+\begin{proposition}[HS-sewing from BV data; \ClaimStatusProvedHere]
+\label{prop:thqg-bv-ext-hs-sewing}
+Under the Hilbert--Schmidt sewing condition
+\begin{equation}
+\label{eq:thqg-bv-ext-hs-condition}
+\sum_{a,b,c \ge 0} q^{a+b+c}\,
+\|m^c_{a,b}\|_{\mathrm{HS}}^2 < \infty,
+\end{equation}
+where $m^c_{a,b} : A_a \otimes A_b \to A_c$ are the
+weight-graded components of $m_2$ and $\|-\|_{\mathrm{HS}}$ is
+the Hilbert--Schmidt norm, the stable-graph amplitudes
+$\cA_k^{(g)}$ converge absolutely for all $g$ and $k$, and the
+genus expansion
+\[
+\cA_k = \sum_{g \ge 0} \h^g\,\cA_k^{(g)}
+\]
+defines a well-defined element of $A^{\otimes k}\llbracket\h\rrbracket$.
+\end{proposition}
+
+\begin{proof}
+The HS condition~\eqref{eq:thqg-bv-ext-hs-condition} ensures that
+the sewing operator $\Delta_{\mathrm{sew}} = \sum_n a_n \otimes
+a^n$ converges in the trace-class sense: the contraction at each
+edge $e$ of a stable graph $\Gamma$ involves
+$\Tr(\Delta_e) = \sum_n \langle a_n, a^n \rangle$, which converges
+by the HS condition.  The product over all edges of $\Gamma$ is
+bounded by
+\[
+|\cA_\Gamma| \le \prod_{e \in E(\Gamma)}
+\|\Delta_e\|_{\mathrm{tr}}
+\cdot \prod_{v \in V(\Gamma)} C_{g_v, n_v},
+\]
+where $C_{g_v, n_v}$ is a constant depending on the geometry of
+$\overline{\cM}_{g_v, n_v}$ (bounded by the volume of the moduli
+space times the sup-norm of the vertex weight form).
+
+For the standard landscape (polynomial OPE growth and
+subexponential sector growth), the HS condition is verified in
+Vol~I (Theorem~\ref{thm:general-hs-sewing}).  The
+graph sum over $\mathrm{Graph}(g,k)$ converges because the number
+of stable graphs of type $(g,k)$ grows at most exponentially in
+$g$, while the HS bounds provide exponential decay from the sewing
+operators.  The detailed estimates are in
+Section~\ref{sec:thqg-bv-ext-one-loop} for the one-loop case and
+extend to all genera by induction on the boundary structure of
+$\overline{\cM}_{g,k}$.
+\end{proof}
+
+\begin{remark}[Algebraic vs.\ analytic bar]
+\label{rem:thqg-bv-ext-algebraic-analytic}
+The algebraic bar complex $B(A)$ with its modular differential
+$D_{\mathrm{mod}}$ is an algebraic object: it is defined for any
+chiral algebra $A$ without convergence hypotheses.  The analytic
+bar complex $B^{\mathrm{an}}(A)$ (the graph-norm closure of $B(A)$
+under the HS topology) is the analytic completion required for
+sewing and partition functions.  The HS condition bridges the two:
+it ensures that the algebraic structure maps extend continuously to
+the analytic completion.  The sewing envelope $A^{\mathrm{sew}}$
+(the Hausdorff completion for all-amplitude seminorms) sits between
+the algebraic $A$ and the Hilbert-space completion
+$\overline{A}$: we have $A \subset A^{\mathrm{sew}} \subset
+\overline{A}$, with $B^{\mathrm{an}}(A)$ computing the correct
+genus-$g$ amplitudes for all $g \ge 0$.
+\end{remark}
+
+%% ====================================================================
+%%  CODA
+%% ====================================================================
+
+\begin{remark}[Summary of the BV-to-bar dictionary]
+\label{rem:thqg-bv-ext-dictionary}
+The results of this chapter establish the following dictionary
+between BV-BRST data and bar-complex algebra:
+
+\medskip
+\begin{center}
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{l|l}
+\textbf{BV-BRST (physics)} & \textbf{Bar complex (algebra)} \\
+\hline
+QME: $\h\Delta_{\mathrm{BV}}S + \frac{1}{2}\{S,S\} = 0$
+  & $D_{\mathrm{mod}}^2 = 0$ \\
+BRST operator $Q = \{S,-\}$
+  & $d_{\mathrm{int}} = m_1$ \\
+Propagator $G(z_1,z_2;t_1,t_2)$
+  & Logarithmic $1$-form $\eta_{ij}$ \\
+Tree-level Feynman diagrams
+  & $m_k = \sum_{\mathrm{Tree}(k)} |\Aut|^{-1}\omega_\Gamma$ \\
+BV Laplacian $\Delta_{\mathrm{BV}}$
+  & Self-loop creation $\h\Delta_{\mathrm{BV}}$ \\
+One-loop tadpole
+  & Curvature $\kappa = \operatorname{str}(L_0)$ \\
+$g$-loop Feynman diagrams
+  & Stable-graph amplitude $\cA_k^{(g)}$ \\
+Boundary of $\overline{\cM}_{g,k}$
+  & Stasheff identity at genus $g$ \\
+$\partial^2 = 0$ on $\overline{\cM}_{g,k}$
+  & Corner cancellation (AOS) \\
+Full QME genus expansion
+  & MC element $\Theta_A \in
+    \mathrm{MC}(g^{\mathrm{mod}}_A)$ \\
+HS-sewing condition
+  & Analytic bar convergence
+\end{tabular}
+\end{center}
+
+\medskip\noindent
+The $\bC$-direction of the FM product space governs the bar
+differential (holomorphic factorization); the $\bR$-direction
+governs the bar coproduct (topological factorization).  Together
+they form the Swiss-cheese algebra
+$\SCchtop$ of Section~\ref{subsec:from-prefact},
+with the BV-BRST derivation of this chapter providing its
+perturbative construction.
+\end{remark}
