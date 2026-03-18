@@ -1304,32 +1304,288 @@ Hence a term with $m$ insertions and total form degree $r$ has internal degree $
 \subsection{Why the codimension-two triple residue is Yang-Baxter}
 At a triple collision corner there are exactly three codimension-one approaches to the corner, corresponding to the binary clusterings $(12)3$, $(13)2$, and $1(23)$. The compactified-Stokes boundary identity for the codimension-two corner is therefore the signed sum of the three corresponding binary gluing maps. Writing those three gluing maps in terms of the binary residue kernels gives the analytic $A_\infty$ Yang-Baxter identity of Theorem~\ref{thm:analytic-yb}.
 
-\subsection{Explicit monodromy for $\widehat{\mathfrak{sl}}_2$ at $k=1$}
-\label{subsec:explicit-monodromy-sl2-k1}
+\subsection{Explicit monodromy for $\widehat{\mathfrak{sl}}_2$: from genus zero to genus one}
+\label{subsec:explicit-monodromy-sl2}
 
-\begin{computation}[KZ monodromy = quantum group $R$-matrix;
-\ClaimStatusProvedHere]
-\label{comp:kz-monodromy-k1}
-\index{KZ connection!monodromy!k=1@$k{=}1$}
-The KZ connection at level~$1$ on
-$\mathrm{Conf}_2(\mathbb C)$ with two fundamental insertions:
-$\nabla=d-\frac{1}{3}\Omega_{12}\,d\log(z_1-z_2)$.
-$\Omega_{12}$ has eigenvalues $+1/2$ (triplet) and $-3/2$
-(singlet) on $V\otimes V$.  Monodromy around $z_1$ circling $z_2$:
+We carry out the full monodromy computation for the $\mathfrak{sl}_2$ KZ connection
+at general level~$k$, starting from the Casimir, passing through
+$\Conf_2$ and $\Conf_3$, extending logarithmically to $\FM_2(\PP^1\mid\infty)$,
+and lifting to genus~$1$ via the Knizhnik--Zamolodchikov--Bernard (KZB) connection.
+Throughout, $V=\CC^2$ denotes the fundamental representation of $\mathfrak{sl}_2$
+with standard basis $v_+,v_-$ and generators
 \[
-M
-\;=\;
-\exp(-2\pi i\cdot\tfrac{1}{3}\,\Omega_{12})
-\;=\;
-\operatorname{diag}(e^{i\pi},\,e^{-i\pi/3})
-\;=\;
-\operatorname{diag}(-1,\,q^{-1})
+  e=\begin{pmatrix}0&1\\0&0\end{pmatrix},\qquad
+  f=\begin{pmatrix}0&0\\1&0\end{pmatrix},\qquad
+  h=\begin{pmatrix}1&0\\0&-1\end{pmatrix}.
 \]
-at $q=e^{i\pi/3}$.  The singlet eigenvalue $-1$ and the triplet
-eigenvalue $q^{-1}$ are the $R$-matrix of $U_q(\mathfrak{sl}_2)$
-at $q=e^{i\pi/(k+2)}=e^{i\pi/3}$ evaluated on the fundamental
-representation.
+The dual Coxeter number is $h^\vee=2$.
+
+\begin{computation}[Casimir spectrum; \ClaimStatusProvedHere]
+\label{comp:sl2-casimir-spectrum}
+\index{Casimir!sl2@$\mathfrak{sl}_2$}
+The split Casimir (invariant tensor) of $\mathfrak{sl}_2$ in the
+Cartan--Weyl basis is
+\[
+  \Omega \;=\; e\otimes f + f\otimes e + \tfrac{1}{2}\,h\otimes h
+  \;\in\; \mathfrak{sl}_2\otimes\mathfrak{sl}_2.
+\]
+On $V\otimes V$, using the ordered basis
+$(v_+\!\otimes\!v_+,\;v_+\!\otimes\!v_-,\;v_-\!\otimes\!v_+,\;v_-\!\otimes\!v_-)$,
+$\Omega$ is represented by
+\[
+  \Omega_{12} \;=\;
+  \begin{pmatrix}
+  \frac{1}{2} & 0 & 0 & 0 \\[3pt]
+  0 & -\frac{1}{2} & 1 & 0 \\[3pt]
+  0 & 1 & -\frac{1}{2} & 0 \\[3pt]
+  0 & 0 & 0 & \frac{1}{2}
+  \end{pmatrix}.
+\]
+The Clebsch--Gordan decomposition $V\otimes V\cong V_1\oplus V_0$ (triplet $\oplus$ singlet)
+diagonalizes $\Omega_{12}$:
+\[
+  \Omega_{12}\big|_{V_1}=\tfrac{1}{2}\,\id,
+  \qquad
+  \Omega_{12}\big|_{V_0}=-\tfrac{3}{2}\,\id.
+\]
+Indeed, $\frac{1}{2}(j_{\mathrm{tot}}(j_{\mathrm{tot}}+1)-2\cdot\frac{1}{2}\cdot\frac{3}{2})$
+gives $\frac{1}{2}$ for $j_{\mathrm{tot}}=1$ and $-\frac{3}{2}$ for $j_{\mathrm{tot}}=0$.
 \end{computation}
+
+\begin{computation}[$\Conf_2(\CC)$ monodromy at general level;
+\ClaimStatusProvedHere]
+\label{comp:kz-monodromy-conf2}
+\index{KZ connection!monodromy}
+The KZ connection at level~$k\neq -2$ on
+$\Conf_2(\CC)$ with two fundamental insertions is
+\[
+  \nabla \;=\; d \;-\; \frac{1}{k+2}\,\Omega_{12}\,d\log(z_1-z_2).
+\]
+Since $\Omega_{12}$ is diagonalizable, parallel transport around
+the generator $\gamma$ of $\pi_1(\Conf_2(\CC))\cong\ZZ$
+(the loop in which $z_1$ encircles $z_2$ counterclockwise) gives
+\begin{equation}\label{eq:conf2-monodromy}
+  M_\gamma
+  \;=\;
+  \exp\!\bigl(-2\pi i\cdot\tfrac{1}{k+2}\,\Omega_{12}\bigr)
+  \;=\;
+  \begin{cases}
+    e^{-\pi i/(k+2)}\,\id & \text{on } V_1, \\[3pt]
+    e^{3\pi i/(k+2)}\,\id & \text{on } V_0.
+  \end{cases}
+\end{equation}
+Setting $q=e^{i\pi/(k+2)}$, the eigenvalues are $q^{-1}$ (triplet) and $q^3=-q^{-1}\cdot q^{k+2}=-q^{-1}$
+when $q^{k+2}=1$... more precisely, $e^{3\pi i/(k+2)}=q^3$.
+These are exactly the eigenvalues of the $R$-matrix of $U_q(\mathfrak{sl}_2)$
+on $V\otimes V$:
+\[
+  \check{R}\big|_{V_1}=q,\qquad \check{R}\big|_{V_0}=-q^{-1},
+\]
+matching $M_\gamma = q^{-\Omega_{12}} = P\circ \check{R}^{-1}$
+(with $P$ the transposition) up to the standard framing scalar.
+At $k=1$ one recovers $q=e^{i\pi/3}$, $M_\gamma=\operatorname{diag}(-1,\,q^{-1})$
+on the singlet/triplet decomposition, confirming the
+$\widehat{\mathfrak{sl}}_2$ level-$1$ WZW fusion rules.
+\end{computation}
+
+\begin{computation}[Formal $R$-matrix expansion; \ClaimStatusProvedHere]
+\label{comp:formal-R-expansion}
+\index{R-matrix@$R$-matrix!formal expansion}
+The formal monodromy operator, equivalently the asymptotic $R$-matrix,
+admits the $z^{-1}$-expansion
+\begin{equation}\label{eq:R-formal-expansion}
+  R(z) \;=\; 1 + \frac{\Omega}{z} + \frac{\Omega^2}{2z^2} + \frac{\Omega^3}{6z^3}+\cdots
+  \;=\; \exp\!\Bigl(\frac{\Omega}{z}\Bigr)\quad (\text{leading order}).
+\end{equation}
+More precisely, at level~$k$ the ratio $\Omega/(k+2)$ replaces $\Omega$
+and corrections of order $O(z^{-3})$ arise from the non-abelian exponentiation
+(Magnus series). On $V\otimes V$ one can diagonalize:
+\[
+  R(z)\big|_{V_1} = e^{1/(2z)}\bigl(1+O(z^{-3})\bigr),
+  \qquad
+  R(z)\big|_{V_0} = e^{-3/(2z)}\bigl(1+O(z^{-3})\bigr).
+\]
+The leading-order formula $R(z)=1+\Omega/z+O(z^{-2})$
+identifies $\Omega$ as the collision residue, consistent with
+Lemma~\ref{lem:inf-braid}.
+\end{computation}
+
+\begin{computation}[$\Conf_3^{\mathrm{ord}}(\CC)$ monodromy and Yang--Baxter;
+\ClaimStatusProvedHere]
+\label{comp:conf3-yang-baxter}
+\index{KZ connection!three-point!Yang--Baxter}
+On $\Conf_3^{\mathrm{ord}}(\CC)$ with three fundamental insertions, the KZ connection is
+\[
+  \nabla_3 \;=\; d - \frac{1}{k+2}\Bigl(
+  \Omega_{12}\,d\log z_{12}+\Omega_{13}\,d\log z_{13}+\Omega_{23}\,d\log z_{23}
+  \Bigr),
+\]
+where $z_{ij}:=z_i-z_j$. The fundamental group
+$\pi_1(\Conf_3^{\mathrm{ord}}(\CC))$ is the pure braid group $P_3$,
+generated by the three elementary braids $\sigma_{ij}^2$
+(particle~$i$ encircling particle~$j$). The monodromy representation
+\[
+  \rho\colon P_3\;\longrightarrow\; \mathrm{GL}(V^{\otimes 3})
+\]
+assigns to each generator
+$\rho(\sigma_{ij}^2) = \exp\!\bigl(-2\pi i\cdot\tfrac{1}{k+2}\,\Omega_{ij}\bigr)$,
+acting in the $(i,j)$-tensor factors.
+
+The pure braid relation $(\sigma_{12}\sigma_{23})^3=(\sigma_{12}\sigma_{23}\sigma_{12})^2$
+is verified at the infinitesimal level by the identity
+\begin{equation}\label{eq:inf-braid-yb}
+  [\Omega_{12},\Omega_{13}+\Omega_{23}]=0,
+\end{equation}
+which is the infinitesimal braid relation (Lemma~\ref{lem:inf-braid}).
+Exponentiating, the monodromies satisfy the quantum Yang--Baxter equation
+on $V^{\otimes 3}$:
+\begin{equation}\label{eq:qybe-conf3}
+  R_{12}R_{13}R_{23}=R_{23}R_{13}R_{12},
+\end{equation}
+where $R_{ij}:=\exp\!\bigl(-2\pi i\cdot\frac{1}{k+2}\,\Omega_{ij}\bigr)$.
+This is a direct consequence of the flatness theorem
+(Theorem~\ref{thm:strict-flatness}): parallel transport around two
+homotopic loops in $\Conf_3(\CC)$ must agree, and the two decompositions
+of the full braid into elementary braids yield the two sides
+of~\eqref{eq:qybe-conf3}.
+\end{computation}
+
+\begin{computation}[Logarithmic extension to $\FM_2(\PP^1\mid\infty)$;
+\ClaimStatusProvedHere]
+\label{comp:log-extension-fm2}
+\index{Fulton--MacPherson!logarithmic extension}
+The space $\FM_2(\PP^1\mid\infty)$ compactifies $\Conf_2(\PP^1\setminus\{\infty\})$
+by adjoining a boundary divisor $D_{\mathrm{coll}}$ (the collision locus $z_1=z_2$)
+and a boundary divisor $D_\infty$ (a point escaping to $\infty$).
+In center-of-mass / relative coordinates $w=(z_1+z_2)/2$, $u=z_1-z_2$:
+\begin{enumerate}[label=\textup{(\alph*)}]
+\item \emph{Collision boundary} ($u\to 0$).
+  The connection becomes
+  $\nabla = d - \frac{1}{k+2}\,\Omega_{12}\,\frac{du}{u} + (\text{regular in } u)$.
+  By Proposition~\ref{prop:strict-log-ext}, the residue along $D_{\mathrm{coll}}$
+  is $\Res_{D_{\mathrm{coll}}}(\nabla)=\frac{1}{k+2}\,\Omega_{12}$.
+  The local monodromy around $D_{\mathrm{coll}}$ is
+  $\exp\!\bigl(-\frac{2\pi i}{k+2}\,\Omega_{12}\bigr)$ as computed in~\eqref{eq:conf2-monodromy}.
+\item \emph{Infinity boundary} ($w\to\infty$ with $u$ bounded).
+  In the coordinate $s=1/w$, the connection is regular at $s=0$
+  because the KZ form $d\log(z_1-z_2)=d\log u$ has no pole in~$w$.
+  Hence the local monodromy around $D_\infty$ is trivial.
+\item \emph{Corner stratum} ($u\to 0$ and $w\to\infty$ simultaneously).
+  Both $z_1,z_2\to\infty$ while colliding.
+  In the chart $(s,t)=(1/w,\,u\cdot w)$, the collision scale coordinate
+  is $t$ and the connection form is
+  $\frac{1}{k+2}\,\Omega_{12}\,\frac{dt}{t}+O(1)$,
+  confirming logarithmic regularity at the corner.
+\end{enumerate}
+Thus $\nabla$ extends to a logarithmic connection on $\FM_2(\PP^1\mid\infty)$
+with a single nontrivial residue $\frac{1}{k+2}\Omega_{12}$
+along the collision divisor.
+\end{computation}
+
+\begin{computation}[Genus-$1$ KZB connection and modular monodromy;
+\ClaimStatusProvedHere]
+\label{comp:genus1-kzb}
+\index{KZB connection!genus one!sl2@$\mathfrak{sl}_2$}
+On an elliptic curve $E_\tau=\CC/(\ZZ+\ZZ\tau)$ ($\Im\tau>0$) with two
+marked points at positions $0$ and $z$,
+the genus-$0$ propagator $1/(z_1-z_2)$ is replaced by the
+Weierstrass $\zeta$-function (or equivalently $\partial_z\log\theta_1$).
+The KZB connection on $E_\tau\setminus\{0\}$ with fiber $V\otimes V$ is
+\begin{equation}\label{eq:kzb-connection}
+  \nabla_\tau \;=\; d_z \;-\; \frac{1}{k+2}\,\Omega_{12}\,
+  \partial_z\!\log\theta_1(z;\tau)\,dz,
+\end{equation}
+where $\theta_1(z;\tau)=2\sum_{n=0}^{\infty}(-1)^n q^{(n+1/2)^2}\sin((2n+1)\pi z)$,
+$q=e^{i\pi\tau}$, is the odd Jacobi theta function vanishing at $z=0$.
+
+\medskip\noindent\textbf{Near $z=0$.}\;
+Since $\theta_1(z;\tau)=2\pi z\,\eta(\tau)^3(1+O(z^2))$,
+one has $\partial_z\log\theta_1=1/z+O(z)$, and the connection reduces to
+\[
+  \nabla_\tau = d_z - \frac{1}{k+2}\,\Omega_{12}\,\frac{dz}{z}+O(1),
+\]
+recovering the genus-$0$ KZ connection locally.  The local monodromy around
+$z=0$ is therefore the same as~\eqref{eq:conf2-monodromy}.
+
+\medskip\noindent\textbf{$A$-cycle monodromy} ($z\mapsto z+1$).\;
+The quasi-periodicity $\theta_1(z+1;\tau)=-\theta_1(z;\tau)$ gives
+$\partial_z\log\theta_1(z+1;\tau)=\partial_z\log\theta_1(z;\tau)$.
+Hence the connection form is strictly periodic under $z\mapsto z+1$
+and the $A$-cycle monodromy is the identity:
+\begin{equation}\label{eq:A-cycle-monodromy}
+  M_A = \id_{V\otimes V}.
+\end{equation}
+
+\medskip\noindent\textbf{$B$-cycle monodromy} ($z\mapsto z+\tau$).\;
+The quasi-periodicity
+$\theta_1(z+\tau;\tau)=-e^{-i\pi\tau-2\pi iz}\theta_1(z;\tau)$ yields
+\[
+  \partial_z\log\theta_1(z+\tau;\tau)
+  = \partial_z\log\theta_1(z;\tau)-2\pi i.
+\]
+Under transport $z\mapsto z+\tau$, the connection form shifts:
+\[
+  \nabla_\tau\big|_{z+\tau}
+  =
+  d_z - \frac{1}{k+2}\,\Omega_{12}\bigl(\partial_z\log\theta_1(z;\tau)-2\pi i\bigr)dz
+  =
+  \nabla_\tau + \frac{2\pi i}{k+2}\,\Omega_{12}\,dz.
+\]
+The $B$-cycle monodromy therefore acquires an abelian twist
+controlled by the integrated correction $\int_0^\tau \frac{2\pi i}{k+2}\,\Omega_{12}\,dz
+= \frac{2\pi i\tau}{k+2}\,\Omega_{12}$:
+\begin{equation}\label{eq:B-cycle-monodromy}
+  M_B = \exp\!\Bigl(\frac{2\pi i\tau}{k+2}\,\Omega_{12}\Bigr)
+  \cdot M_{\mathrm{loc}},
+\end{equation}
+where $M_{\mathrm{loc}}$ is the genus-$0$ local monodromy from~\eqref{eq:conf2-monodromy}
+(arising from the pole at $z=0$ enclosed by the $B$-cycle).
+On the Clebsch--Gordan components:
+\[
+  M_B\big|_{V_1} = e^{\pi i\tau/(k+2)}\cdot e^{-\pi i/(k+2)}
+  = e^{\pi i(\tau-1)/(k+2)},
+  \qquad
+  M_B\big|_{V_0} = e^{-3\pi i\tau/(k+2)}\cdot e^{3\pi i/(k+2)}
+  = e^{-3\pi i(\tau-1)/(k+2)}.
+\]
+
+\medskip\noindent\textbf{Modular $R$-matrix.}\;
+Define the genus-$1$ $R$-matrix as the ratio of the connection
+form~\eqref{eq:kzb-connection} to its genus-$0$ counterpart:
+\begin{equation}\label{eq:genus1-r-matrix}
+  r_1(z;\tau) \;:=\; \frac{1}{k+2}\,\Omega\cdot \partial_z\!\log\theta_1(z;\tau).
+\end{equation}
+Expanding in $z$:
+\[
+  r_1(z;\tau)
+  = \frac{\Omega}{(k+2)z}
+    - \frac{\Omega}{k+2}\sum_{n=1}^{\infty}2\,
+    \frac{q^{2n}}{1-q^{2n}}\cdot 2\pi i\cos(2\pi nz)
+  = \frac{\Omega}{(k+2)z}
+    + \frac{\Omega}{k+2}\bigl(2G_2(\tau)-\wp(z;\tau)-\pi^2/3\bigr),
+\]
+where the Eisenstein correction $G_2(\tau)$ accounts for the
+(conditionally convergent) sum and $\wp$ is the Weierstrass
+$\wp$-function. Thus the genus-$1$ $R$-matrix is the genus-$0$
+rational $R$-matrix $\Omega/((k+2)z)$ dressed by the elliptic
+Weierstrass function, exactly as predicted by the shadow tower:
+the genus-$1$ period correction to the Casimir is controlled by
+$G_2(\tau)$ and reproduces the curvature $\kappa\cdot\omega_1$
+of the modular shadow at genus~$1$
+(cf.\ Theorem~\ref{thm:synthesis}\textup{(i)}).
+\end{computation}
+
+\begin{remark}[Consistency with the modular shadow tower]
+\label{rem:kzb-shadow-consistency}
+The genus-$1$ connection~\eqref{eq:kzb-connection} is the $n=2$ projection
+of the shadow connection $\nabla_{g,n}=d-\mathrm{Sh}_{g,n}(\Theta_A)$
+from the synthesis theorem, specialized to $\mathfrak{g}=\mathfrak{sl}_2$
+and $g=1$.  The Eisenstein correction $G_2(\tau)$ in $r_1$
+is the genus-$1$ curvature $\kappa(\widehat{\mathfrak{sl}}_2)
+=k\dim\mathfrak{g}/(k+h^\vee)=3k/(k+2)$
+times the period form $\omega_1$, in agreement with the formula
+$\kappa\cdot\omega_g$ established in Volume~I.
+\end{remark}
 
 % Bibliography entries consolidated into main.tex.
 

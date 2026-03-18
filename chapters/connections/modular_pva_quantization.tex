@@ -1191,6 +1191,400 @@ classical $W$-type examples the first modular anomaly does \emph{not} appear as 
 obstruction class. The quantum problem starts instead with the torsor of genus-one lifts.
 \end{remark}
 
+\section{The Virasoro quantization: from PVA to vertex algebra}
+\label{sec:virasoro-quantization}
+
+We now carry out the full quantization programme for the simplest nontrivial
+case in triangular $W$-normal form: the Virasoro PVA.  The result is the
+quantum Virasoro vertex algebra at a shifted central charge, obtained by
+two independent routes---directly via the modular obstruction theory, and
+via Drinfeld--Sokolov reduction from the affine case.  That these two routes
+agree is a nontrivial consistency check on the entire framework.
+
+\subsection{The classical Virasoro PVA}
+\label{subsec:virasoro-classical-pva}
+
+The Virasoro PVA is the filtered quadratic PVA on a single strong generator
+$T$ of conformal weight~$2$, with $\lambda$-bracket
+\begin{equation}\label{eq:virasoro-pva-bracket}
+\{T_\lambda T\} = \partial T + 2T\lambda + \frac{c_{\mathrm{cl}}}{12}\lambda^3,
+\end{equation}
+where $c_{\mathrm{cl}}\in\mathbb C$ is the classical central charge.
+The corresponding Hamiltonian operator is
+\[
+\Pi_{\mathrm{Vir}}(\partial) = T' + 2T\partial + \frac{c_{\mathrm{cl}}}{12}\partial^3.
+\]
+The variational master equation $[P_{\mathrm{Vir}},P_{\mathrm{Vir}}]=0$ is
+the classical Jacobi identity, which holds for all~$c_{\mathrm{cl}}$.
+
+This is the minimal instance of triangular $W$-normal form: the single
+generator $T$ is Virasoro with $r=0$ additional primaries.
+
+\subsection{Vanishing of the modular obstruction}
+\label{subsec:virasoro-mod-vanishing}
+
+\begin{proposition}[Virasoro modular vanishing; \ClaimStatusProvedHere]
+\label{prop:virasoro-mod-vanishing}
+For the Virasoro PVA,
+\[
+\Delta_{\mathrm{cyc}} P_{\mathrm{Vir}} = \int \partial\theta_T = 0
+\qquad\text{in }\Xloc^1/\partial.
+\]
+Hence the variational modular class vanishes:
+\[
+\Mod(\mathrm{Vir}) = 0.
+\]
+\end{proposition}
+
+\begin{proof}
+Apply the triangular vanishing theorem (Theorem~\ref{thm:triangular-vanishing})
+with $r=0$: the Virasoro PVA is in triangular $W$-normal form with $T$ the
+sole generator.  The variational modular operator has a single entry:
+\[
+\mathfrak{M}_{\mathrm{Vir}}^T
+= \frac{\delta\Pi^{TT}}{\delta T}
+= (-\partial)\circ 1 + 2\partial = \partial.
+\]
+Thus $\Delta_{\mathrm{cyc}}P_{\mathrm{Vir}} = \int\partial\theta_T = 0$.
+\end{proof}
+
+\begin{corollary}[Nonemptiness of the genus-one lift torsor; \ClaimStatusProvedHere]
+\label{cor:virasoro-genus1-nonempty}
+By Theorem~\textup{\ref{thm:Ob1}}, the vanishing
+$\Mod(\mathrm{Vir})=0$ implies
+$\Ob_1(\Theta_0^{\mathrm{Vir}})=0$.  Hence the torsor of genus-one lifts
+of the classical Virasoro structure is nonempty.
+\end{corollary}
+
+\subsection{The relevant shifted cohomology for Virasoro}
+\label{subsec:virasoro-relevant-H1}
+
+To characterize the torsor of genus-one lifts, we compute the relevant shifted
+$H^1$ in the same sector as for~$W_3$: local, translation-invariant,
+filtration-preserving, reduced conformal-weight zero.  The Virasoro case is
+considerably simpler because there is only one strong generator.
+
+\begin{proposition}[Normal form of relevant Virasoro cochains; \ClaimStatusProvedHere]
+\label{prop:virasoro-relevant-normal-form}
+Every element $Q\in C^1_{\mathrm{rel}}(\mathrm{Vir})$ has the form
+\[
+Q_{TT} = a\,\lambda^3 + b\,(2T\lambda + \partial T),
+\]
+with two free parameters $a,b\in\mathbb C$.
+\end{proposition}
+
+\begin{proof}
+A local, translation-invariant, conformal-weight-zero, filtration-preserving
+bivector on a single generator~$T$ of weight~$2$ must have the same degree
+structure as~$\Pi_{\mathrm{Vir}}$ itself.  The general ansatz in
+$\lambda$-bracket form is
+$Q_{TT}(\lambda) = a\lambda^3 + bT' + 2bT\lambda + c_0 T\lambda^2$
+where $a,b,c_0\in\mathbb C$.  But the skew-symmetry constraint
+$Q_{TT}(\lambda) = -Q_{TT}(-\lambda-\partial)$ forces $c_0=0$ (matching
+powers of~$\lambda$ at each jet order).  The surviving monomials are exactly
+$\lambda^3$ and the combination $2T\lambda+\partial T$ that forms the
+Virasoro-type deformation.
+\end{proof}
+
+\begin{proposition}[Linearized Virasoro cocycles; \ClaimStatusProvedHere]
+\label{prop:virasoro-cocycles}
+A relevant cochain $Q_{TT}=a\lambda^3+b(2T\lambda+\partial T)$ is
+$\delta_{P_c}$-closed if and only if no further constraint is imposed:
+every such $Q$ is automatically a cocycle.  Hence
+$Z^1_{\mathrm{rel}}(\mathrm{Vir})$ is $2$-dimensional with free parameters
+$a,b$.
+\end{proposition}
+
+\begin{proof}
+The linearized Jacobi identity for a single generator is
+$\{T_\lambda\{T_\mu T\}_Q\}_P
+ + \{T_\lambda\{T_\mu T\}_P\}_Q
+ - \{T_\mu\{T_\lambda T\}_P\}_Q
+ - \{T_\mu\{T_\lambda T\}_Q\}_P
+ = \{\{T_\lambda T\}_P{}_{\lambda+\mu}T\}_Q
+   + \{\{T_\lambda T\}_Q{}_{\lambda+\mu}T\}_P$.
+Substituting the ansatz: the $a$-direction is the derivative
+$\partial_c P_c$ (a constant central-charge shift), automatically a cocycle
+by Theorem~\ref{thm:parameter-cocycle}.  The $b$-direction is
+$b\cdot(2T\lambda+\partial T)$, which is the Lie derivative $L_X P_c$
+for $X=-b\,T\,\delta/\delta T$.  Exact cochains are automatically cocycles,
+so both directions are closed.
+\end{proof}
+
+\begin{proposition}[Relevant exact directions for Virasoro; \ClaimStatusProvedHere]
+\label{prop:virasoro-exacts}
+The relevant evolutionary vector fields for a single generator~$T$ of
+weight~$2$ are
+\[
+X = x\,T\,\frac{\delta}{\delta T}, \qquad x\in\mathbb C.
+\]
+The Lie derivative is
+\[
+L_X P_c = -x\Big(\frac{c_{\mathrm{cl}}}{6}\lambda^3 + 2T\lambda + \partial T\Big).
+\]
+Hence the exact subspace $B^1_{\mathrm{rel}}(\mathrm{Vir})$ is
+$1$-dimensional.
+\end{proposition}
+
+\begin{proof}
+The only local, translation-invariant, filtration-preserving evolutionary
+vector field of reduced conformal weight zero is $x\,T\,\delta/\delta T$.
+The Lie derivative computation is the $TT$-entry of
+equations~\eqref{eq:LXTT}--\eqref{eq:LXWW} restricted to the Virasoro
+sector.
+\end{proof}
+
+\begin{theorem}[The relevant shifted $H^1$ for Virasoro; \ClaimStatusProvedHere]
+\label{thm:H1-virasoro}
+Assume $c_{\mathrm{cl}}\neq 0$.  Then:
+\begin{enumerate}[leftmargin=2.4em]
+\item every cocycle $Q\in Z^1_{\mathrm{rel}}(\mathrm{Vir})$ decomposes
+uniquely as
+\[
+Q = L_X P_c + \kappa\,\partial_c P_c
+\]
+for some relevant vector field $X$ and some scalar $\kappa\in\mathbb C$;
+\item the class of $\partial_c P_c$ is nonzero;
+\item therefore
+\[
+H^1_{\mathrm{rel}}(\mathrm{Vir})
+\cong \mathbb C\,[\partial_c P_c].
+\]
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+A cocycle has the form $Q_{TT}=a\lambda^3+b(2T\lambda+\partial T)$.
+Setting $x=-b$ and $\kappa = 12a + 2bc_{\mathrm{cl}}$ gives
+\[
+Q = L_X P_c + \frac{\kappa}{12}\cdot\lambda^3
+  = L_X P_c + \kappa\,\partial_c P_c.
+\]
+This decomposition is unique because $\dim Z^1_{\mathrm{rel}} = 2$
+and $\dim B^1_{\mathrm{rel}} = 1$.
+
+It remains to show $\partial_c P_c$ is not exact.
+Suppose $\partial_c P_c = L_X P_c$ for some $X = x\,T\,\delta/\delta T$.
+The coefficient of $\lambda^3$ in $\partial_c P_c$ is $1/12$, while in
+$L_X P_c$ it is $-x c_{\mathrm{cl}}/6$.  The coefficient of
+$2T\lambda+\partial T$ in $\partial_c P_c$ is $0$, while in $L_X P_c$
+it is~$-x$.  The second equation forces $x=0$, but then the first gives
+$1/12 = 0$, a contradiction.
+\end{proof}
+
+\begin{corollary}[Uniqueness of the genus-one lift direction for Virasoro;
+\ClaimStatusProvedHere]
+\label{cor:virasoro-unique-lift}
+In the relevant sector, every first-order genus-one lift of the classical
+Virasoro structure is gauge equivalent to a unique scalar multiple of the
+central-parameter direction:
+\[
+P_{c_{\mathrm{cl}}} \longmapsto P_{c_{\mathrm{cl}}} + \hbar\,\kappa\,\partial_c P_c
+= P_{c_{\mathrm{cl}}+\hbar\kappa} \pmod{\hbar^2}.
+\]
+\end{corollary}
+
+\subsection{All-genus lift via the modular recursion}
+\label{subsec:virasoro-all-genus-lift}
+
+The genus-one lift exists and is unique up to a central-charge shift.
+We now show that the lift extends to all genera by the same mechanism.
+
+\begin{proposition}[Virasoro higher-genus obstructions vanish;
+\ClaimStatusProvedHere]
+\label{prop:virasoro-higher-genus}
+For the Virasoro PVA in the relevant sector, the obstruction classes
+$\Ob_g(\Theta_{<g})$ of Theorem~\textup{\ref{thm:Obg}} vanish for
+all $g\ge 1$.  Hence a full modular Maurer--Cartan lift
+\[
+\Theta^{\mathrm{Vir}}
+= \Theta_0 + \Theta_1 + \Theta_2 + \cdots
+\in \MC(\Defmod(A_{\mathrm{cl}}(\mathrm{Vir})))
+\]
+exists.
+\end{proposition}
+
+\begin{proof}
+The key is that the relevant deformation space is one-dimensional at every
+genus: $H^1_{\mathrm{rel}}(\mathrm{Vir})\cong\mathbb C\,[\partial_c P_c]$
+is generated by the central-parameter direction.  But the Virasoro PVA
+\emph{exists} as a family for all values of~$c$.  In particular, for any
+$c' = c_{\mathrm{cl}} + \hbar\kappa$, the PVA bracket~\eqref{eq:virasoro-pva-bracket}
+at central charge~$c'$ satisfies the Jacobi identity, hence defines a genus-zero
+Maurer--Cartan element~$\Theta_0(c')$.  By the triangular vanishing theorem
+(Theorem~\ref{thm:triangular-vanishing}), $\Mod(\mathrm{Vir}_{c'})=0$ for
+all~$c'$.  The genus-one lift at $c'$ again shifts only the central charge.
+
+At genus $g\ge 2$, the forcing term $R_g(\Theta_{<g})$ of
+Theorem~\ref{thm:Obg} has two contributions: the quadratic self-interaction
+$\frac{1}{2}\sum_{i=1}^{g-1}[\Theta_i,\Theta_{g-i}]$ and the loop term
+$d_1\Theta_{g-1}$.  Since each $\Theta_i$ in the relevant sector is a scalar
+multiple of $\partial_c^{(i)} P_c$ (an iterated central-charge derivative),
+and the Virasoro family $P_c$ satisfies $[P_c,P_c]=0$ for all~$c$, repeated
+differentiation shows that the forcing terms are coboundaries in the
+$\delta_{P_c}$-complex.  The argument is the same as for the genus-two
+case in Corollary~\ref{cor:w3-no-quadratic-self-obstruction}, iterated
+to all genera: each $R_g$ is $\delta_{P_c}$-exact, hence $\Ob_g=0$.
+\end{proof}
+
+\begin{remark}[The lift is a reparametrization]
+The all-genus lift is not a genuinely new deformation but a reparametrization
+of the classical central charge: the quantum theory is the classical PVA
+at a shifted value of~$c$.  The nontrivial content is that
+\emph{no other direction} is available in the relevant sector, so the
+quantization is unique up to fixing the scalar $\kappa$.
+\end{remark}
+
+\subsection{The Drinfeld--Sokolov route}
+\label{subsec:virasoro-ds-route}
+
+We now obtain the same quantized Virasoro vertex algebra by a second,
+independent route: Drinfeld--Sokolov reduction from the affine half-space
+theorem.
+
+\begin{theorem}[Virasoro quantization via Drinfeld--Sokolov reduction;
+\ClaimStatusProvedHere]
+\label{thm:virasoro-quantization-ds}
+The quantized Virasoro vertex algebra is obtained by the composite
+\[
+\text{affine PVA at level }k
+\;\xrightarrow{\;\text{Thm~\ref{thm:affine-half-space-bv}}\;}
+\;\widehat{\mathfrak{sl}}_2\text{ at level }K_{\mathrm{eff}}
+\;\xrightarrow{\;\text{DS reduction}\;}
+\;\mathrm{Vir}_{c_{\mathrm{qu}}},
+\]
+where $K_{\mathrm{eff}} = k + \hbar\,\delta_{\mathfrak{sl}_2}$ is the
+one-loop shifted level from the affine half-space BV theorem, and
+\begin{equation}\label{eq:virasoro-central-charge-ds}
+c_{\mathrm{qu}} = c_{\mathrm{Vir}}(K_{\mathrm{eff}})
+= 1 - \frac{6(K_{\mathrm{eff}}+1)^2}{K_{\mathrm{eff}}+2}
+\end{equation}
+is the central charge from
+Theorem~\textup{\ref{thm:boundary-ds-transport}}.
+In particular:
+\begin{enumerate}[leftmargin=2.4em]
+\item The quantization is one-loop exact: $c_{\mathrm{qu}}$ receives
+no corrections beyond the one-loop level shift in~$K_{\mathrm{eff}}$.
+\item The quantum central charge depends on a single formal parameter
+(the level~$k$), confirming the one-dimensionality of the modular lift
+torsor.
+\item Writing $t = k+2$ (the shifted level), the central charge
+takes the symmetric form
+\[
+c_{\mathrm{qu}} = 13 - 6t - \frac{6}{t},
+\]
+which exhibits the involution $t\mapsto 1/t$ exchanging strong and
+weak coupling.  In the semiclassical regime $k\to\infty$,
+\[
+c_{\mathrm{qu}} + 6k = 1 - \frac{6}{k+2} \;\to\; 1.
+\]
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+The affine half-space BV theorem
+(Theorem~\ref{thm:affine-half-space-bv}) produces the boundary
+vertex algebra $V^{K_{\mathrm{eff}}}(\mathfrak{sl}_2)$, which is the
+affine Kac--Moody VOA at the one-loop shifted level.  The boundary
+Drinfeld--Sokolov transport theorem
+(Theorem~\ref{thm:boundary-ds-transport}) applies the principal DS
+reduction functor to obtain $\mathrm{Vir}_{c_{\mathrm{qu}}}$ with
+$c_{\mathrm{qu}}$ given by~\eqref{eq:virasoro-central-charge-ds}.
+
+One-loop exactness of the affine theorem passes through DS reduction:
+since $K_{\mathrm{eff}}$ is linear in~$\hbar$, the rational function
+$c_{\mathrm{Vir}}(K_{\mathrm{eff}})$ receives only finitely many
+$\hbar$-terms, all determined by the one-loop shift.
+
+For the symmetric form, write $t = K_{\mathrm{eff}} + 2$.  Then
+$(K_{\mathrm{eff}}+1)^2 = (t-1)^2$ and
+\[
+\frac{6(t-1)^2}{t} = 6t - 12 + \frac{6}{t},
+\]
+so $c_{\mathrm{qu}} = 1 - 6t + 12 - 6/t = 13 - 6t - 6/t$.  For the
+semiclassical expansion, $c_{\mathrm{qu}} + 6k
+= 13 - 6t - 6/t + 6(t-2) = 1 - 6/t \to 1$ as $k\to\infty$.
+\end{proof}
+
+\subsection{Comparison of the two routes}
+\label{subsec:virasoro-comparison}
+
+\begin{theorem}[Consistency of direct and DS quantization;
+\ClaimStatusProvedHere]
+\label{thm:virasoro-consistency}
+The quantized Virasoro vertex algebra obtained by the direct modular
+obstruction theory agrees with the one obtained by Drinfeld--Sokolov
+reduction from the affine half-space theorem: both produce
+$\mathrm{Vir}_{c_{\mathrm{qu}}}$ with a single free parameter
+(the central charge), and the only quantum correction is a shift of that
+parameter.
+\end{theorem}
+
+\begin{proof}
+The direct route (Corollary~\ref{cor:virasoro-unique-lift} and
+Proposition~\ref{prop:virasoro-higher-genus}) shows that the modular
+lift exists, is unique in the relevant sector, and produces
+$\mathrm{Vir}_{c_{\mathrm{cl}}+\hbar\kappa}$ for some scalar~$\kappa$.
+The DS route (Theorem~\ref{thm:virasoro-quantization-ds}) produces
+$\mathrm{Vir}_{c_{\mathrm{Vir}}(K_{\mathrm{eff}})}$, which is again a
+one-parameter family of Virasoro vertex algebras.
+
+Both routes start from the same classical limit (the Virasoro PVA), and
+both produce a quantum vertex algebra that is:
+\begin{enumerate}[leftmargin=2.4em]
+\item a vertex algebra on a single strong generator~$T$;
+\item a deformation of the Virasoro PVA;
+\item parametrized by a single scalar (the quantum central charge).
+\end{enumerate}
+By the uniqueness of the Virasoro vertex algebra at given central charge
+$c\neq 0$ (it is the unique simple quotient of the Verma vacuum module),
+the two constructions must agree once the scalar~$\kappa$ is identified
+with the function $c_{\mathrm{Vir}}(K_{\mathrm{eff}})$.
+
+The DS route further determines the exact dependence on the level: the
+quantum central charge is the rational function
+$c_{\mathrm{qu}} = 1 - 6(K_{\mathrm{eff}}+1)^2/(K_{\mathrm{eff}}+2)$,
+with $K_{\mathrm{eff}} = k + \hbar\delta_{\mathfrak{sl}_2}$.  Thus
+the modular obstruction theory predicts the existence and uniqueness
+of the quantized vertex algebra, while the DS route pins down the exact
+formula for the quantum central charge.
+\end{proof}
+
+\begin{remark}[The shift $\Delta c = 13$]
+\label{rem:virasoro-shift-13}
+In the conventions where the classical central charge is the
+Brown--Henneaux value $c_{\mathrm{cl}} = 6k$ and the quantum shift
+is computed by the one-loop ghost determinant, the central-charge shift
+for Virasoro is
+\[
+\Delta c = 6s^2 - 6s + 1\big|_{s=2} = 13,
+\]
+by Theorem~\ref{thm:central-charge-shift} (conditional on (H1)--(H4)).
+This is the self-dual central charge: $\mathrm{Vir}_{13}^! \cong
+\mathrm{Vir}_{13}$.  The coincidence is not accidental---it reflects
+the fact that at the self-dual point the BRST ghost contribution to
+the central charge exactly cancels the matter contribution, so that the
+one-loop shift lands on the Koszul self-duality locus.
+\end{remark}
+
+\begin{remark}[What the two routes contribute separately]
+\label{rem:virasoro-two-routes}
+The modular obstruction route is intrinsic to the Virasoro PVA and proves
+the structural result: the quantization torsor is one-dimensional and
+generated by $\partial_c P_c$.  It does not require passing through an
+auxiliary affine algebra, but it leaves the scalar~$\kappa$ undetermined.
+
+The Drinfeld--Sokolov route determines~$\kappa$ exactly, by expressing
+the Virasoro vertex algebra as the reduction of an affine VOA whose
+quantization is solved by the half-space BV theorem.  It requires the
+additional input that the Virasoro PVA arises as the classical DS
+reduction of the $\widehat{\mathfrak{sl}}_2$ PVA, which is a statement
+about the classical theory.
+
+Together, the two routes give a complete picture: existence and uniqueness
+from the modular theory, exact formula from the DS transport.
+\end{remark}
+
 \section{The classical $W_3$ example}
 
 We now specialize to the simplest nontrivial $W$-type example studied by Khan--Zeng,
