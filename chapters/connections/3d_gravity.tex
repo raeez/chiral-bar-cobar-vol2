@@ -14,168 +14,64 @@
 \index{Brown--Henneaux central charge}
 \index{BTZ black hole}
 
-Three-dimensional Einstein gravity with negative cosmological
-constant is classically equivalent to $SL(2,\R) \times SL(2,\R)$
-Chern--Simons theory.  This section constructs the full bar-cobar
-and Swiss-cheese framework for this theory, producing the Virasoro
-boundary algebra, the dual line category, the gravitational
-$R$-matrix, and the 3d MC element $\alpha_T$ whose shadow tower is
-the perturbative expansion of quantum gravity around AdS$_3$.
-
-
-\subsection{The Chern--Simons formulation}
-\label{subsec:cs-gravity}
-
-Let $\ell > 0$ be the AdS radius and $G > 0$ Newton's constant.
-The dreibein $e^a_\mu$ and spin connection $\omega^a_\mu$
-($a = 0, 1, 2$, $\mu = 0, 1, 2$) combine into two
-$\mathfrak{sl}(2,\R)$-valued connections
-\begin{equation}\label{eq:gravity-cs-connection}
-A_\pm^a \;=\; \omega^a \;\pm\; \frac{1}{\ell}\,e^a.
+This section derives the complete holographic dictionary of
+three-dimensional quantum gravity from a single algebraic input:
+the Virasoro $\lambda$-bracket
+\begin{equation}\label{eq:gravity-input}
+\{T{}_\lambda T\}
+\;=\;
+\partial T + 2T\lambda + \frac{c}{12}\,\lambda^3.
 \end{equation}
-The Einstein--Hilbert action with cosmological constant
-$\Lambda = -1/\ell^2$ becomes
-\begin{equation}\label{eq:gravity-cs-action}
-S_{\mathrm{EH}}
-\;=\;
-\frac{1}{16\pi G}\int \bigl(R + \frac{2}{\ell^2}\bigr)
-\operatorname{vol}
-\;=\;
-S_{\mathrm{CS}}[A_+;\, k] \;-\; S_{\mathrm{CS}}[A_-;\, k],
-\end{equation}
-where the Chern--Simons level is
-\begin{equation}\label{eq:cs-level-gravity}
-k \;=\; \frac{\ell}{4G}
-\end{equation}
-and the CS action is
-\[
-S_{\mathrm{CS}}[A;\, k]
-\;=\;
-\frac{k}{4\pi}\int
-\operatorname{tr}\!\bigl(
-  A \wedge dA + \tfrac{2}{3}\,A \wedge A \wedge A
-\bigr).
-\]
-The trace is the Killing form of $\mathfrak{sl}(2,\R)$,
-normalised so that $\operatorname{tr}(J_a J_b) =
-\tfrac{1}{2}\eta_{ab}$.  Flat connections $F_\pm = dA_\pm +
-A_\pm \wedge A_\pm = 0$ correspond to constant-curvature
-geometries: AdS$_3$ is the connection $A_\pm = g_\pm^{-1}dg_\pm$
-for $g_\pm \in SL(2,\R)$.
+Three terms, one generator, one parameter $c$.  The quartic pole
+($\lambda^3$ in the $\lambda$-bracket, equivalently
+$(z-w)^{-4}$ in the OPE) is the single datum that generates the
+entire structure: the non-associativity of $m_2$, the infinite
+$\Ainf$ tower $\{m_k\}_{k \ge 3}$, the central charge shift
+$c \mapsto 26-c$ under Koszul duality, the gravitational
+$R$-matrix $r(z) = (c/2)/z^4 + 2T/z^2 + \partial T/z$, and the
+genus tower controlled by the curvature $\kappa = c/2$.
 
+The development unfolds in five movements, each forced by the
+previous:
+\begin{enumerate}[label=\textup{(\Roman*)}]
+\item The $\lambda$-bracket determines $m_2$, whose
+  non-associativity (from the quartic pole) forces $m_3$, which
+  forces $m_4$, and so on: the $\Ainf$ structure is genuinely
+  infinite.
+\item The bar complex $\barB(\mathrm{Vir}_c)$ encodes this
+  $\Ainf$ structure; its Verdier dual is the Koszul dual
+  $\mathrm{Vir}_{26-c}$, and the line operator category is
+  $\mathrm{Vir}_{26-c}$-$\mathbf{mod}$.
+\item The collision residue of the universal MC element produces
+  the $R$-matrix, whose Yang--Baxter equation is Arnold
+  cancellation on $\FM_3(\C)$.
+\item The genus tower arises from the curvature
+  $d_{\mathrm{fib}}^2 = \kappa_{\mathrm{eff}}\cdot\omega_1$;
+  the all-genus generating function is the
+  $\hat A$-genus weighted by $\kappa_{\mathrm{eff}} = (c-26)/2$.
+\item The Koszul triangle
+  $\mathrm{Vir}_c \leftrightarrow \mathrm{Vir}_{26-c}\text{-mod}
+  \leftrightarrow \C[\![c]\!]$ closes, and the physics
+  of 3d AdS$_3$ gravity---Brown--Henneaux, BTZ, Cardy---emerges
+  as output.
+\end{enumerate}
+Were $c = 0$ (no quartic pole), all of this would collapse:
+$m_2$ is associative, the $\Ainf$ structure is trivial, the
+Koszul dual is the Witt algebra, and the genus tower vanishes.
+The quartic pole is the engine.
 
-\subsection{The boundary Virasoro algebra}
-\label{subsec:boundary-virasoro}
+%====================================================================
+% MOVEMENT I: THE A-INFINITY STRUCTURE
+%====================================================================
 
-Place the theory on $\R_+ \times \C$, with the half-line
-$\R_+ = \{t \ge 0\}$ as the topological direction and
-$\C = \{z\}$ as the holomorphic direction.  The boundary
-$\{t = 0\} \times \C$ carries a chiral algebra.
-
-\begin{theorem}[Brown--Henneaux; \ClaimStatusProvedElsewhere]
-\label{thm:brown-henneaux}
-\index{Brown--Henneaux central charge|textbf}
-The asymptotic symmetry algebra of $SL(2,\R)$ Chern--Simons
-theory at level~$k$ on $\R_+ \times \C$ is the Virasoro algebra
-at central charge
-\begin{equation}\label{eq:brown-henneaux}
-c \;=\; 6k \;=\; \frac{3\ell}{2G}.
-\end{equation}
-\end{theorem}
-
-\begin{proof}
-\emph{Step~1: boundary conditions.}\enspace
-Write the $\mathfrak{sl}(2,\R)$ generators as $J_0, J_\pm$ with
-$[J_0, J_\pm] = \pm J_\pm$, $[J_+, J_-] = 2J_0$.  On
-$\R_+ \times \C$ with coordinates $(t, z, \bar z)$, decompose
-$A = A_t\,dt + A_z\,dz + A_{\bar z}\,d\bar z$.  The
-holomorphic--topological twist sets $A_{\bar z} = 0$ (holomorphic
-gauge).  The boundary condition at $t = 0$ is
-\begin{equation}\label{eq:gravity-bc}
-A_z\big|_{t=0}
-\;=\;
-\begin{pmatrix} 0 & T(z) \\ 1 & 0 \end{pmatrix}
-\;=\;
-J_- + T(z)\,J_+,
-\end{equation}
-where $T(z)$ is an arbitrary holomorphic function---the stress
-tensor.  The lower-left entry is fixed to $1$ by the AdS$_3$
-asymptotics (it is the leading term of the Fefferman--Graham
-expansion of the dreibein); the upper-right entry $T(z)$ is the
-free boundary data.
-
-\emph{Step~2: residual gauge transformations.}\enspace
-A gauge transformation $g = \exp(\epsilon(z)\,J_+)$ preserves the
-form~\eqref{eq:gravity-bc} and acts on $T$ by
-\begin{equation}\label{eq:gravity-gauge-T}
-\delta_\epsilon T(z)
-\;=\;
-\epsilon'(z)\,T(z) + 2\epsilon(z)\,T'(z)
-+ \frac{c}{12}\,\epsilon'''(z),
-\end{equation}
-where $c = 6k$.  This is the infinitesimal conformal
-transformation with Schwarzian anomaly.
-
-\emph{Step~3: the Poisson bracket.}\enspace
-The Chern--Simons symplectic form on the boundary is
-\[
-\omega_{\mathrm{CS}}
-\;=\;
-\frac{k}{2\pi}\int_\C
-\operatorname{tr}(\delta A_z \wedge \delta A_{\bar z})\,
-dz \wedge d\bar z.
-\]
-In the holomorphic gauge $A_{\bar z} = 0$, the constraint
-$F_{z\bar z} = 0$ reduces the phase space to the space of $T(z)$,
-and the induced Poisson bracket on boundary data is
-\begin{equation}\label{eq:virasoro-poisson}
-\{T(z),\, T(w)\}_{\mathrm{PB}}
-\;=\;
-\frac{c}{2}\,\delta'''(z-w)
-\;+\;
-2T(w)\,\delta'(z-w)
-\;+\;
-T'(w)\,\delta(z-w).
-\end{equation}
-This is the Virasoro OPE
-$T(z)\,T(w) \sim \frac{c/2}{(z-w)^4} + \frac{2T(w)}{(z-w)^2}
-+ \frac{\partial T(w)}{z-w}$
-in distribution form.  The central charge $c = 6k = 3\ell/(2G)$.
-\end{proof}
-
-\subsection{The bar complex of the gravitational boundary algebra}
-\label{subsec:gravity-bar}
-
-The boundary algebra $\Bbound = \mathrm{Vir}_c$ has a single
-strong generator $T$ of conformal weight~$2$.  Its bar complex
-$\barBch(\mathrm{Vir}_c) = T^c(s^{-1}\overline{\mathrm{Vir}}_c)$
-is the cofree coalgebra on the desuspended augmentation ideal,
-with the derivative tower $\{T, \partial T, \partial^2 T, \ldots\}$
-as cogenerators.
+\subsection{Movement I: the $\Ainf$ structure from the quartic pole}
+\label{subsec:gravity-ainf}
 
 \subsubsection*{The binary operation $m_2$}
 
-From the OPE $T(z)\,T(w) \sim \frac{c/2}{(z-w)^4} +
-\frac{2T(w)}{(z-w)^2} + \frac{\partial T(w)}{z-w}$, the bar
-differential on a degree-$2$ element is
-\[
-d_{\barB}[s^{-1}T \,|\, s^{-1}T]
-\;=\;
-\Res_{z_1 = z_2}\!\left[
-  \left(\frac{c/2}{(z_{12})^4}
-  + \frac{2T}{(z_{12})^2}
-  + \frac{\partial T}{z_{12}}\right)
-  \cdot \frac{dz_{12}}{z_{12}}
-\right].
-\]
-The residue extracts the coefficient of $z_{12}^{-1}$:
-\[
-d_{\barB}[s^{-1}T \,|\, s^{-1}T]
-\;=\;
-\partial T.
-\]
-In spectral parametrisation (Borel transform
-$(z_{12})^{-n-1} \mapsto \lambda^{(n)}/n!$):
+The $\lambda$-bracket~\eqref{eq:gravity-input} IS the binary
+operation, after the Borel transform
+$(z-w)^{-n-1} \mapsto \lambda^n/n!$:
 \begin{equation}\label{eq:gravity-m2}
 m_2(T, T;\, \lambda)
 \;=\;
@@ -183,39 +79,20 @@ m_2(T, T;\, \lambda)
 \;+\; 2T\,\lambda
 \;+\; \partial T.
 \end{equation}
-The three terms correspond to the three poles of the TT OPE:
-the quartic pole gives $\frac{c}{2}\lambda^3$ (the central
-extension), the double pole gives $2T\lambda$ (the conformal
-weight), and the simple pole gives $\partial T$ (the derivative).
+The three terms correspond to the three OPE poles:
+quartic $\mapsto$ $\frac{c}{2}\lambda^3$,
+double $\mapsto$ $2T\lambda$,
+simple $\mapsto$ $\partial T$.
+In the bar complex: the differential on degree-$2$ elements is
+$d_{\barB}[s^{-1}T \,|\, s^{-1}T] = \partial T$ (the residue
+extracts the coefficient of $z_{12}^{-1}$).
 
-\subsubsection*{The ternary operation $m_3$}
+\subsubsection*{The ternary operation $m_3$: forced by non-associativity}
 
-The $n = 3$ Stasheff relation on $\FM_3(\C)$ requires $m_3$ to
-correct the failure of $m_2$ to be associative.  Compute:
-\begin{align*}
-&m_2(m_2(T, T;\lambda_{12}), T;\, \lambda_{13})
-\;-\;
-m_2(T, m_2(T, T;\lambda_{23});\, \lambda_{12})
-\\
-&\qquad =\;
-m_2\bigl(\tfrac{c}{2}\lambda_{12}^3 + 2T\lambda_{12} +
-\partial T,\; T;\, \lambda_{13}\bigr)
-\;-\;
-m_2\bigl(T,\; \tfrac{c}{2}\lambda_{23}^3 + 2T\lambda_{23} +
-\partial T;\, \lambda_{12}\bigr).
-\end{align*}
-The terms involving $T$ in the first argument of $m_2$ produce:
-$m_2(T, T;\lambda_{13}) = \frac{c}{2}\lambda_{13}^3 + 2T\lambda_{13}
-+ \partial T$ multiplied by $2\lambda_{12}$; and similarly for the
-second.  The difference is proportional to
-$\lambda_{12} - \lambda_{23}$, which is the spectral substitution
-from $\FM_3(\C)$: the internal parameter of the colliding pair
-is absorbed into the effective parameter of the composite.
-
-Compute the associator explicitly.  By linearity and
-sesquilinearity ($m_2(\partial T, T;\,\lambda) = -\lambda\,
-m_2(T,T;\,\lambda)$, $m_2(T, \partial T;\,\lambda) =
-(\lambda + \partial)\,m_2(T,T;\,\lambda)$), and using
+Compute the associator.  Using sesquilinearity
+($m_2(\partial T, T;\,\lambda) = -\lambda\,m_2(T,T;\,\lambda)$,
+$m_2(T, \partial T;\,\lambda) = (\lambda + \partial)\,
+m_2(T,T;\,\lambda)$) and the spectral substitution
 $\lambda_{13} = \lambda_{12} + \lambda_{23}$:
 \begin{align}
 &m_2(m_2(T,T;\,\lambda_{12}),\, T;\, \lambda_{13})
@@ -243,8 +120,7 @@ $\lambda_{13} = \lambda_{12} + \lambda_{23}$:
 \;+\; \partial^2 T.
 \label{eq:associator-right}
 \end{align}
-Subtracting and collecting powers of $\lambda_{12}$,
-$\lambda_{23}$ gives the Stasheff associator
+Subtracting gives the Stasheff associator:
 \begin{equation}\label{eq:gravity-associator}
 \boxed{
 A_3(T,T,T;\,\lambda_{12},\lambda_{23})
@@ -257,24 +133,13 @@ A_3(T,T,T;\,\lambda_{12},\lambda_{23})
 - 3(\partial T)\lambda_{23}
 - \partial^2 T.}
 \end{equation}
-Every term is forced by the quartic pole: were
-$c = 0$ (no quartic pole), the leading term $-c\lambda_{12}\lambda_{23}^3$
-would vanish, and the remaining terms would conspire to cancel
-(as they do for affine Kac--Moody, which has a \emph{double} pole
-and $A_3 = 0$).
+The leading term $-c\,\lambda_{12}\lambda_{23}^3$ is directly
+proportional to the central charge: were $c = 0$, it would vanish,
+and the remaining terms would cancel (as they do for affine
+Kac--Moody, where the double pole gives $A_3 = 0$).
 
-The homotopy $m_3(T, T, T;\, \lambda_{12}, \lambda_{23})$ is the
-integral over the interval $\FM_3(\C) \cong [0, 1]$ that
-interpolates between the two boundary contributions $D_{12}$ and
-$D_{23}$.  The Stasheff relation (with $m_1 = 0$) requires
-\[
-A_3 \;=\; \partial_{\FM_3}\, m_3,
-\]
-so $m_3$ is the unique (up to coboundary) anti-derivative of
-$A_3$ along the moduli space.  From the KZ Feynman computation
-(Proposition~\ref{prop:vir-m2}, Y-diagram of
-Section~\ref{sec:W-algebras}), the explicit formula for the
-ternary operation is
+The Stasheff relation $A_3 = \partial_{\FM_3}\, m_3$ determines
+$m_3$ as the antiderivative along $\FM_3(\C) \cong [0,1]$:
 \begin{equation}\label{eq:gravity-m3}
 m_3(T,T,T;\,\lambda_{12},\lambda_{23})
 \;=\;
@@ -282,139 +147,83 @@ m_3(T,T,T;\,\lambda_{12},\lambda_{23})
 \;-\; 4T\,(\lambda_{12} + \lambda_{23})
 \;-\; 4\,\partial T.
 \end{equation}
-The three terms have direct gravitational content:
-the first ($-c\lambda_{12}\lambda_{23}(\lambda_{12}+\lambda_{23})$)
-is the three-graviton coupling from the cubic vertex of the
-Einstein--Hilbert action, proportional to the central charge
-$c = 3\ell/(2G)$; the second ($-4T(\lambda_{12}+\lambda_{23})$)
-is the backreaction of the stress tensor on the three-graviton
-amplitude; the third ($-4\,\partial T$) is the derivative
-correction.  At $c = 0$: the three-graviton vertex vanishes,
-as it should when Newton's constant is infinite.
+The three terms have gravitational content:
+$-c\lambda_{12}\lambda_{23}(\lambda_{12}+\lambda_{23})$ is the
+three-graviton coupling ($\propto 1/G$);
+$-4T(\lambda_{12}+\lambda_{23})$ is the stress-tensor backreaction;
+$-4\,\partial T$ is the derivative correction.
 
-For the Virasoro algebra, $m_3 \ne 0$ because the
-$TT$ OPE has a quartic pole: the four-fold singularity prevents the
-binary operation from being associative, and the correction
-lives on the one-dimensional moduli space $\FM_3(\C)$.
+\subsubsection*{The quartic contact invariant and infinite depth}
 
-\subsubsection*{The quartic operation $m_4$ and the contact invariant}
-
-At $n = 4$, $\FM_4(\C)$ is a compact surface with corners
-($\FM_4(\C)$ is a real $4$-manifold, the Stasheff associahedron
-$K_4$).  The Stasheff relation at arity~$4$ reads
-\[
-\partial_{\FM_4}\, m_4
-\;=\;
-\sum_{\text{faces}}
-\pm\, m_3 \circ (m_2 \otimes \id^{\otimes 2})
-\;\pm\;
-m_2 \circ (m_3 \otimes \id)
-\;\pm\;
-m_2 \circ (\id \otimes m_3).
-\]
-The right-hand side is a sum over the five codimension-$1$
-boundary strata of $K_4$ (the five ways to parenthesise four
-letters).  Substituting the explicit
-$m_2$~\eqref{eq:gravity-m2} and
-$m_3$~\eqref{eq:gravity-m3}, each boundary stratum contributes
-a polynomial in $\lambda_{12}, \lambda_{23}, \lambda_{34}$ with
-coefficients in $\{c, T, \partial T, \partial^2 T, :TT:\}$.
-The total boundary contribution need not be exact: its
-cohomology class in $H^*(\FM_4(\C))$ is the quartic contact
-invariant.
-
-The computation reduces to a residue calculation on
-$H^2(\FM_4(\C)) \cong \C$, generated by the unique top stratum
-class.  The coefficient is determined by the Kac determinant at
-level~$4$ of the Virasoro Verma module $M(c, 0)$:
-\[
-\det(M_4)
-\;=\;
-\alpha \cdot c(5c + 22) \cdot (\text{lower factors}),
-\]
-where $\alpha > 0$ is a combinatorial constant.  The quartic
-contact invariant is the \emph{inverse} of this leading factor:
+At $n = 4$, $\FM_4(\C)$ is the associahedron $K_4$.  The Stasheff
+relation produces the quartic contact invariant from the Kac
+determinant at level~$4$:
 \begin{equation}\label{eq:gravity-quartic}
 \mathfrak{Q}^{\mathrm{contact}}_{\mathrm{Vir}}
 \;=\;
-\frac{10}{c(5c+22)}
-\;=\;
-\frac{10}{6k(30k+22)}
-\;=\;
-\frac{5}{3k(15k+11)}.
+\frac{10}{c(5c+22)}.
 \end{equation}
-The numerator $10 = \binom{5}{2}$ counts the pairings of four
-operators at level~$4$; the denominator is the Kac determinant.
-Whenever $\det(M_4) = 0$ (a null vector appears), the shadow
-tower reorganises: the quartic operation acquires a pole and the
-bar differential must be corrected by projecting out the null state.
+The numerator $10 = \binom{5}{2}$; the denominator is the Kac
+determinant.  Poles at $c = 0$ ($G = \infty$) and $c = -22/5$
+(Lee--Yang) mark reorganisation points of the shadow tower.
 
-At $c = 0$ ($k = 0$, $G = \infty$): the contact invariant
-diverges---the four-graviton contact interaction blows up as
-gravity becomes infinitely strong.
-At $c = -22/5$ ($k = -11/15$): the level-$4$ Kac null vector
-appears (the Lee--Yang minimal model), and the shadow tower
-reorganises into a smaller quotient.
+The $\Ainf$ structure does not truncate:
+$m_k \ne 0$ for all $k \ge 3$ and generic~$c$.  Each
+$m_k$ is computed by a wheel diagram---a Hamiltonian cycle on the
+complete graph $K_k$ with $k-1$ cubic vertices---and the quartic
+OPE pole ensures a nonzero residue at every arity
+(Proposition~\ref{prop:vir-truncation}).
 
-\subsubsection*{Infinite depth: the non-termination theorem}
+%====================================================================
+% MOVEMENT II: THE KOSZUL TRIANGLE
+%====================================================================
 
-The Virasoro shadow tower does not terminate:
-$o_5(\mathrm{Vir}_c) \ne 0$ for generic~$c$
-(Vol~I, Theorem~\ref*{thm:nms-virasoro-quartic-explicit}).  Every
-finite truncation $\Theta_{\mathrm{Vir}_c}^{\le r}$ carries
-genuinely new gravitational data: the $r$-th shadow is the
-$r$-graviton vertex correction, and no finite set of vertices
-determines the full perturbative quantum gravity.
-In the Khan--Zeng model
-(Proposition~\ref{prop:vir-truncation}), every perturbative operation
-$m_k$ ($k \ge 3$) is computed by a single wheel diagram with $k$
-cubic vertices arranged in a Hamiltonian cycle; the $A_\infty$
-structure is genuinely infinite already at tree+one-loop level,
-with further depth contributed by the genus tower.
+\subsection{Movement II: the Koszul triangle}
+\label{subsec:gravity-koszul}
 
+\begin{theorem}[Gravitational Koszul triangle; \ClaimStatusProvedHere]
+\label{thm:gravity-koszul-triangle}
+\index{Koszul triangle!gravitational|textbf}
+\index{bulk-boundary-line triangle!3d gravity}
+The three vertices of the bulk-boundary-line triangle are:
+\begin{enumerate}[label=\textup{(\roman*)}]
+\item \textbf{Boundary} $= \mathrm{Vir}_c$:
+  the $\lambda$-bracket~\eqref{eq:gravity-input} with
+  $c = 6k = 3\ell/(2G)$.
+\item \textbf{Lines} $\simeq \mathrm{Vir}_{26-c}\text{-mod}$:
+  highest-weight modules for the Koszul dual Virasoro at
+  central charge $26 - c$.  Each module $M_h$ is a conical
+  defect of angular deficit $2\pi(1 - h/c)$.
+\item \textbf{Bulk} $\simeq \C[\![c]\!]$:
+  the derived centre $\Zder(\mathrm{Vir}_c) \simeq
+  \HH^0 \oplus \HH^1[-1] \simeq \C[\![c]\!]$.
+  Pure 3d gravity has one parameter: the cosmological constant.
+\end{enumerate}
+\end{theorem}
 
-\subsection{Koszul duality and the dual line category}
-\label{subsec:koszul-gravity}
+\subsubsection*{The Koszul dual: $\mathrm{Vir}_c^! = \mathrm{Vir}_{26-c}$}
 
-\begin{proposition}[Gravitational Koszul dual;
-\ClaimStatusProvedHere]
+\begin{proposition}[\ClaimStatusProvedHere]
 \label{prop:gravity-koszul-dual}
 \index{Koszul dual!Virasoro!gravitational}
 The Koszul dual of $\mathrm{Vir}_c$ is $\mathrm{Vir}_{26-c}$
 \textup{(}Vol~I, Theorem~\textup{\ref*{thm:virasoro-koszul-dual-early}}\textup{)}.
-For 3d gravity at level $k = \ell/(4G)$:
-\[
-\Bbound^!
-\;=\;
-\mathrm{Vir}_{26 - 6k}.
-\]
-At the semiclassical limit $k \to \infty$ ($G \to 0$,
-$c \to \infty$): $c' = 26 - c \to -\infty$, the dual Virasoro has
-large negative central charge.  Self-duality at
-$c = 13$, i.e., $k = 13/6$.
-\end{proposition}
-
-Line operators along $\R_+ \times \{0\}$ are
-$\mathrm{Vir}_{26-c}$-modules.  For $c \gg 26$: the dual central
-charge $c' = 26 - c \ll 0$ places the line category in the
-strongly quantum regime of the Virasoro algebra.  This is the
-algebraic manifestation of UV/IR mixing in AdS$_3$/CFT$_2$:
-semiclassical gravity on the bulk side corresponds to strongly
-quantum Virasoro representation theory on the boundary side.
-
-The Koszul complementarity (Vol~I, Theorem~C) gives
+The Koszul complementarity gives
 \[
 \kappa(\mathrm{Vir}_c) + \kappa(\mathrm{Vir}_{26-c})
 \;=\;
 \frac{c}{2} + \frac{26-c}{2}
 \;=\; 13.
 \]
-The sum of the curvatures is the constant $13 = (26)/2$,
-the complementarity midpoint.  The complementary curvature
-$\kappa(\mathrm{Vir}_c^!) = (26-c)/2$ vanishes at $c = 26$
-(the bosonic string critical dimension); the curvature itself
-$\kappa(\mathrm{Vir}_c) = c/2$ vanishes at $c = 0$ (the Witt
-algebra, no central extension).
+Self-duality at $c = 13$: $\mathrm{Vir}_{13}^! = \mathrm{Vir}_{13}$.
+\end{proposition}
+
+Line operators along $\R_+ \times \{0\}$ are
+$\mathrm{Vir}_{26-c}$-modules
+(Theorem~\ref{thm:lines_as_modules}).
+For $c \gg 26$: the dual central charge $c' = 26 - c \ll 0$ places
+the line category in the strongly quantum regime---the algebraic
+manifestation of UV/IR mixing in AdS$_3$/CFT$_2$.
 
 \begin{remark}[Curvature versus effective curvature]
 \label{rem:gravity-kappa-vs-kappa-eff}
@@ -422,8 +231,7 @@ The modular characteristic $\kappa(\mathrm{Vir}_c) = c/2$ is the
 intrinsic genus-$1$ curvature of the Virasoro bar complex.  In the
 gravitational context, gauge-fixing introduces the $bc$ ghost system
 with $c_{\mathrm{ghost}} = -26$ and curvature
-$\kappa_{\mathrm{ghost}} = -13$.  The \emph{effective} curvature
-after ghost subtraction is
+$\kappa_{\mathrm{ghost}} = -13$.  The \emph{effective} curvature is
 \[
 \kappa_{\mathrm{eff}}
 \;=\;
@@ -433,65 +241,54 @@ after ghost subtraction is
 \;=\;
 \frac{c - 26}{2}.
 \]
-The gravitational partition function (Section~\ref{subsec:gravity-genus1})
-uses $\kappa_{\mathrm{eff}}$; the abstract algebraic curvature is $\kappa = c/2$.
-The cancellation $\kappa_{\mathrm{eff}} = 0$ at $c = 26$ is \emph{not}
-the vanishing of the intrinsic curvature but the cancellation of the
-matter curvature against the ghost curvature.
+The gravitational partition function
+(\S\ref{subsec:gravity-genus-tower}) uses $\kappa_{\mathrm{eff}}$;
+the cancellation $\kappa_{\mathrm{eff}} = 0$ at $c = 26$ is
+matter-ghost cancellation, not vanishing of the intrinsic curvature.
 \end{remark}
 
+\subsubsection*{The derived centre: $\Zder(\mathrm{Vir}_c) \simeq \C[\![c]\!]$}
 
-\subsection{The gravitational $R$-matrix}
+The Hochschild--Serre spectral sequence gives:
+\[
+\HH^0(\mathrm{Vir}_c) = \C,
+\qquad
+\HH^1(\mathrm{Vir}_c) = \C \cdot D_c,
+\qquad
+\HH^{n \ge 2}(\mathrm{Vir}_c) = 0
+\quad\text{(generic~$c$)},
+\]
+where $D_c \colon L_n \mapsto \partial_c L_n$ is the rescaling
+derivation.  Hence $\Zder(\mathrm{Vir}_c)
+\simeq \C[\![c]\!]$: the only bulk observable is the central
+charge.  3d gravity has no local degrees of freedom.
+
+The bulk-to-boundary map sends $\partial_c \in \HH^1$ to the
+stress tensor $T \in \mathrm{Vir}_c$ via the conformal Ward identity:
+\begin{equation}\label{eq:gravity-bulk-boundary}
+\beta_B(\partial_c)(z_0) \cdot T(w)
+\;=\;
+\frac{T(w)}{(z_0 - w)^2} + \frac{\partial T(w)}{z_0 - w}.
+\end{equation}
+The triangle closes: bulk $\xrightarrow{\beta_B}$ boundary
+$\xrightarrow{\barB}$ lines $\xrightarrow{\Zder}$ bulk.
+
+%====================================================================
+% MOVEMENT III: THE R-MATRIX AND BRAIDING
+%====================================================================
+
+\subsection{Movement III: the $R$-matrix}
 \label{subsec:gravity-r-matrix}
 
-\begin{definition}[Gravitational $R$-matrix]
-\label{def:gravity-r-matrix}
-\index{R-matrix@$R$-matrix!gravitational}
-\index{Virasoro fusion kernel}
-The spectral braiding on $\mathrm{Vir}_{26-c}$-modules is the
-\emph{Virasoro fusion kernel}: for highest-weight modules
-$V_{h_1}, V_{h_2}$,
-\[
-R_{h_1, h_2}(z) \colon V_{h_1} \otimes V_{h_2}
-\;\xrightarrow{\;\sim\;}\;
-V_{h_2} \otimes V_{h_1}
-\]
-is the Virasoro $6j$-symbol evaluated at spectral
-separation~$z$.
-\end{definition}
+\subsubsection*{The classical $r$-matrix from the collision residue}
 
-\begin{proposition}[Gravitational YBE; \ClaimStatusProvedHere]
-\label{prop:gravity-ybe}
-The Virasoro fusion kernel satisfies the Yang--Baxter equation
-\[
-R_{12}(z_{12})\,R_{13}(z_{13})\,R_{23}(z_{23})
-\;=\;
-R_{23}(z_{23})\,R_{13}(z_{13})\,R_{12}(z_{12})
-\]
-as a consequence of the pentagon identity for Virasoro fusion
-matrices, which is the boundary cancellation on $\FM_3(\C)$
-\textup{(}Theorem~\textup{\ref{thm:YBE}}\textup{)}.
-\end{proposition}
-
-\subsubsection*{Derivation of the classical $r$-matrix from the
-collision residue}
-
-The classical $r$-matrix is the arity-$(2,0)$ projection of
-$\alpha_T$: two closed vertices, no open vertices, at genus~$0$.
-This is the collision residue of $\Theta_{\mathrm{Vir}_c}$ at
-two points.  Compute:
+The classical $r$-matrix is the arity-$(2,0)$ genus-$0$ projection
+of the universal MC element $\Theta_{\mathrm{Vir}_c}$:
 \begin{align*}
 r(z)
 &\;=\;
 \Res^{\mathrm{coll}}_{0,2}(\Theta_{\mathrm{Vir}_c})
-\\
-&\;=\;
-\Res_{z_1 = z_2}\!\bigl[
-  T(z_1) \otimes T(z_2)
-  \cdot \eta_{12}
-\bigr]
-\\
-&\;=\;
+\;=\;
 \Res_{z_{12} = 0}\!\left[
   \left(
     \frac{c/2}{z_{12}^4}
@@ -501,76 +298,58 @@ r(z)
   \otimes T
   \cdot \frac{dz_{12}}{z_{12}}
 \right]
-\\
+\\[4pt]
 &\;=\;
-\frac{c/2}{z^4} + \frac{2T}{z^2} + \frac{\partial T}{z},
+\frac{c/2}{z^4} + \frac{2T}{z^2} + \frac{\partial T}{z}.
 \end{align*}
-where $z = z_1 - z_2$ is the spectral separation.  The classical
-$r$-matrix is the kernel of the Virasoro OPE itself, viewed as an
-element of $\mathrm{Vir}_c \otimes \mathrm{Vir}_c(\!(z^{-1})\!)$.
+The $r$-matrix IS the OPE kernel: the collision residue recovers
+the defining data~\eqref{eq:gravity-input}.  At leading order
+$r(z) \sim (c/2)/z^4$: the graviton propagator in AdS$_3$, a
+spin-$2$ exchange with a fourth-order singularity.
 
-At leading order in $1/c$ (semiclassical gravity,
-$G = \ell/(4k) \to 0$): $r(z) \sim (c/2)/z^4$, the quartic-pole
-term.  This is the graviton propagator in AdS$_3$: a spin-$2$
-exchange kernel with a fourth-order singularity at coincidence.
-The subleading terms $2T/z^2 + \partial T/z$ are the back-reaction
-corrections from the stress tensor on the boundary.
-
-The CYBE for this $r$-matrix,
+\begin{proposition}[Gravitational YBE; \ClaimStatusProvedHere]
+\label{prop:gravity-ybe}
+The CYBE
 \[
 [r_{12}(z_{12}),\, r_{13}(z_{13})]
 + [r_{12}(z_{12}),\, r_{23}(z_{23})]
 + [r_{13}(z_{13}),\, r_{23}(z_{23})]
-\;=\; 0,
+\;=\; 0
 \]
 is the residue of the Arnold relation on $\FM_3(\C)$
-(Vol~I, Theorem~\ref*{thm:collision-residue-twisting}): the same
-codimension-$2$ cancellation that gives $d_{\barB}^2 = 0$
-at genus~$0$, projected to the binary collision stratum.
+\textup{(}Vol~I, Theorem~\textup{\ref*{thm:collision-residue-twisting}}\textup{)}:
+the same cancellation that gives $d_{\barB}^2 = 0$, projected to
+the binary collision stratum.
+\end{proposition}
 
-At the quantum level ($\hbar = 1/k$), the classical $r$-matrix
-exponentiates to the Virasoro fusion kernel $R(z)$, which is
-the Virasoro $6j$-symbol encoding the braiding of primary fields.
-The $c \to \infty$ limit of the fusion kernel is the Liouville
-reflection coefficient $S_b(h)$ with $b^2 = 1/k$.
+\subsubsection*{The fusion kernel: quantum $R$-matrix}
 
+\begin{definition}[Gravitational $R$-matrix]
+\label{def:gravity-r-matrix}
+\index{R-matrix@$R$-matrix!gravitational}
+\index{Virasoro fusion kernel}
+For highest-weight $\mathrm{Vir}_{26-c}$-modules $V_{h_1}, V_{h_2}$,
+the \emph{Virasoro fusion kernel}
+$R_{h_1, h_2}(z) \colon V_{h_1} \otimes V_{h_2}
+\xrightarrow{\;\sim\;} V_{h_2} \otimes V_{h_1}$
+is the Virasoro $6j$-symbol at spectral separation~$z$.
+\end{definition}
 
-\subsubsection*{The fusion kernel in specific channels}
-\index{fusion kernel!specific channels}
+The fusion kernel satisfies the Yang--Baxter equation
+$R_{12}R_{13}R_{23} = R_{23}R_{13}R_{12}$ as a consequence of
+the pentagon identity for Virasoro fusion matrices---the boundary
+cancellation on $\FM_3(\C)$ (Theorem~\ref{thm:YBE}).
 
-\emph{Vacuum channel ($h_1 = 0$).}\enspace
-The vacuum module $V_0$ is the tensor unit for the Virasoro
-fusion product.  The fusion kernel acts trivially:
-\begin{equation}\label{eq:fusion-vacuum}
-R_{0,h}(z) \;=\; \mathrm{id}_{V_h}.
-\end{equation}
-Braiding with the vacuum is the identity---this is the algebraic
-expression of the statement that the AdS$_3$ vacuum does not
-scatter gravitons.  A conical defect of weight~$h$ passing through
-empty AdS$_3$ acquires no phase.
+\subsubsection*{Specific channels}
 
-\emph{Degenerate channel ($h = h_{2,1}$).}\enspace
-The Virasoro Verma module $M(c, h_{2,1})$ at
-\begin{equation}\label{eq:h21-weight}
-h_{2,1} \;=\; \frac{Q^2}{4} - \frac{b^{-2}}{4}
-\;=\; \frac{5 - c \pm \sqrt{(c-1)(c-25)}}{16},
-\qquad
-b^2 = \frac{6}{c},\quad
-Q = b + b^{-1},
-\end{equation}
-possesses a \emph{null vector} at level~$2$:
-\[
-\chi_{2,1}
-\;=\;
-\left(L_{-2} - \frac{3}{2(2h_{2,1}+1)}\,L_{-1}^2\right)
-|h_{2,1}\rangle
-\;=\; 0.
-\]
-Setting $\chi_{2,1} = 0$ inside a correlation function
-$\langle V_{h_{2,1}}(z)\,V_{h_2}(w)\,\cdots\rangle$ and using the
-Ward identities $L_{-1} = \partial_z$,
-$L_{-2} = \sum_i \frac{h_i}{(z-z_i)^2} + \frac{\partial_{z_i}}{z-z_i}$,
-one obtains the BPZ equation:
+\emph{Vacuum ($h_1 = 0$).}\enspace
+$R_{0,h}(z) = \mathrm{id}_{V_h}$: empty AdS$_3$ does not scatter
+gravitons.
+
+\emph{Degenerate ($h = h_{2,1}$).}\enspace
+The null vector $\chi_{2,1} = (L_{-2} -
+\frac{3}{2(2h_{2,1}+1)}\,L_{-1}^2)|h_{2,1}\rangle = 0$ produces
+the BPZ equation:
 \begin{equation}\label{eq:bpz-fusion}
 \left[
   \frac{b^2}{2}\,\partial_z^2
@@ -578,45 +357,13 @@ one obtains the BPZ equation:
     \frac{h_i}{(z-z_i)^2} + \frac{\partial_{z_i}}{z-z_i}
   \right)
 \right]
-\mathcal{F}(z, z_i) \;=\; 0.
+\mathcal{F}(z, z_i) \;=\; 0,
+\qquad b^2 = \frac{6}{c}.
 \end{equation}
-This is a second-order ODE in~$z$ with regular singular points at
-each insertion.  For two insertions ($V_{h_{2,1}}$ and $V_{h_2}$),
-the solution space is two-dimensional, corresponding to two
-fusion channels.  The Virasoro fusion rules give:
-\[
-V_{h_{2,1}} \otimes V_{h_2}
-\;=\;
-V_{h_+} \;\oplus\; V_{h_-},
-\qquad
-h_\pm \;=\; \alpha_\pm(Q - \alpha_\pm),
-\quad
-\alpha_\pm = \alpha_2 \pm \frac{b^{-1}}{2},
-\]
-where $h_2 = \alpha_2(Q - \alpha_2)$.
-The two conformal blocks $\mathcal{F}_\pm(z)$, one for each
-channel, form a basis of solutions.  The fusion kernel
-$R_{h_{2,1}, h_2}$ is the $2 \times 2$ connection matrix relating
-the $s$-channel and $t$-channel bases.  Explicitly:
-\begin{equation}\label{eq:fusion-degenerate}
-R_{h_{2,1},\,h_2}
-\;=\;
-\begin{pmatrix}
-  F_{++} & F_{+-} \\
-  F_{-+} & F_{--}
-\end{pmatrix},
-\qquad
-F_{\epsilon\epsilon'}
-\;=\;
-\frac{\Gamma(1 - 2b\alpha_2)\,
-      \Gamma(2b\alpha_2 - 1)}
-     {\Gamma\!\bigl(\epsilon\,b\alpha_2
-       + \epsilon'\, b\alpha_2\bigr)}
-\;\cdot\;
-e^{i\pi \epsilon(h_2 - h_{2,1} - h_\epsilon)},
-\end{equation}
-where $\epsilon, \epsilon' \in \{+, -\}$.
-The braiding eigenvalues are:
+The two fusion channels $V_{h_\pm}$ with
+$h_\pm = \alpha_\pm(Q - \alpha_\pm)$,
+$\alpha_\pm = \alpha_2 \pm b^{-1}/2$
+give the braiding eigenvalues:
 \begin{equation}\label{eq:degenerate-eigenvalues}
 \sigma_\pm
 \;=\;
@@ -624,46 +371,10 @@ e^{i\pi(h_\pm - h_{2,1} - h_2)}
 \;=\;
 e^{\pm i\pi b^{-1}\alpha_2}.
 \end{equation}
-Their ratio is the gravitational scattering phase
-for a light probe (degenerate) scattering off a heavy defect
-of Liouville momentum $\alpha_2$:
-$\sigma_+/\sigma_-
-= e^{2i\pi b^{-1}\alpha_2}$.
-[\ClaimStatusProvedElsewhere: the BPZ equation and fusion
-kernel are classical (Belavin--Polyakov--Zamolodchikov,
-Dotsenko--Fateev); the gravitational scattering identification
-is \ClaimStatusHeuristic.]
 
-\emph{Heavy-heavy limit ($h_1, h_2 \to \infty$ with $h_i/c$
-fixed).}\enspace
-Write $h_i = c\,\epsilon_i/6$.  The fusion kernel exponentiates:
-\begin{equation}\label{eq:fusion-heavy}
-R_{h_1,h_2}(z)
-\;\sim\;
-\exp\!\left(\frac{c}{6}\,
-  W(\epsilon_1, \epsilon_2;\, z)\right),
-\end{equation}
-where $W$ is the classical conformal block (Zamolodchikov).  This
-is the geodesic/WKB limit: $W$ is the regularised length of the
-geodesic network in AdS$_3$ connecting two heavy conical defects
-of deficit angles $2\pi(1 - \sqrt{1 - 24\epsilon_i})$.
-[\ClaimStatusHeuristic: the WKB exponentiation is proved in the
-semiclassical Virasoro literature
-(Zamolodchikov--Zamolodchikov); the geodesic-length
-identification is the holographic dictionary applied to the
-heavy limit.]
-
-
-\subsubsection*{The general channel: the Ponsot--Teschner
-representation}
-\index{Ponsot--Teschner representation}
-
-For generic (non-degenerate) external weights, the fusion kernel
-admits an integral representation due to Ponsot--Teschner.
-Parametrise weights by Liouville momenta:
-$h_i = \alpha_i(Q - \alpha_i)$ with $Q = b + b^{-1}$.  The
-fusion kernel (braiding matrix) for the crossing
-$s$-channel $\to$ $t$-channel is
+\emph{General channel (Ponsot--Teschner).}\enspace
+For generic weights, the fusion kernel has the integral
+representation~\cite{PT01}:
 \begin{equation}\label{eq:ponsot-teschner}
 \mathbb{F}_{\alpha_s}^{\alpha_t}
 \!\left[\begin{smallmatrix}
@@ -677,631 +388,20 @@ $s$-channel $\to$ $t$-channel is
 \;\cdot\;
 \frac{d\alpha_t}{2\pi i},
 \end{equation}
-where $a_1 = \alpha_1 + \alpha_2 - Q/2$, etc.\ are determined
-by the external momenta, and $S_b$ is the double sine function
-(defined below).  The contour runs along $\operatorname{Re}(\alpha_t)
-= Q/2$.
+where $S_b$ is the double sine function.  The pentagon identity
+is the algebraic content of OPE associativity; the unitarity
+$\sum_{\alpha_t} |\mathbb{F}|^2 = \delta$ is the unitarity of
+the gravitational $S$-matrix.
 
-The key properties:
-\begin{enumerate}[label=\textup{(\roman*)}]
-\item \emph{Pentagon identity:}
-$\sum_{\alpha_s} \mathbb{F}_{\alpha_s}^{\alpha_t}
-\mathbb{F}_{\alpha_s}^{\alpha_u}
-= \mathbb{F}_{\alpha_t}^{\alpha_u}$,
-the algebraic content of the associativity of the OPE---and the
-origin of the Yang--Baxter equation
-(Proposition~\ref{prop:gravity-ybe}).
-\item \emph{Unitarity:}
-$\sum_{\alpha_t} \mathbb{F}_{\alpha_s}^{\alpha_t}
-\overline{\mathbb{F}_{\alpha_{s'}}^{\alpha_t}}
-= \delta(\alpha_s - \alpha_{s'})$,
-reflecting the unitarity of the gravitational $S$-matrix.
-\item \emph{Degenerate limit:}
-when $\alpha_1 = \alpha_{2,1} = -b/2$, the integral
-localises to two residues and recovers the $2 \times 2$
-matrix~\eqref{eq:fusion-degenerate}.
-\item \emph{Vacuum limit:}
-when $\alpha_1 = 0$, the integrand is $1$ and
-$\mathbb{F} = \delta(\alpha_s - \alpha_t)$, recovering
-equation~\eqref{eq:fusion-vacuum}.
-\end{enumerate}
-[\ClaimStatusProvedElsewhere: the Ponsot--Teschner integral
-representation and the pentagon/unitarity identities are
-proved in the Liouville bootstrap literature.]
+\emph{Heavy-heavy limit.}\enspace
+For $h_i = c\epsilon_i/6 \to \infty$ with $\epsilon_i$ fixed:
+$R_{h_1,h_2}(z) \sim
+\exp\!\bigl(\frac{c}{6}\,W(\epsilon_1, \epsilon_2; z)\bigr)$,
+where $W$ is the regularised geodesic length in AdS$_3$---the
+WKB/geodesic limit of the graviton scattering amplitude.
 
-\subsubsection*{Semiclassical limit and the Liouville
-reflection coefficient}
-\index{Liouville reflection coefficient}
-\index{double sine function}
-
-In the semiclassical limit $c \to \infty$ ($k \to \infty$,
-$G \to 0$), write $b^2 = 6/c = 1/k$.  The Ponsot--Teschner
-integral~\eqref{eq:ponsot-teschner} is evaluated by steepest
-descent.  The $S_b$ functions have the asymptotic
-$\log S_b(x) \sim (1/b^2)\,\ell(x)$ as $b \to 0$, where
-$\ell(x) = \int_0^x \log(2\sin\pi t)\,dt$ is the Lobachevsky
-function.  The saddle-point equation is
-$\sum_j \ell'(\alpha_t - a_j) = 0$, which determines the
-classical fusion channel.  The result is:
-\begin{equation}\label{eq:fusion-semiclassical}
-R_{h_1,h_2}(z)
-\;\xrightarrow{\;c \to \infty\;}
-\frac{S_b(\alpha_1 + \alpha_2 - Q/2)}
-     {S_b(\alpha_1 - \alpha_2 + Q/2)}
-\;\cdot\;
-(\text{phase}),
-\end{equation}
-where
-\begin{equation}\label{eq:double-sine}
-S_b(x)
-\;=\;
-\prod_{m,n \ge 0}
-\frac{mb + nb^{-1} + Q/2 - x}
-     {mb + nb^{-1} + Q/2 + x}.
-\end{equation}
-This is the Liouville reflection coefficient: it governs the
-scattering of normalizable modes off the Liouville wall, which
-\emph{is} the AdS$_3$ boundary.  The Liouville wall sits at the
-conformal boundary $r \to \infty$ of the Poincar\'e half-space;
-normalizable modes with Liouville momentum $\alpha$ reflect off it
-with amplitude $S_b(\alpha)$.
-[\ClaimStatusProvedElsewhere: the identification of the Virasoro
-fusion kernel with the Liouville reflection coefficient is due to
-Ponsot--Teschner; the holographic interpretation as boundary
-scattering is \ClaimStatusHeuristic.]
-
-In the strict classical limit $b \to 0$:
-\begin{equation}\label{eq:double-sine-classical}
-S_b(x)
-\;\sim\;
-\exp\!\left(
-  -\frac{1}{b^2}\int_0^x \log\sin(\pi t)\,dt
-\right),
-\end{equation}
-and the fusion kernel reduces to
-$\exp\!\bigl(-(c/6) \cdot \text{classical action}\bigr)$,
-recovering the geodesic approximation of
-equation~\eqref{eq:fusion-heavy}.  The logarithmic sine integral
-is the dilogarithm function $\mathrm{Cl}_2(x)$ (Clausen), and the
-exponent is the volume of the ideal tetrahedron in $\mathbb{H}^3$
-with modular parameter determined by the momenta---the hyperbolic
-volume of the dual geodesic network.
-
-
-\subsubsection*{Tensor decomposition and fusion rules}
-\index{fusion rules!Virasoro}
-\index{DOZZ formula}
-\index{Plancherel measure!Virasoro}
-
-\emph{Irrational $c$ (generic level $k$).}\enspace
-The tensor product of Virasoro highest-weight modules decomposes
-continuously:
-\begin{equation}\label{eq:virasoro-tensor-continuous}
-V_{h_1} \otimes V_{h_2}
-\;\simeq\;
-\int_{\R_+} V_h \; d\mu(h),
-\end{equation}
-where $d\mu(h) = |C(\alpha_1, \alpha_2, \alpha)|^2\,d\alpha$ is
-the Plancherel measure.
-The DOZZ three-point coefficient is
-\begin{equation}\label{eq:dozz}
-C(\alpha_1, \alpha_2, \alpha_3)
-\;=\;
-\frac{\bigl[\pi\mu\,\gamma(b^2)\,b^{2-2b^2}\bigr]
-      ^{(Q - \alpha_{123})/b}}
-     {\Upsilon_b'(0)}
-\;\cdot\;
-\frac{\Upsilon_b(2\alpha_1)\,\Upsilon_b(2\alpha_2)\,
-      \Upsilon_b(2\alpha_3)}
-     {\Upsilon_b(\alpha_{123} - Q)\,
-      \Upsilon_b(\alpha_1 + \alpha_2 - \alpha_3)\,
-      \Upsilon_b(\alpha_2 + \alpha_3 - \alpha_1)\,
-      \Upsilon_b(\alpha_1 + \alpha_3 - \alpha_2)},
-\end{equation}
-where $\alpha_{123} = \alpha_1 + \alpha_2 + \alpha_3$,
-$\gamma(x) = \Gamma(x)/\Gamma(1-x)$, $\mu$ is the Liouville
-cosmological constant, and $\Upsilon_b(x)$ is the Barnes double
-gamma function satisfying $\Upsilon_b(x+b) = \gamma(bx)\,
-b^{1-2bx}\,\Upsilon_b(x)$.  The gravitational interpretation:
-$|C|^2$ is the probability of three conical defects of deficit
-angles $\theta_i = 2\pi(1 - \sqrt{1 - 24h_i/c})$ coexisting
-in AdS$_3$, and the Plancherel measure $d\mu(h)$ is the spectral
-density of the intermediate graviton state.
-
-The $R$-matrix is
-diagonal in the fusion-channel basis.  \emph{Derivation of the
-eigenvalue:}\enspace a four-point conformal block
-$\mathcal{F}_h(z)$ in the $s$-channel behaves as
-$\mathcal{F}_h(z) \sim z^{h - h_1 - h_2}$ near $z = 0$,
-where $z^{h - h_1 - h_2}$ is the leading OPE singularity in the
-fusion channel of weight~$h$.  Under the analytic continuation
-$z \mapsto e^{2\pi i} z$ (monodromy around $z = 0$), the block
-picks up the phase
-$\mathcal{F}_h(e^{2\pi i}z) = e^{2\pi i(h - h_1 - h_2)}
-\mathcal{F}_h(z)$.
-This monodromy IS the braiding eigenvalue:
-\begin{equation}\label{eq:r-matrix-diagonal}
-R_{h_1,h_2}(z)\big|_{V_h}
-\;=\;
-e^{2\pi i(h - h_1 - h_2)} \cdot \mathrm{id}_{V_h}.
-\end{equation}
-In the gravitational interpretation: $h - h_1 - h_2$ is the
-\emph{binding energy} of the composite state relative to its
-constituents, and the phase $2\pi(h - h_1 - h_2)$ is the
-Aharonov--Bohm phase acquired by one conical defect orbiting
-another in AdS$_3$---a purely topological effect in $2+1$
-dimensions, where gravity produces conical rather than
-Newtonian potentials.
-[\ClaimStatusProvedElsewhere: the continuous Plancherel
-decomposition is due to Teschner; the DOZZ formula is
-proved by Kupiainen--Rhodes--Vargas; the monodromy derivation
-of the braiding eigenvalue is standard CFT.]
-
-\emph{Rational $c$ (minimal models).}\enspace
-For $c = 1 - 6(p-q)^2/(pq)$ with $p, q$ coprime integers
-$\ge 2$, the tensor product is a finite direct sum and the
-$R$-matrix is a finite matrix.  At $c = 1/2$ (the Ising model,
-$p = 3$, $q = 4$): the fusion rules are those of the Ising CFT,
-with three primary fields $\mathbf{1}, \sigma, \varepsilon$ and
-fusion rules $\sigma \otimes \sigma = \mathbf{1} \oplus
-\varepsilon$.  The braiding eigenvalues from
-equation~\eqref{eq:r-matrix-diagonal} are:
-\begin{center}
-\small
-\renewcommand{\arraystretch}{1.15}
-\begin{tabular}{llll}
-\textbf{Channel} & $h_1, h_2$ & $h$ &
-  \textbf{Eigenvalue} $e^{2\pi i(h - h_1 - h_2)}$ \\
-\hline
-$\sigma \otimes \sigma \to \mathbf{1}$ &
-  $\tfrac{1}{16}, \tfrac{1}{16}$ & $0$ &
-  $e^{-i\pi/8}$ \\[2pt]
-$\sigma \otimes \sigma \to \varepsilon$ &
-  $\tfrac{1}{16}, \tfrac{1}{16}$ & $\tfrac{1}{2}$ &
-  $e^{i\cdot 3\pi/8}$ \\[2pt]
-$\sigma \otimes \varepsilon \to \sigma$ &
-  $\tfrac{1}{16}, \tfrac{1}{2}$ & $\tfrac{1}{16}$ &
-  $e^{-i\pi}$ \\[2pt]
-$\varepsilon \otimes \varepsilon \to \mathbf{1}$ &
-  $\tfrac{1}{2}, \tfrac{1}{2}$ & $0$ &
-  $e^{-2\pi i}$ \\[2pt]
-\end{tabular}
-\end{center}
-The $\sigma$--$\sigma$ braiding in the $(\mathbf{1}, \varepsilon)$
-basis is the $2 \times 2$ matrix
-\[
-R_{\sigma\sigma}
-\;=\;
-e^{-i\pi/8}
-\begin{pmatrix}
-  1 & 0 \\
-  0 & e^{i\pi/2}
-\end{pmatrix}
-\;=\;
-e^{-i\pi/8}
-\begin{pmatrix}
-  1 & 0 \\ 0 & i
-\end{pmatrix},
-\]
-whose eigenvalues are $e^{-i\pi/8}$ and $e^{i\cdot 3\pi/8}$---these
-are $16$th roots of unity.  The full braiding matrix in the
-basis $(\mathbf{1}, \sigma, \varepsilon)$ of primary fields is a
-$3 \times 3$ matrix whose entries are $16$th roots of unity,
-determined by the modular $S$-matrix via the Verlinde formula.
-
-In the gravitational interpretation: this is 3d gravity at
-level $k = c/6 = 1/12$---deep in the quantum regime,
-where the AdS radius $\ell = 4Gk = G/3$ is of order the Planck
-length.  The finite fusion rules express the fact that the
-Hilbert space of quantum gravity on the spatial torus truncates
-to finitely many states.  The BTZ spectrum consists of exactly
-three primaries, and the gravitational $R$-matrix is a
-$3 \times 3$ braiding matrix whose entries are roots of unity.
-[\ClaimStatusHeuristic: the identification of minimal-model
-fusion with quantum 3d gravity at small $k$ is a physical
-interpretation; the algebraic fusion rules and braiding
-eigenvalues are \ClaimStatusProvedElsewhere\ (BPZ, Verlinde).]
-
-
-\subsection{The 3d MC element for quantum gravity}
-\label{subsec:gravity-mc}
-
-\begin{theorem}[Gravitational MC element; \ClaimStatusProvedHere]
-\label{thm:gravity-mc}
-\index{universal MC element!3d!gravitational}
-The $SL(2,\R)$ CS theory at level~$k$ on $\R_+ \times \C$
-determines a MC element
-$\alpha_{\mathrm{grav}} \in \mc(\gSC_T)$ whose projections are:
-\begin{enumerate}[label=\textup{(\roman*)}]
-\item \emph{Closed face:} $\mathrm{Vir}_c$ with
-  $c = 6k$ and the full infinite-depth $\Ainf$ structure.
-\item \emph{Open face:} $\mathrm{Vir}_{26-c}\text{-mod}$
-  (highest-weight modules at the dual central charge).
-\item \emph{Spectral $R$-matrix:} the Virasoro fusion kernel
-  $R_{h_1,h_2}(z)$, satisfying YBE by
-  Proposition~\textup{\ref{prop:gravity-ybe}}.
-\item \emph{Bulk-to-boundary:}
-  $\Abulk \simeq \Zder(\mathrm{Vir}_c)$.
-\item \emph{Genus face:}
-  $\alpha_{\mathrm{grav}}|_{\text{closed}} =
-  \Theta_{\mathrm{Vir}_c}$.  The genus expansion
-  $\sum_g \hbar^g \alpha_{\mathrm{grav}}^{(g)}$ is the loop
-  expansion of quantum gravity:
-  \begin{itemize}
-  \item genus~$0$: tree-level classical geometry,
-  \item genus~$1$: one-loop gravitational anomaly
-    ($\kappa = (c-26)/2$),
-  \item genus~$2$: two-loop modular interference,
-  \item genus~$g$: $g$-loop quantum gravity corrections.
-  \end{itemize}
-\item \emph{PVA descent:}
-  $\{T_\lambda T\} = (c/2)\lambda^3 + 2T\lambda + \partial T$
-  (the Virasoro PVA).
-\end{enumerate}
-\end{theorem}
-
-\begin{proof}
-By Theorem~\ref{thm:3d-universal-mc}, $\alpha_T$ exists for any
-$\SCchtop$-algebra satisfying~(H1)--(H4).  We verify these
-hypotheses for $SL(2,\R)$ Chern--Simons at level~$k$ on
-$\R_+ \times \C$:
-
-\emph{(H1): BV data and one-loop finiteness.}\enspace
-The BV-BRST complex is the Chern--Simons action
-$S_{\mathrm{CS}}[A;\,k]$ with ghost field $c \in
-\Omega^0(\R_+ \times \C, \mathfrak{sl}(2,\R))$,
-antifield $A^* \in \Omega^3$, and ghost antifield
-$c^* \in \Omega^3$.  The HT gauge-fixing sets $A_{\bar z} = 0$.
-One-loop finiteness: the CS action is cubic in $A$, so all
-Feynman diagrams beyond one loop are finite by power counting
-(cf.\ Remark~\ref{rem:W-hypotheses}).
-
-\emph{(H2): Propagator regularity.}\enspace
-The propagator for the $(A_z, A_t)$ system on $\R_+ \times \C$
-is $K(t, z) = \Theta(t)/(2\pi z)$: meromorphic in $z$ with a
-simple pole at $z = 0$, and step-function (hence exponentially
-decaying) in~$t$.
-
-\emph{(H3): FM compactification.}\enspace
-The interaction vertices of the CS action are polynomial in the
-fields ($\sim A \wedge A \wedge A$), so the configuration-space
-integrals defining $m_k$ converge on $\FM_k(\C) \times
-\Conf_k(\R)$ by standard estimates.  The AOS relations hold on
-logarithmic forms by the general theory.
-
-\emph{(H4): Factorization compatibility.}\enspace
-The CS theory is topological in the $\R$-direction and
-holomorphic in the $\C$-direction.  Factorization compatibility
-with $C_*(W(\SCchtop))$ follows from the general construction
-for HT gauge theories with polynomial interactions.
-
-Each projection of $\alpha_T$ is the specialisation of
-Proposition~\ref{prop:alpha-projections} to
-$\Bbound = \mathrm{Vir}_c$:
-(i) is the Virasoro $\Ainf$ structure;
-(ii) is the Virasoro Koszul dual module category
-(Proposition~\ref{prop:gravity-koszul-dual});
-(iii) is the fusion kernel (Definition~\ref{def:gravity-r-matrix});
-(iv)-(v) are the Vol~I Virasoro MC element and its genus tower;
-(vi) is PVA descent (Theorem~\ref{thm:cohomology_PVA}).
-\end{proof}
-
-
-\subsection{The genus-$1$ gravitational partition function}
-\label{subsec:gravity-genus1}
-
-The genus-$1$ component of $\alpha_{\mathrm{grav}}$ is the
-one-loop correction to quantum gravity.  Compute it explicitly.
-
-The effective gravitational curvature
-(Remark~\ref{rem:gravity-kappa-vs-kappa-eff}) is
-\begin{equation}\label{eq:gravity-kappa}
-\kappa_{\mathrm{eff}}
-\;=\;
-\frac{c - 26}{2}
-\;=\;
-3k - 13
-\;=\;
-\frac{3\ell}{4G} - 13.
-\end{equation}
-The bar differential at genus~$1$ acquires curvature
-$d_{\mathrm{fib}}^2 = \kappa_{\mathrm{eff}} \cdot \omega_1$ from the self-loop
-graph $\Gamma_{\mathrm{irr}}$ on $\overline{\cM}_{1,1}$.
-The genus-$1$ free energy is computed by integrating the
-curvature over the moduli space.  The first Mumford class
-(Hodge class) is $\lambda_1 \in H^2(\overline{\cM}_{1,1})$,
-and the Mumford--Faltings formula gives
-$\int_{\overline{\cM}_{1,1}} \lambda_1 = B_2/4 = 1/24$
-(where $B_2 = 1/6$ is the second Bernoulli number).
-Therefore:
-\begin{equation}\label{eq:gravity-F1}
-F_1(\mathrm{Vir}_c)
-\;=\;
-\kappa \cdot \int_{\overline{\cM}_{1,1}} \lambda_1
-\;=\;
-\frac{c - 26}{2} \cdot \frac{1}{24}
-\;=\;
-\frac{c - 26}{48}.
-\end{equation}
-As a function of the modular parameter $\tau$ of the
-boundary torus, $F_1$ acquires the Dedekind eta dressing:
-\begin{equation}\label{eq:gravity-F1-eta}
-F_1(\mathrm{Vir}_c;\, \tau)
-\;=\;
--\frac{c - 26}{24}\,\log\eta(\tau),
-\end{equation}
-where $\eta(\tau) = q^{1/24}\prod_{n \ge 1}(1 - q^n)$ is the
-Dedekind eta function and $q = e^{2\pi i\tau}$.  The factor
-$1/24$ arises because $\eta(\tau) \sim q^{1/24}$ at the cusp,
-and $\log q = 2\pi i\tau$, so the leading term is
-$-\frac{c-26}{24} \cdot \frac{2\pi i\tau}{24}
-= -\frac{(c-26)\pi i\tau}{288}$,
-reproducing the Casimir energy $-c_{\mathrm{eff}}/24$ with
-$c_{\mathrm{eff}} = c - 26$.
-
-In the gravitational interpretation: $F_1$ is the one-loop
-determinant of the graviton field on the solid torus
-$\R_+ \times T^2$ (the Euclidean BTZ thermal geometry).  The
-partition function
-$Z_1(\tau) = e^{-F_1} = \eta(\tau)^{(c-26)/12}$
-counts the one-loop fluctuations
-of the spin-$2$ field around the thermal AdS$_3$ background.
-The exponent $(c-26)/12$ is the number of effective bosonic
-degrees of freedom after ghost subtraction: $c$ from the
-Virasoro, minus $26$ from the $bc$ ghost system of the
-diffeomorphism gauge-fixing.  At
-$c = 26$ ($k = 13/3$): $\kappa = 0$ and the one-loop determinant
-is trivial.  This is the gravitational analogue of the critical
-dimension: at $c = 26$ the Virasoro is self-dual
-($\mathrm{Vir}_{26}^! = \mathrm{Vir}_0$), and the gravitational
-anomaly cancels against the ghost contribution.
-
-\subsubsection*{The genus-$2$ free energy}
-
-The genus-$2$ Mumford class $\lambda_2 \in H^4(\overline{\cM}_2)$
-satisfies $\int_{\overline{\cM}_2} \lambda_2 = B_4/8 = 1/240$
-(where $B_4 = -1/30$).  The genus-$2$ free energy from
-Theorem~D (Vol~I) is
-\begin{equation}\label{eq:gravity-F2}
-F_2(\mathrm{Vir}_c)
-\;=\;
-\kappa \cdot \int_{\overline{\cM}_2} \lambda_2
-\;=\;
-\frac{c - 26}{2}\cdot\frac{1}{240}.
-\end{equation}
-In the gravitational interpretation: $F_2$ is the two-loop
-graviton determinant on the genus-$2$ handlebody.  It is the
-first correction to the one-loop result that involves the
-\emph{topology} of the spatial surface (the genus-$2$ Riemann
-surface has a nontrivial moduli space, and $\lambda_2$ probes
-its geometry).
-
-\subsubsection*{The all-genus generating function}
-
-The pattern continues: $F_g = \kappa \cdot
-\int_{\overline{\cM}_g} \lambda_g$.  The Mumford classes satisfy
-the Faber--Zagier relation, and the generating function of their
-integrals is the $\hat{A}$-genus:
-\begin{equation}\label{eq:gravity-ahat}
-\sum_{g \ge 1}
-\left(\int_{\overline{\cM}_g} \lambda_g\right) x^{2g-2}
-\;=\;
-\hat{A}(x) - 1
-\;=\;
--\frac{1}{24}x^{-2}
-+ \frac{7}{5760}
-- \frac{31}{967680}\,x^2
-+ \cdots
-\end{equation}
-where $\hat{A}(x) = (x/2)/\sinh(x/2)$.  Multiplying by
-$\kappa = (c-26)/2$ and setting $x = i\hbar$:
-\begin{equation}\label{eq:gravity-generating}
-\sum_{g \ge 1} F_g\,\hbar^{2g-2}
-\;=\;
-\frac{c - 26}{2}\bigl(\hat{A}(i\hbar) - 1\bigr).
-\end{equation}
-The gravitational partition function at all loop orders is
-controlled by the Dirac index on the moduli space of Riemann
-surfaces.  The $\hat{A}$-genus encodes the interplay between
-the Mumford classes and the combinatorics of stable graphs;
-the prefactor $\kappa = (c-26)/2$ is the single datum from the
-boundary algebra.  This is the universal formula for a
-one-generator chiral algebra, with $\kappa = k$ for Heisenberg,
-$\kappa = k\dim\fg$ for Kac--Moody, and $\kappa = (c-26)/2$ for
-Virasoro.
-
-
-\subsection{The derived centre and the bulk graviton algebra}
-\label{subsec:gravity-bulk}
-
-The bulk algebra of 3d gravity is the derived centre of the
-boundary Virasoro:
-\[
-\Abulk
-\;\simeq\;
-\Zder(\mathrm{Vir}_c)
-\;:=\;
-\RHom_{\mathrm{Vir}_c\text{-}\mathrm{Vir}_c}(
-  \mathrm{Vir}_c,\, \mathrm{Vir}_c).
-\]
-For the Virasoro algebra, the derived centre is computed by the
-Hochschild--Serre spectral sequence.  At the $E_2$ page:
-\[
-E_2^{p,q}
-\;=\;
-H^p\bigl(\mathrm{Vir}_c,\;
-H^q(\mathrm{Vir}_c,\, \mathrm{Vir}_c)\bigr)
-\;\Longrightarrow\;
-\HH^{p+q}(\mathrm{Vir}_c).
-\]
-We run the spectral sequence explicitly.
-
-\emph{Degree $0$:}\enspace
-$\HH^0(\mathrm{Vir}_c) = \C$---the centre of the Virasoro
-algebra is the scalars.  \emph{Proof:} if $[L_n, f] = 0$ for
-all~$n$, then $f$ is a singular vector of weight~$0$ in the
-adjoint representation; since $\mathrm{Vir}_c$ for generic~$c$
-has no weight-$0$ singular vectors in the adjoint besides the
-identity, $f \in \C$.  Gravitationally: the only local observable
-in pure 3d gravity is the identity operator.
-
-\emph{Degree $1$:}\enspace
-$\HH^1(\mathrm{Vir}_c) = \C$---the space of outer derivations
-is one-dimensional, generated by the rescaling derivation
-$D_c \colon L_n \mapsto \partial_c\, L_n$.  \emph{Proof:}
-every derivation $\delta$ of $\mathrm{Vir}_c$ satisfies
-$\delta(L_n) = [L_n, a] + \lambda\,\partial_c L_n$ for some
-$a \in \mathrm{Vir}_c$ and $\lambda \in \C$; the inner part
-$[L_n, a]$ is exact, so $H^1 = \C\cdot D_c$.
-Gravitationally: the only infinitesimal deformation of the bulk
-theory is a shift of Newton's constant---there are no
-locally-generated deformations of 3d gravity.
-
-\emph{Degree $\ge 2$:}\enspace
-$\HH^n(\mathrm{Vir}_c) = 0$ for $n \ge 2$ and generic~$c$
-(Theorem~H, Vol~I).  The spectral sequence degenerates at
-$E_2$ with $E_\infty^{p,q} = 0$ for $p + q \ge 2$, and the
-derived centre is
-\[
-\Zder(\mathrm{Vir}_c)
-\;\simeq\;
-\HH^0 \oplus \HH^1[-1]
-\;\simeq\;
-\C[\![c]\!],
-\]
-a one-dimensional formal neighbourhood parametrised by the central
-charge.  The $\HH^0 = \C$ is the identity; the $\HH^1 = \C$ in
-shifted degree gives the formal direction $\partial_c$, so the
-completed algebra is $\C[\![c]\!]$.
-
-Bulk graviton observables in AdS$_3$ are classified by
-a single parameter: the central charge $c = 3\ell/(2G)$.  This is
-the algebraic manifestation of the fact that pure 3d gravity has no
-local degrees of freedom: the only gauge-invariant observable is
-the cosmological constant.
-
-\begin{remark}[Bulk-to-boundary map]
-\label{rem:gravity-bulk-boundary-map}
-The bulk-to-boundary map $\beta_B \colon \Abulk \to \mathrm{Vir}_c$
-sends the generator $\partial_c \in \HH^1$ to the stress tensor
-$T \in \mathrm{Vir}_c$ via the bulk-boundary propagator
-$\eta(z, z_0) = d\log(z - z_0)$:
-\[
-\beta_B(\partial_c)(z_0) \cdot T(w)
-\;=\;
-\frac{T(w)}{(z_0 - w)^2} + \frac{\partial T(w)}{z_0 - w},
-\]
-i.e., $\partial_c$ acts on boundary operators by the conformal
-Ward identity.  This is the BPZ equation
-(equation~\eqref{eq:bpz-fusion}) evaluated at $h_{2,1} = 0$:
-the bulk cosmological-constant deformation shifts the conformal
-weights of all boundary operators.
-\end{remark}
-
-
-\subsection{The Koszul triangle for 3d gravity}
-\label{subsec:gravity-koszul-triangle}
-
-The preceding sections have computed each vertex and edge of the
-bulk-boundary-line Koszul triangle for 3d gravity.  We now
-assemble the complete picture.
-
-\begin{theorem}[Gravitational Koszul triangle; \ClaimStatusProvedHere]
-\label{thm:gravity-koszul-triangle}
-\index{Koszul triangle!gravitational|textbf}
-\index{bulk-boundary-line triangle!3d gravity}
-The $\SCchtop$-algebra of 3d gravity at level $k = \ell/(4G)$
-\textup(central charge $c = 6k$\textup) determines a Koszul triangle
-\begin{center}
-\begin{tikzcd}[column sep=3.5em, row sep=3.5em]
-& \mathrm{Vir}_c \ar[dl, "\barB"', "\text{bar}"'] \ar[dr, "\Zder"] \\
-\mathrm{Vir}_{26-c}\text{-}\mathbf{mod}
-  \ar[rr, "\text{forget}"'] &&
-\C[\![c]\!]
-  \ar[ul, "\beta_B"', "\text{bulk-bdry}"']
-\end{tikzcd}
-\end{center}
-whose three vertices and three edges are:
-\begin{enumerate}[label=\textup{(\roman*)}]
-\item \textbf{Boundary} $= \mathrm{Vir}_c$
-  \textup(Proposition~\textup{\ref{prop:gravity-boundary}}\textup):
-  the boundary chiral algebra of the HT-twisted CS theory.
-  Input datum: the PVA $\{T_\lambda T\} = \partial T + 2T\lambda
-  + (c/12)\lambda^3$.
-\item \textbf{Line operators} $\simeq \mathrm{Vir}_{26-c}\text{-mod}$
-  \textup(Proposition~\textup{\ref{prop:gravity-koszul-dual}},
-  Theorem~\textup{\ref{thm:lines_as_modules}}\textup):
-  highest-weight modules for the Koszul dual Virasoro at
-  central charge $26 - c$.  Each module $M_h$ is a conical
-  defect of angular deficit $2\pi(1 - h/c)$ in AdS$_3$.
-\item \textbf{Bulk} $\simeq \C[\![c]\!]$
-  \textup(\S\textup{\ref{subsec:gravity-bulk}}\textup):
-  the derived centre of $\mathrm{Vir}_c$.  The single
-  modulus $c = 3\ell/(2G)$ parametrises the cosmological constant;
-  3d gravity has no local degrees of freedom.
-\end{enumerate}
-The three edges are:
-\begin{enumerate}[label=\textup{(\alph*)}]
-\item \textbf{Boundary $\to$ Lines} \textup(bar construction\textup):
-  the bar complex $\barB(\mathrm{Vir}_c)$ is a coalgebra
-  over the Virasoro bar cooperad, and its Verdier dual
-  is $\mathrm{Vir}_{26-c}$; the module category of the
-  Koszul dual IS the line operator category
-  \textup(Theorem~\textup{\ref{thm:lines_as_modules}}\textup).
-\item \textbf{Lines $\to$ Bulk} \textup(derived centre\textup):
-  the endomorphisms of the identity functor on
-  $\mathrm{Vir}_{26-c}\text{-mod}$ are $\HH^0 \oplus
-  \HH^1[-1] \simeq \C[\![c]\!]$, recovering the bulk.
-\item \textbf{Bulk $\to$ Boundary} \textup(bulk-boundary map\textup):
-  the generator $\partial_c \in \HH^1$ acts on $\mathrm{Vir}_c$
-  by the conformal Ward identity
-  \textup(Remark~\textup{\ref{rem:gravity-bulk-boundary-map}}\textup).
-\end{enumerate}
-\end{theorem}
-
-\begin{proof}
-Each vertex and edge is established in the preceding sections.
-The only new content is the \emph{compatibility}: the three edges
-compose to the identity.  Starting from $\C[\![c]\!]$ (bulk),
-the bulk-to-boundary map $\beta_B$ sends $\partial_c$ to the
-stress tensor $T \in \mathrm{Vir}_c$ (edge~(c)).  The bar
-construction $\barB(\mathrm{Vir}_c)$ produces the Koszul dual
-$\mathrm{Vir}_{26-c}$ (edge~(a)).  The endomorphisms of the
-identity functor on $\mathrm{Vir}_{26-c}\text{-mod}$ recover
-$\C[\![c]\!]$ (edge~(b)).  The composition is the identity
-because the bar-cobar adjunction is a Quillen equivalence
-(Theorem~\ref{thm:bar-cobar-adjunction}): the derived centre
-of the Koszul dual IS the deformation space of the original
-algebra, which for Virasoro is the $c$-line.
-\end{proof}
-
-\subsubsection*{The self-dual point}
-
-At $c = 13$ ($k = 13/6$, $G = \ell \cdot 3/26$): the Koszul
-involution $c \mapsto 26 - c$ has a fixed point.  The boundary
-and its Koszul dual \emph{coincide}:
-$\mathrm{Vir}_{13}^! = \mathrm{Vir}_{13}$.  The Koszul triangle
-degenerates to a self-dual structure:
-\begin{itemize}
-\item The curvature $\kappa = 13/2$ and the complementary
-  curvature $\kappa' = 13/2$ are equal.
-\item The spectral discriminant $\Delta(x) = 1 - (13/2)x$ has
-  branch point at $x = 2/13$: the self-dual radius of
-  convergence.
-\item The line operator category
-  $\mathrm{Vir}_{13}\text{-mod}$ acts on both the boundary
-  AND the Koszul dual---the distinction collapses.
-\end{itemize}
-Gravitationally: $c = 13$ is the central charge at which the
-matter conformal anomaly equals half the ghost conformal anomaly
-($c = 26/2$).  The effective curvature
-$\kappa_{\mathrm{eff}} = -13/2$ is non-zero; the gravitational
-anomaly does not cancel but is exactly half-maximal.
-
-\subsubsection*{BPZ equations from the shadow connection}
-
-The $n$-point conformal blocks of the boundary Virasoro are
-governed by the shadow connection
+\emph{BPZ equations from the shadow connection.}\enspace
+The $n$-point shadow connection
 \begin{equation}\label{eq:bpz-shadow-connection}
 \nabla^{\mathrm{hol}}_{0,n}
 \;=\;
@@ -1311,34 +411,107 @@ d
 \left(
 \frac{h_j}{(z_i - z_j)^2}
 + \frac{\partial_{z_j}}{z_i - z_j}
-\right) dz_i,
+\right) dz_i
 \end{equation}
-which is the arity-$(n,0)$ genus-$0$ projection of the MC element
-$\alpha_T$.  The flat sections $\nabla^{\mathrm{hol}}_{0,n}\Phi = 0$
-are the BPZ differential equations for Virasoro $n$-point functions:
-for a degenerate field $\Phi_{r,s}$ inserted at $z_1$, the
-differential equation becomes a Fuchsian ODE of order $rs$
-(the level of the Kac null vector).
+is the arity-$(n,0)$ genus-$0$ projection of the MC element
+$\alpha_T$.  Its flat sections are the BPZ differential equations;
+its monodromy representation on the conformal block space is the
+physical braiding of line operators.
 
-The connection is assembled from the $R$-matrix: the arity-$2$
-kernel $r(z) = (c/2)/z^4 + 2T/z^2 + \partial T/z$ determines the
-KZ-type connection at leading order, and the higher-order corrections
-(from planted forests and higher-genus modular shadows) produce the
-subleading terms in the BPZ system.  The flatness
-$(\nabla^{\mathrm{hol}})^2 = 0$ is the CYBE (at genus~$0$) plus
-curvature corrections (at genus $\ge 1$).  The monodromy
-representation of $\pi_1(\Conf_n(\C))$ on the space of conformal
-blocks is the physical braiding of line operators: each
-$R$-matrix eigenvalue $e^{2\pi i(h - h_1 - h_2)}$
-(equation~\eqref{eq:r-matrix-diagonal}) is a monodromy eigenvalue
-of the BPZ connection.
+\subsubsection*{Tensor decomposition and fusion rules}
 
+\emph{Irrational $c$.}\enspace
+$V_{h_1} \otimes V_{h_2} \simeq \int_{\R_+} V_h\,d\mu(h)$
+with the DOZZ Plancherel measure
+\begin{equation}\label{eq:dozz}
+C(\alpha_1, \alpha_2, \alpha_3)
+\;=\;
+\frac{[\pi\mu\,\gamma(b^2)\,b^{2-2b^2}]^{(Q-\alpha_{123})/b}}
+     {\Upsilon_b'(0)}
+\;\cdot\;
+\frac{\Upsilon_b(2\alpha_1)\,\Upsilon_b(2\alpha_2)\,
+      \Upsilon_b(2\alpha_3)}
+     {\prod_{\text{signs}} \Upsilon_b(\alpha_{123}/2
+       \pm \alpha_1 \pm \alpha_2 \pm \alpha_3)}.
+\end{equation}
+The $R$-matrix is diagonal in the fusion-channel basis with
+eigenvalues
+\begin{equation}\label{eq:r-matrix-diagonal}
+e^{2\pi i(h - h_1 - h_2)},
+\end{equation}
+the Aharonov--Bohm phase of one conical defect orbiting another.
 
-\subsection{The shadow tower as gravitational perturbation theory}
-\label{subsec:gravity-shadow-tower}
+\emph{Rational $c$ (minimal models).}\enspace
+For $c = 1 - 6(p-q)^2/(pq)$: the tensor product is a finite direct
+sum.  At $c = 1/2$ (Ising, $k = 1/12$): three primaries
+$\mathbf{1}, \sigma, \varepsilon$ with $\sigma \otimes \sigma
+= \mathbf{1} \oplus \varepsilon$ and $R$-matrix eigenvalues that
+are $16$th roots of unity---the gravitational Hilbert space truncates
+to three states.
 
-The Virasoro shadow Postnikov tower of Vol~I acquires a
-gravitational interpretation:
+%====================================================================
+% MOVEMENT IV: THE GENUS TOWER
+%====================================================================
+
+\subsection{Movement IV: the genus tower}
+\label{subsec:gravity-genus-tower}
+
+\subsubsection*{Genus-$1$ curvature}
+
+The effective gravitational curvature
+(Remark~\ref{rem:gravity-kappa-vs-kappa-eff}) is
+\begin{equation}\label{eq:gravity-kappa}
+\kappa_{\mathrm{eff}}
+\;=\;
+\frac{c - 26}{2}
+\;=\;
+3k - 13.
+\end{equation}
+The bar differential at genus~$1$ acquires curvature
+$d_{\mathrm{fib}}^2 = \kappa_{\mathrm{eff}} \cdot \omega_1$
+from the self-loop graph on $\overline{\cM}_{1,1}$.  The genus-$1$
+free energy:
+\begin{equation}\label{eq:gravity-F1}
+F_1(\mathrm{Vir}_c)
+\;=\;
+\kappa_{\mathrm{eff}} \cdot \frac{1}{24}
+\;=\;
+\frac{c - 26}{48}.
+\end{equation}
+As a function of $\tau$:
+$F_1(\tau) = -\frac{c - 26}{24}\,\log\eta(\tau)$,
+where $\eta(\tau) = q^{1/24}\prod_{n \ge 1}(1 - q^n)$.
+
+\subsubsection*{All genera: the $\hat A$-genus}
+
+$F_g = \kappa_{\mathrm{eff}} \cdot \int_{\overline{\cM}_g}
+\lambda_g$.  The generating function:
+\begin{equation}\label{eq:gravity-generating}
+\sum_{g \ge 1} F_g\,\hbar^{2g-2}
+\;=\;
+\frac{c - 26}{2}\bigl(\hat{A}(i\hbar) - 1\bigr),
+\qquad
+\hat{A}(x) = \frac{x/2}{\sinh(x/2)}.
+\end{equation}
+The $\hat A$-genus encodes the interplay between Mumford classes and
+stable-graph combinatorics; the prefactor $\kappa_{\mathrm{eff}} =
+(c-26)/2$ is the single datum from the boundary algebra after ghost
+subtraction.
+
+\subsubsection*{The gravitational partition function}
+
+The full SL$(2,\R) \times$ SL$(2,\R)$ theory (left$+$right) gives
+\[
+Z_{\mathrm{grav}}(\tau, \bar\tau)
+\;=\;
+|\eta(\tau)|^{(c-26)/6}.
+\]
+At $c = 26$ ($k = 13/3$): $Z = 1$, the gravitational anomaly
+cancels.  At $c = 13$ (Koszul self-duality): $Z =
+|\eta(\tau)|^{-13/6}$.
+
+\subsubsection*{The shadow tower}
+
 \begin{center}
 \small
 \renewcommand{\arraystretch}{1.15}
@@ -1348,9 +521,9 @@ gravitational interpretation:
 $\kappa_{\mathrm{eff}} = (c-26)/2$
   & effective curvature (after ghosts)
   & one-loop gravitational anomaly \\[2pt]
-$\mathfrak{C}(\mathrm{Vir}_c)$
+$\mathfrak{C}(\mathrm{Vir}_c) = -c$
   & cubic shadow
-  & three-graviton vertex \\[2pt]
+  & three-graviton vertex ($\propto 1/G$) \\[2pt]
 $\mathfrak{Q} = 10/[c(5c+22)]$
   & quartic contact
   & four-graviton contact interaction \\[2pt]
@@ -1363,73 +536,94 @@ $h_K \approx 0.567$
 \end{tabular}
 \end{center}
 
-The cubic shadow $\mathfrak{C}(\mathrm{Vir}_c)$ is the
-cohomology class of $m_3$ in $H^1(\FM_3(\C)) \cong \C$.
-From equation~\eqref{eq:gravity-m3}:
-\begin{equation}\label{eq:gravity-cubic-shadow}
-\mathfrak{C}(\mathrm{Vir}_c)
-\;=\;
-[m_3(T,T,T)]_{\FM_3}
-\;=\;
--c
-\;=\;
--\frac{3\ell}{2G}.
-\end{equation}
-The cubic shadow is \emph{linear} in the central charge:
-the three-graviton vertex scales as $1/G$, the Newton coupling.
-This is the tree-level result: the Einstein--Hilbert cubic vertex
-$\sim \int h \partial h \partial h$ contributes $\sim 1/G$ to
-the three-point scattering amplitude.  At $c = 0$: the
-three-graviton vertex vanishes, consistent with $G = \infty$.
+The shadow tower does not terminate
+(Vol~I, Theorem~\ref*{thm:nms-virasoro-quartic-explicit}):
+every $r$-th shadow is the $r$-graviton vertex, and no finite set
+of vertices determines the full perturbative quantum gravity.
 
-\begin{remark}[Gravitational resonances]
-\label{rem:gravity-resonances}
-The quartic contact invariant $\mathfrak{Q} = 10/[c(5c+22)]$
-has poles at $c = 0$ and $c = -22/5$.  In the gravitational
-interpretation:
-\begin{enumerate}[label=\textup{(\roman*)}]
-\item $c = 0$: $k = 0$, the zero-level limit.  Newton's constant
-  $G = \ell/(4k) \to \infty$: the gravitational coupling diverges.
-  The quartic vertex blows up because gravity becomes
-  infinitely strong.
-\item $c = -22/5$: the Lee--Yang minimal model.  This is the
-  critical point $k = -11/15$ of the gravitational partition
-  function, where a level-$4$ Kac null vector appears in the
-  Virasoro representation theory and the shadow tower reorganises.
-\end{enumerate}
-\end{remark}
+%====================================================================
+% MOVEMENT V: THE PHYSICS EMERGES
+%====================================================================
 
+\subsection{Movement V: the physics of 3d gravity}
+\label{subsec:gravity-physics}
 
-\subsection{BTZ black holes as MC deformations}
-\label{subsec:btz}
+Everything above was derived from the $\lambda$-bracket
+$\{T_\lambda T\} = \partial T + 2T\lambda + (c/12)\lambda^3$.
+We now show that this algebraic package IS three-dimensional
+Einstein gravity with $\Lambda = -1/\ell^2$.
+
+\subsubsection*{The Chern--Simons origin}
+
+Three-dimensional gravity with $\Lambda < 0$ is equivalent to
+$SL(2,\R) \times SL(2,\R)$ Chern--Simons at level
+$k = \ell/(4G)$, $c = 6k = 3\ell/(2G)$
+(Ach\'ucarro--Townsend, Witten).  The dreibein $e^a$ and spin
+connection $\omega^a$ combine into $A_\pm = \omega \pm e/\ell$;
+flat connections $F_\pm = 0$ are constant-curvature geometries.
+
+\begin{theorem}[Brown--Henneaux; \ClaimStatusProvedElsewhere]
+\label{thm:brown-henneaux}
+\index{Brown--Henneaux central charge|textbf}
+The asymptotic symmetry algebra of $SL(2,\R)$ CS at level~$k$ on
+$\R_+ \times \C$ is $\mathrm{Vir}_c$, $c = 6k$.
+\end{theorem}
+
+\begin{proof}
+The boundary condition $A_z|_{t=0} = J_- + T(z)\,J_+$
+(Fefferman--Graham asymptotics) has residual gauge
+$g = \exp(\epsilon\,J_+)$ acting by
+$\delta_\epsilon T = \epsilon' T + 2\epsilon T' +
+(c/12)\epsilon'''$---the Virasoro coadjoint action with
+central charge $c = 6k$.  The CS symplectic form induces
+the Poisson bracket
+$\{T(z), T(w)\}_{\mathrm{PB}} = (c/2)\delta'''(z-w) +
+2T(w)\delta'(z-w) + T'(w)\delta(z-w)$,
+which is~\eqref{eq:gravity-input} in distribution form.
+\end{proof}
+
+\subsubsection*{Hypotheses (H1)--(H4) for gravity}
+
+\begin{theorem}[Gravitational MC element; \ClaimStatusProvedHere]
+\label{thm:gravity-mc}
+\index{universal MC element!3d!gravitational}
+$SL(2,\R)$ CS at level~$k$ on $\R_+ \times \C$ satisfies
+\textrm{(H1)--(H4)}.  The resulting MC element
+$\alpha_{\mathrm{grav}} \in \mc(\gSC_T)$ has:
+closed face $= \mathrm{Vir}_c$,
+open face $= \mathrm{Vir}_{26-c}\text{-mod}$,
+spectral $R$-matrix $= $ Virasoro fusion kernel,
+genus face $= \Theta_{\mathrm{Vir}_c}$,
+PVA descent $= \{T_\lambda T\}$.
+\end{theorem}
+
+\begin{proof}
+(H1): the BV-BRST complex of CS is cubic in $A$, so one-loop
+finite by power counting.  (H2): the propagator
+$K(t,z) = \Theta(t)/(2\pi z)$ is meromorphic in $z$, step-function
+in $t$.  (H3): polynomial interactions ensure FM convergence; AOS
+by general theory.  (H4): the CS theory is topological in $\R$ and
+holomorphic in $\C$.  Each projection of $\alpha_T$ was computed in
+Movements~I--IV.
+\end{proof}
+
+\subsubsection*{BTZ black holes as MC deformations}
 
 \begin{definition}[BTZ deformation]
 \label{def:btz-deformation}
 \index{BTZ black hole!as MC deformation}
-A BTZ black hole of mass~$M$ and angular momentum~$J$ in
-AdS$_3$ corresponds to a highest-weight state
-$|h, \bar h\rangle$ with
-\[
-h \;=\; \frac{M\ell + J}{2}, \qquad
-\bar h \;=\; \frac{M\ell - J}{2}.
-\]
-In the bar-cobar framework: the BTZ black hole is a MC
-deformation $\delta\alpha \in \gSC_T$ of the vacuum element
-$\alpha_{\mathrm{grav}}$, satisfying the linearised MC equation
-\[
-D_{\alpha_{\mathrm{grav}}}(\delta\alpha) \;=\; 0,
-\]
-where $D_{\alpha_{\mathrm{grav}}} = D +
-[\alpha_{\mathrm{grav}}, -]$ is the twisted differential.
+A BTZ black hole of mass~$M$ and angular momentum~$J$ is a MC
+deformation $\delta\alpha \in \gSC_T$ of $\alpha_{\mathrm{grav}}$,
+satisfying $D_{\alpha_{\mathrm{grav}}}(\delta\alpha) = 0$,
+corresponding to the highest-weight state $|h, \bar h\rangle$ with
+$h = (M\ell + J)/2$, $\bar h = (M\ell - J)/2$.
 \end{definition}
 
 \begin{proposition}[Cardy formula from MC moduli;
 \ClaimStatusConjectured]
 \label{prop:cardy-mc}
 \index{Cardy formula!from MC moduli}
-The asymptotic density of MC deformations of
-$\alpha_{\mathrm{grav}}$ at high weight $h \gg 1$ reproduces the
-Cardy formula:
+The asymptotic density of MC deformations at $h \gg 1$ reproduces
 \[
 S_{\mathrm{BTZ}}
 \;=\;
@@ -1440,145 +634,32 @@ S_{\mathrm{BTZ}}
 \end{proposition}
 
 \begin{proof}[Argument sketch]
-The MC deformations $\delta\alpha$ at weight~$h$ are counted by
-the twisted partition function
-$Z(\tau) = \operatorname{tr}_{V_h} q^{L_0 - c/24}$ on the
-boundary torus.  At $h \gg 1$, the density of states
-$\rho(h) = \int_\gamma Z(\tau)\,e^{-2\pi i \tau h}\,d\tau$
-is evaluated by saddle-point: the dominant contribution comes
-from $\tau_* = i\sqrt{c/(24h)}$, where the modular $S$-transform
-$\tau \mapsto -1/\tau$ exchanges the high-temperature and
-low-temperature regimes.  The saddle-point evaluation gives
-$\log\rho(h) \sim 2\pi\sqrt{ch/6}$.  The full BTZ entropy is
-the sum of left and right contributions, since the holomorphic
-and anti-holomorphic Virasoro algebras contribute independently.
-
-The MC-theoretic content: the moduli space of MC deformations at
-weight~$h$ is the space of flat $\mathrm{Vir}_c$-connections on
-the solid torus with holonomy conjugate to $e^{2\pi i h}$.  The
-modular properties of the MC partition function (inherited from
-the modular invariance of the flat-connection moduli space on
-$T^2$) are what produce the saddle at $\tau_*$, hence the
-Cardy growth.  The conjecture is that the MC moduli space is
-sufficiently well-behaved (smooth, of the expected dimension)
-for the saddle-point argument to be rigorous.
+MC deformations at weight~$h$ are counted by the twisted partition
+function $Z(\tau) = \operatorname{tr}_{V_h} q^{L_0 - c/24}$.
+Saddle-point at $\tau_* = i\sqrt{c/(24h)}$ (modular $S$-transform)
+gives $\log\rho(h) \sim 2\pi\sqrt{ch/6}$.  The MC moduli space
+at weight~$h$ is the space of flat $\mathrm{Vir}_c$-connections on
+the solid torus with holonomy $e^{2\pi ih}$.
 \end{proof}
 
+\subsubsection*{Anomaly completion}
 
-\subsection{The full $SL(2,\R) \times SL(2,\R)$ theory}
-\label{subsec:gravity-full}
-
-The preceding subsections treat a single $SL(2,\R)$ Chern--Simons
-factor (one chiral half).  The full 3d gravity is the
-\emph{difference} $S_{\mathrm{EH}} = S_{\mathrm{CS}}[A_+;\,k]
-- S_{\mathrm{CS}}[A_-;\,k]$
-(equation~\eqref{eq:gravity-cs-action}), which gives two
-independent chiral halves:
-
-\begin{enumerate}[label=\textup{(\roman*)}]
-\item \emph{Left-moving:} $SL(2,\R)$ CS at level $k$ on
-  $\R_+ \times \C$.  Boundary algebra $\mathrm{Vir}_c$,
-  $c = 6k$.  MC element $\alpha_L$.
-\item \emph{Right-moving:} $SL(2,\R)$ CS at level $k$ on
-  $\R_+ \times \overline{\C}$.  Boundary algebra
-  $\overline{\mathrm{Vir}}_c$, $\bar c = 6k$.  MC element
-  $\alpha_R$.
-\end{enumerate}
-
-The full MC element is the product
-$\alpha_{\mathrm{grav}} = \alpha_L \otimes \alpha_R$,
-and the full partition function factorises:
-\[
-Z_{\mathrm{grav}}(\tau, \bar\tau)
-\;=\;
-Z_L(\tau) \cdot Z_R(\bar\tau)
-\;=\;
-|\eta(\tau)|^{(c-26)/6}.
-\]
-The reality condition $k_+ = k_- = k$ (equivalently
-$c = \bar c$) ensures the metric $g_{\mu\nu} = e^a_\mu e_{a\nu}$
-is real.  The factorisation of the MC element into left and right
-components is the holomorphic factorisation of 3d gravity---the
-algebraic expression of the fact that the Einstein equations in
-$2+1$ dimensions decompose into independent self-dual and
-anti-self-dual sectors.
-
-The BTZ black hole (Definition~\ref{def:btz-deformation})
-is the tensor product deformation
-$\delta\alpha = \delta\alpha_L^{(h)} \otimes
-\delta\alpha_R^{(\bar h)}$ with
-$h = (M\ell + J)/2$, $\bar h = (M\ell - J)/2$.  The
-factorisation of left and right deformations is the algebraic
-content of the fact that BTZ black holes are characterised by
-two independent quantum numbers (mass and angular momentum),
-corresponding to the two independent Virasoro representations.
-
-
-\subsection{Anomaly completion and the transgression algebra}
-\label{subsec:gravity-anomaly}
-
-At genus $g \ge 1$, the gravitational MC element acquires
-anomaly corrections via the transgression algebra
-$B_\Theta$ of
+At genus $g \ge 1$, the MC element acquires anomaly corrections via
+the transgression algebra $B_\Theta$ of
 Chapter~\ref{app:anomaly-completed-topological-holography}.
-The genus-$1$ curvature
-$d^2_{\mathrm{fib}} = \kappa \cdot \omega_1$ with
-$\kappa = (c-26)/2$ is the first instance.
+The secondary anomaly
+$u(\mathrm{Vir}_c) = \kappa_{\mathrm{eff}}^2 = ((c-26)/2)^2$;
+at $c = 26$ modular invariance is restored.  The genus--Clifford
+dichotomy: even genera contribute Clifford (Mumford classes
+$\lambda_{2j}$), odd genera contribute genus ($\lambda_{2j+1}$).
+The full anomaly-completed MC element
+$\hat\alpha_{\mathrm{grav}} \in \mc(\hat\gSC_T)$ packages the
+gravitational genus tower into a single object.
 
-The secondary anomaly $u = \eta^2$
-(Section~\ref{app:anomaly-completed-topological-holography}),
-evaluated on the gravitational boundary algebra, measures the
-failure of the genus-$1$ partition function to be modular
-invariant.  For Virasoro at generic~$c$:
-\[
-u(\mathrm{Vir}_c)
-\;=\;
-\kappa^2
-\;=\;
-\left(\frac{c - 26}{2}\right)^2.
-\]
-At $c = 26$: $u = 0$, and modular invariance is restored---the
-gravitational anomaly cancels completely.  At $c = 13$
-(Koszul self-duality): $u = (13/2)^2$, and the secondary anomaly
-is nonzero despite the vanishing of the gravitational modular
-class $\mathrm{Mod}(\mathrm{Vir}_{13})$ (which vanishes by the
-triangular vanishing theorem of
-Section~\ref{sec:virasoro-quantization}).
+\subsubsection*{Celestial transfer}
 
-The genus--Clifford dichotomy applied to gravity:
-\begin{itemize}
-\item \emph{Even genera} ($g = 2, 4, \ldots$):
-  the free energy $F_g$ is controlled by even Mumford classes
-  $\lambda_{2j}$ and contributes to the ``Clifford'' component
-  of the transgression algebra.
-\item \emph{Odd genera} ($g = 1, 3, \ldots$):
-  $F_g$ is controlled by odd Mumford classes $\lambda_{2j+1}$
-  and contributes to the ``genus'' component.
-\end{itemize}
-The full anomaly-completed MC element $\hat\alpha_{\mathrm{grav}}
-\in \mc(\hat\gSC_T)$ packages the entire gravitational genus
-tower, including all anomaly corrections, into a single object
-in the completed Swiss-cheese algebra.
-
-
-\subsection{Celestial transfer}
-\label{subsec:gravity-celestial}
-
-The boundary PVA $\{T_\lambda T\} = (c/2)\lambda^3 + 2T\lambda
-+ \partial T$ descends to a celestial OPE algebra via the
-transfer map of
-Chapter~\ref{sec:modular-twisted-celestial-first-principles}.
-
-The celestial stress tensor $\widetilde{T}(w)$ on the celestial
-sphere $\C_w$ is obtained by integrating the boundary stress
-tensor $T(z)$ along the topological direction $\R_+$:
-\[
-\widetilde{T}(w)
-\;=\;
-\int_0^\infty T(t, w)\,dt.
-\]
-The celestial OPE is the projection of the boundary OPE to the
-$t$-independent sector:
+The boundary PVA~\eqref{eq:gravity-input} descends to a celestial
+OPE algebra via $\widetilde{T}(w) = \int_0^\infty T(t,w)\,dt$:
 \[
 \widetilde{T}(w_1)\,\widetilde{T}(w_2)
 \;\sim\;
@@ -1586,10 +667,21 @@ $t$-independent sector:
 + \frac{2\widetilde{T}(w_2)}{(w_1 - w_2)^2}
 + \frac{\partial\widetilde{T}(w_2)}{w_1 - w_2}.
 \]
-The celestial stress tensor generates the \emph{soft graviton
-algebra}: the algebra of asymptotic symmetries of the
-gravitational scattering matrix at null infinity.  The
-celestial OPE reproduces the Virasoro OPE with the same
-central charge $c = 6k = 3\ell/(2G)$, confirming that the
-soft graviton sector of 3d gravity is controlled by the
-boundary Virasoro algebra.
+The celestial stress tensor generates the soft graviton algebra---the
+asymptotic symmetry algebra at null infinity, reproducing the
+Virasoro OPE with the same $c = 3\ell/(2G)$.
+
+\bigskip
+\begin{center}
+\fbox{\parbox{0.85\textwidth}{\small
+\textbf{Summary.}  Input: $\{T_\lambda T\} = \partial T + 2T\lambda
++ (c/12)\lambda^3$.  Output: the $\Ainf$ tower
+$\{m_k\}_{k \ge 2}$, the Koszul dual $\mathrm{Vir}_{26-c}$,
+the line operators $\mathrm{Vir}_{26-c}\text{-mod}$, the bulk
+$\C[\![c]\!]$, the $R$-matrix $r(z) = (c/2)/z^4 + 2T/z^2 +
+\partial T/z$, the genus tower
+$F_g = \frac{c-26}{2}\int_{\overline{\cM}_g}\lambda_g$,
+the BTZ entropy $S = 2\pi\sqrt{ch/6} + 2\pi\sqrt{c\bar h/6}$,
+and the celestial OPE.  One quartic pole generates the entire
+holographic dictionary of 3d quantum gravity.}}
+\end{center}
