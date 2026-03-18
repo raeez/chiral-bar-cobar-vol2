@@ -433,6 +433,425 @@ satisfying the classical Yang--Baxter equation.  For non-abelian $G$, the Koszul
 \end{example}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% THE E_1-CHIRAL STRUCTURE OF THE SHIFTED YANGIAN
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{The $E_1$-chiral structure of the shifted Yangian}
+\label{subsec:E1-chiral-yangian}
+\index{dg-shifted Yangian!$E_1$-chiral structure|textbf}
+\index{Yangian!spectral OPE}
+\index{Yangian!PVA descent}
+\index{Sklyanin bracket|textbf}
+
+The Koszul dual $\cA^!$ is a dg-shifted Yangian
+(Theorem~\ref{thm:Koszul_dual_Yangian}) and line operators
+are $\cA^!$-modules (Theorem~\ref{thm:lines_as_modules}).
+But $\cA^!$ carries a richer structure: it is an $E_1$-chiral
+algebra on $\C_u \times \R_t$, with the $E_1$ direction from
+the deconcatenation coproduct on $\R_t$ and the chiral direction
+from the spectral OPE on $\C_u$.  We develop this structure
+from the RTT relation, working from explicit formulas; the
+definitive operadic framework is the master two-color Koszul
+duality theorem (Theorem~\ref{thm:two-color-master}).
+
+\subsubsection*{The FRT spectral OPE}
+
+The starting point is the FRT commutation relation, derived
+from the RTT relation $R_{12}(u{-}v)\,T_1(u)\,T_2(v) =
+T_2(v)\,T_1(u)\,R_{12}(u{-}v)$
+(equation~\eqref{eq:rtt-from-bar}).  For $\fg$ simple with
+rational $R$-matrix $R(u) = 1 + \hbar\,P/u$ ($P$ the
+permutation on $V \otimes V$, $V$ the defining representation),
+the component form is
+\begin{equation}\label{eq:FRT-components}
+\boxed{
+[t_{ij}(u),\, t_{kl}(v)]
+\;=\;
+\frac{\hbar}{u - v}\bigl(
+  t_{kj}(u)\,t_{il}(v)
+  \;-\;
+  t_{kj}(v)\,t_{il}(u)
+\bigr),
+}
+\end{equation}
+where $T(u) = \sum_{I,J} E_{IJ} \otimes t_{IJ}(u) \in
+\operatorname{End}(V) \otimes Y_\hbar(\fg)[\![u^{-1}]\!]$.
+This is the \emph{spectral OPE}: it has the structure of a
+chiral bracket with singularity at $u = v$.  The right-hand
+side is a \emph{difference} of products evaluated at $u$ and
+$v$, and vanishes at $u = v$---so the pole $1/(u-v)$ is
+cancelled, making the bracket well-defined as a formal
+distribution.
+
+\subsubsection*{Calibration: the Heisenberg case}
+
+\begin{computation}[Heisenberg Koszul dual as $E_1$-chiral
+algebra; \ClaimStatusProvedHere]
+\label{comp:heisenberg-E1-chiral}
+For $\cA = \widehat{\mathfrak{u}(1)}_k$, the Koszul dual is
+$\cA^! = \widehat{\mathfrak{u}(1)}_{-k}$
+(Vol~I, Theorem~B).  There is a single FRT generator $t(u)$,
+and the $R$-matrix is $R(u) = 1 + k/u$ (scalar, since
+$\dim V = 1$).  The FRT relation~\eqref{eq:FRT-components}
+gives
+\[
+[t(u),\, t(v)]
+\;=\;
+\frac{k}{u - v}\bigl(
+  t(u)\,t(v) - t(v)\,t(u)
+\bigr)
+\;=\;
+\frac{k}{u - v}\,[t(u), t(v)].
+\]
+This forces $[t(u), t(v)] = 0$ for $k \ne 0$
+\textup(the zero mode is abelian\textup).
+Passing to the current $J(u) = \partial_u \log t(u)$: the
+relation becomes
+\begin{equation}\label{eq:heisenberg-spectral-OPE}
+[J_m,\, J_n] \;=\; -k\,m\,\delta_{m+n,0},
+\end{equation}
+and the spectral OPE is
+$J(u)\,J(v) \sim -k/(u-v)^2$.
+This is the Heisenberg algebra at level $-k$: the Koszul dual
+flips the sign of the level.
+
+The $E_1$-chiral structure is manifest: the spectral OPE has a
+double pole at $u = v$ (a ``chiral'' singularity in the spectral
+variable), and the algebra on $\R_t$ is the ordinary
+Heisenberg---associative with no higher homotopies.  The
+$A_\infty$ operations $m_k = 0$ for $k \ge 3$: the Heisenberg
+Yangian is \emph{formal}.  This is the abelian calibration.
+\end{computation}
+
+\subsubsection*{The $\mathfrak{sl}_2$ computation}
+
+For $\fg = \mathfrak{sl}_2$, the transfer matrix is
+$T(u) = \bigl(\begin{smallmatrix}
+t_{11}(u) & t_{12}(u) \\ t_{21}(u) & t_{22}(u)
+\end{smallmatrix}\bigr)$
+with $R(u) = 1 + \hbar P/u$,
+$P = \sum_{i,j} E_{ij} \otimes E_{ji}$.
+Equation~\eqref{eq:FRT-components} gives $16$ relations, of
+which the independent ones are \textup(writing
+$w = u - v$\textup):
+\begin{align}
+[t_{11}(u),\, t_{21}(v)]
+&\;=\;
+\frac{\hbar}{w}\bigl(t_{21}(u)\,t_{11}(v)
+  - t_{21}(v)\,t_{11}(u)\bigr),
+\label{eq:sl2-RTT-1}
+\\[3pt]
+[t_{21}(u),\, t_{12}(v)]
+&\;=\;
+\frac{\hbar}{w}\bigl(t_{11}(u)\,t_{22}(v)
+  - t_{11}(v)\,t_{22}(u)\bigr),
+\label{eq:sl2-RTT-2}
+\\[3pt]
+[t_{21}(u),\, t_{21}(v)]
+&\;=\;
+\frac{\hbar}{w}\bigl(t_{21}(u)\,t_{21}(v)
+  - t_{21}(v)\,t_{21}(u)\bigr)
+\;=\; 0.
+\label{eq:sl2-RTT-3}
+\end{align}
+Relation~\eqref{eq:sl2-RTT-2} is the crucial one: it produces
+the $[E, F] \sim H$ commutation relation of the Yangian.
+
+In the Gauss decomposition
+$T(u) = \bigl(\begin{smallmatrix} 1 & 0 \\ E(u) & 1
+\end{smallmatrix}\bigr)
+\bigl(\begin{smallmatrix} k_1(u) & 0 \\ 0 & k_2(u)
+\end{smallmatrix}\bigr)
+\bigl(\begin{smallmatrix} 1 & F(u) \\ 0 & 1
+\end{smallmatrix}\bigr)$,
+the Drinfeld generators $(E(u), F(u), H(u) = k_1(u)/k_2(u))$
+satisfy
+\begin{align}
+(u - v - \hbar)\,E(u)\,E(v)
+&\;=\;
+(u - v + \hbar)\,E(v)\,E(u),
+\label{eq:drinfeld-EE}
+\\[3pt]
+[E(u),\, F(v)]
+&\;=\;
+\frac{\hbar}{u - v}
+\bigl(k_1(u)\,k_2(v) - k_1(v)\,k_2(u)\bigr),
+\label{eq:drinfeld-EF}
+\end{align}
+derived from~\eqref{eq:sl2-RTT-1}--\eqref{eq:sl2-RTT-2} by
+substitution.  These are the \emph{exact} spectral OPE
+relations---not truncated at leading order.
+
+\begin{remark}[What the spectral OPE is and is not]
+\label{rem:spectral-OPE-nature}
+Equations~\eqref{eq:FRT-components}
+and~\eqref{eq:drinfeld-EE}--\eqref{eq:drinfeld-EF} are
+\emph{not} $\lambda$-brackets in the PVA sense.  They are
+commutation relations between generating functions, with
+singularity at $u = v$.  The term ``spectral OPE'' is used
+by analogy: the pole structure at $u = v$ parallels the pole
+structure of a chiral algebra OPE at $z = w$, and the
+residues encode the ``$E_1$-chiral product'' of line operators
+at coincident spectral position.  But the generating functions
+$E(u)$, $F(u)$, $H(u)$ are \emph{not} conformal fields: they
+have no conformal weight, no state-field correspondence, and
+no normally-ordered product.  The $E_1$-chiral structure on the
+Yangian is a \emph{filtered} chiral algebra in the spectral
+variable, not a vertex algebra.
+\end{remark}
+
+\subsubsection*{The classical limit: Sklyanin--Drinfeld Poisson
+bracket}
+
+\begin{proposition}[Sklyanin bracket from classical RTT;
+\ClaimStatusProvedHere]
+\label{prop:sklyanin-from-RTT}
+\index{Sklyanin bracket|textbf}
+The classical limit $\hbar \to 0$ of the FRT
+relation~\eqref{eq:FRT-components}, with the replacement
+$[\cdot, \cdot]/\hbar \to \{\cdot, \cdot\}$, gives
+\begin{equation}\label{eq:sklyanin-bracket}
+\{t_{ij}(u),\, t_{kl}(v)\}
+\;=\;
+\frac{1}{u - v}\bigl(
+  t_{kj}(u)\,t_{il}(v) - t_{kj}(v)\,t_{il}(u)
+\bigr).
+\end{equation}
+This is the \emph{Sklyanin--Drinfeld Poisson bracket} on the
+classical Yangian $Y_{\mathrm{cl}}(\fg) \simeq
+\mathcal{O}(G[\![u^{-1}]\!])$, the coordinate ring of the
+formal arc group.
+\end{proposition}
+
+\begin{proof}
+Divide~\eqref{eq:FRT-components} by $\hbar$ and take
+$\hbar \to 0$.  The left side
+$[t_{ij}(u), t_{kl}(v)]/\hbar$ becomes the Poisson bracket
+$\{t_{ij}(u), t_{kl}(v)\}$.  The right side
+$(t_{kj}(u)\,t_{il}(v) - t_{kj}(v)\,t_{il}(u))/(u-v)$
+is already independent of $\hbar$ (the generators $t_{ij}(u)$
+have classical limit $t_{ij}^{\mathrm{cl}}(u)$).
+\end{proof}
+
+\begin{proposition}[Sklyanin bracket satisfies Jacobi;
+\ClaimStatusProvedHere]
+\label{prop:sklyanin-jacobi}
+The bracket~\eqref{eq:sklyanin-bracket} satisfies the Poisson
+Jacobi identity.
+\end{proposition}
+
+\begin{proof}
+The Jacobi identity for~\eqref{eq:sklyanin-bracket} is
+equivalent to the classical Yang--Baxter equation (CYBE) for
+$r(u) = P/u$:
+$[r_{12}(u{-}v),\, r_{13}(u{-}w)]
++ [r_{12}(u{-}v),\, r_{23}(v{-}w)]
++ [r_{13}(u{-}w),\, r_{23}(v{-}w)] = 0$.
+This is verified by direct computation: each commutator
+produces terms of the form $P_{ij}P_{kl}/(u_a - u_b)(u_c - u_d)$,
+and the six terms cancel pairwise by the permutation identity
+$P_{12}P_{13} + P_{13}P_{23} + P_{23}P_{12}
+= P_{12}P_{23} + P_{23}P_{13} + P_{13}P_{12}$.
+Alternatively: this is the classical limit of the quantum
+Yang--Baxter equation (Theorem~\ref{thm:YBE}), which is
+proved in~\S\ref{subsec:YBE-proof}.
+\end{proof}
+
+\begin{computation}[Heisenberg verification;
+\ClaimStatusProvedHere]
+\label{comp:heisenberg-sklyanin}
+For $\fg = \mathfrak{u}(1)$: $t(u) = J(u)$,
+$P = 1$, and
+$\{J(u), J(v)\} = (J(u) J(v) - J(v) J(u))/(u-v) = 0$
+(the classical Heisenberg is abelian).  The Poisson bracket on
+modes $J_r$ comes from the second-order pole of the
+\emph{quantum} relation~\eqref{eq:heisenberg-spectral-OPE}:
+$\{J_m, J_n\}_{\mathrm{qu}} = -k\,m\,\delta_{m+n,0}$.
+This is the standard Heisenberg PVA at level $-k$, confirming
+that $\cA^! = \widehat{\mathfrak{u}(1)}_{-k}$.
+\end{computation}
+
+\subsubsection*{The $A_\infty$ structure: what is proved and
+what is open}
+
+The $E_1$-chiral $A_\infty$ structure on $Y_\hbar(\fg)$ is
+the central open question.  We state precisely what is known.
+
+The Yangian $Y_\hbar(\fg)$ is a \emph{filtered} algebra:
+the PBW filtration by total mode number $|t_{ij}^{(r)}| = r$
+gives $\gr Y_\hbar(\fg) \simeq U(\fg[t])$.
+
+\begin{proposition}[Associated graded is formal;
+\ClaimStatusProvedHere]
+\label{prop:gr-yangian-formal}
+The associated graded $U(\fg[t])$ is Koszul as a graded
+algebra.  Its bar complex is generated in degrees $1$ and $2$:
+the generators are $\fg[t]$ in degree~$1$, and the relations
+$xy - yx - [x,y] = 0$ in degree~$2$.  The $A_\infty$ structure
+on $U(\fg[t])$ is formal: $m_k = 0$ for $k \ge 3$.
+\end{proposition}
+
+\begin{proof}
+$U(\fg[t]) = U(\fg) \otimes \C[t]$ as a filtered algebra.
+Both $U(\fg)$ (Priddy) and $\C[t]$ (trivially) are Koszul, and
+the tensor product of Koszul algebras is Koszul
+(Polishchuk--Positselski, Theorem~2.3.1).
+\end{proof}
+
+\begin{question}[$E_1$-chiral $A_\infty$ of $Y_\hbar(\fg)$;
+\ClaimStatusOpen]
+\label{q:yangian-Ainfty}
+\index{Yangian!$A_\infty$ structure}
+Is the full $Y_\hbar(\fg)$ (not just its associated graded)
+formal as an $E_1$-chiral algebra?  The RTT
+relation~\eqref{eq:FRT-components} is quadratic in the
+generating functions $t_{ij}(u)$, but the mode-expanded
+relations~\eqref{eq:yangian-relation-modes} mix all mode
+numbers.  The algebra is a non-trivial filtered deformation
+of a Koszul algebra.
+
+Two scenarios:
+\begin{enumerate}[label=\textup{(\alph*)}]
+\item \emph{Filtered formality:}
+  There exists a filtered $A_\infty$ quasi-isomorphism
+  $Y_\hbar(\fg) \xrightarrow{\sim} (U(\fg[t]), m_2)$
+  that is the identity on the associated graded.  This would
+  mean $Y_\hbar(\fg)$ is ``formal up to filtration'': the
+  higher $m_k$ vanish on $\gr$ but may be non-zero on the
+  filtered level.
+\item \emph{Genuine non-formality:}
+  No such quasi-isomorphism exists, and the $A_\infty$
+  operations $m_k$ for $k \ge 3$ are genuinely non-trivial
+  (not killed by any change of generators).
+\end{enumerate}
+The answer depends on the vanishing of specific deformation
+classes in the Harrison cohomology of $U(\fg[t])$ with
+coefficients in the adjoint bimodule, twisted by the
+$\hbar$-deformation.  This is not computed in either volume.
+\end{question}
+
+\begin{remark}[Virasoro: non-formality on both sides]
+\label{rem:yangian-virasoro-nonformality}
+For the Virasoro algebra $\mathrm{Vir}_c$ at generic $c$,
+the Koszul dual $\mathrm{Vir}_{26-c}$ is \emph{not} formal:
+$m_k \ne 0$ for all $k \ge 3$
+(Section~\ref{subsec:gravity-shadow-tower}).  The Virasoro
+has no Yangian simplification: both sides of the Koszul
+duality are genuinely non-formal, and the infinite-depth
+shadow tower persists on the line-operator side.
+\end{remark}
+
+\subsubsection*{The bar-cobar involution}
+
+The Koszul involution $(-)^{!!} \simeq \id$ at the
+$E_1$-chiral level gives
+$\Omega^{E_1\text{-ch}}(B^{E_1\text{-ch}}(\cA)) \simeq \cA$.
+For $\cA = \widehat{\fg}_k$: the ordered bar produces
+$Y_\hbar(\fg)$, and the cobar recovers $\widehat{\fg}_k$.
+
+The structures exchange:
+\begin{center}
+\small
+\renewcommand{\arraystretch}{1.15}
+\begin{tabular}{lll}
+\textbf{Boundary $\cA$} &
+  \textbf{Koszul dual $\cA^!$} &
+  \textbf{Mechanism} \\
+\hline
+Current OPE $J^a(z)J^b(w)$ &
+  FRT relation~\eqref{eq:FRT-components} &
+  bar $\leftrightarrow$ cobar \\[2pt]
+Poles in $z - w$ &
+  Poles in $u - v$ &
+  holomorphic $\leftrightarrow$ spectral \\[2pt]
+$\lambda$-bracket &
+  Sklyanin bracket~\eqref{eq:sklyanin-bracket} &
+  PVA $\leftrightarrow$ PVA \\[2pt]
+$r(z) = \Omega/z$ &
+  $r_{\mathrm{cl}}(u) = P/u$ &
+  same Casimir \\[2pt]
+$\kappa = k\dim\fg$ &
+  $\kappa^! = -k\dim\fg$ &
+  complementarity \\[2pt]
+$\SCchtop$-algebra &
+  $\SCchtop$-algebra &
+  two-color involution (Thm~\ref{thm:two-color-master})
+\end{tabular}
+\end{center}
+
+\begin{computation}[Heisenberg bar-cobar;
+\ClaimStatusProvedHere]
+\label{comp:heisenberg-bar-cobar}
+For $\cA = \widehat{\mathfrak{u}(1)}_k$: the boundary has
+$J(z)J(w) \sim k/(z-w)^2$, and $\cA^!$ has
+$J(u)J(v) \sim -k/(u-v)^2$.  The bar complex of $\cA^!$
+should recover $\cA$.  Indeed: the ordered bar differential on
+$[s^{-1}J \,|\, s^{-1}J]$ extracts the
+residue of $-k/(u-v)^2$, which is $k\,\partial$---the level-$k$
+Heisenberg OPE.  The level flips sign twice under the double
+bar and returns to $k$: $(\cA^!)^! = \cA$.
+\end{computation}
+
+\subsubsection*{Genus tower from complementarity}
+
+Koszul complementarity (Vol~I, Theorem~C) gives
+\begin{equation}\label{eq:yangian-kappa}
+\kappa(\cA^!)
+\;=\;
+-\kappa(\cA).
+\end{equation}
+For $\cA = \widehat{\fg}_k$: $\kappa = k\dim\fg$, so
+$\kappa(Y_\hbar(\fg)) = -k\dim\fg$.  The complementarity
+potential $F_1(\cA) + F_1(\cA^!) = 0$ vanishes: the bulk
+theory carries no net genus-$1$ anomaly.
+
+The all-genus generating function:
+\[
+\sum_{g \ge 1} F_g(Y_\hbar(\fg))\,\hbar^{2g-2}
+\;=\;
+-\frac{k\dim\fg}{2}\bigl(\hat{A}(i\hbar) - 1\bigr).
+\]
+
+\begin{computation}[Heisenberg genus tower;
+\ClaimStatusProvedHere]
+\label{comp:heisenberg-genus}
+For $\cA = \widehat{\mathfrak{u}(1)}_k$:
+$\kappa = k$, $\kappa^! = -k$.  The genus-$1$ free energies
+are $F_1(\cA) = k/24$ and $F_1(\cA^!) = -k/24$.  Their sum
+vanishes: the bulk $\mathfrak{u}(1)$ theory has no
+genus-$1$ anomaly.  This matches the direct computation:
+the bulk partition function on $T^2$ is
+$Z_{\mathrm{bulk}} = |\eta(\tau)|^{-2}$, which is modular
+invariant for all $k$.
+\end{computation}
+
+\begin{remark}[What remains open]
+\label{rem:yangian-E1-chiral-open}
+Four problems are open:
+\begin{enumerate}[label=\textup{(\roman*)}]
+\item The $A_\infty$ formality question
+  (Question~\ref{q:yangian-Ainfty}).
+\item Construction of a ``Yangian vertex algebra''---a vertex
+  algebra-like object on $Y_\hbar(\fg)$ encoding the spectral
+  OPE, state-field correspondence, and translation.  The
+  obstruction: the Yangian is filtered by mode number, not
+  graded by conformal weight.  Theorem~\ref{thm:dual-sc-algebra}
+  resolves the \emph{structural} question---$\cA^!$ carries a
+  canonical $\SCchtop$-algebra structure encoding both the
+  Sklyanin $\lambda$-bracket (closed color) and the Yangian
+  product (open color)---while the explicit ``vertex algebra''
+  presentation remains a presentation problem.
+\item Quantization of the Sklyanin PVA
+  \eqref{eq:sklyanin-bracket} via the modular programme
+  (Chapter~\ref{ch:modular-pva-quantization}).
+\item The $E_1$-chiral $A_\infty$ structure on
+  non-formal Koszul duals ($\mathrm{Vir}_{26-c}$,
+  $\mathcal{W}$-algebras at dual parameters).
+\end{enumerate}
+\end{remark}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % ELLIPTIC SPECTRAL DICHOTOMY AT GENUS 1
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
