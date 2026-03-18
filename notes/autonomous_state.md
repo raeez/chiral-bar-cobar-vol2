@@ -45,7 +45,7 @@ The entire foundational chain from BV-BRST to PVA descent is proved:
 
 ## Remaining Items (not foundational)
 - **D6 examples**: Virasoro and W_3 truncation bounds remain conditional on (H1)-(H4)
-- **Cross-volume bridges**: BR1-BR5 proved at genus 0; genus ≥ 2 requires Costello renormalization
+- **Cross-volume bridges**: BR1-BR5 proved at genus 0; MC5 proved at all genera in Vol I
 - **Hochschild duplicate labels**: 15 pre-existing multiply-defined labels in Hochschild-related content
 - **(H1)-(H4)**: Standing physical axioms — verified in examples, not proved in general
 
@@ -63,5 +63,5 @@ The entire foundational chain from BV-BRST to PVA descent is proved:
 1. **P1**: Fix Hochschild duplicate labels (15 remaining)
 2. **P1**: Run Vol II test suite if it exists
 3. **P2**: Upgrade examples with repaired PVA machinery
-4. **P3**: Address higher-genus extension (MC5 g≥2)
+4. **P3**: MC5 proved at all genera in Vol I; upgrade Vol II cross-references accordingly
 5. **P4**: Clean up notes/ metadata for consistency

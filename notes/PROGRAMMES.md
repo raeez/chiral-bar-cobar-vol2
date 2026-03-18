@@ -273,14 +273,14 @@ formalized with:
 - Requires: H3, H4, Vol I DK-0.
 - This would be the most concrete bridge — verifiable for SU(2)_k.
 
-**BR4: W-algebra bridge** (§20 ↔ Vol I MC5)
+**BR4: W-algebra bridge** (§20 ↔ Vol I MC5, now proved at all genera)
 - Claim: Feynman-diagrammatic m_k for W-algebras matches Vol I's bar differential.
 - Precise version: For A = W_N obtained by DS reduction, the m_k from Feynman
   diagrams on C×R should equal the components d_k of the bar differential
   d = d_CE + d_{curvature} computed algebraically in Vol I.
 - Requires: E4/E5, Vol I MC5 (BV/BRST = bar).
-- MC5 itself is downstream of MC3/MC4 in Vol I. This bridge is therefore
-  DEEPLY conjectural — it requires unproved results in both volumes.
+- MC5 is now proved at all genera in Vol I.  The Vol II side (E4/E5) remains
+  the active frontier.
 
 **BR5: (H1)–(H4) functor bridge** (§6 ↔ Vol I Programme VI)
 - Claim: (H1)–(H4) define a functor HT-QFT → A∞-chirAl.
@@ -293,7 +293,7 @@ formalized with:
 BR3 (DK/YBE) is the most concrete — can be verified for abelian CS today.
 BR1 (bar-cobar) is the most structurally important — connects the core theorems.
 BR2 (Hochschild) is the deepest — requires the dimensional reduction functor.
-BR4 (W-algebra) is the most ambitious — requires MC5 in Vol I.
+BR4 (W-algebra) — MC5 is now proved in Vol I; the Vol II side (E4/E5) remains.
 BR5 (functor) is programme-level — not formalizable as a single conjecture.
 
 ---
@@ -462,7 +462,7 @@ to ~1742pp final — scaled appropriately for a companion paper.
 - Vol II: K(t,z) = Θ(t)/(2πz). This is specific to C×R.
 - Vol I: Does not use propagators (algebraic, not physical).
 - The bridge between propagator-defined m_k (Vol II) and algebraically-defined
-  bar differential (Vol I) is exactly MC5.
+  bar differential (Vol I) is exactly MC5 (now proved at all genera).
 
 ---
 
