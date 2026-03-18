@@ -199,14 +199,67 @@ the $\Ainf$ Stasheff relations: for each~$n$,
 with spectral substitution $\lambda_s \mapsto \Lambda_I$ when a
 consecutive block $I$ collapses.
 
-Each relation is a Stokes theorem.  The $n$-th relation asserts
-that the integral of a closed form over the boundary
-$\partial\FM_n(\C)$ vanishes.  The boundary strata of $\FM_n(\C)$
-are indexed by subsets $S \subset \{1, \ldots, n\}$ with
-$|S| \ge 2$: they are the collision divisors.  Each stratum
-$D_S$ contributes $m_{|S|}$ applied to the colliding inputs,
-composed with $m_{n-|S|+1}$ on the remaining inputs.  The two
-sides of each codimension-$2$ face cancel by orientations.
+Each relation is a Stokes theorem on $\FM_n(\C)$.
+
+\subsection*{The $n = 2$ relation: $m_1^2 = 0$}
+
+$\FM_2(\C) = \{(z_1, z_2) : z_1 \ne z_2\}/\text{translation}$
+is a point (after modding out translation, the single parameter
+$z_{12} = z_1 - z_2$ is fixed by scaling).  The boundary
+$\partial\FM_2(\C)$ is a single collision point $z_1 = z_2$.
+The Stasheff relation at $n = 2$ is
+\[
+m_1(m_1(a)) \;=\; 0,
+\]
+which says that $m_1 = Q$ is a differential: $Q^2 = 0$.  This is
+the BRST condition.
+
+\subsection*{The $n = 3$ relation: the homotopy-associativity
+identity}
+
+$\FM_3(\C)$ is a manifold with corners, diffeomorphic to a closed
+interval $[0, 1]$.  Its two endpoints are the two maximal collision
+strata: $D_{12} = \{z_1 \to z_2\}$ at one end, $D_{23} = \{z_2 \to z_3\}$ at the other.  The
+interior is the non-collision locus.  The Stasheff relation at
+$n = 3$ is
+\[
+m_1(m_2(a,b)) \;+\; m_2(m_1(a), b) \;+\;
+(-1)^{|a|} m_2(a, m_1(b))
+\;+\; m_2(m_2(a,b), c) \;-\; m_2(a, m_2(b,c))
+\;+\; m_3(\cdots) \;=\; 0.
+\]
+The first three terms say that $m_2$ is a chain map up to the
+homotopy $m_3$; the fourth and fifth terms say that $m_2$ is
+associative up to the same homotopy.  The term $m_3$ is the
+integral over the interval $\FM_3(\C)$: it interpolates between the
+two boundary contributions $D_{12}$ and $D_{23}$.  When $m_3 = 0$
+(the Heisenberg, the free fermion), the relation reduces to strict
+associativity and the Leibniz rule.  When $m_3 \ne 0$ (Kac--Moody,
+Virasoro), the homotopy carries genuine geometric content: it is the
+Jacobiator on $\FM_3(\C)$, and its nonvanishing is the
+failure of the OPE to be strictly associative.
+
+\subsection*{Higher $n$: the full Stasheff hierarchy}
+
+At $n = 4$, $\FM_4(\C)$ is a compact surface with corners
+(genus~$0$, five boundary faces from the five collision strata
+$D_{12}, D_{23}, D_{34}, D_{123}, D_{234}$).  The Stasheff
+relation involves $m_2$, $m_3$, and $m_4$, with $m_4$ arising as
+the integral over the interior of $\FM_4(\C)$.  For the
+$\mathcal{W}_3$ algebra, $m_4$ is nonzero and encodes the quartic
+contact interaction with coefficient $16/(22+5c)$.
+
+The general pattern: $\FM_n(\C)$ is a compact manifold with
+corners of real dimension $2n - 4$.  Its boundary strata are
+indexed by all possible collision patterns (subsets
+$S \subset \{1, \ldots, n\}$ with $|S| \ge 2$).  Each stratum
+$D_S$ contributes $m_{|S|}$ composed with $m_{n - |S| + 1}$ to
+the Stasheff relation, and $m_n$ itself is the integral over the
+top stratum of $\FM_n(\C)$.  The identity $\partial^2 = 0$ on
+$\FM_n(\C)$---every codimension-$2$ face is reached by exactly two
+codimension-$1$ faces with opposite orientations---is the
+combinatorial identity that makes $D_\cA^2 = 0$ hold, and hence
+that makes the $\Ainf$ Stasheff relations consistent.
 
 
 \section*{V.\quad First computation: the Heisenberg}
@@ -409,29 +462,124 @@ $\gSC_T$ is abelian; $\alpha_{\cH_k} = m_2 + \hbar\,k\cdot\eta
 
 \section*{IX.\quad PVA descent}
 
-On $H^\bullet(A, Q)$, the $\Ainf$ operations $m_k$ descend to:
-\begin{enumerate}[label=(\roman*)]
-\item a commutative product $\mu(a,b) = m_2^{\mathrm{reg}}(a,b;0)$
-  (the regular part of $m_2$ at $\lambda = 0$),
-\item a $\lambda$-bracket
-  $\{a_\lambda b\} = \sum_{n \ge 0}
-  \frac{\lambda^{(n)}}{n!}\,a_{(n)}b$
-  (the singular part of $m_2$).
-\end{enumerate}
-Together they form a $(-1)$-shifted Poisson vertex algebra.  The
-PVA axioms---Jacobi, Leibniz, skew-symmetry, sesquilinearity---are
-proved by Stokes' theorem on $\FM_3(\C)$: the three boundary strata
-of $\FM_3(\C)$ contribute the three terms of the Jacobi identity,
-and their boundary cancellation gives the identity (D2--D6 of
-Theorem~\ref{thm:pva-from-ainf}).
+The $\Ainf$ operations $m_k$ are chain-level data.  On cohomology
+$H^\bullet(A, Q)$, the higher operations $m_{k \ge 3}$ vanish (they
+are $Q$-exact by the homotopy-transfer argument: each $m_k$ for
+$k \ge 3$ arises from a chain of dimension $\ge 1$ on
+$\Conf_k^<(\R)$, which is contractible, so $m_k = Q(h_{k-1})$).
+The binary operation $m_2$ survives, because its topological chain
+is zero-dimensional (a point in a contractible space).
+
+\subsection*{Decomposition of $m_2$}
+
+The surviving operation $m_2(a,b;\zeta)$ is a formal Laurent
+series in the collision variable $\zeta = z_1 - z_2$.  Decompose
+it into regular and singular parts:
+\[
+m_2(a,b;\zeta)
+\;=\;
+\underbrace{m_2^{\mathrm{reg}}(a,b;\zeta)}_{\text{no pole at }
+\zeta = 0}
+\;+\;
+\underbrace{\sum_{n \ge 0}
+\frac{a_{(n)}b}{\zeta^{n+1}}}_{\text{singular: the OPE}}.
+\]
+The regular part at $\zeta = 0$ is a commutative product:
+\[
+\mu(a,b) \;:=\; m_2^{\mathrm{reg}}(a,b;0).
+\]
+The singular part, after Borel transform
+$\zeta^{-n-1} \mapsto \lambda^{(n)}/n!$, is a $\lambda$-bracket:
+\[
+\{a_\lambda b\}
+\;:=\;
+\sum_{n \ge 0} \frac{\lambda^{(n)}}{n!}\,a_{(n)}b.
+\]
+Together, $(\mu, \{-_\lambda-\})$ form a $(-1)$-shifted Poisson
+vertex algebra on $H^\bullet(A, Q)$.
+
+\subsection*{The Jacobi identity from $\FM_3(\C)$}
+
+The Jacobi identity for $\{-_\lambda-\}$ is the $n = 3$ Stasheff
+relation~\eqref{eq:preface2-stasheff} projected to cohomology.
+Write it out.  The boundary $\partial\FM_3(\C)$ has three
+codimension-$1$ strata:
+\[
+D_{12} \;=\; \{z_1 \to z_2\}, \qquad
+D_{23} \;=\; \{z_2 \to z_3\}, \qquad
+D_{13} \;=\; \{z_1 \to z_3\}.
+\]
+Each stratum contributes one term to the $n = 3$ relation:
+\begin{align*}
+D_{12}&\colon\quad
+m_2\bigl(m_2(a,b;\zeta_{12}),\, c;\, \zeta_{13}\bigr),
+\\
+D_{23}&\colon\quad
+m_2\bigl(a,\, m_2(b,c;\zeta_{23});\, \zeta_{12}\bigr),
+\\
+D_{13}&\colon\quad
+-\,m_2\bigl(m_2(a,c;\zeta_{13}),\, b;\, \zeta_{12}\bigr).
+\end{align*}
+The sign on $D_{13}$ is the Koszul sign from permuting $b$ past
+$c$.  Stokes' theorem on $\FM_3(\C)$ gives
+$\sum_S \Res_{D_S}(\omega) = 0$ for any closed form~$\omega$ on
+$\FM_3(\C)$.  Applying this to the form built from three OPE
+kernels, projecting to the singular parts, and performing the Borel
+transform gives the $\lambda$-bracket Jacobi identity:
+\[
+\{a_\lambda \{b_\mu c\}\}
+\;-\;
+\{b_\mu \{a_\lambda c\}\}
+\;=\;
+\{\{a_\lambda b\}_{\lambda+\mu} c\}.
+\]
+This is not a formal consequence of abstract nonsense.  It is a
+residue computation on a specific compact manifold with corners.
+The three boundary faces of $\FM_3(\C)$ are three collisions; the
+cancellation of the integral over $\partial\FM_3(\C)$ is the Jacobi
+identity.
+
+\subsection*{Leibniz, skew-symmetry, and the exchange cylinder}
+
+Leibniz ($\{a_\lambda bc\} = \{a_\lambda b\}c +
+b\{a_\lambda c\}$) follows from the factorisation of the regular
+part~$\mu$ through the collision stratum: when $z_2 \to z_3$ while
+$z_1$ is far away, $m_2(a, m_2^{\mathrm{reg}}(b,c;0); \zeta_{12})$
+decomposes into the product of $m_2(a,b;\zeta_{12})$ with~$c$ plus
+$b$ with $m_2(a,c;\zeta_{13})$.
+
+Skew-symmetry ($\{a_\lambda b\} = -\{b_{-\lambda-\partial} a\}$)
+follows from the exchange automorphism $z_1 \leftrightarrow z_2$ on
+$\FM_2(\C)$, which reverses the sign of $\zeta = z_1 - z_2$ and
+introduces $\partial$ from the Jacobian of the coordinate change.
+
+\subsection*{Heisenberg and Kac--Moody PVAs}
+
+For the Heisenberg: $m_2^{\mathrm{reg}} = 0$ (no regular part), so
+$\mu = 0$ and the product is trivial.  The $\lambda$-bracket
+$\{J_\lambda J\} = k\lambda$ is the entire PVA\@.  Jacobi is
+vacuous (single generator).
+
+For Kac--Moody: $m_2^{\mathrm{reg}}(J^a, J^b; 0) = 0$
+(the structure constants are in the singular part).  The
+$\lambda$-bracket $\{J^a_\lambda J^b\} = f^{ab}{}_c J^c +
+k\delta^{ab}\lambda$ recovers the affine PVA\@.  Jacobi is the
+Lie-algebra Jacobi identity for $f^{ab}{}_c$, which is indeed the
+residue of the three-face Stokes identity on $\FM_3(\C)$ evaluated
+on the $\widehat{\fg}_k$ OPE.
 
 
 \section*{X.\quad The bulk-boundary-line triangle}
 
-Three algebraic objects arise from a holomorphic--topological
-theory on $\C \times \R_{\ge 0}$: bulk local operators $\Abulk$,
+A holomorphic--topological theory on $\C \times \R_{\ge 0}$
+produces three algebraic objects: bulk local operators $\Abulk$,
 boundary local operators $\Bbound$, and line operators
-$\cC_{\mathrm{line}}$.  The corrected triangle is
+$\cC_{\mathrm{line}}$.
+
+\subsection*{The corrected triangle}
+
+The naive identification ``bulk $=$ boundary $=$ lines'' is false.
+The corrected triangle is
 \[
 \Abulk
 \;\simeq\;
@@ -445,11 +593,87 @@ $\cC_{\mathrm{line}}$.  The corrected triangle is
 \]
 The bulk is the \emph{derived centre} of the boundary, not the
 boundary itself.  Line operators are modules for the Koszul dual
-$\cA^!$, not for the bulk.  The spectral braiding $R(z)$ on lines
-satisfies Yang--Baxter by $W$-coherence on $\FM_3(\C)$: the two
-orderings of three lines correspond to two degenerations of
-$\FM_3(\C)$, and the consistency of these degenerations is the YBE
-(Theorem~\ref{thm:YBE}).
+$\cA^!$, not for the bulk.
+
+\subsection*{Why the derived centre}
+
+The derived centre $\Zder(\Bbound)$ of an $\Ainf$ algebra $\Bbound$
+is the endomorphism algebra of the identity bimodule:
+\[
+\Zder(\Bbound) \;:=\; \RHom_{\Bbound\text{-}\Bbound}(\Bbound,\,\Bbound).
+\]
+For a commutative algebra, $\Zder = $ the algebra itself.  For a
+noncommutative algebra, $\Zder$ is strictly smaller: it consists of
+elements that commute with everything \emph{up to coherent
+homotopy}.  The identification $\Abulk \simeq \Zder(\Bbound)$ is
+the statement that bulk observables are exactly those boundary
+observables that are invisible to boundary-condition changes---they
+commute, in the derived sense, with all boundary operators.
+
+For the Heisenberg: $\Bbound = \cH_k$ is commutative ($J_{(0)}J =
+0$), so $\Zder(\cH_k) = \cH_k$: bulk $=$ boundary.  For
+Kac--Moody: $\Bbound = \widehat{\fg}_k$ is noncommutative, and
+$\Zder(\widehat{\fg}_k)$ is the Feigin--Frenkel centre
+$\mathfrak{z}(\widehat{\fg}_{-h^\vee})$ at the critical level---a
+commutative subalgebra isomorphic to the algebra of
+${}^L\!G$-opers on the formal disc.
+
+\subsection*{Lines as Koszul-dual modules}
+
+Line operators along $\R_+ \times \{0\}$ are boundary-condition-
+changing operators: they interpolate between different boundary
+conditions on $\{0\} \times \C$.  The space of such operators is
+naturally a module not for $\Bbound$ but for $\Bbound^!$: the
+Koszul dual algebra acts on lines because the bar complex, which
+mediates between $\Bbound$ and $\Bbound^!$, also mediates between
+boundary conditions.
+
+The identification $\cC_{\mathrm{line}} \simeq \Bbound^!\text{-mod}$
+is the open-colour projection of the Swiss-cheese structure: the
+open sector of the $\SCchtop$-algebra $(\barBch(\cA), D_\cA,
+\Delta)$ is an $E_1$-coalgebra whose comodules are
+$\Bbound^!$-modules.
+
+For the Heisenberg: $\Bbound^! = \cH_{-k}$, and
+$\cC_{\mathrm{line}} = \cH_{-k}\text{-mod} = $ Fock modules.  For
+Kac--Moody: $\Bbound^! = \widehat{\fg}_{-k-2h^\vee}$, and
+$\cC_{\mathrm{line}} = $ category $\mathcal{O}$ at the dual level.
+
+\subsection*{The spectral $R$-matrix and Yang--Baxter}
+
+Two parallel line operators $L_1(z_1)$, $L_2(z_2)$ on the
+boundary interact through the bulk: the bulk-to-boundary OPE in
+the strip between them produces a braiding
+\[
+R_{L_1, L_2}(z) \colon L_1 \otimes L_2
+\;\xrightarrow{\;\sim\;}\;
+L_2 \otimes L_1,
+\]
+meromorphic in $z = z_1 - z_2$.  This braiding is computed by a
+configuration integral over $\FM_2(\C)$ with $E_1$-homotopies
+along the half-interval: the holomorphic collision produces the
+residue, and the topological ordering produces the braiding sign.
+
+Three lines $L_1, L_2, L_3$ at $z_1, z_2, z_3$ can be braided in
+two orders, corresponding to the two maximal degenerations of
+$\FM_3(\C)$.  The consistency of these two orderings---the
+cancellation of the integral over $\partial\FM_3(\C)$---is the
+Yang--Baxter equation
+\[
+R_{12}(z_{12})\,R_{13}(z_{13})\,R_{23}(z_{23})
+\;=\;
+R_{23}(z_{23})\,R_{13}(z_{13})\,R_{12}(z_{12}).
+\]
+This is the same Stokes mechanism that gives the PVA Jacobi
+identity in Section~IX: the $n = 3$ boundary cancellation on
+$\FM_3(\C)$.  The Jacobi identity is the closed-colour projection;
+the Yang--Baxter equation is the open-colour projection.  Both are
+shadows of the single $\Ainf$ Stasheff identity at $n = 3$.
+
+For the Heisenberg: $R(z) = e^{k\hbar/z}$ (scalar, YBE trivial).
+For Kac--Moody: $R(z)$ is the quantum group $R$-matrix of
+$U_\hbar(\fg)$, with $r(z) = \Omega/z$ as classical limit.
+
 
 \section*{XI.\quad PVA quantization: from classical to quantum}
 
@@ -519,7 +743,7 @@ $\R_+ \times \C$ has bulk observables on the interior, boundary
 observables on $\{0\} \times \C$, and line operators along
 $\R_+ \times \{0\}$.
 
-\subsection*{Twisted holography from first principles}
+\subsection*{Twisted holography}
 
 A 3d $\cN = 2$ gauge theory on $\R_+ \times \C$ with gauge
 group~$G$ and Chern--Simons level~$k$ has an action
