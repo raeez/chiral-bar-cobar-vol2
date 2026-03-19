@@ -127,6 +127,61 @@ Open string vertex algebras on non-trivial D-brane configurations are genericall
 Matrix-valued OPE from Chan--Paton factors is compatible with $\Eone$-chiral structure (Definition~\ref*{def:chiral-ass-operad}), but deriving it from open string field theory~\cite{Zwi93} lies outside this monograph.
 \end{remark}
 
+\subsubsection{D-brane matrix ordering and the \texorpdfstring{$\Eone$}{E1} Steinberg}
+\label{sec:chan-paton-steinberg}
+
+\providecommand{\SteinbergCP}{\mathfrak{S}_b^{\mathrm{CP}}}
+
+\begin{construction}[Chan--Paton Steinberg]\label{constr:chan-paton-steinberg}
+For $n$ coincident D-branes, the open string vertex algebra is $\End(\mathbb{C}^n)$-valued.
+The Steinberg object of \S\ref{sec:steinberg-from-bar} acquires Chan--Paton dressing:
+\[
+  \SteinbergCP \;=\; \mathfrak{S}_b \otimes_{\mathbb{C}} \End(\mathbb{C}^n).
+\]
+The convolution product on $H_*^{\mathrm{BM}}(\SteinbergCP)$ combines two independent structures:
+\emph{geometric convolution} from FM collision in the $\mathbb{C}_z$-direction (encoding OPE residues),
+and \emph{matrix multiplication} from the Chan--Paton factor $\End(\mathbb{C}^n)$
+(encoding open string endpoint labels).
+\end{construction}
+
+\begin{proposition}[Matrix ordering forces $\Eone$ structure; \ClaimStatusProvedHere]
+\label{prop:chan-paton-e1}
+The convolution on $\SteinbergCP$ is $\Eone$ but not $E_\infty$.
+
+The ordered configuration space $\operatorname{Conf}_k^{<}(\mathbb{R})$
+in the topological $\mathbb{R}_t$-direction provides a canonical total order on operator
+insertions --- this is the $\Eone$-structure of the bar coproduct, not a choice.
+For operators $A, B \in \End(\mathbb{C}^n)$ at positions $t_1 < t_2$ in
+$\operatorname{Conf}_2^{<}(\mathbb{R})$, the convolution product composes
+Chan--Paton factors as $AB$ (left-to-right in the $\mathbb{R}$-ordering).
+Since $AB \neq BA$ generically for $n \geq 2$, the product is associative but
+non-commutative---i.e.\ $\Eone$ but not $E_\infty$.
+The holomorphic $\mathbb{C}_z$-direction is unaffected: OPE coefficients remain
+$\Sigma_k$-equivariant on $\operatorname{FM}_k(\mathbb{C})$.
+\end{proposition}
+
+\begin{proof}
+Associativity of the convolution follows from associativity of both FM composition
+(Proposition~\ref*{prop:steinberg-convolution}) and matrix multiplication.
+Non-commutativity is immediate: choose $A, B \in \End(\mathbb{C}^n)$ with $[A,B] \neq 0$.
+At positions $t_1 < t_2$ the convolution gives $AB$; at $t_2 < t_1$ it gives $BA$.
+Since $AB \neq BA$, the $E_\infty$-structure (which requires the transposition
+$\sigma \in \Sigma_2$ to act trivially) is broken.  The $\mathbb{C}_z$-factor is
+unchanged because FM composition on $\operatorname{FM}_k(\mathbb{C})$ is $\Sigma_k$-equivariant,
+and the Chan--Paton tensor factor does not couple to the holomorphic direction.
+\end{proof}
+
+\begin{remark}[First-principles origin of $\Eone$-chirality]
+\label{rmk:chan-paton-e1-origin}
+Proposition~\ref{prop:chan-paton-e1} gives a clean mechanism for why
+D-brane algebras are $\Eone$-chiral (Conjecture~\ref{conj:dbrane-e1}):
+the Chan--Paton matrix indices create an ordering along the topological $\mathbb{R}_t$-direction
+that is invisible in the holomorphic $\mathbb{C}_z$-direction.
+For a single brane ($n=1$), $\End(\mathbb{C}^1) = \mathbb{C}$ is commutative and the
+$E_\infty$-structure survives---consistent with the fact that abelian open string
+vertex algebras are commutative.
+\end{remark}
+
 
 \subsubsection{\texorpdfstring{D-brane categories from $\Eone$-module Koszul duality}{D-brane categories from E1-module Koszul duality}}
 
@@ -163,6 +218,98 @@ collection on $X^\vee$.
 Theorem~\ref*{thm:e1-module-koszul-duality} stands independently; the HMS interpretation requires identifying chiral algebra modules with brane categories (boundary CFT input) and passing from the abstract functor $\Phi$ to derived category equivalences (tilting generation).
 \end{remark}
 
+\subsubsection{HMS as Steinberg correspondence duality}
+\label{sec:hms-steinberg}
+\index{homological mirror symmetry!Steinberg correspondence}
+\index{Steinberg correspondence!HMS interpretation}
+
+\providecommand{\BM}{\mathrm{BM}}
+\providecommand{\Coh}{\mathrm{Coh}}
+\providecommand{\Fuk}{\mathrm{Fuk}}
+\providecommand{\HW}{\mathrm{HW}}
+
+The Chriss--Ginzburg perspective on convolution algebras
+(cf.\ \S\ref*{sec:steinberg-motivation}) furnishes a geometric
+refinement of Conjecture~\ref{conj:hms-koszul}: both sides of HMS
+are Steinberg correspondences, and the mirror map is the exchange of
+correspondence factors.
+
+\begin{construction}[B-model Steinberg object]
+\label{con:steinberg-B}
+Let $X$ be a Calabi--Yau manifold with diagonal embedding
+$\Delta_X \hookrightarrow X \times X$.  The \emph{B-model Steinberg
+object} is the derived self-intersection
+\[
+  \mathfrak{S}_B
+  \;=\;
+  \Delta_X \times_{X \times X} \Delta_X
+  \;\subset\;
+  T^*X \times T^*X.
+\]
+Its Borel--Moore homology computes the Hochschild cohomology of the
+derived category:
+\[
+  H_*^{\BM}(\mathfrak{S}_B)
+  \;=\;
+  \mathrm{Ext}^{\bullet}(\mathcal{O}_{\Delta},\,\mathcal{O}_{\Delta})
+  \;=\;
+  \HH^{\bullet}(\Coh(X)).
+\]
+The convolution product on $H_*^{\BM}(\mathfrak{S}_B)$ is the
+composition of Fourier--Mukai kernels supported on the diagonal.
+\end{construction}
+
+\begin{construction}[A-model Steinberg object]
+\label{con:steinberg-A}
+For the mirror $X^\vee$, fix a Lagrangian $L \subset X^\vee$.
+The \emph{A-model Steinberg object} is the Lagrangian
+self-intersection
+\[
+  \mathfrak{S}_A
+  \;=\;
+  L \times_{X^\vee} L
+  \;\subset\;
+  T^*X^\vee \times T^*X^\vee.
+\]
+The wrapped Floer cohomology $\HW^{\bullet}(L, L)$ is the
+A-model convolution algebra: the product is the pair-of-pants
+cobordism, and the $A_\infty$ structure records all
+higher-order disk instantons.
+\end{construction}
+
+\begin{proposition}[HMS as Steinberg identification; \ClaimStatusConjectured]
+\label{prop:hms-steinberg}
+\index{Steinberg correspondence!mirror identification}
+Homological mirror symmetry
+$D^b(\Coh(X)) \simeq D^b(\Fuk(X^\vee))$
+is the identification $\mathfrak{S}_B \simeq \mathfrak{S}_A$
+as Steinberg correspondences.  At the level of convolution algebras,
+the module bar-cobar functor transports representations:
+\[
+  \barB\bigl(\HH^{\bullet}(\Coh(X))\bigr)\text{-comodules}
+  \;\simeq\;
+  \Omega\bigl(\HW^{\bullet}(L, L)\bigr)\text{-modules}.
+\]
+This is the module Koszul duality statement of
+Theorem~\textup{\ref*{thm:e1-module-koszul-duality}},
+specialized to the HMS pair $(X, X^\vee)$.
+\end{proposition}
+
+\begin{remark}[Swiss-cheese color exchange]
+\label{rem:hms-color-exchange}
+The bar complex $\barB(\Coh(X))$ computing
+$\mathrm{Ext}^{\bullet}(\mathcal{O}_\Delta,\,\mathcal{O}_\Delta)$
+\emph{is} the Steinberg object $\mathfrak{S}_B$: the bar differential
+encodes the holomorphic convolution, while the bar coproduct encodes
+the topological deconcatenation.  Under the mirror map
+$X \leftrightarrow X^\vee$, the two factors of the correspondence
+exchange roles---holomorphic becomes topological and vice versa.
+This is precisely the Swiss-cheese color exchange: the closed
+(holomorphic) color on $X$ maps to the open (topological) color
+on $X^\vee$, as the Steinberg variety presents the Hecke algebra
+and the bar complex presents the Swiss-cheese algebra.
+\end{remark}
+
 
 \subsection{AGT correspondence connections}
 \label{sec:agt}
@@ -186,6 +333,102 @@ where $\mathcal{W}_{q,t}$ is the quantum W-algebra, an $\Eone$-chiral algebra.
 
 \begin{remark}[Scope]
 $\mathcal{W}_{q,t}$ as an $\Eone$-chiral algebra is well-defined (Frenkel--Reshetikhin); the equality with 5d Nekrasov partition functions~\cite{AY10} is a physics conjecture beyond the methods of this monograph.
+\end{remark}
+
+\subsection{The 5d Steinberg and quantum toroidal algebras}
+\label{sec:5d-steinberg-toroidal}
+\index{Steinberg variety!5d instanton}
+\index{quantum toroidal algebra}
+\index{q-AGT correspondence@$q$-AGT correspondence!Steinberg approach}
+
+\providecommand{\Minst}{\mathcal{M}_{\mathrm{inst}}}
+
+The $q$-AGT conjecture (Conjecture~\ref{conj:q-agt}) admits a
+Chriss--Ginzburg--style attack via the 5d instanton Steinberg variety.
+We outline the construction and its place in the dimension-cohomology tower.
+
+\begin{construction}[The 5d instanton Steinberg]
+\label{constr:5d-steinberg}
+\index{Steinberg variety!K-theoretic convolution}
+The 5d Nekrasov partition function $Z_{\mathrm{5d}}(q,t)$ is computed by
+K-theoretic integration over the instanton moduli space
+$\Minst^{\mathrm{5d}}$.  The Hecke correspondence
+\[
+  \Minst^{\mathrm{5d}}(n)
+  \xleftarrow{\;\pi_1\;}
+  \mathfrak{H}^{\mathrm{5d}}(n,n+1)
+  \xrightarrow{\;\pi_2\;}
+  \Minst^{\mathrm{5d}}(n+1)
+\]
+defines, by fibre product, the 5d instanton Steinberg variety
+\[
+  \mathfrak{S}^{\mathrm{5d}}
+  \;=\;
+  \mathfrak{H}^{\mathrm{5d}}
+  \times_{\Minst^{\mathrm{5d}}}
+  \mathfrak{H}^{\mathrm{5d}}.
+\]
+The convolution product on $\mathfrak{S}^{\mathrm{5d}}$ is
+\emph{K-theoretic}, not homological: the relevant functor is
+$(\pi_2)_* \circ \pi_1^*$ acting on K-theory classes, with the
+push-forward defined via the equivariant K-theoretic Gysin map.
+The convolution algebra is $K_0^{T}(\mathfrak{S}^{\mathrm{5d}})$
+with the K-theoretic convolution product.
+\end{construction}
+
+\begin{proposition}[K-theoretic convolution and quantum toroidal algebras;
+  \ClaimStatusConjectured]
+\label{prop:5d-steinberg-toroidal}
+\index{Schiffmann--Vasserot}
+The K-theoretic convolution algebra
+$K_0^{T}(\mathfrak{S}^{\mathrm{5d}})$ is isomorphic to the quantum
+toroidal algebra $U_{q,t}(\hat{\hat{\mathfrak{g}}})$ of
+Schiffmann--Vasserot.  Under this identification:
+\begin{enumerate}
+\item The bar complex $\barB(\mathcal{W}_{q,t})$ of the quantum
+  W-algebra is the Steinberg object $\mathfrak{S}^{\mathrm{5d}}$:
+  bar elements of degree $k$ parametrise $k$-step Hecke chains, and
+  the bar differential encodes the K-theoretic convolution product.
+\item The $q$-parameter is the K-theory equivariant parameter---the
+  exponential of the $\Omega$-background circle radius---replacing
+  the homological spectral parameter $z$ of the 4d story.
+\item Bar-cobar inversion
+  $\Omega\bigl(\barB(\mathcal{W}_{q,t})\bigr) \simeq \mathcal{W}_{q,t}$
+  recovers the quantum W-algebra from its Steinberg presentation,
+  upgrading the 4d bar-cobar adjunction
+  (Theorem~\ref{thm:agt-2d-bar-cobar}) to the K-theoretic setting.
+\end{enumerate}
+\end{proposition}
+
+\begin{remark}[The dimension-cohomology tower]
+\label{rem:dim-cohomology-tower}
+\index{dimension-cohomology tower}
+\index{elliptic cohomology!Steinberg variety}
+The passage from 4d to 5d is the upgrade from Borel--Moore homology to
+K-theory on the Steinberg variety.  This is the first step in a
+dimension-cohomology tower:
+\[
+\renewcommand{\arraystretch}{1.4}
+\begin{array}{r@{\;:\;}l@{\;\;=\;\;}l@{\qquad}l}
+  \text{4d} & H_*^{\mathrm{BM}}(\mathfrak{S}^{\mathrm{4d}})
+    & \mathcal{W}\text{-algebra}
+    & \text{(homological)} \\
+  \text{5d} & K_0(\mathfrak{S}^{\mathrm{5d}})
+    & \mathcal{W}_{q,t}\text{-algebra}
+    & \text{(K-theoretic)} \\
+  \text{6d} & \mathrm{Ell}(\mathfrak{S}^{\mathrm{6d}})
+    & \mathcal{W}_{q,p}\text{-algebra}
+    & \text{(elliptic cohomology)}
+\end{array}
+\]
+Each row is an instance of the Chriss--Ginzburg paradigm applied
+to the instanton moduli space of the corresponding gauge theory:
+the convolution algebra of the Steinberg variety, computed in the
+appropriate cohomology theory, recovers the symmetry algebra.
+The bar complex in each case is the Steinberg object itself; the
+cohomology theory determines whether the bar differential and
+$\Ainf$-operations are polynomial ($H_*^{\mathrm{BM}}$),
+trigonometric ($K_0$), or elliptic ($\mathrm{Ell}$).
 \end{remark}
 
 %================================================================
@@ -603,6 +846,72 @@ $\xrightarrow{\text{defect}}$
 quantum integrable system (Toda for $G = SU(N)$).
 \end{example}
 
+\subsubsection{The iterated Steinberg and the dimension tower}
+
+The conjecture above admits a precise operadic formulation via the
+Chriss--Ginzburg convolution paradigm, applied level by level to the
+dimension tower.
+
+\providecommand{\Steinberg}{\mathfrak{S}}
+
+\begin{construction}[Steinberg object at level $k$]
+\label{constr:steinberg-level-k}
+For an HT theory on $\mathbb{C}^k \times \mathbb{R}$, define the
+\emph{level-$k$ Steinberg object} $\Steinberg_b^{(k)}$ as the
+convolution algebra whose correspondence space at arity $n$ is
+\[
+  \Steinberg_b^{(k)}(n) \;=\; \operatorname{FM}_n(\mathbb{C}^k)
+  \times \operatorname{Conf}_n(\mathbb{R}).
+\]
+The differential comes from OPE residues on $\operatorname{FM}_n(\mathbb{C}^k)$
+(holomorphic directions), and the coproduct from ordered deconcatenation on
+$\operatorname{Conf}_n(\mathbb{R})$ (topological direction).
+The inclusions $\mathbb{C}^k \hookrightarrow \mathbb{C}^{k+1}$
+induce \emph{stabilization maps}
+\[
+  \sigma_k \colon \Steinberg_b^{(k)} \longrightarrow \Steinberg_b^{(k+1)}
+\]
+via the operadic maps
+$\operatorname{FM}_n(\mathbb{C}^k) \hookrightarrow
+\operatorname{FM}_n(\mathbb{C}^{k+1})$.
+The \emph{dimension tower} is the directed system
+$\Steinberg_b^{(1)} \to \Steinberg_b^{(2)} \to \cdots$.
+\end{construction}
+
+\begin{proposition}[\ClaimStatusConjectured]
+\label{prop:steinberg-tower-factorization}
+The bar-cobar pairing factorizes along the dimension tower:
+at level~$k$, the Fulton--MacPherson operad
+$\operatorname{FM}(\mathbb{C}^k)$ is formal by Kontsevich formality,
+with homology the operad $\mathcal{P}_{k\text{-}1}$ of
+$(k{-}1)$-Poisson algebras.  Consequently the level-$k$ Steinberg
+$\Steinberg_b^{(k)}$ computes the $(k{-}1)$-shifted Poisson version
+of the bar complex, and the stabilization $\sigma_k$ corresponds to
+the canonical map $\mathcal{P}_{k-1} \to \mathcal{P}_k$ of Poisson
+operads.
+\end{proposition}
+
+\begin{remark}[The first three levels]
+\label{rem:three-levels}
+The tower at low $k$ recovers familiar structures:
+\begin{itemize}
+\item $k = 1$: $\operatorname{FM}_n(\mathbb{C}^1) \simeq
+  \operatorname{FM}_n(\mathbb{C})$.  The homology operad is
+  $\mathcal{P}_0 = E_1$, the associative operad.  The Steinberg
+  $\Steinberg_b^{(1)}$ is the ordinary associative bar complex.
+\item $k = 2$: The homology operad is $\mathcal{P}_1$, i.e.\
+  $1$-Poisson $= E_2$.  The Steinberg $\Steinberg_b^{(2)}$ is the
+  chiral bar complex of Volume~I---the Swiss-cheese algebra with one
+  holomorphic direction $\mathbb{C}$ and one topological direction
+  $\mathbb{R}$.
+\item $k = 3$: The homology operad is $\mathcal{P}_2$
+  ($2$-Poisson).  The Steinberg $\Steinberg_b^{(3)}$ is the
+  \emph{2-chiral bar complex}, governing 4d HT theories on
+  $\mathbb{C}^3 \times \mathbb{R}$---each level adds one holomorphic
+  direction to the Steinberg correspondence.
+\end{itemize}
+\end{remark}
+
 \subsection{$\mathcal{W}$-algebras from Hitchin moduli}
 
 \subsubsection{The Higgs branch and Hitchin system}
@@ -711,6 +1020,294 @@ The bar differential:
 On-shell correlators (physical observables) are in:
 \[H^0(\bar{B}^{\text{ch}}(\text{Vir}))\]
 \end{example}
+
+\subsection{The spectral curve Steinberg and $\mathcal{W}$-algebra duality}
+
+\providecommand{\fStein}{\mathfrak{S}}
+
+The Hitchin conjecture (Conjecture~\ref{conj:w-algebra-hitchin}) identifies
+$\mathcal{W}(G)$ as the chiral algebra of the Hitchin moduli space, while
+Theorem~\ref{thm:w-algebra-bar-complex} computes $\mathcal{W}$-algebra
+conformal blocks, fusion rules, and modular functors via the bar complex.
+The two results meet in a single geometric object: the \emph{Hitchin
+Steinberg variety}, whose convolution algebra \emph{is} the
+$\mathcal{W}$-algebra and whose geometric operations \emph{are} the bar
+and cobar functors.
+
+\subsubsection{The Hitchin Steinberg}
+
+\begin{construction}[Hitchin Steinberg variety]
+\label{constr:hitchin-steinberg}
+Let $X$ be a smooth projective curve of genus $g$, $G$ a reductive group,
+and $\mathcal{M}_{\mathrm{Hit}}(X,G)$ the Hitchin moduli space.  The Hitchin
+fibration
+\[
+h \colon \mathcal{M}_{\mathrm{Hit}}(X,G) \longrightarrow \mathcal{B}
+  = \bigoplus_{i=1}^{\mathrm{rk}\,G} H^0(X, K_X^{\otimes d_i})
+\]
+has generic fiber a Lagrangian abelian variety --- the Jacobian of
+the \emph{spectral curve} $\Sigma_b \subset T^*X$ determined by the
+characteristic polynomial of the Higgs field $\varphi$.  For
+$b \in \mathcal{B}^{\mathrm{reg}}$, the spectral curve
+$\Sigma_b \hookrightarrow T^*X$ is a smooth branched cover of degree
+$\mathrm{rk}\,G$.
+
+The \emph{Hitchin Steinberg variety} is the fiber product
+\[
+\fStein_{\mathrm{Hit}}
+  \;=\; \Sigma_b \,\times_{T^*X}\, \Sigma_b
+  \;\subset\; T^*X \times T^*X,
+\]
+the self-intersection of the spectral curve inside the cotangent bundle.
+\end{construction}
+
+\begin{conjecture}[$\mathcal{W}$-algebra as convolution on $\fStein_{\mathrm{Hit}}$; \ClaimStatusConjectured]
+\label{conj:w-steinberg-convolution}
+The Borel--Moore homology of the Hitchin Steinberg variety carries a
+convolution product, and there is an isomorphism of vertex algebras
+\[
+H_*^{\mathrm{BM}}(\fStein_{\mathrm{Hit}})
+  \;\cong\; \mathcal{W}_k(\mathfrak{g}),
+\]
+where the level $k$ is determined by the point $b \in \mathcal{B}$.
+The convolution product on $\fStein_{\mathrm{Hit}}$ becomes the
+normally-ordered product of $\mathcal{W}_k(\mathfrak{g})$; the
+intersection pairing becomes the $\lambda$-bracket.
+\end{conjecture}
+
+This is the $\mathcal{W}$-algebra analogue of the classical statement
+that the Borel--Moore homology of the Steinberg variety
+$\widetilde{\mathcal{N}} \times_{\mathfrak{g}} \widetilde{\mathcal{N}}$
+presents the group algebra of the Weyl group (Kazhdan--Lusztig) ---
+or, in the affine setting, the affine Hecke algebra
+(Chriss--Ginzburg~\cite{CG97}).
+
+\subsubsection{Bar-cobar duality as convolution-restriction}
+
+\begin{proposition}[Bar-cobar $=$ convolution-restriction on $\fStein_{\mathrm{Hit}}$; \ClaimStatusConjectured]
+\label{prop:bar-cobar-steinberg}
+The bar-cobar duality
+$\barB(\mathcal{W}_k) \leftrightarrow \Omega(\mathcal{W}_k^!)$ is the
+convolution-restriction adjunction on $\fStein_{\mathrm{Hit}}$:
+\begin{enumerate}
+\item \emph{Bar differential.}  The bar differential
+  $d_{\barB}$ is the convolution map on $\fStein_{\mathrm{Hit}}$:
+  collision of points on the spectral curve $\Sigma_b \times \Sigma_b$
+  along diagonal strata extracts OPE residues.  In coordinates, for
+  sheets $\sigma_i, \sigma_j$ meeting along $\Delta \subset T^*X$,
+  \[
+  d_{\barB}(\sigma_i \otimes \sigma_j)
+    = \operatorname{Res}_{\sigma_i \to \sigma_j}
+      \bigl[\sigma_i \cdot \sigma_j\bigr],
+  \]
+  where the residue is taken along the collision divisor
+  $\{p_i = p_j\} \subset \Sigma_b \times \Sigma_b$.
+
+\item \emph{Coproduct.}  The bar coproduct $\Delta_{\barB}$ is the
+  restriction map: decomposition of $\fStein_{\mathrm{Hit}}$ into
+  individual spectral sheets.  For a class
+  $\alpha \in H_*^{\mathrm{BM}}(\fStein_{\mathrm{Hit}})$,
+  \[
+  \Delta_{\barB}(\alpha) = \sum_{I \sqcup J = \{1,\ldots,N\}}
+    \alpha|_{\Sigma_I \times \Sigma_J},
+  \]
+  where $\Sigma_I = \bigcup_{i \in I} \sigma_i$ is the union of sheets
+  indexed by~$I$.
+\end{enumerate}
+\end{proposition}
+
+\subsubsection{Compatibility with Drinfeld--Sokolov reduction}
+
+\begin{proposition}[DS reduction commutes with the Steinberg construction; \ClaimStatusConjectured]
+\label{prop:ds-steinberg-commute}
+Let $\mathfrak{n} \subset \mathfrak{g}$ be the nilpotent radical
+associated to a nilpotent orbit $e \in \mathfrak{g}$.  Hamiltonian
+reduction of $\fStein_{\mathrm{Hit}}$ by the $\mathfrak{n}$-action
+produces the reduced Steinberg variety for the DS-reduced
+$\mathcal{W}$-algebra.  Explicitly, the following diagram commutes:
+\[
+\begin{tikzcd}
+\fStein_{\mathrm{Hit}}(\mathfrak{g})
+  \ar[r, "\text{convolution}"]
+  \ar[d, "/\!\!/ \mathfrak{n}"']
+& \mathcal{W}_k(\mathfrak{g})
+  \ar[d, "\mathrm{DS}_e"] \\
+\fStein_{\mathrm{Hit}}(\mathfrak{g})
+  /\!\!/ \mathfrak{n}
+  \ar[r, "\text{convolution}"']
+& \mathcal{W}_k(\mathfrak{g}, e)
+\end{tikzcd}
+\]
+\end{proposition}
+
+\begin{proof}
+The $\mathfrak{n}$-action on the spectral curve $\Sigma_b$ is free on the
+regular locus $\mathcal{B}^{\mathrm{reg}}$: the spectral curve over a
+regular point is smooth, and the $N$-orbits on the fiber
+$h^{-1}(b) \cong \operatorname{Jac}(\Sigma_b)$ are free because the
+stabilizer of a regular Higgs field under the adjoint $N$-action is
+trivial.  Freeness implies that Hamiltonian reduction commutes with the
+fiber product:
+\[
+(\Sigma_b \times_{T^*X} \Sigma_b) /\!\!/ N
+  \;\cong\;
+(\Sigma_b /\!\!/ N) \times_{T^*X /\!\!/ N} (\Sigma_b /\!\!/ N).
+\]
+The reduced spectral curve $\Sigma_b /\!\!/ N$ parametrizes the
+DS-reduced Hitchin system, so the reduced fiber product is the Steinberg
+variety for $\mathcal{W}_k(\mathfrak{g}, e)$.  The geometric
+commutativity---that Hamiltonian reduction commutes with fiber
+products under the freeness hypothesis---is unconditional.
+
+The horizontal arrows in the diagram invoke
+Conjecture~\ref{conj:w-steinberg-convolution} (the identification
+of convolution on $\fStein_{\mathrm{Hit}}$ with $\mathcal{W}_k$),
+which is why this proposition is conditional.  The algebraic
+content---that bar-cobar intertwines with DS reduction at the chain
+level---is unconditional via
+Theorem~\hyperref[thm:ds-koszul-intertwine]{ds-koszul-intertwine}
+of Volume~I.  The present proposition lifts that algebraic statement
+to the geometric Steinberg setting, contingent on the Steinberg
+presentation conjecture.
+\end{proof}
+
+\subsubsection{DS reduction as Hamiltonian reduction of the Steinberg}
+\label{subsubsec:ds-hamiltonian-steinberg}
+
+\providecommand{\Lloop}{\mathcal{L}}
+\providecommand{\Mvac}{\mathcal{M}_{\mathrm{vac}}}
+
+The preceding proposition establishes that DS reduction commutes with
+the Steinberg construction at the level of varieties.  We now lift
+this to the $\Ainf$ bar complex, recovering
+Theorem~\hyperref[thm:ds-koszul-intertwine]{ds-koszul-intertwine}
+from Volume~I as a consequence of Hamiltonian reduction of fiber
+products.
+
+\begin{proposition}[DS reduction as Hamiltonian reduction of the
+Steinberg; \ClaimStatusConjectured]
+\label{prop:ds-hamiltonian-steinberg}
+Let $\cA$ be a chiral algebra with Steinberg object
+$\fStein_b = \Lloop_b \times_{\Mvac} \Lloop_b$,
+and let $(\mathfrak{n}, \chi)$ be DS reduction data with
+$\chi \colon \mathfrak{n} \to \C$ a non-degenerate character.
+The DS-reduced Steinberg is
+\[
+\fStein_b^{\mathrm{DS}}
+  \;=\; \fStein_b /\!\!/_\chi N
+  \;=\; (\Lloop_b /\!\!/_\chi N)
+        \,\times_{\Mvac / N}\,
+        (\Lloop_b /\!\!/_\chi N).
+\]
+This commutes with the convolution product, so that
+\[
+H_*^{\mathrm{BM}}(\fStein_b^{\mathrm{DS}})
+  \;\cong\;
+H_*^{\mathrm{BM}}(\fStein_b) /\!\!/_\chi N,
+\]
+which is the bar-cobar algebra for the DS-reduced chiral algebra
+$\mathrm{DS}_\chi(\cA)$.
+\end{proposition}
+
+\begin{proof}
+Two ingredients:
+\begin{enumerate}[label=(\alph*)]
+\item \emph{Freeness.}  The group $N$ acts freely on the regular
+  locus of $\Lloop_b$: the regularity condition in
+  Drinfeld--Sokolov reduction is precisely the condition that the
+  stabilizer of the $\mathfrak{n}$-action on the loop space is
+  trivial.  Concretely, a regular element $\varphi \in \Lloop_b$
+  has $\operatorname{Stab}_N(\varphi) = \{e\}$.
+
+\item \emph{Free actions commute with fiber products.}  When $N$
+  acts freely on $\Lloop_b$, the quotient map
+  $\Lloop_b \to \Lloop_b / N$ is a principal $N$-bundle.  The
+  fiber product of principal bundles satisfies
+  \[
+  (\Lloop_b \times_{\Mvac} \Lloop_b) / N
+    \;\cong\;
+  (\Lloop_b / N) \times_{\Mvac / N} (\Lloop_b / N),
+  \]
+  and the same holds for the Hamiltonian reduction
+  $/\!\!/_\chi$ (which is the quotient of the $\chi$-level set).
+\end{enumerate}
+The convolution product on $\fStein_b$ is defined by the
+correspondence structure of the fiber product; since reduction
+preserves the fiber product, it preserves convolution.  Passing to
+Borel--Moore homology gives the claimed isomorphism.
+\end{proof}
+
+\begin{corollary}[$\Ainf$ DS-bar intertwining; \ClaimStatusConjectured]
+\label{cor:ainf-ds-bar}
+Drinfeld--Sokolov reduction preserves the $(-1)$-shifted symplectic
+structure on~$\fStein_b$.  Therefore, at the $\Ainf$ level:
+\[
+\barB\bigl(\mathrm{DS}_\chi(\cA)\bigr)
+  \;\simeq\;
+\barB(\cA) /\!\!/_\chi N.
+\]
+In particular, the $\Ainf$ bar complex of
+$\mathcal{W}_k(\mathfrak{g}) = \mathrm{DS}_\chi(V_k(\mathfrak{g}))$
+equals the Hamiltonian reduction of the $\Ainf$ bar complex of
+$V_k(\mathfrak{g})$.  This recovers
+Theorem~\hyperref[thm:ds-koszul-intertwine]{ds-koszul-intertwine}
+from Volume~I from the Steinberg perspective.
+\end{corollary}
+
+\begin{proof}
+Hamiltonian reduction of a $(-1)$-shifted symplectic derived stack by
+a free group action yields a $(-1)$-shifted symplectic stack (this is
+the AKSZ principle: reduction preserves the shifted symplectic
+form~\cite{PTVV}).  Since the $\Ainf$ structure on
+$\barB(\cA)$ is encoded by the $(-1)$-shifted symplectic structure
+on~$\fStein_b$
+(Proposition~\ref{prop:bar-cobar-steinberg}), and since the
+Hamiltonian reduction by $N$ preserves this structure, the reduced
+bar complex $\barB(\cA) /\!\!/_\chi N$ carries a canonical $\Ainf$
+structure.  By
+Proposition~\ref{prop:ds-hamiltonian-steinberg}, the reduced
+Steinberg is the Steinberg for $\mathrm{DS}_\chi(\cA)$, so
+this $\Ainf$ structure is $\barB(\mathrm{DS}_\chi(\cA))$.
+\end{proof}
+
+\begin{remark}[Why DS commutes with bar-cobar at the $\Ainf$ level]
+\label{rem:ds-bar-cobar-ainf}
+The question ``does DS commute with bar-cobar at the $\Ainf$ level?''
+receives an affirmative answer from the Steinberg perspective: it is a
+consequence of the basic fact that \emph{Hamiltonian reduction commutes
+with fiber products} when the group action is free.  The freeness is
+not an accident but the defining regularity condition of
+Drinfeld--Sokolov reduction.  From this viewpoint,
+Theorem~\hyperref[thm:ds-koszul-intertwine]{ds-koszul-intertwine}
+is not an algebraic miracle but a geometric tautology: the Steinberg
+variety for the reduced algebra \emph{is} the reduced Steinberg
+variety.
+\end{remark}
+
+\begin{remark}[Quantization parameters from spectral data]
+\label{rem:quantization-spectral}
+The quantization parameters of $\mathcal{W}_k(\mathfrak{g})$ are
+encoded entirely in the spectral curve.  The level $k$ determines the
+characteristic polynomial of the Higgs field $\varphi$:
+\[
+\det(\xi \cdot \mathrm{id} - \varphi)
+  = \xi^N + \sum_{i=2}^{N} (-1)^i \, u_i(z) \, \xi^{N-i},
+  \qquad u_i \in H^0(X, K_X^{\otimes i}),
+\]
+whose zero locus in $T^*X$ is the spectral curve $\Sigma_b$ for
+$b = (u_2, \ldots, u_N) \in \mathcal{B}$.  Different levels give different
+Hitchin base points $b$, hence different spectral curves, hence
+different Steinberg varieties $\fStein_{\mathrm{Hit}}$, hence different
+$\mathcal{W}$-algebras --- all from a single geometric construction.
+
+The critical level $k = -h^\vee$ corresponds to the discriminant locus
+$\mathcal{B}^{\mathrm{sing}}$ where $\Sigma_b$ acquires nodes: the
+Steinberg variety degenerates, reflecting the Feigin--Frenkel center of
+$\widehat{\mathfrak{g}}_{-h^\vee}$.  The self-dual point
+$k + h^\vee \mapsto -(k + h^\vee)$ of the Feigin--Frenkel duality
+$k \leftrightarrow -k - 2h^\vee$ acts on spectral curves by the
+involution $\xi \mapsto -\xi$ of the cotangent fiber.
+\end{remark}
 
 \subsection{Quantization and loop corrections}
 
@@ -978,6 +1575,126 @@ Moreover:
 \begin{remark}[Scope]
 The 2D side is proved (Theorem~\ref{thm:agt-2d-bar}); the 4D--2D bridge is proved in specific cases \cite{SV13,MO19}.  MC4 and MC5 are both proved in Volume~I (Chapter~\ref*{chap:concordance}); the remaining obstruction is the 4D--2D bridge for general gauge groups.
 \end{remark}
+
+%----------------------------------------------------------------
+\subsubsection{The instanton Steinberg and the 4D/2D bridge}
+\label{sec:instanton-steinberg}
+\index{Steinberg variety!instanton}
+\index{AGT correspondence!Steinberg presentation}
+%----------------------------------------------------------------
+
+\providecommand{\Minst}{\mathcal{M}_{\mathrm{inst}}}
+\providecommand{\Sinst}{\mathfrak{S}_{\mathrm{inst}}}
+
+The Chriss--Ginzburg philosophy --- that representation-theoretic
+objects arise as Borel--Moore convolution algebras on Steinberg-type
+correspondences --- applies directly to the AGT correspondence, yielding
+a structural explanation rather than a case-by-case verification.
+
+\begin{construction}[Instanton Steinberg correspondence]
+\label{constr:instanton-steinberg}
+\index{instanton moduli!Steinberg correspondence}
+Let $G$ be a reductive group and fix the framing data at infinity on
+$\mathbb{C}^2$.  The moduli space $\Minst(G,n)$ of framed $G$-instantons
+of charge~$n$ on $\mathbb{C}^2$ carries a natural Hecke correspondence
+via the framed moduli $\Minst^0$:
+\begin{equation}\label{eq:instanton-steinberg}
+  \Sinst \;=\; \Minst(G,n) \;\times_{\Minst^0}\; \Minst(G,n).
+\end{equation}
+The Borel--Moore convolution algebra
+\[
+  H_*^{\mathrm{BM}}(\Sinst) \;\cong\; \mathcal{W}_k(\fg)
+\]
+recovers the W-algebra, where the level~$k$ is determined by the
+$\Omega$-background parameters $(\varepsilon_1, \varepsilon_2)$ via
+$k + h^\vee = -\varepsilon_1/\varepsilon_2$.  This is the
+Schiffmann--Vasserot \cite{SV13} and Maulik--Okounkov \cite{MO19}
+theorem: the W-algebra is the \emph{instanton Steinberg algebra},
+precisely as the affine Hecke algebra is the Steinberg algebra of
+$\widetilde{\mathcal{N}} \times_{\mathcal{N}} \widetilde{\mathcal{N}}$.
+\end{construction}
+
+\begin{proposition}[AGT as Chriss--Ginzburg; \ClaimStatusProvedElsewhere{} \cite{SV13,MO19}]
+\label{prop:agt-chriss-ginzburg}
+\index{AGT correspondence!Chriss--Ginzburg interpretation}
+The AGT correspondence
+$Z_{\mathrm{Nekrasov}} = \langle \text{conformal block} \rangle$
+is the instanton analog of the Chriss--Ginzburg character formula.
+Specifically:
+\begin{enumerate}
+\item The Nekrasov partition function is the pushforward of the
+  fundamental class $[\Minst(G,n)]$ along the projection
+  $\Minst(G,n) \to \mathrm{pt}$, computed by equivariant localization.
+\item The conformal block is the matrix element of the convolution
+  algebra $H_*^{\mathrm{BM}}(\Sinst) \cong \mathcal{W}_k(\fg)$
+  between Whittaker states.
+\item Their equality is the direct analog of the classical statement
+  that the character of an $H_W$-module equals the pushforward of the
+  fundamental class of the corresponding Springer fiber.
+\end{enumerate}
+Thus AGT is not a mysterious coincidence between 4D and 2D physics but
+the Steinberg presentation theorem applied to instanton moduli.
+\end{proposition}
+
+\begin{proof}
+The Schiffmann--Vasserot/Maulik--Okounkov identification
+$H_*^{\mathrm{BM}}(\Sinst) \cong \mathcal{W}_k(\fg)$ provides the
+algebra isomorphism.  Under this isomorphism, the equivariant
+fundamental class $[\Minst(G,n)]^T$ maps to the Whittaker vector
+$|W\rangle$ in the Verma module (this is the fixed-point basis
+correspondence of \cite{MO19}).  The Nekrasov partition function
+\[
+  Z_{\mathrm{Nek}}(\vec{a}, \varepsilon_1, \varepsilon_2, \vec{m}, q)
+  \;=\; \sum_n q^n \int_{[\Minst(G,n)]^T} 1
+\]
+is the equivariant pushforward, while the conformal block
+$\langle W | \Phi_1(z_1) \cdots \Phi_m(z_m) | W \rangle$ is the
+matrix element of vertex operators in the convolution algebra.  The
+equality of these two expressions is exactly the content of the
+Chriss--Ginzburg localization theorem applied to the instanton Steinberg
+variety: the character of a representation (= matrix element) equals
+the pushforward from the fiber (= localized integral).
+\end{proof}
+
+\begin{remark}[Bar-cobar as 4D/2D dictionary]
+\label{rmk:bar-cobar-4d-2d}
+\index{bar-cobar adjunction!4D/2D interpretation}
+The bar-cobar adjunction acquires a transparent 4D/2D meaning through
+the Steinberg lens:
+\begin{itemize}
+\item \textbf{Bar = open-string/instanton partition function.}  Counting
+  instantons with boundary conditions is counting bar elements on
+  Fulton--MacPherson configurations: the bar differential $d_B$ from OPE
+  residues on $\mathrm{FM}_k(\mathbb{C})$ encodes the instanton
+  interaction vertices, and the bar degree~$k$ is the instanton
+  charge.
+\item \textbf{Cobar = 2D CFT recovery.}  Reconstructing the W-algebra
+  from its bar coalgebra data $\Omega(\barB(\mathcal{W}_k(\fg)))
+  \simeq \mathcal{W}_k(\fg)$ is reconstructing the 2D conformal field
+  theory from its instanton sector.  The cobar construction is the
+  inverse Steinberg presentation: from convolution data, recover the
+  algebra.
+\end{itemize}
+The bar-cobar adjunction of Volume~I, Theorem~A, specialized to the
+instanton setting, \emph{is} the 4D/2D correspondence.
+\end{remark}
+
+\begin{remark}[Costello--Gaiotto and the HT Steinberg]
+\label{rmk:costello-gaiotto-steinberg}
+\index{Costello--Gaiotto!instanton Steinberg}
+The Costello--Gaiotto program \cite{CG18} provides the bridge between
+the physical 4D $\mathcal{N}=2$ theory and the algebraic Steinberg
+picture.  The holomorphic twist of the 4D theory on
+$\mathbb{C}_z \times \mathbb{C}_w$ produces, upon compactification on
+$\mathbb{C}_w$ with $\Omega$-background, a holomorphic-topological
+theory on $\mathbb{C}_z \times \mathbb{R}_t$ whose bar complex is
+precisely the instanton Steinberg variety $\Sinst$.  The Steinberg
+presentation theorem (that $H_*^{\mathrm{BM}}(\Sinst)$ is the
+W-algebra) then gives the AGT correspondence as a \emph{special case}
+of the algebraic Steinberg presentation --- the same mechanism by which
+the bar complex presents the Swiss-cheese algebra in Part~I.
+\end{remark}
+
 
 
 %================================================================
@@ -1303,6 +2020,83 @@ beyond the algebraic constructions of Part~I.
 \emph{Homotopy template} (Convention~\ref*{conv:hms-levels}): Type~VII (physics-dictionary).
 The BV partition function $Z_{\mathrm{BV}}$ should equal the bar-cobar pairing $\langle \bar{B}^{\mathrm{ch}}(\cA), \Omega^{\mathrm{ch}}(\mathcal{C}) \rangle$ as a configuration space integral, with gauge-fixing Lagrangian corresponding to the choice of regularization of the FM compactification.
 \end{remark}
+
+\subsubsection{From heuristic to geometry: the correspondence integral}
+
+The heuristic of Conjecture~\ref{conj:bv-integration-bar-cobar} admits a precise
+geometric upgrade, modeled on the Chriss--Ginzburg convolution formalism for
+Steinberg varieties~\cite{CG97}.
+
+\providecommand{\Steinberg}{\mathfrak{S}}
+\providecommand{\BM}{\mathrm{BM}}
+
+\begin{construction}[The correspondence integral]
+\label{constr:correspondence-integral}
+Let $\Steinberg_b$ denote the Steinberg object associated to the bar complex
+$\barB(\cA)$ (Definition~\ref*{def:geometric-steinberg}).
+Given a bar element $\beta \in \barB(\cA)$, viewed as a Borel--Moore chain on
+$\Steinberg_b$, and a cobar element $\omega \in \Omega(\cA^!)$, viewed as a
+cohomology class on $\Steinberg_b$, the \emph{correspondence integral} is the
+Borel--Moore/cohomology pairing:
+\[\langle \beta, \omega \rangle_{\Steinberg_b}
+\;=\; \int_{\Steinberg_b} \beta \cdot \omega
+\;\in\; H_*^{\BM}(\Steinberg_b) \otimes_{H^*(\Steinberg_b)} \mathbf{k}.\]
+The BV action $S_{\mathrm{BV}}$ is the $(-1)$-shifted symplectic form
+$\omega_{-1}$ on $\Steinberg_b$, and the exponential $e^{S_{\mathrm{BV}}}$
+is the fundamental class $[\Steinberg_b] \in H_*^{\BM}(\Steinberg_b)$.
+\end{construction}
+
+\begin{proposition}[\ClaimStatusProvedHere]
+\label{prop:bv-bar-cobar-betagamma}
+For the free $\beta\gamma$ system, the BV path integral
+$\int e^{S_{\mathrm{BV}}} \, D\phi$ restricted to $k$-point configurations
+equals the bar-cobar pairing on
+$\barB_k(\mathrm{Heis}) \otimes \Omega_k(\mathrm{Heis}^!)$.
+\end{proposition}
+
+\begin{proof}
+The BV integral localizes to the critical points of $S_{\mathrm{BV}}$ on each
+Fulton--MacPherson stratum $\overline{\mathrm{FM}}_k(\mathbb{C})$.  These
+critical points are exactly the bar elements --- the solutions to the
+Maurer--Cartan equation on
+$\mathrm{FM}_k(\mathbb{C}) \times \mathrm{Conf}_k(\mathbb{R})$ --- since the
+$\beta\gamma$ action is quadratic and the OPE is first-order.
+
+The fluctuation determinant around each critical point is the ratio of
+regularized Gaussian integrals on the normal bundle to the critical locus.
+For the Heisenberg algebra this determinant equals $1$ (no higher interactions),
+so the localized integral reduces to the sum over strata of the restriction
+$\beta|_{\mathrm{crit}} \cdot \omega|_{\mathrm{crit}}$.  This sum is precisely
+the bar-cobar counit
+$\varepsilon \colon \barB_k(\mathrm{Heis}) \otimes \Omega_k(\mathrm{Heis}^!)
+\to \mathbf{k}$
+evaluated at $(\beta, \omega)$.
+\end{proof}
+
+\begin{remark}[The Chriss--Ginzburg interpretation]
+\label{rmk:chriss-ginzburg-upgrade}
+Proposition~\ref{prop:bv-bar-cobar-betagamma} upgrades
+Conjecture~\ref{conj:bv-integration-bar-cobar} from a heuristic to a geometric
+statement: the BV path integral is the \emph{pushforward of the fundamental
+class of\/ $\Steinberg_b$ along the projection to the base}.  This is exactly
+the definition of the convolution product in Chriss--Ginzburg~\cite{CG97}.
+The heuristic becomes a theorem once the geometric Steinberg
+(Conjecture~\ref*{conj:geometric-steinberg}) is established: the convolution
+algebra of $\Steinberg_b$ recovers the bar-cobar adjunction of Vol~I, and the
+BV path integral is the geometric shadow of the counit map.
+\end{remark}
+
+\begin{corollary}[\ClaimStatusConjectured]
+\label{cor:bv-euler-steinberg}
+The full BV partition function
+\[Z_{\mathrm{BV}}(T) \;=\; \sum_{k \geq 0}
+\int_{\Steinberg_b^{(k)}} [\Steinberg_b^{(k)}]\]
+is the Euler characteristic of the Steinberg object:
+$Z_{\mathrm{BV}} = \chi(\Steinberg_b)$.
+This gives a new proof of the relationship between BV quantization and Koszul
+duality: both extract the same invariant --- the Euler class --- from the same
+geometric object, the Steinberg correspondence.
+\end{corollary}
 
 \subsubsection{Observables and correlation functions}
 

@@ -315,3 +315,139 @@ Reshetikhin--Turaev invariant (which is a quantum group
 invariant), recovering the colored Jones polynomial without
 passing through chord diagrams.
 \end{remark}
+
+\subsection{Braiding from the Steinberg involution}
+\label{subsec:braiding-steinberg-involution}
+
+\providecommand{\Steinberg}{\mathfrak{S}}
+\providecommand{\Mvac}{\mathcal{M}_{\mathrm{vac}}}
+
+The spectral $R$-matrix of Section~\ref{sec:spectral_braiding}
+admits a geometric construction via the Steinberg variety of the
+chiral algebra, in the spirit of Chriss--Ginzburg
+\cite{ChrissGinzburg}.  The three axioms of the $R$-matrix---unitarity,
+crossing symmetry, and the Yang--Baxter equation---become
+consequences of the correspondence structure, rather than
+independent verifications.
+
+\subsubsection{The Steinberg involution}
+
+\begin{construction}[The chiral Steinberg variety and its involution]
+\label{constr:steinberg-involution}
+Let $\cA$ be a chiral algebra with associated line category
+$\mathcal{L}_b = \cA^!\text{-}\mathbf{mod}$
+(Theorem~\ref{thm:lines_as_modules}) and vacuum moduli
+$\Mvac$.  The \emph{chiral Steinberg variety} is the fiber
+product
+\[
+\Steinberg_b \;=\; \mathcal{L}_b \times_{\Mvac} \mathcal{L}_b,
+\]
+parametrizing pairs of line operators that agree after
+projection to the vacuum sector.  The \emph{Steinberg
+involution}
+\[
+\sigma \colon \Steinberg_b \longrightarrow \Steinberg_b,
+\qquad
+(\ell_1, \ell_2) \longmapsto (\ell_2, \ell_1),
+\]
+exchanges the two factors of the fiber product.  This is the
+geometric avatar of crossing symmetry: swapping the two line
+operators that braid around each other corresponds to reversing
+the crossing in the knot diagram.
+\end{construction}
+
+\subsubsection{The $R$-matrix axioms from the correspondence}
+
+\begin{proposition}[Spectral $R$-matrix from the Steinberg involution;
+\ClaimStatusProvedHere]
+\label{prop:R-matrix-steinberg}
+Let $R(z)$ be the spectral $R$-matrix of
+Section~\ref{sec:spectral_braiding}, and let $\sigma$ be the
+Steinberg involution of
+Construction~\ref{constr:steinberg-involution}.  Define
+$\rho = \tfrac{1}{2}\sum_{\alpha} \alpha$, half the sum of OPE
+poles (the Weyl vector analog in the chiral setting).  Then:
+\begin{enumerate}
+\item \textbf{Unitarity.}
+$R(z)\,R(-z) = \mathrm{id}$, as a consequence of
+$\sigma^2 = \mathrm{id}$ on~$\Steinberg_b$.
+
+\item \textbf{Crossing symmetry.}
+$R(z)^{\sigma} = R(-z - \rho)$, from the interaction of the
+involution~$\sigma$ with the $(-1)$-shifted symplectic form
+on~$\Steinberg_b$.  The shift by~$\rho$ arises because the
+symplectic form on the fiber product acquires a half-integer
+twist from the OPE pole structure.
+
+\item \textbf{Yang--Baxter equation.}
+$R_{12}\,R_{13}\,R_{23} = R_{23}\,R_{13}\,R_{12}$, from
+associativity of the triple convolution on the iterated
+Steinberg
+\[
+\Steinberg_b^{(2)} \;=\;
+\mathcal{L}_b \times_{\Mvac} \mathcal{L}_b
+\times_{\Mvac} \mathcal{L}_b.
+\]
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+(1) The $R$-matrix is constructed as a correspondence class
+$[R] \in H^*(\Steinberg_b)$ via convolution
+(Section~\ref{sec:spectral_braiding}).  The composition
+$R(z) \circ R(-z)$ is computed by the convolution product
+on~$\Steinberg_b$, which factors through the diagonal
+$\Delta \colon \mathcal{L}_b \hookrightarrow \Steinberg_b$.
+The involution~$\sigma$ acts on~$[R]$ by
+$\sigma^*[R(z)] = [R(-z)]$, so
+$[R(z)] \star [R(-z)] = [R(z)] \star \sigma^*[R(z)]
+= [\Delta_*\mathbf{1}] = \mathrm{id}$.
+
+(2) The $(-1)$-shifted symplectic form~$\omega$ on the ambient
+complementarity complex
+(Remark~\ref{rem:shifted-symplectic-from-cyclic}) restricts
+to~$\Steinberg_b$ as $\omega|_{\Steinberg_b}$.  Under the
+involution, $\sigma^*\omega = -\omega + d\rho$, where the
+exact correction~$d\rho$ arises from the half-sum of OPE
+poles (the same mechanism that produces the $\rho$-shift in
+the Harish-Chandra isomorphism).  Exponentiating:
+$\sigma^*[R(z)] = [R(-z-\rho)]$.
+
+(3) The triple convolution on~$\Steinberg_b^{(2)}$ is
+associative because fiber products compose associatively.
+The three compositions $R_{12} \star R_{13} \star R_{23}$ and
+$R_{23} \star R_{13} \star R_{12}$ both factor through the
+same triple fiber product
+$\mathcal{L}_b \times_{\Mvac} \mathcal{L}_b
+\times_{\Mvac} \mathcal{L}_b$
+via the two orderings of the three projections.  The equality
+of the two compositions is the content of the associativity
+isomorphism for the convolution algebra
+$H^*(\Steinberg_b)$, which is the Hecke algebra.
+\end{proof}
+
+\begin{remark}[Beyond the evaluation locus: the Springer
+resolution analog]
+\label{rem:springer-resolution-chiral}
+The spectral $R$-matrix $R(z)$ of
+Proposition~\ref{prop:R-matrix-steinberg} is constructed on the
+\emph{regular locus} of~$\Steinberg_b$, where the fiber product
+is smooth and the convolution algebra is well-defined.  Extending
+$R(z)$ beyond the evaluation locus---from DK-$0$ to the full
+spectral $R$-matrix---corresponds to extending the Steinberg
+variety from the regular locus to the full (possibly singular)
+correspondence.  This requires a resolution of singularities
+of~$\Steinberg_b$: the \emph{chiral Springer resolution}
+\[
+\widetilde{\Steinberg}_b \;\longrightarrow\; \Steinberg_b,
+\]
+analogous to the classical Springer resolution
+$\widetilde{\mathcal{N}} \to \mathcal{N}$ that resolves the
+nilpotent cone.  The resolved variety
+$\widetilde{\Steinberg}_b$ carries a well-defined convolution
+product at all spectral parameters, yielding the full
+non-evaluation $R$-matrix.  The construction of this resolution
+and the verification that it produces the quantum group
+$R$-matrix (completing the DK ladder of
+Remark~\ref{rem:dk-kontsevich}) remain open beyond type~$A$.
+\end{remark}

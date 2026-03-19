@@ -32,6 +32,10 @@
 \providecommand{\Disk}{\mathrm{Disk}}
 \providecommand{\SN}{\boldsymbol{\nabla}}
 \providecommand{\bboxprod}{\mathop{\boxtimes}\displaylimits}
+\providecommand{\Sb}{\mathfrak{S}_{\mathfrak{b}}}
+\providecommand{\Sphere}{\mathbb{S}}
+\providecommand{\Nil}{\widetilde{\mathcal{N}}}
+\providecommand{\fg}{\mathfrak{g}}
 
 \title{Logarithmic HT Monodromy: Extensions and Frontier}
 \author{}
@@ -52,6 +56,133 @@ For a symmetric quiver there exists a logarithmic factorization enhancement of t
 For a spectral lift of a resolved logarithmic HT datum, the reduced HT associator admits compatible chromatic localizations whose height-$n$ pieces are computed by the monodromy of the $E(n)$-localized spectral factorization algebra.
 \end{conjecture}
 
+\subsection{Spectral algebraic geometry of the Steinberg object}
+
+The chromatic lift of Conjecture~\ref{conj:chromatic-lift} admits a precise attack via the Chriss--Ginzburg formalism, once the Steinberg correspondence is promoted to spectral algebraic geometry in the sense of Lurie.
+
+\begin{construction}[The spectral Steinberg object]\label{cons:spectral-steinberg}
+Let $G$ be a reductive group and $\mathfrak{b} \subset \fg$ a Borel subalgebra, so that the classical Steinberg variety is $Z = \Nil \times_{\fg} \Nil$.  In Lurie's spectral algebraic geometry, the Steinberg object $\Sb$ admits a spectral lift: replace the base ring $\CC$ with the sphere spectrum $\Sphere$.  The $E(n)$-localization $L_{E(n)}\Sb$ is the height-$n$ piece.  The chromatic filtration on $\Sb$,
+\[
+\cdots \to L_{E(2)}\Sb \to L_{E(1)}\Sb \to L_{E(0)}\Sb = \Sb \otimes \mathbb{Q},
+\]
+is the \emph{chromatic tower of the Steinberg correspondence}.
+\end{construction}
+
+\begin{proposition}[\ClaimStatusConjectured]\label{prop:height-n-monodromy}
+The $E(n)$-localized Borel--Moore convolution algebra $H_*^{BM}(L_{E(n)}\Sb)$ computes the height-$n$ monodromy of the HT associator.  Specifically:
+\begin{enumerate}
+\item \textbf{Height $0$} (rational): $L_{E(0)}\Sb \ot \mathbb{Q}$ recovers the classical Steinberg variety; the convolution algebra is the degenerate affine Hecke algebra, and the monodromy is the classical $r$-matrix.
+\item \textbf{Height $1$} ($K$-theory): $L_{E(1)}\Sb$ is governed by complex $K$-theory; the convolution algebra is the affine Hecke algebra $H_q$, and the monodromy is the quantum group $R$-matrix.  This is the content of the Kazhdan--Lusztig theorem.
+\item \textbf{Height $2$} (elliptic cohomology): $L_{E(2)}\Sb$ is governed by elliptic cohomology; the convolution algebra computes the elliptic dynamical $R$-matrix of Aganagic--Okounkov.
+\end{enumerate}
+At each height, the monodromy of the reduced HT logarithmic connection (Conjecture~\ref{conj:rmatrix}) specializes to the $R$-matrix of the corresponding cohomology theory.
+\end{proposition}
+
+\begin{remark}[Chromatic compatibility of convolution]\label{rem:chromatic-convolution}
+The chromatic compatibility asserted above is not accidental: $E(n)$-localization is a \emph{smashing} localization of the stable homotopy category, hence it preserves tensor products and, in particular, convolution products on Borel--Moore homology.  Concretely, the factorization algebra structure on $\Sb$---which is defined over $\Sphere$---localizes compatibly at each chromatic height.  The convolution product on $H_*^{BM}(L_{E(n)}\Sb)$ is the $E(n)$-localization of the convolution product on $H_*^{BM}(\Sb)$, and the algebra maps in the chromatic tower are convolution algebra homomorphisms.
+\end{remark}
+
+\begin{remark}[Comparison with the genus/shadow Postnikov tower]\label{rem:chromatic-genus}
+The chromatic tower of $\Sb$ should be compared with the genus/shadow Postnikov tower of Vol~I\@.  In the Postnikov tower, the genus-$g$ contribution to the bar complex is controlled by the curvature $\kappa(\A) \cdot \omega_g$ from the Hodge bundle, giving a filtration by genus.  The chromatic tower gives a \emph{refinement}: each genus-$g$ contribution decomposes further into chromatic pieces via the $E(n)$-localization of the spectral bar complex.  At genus $0$, the chromatic tower recovers the height filtration on the classical $r$-matrix; at genus $1$, the height-$1$ piece recovers the quantum group deformation (consistent with the identification $q = e^{2\pi i/\kappa}$ from the level-curvature correspondence), and the height-$2$ piece sees the elliptic curve underlying the genus-$1$ moduli.  This suggests that the chromatic height is, in a precise sense, a homotopy-theoretic shadow of the algebro-geometric genus.
+\end{remark}
+
+
+\section{The CoHA envelope as quiver Steinberg}
+\label{sec:coha-quiver-steinberg}
+
+\providecommand{\fS}{\mathfrak{S}}
+\providecommand{\cL}{\mathcal{L}}
+\providecommand{\cM}{\mathcal{M}}
+\providecommand{\fM}{\mathfrak{M}}
+\providecommand{\Mvac}{\cM_{\mathrm{vac}}}
+\providecommand{\BM}{\mathrm{BM}}
+\providecommand{\Rep}{\mathrm{Rep}}
+\providecommand{\CoHA}{\mathrm{CoHA}}
+
+We now attack Conjecture~\ref{conj:coha} directly, identifying the cohomological Hall algebra as a special case of the Steinberg convolution.
+
+\begin{construction}[The CoHA as Steinberg convolution]
+\label{constr:coha-steinberg}
+Let $Q$ be a symmetric quiver with vertex set $I$ and dimension vector $\mathbf{d} \in \ZZ_{\geq 0}^I$.
+The stack of representations $\fM_Q(\mathbf{d}) = \Rep_Q(\mathbf{d})/\mathrm{GL}_{\mathbf{d}}$ carries a $(-1)$-shifted symplectic structure
+\[
+\omega_{-1} \;=\; \delta\!\left(\sum_{a \in Q_1} \mathrm{tr}(B_a\, \delta B_{a^*})\right)
+\]
+induced by the prepotential $W = \sum_{a \in Q_1} \mathrm{tr}(B_a B_{a^*})$ (Kontsevich--Soibelman \cite{kontsevich-soibelman}).
+For a decomposition $\mathbf{d} = \mathbf{d}_1 + \mathbf{d}_2$, the Hecke correspondence is the stack of short exact sequences
+\[
+\fM_Q(\mathbf{d}_1,\mathbf{d}_2) \;=\; \bigl\{\, 0 \to M_1 \to M \to M_2 \to 0 \;\big|\; \dim M_i = \mathbf{d}_i \,\bigr\}
+\]
+with projections $p\colon \fM_Q(\mathbf{d}_1,\mathbf{d}_2) \to \fM_Q(\mathbf{d}_1) \times \fM_Q(\mathbf{d}_2)$ and $q\colon \fM_Q(\mathbf{d}_1,\mathbf{d}_2) \to \fM_Q(\mathbf{d})$.
+The CoHA multiplication is the convolution
+\[
+m_{\CoHA} \;=\; q_* \circ p^!\colon H_*^{\BM}\bigl(\fM_Q(\mathbf{d}_1)\bigr) \ot H_*^{\BM}\bigl(\fM_Q(\mathbf{d}_2)\bigr) \;\longrightarrow\; H_*^{\BM}\bigl(\fM_Q(\mathbf{d})\bigr).
+\]
+This is a Steinberg-type convolution: the fiber product $\fM_Q(\mathbf{d}_1) \times_{\fM_Q(\mathbf{d})} \fM_Q(\mathbf{d}_2)$ is computed via the correspondence $\fM_Q(\mathbf{d}_1,\mathbf{d}_2)$, exactly as the classical Steinberg variety $Z = \Nil \times_{\fg} \Nil$ computes the convolution product on $H_*^{\BM}(Z)$.
+\end{construction}
+
+\begin{proposition}[CoHA is the SC Steinberg convolution; \ClaimStatusProvedElsewhere]
+\label{prop:coha-is-steinberg}
+Let $T$ be the $3d$ $\mathcal{N}=4$ gauge theory associated to a symmetric quiver $Q$.
+Then the geometric Steinberg object $\fS_b = \cL_b \times_{\Mvac(T)} \cL_b$ of the HT theory coincides with the CoHA Hecke correspondence:
+\[
+\fS_b \;=\; \fM_Q(\mathbf{d}_1) \times_{\fM_Q(\mathbf{d})} \fM_Q(\mathbf{d}_2).
+\]
+Consequently, the Swiss-cheese convolution $L_\infty$-algebra $\fg^{\mathrm{SC}}_T$ is isomorphic to the CoHA of $Q$.
+\end{proposition}
+
+\begin{proof}
+By the physical axioms (H1)--(H2), the bulk vacua of $T$ are flat connections on the quiver:
+\[
+\Mvac(T) \;=\; \fM_Q(\mathbf{d}),
+\]
+the stack of representations of $Q$ of total dimension $\mathbf{d}$
+(this identification uses the HT gauge-fixing of (H1) and the
+propagator structure of (H2)).
+The boundary condition $b$ of type $\mathbf{d}_i$ defines the boundary Lagrangian $\cL_b = \fM_Q(\mathbf{d}_i) \hookrightarrow \fM_Q(\mathbf{d})$ via the inclusion of representations of fixed dimension.
+The self-intersection
+\[
+\fS_b \;=\; \cL_b \times_{\Mvac(T)} \cL_b \;=\; \fM_Q(\mathbf{d}_1) \times_{\fM_Q(\mathbf{d})} \fM_Q(\mathbf{d}_2)
+\]
+is then precisely the Hecke correspondence of Construction~\ref{constr:coha-steinberg}.
+The $(-1)$-shifted symplectic form on $\fS_b$ from the HT theory (the bar-complex shifted symplectic structure of Vol~I, Theorem~C) restricts to the Kontsevich--Soibelman $(-1)$-shifted symplectic form on $\fM_Q(\mathbf{d})$ induced by the prepotential.
+The convolution product on $H_*^{\BM}(\fS_b)$ therefore agrees with $m_{\CoHA}$, and the Swiss-cheese $L_\infty$-structure (encoded by the bar differential in the holomorphic direction and deconcatenation coproduct in the topological direction) recovers the full CoHA multiplication.
+\end{proof}
+
+\begin{corollary}[Primitive Lie algebra from the collision residue; \ClaimStatusProvedElsewhere]
+\label{cor:coha-primitive-lie}
+The primitive Lie algebra of the vertex algebra $V_Q$ associated to the symmetric quiver $Q$ is the tangent Lie algebra of the Maurer--Cartan element $\alpha_T$ at the origin.
+By the Steinberg presentation, this tangent Lie algebra is the collision residue: the residue of the bar differential $d_B$ along the diagonal $\Delta \subset \FM_2(\CC)$.
+The Koszul dual $A^!$ is the dg-shifted Yangian $Y_\h(\fg_Q)$ governing the line-operator category, by statement~\emph{(ii)} of the Steinberg presentation theorem.
+\end{corollary}
+
+\begin{proof}
+The Steinberg presentation identifies $H_*^{\BM}(\fS_b)$ with the associative algebra generated by the collision residues of the bar differential.
+At degree $k=2$, the bar differential $d_B\colon B^2(V_Q) \to B^1(V_Q)$ has a polar part along $\Delta \subset \FM_2(\CC)$ whose residue is the OPE bracket $[a,b] = a_{(0)}b$.
+This bracket, restricted to primitive elements (those killed by the deconcatenation coproduct $\Delta$), is precisely the primitive Lie algebra $\mathrm{Prim}(V_Q)$.
+On the other hand, the tangent space $T_0 \MC(\fg^{\mathrm{SC}}_T)$ at the trivial MC element is computed by the linearized bar differential, which is exactly this residue bracket.
+For the Koszul dual: the Steinberg presentation theorem identifies $\cL_b\text{-}\mathrm{mod} \simeq A^!\text{-}\mathrm{mod}$, and by the recognition theorem (Part~I), $A^!$ is the dg-shifted Yangian $Y_\h(\fg_Q)$.
+\end{proof}
+
+\begin{proposition}[Logarithmic FM enhancement of the CoHA; \ClaimStatusConjectured]
+\label{prop:log-coha-enhancement}
+The logarithmic Fulton--MacPherson enhancement of the CoHA replaces the Hecke correspondence $\fM_Q(\mathbf{d}_1) \times_{\fM_Q(\mathbf{d})} \fM_Q(\mathbf{d}_2)$ by its FM compactification:
+\[
+\overline{\fM}_Q^{\FM}(\mathbf{d}_1,\ldots,\mathbf{d}_k) \;\longrightarrow\; \FM_k(\CC) \times \fM_Q(\mathbf{d}),
+\]
+the logarithmic FM space of $k$ quiver representations colliding on a curve.
+The boundary strata of $\overline{\fM}_Q^{\FM}$ --- indexed by trees in $\FM_k(\CC)$ --- give the higher $A_\infty$ operations $m_k$ of the vertex algebra $V_Q$.
+Specifically, the codimension-one boundary stratum corresponding to the collision of a subset $S \subset \{1,\ldots,k\}$ contributes the iterated OPE $m_{|S|}$ composed with $m_{k-|S|+1}$, reproducing the $A_\infty$ relations via the Stokes formula on $\FM_k(\CC)$.
+\end{proposition}
+
+\begin{remark}[The CoHA as the open wing of Swiss-cheese]
+The identification $\fg^{\mathrm{SC}}_T = \CoHA_Q$ makes the two-colored structure of the Swiss-cheese operad manifest:
+the \emph{closed} (holomorphic) color sees the vertex algebra $V_Q$ via OPE on $\FM_k(\CC)$;
+the \emph{open} (topological) color sees the CoHA via convolution on $\Conf_k(\RR)$.
+The no-open-to-closed rule reflects the physical directionality: the CoHA (boundary) does not produce vertex algebra elements (bulk), but bulk operators restrict to boundary operators via the Steinberg projection $\fS_b \to \cL_b$.
+The logarithmic enhancement of Proposition~\ref{prop:log-coha-enhancement} unifies both colors: the FM compactification encodes the holomorphic collisions, while the tree combinatorics of the boundary strata encodes the topological deconcatenation.
+\end{remark}
+
 
 \section{Conclusion}\label{sec:log-ht-conclusion}
 
@@ -63,4 +194,3 @@ local algebra $\Longrightarrow$ collision field $\Longrightarrow$ logarithmic su
 At the strict end, one sees a shifted KZ/FM connection. At the derived end, one sees a bar-valued superconnection whose curvature is Maurer-Cartan. Analytically, one sees renormalized graph forms on mixed logarithmic configuration spaces and compactified Stokes identities. After reduction, one sees an ordinary logarithmic connection, and from it an associator, a braiding, and the geometry of tangential basepoints. Spectrally, one sees periodicity and chromaticity become compatible with factorization homology. Across the whole theory, the true invariant object is not merely an algebra or a category, but a monodromic local-to-global machine organized by logarithmic collision geometry.
 
 The constructions are deliberately first-principles and modular. Each piece can be strengthened independently: the mixed log-BPHZ analysis can be made fully analytic in wider classes of theories; the resolved-line criterion can be refined and classified; the monodromy/factorisation-quantum-group bridge can be proved; the logarithmic CoHA envelope can be built; and the spectral lift can be made genuinely chromatic. But the spine is now visible and, more importantly, it is rigid: once the classical line algebra resolves cleanly, the rest of the structure is no longer optional.
-

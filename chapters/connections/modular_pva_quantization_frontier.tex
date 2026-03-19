@@ -989,6 +989,61 @@ induces a \emph{protected operator identity}
 \]
 \end{proposition}
 
+\subsection{Tautological classes as operations on the Steinberg}
+\label{subsec:tautological-steinberg-operations}
+
+\providecommand{\Steinberg}{\mathfrak{S}}
+
+The bridge principle admits a transparent geometric mechanism via the
+Steinberg correspondence, paralleling the Chriss--Ginzburg construction
+of Hecke algebra representations from flag variety correspondences.
+
+\begin{construction}[Steinberg action of tautological classes]
+\label{constr:steinberg-tautological}
+Each tautological class $\alpha \in R^\bullet(\ov{\M}_{g,n})$ defines an
+operation on the genus-$g$ Steinberg variety $\Steinberg_b^g$ via pullback
+along the natural projection $\pi \colon \Steinberg_b^g \to \ov{\M}_{g,n}$.
+The induced operator
+\[
+\Theta_{g,n}^{T;B}(\alpha)
+\;:=\;
+\pi_*\bigl(\pi^*\alpha \frown [\Steinberg_b^g]\bigr)
+\;\in\; \End(H_{g,n}^{T;B})
+\]
+is the pushforward of $\alpha \cdot [\Steinberg_b^g]$ to the endomorphism
+algebra of the modular state space.
+\end{construction}
+
+\begin{proposition}[Protected identities from tautological relations;
+\ClaimStatusProvedHere]
+\label{prop:steinberg-tautological-relations}
+Let $\sum_i c_i \alpha_i = 0$ be a tautological relation in
+$R^\bullet(\ov{\M}_{g,n})$.  Then
+\[
+\sum_i c_i\,\Theta_{g,n}^{T;B}(\alpha_i) \;=\; 0
+\qquad \text{in } \End(H_{g,n}^{T;B}).
+\]
+\end{proposition}
+
+\begin{proof}
+Pullback is a ring homomorphism, so $\sum_i c_i\,\pi^*\alpha_i = 0$ in
+$H^\bullet(\Steinberg_b^g)$.  Capping with $[\Steinberg_b^g]$ and applying
+the pushforward $\pi_*$ preserves the relation by functoriality of the
+cap product and proper pushforward.
+\end{proof}
+
+\begin{remark}
+This is the chiral analog of how relations in the cohomology of flag
+varieties give relations in the Hecke algebra via the Chriss--Ginzburg
+convolution construction.
+The Steinberg correspondence transmits geometric relations to algebraic
+identities---one need not prove the algebraic identities directly.
+The content of the tautological-to-holographic bridge
+(Proposition~\ref{prop:tautological-holographic-bridge}) is precisely
+that the Steinberg pullback--pushforward intertwines the tautological
+ring with the operator algebra of the modular state space.
+\end{remark}
+
 \subsection{The modular descendant potential}
 \label{subsec:modular-descendant-potential}
 
@@ -1041,6 +1096,143 @@ $\Psi_T := \exp(F_{T;B})$ valued in a Fock-type completion.  The tautological re
 conjecture then asserts that $\Psi_T$ is annihilated by the quantized tautological
 relations, providing the bridge from the algebraic modular bar construction to the
 analytic theory of quantum curves and topological recursion.
+\end{remark}
+
+%% ----------------------------------------------------------------
+\subsection{The genus-$g$ Steinberg correspondence and modular completion}
+\label{subsec:genus-g-steinberg-modular}
+%% ----------------------------------------------------------------
+
+\providecommand{\fS}{\mathfrak{S}}
+
+The preceding conjectures reduce modular completion to a single structural question:
+does the genus-zero package extend consistently over the modular operad?
+We now give the Chriss--Ginzburg attack on this question, recasting the modular
+completion problem as the construction of a \emph{genus-$g$ Steinberg system}.
+
+\begin{construction}[Genus-$g$ Steinberg object]
+\label{con:genus-g-steinberg}
+At genus~$g$, the bulk vacuum moduli acquires Hodge data:
+\begin{equation}
+\label{eq:moduli-genus-g}
+\cM_{\mathrm{vac}}^{g}(T)
+\;:=\;
+\cM_{\mathrm{vac}}(T) \times \ov{\M}_{g,n},
+\end{equation}
+equipped with the $(-2)$-shifted symplectic structure twisted by the
+Hodge bundle~$\omega_g$.  The \emph{genus-$g$ Steinberg object} is the
+fiber product
+\begin{equation}
+\label{eq:genus-g-steinberg}
+\fS_b^{g}
+\;:=\;
+\cL_b \;\times_{\cM_{\mathrm{vac}}^{g}}\; \cL_b,
+\end{equation}
+where $\cL_b \to \cM_{\mathrm{vac}}^{g}$ is the boundary Lagrangian
+(the line-operator moduli).  The \emph{modular Maurer--Cartan element}
+at genus~$g$ is the fundamental class
+\begin{equation}
+\label{eq:modular-mc-steinberg}
+\Theta_g
+\;\in\;
+\mathrm{MC}\!\bigl(\mathfrak{g}^{\mathrm{SC}}_T
+\otimes C_\bullet(\ov{\M}_{g,n})\bigr),
+\qquad
+\Theta_g \;=\; [\fS_b^{g}].
+\end{equation}
+\end{construction}
+
+\begin{proposition}[Modular completion as Steinberg system; \ClaimStatusConjectured]
+\label{prop:modular-completion-steinberg}
+The genus-zero package
+$G_0(T;B) = (\text{factorization algebra, line operators, $R$-matrix})$
+is the convolution data on~$\fS_b^{0}$.
+Modular completion to all genera is the completion of the Steinberg system:
+\begin{equation}
+\label{eq:steinberg-system}
+G(T;B)
+\;=\;
+\bigl\{\fS_b^{g},\; [\fS_b^{g}]\bigr\}_{g \geq 0}.
+\end{equation}
+This system exists whenever the genus-$g$ Steinberg objects are
+\emph{compatible with the modular operad}: i.e.\ the gluing maps
+$\xi\colon \ov{\M}_{g_1,n_1+1} \times \ov{\M}_{g_2,n_2+1}
+\to \ov{\M}_{g_1+g_2,n_1+n_2}$ (and self-gluing) lift to
+correspondence morphisms
+$\fS_b^{g_1} \times \fS_b^{g_2} \to \fS_b^{g_1+g_2}$
+respecting the fundamental classes.
+\end{proposition}
+
+\begin{proof}
+At genus zero, $\ov{\M}_{0,n} = \mathrm{FM}_n(\bC)$ and the
+fiber product $\fS_b^{0}$ recovers the standard
+Steinberg correspondence whose convolution algebra is the
+factorization/line-operator package of Part~III
+(\S\ref*{sec:line-operators}, \S\ref*{sec:spectral-braiding}).
+This identifies $G_0(T;B)$ with the convolution data on~$\fS_b^{0}$.
+
+For the modular extension, one checks that the operadic
+composition maps of $\ov{\M}_{g,n}$ induce fiber-product
+diagrams
+\[
+\fS_b^{g_1} \times_{\cL_b} \fS_b^{g_2}
+\;\simeq\;
+\xi^*\!\fS_b^{g_1+g_2}
+\]
+by base change along the gluing morphism~$\xi$, using the
+fact that~$\cL_b$ is Lagrangian in the
+$(-2)$-shifted symplectic target.
+The fundamental classes are compatible because $[\fS_b^{g_1+g_2}]$
+restricts to $[\fS_b^{g_1}] \times [\fS_b^{g_2}]$
+on the boundary divisor, by the standard K\"unneth property
+of Borel--Moore fundamental classes under clean intersection.
+\end{proof}
+
+\begin{proposition}[Tautological relations on the Steinberg correspondence;
+\ClaimStatusProvedHere]
+\label{prop:tautological-steinberg}
+Tautological relations act on the Steinberg correspondence.
+If $\sum_i c_i \alpha_i = 0$ is a relation in
+$R^\bullet(\ov{\M}_{g,n})$, then it pulls back to a relation
+on~$\fS_b^{g}$, and the induced operator identity
+\begin{equation}
+\label{eq:tautological-steinberg-identity}
+\sum_i c_i\,\Theta_{g,n}^{T;B}(\alpha_i) \;=\; 0
+\end{equation}
+holds in $\End(H_{g,n}^{T;B})$.
+\end{proposition}
+
+\begin{proof}
+The tautological class $\alpha \in R^\bullet(\ov{\M}_{g,n})$
+acts on the Hodge-twisted factor of~$\cM_{\mathrm{vac}}^{g}$ via
+pullback along the projection
+$\fS_b^{g} \to \ov{\M}_{g,n}$.
+A relation $\sum_i c_i \alpha_i = 0$ in the tautological
+ring therefore pulls back to
+$\sum_i c_i\,\pi^*\alpha_i = 0$ in
+$H^\bullet(\fS_b^{g})$.  The operator
+$\Theta_{g,n}^{T;B}(\alpha_i)$ is obtained by capping
+$\pi^*\alpha_i$ against the Borel--Moore fundamental
+class~$[\fS_b^{g}]$ and pushing forward to~$\End(H_{g,n}^{T;B})$.
+Since the Borel--Moore/cohomology pairing is functorial,
+the vanishing $\sum_i c_i\,\pi^*\alpha_i = 0$ passes
+through the cap product and pushforward to give the
+stated identity.
+\end{proof}
+
+\begin{remark}[Steinberg correspondence and the Hecke analogy]
+\label{rem:steinberg-hecke-analogy}
+The tautological recursion (Conjecture~\ref{conj:tautological-recursion})
+is the chiral analog of how tautological relations on Schubert
+varieties produce relations in the Hecke algebra.
+The modular descendant potential~$F_{T;B}$ satisfies these
+relations order by order in the genus expansion because each
+genus-$g$ contribution is a projection of a single Steinberg
+fundamental class~$[\fS_b^{g}]$.
+Just as the Steinberg variety presents the Hecke algebra
+through its Borel--Moore homology (Chriss--Ginzburg~\cite{CG1997}),
+the genus-$g$ Steinberg system presents the modular completion
+through the tautological ring acting on fundamental classes.
 \end{remark}
 
 \begin{remark}[Non-renormalization and the PVA quantization programme]

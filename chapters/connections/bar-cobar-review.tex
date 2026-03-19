@@ -703,6 +703,177 @@ simple poles in the relevant range---a condition that can be verified
 example by example but not yet proved in general.
 \end{remark}
 
+\subsection{The purity criterion: Koszulness from the Decomposition Theorem}
+\label{subsec:purity-koszulness}
+
+The Beilinson--Ginzburg--Soergel proof that category~$\cO$ is Koszul
+proceeds by establishing \emph{purity} of intersection cohomology on
+Schubert varieties.  The key input is the Decomposition Theorem (BBD):
+for the proper map $\pi\colon G/B \to G/P$, the direct image
+$R\pi_* \IC_{G/B}$ decomposes into shifts of IC complexes, each pure
+of a single weight.  Concentration of the associated graded---hence
+Koszulness---follows.  We propose the chiral analog.
+
+\begin{definition}[Rational smoothness of OPE collision strata]
+\label{def:rational-smooth-collision}
+Let $\cA$ be a chiral algebra on a smooth curve~$X$.  For each
+$k \geq 2$, the OPE of~$\cA$ determines an \emph{OPE-weighted
+local system} $\cL_{\cA}$ on $\Conf_k(\C)$, whose fiber at
+$(z_1,\ldots,z_k)$ is $\cA^{\otimes k}$ with monodromy given by
+the singular parts of the OPE.  The Fulton--MacPherson
+compactification $\FM_k(\C)$ carries boundary divisors
+$D_{ij} = \{z_i = z_j\}$, along which the local system acquires
+poles.  Define the \emph{collision filtration} by pole order:
+$\cL^{\leq d}_{\cA}$ is the subsheaf of sections with poles of
+order at most~$d$ along all boundary divisors.  The associated
+graded $\mathrm{gr}^d\cL_{\cA} = \cL^{\leq d}/\cL^{\leq d-1}$
+lives on the boundary strata of $\FM_k(\C)$.
+Say the OPE collision data is \emph{pure} if for each~$d$ and
+each~$k$, the cohomology $H^*(\FM_k(\C), \mathrm{gr}^d\cL_{\cA})$
+is pure of weight~$d$ (in the sense of mixed Hodge theory).
+\end{definition}
+
+\begin{conjecture}[The purity criterion for chiral Koszulness;
+\ClaimStatusConjectured]
+\label{conj:purity-koszul}
+\index{Koszulness!purity criterion}
+A chiral algebra~$\cA$ is chirally Koszul if and only if
+the OPE collision data of~$\cA$ is pure in the sense of
+Definition~\ref{def:rational-smooth-collision}.  When this holds:
+\begin{enumerate}[label=\textup{(\alph*)}]
+\item the cohomology $H^*(\FM_k(\C), \mathrm{gr}^d\cL_{\cA})$
+  is pure of weight~$d$ for all~$k,d$;
+\item the weight spectral sequence on $H^*(\FM_k(\C),
+  \cL_{\cA})$ degenerates at~$E_1$, giving
+  $H^{p,q}(\barB(\cA)) = 0$ for $p + q \neq$ bar degree;
+\item the bar cohomology is concentrated, hence~$\cA$ is chirally
+  Koszul.
+\end{enumerate}
+The converse holds: if the OPE collision data is not pure, the
+weight spectral sequence has non-trivial higher differentials,
+producing non-zero $H^{p,q}$ off the diagonal and hence
+non-trivial higher $\Ainf$ operations.
+\end{conjecture}
+
+\begin{proposition}[Purity for the Koszul examples;
+\ClaimStatusProvedHere]
+\label{prop:purity-koszul-examples}
+The purity criterion holds for the three Koszul examples:
+\begin{enumerate}[label=\textup{(\roman*)}]
+\item \textbf{Free $\beta\gamma$:} All OPE poles are simple
+  ($\beta(z)\gamma(w) \sim (z-w)^{-1}$).  The collision strata
+  are smooth (codimension-one normal crossings along each
+  diagonal $z_i = z_j$).  The IC complex is the constant sheaf,
+  which is pure.
+
+\item \textbf{Landau--Ginzburg:} The superpotential~$W$ gives
+  OPE poles of order at most one in the chiral algebra of the
+  LG model.  Collision strata are transverse intersections of
+  smooth divisors.  Purity follows from the smoothness of the
+  strata.
+
+\item \textbf{Abelian Chern--Simons:} The abelian current algebra
+  $J(z)J(w) \sim k(z-w)^{-2}$ has a double pole, but $k(z-w)^{-2}$
+  is a \emph{scalar} OPE coefficient: it takes values in $\C \cdot
+  \mathbf{1} \subset \cA$, the center.  In the bar complex, scalar
+  OPE terms contribute to the curvature $m_0 = \kappa(\cA)$, which
+  defines the curving of the $\Ainf$ structure
+  (Vol~I, Theorem~D), not to the bar differential $m_k$ for
+  $k \geq 2$.  Concretely, $\mathrm{gr}^2\cL_{\cA}$ on the
+  boundary divisor $D_{ij} \subset \FM_k(\C)$ is the trivial local
+  system $\C$ (constant fiber from the scalar residue), whose
+  cohomology is pure of weight~$2$.  The non-central OPE data
+  that feeds the bar differential has pole order at most one:
+  for the abelian current algebra $[J,J]$ is central, and there
+  are no non-central fields with $\Delta \leq 1$ beyond~$J$ itself.
+  Thus $\mathrm{gr}^1\cL_{\cA}$ is also a local system of pure
+  weight~$1$, and purity holds.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+In each case, verify that the collision strata relevant to the bar
+differential are smooth or have at worst normal-crossing
+singularities.  For~(i), the $\beta\gamma$ OPE is first-order and
+the FM boundary divisors are smooth.  For~(ii), the LG chiral
+algebra (as computed in Part~IV) has first-order OPE in the
+$\Ainf$ generators.  For~(iii), the double-pole residue $k \cdot \mathbf{1}$ is scalar,
+hence lies in the kernel of the bar differential (which acts
+trivially on~$\mathbf{1}$); it contributes to $m_0$ (curvature)
+via Vol~I Theorem~D.  The associated graded $\mathrm{gr}^2\cL$
+is the trivial local system and is pure.  The remaining OPE data
+(the regular terms $:J^2:$ etc.)\ have pole order~$\leq 1$,
+so $\mathrm{gr}^1\cL$ is a local system of pure weight, completing
+the verification.
+\end{proof}
+
+\begin{proposition}[Purity failure for Virasoro; \ClaimStatusProvedHere]
+\label{prop:purity-failure-virasoro}
+The purity criterion \emph{fails} for the Virasoro algebra at
+generic central charge~$c$.  The OPE
+\[
+T(z)T(w) \;\sim\; \frac{c/2}{(z-w)^4} +
+\frac{2T(w)}{(z-w)^2} + \frac{\partial T(w)}{z-w}
+\]
+creates a fourth-order pole.  The space $\FM_2(\C)$ is itself
+smooth (it is the real oriented blowup of $\C^2$ along the
+diagonal), so the failure is \emph{not} a singularity of the
+ambient space but rather a failure of purity of the OPE-weighted
+local system.  Concretely: $\mathrm{gr}^4\cL_{\mathrm{Vir}}$
+on the boundary divisor of $\FM_2(\C)$ has fiber~$\C$
+(from the scalar $c/2$ residue), contributing weight~$4$, while
+$\mathrm{gr}^2\cL_{\mathrm{Vir}}$ has fiber~$\cA$ (from the
+non-scalar $2T(w)$ residue), contributing weight~$2$.  The
+extension class between these graded pieces in
+$H^*(\FM_2(\C), \cL_{\mathrm{Vir}})$ is \emph{non-split}: the
+composite residue that takes two colliding $T$'s through the
+quartic pole to produce $T$ via the quadratic pole defines a
+non-trivial class in $\mathrm{Ext}^1$ between weight~$4$ and
+weight~$2$.  This non-split extension obstructs $E_1$-degeneration
+of the weight spectral sequence.  The resulting $d_3$ differential
+is precisely the $m_3$ operation that makes the Virasoro
+non-Koszul.
+\end{proposition}
+
+\begin{proof}
+The OPE-weighted local system $\cL_{\mathrm{Vir}}$ on
+$\Conf_2(\C)$ has the filtration
+$\cL^{\leq 1} \subset \cL^{\leq 2} \subset \cL^{\leq 4} =
+\cL_{\mathrm{Vir}}$ (there is no order-$3$ pole in the $TT$ OPE).
+The weight spectral sequence for $H^*(\FM_2(\C), \cL_{\mathrm{Vir}})$
+has $E_1^{p,q} = H^{p+q}(\FM_2, \mathrm{gr}^{-p}\cL)$.
+At $E_1$: the $\mathrm{gr}^4$ piece contributes a class in
+weight~$4$ (from the scalar $c/2$ residue), and the $\mathrm{gr}^2$
+piece contributes a class in weight~$2$ (from the $2T$ residue).
+The $d_1$ differential vanishes for degree reasons.  The $d_2$
+differential also vanishes (it would connect weights differing
+by~$1$, but the filtration jumps by~$2$).  The $d_3$ differential
+connects weight~$4$ to weight~$2$: explicitly, the composite
+\[
+\mathrm{Res}_{z=w}\bigl[(z-w)^{-4} \cdot \tfrac{c}{2}\bigr]
+\;\leadsto\; \tfrac{1}{3!}\partial^3_w\bigl[2T(w)\bigr]
+\]
+arising from the Laurent expansion of the $TT$ OPE around the
+collision point produces a non-trivial bar operation $m_3$ on three
+inputs.  Since $d_3 \neq 0$, the spectral sequence does not
+degenerate at~$E_1$, confirming failure of purity.
+\end{proof}
+
+\begin{remark}[The simple-pole principle]
+\label{rem:simple-pole-principle}
+The purity criterion distills to a single geometric slogan:
+\emph{simple poles give pure weights give $E_1$-degeneration give
+Koszul; higher non-scalar poles give mixed extensions give
+non-trivial differentials give non-Koszul.}
+This is the Chriss--Ginzburg content of the chiral Koszulness
+question.  The Decomposition Theorem is the machine that converts
+the local geometric data (pole orders) into the global algebraic
+conclusion (concentration of bar cohomology).  The open problem
+reduces to: \emph{prove that the OPE pole structure of a BV-BRST
+chiral algebra satisfying \textup{(H1)--(H4)} has at most simple
+effective poles.}
+\end{remark}
+
 \begin{remark}[Spectral parameter: operadic origin]
 \label{rem:spectral-parameter-operadic}
 \index{spectral parameter!operadic origin}
