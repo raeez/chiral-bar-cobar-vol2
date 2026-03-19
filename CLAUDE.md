@@ -28,23 +28,25 @@ Every chapter depends on Vol I's five theorems. Cross-references to Vol I labels
 | **(D)** Leading coefficient | Curvature κ(A)·ω_g governs the genus tower; curved Swiss-cheese = Swiss-cheese + Hodge deformation |
 | **(H)** Hochschild ring | BV-BRST origin of the deformation ring; bulk ≃ chiral Hochschild (Theorem H gets its physical explanation) |
 
-## Five Parts
+## Nine Parts (Treatise Architecture)
 
-**I. From the Bar Complex to the Swiss-Cheese Operad.** The bridge from Vol I to three dimensions. SC^{ch,top} is constructed: closed color = FM_k(ℂ), open color = FM_k(ℂ) × E₁(m). The closed color recovers BD chiral algebras (ProvedHere). Recognition theorem: an A∞ chiral algebra satisfying (H1)–(H4) is an SC^{ch,top}-algebra (ProvedHere). Homotopy-Koszulity of SC^{ch,top} proved via Kontsevich formality + transfer from classical Swiss-cheese (ProvedHere). Raviolo descent: SC-algebra → raviolo vertex algebra → Poisson vertex algebra on cohomology (ProvedHere). The raviolo is the algebraic avatar of the ℂ × ℝ geometry. Axiomatics: sesquilinearity, A∞ relations with spectral substitution, cluster factorization from Stokes on FM compactifications.
+**I. From the Bar Complex to the Swiss-Cheese Operad.** The bridge from Vol I to three dimensions. SC^{ch,top} constructed, recognition theorem, homotopy-Koszulity proved. Raviolo descent: SC-algebra → raviolo VA → PVA on cohomology. Axiomatics: sesquilinearity, A∞ relations, cluster factorization.
 
-**II. The Descent Calculus.** Two descent mechanisms: cohomological (bar → PVA via Arnold/Stokes) and genus (curved bar over M̄_g). PVA on cohomology H•(A,Q) is a (−1)-shifted Poisson vertex algebra — all axioms verified (ProvedHere). FM calculus, chiral Hochschild cohomology, and the bar-cobar review (Quillen equivalence, filtered Koszul duality).
+**II. The Descent Calculus.** Two descent mechanisms: cohomological (bar → PVA via Arnold/Stokes) and genus (curved bar over M̄_g). FM calculus and PVA descent.
 
-**III. Dualities and the Bulk-Boundary-Line Triangle.** The **bulk-boundary-line Koszul triangle**: bulk algebra A, boundary algebra A! (Koszul dual), line operators as A!-modules — three vertices of a single triangle, with Koszul duality mediating each edge. Corrected form: bulk ≃ derived center of boundary, NOT bulk = boundary. Spectral braiding: R(z) from bulk-boundary composition solves Yang-Baxter via Stokes on FM₃; classical limit r(z) = Laplace of λ-bracket. Celestial transfer: the boundary PVA descends to a celestial OPE algebra.
+**III. The Bulk-Boundary-Line Core.** Chiral Hochschild, brace algebra, bar-cobar review, line operators, spectral braiding (proved core), Koszul triangle (proved core), celestial boundary transfer (proved core), physical origins (merged chapter).
 
-**III. The Standard Landscape.** Three worked examples verify (H1)–(H4) and ground the abstract machinery:
-- *Free multiplet*: all m_{k≥3} = 0 (no interaction vertices). The trivial case that calibrates signs.
-- *Landau-Ginzburg cubic*: truncation at m₃ by degree counting. The simplest interacting example.
-- *Abelian Chern-Simons*: boundary = û(1)_k, OPE computed directly from propagator.
-- Plus: *Virasoro* (genuinely infinite A∞ -- all m_k != 0 via wheel diagrams, Q² = 0, recursive m_k from BV master equation), *W₃* (classical YBE from λ-bracket Jacobi, central charge shift from ghost counting).
+**IV. The Standard HT Landscape.** Worked examples: Rosetta stone, free multiplet, LG, CS (proved), W-algebras (stable framework).
 
-**IV. The Standard Landscape.** Three worked examples verify (H1)–(H4) and ground the abstract machinery: free multiplet, LG cubic, abelian CS, plus Virasoro and W₃.
+**V. Quantization and Obstruction Theory.** Modular PVA quantization (core), affine half-space BV, planted-forest L∞, 3d gravity.
 
-**V. Quantization and Holography.** PVA quantization via the modular bar complex. Affine half-space BV (solved for the affine case). Planted-forest L∞ obstructions. YM boundary packages. Celestial holography. Logarithmic HT monodromy. The **anomaly-completed Koszul triangle**: transgression algebra B_Θ, secondary anomaly u = η², genus-Clifford dichotomy — the holographic dictionary is presented by the transgression algebra, as the Swiss-cheese algebra is presented by the bar complex.
+**VI. The Ordered/Open Sector and Transport.** Ordered associative chiral KD (core), dg-shifted factorization bridge. The E₁ wing as equal partner.
+
+**VII. Holographic and Celestial Frontier.** YM synthesis (core), celestial holography (core), logarithmic HT monodromy (core), anomaly-completed holography (core).
+
+**VIII. Extensions, Conditional Results, and Frontier.** All frontier/conjectural material from splits. No earlier part depends on this part.
+
+**IX. Conclusion and Aftermatter.** Conclusion, appendices (brace signs, orientations, FM proofs, PVA expanded).
 
 ## Standing Hypotheses
 
@@ -112,33 +114,41 @@ All commits authored by Raeez Lorgat. **Never credit an LLM.** No "co-authored-b
 
 ## File Map
 
-**Theory** (chapters/theory/, 10 files): The operadic foundations and equivalence theorems.
-- foundations: **the bridge** — bar complex as Swiss-cheese algebra, SC^{ch,top} operad construction
-- raviolo, raviolo-restriction: algebraic avatar of ℂ × ℝ geometry, raviolo VA from SC-algebra
-- pva-descent, pva-preview: PVA on cohomology, (−1)-shifted Poisson structure, all axioms verified
-- axioms: sesquilinearity, A∞ relations with spectral substitution, cluster factorization
-- equivalence: operad ⟹ axioms and axioms ⟹ operad (rectification)
-- bv-construction: chain-level A∞ from BV-BRST, conditional on (H1)–(H4)
-- fm-calculus: A∞ from Stokes on FM compactifications, AOS corner cancellations
-- locality: HT prefactorization structure
+**Theory** (chapters/theory/, 10 files): Parts I–II.
+- foundations, locality, axioms, equivalence, bv-construction: Part I (Swiss-Cheese)
+- raviolo, raviolo-restriction: Part I (promoted from appendix)
+- fm-calculus, pva-descent-repaired: Part II (Descent Calculus)
+- introduction: global introduction
 
-**Examples** (chapters/examples/, 4 files): Free multiplet, LG, CS, Virasoro, W₃ — complete computations.
+**Examples** (chapters/examples/): Part IV.
+- rosetta_stone, examples-computing, examples-worked: proved core
+- examples-complete-proved: proved computations (split from examples-complete)
+- examples-complete-conditional: conditional computations (split, Part VIII)
+- w-algebras-stable: general framework (split from w-algebras)
+- w-algebras-conditional: Virasoro/W₃ conditional (split, Part VIII)
 
-**Connections** (chapters/connections/, 19 files): The programme and frontier.
-- concordance: **status ledger** and cross-volume bridges (constitutional for Vol II)
-- bar-cobar-review: bar-cobar adjunction and filtered Koszul duality in the SC setting
-- hochschild: brace algebra on HC cochains, Gerstenhaber bracket, bulk ≃ chiral Hochschild
-- line-operators: C_line ≃ A!-mod (unconditional; homotopy-Koszulity proved)
-- spectral-braiding: R(z) from bulk-boundary, Yang-Baxter from Stokes on FM₃
-- ht_bulk_boundary_line: the Koszul triangle — bulk, boundary, line
-- celestial_holography, celestial_boundary_transfer: celestial OPE and boundary transfer
-- anomaly_completed_topological_holography: B_Θ, secondary anomaly u = η², genus-Clifford
-- log_ht_monodromy: logarithmic monodromy in the HT direction
-- modular_pva_quantization, affine_half_space_bv: quantization programme
-- fm3_planted_forest_synthesis: planted-forest L∞ obstructions
-- bv_ht_physics, physical_origins, holomorphic_topological: physics bridges
-- ym_synthesis, brace: YM boundary, brace structures
-- conclusion: synthesis and open problems
+**Connections — Core** (used in Parts III, V, VI, VII):
+- hochschild, brace, bar-cobar-review, line-operators: Part III core
+- spectral-braiding-core, ht_bulk_boundary_line_core, celestial_boundary_transfer_core: Part III (split)
+- ht_physical_origins: Part III (merged from physical_origins + holomorphic_topological + bv_ht_physics)
+- modular_pva_quantization_core, affine_half_space_bv, fm3_planted_forest_synthesis, 3d_gravity: Part V
+- ordered_associative_chiral_kd_core, dg_shifted_factorization_bridge: Part VI
+- ym_synthesis_core, celestial_holography_core, log_ht_monodromy_core, anomaly_completed_core: Part VII
+
+**Connections — Frontier** (Part VIII, all splits):
+- spectral-braiding-frontier, ht_bulk_boundary_line_frontier, celestial_boundary_transfer_frontier
+- modular_pva_quantization_frontier, ordered_associative_chiral_kd_frontier
+- ym_synthesis_frontier, celestial_holography_frontier, log_ht_monodromy_frontier, anomaly_completed_frontier
+
+**Aftermatter**: conclusion (Part IX). Concordance removed (external compile route, matching Vol I).
+
+**Appendices**: brace-signs, orientations, fm-proofs, pva-expanded-repaired
+
+**Superseded files** (still in repo, no longer \input'd):
+- spectral-braiding.tex, ht_bulk_boundary_line.tex, celestial_boundary_transfer.tex, modular_pva_quantization.tex
+- ordered_associative_chiral_kd.tex, ym_synthesis.tex, celestial_holography.tex, log_ht_monodromy.tex
+- anomaly_completed_topological_holography.tex, examples-complete.tex, w-algebras.tex
+- physical_origins.tex, holomorphic_topological.tex, bv_ht_physics.tex, concordance.tex
 
 ## The Aesthetic
 
