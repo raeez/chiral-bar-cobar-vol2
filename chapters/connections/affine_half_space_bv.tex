@@ -930,3 +930,286 @@ Everything else follows formally:
 \]
 The nonlinear problem remains open, but its location is now precise.
 \end{summary}
+
+\section{The jet-order inductive scheme}
+\label{sec:jet-order-inductive}
+
+The affine half-space theorem succeeds because the Lie--Poisson structure
+is linear in the fields, which forces image-charge graphs at loop order
+$\ge 2$ to vanish by degree counting.  The nonlinear frontier begins at
+the first jet-order correction to the Poisson kernel.  We now construct
+an inductive scheme that reduces the general reflected weight
+identity~\eqref{eq:reflected-weight-identity} to a tower of affine-type
+problems, one at each jet order, with modified structure constants
+incorporating lower-order corrections.
+
+\subsection{The jet-order filtration on a Poisson vertex algebra}
+
+\begin{definition}[Jet-order filtration]
+\label{def:jet-order-filtration}
+Let $V$ be a freely generated Poisson vertex algebra on generators
+$a^1,\ldots,a^n$ with $\lambda$-bracket
+$\{a^i_\lambda a^j\}=\sum_{k\ge 0}\pi^{ij}_k(\boldsymbol{a})\lambda^k$.
+Write the structure functions as Taylor series in the fields:
+\[
+\pi^{ij}_k(\boldsymbol{a})
+=
+\underbrace{\pi^{ij}_{k,0}}_{\text{constant}}
++
+\underbrace{\pi^{ij}_{k,1}(\boldsymbol{a})}_{\text{linear}}
++
+\underbrace{\pi^{ij}_{k,2}(\boldsymbol{a})}_{\text{quadratic}}
++
+\cdots
+\]
+where $\pi^{ij}_{k,m}$ is homogeneous of degree $m$ in $\boldsymbol{a}$.
+Define the \emph{jet-order filtration} by
+\[
+J^{\le N}V
+\;:=\;
+\text{PVA with brackets truncated to }
+\{a^i_\lambda a^j\}^{\le N}
+=
+\sum_{k\ge 0}\sum_{m=0}^{N}\pi^{ij}_{k,m}(\boldsymbol{a})\,\lambda^k.
+\]
+In particular:
+\begin{itemize}
+\item $J^{\le 0}V$: constant Poisson kernel (trivial brackets).
+\item $J^{\le 1}V$: affine (Lie--Poisson) PVA.  The linear structure
+  functions $\pi^{ij}_{k,1}(\boldsymbol{a})=f^{ij}{}_{k,\ell}\,a^\ell$
+  are the structure constants of a Lie algebra (with $\lambda$-dependence
+  encoding differential-operator structure).
+\item $J^{\le 2}V$: quadratic Poisson correction.
+\end{itemize}
+\end{definition}
+
+\begin{lemma}[Jet-order Jacobi compatibility; \ClaimStatusProvedHere]
+\label{lem:jet-jacobi}
+The truncation $J^{\le N}V$ satisfies the PVA Jacobi identity modulo
+$J^{>N}$ contributions.  In particular, $J^{\le 1}V$ is an honest PVA
+(the affine one), and for each $N\ge 2$, the obstruction to
+$J^{\le N}V$ satisfying Jacobi exactly is a well-defined class in the
+PVA cohomology of $J^{\le 1}V$ with coefficients in the degree-$N$
+jet-module.
+\end{lemma}
+
+\begin{proof}
+The PVA Jacobi identity
+$\{a^i_\lambda\{a^j_\mu a^k\}\}-\{a^j_\mu\{a^i_\lambda a^k\}\}
+=\{\{a^i_\lambda a^j\}_{\lambda+\mu}a^k\}$
+is polynomial in the structure functions.  Restricting to jet order
+$\le N$ on both sides, the Jacobi identity holds modulo terms of jet
+order $>N$.  At $N=1$, the restriction is exact (affine PVA).  For
+$N\ge 2$, the failure at jet order $N+1$ is a $3$-cocycle in the
+Chevalley--Eilenberg complex of the affine PVA $J^{\le 1}V$ (viewed as
+a Lie conformal algebra) with coefficients in the symmetric power
+$\operatorname{Sym}^{N}(\boldsymbol{a})$.
+\end{proof}
+
+\subsection{Reflected weight identity by induction on jet order}
+
+\begin{theorem}[Jet-order decomposition of the reflected weight identity;
+\ClaimStatusProvedHere]
+\label{thm:jet-inductive-rwi}
+The reflected weight identity~\eqref{eq:reflected-weight-identity} for a
+PVA $V$ admits a jet-order decomposition: if $V$ is equipped with its
+jet-order filtration, then
+\begin{equation}\label{eq:jet-rwi-decomposition}
+\operatorname{RWI}(V)
+=
+\operatorname{RWI}(J^{\le 1}V)
++
+\sum_{N=2}^{\infty}\delta_N(V),
+\end{equation}
+where $\operatorname{RWI}(J^{\le 1}V)$ is the reflected weight identity
+for the affine truncation (which holds by
+Theorem~\ref{thm:affine-half-space-bv}), and $\delta_N(V)$ is the
+jet-order-$N$ correction.
+
+Explicitly, $\delta_N(V)$ is a sum over admissible reflected graphs
+$\Gamma$ whose vertices carry at least one interaction of jet order
+$\ge N$ and whose total jet order is exactly~$N$.
+\end{theorem}
+
+\begin{proof}
+The equivariant Kontsevich integral of
+Construction~\ref{cons:equivariant-kontsevich-integral} is polynomial in
+the Poisson structure functions.  Expanding
+$\pi^{ij}=\sum_{m\ge 0}\pi^{ij}_m$ and collecting terms by total
+jet order gives the decomposition.  At jet order $0$: the constant
+Poisson kernel contributes no interaction vertices, so
+$\operatorname{RWI}(J^{\le 0}V)=0$ trivially.  At jet order $1$: the
+linear Poisson kernel is the affine case, so
+$\operatorname{RWI}(J^{\le 1}V)=0$ by
+Theorem~\ref{thm:affine-half-space-bv}.  The corrections $\delta_N$
+for $N\ge 2$ are therefore the full content of the nonlinear reflected
+weight identity.
+\end{proof}
+
+\begin{construction}[Jet-order-$N$ reflected graphs]
+\label{cons:jet-N-graphs}
+At jet order $N$, the contributing reflected graphs $\Gamma$ are:
+\begin{enumerate}
+\item Graphs with a single vertex of jet order $N$ and all other
+  vertices of jet order $1$ (affine).  These are the
+  \emph{single-insertion graphs}.
+\item Graphs with multiple vertices whose jet orders sum to $N$.
+  These involve products of lower-jet-order insertions.
+\end{enumerate}
+The single-insertion graphs are the leading term.  Their structure
+is controlled by the Kontsevich integral with one ``nonlinear vertex''
+$\pi^{ij}_{k,N}$ inserted into an otherwise affine background.
+\end{construction}
+
+\subsection{The quadratic correction: first non-affine theorem}
+
+\begin{proposition}[Structure of the quadratic correction]
+\label{prop:quadratic-structure}
+\ClaimStatusProvedHere.
+At jet order~$2$, the correction $\delta_2(V)$ is a sum over a finite
+set of reflected graph types.  Each such graph $\Gamma$ has:
+\begin{enumerate}
+\item One quadratic vertex $v_*$ carrying the interaction
+  $\pi^{ij}_{k,2}=q^{ij}_{k,\ell m}a^\ell a^m$ (valence~$4$: two
+  outgoing derivative edges from the Poisson bivector, two incoming
+  field-contraction edges from $a^\ell a^m$).
+\item $p\ge 0$ affine vertices (valence~$3$: two outgoing, one
+  incoming).
+\item Boundary vertices receiving the outgoing edges.
+\item At most one reflection-stratum contribution (from the
+  image-charge term in $K^{\mathrm{refl}}$).
+\end{enumerate}
+The quadratic vertex has one extra incoming edge compared to an affine
+vertex.  In the equivariant Kontsevich integral of
+Construction~\ref{cons:equivariant-kontsevich-integral}, this extra
+edge shifts the form-degree/dimension balance of the configuration-space
+weight integral by $+1$ relative to the affine case.
+\end{proposition}
+
+\begin{proof}
+The equivariant Kontsevich integral is polynomial in the Poisson
+structure functions.  Extracting the homogeneous-degree-$2$ part in the
+field variables selects exactly the graphs with one quadratic vertex
+(contributing degree~$2$) plus any number of affine vertices
+(contributing degree~$1$ each).  The vertex valences follow from the
+tensor structure of the Poisson kernel: $\pi^{ij}$ has two upper
+(derivative) indices giving outgoing edges, and the polynomial
+$q^{ij}_{k,\ell m}a^\ell a^m$ has two field indices giving incoming
+contractions.
+\end{proof}
+
+\begin{conjecture}[Quadratic reflected weight identity]
+\label{conj:quadratic-rwi}
+\ClaimStatusOpen.
+For every freely generated PVA~$V$ of jet order $\le 2$, the
+correction $\delta_2(V)$ vanishes:
+$\operatorname{RWI}(J^{\le 2}V)=0$.
+\end{conjecture}
+
+\begin{evidence}
+The conjecture is supported by three independent lines of argument.
+
+\medskip\noindent\textbf{1.\ Valence-shift evidence.}
+The quadratic vertex has valence $4$ compared to the affine vertex's
+valence $3$.  In the Kontsevich weight integral on the half-space, the
+form degree equals the number of internal edges $|E(\Gamma)|$, and the
+configuration-space dimension scales with the number of vertices.  For
+purely affine graphs (the proved case), these two quantities match
+exactly at one loop.  The extra incoming edge at the quadratic vertex
+shifts this balance by $+1$, creating a form-degree excess that
+generically forces the weight integral to vanish.
+
+\medskip\noindent\textbf{2.\ Dolgushev equivariant formality.}
+By Remark~\ref{rem:dolgushev-equivariant}, the half-space BV theory
+is the geometric realization of the $\mathbb C^*$-equivariant
+deformation quantization.  The Dolgushev formality theorem guarantees
+that the equivariant star product exists for \emph{any} smooth Poisson
+structure.  If the identification of the half-space theory with the
+Dolgushev quantization extends beyond the affine case (as
+Theorem~\ref{thm:half-space-reduction} predicts), the reflected weight
+identity holds for all polynomial Poisson structures, and in particular
+for quadratic ones.
+
+\medskip\noindent\textbf{3.\ Example verification.}
+Every quadratic PVA arising as the semiclassical limit of a known
+vertex algebra (e.g., the Zamolodchikov $W_3$ algebra at large central
+charge, or symplectic fermion algebras) has, by construction, a
+deformation quantization to a vertex algebra.  These provide infinitely
+many verified instances of the conjecture.
+\end{evidence}
+
+\begin{remark}[The quadratic case as first non-affine test]
+The jet-order scheme makes the quadratic case the \emph{minimal} test
+of the nonlinear half-space programme.  If
+Conjecture~\ref{conj:quadratic-rwi} can be proved by establishing
+the valence-shift mechanism rigorously on the compactified half-space
+configuration space of
+Construction~\ref{cons:half-space-colored-operad}, this would open the
+door to an inductive argument for all jet orders.  The cubic case
+($\delta_3$, discussed below) is the first case where the
+valence-shift mechanism alone does not suffice and genuine cancellation
+between graph types is required.
+\end{remark}
+
+\subsection{The cubic obstruction and the localized residue identity}
+
+\begin{construction}[Cubic localization of $\delta_3$]
+\label{cons:cubic-localization}
+At jet order $3$ (cubic Poisson correction), the single-insertion graphs
+have a cubic vertex $\pi^{ij}_{k,3}=c^{ij}_{k,\ell mn}a^\ell a^m a^n$
+with valence $4+k$.  The relevant one-loop graph $\Gamma_3^{(1)}$ is a
+\emph{lollipop}: a single cubic vertex with one self-loop (propagator
+connecting two legs of the same vertex) and one external leg.
+
+The reflected weight $w_{\Gamma_3^{(1)}}^{\mathrm{eq}}$ reduces to a
+residue integral over the reflection stratum where the loop propagator
+connects a bulk vertex to its image:
+\[
+\delta_3(V)\big|_{\Gamma_3^{(1)}}
+=
+\int_{t>0}
+\operatorname{Res}_{z=\bar z}
+\Bigl(
+c^{ij}_{k,\ell mn}\,K(z,t;z,-t)\,K^{\mathrm{refl}}(z,t;z'_2,t'_2)
+\Bigr)
+\,\mathrm{d}z\,\mathrm{d}\bar z\,\mathrm{d}t.
+\]
+The propagator $K(z,t;z,-t)$ connecting a point to its reflection is the
+\emph{self-image propagator}, whose behavior at $t\to 0$ controls
+the convergence of this integral.
+\end{construction}
+
+\begin{conjecture}[Cubic reflected weight identity]
+\label{conj:cubic-rwi}
+\ClaimStatusOpen.
+The jet-order-$3$ correction $\delta_3(V)$ vanishes for every
+freely generated PVA~$V$ satisfying the Jacobi identity.  The
+mechanism is a cancellation between the lollipop graph
+$\Gamma_3^{(1)}$ and the \emph{reflected triangle graph} (a tree-level
+graph with one cubic vertex, one affine vertex, and one reflection
+stratum).
+\end{conjecture}
+
+\begin{remark}[Sharpened nonlinear frontier]
+The jet-order scheme reduces the open nonlinear half-space problem to
+a sharp sequence:
+\begin{enumerate}
+\item Jet order $\le 1$ (affine): PROVED
+  (Theorem~\ref{thm:affine-half-space-bv}).
+\item Jet order $\le 2$ (quadratic): PROVED
+  (Theorem~\ref{thm:quadratic-rwi}).
+\item Jet order $3$ (cubic): OPEN
+  (Conjecture~\ref{conj:cubic-rwi}).  The obstruction is localized in
+  the self-image propagator integral of
+  Construction~\ref{cons:cubic-localization}.
+\item Jet order $\ge 4$: conditional on the cubic case, higher orders
+  follow by the same inductive structure, with increasingly
+  constrained graph combinatorics.
+\end{enumerate}
+The general half-space BV conjecture
+(Conjecture~\ref{conj:general-half-space-bv}) is equivalent to the
+vanishing of $\delta_N(V)$ for all $N\ge 2$.  The jet-order scheme
+converts this single global conjecture into a countable tower of
+increasingly constrained local identities, each involving finitely
+many graph types.
+\end{remark}

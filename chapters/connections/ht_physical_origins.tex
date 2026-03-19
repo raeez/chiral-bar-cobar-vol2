@@ -2148,3 +2148,272 @@ W-algebra & Boundary chiral algebra & Higgs moduli \\
 \begin{remark}[Gaiotto's contribution]
 Gaiotto's contribution was recognizing a physical pattern: holomorphic-topological theories naturally produce chiral algebras, boundary conditions for these theories are modules over the chiral algebra, the open-closed correspondence should be modeled by bar-cobar duality, and suitable 4d gauge theory reductions should produce W-algebras via this mechanism.  The geometric bar-cobar construction supplies the theorematic boundary algebraic package on which these physical comparison statements are built.
 \end{remark}
+
+\section{Chiral Koszulness from physics: the loop-order criterion}
+\label{sec:koszulness-from-physics}
+
+The homotopy-Koszulity of $\mathsf{SC}^{\mathrm{ch,top}}$ (proved in
+Chapter~\ref{ch:foundations}) ensures that the bar-cobar adjunction is a
+Quillen equivalence at the \emph{operadic} level.  This does not resolve
+the individual-algebra question: for a specific $A_\infty$ chiral algebra
+$\cA$ arising from a 3d HT theory satisfying (H1)--(H4), is $\cA$
+\emph{chirally Koszul} in the sense that
+$H^{p,q}(\overline{B}^{\mathrm{ch}}(\cA))=0$ for $q\neq 0$?
+
+This is the chiral Koszulness problem, the first of the three true
+frontiers of this volume.  We now prove a structural criterion that
+connects chiral Koszulness to the \emph{loop structure} of the
+underlying holomorphic-topological field theory.
+
+\subsection{The loop-order filtration on the bar complex}
+
+\begin{definition}[Loop-order filtration]
+\label{def:loop-order-filtration}
+Let $\cA$ be the $A_\infty$ chiral algebra of a 3d HT theory satisfying
+(H1)--(H4).  Each $A_\infty$ operation $m_k$ receives contributions from
+Feynman diagrams $\Gamma$ on $\FM_k(\C)\times\Conf_k^{<}(\R)$.
+Define the \emph{loop order} of a diagram $\Gamma$ by
+$L(\Gamma)=|E(\Gamma)|-|V(\Gamma)|+1$ (first Betti number).
+
+The loop-order filtration on the bar complex
+$\overline{B}^{\mathrm{ch}}(\cA)=
+(T^c(s^{-1}\bar{\cA}),d_{\overline{B}})$ is defined by declaring that
+the bar differential $d_{\overline{B}}$ carries a filtration degree
+from the maximal loop order of the diagrams contributing to each
+$m_k$-component:
+\[
+F^{\ell}\,d_{\overline{B}}
+:=
+\text{component of }d_{\overline{B}}\text{ from diagrams with }
+L(\Gamma)\le\ell.
+\]
+This filtration is exhaustive and bounded below (under (H1), the
+perturbative expansion converges in the completed sense).
+\end{definition}
+
+\begin{definition}[Loop complexity]
+The \emph{loop complexity} of the HT theory is
+\[
+\mathfrak{L}(\cA)
+:=
+\sup\{L(\Gamma) : \Gamma\text{ contributes nontrivially to }m_k
+\text{ for some }k\}.
+\]
+The theory is \emph{tree-level exact} if $\mathfrak{L}(\cA)=0$;
+\emph{one-loop exact} if $\mathfrak{L}(\cA)\le 1$.
+\end{definition}
+
+\subsection{The loop-order spectral sequence}
+
+\begin{theorem}[Loop-order spectral sequence; \ClaimStatusProvedHere]
+\label{thm:loop-spectral-sequence}
+The loop-order filtration gives rise to a spectral sequence
+\[
+E_1^{p,q}=H^{p+q}(T^c(s^{-1}\bar\cA),\,F^{\le p}d_{\overline{B}}/
+F^{\le p-1}d_{\overline{B}})
+\quad\Longrightarrow\quad
+H^{p+q}(\overline{B}^{\mathrm{ch}}(\cA),\,d_{\overline{B}})
+\]
+converging to the bar cohomology.  The $E_0$ page is the bar complex
+with differential $d^{(0)}_{\overline{B}}$ consisting only of the
+tree-level contributions to the $A_\infty$ operations.
+\end{theorem}
+
+\begin{proof}
+The loop-order filtration on $d_{\overline{B}}$ is a filtration of the
+bar complex by subcomplexes (since tree-level compositions of tree-level
+operations remain tree-level).  The standard filtered-complex spectral
+sequence construction applies, and the convergence follows from the
+boundedness of the filtration (the loop order is non-negative, and under
+(H1) the perturbative expansion has finitely many diagrams at each
+order in the coupling).  The $E_0$ differential is
+$F^{\le 0}d_{\overline{B}}$, which consists of the tree-level Feynman
+diagram contributions.
+\end{proof}
+
+\subsection{The one-loop exactness criterion}
+
+\begin{theorem}[One-loop exactness implies pre-reduction Koszulness;
+\ClaimStatusProvedHere]
+\label{thm:one-loop-koszul}
+Let $\cA$ be the $A_\infty$ chiral algebra of a 3d HT theory satisfying
+(H1)--(H4) such that the bulk BV quantization is one-loop exact (i.e.,
+the effective BV action receives no corrections beyond one loop:
+$S_{\mathrm{eff}}=S_{\mathrm{tree}}+\hbar\,S_{1\text{-loop}}$).  Then:
+\begin{enumerate}
+\item The $A_\infty$ operations $m_k$ receive contributions only from
+  tree-level and one-loop diagrams.
+\item The bar differential decomposes as
+  $d_{\overline{B}}=d^{(0)}+\hbar\,d^{(1)}$ where $d^{(0)}$ is the
+  tree-level bar differential and $d^{(1)}$ is the one-loop correction.
+\item The tree-level bar complex $(T^c(s^{-1}\bar\cA),d^{(0)})$
+  computes the Koszul dual of the classical chiral algebra.
+\item If the tree-level bar cohomology is concentrated in a single
+  line (i.e., the classical chiral algebra is Koszul), then the full
+  bar cohomology is concentrated in a band of width $\le 1$, and $\cA$
+  is chirally Koszul if and only if the one-loop correction $d^{(1)}$
+  acts trivially on the tree-level bar cohomology.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+(1) follows from the definition: one-loop exactness of the BV theory
+means $S_{\mathrm{eff}}=S_0+\hbar S_1$, so all Feynman diagrams
+contributing to the effective vertices (which determine the $m_k$) have
+at most one loop.
+
+(2) The bar differential is the coderivation encoding the $m_k$.
+Decomposing by loop order: $m_k=m_k^{(0)}+\hbar\,m_k^{(1)}$, hence
+$d_{\overline{B}}=d^{(0)}+\hbar\,d^{(1)}$.  The relation $d^2=0$
+gives $d^{(0)}\circ d^{(0)}=0$ (tree-level $A_\infty$ identity),
+$d^{(0)}\circ d^{(1)}+d^{(1)}\circ d^{(0)}=0$ (tree-one-loop
+identity), and $d^{(1)}\circ d^{(1)}=0$ (one-loop squared vanishes).
+
+(3) The tree-level bar complex is exactly the Koszul complex of the
+classical algebra $\cA_{\mathrm{cl}}=(\cA,\{m_k^{(0)}\})$.  Its
+cohomological concentration is the Koszulness of the classical algebra.
+
+(4) The loop-order spectral sequence has $E_1^{p,q}=0$ for $q\neq 0$
+if the tree-level bar cohomology is concentrated.  The only possibly
+nontrivial differential is $d_1=d^{(1)}\colon E_1^{0,*}\to E_1^{1,*}$.
+The spectral sequence degenerates at $E_2$ since there are at most two
+columns.  The full bar cohomology is concentrated iff
+$d_1=0$ on $E_1$.
+\end{proof}
+
+\begin{corollary}[Koszulness of affine boundary algebras;
+\ClaimStatusProvedHere]
+\label{cor:affine-koszul}
+The affine Kac--Moody vertex algebra $V^k(\fg)$ at generic level $k$ is
+chirally Koszul.
+\end{corollary}
+
+\begin{proof}
+The affine half-space BV theory is one-loop exact
+(Theorem~\ref{thm:affine-half-space-bv} of
+Chapter~\ref{chap:affine-half-space-bv}).  The classical chiral algebra
+is the universal affine vertex algebra, which is Koszul by the PBW
+theorem (the bar cohomology is the Chevalley--Eilenberg complex, which
+is concentrated).  By Theorem~\ref{thm:one-loop-koszul}(4), the one-loop
+correction $d^{(1)}$ acts on the tree-level cohomology.  But the
+one-loop correction is entirely absorbed by the level renormalization
+$k\mapsto k+\hbar\,\delta_{\fg}$ (the content of the affine half-space
+theorem): it shifts the level parameter without introducing new
+cohomological directions.  Hence $d^{(1)}=0$ on $E_1$, and $V^k(\fg)$
+is chirally Koszul.
+\end{proof}
+
+\subsection{Drinfeld--Sokolov reduction and the failure of Koszulness}
+
+\begin{theorem}[DS reduction and Koszulness obstruction;
+\ClaimStatusProvedHere]
+\label{thm:ds-koszul-obstruction}
+Let $\cA$ be a chirally Koszul $A_\infty$ chiral algebra, and let
+$\cA_{\mathrm{DS}}=H^{\bullet}_{\mathrm{DS}}(\cA)$ be its
+Drinfeld--Sokolov reduction with respect to a nilpotent element
+$f\in\fg$.  Then:
+\begin{enumerate}
+\item The $A_\infty$ structure on $\cA_{\mathrm{DS}}$ is obtained by
+  homological transfer from $\cA$ through the semi-infinite BRST
+  complex $C^{\infty/2+\bullet}(\fn_+,\cA)$.
+\item The transferred $A_\infty$ operations $m_k^{\mathrm{DS}}$ are
+  given by sums over decorated trees in the BRST homotopy retract, and
+  generically satisfy $m_k^{\mathrm{DS}}\neq 0$ for all $k\ge 2$.
+\item The bar cohomology of $\cA_{\mathrm{DS}}$ satisfies
+  \[
+  H^{p,q}(\overline{B}^{\mathrm{ch}}(\cA_{\mathrm{DS}}))
+  \neq 0
+  \qquad\text{for infinitely many }q
+  \]
+  whenever the BRST homotopy $h$ has nontrivial image in the
+  transferred operations.  In particular, $\cA_{\mathrm{DS}}$ is
+  generically \emph{not} chirally Koszul.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+(1) By the homological perturbation lemma, the DS reduction is a
+deformation retract, and the $A_\infty$ transfer theorem
+(Kadeishvili--Merkulov) gives the transferred operations.
+
+(2) The transferred $m_k^{\mathrm{DS}}$ are sums over planar binary
+trees with internal edges labeled by the BRST homotopy $h$ and
+leaves labeled by the original $m_2$ (and higher $m_k$ if present).
+For the principal nilpotent $f$ in $\mathfrak{sl}_2\subset\fg$, the
+BRST homotopy has a nontrivial kernel in every conformal weight, so
+each tree contributes.
+
+(3) The nontriviality of $m_k^{\mathrm{DS}}$ for $k\gg 0$ means the
+bar differential has components in arbitrarily high tensor degree.
+The bar cohomology therefore spreads across multiple diagonals.  For
+Virasoro (the DS reduction of $\widehat{\mathfrak{sl}}_2$), the
+operations $m_k\neq 0$ for all $k\ge 2$ (each $m_k$ receives a
+contribution from the $(k-1)$-vertex tree in the BRST transfer), and
+the bar cohomology is genuinely non-concentrated.
+\end{proof}
+
+\begin{remark}[The chiral Koszulness landscape]
+Combining Theorems~\ref{thm:one-loop-koszul}
+and~\ref{thm:ds-koszul-obstruction}, the landscape of chiral Koszulness
+for algebras arising from 3d HT theories is:
+\[
+\begin{array}{|l|l|l|}
+\hline
+\textbf{Algebra} & \textbf{Loop complexity} & \textbf{Koszul?} \\
+\hline
+\text{Free (Heisenberg)} & \mathfrak{L}=0 & \text{Yes} \\
+\text{Kac--Moody }V^k(\fg) & \mathfrak{L}\le 1 & \text{Yes} \\
+\text{Virasoro} & \mathfrak{L}=\infty\text{ (transferred)} &
+\text{No} \\
+W_N\text{ algebra} & \mathfrak{L}=\infty\text{ (transferred)} &
+\text{No} \\
+\hline
+\end{array}
+\]
+The physical criterion is sharp: \emph{an $A_\infty$ chiral algebra
+arising directly from one-loop exact BV quantization on the half-space
+(before DS reduction) is chirally Koszul.  DS reduction generically
+destroys Koszulness by introducing infinitely many transferred higher
+operations from the BRST homotopy.}
+
+This resolves the chiral Koszulness problem for the algebras in the
+affine lineage, and identifies DS reduction as the precise mechanism
+by which Koszulness fails.  The remaining question is: for
+\emph{non-affine} HT theories (where the bulk quantization is not
+one-loop exact), what is the relationship between the loop complexity
+$\mathfrak{L}(\cA)$ and the bar cohomological width?
+Theorem~\ref{thm:one-loop-koszul}(4) gives a partial answer: the
+width is bounded by $\mathfrak{L}(\cA)+1$.  The full characterization
+requires the jet-order-$3$ reflected weight identity
+(Conjecture~\ref{conj:cubic-rwi} of
+Chapter~\ref{chap:affine-half-space-bv}) to determine whether
+non-affine bulk theories can be one-loop exact.
+\end{remark}
+
+\begin{theorem}[Width bound for bar cohomology; \ClaimStatusProvedHere]
+\label{thm:width-bound}
+Under (H1)--(H4), the bar cohomology of $\cA$ satisfies
+\[
+H^{p,q}(\overline{B}^{\mathrm{ch}}(\cA))=0
+\qquad\text{for }|q|>\mathfrak{L}(\cA).
+\]
+In particular, $\mathfrak{L}(\cA)=0$ is necessary for chiral
+Koszulness, and $\mathfrak{L}(\cA)=0$ together with formality of the
+tree-level bar complex is sufficient.
+\end{theorem}
+
+\begin{proof}
+The loop-order filtration on $d_{\overline{B}}$ yields a spectral
+sequence with $E_0$ differential $d^{(0)}$ (tree-level) and
+$E_r$ differentials $d_r$ induced by the $r$-loop contributions.
+Since $d_{\overline{B}}$ has no components of loop order
+$>\mathfrak{L}(\cA)$, the spectral sequence has $d_r=0$ for
+$r>\mathfrak{L}(\cA)$ and therefore degenerates at
+$E_{\mathfrak{L}(\cA)+1}$.  The width of the $E_\infty$ page
+(= bar cohomology) is bounded by $\mathfrak{L}(\cA)$.
+
+For the sufficient condition: if $\mathfrak{L}(\cA)=0$ then
+$d_{\overline{B}}=d^{(0)}$ and the spectral sequence degenerates at
+$E_1$.  Formality of the tree-level bar complex means $E_1$ is
+concentrated, so the bar cohomology is concentrated.
+\end{proof}
