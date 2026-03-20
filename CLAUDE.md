@@ -50,7 +50,7 @@ Every chapter depends on Vol I's five theorems. Cross-references to Vol I labels
 
 ## Standing Hypotheses
 
-**No conjectural algebraic inputs remain.** Both Recognition and Homotopy-Koszulity are proved. All algebraic results are unconditional. The only conditional inputs are four analytic axioms, verified in the three worked examples but not proved in general:
+**No conjectural algebraic inputs remain.** Both Recognition and Homotopy-Koszulity are proved. All algebraic results are unconditional. The only conditional inputs are four analytic axioms, verified in the three worked examples but not proved in general. The general *consequences* of (H1)–(H4) — half-space BV structure, propagator calculus, factorization descent — are fully proved by the doubling theorem (Theorem thm:general-half-space-bv), which derives them from abstract axiom data. The axioms themselves remain physical inputs requiring case-by-case verification:
 
 | | Content | Status |
 |---|---------|--------|
@@ -74,8 +74,9 @@ Every chapter depends on Vol I's five theorems. Cross-references to Vol I labels
 - The R-matrix R(z) comes from **bulk-boundary composition**, NOT from the universal R-matrix of a quantum group (though they agree on the evaluation locus — this is DK-0).
 - Formality fails at d' = 1: this is NOT a defect. The non-vanishing of higher A∞ operations IS the curved bar structure d² = κ(A)·ω₁ from Vol I.
 - The corrected bulk/boundary/line triangle: **bulk ≃ derived CENTER of boundary**, NOT bulk = boundary.
-- Chiral Koszulness from physics is **OPEN**: (H1)–(H4) + BV-BRST should imply it, but this is not proved.
+- Chiral Koszulness from physics: **RESOLVED for the affine lineage** by the loop-order criterion (Theorem thm:one-loop-koszul), which shows one-loop exactness of the BV-BRST differential implies Koszulness. DS reduction (Theorem thm:ds-koszul-obstruction) explains the failure mechanism: Koszulness descends through DS iff the BRST cohomology inherits one-loop exactness. General case beyond the affine lineage remains open.
 - **Homotopy-Koszulity of SC^{ch,top} is PROVED** (Theorem thm:homotopy-Koszul): via Kontsevich formality + transfer from classical Swiss-cheese (Livernet). ALL formerly conditional results (bar-cobar Quillen equivalence, filtered Koszul duality, C_line ≃ A!-mod, dg-shifted Yangian) are now unconditional.
+- **Spectral Drinfeld strictification is COMPLETE** for all filtrations and all simple Lie algebras, via the complete strictification theorem. The former "filtration >= 4" frontier is fully resolved. The true remaining frontier is Kac-Moody algebras with root multiplicities > 1, where the strictification mechanism requires new input.
 - The **Koszul dual is the boundary**, not the bulk: A! lives on the boundary ℝ, not in the bulk ℂ × ℝ.
 
 ## Cross-Volume Bridges

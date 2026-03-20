@@ -103,23 +103,29 @@ description:
 
 \begin{proof}
 \textbf{Part~(a).}
-By definition, $d_{\barB}$ acts on a bar element
-$[a_1|\cdots|a_n] \in T^c(s^{-1}\bar{\cA})$ as
+The bar differential $d_{\barB}$ is the coderivation of
+$T^c(s^{-1}\bar{\cA})$ determined by the collection of
+$A_\infty$ operations $\{m_k\}_{k \geq 1}$.  Its $m_2$-component
+acts on a bar element $[a_1|\cdots|a_n]$ by applying $m_2$ to each
+\emph{consecutive} pair:
 \[
-  d_{\barB}[a_1|\cdots|a_n]
-  = \sum_{1 \leq i < j \leq n}
-    \pm\, [a_1|\cdots|m_2(a_i,a_j)|\cdots|\widehat{a_j}|\cdots|a_n],
+  d_{\barB}^{(2)}[a_1|\cdots|a_n]
+  = \sum_{i=1}^{n-1}
+    \pm\, [a_1|\cdots|m_2(a_i,a_{i+1})|\cdots|a_n],
 \]
-where $m_2(a_i,a_j) = \Res_{z_i = z_j} \mu(a_i,a_j)$ is the OPE
-residue along the collision divisor $D_{\{i,j\}} \subset
-\partial\FM_n(\C)$.  This is precisely the convolution recipe: form
-the external product of $a_i$ and $a_j$ on the two-point space
-$\FM_2(\C)$, restrict to the fiber product over the boundary stratum
-$D_{\{i,j\}} \hookrightarrow \FM_n(\C)$, and push forward along the
-collapse map $\FM_n(\C) \to \FM_{n-1}(\C)$ that merges $z_i$ and
-$z_j$.  The higher operations $m_k$ for $k \geq 3$ arise from
-deeper boundary strata --- iterated collisions --- which correspond
-to iterated convolutions along higher fiber products.
+where $m_2(a_i,a_{i+1}) = \Res_{z_i = z_{i+1}} \mu(a_i,a_{i+1})$
+is the OPE residue along the collision divisor
+$D_{\{i,i+1\}} \subset \partial\FM_n(\C)$.  This is the
+convolution recipe: form the external product of $a_i$ and
+$a_{i+1}$ on the two-point space $\FM_2(\C)$, restrict to the
+fiber product over the boundary stratum
+$D_{\{i,i+1\}} \hookrightarrow \FM_n(\C)$, and push forward along
+the collapse map $\FM_n(\C) \to \FM_{n-1}(\C)$ that merges
+$z_i$ and $z_{i+1}$.  The higher components $d_{\barB}^{(k)}$
+for $k \geq 3$, built from the operations $m_k$, arise from
+deeper boundary strata --- simultaneous collisions of $k$
+consecutive points --- which correspond to iterated convolutions
+along higher fiber products.
 
 \textbf{Part~(b).}
 The ordered configuration space $\Conf_k^{<}(\R) = \{t_1 < \cdots
@@ -892,13 +898,14 @@ the deformation over moduli of curves (D), and the HKR isomorphism
 and the five theorems are its five faces.
 \end{remark}
 
-\begin{proposition}[Koszul duality as Serre duality;
+\begin{proposition}[Koszul duality as complementary Lagrangian symmetry;
 \ClaimStatusProvedHere]
 \label{prop:koszul-serre}
-\index{Koszul duality!as Serre duality|textbf}
-\index{Serre duality!derived symplectic category}
-Koszul duality $\cA \leftrightarrow \cA^!$ is Serre duality in the
-derived symplectic category.  Precisely:
+\index{Koszul duality!as complementary Lagrangian symmetry|textbf}
+\index{complementary Lagrangians!Koszul involution}
+Koszul duality $\cA \leftrightarrow \cA^!$ is the exchange of
+complementary Lagrangians in the derived symplectic category.
+Precisely:
 \begin{enumerate}[label=\textup{(\roman*)}]
 \item The Lagrangians $\cL_\cA$ and $\cL_{\cA^!}$ are complementary
   in $\cM$: $T_{\cL_\cA}\cM \simeq T\cL_\cA \oplus T\cL_{\cA^!}$.
@@ -908,7 +915,10 @@ derived symplectic category.  Precisely:
   $\langle\barB(\cA),\, \Omegach(\barB(\cA))\rangle$.
 \item The involution $(\text{-})^{!!} \simeq \id$
   \textup{(}double Koszul duality is the identity on the Koszul
-  locus\textup{)} is the geometric statement that complementarity is
+  locus\textup{)} follows from the \emph{self-duality} of the
+  bar-cobar pairing, which is symmetric because the ambient
+  $(-2)$-shifted symplectic form on~$\cM$ is symmetric.
+  Geometrically, this is the statement that complementarity is
   symmetric: if\/ $\cL_\cA$ and\/ $\cL_{\cA^!}$ are complementary
   Lagrangians, then\/ $\cL_{\cA^!}$ and\/ $\cL_{(\cA^!)^!}$ are
   also complementary, and the resulting Lagrangian\/
@@ -922,8 +932,14 @@ of $\cA$ and $\cA^!$ decompose $T\cM|_\cL$ into complementary
 Lagrangian summands.  (ii)~follows from PTVV, Theorem~2.9: the
 intersection of complementary Lagrangians inherits a $(-1)$-shifted
 symplectic form, and this form is the non-degenerate pairing between
-bar and cobar.  (iii)~On the Koszul locus, the bar-cobar
-adjunction is a Quillen equivalence
+bar and cobar.
+
+(iii)~The $(-2)$-shifted symplectic form $\omega_{-2}$ on $\cM$ is
+symmetric (even shift), so the bar-cobar pairing
+$\langle \barB(\cA), \Omegach(\barB(\cA)) \rangle$ --- which is the
+restriction of $\omega_{-2}$ to the Lagrangian intersection --- is
+a \emph{self-dual} pairing.  Algebraically: on the Koszul locus, the
+bar-cobar adjunction is a Quillen equivalence
 (Vol~I, Theorem~B): $\Omegach(\barB(\cA)) \xrightarrow{\sim} \cA$.
 Applying the bar construction and then Koszul duality twice gives
 $(\cA^!)^! = \Omegach(\barB(\cA^!))$.  Since $\cA^!$ is Koszul when
@@ -931,10 +947,24 @@ $\cA$ is (by the symmetry of the complementary Lagrangian
 decomposition), the bar-cobar unit for $\cA^!$ is also an
 equivalence, so $(\cA^!)^! \simeq \cA$.  Geometrically: the
 complementary decomposition $T\cM|_\cL \simeq T\cL_\cA \oplus
-T\cL_{\cA^!}$ is symmetric in its two summands, so
+T\cL_{\cA^!}$ is symmetric in its two summands (because
+$\omega_{-2}$ is symmetric, so the roles of the two Lagrangian
+complements are interchangeable), and
 exchanging the roles of $\cA$ and $\cA^!$ gives
-$T\cM|_{\cL_{\cA^!}} \simeq T\cL_{\cA^!} \oplus T\cL_\cA$, and
-the second complement recovers $\cL_\cA$.
+$T\cM|_{\cL_{\cA^!}} \simeq T\cL_{\cA^!} \oplus T\cL_\cA$, with
+the second complement recovering $\cL_\cA$.
+
+\smallskip
+\noindent\emph{Clarification.}
+The involution $(\text{-})^{!!} \simeq \mathrm{id}$ does \emph{not}
+follow from $S^2 = \mathrm{id}$ for a Serre functor.  For a
+Calabi--Yau variety of dimension~$n$, the Serre functor is
+$S = [n] \otimes \omega$ and $S^2 = [2n] \otimes \omega^2$, which is
+generally nontrivial.  The mechanism here is different: the
+$(-2)$-shifted symplectic form is symmetric (even degree), so the
+induced pairing on the bar-cobar complex is self-dual, and this
+self-duality forces $(-)^{!!} \simeq \mathrm{id}$ on the Koszul
+locus.
 \end{proof}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

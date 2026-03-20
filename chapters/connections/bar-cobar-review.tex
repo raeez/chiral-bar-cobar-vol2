@@ -1,3 +1,5 @@
+\providecommand{\IC}{\mathrm{IC}}
+
 \section{Chiral Bar--Cobar Duality and Koszul Duality Beyond Quadratic (Review of Chiral Koszul duality i.e. the Closed Color)}
 \label{sec:bar_cobar}
 
@@ -627,6 +629,21 @@ equivalent:
 \end{enumerate}
 \end{theorem}
 
+\begin{remark}[The loop-order perspective]
+The twelve characterizations above are algebraic and geometric.  The
+loop-order spectral sequence
+(Theorem~\ref{thm:loop-spectral-sequence}) adds a physical
+perspective: for $\Ainf$ chiral algebras arising from 3d~HT theories
+satisfying (H1)--(H4), the width of the bar cohomology is bounded by
+the loop complexity $\mathfrak{L}(\cA)$
+(Theorem~\ref{thm:width-bound}).  Koszulness holds iff
+$\mathfrak{L}(\cA)=0$ and the tree-level bar complex is formal.
+One-loop exact bulk BV quantization (as in the affine half-space
+theorem) implies Koszulness before DS reduction
+(Theorem~\ref{thm:one-loop-koszul}); the reduction itself generically
+breaks Koszulness (Theorem~\ref{thm:ds-koszul-obstruction}).
+\end{remark}
+
 \begin{remark}[Classical specialization]
 \label{rem:classical-specialization}
 When $X = \mathrm{pt}$, the chiral tensor product reduces to the
@@ -714,13 +731,19 @@ $R\pi_* \IC_{G/B}$ decomposes into shifts of IC complexes, each pure
 of a single weight.  Concentration of the associated graded---hence
 Koszulness---follows.  We propose the chiral analog.
 
-\begin{definition}[Rational smoothness of OPE collision strata]
+\begin{definition}[OPE-weighted local system and collision purity]
 \label{def:rational-smooth-collision}
 Let $\cA$ be a chiral algebra on a smooth curve~$X$.  For each
 $k \geq 2$, the OPE of~$\cA$ determines an \emph{OPE-weighted
 local system} $\cL_{\cA}$ on $\Conf_k(\C)$, whose fiber at
-$(z_1,\ldots,z_k)$ is $\cA^{\otimes k}$ with monodromy given by
-the singular parts of the OPE.  The Fulton--MacPherson
+$(z_1,\ldots,z_k)$ is $\cA^{\otimes k}$ with flat connection
+$\nabla = d - \sum_{i<j} \Omega_{ij}\, d\log(z_i - z_j)$
+of KZ type, where $\Omega_{ij} \in \End(\cA^{\otimes k})$ is
+the OPE residue acting on factors~$i,j$.  Flatness
+$\nabla^2 = 0$ follows from OPE associativity
+(the singular parts satisfy the infinitesimal braid relations).
+The monodromy representation $\pi_1(\Conf_k(\C)) \to
+\mathrm{GL}(\cA^{\otimes k})$ defines~$\cL_{\cA}$.  The Fulton--MacPherson
 compactification $\FM_k(\C)$ carries boundary divisors
 $D_{ij} = \{z_i = z_j\}$, along which the local system acquires
 poles.  Define the \emph{collision filtration} by pole order:
@@ -826,13 +849,14 @@ $\mathrm{gr}^2\cL_{\mathrm{Vir}}$ has fiber~$\cA$ (from the
 non-scalar $2T(w)$ residue), contributing weight~$2$.  The
 extension class between these graded pieces in
 $H^*(\FM_2(\C), \cL_{\mathrm{Vir}})$ is \emph{non-split}: the
-composite residue that takes two colliding $T$'s through the
-quartic pole to produce $T$ via the quadratic pole defines a
-non-trivial class in $\mathrm{Ext}^1$ between weight~$4$ and
-weight~$2$.  This non-split extension obstructs $E_1$-degeneration
-of the weight spectral sequence.  The resulting $d_3$ differential
-is precisely the $m_3$ operation that makes the Virasoro
-non-Koszul.
+quartic-pole scalar $c/2$ and the quadratic-pole field $2T$
+are linked by the Virasoro algebra structure ($L_{-1}$-descendants),
+defining a non-trivial class in $\mathrm{Ext}^1$ between weight~$4$
+and weight~$2$.  This non-split extension obstructs purity of
+$\cL_{\mathrm{Vir}}$.  At the level of the bar complex,
+the higher-pole mixing produces a non-vanishing $m_3$ operation
+(computed on $\FM_3(\C)$ via iterated OPE through the quartic
+pole), which is precisely the obstruction to chiral Koszulness.
 \end{proposition}
 
 \begin{proof}
@@ -960,19 +984,22 @@ $q \neq 0$---which is the definition of chiral Koszulness
 (equation~\eqref{eq:koszul-concentration}).
 
 The geometric content of this equivalence is the standard
-characterization of clean Lagrangian self-intersection.  When
-$\cL_b$ meets itself \emph{transversally} inside $\Mvac$, the
-excess intersection bundle vanishes: $\mathcal{E} = 0$.  The derived
-self-intersection $\Steinb_b$ is then smooth (in the derived sense:
-its cotangent complex has Tor-amplitude in a single degree), the
-intersection is clean, and BM homology is supported in the expected
-dimension $\dim \Steinb_b$.  In bar-complex terms, the bar
-differential $d_{\barB}$---which encodes the derived intersection
-data---has cohomology only in bar degree~$1$: no excess homology,
-no higher $\Ainf$ operations.
+characterization of clean Lagrangian self-intersection.
+A Lagrangian $\cL_b$ always meets itself set-theoretically along
+$\cL_b$, so ``transversality'' must be interpreted in the
+\emph{derived} sense: the derived self-intersection
+$\Steinb_b = \cL_b \times_{\Mvac}^h \cL_b$ has cotangent complex
+with Tor-amplitude concentrated in the expected single degree.
+In this situation the excess intersection bundle vanishes:
+$\mathcal{E} = 0$, the intersection is \emph{clean}, and BM
+homology is supported in the expected dimension $\dim \Steinb_b$.
+In bar-complex terms, the structure sheaf $\cO(\Steinb_b) \simeq
+\barB(\cA)$ has cohomology concentrated at internal degree $q = 0$
+(the Koszul condition~\eqref{eq:koszul-concentration}): no excess
+homology classes, no higher $\Ainf$ operations $m_k$ for $k \ge 3$.
 
-Conversely, when $\cL_b$ meets itself \emph{non-transversally}, the
-excess bundle $\mathcal{E}$ is non-trivial.  The excess intersection
+Conversely, when the derived self-intersection is \emph{not} clean,
+the excess bundle $\mathcal{E}$ is non-trivial.  The excess intersection
 formula
 \[
 [\Steinb_b]^{\mathrm{vir}}
@@ -1005,7 +1032,7 @@ ways of detecting Lagrangian concentration.  The dictionary is:
   No excess bundle: $\mathcal{E} = 0$, \\
   & no correction to the virtual class \\
 \textup{(iii)} Formality &
-  Transverse meeting: the conormal complex \\
+  Clean meeting (derived-transverse): \\
   & $\mathbb{L}_{\cL_b/\Mvac}$ has no higher \\
   & deformation obstructions \\
 \textup{(iv)} Small resolution &
@@ -1040,7 +1067,8 @@ ways of detecting Lagrangian concentration.  The dictionary is:
 \end{tabular}
 \end{center}
 Each face is a projection of the single geometric condition:
-$\cL_b$ meets itself transversally in~$\Mvac$.
+the derived self-intersection $\Steinb_b = \cL_b \times_{\Mvac}^h
+\cL_b$ is clean (derived-transverse) in~$\Mvac$.
 \end{corollary}
 
 \begin{proof}
@@ -1060,15 +1088,15 @@ spectral sequence) means the virtual class
 $[\Steinb_b]^{\mathrm{vir}}$ equals the fundamental class---i.e.,
 the excess bundle $\mathcal{E}$ is trivial.
 \emph{(iii)} Formality ($m_k = 0$ for $k \geq 3$) means
-the derived structure on $\Steinb_b$ is formal: the intersection
-is classical, hence transverse.
+the derived structure on $\Steinb_b$ is formal: the derived
+intersection is clean, with no higher deformation obstructions.
 \emph{(iv)} The small resolution
 $\Omegach(\barB(\cA)) \xrightarrow{\sim} \cA$ corresponds to
 the conormal exact sequence
 $0 \to \mathbb{L}_{\cL_b/\Mvac} \to \mathbb{L}_{\Mvac}|_{\cL_b}
 \to \mathbb{L}_{\cL_b} \to 0$ being a linear free resolution.
 The remaining faces are analogous; each translates the
-corresponding algebraic vanishing into geometric transversality
+corresponding algebraic vanishing into clean derived intersection
 via the bar-is-self-intersection identification.
 \end{proof}
 
@@ -1105,10 +1133,10 @@ For the Virasoro algebra, by contrast, the fourth-order pole
 creates an \emph{excess} self-intersection.  The composite
 residue $(z-w)^{-4} \cdot \frac{c}{2} \leadsto
 \frac{1}{3!}\partial^3_w[2T(w)]$ creates a non-trivial class in
-$H^{2,1}(\barB(\mathrm{Vir}))$: the Lagrangian $\cL_b$
-meets itself non-transversally, the excess bundle $\mathcal{E}$
-has rank~$> 0$, and the BM homology of $\Steinb_b$ spreads into
-an additional degree.  This is the geometric content of
+$H^{2,1}(\barB(\mathrm{Vir}))$: the derived self-intersection
+is not clean, the excess bundle $\mathcal{E}$ has rank~$> 0$,
+and the BM homology of $\Steinb_b$ spreads into an additional
+degree.  This is the geometric content of
 Proposition~\ref{prop:purity-failure-virasoro}: the
 higher-pole residue that produces the $m_3$ operation \emph{is}
 the excess intersection class.

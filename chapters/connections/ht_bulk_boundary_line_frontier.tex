@@ -303,7 +303,9 @@ Evidence for the geometric enhancement:
   correspondences or Morita-trivial kernels.
 \item The dg-shifted-Yangian package of \cite{DNP25} has exactly
   the structure of a convolution algebra with coproduct and
-  $r$-matrix.
+  $r$-matrix
+  (the dg-shifted Yangian is a strict factorization quantum group
+  by Theorem~\ref{thm:complete-strictification}).
 \end{itemize}
 
 %% ----------------------------------------------------------------
@@ -711,10 +713,13 @@ copies of the same Lagrangian, this gives shift $-1$.
 
 (ii) The derived self-intersection
 $\cL \times_\cM^h \cL$ is the derived tensor product
-$B \otimes^{\mathbb{L}}_{\cO(\cM)} B$.  When $\cL$ is Lagrangian,
+$B \otimes^{\mathbb{L}}_{\cO(\cM)} B$.  When $\cL$ is Lagrangian
+in a $(-2)$-shifted symplectic stack,
 the conormal complex satisfies
 $\mathbb{L}_{\cL/\cM} \simeq \mathbb{T}_\cL[-1]$
-(the Lagrangian condition: the conormal is the shifted tangent).
+(the Lagrangian condition: the conormal is the desuspended tangent;
+see PTVV~\cite{PTVV13}, \S2, and
+Calaque~\cite{Cal15}, Proposition~2.3).
 We now make the Koszul resolution explicit.
 The Lagrangian condition identifies the conormal fiber at each
 point of $\cL$ with the desuspended tangent fiber, so
@@ -729,22 +734,28 @@ B \otimes^{\mathbb{L}}_{\cO(\cM)} \kk
 \;\simeq\;
 \Sym^c\!\bigl(\mathbb{T}_\cL\bigr).
 \]
-The augmentation ideal $\bar B = \ker(\varepsilon\colon B \to \kk)$
-provides a coalgebra generator via $s^{-1}\bar B \simeq
-\mathbb{L}_{\cL/\cM}[1]^\vee[-1]$, and the symmetric coalgebra
-on the fibers is the cofree tensor coalgebra:
-$\Sym^c(\mathbb{T}_\cL) \simeq T^c(s^{-1}\bar B)$.
-The derived tensor product is therefore computed by the bar complex:
+For the full self-intersection $B \otimes^{\mathbb{L}}_{\cO(\cM)} B$,
+one uses the two-sided bar resolution rather than the Koszul
+resolution.  The two-sided bar complex is the cofree
+\emph{tensor} coalgebra $T^c(s^{-1}\bar B)$, where
+$\bar B = \ker(\varepsilon\colon B \to \kk)$ is the augmentation
+ideal and $s^{-1}$ is the desuspension
+(cf.\ Arinkin--C\u{a}ld\u{a}raru~\cite{AC12} for the unshifted
+case; the shifted version is Theorem~3.2 of
+Calaque~\cite{Cal15}).
+When $B$ is commutative,
+the Koszul resolution $\Sym^c(\mathbb{T}_\cL)$ and the bar
+resolution $T^c(s^{-1}\bar B)$ are quasi-isomorphic as chain
+complexes computing the same derived tensor product; the tensor
+coalgebra carries the additional non-commutative structure
+(the deconcatenation coproduct) needed for the $\SCchtop$-algebra
+structure.  The derived tensor product is therefore computed
+by the bar complex:
 \[
 B \otimes^{\mathbb{L}}_{\cO(\cM)} B
 \;\simeq\;
 T^c(s^{-1}\bar B, \, d_{\barB}).
 \]
-This is the standard identification of the derived self-intersection
-with the bar construction
-(cf.\ Arinkin--C\u{a}ld\u{a}raru~\cite{AC12} for the unshifted
-case; the shifted version is Theorem~3.2 of
-Calaque~\cite{Cal15}).
 The bar differential $d_{\barB}$ is the Koszul differential of
 the resolution: it encodes the relations in $\cO(\cM)$ that
 constrain $\cL$, which are precisely the OPE residues when
@@ -757,21 +768,42 @@ to the deconcatenation coproduct $\Delta$, and the multiplication
 $\Steinb \times_\cL \Steinb \to \Steinb$ corresponds to the
 convolution product.
 
-(iii) The HKR identification is the classical statement that
-Hochschild cohomology of a smooth commutative algebra equals
-polyvector fields, generalized to the derived setting.  For
-a Lagrangian $\cL \hookrightarrow \cM$, the Lagrangian condition
-$\mathbb{L}_{\cL/\cM} \simeq \mathbb{T}_\cL[-1]$ gives
+(iii) The argument proceeds in two steps.
+
+\emph{Step~1 (HKR).}
+For $B = \cO(\cL)$ smooth, the Hochschild--Kostant--Rosenberg
+theorem gives
+$\HH^\bullet(B) \simeq \Gamma\!\bigl(\Sym(\mathbb{T}_\cL[-1])\bigr)
+= \cO(T^*[-1]\cL)$:
+Hochschild cohomology is polyvector fields, equivalently functions
+on the $(-1)$-shifted cotangent bundle.
+
+\emph{Step~2 (formal Darboux).}
+The $(-1)$-shifted cotangent $T^*[-1]\cL$ carries a canonical
+$(-1)$-shifted symplectic structure (the Liouville form on $T^*$
+acquires degree $-1$ from the fiber shift).  The formal Darboux
+theorem for shifted symplectic structures
+(Brav--Bussi--Joyce~\cite{BBJ19}, Theorem~4.1) implies that
+when $\cL \hookrightarrow \cM$ is Lagrangian in a
+$(-2)$-shifted symplectic $\cM$, the formal completion
+$\hat{\cM}_\cL$ is determined by a $(-1)$-shifted closed
+$1$-form on $T^*[-1]\cL$ whose derived critical locus recovers
+$\cL$.  In particular, the \emph{functions} on the formal
+neighborhood of $\cL$ in $\cM$ are controlled by $\cO(T^*[-1]\cL)$:
 \[
-T^*[-1]\cL
+\cO(\hat{\cM}_\cL)
 \;\simeq\;
-\cL \times^h_\cM \text{(first-order neighborhood of $\cL$ in $\cM$)}
+\cO(T^*[-1]\cL)
 \;\simeq\;
-\cM|_{\cL},
+\HH^\bullet(B).
 \]
-where the last equivalence uses that the Lagrangian determines the
-ambient symplectic stack locally.  This is
-Theorem~\ref{thm:boundary-linear-bulk-boundary} of
+This gives the stated identification $\HH^\bullet(B) \simeq
+\cO(\cM)|_{\cL}$, where the restriction is understood as the
+formal completion at $\cL$.  The shifted symplectic structure on
+$\cM$ is \emph{not} directly inherited by $T^*[-1]\cL$ (which is
+$(-1)$-shifted); rather, the $(-2)$-shifted structure on $\cM$
+manifests as the $(-1)$-shifted closed $1$-form on the local model.
+See also Theorem~\ref{thm:boundary-linear-bulk-boundary} of
 \S\ref{sec:exact-boundary-linear}: the bulk derived critical locus
 is the shifted cotangent of the boundary zero locus.
 \end{proof}
@@ -1087,26 +1119,42 @@ The reconstruction is an application of Theorem~\ref{thm:bar-is-self-intersectio
 Set $B = H^\bullet(\cA, Q)$ (the cohomology algebra) and
 $\cL_\cA = \operatorname{Spf}(B)$.  The HKR identification gives
 $\HH^\bullet(B) \simeq \cO(T^*[-1]\cL_\cA)$.  The shifted
-cotangent $T^*[-1]\cL_\cA$ carries a canonical $(-2)$-shifted
-symplectic structure: the Liouville form on $T^*$ has degree $(-1)$,
-and the additional $[-1]$ shift gives total shift
-$(-1) + (-1) = (-2)$.  Set $\cM(\cA) = T^*[-1]\cL_\cA$.
+cotangent $T^*[-1]\cL_\cA$ carries a canonical $(-1)$-shifted
+symplectic structure (the Liouville $1$-form on $T^*$ acquires
+degree $-1$ from the fiber shift, so the symplectic $2$-form
+$\omega = d\theta$ is a closed $2$-form of degree $-1$).
 
-The zero section $\cL_\cA \hookrightarrow T^*[-1]\cL_\cA = \cM(\cA)$
-is Lagrangian: the Liouville form restricts to zero on the zero
-section, and $\mathbb{L}_{\cL/\cM} \simeq \mathbb{T}_\cL[-1]$
-(the standard conormal of the zero section in the cotangent).  By
-Theorem~\ref{thm:bar-is-self-intersection}(ii), the self-intersection
-of this zero section is $\cO(\cL \times_\cM \cL) \simeq
-T^c(s^{-1}\bar B) = \barB(\cA)$.
+We define the ambient stack $\cM(\cA)$ as the total space of
+$T^*[-1]\cL_\cA$ equipped with the additional datum of a
+$(-1)$-shifted closed $1$-form $\alpha$ such that
+$\mathrm{Crit}(\alpha) = \cL_\cA$ (the zero section).  By the
+formal Darboux theorem for $(-2)$-shifted symplectic stacks
+(Brav--Bussi--Joyce~\cite{BBJ19}, Theorem~4.1), every $(-2)$-shifted
+symplectic derived stack is, in the formal neighborhood of a
+Lagrangian, equivalent to such a local model: $T^*[-1]\cL$
+with a $(-1)$-shifted closed $1$-form whose critical locus
+is~$\cL$.  In the zero-form case ($\alpha = 0$), $\cM(\cA)$
+reduces to $T^*[-1]\cL_\cA$ with the $(-1)$-shifted Liouville
+structure; the $(-2)$-shifted symplectic structure on the
+physical vacuum moduli $\cM_{\mathrm{vac}}$ is encoded in the
+non-trivial $1$-form $\alpha$ on this local model.
+
+The zero section $\cL_\cA \hookrightarrow \cM(\cA)$
+is Lagrangian: the conormal of the zero section satisfies
+$\mathbb{L}_{\cL/\cM} \simeq \mathbb{T}_\cL[-1]$
+(the Lagrangian condition for $(-2)$-shifted symplectic targets).
+By Theorem~\ref{thm:bar-is-self-intersection}(ii), the
+self-intersection of this zero section is $\cO(\cL \times_\cM \cL)
+\simeq T^c(s^{-1}\bar B) = \barB(\cA)$.
 
 For uniqueness: any $(-2)$-shifted symplectic $\cM'$ with
 Lagrangian $\cL' \simeq \cL_\cA$ and $\cO(\cL' \times_{\cM'}
-\cL') \simeq \barB(\cA)$ is formally equivalent to
-$T^*[-1]\cL_\cA$ by the formal Darboux theorem for
-$(-2)$-shifted symplectic stacks (Brav--Bussi--Joyce~\cite{BBJ19},
-Theorem~4.1): every $(-n)$-shifted symplectic structure is locally
-equivalent to the standard one on the shifted cotangent.
+\cL') \simeq \barB(\cA)$ has formal completion at $\cL'$
+determined by the formal Darboux data $(T^*[-1]\cL', \alpha')$,
+and is therefore formally equivalent to $\cM(\cA)$ at the
+vacuum (Brav--Bussi--Joyce~\cite{BBJ19}, Theorem~4.1).
+The uniqueness is up to formal equivalence in the formal
+neighborhood of $\cL$, not up to global equivalence.
 \end{proof}
 
 \begin{remark}[The boundary creates the bulk]

@@ -176,6 +176,12 @@ from the root-multiplicity-one structure of simple Lie algebras.
 This is the ordered/open-sector analogue of homotopy-Koszulity for
 the closed sector: both are structural consequences of the underlying
 Lie theory, not of the specific HT dynamics.
+The general half-space BV theorem
+(Theorem~\ref{thm:general-half-space-bv}) adds a seventh bridge:
+by doubling the half-space $\C_z \times \R_{\ge 0}$ to the full
+bulk $\C_z \times \R_t$, it constructs the mixed-color
+bulk-boundary interaction as a reflection of the pure-color data,
+completing the Swiss-cheese triad of closed, open, and mixed bridges.
 
 \begin{remark}[The three colors and their purity]
 \label{rem:three-colors-purity}
@@ -190,25 +196,30 @@ obstruction theories for these three components:
 \hline
 Closed ($\FM_k(\C)$) & bar cohomology width & one-loop exactness \\
 Open ($E_1$) & spectral Drinfeld class & root multiplicity one \\
-Mixed (bulk-boundary) & reflected weight identity & jet-order convergence
+Mixed (bulk-boundary) & reflected weight identity & $\sigma$-equivariant Stokes
 \end{tabular}
 \end{center}
 The three inputs on the right are different manifestations of
-one-dimensionality: one-loop exactness means the effective BV action
-is determined by a single loop order; root multiplicity one means
-$\dim\fg_\alpha=1$; jet-order convergence means the reflected
-identity is controlled one jet order at a time.
+rigidity: one-loop exactness means the effective BV action is
+determined by a single loop order; root multiplicity one means
+$\dim\fg_\alpha=1$; the $\sigma$-equivariant Stokes identity (the
+doubling theorem, Theorem~\ref{thm:doubling-rwi}) embeds the
+half-space reflected weight identity into the standard whole-space
+Stokes identity.
 
 The asymmetry between the three colors is the deep content.
 The \emph{open-color} obstruction (spectral Drinfeld class) vanishes
 universally for all simple Lie algebras, because root multiplicity one
 is a property of the root system---it depends on $\fg$ alone, not on
 the specific chiral algebra or HT theory.
+The \emph{mixed-color} obstruction (reflected weight identity) vanishes
+universally under (H1)--(H4), because the doubling construction embeds
+it into the standard FM machinery
+(Theorem~\ref{thm:general-half-space-bv}).
 The \emph{closed-color} obstruction (Koszulness) can fail, because
 bar cohomology depends on the specific algebra $\cA$: Kac--Moody is
 Koszul (one-loop exact), but Virasoro is not (DS reduction introduces
-higher operations).  The \emph{mixed-color} obstruction (reflected
-weight identity) is proved for affine PVAs and open beyond.
+higher operations).
 
 This is the Chriss--Ginzburg content of the Swiss-cheese structure.
 The Steinberg variety presents the Hecke algebra because the geometry
@@ -284,6 +295,11 @@ Three guiding questions structure the programme.
   and DNP dg-shifted Yangians---be completed to a full modular homotopy
   type via bar-cobar or deformation-theoretic completion over the modular
   operad $C_\bullet(\overline{\mathcal{M}}_{g,n})$?
+  \emph{Note:} the genus-zero existence is now established by
+  Theorem~\ref{thm:general-half-space-bv} (the doubling theorem),
+  which constructs the full half-space BV package at genus~$0$;
+  the remaining content of this question is the extension to
+  genus~$g \ge 1$.
 
 \item \textbf{Geometry.}
   \ClaimStatusConjectured{}
@@ -447,7 +463,10 @@ in a single internal degree, all higher $\Ainf$ operations are
 homotopically trivial, and the genus-$g$ corrections are scalar
 multiples of the genus-zero answer.  In the physical language, the
 QFT is perturbatively exact; loop corrections renormalize but do not
-deform.  Kac--Moody algebras at generic level are Koszul, and their
+deform.  Kac--Moody algebras at generic level are Koszul
+(Corollary~\ref{cor:affine-koszul}: one-loop exactness of the
+affine half-space BV theory implies Koszulness by
+Theorem~\ref{thm:one-loop-koszul}), and their
 Lagrangians are transversal---the self-intersection is the
 Steinberg variety of the loop group, smooth as a derived scheme.
 
@@ -462,9 +481,10 @@ $\Eone$-coalgebra lives).  The pole structure of the OPE determines
 the intersection type: simple poles give transversal intersection and
 Koszul algebras; higher-order poles give excess intersection and
 curved $\Ainf$ structures.  Drinfeld--Sokolov reduction manufactures
-higher poles from simple ones, which is why it generically destroys
-Koszulness---reduction moves the Lagrangian into a position of
-excess self-intersection.
+higher poles from simple ones
+(Theorem~\ref{thm:ds-koszul-obstruction}), which is why it
+generically destroys Koszulness---reduction moves the Lagrangian
+into a position of excess self-intersection.
 
 \medskip
 
@@ -493,7 +513,13 @@ Steinberg presentation
 (Theorem~\ref{thm:steinberg-presentation}) is the shadow on
 homology; the geometric Steinberg conjecture
 (Conjecture~\ref{conj:geometric-steinberg}) is the full derived
-statement.
+statement.  The doubling construction adds one more row: the
+half-space FM compactification is the $\sigma$-equivariant restriction
+of the whole-space FM compactification; the reflected propagator is the
+$\sigma$-restricted standard propagator; and the reflected weight
+identity is the $\sigma$-restricted Stokes identity
+(Theorem~\ref{thm:doubling-rwi}).  Method of images in physics is
+equivariant restriction in geometry.
 
 \medskip
 
@@ -508,7 +534,7 @@ direction that physics calls holography and mathematics calls
 reconstruction: the boundary determines the bulk.
 
 \begin{theorem}[Holographic reconstruction; \ClaimStatusProvedHere]
-\label{thm:holographic-reconstruction}
+\label{thm:holographic-reconstruction-conclusion}
 \index{holographic reconstruction|textbf}
 \index{Lagrangian!determines ambient stack|textbf}
 Let $\cA$ be a chiral algebra on a curve~$X$.  The chiral
@@ -569,7 +595,7 @@ theorem for $(-2)$-shifted symplectic stacks
 \end{proof}
 
 \begin{remark}[The boundary creates the bulk]
-\label{rem:boundary-creates-bulk}
+\label{rem:boundary-creates-bulk-conclusion}
 \index{holography!boundary creates bulk}
 The theorem inverts the usual physical narrative.  In the standard
 account, a $3d$ bulk theory is given first, and its boundary
@@ -647,7 +673,7 @@ $(-2)$-shifted symplectic moduli of vacua.  Then:
   $\cO(\cL_\cA^{(g)} \times_{\Mvac} \cL_\cA^{(g)})$.
 
 \item The holographic principle is the reconstruction theorem
-  \textup{(}Theorem~\textup{\ref{thm:holographic-reconstruction}}\textup{)}:
+  \textup{(}Theorem~\textup{\ref{thm:holographic-reconstruction-conclusion}}\textup{)}:
   the point determines its ambient.
 \end{enumerate}
 \end{theorem}
@@ -677,7 +703,7 @@ objects.
 Kodaira--Spencer class of the family $\cL_\cA^{(g)}$ over the
 Hodge bundle of $\Mbar_{g,n}$ (Proposition~\ref{prop:five-theorems-geometry}(iv)).
 
-(v) is Theorem~\ref{thm:holographic-reconstruction}.
+(v) is Theorem~\ref{thm:holographic-reconstruction-conclusion}.
 \end{proof}
 
 \begin{remark}[The two-volume monograph as local geometry]
