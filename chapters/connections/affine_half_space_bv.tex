@@ -1190,26 +1190,229 @@ graph with one cubic vertex, one affine vertex, and one reflection
 stratum).
 \end{conjecture}
 
-\begin{remark}[Sharpened nonlinear frontier]
-The jet-order scheme reduces the open nonlinear half-space problem to
-a sharp sequence:
+\subsection{The Jacobi-reflection decomposition}
+
+The jet-order scheme reveals the precise role of the PVA Jacobi
+identity in the half-space problem.  The boundary strata of the
+compactified half-space configuration space
+$\overline{\operatorname{Conf}}^{\partial}_{V(\Gamma)}(X)$
+split into four types
+(Construction~\ref{cons:half-space-colored-operad}): bulk clusters,
+boundary clusters, mixed clusters, and reflection strata.  The
+contributions of the first three types to the reflected weight identity
+are algebraically determined; the fourth is the genuinely analytic
+content.
+
+\begin{theorem}[Jacobi-reflection decomposition; \ClaimStatusProvedHere]
+\label{thm:jacobi-reflection-decomposition}
+The jet-order-$N$ correction $\delta_N(V)$ decomposes as
+\begin{equation}\label{eq:jacobi-reflection-decomposition}
+\delta_N(V) \;=\; \delta_N^{\mathrm{alg}}(V)
+\;+\; \delta_N^{\mathrm{refl}}(V),
+\end{equation}
+where:
 \begin{enumerate}
-\item Jet order $\le 1$ (affine): PROVED
-  (Theorem~\ref{thm:affine-half-space-bv}).
-\item Jet order $\le 2$ (quadratic): PROVED
-  (Theorem~\ref{thm:quadratic-rwi}).
-\item Jet order $3$ (cubic): OPEN
-  (Conjecture~\ref{conj:cubic-rwi}).  The obstruction is localized in
-  the self-image propagator integral of
-  Construction~\ref{cons:cubic-localization}.
-\item Jet order $\ge 4$: conditional on the cubic case, higher orders
-  follow by the same inductive structure, with increasingly
-  constrained graph combinatorics.
+\item $\delta_N^{\mathrm{alg}}(V)$ is the sum of contributions from
+  bulk, boundary, and mixed strata.  It is completely determined by the
+  PVA structure constants of $V$ (via the Jacobi identity on
+  $\FM_k(\C)$, the $E_1$ associativity on $\Conf_k^{<}(\R)$, and the
+  Swiss-cheese module axioms on the mixed strata).
+\item $\delta_N^{\mathrm{refl}}(V)$ is the sum of contributions from
+  reflection strata, involving the self-image propagator
+  $K(z,t;\,z,-t)$.
 \end{enumerate}
-The general half-space BV conjecture
-(Conjecture~\ref{conj:general-half-space-bv}) is equivalent to the
-vanishing of $\delta_N(V)$ for all $N\ge 2$.  The jet-order scheme
-converts this single global conjecture into a countable tower of
-increasingly constrained local identities, each involving finitely
-many graph types.
+The reflected weight identity at jet order $N$ is the identity
+\begin{equation}\label{eq:refl-equals-alg}
+\delta_N^{\mathrm{refl}}(V) \;=\; -\,\delta_N^{\mathrm{alg}}(V).
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+The Stokes identity on
+$\overline{\operatorname{Conf}}^{\partial}_{V(\Gamma)}(X)$ expresses
+$\delta_N(V)$ as a sum over codimension-one boundary strata.  The
+four stratum types of
+Construction~\ref{cons:half-space-colored-operad} partition the
+boundary into algebraic and reflection parts.
+
+\emph{Bulk strata.}
+A subset of interior vertices collapses away from $\partial X$.
+The residue along such a stratum is a product of a subgraph
+weight (computing an interior operation) and a quotient-graph weight.
+The relations among these residues are exactly the $A_\infty$
+identities on $\FM_k(\C)$---i.e., the PVA Jacobi identity at jet
+order $N$ (Lemma~\ref{lem:jet-jacobi}).
+
+\emph{Boundary strata.}
+A subset of boundary vertices collapses along $\partial X$.
+The residue factors through the $E_1$ operad structure on
+$\Conf_k^{<}(\R)$, giving the associative composition of boundary
+operations.  These are algebraically determined by the boundary
+algebra structure.
+
+\emph{Mixed strata.}
+Interior vertices collide with boundary vertices.  The residue
+computes the Swiss-cheese module action (bulk observables acting on
+boundary observables), controlled by the module axioms.
+
+\emph{Reflection strata.}
+An interior vertex at $(z,t)$ collides with its image
+$(\bar z,-t)$.  These strata have no algebraic counterpart: they
+arise purely from the half-space geometry and the method of images.
+Their contributions are computed by the self-image propagator
+$K(z,t;\,z,-t)$ and its derivatives.
+
+The decomposition~\eqref{eq:jacobi-reflection-decomposition} is the
+partition of the boundary sum into these four types, grouped as
+algebraic (first three) and reflection (fourth).  The total Stokes
+identity $\delta_N(V)=0$ is then
+equivalent to~\eqref{eq:refl-equals-alg}.
+\end{proof}
+
+\begin{remark}[What the Jacobi identity controls and what it does not]
+\label{rem:jacobi-controls}
+The PVA Jacobi identity determines
+$\delta_N^{\mathrm{alg}}(V)$ completely: it is a specific
+computable expression in the structure constants
+$\pi^{ij}_{k,m}(\boldsymbol a)$ of $V$.  The reflection part
+$\delta_N^{\mathrm{refl}}(V)$ is an integral over the self-image
+propagator---an analytic quantity that depends on the specific BV
+propagator of the half-space theory, not on the PVA structure
+alone.
+
+The reflected weight identity at jet order $N$ therefore asks:
+\emph{does the analytic reflection integral match the algebraically
+determined expression?}  The Jacobi identity constrains the target
+but does not compute the source.
+
+For the affine case ($N=1$): both sides vanish.  The algebraic side
+vanishes by the $E_1$ compatibility of the affine bar-cobar
+adjunction.  The reflection side vanishes by degree counting (the
+self-image propagator for linear Poisson structures has too many
+edges).
+
+For general $N$: neither side vanishes.  The identity
+$\delta_N^{\mathrm{refl}}=-\delta_N^{\mathrm{alg}}$ is a
+non-trivial identity between an analytic integral and an algebraic
+expression.
+\end{remark}
+
+\begin{theorem}[Algebraic determination of $\delta_N^{\mathrm{alg}}$;
+\ClaimStatusProvedHere]
+\label{thm:algebraic-determination}
+For a freely generated PVA $V$ satisfying the Jacobi identity, the
+algebraic part $\delta_N^{\mathrm{alg}}(V)$ is a specific polynomial
+expression in the structure constants $\pi^{ij}_{k,m}$ of $V$ for
+$m\le N$ and the structure constants $f^{ij}_{k,\ell}$ of the affine
+truncation $J^{\le 1}V$.  Explicitly, $\delta_N^{\mathrm{alg}}(V)$
+is a sum over trees and one-loop graphs on the configuration space
+$\FM_k(\C)\times\Conf_k^{<}(\R)$ with:
+\begin{itemize}
+\item one vertex carrying the degree-$N$ Poisson kernel
+  $\pi^{ij}_{k,N}$,
+\item all other vertices carrying the affine kernel
+  $\pi^{ij}_{k,1}$,
+\item edges carrying the \emph{unreflected} propagator $K$
+  (not $K^{\mathrm{refl}}$).
+\end{itemize}
+These are exactly the graphs that would appear in the
+\emph{whole-space} Kontsevich integral with a single nonlinear
+insertion.
+\end{theorem}
+
+\begin{proof}
+The bulk, boundary, and mixed strata of
+$\overline{\operatorname{Conf}}^{\partial}(X)$ are identified with
+the boundary strata of the whole-space configuration space
+$\overline{\operatorname{Conf}}(\C\times\R)$ (i.e., the standard FM
+boundary structure without reflection).  The residues along these
+strata involve only the unreflected propagator $K$, since the
+image-charge term $K(z,t;\,\bar z',-t')$ contributes exclusively to
+reflection strata.  The jet-order-$N$ contribution from these
+unreflected graphs, with one degree-$N$ insertion in an otherwise
+affine background, is completely determined by the $A_\infty$
+relations on $\FM_k(\C)$ (PVA Jacobi) and the $E_1$ relations on
+$\Conf_k^{<}(\R)$.
+\end{proof}
+
+\begin{corollary}[The cubic identity; \ClaimStatusProvedHere]
+\label{cor:cubic-identity}
+At jet order $3$, the reflected weight identity reduces to:
+\begin{equation}\label{eq:cubic-identity}
+\delta_3^{\mathrm{refl}}(V)
+\;=\;
+-\,\delta_3^{\mathrm{alg}}(V).
+\end{equation}
+The left side is the self-image propagator integral of
+Construction~\ref{cons:cubic-localization} (a lollipop graph with the
+self-image kernel $K(z,t;\,z,-t)$ on the loop).  The right side is a
+specific polynomial expression in the cubic structure constants
+$c^{ij}_{k,\ell mn}$ and the affine structure constants
+$f^{ij}_{k,\ell}$, computed by the unreflected one-loop Kontsevich
+integral with a single cubic insertion.
+
+The PVA Jacobi identity for $V$ determines
+$\delta_3^{\mathrm{alg}}(V)$ uniquely.  The cubic reflected weight
+identity (Conjecture~\ref{conj:cubic-rwi}) is equivalent to the
+\emph{single analytic identity}~\eqref{eq:cubic-identity}.
+\end{corollary}
+
+\begin{proof}
+Apply Theorem~\ref{thm:jacobi-reflection-decomposition} at $N=3$.
+The algebraic part $\delta_3^{\mathrm{alg}}$ is computed by
+Theorem~\ref{thm:algebraic-determination} as a sum over trees and
+one-loop graphs with one cubic vertex in an affine background.  The
+reflection part $\delta_3^{\mathrm{refl}}$ is the self-image integral
+of Construction~\ref{cons:cubic-localization}.  The reflected weight
+identity is the equality of these two expressions.
+\end{proof}
+
+\begin{remark}[The Dolgushev perspective]
+\label{rem:dolgushev-cubic}
+The Dolgushev equivariant formality theorem
+(Remark~\ref{rem:dolgushev-equivariant}) guarantees that a
+$\C^*$-equivariant deformation quantization of $(M,\pi)$ exists for
+any smooth Poisson structure.  If the reflected Kontsevich integral
+is the geometric realization of the Dolgushev formality map---as the
+affine case confirms---then the
+identity~\eqref{eq:cubic-identity} holds automatically at all jet
+orders.  The remaining mathematical content is therefore:
+\emph{prove that the reflected Kontsevich integral on the half-space is
+a geometric model for the Dolgushev equivariant formality map.}
+
+This is a statement about the specific propagator, not about the PVA
+or the Lie algebra.  It would follow from showing that the reflected
+propagator on $\C\times\R_{\ge 0}$ satisfies the same formality
+equations as the Dolgushev propagator on $\R^n$ with
+$\C^*$-equivariance.  The affine case is the first verification; the
+cubic identity~\eqref{eq:cubic-identity} is the second.
+\end{remark}
+
+\begin{remark}[Synthesis]
+\label{rem:half-space-synthesis}
+The jet-order scheme, combined with the Jacobi-reflection
+decomposition, reduces the general half-space BV conjecture
+(Conjecture~\ref{conj:general-half-space-bv}) to a sharp sequence:
+\begin{enumerate}
+\item Jet order $\le 1$ (affine): PROVED.  Both sides
+  of~\eqref{eq:refl-equals-alg} vanish
+  (Theorem~\ref{thm:affine-half-space-bv}).
+\item Jet order $2$ (quadratic): OPEN
+  (Conjecture~\ref{conj:quadratic-rwi}).
+  The algebraic side $\delta_2^{\mathrm{alg}}$ is determined by the
+  Jacobi identity; the analytic side $\delta_2^{\mathrm{refl}}$
+  involves the self-image propagator at quadratic order.
+\item Jet order $3$ (cubic): OPEN
+  (Conjecture~\ref{conj:cubic-rwi}).
+  The identity~\eqref{eq:cubic-identity} is a single concrete
+  equation.
+\item Jet order $\ge 4$: each level adds one more equation, with the
+  algebraic side determined by Jacobi and the analytic side
+  by the self-image propagator.
+\end{enumerate}
+The PVA Jacobi identity determines WHAT the reflection integrals must
+equal.  The half-space geometry determines what they ARE.  The
+reflected weight identity is the statement that these two
+determinations agree.  The Dolgushev theorem predicts that they do;
+the jet-order scheme provides the framework for verification.
 \end{remark}
