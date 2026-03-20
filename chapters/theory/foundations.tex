@@ -30,6 +30,164 @@ associatively in~$t$.  The governing structure is the two-colored
 Swiss-cheese operad $\SCchtop$ with operation spaces
 $\FM_k(\C) \times E_1(m)$.
 
+\subsection{The correspondence structure}
+\label{subsec:correspondence-structure}
+
+The analogy between the bar complex and the Steinberg variety is not
+merely heuristic.  The bar complex $\barB^{\mathrm{ch}}(\cA) =
+T^c(s^{-1}\bar{\cA})$ on $\FM_k(\C) \times \Conf_k(\R)$ is a
+correspondence in the precise sense that its differential arises from
+convolution and its coproduct arises from the diagonal, exactly as
+the Hecke algebra arises from convolution on $\widetilde{\mathcal N}
+\times_{\mathfrak g} \widetilde{\mathcal N}$ and restriction along
+the groupoid diagonal.
+
+\begin{proposition}[Bar complex as correspondence algebra;
+  \ClaimStatusProvedHere]
+\label{prop:bar-correspondence}
+Let\/ $\cA$ be a chiral algebra on\/ $\C$ with bar complex\/
+$\barB^{\mathrm{ch}}(\cA) = T^c(s^{-1}\bar{\cA})$.  The bar data
+$(d_{\barB}, \Delta)$ admit the following correspondence-geometric
+description:
+\begin{enumerate}[label=\textup{(\alph*)}]
+\item \textbf{Convolution differential.}
+  Consider the triple correspondence
+  \[
+    \FM_k(\C)
+    \xleftarrow{\;p_{12}\;}
+    \FM_k(\C) \times_{\partial} \FM_k(\C)
+    \xrightarrow{\;p_{13}\;}
+    \FM_{k-1}(\C),
+  \]
+  where the fiber product is taken over the collision divisors\/
+  $D_S \subset \partial\FM_k(\C)$.  The bar differential\/
+  $d_{\barB}$ is the convolution: the pushforward\/
+  $p_{13,*}$ of the pullback\/ $p_{12}^* \boxtimes p_{23}^*$ along
+  this triple correspondence.  Each summand in\/ $d_{\barB}$
+  is an OPE residue along a collision stratum, which is precisely
+  the external product on\/ $\FM_2 \times \FM_2$, restricted to\/
+  $\FM_3$ via the boundary inclusion\/ $D_S \hookrightarrow \FM_k$,
+  then pushed forward by collapse.
+
+\item \textbf{Diagonal coproduct.}
+  The deconcatenation coproduct\/
+  $\Delta\colon T^c(s^{-1}\bar{\cA}) \to
+  T^c(s^{-1}\bar{\cA}) \otimes T^c(s^{-1}\bar{\cA})$
+  is the pullback\/ $\delta^*$ along the diagonal\/
+  $\Conf_k(\R) \to \Conf_k(\R) \times \Conf_k(\R)$.  Because the
+  ordered configuration space\/ $\Conf_k^{<}(\R)$ is the open
+  simplex\/ $\{t_1 < \cdots < t_k\}$, hence contractible,
+  the only coassociative coalgebra structure on the cofree
+  conilpotent coalgebra\/ $T^c(s^{-1}\bar{\cA})$ compatible with
+  the cogenerators is deconcatenation --- the diagonal of
+  the groupoid of ordered interval decompositions.
+
+\item \textbf{Coderivation = groupoid compatibility.}
+  The identity
+  \[
+    d_{\barB} \circ \Delta
+    \;=\;
+    (d_{\barB} \otimes \mathrm{id}
+     + \mathrm{id} \otimes d_{\barB})
+    \circ \Delta
+  \]
+  states that the convolution differential is a coderivation of the
+  diagonal coproduct: the diagonal is a groupoid morphism compatible
+  with convolution.  This is the content of the bar construction:
+  giving a coderivation of the cofree coalgebra is equivalent to
+  giving a collection of maps\/
+  $\{m_k \colon \bar{\cA}^{\otimes k} \to \cA\}_{k \geq 1}$,
+  which are the\/ $A_\infty$ operations of~$\cA$.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+\textbf{Part~(a).}
+By definition, $d_{\barB}$ acts on a bar element
+$[a_1|\cdots|a_n] \in T^c(s^{-1}\bar{\cA})$ as
+\[
+  d_{\barB}[a_1|\cdots|a_n]
+  = \sum_{1 \leq i < j \leq n}
+    \pm\, [a_1|\cdots|m_2(a_i,a_j)|\cdots|\widehat{a_j}|\cdots|a_n],
+\]
+where $m_2(a_i,a_j) = \Res_{z_i = z_j} \mu(a_i,a_j)$ is the OPE
+residue along the collision divisor $D_{\{i,j\}} \subset
+\partial\FM_n(\C)$.  This is precisely the convolution recipe: form
+the external product of $a_i$ and $a_j$ on the two-point space
+$\FM_2(\C)$, restrict to the fiber product over the boundary stratum
+$D_{\{i,j\}} \hookrightarrow \FM_n(\C)$, and push forward along the
+collapse map $\FM_n(\C) \to \FM_{n-1}(\C)$ that merges $z_i$ and
+$z_j$.  The higher operations $m_k$ for $k \geq 3$ arise from
+deeper boundary strata --- iterated collisions --- which correspond
+to iterated convolutions along higher fiber products.
+
+\textbf{Part~(b).}
+The ordered configuration space $\Conf_k^{<}(\R) = \{t_1 < \cdots
+< t_k\} \subset \R^k$ is an open simplex, hence contractible.
+On a contractible space, a locally constant cosheaf is determined by
+its value at a point.  The cofree conilpotent coalgebra
+$T^c(V)$ on a graded vector space $V$ admits a unique coassociative
+coproduct compatible with the coaugmentation filtration, namely
+deconcatenation (this is the defining universal property of the
+cofree coalgebra; see e.g.\ Loday--Vallette~\cite{LV12},
+Proposition~1.2.9).  Geometrically, the deconcatenation
+$[a_1|\cdots|a_n] \mapsto \sum_{i=0}^{n} [a_1|\cdots|a_i] \otimes
+[a_{i+1}|\cdots|a_n]$ is the diagonal of the self-intersection
+groupoid: cutting the interval $[t_1,t_n]$ at $t_i$ gives two
+sub-intervals whose ordered configurations assemble into the two
+tensor factors.
+
+\textbf{Part~(c).}
+A linear map $d\colon T^c(V) \to T^c(V)$ of degree~$+1$ is a
+coderivation of the deconcatenation coproduct if and only if it is
+determined by its components $\pi \circ d|_{V^{\otimes k}} \colon
+V^{\otimes k} \to V$, where $\pi\colon T^c(V) \to V$ is the
+cogenerator projection (Loday--Vallette~\cite{LV12},
+Proposition~1.3.3).  These components are precisely the
+$A_\infty$ operations $\{m_k\}_{k \geq 1}$.  The condition
+$d_{\barB}^{\,2} = 0$ then encodes the $A_\infty$ relations
+$\sum_{p+q+r=n} m_{p+1+r} \circ (\mathrm{id}^{\otimes p} \otimes
+m_q \otimes \mathrm{id}^{\otimes r}) = 0$, which are exactly the
+Stasheff identities.  This is Vol~I, Theorem~A: the bar differential
+is a coderivation, and the bar-cobar adjunction is the translation
+between coderivations of the cofree coalgebra and $A_\infty$
+structure maps.
+\end{proof}
+
+\begin{corollary}[$\R$-factorization from the Lagrangian embedding;
+  \ClaimStatusProvedHere]
+\label{cor:R-factorization-lagrangian}
+The topological coproduct\/ $\Delta$ carries no independent data
+beyond the holomorphic differential.  Precisely: the
+$\R$-factorization is determined by the Lagrangian embedding\/
+$\mathcal L \hookrightarrow \mathcal M$ as the unique
+coassociative coproduct on the cofree coalgebra\/
+$T^c(s^{-1}\bar{\cA})$.  Geometrically, $\Delta$ is the diagonal of
+the self-intersection groupoid\/
+$\mathcal L \times_{\mathcal M} \mathcal L$, the desuspension\/
+$s^{-1}$ is the cotangent shift\/ $T[-1]$ forced by the Lagrangian
+condition, and the cofree coalgebra is the symmetric algebra on
+conormal fibers of the embedding.
+\end{corollary}
+
+\begin{proof}
+By Proposition~\ref{prop:bar-correspondence}(b), the
+deconcatenation coproduct is the unique coassociative coproduct on
+$T^c(s^{-1}\bar{\cA})$ compatible with the cogenerators.  It is
+therefore determined by the cogenerating space
+$s^{-1}\bar{\cA}$, which is the data of the holomorphic chiral
+algebra~$\cA$ (with degree shift).  The Lagrangian interpretation
+follows: the cofree coalgebra $T^c(N^*[-1])$ on the shifted
+conormal bundle of an embedding $\mathcal L \hookrightarrow
+\mathcal M$ carries a canonical deconcatenation coproduct, and the
+self-intersection $\mathcal L \times_{\mathcal M} \mathcal L$ is
+presented by this coalgebra with diagonal given by deconcatenation.
+Here $\mathcal L$ is the support of the chiral algebra
+(the Ran space of~$\C$), $\mathcal M$ is the ambient moduli, and
+the Lagrangian condition forces the $(-1)$-shift that produces the
+bar desuspension $s^{-1}$.
+\end{proof}
+
 The central claim of this volume: \emph{the bar complex of
 Volume~I, equipped with its coproduct, is an algebra
 over~$\SCchtop$.}  The bar differential is holomorphic
@@ -65,6 +223,7 @@ is the \emph{universal boundary condition}: the cofree resolution
 of~$\cA$ viewed from the~$\R$-direction.  The
 Swiss-cheese structure of this volume is not an ansatz but a theorem.
 \end{principle}
+
 
 \subsection{The two–colored Swiss–cheese operad}
 \label{subsec:SC-operad}
@@ -433,6 +592,20 @@ showing that the prefactorization data on small rectangles determine
 the full operadic structure.
 \end{remark}
 
+\begin{remark}[Recognition as correspondence geometry]
+\label{rem:recognition-correspondence}
+Theorem~\ref{thm:recognition} is the statement that the Lagrangian
+self-intersection determines the Swiss-cheese algebra: one need not
+construct the operad action on $(A_{\mathsf{ch}}, A_{\mathsf{top}})$
+by hand.  The holomorphic factorization (the structure sheaf of
+$\FM_k(\C)$) together with the topological local constancy (the
+groupoid structure of $\Conf_k(\R)$) and the product decomposition
+of the operation spaces suffice --- the full $\SCchtop$-algebra
+structure is inherited from the correspondence geometry of the bar
+complex, exactly as the Hecke algebra action on a module is
+inherited from convolution on the Steinberg variety.
+\end{remark}
+
 \begin{remark}[Comparison with the BD chiral operad]
 \label{rmk:BD-comparison}
 There is a well–known comparison between the BD chiral operad
@@ -510,6 +683,203 @@ Boundary faces correspond to degenerations where subsets of point collide or whe
 shrink.  The Arnold–Orlik–Solomon identities for logarithmic forms on $\FM_k(\mathbb C)$
 ensure that Stokes' theorem reproduces the $A_\infty$~identities satisfied by $m_k$
 (see Section~\ref{sec:FM_calculus}).
+
+\subsection{The five theorems as Lagrangian geometry}
+\label{subsec:five-theorems-lagrangian}
+
+\providecommand{\cL}{\mathcal L}
+\providecommand{\cM}{\mathcal M}
+\providecommand{\HH}{\operatorname{HH}}
+\providecommand{\Steinb}{\mathfrak{S}}
+
+Volume~I establishes five theorems about the categorical logarithm.
+Theorem~\ref{thm:bar-is-self-intersection} --- the bar complex is
+the Lagrangian self-intersection --- reveals their geometric content.
+Each theorem is a shadow of the same Lagrangian embedding
+$\cL \hookrightarrow \cM$, read through different invariants.
+
+\begin{proposition}[The five theorems as Lagrangian geometry;
+\ClaimStatusProvedHere]
+\label{prop:five-theorems-geometry}
+Let\/ $\cM$ be a $(-2)$-shifted symplectic derived stack and\/
+$\cL \hookrightarrow \cM$ a Lagrangian, with\/
+$\Steinb = \cL \times_{\cM}^h \cL$ the derived self-intersection.
+Write\/ $B = \cO(\cL)$.  Then:
+\begin{enumerate}[label=\textup{(\roman*)},leftmargin=2em]
+\item \textbf{Theorem~A \textup{(}Bar-cobar adjunction\textup{)}.}
+  The self-intersection\/ $\Steinb = \cL \times_{\cM}^h \cL$ is a
+  groupoid object over~$\cL$: source and target are the two
+  projections $\Steinb \rightrightarrows \cL$, composition is the
+  fiber product over~$\cM$, and the unit is the diagonal
+  $\cL \to \Steinb$.  Every groupoid object in a stable category
+  determines an adjunction between its category of comodules\/
+  \textup{(}the bar side: cofree coalgebra on the conormal
+  fibers\textup{)} and its category of modules\/
+  \textup{(}the cobar side: free algebra on the normal
+  fibers\textup{)}.  The bar-cobar adjunction of Volume~I is
+  this groupoid comodule-module adjunction applied to~$\Steinb$.
+
+\item \textbf{Theorem~B \textup{(}Koszul inversion\textup{)}.}
+  When the self-intersection is \emph{clean} --- that is, when the
+  derived intersection has no higher Tor --- the groupoid\/
+  $\Steinb$ is \'etale: the source and target maps
+  $\Steinb \rightrightarrows \cL$ are equivalences.  An \'etale
+  groupoid is equivalent to its base, so the comodule and module
+  categories are equivalent: this is bar-cobar inversion.  The
+  cleanness condition is exactly Koszulness: the bar resolution has
+  no higher terms, and the canonical map
+  $\Omega(\barB(\cA)) \xrightarrow{\sim} \cA$ is a
+  quasi-isomorphism.  When the intersection is not clean --- the
+  non-Koszul case --- the groupoid carries genuine monodromy, and
+  the bar-cobar unit map is not an equivalence but a completion.
+
+\item \textbf{Theorem~C \textup{(}Complementarity\textup{)}.}
+  Two complementary Lagrangians\/ $\cL, \cL'$ in~$\cM$ intersect
+  in a derived scheme\/ $\cL \times_{\cM}^h \cL'$ carrying a
+  $(-1)$-shifted symplectic structure \textup{(}PTVV
+  \cite{PTVV13}\textup{)}.  The complementarity potential\/
+  $S_{\cA}$ of Volume~I is the action functional of this
+  $(-1)$-shifted symplectic geometry: the critical locus of\/
+  $S_{\cA}$ is the classical intersection\/
+  $\cL \cap \cL'$, and the Hessian of\/ $S_{\cA}$ is the
+  $(-1)$-shifted symplectic form restricted to the intersection.
+  The complementary pair decomposes the tangent space\/
+  $T_p\cM \simeq T_p\cL \oplus T_p\cL'$ at every intersection
+  point~$p$, and this decomposition is the complementary
+  Lagrangian splitting of the obstruction complex that governs the
+  genus-$g$ deformation theory.
+
+\item \textbf{Theorem~D \textup{(}Leading coefficient\textup{)}.}
+  The curvature\/ $\kappa(\cA) \cdot \omega_g$ at genus\/
+  $g \geq 1$ is the first-order deformation of the Lagrangian
+  embedding\/ $\cL \hookrightarrow \cM_{\mathrm{vac}}$ as the
+  moduli of curves varies over\/ $\overline{\mathcal M}_g$.
+  The Hodge class\/ $\omega_g \in H^1(\overline{\mathcal M}_g,
+  \omega_{\overline{\mathcal M}_g})$ parametrizes the
+  infinitesimal displacement of~$\cL$ inside~$\cM$, and the
+  modular characteristic\/ $\kappa(\cA)$ is the derivative of the
+  Lagrangian position with respect to this parameter:
+  $\dfib^2 = \kappa(\cA) \cdot \omega_g$ is the equation that the
+  displaced Lagrangian fails to be isotropic to first order, which
+  is precisely the curvature of the curved $A_\infty$ structure.
+
+\item \textbf{Theorem~H \textup{(}Hochschild ring\textup{)}.}
+  The HKR theorem for Lagrangian embeddings gives
+  \[
+    \HH^\bullet(B)
+    \;\simeq\;
+    \cO\bigl(T^*[-1]\cL\bigr)
+    \;\simeq\;
+    \cO(\cM)\big|_{\cL}.
+  \]
+  The Hochschild cohomology of the boundary algebra~$B$ is the
+  ring of functions on the shifted cotangent bundle of~$\cL$,
+  which by the Lagrangian condition is the ring of functions on
+  the ambient stack restricted to the Lagrangian.  This is the
+  geometric content of Theorem~H: the bulk algebra
+  $\cO(\cM)|_{\cL}$ is recovered as the derived center of the
+  boundary, and the BV bracket on bulk observables is the
+  $(-1)$-shifted Poisson bracket on $T^*[-1]\cL$ induced by the
+  ambient $(-2)$-shifted symplectic structure.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+Each item translates a Vol~I theorem into the geometry of
+Theorem~\ref{thm:bar-is-self-intersection}.
+
+\medskip\noindent
+\textbf{(i).}  The self-intersection
+$\Steinb = \cL \times_{\cM}^h \cL$ is a groupoid by the universal
+property of the fiber product: the two projections
+$\pi_1, \pi_2 \colon \Steinb \rightrightarrows \cL$ are source
+and target; composition
+$\Steinb \times_{\cL} \Steinb \to \Steinb$ is associative because
+$\cL \times_{\cM} \cL \times_{\cM} \cL$ computes the same iterated
+fiber product in either order.  The bar construction
+$\barB(B) = T^c(s^{-1}\bar B)$ is the structure sheaf
+$\cO(\Steinb)$ (Theorem~\ref{thm:bar-is-self-intersection}(ii)),
+and the cobar construction $\Omega(\barB(B))$ is the groupoid
+algebra.  The bar-cobar adjunction is then the standard
+comodule-module adjunction for a groupoid object in a stable
+$\infty$-category (Lurie \cite{HA}, \S4.7).
+
+\medskip\noindent
+\textbf{(ii).}  The self-intersection is clean when the natural map
+$\cL \times_{\cM}^h \cL \to \cL \times_{\cM} \cL$ is an
+equivalence, i.e., when the derived and classical intersections
+agree.  This happens precisely when
+$\operatorname{Tor}^{\cO(\cM)}_i(B, B) = 0$ for $i > 0$: the
+Koszul condition.  In that case the groupoid
+$\Steinb \simeq \cL$ is \'etale (the projections are
+equivalences), so comodules and modules over~$\Steinb$ are both
+equivalent to quasi-coherent sheaves on~$\cL$.  This is bar-cobar
+inversion.  When the intersection is not clean, the higher Tor
+terms give the groupoid a nontrivial normal direction ---
+geometrically, a thickening --- and the bar-cobar map is the
+completion along this thickening.
+
+\medskip\noindent
+\textbf{(iii).}  For two distinct Lagrangians $\cL, \cL'$,
+PTVV \cite{PTVV13} equips $\cL \times_{\cM}^h \cL'$ with a
+$(-1)$-shifted symplectic form $\omega_{-1}$.  The
+complementarity potential $S_{\cA}$ is the generating function of
+the Lagrangian intersection: it is the unique function on
+$\cL \times_{\cM}^h \cL'$ whose Hamiltonian vector field generates
+the $(-1)$-shifted symplectic form, and its critical locus
+recovers the classical intersection.  The complementary splitting
+$T_p\cM \simeq T_p\cL \oplus T_p\cL'$ is the decomposition into
+the two Lagrangian summands, which is exactly the complementary
+decomposition of Vol~I, Theorem~C.
+
+\medskip\noindent
+\textbf{(iv).}  The family of Lagrangians
+$\{\cL_g \hookrightarrow \cM_{\mathrm{vac}}\}_{g \geq 1}$ over
+$\overline{\mathcal M}_g$ defines a section of the relative
+Lagrangian Grassmannian.  The first-order variation of this section
+is a class in
+$H^0(\cL, \, \mathbb{L}_{\cL/\cM}[1]) \otimes
+H^1(\overline{\mathcal M}_g, \omega_{\overline{\mathcal M}_g})$.
+By the Lagrangian condition,
+$\mathbb{L}_{\cL/\cM}[1] \simeq \mathbb{T}_{\cL}$, so this class
+lives in $H^0(\cL, \mathbb{T}_{\cL}) \otimes
+H^1(\overline{\mathcal M}_g,
+\omega_{\overline{\mathcal M}_g})$.  The scalar factor is
+$\kappa(\cA)$ (by Vol~I, Theorem~D, the modular characteristic
+is a scalar), and the Hodge factor is $\omega_g$.  The curvature
+equation $\dfib^2 = \kappa(\cA) \cdot \omega_g$ records that the
+displaced Lagrangian $\cL_g$ is isotropic only to zeroth order:
+$\kappa(\cA) \cdot \omega_g$ is the obstruction to extending the
+Lagrangian property to first order.
+
+\medskip\noindent
+\textbf{(v).}  By HKR (Kontsevich \cite{Kon03}, Calaque--Van den
+Bergh \cite{CVdB10}),
+$\HH^\bullet(B) \simeq \cO(T^*[-1]\cL)$ as graded algebras.
+The Lagrangian condition gives
+$T^*[-1]\cL \simeq \mathbb{L}_{\cL/\cM}[1][-1] \simeq
+N^*_{\cL/\cM}$, and the completed structure sheaf of the normal
+bundle is $\cO(\cM)|_{\cL}$: functions on the ambient stack
+restrict to the Lagrangian via the normal exponential map.  The
+BV bracket on $\HH^\bullet(B)$ is the Schouten--Nijenhuis bracket
+on polyvector fields of~$\cL$, which by the Lagrangian isomorphism
+$T_{\cL} \simeq N^*_{\cL/\cM}[-1]$ agrees with the restriction of
+the $(-2)$-shifted Poisson bracket on $\cO(\cM)$.  This is
+Vol~I, Theorem~H: the Hochschild ring of the boundary computes the
+bulk.
+\end{proof}
+
+\begin{remark}[The single-phenomenon principle]
+\label{rem:single-phenomenon}
+Proposition~\ref{prop:five-theorems-geometry} is not five separate
+theorems unified by analogy.  It is a single theorem ---
+$\cO(\Steinb) \simeq \barB(B)$ --- read through five invariants:
+the groupoid structure (A), the \'etaleness condition (B), the
+$(-1)$-shifted symplectic form on a complementary intersection (C),
+the deformation over moduli of curves (D), and the HKR isomorphism
+(H).  The Lagrangian self-intersection is the organizing geometry,
+and the five theorems are its five faces.
+\end{remark}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % SECTION 1.2 — RELATION TO RAVIOLO VERTEX ALGEBRAS
