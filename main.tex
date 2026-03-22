@@ -55,11 +55,9 @@
 \makeatother
 \usepackage[unicode,pdfencoding=auto,psdextra]{hyperref}
 % Cross-volume label import from Vol I
-\usepackage{xr-hyper}
-\makeatletter
-\@ifundefined{XR@ext}{}{}
-\makeatother
-\externaldocument[V1-]{../chiral-bar-cobar/main}
+% xr-hyper disabled: Vol I aux file unstable. Cross-refs show as undefined.
+% \usepackage{xr-hyper}
+% \externaldocument[V1-]{../chiral-bar-cobar/main}
 \usepackage{geometry}
 \geometry{top=1.2in, bottom=1.2in, left=1.25in, right=1.25in, footskip=0.5in}
 \setlength{\headheight}{28pt}
@@ -333,9 +331,10 @@ the cut point $t_*$ in~$\R$.
 A degree-$k$ bar element therefore lives on
 $\FM_k(\C) \times \Conf_k^<(\R)$: the differential sees the first
 factor, the coproduct sees the second.  Together they make
-$(\barBch(\cA),\, D_\cA,\, \Delta)$ an algebra over the
+$(\barBch(\cA),\, D_\cA,\, \Delta)$ a coalgebra over the
 holomorphic--topological Swiss-cheese operad
-$\SCchtop$ on $\C \times \R$.
+$\SCchtop$ on $\C \times \R$.  By self-duality,
+its linear dual~$\cA^!$ is an $\SCchtop$-\emph{algebra}.
 
 The genus-zero $L_\infty$ brackets $\ell_k^{(0)}$ are
 residues over tree-type boundary strata of $\FM_k^{\log}(\C)$;
@@ -367,9 +366,16 @@ transfer yields
 \Omega\mathbf{B}(\SCchtop) \;\xrightarrow{\;\sim\;}\; \SCchtop.
 \]
 The bar-cobar adjunction on $\SCchtop$-algebras is a Quillen
-equivalence.  Under axioms~\textup{(H1)--(H4)} on a 3d
-holomorphic--topological QFT, Weiss cosheaf descent produces the
-$\SCchtop$-algebra from BV-BRST data.
+equivalence.  Since both component operads ($E_2$ and
+$\mathsf{Ass}$) and the Leibniz interaction law are Koszul
+self-dual, the formality transfer gives
+$(\SCchtop)^! \simeq \SCchtop$
+(Theorem~\ref{thm:SC-self-duality}): dualizing the bar
+coalgebra produces another $\SCchtop$-algebra.
+For physical realisations
+(Theorem~\ref{thm:physics-bridge}), Weiss cosheaf descent
+produces the logarithmic $\SCchtop$-algebra from BV-BRST
+data.
 
 \textsc{Theorem~G} (PVA descent).
 Write $m_2(a,b;\zeta) = m_2^{\mathrm{reg}}(a,b;\zeta)
@@ -399,10 +405,15 @@ boundary strata.
 \qquad
 \cA^!\text{-}\mathsf{mod} \;\simeq\; \{\text{line operators}\}.
 \]
-The Koszul dual~$\cA^!$ is a dg-shifted Yangian.
+By operadic Koszul self-duality, $\cA^!$ is again an
+$\SCchtop$-algebra---a dg-shifted Yangian
+(Theorem~\ref{thm:Koszul_dual_Yangian})---and
+$(\cA^!)^! \simeq \cA$
+(Theorem~\ref{thm:duality-involution}).
 The spectral braiding
 $R(z) \colon L_1 \otimes L_2 \xrightarrow{\sim} L_2 \otimes L_1$
-satisfies the Yang--Baxter equation: Stokes' theorem on $\FM_3(\C)$
+satisfies the Yang--Baxter equation---the operadic identity
+at $\FM_3(\C) \times E_1(3)$: Stokes' theorem on $\FM_3(\C)$
 applied to the triple convolution $\alpha \star \alpha \star \alpha$
 decomposes the boundary of~$\FM_3(\C)$ into pairwise collision
 divisors, one for each side of the YBE.
@@ -542,25 +553,30 @@ Weinberg soft factor and $S_1$ is the subleading soft factor of
 Cachazo--Strominger.
 
 \noindent\textsc{Factorization quantum groups.}\enspace
-Three languages---homotopy dg-shifted Yangians, spectral
+Three languages---$\SCchtop$-algebras (equivalently,
+dg-shifted Yangians by the recognition theorem,
+Theorem~\ref{thm:yangian-recognition}), spectral
 factorization quantum groups, and shifted quantum groups via
 critical stable envelopes---are bridged by bar-horizontal
-strictification.  The quasi-factorization theorem identifies the
-spectral Drinfeld obstruction class.
+strictification of the open-colour $E_1$-projection.
+The quasi-factorization theorem identifies the spectral
+Drinfeld obstruction class; root multiplicity one forces
+its complete vanishing for all simple Lie algebras.
 
 \medskip
-The archetype classification in boundary coordinates:
-Heisenberg is Gaussian
-($\ell_3^{(0)} = 0$, shadow tower terminates at weight~$2$);
-affine Kac--Moody is Lie/tree
-($\ell_3^{(0)} \neq 0$, $\ell_4^{(0)} = 0$,
-terminates at weight~$3$);
-$\beta\gamma$ is contact/quartic
-($\ell_3^{(0)} = 0$ on the weight-changing line but
+The archetype classification in boundary coordinates
+(Vol~I, classes $\mathbf{G}/\mathbf{L}/\mathbf{C}/\mathbf{M}$):
+Heisenberg is class~$\mathbf{G}$ (Gaussian,
+$\ell_3^{(0)} = 0$, shadow tower terminates at arity~$2$);
+affine Kac--Moody is class~$\mathbf{L}$ (Lie/tree,
+$\ell_3^{(0)} \neq 0$, $\ell_4^{(0)} = 0$,
+terminates at arity~$3$);
+$\beta\gamma$ is class~$\mathbf{C}$ (contact/quartic,
+$\ell_3^{(0)} = 0$ on the weight-changing line but
 $\Theta_4^{\mathrm{contact}} \neq 0$,
-terminates at weight~$4$);
-Virasoro and $\mathcal{W}_N$ are mixed
-($\ell_3^{(0)} \neq 0$, $\ell_4^{(0)} \neq 0$,
+terminates at arity~$4$);
+Virasoro and $\mathcal{W}_N$ are class~$\mathbf{M}$ (mixed,
+$\ell_3^{(0)} \neq 0$, $\ell_4^{(0)} \neq 0$,
 infinite tower).
 For $\mathcal{W}_3$, the quartic quasi-primary
 $\Lambda = {:}TT{:} - \tfrac{3}{10}\,\partial^2 T$
@@ -596,8 +612,24 @@ decomposition.
 & e^{\hbar q_1 q_2/z}
 \end{array}
 \]
-All algebraic results are unconditional; the physical
-axioms~\textup{(H1)--(H4)} are conditional.
+All algebraic results---including homotopy-Koszulity
+\textup{(Theorem~F)}, Koszul self-duality
+$(\SCchtop)^! \simeq \SCchtop$
+\textup{(Theorem~\ref{thm:SC-self-duality})}, the
+recognition theorem
+\textup{(Theorem~\ref{thm:yangian-recognition}:
+$\SCchtop$-algebra $=$ dg-shifted Yangian)}, and the
+duality involution $(\cA^!)^! \simeq \cA$
+\textup{(Theorem~\ref{thm:duality-involution})}---are
+unconditional for any logarithmic $\SCchtop$-algebra
+\textup{(}Definition~\textup{\ref{def:log-SC-algebra})}.
+The former standing hypotheses \textup{(H1)--(H4)} are
+now derived: \textup{(H1)--(H2)} are conditions on
+physical realisations
+\textup{(}Theorem~\textup{\ref{thm:physics-bridge})};
+\textup{(H3)} is FM calculus
+\textup{(}Theorem~\textup{\ref{thm:FM-calculus})};
+\textup{(H4)} is the recognition theorem.
 \end{abstract}
 
 \bigskip
@@ -674,22 +706,21 @@ theorems through the Swiss-cheese lens.
 \label{subsec:conditional-roadmap}
 
 All operadic foundations (Weiss descent, recognition theorem,
-homotopy-Koszulity) are proved unconditionally.
-Both the \textbf{Recognition} statement
-(Theorem~\ref{thm:recognition}, proved via product decomposition
-and retract) and \textbf{Homotopy--Koszulity}
-(Theorem~\ref{thm:homotopy-Koszul}, proved via Kontsevich formality
-and transfer from the classical Swiss--cheese operad) are now
-established.  The full development includes claims conditional on
-the standing analytic hypotheses~\textrm{(H1)--(H4)}, as
-detailed below.
+homotopy-Koszulity, Koszul self-duality, Yangian recognition,
+duality involution) are proved unconditionally.
+The former standing hypotheses (H1)--(H4) have been
+eliminated: the algebraic framework is built on a single
+definition (logarithmic $\SCchtop$-algebra,
+Definition~\ref{def:log-SC-algebra}) and a geometric
+theorem (FM calculus, Theorem~\ref{thm:FM-calculus}).
+Physical realisations enter through the bridge theorem
+(Theorem~\ref{thm:physics-bridge}).
 
 \begin{remark}[Status of results]
 \label{rem:conditional-list}
-All algebraic results in this volume are unconditional.  The only
-conditional inputs are the four standing analytic hypotheses
-\textrm{(H1)--(H4)}, which are verified in the three worked
-examples but not proved in general:
+All algebraic results in this volume hold unconditionally for
+any logarithmic $\SCchtop$-algebra
+(Definition~\ref{def:log-SC-algebra}):
 \begin{itemize}
 \item \emph{Unconditional (no hypotheses assumed):}
   Proposition~\ref{prop:compatibility} (prefactorization $\Rightarrow$
@@ -703,13 +734,25 @@ examples but not proved in general:
   Theorem~\ref{thm:filtered-koszul} (filtered Quillen equivalence),
   Theorem~\ref{thm:lines_as_modules}
   ($\mathcal{C}_{\mathrm{line}} \simeq \cA^!\text{-}\mathbf{mod}$),
+  Theorem~\ref{thm:SC-self-duality} (Koszul self-duality
+  of~$\SCchtop$),
+  Theorem~\ref{thm:yangian-recognition} (recognition:
+  $\SCchtop$-algebra $=$ dg-shifted Yangian),
   Theorem~\ref{thm:Koszul_dual_Yangian} (Koszul dual is a
-  dg-shifted Yangian).
-\item \emph{Conditional on \textrm{(H1)--(H4)}:}
+  dg-shifted Yangian),
+  Theorem~\ref{thm:duality-involution}
+  ($(\cA^!)^! \simeq \cA$).
+\item \emph{Unconditional for any logarithmic $\SCchtop$-algebra}
+  (Definition~\ref{def:log-SC-algebra})\emph{:}
   The chain-level $\Ainf$ structure, PVA descent, spectral
-  $R$-matrix, and worked examples depend on the standing analytic
-  hypotheses~\textrm{(H1)--(H4)}, which are verified in the three
-  worked examples but not proved in general.
+  $R$-matrix, half-space BV quantization, and all constructions
+  in Parts~I--VII hold for any logarithmic $\SCchtop$-algebra.
+  The former standing hypotheses (H1)--(H4) are now derived:
+  (H1) and (H2) are conditions on physical realisations
+  (Theorem~\ref{thm:physics-bridge}); (H3) is the FM calculus
+  theorem; (H4) is the recognition theorem.
+  The worked examples verify that specific gauge theories
+  satisfy Theorem~\ref{thm:physics-bridge}.
 \end{itemize}
 \end{remark}
 
@@ -849,11 +892,12 @@ gravity provides the first test of the full obstruction tower.
 
 \noindent
 The ordered associative side of chiral Koszul duality---the
-$E_1$-colored wing of the Swiss-cheese operad---carries its own
-bar--cobar theory, diagonal bicomodule, and open trace.  This part
-develops ordered associative chiral Koszul duality as an equal
-partner to the commutative/chiral wing, and connects it to
-dg-shifted Yangians and spectral factorization quantum groups.
+open-color projection of the dg-shifted Yangian structure on~$\cA^!$
+(\S\ref{subsec:dg-yangian-operadic})---carries its own bar--cobar
+theory, diagonal bicomodule, and open trace.  This part develops the
+$E_1$ projection as an equal partner to the closed-color chiral wing,
+and strictifies the dg-shifted Yangian into spectral factorization
+quantum groups.
 
 \input{chapters/connections/ordered_associative_chiral_kd_core}
 \input{chapters/connections/dg_shifted_factorization_bridge}
@@ -952,6 +996,8 @@ depends on material in this part.
 \bibitem{CG17} K.~Costello and O.~Gwilliam, \emph{Factorization Algebras in Quantum Field Theory}, vols.~1--2, Cambridge Univ.\ Press, 2017, 2021.
 
 \bibitem{CM14} G.~Caviglia and I.~Moerdijk, \emph{A model structure for enriched coloured operads}, arXiv:1401.6983, 2014.
+
+\bibitem{Deligne70} P.~Deligne, \emph{\'Equations diff\'erentielles \`a points singuliers r\'eguliers}, Lecture Notes in Math., vol.~163, Springer, Berlin, 1970.
 
 \bibitem{DNP25} T.~Dimofte, W.~Niu, and V.~Py, \emph{Line operators in 3d holomorphic QFT: meromorphic tensor categories and dg-shifted Yangians}, arXiv:2506.09728, 2025.
 
@@ -1180,6 +1226,9 @@ D.~Arinkin and A.~C\u{a}ld\u{a}raru, \emph{When is the self-intersection of a su
 
 \bibitem{Cal15}
 D.~Calaque, \emph{Lagrangian structures on mapping stacks and semi-classical TFTs}, Contemp.\ Math., vol.~643, AMS, 2015, 1--23, arXiv:1306.3235.
+
+\bibitem{RT90}
+N.~Reshetikhin and V.\,G.~Turaev, \emph{Invariants of $3$-manifolds via link polynomials and quantum groups}, Invent.\ Math.\ \textbf{103} (1991), 547--597.
 
 \end{thebibliography}
 

@@ -3,6 +3,7 @@
 \providecommand{\cZ}{\mathcal{Z}}
 \providecommand{\cH}{\mathcal{H}}
 \providecommand{\fg}{\mathfrak{g}}
+\providecommand{\cW}{\mathcal{W}}
 \providecommand{\gSC}{\mathfrak{g}^{\mathrm{SC}}}
 \providecommand{\gAmod}{\mathfrak{g}^{\mathrm{mod}}_\cA}
 \providecommand{\Ydg}{Y^{\mathrm{dg}}}
@@ -76,13 +77,15 @@ $[s^{-1}J \,|\, s^{-1}J]$.
 
 \medskip
 \noindent\textbf{The holomorphic direction.}\enspace
-The bar differential extracts the residue of the double pole:
+The bar differential is the codimension-$1$ boundary operator
+on $\FM_k(\C)$.  For two insertions, the boundary stratum
+$E_{12} \cong S^1$ of the FM blowup extracts the mode products
+$J_{(n)}J$ from the OPE.  The only nonvanishing mode is
+$J_{(1)}J = k$ (the level), so
 \[
 d_{\barB}[s^{-1}J \,|\, s^{-1}J]
 \;=\;
-\Res_{z_{12} = 0}\!\left[
-  \frac{k}{z_{12}^2}\cdot\frac{dz_{12}}{z_{12}}
-\right]
+J_{(1)}J
 \;=\; k.
 \]
 There is no simple-pole OPE ($J_{(0)}J = 0$), so the bracket
@@ -308,6 +311,46 @@ combinatorial identity that makes $D_\cA^2 = 0$ hold, and hence
 that makes the $\Ainf$ Stasheff relations consistent.
 
 
+\section*{IV$'$.\quad The resolvent principle}
+
+The $\Ainf$ operations $\{m_k\}_{k \ge 2}$ are determined by
+a single datum: the binary product~$m_2$.  The higher
+operations are not independent---they are the unique solution
+of a fixed-point equation.
+
+Let $(H, p, \iota, h)$ be a deformation retract of $(\cA, m_1)$
+onto cohomology $H = H^\bullet(\cA, m_1)$, with $h^2 = h\iota =
+ph = 0$.  Define the \emph{dressed propagator}
+$\Phi \colon T^+(H) \to \cA$ by
+\[
+\Phi \;=\; \iota \;+\; h \circ m_2 \circ \Phi^{\otimes 2}.
+\]
+This is the \emph{tree-level bootstrap equation}: the full
+propagator from boundary data~$H$ into the bulk algebra~$\cA$ is
+determined self-consistently from the free embedding~$\iota$ and
+the interaction vertex~$m_2$.  Its solution by iteration gives the
+\emph{tree formula}
+(Theorem~\ref{thm:resolvent-principle}):
+\[
+m_k^H
+\;=\;
+\sum_{T \in \mathrm{PRT}_k}
+p \circ \mathfrak{m}(T) \circ \iota^{\otimes k},
+\]
+where $\mathrm{PRT}_k$ is the set of planar rooted binary trees
+with $k$~leaves ($|\mathrm{PRT}_k| = C_{k-1}$, the Catalan
+number), and $\mathfrak{m}(T)$ assigns $m_2$ to each internal
+vertex and~$h$ to each internal edge.
+
+One equation, one binary input, Catalan many trees.  The
+Stasheff relations are the consistency of the iteration;
+the tree formula is the perturbative expansion of
+the Lagrangian self-intersection.  Wheel diagrams in the Virasoro
+(Section~VII) are evaluations of this tree sum using the BRST
+homotopy of Drinfeld--Sokolov reduction
+(Theorem~\ref{thm:tree-wheel-bridge}).
+
+
 \section*{V.\quad First computation: the Heisenberg}
 
 \noindent\textbf{Operations.}\enspace
@@ -328,10 +371,10 @@ This is a Poisson vertex algebra of rank~$1$.
 
 \smallskip
 \noindent\textbf{Classical $r$-matrix.}\enspace
-The collision residue of the bar-intrinsic MC element at two points:
+The Laplace transform of the $\lambda$-bracket gives the
+classical $r$-matrix:
 \[
-r(z) \;=\; \Res^{\mathrm{coll}}_{0,2}(\Theta_{\cH_k})
-\;=\;
+r(z) \;=\;
 \int_0^\infty e^{-\lambda z}\{J{}_\lambda J\}\,d\lambda
 \;=\;
 \int_0^\infty e^{-\lambda z}\,k\lambda\,d\lambda
@@ -383,22 +426,23 @@ This is the affine PVA at level~$k$.
 
 \smallskip
 \noindent\textbf{Classical $r$-matrix.}\enspace
-The collision residue at two points:
+The Laplace transform of the $\lambda$-bracket gives the
+position-space OPE kernel:
 \[
-r(z)
-\;=\;
-\Res^{\mathrm{coll}}_{0,2}(\Theta_{\widehat{\fg}_k})
-\;=\;
-\Res_{z_{12}=0}\!\left[
-  \frac{f^{ab}{}_c\,J^c}{z_{12}}
-  + \frac{k\,\delta^{ab}}{z_{12}^2}
-\right]
-\frac{dz_{12}}{z_{12}}
+\int_0^\infty e^{-\lambda z}\,
+  \{J^a{}_\lambda J^b\}\, d\lambda
 \;\otimes\; J_a \otimes J_b
 \;=\;
-\frac{\Omega}{z},
+\frac{f^{ab}{}_c\,J^c}{z}\,J_a\otimes J_b
+  + \frac{k\,\delta^{ab}}{z^2}\,J_a\otimes J_b
+\;=\;
+\frac{\Omega}{z} + \frac{k\,\kappa}{z^2},
 \]
-where $\Omega = \sum_a J^a \otimes J_a$ is the split Casimir.
+where $\Omega = \sum_a J^a \otimes J_a$ is the split Casimir
+and $\kappa = \sum_a J_a \otimes J^a$ is the Killing form
+tensor.  The scalar term $k\,\kappa/z^2$ is ad-invariant
+and contributes trivially to the CYBE; the collision residue
+r-matrix is $r(z) = \Omega/z$.
 The KZ connection $\nabla_{\mathrm{KZ}} = d - \hbar\,\Omega/z$ is
 the flat connection on conformal blocks whose monodromy is the
 quantum $R$-matrix of $U_\hbar(\fg)$.  The CYBE for $r(z) =
@@ -414,8 +458,8 @@ module category with the quantum group category.
 
 \smallskip
 \noindent\textbf{Genus~$1$.}\enspace
-$\kappa(\widehat{\fg}_k) = k\dim\fg$.
-Anti-symmetry: $\kappa_k + \kappa_{-k-2h^\vee} = -2h^\vee\dim\fg$.
+$\kappa(\widehat{\fg}_k) = \dim\fg\,(k + h^\vee)/(2h^\vee)$.
+Anti-symmetry: $\kappa_k + \kappa_{-k-2h^\vee} = 0$.
 
 
 \section*{VII.\quad Third computation: $\mathcal{W}_3$ and
@@ -521,7 +565,7 @@ closed face
 open face
   & line category $\Bbound^!\text{-mod}$
   & \S\ref{sec:line_operators} \\[2pt]
-arity-$(2,0)$ collision residue
+arity-$(2,0)$ Laplace projection
   & spectral $R$-matrix, YBE
   & \S\ref{sec:spectral_braiding} \\[2pt]
 arity-$(1,1)$ mixed
@@ -597,21 +641,19 @@ At $k = 13/3$ (equivalently $c = 26$), the Koszul dual $\mathrm{Vir}_{26-c} = \m
 
 \section*{IX.\quad Koszulness}
 
-The Steinberg variety $Z = \widetilde{\mathcal{N}}
-\times_{\fg} \widetilde{\mathcal{N}}$ presents the Hecke algebra:
-$H_*(Z) \cong H_W$.  Every representation-theoretic fact about
-$H_W$---cells, Kazhdan--Lusztig polynomials, canonical bases---is a
-shadow of a geometric fact about~$Z$.  The Hecke algebra does not
-know it is a convolution algebra; the Steinberg variety knows
-nothing else.
-
-The bar complex $\barBch(\cA)$ is the Steinberg variety of chiral
-algebra.  It is a correspondence on $\FM_n(\C) \times
-\Conf_n^{<}(\R)$; the bar differential is convolution; the coproduct
-is restriction; the six projections of Section~VIII recover the
-algebra, the Koszul dual, the line category, the $R$-matrix, the
-genus tower, the PVA shadow.  Every structural fact about~$\cA$ is a
-projection of the single object~$\barBch(\cA)$.
+$H_*^{BM}(\widetilde{\mathcal{N}} \times_{\fg}
+\widetilde{\mathcal{N}}) \cong H_W$.  The Hecke algebra is
+a convolution algebra.  The bar complex $\barBch(\cA)$ on
+$\FM_n(\C) \times \Conf_n^{<}(\R)$ is the convolution algebra
+of chiral algebra: the bar differential is convolution on
+$\FM_n(\C)$; the coproduct is restriction on $\Conf_n^{<}(\R)$;
+the six projections recover the algebra, the Koszul dual, the line
+category, the $R$-matrix, the genus tower, the PVA\@.
+For the affine lineage, the convolution produces the quantum group:
+$\cC_{\mathrm{line}}^{\mathrm{red}}|_{\mathrm{eval}} \simeq
+\mathrm{Rep}_q(\fg)$ and the bar complex computes the Jones
+polynomial (Theorem~\ref{thm:affine-monodromy-identification},
+Corollary~\ref{cor:jones-polynomial}).
 
 \emph{Koszulness is the condition that this presentation is
 concentrated.}
@@ -633,10 +675,10 @@ single line:
 \[
 H^{p,q}\bigl(\barBch(\cA)\bigr) = 0 \quad \text{for } q \neq 0.
 \]
-This is a single condition.  Ten consequences radiate from it,
+This is a single condition.  Twelve consequences radiate from it,
 each illuminating a different face of the same concentration.
 
-\medskip\noindent\textbf{The ten faces.}\enspace
+\medskip\noindent\textbf{The twelve faces.}\enspace
 The Koszul dodecahedron (Vol~I, Theorem~\ref*{thm:koszul-equivalences-meta}):
 \begin{enumerate}[label=\textup{(\roman*)},leftmargin=2em,itemsep=2pt]
 \item \emph{Concentration}: bar cohomology in one degree.
@@ -660,6 +702,12 @@ The Koszul dodecahedron (Vol~I, Theorem~\ref*{thm:koszul-equivalences-meta}):
   $\mathrm{ChirHoch}^n(\cA) = 0$ for $n \notin \{0, 1, 2\}$.
 \item \emph{Factorization homology}: $\int_{\Sigma_g}\cA$ is
   concentrated in degree~$0$ for all genera.
+\item \emph{Barr--Beck--Lurie}: the comparison functor for the
+  bar-cobar monad is an equivalence on the fiber; abstract monadicity
+  applies without correction.
+\item \emph{Kac--Shapovalov regularity}: $\det G_h \neq 0$ in the
+  bar-relevant range; no singular vectors intrude to create unexpected
+  cohomology classes.
 \item \emph{Stratum acyclicity}: restriction to every FM boundary
   stratum is acyclic outside degree~$0$.
 \item \emph{Lagrangian transversality}: the deformation and
@@ -673,7 +721,7 @@ The Koszul dodecahedron (Vol~I, Theorem~\ref*{thm:koszul-equivalences-meta}):
 \medskip\noindent\textbf{Classical specialization.}\enspace
 When $X = \mathrm{pt}$, the chiral tensor product is the ordinary
 tensor product, the FM compactification is the Stasheff
-associahedron, and all ten criteria collapse to the classical
+associahedron, and all twelve criteria collapse to the classical
 Koszul theory of Priddy--BGG--BGS--Loday--Vallette.  The chiral theory
 is not a generalization that weakens these conditions; it is a
 \emph{lift} that reveals their geometric origin.  Concentration of
@@ -1032,7 +1080,9 @@ $\R_+ \times \C$ has:
   $\mathcal{O}$.
 \end{itemize}
 The spectral $R$-matrix on line operators is the quantum group
-$R$-matrix of $U_\hbar(\fg)$.  The dg-shifted Yangian is the
+$R$-matrix of $U_q(\fg)$ at $q = e^{i\pi/(k+h^\vee)}$
+(Theorem~\ref{thm:affine-monodromy-identification}).
+The dg-shifted Yangian is the
 $\Ainf$ endomorphism algebra of the line category.
 
 \medskip
@@ -1050,10 +1100,14 @@ $\Bbound^! = \widehat{\mathfrak{sl}}_2{}_{-k-4}$,
 $r(z) = \Omega/z$ (Casimir $r$-matrix).  The KZ connection
 $\nabla = d - \hbar\,\Omega/z$ on conformal blocks is the
 arity-$(2,0)$ projection of $\alpha_T$.  Its monodromy is the
-$R$-matrix of $U_\hbar(\mathfrak{sl}_2)$.  Line operators are
-Verma modules at the dual level; the Drinfeld--Kohno theorem
-identifies the braided line category with
-$\operatorname{Rep}(U_\hbar(\mathfrak{sl}_2))$.
+$R$-matrix of $U_q(\mathfrak{sl}_2)$ at $q = e^{i\pi/(k+2)}$
+(Theorem~\ref{thm:affine-monodromy-identification}).
+Line operators are Verma modules at the dual level;
+$\cC_{\mathrm{line}}^{\mathrm{red}}|_{\mathrm{eval}}
+\simeq \operatorname{Rep}_q(\mathfrak{sl}_2)$
+(Corollary~\ref{cor:affine-line-category}).
+The bar complex computes the colored Jones polynomial
+(Corollary~\ref{cor:jones-polynomial}).
 
 \subsection*{The holographic modular Koszul datum}
 
@@ -1312,7 +1366,7 @@ the bar-cobar framework:
 \item Celestial OPE coefficients are projections of $\alpha_T$:
   the $n$-point celestial correlator is
   $\alpha_T|_{(n,0)}$ evaluated on $\FM_n(\C P^1)$.
-\item The celestial $R$-matrix is the collision residue
+\item The celestial $R$-matrix is the arity-$(2,0)$ projection
   $r(z) = \alpha_T|_{(2,0)}$, encoding the leading-order
   scattering amplitude at spectral separation~$z$.
 \item The soft theorems of gauge theory are the leading spectral
@@ -1494,8 +1548,8 @@ the physics and the algebra agree.
 
 \noindent
 Results (A$'$)--(F$'$) and (H$'$)--(L$'$) are unconditional.
-Result (G$'$) applies the framework to $SL(2,\R)$ CS under the
-physical axioms (H1)--(H4).
+Result (G$'$) applies the framework to $SL(2,\R)$ CS via the
+bridge theorem (Theorem~\ref{thm:physics-bridge}).
 
 \medskip\noindent\textbf{Holographic reconstruction.}\enspace
 The chiral algebra creates its own ambient.  The Hochschild--Kostant--Rosenberg theorem for
@@ -1508,7 +1562,7 @@ for $(-2)$-shifted symplectic stacks: every such stack is locally equivalent to 
 shifted cotangent of a Lagrangian, and the Lagrangian is the boundary datum.
 
 \medskip\noindent\textbf{The completeness question.}\enspace
-The holographic Lagrangian $\cL_\cA^{(0)}$ is constructed from genus-$0$ data: the bar-cobar adjunction on $\FM_k(\C) \times \Conf_k^<(\R)$.  \emph{Is the holographic Lagrangian complete?}  That is, does $\cL_\cA^{(0)}$ extend to a family $\cL_\cA^{(g)} \hookrightarrow \cM_{\mathrm{vac}}$ over the moduli $\overline{\cM}_{g,n}$, compatible with gluing along boundary strata?  For algebras with clean self-intersection (classes~$\mathbf{G}$ and~$\mathbf{L}$: Heisenberg, Kac--Moody), the Lagrangian meets itself transversally and the scalar curvature $d^2 = \kappa(\cA) \cdot \omega_g$ extends automatically.  For algebras with excess self-intersection (class~$\mathbf{M}$: Virasoro, $\mathcal{W}_N$), the derived self-intersection carries higher Tor, the Swiss-cheese operations $m_k$ are successive obstruction classes, and the question is open.  (All four depth classes are chirally Koszul---the PBW spectral sequence concentrates---so the chiral bar complex itself is well-behaved; the difficulty is in the global self-intersection geometry.)  This is the central problem of the modular programme: existence, compatibility, and computation of the higher-genus Lagrangian, developed in Part~V.
+The holographic Lagrangian $\cL_\cA^{(0)}$ is constructed from genus-$0$ data: the bar-cobar adjunction on $\FM_k(\C) \times \Conf_k^<(\R)$.  \emph{Is the holographic Lagrangian complete?}  That is, does $\cL_\cA^{(0)}$ extend to a family $\cL_\cA^{(g)} \hookrightarrow \cM_{\mathrm{vac}}$ over the moduli $\overline{\cM}_{g,n}$, compatible with gluing along boundary strata?  For algebras with clean self-intersection (classes~$\mathbf{G}$ and~$\mathbf{L}$: Heisenberg, Kac--Moody), the Lagrangian meets itself transversally and the scalar curvature $d^2 = \kappa(\cA) \cdot \omega_g$ extends automatically.  For algebras with excess self-intersection (class~$\mathbf{M}$: Virasoro, $\mathcal{W}_N$), the derived self-intersection carries higher Tor, the Swiss-cheese operations $m_k$ are successive obstruction classes, and the question is open.  (Classes~$\mathbf{G}$, $\mathbf{L}$, $\mathbf{C}$ are chirally Koszul---the PBW spectral sequence concentrates and bar cohomology is concentrated.  Class~$\mathbf{M}$ is \emph{not} chirally Koszul: the fourth-order pole causes purity failure and non-concentrated bar cohomology, though well-defined Koszul duals still exist.  The difficulty for class~$\mathbf{M}$ is compounded: beyond the global self-intersection geometry, the big Koszul dual carries higher $\Ainf$ operations.)  This is the central problem of the modular programme: existence, compatibility, and computation of the higher-genus Lagrangian, developed in Part~V.
 
 \medskip\noindent\textbf{The monograph computes the local geometry at a point.}\enspace
 A chiral algebra is a point in the derived symplectic category: a Lagrangian

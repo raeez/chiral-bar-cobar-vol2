@@ -112,7 +112,7 @@ operations.  The bar complex $(\barB(\cA), d_{\barB}, \Delta)$ is
 an $\SCchtop$-algebra
 (Theorem~\ref{thm:rosetta-swiss-cheese} for the Heisenberg;
 Section~\ref{sec:foundations} in general).
-The product $\FM_k(\C) \times \Conf_k^<(\R)$ is not merely a parameter space but a correspondence---the chiral Steinberg variety---whose convolution algebra is the Swiss-cheese algebra, in the same sense that the classical Steinberg variety $\widetilde{\cN} \times_{\cN} \widetilde{\cN}$ presents the affine Hecke algebra via Borel--Moore convolution.
+The product $\FM_k(\C) \times \Conf_k^<(\R)$ is not merely a parameter space but a correspondence---the chiral Steinberg variety---whose convolution algebra is the Swiss-cheese algebra, in the same sense that the classical Steinberg variety $\widetilde{\cN} \times_{\cN} \widetilde{\cN}$ presents the affine Hecke algebra via Borel--Moore convolution (Theorem~\ref{thm:steinberg-presentation}).
 The Swiss-cheese structure is not externally imposed on the bar complex: it is the internal structure of the Lagrangian self-intersection, inherited from the product decomposition of the ambient space $\C \times \R$ into holomorphic and topological factors.  The closed colour is the fibre direction of the self-intersection (holomorphic collisions in $\C$); the open colour is the base direction (topological cuts in $\R$).  At genus~$g\ge 1$, this product decomposition has a deep asymmetry: the closed colour acquires curvature ($\dfib^{\,2} = \kappa \cdot \omega_g$) but the open colour remains flat---the $E_1$ coproduct is a purely combinatorial operation that does not depend on the genus of the curve (Theorem~\ref{thm:topological-e1-rigidity}).
 
 
@@ -302,14 +302,28 @@ whether they all vanish coherently is the content of the modular
 completion problem.
 
 The \emph{shadow depth} $d(\cA)$ counts the obstruction classes:
-$d = 2$ for clean intersections (Heisenberg, lattice VOAs),
-$d = 3$ for Lie-transverse intersections (affine $V_k(\fg)$,
+$d = 2$ for clean intersections (class~$\mathbf{G}$: Heisenberg, lattice VOAs),
+$d = 3$ for Lie-transverse intersections (class~$\mathbf{L}$: affine $V_k(\fg)$,
 where Jacobi kills the quartic), $d = 4$ for contact
-intersections ($\beta\gamma$), and $d = \infty$ for the
-infinite excess tower (Virasoro, $\cW_N$).
+intersections (class~$\mathbf{C}$: $\beta\gamma$), and $d = \infty$ for the
+infinite excess tower (class~$\mathbf{M}$: Virasoro, $\cW_N$).
 The shadow tower atlas
 (\S\ref{sec:shadow-tower-atlas}) gives explicit coefficients
 for all standard families.
+
+The infinite tower ($d = \infty$) is controlled by a single
+quadratic form: the \emph{shadow metric}
+$Q_L(t) = (2\kappa + 3\alpha\,t)^2 + 2\Delta\,t^2$ on each
+primary deformation line, where $\alpha := S_3$ is the cubic shadow
+coefficient and $\Delta = 8\kappa S_4$ is the critical discriminant
+(Vol~I, Definition~\ref{def:shadow-metric}).
+For Virasoro ($\alpha = 2$, $\kappa = c/2$),
+$Q_L(t) = (c + 6t)^2 + 80\,t^2/(5c{+}22)$.  The weighted generating function satisfies
+$H(t)^2 = t^4 Q_L(t)$, so the shadow tower is algebraic of
+degree~$2$.  Each coefficient has poles only at
+$c = 0$ and $c = -22/5$ (Lee--Yang):
+$S_r = \varepsilon_r P_r(c)/[c^{r-3}(5c{+}22)^{\lfloor(r-2)/2\rfloor}]$
+for $r \ge 4$, with no new factors at any arity.
 
 The three guiding questions of the modular programme---Existence,
 Geometry, Computation---are three aspects of this single question.
@@ -489,6 +503,27 @@ level, $m_3$ is the \emph{homotopy} for the failure of strict
 associativity---and the boundary decomposition of $\FM_3(\C)$ is
 the geometric reason it exists.
 
+\subsection*{The resolvent principle: one equation for all~$m_k$}
+
+The operations $\{m_k\}_{k \ge 2}$ are not independent: they are
+the unique solution of a fixed-point equation.  Let
+$(H, p, \iota, h)$ be a deformation retract of $(\cA, m_1)$ onto
+cohomology, with $h^2 = h\iota = ph = 0$.  The
+\emph{dressed propagator} $\Phi \colon T^+(H) \to \cA$
+satisfies
+\begin{equation}
+\label{eq:intro-resolvent}
+\Phi \;=\; \iota \;+\; h \circ m_2 \circ \Phi^{\otimes 2}
+\end{equation}
+---the tree-level bootstrap equation
+(Theorem~\ref{thm:resolvent-principle}).  Its solution by
+iteration gives the transferred operation $m_k^H$ as a sum over
+$C_{k-1}$ planar binary trees, with $m_2$ at vertices and~$h$ at
+edges.  One binary input, one homotopy, all higher operations.
+The Stasheff relations are the consistency of the iteration; the
+tree formula is the perturbative expansion of the Lagrangian
+self-intersection.
+
 \subsection*{The regular/singular decomposition of $m_2$}
 
 The binary operation $m_2(a,b) \in A((\lambda))$ admits a canonical
@@ -644,8 +679,9 @@ Section~\ref{sec:PVA_descent}.
 \begin{maintheorem}[Cohomological descent to PVA;
 Theorem~\textup{\ref{thm:cohomology_PVA}}; \ClaimStatusProvedHere]
 \label{thm:intro-PVA-descent}
-Let $\cA$ be an $\Ainf$ chiral algebra satisfying
-\textrm{(H1)--(H4)}.  Then $H^\bullet(\cA, Q)$ carries the
+Let $\cA$ be a logarithmic $\SCchtop$-algebra
+\textup{(}Definition~\textup{\ref{def:log-SC-algebra})}.
+Then $H^\bullet(\cA, Q)$ carries the
 structure of a $(-1)$-shifted Poisson vertex algebra:
 \begin{enumerate}[label=\textup{(\roman*)}]
 \item the commutative product is the regular part of $m_2$;
@@ -820,10 +856,10 @@ destroys the equivalence.
 
 \section*{The dg-shifted Yangian}
 
-The Koszul dual algebra $\cA^!$ admits a natural enrichment.
-The monoidal structure on $\cC_{\mathrm{line}}$ (placing parallel
-lines in $\C$) endows $\cA^!$ with a spectral coproduct, making
-it a dg-shifted Yangian.
+The Koszul dual algebra $\cA^!$ admits a natural enrichment
+that is \emph{not} a second layer of structure atop the
+Koszul dual, but the Koszul dual \emph{itself}, viewed
+through the self-duality of the Swiss-cheese operad.
 
 \noindent\textsc{Definition}
 \textit{(dg-shifted Yangian; Definition~\textup{\ref{def:dg_Yangian}}).}
@@ -849,31 +885,32 @@ r_{23}(z) + (\id \otimes \Delta_z)(r(z+w))
 r_{12}(w) + (\Delta_w \otimes \id)(r(z)).
 \]
 
-The Koszul dual $\cA^!$ is a dg-shifted Yangian
-(Theorem~\ref{thm:Koszul_dual_Yangian}, following
-Dimofte--Niu--Py~\cite{DNP25}).  The translation operator $T$ is
-the holomorphic translation $z \mapsto z + w$ acting on
-boundary-localised fields.  The $R$-matrix is the spectral
-braiding of the previous section.  The coproduct is the OPE of
-parallel lines: for $x \in \cA^!$, the element $\Delta_z(x)$
-records how the action of $x$ on a single line decomposes when the
-line is resolved into a pair separated by spectral parameter~$z$.
-The counit is the augmentation (evaluation on the vacuum module).
+By operadic Koszul self-duality (\S\ref{subsec:dg-yangian-operadic}),
+$\cA^!$ is a dg-shifted Yangian
+(Theorem~\ref{thm:Koszul_dual_Yangian}), with
+$(\cA^!)^! \simeq \cA$
+(Theorem~\ref{thm:duality-involution}).  The Yangian axioms
+\emph{are} the operadic identities, decomposed by color:
+$T$ is $\C$-equivariance of $\FM_k(\C)$; the $R$-matrix is
+$[\FM_2(\C)]$ at arity~$2$; the coproduct is the $E_1$
+interval-cutting; the Yang--Baxter equation is operadic
+associativity at $\FM_3(\C) \times E_1(3)$.
 
 The RTT presentation of the Yangian---the relation
 $R_{12}(u-v)\, T_1(u)\, T_2(v) = T_2(v)\, T_1(u)\, R_{12}(u-v)$
 governing the factorisation quantum group---is the spectral
-rewriting of the Yang--Baxter equation, and the endomorphism
-algebra $\End(\mathrm{fib})$ of the fibre functor on
-$\cC_{\mathrm{line}}$ is identified with $\Ydg_\cA(z)$.
+rewriting of the arity-$2$ closed-color operation, and the
+endomorphism algebra $\End(\mathrm{fib})$ of the fibre functor
+on $\cC_{\mathrm{line}}$ is identified with $\Ydg_\cA(z)$.
 
 
 \section*{The recognition theorem and homotopy-Koszulity}
 
 \begin{maintheorem}[Recognition; Theorem~\textup{\ref{thm:recognition}}; \ClaimStatusProvedHere]
 \label{thm:intro-recognition}
-Let $\cA$ be an $\Ainf$ chiral algebra satisfying the standing
-analytic hypotheses \textrm{(H1)--(H4)}.  Then $\cA$ carries the
+Let $\cA$ be a logarithmic $\SCchtop$-algebra
+\textup{(}Definition~\textup{\ref{def:log-SC-algebra})}.
+Then $\cA$ carries the
 structure of a $C_\ast(W(\SCchtop))$-algebra.  The bar differential
 $d_{\barB}$ is the holomorphic factorisation; the bar coproduct
 $\Delta$ is the topological factorisation.
@@ -940,8 +977,12 @@ $D\alpha_T + \tfrac{1}{2}[\alpha_T, \alpha_T] = 0$ decomposes as
 &d_{\Theta}\,\alpha_T^{\mathrm{mix}} &&= 0, \\
 \label{eq:intro-mc-open}
 &d_{\Theta}\,\alpha_T^{\mathrm{op}}
+  + [\alpha_T^{\mathrm{mix}},
+  \alpha_T^{\mathrm{op}}]
   + \tfrac{1}{2}[\alpha_T^{\mathrm{mix}},
-  \alpha_T^{\mathrm{mix}}]_{\mathrm{op}} &&= 0,
+  \alpha_T^{\mathrm{mix}}]_{\mathrm{op}}
+  + \tfrac{1}{2}[\alpha_T^{\mathrm{op}},
+  \alpha_T^{\mathrm{op}}] &&= 0,
 \end{alignat}
 where $d_\Theta = D + [\Theta_\cA, -]$ is the
 $\Theta_\cA$-twisted differential and
@@ -1112,8 +1153,8 @@ Swiss-cheese machine:
 \item Classical $r$-matrix: $r(z) = \Omega / z$, where
   $\Omega = \sum_a J^a \otimes J^a$ is the Casimir element---the
   standard Lie-algebraic $r$-matrix.
-\item Quantum $R$-matrix: the Yangian $R$-matrix of Drinfeld.
-\item Genus-$1$ curvature: $\kappa = k \dim \fg$, reproducing
+\item Quantum $R$-matrix: the reduced HT monodromy equals the quantum group $R$-matrix of $U_q(\fg)$ at $q = e^{i\pi/(k+h^\vee)}$ (Theorem~\ref{thm:affine-monodromy-identification}).
+\item Genus-$1$ curvature: $\kappa = \dim\fg\,(k+h^\vee)/(2h^\vee)$, reproducing
   Volume~I's computation.
 \item Koszul dual: $\cA^! = Y(\fg)$, the Yangian of $\fg$, as a
   dg-shifted Yangian.
@@ -1239,7 +1280,7 @@ $r(z)$ & $k/z^2$ & $1/z^2$ & n/a & $k/z^2$ &
 $R(z)$ & $e^{k/z}$ & $e^{1/z}$ & trivial & $e^{k/z}$ &
   Drinfeld & fusion kernel \\
 $\kappa$ & $k$ & $1$ & $0$ & $k$ &
-  $k \dim \fg$ & $(c - 26)/2$ \\
+  $\frac{(k{+}h^\vee)\dim\fg}{2h^\vee}$ & $c/2$ \\
 $\cA^!$ & $\cH_{-k}$ & $\cH_{-1}$ & $\cA^!_W$ &
   $\widehat{\mathfrak{u}(1)}_{-k}$ &
   $Y(\fg)$ &
@@ -1387,7 +1428,7 @@ Yang--Baxter (Theorem~\ref{thm:CS_boundary}).  The affine
 $\widehat{\mathfrak{su}(2)}_k$ example tests the full non-abelian
 machine: non-trivial $\lambda$-bracket, $m_3$ from the Jacobi
 identity, truncation, PVA, Yangian, and genus-$1$ curvature
-$\kappa = k \dim \fg$ (Propositions~\ref{prop:su2-lambda-bracket}
+$\kappa = \dim\fg\,(k+h^\vee)/(2h^\vee)$ (Propositions~\ref{prop:su2-lambda-bracket}
 --\ref{prop:su2-curvature}).  The $\mathcal{W}$-algebra chapter
 (Section~\ref{sec:W-algebras}) treats Virasoro and~$\mathcal{W}_3$
 as the decisive non-linear tests: recursive $m_k$ from the BV
@@ -1444,13 +1485,23 @@ gives a width bound for bar cohomology
 Koszulness before Drinfeld--Sokolov reduction
 (Theorem~\ref{thm:one-loop-koszul}), and principal DS reduction breaks Koszulness for Virasoro and $W_N$
 via homological transfer (Theorem~\ref{thm:ds-koszul-obstruction}).
-Third, under (H1)--(H4), every freely generated Poisson vertex
+Third, for any logarithmic $\SCchtop$-algebra (Definition~\ref{def:log-SC-algebra}), every freely generated Poisson vertex
 algebra with inner holomorphic translation deformation-quantizes to
 a vertex algebra on the half-space
 (Theorem~\ref{thm:general-half-space-bv}), proved by a doubling
 construction that embeds the half-space reflected weight identity
 into the standard whole-space Stokes identity
 (Theorem~\ref{thm:doubling-rwi}).
+Fourth, the monodromy of the reduced HT logarithmic connection
+for the affine lineage equals the quantum group $R$-matrix
+(Theorem~\ref{thm:affine-monodromy-identification}): one-loop
+exactness collapses the $A_\infty$ tower, the reduced connection
+is the KZ connection (Theorem~\ref{thm:reduced-equals-kz}), and
+$\cC_{\mathrm{line}}^{\mathrm{red}}|_{\mathrm{eval}} \simeq
+\mathrm{Rep}_q(\fg)$ at $q = e^{i\pi/(k+h^\vee)}$
+(Corollary~\ref{cor:affine-line-category}).  The bar complex
+computes the colored Jones polynomial
+(Corollary~\ref{cor:jones-polynomial}).
 
 \medskip
 \noindent\textbf{Appendices.}  Raviolo vertex algebras
