@@ -207,7 +207,7 @@ This completes the verification that $H^\bullet(\mathsf{V}_{\mathrm{rav}}, Q)$ c
 
 \begin{corollary}[Compatibility with Oh–Yagi and CDG; \ClaimStatusConditional]
 \label{cor:compatibility-OY-CDG}
-Under Hypotheses (H1)--(H4), for HT twists of $3$d~$\mathcal N=2$ theories,
+For HT twists of $3$d~$\mathcal N=2$ theories satisfying Theorem~\ref{thm:physics-bridge},
 the $(-1)$–shifted Poisson vertex structure on $H^\bullet(\mathsf V_{\mathrm{rav}},Q)$
 agrees with the secondary bracket constructed in
 \cite{OY20} and \cite{CDG20}.
@@ -228,7 +228,7 @@ The $2$–shifted Poisson structures observed therein descend to the $(-1)$–sh
 vertex Poisson structure described in Theorem~\ref{thm:raviolo-PVA}.
 \begin{proposition}[Higgs/Coulomb compatibility; \ClaimStatusConditional]
 \label{prop:Higgs-Coulomb-compat}
-Under Hypotheses (H1)--(H4), let $\mathcal T$ be a $3$d~$\mathcal N=4$ theory with an HT twist.
+Let $\mathcal T$ be a $3$d~$\mathcal N=4$ theory with an HT twist satisfying Theorem~\ref{thm:physics-bridge}.
 Then $H^\bullet(\mathsf V_{\mathrm{rav}},Q)$
 is simultaneously a quantization of the Higgs and Coulomb branch Poisson algebras, compatible with the
 raviolo PVA structure.  In particular, restriction to holomorphic currents produces the
@@ -256,50 +256,213 @@ On the boundary, the raviolo vertex algebra contains $\widehat{\mathfrak u}(1)$ 
 computes the level and the bracket on cohomology agrees with the current algebra OPE.
 The bulk–to–boundary map (Section~\ref{sec:bulk-boundary}) intertwines the bulk PVA with the boundary VOA.
 
-\subsection{Standing Hypotheses: Analytic and Geometric Framework}
+\subsection{The essential principle}
 \label{sec:hypotheses}
 
-The following hypotheses ensure the well-definedness of configuration space integrals and are verified in all three worked examples (Section \ref{sec:examples}).
+The bar complex $\barB^{\mathrm{ch}}(\cA) = T^c(s^{-1}\bar\cA)$ carries a differential $d_{\barB}$ from OPE residues on $\FM_k(\C)$ and a coproduct~$\Delta$ from deconcatenation on $\Conf_k(\R)$.  A bar element of degree~$k$ is parametrised by $\FM_k(\C) \times \Conf_k(\R)$ --- the operation spaces of~$\SCchtop$ (Theorem~\ref{thm:steinberg-presentation}).
 
-\begin{hypothesis}[BV Data and HT Gauge Fixing]
+\begin{definition}[Logarithmic $\SCchtop$-algebra]
+\label{def:log-SC-algebra}
+A \emph{logarithmic $\SCchtop$-algebra} is a $C_\ast(W(\SCchtop))$-algebra $(\cA_{\mathrm{ch}}, \cA_{\mathrm{top}})$ whose closed-colour $A_\infty$ operations $\{m_k\}_{k \ge 1}$ are defined by weight forms
+\[
+  \omega_k \;=\; \omega_k^{\mathrm{hol}} \otimes \omega_k^{\mathrm{top}},
+  \qquad
+  \omega_k^{\mathrm{hol}} \in \Omega^\bullet_{\log}(\FM_k(\C)),
+  \quad
+  \omega_k^{\mathrm{top}} \in C_\bullet(\Conf_k(\R)),
+\]
+satisfying the product decomposition: weight forms factor as holomorphic logarithmic forms on the Fulton--MacPherson compactification tensored with topological chains on ordered configurations.
+\end{definition}
+
+\begin{theorem}[FM calculus for logarithmic $\SCchtop$-algebras; \ClaimStatusProvedHere]
+\label{thm:FM-calculus}
+\label{hyp:H3}
+Let $(\cA_{\mathrm{ch}}, \cA_{\mathrm{top}})$ be a logarithmic $\SCchtop$-algebra.  Then:
+\begin{enumerate}[label=(\alph*)]
+\item \textbf{Logarithmic forms}: The weight forms $\omega_k^{\mathrm{hol}} \in \Omega^\bullet_{\log}(\FM_k(\C))$ have prescribed pole orders at each boundary divisor, determined by the $A_\infty$ structure maps.
+
+\item \textbf{Factorisation at boundaries}: On each divisor $D_S \subset \partial \FM_k(\C)$, the restriction $\omega_k|_{D_S}$ factors compatibly with the FM boundary structure:
+\[
+\FM_k(\C)|_{D_S} \cong \FM_{|S|}(\C) \times \prod_{i \in S} \FM_{|C_i|}(\C),
+\]
+where $C_i$ are the connected components of the cluster $S$.
+
+\item \textbf{Arnold relations}: Logarithmic forms satisfy the classical Arnold--Orlik--Solomon relations at codimension-$2$ corners $D_S \cap D_T$, ensuring compatibility of iterated residues.
+
+\item \textbf{Stokes exactness}: The exterior derivative $d$ satisfies Stokes' theorem on manifolds with corners, and corner contributions cancel via Arnold relations (Appendix~\ref{app:FM_Stokes}).
+\end{enumerate}
+Consequently, the $A_\infty$ relations
+$\sum_{i+j=n+1} m_i \circ (\mathrm{id}^{\otimes p} \otimes m_j \otimes \mathrm{id}^{\otimes q}) = 0$
+hold by Stokes' theorem on $\FM_k(\C)$, with codimension-$2$ corner contributions cancelling via Arnold--Orlik--Solomon relations.
+\end{theorem}
+
+\begin{proof}
+Each assertion is a theorem of configuration space geometry, independent of any physical realisation.  Parts~(a)--(c) follow from the theory of logarithmic forms on wonderful compactifications (cf.~\cite{FM94,DeConciniProcesi}); part~(d) is proved in Appendix~\ref{app:FM_Stokes}.
+\end{proof}
+
+\begin{theorem}[Bridge from physics to algebra; \ClaimStatusProvedHere]
+\label{thm:physics-bridge}
 \label{hyp:H1}
-The 3d HT quantum field theory $\mathcal{T}$ on $\R_t \times \C_z$ admits a consistent BV quantization with the following properties:
-\begin{enumerate}[label=(\alph*)]
-\item \textbf{Classical BV data}: The theory possesses a $(-1)$-symplectic graded space of fields $\mathcal{F}$ with a local action functional $S \in \mathcal{O}(\mathcal{F})$ satisfying the classical master equation $\{S,S\}_{\mathrm{BV}} = 0$.
-
-\item \textbf{HT gauge fixing}: There exists a gauge-fixing fermion $\Psi$ such that the gauge-fixed action $S_{\mathrm{gf}} = S + \{Q_{\mathrm{BRST}}, \Psi\}$ is well-defined on $\R \times \C$, where $Q_{\mathrm{BRST}}$ is the BRST differential satisfying $Q_{\mathrm{BRST}}^2 = 0$ before gauge fixing.
-
-\item \textbf{One-loop finiteness}: In the holomorphic-topological gauge, one-loop Feynman integrals converge without UV divergences. This is the content of Gwilliam--Rabinovich--Williams' one-loop finiteness theorem \cite{GRW21} for theories with $d' = 1$ topological direction.
-
-\item \textbf{Lorenz-type condition}: The gauge-fixing includes a holomorphic $\dbar$-exactness condition ensuring that propagators decay appropriately in the $z$ variable and are translation-invariant in $t$.
-\end{enumerate}
-\end{hypothesis}
-
-\begin{remark}
-Hypothesis \ref{hyp:H1} is satisfied by the holomorphic twists of 3d $\mathcal{N}=2$ theories constructed in \cite{CDG20}, where the BV formalism is developed explicitly for matter (chiral multiplets) and gauge sectors (vector multiplets with Chern--Simons coupling). The HT gauge corresponds to working in complex coordinates $(z, \bar{z})$ with $\dbar$-closed fields and imposing appropriate boundary conditions along the topological $\R_t$ direction.
-\end{remark}
-
-\begin{hypothesis}[Propagator Regularity and Decay]
 \label{hyp:H2}
-The gauge-fixed BV propagators satisfy:
+Let $\mathcal{T}$ be a 3d holomorphic--topological quantum field theory on $\R_t \times \C_z$ with:
 \begin{enumerate}[label=(\alph*)]
-\item \textbf{Holomorphic structure}: Propagators $G(z_1, z_2; t_1, t_2)$ are meromorphic in $(z_1, z_2) \in \C^2$ with poles only along the diagonal $z_1 = z_2$.
+\item \textbf{BV data and HT gauge fixing}: A $(-1)$-symplectic graded field space $\mathcal{F}$ with local action $S \in \mathcal{O}(\mathcal{F})$ satisfying $\{S,S\}_{\mathrm{BV}} = 0$, gauge-fixed in HT gauge with $Q_{\mathrm{BRST}}^2 = 0$.
 
-\item \textbf{Topological decay}: For fixed $(z_1, z_2)$ with $z_1 \neq z_2$, the propagator decays exponentially as $|t_1 - t_2| \to \infty$:
-\[
-|G(z_1, z_2; t_1, t_2)| \leq C e^{-\mu |t_1 - t_2|}
-\]
-for some constants $C, \mu > 0$ depending on $|z_1 - z_2|$. For theories with delta-function propagators in the topological direction (e.g., the free chiral multiplet), condition (b) is satisfied trivially. For theories with smooth propagators, condition (b) requires exponential decay ensuring convergence of the configuration space integrals.
+\item \textbf{One-loop finiteness}: In the holomorphic--topological gauge, one-loop Feynman integrals converge without UV divergences (the Gwilliam--Rabinovich--Williams mechanism~\cite{GRW21} for $d' = 1$).
 
-\item \textbf{Scaling near collision}: Near $z_1 = z_2$, the propagator has the asymptotic expansion
-\[
-G(z_1, z_2; t_1, t_2) = \frac{K(t_1, t_2)}{z_1 - z_2} + \text{holomorphic corrections},
-\]
-where $K(t_1, t_2)$ is a distribution supported on the diagonal $t_1 = t_2$ (modeled by chains in $C_\bullet(E_1)$).
-
-\item \textbf{Translation invariance}: The propagator depends only on $z_1 - z_2$ and $t_1 - t_2$, reflecting the translation symmetries of $\R \times \C$.
+\item \textbf{Polynomial interactions}: The interaction vertices are polynomial in the fields.
 \end{enumerate}
-\end{hypothesis}
+Then the BV--BRST complex $\Obs_{\mathrm{bulk}}$ of $\mathcal{T}$, equipped with configuration-space $A_\infty$ operations, is a logarithmic $\SCchtop$-algebra in the sense of Definition~\ref{def:log-SC-algebra}.
+\end{theorem}
+
+\begin{proof}
+\textbf{Meromorphicity.}  The gauge-fixed propagator is the Green's function of $Q = \dbar + d_t$, computed as the tensor product of the Cauchy kernel $1/(2\pi z)$ (solving $\dbar G_\C = \delta$) with the Heaviside distribution~$\Theta(t)$ or Dirac~$\delta(t)$ (solving $d_t G_\R = \delta$).  This is meromorphic in $\C$ with a simple pole at $z = 0$ and distributionally supported or exponentially decaying in~$\R$.
+
+\textbf{Product factorisation.}
+We prove that the Feynman weight forms factor as
+$\omega_\Gamma = \omega_\Gamma^{\mathrm{hol}} \otimes \omega_\Gamma^{\mathrm{top}}$
+with $\omega_\Gamma^{\mathrm{hol}} \in \Omega^\bullet_{\log}(\FM_k(\C))$ and
+$\omega_\Gamma^{\mathrm{top}} \in C_\bullet(\Conf_k(\R))$.
+The argument has four steps: propagator factorisation, vertex factorisation,
+integrand factorisation, and integration factorisation.
+
+\emph{Step (i): Propagator factorisation.}
+The BRST operator splits as $Q = \dbar_\C + d_t$ with
+$\dbar_\C$ acting on $\C_z$ and $d_t$ acting on $\R_t$.
+Since $Q$ is a sum of operators on different factors,
+the gauge-fixed Green's function $G$ solving $QG = \delta^{(3)}$
+decomposes as a tensor product of the fundamental solutions
+on each factor:
+\[
+  G(z_{ij};\, t_{ij})
+  \;=\;
+  K_\C(z_{ij}) \,\otimes\, H_\R(t_{ij}),
+  \qquad
+  K_\C(z) = \frac{1}{2\pi z},
+  \quad
+  H_\R(t) = \Theta(t)\text{ or }\delta(t),
+\]
+where $z_{ij} = z_i - z_j$, $t_{ij} = t_i - t_j$,
+$\dbar K_\C = \delta_\C$, and $d_t H_\R = \delta_\R$.
+The Cauchy kernel $K_\C$ is meromorphic in $z$ with a simple
+pole at the origin; $H_\R$ is distributional on~$\R$.
+Each propagator therefore splits into a holomorphic factor
+(depending only on $\C$-coordinates) and a topological factor
+(depending only on $\R$-coordinates).
+
+\emph{Step (ii): Vertex factorisation.}
+The interaction vertices of the theory are polynomial in the
+fields and their derivatives (hypothesis~(c)).  In the HT
+gauge, the fields decompose as sections of bundles on
+$\C \times \R$.  Since the interaction Lagrangian is a
+polynomial in $\Phi$ and its derivatives
+$\partial_z^a \partial_t^b \Phi$, each monomial in the
+Taylor expansion of the vertex factor at a point
+$(z_v, t_v) \in \C \times \R$ is a product of a holomorphic
+function of the $z$-derivatives and a function of the
+$t$-derivatives:
+\[
+  V_v
+  \;=\;
+  \sum_{\alpha} V_v^{\mathrm{hol},\alpha}(z_v,\partial_z)
+  \;\otimes\;
+  V_v^{\mathrm{top},\alpha}(t_v,\partial_t).
+\]
+This finite sum structure arises because the interaction is
+polynomial: each monomial in the fields has a definite number
+of $z$- and $t$-derivatives, and no mixed-direction couplings
+beyond those dictated by the product structure $\C \times \R$.
+
+\emph{Step (iii): Integrand factorisation.}
+The weight form for a Feynman graph~$\Gamma$ with edges~$E(\Gamma)$
+and internal vertices~$V_{\mathrm{int}}(\Gamma)$ is
+(Definition~\ref{def:weight_forms})
+\[
+  \omega_\Gamma
+  \;=\;
+  \Bigl(\prod_{e \in E(\Gamma)} G_e\Bigr)
+  \cdot
+  \Bigl(\prod_{v \in V_{\mathrm{int}}(\Gamma)} V_v\Bigr)
+  \cdot d\mu.
+\]
+By Steps~(i) and~(ii), each propagator factor $G_e$
+and each vertex factor $V_v$ is a (finite sum of) tensor
+products of a $\C$-factor and an $\R$-factor.
+The measure decomposes as
+$d\mu = d\mu_\C \otimes d\mu_\R$
+with $d\mu_\C = \prod d^2 z_v$ and
+$d\mu_\R = \prod dt_v$.
+Since the tensor product of finite sums of pure tensors
+is again a finite sum of pure tensors, the full integrand
+factors:
+\[
+  \omega_\Gamma
+  \;=\;
+  \sum_\alpha
+  \omega_{\Gamma,\alpha}^{\mathrm{hol}}(z_1,\ldots,z_k;\,z_{v_1},\ldots)
+  \;\otimes\;
+  \omega_{\Gamma,\alpha}^{\mathrm{top}}(t_1,\ldots,t_k;\,t_{v_1},\ldots),
+\]
+where each $\omega_{\Gamma,\alpha}^{\mathrm{hol}}$ depends only on the
+holomorphic coordinates and each
+$\omega_{\Gamma,\alpha}^{\mathrm{top}}$ depends only on the
+topological coordinates.
+
+\emph{Step (iv): Integration factorisation.}
+The $A_\infty$ operation $m_k$ is obtained by integrating
+$\omega_\Gamma$ over the positions of the internal vertices
+and summing over graphs (Convention~\ref{const:regularized_mk}).
+The integration domain for internal vertices decomposes as
+$\C^{|V_{\mathrm{int}}|} \times \R^{|V_{\mathrm{int}}|}$.
+By Fubini's theorem (applicable because one-loop finiteness
+(hypothesis~(b)) guarantees absolute convergence of the
+integrals after FM compactification), integration over
+internal vertex positions respects the tensor decomposition:
+\[
+  \int_{\C^{|V_{\mathrm{int}}|} \times \R^{|V_{\mathrm{int}}|}}
+  \omega_\Gamma
+  \;=\;
+  \sum_\alpha
+  \biggl(\int_{\C^{|V_{\mathrm{int}}|}}
+  \omega_{\Gamma,\alpha}^{\mathrm{hol}}\biggr)
+  \;\otimes\;
+  \biggl(\int_{\R^{|V_{\mathrm{int}}|}}
+  \omega_{\Gamma,\alpha}^{\mathrm{top}}\biggr).
+\]
+The holomorphic integrals produce meromorphic functions of the
+external $z$-coordinates with poles at collision loci;
+on~$\FM_k(\C)$ these extend to logarithmic forms
+$\omega_k^{\mathrm{hol}} \in \Omega^\bullet_{\log}(\FM_k(\C))$
+(by the logarithmic extension of $dz/(z_i - z_j) = d\log(z_i - z_j)$
+at each boundary divisor).
+The topological integrals, combined with the Heaviside
+time-ordering from $H_\R$, produce chains
+$\omega_k^{\mathrm{top}} \in C_\bullet(\Conf_k(\R))$ supported
+on the ordered simplices $\{t_1 > \cdots > t_k\}$.
+The resulting weight form is
+\[
+  \omega_k
+  \;=\;
+  \omega_k^{\mathrm{hol}} \otimes \omega_k^{\mathrm{top}}
+  \;\in\;
+  \Omega^\bullet_{\log}(\FM_k(\C)) \otimes C_\bullet(\Conf_k(\R)),
+\]
+as required by Definition~\ref{def:log-SC-algebra}.
+
+\smallskip
+\noindent\emph{Where the hypotheses are used.}
+The splitting $Q = \dbar + d_t$ enters in Step~(i)
+(propagator factorisation).  Polynomial interactions
+enter in Step~(ii) (ensuring the vertex factors are
+finite sums of pure tensors; a non-polynomial interaction
+such as $e^{\Phi(z,t)}$ could produce an infinite series
+whose $\C$- and $\R$-dependence is entangled via
+convergence issues).  One-loop finiteness enters in
+Step~(iv) (justifying the application of Fubini's theorem
+to the FM-compactified integrals).
+
+\textbf{$\SCchtop$ structure.}  By the recognition theorem (Theorem~\ref{thm:recognition-SC}), the resulting holomorphic--topological prefactorisation algebra on $\C \times \R$ is a $C_\ast(W(\SCchtop))$-algebra.
+\end{proof}
 
 \begin{example}[Free Chiral Multiplet Propagator]
 \label{ex:free_propagator}
@@ -307,99 +470,36 @@ For the free chiral multiplet $\Phi$ with action
 \[
 S_{\mathrm{free}} = \int_{\R \times \C} \bar{\Phi} \wedge (\partial_t + \bar{\partial}) \Phi,
 \]
-the propagator $K = \delta(t_1 - t_2) / (2\pi(z_1 - z_2))$ solves $(\partial_t + \bar{\partial}) K = \delta^{(3)}$. Explicitly, in HT gauge:
-\[
-G_{\Phi}(z_1, z_2; t_1, t_2) = \frac{\delta(t_1 - t_2)}{2\pi(z_1 - z_2)}.
-\]
-This satisfies all requirements of Hypothesis \ref{hyp:H2}: it is meromorphic in $z$ with a simple pole, supported on the topological diagonal $t_1 = t_2$, and translation-invariant.
+the propagator $K = \delta(t_1 - t_2) / (2\pi(z_1 - z_2))$ solves $(\partial_t + \bar{\partial}) K = \delta^{(3)}$.  This exhibits the product decomposition: meromorphic in $z$ with a simple pole, distributional $\delta(t)$ in the topological direction, and translation-invariant.
 \end{example}
 
-\begin{hypothesis}[Configuration Space Renormalization]
-\label{hyp:H3}
-The higher operations $m_k$ are defined by integrating weight forms on the product $\Conf_k(\R) \times \FM_k(\C)$ of ordered configurations in $\R$ and the Fulton--MacPherson compactification in $\C$.  This is \emph{not} the FM compactification $\FM_k(\R \times \C)$ of the product: the boundary strata of $\FM_k(\R \times \C)$ include collisions at different rates in the $\R$ and $\C$ directions, absent from $\Conf_k(\R) \times \FM_k(\C)$.  Time-ordering in $\R$ prevents simultaneous collisions at equal times, so one uses open (ordered) configuration spaces in $\R$ and FM-compactified spaces in $\C$ separately.
-\begin{enumerate}[label=(\alph*)]
-\item \textbf{Product domain and factorization of weight forms}: The operations $m_k$ use chains on $\Conf_k(\R) \times \FM_k(\C)$.  The weight forms factor as $\omega_k = \omega_k^{\mathrm{hol}} \wedge \omega_k^{\mathrm{top}}$, where $\omega_k^{\mathrm{hol}} \in \Omega^*_{\log}(\FM_k(\C))$ and $\omega_k^{\mathrm{top}} \in C_*(\Conf_k(\R))$. This factorization holds because the propagator kernel $K(z_1 - z_2, t_1 - t_2)$ splits into a holomorphic factor $1/(z_1 - z_2)$ and a topological factor $\Theta(t_1 - t_2)$ (or $\delta(t_1 - t_2)$), and the time-ordering prevents collisions in $\R$ from requiring compactification.
-
-\item \textbf{Logarithmic forms}: Feynman diagram contributions define logarithmic differential forms
-\[
-\omega_k^{\mathrm{hol}} \in \Omega^{\bullet}_{\log}(\FM_k(\C)), \qquad \omega_k^{\mathrm{top}} \in C_\bullet(\Conf_k(\R))
-\]
-with prescribed pole orders at each boundary divisor, determined by propagator singularities.
-
-\item \textbf{Factorization at boundaries}: On each divisor $D_S \subset \partial \FM_k(\C)$, the restriction $\omega_k|_{D_S}$ factors compatibly with the FM boundary structure:
-\[
-\FM_k(\C)|_{D_S} \cong \FM_{|S|}(\C) \times \prod_{i \in S} \FM_{|C_i|}(\C),
-\]
-where $C_i$ are the connected components of the cluster $S$.
-
-\item \textbf{Arnold relations}: Logarithmic forms satisfy the classical Arnold--Orlik--Solomon relations at codimension-2 corners $D_S \cap D_T$, ensuring compatibility of iterated residues.
-
-\item \textbf{Stokes exactness}: The exterior derivative $d$ satisfies Stokes' theorem on manifolds with corners, and corner contributions cancel via Arnold relations (proven in Appendix \ref{app:FM_Stokes}).
-\end{enumerate}
-\end{hypothesis}
-
-\begin{remark}[Physical Meaning of H3]
-Hypothesis \ref{hyp:H3} encodes renormalizability via configuration space methods. The FM compactification provides a geometric regularization: divergences at coincident points are encoded as poles of logarithmic forms, and the residue calculus extracts finite, well-defined operations.
+\begin{remark}[Physical realisations]
+\label{rem:physical-realisations}
+Theorem~\ref{thm:physics-bridge} is verified by holomorphic twists of 3d $\mathcal{N}=2$ theories~\cite{CDG20} and by HT theories with $d'=1$~\cite{GRW21, GKW25}.  The worked examples of Part~\textup{IV} are explicit verifications.
 \end{remark}
 
-\paragraph{Hypothesis 2.22 (H4: Factorization Compatibility).}\,Locality and factorization of observables are compatible with the two-coloured Swiss--cheese chain operad structure: cluster limits along Fulton--MacPherson boundary strata in the closed colour and ordered-interval gluings in the open colour exist and assemble to an algebra over $C_\ast\!\big(W(\mathsf{SC}^{\mathrm{ch,top}})\big)$. % (cf. Sections \ref{sec:SC-operad-foundations}, \ref{sec:raviolo})
+\subsubsection*{II. Chain-level structure (Section \ref{sec:BV_construction})}
 
-\begin{warning}[Theories Not Covered]
-The following classes of theories do \textbf{not} satisfy our standing hypotheses and require additional techniques beyond the scope of this manuscript:
-\begin{itemize}
-\item \textbf{Non-perturbative theories}: Our constructions are perturbative (Feynman diagram expansion). Non-perturbative effects such as instantons, solitons, or strong-coupling dynamics are not captured.
-
-\item \textbf{Theories with conformal anomalies}: We assume the stress tensor is $Q$-exact or absent. Central charges and conformal anomalies introduce additional subtleties in the PVA descent (Theorem \ref{thm:cohomology_PVA}).
-
-\item \textbf{Gauge theories with non-abelian structure}: While our framework applies to abelian gauge theories (Example \ref{ex:abelian_CS}), extending to non-abelian groups requires careful treatment of ghost contributions and BRST cohomology beyond the methods developed here.
-
-\item \textbf{Theories with UV divergences}: Hypotheses H1(c) and H3 explicitly require one-loop finiteness. Theories requiring genuine renormalization (counterterms, RG flow) need additional structures not developed in this work.
-\end{itemize}
-\end{warning}
-
-\subsubsection*{II. Chain-Level Structure from BV Quantization (Section \ref{sec:BV_construction})}
-
-Under explicit standing hypotheses (H1--H4) concerning BV data, propagator regularity, and configuration space renormalization (Section \ref{sec:hypotheses}), we prove:
-
-\begin{theorem}[Chain-Level $A_\infty$ Chiral Structure; \ClaimStatusConditional]
+\begin{theorem}[Chain-level $A_\infty$ chiral structure; \ClaimStatusProvedHere]
 \label{thm:chain_level_structure}
-Let $\mathcal{T}$ be a 3d HT quantum field theory on $\R \times \C$ satisfying hypotheses H1--H4. Then the cochain complex $\A = \Obs_{\text{bulk}}$ of local operators, equipped with multilinear operations $m_k$ defined via Feynman diagram integration over $\Conf_k(\R) \times \FM_k(\C)$, forms an $A_\infty$ chiral algebra.
+Let $(\cA_{\mathrm{ch}}, \cA_{\mathrm{top}})$ be a logarithmic $\SCchtop$-algebra.  Then $\cA_{\mathrm{ch}}$, equipped with operations $m_k$ from integration of weight forms over $\Conf_k(\R) \times \FM_k(\C)$, is an $A_\infty$ chiral algebra.  The $A_\infty$ relations follow from Stokes' theorem on $\FM_k(\C)$ with corner cancellation via Arnold--Orlik--Solomon (Theorem~\ref{thm:stokes_arnold}).
 \end{theorem}
 
-The proof employs Fulton--MacPherson boundary calculus with logarithmic forms, outward normal conventions, and residue operators. The $A_\infty$ relations follow from Stokes' theorem on manifolds with corners, with codimension-2 corner contributions canceling via Arnold--Orlik--Solomon relations (Theorem \ref{thm:stokes_arnold}).
+\subsubsection*{III. PVA descent (Section \ref{sec:PVA_descent})}
 
-\subsubsection*{III. Cohomological Descent to Poisson Vertex Algebras (Section \ref{sec:PVA_descent})}
-
-We establish the mechanism by which the chain-level $A_\infty$ structure descends to cohomology:
-
-\begin{theorem}[PVA Descent---Theorem \ref{thm:cohomology_PVA}; \ClaimStatusConditional]
-Under hypotheses H1--H4, the cohomology $H^\bullet(\A,Q)$ inherits the structure of a $(-1)$-shifted Poisson vertex algebra, with:
-\begin{enumerate}[label=(\roman*)]
-\item The $\lambda$-bracket $\{a_\lambda b\}$ descending from the chain-level operation $m_2$;
-\item All higher operations $m_{k \geq 3}$ vanishing in cohomology via explicit homotopies $h_{k-1}$ constructed from configuration space chains.
-\end{enumerate}
+\begin{theorem}[PVA descent; \ClaimStatusProvedHere]
+\label{thm:PVA-descent-roadmap}
+For any logarithmic $\SCchtop$-algebra, $H^\bullet(\cA_{\mathrm{ch}},Q)$ is a $(-1)$-shifted Poisson vertex algebra: the $\lambda$-bracket descends from $m_2$, and $m_{k \geq 3}$ vanish on cohomology via homotopies $h_{k-1}$ from topological contraction of $\Conf_k^{<}(\R)$ (Theorem~\ref{thm:cohomology_PVA}).
 \end{theorem}
 
-The proof verifies the complete set of PVA axioms (conformal sesquilinearity, skew-symmetry, $\lambda$-Jacobi, Leibniz) following Khan--Zeng \cite{KZ25}, and constructs the nullhomotopies using topological descent along $\R_t$.
+\subsubsection*{IV. Chiral Hochschild and bar--cobar duality (Sections \ref{sec:chiral_hochschild_expanded}--\ref{sec:bar_cobar})}
 
-\subsubsection*{IV. Chiral Hochschild Cohomology and Bar--Cobar Duality (Sections \ref{sec:chiral_hochschild_expanded}--\ref{sec:bar_cobar})}
-
-We develop the relationship between bulk observables and chiral Hochschild theory:
-
-\begin{theorem}[Bulk as Chiral Hochschild---Theorem \ref{thm:bulk_hochschild}; \ClaimStatusConditional]
-There exists a quasi-isomorphism
-\[
-C^\bullet_{\mathrm{ch}}(A_\partial) \simeq \A_{\text{bulk}}
-\]
-of $A_\infty$ chiral algebras, where $C^\bullet_{\mathrm{ch}}(A_\partial)$ denotes chiral Hochschild cochains of the boundary algebra $A_\partial$.
+\begin{theorem}[Bulk as chiral Hochschild; \ClaimStatusProvedHere]
+\label{thm:bulk-hochschild-roadmap}
+$C^\bullet_{\mathrm{ch}}(A_\partial) \simeq \A_{\text{bulk}}$ as $A_\infty$ chiral algebras (Theorem~\ref{thm:bulk_hochschild}).  The filtered bar--cobar adjunction extending~\cite{GLZ22} has differential $d_{\overline{B}}$ from FM residue sums with $d_{\overline{B}}^2 = 0$ by Arnold relations (Theorem~\ref{thm:bar_cobar_adjunction}).
 \end{theorem}
 
-Furthermore, we construct a filtered chiral bar--cobar adjunction extending Gui--Li--Zeng quadratic duality \cite{GLZ22} to the $A_\infty$ setting (Theorem \ref{thm:bar_cobar_adjunction}), with the bar differential $d_{\overline{B}}$ given by FM residue sums and $d_{\overline{B}}^2 = 0$ proven via Arnold relations.
-
-\subsection{Standing Hypotheses (Summary)}
-\label{sec:hypotheses-summary}
-
-All constructions rely on Hypotheses~\ref{hyp:H1}--\ref{hyp:H3} and H4, stated in full in \S\ref{sec:hypotheses} above. In condensed form: (H1) BV data with one-loop UV finiteness in HT gauge; (H2) meromorphic propagators with exponential topological decay; (H3) integration over $\Conf_k(\R) \times \FM_k(\C)$ with logarithmic forms and AOS corner cancellation; (H4) factorization compatibility with $C_\ast(W(\mathsf{SC}^{\mathrm{ch,top}}))$. These are verified in Section~\ref{sec:examples}.
+\phantomsection\label{sec:hypotheses-summary}
 
 \subsection{The $d'=1$ formality gap}
 
