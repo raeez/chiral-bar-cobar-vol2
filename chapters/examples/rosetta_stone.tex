@@ -53,24 +53,22 @@
 \index{Heisenberg algebra!Rosetta Stone|textbf}
 \index{Swiss-cheese operad!Heisenberg example|textbf}
 
-As the Steinberg variety presents the Hecke algebra through a single
-correspondence---flag variety on one side, nilpotent cone on the
-other, convolution algebra in between---the Heisenberg bar complex
-presents the $\Ainf$ chiral algebra through a single dg coalgebra:
-the bar differential sees the holomorphic direction, the coproduct
-sees the topological direction, and the combined Swiss-cheese structure
-is the entire content of the 3d theory on $\bC \times \bR$.
+The bar complex $\barB(\cH_k)$ is a Swiss-cheese coalgebra
+(Theorem~\ref{thm:bar-swiss-cheese}): the bar differential
+$d_{\barB}$ computes OPE residues on $\FM_k(\C)$, and the
+deconcatenation coproduct $\Delta$ acts on $\Conf_k^{<}(\R)$.
+The Koszul dual $\cA^! = Y(\mathrm{u}(1))$ is the Heisenberg
+Yangian (Theorem~\ref{thm:Koszul_dual_Yangian}), and the
+duality involution closes: $(\cA^!)^! \simeq \cA$
+(Theorem~\ref{thm:duality-involution}).
 
-More precisely, the Heisenberg bar complex is the structure sheaf of the
-\emph{simplest} Lagrangian self-intersection---a one-dimensional
-intersection with transversal crossing.  Koszulness ($m_{k \ge 3} = 0$)
-means this intersection is smooth: the self-intersection
-$\mathfrak{S}_b = L \times_X L$ is a clean correspondence, and
-the Borel--Moore homology $H_*^{BM}(\mathfrak{S}_b)$ is
-one-dimensional in each stratum.  The single scalar~$k$ is the
-intersection number, and all six projections---algebra, Koszul dual,
-line category, $R$-matrix, genus tower, PVA shadow---are shadows
-of this one number precisely because the Lagrangian is concentrated.
+The Lagrangian self-intersection
+$\mathfrak{S}_b = L \times_X L$ is one-dimensional with
+transversal crossing.  Koszulness ($m_{k \ge 3} = 0$) is the
+statement that this intersection is clean:
+$H_*^{BM}(\mathfrak{S}_b)$ is one-dimensional in each stratum.
+The single scalar~$k$ determines the full holographic dictionary---algebra, Koszul dual, line category, $R$-matrix, genus tower,
+PVA---because the Lagrangian is concentrated.
 
 The present section proves this for the Heisenberg algebra
 $\cH_k$ by explicit computation.  The results are neither deep
@@ -88,8 +86,8 @@ are all instantiated here with full content.
 The section has five parts:
 \S\ref{subsec:rosetta-swiss-cheese} identifies the bar complex
 as a Swiss-cheese coalgebra;
-\S\ref{subsec:rosetta-operations} reads off all higher operations
-and observes that they vanish;
+\S\ref{subsec:rosetta-operations} computes all higher operations
+and verifies that they vanish;
 \S\ref{subsec:rosetta-pva} extracts the Poisson vertex algebra
 on cohomology; \S\ref{subsec:rosetta-genus1} exhibits
 curvature at genus~$1$; and \S\ref{subsec:rosetta-bridge}
@@ -137,7 +135,9 @@ The geometric bar complex $\barB^{\mathrm{ch}}(\cH_k)$ with:
 \item deconcatenation coproduct $\Delta$
   \textup{(}ordered splitting\textup{)} as open-color structure,
 \end{enumerate}
-is an algebra over $\SCchtop$.
+is an algebra over $\SCchtop$, verifying the Steinberg
+presentation \textup{(}Theorem~\textup{\ref{thm:steinberg-presentation})}
+for the simplest nontrivial chiral algebra.
 \end{theorem}
 
 \begin{proof}
@@ -153,18 +153,16 @@ component is the binary one:
 \begin{equation}\label{eq:rosetta-dbar-binary}
 d_{\barB}\bigl[s^{-1}J \,|\, s^{-1}J\bigr]
 \;=\;
-\Res_{z_1 = z_2}\!\left[
-  J(z_1)\, J(z_2) \cdot \eta_{12}
-\right]
+\int_{E_{12}}
+  J(z_1)\, J(z_2) \cdot \omega_{12}^{\FM}
 \;=\;
-\Res_{z_1 = z_2}\!\left[
-  \frac{k}{(z_1 - z_2)^2} \cdot d\log(z_1 - z_2)
-\right].
+J_{(1)}J
+\;=\; k.
 \end{equation}
-The residue extracts the coefficient of $(z_1 - z_2)^{-1}$
-in the integrand $k(z_1 - z_2)^{-2} \cdot (z_1 - z_2)^{-1}\, dz_1
-= k(z_1 - z_2)^{-3}\, dz_1$, which gives
-$d_{\barB}[s^{-1}J \,|\, s^{-1}J] = k$.
+The bar differential is the Stokes boundary operator on $\FM_2(\bC)$:
+integration over the exceptional divisor $E_{12} \cong S^1$ in
+the FM blowup extracts the mode product $J_{(1)}J = k$ from
+the double pole $k/(z_1 - z_2)^2$.
 
 The nilpotence $d_{\barB}^2 = 0$ is the Arnold relation
 on $\FM_3(\bC)$.  The three codimension-$1$ boundary strata of
@@ -353,16 +351,13 @@ $Q$-operator, and the algebra has trivial cohomological grading
 concentrated in degree~$0$.
 
 \smallskip
-(ii) The binary operation is the double-pole residue.  From
+(ii) The binary operation extracts the double-pole mode.  From
 equation~\eqref{eq:rosetta-dbar-binary}, the bar differential
 on a degree-$2$ element is
 \[
 d_{\barB}[s^{-1}J \,|\, s^{-1}J]
 \;=\;
-\Res_{z_1 = z_2}\!\left[
-  \frac{k}{(z_1 - z_2)^2}
-  \cdot d\log(z_1 - z_2)
-\right]
+J_{(1)}J
 \;=\; k.
 \]
 In the spectral (Fourier) parametrization, the meromorphic function
@@ -806,13 +801,16 @@ $\kappa(\cH_k) = k$
   & conformal anomaly \\[2pt]
 $H^{\bullet}(\barB) = \bC \oplus \bC c_k$
   & bar cohomology (Thm.\@ A)
-  & Hochschild (Thm.\@ H)
+  & Hochschild (Thm.\@ H) \\[2pt]
+$\rho_n^{\mathrm{HT}} = \rho_n^{\mathrm{KZ}}$
+  & monodromy identification
+  & $\cC_{\mathrm{line}}^{\mathrm{red}} \simeq \mathrm{Rep}_q$
+    (Thm~\ref{thm:affine-monodromy-identification})
 \end{tabular}
 \end{center}
 
 Each row is a theorem on the left and a physical identification on
-the right.  The last three rows connect to
-the main theorems of Volume~I.
+the right.
 
 \begin{proposition}[Complementarity for the Heisenberg algebra;
 \ClaimStatusProvedElsewhere]
@@ -1124,7 +1122,7 @@ families covering all four depth classes.
 codimension]%
 \label{def:shadow-depth-intersection}%
 \index{shadow depth!definition}%
-The \emph{shadow depth} of a chirally Koszul algebra~$\cA$
+The \emph{shadow depth} of a chiral algebra~$\cA$
 is
 \[
   d(\cA)
@@ -1388,7 +1386,7 @@ $\alpha = C_{WW,\Lambda} = 16/(5c{+}22)$.
 \smallskip
 \noindent
 \emph{$W$-line parity.}
-On the $W$-line ($x_T = 0$), the $\bZ_2$ symmetry
+On the $W$-line ($x_T = 0$), the $\mathbb{Z}_2$ symmetry
 $W\mapsto -W$ forces all odd-arity shadows to vanish:
 $S_{2m+1}|_{x_T=0} = 0$ for all $m$.  The even-arity
 recursion gives integer normalised coefficients through
@@ -1513,4 +1511,751 @@ For the Virasoro algebra ($K_2 = 26$),
 $\Delta^{(r)} = S_r(c) + S_r(26 - c)$ recovers the
 self-dual locus at $c = 13$
 (Vol~I, Theorem~\ref{thm:depth-decomposition}).
+\end{remark}
+
+% ================================================================
+\section{The genus-1 endomorphism atlas}%
+\label{sec:genus1-endomorphism-atlas}%
+\index{endomorphism algebra!genus 1|textbf}%
+\index{Lagrangian self-intersection!genus 1}%
+\index{genus 1!endomorphism atlas}
+% ================================================================
+
+\providecommand{\Mvac}{\cM_{\mathrm{vac}}}
+\providecommand{\Mbar}{\overline{\mathcal{M}}}
+\providecommand{\HH}{\operatorname{HH}}
+\providecommand{\End}{\operatorname{End}}
+
+The shadow tower atlas
+(Computation~\ref{comp:shadow-tower-atlas}) classifies the
+standard families by the excess intersection codimension of
+the genus-$0$ Lagrangian self-intersection
+$\mathfrak{S}_b = L \times_X L$: clean for class~$\mathbf{G}$,
+transverse for class~$\mathbf{L}$, contact for
+class~$\mathbf{C}$, infinite excess for class~$\mathbf{M}$.
+All of this is genus-$0$ data, visible already on~$\C$.
+
+At genus~$1$, the Lagrangian deforms
+(Theorem~\ref{thm:curved-swiss-cheese}), the $r$-matrix
+becomes elliptic
+(Theorem~\ref{thm:elliptic-spectral-dichotomy}), and the
+five theorems of Volume~I acquire curvature.  Two
+independent invariants control the deformation: the modular
+characteristic $\kappa(\cA)$ (the scalar curvature, from the
+highest-pole OPE coefficient) and the Coisson bracket
+$c_0 = \{a \,{}_0\, b\}$ (the Lie-bracket residue, from the
+simple-pole coefficient).  The characteristic controls the
+closed colour; the Coisson bracket controls the spectral
+braiding.  This section computes the genus-$1$
+endomorphism algebra for every atlas family.
+
+\subsection{The genus-1 atlas theorem}%
+\label{subsec:genus1-atlas-theorem}
+
+\begin{theorem}[Genus-$1$ endomorphism atlas;
+\ClaimStatusProvedHere]%
+\label{thm:genus1-endomorphism-atlas}%
+\index{genus-1 endomorphism atlas|textbf}%
+Let\/ $\cA$ be a chiral algebra from the shadow tower atlas
+\textup{(}Computation~\textup{\ref{comp:shadow-tower-atlas}}\textup{)}
+that is a logarithmic\/ $\SCchtop$-algebra.
+The curved bar complex~$\barB^{(1)}(\cA)$
+\textup{(}Theorem~\textup{\ref{thm:curved-swiss-cheese}}\textup{)}
+is determined by three genus-$1$ invariants.
+In the Lagrangian picture
+\textup{(}Theorem~\textup{\ref{thm:chiral-as-endomorphism}(iv)}\textup{)},
+$\barB^{(1)}(\cA)$ is the genus-$1$ endomorphism algebra
+$\cO\!\bigl(\cL_\cA^{(1)} \times_{\Mvac}
+\cL_\cA^{(1)}\bigr)$:
+the structure sheaf of the genus-$1$ Lagrangian
+self-intersection.  The three invariants are:
+\begin{enumerate}[label=\textup{(\roman*)}]
+\item \textbf{Curvature.}
+  $\dfib^{\,2} = \kappa(\cA) \cdot \omega_1$, with period
+  correction
+  $F_1(\cA) = \kappa(\cA)/24$
+  \textup{(}Corollary~\textup{\ref{cor:genus1-curved-swiss-cheese}}\textup{)}.
+
+\item \textbf{Spectral type.}
+  The genus-$1$ classical $r$-matrix
+  $r^{E_\tau}(z) = c_0 \cdot \zeta(z|\tau) + c_1 \cdot \wp(z|\tau)
+  + \cdots$
+  \textup{(}Theorem~\textup{\ref{thm:elliptic-spectral-dichotomy}},
+  equation~\eqref{eq:elliptic-r-matrix}\textup{)}
+  is doubly periodic if\/ $c_0 = 0$ \textup{(}Cartan type\textup{)}
+  and quasi-periodic with $B$-cycle monodromy
+  $2\eta_\tau \cdot c_0$ if\/ $c_0 \ne 0$
+  \textup{(}Yangian type\textup{)}.
+
+\item \textbf{Five-theorem projection.}
+  Each of Volume~I's five theorems specialises at genus~$1$
+  as a deformation of the genus-$0$ data by the single
+  parameter $\kappa(\cA) \cdot \omega_1$
+  \textup{(}following
+  Proposition~\textup{\ref{prop:five-theorems-geometry}}\textup{)}:
+  \begin{enumerate}[label=\textup{(\Alph*$_1$)},leftmargin=2.5em]
+  \item \emph{Bar-cobar:} curved dg coalgebra
+    $(\barB^{(1)}(\cA), \dfib, \Delta)$ over $\Mbar_1$;
+  \item \emph{Inversion:} curved quasi-isomorphism
+    $\Omegach(\barB^{(1)}(\cA)) \xrightarrow{\sim} \cA$
+    in the coderived category;
+  \item \emph{Complementarity:}
+    $\kappa(\cA) + \kappa(\cA^!) = K(\cA)$ on the Koszul locus,
+    where $K$ is a level-independent constant ($K = 0$ for the
+    affine lineage; $K \neq 0$ for DS reductions);
+    when $K = 0$, $\barB^{(1)}(\cA) \otimes \barB^{(1)}(\cA^!)$
+    is uncurved;
+  \item \emph{Leading coefficient:}
+    $F_1 = \kappa(\cA)/24$ is the genus-$1$
+    Faber--Pandharipande integral;
+  \item \emph{Hochschild:}
+    $\mathrm{CH}^\bullet(\cA)^{(1)}$ acquires a correction
+    from the Hodge bundle
+    $\mathbb{E} \to \Mbar_1$.
+  \end{enumerate}
+\end{enumerate}
+
+Atlas families in classes~$\mathbf{G}$, $\mathbf{L}$,
+$\mathbf{C}$ are chirally Koszul (bar cohomology concentrated,
+$m_k = 0$ for $k \ge 3$ on cohomology); class~$\mathbf{M}$
+(Virasoro, $\cW_N$) is \emph{not} chirally Koszul---the
+fourth-order pole causes purity failure and
+$m_k \ne 0$ for all $k \ge 3$---but still possesses
+well-defined Koszul duals (e.g.\
+$\mathrm{Vir}_c^! = \mathrm{Vir}_{26-c}$).  The five-theorem
+projection applies to the Koszul classes; for
+class~$\mathbf{M}$, the bar-cobar adjunction holds but the
+big Koszul dual carries higher $\Ainf$ operations.
+Within the standard atlas families, the three
+invariants $(\kappa, c_0, d)$ organise the atlas into three
+genus-$1$ regimes, distinguished by their self-intersection
+geometry and Coisson bracket:
+\begin{center}
+\small
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{lllll}
+\toprule
+\textbf{Regime} & $c_0$ & \textbf{Intersection}
+  & $R_1 \stackrel{?}{=} R_0$ & \textbf{Families} \\
+\midrule
+Decoupled & $= 0$ & clean
+  & yes & $\cH_k,\; V_\Lambda$ \\
+Propagator-entangled & $\ne 0$ & clean
+  & no & $V_k(\fg),\; \beta\gamma$ \\
+Doubly entangled & $\ne 0$ & excess
+  & no & $\mathrm{Vir}_c,\; \cW_N$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+\end{theorem}
+
+\begin{proof}
+Part~(i) is
+Corollary~\ref{cor:genus1-curved-swiss-cheese}.
+Part~(ii) is
+Theorem~\ref{thm:elliptic-spectral-dichotomy}, items
+(\ref{item:dichotomy-decoupling}) and
+(\ref{item:dichotomy-entanglement}).
+Part~(iii) specialises
+Proposition~\ref{prop:five-theorems-geometry} to $g = 1$
+using Theorem~\ref{thm:curved-swiss-cheese}: the
+Lagrangian $\cL_\cA$ deforms over $\Mbar_1$ with curvature
+$\kappa \cdot \omega_1$, and each theorem is a facet of this
+deformation.  Specifically:
+(A$_1$) is
+Theorem~\ref{thm:curved-swiss-cheese}(i)--(ii);
+(B$_1$) is Theorem~B of Volume~I applied to the
+curved coalgebra via the Positselski framework
+(Theorem~\ref{thm:curved-swiss-cheese}(ii) and
+Volume~I, Theorem~B(b));
+(C$_1$) is Theorem~\ref{thm:curved-swiss-cheese}(iii);
+(D$_1$) is the $g = 1$ specialisation of Volume~I,
+Theorem~D\textsubscript{scal};
+(H$_1$) is the genus-$1$ chiral Hochschild
+correction
+(Theorem~\ref{thm:hochschild-bridge-genus0}
+extended over $\Mbar_1$ via the corrected differential
+$\Dg{1}$).
+
+The three-regime classification follows from
+Theorem~\ref{thm:pole-structure-dichotomy}.
+Classes~$\mathbf{G}$, $\mathbf{L}$, $\mathbf{C}$ are
+chirally Koszul: the bar cohomology is concentrated,
+the bar complex is cogenerated in degree~$1$, and
+$m_{k \ge 3} = 0$ on cohomology.  For these,
+Proposition~\ref{prop:curvature-braiding-decoupling}
+applies: the bar-complex
+channel~(\ref{item:bar-channel}) is trivial, the curvature
+$\kappa \cdot \omega_1$ is primitive, and the $\Eone$-coproduct
+is genus-independent.
+Class~$\mathbf{M}$ (Virasoro, $\cW_N$) is \emph{not}
+chirally Koszul: the fourth-order pole causes purity
+failure, the PBW spectral sequence does not degenerate, and
+bar cohomology is non-concentrated.  The bar complex has
+higher-degree cogenerators (from wheel diagrams),
+$m_{k \ge 3} \ne 0$ for all $k \ge 3$, and the
+hypothesis of
+Proposition~\ref{prop:curvature-braiding-decoupling}
+(bar-degree-$1$ cogeneration) fails.  These algebras
+still possess well-defined Koszul duals, but the big
+dual carries higher $\Ainf$ operations that are absent
+on the Koszul locus.  For these, the
+bar-complex channel~(\ref{item:bar-channel}) can
+contribute genus corrections.
+The three regimes:
+decoupled $\Leftrightarrow$ $c_0 = 0$ and $\Ainf$-formal
+(conditions (ii)--(v) of
+Theorem~\ref{thm:pole-structure-dichotomy});
+propagator-entangled $\Leftrightarrow$ $c_0 \ne 0$ and
+$\Ainf$-formal (bar-complex channel trivial by
+Proposition~\ref{prop:curvature-braiding-decoupling},
+propagator channel non-trivial by
+Theorem~\ref{thm:elliptic-spectral-dichotomy}(\ref{item:dichotomy-entanglement}));
+doubly entangled $\Leftrightarrow$ $c_0 \ne 0$ and
+$\Ainf$-non-formal (both channels can contribute, by
+Theorem~\ref{thm:pole-structure-dichotomy}(vi)).
+\end{proof}
+
+\subsection{Heisenberg: all five theorems at genus~$1$}%
+\label{subsec:heisenberg-genus1-endomorphism}
+
+\begin{computation}[Heisenberg genus-$1$ endomorphism algebra;
+\ClaimStatusProvedHere]%
+\label{comp:heisenberg-genus1-endomorphism}%
+\index{Heisenberg algebra!genus-1 endomorphism}%
+For $\cH_k$, the three invariants are
+$\kappa = k$, $c_0 = 0$, $d = 2$
+\textup{(}decoupled regime\textup{)}.
+The genus-$1$ endomorphism algebra
+$\End^{(1)}(\cL_{\cH_k})$ is the genus-$0$
+endomorphism algebra tensored with a scalar from
+the Hodge line.
+
+\smallskip
+\noindent
+\emph{(A$_1$) Curved bar-cobar.}
+$\barB^{(1)}(\cH_k) = T^c(s^{-1}\overline{\cH}_k)$
+with $\dfib^{\,2} = k \cdot \omega_1$
+(Theorem~\ref{thm:rosetta-curved}).
+The fiberwise differential on $E_\tau$ uses the
+elliptic propagator $dG_\tau(z)$; the coproduct
+$\Delta$ is unchanged.
+
+\smallskip
+\noindent
+\emph{(B$_1$) Curved inversion.}
+The cobar $\Omegach(\barB^{(1)}(\cH_k))$ inverts the
+curved bar complex in the coderived category of
+Positselski: the augmentation
+$\Omegach(\barB^{(1)}(\cH_k)) \to \cH_k$ is a
+quasi-isomorphism after restricting to the coderived
+category.  This uses $m_{k \ge 3} = 0$
+(Proposition~\ref{prop:rosetta-heisenberg-mk}): the
+Koszulness of $\cH_k$ ensures that the bar-cobar
+unit is an equivalence fiberwise.
+
+\smallskip
+\noindent
+\emph{(C$_1$) Complementarity.}
+$\kappa(\cH_k) + \kappa(\cH_k^!) = k + (-k) = 0$
+(Proposition~\ref{prop:rosetta-complementarity}).
+The tensor product
+$\barB^{(1)}(\cH_k) \otimes \barB^{(1)}(\cH_{-k})$
+has flat differential: the curvatures cancel, and the
+genus-$1$ complementary Lagrangians remain
+complementary.
+
+\smallskip
+\noindent
+\emph{(D$_1$) Period correction.}
+$F_1(\cH_k) = k/24$.  This is the first
+Faber--Pandharipande coefficient
+(Corollary~\ref{cor:genus1-curved-swiss-cheese}):
+$\dfib^{\,2} = k \cdot \omega_1$ is compensated by
+$\delta_{\mathrm{per}}$ satisfying
+$\Dg{1}^{\,2} = 0$.
+
+\smallskip
+\noindent
+\emph{(H$_1$) Hochschild at genus~$1$.}
+The chiral Hochschild cochains
+$\mathrm{CH}^\bullet(\cH_k, \cH_k)$
+at genus~$1$ acquire a correction from the Eisenstein
+series $E_2(\tau)$: the propagator
+$G_\tau(z) = \zeta(z|\tau) + \frac{\pi^2}{3}E_2(\tau) z$
+(equation~\eqref{eq:rosetta-elliptic-propagator})
+introduces quasi-modularity into the Hochschild
+differential.  The correction is proportional to $k$:
+the Hochschild class $c_k \in H^2(\barB(\cH_k))$
+(Proposition~\ref{prop:rosetta-bar-hochschild})
+deforms by $k \cdot E_2(\tau)$.
+
+\smallskip
+\noindent
+\emph{Spectral $r$-matrix.}
+The $\lambda$-bracket $\{J_\lambda J\} = k\lambda$
+has $c_0 = 0$ (no simple pole) and $c_1 = k$ (the
+level).  By
+Theorem~\ref{thm:elliptic-spectral-dichotomy}(\ref{item:dichotomy-decoupling}):
+\begin{equation}\label{eq:heisenberg-genus1-rmatrix}
+r^{E_\tau}_{\cH_k}(z)
+\;=\;
+k \cdot \wp(z|\tau),
+\end{equation}
+which is doubly periodic on $E_\tau$.  The spectral
+$R$-matrix is unchanged from genus~$0$:
+$R_1(z) = R_0(z) = e^{k\hbar/z}$
+(Corollary~\ref{cor:rosetta-heisenberg-projections}(iii)).
+The curvature $k \cdot \omega_1$ and the braiding
+$k \cdot \wp(z|\tau)$ are decoupled: the former comes
+from the $B$-cycle monodromy of $\zeta(z|\tau)$
+acting on the bar differential, the latter from the
+doubly periodic $\wp$-function which has no monodromy.
+The $B$-cycle has no effect on $r$ because $c_0 = 0$
+filters it out.
+\end{computation}
+
+
+\subsection{Affine $V_k(\mathfrak{sl}_2)$:
+  the Yangian-to-elliptic passage}%
+\label{subsec:affine-genus1-endomorphism}
+
+\begin{computation}[Affine $\mathfrak{sl}_2$ genus-$1$
+endomorphism algebra; \ClaimStatusProvedHere]%
+\label{comp:affine-sl2-genus1-endomorphism}%
+\index{affine Kac--Moody!genus-1 endomorphism}%
+\index{elliptic quantum group!from genus-1 Lagrangian}%
+\index{Yangian!elliptic deformation}%
+For $V_k(\mathfrak{sl}_2)$ with generators
+$J^a$ ($a = 1,2,3$) and $\lambda$-bracket
+$\{J^a_\lambda J^b\} = f^{ab}_c J^c + k\,\kappa^{ab}\lambda$,
+the three invariants are:
+$\kappa = 3(k+2)/4$,
+$c_0 = \Omega := \sum_a t^a \otimes t_a$ \textup{(}the
+quadratic Casimir, from the Lie bracket\textup{)},
+$d = 3$ \textup{(}propagator-entangled regime\textup{)}.
+
+\smallskip
+\noindent
+\emph{Period correction.}
+$F_1 = 3(k+2)/96 = (k+2)/32$.
+
+\smallskip
+\noindent
+\emph{Genus-$1$ $r$-matrix.}
+The Laurent coefficients are $c_0 = \Omega \ne 0$
+and $c_1 = k\,\kappa$.  By
+Theorem~\ref{thm:elliptic-spectral-dichotomy}:
+\begin{equation}\label{eq:affine-genus1-rmatrix}
+r^{E_\tau}_{V_k(\mathfrak{sl}_2)}(z)
+\;=\;
+\Omega \cdot \zeta(z|\tau)
+\;+\;
+k\,\kappa \cdot \wp(z|\tau),
+\end{equation}
+with $B$-cycle monodromy
+$r^{E_\tau}(z + \tau) - r^{E_\tau}(z) = 2\eta_\tau \cdot \Omega$
+(equation~\eqref{eq:r-monodromy}).  This is the
+\emph{elliptic classical $r$-matrix}: the genus-$0$
+rational $r$-matrix $r_0(z) = \Omega/z + k\kappa/z^2$
+deforms by replacing $1/z \leadsto \zeta(z|\tau)$ and
+$1/z^2 \leadsto \wp(z|\tau)$.
+
+\smallskip
+\noindent
+\emph{The DK hierarchy and the genus tower.}
+The genus expansion of the $r$-matrix parallels
+the Drinfeld--Kohno hierarchy of quantum groups:
+\begin{center}
+\small
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{lll}
+\toprule
+\textbf{Genus} & \textbf{$r$-matrix} &
+  \textbf{Quantum group} \\
+\midrule
+$g = 0$ & $r_0(z) = \Omega/z + \cdots$
+  & Yangian $Y_\hbar(\mathfrak{sl}_2)$ \\
+$g = 1$ & $r_1(z,\tau) = \Omega\cdot\zeta + \cdots$
+  & Elliptic quantum group \\
+$g \ge 2$ & $r_g(z,\Omega_{ij}) = \Omega\cdot\omega_g + \cdots$
+  & (conjectural) \\
+\bottomrule
+\end{tabular}
+\end{center}
+At genus~$0$ and~$1$, this identification is a theorem:
+the rational kernel $1/z$ is replaced by
+$\zeta(z|\tau)$ via
+Theorem~\ref{thm:elliptic-spectral-dichotomy},
+and the resulting $r$-matrix is the classical
+elliptic $r$-matrix of Belavin--Drinfeld.
+At genus~$\ge 2$, the replacement of kernel functions
+by their higher-genus counterparts (via the
+period matrix $(\Omega_{ij})$ of $\Sigma_g$) produces a
+candidate higher-genus quantum group structure,
+but the identification is not proved.
+
+\smallskip
+\noindent
+\emph{Entanglement.}
+The curvature $\kappa \cdot \omega_1$ extracts $c_1 = k\kappa$
+(the highest pole, a scalar); the braiding monodromy
+$2\eta_\tau \cdot \Omega$ extracts $c_0 = \Omega$
+(the lowest pole, a tensor).  Both arise from the
+quasi-periodicity of $\zeta(z|\tau)$---the $B$-cycle is
+the common geometric source---but they probe different
+OPE pole orders.  The entanglement is one-directional:
+the curvature is visible in the closed-colour
+differential ($\dfib^{\,2} \ne 0$), the braiding monodromy is
+visible in the mixed-colour $r$-matrix ($r_1 \ne r_0$),
+but the open-colour coproduct $\Delta$ remains
+flat at genus~$1$
+(Theorem~\ref{thm:curved-swiss-cheese}(i)).
+\end{computation}
+
+
+\subsection{The genus-1 atlas and the modular programme}%
+\label{subsec:genus1-atlas-table}
+
+\begin{computation}[Genus-$1$ atlas; \ClaimStatusProvedHere]%
+\label{comp:genus1-atlas}%
+\index{genus-1 atlas|textbf}%
+\index{modular programme!genus-1 coefficients}%
+For all standard families, the genus-$1$ invariants:
+
+\begin{center}
+\small
+\renewcommand{\arraystretch}{1.4}
+\begin{tabular}{llcccccc}
+\toprule
+\textbf{Family} & \textbf{Class}
+& $\kappa$ & $F_1 = \kappa/24$
+& $c_0$ & \textbf{$r_1$ type}
+& $R_1 {=} R_0$? \\
+\midrule
+$\cH_k$ & $\mathbf{G}$
+  & $k$ & $k/24$
+  & $0$ & periodic
+  & $\checkmark$ \\[2pt]
+$V_\Lambda$ & $\mathbf{G}$
+  & $\operatorname{rk}(\Lambda)$
+  & $\operatorname{rk}(\Lambda)/24$
+  & $0$ & periodic
+  & $\checkmark$ \\[2pt]
+$V_k(\fg)$ & $\mathbf{L}$
+  & $\dfrac{(k{+}h^\vee)\dim\fg}{2h^\vee}$
+  & $\dfrac{(k{+}h^\vee)\dim\fg}{48h^\vee}$
+  & $\Omega_\fg \ne 0$ & quasi-per.\
+  & \\[4pt]
+$\beta\gamma$ & $\mathbf{C}$
+  & $-1$
+  & $-1/24$
+  & $\Omega_{\mathrm{symp}} \ne 0$ & quasi-per.\
+  & \\[2pt]
+$\mathrm{Vir}_c$ & $\mathbf{M}$
+  & $c/2$
+  & $c/48$
+  & $\partial T \ne 0$ & quasi-per.\
+  & \\[2pt]
+$\cW_3$ & $\mathbf{M}$
+  & $5c/6$
+  & $5c/144$
+  & $\ne 0$ & quasi-per.\
+  & \\[2pt]
+$\cW_N$ & $\mathbf{M}$
+  & $c(H_N{-}1)$
+  & $c(H_N{-}1)/24$
+  & $\ne 0$ & quasi-per.\
+  & \\
+\bottomrule
+\end{tabular}
+\end{center}
+Here $\Omega_\fg = \sum_a t^a \otimes t_a$ is the
+quadratic Casimir,
+$\Omega_{\mathrm{symp}}$ is the symplectic pairing
+from $\{\beta \,{}_0\, \gamma\} = 1$
+\textup{(}the simple-pole OPE\textup{)},
+and $\partial T = T_{(0)}T$ is the translation
+derivation of the Virasoro PVA\@.  The $R_1 = R_0$
+column is blank when $R_1 \ne R_0$.
+\end{computation}
+
+\begin{remark}[The genus-$1$ dichotomy refines the depth
+classification]%
+\label{rem:genus1-dichotomy}%
+\index{genus-1 dichotomy}%
+\index{Coisson bracket!genus-1 classification}%
+The shadow tower atlas
+(Computation~\ref{comp:shadow-tower-atlas}) classifies by
+the genus-$0$ shadow depth $d \in \{2,3,4,\infty\}$.
+The genus-$1$ Coisson invariant $c_0$ provides an
+orthogonal classification: among the seven atlas families,
+$c_0 = 0$ picks out exactly the abelian algebras
+($\cH_k$ and $V_\Lambda$), while $c_0 \ne 0$ picks
+out everything with a Lie bracket or symplectic pairing.
+The combined invariant $(d, c_0)$ produces the
+three-regime classification of
+Theorem~\ref{thm:genus1-endomorphism-atlas}:
+the genus-$0$ depth controls the bar-complex channel
+(clean for $d < \infty$, excess for $d = \infty$),
+and $c_0$ controls the propagator channel.
+Classes~$\mathbf{G}$, $\mathbf{L}$, $\mathbf{C}$ are
+chirally Koszul; class~$\mathbf{M}$ is not (the
+fourth-order pole causes purity failure and
+non-concentrated bar cohomology).  The three-regime
+distinction is within the standard atlas families,
+not within a uniformly Koszul world.  What separates
+class~$\mathbf{M}$ from the Koszul classes is precisely
+a failure of chiral Koszulness: the PBW spectral
+sequence does not degenerate, the higher $m_k$ from
+wheel diagrams are non-trivial on cohomology, and
+the bar-complex channel is activated by the excess
+self-intersection.
+\end{remark}
+
+\begin{remark}[The first modular coefficient and
+question~\textup{(iii)} of the modular programme]%
+\label{rem:modular-programme-genus1}%
+\index{modular programme!first coefficient}%
+\index{modular holography programme!genus 1}%
+The period correction $F_1 = \kappa(\cA)/24$ is the
+first genuinely modular coefficient requested in
+question~(iii) of the modular holography programme
+(Section~\ref{subsec:modular-holography-programme}).
+In the Lagrangian picture, $F_1$ is the leading term
+of the genus-$1$ self-intersection invariant
+\[
+R^{(1)}_\cA(z)
+\;=\;
+\chi\!\bigl(
+  \cL_\cA^{(1)} \times_{\Mvac} \cL_\cA^{(1)}
+\bigr)
+\]
+(Section~\ref{subsec:modular-holography-programme},
+question~(iii$'$)).  The three regimes of
+Theorem~\ref{thm:genus1-endomorphism-atlas}
+answer this question as follows:
+\begin{enumerate}[label=\textup{(\alph*)},nosep]
+\item \emph{Decoupled} ($c_0 = 0$):
+  $R^{(1)}(z) = R^{(0)}(z)$.  The genus-$1$
+  Lagrangian self-intersection is trivially deformed;
+  the Euler characteristic is unchanged.  The only
+  genus-$1$ effect is the scalar period correction
+  $F_1 = \kappa/24$.
+
+\item \emph{Propagator-entangled} ($c_0 \ne 0$, clean
+  intersection):
+  $R^{(1)}(z,\tau) = r^{E_\tau}(z)$ is the elliptic
+  $r$-matrix~\eqref{eq:elliptic-r-matrix}, computed
+  explicitly for all affine algebras and the
+  $\beta\gamma$ system.  The genus-$1$
+  self-intersection carries additional monodromy
+  $2\eta_\tau \cdot c_0$ from the $B$-cycle of
+  $E_\tau$.  The bar-complex channel is trivial
+  (Proposition~\ref{prop:curvature-braiding-decoupling}).
+
+\item \emph{Doubly entangled} ($c_0 \ne 0$, excess
+  intersection):
+  $R^{(1)}(z,\tau)$ receives corrections from both
+  channels.  The propagator channel contributes the
+  elliptic deformation; the bar-complex channel
+  contributes corrections from the higher Swiss-cheese
+  operations $m_{k \ge 3}$ (the wheel diagrams that
+  source the infinite shadow tower).  The algebra
+  is not chirally Koszul---bar cohomology is
+  non-concentrated and $m_k \ne 0$ for all
+  $k \ge 3$---though it retains a well-defined
+  Koszul dual ($\mathrm{Vir}_c^! = \mathrm{Vir}_{26-c}$)
+  carrying higher $\Ainf$ operations.  Computing
+  $R^{(1)}_{\mathrm{Vir}_c}(z,\tau)$ explicitly is
+  the concrete test case for question~(iii) of the
+  modular programme.
+\end{enumerate}
+\end{remark}
+
+\subsection{The all-genera generating function}%
+\label{subsec:all-genera-generating}%
+\index{genus tower!generating function|textbf}%
+\index{A-hat genus@$\hat{A}$-genus!as Lagrangian expansion|textbf}
+
+The genus-$1$ atlas is the first page of an
+all-genera story.  The scalar period corrections
+$F_g(\cA) = \kappa(\cA) \cdot \lambda_g^{\mathrm{FP}}$
+(Volume~I, Theorem~D\textsubscript{scal})
+extend the genus-$1$ datum $F_1 = \kappa/24$ to
+all genera via the Faber--Pandharipande intersection
+numbers
+\begin{equation}\label{eq:faber-pandharipande}
+\lambda_g^{\mathrm{FP}}
+\;=\;
+\frac{2^{2g-1} - 1}{2^{2g-1}}
+\;\cdot\;
+\frac{|B_{2g}|}{(2g)!}\,,
+\qquad g \ge 1,
+\end{equation}
+where $B_{2g}$ are the Bernoulli numbers.  The
+first five values:
+\begin{center}
+\small
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{cccccc}
+\toprule
+$g$ & $1$ & $2$ & $3$ & $4$ & $5$ \\
+\midrule
+$\lambda_g^{\mathrm{FP}}$ &
+  $\dfrac{1}{24}$ &
+  $\dfrac{7}{5{,}760}$ &
+  $\dfrac{31}{967{,}680}$ &
+  $\dfrac{127}{154{,}828{,}800}$ &
+  $\dfrac{73}{3{,}503{,}554{,}560}$ \\[6pt]
+$F_g(\cH_1)$ &
+  $\dfrac{1}{24}$ &
+  $\dfrac{7}{5{,}760}$ &
+  $\dfrac{31}{967{,}680}$ &
+  $\dfrac{127}{154{,}828{,}800}$ &
+  $\dfrac{73}{3{,}503{,}554{,}560}$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{theorem}[The genus tower as $\hat{A}$-genus;
+\ClaimStatusProvedElsewhere]%
+\label{thm:ahat-lagrangian}%
+\index{A-hat genus@$\hat{A}$-genus!generating function}%
+The total scalar free energy of the endomorphism algebra
+$\End(\cL_\cA)$ expanded over $\coprod_g \Mbar_g$ is
+\begin{equation}\label{eq:total-free-energy}
+\boxed{
+F^{\mathrm{tot}}(\cA;\, \hbar)
+\;=\;
+\frac{\kappa(\cA)}{\hbar^2}
+\;\cdot\;
+\frac{\hbar/2}{\sin(\hbar/2)}\,,
+}
+\end{equation}
+where
+\begin{equation}\label{eq:ahat-series}
+\frac{x/2}{\sin(x/2)}
+\;=\;
+1 + \frac{x^2}{24} + \frac{7\, x^4}{5760}
+  + \frac{31\, x^6}{967680} + \cdots
+\;=\;
+\sum_{g \ge 0}
+  \lambda_g^{\mathrm{FP}}\, x^{2g}
+\end{equation}
+is the generating function for the unsigned
+Faber--Pandharipande numbers
+\textup{(}Volume~I,
+Theorem~D\textsubscript{scal}\textup{)},
+related to the Hirzebruch $\hat{A}$-class by
+$\hat{A}(ix) = (x/2)/\sin(x/2)$---the Wick rotation
+that turns the alternating-sign $\hat{A}$-series into
+the all-positive genus expansion.
+The genus-$g$ contribution is
+$F_g = \kappa \cdot \lambda_g^{\mathrm{FP}} \cdot
+\hbar^{2g-2}$, with $\lambda_g^{\mathrm{FP}} > 0$
+for all $g \ge 1$.
+\end{theorem}
+
+\begin{remark}[The platonic content]%
+\label{rem:ahat-platonic}%
+\index{platonic ideal!A-hat genus@$\hat{A}$-genus}%
+Equation~\eqref{eq:total-free-energy} is the platonic
+content of the genus tower.  The Lagrangian
+$\cL_\cA \hookrightarrow \Mvac$
+(Theorem~\ref{thm:holographic-reconstruction-conclusion})
+is a point in the derived symplectic category.  Its formal
+neighborhood over $\coprod_g \Mbar_g$ is the
+$\hbar$-expansion of the endomorphism algebra.  The
+generating function of this expansion is
+$(x/2)/\sin(x/2) = \hat{A}(ix)$---the Wick-rotated
+$\hat{A}$-class, the same generating function that,
+after rotation back, governs the index theorem for
+Dirac operators.  The single scalar $\kappa(\cA)$ (the
+modular characteristic) plays the role of the curvature;
+$\hbar$ plays the role of the genus parameter.
+
+\emph{Everything} in the monograph that depends on genus
+is a coefficient of $(\hbar/2)/\sin(\hbar/2)$.  The
+genus-$0$ constant term produces the flat Swiss-cheese
+algebra; the genus-$1$ correction ($+\hbar^2/24$) produces
+the curved Swiss-cheese algebra with curvature
+$\kappa \cdot \omega_1$; the genus-$2$ correction
+($+7\hbar^4/5760$) produces the next-order deformation
+over $\Mbar_2$; and so on.  The five theorems at each
+genus are the five facets of the single coefficient
+$F_g = \kappa \cdot \lambda_g^{\mathrm{FP}}$.
+\end{remark}
+
+\begin{remark}[Shadow corrections and the departure from
+$\hat{A}$]%
+\label{rem:shadow-corrections-ahat}%
+\index{shadow corrections!departure from $\hat{A}$}%
+The free energy~\eqref{eq:total-free-energy} is the
+\emph{scalar} part of the Lagrangian expansion: it
+captures the period corrections $F_g$ that restore
+$D_g^2 = 0$ at each genus.  For algebras with clean
+self-intersection (classes~$\mathbf{G}$, $\mathbf{L}$,
+$\mathbf{C}$), this is the complete answer: the
+higher-arity shadow corrections vanish, and the
+$\hat{A}$-genus exhausts the genus tower.
+
+For algebras with excess self-intersection
+(class~$\mathbf{M}$: Virasoro, $\cW_N$), the full
+genus-$g$ endomorphism algebra carries shadow corrections
+$\delta F_g^{\mathrm{shadow}}$ from the infinite tower
+(Computation~\ref{comp:virasoro-shadow-tower}):
+\[
+  F_g^{\mathrm{corr}}(\cA)
+  \;=\;
+  \underbrace{\kappa \cdot \lambda_g^{\mathrm{FP}}}_{\text{%
+    $\hat{A}$-genus (scalar)}}
+  \;+\;
+  \underbrace{\delta F_g^{\mathrm{shadow}}(\cA)}_{\text{%
+    excess intersection (arity $\ge 3$)}}.
+\]
+The shadow corrections are the \emph{dispersive}
+corrections to the genus tower---the same corrections
+that appear in the Dubrovin--Zhang hierarchy as
+higher-order terms beyond the dispersionless limit.
+The $\hat{A}$-genus is the dispersionless approximation;
+the shadow tower provides the full dispersive expansion.
+
+For class~$\mathbf{M}$, the denominators of the shadow
+coefficients $S_r$
+(Computation~\ref{comp:virasoro-shadow-tower}) involve the
+Kac determinants $\det M_r$: the self-intersection
+degenerates where the algebra degenerates.  These
+are the poles of the Lagrangian deformation over the
+moduli of curves---the locus where the endomorphism
+algebra fails to be a flat deformation.
+\end{remark}
+
+\begin{remark}[From one page to the book]%
+\label{rem:atlas-continuation}%
+\index{genus tower!atlas continuation}%
+The genus-$1$ atlas
+(Theorem~\ref{thm:genus1-endomorphism-atlas}) classifies
+the first-order deformation by the triple
+$(\kappa, c_0, d)$.  At genus~$g \ge 2$, the period
+correction $F_g = \kappa \cdot \lambda_g^{\mathrm{FP}}$
+(equation~\eqref{eq:faber-pandharipande}) extends the
+scalar atlas automatically.  The new genus-$g$ data
+enters through the period matrix $\Omega_{ij}$ of
+$\Sigma_g$, which replaces the single modular parameter
+$\tau$ of $E_\tau$: the elliptic $r$-matrix of
+Section~\ref{subsec:affine-genus1-endomorphism} becomes
+a function on the Jacobian of $\Sigma_g$, and the
+$B$-cycle monodromy $2\eta_\tau \cdot c_0$ becomes a
+$g \times g$ matrix of quasi-periods.
+
+The genus-$0$ atlas classifies the point;
+the genus-$1$ atlas classifies the first-order
+deformation; the $\hat{A}$-genus generates the
+all-genera scalar expansion; and the shadow tower
+provides the dispersive corrections.  The modular
+programme
+(Section~\ref{subsec:modular-holography-programme})
+is the problem of computing the complete dispersive
+expansion at all genera for all standard families.
 \end{remark}
