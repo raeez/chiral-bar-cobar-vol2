@@ -325,14 +325,11 @@ def associator_virasoro(lam1, lam2, c_sym=None):
 def m3_virasoro(lam1, lam2, c_sym=None):
     """m_3(T, T, T; lam1, lam2) for the Virasoro algebra.
 
-    From eq:vir-m3 (w-algebras-stable.tex):
-    m_3(T,T,T; lam1, lam2) = (c/6)(lam1^2*lam2 + lam1*lam2^2)
-                              + 4T*lam1*lam2
-                              + 2(dT)(lam1 - lam2)
+    m_3 = -A_3 (the negative of the lambda-bracket associator),
+    because the full VA OPE is associative (Borcherds identity)
+    and m_3 compensates the non-associativity of the singular part.
 
-    The formula is derived by solving the Stasheff equation
-    d*m_3 = Assoc, where the contracting homotopy h inverts d on
-    the BRST-exact component of the associator.
+    m_3(T,T,T; l, m) = d2T + (2l+3m)*dT + 2m(2l+m)*T + (c/12)*m^3*(2l+m)
 
     Parameters:
         lam1, lam2: spectral parameters
@@ -343,11 +340,13 @@ def m3_virasoro(lam1, lam2, c_sym=None):
         sum_field coeff * field
     """
     c = c_sym if c_sym is not None else Symbol('c')
+    l, m = lam1, lam2
 
     return {
-        'dT': expand(2 * (lam1 - lam2)),
-        'T': expand(4 * lam1 * lam2),
-        '1': expand(c * (lam1 ** 2 * lam2 + lam1 * lam2 ** 2) / 6),
+        'd2T': S.One,
+        'dT': expand(2 * l + 3 * m),
+        'T': expand(4 * l * m + 2 * m ** 2),
+        '1': expand(c * m ** 3 * (2 * l + m) / 12),
     }
 
 
