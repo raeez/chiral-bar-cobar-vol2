@@ -171,26 +171,32 @@ _register_family(
 
 
 def _kappa_nonabelian_cs(**kw):
-    """Nonabelian CS SU(2) at level k: κ = 3k/(2(k+2)).
+    """Nonabelian CS SU(2) at level k: κ = dim(sl_2)*(k+h^v)/(2*h^v) = 3*(k+2)/4.
 
-    From the Sugawara formula: c = k·dim(g)/(k + h∨) = 3k/(k+2).
-    Then κ = c/2 = 3k/(2(k+2)).
+    CORRECTION (2026-03-24): The old formula κ = c/2 = 3k/(2(k+2)) diverges at
+    critical level k = -h^v = -2 and gives wrong complementarity.
+    The correct formula κ = dim(g)*(k+h^v)/(2*h^v) vanishes at critical level
+    and satisfies κ(k) + κ(k') = 0 for FF-dual k' = -k - 2h^v (AP1 fix).
     """
     k = kw.get('k', Symbol('k'))
-    return 3 * k / (2 * (k + 2))
+    # dim(sl_2) = 3, h^v = 2
+    return 3 * (k + 2) / 4
 
 
 def _kappa_nonabelian_cs_dual(**kw):
-    """Feigin-Frenkel dual: k ↦ -k - 2h∨ = -k - 4."""
+    """Feigin-Frenkel dual: k ↦ -k - 2h∨ = -k - 4.
+
+    κ(k') = 3*(k'+2)/4 = 3*(-k-4+2)/4 = 3*(-k-2)/4 = -3*(k+2)/4 = -κ(k).
+    """
     k = kw.get('k', Symbol('k'))
     k_dual = -k - 4
-    return 3 * k_dual / (2 * (k_dual + 2))
+    return 3 * (k_dual + 2) / 4
 
 
 _register_family(
     'nonabelian_cs',
     _kappa_nonabelian_cs, _kappa_nonabelian_cs_dual,
-    lambda **kw: Rational(3),
+    lambda **kw: S.Zero,
     {'k': Symbol('k')},
 )
 
@@ -325,7 +331,7 @@ def genus1_free_energy_table() -> Dict[str, Dict[str, object]]:
     Expected values:
         free_multiplet:   F₁ = 1/48
         abelian_cs:       F₁ = k/48
-        nonabelian_cs:    F₁ = 3k/(2(k+2)) · 1/24 = k/(16(k+2))
+        nonabelian_cs:    F₁ = 3(k+2)/4 · 1/24 = (k+2)/32
         virasoro:         F₁ = c/48
         lg_cubic:         F₁ = c/48
         w3:               F₁ = 5c/144
@@ -354,7 +360,7 @@ def genus1_free_energy_table() -> Dict[str, Dict[str, object]]:
     # Nonabelian CS SU(2)
     kn = _kappa_nonabelian_cs(k=k)
     F1_na = kn * Rational(1, 24)
-    expected_na = k / (16 * (k + 2))
+    expected_na = (k + 2) / 32
     table['nonabelian_cs'] = {
         'kappa': kn,
         'F1': F1_na,

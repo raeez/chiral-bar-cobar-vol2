@@ -192,10 +192,10 @@ class TestGenus1Curvature:
         assert simplify(corr['F1'] - 5 * c / 144) == 0
 
     def test_nonabelian_cs_F1(self):
-        """F₁(SU(2)_k) = 3k/(2(k+2)) · 1/24 = k/(16(k+2))."""
+        """F₁(SU(2)_k) = 3*(k+2)/4 · 1/24 = (k+2)/32."""
         k = Symbol('k')
         corr = period_correction('nonabelian_cs', k=k)
-        expected = k / (16 * (k + 2))
+        expected = (k + 2) / 32
         assert simplify(corr['F1'] - expected) == 0
 
     def test_lg_cubic_F1(self):
@@ -256,15 +256,15 @@ class TestComplementarity:
         assert simplify(comp['kappa_sum']) == 0
 
     def test_nonabelian_cs_genus1_complementarity(self):
-        """κ(SU(2)_k) + κ(SU(2)_{FF-dual}) = 3.
+        """κ(SU(2)_k) + κ(SU(2)_{FF-dual}) = 0 (KM anti-symmetry).
 
-        κ = 3k/(2(k+2)), FF dual k → -k-4 gives κ' = 3(k+4)/(2(k+2)).
-        Sum = 3(2k+4)/(2(k+2)) = 3.
+        κ = 3*(k+2)/4, FF dual k → -k-4 gives κ' = 3*(-k-2)/4 = -κ.
+        Sum = 0 (kappa + kappa' = 0 for KM/free fields).
         """
         k = Symbol('k')
         comp = complementarity_genus1('nonabelian_cs', k=k)
         assert comp['kappa_match']
-        assert simplify(comp['complementarity_constant'] - Rational(3)) == 0
+        assert simplify(comp['complementarity_constant']) == 0
 
     def test_w3_genus1_complementarity(self):
         """κ(W₃_c) + κ(W₃_{100-c}) = 250/3."""
@@ -446,22 +446,18 @@ class TestCrossVolume:
             assert vol1_E2[n] == vol2_E2[n], f"E₂ mismatch at q^{n}"
 
     def test_vol1_F1_sl2_match(self):
-        """F₁(sl₂_k) = (k+2)/32 matches Vol I."""
+        """F₁(sl₂_k) = (k+2)/32 matches Vol I.
+
+        Both volumes now use κ = dim(g)*(k+h^v)/(2*h^v) = 3*(k+2)/4 for sl_2.
+        F₁ = κ/24 = 3*(k+2)/4 / 24 = (k+2)/32.
+        """
         k = Symbol('k')
         vol1 = vol1_F1_values()
         vol2 = period_correction('nonabelian_cs', k=k)
-        # Vol I: F₁ = (k+2)/32 = 3(k+2)/4 · 1/24
-        # Vol II: F₁ = 3k/(2(k+2)) · 1/24 = k/(16(k+2))
-        # These are DIFFERENT because Vol I uses κ = dim·(k+h∨)/(2h∨) = 3(k+2)/4
-        # while Vol II uses κ = c/2 = 3k/(2(k+2))/2 ... actually κ = c/2.
-        # Sugawara c = 3k/(k+2), so κ = 3k/(2(k+2)).
-        # Vol I kappa_sl2 = 3(k+2)/4. These differ!
-        # The difference is the CONVENTION: Vol I uses the affine Kac-Moody kappa,
-        # Vol II uses the Sugawara central charge convention κ = c/2.
-        # For cross-volume, we record both and note the discrepancy.
-        # This test verifies internal Vol II consistency.
-        expected = k / (16 * (k + 2))
+        # Vol I and Vol II now agree: F₁ = (k+2)/32
+        expected = (k + 2) / 32
         assert simplify(vol2['F1'] - expected) == 0
+        assert simplify(vol1['sl2_k'] - vol2['F1']) == 0
 
 
 # ═══════════════════════════════════════════════════════════════════════

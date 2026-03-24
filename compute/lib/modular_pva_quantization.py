@@ -102,13 +102,34 @@ def _ds_central_charge(lie_type, k, f_nilpotent='principal', N=None):
 # 1. genus0_classical_data
 # =========================================================================
 
+def _affine_kappa(lie_type, k, N=None):
+    """Modular Koszul curvature for affine KM: kappa = dim(g)*(k+h^v)/(2*h^v).
+
+    CORRECTION (2026-03-24): The old formula kappa = c/2 = k*dim(g)/(2*(k+h^v))
+    diverges at critical level and gives wrong complementarity.
+    The correct formula vanishes at k = -h^v and gives kappa + kappa' = 0.
+    """
+    if lie_type == 'sl_N' and N is not None:
+        h_dual = N
+        dim_g = N**2 - 1
+    elif lie_type in _DUAL_COXETER and _DUAL_COXETER[lie_type] is not None:
+        h_dual = _DUAL_COXETER[lie_type]
+        dim_g = _LIE_DIM[lie_type]
+    else:
+        raise ValueError(f"Unknown or incomplete Lie type: {lie_type}")
+    k_sym = S(k)
+    h = S(h_dual)
+    return S(dim_g) * (k_sym + h) / (2 * h)
+
+
 def genus0_classical_data(family, **params):
     """Classical (genus-0) PVA data for each family.
 
     Returns a dict with:
       - bracket_type: form of the lambda-bracket
       - central_charge: c (or formula)
-      - kappa: modular curvature kappa(A) = c/2 (standard families)
+      - kappa: modular curvature (family-dependent: dim(g)*(k+h^v)/(2*h^v) for affine,
+               c/2 for Virasoro, c*H_N/2 for W_N, etc.)
       - shadow_depth: archetype classification depth
       - r_matrix_pole: order of the pole in the classical r-matrix
       - bar_differential: 'd_0^2 = 0' (genus 0: flat)
@@ -140,11 +161,12 @@ def genus0_classical_data(family, **params):
         else:
             lie_type = params.get('lie_type', 'sl2')
         c = _sugawara_central_charge(lie_type, k)
+        kappa = _affine_kappa(lie_type, k)
         return {
             'family': family,
             'bracket_type': '{J^a_lam J^b} = f^{ab}_c J^c + k*kappa(a,b)*lam',
             'central_charge': c,
-            'kappa': c / 2,
+            'kappa': kappa,
             'shadow_depth': 3,
             'shadow_archetype': 'L',
             'r_matrix_pole': 1,
@@ -183,8 +205,8 @@ def genus0_classical_data(family, **params):
         return {
             'family': 'betagamma',
             'bracket_type': '{beta_lam gamma} = 1',
-            'central_charge': S(-2),
-            'kappa': S(-1),
+            'central_charge': S(2),
+            'kappa': S(1),
             'shadow_depth': 4,
             'shadow_archetype': 'C',
             'r_matrix_pole': 1,
@@ -943,7 +965,10 @@ def quantum_correction_formula(family, g, **params):
 # =========================================================================
 
 def kappa_standard(family, **params):
-    """Return kappa(A) = c/2 for standard families.
+    """Return kappa(A) for standard families.
+
+    For Virasoro/W_N/betagamma/free/lattice: kappa = c/2 or c*H_N/2.
+    For affine KM: kappa = dim(g)*(k+h^v)/(2*h^v) (NOT c/2).
 
     Cross-volume consistency: these must match Vol I genus_one_bridge.py
     and Vol I genus_expansion.py.
@@ -960,10 +985,8 @@ def kappa_dual_standard(family, **params):
     elif family in ('affine_sl2', 'affine_sl3'):
         k = params.get('k', Symbol('k'))
         lie_type = 'sl2' if family == 'affine_sl2' else 'sl3'
-        h = _DUAL_COXETER[lie_type]
-        k_dual = -S(k) - 2 * h
-        c_dual = _sugawara_central_charge(lie_type, k_dual)
-        return c_dual / 2
+        k_dual = -S(k) - 2 * _DUAL_COXETER[lie_type]
+        return _affine_kappa(lie_type, k_dual)
     elif family == 'virasoro':
         c = params.get('c', Symbol('c'))
         return (26 - S(c)) / 2
@@ -971,7 +994,7 @@ def kappa_dual_standard(family, **params):
         c = params.get('c', Symbol('c'))
         return 5 * (100 - S(c)) / 6
     elif family == 'betagamma':
-        return S.One  # dual of c=-2 is c=2, kappa=1
+        return S.NegativeOne  # dual of c=+2 is c=-2, kappa=-1
     elif family == 'free_multiplet':
         return Rational(-1, 2)
     else:

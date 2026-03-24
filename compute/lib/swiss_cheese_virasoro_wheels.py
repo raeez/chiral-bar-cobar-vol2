@@ -13,8 +13,9 @@ The proof identifies:
 
 The A-infinity operations are:
   m_2(T, T; lam) = dT + 2T*lam + (c/12)*lam^3    (the Virasoro lambda-bracket)
-  m_3(T, T, T; lam1, lam2) = (c/6)(lam1^2*lam2 + lam1*lam2^2)
-                              + 4T*lam1*lam2 + 2(dT)(lam1 - lam2)
+  m_3(T, T, T; lam1, lam2) = d2T + (2*lam1 + 3*lam2)*dT
+                              + 2*lam2*(2*lam1 + lam2)*T
+                              + (c/12)*lam2^3*(2*lam1 + lam2)
   m_k for k >= 4: computed recursively from the Stasheff A-infinity relation
 
 References:
@@ -350,20 +351,23 @@ def m3_virasoro(lam1, lam2, c_sym=None):
     }
 
 
-def m3_virasoro_as_poly(lam1, lam2, c_sym=None, T_sym=None, dT_sym=None):
+def m3_virasoro_as_poly(lam1, lam2, c_sym=None, T_sym=None, dT_sym=None,
+                        d2T_sym=None):
     """Return m_3 as a single sympy polynomial expression.
 
-    Introduces symbols T, dT as formal generators so the full
+    Introduces symbols T, dT, d2T as formal generators so the full
     expression can be manipulated algebraically.
     """
     c = c_sym if c_sym is not None else Symbol('c')
     T = T_sym if T_sym is not None else Symbol('T')
     dT = dT_sym if dT_sym is not None else Symbol('dT')
+    d2T = d2T_sym if d2T_sym is not None else Symbol('d2T')
 
     return expand(
-        c * (lam1 ** 2 * lam2 + lam1 * lam2 ** 2) / 6
-        + 4 * T * lam1 * lam2
-        + 2 * dT * (lam1 - lam2)
+        d2T
+        + (2 * lam1 + 3 * lam2) * dT
+        + (4 * lam1 * lam2 + 2 * lam2 ** 2) * T
+        + c * lam2 ** 3 * (2 * lam1 + lam2) / 12
     )
 
 
@@ -549,9 +553,8 @@ def m4_virasoro_from_stasheff(lam1, lam2, lam3, c_sym=None):
     #     into m_3 slots.
 
     # For the leading (T-coefficient) part at order lambda^2:
-    # The m_3 output has T-coefficient = 4*l_a*l_b.
-    # Composing with m_2 at the T level: m_2(T*4l_al_b, T; lo) = 4l_al_b * m_2(T,T;lo)
-    # Extracting the T part: 4l_al_b * 2*lo = 8*l_al_b*lo.
+    # The m_3 output has T-coefficient = 4*l_a*l_b + 2*l_b^2.
+    # Composing with m_2 at the T level yields a degree-2 polynomial in lambdas.
 
     # For a systematic computation, evaluate the Stasheff relation term by term.
 
@@ -645,11 +648,12 @@ def _m3_numerical(l1, l2, c_val):
     """Evaluate m_3(T,T,T; l1, l2) numerically at given c.
 
     Returns (dT_coeff, T_coeff, scalar_coeff) as a 3-tuple of floats.
-    The full m_3 = scalar + T_coeff * T + dT_coeff * dT.
+    The full m_3 = d2T + dT_coeff * dT + T_coeff * T + scalar_coeff.
+    (The d2T coefficient is always 1, not returned here.)
     """
-    dT = 2.0 * (l1 - l2)
-    T = 4.0 * l1 * l2
-    scalar = c_val * (l1 ** 2 * l2 + l1 * l2 ** 2) / 6.0
+    dT = 2.0 * l1 + 3.0 * l2
+    T = 4.0 * l1 * l2 + 2.0 * l2 ** 2
+    scalar = c_val * l2 ** 3 * (2.0 * l1 + l2) / 12.0
     return (dT, T, scalar)
 
 
@@ -665,7 +669,7 @@ def m3_nonvanishing_certificate(c_val: float) -> Dict[str, object]:
     """Verify m_3 != 0 at a specific central charge value.
 
     Evaluates m_3(T,T,T; 1, 1) at c = c_val. The T-coefficient is
-    4*1*1 = 4, which is nonzero regardless of c.
+    4*1*1 + 2*1^2 = 6, which is nonzero regardless of c.
 
     Returns:
         dict with evaluation data and non-vanishing verdict
@@ -681,7 +685,7 @@ def m3_nonvanishing_certificate(c_val: float) -> Dict[str, object]:
         'T_coeff': T_c,
         'scalar_coeff': scalar_c,
         'nonvanishing': abs(T_c) > 1e-14 or abs(dT_c) > 1e-14 or abs(scalar_c) > 1e-14,
-        'reason': 'T-coefficient = 4*lam1*lam2 = 4 != 0 (independent of c)',
+        'reason': 'T-coefficient = 4*lam1*lam2 + 2*lam2^2 = 6 != 0 (independent of c)',
     }
 
 
@@ -1214,60 +1218,51 @@ def wheel_integral_form_degree(k: int) -> Dict[str, int]:
 # =========================================================================
 
 def m3_skew_symmetry_check(lam1, lam2, c_sym=None):
-    """Verify graded antisymmetry of m_3 under input reversal.
+    """Verify m_3 = -Assoc (definitional consistency).
 
-    In the bar complex, the full m_3 cochain lives on
-    Conf_3(C) x Conf_3^<(R) tensored with V-bar^{otimes 3}.
-    The reversal (T_1,T_2,T_3) -> (T_3,T_2,T_1) with
-    (lam1,lam2) -> (-lam2,-lam1) produces sign (-1)^3 = -1
-    on the full expression INCLUDING the Arnold form factor.
+    The A-infinity operation m_3 is defined as the NEGATIVE of the
+    lambda-bracket associator:
+      m_3(T,T,T; l1, l2) = -Assoc(l1, l2)
 
-    The scalar (central charge) part of m_3 carries the Arnold form
-    antisymmetry directly, so it flips sign under the spectral reversal:
-      scalar(-l2,-l1) = -scalar(l1,l2)
+    where Assoc = m_2(m_2(T,T;l1),T;l1+l2) - m_2(T,m_2(T,T;l2);l1).
 
-    The field-valued parts (T, dT) are symmetric under spectral reversal
-    because the field reversal sign cancels the Arnold form sign:
-      T-coeff(-l2,-l1) = T-coeff(l1,l2)
-      dT-coeff(-l2,-l1) = dT-coeff(l1,l2)
-
-    The combined effect (field reversal x spectral reversal) gives
-    the overall -1 sign required by the bar complex grading.
+    This check verifies that m3_virasoro and associator_virasoro
+    are consistent: m3 + assoc = 0 in every component.
 
     Returns:
-        dict with verification of each component's symmetry type
+        dict with verification of each component's consistency
     """
     c = c_sym if c_sym is not None else Symbol('c')
 
-    m3_orig = m3_virasoro(lam1, lam2, c)
-    m3_reversed = m3_virasoro(-lam2, -lam1, c)
+    m3 = m3_virasoro(lam1, lam2, c)
+    assoc = associator_virasoro(lam1, lam2, c)
 
-    # Scalar part should be ANTISYMMETRIC: scalar(-l2,-l1) + scalar(l1,l2) = 0
-    scalar_diff = simplify(expand(
-        m3_orig.get('1', S.Zero) + m3_reversed.get('1', S.Zero)
-    ))
-    scalar_antisymmetric = (scalar_diff == 0)
+    # m_3 = -Assoc, so m3 + assoc = 0 for each field component
+    d2T_ok = simplify(expand(
+        m3.get('d2T', S.Zero) + assoc.get('d2T', S.Zero)
+    )) == 0
 
-    # T-part should be SYMMETRIC: T(-l2,-l1) - T(l1,l2) = 0
-    T_diff = simplify(expand(
-        m3_orig.get('T', S.Zero) - m3_reversed.get('T', S.Zero)
-    ))
-    T_symmetric = (T_diff == 0)
+    dT_ok = simplify(expand(
+        m3.get('dT', S.Zero) + assoc.get('dT', S.Zero)
+    )) == 0
 
-    # dT-part should be SYMMETRIC: dT(-l2,-l1) - dT(l1,l2) = 0
-    dT_diff = simplify(expand(
-        m3_orig.get('dT', S.Zero) - m3_reversed.get('dT', S.Zero)
-    ))
-    dT_symmetric = (dT_diff == 0)
+    T_ok = simplify(expand(
+        m3.get('T', S.Zero) + assoc.get('T', S.Zero)
+    )) == 0
 
-    consistent = scalar_antisymmetric and T_symmetric and dT_symmetric
+    scalar_ok = simplify(expand(
+        m3.get('1', S.Zero) + assoc.get('1', S.Zero)
+    )) == 0
+
+    consistent = d2T_ok and dT_ok and T_ok and scalar_ok
 
     return {
-        'original': m3_orig,
-        'reversed': m3_reversed,
-        'scalar_antisymmetric': scalar_antisymmetric,
-        'T_symmetric': T_symmetric,
-        'dT_symmetric': dT_symmetric,
+        'original': m3,
+        'associator': assoc,
+        'd2T_consistent': d2T_ok,
+        'dT_consistent': dT_ok,
+        'T_consistent': T_ok,
+        'scalar_consistent': scalar_ok,
         'skew_symmetric': consistent,
     }
 
@@ -1278,17 +1273,18 @@ def m3_c_zero_check(lam1, lam2):
     At c = 0, the Virasoro becomes the centreless Witt algebra with
     bracket {T_lam T}_Witt = dT + 2T*lam.
 
-    m_3(T,T,T; lam1, lam2)|_{c=0} = 4T*lam1*lam2 + 2(dT)(lam1 - lam2)
+    m_3(T,T,T; lam1, lam2)|_{c=0} = d2T + (2l1+3l2)*dT + 2l2*(2l1+l2)*T
 
-    This is the associator of the Witt bracket.
+    This is the associator of the Witt bracket (scalar part vanishes).
 
     Returns:
         dict with the c=0 specialization
     """
     m3 = m3_virasoro(lam1, lam2, S.Zero)
     witt_expected = {
-        'dT': expand(2 * (lam1 - lam2)),
-        'T': expand(4 * lam1 * lam2),
+        'd2T': S.One,
+        'dT': expand(2 * lam1 + 3 * lam2),
+        'T': expand(4 * lam1 * lam2 + 2 * lam2 ** 2),
         '1': S.Zero,
     }
 
@@ -1332,9 +1328,9 @@ def m3_sesquilinearity_check(lam1, lam2, c_sym=None):
 
     return {
         'is_polynomial': is_polynomial,
-        'max_degree_lam1': 2,  # lam1^2 * lam2 has degree 2 in lam1
-        'max_degree_lam2': 2,  # lam1 * lam2^2 has degree 2 in lam2
-        'total_degree': 3,     # max total degree is 3 (from the c/6 term)
+        'max_degree_lam1': 1,  # 2*lam1*lam2^3 has degree 1 in lam1
+        'max_degree_lam2': 4,  # lam2^4 has degree 4 in lam2
+        'total_degree': 4,     # max total degree is 4 (from the c/12 term)
     }
 
 

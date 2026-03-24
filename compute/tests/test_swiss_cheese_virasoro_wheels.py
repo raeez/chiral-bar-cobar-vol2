@@ -309,24 +309,30 @@ class TestM2:
 class TestM3:
     """Test m_3(T,T,T; lam1, lam2) from eq:vir-m3."""
 
-    def test_m3_dT_coefficient(self):
-        """m_3 has dT coefficient = 2(lam1 - lam2)."""
+    def test_m3_d2T_coefficient(self):
+        """m_3 has d2T coefficient = 1."""
         l1, l2 = symbols('lambda_1 lambda_2')
         m3 = m3_virasoro(l1, l2)
-        assert simplify(m3['dT'] - 2 * (l1 - l2)) == 0
+        assert simplify(m3['d2T'] - 1) == 0
+
+    def test_m3_dT_coefficient(self):
+        """m_3 has dT coefficient = 2*lam1 + 3*lam2."""
+        l1, l2 = symbols('lambda_1 lambda_2')
+        m3 = m3_virasoro(l1, l2)
+        assert simplify(m3['dT'] - (2 * l1 + 3 * l2)) == 0
 
     def test_m3_T_coefficient(self):
-        """m_3 has T coefficient = 4*lam1*lam2."""
+        """m_3 has T coefficient = 4*lam1*lam2 + 2*lam2^2."""
         l1, l2 = symbols('lambda_1 lambda_2')
         m3 = m3_virasoro(l1, l2)
-        assert simplify(m3['T'] - 4 * l1 * l2) == 0
+        assert simplify(m3['T'] - (4 * l1 * l2 + 2 * l2 ** 2)) == 0
 
     def test_m3_scalar_coefficient(self):
-        """m_3 has scalar coefficient = (c/6)(lam1^2*lam2 + lam1*lam2^2)."""
+        """m_3 has scalar coefficient = (c/12)*lam2^3*(2*lam1 + lam2)."""
         l1, l2 = symbols('lambda_1 lambda_2')
         c = Symbol('c')
         m3 = m3_virasoro(l1, l2)
-        expected = c * (l1 ** 2 * l2 + l1 * l2 ** 2) / 6
+        expected = c * l2 ** 3 * (2 * l1 + l2) / 12
         assert simplify(m3['1'] - expected) == 0
 
     def test_m3_nonzero(self):
@@ -335,15 +341,15 @@ class TestM3:
         assert cert['nonvanishing'] is True
 
     def test_m3_nonzero_T_component(self):
-        """The T-coefficient of m_3 at lam1=lam2=1 is 4 (nonzero, c-independent)."""
+        """The T-coefficient of m_3 at lam1=lam2=1 is 6 (nonzero, c-independent)."""
         cert = m3_nonvanishing_certificate(1.0)
-        assert abs(cert['T_coeff'] - 4.0) < 1e-14
+        assert abs(cert['T_coeff'] - 6.0) < 1e-14
 
     def test_m3_nonzero_at_c0(self):
         """m_3 != 0 even at c = 0 (the Witt associator)."""
         cert = m3_nonvanishing_certificate(0.0)
         assert cert['nonvanishing'] is True
-        assert abs(cert['T_coeff'] - 4.0) < 1e-14
+        assert abs(cert['T_coeff'] - 6.0) < 1e-14
         assert abs(cert['scalar_coeff']) < 1e-14
 
     def test_m3_as_polynomial(self):
@@ -354,33 +360,34 @@ class TestM3:
         # Should be a sympy polynomial (no denominators)
         assert p.is_polynomial(l1, l2)
 
-    def test_m3_total_degree_3(self):
-        """The scalar part of m_3 has total degree 3 in the spectral parameters."""
+    def test_m3_total_degree_4(self):
+        """The scalar part of m_3 has total degree 4 in the spectral parameters."""
         l1, l2 = symbols('lambda_1 lambda_2')
         c = Symbol('c')
         m3 = m3_virasoro(l1, l2, c)
         scalar = m3['1']
-        # Total degree of c/6*(l1^2*l2 + l1*l2^2) in l1, l2 is 3
+        # Total degree of c/12*l2^3*(2*l1 + l2) in l1, l2 is 4
         p = Poly(scalar, l1, l2, domain='QQ[c]')
         max_deg = max(sum(m) for m in p.monoms())
-        assert max_deg == 3
+        assert max_deg == 4
 
 
 class TestM3Consistency:
     """m_3 consistency checks from rem:m3-checks."""
 
-    def test_m3_skew_symmetry(self):
-        """Graded antisymmetry: scalar part flips, field parts are symmetric."""
+    def test_m3_equals_neg_associator(self):
+        """Definitional consistency: m_3 = -Assoc in every component."""
         l1, l2 = symbols('lambda_1 lambda_2')
         result = m3_skew_symmetry_check(l1, l2)
         assert result['skew_symmetric'] is True, (
-            f"scalar_anti={result['scalar_antisymmetric']}, "
-            f"T_sym={result['T_symmetric']}, "
-            f"dT_sym={result['dT_symmetric']}"
+            f"d2T={result['d2T_consistent']}, "
+            f"dT={result['dT_consistent']}, "
+            f"T={result['T_consistent']}, "
+            f"scalar={result['scalar_consistent']}"
         )
 
     def test_m3_c_zero_is_witt(self):
-        """At c=0: m_3 = 4T*l1*l2 + 2(dT)(l1-l2) (Witt associator)."""
+        """At c=0: m_3 = d2T + (2l1+3l2)*dT + 2l2*(2l1+l2)*T (Witt associator)."""
         l1, l2 = symbols('lambda_1 lambda_2')
         result = m3_c_zero_check(l1, l2)
         assert result['match'] is True
@@ -392,25 +399,27 @@ class TestM3Consistency:
         assert result['is_polynomial'] is True
 
     def test_m3_symmetric_lam_specialization(self):
-        """m_3(T,T,T; l, l) = (c/3)*l^3 + 4T*l^2 (dT drops out by skew)."""
+        """m_3(T,T,T; l, l) = d2T + 5l*dT + 6l^2*T + (c/4)*l^4."""
         l = Symbol('lambda')
         c = Symbol('c')
         m3 = m3_virasoro(l, l, c)
-        assert simplify(m3['dT']) == 0  # 2*(l - l) = 0
-        assert simplify(m3['T'] - 4 * l ** 2) == 0
-        assert simplify(m3['1'] - c * (2 * l ** 3) / 6) == 0  # c/6*(l^2*l + l*l^2) = c/3*l^3
+        assert simplify(m3['d2T'] - 1) == 0
+        assert simplify(m3['dT'] - 5 * l) == 0
+        assert simplify(m3['T'] - 6 * l ** 2) == 0
+        assert simplify(m3['1'] - c * l ** 4 / 4) == 0
 
     def test_m3_antisymmetric_lam_specialization(self):
-        """m_3(T,T,T; l, -l): the scalar part vanishes."""
+        """m_3(T,T,T; l, -l) = d2T - l*dT - 2l^2*T - (c/12)*l^4."""
         l = Symbol('lambda')
         c = Symbol('c')
         m3 = m3_virasoro(l, -l, c)
-        # scalar: c/6*(l^2*(-l) + l*(-l)^2) = c/6*(-l^3 + l^3) = 0
-        assert simplify(m3['1']) == 0
-        # dT: 2*(l - (-l)) = 4l
-        assert simplify(m3['dT'] - 4 * l) == 0
-        # T: 4*l*(-l) = -4l^2
-        assert simplify(m3['T'] - (-4 * l ** 2)) == 0
+        assert simplify(m3['d2T'] - 1) == 0
+        # dT: 2l + 3*(-l) = -l
+        assert simplify(m3['dT'] - (-l)) == 0
+        # T: 4*l*(-l) + 2*(-l)^2 = -4l^2 + 2l^2 = -2l^2
+        assert simplify(m3['T'] - (-2 * l ** 2)) == 0
+        # scalar: c*(-l)^3*(2l + (-l))/12 = c*(-l^3)*l/12 = -c*l^4/12
+        assert simplify(m3['1'] - (-c * l ** 4 / 12)) == 0
 
 
 class TestAssociator:
@@ -767,18 +776,18 @@ class TestSpecificCValues:
     """m_3 at specific physically relevant c values."""
 
     def test_m3_c1(self):
-        """m_3 at c = 1: T-coefficient = 4, scalar = 1/6*(l1^2*l2 + l1*l2^2)."""
+        """m_3 at c = 1: T-coefficient = 4*l1*l2+2*l2^2, scalar = l2^3*(2*l1+l2)/12."""
         l1, l2 = symbols('lambda_1 lambda_2')
         m3 = m3_virasoro(l1, l2, S.One)
-        assert simplify(m3['T'] - 4 * l1 * l2) == 0
-        expected_scalar = (l1 ** 2 * l2 + l1 * l2 ** 2) / 6
+        assert simplify(m3['T'] - (4 * l1 * l2 + 2 * l2 ** 2)) == 0
+        expected_scalar = l2 ** 3 * (2 * l1 + l2) / 12
         assert simplify(m3['1'] - expected_scalar) == 0
 
     def test_m3_c26(self):
-        """m_3 at c = 26: scalar = 26/6*(l1^2*l2 + l1*l2^2) = 13/3*(...)."""
+        """m_3 at c = 26: scalar = 26/12*l2^3*(2*l1+l2) = 13/6*l2^3*(2*l1+l2)."""
         l1, l2 = symbols('lambda_1 lambda_2')
         m3 = m3_virasoro(l1, l2, S(26))
-        expected_scalar = Rational(26, 6) * (l1 ** 2 * l2 + l1 * l2 ** 2)
+        expected_scalar = Rational(26, 12) * l2 ** 3 * (2 * l1 + l2)
         assert simplify(m3['1'] - expected_scalar) == 0
 
     def test_m3_c0_no_scalar(self):
@@ -789,20 +798,19 @@ class TestSpecificCValues:
 
     def test_m3_numerical_c1(self):
         """m_3(T,T,T; 1, 2) at c = 1: exact numerical check."""
-        dT_c, T_c, sc_c = 2.0 * (1.0 - 2.0), 4.0 * 1.0 * 2.0, 1.0 * (1.0 + 2.0) / 6.0
-        # dT: 2*(1-2) = -2, T: 4*1*2 = 8, scalar: 1*(1+4)/6 = wait
-        # scalar = c/6*(l1^2*l2 + l1*l2^2) = 1/6*(1*2 + 1*4) = 1/6*6 = 1
-        assert abs(dT_c - (-2.0)) < 1e-14
-        assert abs(T_c - 8.0) < 1e-14
-        # scalar: c/6*(l1^2*l2 + l1*l2^2) at l1=1,l2=2,c=1:
-        # 1/6*(1*2 + 1*4) = 1/6*6 = 1
-        expected_sc = 1.0 * (1.0 ** 2 * 2.0 + 1.0 * 2.0 ** 2) / 6.0
-        assert abs(expected_sc - 1.0) < 1e-14
+        # dT: 2*1 + 3*2 = 8, T: 4*1*2 + 2*4 = 16,
+        # scalar: 1*8*(2+2)/12 = 32/12 = 8/3
+        dT_c = 2.0 * 1.0 + 3.0 * 2.0
+        T_c = 4.0 * 1.0 * 2.0 + 2.0 * 2.0 ** 2
+        sc_c = 1.0 * 2.0 ** 3 * (2.0 * 1.0 + 2.0) / 12.0
+        assert abs(dT_c - 8.0) < 1e-14
+        assert abs(T_c - 16.0) < 1e-14
+        assert abs(sc_c - 8.0 / 3.0) < 1e-14
 
     def test_m3_numerical_c13(self):
         """m_3 at c = 13 (self-dual): T-coefficient is c-independent."""
         cert = m3_nonvanishing_certificate(13.0)
-        assert abs(cert['T_coeff'] - 4.0) < 1e-14
+        assert abs(cert['T_coeff'] - 6.0) < 1e-14
 
 
 # ===================================================================

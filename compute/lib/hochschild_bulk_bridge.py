@@ -174,17 +174,16 @@ def betagamma_data():
 
     Two generators, so ChirHoch is exterior algebra on 2 generators.
 
-    Central charge: c = -2 (for standard betagamma with weights (1,0)).
-    kappa(betagamma) = c/2 = -1.
+    Central charge: c = +2 (for standard betagamma with weights (1,0)).
+    kappa(betagamma) = c/2 = +1.
     Koszul dual: bc ghosts.
-    kappa(bc) = c_{bc}/2 = -26/2 = -13.
-    But the COMPLEMENTARY system is not bc at weight (2,-1).
+    kappa(bc) = c_{bc}/2 = -2/2 = -1.
 
     For the standard betagamma-bc pair with matching weights:
-    c(betagamma) + c(bc) = -2 + (-26) depends on weight conventions.
+    c(betagamma) + c(bc) = +2 + (-2) = 0.
 
     Using the cross-pair convention from cross_volume_bridge.py:
-    kappa(betagamma) = -1, kappa(betagamma!) = 1.
+    kappa(betagamma) = +1, kappa(betagamma!) = -1.
     kappa sum = 0.
 
     Shadow archetype: Contact/quartic (C), depth 4.
@@ -192,10 +191,10 @@ def betagamma_data():
     return ChiralAlgebraData(
         name="betagamma",
         num_generators=2,
-        central_charge=S(-2),
-        dual_central_charge=S(2),
-        kappa=S(-1),
-        dual_kappa=S(1),
+        central_charge=S(2),
+        dual_central_charge=S(-2),
+        kappa=S(1),
+        dual_kappa=S(-1),
         kappa_sum=S.Zero,
         shadow_depth=4,
         shadow_class="C",

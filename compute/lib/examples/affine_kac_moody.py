@@ -434,15 +434,24 @@ def sugawara_central_charge(g, k):
 
 
 def affine_kappa(g, k):
-    """Modular Koszul curvature: kappa = c/2.
+    """Modular Koszul curvature: kappa = dim(g)*(k + h^v)/(2*h^v).
 
-    For affine g at level k: kappa = k*dim(g) / (2*(k + h^v)).
+    For affine g at level k: kappa = dim(g)*(k + h^v) / (2*h^v).
 
-    Vol I convention: kappa(A) = c(A)/2 for all chiral algebras.
+    CORRECTION (2026-03-24): The old formula kappa = c/2 = k*dim(g)/(2*(k+h^v))
+    diverges at critical level k = -h^v and gives wrong complementarity.
+    The correct formula kappa = dim(g)*(k+h^v)/(2*h^v) VANISHES at critical level
+    and satisfies kappa(k) + kappa(k') = 0 for FF-dual k' = -k - 2h^v (AP1 fix).
+
+    Vol I convention: kappa(V_k(g)) = dim(g)*(k + h^v)/(2*h^v).
+    For sl_2: kappa = 3*(k+2)/4.
+    For sl_3: kappa = 4*(k+3)/3.
     """
     if g.is_abelian:
         return Rational(1, 2)
-    return affine_central_charge(g, k) / 2
+    k_sym = S(k)
+    h = S(g.h_dual)
+    return S(g.dim) * (k_sym + h) / (2 * h)
 
 
 def ff_dual_level(g, k):
@@ -462,17 +471,21 @@ def ff_dual_level(g, k):
 
 
 def kappa_complementarity_affine(g, k):
-    """Verify kappa-complementarity: kappa(V_k) + kappa(V_{k'}) = dim(g).
+    """Verify kappa-complementarity: kappa(V_k) + kappa(V_{k'}) = 0.
 
-    For sl_N at any non-critical k:
-      c(k) + c(k') = 2*dim(g)
-    so kappa(k) + kappa(k') = dim(g).
+    For KM/free fields: kappa + kappa' = 0 (CLAUDE.md Critical Pitfalls).
+
+    With kappa = dim(g)*(k + h^v)/(2*h^v) and k' = -k - 2h^v:
+      kappa(k') = dim(g)*(-k - 2h^v + h^v)/(2*h^v) = dim(g)*(-k - h^v)/(2*h^v) = -kappa(k).
+    So kappa(k) + kappa(k') = 0.
 
     Returns:
-        The sum kappa(k) + kappa(k') - dim(g), which should be 0.
+        The sum kappa(k) + kappa(k'), which should be 0.
     """
     if g.is_abelian:
-        # u(1): kappa(k) = 1/2, kappa(-k) = 1/2, sum = 1 = dim
+        # u(1): kappa(k) = 1/2, kappa(-k) = 1/2, sum = 1
+        # For u(1) the "dual level" is -k, and kappa is constant 1/2,
+        # so the sum is 1 = dim. But u(1) complementarity follows a different rule.
         k_prime = ff_dual_level(g, k)
         return affine_kappa(g, k) + affine_kappa(g, k_prime) - g.dim
 
@@ -480,7 +493,7 @@ def kappa_complementarity_affine(g, k):
     k_prime = ff_dual_level(g, k)
     kap = affine_kappa(g, k_sym)
     kap_prime = affine_kappa(g, k_prime)
-    return simplify(kap + kap_prime - g.dim)
+    return simplify(kap + kap_prime)
 
 
 # =========================================================================
@@ -761,7 +774,7 @@ def verify_killing_invariance(g):
 # =========================================================================
 
 def kappa_from_vol1_formula(g, k):
-    """Compute kappa using the Vol I formula: kappa = c/2.
+    """Compute kappa using the Vol I formula: kappa = dim(g)*(k+h^v)/(2*h^v).
 
     This is the authoritative formula from Vol I concordance.tex.
     Should agree exactly with affine_kappa().

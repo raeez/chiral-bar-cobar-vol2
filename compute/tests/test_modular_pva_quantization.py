@@ -40,21 +40,21 @@ class TestGenus0ClassicalData:
         assert data['shadow_archetype'] == 'G'
 
     def test_affine_sl2_kappa(self):
-        """Affine sl_2: kappa = 3k/(2(k+2))."""
+        """Affine sl_2: kappa = dim(sl_2)*(k+h^v)/(2*h^v) = 3*(k+2)/4."""
         from lib.modular_pva_quantization import genus0_classical_data
         k = Symbol('k')
         data = genus0_classical_data('affine_sl2', k=k)
-        expected_c = 3 * k / (k + 2)
-        expected_kappa = expected_c / 2
+        # dim(sl_2) = 3, h^v = 2
+        expected_kappa = 3 * (k + 2) / 4
         assert simplify(data['kappa'] - expected_kappa) == 0
 
     def test_affine_sl3_kappa(self):
-        """Affine sl_3: kappa = 8k/(2(k+3)) = 4k/(k+3)."""
+        """Affine sl_3: kappa = dim(sl_3)*(k+h^v)/(2*h^v) = 4*(k+3)/3."""
         from lib.modular_pva_quantization import genus0_classical_data
         k = Symbol('k')
         data = genus0_classical_data('affine_sl3', k=k)
-        expected_c = 8 * k / (k + 3)
-        expected_kappa = expected_c / 2
+        # dim(sl_3) = 8, h^v = 3
+        expected_kappa = 8 * (k + 3) / 6
         assert simplify(data['kappa'] - expected_kappa) == 0
 
     def test_affine_shadow_depth(self):
@@ -92,10 +92,10 @@ class TestGenus0ClassicalData:
         assert data['resonance_divisor'] == Rational(-22, 5)
 
     def test_betagamma_kappa(self):
-        """betagamma: kappa = -1 (c = -2)."""
+        """betagamma: kappa = +1 (c = +2)."""
         from lib.modular_pva_quantization import genus0_classical_data
         data = genus0_classical_data('betagamma')
-        assert data['kappa'] == -1
+        assert data['kappa'] == 1
         assert data['shadow_depth'] == 4
         assert data['shadow_archetype'] == 'C'
 
@@ -235,11 +235,11 @@ class TestGenus1LoopEquation:
         assert simplify(eq['theta_1'] - 5 * c / 144) == 0
 
     def test_affine_sl2_theta1(self):
-        """Affine sl_2: Theta_1 = kappa/24 = k/(16(k+2))."""
+        """Affine sl_2: Theta_1 = kappa/24 = 3*(k+2)/4 / 24 = (k+2)/32."""
         from lib.modular_pva_quantization import genus1_loop_equation
         k = Symbol('k')
         eq = genus1_loop_equation('affine_sl2', k=k)
-        expected = 3 * k / (2 * (k + 2)) * Rational(1, 24)
+        expected = 3 * (k + 2) / 4 * Rational(1, 24)
         assert simplify(eq['theta_1'] - expected) == 0
 
     def test_faber_pandharipande_lambda1(self):
@@ -672,10 +672,10 @@ class TestComplementarity:
         assert simplify(complementarity_sum('w3', c=c) - Rational(500, 6)) == 0
 
     def test_affine_sl2_complementarity(self):
-        """Affine sl_2: kappa + kappa_dual = 3 (= dim(sl_2))."""
+        """Affine sl_2: kappa + kappa_dual = 0 (KM anti-symmetry)."""
         from lib.modular_pva_quantization import complementarity_sum
         k = Symbol('k')
-        assert simplify(complementarity_sum('affine_sl2', k=k) - 3) == 0
+        assert simplify(complementarity_sum('affine_sl2', k=k)) == 0
 
 
 # ===================================================================

@@ -381,36 +381,36 @@ class TestFeiginFrenkel:
         assert simplify(k_double_prime - k) == 0
 
     def test_complementarity_sl2(self):
-        """kappa(V_k) + kappa(V_{k'}) = 3 = dim(sl_2)."""
+        """kappa(V_k) + kappa(V_{k'}) = 0 for sl_2 (KM anti-symmetry)."""
         g = sl2_data()
         k = Symbol('k')
         result = kappa_complementarity_affine(g, k)
         assert simplify(result) == 0
 
     def test_complementarity_sl3(self):
-        """kappa(V_k) + kappa(V_{k'}) = 8 = dim(sl_3)."""
+        """kappa(V_k) + kappa(V_{k'}) = 0 for sl_3 (KM anti-symmetry)."""
         g = sl3_data()
         k = Symbol('k')
         result = kappa_complementarity_affine(g, k)
         assert simplify(result) == 0
 
     def test_complementarity_sl2_numeric(self):
-        """Numeric check: kappa(V_1(sl_2)) + kappa(V_{-5}(sl_2)) = 3.
+        """Numeric check: kappa(V_1(sl_2)) + kappa(V_{-5}(sl_2)) = 0.
 
-        k=1, k'=-5. c(1) = 1, c(-5) = 5, kappa(1) = 1/2, kappa(-5) = 5/2.
-        Sum = 3 = dim(sl_2).
+        k=1, k'=-5. kappa(1) = 3*3/4 = 9/4, kappa(-5) = 3*(-3)/4 = -9/4.
+        Sum = 0 (KM anti-symmetry).
         """
         g = sl2_data()
         k1 = affine_kappa(g, 1)
         k_prime = ff_dual_level(g, 1)  # = -5
         k2 = affine_kappa(g, k_prime)
-        assert simplify(k1 + k2 - 3) == 0
+        assert simplify(k1 + k2) == 0
 
     def test_complementarity_general(self):
-        """kappa + kappa' = dim(g) for all simple g.
+        """kappa + kappa' = 0 for all simple g (KM anti-symmetry).
 
         This is the general form of Theorem C (complementarity) applied
-        to affine algebras. For sl_N: kappa + kappa' = N^2 - 1.
+        to affine algebras: kappa(k) + kappa(k') = 0 for FF-dual k' = -k-2h^v.
         """
         for g in [sl2_data(), sl3_data()]:
             k = Symbol('k')
@@ -523,19 +523,21 @@ class TestShadowData:
         assert sd['depth'] == 2
 
     def test_kappa_formula_sl2(self):
-        """kappa(V_k(sl_2)) = 3k/(2(k+2))."""
+        """kappa(V_k(sl_2)) = 3*(k+2)/4."""
         g = sl2_data()
         k = Symbol('k')
         kap = affine_kappa(g, k)
-        expected = 3 * k / (2 * (k + 2))
+        # dim(sl_2)=3, h^v=2: kappa = 3*(k+2)/(2*2) = 3*(k+2)/4
+        expected = 3 * (k + 2) / 4
         assert simplify(kap - expected) == 0
 
     def test_kappa_formula_sl3(self):
-        """kappa(V_k(sl_3)) = 4k/(k+3)."""
+        """kappa(V_k(sl_3)) = 4*(k+3)/3."""
         g = sl3_data()
         k = Symbol('k')
         kap = affine_kappa(g, k)
-        expected = 4 * k / (k + 3)
+        # dim(sl_3)=8, h^v=3: kappa = 8*(k+3)/(2*3) = 4*(k+3)/3
+        expected = 4 * (k + 3) / 3
         assert simplify(kap - expected) == 0
 
 
@@ -547,7 +549,7 @@ class TestCrossVolume:
     """Cross-checks with Vol I computations."""
 
     def test_matches_vol1_kappa_sl2(self):
-        """kappa formula matches Vol I: kappa = c/2 = 3k/(2(k+2)) for sl_2."""
+        """kappa formula matches Vol I: kappa = dim(g)*(k+h^v)/(2*h^v) = 3*(k+2)/4 for sl_2."""
         g = sl2_data()
         k = Symbol('k')
         vol1_kappa = kappa_from_vol1_formula(g, k)
@@ -649,10 +651,10 @@ class TestStructural:
             assert val == 0, f"sl_3 skew ({a},{b}) FAILED: {val}"
 
     def test_kappa_at_k1_sl2(self):
-        """kappa(V_1(sl_2)) = 1/2."""
+        """kappa(V_1(sl_2)) = 3*(1+2)/4 = 9/4."""
         g = sl2_data()
         kap = affine_kappa(g, 1)
-        assert kap == Rational(1, 2)
+        assert kap == Rational(9, 4)
 
     def test_kappa_u1(self):
         """kappa(u(1)) = 1/2."""
