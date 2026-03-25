@@ -2,7 +2,7 @@
 
 <br>
 
-# Modular Homotopy Theory for Factorization Algebras on Curves
+# Modular Homotopy Theory for Algebraic Factorization Algebras on Algebraic Curves
 
 ### Volume 2: A&infin; Chiral Algebras and 3D Holomorphic&ndash;Topological QFT
 

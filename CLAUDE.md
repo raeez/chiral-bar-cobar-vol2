@@ -48,9 +48,9 @@ Every chapter depends on Vol I's five theorems. Cross-references to Vol I labels
 
 **IX. Conclusion and Aftermatter.** Conclusion, appendices (brace signs, orientations, FM proofs, PVA expanded).
 
-## Standing Hypotheses — RESOLVED
+## Standing Hypotheses — MADE EXPLICIT
 
-**No axioms remain.** The former standing hypotheses (H1)–(H4) have been eliminated. The algebraic framework is now unconditional, built on a single definition:
+**The algebraic framework is unconditional.** The former standing hypotheses (H1)–(H4) are no longer background axioms. They have been made explicit: (H1)–(H2) are now conditions of the physics bridge theorem (Theorem thm:physics-bridge), (H3) is a theorem, and (H4) is the recognition theorem. The pure-algebraic theory requires only a single definition:
 
 **Definition (Logarithmic SC^{ch,top}-algebra, Definition def:log-SC-algebra):** A C_*(W(SC^{ch,top}))-algebra whose closed-colour A∞ operations are defined by logarithmic weight forms factoring as ω_k = ω_k^hol ⊗ ω_k^top on FM_k(ℂ) × Conf_k(ℝ).
 
@@ -79,10 +79,10 @@ All results in Parts I–VII hold unconditionally for any logarithmic SC^{ch,top
 - PVA on cohomology H•(A,Q) is **(−1)-shifted**: the λ-bracket has shifted parity relative to classical PVA conventions.
 - The R-matrix R(z) comes from **bulk-boundary composition**, NOT from the universal R-matrix of a quantum group (though they agree on the evaluation locus — this is DK-0).
 - Formality fails at d' = 1: this is NOT a defect. The non-vanishing of higher A∞ operations IS the curved bar structure d² = κ(A)·ω₁ from Vol I.
-- The corrected bulk/boundary/line triangle: **bulk ≃ derived CENTER of boundary**, NOT bulk = boundary.
+- The corrected bulk/boundary/line triangle: **bulk ≃ derived CENTER of boundary**, NOT bulk = boundary. **Scope:** Proved rigorously in the boundary-linear exact sector (Theorem thm:boundary-linear-bulk-boundary). The global triangle for all HT theories is conjectural — it reduces formally to hypotheses (compact generator, derived center quasi-isomorphism) that are verified only in the boundary-linear case and for inputs from CDG20/GKW24.
 - Chiral Koszulness from physics: **RESOLVED for the affine lineage** by the loop-order criterion (Theorem thm:one-loop-koszul), which shows one-loop exactness of the BV-BRST differential implies Koszulness. DS reduction (Theorem thm:ds-koszul-obstruction) explains the failure mechanism: Koszulness descends through DS iff the BRST cohomology inherits one-loop exactness. General case beyond the affine lineage remains open.
 - **Homotopy-Koszulity of SC^{ch,top} is PROVED** (Theorem thm:homotopy-Koszul): via Kontsevich formality + transfer from classical Swiss-cheese (Livernet). ALL formerly conditional results (bar-cobar Quillen equivalence, filtered Koszul duality, C_line ≃ A!-mod, dg-shifted Yangian) are now unconditional.
-- **Spectral Drinfeld strictification is COMPLETE** for all filtrations and all simple Lie algebras, via the complete strictification theorem. The former "filtration >= 4" frontier is fully resolved. The true remaining frontier is Kac-Moody algebras with root multiplicities > 1, where the strictification mechanism requires new input.
+- **Spectral Drinfeld strictification is PROVED** (Theorem thm:complete-strictification in dg_shifted_factorization_bridge.tex) for all filtrations and all simple Lie algebras: root multiplicity one forces the spectral Drinfeld class to vanish at every filtration, via root-space one-dimensionality (Theorem thm:root-space-one-dim) and the Jacobi collapse lemma (Lemma lem:jacobi-collapse). The true remaining frontier is Kac-Moody algebras with root multiplicities > 1, where root-space one-dimensionality fails and the strictification mechanism requires new input.
 - The **Koszul dual is the boundary**, not the bulk: A! lives on the boundary ℝ, not in the bulk ℂ × ℝ.
 
 ## Cross-Volume Bridges
