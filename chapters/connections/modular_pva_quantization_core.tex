@@ -266,6 +266,7 @@ external leg set is $F$ and which have exactly one internal edge. Such a graph i
 \end{definition}
 
 \begin{definition}[Modular bar datum]
+\label{def:modular-bar-datum}
 A \emph{modular bar datum} on $C$ consists of:
 \begin{enumerate}[leftmargin=2.4em]
 \item an internal differential
@@ -493,6 +494,308 @@ $L_\infty$ quasi-isomorphisms, exactly as in the modular homotopy
 deformation-object construction of Volume~I.
 \end{construction}
 
+
+\subsection{From trees to stable graphs: the genus completion}
+\label{subsec:genus-completion}
+\index{genus completion|textbf}
+
+The modular bar coalgebra $\Bmod(C)$ carries a complete
+genus filtration.  Its genus-$0$ piece is the ordinary
+tree-level bar coalgebra; the modular deformation algebra
+$L_{\mathrm{mod}}(C)$ is the genus completion of the
+tree-level deformation complex.  The non-separating one-edge
+expansion is the sole primitive that connects them.
+
+\begin{definition}[Chiral convolution dg~Lie algebra]
+\label{def:chiral-convolution}
+\index{chiral convolution dg Lie algebra|textbf}
+The \emph{tree-level} or \emph{chiral convolution dg~Lie algebra}
+of a modular bar datum $C$ is
+\begin{equation}\label{eq:chiral-convolution-dg-lie}
+\mathfrak{g}^{\mathrm{ch}}_C
+\;:=\;
+\Coder(\Bch(C))[-1]
+\;\cong\;
+\Hom(\Bch(C),\, sC)[-1],
+\end{equation}
+where $\Bch(C) := \bar{B}^{(0)}(C)$ is the tree-level
+sub-coalgebra of~$\Bmod(C)$---stable graphs with all vertex
+genera zero and $b_1 = 0$, i.e.\ trees.  Its MC elements are
+tree-level twisting cochains.
+\end{definition}
+
+\begin{theorem}[Genus completion; \ClaimStatusProvedHere]
+\label{thm:genus-completion}
+\index{genus filtration!on modular deformation algebra}
+\index{modular deformation algebra!genus completion}
+The genus filtration
+$F^g\Bmod(C) := \prod_{g(\Gamma) \ge g} C[\Gamma]_{\Aut(\Gamma)}$
+induces a complete descending filtration
+$F^\bullet L_{\mathrm{mod}}(C)$ with the following properties:
+\begin{enumerate}[label=\textup{(\roman*)}]
+\item The genus-$g$ associated graded of the coalgebra is the
+  genus-$g$ bar complex:
+  \[
+  \gr_F^g \Bmod(C)
+  \;\cong\;
+  \bar{B}^{(g)}(C)
+  \;=\;
+  \bigoplus_{\substack{\Gamma \in \StGraph^{\mathrm{conn}} \\
+  g(\Gamma) = g}}
+  C[\Gamma]_{\Aut(\Gamma)}.
+  \]
+  At genus~$0$, only trees survive: $\bar{B}^{(0)}(C) = \Bch(C)$.
+
+\item The genus-$0$ associated graded of the deformation algebra
+  is the chiral convolution:
+  $\gr_F^0\, L_{\mathrm{mod}}(C) \cong
+  \mathfrak{g}^{\mathrm{ch}}_C$.
+
+\item Each $\gr_F^g$ for $g \ge 1$ is a module over
+  $\mathfrak{g}^{\mathrm{ch}}_C$ via the adjoint action, and
+  the obstruction class
+  $\Ob_g(\Theta_{<g}) \in
+  H^2(\gr_F^g,\, d_0^{\Theta_0})$
+  of Theorem~\textup{\ref{thm:Obg}} lives in the
+  cohomology of this module twisted by the genus-$0$ MC element.
+
+\item $[F^p, F^q] \subset F^{p+q}$;
+  $D_0(F^p) \subset F^p$;
+  $D_1(F^p) \subset F^{p+1}$;
+  and $L_{\mathrm{mod}} = \varprojlim_g L_{\mathrm{mod}}/F^g$.
+
+\item The associated spectral sequence has
+  $E_1^{p,q} = H^{p+q}(\gr_F^p)$, converges to
+  $H^*(L_{\mathrm{mod}})$, and its $d_1$-differential is the
+  genus-raising operator~$D_1$.  The zeroth column is
+  $H^*(\mathfrak{g}^{\mathrm{ch}}_C)$.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+The differential $D = D_0 + D_1$ respects the genus filtration
+because $D_0 = D_{\mathrm{int}} + D_{\mathrm{sep}}$ preserves
+genus and $D_1 = D_{\mathrm{nsep}}$ raises it by one
+(Proposition~\ref{prop:D0D1}).  The associated graded of the
+coalgebra at genus~$g$ picks out stable graphs of total genus
+exactly~$g$; at $g = 0$, stability forces $b_1 = 0$ and all
+$g(v) = 0$, so only trees remain.
+
+For part~(ii): a coderivation of $\Bmod(C)$ restricts, via
+$\Bmod \to \Bmod/F^1 = \Bch$, to a coderivation of the tree-level
+coalgebra.  The kernel consists of coderivations supported on
+graphs of genus $\ge 1$, which is $F^1\Coder(\Bmod)$.  Thus
+$\gr_F^0\,\Coder(\Bmod)[-1] = \Coder(\Bch)[-1] =
+\mathfrak{g}^{\mathrm{ch}}_C$.  The bracket on $\gr^0_F$ is the
+commutator of tree-level coderivations: at genus~$0$, only
+separating one-edge expansions contribute, and their commutator
+is again tree-level.
+
+For part~(iii): $[F^0, F^g] \subset F^g$ by the genus-additivity
+of separating clutching, so $\gr_F^g$ is a
+$\mathfrak{g}^{\mathrm{ch}}$-module.  The twisted differential
+$d_0^{\Theta_0}(x) = D_0(x) + [\Theta_0, x]$ is the standard
+MC twist.
+
+For parts~(iv)--(v): $[F^p, F^q] \subset F^{p+q}$ because
+separating clutching adds genera; completeness is
+Theorem~\ref{thm:modular-bar}(iii).  The spectral sequence is
+the standard one of a complete filtered dg~Lie algebra.  Since
+$D_1 \colon F^p \to F^{p+1}$ and $D_0 \colon F^p \to F^p$, the
+induced map $d_1 \colon \gr^p \to \gr^{p+1}$ is $D_1$.
+\end{proof}
+
+\begin{remark}[What the genus completion means]
+\label{rem:genus-completion-meaning}
+\index{genus completion!interpretation}
+The theorem says that $L_{\mathrm{mod}}(C)$ is the
+pro-nilpotent extension
+\[
+0 \longrightarrow F^1 L_{\mathrm{mod}}
+\longrightarrow L_{\mathrm{mod}}
+\longrightarrow \mathfrak{g}^{\mathrm{ch}}_C
+\longrightarrow 0
+\]
+of the chiral convolution by the positive-genus ideal.  The
+genus-$0$ chiral convolution $\mathfrak{g}^{\mathrm{ch}}$ controls
+tree-level Koszul duality; the modular deformation algebra
+$L_{\mathrm{mod}}$ controls the full genus tower.  The passage
+from one to the other is governed by the non-separating one-edge
+operator $D_1$: it is the algebraic shadow of the first loop
+correction, and it is the sole primitive that makes the genus
+tower nontrivial.
+
+The corresponding passage on the coalgebra side is equally clean:
+\[
+\begin{array}{rcl}
+\text{trees} & \rightsquigarrow & \text{stable graphs} \\[3pt]
+\barB_{\mathrm{op}}(C)
+  & \rightsquigarrow
+  & \mathrm{FT}_{\cM\!od}(C) \\[3pt]
+\mathfrak{g}^{\mathrm{ch}}_C
+  & \rightsquigarrow
+  & L_{\mathrm{mod}}(C) \\[3pt]
+\text{flat twisting } \pi
+  & \rightsquigarrow
+  & \text{curved twisting } \tau_{\mathrm{mod}} \\[3pt]
+d_0^2 = 0
+  & \rightsquigarrow
+  & d_{\mathrm{fib}}^2 = \kappa \cdot \omega_g
+\end{array}
+\]
+Every entry in the left column is the genus-$0$ associated graded
+of the corresponding entry on the right.  Every theorem of
+Volume~I at genus~$0$ has a modular extension in the right column.
+\end{remark}
+
+\begin{proposition}[Factorisation along boundary strata;
+\ClaimStatusProvedHere]
+\label{prop:factorisation-boundary-strata}
+\index{clutching factorization|textbf}
+\index{Maurer--Cartan class!factorisation}
+Let $\delta_\cA = D - D^{(0)} = \sum_{g \ge 1} \hbar^g\,
+\delta^{(g)}_\cA \in F^1 L_{\mathrm{mod}}$ be the positive-genus
+MC element
+\textup{(}Theorem~\textup{\ref{thm:coderivation-MC-synthesis})}.
+Its genus-$g$ component factorises along the boundary strata
+of~$\overline{\cM}_{g,n}$:
+\begin{enumerate}[label=\textup{(\roman*)}]
+\item \emph{Separating nodes.}
+  $\xi_{\mathrm{sep}}^*(\delta^{(g)})
+  = \sum_{g_1+g_2=g}
+  \delta^{(g_1)} \star \delta^{(g_2)}$,
+  where $\star$ is the convolution product through the sewing
+  propagator.
+
+\item \emph{Non-separating nodes.}
+  $\xi_{\mathrm{ns}}^*(\delta^{(g)})
+  = \Delta_{\mathrm{cyc}}(\delta^{(g-1)})
+  + \text{lower-genus quadratics}$,
+  where $\Delta_{\mathrm{cyc}}$ contracts two inputs with the
+  invariant form.
+
+\item \emph{Codimension-two compatibility.}
+  On codimension-$2$ strata, the two factorisation maps agree.
+  This is the codimension-two cancellation axiom
+  (Definition~\ref{def:modular-bar-datum}(3)), transported to
+  coderivations.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+Part~(i): $\delta_\cA$ is a coderivation
+of~$\Bmod$, so it satisfies the Leibniz rule
+$\Delta_{\mathrm{sep}} \circ \delta = (\delta \otimes \id +
+\id \otimes \delta) \circ \Delta_{\mathrm{sep}}$
+with respect to the separating coproduct.  Projecting to
+genus~$g$ and using genus-additivity across the separating edge
+gives the factorisation formula.
+
+Part~(ii): the non-separating clutching map pairs two legs on
+a genus-$(g{-}1)$ surface; on $\Bmod$, this is
+$D_{\mathrm{nsep}}$, whose coderivation incarnation is
+$\Delta_{\mathrm{cyc}}$.  The MC equation at genus~$g$
+(Theorem~\ref{thm:Obg}) gives
+$d_0\delta^{(g)} = -\Delta_{\mathrm{cyc}}(\delta^{(g-1)})
+- \tfrac{1}{2}\sum_{h+h'=g} [\delta^{(h)}, \delta^{(h')}]$,
+determining $\delta^{(g)}$ from lower genera.
+
+Part~(iii): the codimension-two cancellation axiom says that
+for any stable graph with two internal edges, the two orderings
+of successive one-edge expansions cancel with signs.  On
+coderivations, this is the associativity of iterated
+factorisation---equivalently, $\partial^2 = 0$ on the
+stratification of~$\overline{\cM}_{g,n}$.
+\end{proof}
+
+\begin{remark}[The convolution bracket as correspondence product]
+\label{rem:convolution-as-correspondence}
+\index{correspondence algebra!modular convolution}
+\index{Chriss--Ginzburg!correspondence algebra}
+The Lie bracket on $L_{\mathrm{mod}}$ is a correspondence
+product.  For $\alpha$ at $(g_1,n_1)$ and $\beta$ at $(g_2,n_2)$,
+the bracket $[\alpha,\beta]$ composes through the separating
+clutching correspondence
+\[
+\begin{tikzcd}[column sep=2.5em]
+\overline{\cM}_{g_1,n_1+1} \times
+\overline{\cM}_{g_2,n_2+1}
+& \ar[l, "p"'] Z
+  \ar[r, "\xi"] &
+\overline{\cM}_{g,n}
+\end{tikzcd}
+\]
+via $[\alpha,\beta] = \xi_* \circ p^*(\alpha \boxtimes \beta)$,
+contracted by the invariant pairing on the new edge.  This is
+the operadic incarnation of the Chriss--Ginzburg convolution on
+Steinberg varieties: as the Steinberg self-intersection
+$\widetilde{\cN} \times_{\mathfrak{g}} \widetilde{\cN}$ produces
+the Hecke algebra, the modular clutching correspondence produces
+the modular convolution.  The Jacobi identity is the associativity
+of the clutching correspondence---the commutativity of
+codimension-$2$ clutching squares.
+\end{remark}
+
+\begin{remark}[Factorisation homology: Ran space to moduli tower]
+\label{rem:factoris-ran-to-moduli}
+\index{factorisation homology!Ran to moduli tower}
+In the language of Beilinson--Drinfeld, the chiral convolution
+$\mathfrak{g}^{\mathrm{ch}}_\cA$ is the endomorphism
+factorisation homology $\int_{\Ran(X)} \End_\cA$ over the Ran
+space of a curve, and the modular convolution $L_{\mathrm{mod}}$
+is $\int_{\cM\!od} \End_\cA$---factorisation homology over the
+full modular operad $\cM\!od = \{\overline{\cM}_{g,n}\}$.  The
+projection $L_{\mathrm{mod}} \to \mathfrak{g}^{\mathrm{ch}}$
+is the restriction of factorisation homology along the
+inclusion of $\Ran(\P^1)$ (genus-$0$ configurations) into
+$\cM\!od$.  The positive-genus MC element $\delta_\cA$ is a
+section of the factorisation algebra over the full moduli tower,
+and its factorisation along boundary strata
+(Proposition~\ref{prop:factorisation-boundary-strata}) is
+the factorisation property of this section.
+
+The ribbon-graph variant gives the $E_1$~wing.  Replacing
+stable graphs by ribbon graphs---the Feynman transform
+$F\!\Ass$ of the associative modular operad---produces the
+ordered convolution algebra
+$L_{\mathrm{mod}}^{E_1} := \Coder(\Bmod^{\mathrm{rib}})[-1]$.
+The coinvariant projection from ribbon to stable graphs is the
+passage from colour-ordered to full amplitudes, and the
+genus expansion of $L_{\mathrm{mod}}^{E_1}$ is the algebraic
+form of the 't~Hooft $1/N$ expansion: planar ribbon graphs
+dominate at large~$N$, and the MC element decomposes as
+$\sum_g N^{2-2g} \delta_{\mathrm{planar}}^{(g)}$
+(Theorem~\ref{thm:formal-genus-expansion}).
+\end{remark}
+
+\begin{computation}[The genus completion on the standard families;
+\ClaimStatusProvedHere]
+\label{comp:genus-completion-standard}
+\index{affine!genus completion|textbf}
+\begin{enumerate}[label=\textup{(\alph*)}]
+\item \emph{Affine} $V^k(\mathfrak{g})$:
+  the chiral convolution bracket is
+  $[\alpha,\beta] = f^{ab}{}_c\, \alpha \circ_a \beta$.
+  The genus-$1$ obstruction is
+  $\Ob_1 = (k + h^\vee) \cdot [\omega_1]$.
+  The full modular MC class in the scalar sector is the
+  $\hat{A}$-genus:
+  $\delta_\cA = \sum_{g \ge 1} \hbar^g (k+h^\vee)^g \lambda_g$.
+
+\item \emph{Heisenberg} $\cH_k$:
+  $\mathfrak{g}^{\mathrm{ch}} = 0$ (the chiral convolution
+  bracket vanishes because the OPE is abelian).  The modular
+  deformation is purely genus-raising:
+  $D_1$ acts as $\hbar k\, \partial^2/\partial a^i \partial a^j$,
+  and the spectral sequence degenerates at~$E_1$.
+
+\item \emph{Virasoro/\/$\cW_N$}:
+  all channels---separating bracket, non-separating loop, and
+  rigid residues---are active.  The first modular obstruction
+  vanishes for $\cW_3$ by the triangular normal-form theorem
+  (Theorem~\ref{thm:triangular-vanishing}).
+\end{enumerate}
+\end{computation}
 
 \subsection{Concrete chain-level presentation from the three foundational papers}
 \label{subsec:vol2-three-preprints-chain-level}

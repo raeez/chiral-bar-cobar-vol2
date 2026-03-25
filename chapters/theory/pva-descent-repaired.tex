@@ -1374,3 +1374,102 @@ package:
 \end{itemize}
 All steps hold for any logarithmic $\SCchtop$-algebra (Definition~\ref{def:log-SC-algebra}); the product decomposition and FM calculus (Theorem~\ref{thm:FM-calculus}) supply the required inputs.
 \end{remark}
+
+\subsection{Functoriality of PVA descent}
+\label{subsec:pva-functoriality}
+
+The constructions above assemble into a functor.
+
+\begin{definition}[Morphism of logarithmic $\SCchtop$-algebras]
+\label{def:morphism-SC-algebra}
+A \emph{morphism} $f \colon (A, Q_A, \partial_A, \{m_k^A\})
+\to (B, Q_B, \partial_B, \{m_k^B\})$ of logarithmic
+$\SCchtop$-algebras is a cochain map
+$f \colon (A, Q_A) \to (B, Q_B)$
+satisfying $f \circ \partial_A = \partial_B \circ f$ and
+intertwining all operations:
+\[
+  f \circ m_k^A(a_1, \ldots, a_k; \lambda_1, \ldots, \lambda_{k-1})
+  = m_k^B(f(a_1), \ldots, f(a_k); \lambda_1, \ldots, \lambda_{k-1})
+\]
+for all $k \geq 1$ and all $a_i \in A$.
+Write $\cat{SC\text{-}Alg}^{\log}$ for the resulting category.
+Write $\cat{PVA}_{(-1)}$ for the category of
+$(-1)$-shifted Poisson vertex algebras with PVA morphisms
+(maps preserving $\mu$, $\{\cdot{}_\lambda\cdot\}$, and $\partial$).
+\end{definition}
+
+\begin{theorem}[Functoriality of PVA descent; \ClaimStatusProvedHere]
+\label{thm:pva-descent-functor}
+\index{PVA descent!functoriality|textbf}
+The assignment
+\[
+  \mathcal{D} \colon \cat{SC\text{-}Alg}^{\log}
+  \longrightarrow \cat{PVA}_{(-1)},
+  \qquad
+  A \longmapsto \bigl(H^\bullet(A,Q),\; \mu,\;
+  \{\cdot{}_\lambda\cdot\},\; \partial\bigr),
+\]
+on objects defined by Theorem~\textup{\ref{thm:cohomology-PVA-main}},
+extends to a functor: given a morphism
+$f \colon A \to B$ of logarithmic $\SCchtop$-algebras,
+$\mathcal{D}(f) := H^\bullet(f) \colon H^\bullet(A,Q_A) \to
+H^\bullet(B,Q_B)$ is a morphism of $(-1)$-shifted PVAs.
+\end{theorem}
+
+\begin{proof}
+We verify that $H^\bullet(f)$ preserves each piece of PVA structure.
+
+\medskip\noindent
+\textbf{Step 1: Product.}
+Since $f$ intertwines $m_2^A$ and $m_2^B$ at all spectral
+parameters, it intertwines the regular parts:
+$f(m_2^{A,\mathrm{reg}}(a,b;0)) = m_2^{B,\mathrm{reg}}(f(a),f(b);0)$.
+As $f$ is a cochain map, it descends to
+$H^\bullet(f)(\mu_A([a],[b])) = \mu_B(H^\bullet(f)[a], H^\bullet(f)[b])$.
+
+\medskip\noindent
+\textbf{Step 2: $\lambda$-bracket.}
+The singular part $m_2^{\mathrm{sing}}(a,b;\zeta) = \sum_n
+(a_{(n)}b)\,\zeta^{-n-1}$ is intertwined:
+$f(a_{(n)}^A b) = f(a)_{(n)}^B f(b)$.  Applying the Borel
+transform (Theorem~\ref{thm:cohomology-PVA-main}), which is
+a linear operation on coefficients:
+\[
+  f\bigl(\{a {}_\lambda b\}_A\bigr)
+  = f\Bigl(\sum_n \tfrac{\lambda^n}{n!}\, a_{(n)}^A b\Bigr)
+  = \sum_n \tfrac{\lambda^n}{n!}\, f(a)_{(n)}^B f(b)
+  = \{f(a) {}_\lambda f(b)\}_B.
+\]
+Descent to cohomology follows because $f$ is a cochain map, and
+the $\lambda$-bracket descends to $H^\bullet$ by
+Lemma~\ref{lem:lambda_descends}.
+
+\medskip\noindent
+\textbf{Step 3: Translation operator.}
+$H^\bullet(f) \circ \partial_A = \partial_B \circ H^\bullet(f)$
+on cohomology, since $f \circ \partial_A = \partial_B \circ f$
+on cochains and $\partial$ commutes with $Q$.
+
+\medskip\noindent
+\textbf{Step 4: Unit.}
+$f(\mathbf{1}_A) = \mathbf{1}_B$ (a morphism of unital
+$\SCchtop$-algebras preserves the unit by definition).
+
+\medskip\noindent
+\textbf{Step 5: Composition and identity.}
+If $f \colon A \to B$ and $g \colon B \to C$ are morphisms,
+then $H^\bullet(g \circ f) = H^\bullet(g) \circ H^\bullet(f)$
+by functoriality of $H^\bullet$.  Similarly
+$H^\bullet(\mathrm{id}_A) = \mathrm{id}_{H^\bullet(A)}$.
+\end{proof}
+
+\begin{remark}[Quasi-isomorphism invariance]
+\label{rem:pva-descent-qi}
+If $f \colon A \xrightarrow{\sim} B$ is a quasi-isomorphism
+of logarithmic $\SCchtop$-algebras, then $\mathcal{D}(f)$ is
+an isomorphism of $(-1)$-shifted PVAs.  In particular, the PVA
+structure on $H^\bullet(A,Q)$ is a quasi-isomorphism invariant
+of the $\SCchtop$-algebra, a necessary condition for it to
+capture physically meaningful data.
+\end{remark}

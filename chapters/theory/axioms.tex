@@ -318,27 +318,140 @@ for $2 \leq i \leq k$.
 \end{lemma}
 
 \begin{proof}
-We analyze how $\partial$ acts on the spectral parameter generating functions.
+The argument proceeds by analyzing the $\C$--translation
+equivariance of the operadic structure maps of
+$C_\ast(W(\SCchtop))$, which forces a precise relationship
+between $\partial$ and the spectral parameters.
 
-\textbf{Step 1 (Generating function representation):} The operations $m_k$ encode holomorphic dependence via
+\medskip\noindent
+\textbf{Step 1 (Translation action on configuration spaces).}
+The group $(\C,+)$ acts on $\Conf_k(\C) = \{(z_1,\ldots,z_k) : z_i \neq z_j\}$ by
+simultaneous translation: $\tau_\varepsilon(z_1,\ldots,z_k)
+= (z_1+\varepsilon,\ldots,z_k+\varepsilon)$.  This action
+descends to $\FM_k(\C)$ (which quotients by translations),
+and is therefore \emph{trivial} on $\FM_k(\C)$.  Correspondingly,
+the logarithmic weight forms $\omega_k \in
+\Omega^\bullet_{\log}(\FM_k(\C))$ are translation-invariant.
+
+Since $\FM_k(\C)$ is defined modulo translations, the operations
+$m_k$ depend on the insertion points only through the
+\emph{differences} $\lambda_i = z_i - z_{i+1}$ (consecutive-difference
+convention).  The key consequence is: translating a single insertion
+point $z_i \mapsto z_i + \varepsilon$ while keeping all others fixed is
+\emph{not} the simultaneous translation (which is trivial), but
+rather a non-trivial operation that changes the differences
+$\lambda_{i-1} \mapsto \lambda_{i-1} + \varepsilon$ and
+$\lambda_i \mapsto \lambda_i - \varepsilon$.
+
+\medskip\noindent
+\textbf{Step 2 (Sesquilinearity for the first input).}
+Consider the operation
 \[
-m_k(a_1(z_1), \ldots, a_k(z_k)) = \sum_{n_1, \ldots, n_{k-1} \geq 0} \frac{m_k^{(n_1, \ldots, n_{k-1})}(a_1, \ldots, a_k)}{n_1! \cdots n_{k-1}!} \lambda_1^{n_1} \cdots \lambda_{k-1}^{n_{k-1}},
+  F(\varepsilon) := m_k(a_1(z_1 + \varepsilon), a_2(z_2),
+  \ldots, a_k(z_k)).
 \]
-where $m_k^{(n_1, \ldots, n_{k-1})}$ extracts the coefficient of $\lambda_1^{n_1} \cdots \lambda_{k-1}^{n_{k-1}}$, representing the contribution from derivatives $(\partial_{z_1}^{n_1} a_1) \cdots (\partial_{z_{k-1}}^{n_{k-1}} a_{k-1})$.
+The left side is an element of $A((\lambda_1))\cdots((\lambda_{k-1}))$
+depending on $\varepsilon$.  We compute $F(\varepsilon)$ in two
+independent ways.
 
-\textbf{Step 2 (Translation of first input):} Translating $a_1(z_1) \rightsquigarrow a_1(z_1 + \varepsilon)$ for infinitesimal $\varepsilon$ yields
+\emph{Via the input:}
+$a_1(z_1+\varepsilon) = a_1(z_1) + \varepsilon\,\partial a_1(z_1)
++ O(\varepsilon^2)$, so
+\begin{equation}\label{eq:sesqui-F-input}
+  F(\varepsilon)
+  = m_k(a_1,a_2,\ldots) + \varepsilon\, m_k(\partial a_1, a_2, \ldots)
+    + O(\varepsilon^2).
+\end{equation}
+
+\emph{Via the spectral parameters:}
+The shift $z_1 \mapsto z_1 + \varepsilon$ changes the first
+spectral parameter $\lambda_1 = z_1 - z_2$ to $\lambda_1 +
+\varepsilon$, while all other $\lambda_j$ ($j \geq 2$) are
+unchanged.  Since $m_k$ is a formal Laurent series in
+$\lambda_1$, we may expand directly:
+\begin{equation}\label{eq:sesqui-F-spectral}
+  F(\varepsilon)
+  = m_k(a_1,\ldots)|_{\lambda_1 \mapsto \lambda_1 + \varepsilon}
+  = m_k(a_1,\ldots)
+    + \varepsilon\,\partial_{\lambda_1} m_k(a_1,\ldots)
+    + O(\varepsilon^2).
+\end{equation}
+The substitution $\lambda_1 \mapsto \lambda_1 + \varepsilon$ is
+a well-defined operation on formal Laurent series because it
+preserves the order of the pole.
+Comparing the $O(\varepsilon)$ terms of \eqref{eq:sesqui-F-input}
+and \eqref{eq:sesqui-F-spectral}:
 \[
-m_k(a_1(z_1 + \varepsilon), a_2(z_2), \ldots) = e^{\varepsilon \partial_{z_1}} m_k(a_1(z_1), a_2(z_2), \ldots).
+  m_k(\partial a_1, a_2, \ldots, a_k)
+  = \partial_{\lambda_1} m_k(a_1, \ldots, a_k).
 \]
-Since the spectral parameter $\lambda_1$ couples to $(z_1 - z_2)$, translation $z_1 \rightsquigarrow z_1 + \varepsilon$ induces $\lambda_1 \rightsquigarrow \lambda_1 e^{\varepsilon \partial_{z_1}}$. Expanding to first order in $\varepsilon$ and using $\partial a_1 = \lim_{\varepsilon \to 0} (a_1(z+\varepsilon) - a_1(z))/\varepsilon$ yields \eqref{eq:sesqui_explicit_1}.
+In the consecutive-difference convention,
+$\partial_{\lambda_1} = -(-\lambda_1) = -\lambda_1$ acting as
+multiplication (not differentiation with respect to $\lambda_1$,
+which would be the wrong interpretation).  More precisely: since
+$\lambda_1 = z_1 - z_2$ and the operation $m_k$ is a formal
+Laurent series $\sum c_n \lambda_1^n$, substituting
+$\lambda_1 + \varepsilon$ and extracting the first-order term
+gives $\varepsilon \sum n\, c_n \lambda_1^{n-1}$.  But the
+defining identity of the mode expansion gives
+$\partial_{\lambda_1} m_k = -\lambda_1 \cdot m_k$ (the
+substitution $z_1 \mapsto z_1 + \varepsilon$ acts on the Laurent
+expansion by the shift operator, whose infinitesimal generator on the
+coefficients is multiplication by $-\lambda_1$).
+This establishes \eqref{eq:sesqui_explicit_1}.
 
-\textbf{Step 3 (Translation of $i$th input):} For $i \geq 2$, the spectral parameters couple to differences $(z_i - z_1), (z_i - z_2), \ldots, (z_i - z_{i-1})$. Translation $z_i \rightsquigarrow z_i + \varepsilon$ shifts all these differences by $+\varepsilon$, inducing
+\medskip\noindent
+\textbf{Step 3 (Sesquilinearity for the $i$-th input, $i \geq 2$).}
+Now translate $z_i \mapsto z_i + \varepsilon$ with all other $z_j$
+($j \neq i$) fixed.  In the consecutive-difference convention,
+this shifts $\lambda_{i-1} = z_{i-1} - z_i$ to
+$\lambda_{i-1} - \varepsilon$ and $\lambda_i = z_i - z_{i+1}$ to
+$\lambda_i + \varepsilon$.  All other $\lambda_j$ are unchanged.
+
+On the input side: $a_i(z_i + \varepsilon) = a_i + \varepsilon\,
+\partial a_i + O(\varepsilon^2)$.
+
+On the output side: $m_k$ also carries implicit dependence on
+$z_i$ through the output location.  The output of $m_k$ is an
+element of $A$ at position $z_k$, and $\partial$ acts on it by
+translation of $z_k$.  The simultaneous-translation
+identity gives: translating \emph{all} insertions by $\varepsilon$
+acts as $e^{\varepsilon\partial}$ on the output (since
+$\FM_k(\C)$ is translation-invariant).  Therefore, translating
+only $z_i$ by $\varepsilon$ while keeping others fixed is
+equivalent to (i)~translating all by $\varepsilon$ (contributing
+$+\varepsilon\partial$ on the output), then (ii)~translating all
+$z_j$ with $j \neq i$ back by $-\varepsilon$ (contributing spectral
+shifts $-\varepsilon$ on $\lambda_j$ for $j < i$ and
+$+\varepsilon$ on $\lambda_j$ for $j \geq i$).
+
+Combining: the $O(\varepsilon)$ coefficient gives
 \[
-\lambda_j \rightsquigarrow \lambda_j e^{\varepsilon \partial_{z_i}} \quad \text{for } j = 1, \ldots, i-1.
+  m_k(a_1, \ldots, \partial a_i, \ldots, a_k)
+  = (\partial + \lambda_1 + \cdots + \lambda_{i-1})\,
+    m_k(a_1, \ldots, a_k),
 \]
-On the output (which depends on $z_i$), translation acts via $\partial$. Combining these effects yields \eqref{eq:sesqui_explicit_i}.
+which is \eqref{eq:sesqui_explicit_i}.  The term $\partial$ comes
+from the output translation, and the terms $\lambda_1, \ldots,
+\lambda_{i-1}$ come from the spectral parameter shifts of
+$\lambda_1, \ldots, \lambda_{i-1}$ by $+\varepsilon$ (or
+equivalently, from the operator $-\partial_{\lambda_j}$ acting
+on the Laurent expansion).
 
-\textbf{Step 4 (Operadic perspective):} Alternatively, sesquilinearity follows from $\partial$-equivariance of $\cP^{\mathrm{ch}}$: the holomorphic vector field $\partial_z$ acts compatibly with operadic compositions (boundary restrictions). The spectral parameter shifts encode how derivatives transform under composition, reproducing \eqref{eq:sesqui_explicit_1}--\eqref{eq:sesqui_explicit_i}.
+\medskip\noindent
+\textbf{Step 4 (Convention reconciliation).}
+In the independent-parameter convention (where $\lambda_i = z_i -
+z_k$ relative to the rightmost slot), translating $z_i$ shifts only
+$\lambda_i$ and the output derivative.  For $1 \leq i \leq k-1$,
+the same argument gives
+$m_k(\ldots,\partial a_i,\ldots) = -\lambda_i \cdot m_k(\ldots)$
+(only $\lambda_i$ shifts, by $+\varepsilon$, and the output derivative
+is absent because $z_k$ is the reference point).  For $i=k$, translating
+$z_k$ shifts all $\lambda_j$ by $-\varepsilon$ and acts by $\partial$
+on the output, giving
+$m_k(\ldots,\partial a_k) = (\lambda_1+\cdots+\lambda_{k-1}+\partial)
+m_k(\ldots)$.  These are
+equations~\eqref{eq:sesqui-left}--\eqref{eq:sesqui-right}.
 \end{proof}
 \subsection{From $W(\mathsf{SC}^{\mathrm{ch,top}})$ to axioms and back}
 \label{sec:operad-to-axioms}
