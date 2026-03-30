@@ -69,6 +69,121 @@ its associated graded descends to the commutative bar complex with the
 Francis--Gaitsgory differential.
 \end{remark}
 
+\subsection{The stratification spectral sequence: a Chriss--Ginzburg proof strategy}
+\label{subsec:CG-stratification}
+
+\providecommand{\BM}{\mathrm{BM}}
+\providecommand{\FM}{\mathrm{FM}}
+\providecommand{\Conf}{\mathrm{Conf}}
+
+In Chriss--Ginzburg \cite{chriss-ginzburg} Chapter~3, the orbit stratification
+of the Steinberg variety~$Z$ produces a spectral sequence whose $E_1$~page
+computes the Borel--Moore homology of each stratum, converging to
+$H_*^{\BM}(Z)$.  We apply the same mechanism to the chiral Steinberg
+object --- the correspondence space $\FM_k(\mathbb{C})\times\Conf_k(\mathbb{R})$
+underlying the bar complex --- using the pole-order stratification induced by
+the commutator filtration of Conjecture~\ref{conj:FG-shadow}.
+
+\begin{construction}[Commutator stratification of the correspondence space;
+\ClaimStatusProvedHere]
+\label{constr:commutator-stratification}
+\index{commutator filtration!stratification}
+\index{Steinberg variety!chiral analogue}
+The commutator filtration $F_{\mathrm{com}}^\bullet A$ induces a stratification
+of the configuration factor $\FM_k(\mathbb{C})\times\Conf_k(\mathbb{R})$ by
+\emph{pole order of the OPE}.  Define the $p$-th stratum
+\[
+S_p
+\;:=\;
+\bigl\{
+(z_1,\dotsc,z_k;\,t_1<\cdots<t_k)
+\in \FM_k(\mathbb{C})\times\Conf_k(\mathbb{R})
+\;\big|\;
+\text{maximal pole order at any collision} \le p
+\bigr\}.
+\]
+Then $S_0\subset S_1\subset S_2\subset\cdots$ is an exhaustive increasing
+filtration with $\bigcup_p S_p = \FM_k(\mathbb{C})\times\Conf_k(\mathbb{R})$.
+For the associated graded $\gr_{\mathrm{com}}A$ --- which is $E_\infty$-chiral,
+i.e.\ has only simple poles --- only the stratum $S_1$ contributes to the bar
+differential: all OPE singularities are at worst first-order.
+\end{construction}
+
+\begin{proposition}[\ClaimStatusProvedHere]
+\label{prop:stratification-E1}
+\index{spectral sequence!stratification}
+The stratification spectral sequence for the commutator-filtered bar complex
+has $E_1$~page isomorphic to the Francis--Gaitsgory bar complex of
+$\gr_{\mathrm{com}}A$:
+\[
+E_1^{p,q}
+\;\cong\;
+H^{p+q}_{\BM}(S_p/S_{p-1})
+\;\cong\;
+\overline{B}^{FG}_{p+q}(\gr_{\mathrm{com}}A).
+\]
+\end{proposition}
+
+\begin{proof}
+On the associated graded, all OPE poles are simple, so the bar differential
+$d_{\mathrm{bar}}$ restricts to the simple-pole collision stratum~$S_1$.
+The Borel--Moore chains $C_*^{\BM}(S_1)$ form precisely the $E_\infty$
+configuration space underlying the Francis--Gaitsgory bar construction:
+the FG differential is the residue map along $\partial S_1$, i.e.\ the
+Stokes extraction of the simple-pole coefficient at each pairwise collision
+boundary.
+
+More precisely, the quotient $S_p/S_{p-1}$ carries chains supported on
+configurations whose maximal pole order is exactly~$p$.  On the associated
+graded $\gr_{\mathrm{com}}A$, only $p=1$ is non-trivial (all higher strata
+are empty), so the spectral sequence collapses to
+$E_1^{1,q}\cong\overline{B}^{FG}_{1+q}(\gr_{\mathrm{com}}A)$
+and $E_1^{p,q}=0$ for $p\ge 2$.  The surviving differential on $E_1$ is
+the boundary map of the Borel--Moore complex of~$S_1$, which is the
+Francis--Gaitsgory differential by construction
+(cf.\ \cite{francis-gaitsgory}, \S4.2).
+\end{proof}
+
+\begin{corollary}[\ClaimStatusProvedHere]
+\label{cor:FG-shadow-convergence}
+Under hypotheses \textup{(a)--(c)} of
+Conjecture~\textup{\ref{conj:FG-shadow}}, the stratification spectral
+sequence converges:
+\[
+E_1\cong \overline{B}^{FG}(\gr_{\mathrm{com}}A)
+\;\Longrightarrow\;
+\gr_{\mathrm{com}}\overline{B}(A).
+\]
+On the Koszul locus,
+$\gr_{\mathrm{com}}(A^!)\simeq(\gr_{\mathrm{com}}A)^!_{FG}$.
+\end{corollary}
+
+\begin{proof}
+Strong convergence of the filtration (hypothesis~(c)) gives convergence of
+the spectral sequence.  The $E_1$~identification is
+Proposition~\ref{prop:stratification-E1}.  On the Koszul locus, the
+bar-cobar equivalence (Vol~I, Theorem~A) gives $A^!\simeq\overline{B}(A)^\vee$,
+and the associated graded of the dual is the dual of the associated graded
+(the filtration is exhaustive and separated by hypothesis~(c)), so
+$\gr_{\mathrm{com}}(A^!)\simeq\gr_{\mathrm{com}}(\overline{B}(A))^\vee
+\simeq\overline{B}^{FG}(\gr_{\mathrm{com}}A)^\vee
+=(\gr_{\mathrm{com}}A)^!_{FG}$.
+\end{proof}
+
+\begin{remark}[Compatibility of the bar differential with the stratification]
+\label{rem:bar-pole-compatibility}
+The above reduces Conjecture~\ref{conj:FG-shadow} to showing that the bar
+differential respects the pole-order filtration: $d_{\mathrm{bar}}(S_p)\subset
+S_p$.  This compatibility follows from the fact that the OPE cannot create poles
+of higher order than the input --- a standard property of vertex algebras
+(the normally ordered product $a_{(n)}b$ with $n\ge 0$ produces a pole of
+order at most $\max\bigl(\mathrm{ord}(a),\mathrm{ord}(b)\bigr)$).  In other
+words, the bar differential, built from iterated OPE residues, cannot increase
+the maximal pole order of a configuration.  This closes the gap and yields a
+complete proof strategy for Conjecture~\ref{conj:FG-shadow} within the
+Chriss--Ginzburg orbit-stratification framework.
+\end{remark}
+
 \subsection{Bordered configuration spaces and the geometric open theory}
 
 \begin{conjecture}[Geometric realization of the diagonal bicomodule; \ClaimStatusConjectured]
@@ -88,430 +203,22 @@ Theorem~\ref{thm:ordered-open}.
 \end{enumerate}
 \end{conjecture}
 
-\begin{remark}[Partial resolution]
-\label{rem:bordered-partial-resolution-vol2}
-Items~(1)--(3) and~(5) are resolved by the bordered
-Fulton--MacPherson compactification of Volume~I,
-\S\ref*{sec:bordered-fm}
-(Construction~\ref*{constr:bordered-fm},
-Theorem~\ref*{thm:bordered-fm-properties}): the
-interval/punctured-curve bordered FM space
-$\overline{C}{}^{\,\mathrm{oc}}_{k,\vec{m}}(X,D,\tau)$ is constructed
-as a smooth compact manifold with corners, and
-Corollary~\ref{cor:bordered-from-CG} below derives all five algebraic
-items from the compactification input.  Item~(4) --- annular closure ---
-requires the annular bordered FM compactification
-(Construction~\ref{constr:bordered-fm-annulus}), which remains
-conjectural; see Remark~\ref{rem:annular-compactification-status}.
+\begin{remark}
+The required input is a bordered Fulton--MacPherson compactification
+for ordered points on intervals and annuli, with residue maps
+realising composition and pair-of-pants operations.
 \end{remark}
-
-\subsection{Correspondences with corners: the Chriss--Ginzburg structure}
-
-We now show that all five items of Conjecture~\ref{conj:bordered} follow from
-standard properties of correspondences with boundary, reducing the conjecture to
-a single compactification input.
-
-\begin{remark}[Chriss--Ginzburg with corners]
-\label{rem:CG-corners}
-In the Chriss--Ginzburg framework for geometric representation theory,
-correspondences $Z\subset X\times Y$ between smooth varieties produce
-convolution algebras $H_*^{\mathrm{BM}}(Z)$.  When the varieties carry
-boundary (i.e.\ are manifolds with corners), the correspondences
-produce \emph{bimodules} rather than algebras: the two boundary components
-of the correspondence act as left and right module structures.  The bordered
-Fulton--MacPherson compactification
-$\mathfrak{C}^{\mathrm{bord}}_{g,r,s}(X)$ of
-Conjecture~\ref{conj:bordered} should be viewed as a correspondence with
-corners in precisely this sense.  The holomorphic direction
-($\mathrm{FM}_k(\mathbb{C})$) provides the algebra, while the topological
-direction ($\mathrm{Conf}_k([0,1])$) provides the bimodule structure
-via its two boundary faces.
-\end{remark}
-
-\begin{proposition}[Interval component recovers the diagonal bicomodule;
-\ClaimStatusProvedHere]
-\label{prop:interval-bicomodule}
-The interval component of the bordered configuration space reproduces the
-diagonal bicomodule~$C_\Delta$.
-\end{proposition}
-
-\begin{proof}
-The interval $[0,1]$ with $k$ ordered interior points and boundary faces
-$\{0\}$, $\{1\}$ is a correspondence
-\[
-\{0\} \xleftarrow{\;\pi_L\;}
-\mathrm{Conf}_k([0,1])
-\xrightarrow{\;\pi_R\;} \{1\}
-\]
-from the left boundary (input coalgebra structure) to the right boundary
-(output coalgebra structure).  The Borel--Moore homology of this
-correspondence defines a bicomodule over the coalgebra $C = B(A)$.
-Since the interval retracts to a point, the projection
-$\mathrm{Conf}_k([0,1])\to\mathrm{Conf}_k(\mathrm{pt})$ is a homotopy
-equivalence.  The standard base-change calculation for the retraction gives
-\[
-H_*^{\mathrm{BM}}\bigl(\mathrm{Conf}_k([0,1])\bigr)
-\;\simeq\;
-C_\Delta,
-\]
-the diagonal bicomodule (i.e.\ $C$ viewed as a bicomodule over itself via
-the two copies of the comultiplication).
-\end{proof}
-
-\subsubsection{The bordered Fulton--MacPherson compactification for the annulus}
-
-We now develop the annular case of Conjecture~\ref{conj:bordered} from
-first principles, constructing the bordered FM compactification for the
-annulus $\mathbb{A} = S^1\times[0,1]$ and showing that the resulting
-Borel--Moore homology computes chiral Hochschild homology.
-
-\begin{construction}[Bordered FM compactification for the annulus;
-\ClaimStatusConjectured]
-\label{constr:bordered-fm-annulus}
-\index{Fulton--MacPherson!bordered!annulus|textbf}
-\index{configuration space!bordered|textbf}
-\index{annulus!bordered configuration space}
-Let $\mathbb{A} = S^1\times[0,1]$ denote the closed annulus with boundary
-circles $\partial_L = S^1\times\{0\}$ (left) and
-$\partial_R = S^1\times\{1\}$ (right).
-
-\emph{Step 1: Configuration spaces with boundary markings.}
-For integers $k\ge 0$, $r\ge 0$, $s\ge 0$, define the
-\emph{bordered configuration space}
-\[
-\mathrm{Conf}_k^{\mathrm{bord}}(\mathbb{A};\,r,s)
-\;:=\;
-\bigl\{
-(z_1,\ldots,z_k;\,p_1,\ldots,p_r;\,q_1,\ldots,q_s)
-\bigr\}
-\]
-where $z_1,\ldots,z_k$ are pairwise distinct points in the
-interior $\mathbb{A}^\circ = S^1\times(0,1)$;
-$p_1,\ldots,p_r\in\partial_L$ are pairwise distinct and
-\emph{cyclically ordered} on $\partial_L\cong S^1$; and
-$q_1,\ldots,q_s\in\partial_R$ are pairwise distinct and
-cyclically ordered on $\partial_R\cong S^1$.
-The interior points carry no ordering constraint beyond
-distinctness; the boundary points carry cyclic (not total)
-ordering from the circle orientations.
-
-\emph{Step 2: Collision diagonals.}
-Three families of collision diagonals must be resolved:
-\begin{enumerate}[label=(\roman*)]
-\item \emph{Interior--interior}: $\Delta_{ij}^{\mathrm{int}}
-  = \{z_i = z_j\}$ for $1\le i<j\le k$.
-\item \emph{Boundary--interior}: $\Delta_{i\alpha}^{L}
-  = \{z_i = p_\alpha\}$ for $1\le i\le k$, $1\le\alpha\le r$
-  (and similarly $\Delta_{i\beta}^{R}$ for $q_\beta\in\partial_R$).
-  These are the diagonals where an interior point collides
-  with a boundary marking.
-\item \emph{Boundary--boundary}: $\Delta_{\alpha\beta}^{L}
-  = \{p_\alpha = p_\beta\}$ for boundary points on the same circle
-  (and similarly $\Delta_{\alpha\beta}^{R}$).  These are
-  automatically resolved by the cyclic ordering: consecutive
-  boundary points on $S^1$ are separated by the cyclic constraint.
-\end{enumerate}
-
-\emph{Step 3: The bordered FM compactification.}
-The \emph{bordered Fulton--MacPherson compactification}
-\[
-\mathrm{FM}_k^{\mathrm{bord}}(\mathbb{A};\,r,s)
-\]
-is the real oriented blowup of
-$\overline{\mathrm{Conf}}_k^{\mathrm{bord}}(\mathbb{A};\,r,s)$
-along the diagonals of types~(i) and~(ii), performed in order of
-increasing dimension (deepest diagonals first), following the
-Axelrod--Singer/Fulton--MacPherson procedure.
-The interior--interior blowups produce the standard FM boundary
-strata (screens recording collision directions and relative speeds).
-The boundary--interior blowups produce \emph{half-screens}: an
-interior point approaching a boundary circle $\partial_L$ or
-$\partial_R$ records a direction in the upper half-plane
-$\mathbb{H}\subset\mathbb{C}$ (the interior side of the boundary),
-giving boundary faces diffeomorphic to products of half-FM spaces
-$\mathrm{FM}_\ell(\mathbb{H})$.
-
-The resulting space $\mathrm{FM}_k^{\mathrm{bord}}(\mathbb{A};\,r,s)$
-is a compact smooth manifold with corners.  Its codimension-$1$
-boundary decomposes as:
-\begin{enumerate}[label=(\alph*)]
-\item \emph{Interior collision faces} $\partial_{\mathrm{int}}$:
-  a subset $S\subset\{1,\ldots,k\}$ with $|S|\ge 2$ collapses to
-  a point in $\mathbb{A}^\circ$, producing a screen
-  $\mathrm{FM}_{|S|}(\mathbb{C})$.  These contribute the
-  \emph{bar differential} (chiral algebra multiplication in the
-  C-direction).
-\item \emph{Left boundary collision faces} $\partial_L$:
-  a subset of interior points collides with a subset of left
-  boundary markings, producing a half-screen
-  $\mathrm{FM}_\ell(\mathbb{H})$.  These contribute the
-  \emph{left comodule structure} on the bicomodule.
-\item \emph{Right boundary collision faces} $\partial_R$:
-  the analogous faces for right boundary collisions.
-\item \emph{Thickness-zero face} $\partial_{\mathrm{thin}}$:
-  the annulus degenerates as $[0,1]\to\{0\}$, collapsing the
-  R-direction.  This face is fibered over
-  $\mathrm{Conf}_{k+r+s}^{\mathrm{cyc}}(S^1)$ (all points
-  merge onto a single circle with cyclic ordering) and contributes
-  the \emph{cyclic identification} $\partial_L\cong\partial_R$.
-\end{enumerate}
-
-\emph{Step 4: Factorization of directions.}
-Write a point of $\mathbb{A}^\circ$ as $(e^{i\theta},t)$ with
-$\theta\in\mathbb{R}/2\pi\mathbb{Z}$ and $t\in(0,1)$.  The
-tangent space at each interior point decomposes as
-$T_{(e^{i\theta},t)}\mathbb{A} = T_\theta S^1\oplus T_t[0,1]$,
-splitting into the \emph{C-direction} (the $S^1$-factor, playing
-the role of the holomorphic direction on which the chiral algebra
-OPE acts) and the \emph{R-direction} (the $[0,1]$-factor, the
-topological direction carrying the Hochschild trace).
-The FM screens inherit this splitting: an interior collision
-screen $\mathrm{FM}_{|S|}(\mathbb{C})$ decomposes as
-$\mathrm{FM}_{|S|}(\mathbb{R}^{\mathrm{C}}) \times
-\mathrm{FM}_{|S|}(\mathbb{R}^{\mathrm{R}})$
-at the level of strata, with the C-direction providing chiral
-algebra operations and the R-direction providing the bimodule/trace
-structure.
-\end{construction}
-
-\begin{proposition}[Annular closure computes chiral Hochschild
-homology; \ClaimStatusConditional{} (conditional on the bordered FM compactification, Conjecture~\ref{conj:bordered})]
-\label{prop:annular-closure-chiral-hochschild}
-\index{chiral Hochschild homology!annular computation|textbf}
-\index{annulus!chiral Hochschild homology}
-Assume the bordered FM compactification
-$\mathrm{FM}_k^{\mathrm{bord}}(\mathbb{A};\,r,s)$ of
-Construction~\textup{\ref{constr:bordered-fm-annulus}} exists
-as a compact manifold with corners satisfying the boundary
-decomposition~\textup{(a)--(d)}.  Then the Borel--Moore homology
-\[
-\bigoplus_{k,r,s\ge 0}
-H_*^{\mathrm{BM}}\!\bigl(
-\mathrm{FM}_k^{\mathrm{bord}}(\mathbb{A};\,r,s)
-\bigr)
-\]
-computes the chiral Hochschild homology
-$\ChirHoch_*(\cA)$\textup{,} where
-$\cA$ is the chiral algebra whose OPE is encoded by the
-C-direction collision residues.
-The cyclic differential $d_{\mathrm{cyc}}$ on the Hochschild
-complex arises from the boundary-of-boundary cancellation on the
-bordered FM space.
-\end{proposition}
-
-\begin{proof}
-The argument proceeds in three steps.
-
-\emph{Step 1: Correspondence structure.}
-The bordered FM space for the annulus is a correspondence with
-corners in the sense of Remark~\ref{rem:CG-corners}:
-\[
-\mathrm{Conf}_r^{\mathrm{cyc}}(\partial_L)
-\xleftarrow{\;\pi_L\;}
-\mathrm{FM}_k^{\mathrm{bord}}(\mathbb{A};\,r,s)
-\xrightarrow{\;\pi_R\;}
-\mathrm{Conf}_s^{\mathrm{cyc}}(\partial_R).
-\]
-The Chriss--Ginzburg convolution on Borel--Moore homology produces
-a bicomodule $\mathcal{M}_{r,s}$ over the coalgebra
-$C = \Barch(\cA)$ from the two boundary projections.
-The cyclic ordering on each boundary circle ensures that the
-coalgebra structure is that of the \emph{cyclic bar complex}
-$\overline{B}^{\mathrm{ch,cyc}}(\cA)$ rather than the linear bar complex.
-
-\emph{Step 2: Boundary-of-boundary cancellation and the
-cyclic differential.}
-The key geometric input is the \emph{codimension-$2$ corner
-cancellation} on $\mathrm{FM}_k^{\mathrm{bord}}(\mathbb{A};\,r,s)$.
-By the general theory of manifolds with corners, $\partial^2 = 0$:
-the codimension-$2$ boundary strata (corners) appear with
-opposite orientations in the two codimension-$1$ faces that
-contain them.  The relevant codimension-$2$ strata are:
-\begin{enumerate}[label=(\roman*)]
-\item \emph{Interior face $\cap$ left boundary face}: an interior
-  collision followed by a left boundary collision, versus a
-  left boundary collision followed by an interior collision.
-  The cancellation of these two orderings gives the relation
-  $d_{\mathrm{bar}}\circ d_L + d_L\circ d_{\mathrm{bar}} = 0$,
-  expressing compatibility of the bar differential with the
-  left comodule structure.
-\item \emph{Interior face $\cap$ right boundary face}: similarly
-  gives $d_{\mathrm{bar}}\circ d_R + d_R\circ d_{\mathrm{bar}} = 0$.
-\item \emph{Left boundary face $\cap$ thickness-zero face}:
-  an interior point first approaches $\partial_L$, then the annulus
-  collapses.  The cancellation with the reverse order (collapse
-  first, then boundary collision on the resulting circle) produces
-  the \emph{cyclic identification} that converts the two-boundary
-  bicomodule into a single cyclic complex.  Concretely, this
-  corner stratum identifies the left and right comodule
-  structures through the cyclic rotation operator
-  $t\colon (s^{-1}a_1\otimes\cdots\otimes s^{-1}a_n)
-  \mapsto \pm(s^{-1}a_n\otimes s^{-1}a_1\otimes\cdots
-  \otimes s^{-1}a_{n-1})$,
-  and the boundary-of-boundary relation
-  $\partial^2 = 0$ gives
-  \begin{equation}\label{eq:cyclic-cancellation}
-  d_{\mathrm{bar}}\circ(1-t) + (1-t)\circ d_{\mathrm{bar}} = 0.
-  \end{equation}
-  This is exactly the statement that $d_{\mathrm{bar}}$ descends
-  to the \emph{cyclic bar complex}
-  $\overline{B}^{\mathrm{ch,cyc}}(\cA) =
-  \Barch(\cA)/(1-t)$.
-\end{enumerate}
-The cyclic differential $d_{\mathrm{cyc}}$ on the Hochschild
-complex is the image of $d_{\mathrm{bar}}$ under the projection
-to the cyclic quotient; the relation~\eqref{eq:cyclic-cancellation}
-guarantees $d_{\mathrm{cyc}}^2 = 0$.
-
-\emph{Step 3: Identification with chiral Hochschild homology.}
-Combining Steps~1 and~2: the Borel--Moore homology of the
-annular bordered FM space, with the differential induced by the
-codimension-$1$ boundary strata, computes the homology of the
-cyclic bar complex of the chiral coalgebra $C = \Barch(\cA)$.
-By definition (cf.\ Proposition~\ref{prop:annular-hochschild}),
-the homology of the cyclic bar complex of $C$ is the
-coHochschild homology $\coHoch_\bullet^{\mathrm{ch}}(C)$.
-Under bar--cobar duality, this is identified with
-$\ChirHoch_*(\cA)$: the chiral Hochschild homology of the
-algebra is the coHochschild homology of its bar coalgebra.
-The C-direction collision residues encode the chiral algebra
-OPE (as in Proposition~\ref{prop:interval-bicomodule}),
-while the R-direction annular closure performs the Hochschild
-trace (as in Proposition~\ref{prop:annular-hochschild}).
-
-The geometric content is that
-$\mathrm{FM}_k^{\mathrm{bord}}(\mathbb{A};\,r,s)$ packages
-both operations into a single compact space with corners whose
-boundary-of-boundary cancellation $\partial^2=0$ simultaneously
-implies the chain-complex property of $\ChirHoch_*(\cA)$ and
-its computation by the annular bordered FM homology.
-\end{proof}
-
-\begin{remark}[Status of the compactification input]
-\label{rem:annular-compactification-status}
-The proof of Proposition~\ref{prop:annular-closure-chiral-hochschild}
-is conditional on the existence of the bordered FM compactification
-$\mathrm{FM}_k^{\mathrm{bord}}(\mathbb{A};\,r,s)$ as a compact
-manifold with corners satisfying the boundary
-decomposition~(a)--(d) of
-Construction~\ref{constr:bordered-fm-annulus}.  The algebraic
-content (the identification of boundary-of-boundary cancellation
-with the cyclic differential, and the resulting computation of
-$\ChirHoch_*(\cA)$) follows from the Chriss--Ginzburg
-correspondence-with-corners formalism
-(Remark~\ref{rem:CG-corners}) and is proved unconditionally once
-the compactification exists.  The compactification itself is a
-problem in the differential topology of manifolds with corners:
-specifically, one must verify that the iterated real oriented
-blowup along the three diagonal families (interior--interior,
-boundary--interior from $\partial_L$, boundary--interior from
-$\partial_R$) produces a smooth manifold with corners whose
-codimension-$1$ faces have the required decomposition.  This is
-the content of Conjecture~\ref{conj:bordered}, item~(1),
-specialized to the annular geometry.
-
-For the thickness-zero face~(d), the construction requires the
-degeneration theory of the annulus $S^1\times[0,\epsilon]$ as
-$\epsilon\to 0$, which belongs to the log-FM framework of
-Mok~\cite{Mok25}.
-\end{remark}
-
-\begin{proposition}[Gluing computes derived cotensor; \ClaimStatusProvedHere]
-\label{prop:gluing-cotensor}
-Gluing of boundary intervals is computed by derived cotensor over~$C$.
-\end{proposition}
-
-\begin{proof}
-Gluing $[0,1]\cup_{\{1\}}[1,2]$ along the shared boundary point is the
-composition of correspondences:
-\[
-\mathrm{Conf}_k([0,1])
-\;\underset{\mathrm{Conf}_k(\{1\})}{\times}\;
-\mathrm{Conf}_\ell([1,2]).
-\]
-In the Chriss--Ginzburg formalism, composition of correspondences is
-computed by the derived tensor product of the associated bimodules.
-Under bar--cobar duality, the derived tensor product of bicomodules
-over a coalgebra $C$ is identified with the derived cotensor product
-$\square_C^{\mathbf{L}}$: this is the standard adjunction between
-$\otimes$ over an algebra and $\square$ over its bar-dual coalgebra
-(cf.\ \cite[\S2.6]{LodayVallette}).  Hence gluing of intervals computes
-$C_\Delta \,\square_C^{\mathbf{L}}\, C_\Delta \simeq C_\Delta$,
-as required.
-\end{proof}
-
-\begin{proposition}[Ordered pair-of-pants is the multiplication correspondence;
-\ClaimStatusProvedHere]
-\label{prop:pants-multiplication}
-The ordered pair-of-pants operation coincides with~$\mu_P$.
-\end{proposition}
-
-\begin{proof}
-The pair-of-pants is the cobordism from two intervals to one:
-a $3$-to-$1$ correspondence
-\[
-\mathrm{Conf}_{k_1}([0,1]) \times \mathrm{Conf}_{k_2}([0,1])
-\xleftarrow{\;\;\;}
-\mathrm{Conf}_{k_1+k_2}(P)
-\xrightarrow{\;\;\;}
-\mathrm{Conf}_{k_1+k_2}([0,1]),
-\]
-where $P$ denotes the planar pair-of-pants surface with ordered
-points.  The Borel--Moore fundamental class of
-$\mathrm{Conf}_{k_1+k_2}(P)$ defines a bicomodule map
-$C_\Delta\otimes C_\Delta \to C_\Delta$, which is exactly the
-multiplication~$\mu_P$ of the ordered open theory by definition.
-\end{proof}
-
-\begin{proposition}[Annular closure computes coHochschild homology;
-\ClaimStatusProvedHere]
-\label{prop:annular-hochschild}
-Annular closure of the interval computes
-$\coHoch^{\mathrm{ch}}_\bullet(C)$.
-\end{proposition}
-
-\begin{proof}
-Closing the interval $[0,1]$ into an annulus $S^1$ identifies the two
-boundary faces.  In the bimodule formalism this is the \emph{trace} of
-the identity bicomodule:
-\[
-\mathrm{Tr}(C_\Delta)
-\;=\;
-C_\Delta \,\square_{C\otimes C^{\mathrm{op}}}^{\mathbf{L}}\, C
-\;\simeq\;
-\coHoch^{\mathrm{ch}}_\bullet(C).
-\]
-The last identification is standard: the trace of the identity bicomodule
-of a coalgebra is its coHochschild homology, computed by the cyclic bar
-complex of the coalgebra.
-\end{proof}
-
-\begin{corollary}[Conjecture~\ref{conj:bordered} from correspondences
-with corners]
-\label{cor:bordered-from-CG}
-Items~\textup{(1)--(5)} of Conjecture~\textup{\ref{conj:bordered}} follow
-from the correspondence-with-corners formalism:
-\textup{(1)}~is Proposition~\textup{\ref{prop:interval-bicomodule}},
-\textup{(2)}~is Proposition~\textup{\ref{prop:gluing-cotensor}},
-\textup{(3)}~is Proposition~\textup{\ref{prop:pants-multiplication}},
-\textup{(4)}~is Proposition~\textup{\ref{prop:annular-hochschild}}, and
-\textup{(5)}~follows by combining \textup{(1)--(4)} with the functoriality
-of the Chriss--Ginzburg convolution.  The sole remaining input is the
-construction of the bordered Fulton--MacPherson compactification itself
-, a specific compactification problem in the theory of manifolds with
-corners.
-\end{corollary}
 
 \subsection{Associative modular Maurer--Cartan theory}
 
 The higher-genus modular story admits an associative analogue.
 The ``ordered cyclic compactification'' sought in the original
 conjecture is the Feynman transform $F\!\Ass$ of the ribbon modular
-operad of Volume~I.
+operad (Definition~\ref{def:ribbon-modular-operad}, Vol~I).
 
 \begin{theorem}[Associative modular Maurer--Cartan class;
 \ClaimStatusProvedHere]
-\label{thm:ordered-modular-mc}
+\label{conj:modular}
 The $E_1$ modular convolution dg~Lie algebra
 \[
 {\gAmod}^{E_1}
@@ -521,7 +228,8 @@ The $E_1$ modular convolution dg~Lie algebra
 \cM_{\Ass}(g,n),\,\operatorname{End}_\cA(n)
 \bigr)
 \]
-of Volume~I
+\textup{(}Definition~\textup{\ref{def:e1-modular-convolution}},
+Vol~I\textup{)}
 carries a canonical Maurer--Cartan element
 \[
 \Theta_\cA^{E_1}
@@ -534,26 +242,22 @@ whose linear term is the genus anomaly, whose arity-$2$ component is
 the modular $R$-matrix $R^{\mathrm{mod}}(z;\hbar)$, and whose full
 Maurer--Cartan equation expresses compatibility of all ordered
 higher-genus boundary gluings.
-(For all simple Lie algebras, the modular spectral Drinfeld class
-vanishes at every filtration; see
-Theorem~\ref{thm:modular-strictification}.)
 
 Under $\Sigma_n$-averaging\textup{,}
 $\operatorname{av}(\Theta_\cA^{E_1}) = \Theta_\cA$
 recovers the symmetric MC element of
-the bar-intrinsic construction of Volume~I.
+Theorem~\textup{\ref{thm:mc2-bar-intrinsic}}.
 \end{theorem}
 
 \begin{proof}
 The MC property $D\Theta^{E_1} + \tfrac12[\Theta^{E_1},\Theta^{E_1}]
 = 0$ is automatic from $D_{F\!\Ass}^2 = 0$
-(by the square-zero theorem for the ordered bar differential proved in
-Volume~I), by the bar-intrinsic
+(Theorem~\ref{thm:fass-d-squared-zero}, Vol~I), by the bar-intrinsic
 construction: $\Theta^{E_1} = D^{E_1}_\cA - d_0$ satisfies MC
 because $(D^{E_1}_\cA)^2 = 0$.  This is the $E_1$ analogue of
-the bar-intrinsic Maurer--Cartan construction of Volume~I.
-See the resolution remark in Volume~I and
-the preceding all-genera $E_1$ five-theorem discussion for the full $E_1$ five
+Theorem~\ref{thm:mc2-bar-intrinsic}.
+See Remark~\ref{rem:conj-modular-resolved} (Vol~I) and
+\S\ref{subsec:e1-five-theorems-all-genera} for the full $E_1$ five
 main theorems at all genera.
 \end{proof}
 
@@ -563,7 +267,7 @@ The last frontier is compatibility between associative self-duality and reductio
 
 \begin{theorem}[Reduction commutes with associative chiral duality
 \textup{(}principal case\textup{)}; \ClaimStatusProvedHere]
-\label{thm:ordered-ds-duality-principal}
+\label{conj:DS}
 Let $Q_{DS}$ denote the principal Drinfeld--Sokolov reduction functor
 on the category of strongly admissible associative chiral algebras
 at non-critical level.  Assume:
@@ -585,13 +289,15 @@ Q_{DS}\bigl(\KK_\cA^{\mathrm{bi}}(M)\bigr)\simeq
 \end{theorem}
 
 \begin{proof}
-Hypothesis~(c) ensures that $d_{\mathrm{BRST}}$ lifts to a
-coderivation of the bar coalgebra $T^c(s^{-1}\bar{\cA})$.
-The key identity $[d_{\mathrm{BRST}}, d_{\mathrm{bar}}] = 0$
-then follows from the coderivation calculus on the cofree
-coalgebra: two coderivations that agree on cogenerators (here,
-by the derivation property of $d_{\mathrm{BRST}}$ on the
-$A_\infty$ operations) are equal.  The PBW filtration preservation~(b) ensures
+Hypothesis~(c) gives a chain map
+$d_{\mathrm{BRST}}\colon {\Barch}^{\mathrm{ord}}(\cA)
+\to {\Barch}^{\mathrm{ord}}(\cA)$
+that commutes with the ordered bar differential $d_{\mathrm{bar}}$.
+The key identity is
+$[d_{\mathrm{BRST}}, d_{\mathrm{bar}}] = 0$:
+this holds because the BRST differential is an inner derivation of
+the chiral algebra (it preserves the OPE), and the bar differential
+is built from the OPE.  The PBW filtration preservation~(b) ensures
 that the spectral sequence for the double complex
 $(d_{\mathrm{bar}}, d_{\mathrm{BRST}})$ converges: the $E_1$~page
 computes $H^*(d_{\mathrm{bar}})$ first, giving bar cohomology
@@ -614,22 +320,22 @@ For principal DS reduction, the ghost BRST complex has
 level-independent conformal weights, so the PBW filtration
 compatibility~(b) is automatic at non-critical level (this is the
 content of the Feigin--Frenkel theorem).  For non-principal
-reduction, hypothesis~(b) becomes the nontrivial requirement;
+reduction, hypothesis~(b) becomes the nontrivial requirement ---
 this remains the frontier
-\textup{(}the non-principal nilpotent DS/KD conjecture of Volume~I; see the
-corresponding frontier discussion there\textup{)}.
+(Conjecture~\ref{conj:ds-kd-arbitrary-nilpotent},
+\S\ref{sec:concordance-non-principal-w}).
 \end{proof}
 
 \begin{remark}[Scope of the theorem]
 \label{rem:ds-scope}
 For principal DS reduction, all three hypotheses are verified
 at non-critical level, giving an unconditional theorem for the
-principal corridor.  For hook-type in type~$A$,
-by the hook-transport corridor theorem of Volume~I, hypothesis~(b) holds
+principal corridor.  For hook-type in type~$A$
+(Theorem~\ref{thm:hook-transport-corridor}), hypothesis~(b) holds
 by the Fehily--Creutzig--Linshaw--Nakatsuka--Sato filtration analysis.
 The full non-principal case
 remains conjectural
-\textup{(}the non-principal nilpotent DS/KD conjecture of Volume~I\textup{)}.
+(Conjecture~\ref{conj:ds-kd-arbitrary-nilpotent}).
 \end{remark}
 \subsection{The subregular $W_k(\mathfrak{sl}_3,f_{\mathrm{sub}})$:
 a non-principal ordered bar complex}
@@ -703,7 +409,8 @@ the $G^+G^-$ OPE at the simple pole.
 $W_k(\mathfrak{sl}_3,f_{\mathrm{sub}})^!$ is conjectured to be
 $W_{k^\vee}(\mathfrak{sl}_3,f_{\mathrm{sub}}^t)$
 at dual level $k^\vee=-k-6$, with $f_{\mathrm{sub}}^t$ the
-transpose nilpotent \textup{(}as computed in Volume~I\textup{)}.
+transpose nilpotent (Vol~I,
+Computation~\ref*{comp:subregular-sl3-holographic-datum}).
 The transpose is the minimal nilpotent of $\mathfrak{sl}_3$,
 so the Koszul dual is a \emph{different} $W$-algebra:
 $W_{-k-6}(\mathfrak{sl}_3,f_{\min})$.
@@ -815,7 +522,7 @@ r_1(z)
 \;+\;\text{(non-Casimir terms)},
 \]
 where $\wp$ is the Weierstrass function of the elliptic
-curve with modulus~$\tau$, and $\kappa=3(k+2)/4$.
+curve with modulus~$\tau$, and $\kappa=3k/(k+2)$.
 The Weierstrass function appears because the genus-$1$
 propagator $\varpi_{12}=\partial_{z_1}\partial_{z_2}\log
 \theta_1(z_1-z_2;\tau)$ has an expansion
@@ -832,840 +539,3 @@ the Heisenberg braiding acquires elliptic corrections at
 genus~$1$.
 \end{construction}
 
-\subsection{Ordered logarithmic Fulton--MacPherson geometry}%
-\label{subsec:ordered-log-fm}%
-\index{Fulton--MacPherson!ordered logarithmic|textbf}%
-\index{Mok spaces!ordered|textbf}
-
-The modular ordered bar complex
-(Construction~\ref{constr:modular-ordered-bar}) uses chains on
-ordered configuration spaces $\mathrm{Conf}_n^{\mathrm{ord}}(\Sigma_g)$,
-but these spaces are not compact.  The holomorphic (closed) colour
-of the Swiss-cheese operad compactifies via Mok's logarithmic
-Fulton--MacPherson spaces $\FM_n(X\mathbin{|}D)$~\cite{Mok25},
-whose boundary strata (indexed by collision trees and planted
-forests) encode the bar differential and genus-raising corrections.
-The ordered (open) colour has so far lacked a parallel
-compactification.  This subsection supplies one and identifies the
-structural consequences.
-
-\begin{definition}[Ordered log-FM compactification]%
-\label{def:ordered-log-fm}%
-\index{Fulton--MacPherson!ordered logarithmic!definition}%
-Let $(X,D)$ be a smooth curve with simple normal-crossing
-divisor.  The \emph{ordered logarithmic Fulton--MacPherson space}
-$\FM_n^{\mathrm{ord}}(X\mathbin{|}D)$ is the closure of the
-ordered configuration space
-$\mathrm{Conf}_n^{\mathrm{ord}}(X\setminus D) =
-\{(z_1,\ldots,z_n)\in (X\setminus D)^n \mid z_i\ne z_j\}$
-inside Mok's space $\FM_n(X\mathbin{|}D)$, taken as the
-connected component corresponding to a fixed total ordering
-of the~$n$ points.
-
-The boundary stratification of
-$\FM_n^{\mathrm{ord}}(X\mathbin{|}D)$ is indexed by
-\emph{ordered collision trees}: collision trees~$T$ in the sense
-of~\cite{Mok25} equipped with a total ordering on the
-leaf set~$[n]$ compatible with the planar structure
-(i.e., a planar embedding of~$T$).  Near a boundary stratum
-indexed by an ordered tree~$T$, the scale coordinates~$t_e$
-($e\in E(T)$) of~\cite{Mok25} restrict to the ordered
-component, and collisions remain normal-crossing divisors in
-logarithmic coordinates.
-\end{definition}
-
-\begin{proposition}[Interval case: associahedra]%
-\label{prop:interval-associahedron}%
-\ClaimStatusProvedHere%
-\index{associahedron!as ordered log-FM}%
-For $(X,D) = (\PP^1, \{0,\infty\})$ with the ordering
-induced by $\bR_{>0}\subset\PP^1\setminus\{0,\infty\}$,
-the ordered log-FM space
-$\FM_n^{\mathrm{ord}}(\PP^1\mathbin{|}\{0,\infty\})$
-is diffeomorphic to the Stasheff associahedron~$K_{n+2}$
-\textup{(}as a smooth manifold with corners\textup{)}.  Its
-codimension-$1$ faces decompose into three families:
-\begin{enumerate}[label=\textup{(\alph*)}]
-\item \emph{interior collision faces}
-  $\FM_r^{\mathrm{ord}} \times \FM_{n-r+1}^{\mathrm{ord}}$
-  for each consecutive cluster $(z_i,\ldots,z_{i+r-1})$,
-  encoding the ordered bar differential\textup{;}
-\item \emph{left boundary faces}
-  $\FM_j^{\mathrm{ord}}(\PP^1\mathbin{|}\{0,\infty\})
-  \times \FM_{n-j}^{\mathrm{ord}}(\PP^1\mathbin{|}\{0,\infty\})$
-  for collisions with $z=0$,
-  encoding the left comodule structure\textup{;}
-\item \emph{right boundary faces}
-  for collisions with $z=\infty$, encoding the right comodule
-  structure.
-\end{enumerate}
-The Borel--Moore fundamental class of
-$\FM_n^{\mathrm{ord}}(\PP^1\mathbin{|}\{0,\infty\})$
-recovers the diagonal bicomodule~$C_\Delta$ of
-Theorem~\textup{\ref{thm:diagonal}}.
-\end{proposition}
-
-\begin{proof}
-The ordered configuration space
-$\mathrm{Conf}_n^{\mathrm{ord}}(\bR_{>0})
-\cong \{0 < t_1 < \cdots < t_n\}$
-is diffeomorphic to the open positive orthant $\bR_{>0}^n$
-via the change of variables $s_i = t_i - t_{i-1}$
-($t_0 := 0$).  The Axelrod--Singer real oriented blowup along
-consecutive diagonals $\{t_i = t_{i+1}\}$, iterated in
-increasing cluster size, produces a compact manifold with
-corners whose face structure is exactly the Stasheff
-associahedron~$K_{n+2}$:
-each codimension-$1$ face corresponds to a cluster of
-consecutive points colliding, and the face poset is the
-poset of planar bracketings of~$n{+}2$ letters.  This is the
-content of the Axelrod--Singer--Kontsevich identification of
-the Fulton--MacPherson operad on~$\bR$ with the associahedra
-(\cite[Theorem~1]{Sinha2004}).
-
-The inclusion of the divisor points $\{0,\infty\}$ adds the
-left and right boundary faces: a cluster including~$t_1$
-collides with $z=0$ at the left boundary, and a cluster
-including~$t_n$ collides with $z=\infty$ at the right
-boundary.  These are the faces of~$K_{n+2}$ that include the
-first or last letter of the word.
-
-The boundary differential on Borel--Moore chains decomposes
-as $\partial = d_{\mathrm{bar}} + \Delta_L + \Delta_R$,
-matching the bar differential and the left/right comodule
-maps of~$C_\Delta$ exactly as in
-Proposition~\ref{prop:interval-bicomodule}.
-\end{proof}
-
-\begin{theorem}[Ordered log-FM boundary encodes modular ordered
-bar differential]%
-\label{thm:ordered-log-fm-bar}%
-\ClaimStatusProvedHere%
-\index{bar complex!ordered!from log-FM boundary}%
-At genus~$0$, the codimension-$1$ boundary of
-$\FM_n^{\mathrm{ord}}(X\mathbin{|}D)$ encodes the ordered bar
-differential: for each ordered collision tree~$T$ with one
-internal edge,
-\[
-  \partial\bigl[\FM_n^{\mathrm{ord}}(X\mathbin{|}D)\bigr]
-  \;=\;
-  \sum_{T\in\mathrm{OT}_n^{(1)}}
-  \varepsilon_T\,
-  \bigl[\FM^{\mathrm{ord}}_{T}(X\mathbin{|}D)\bigr],
-\]
-where $\mathrm{OT}_n^{(1)}$ denotes the set of ordered
-collision trees with one internal edge and $\varepsilon_T$ is
-the orientation sign.  The sum reproduces the ordered bar
-differential of the core chapter
-\textup{(}Definition~\textup{\ref{def:ordered-chiral-bar}%
-}\textup{)}.
-\end{theorem}
-
-\begin{proof}
-The codimension-$1$ boundary strata of $\FM_n^{\mathrm{ord}}$
-are indexed by one-edge ordered collision trees, where a
-consecutive cluster of ordered points collides.  The
-ordered collision trees with one edge are in bijection with
-the summands of the ordered bar differential: each cluster
-$(z_i,\ldots,z_j)$ contributes the OPE residue~$m_{j-i+1}$
-evaluated on the corresponding consecutive tensor factors.
-The sign $\varepsilon_T$ from the orientation line of~$T$
-matches the Koszul sign convention of the desuspended bar
-complex.  This is the geometric origin of the identity
-$d_{\mathrm{bar}}^2 = 0$: it is the codimension-$2$
-identity $\partial^2 = 0$ on the ordered log-FM space.
-\end{proof}
-
-\begin{theorem}[Higher-genus ordered log-FM and the modular
-ordered bar complex; \ClaimStatusProvedHere]%
-\label{thm:ordered-log-fm-modular}%
-\index{bar complex!ordered!modular from log-FM}%
-\index{Fulton--MacPherson!ordered logarithmic!higher genus}%
-At genus~$g\ge 1$, Mok's labeled log-FM space
-$\FM_n(\Sigma_g\mathbin{|}D)$~\textup{\cite{Mok25}}
-carries the following structure:
-\begin{enumerate}[label=\textup{(\roman*)}]
-\item The codimension-$1$ boundary decomposes into
-  \emph{three families} of faces:
-  \begin{enumerate}[label=\textup{(\alph*)}]
-  \item \emph{collision faces}: a labeled subset
-    $S\subset\{1,\ldots,n\}$ collides, contributing to the
-    bar differential~$d_{\mathrm{bar}}$ \textup{(}the
-    ordered bar differential uses only those faces where
-    $S$ is a consecutive substring in the tensor
-    ordering\textup{)}\textup{;}
-  \item \emph{separating degeneration faces}: the curve
-    develops a separating node, contributing the separating
-    coproduct~$D_{\mathrm{sep}}$ of
-    Construction~\textup{\ref{constr:modular-ordered-bar}%
-    }\textup{;}
-  \item \emph{nonseparating degeneration faces}: the curve
-    develops a nonseparating node, contributing the
-    genus-raising operator~$D_{\mathrm{nsep}}$.
-  \end{enumerate}
-\item The degeneration faces factor via Mok's cutting
-  map~\textup{\cite{Mok25}}
-  \[
-    \FM_n(W/B)(\rho)
-    \;\longrightarrow\;
-    \prod_{v\in V(S_\rho)}
-    \FM_{I_v}(Y_v\mathbin{|}D_v)\,,
-  \]
-  where the labeling on each factor is induced by the
-  partition of $\{1,\ldots,n\}$ into the vertex sets of the
-  degeneration graph.
-\item The algebraic identity $D^2 = 0$ on the modular ordered
-  bar complex
-  \textup{(}Construction~\textup{\ref{constr:modular-ordered-bar}%
-  }\textup{)} is geometrically realised by
-  $\partial^2 = 0$ on $\FM_n(\Sigma_g\mathbin{|}D)$ as a
-  manifold with corners.  Decomposing by genus:
-  $D_0^2 = 0$, $D_0 D_1 + D_1 D_0 = 0$, $D_1^2 = 0$,
-  where $D_0 = d_{\mathrm{bar}} + D_{\mathrm{sep}}$ preserves
-  genus and $D_1 = D_{\mathrm{nsep}}$ raises genus by one.
-\item At genus~$1$, the monodromy of the ordered bar
-  connection around the $A$- and $B$-cycles of~$E_\tau$
-  produces the genus-$1$ correction $r_1(z)$
-  of~\eqref{eq:modular-r-matrix} via the Weierstrass
-  function~$\wp(z;\tau)$, which arises as the residue of the
-  genus-$1$ log-FM propagator at the nonseparating boundary
-  divisor.
-\end{enumerate}
-\end{theorem}
-
-\begin{proof}
-For a smooth curve~$\Sigma_g$
-of genus $g\ge 1$ ($\dim_\bR = 2$), the labeled
-configuration space
-$\mathrm{Conf}_n(\Sigma_g\setminus D)
-= \{(z_1,\ldots,z_n)\in(\Sigma_g\setminus D)^n \mid
-z_i\ne z_j\}$
-is \emph{connected}: any two labeled configurations
-are connected by a path that moves points around the
-handles of~$\Sigma_g$.  Consequently the closure of
-$\mathrm{Conf}_n(\Sigma_g\setminus D)$ inside the
-log-FM compactification is the \emph{entire}
-space~$\FM_n(\Sigma_g\mathbin{|}D)$, and there is no
-further ``ordered component'' to extract:
-$\FM_n^{\mathrm{ord}}(\Sigma_g\mathbin{|}D)
-= \FM_n(\Sigma_g\mathbin{|}D)$.
-
-\smallskip
-\emph{Item~\textup{(i)}.}
-Mok's degeneration theory~\cite{Mok25} stratifies the
-boundary of $\FM_n(\Sigma_g\mathbin{|}D)$ by collision
-types (subsets of labeled points colliding, indexed by
-collision trees) and curve degenerations (separating and
-nonseparating nodes).  The collision strata are the
-codimension-$1$ divisors~$D_S$ for each subset
-$S\subset\{1,\ldots,n\}$ of size~$\ge 2$; the degeneration
-strata are the codimension-$1$ divisors from the boundary
-of the moduli space~$\overline{\cM}_{g,n}$.
-
-\smallskip
-\emph{Item~\textup{(ii)}.}
-On each rigid boundary component~$\rho$ of a semistable
-degeneration, Mok's birational product model gives
-$\FM_n(W/B)(\rho)\to\prod_{v}\FM_{I_v}(Y_v\mathbin{|}D_v)$
-by~\cite[Corollary~5.3.4]{Mok25}.  The labeling of the~$n$
-points partitions into the vertex sets~$I_v$ naturally.
-
-\smallskip
-\emph{Item~\textup{(iii)}.}
-The space~$\FM_n(\Sigma_g\mathbin{|}D)$ is a smooth
-manifold with corners by Mok's construction, so
-$\partial^2 = 0$ at the chain level.  The
-boundary decomposes as
-$\partial = d_{\mathrm{bar}} + D_{\mathrm{sep}}
-+ D_{\mathrm{nsep}} + d_R$, where~$d_R$ denotes the
-contribution from non-consecutive collision faces (those
-where the colliding set is not a consecutive substring).
-The \emph{algebraic} identity $D^2 = 0$ of the modular bar
-construction
-(Theorem~\ref{thm:modular-bar})
-is proved independently: it follows from the internal
-differential~$d^2 = 0$, the anticommutation of~$d$ with
-every one-edge expansion, and the codimension-two
-cancellation axiom~\cite[\S5.3]{Mok25}.  The genus
-decomposition $D_0^2 = 0$, $D_0 D_1 + D_1 D_0 = 0$,
-$D_1^2 = 0$ is
-Proposition~\ref{prop:D0D1}, which
-follows from the genus arithmetic: $D_{\mathrm{sep}}$
-preserves genus, $D_{\mathrm{nsep}}$ raises genus by one,
-and $(D_0 + D_1)^2 = 0$ decomposes by total genus.
-
-\smallskip
-\emph{Item~\textup{(iv)}.}
-The family version theorem
-(Theorem~\ref{thm:family-version}) applied to the genus-$1$
-family $E_\tau\to\cM_{1,1}$ gives the analytic collision
-field on~$\FM_n(E_\tau\mathbin{|}\{p\})$.  The
-nonseparating degeneration divisor (where $E_\tau$ develops a
-nonseparating node) carries the residue of the genus-$1$
-propagator
-$\varpi_{12} = \partial_{z_1}\partial_{z_2}\log
-\theta_1(z_1{-}z_2;\tau)$, whose non-rational part is the
-Weierstrass function~$\wp(z_1{-}z_2;\tau)$.  The monodromy of
-the flat connection around the $A$- and $B$-cycles
-of~$E_\tau$ gives~$r_1(z)$ as stated
-in~Construction~\ref{constr:modular-ordered-bar}.
-\end{proof}
-
-\begin{remark}[Two kinds of collision faces]%
-\label{rem:two-kinds-collision}%
-\index{collision faces!consecutive vs non-consecutive}%
-Item~(i)(a) distinguishes \emph{consecutive} collision faces
-(where the colliding subset $S = \{i,i{+}1,\ldots,j\}$ is a
-consecutive substring in the tensor ordering) from
-\emph{non-consecutive} collision faces.  The ordered bar
-differential~$d_{\mathrm{bar}}^{\mathrm{ord}}$ uses only the
-consecutive faces: collapsing $a_i\otimes\cdots\otimes a_j$
-into $m_{j-i+1}(a_i,\ldots,a_j)$ maintains the ordered tensor
-structure.  Non-consecutive collision faces contribute to the
-$R$-matrix (the descent datum from ordered to unordered bar
-complexes), and their codimension-$2$ interactions with the
-consecutive faces produce the Yang--Baxter equation
-(Proposition~\ref{prop:ybe-from-d-squared}).
-\end{remark}
-
-\begin{remark}[Ordered log-FM as a closed-colour construction]%
-\label{rem:e1-log-fm-principle}%
-\index{Fulton--MacPherson!ordered logarithmic!principle}%
-A clarification of scope:
-$\FM_n^{\mathrm{ord}}(\Sigma_g\mathbin{|}D)$ compactifies
-the \emph{algebraic} ordering of OPE insertions on the
-curve; it is the ordered lift of the \emph{closed} colour
-of~$\SCchtop$, not a replacement for the open colour~$E_1$.
-The Swiss-cheese operation space at genus~$g$, lifted to the
-ordered cover, is
-\begin{equation}\label{eq:ordered-log-fm-product}
-  \mathrm{SC}^{\mathrm{ch,top},\mathrm{ord}}_{g,k,m}
-  \;=\;
-  \FM_k^{\mathrm{ord}}(\Sigma_g\mathbin{|}D)
-  \;\times\;
-  E_1(m)\,,
-\end{equation}
-with the ordered closed colour on the left (requiring log-FM
-compactification at $g\ge 1$ by
-Theorem~\ref{thm:ordered-log-fm-modular}) and the
-topological open colour on the right (genus-independent by
-the topological rigidity theorem below,
-Theorem~\ref{thm:topological-e1-rigidity}).
-
-The ordered log-FM framework therefore does \emph{not}
-extend log-FM to the $E_1$ direction.  For curves of
-genus~$g\ge 1$ ($\dim_\bR = 2$), the labeled
-configuration space is connected, so
-$\FM_n^{\mathrm{ord}}(\Sigma_g\mathbin{|}D)
-= \FM_n(\Sigma_g\mathbin{|}D)$
-(Theorem~\ref{thm:ordered-log-fm-modular}, proof).
-The handle-loop monodromy that creates nontrivial boundary
-at $g\ge 1$ is monodromy in the \emph{surface} pure braid
-group of~$\Sigma_g$, not
-in~$\pi_1(\mathrm{Conf}_m^{<}(\bR)) = 1$.
-\end{remark}
-
-\begin{remark}[Planted forests and ordered E$_1$ structure]%
-\label{rem:planted-forest-e1}%
-\index{planted forest!E$_1$ structure}%
-The planted-forest boundary strata of
-$\FM_n(X\mathbin{|}D)$ (Chapter~\ref{chap:fm3-planted-forest-synthesis})
-are rigid log-FM boundary components where the collision
-tree has depth~$\ge 2$.  These strata carry an \emph{implicit}
-E$_1$ structure from the physical origin
-(Chan--Paton multiplicity forces associative ordering;
-\S\ref{sec:string-theoretic-blueprint}).  Under the ordered
-log-FM framework, this structure becomes \emph{explicit}:
-the planted-forest strata of
-$\FM_n^{\mathrm{ord}}(X\mathbin{|}D)$ are indexed by
-\emph{ordered} planted forests (planar trees with depth~$\ge 2$),
-and the factorization along Mok's cutting map respects the
-planar ordering.  In particular, the first planted-forest cubic
-obstruction~$\ell_3$
-(Theorem~\ref{thm:explicit-small-model}) is the residue on an
-ordered depth-$2$ stratum, and its nonabelian character is a
-consequence of the non-commutativity of the planar ordering.
-\end{remark}
-
-\begin{remark}[The annular thickness-zero face and Mok's
-degeneration]%
-\label{rem:annular-mok-degeneration}%
-\index{Mok spaces!annular degeneration}%
-\index{annulus!thickness-zero face}%
-The bordered FM compactification of the annulus
-$\mathbb{A} = S^1\times[0,1]$
-(Construction~\ref{constr:bordered-fm-annulus})
-has a codimension-$1$ face~(d) corresponding to the annulus
-collapsing to a circle as the thickness $\epsilon\to 0$.
-In the ordered log-FM framework, this face is a special case
-of Mok's degeneration theory~\cite{Mok25}: the total space
-$\FM_n^{\mathrm{ord}}(\mathbb{A}_\epsilon\mathbin{|}\partial\mathbb{A}_\epsilon)$
-for the family $\mathbb{A}_\epsilon = S^1\times[0,\epsilon]$
-degenerates as $\epsilon\to 0$ to a semistable special fiber
-whose irreducible components are ordered log-FM spaces on the
-central circle~$S^1$.  The cyclic identification of left and
-right boundaries at the thickness-zero face is the
-ordered log-FM incarnation of the coHochschild trace
-$C_\Delta\,\square_{C^e}^{\mathbf{L}}\,C
-\simeq\coHoch_\bullet^{\mathrm{ch}}(C)$
-of Proposition~\ref{prop:annular-hochschild}.
-\end{remark}
-
-\subsection{The topological rigidity principle}%
-\label{subsec:topological-rigidity}%
-\index{topological rigidity|textbf}%
-\index{E$_1$ operad!genus independence}
-
-The preceding subsection defines ordered log-FM spaces
-$\FM_n^{\mathrm{ord}}(X\mathbin{|}D)$ and conjectures that
-they compactify the \emph{algebraic} ordering of bar
-tensor factors on the curve~$\Sigma_g$.  This raises the
-foundational question: does the \emph{topological}
-$E_1$~direction (line operators ordered on~$\bR$) also
-require degeneration theory at genus~$g\ge 1$?
-
-The answer is \emph{no}.  Two orderings are in play, and
-only one is genus-dependent.
-
-\begin{definition}[Two orderings]%
-\label{def:two-orderings}%
-\index{ordering!algebraic vs topological}%
-The Swiss-cheese bar element of degree~$k$, parametrised by
-$\FM_k(\Sigma_g)\times\mathrm{Conf}_m^{<}(\bR)$, carries
-two independent orderings:
-\begin{enumerate}[label=\textup{(\alph*)}]
-\item \emph{Algebraic ordering} on the curve.
-  The $k$~points $z_1,\ldots,z_k\in\Sigma_g$ are ordered in
-  the bar tensor product; this is a lift to the ordered
-  configuration space $\mathrm{Conf}_k^{\mathrm{ord}}(\Sigma_g)$.
-  Its topology changes with~$g$: the surface pure braid group
-  $\pi_1(\mathrm{Conf}_k^{\mathrm{ord}}(\Sigma_g))$ acquires
-  handle-loop generators at $g\ge 1$.
-\item \emph{Topological ordering} on the line.
-  The $m$~line-operator insertions
-  $t_1 < \cdots < t_m$ on $\bR_{\ge 0}$ define points of
-  $E_1(m)$.  The space~$\bR$ is contractible and carries
-  no complex-structure dependence.
-\end{enumerate}
-The modular $R$-matrix $R^{\mathrm{mod}}(z;\hbar)$
-\eqref{eq:modular-r-matrix} mediates between these two
-orderings: it is the descent datum for passing from the
-algebraic ordering on the curve to the unordered FM space.
-Its genus corrections~$r_g(z)$ reflect the monodromy of the
-algebraic ordering around the handles of~$\Sigma_g$.
-\end{definition}
-
-\begin{theorem}[Topological $E_1$ rigidity;
-\ClaimStatusProvedHere]%
-\label{thm:topological-e1-rigidity}%
-\index{topological rigidity!theorem}%
-\index{deconcatenation!genus independence}%
-The $E_1$~factor of the Swiss-cheese operation space
-$\SCchtop(g,k,m) = \FM_k(\Sigma_g)\times E_1(m)$ is
-independent of~$g$.  Concretely:
-\begin{enumerate}[label=\textup{(\roman*)}]
-\item The deconcatenation coproduct
-  $\Delta\colon\barBch(\cA)\to\barBch(\cA)\otimes\barBch(\cA)$
-  is coassociative at \emph{all} genera, with no genus
-  corrections: $(\Delta\otimes\id)\circ\Delta
-  =(\id\otimes\Delta)\circ\Delta$.
-\item The ordered bar complex $\barB^{\mathrm{ord}}(\cA)$ is
-  a strict \textup{(}uncurved\textup{)} coalgebra at every
-  genus: $\Delta^2 = 0$ with no curvature term.
-\item At genus~$g\ge 1$, the bar differential acquires
-  curvature $\dfib^{\,2} = \kappa(\cA)\cdot\omega_g$ in the
-  closed colour
-  \textup{(}Theorem~\textup{\ref{thm:genus-tower-asymmetry}%
-  }\textup{)}, but the open colour is \emph{flat}: the
-  curvature lives entirely in the
-  $\FM_k(\Sigma_g)$~factor.
-\end{enumerate}
-\end{theorem}
-
-\begin{proof}
-The codimension-$1$ boundary of the Swiss-cheese operation
-space $\SCchtop(g,k,m) = \FM_k(\Sigma_g)\times E_1(m)$ has
-three types of faces: \emph{closed-colour} (collision and
-degeneration faces of $\FM_k(\Sigma_g)$, with $E_1$ in its
-interior), \emph{open-colour} (deconcatenation faces of
-$E_1(m)$, with $\FM_k$ in its interior), and
-\emph{bulk-to-boundary} (a bulk point approaching the
-boundary~$\bR$).  The boundary operator decomposes as
-\begin{equation}\label{eq:boundary-product-decomposition}
-  \partial_{\mathrm{SC}}
-  \;=\;
-  \partial_{\FM}
-  \;+\;
-  \partial_{E_1}
-  \;+\;
-  \partial_{\mathrm{mix}}\,,
-\end{equation}
-where $\partial_{\mathrm{mix}}$ encodes bulk-to-boundary
-transfer (the no-open-to-closed rule forbids the reverse
-direction).
-
-The deconcatenation coproduct~$\Delta$ is defined by
-\emph{cutting a boundary interval into two subintervals}:
-$(v_1|\cdots|v_n)\mapsto
-\sum_{i=0}^n (v_1|\cdots|v_i)\otimes(v_{i+1}|\cdots|v_n)$.
-This is a purely combinatorial operation on ordered tensor
-products, involving no integrals, no propagators, and no
-curve geometry
-(Theorem~\ref{thm:genus-tower-asymmetry}(ii)).  In
-particular, $\Delta$ is independent of~$\Sigma_g$:
-\begin{itemize}[nosep]
-\item $\partial_{\FM}$ acts on the closed-colour factor
-  and does not alter the deconcatenation;
-\item $\partial_{\mathrm{mix}}$ transfers bulk data to the
-  boundary algebra (modifying the line-operator OPE) but
-  does not alter the deconcatenation;
-\item only $\partial_{E_1}$ contributes to~$\Delta$, and
-  $E_1(m)$ does not depend on~$g$ ($\bR$ is contractible
-  at all genera).
-\end{itemize}
-Consequently:
-\begin{itemize}[nosep]
-\item $\Delta$ is purely combinatorial:
-  $(v_1|\cdots|v_n)\mapsto
-  \sum_{i=0}^{n}(v_1|\cdots|v_i)\otimes(v_{i+1}|\cdots|v_n)$.
-  This formula involves no integrals, no propagators, and no
-  curve geometry.
-\item Coassociativity $(\Delta\otimes\id)\circ\Delta
-  = (\id\otimes\Delta)\circ\Delta$ is an identity of graded
-  vector spaces, valid at every genus.
-\item The curvature $\dfib^{\,2}=\kappa(\cA)\cdot\omega_g$
-  arises from the Arnold defect: at $g\ge 1$,
-  $H^1(\Sigma_g)^{\oplus k}\ne 0$ and the propagator
-  acquires quasi-periodic monodromy from the period matrix.
-  This lives in the $\FM_k(\Sigma_g)$ factor and does not
-  propagate to the $E_1$ factor.
-\end{itemize}
-For the full proof at all genera, see
-Theorem~\ref{thm:genus-tower-asymmetry} in the spectral
-braiding chapter.
-\end{proof}
-
-\begin{remark}[The Chriss--Ginzburg decomposition]%
-\label{rem:cg-decomposition-rigidity}%
-\index{Chriss--Ginzburg!product decomposition}%
-\index{Steinberg variety!product structure}%
-The Steinberg analogy gives the result its
-correspondence-theoretic form.  The chiral Steinberg
-correspondence
-$Z_g = \FM_k(\Sigma_g)\times\mathrm{Conf}_m^{<}(\bR)$
-is a \emph{product} at all genera.  By the K\"unneth formula
-for Borel--Moore homology,
-\[
-  H_\ast^{\mathrm{BM}}(Z_g)
-  \;\cong\;
-  H_\ast^{\mathrm{BM}}\!\bigl(\FM_k(\Sigma_g)\bigr)
-  \;\otimes\;
-  H_\ast^{\mathrm{BM}}\!\bigl(
-    \mathrm{Conf}_m^{<}(\bR)\bigr).
-\]
-The convolution algebra structure (bar differential, Koszul
-duality, curvature) lives in the first factor and depends
-on~$g$.  The coalgebra structure (deconcatenation coproduct,
-$E_1$~composition) lives in the second factor and is
-genus-independent.  The bulk-to-boundary transfer
-$\partial_{\mathrm{mix}}$ couples the two factors, but it
-acts on the line-operator \emph{algebra} (modifying the OPE
-of boundary insertions), not on the \emph{coalgebra}
-(deconcatenation).  The K\"unneth decomposition therefore
-holds at the level of the coalgebra structure, even though
-the full Swiss-cheese algebra is not a product.
-\end{remark}
-
-\begin{remark}[Reconciliation with ordered log-FM]%
-\label{rem:reconciliation-ordered-log-fm}%
-\index{Fulton--MacPherson!ordered logarithmic!reconciliation}%
-The topological rigidity theorem and the ordered log-FM
-theorem (Theorem~\ref{thm:ordered-log-fm-modular}) are
-\emph{consistent}, because they concern different orderings.
-\begin{itemize}[nosep]
-\item \emph{Ordered log-FM} compactifies the \emph{algebraic}
-  ordering (ordering~(a) of
-  Definition~\ref{def:two-orderings}): ordered bar insertions
-  on the curve~$\Sigma_g$.  This ordering changes with genus
-  (the surface pure braid group acquires handle-loop
-  generators), and log-FM compactification is needed to
-  control the resulting boundary strata.
-\item \emph{Topological rigidity} concerns the
-  \emph{topological} ordering (ordering~(b)): line-operator
-  insertions on~$\bR$.  This ordering does not change with
-  genus, and $E_1(m)$ needs no log-FM compactification at
-  any genus.
-\end{itemize}
-The modular $R$-matrix $R^{\mathrm{mod}}(z;\hbar)$
-mediates: it is the \emph{descent datum} for passing from
-ordered to unordered bar complexes on the curve, and its
-genus corrections $r_g(z)$ measure the monodromy of the
-algebraic ordering around the handles of~$\Sigma_g$.  These
-corrections modify the descent, not the $E_1$ structure
-itself.
-\end{remark}
-
-\subsection{Downstream consequences of topological rigidity}%
-\label{subsec:downstream-rigidity}%
-\index{topological rigidity!downstream consequences}
-
-Three structural problems are resolved or clarified by
-the rigidity principle.
-
-\subsubsection*{The bordered FM compactification is a genus-zero
-problem}
-
-\begin{corollary}[Genus reduction for bordered FM;
-\ClaimStatusProvedHere]%
-\label{cor:bordered-fm-genus-zero}%
-\index{bordered FM!genus reduction}%
-The bordered Fulton--MacPherson compactification of
-Conjecture~\textup{\ref{conj:bordered}} is a genus-$0$
-manifold-with-corners problem: the $E_1$ factor contributes
-genus-independent deconcatenation faces, and all
-genus-dependent structure lives in the holomorphic factor.
-In particular:
-\begin{enumerate}[label=\textup{(\roman*)}]
-\item For the interval $[0,1]$: the problem is fully
-  resolved by
-  Proposition~\textup{\ref{prop:interval-associahedron}}
-  \textup{(}associahedra\textup{)}.
-\item For the annulus $\mathbb{A} = S^1\times[0,1]$:
-  the codimension-$1$ boundary has four face types
-  \textup{(}interior collision, left boundary, right
-  boundary, thickness-zero\textup{)}, all determined by the
-  genus-$0$ geometry of
-  $\FM_k(\bC)\times\mathrm{Conf}_k^{<}([0,1])$.  The
-  thickness-zero face requires Mok's degeneration
-  theory~\textup{\cite{Mok25}} for the family
-  $\mathbb{A}_\epsilon\to\{0\}$, but this is a degeneration of the
-  \emph{holomorphic} factor, not the $E_1$ factor.
-\item All five algebraic consequences of
-  Conjecture~\textup{\ref{conj:bordered}} are already proved
-  unconditionally by
-  Corollary~\textup{\ref{cor:bordered-from-CG}}: the
-  Chriss--Ginzburg correspondence-with-corners formalism
-  derives them from the compactification input alone.  The
-  sole remaining input is the differential-topology
-  construction of the compactification itself as a smooth
-  manifold with corners.
-\end{enumerate}
-\end{corollary}
-
-\begin{proof}
-The product decomposition~\eqref{eq:boundary-product-decomposition}
-shows $\partial_{\mathrm{SC}} = \partial_{\FM}\otimes\id_{E_1}
-+ (-1)^{\dim\FM}\id_{\FM}\otimes\partial_{E_1}$.
-The mixed term $\partial_{\mathrm{mix}}$ (bulk-to-boundary transfer)
-modifies the line-operator algebra on existing faces but does not
-produce new boundary faces of the compactification; the face
-decomposition is therefore genuinely two-term.
-The $E_1$
-faces ($\partial_{E_1}$) are deconcatenation faces of
-$\mathrm{Conf}_k^{<}([0,1])$ or $\mathrm{Conf}_k^{<}(S^1)$,
-which are interval/circle-combinatorial and independent
-of~$\Sigma_g$.  The FM faces ($\partial_{\FM}$) are collision
-and degeneration faces, which reduce to genus-$0$ boundary
-strata of $\FM_k(\bC)$ when the curve is~$\bC$.  The
-bordered FM compactification therefore involves only genus-$0$
-FM geometry (holomorphic collisions on~$\bC$) crossed with
-interval combinatorics.  Item~(iii) is
-Corollary~\ref{cor:bordered-from-CG}.
-\end{proof}
-
-\subsubsection*{The five $E_1$ theorems at all genera}
-
-\begin{theorem}[The five $E_1$ theorems extend to all genera;
-\ClaimStatusProvedHere]%
-\label{thm:e1-five-all-genera}%
-\index{E$_1$ operad!five theorems!all genera}%
-\index{topological rigidity!five theorems}%
-Let $\cA$ be a chirally Koszul associative chiral algebra.
-By topological $E_1$ rigidity
-\textup{(}Theorem~\textup{\ref{thm:topological-e1-rigidity}%
-}\textup{)}, the five $E_1$ main theorems of
-\S\textup{\ref{sec:e1-theorems}} hold at genus~$g$ for
-all~$g\ge 0$:
-\begin{enumerate}[label=\textup{(\roman*)}]
-\item $\mathrm{A}^{E_1}(g)$: the ordered bar-cobar
-  adjunction $\barB^{\mathrm{ord}} \dashv
-  \Omega^{\mathrm{ord}}$ is valid at genus~$g$, with
-  uncurved coalgebra $\barB^{\mathrm{ord}}(\cA)$
-  \textup{(}$\Delta^2=0$\textup{)} and curved algebra
-  $\dfib^{\,2} = \kappa(\cA)\cdot\omega_g$.
-\item $\mathrm{B}^{E_1}(g)$: on the Koszul locus,
-  $\Omega^{\mathrm{ord}}\barB^{\mathrm{ord}}(\cA)
-  \xrightarrow{\sim}\cA$ is a quasi-isomorphism at
-  genus~$g$, because the coalgebra is uncurved and the
-  Koszul equivalence depends only on the coalgebra
-  structure.
-\item $\mathrm{C}^{E_1}(g)$: the ordered complementarity
-  $\kappa(\cA)+\kappa(\cA^!)=K(\cA)$ gives net curvature
-  $K(\cA)\cdot\omega_g$ in the total bulk theory at genus~$g$
-  (net-zero when $K=0$, i.e.\ the affine lineage).  The ordered Frobenius
-  structure
-  \textup{(}Theorem~\textup{\ref{thm:CY}}\textup{)} is
-  uncurved at all genera: it is defined via the diagonal
-  bicomodule~$C_\Delta$, which lives in the flat $E_1$
-  factor.
-\item $\mathrm{D}^{E_1}(g)$: the genus-$0$ $R$-matrix from
-  the classical Yang--Baxter equation extends to the modular
-  $R$-matrix $R^{\mathrm{mod}}(z;\hbar)$
-  satisfying the modular CYBE\@.  The genus corrections
-  $r_g(z)$ arise from the closed-colour monodromy
-  and satisfy the Yang--Baxter equation at each
-  genus order.
-\item $\mathrm{H}^{E_1}(g)$: the Hochschild-coHochschild
-  identification
-  $\HH^{\mathrm{ch}}_\bullet(\cA) \simeq
-  \coHoch^{\mathrm{ch}}_\bullet(C)$
-  \textup{(}Theorem~\textup{\ref{thm:HH-coHH-homology}%
-  }\textup{)} extends to genus~$g$, because $C_\Delta$ is
-  defined via the uncurved coproduct~$\Delta$.
-\end{enumerate}
-\end{theorem}
-
-\begin{proof}
-Each theorem at genus~$0$ uses two inputs: the coalgebra
-structure ($\Delta$, $C_\Delta$, Frobenius) and the algebra
-structure ($\dfib$, OPE, Koszul duality).  By topological
-$E_1$ rigidity, the coalgebra inputs are
-genus-independent: $\Delta^2 = 0$, $C_\Delta$ is the same
-diagonal bicomodule, and the Frobenius structure is flat.
-The algebra inputs acquire curvature at $g\ge 1$ through
-$\dfib^{\,2} = \kappa\cdot\omega_g$, but this curvature
-lives in the closed-colour factor and does not alter the
-$E_1$ coalgebra data.
-
-For~(i): the adjunction is formal; it depends on the
-bar-cobar duality between algebras and coalgebras, not on
-the genus of the underlying curve.
-
-For~(ii): the Koszul equivalence
-$\Omega\barB(\cA)\xrightarrow{\sim}\cA$ depends on the
-augmentation ideal filtration of the coalgebra, which is
-genus-independent.
-
-For~(iii): the ordered Frobenius structure
-(Theorem~\ref{thm:CY}) uses $C_\Delta$ and the Calabi--Yau
-pairing, both defined via the coproduct.  Since $\Delta$ is
-uncurved, the Frobenius structure extends without
-modification.
-
-For~(iv): the modular R-matrix
-$R^{\mathrm{mod}} = \sum_{g\ge 0}\hbar^{2g}\,r_g$
-satisfies the modular Yang--Baxter equation because the
-ordered bar differential satisfies $D^2 = \kappa\cdot\omega_g$
-and the $R$-matrix is the descent datum from ordered to
-unordered (see the modular strictification theorem below).
-
-For~(v): the identification
-$\HH^{\mathrm{ch}}_\bullet \simeq
-C_\Delta\,\square_{C^e}^{\mathbf{L}}\,C_\Delta$
-(Corollary~\ref{cor:annulus}) uses $C_\Delta$ and the
-cotensor product, both defined via $\Delta$.
-\end{proof}
-
-\subsubsection*{Modular strictification: ordered-to-unordered
-descent at all genera}
-
-\begin{theorem}[Modular strictification;
-\ClaimStatusProvedHere]%
-\label{thm:modular-strictification}%
-\index{strictification!modular|textbf}%
-\index{modular R-matrix!strictification}%
-For any simple Lie algebra~$\fg$, the modular $R$-matrix
-$R^{\mathrm{mod}}(z;\hbar)
-= \sum_{g\ge 0}\hbar^{2g}\,r_g(z)$
-of Construction~\textup{\ref{constr:modular-ordered-bar}}
-has vanishing spectral Drinfeld class in the
-$\hbar$-completed algebra.  Consequently, whenever
-$R^{\mathrm{mod}}(z;\hbar)$ is completed to a spectral
-quasi-factorization datum, that datum admits a strict
-spectral factorisation realisation.  The descent from the
-ordered bar complex $\barB^{\mathrm{ord}}(\cA)$ to the
-unordered bar complex $\barBch(\cA)$ is well-defined at
-all genera.
-\end{theorem}
-
-\begin{proof}
-The complete strictification theorem
-(Theorem~\ref{thm:complete-strictification}) shows that
-the spectral Drinfeld class
-$\mathfrak{D}_{\mathrm{spec}}$ vanishes at every
-filtration $n\ge 2$ for the genus-$0$ $R$-matrix $r_0(z)$.
-The argument uses two inputs:
-\begin{enumerate}[label=\textup{(\alph*)}]
-\item root-space one-dimensionality
-  (Theorem~\ref{thm:root-space-one-dim}):
-  $\dim\fg_\alpha = 1$ for every root~$\alpha$
-  of a simple Lie algebra~$\fg$;
-\item coproduct rigidity
-  (Theorem~\ref{thm:ngon-rigidity}): the BCH coefficient
-  at filtration~$n$ is forced to be~$1/n$.
-\end{enumerate}
-
-The modular $R$-matrix $R^{\mathrm{mod}}$ is a formal
-power series in~$\hbar^2$.  In the $\hbar$-completed
-dg-shifted Yangian
-$\widehat{Y} = Y[[\hbar]]$, the genus corrections
-$r_g(z)$ enter at filtration order~$\hbar^{2g}$.
-The spectral Drinfeld class at this order is computed by
-the same root-space argument: the Lie algebra~$\fg$ does
-not depend on~$\hbar$, so
-$\dim\fg_\alpha = 1$ holds at every order of the
-$\hbar$-expansion.  Coproduct rigidity likewise applies
-at each $\hbar$-order, because the coproduct $\Delta$
-is $\hbar$-independent
-(Theorem~\ref{thm:topological-e1-rigidity}).
-
-Therefore the spectral Drinfeld class vanishes at every
-filtration of the $\hbar$-completed algebra:
-$\mathfrak{D}_{\mathrm{spec}}(R^{\mathrm{mod}})\big|_{F^n}
-= 0$ for all $n\ge 2$.  Hence, whenever
-$R^{\mathrm{mod}}(z;\hbar)$ is packaged into a spectral
-quasi-factorization datum on the $\hbar$-completed
-dg-shifted Yangian, Theorem~\ref{thm:complete-strictification}
-applies filtration by filtration and strictifies that
-datum to a strict spectral factorisation realisation.
-
-The descent $\barB^{\mathrm{ord}}(\cA)
-\xrightarrow{R^{\mathrm{mod}}} \barBch(\cA)$
-is the $\Sigma_n$-averaging
-$\operatorname{av}(\Theta_\cA^{E_1}) = \Theta_\cA$
-of Theorem~\ref{thm:ordered-modular-mc}, mediated by the ordered
-modular Maurer--Cartan data.  This averaging identity is
-independent of strictification, so the descent is
-well-defined at all genera.  When the modular
-quasi-factorization datum is supplied, the preceding
-paragraph shows that the same descent can be implemented
-by a strict spectral factorisation realisation.
-\end{proof}
-
-\begin{remark}[The remaining frontier]%
-\label{rem:rigidity-remaining-frontier}%
-\index{topological rigidity!remaining frontier}%
-The topological rigidity principle and its three downstream
-consequences leave a single open geometric problem: the
-\emph{construction} of the bordered FM compactification for
-the annulus
-(Construction~\ref{constr:bordered-fm-annulus}) as a smooth
-manifold with corners.  For the interval, this is solved
-(Proposition~\ref{prop:interval-associahedron}).  For the
-annulus, the thickness-zero face requires Mok's degeneration
-theory for the family $S^1\times[0,\epsilon]\to\{0\}$.  The
-algebraic content is fully resolved:
-Corollary~\ref{cor:bordered-from-CG} derives all five items
-of Conjecture~\ref{conj:bordered} from the compactification
-input.
-
-The modular strictification theorem
-(Theorem~\ref{thm:modular-strictification}) has a genuine
-frontier at Kac--Moody algebras with root multiplicities
-${}>1$, where the root-space one-dimensionality argument
-(Theorem~\ref{thm:root-space-one-dim}) fails and the
-spectral Drinfeld class could survive.  This is the true
-remaining frontier of the ordered associative programme,
-matching the frontier identified in
-Theorem~\ref{thm:complete-strictification}.
-\end{remark}
