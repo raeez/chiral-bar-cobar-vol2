@@ -89,6 +89,16 @@ The full loop protocol is defined in Vol I's CLAUDE.md (`~/chiral-bar-cobar/CLAU
 - **Spectral Drinfeld strictification is PROVED** (Theorem thm:complete-strictification in dg_shifted_factorization_bridge.tex) for all filtrations and all simple Lie algebras: root multiplicity one forces the spectral Drinfeld class to vanish at every filtration, via root-space one-dimensionality (Theorem thm:root-space-one-dim) and the Jacobi collapse lemma (Lemma lem:jacobi-collapse). The true remaining frontier is Kac-Moody algebras with root multiplicities > 1, where root-space one-dimensionality fails and the strictification mechanism requires new input.
 - The **Koszul dual is the boundary**, not the bulk: A! lives on the boundary ℝ, not in the bulk ℂ × ℝ.
 
+## Anti-Patterns (inherited from Vol I + Vol II-specific)
+
+All Vol I anti-patterns AP1-AP18 apply here. Additionally:
+
+**AP19 — Label prefix mismatch.** thm: on remarks, def: on propositions. Label prefix MUST match environment type.
+**AP20 — Theorem environment with non-proved status.** \begin{theorem} with \ClaimStatusConjectured is contradictory. Use \begin{conjecture}.
+**AP21 — Status tag on wrong environment type.** ProvedHere on definitions or on heuristic discussions.
+**AP22 — OPE confused with collision residue.** r-matrix pole orders are ONE LESS than OPE pole orders (extraction via d log absorbs one power).
+**AP23 — κ vs κ_eff vs m₀ conflation.** κ(A) = modular characteristic. κ_eff = ghost-subtracted. m₀ = κ·ω_g. u = η² = κ·ω_g (LINEAR). F_g uses κ, not κ_eff.
+
 ## Cross-Volume Bridges
 
 | Bridge | Vol II claim | Vol I anchor | Status |
