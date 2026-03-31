@@ -107,6 +107,10 @@ All Vol I anti-patterns AP1-AP18 apply here. The following five (AP19-AP23) enco
 
 **AP25 — Three functors, three outputs: bar ≠ Verdier dual ≠ cobar.** B(A) = coalgebra. D_Ran(B(A)) ≃ B(A!) = Verdier dual (an ALGEBRA). Ω(B(A)) ≃ A = cobar (recovers the ORIGINAL). The Koszul dual A! is obtained by Verdier duality, NOT by cobar. Found conflated in 16 files.
 
+**AP26 — Fock inner product ≠ BPZ inner product.** At weight ≥ 4 for rank ≥ 3 W-algebras, dim(Fock) > dim(W-algebra) and ⟨W₄|Λ⟩_Fock ≠ 0 even though ⟨W₄|Λ⟩_BPZ = 0. W-algebra decompositions MUST use BPZ (Wick contractions), not the free-field dot product.
+
+**Meta-principle:** Every error traces to confusing two objects that share a name, formula, or special-case coincidence. The meta-rule: never trust a coincidence. Verify at the most general case, highest weight, most general level, most general family.
+
 ## Cross-Volume Bridges
 
 | Bridge | Vol II claim | Vol I anchor | Status |
