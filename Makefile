@@ -142,8 +142,12 @@ publish:
 	@if [ -f $(PDF) ]; then cp $(PDF) $(OUT_PDF); echo "  ✓  $(OUT_PDF)"; \
 	else echo "  ⚠  $(PDF) not found — run 'make fast' first."; fi
 
-## release: Full rebuild + copy named release PDF to root.
-release: veryclean all
+## release: Clean rebuild + named release PDF at root.
+release:
+	@rm -f $(STAMP) $(PDF)
+	@rm -rf $(OUT_DIR)
+	@mkdir -p $(LOG_DIR) $(OUT_DIR)
+	@$(MAKE) --no-print-directory $(STAMP) publish
 	@cp $(PDF) Ainfinity_Chiral_Algebras_and_Chiral_Hochschild_Cohomology.pdf
 	@echo "  ✓  Ainfinity_Chiral_Algebras_and_Chiral_Hochschild_Cohomology.pdf"
 
