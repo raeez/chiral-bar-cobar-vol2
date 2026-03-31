@@ -58,7 +58,7 @@ endef
 #  Targets
 # ============================================================================
 
-.PHONY: all fast clean veryclean count check test dist help publish
+.PHONY: all fast clean veryclean count check test dist release help publish
 
 ## all: Full build → out/
 ##   Idempotent: no-op if no .tex files changed since last successful build.
@@ -141,6 +141,11 @@ publish:
 	@mkdir -p $(OUT_DIR)
 	@if [ -f $(PDF) ]; then cp $(PDF) $(OUT_PDF); echo "  ✓  $(OUT_PDF)"; \
 	else echo "  ⚠  $(PDF) not found — run 'make fast' first."; fi
+
+## release: Full rebuild + copy named release PDF to root.
+release: veryclean all
+	@cp $(PDF) Ainfinity_Chiral_Algebras_and_Chiral_Hochschild_Cohomology.pdf
+	@echo "  ✓  Ainfinity_Chiral_Algebras_and_Chiral_Hochschild_Cohomology.pdf"
 
 ## dist: Create Vol2Archive.zip for distribution.
 dist: publish
@@ -237,6 +242,7 @@ help:
 	@echo ""
 	@echo "  make            Full build → out/ ($(PASSES) passes, stamp-based)"
 	@echo "  make fast       Quick converging build (up to $(FAST_PASSES) passes)"
+	@echo "  make release    Full rebuild + named release PDF at root"
 	@echo "  make dist       Create Vol2Archive.zip in out/"
 	@echo "  make check      Halt-on-error validation"
 	@echo "  make clean      Remove build debris (preserves stamp)"
