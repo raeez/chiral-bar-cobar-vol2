@@ -2210,3 +2210,83 @@ Five parallel agents audited the entire live `\input` surface (56 files) for eac
    Issue: the active frontier proposition `prop:R-matrix-steinberg` was explicitly conjectural and conditional on Conjecture~`conj:geometric-steinberg`, but its subsection lead-in still said the geometric Steinberg construction already yields the spectral \(R\)-matrix axioms, and it was followed by a fully assertive proof as if the conjectural convolution package already existed. That contradicted the local frontier status and advertised the theorem as settled.
    Fix: rewrote the subsection lead-in into expectation language and converted the proof into an explicit heuristic derivation conditional on the conjectural geometric Steinberg package, with each of unitarity, crossing symmetry, and the Yang--Baxter step stated as conditional evidence rather than as completed deductions.
    Status: `FIXED`
+
+## 2026-03-31 — Codex Beilinson Rectification Iteration 69
+
+- Target: residual status-classification drift in the celestial boundary-transfer frontier, especially whether the `W`-type and `W_3` corollaries were still marked conjectural even though they are immediate conditional consequences of a proved core theorem
+- Iteration: `69`
+- Status: rectification completed on the modified live surface; source-level verification is clean, and the closing build plus direct `main.log` classification remained in the stable band
+
+### Verification Run
+
+- Re-read the active `W`-type frontier block in `chapters/connections/celestial_boundary_transfer_frontier.tex`, focusing on Corollaries~`cor:cbt-w-type-quadratic` and `cor:cbt-w3-obstruction` together with the two following remarks.
+- Checked the parent theorem in the live core file `chapters/connections/celestial_boundary_transfer_core.tex`: Theorem~`thm:cbt-lowest-nonlinearity` is explicitly `\ClaimStatusProvedHere`, and its hypotheses already match the transfer-existence assumptions written into the two frontier corollaries.
+- Verified a real local status contradiction: both frontier corollaries were still tagged `\ClaimStatusConjectured`, but their proofs are immediate deductions from the proved core theorem once the explicit transfer-existence and filtration hypotheses in the statements are assumed. The two following remarks also dropped that transfer hypothesis and sounded unconditional.
+- Reclassified both active corollaries from `\ClaimStatusConjectured` to `\ClaimStatusConditional`, and rewrote the two follow-up remarks so they now keep the tree-level filtered-transfer hypothesis visible instead of advertising an unconditional universal first obstruction principle.
+- Propagated the same repair to the retained unsplit companion `chapters/connections/celestial_boundary_transfer.tex`, where the same misclassification and scope leak survived verbatim.
+- Re-read the patched active block and ran hostile greps on both files to confirm that the old `\ClaimStatusConjectured` tags and the retired unconditional remark slogans are gone.
+- Ran `make fast FAST_PASSES=3`; all three passes stabilized at `914pp, 0 undef cit, 59 undef ref, 0 rerun, 69 overfull`, with the wrapper again printing its usual false non-convergence footer.
+- Direct `main.log` classification after the stabilized run gave `38` unique undefined-reference labels, all `V1-*`; `0` non-`V1-*` undefined references; `0` undefined citations; `0` label-change warnings.
+
+### Findings
+
+128. `2026-03-31-128`
+   Severity: `SERIOUS`
+   Class: `D`
+   Location: `chapters/connections/celestial_boundary_transfer_frontier.tex:14-75`; retained unsplit companion `chapters/connections/celestial_boundary_transfer.tex:1409-1470`
+   Issue: Corollaries~`cor:cbt-w-type-quadratic` and `cor:cbt-w3-obstruction` were still marked `\ClaimStatusConjectured` even though their proofs are immediate deductions from the proved core Theorem~`thm:cbt-lowest-nonlinearity` once the explicit transfer-existence hypotheses written into the corollaries are assumed. The two following remarks then dropped the same transfer hypothesis and restated the obstruction principle as if it were unconditional.
+   Fix: reclassified both corollaries as `\ClaimStatusConditional` and rewrote the follow-up remarks so the universal-first-obstruction slogan is explicitly conditional on the tree-level filtered transfer. Propagated the same repair to the retained unsplit companion file.
+   Status: `FIXED`
+
+## 2026-03-31 — Codex Beilinson Rectification Iteration 70
+
+- Target: residual proof-status overclaim in the ordered/open frontier Francis--Gaitsgory shadow package, especially whether the surviving compatibility remark was still advertising the conjectural commutator-shadow theorem as essentially proved
+- Iteration: `70`
+- Status: rectification completed on the modified live surface; source-level verification is clean, and the closing build plus direct `main.log` classification remained in the stable band
+
+### Verification Run
+
+- Re-read the active ordered/open frontier block around Conjecture~`conj:FG-shadow`, Corollary~`cor:FG-shadow-convergence`, and Remark~`rem:bar-pole-compatibility` in `chapters/connections/ordered_associative_chiral_kd_frontier.tex`.
+- Verified a real live contradiction: the main theorem in that block remains explicitly conjectural, but the following compatibility remark still said the missing filtration check “follows from the fact” that OPEs do not increase pole order and that this “closes the gap and yields a complete proof strategy.” That restated an unverified heuristic as if the remaining gap had already been discharged.
+- Rewrote the active remark so it now presents the OPE pole-order estimate as a plausible route, names the precise missing verification step, and says explicitly that this evidence does not amount to a completed proof of Conjecture~`conj:FG-shadow`.
+- Checked the retained unsplit companion `chapters/connections/ordered_associative_chiral_kd.tex` for the same local slogan and found no matching mirror remark there, so no propagation patch beyond the active frontier file was needed for this iteration.
+- Re-read the patched block and ran hostile greps to confirm that the retired “follows from the fact” / “closes the gap” / “complete proof strategy” wording is gone from the active frontier surface.
+- Ran `make fast FAST_PASSES=3`; all three passes stabilized at `914pp, 0 undef cit, 59 undef ref, 0 rerun, 69 overfull`, with the wrapper again printing its usual false non-convergence footer.
+- Direct `main.log` classification after the stabilized run gave `38` unique undefined-reference labels, all `V1-*`; `0` non-`V1-*` undefined references; `0` undefined citations; `0` label-change warnings.
+
+### Findings
+
+129. `2026-03-31-129`
+   Severity: `SERIOUS`
+   Class: `D`
+   Location: `chapters/connections/ordered_associative_chiral_kd_frontier.tex:173-188`
+   Issue: the active frontier Conjecture~`conj:FG-shadow` remained open, but the following compatibility remark still said the missing pole-order filtration check “follows from the fact” that OPEs do not increase pole order and that this “closes the gap and yields a complete proof strategy.” That advertised the conjecture as effectively settled without carrying out the actual ordered-bar/commutator-filtration verification.
+   Fix: rewrote the remark so the OPE pole-order estimate is presented only as a plausible route, with the precise missing compatibility check named explicitly and the closing sentence stating that the discussion supplies evidence rather than a completed proof.
+   Status: `FIXED`
+
+## 2026-03-31 — Codex Beilinson Rectification Iteration 71
+
+- Target: residual theorem-role drift in the HT frontier Steinberg presentation package, especially whether the proved `(2,0)` face theorem was still being misstated as a monodromy identification
+- Iteration: `71`
+- Status: rectification completed on the modified live surface; source-level verification is clean, and the closing build plus direct `main.log` classification remained in the stable band
+
+### Verification Run
+
+- Re-read the active extended Steinberg presentation theorem in `chapters/connections/ht_bulk_boundary_line_frontier.tex`, focusing on item~(iv) and its proof against the cited Proposition~`prop:alpha-projections(iii)`.
+- Checked the cited local source: Proposition~`prop:alpha-projections(iii)` proves that the arity-`(2,0)` component of `\alpha_T` restricted to the ordered collision stratum is the spectral braiding `R(z)`, with the Yang--Baxter equation supplied by Theorem~`thm:YBE`.
+- Verified a real theorem-role contradiction: the active theorem item was still titled “Braiding from monodromy” and said the spectral `R`-matrix “is the monodromy of the correspondence,” even though its own proof cited only the `(2,0)` projection theorem and the Yang--Baxter theorem. The monodromy comparison remains a separate frontier statement in `log_ht_monodromy_frontier.tex`.
+- Rewrote the active theorem item so it now says “Braiding from the `(2,0)` face,” identifies `R(z)` with the `(2,0)` projection of `\alpha_T`, keeps the Yang--Baxter equation as the MC equation at arity `(3,0)`, and explicitly says the further monodromy identification is a separate frontier comparison.
+- Propagated the same repair to the retained unsplit companion `chapters/connections/ht_bulk_boundary_line.tex`, where the same local overclaim survived verbatim.
+- Re-read the patched block and ran hostile greps to confirm the retired “Braiding from monodromy” / “monodromy of the correspondence” wording is gone from the active and retained theorem surfaces.
+- Ran `make fast FAST_PASSES=3`; pass~1 requested one rerun, then passes~2 and~3 stabilized at `916pp, 0 undef cit, 59 undef ref, 0 rerun, 69 overfull`, with the wrapper again printing its usual false non-convergence footer.
+- Direct `main.log` classification after the stabilized run gave `38` unique undefined-reference labels, all `V1-*`; `0` non-`V1-*` undefined references; `0` undefined citations; `0` label-change warnings.
+
+### Findings
+
+130. `2026-03-31-130`
+   Severity: `SERIOUS`
+   Class: `D`
+   Location: `chapters/connections/ht_bulk_boundary_line_frontier.tex:177-184`; retained unsplit companion `chapters/connections/ht_bulk_boundary_line.tex:1370-1377`
+   Issue: the active extended Steinberg presentation theorem was still advertising item~(iv) as “Braiding from monodromy” and stating that the spectral `R`-matrix is the monodromy of the correspondence, even though the cited Proposition~`prop:alpha-projections(iii)` proves only that the arity-`(2,0)` face of `\alpha_T` gives the spectral braiding. The monodromy comparison remains frontier elsewhere in the manuscript.
+   Fix: rewrote item~(iv) so it now states the honest proved content: the spectral braiding comes from the `(2,0)` face of `\alpha_T`, the Yang--Baxter equation is the MC equation at arity `(3,0)`, and the further monodromy identification is explicitly deferred as a separate frontier comparison. Propagated the same repair to the retained unsplit companion file.
+   Status: `FIXED`
