@@ -65,6 +65,10 @@ The former axioms are now derived:
 
 All results in Parts I–VII hold unconditionally for any logarithmic SC^{ch,top}-algebra. Physical theories (gauge theories satisfying Theorem thm:physics-bridge) provide the standard class of examples.
 
+## Beilinson Rectification Loop
+
+The full loop protocol is defined in Vol I's CLAUDE.md (`~/chiral-bar-cobar/CLAUDE.md`, section "Beilinson Rectification Loop — Chapter-Level Protocol"). It uses parallel Agent dispatch (RED/BLUE/GREEN audit), TaskCreate/TaskUpdate for persistent state, worktree isolation for speculative reconstitution, and build-gated fixing. Run `run the Beilinson loop on [TARGET]` to invoke on any Vol II chapter.
+
 ## Critical Pitfalls
 
 **Inherited from Vol I (NEVER VIOLATE):**
