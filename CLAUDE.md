@@ -91,13 +91,17 @@ The full loop protocol is defined in Vol I's CLAUDE.md (`~/chiral-bar-cobar/CLAU
 
 ## Anti-Patterns (inherited from Vol I + Vol II-specific)
 
-All Vol I anti-patterns AP1-AP18 apply here. Additionally:
+All Vol I anti-patterns AP1-AP18 apply here. The following five (AP19-AP23) encode deep mathematical errors found propagated across both volumes:
 
-**AP19 — Label prefix mismatch.** thm: on remarks, def: on propositions. Label prefix MUST match environment type.
-**AP20 — Theorem environment with non-proved status.** \begin{theorem} with \ClaimStatusConjectured is contradictory. Use \begin{conjecture}.
-**AP21 — Status tag on wrong environment type.** ProvedHere on definitions or on heuristic discussions.
-**AP22 — OPE confused with collision residue.** r-matrix pole orders are ONE LESS than OPE pole orders (extraction via d log absorbs one power).
-**AP23 — κ vs κ_eff vs m₀ conflation.** κ(A) = modular characteristic. κ_eff = ghost-subtracted. m₀ = κ·ω_g. u = η² = κ·ω_g (LINEAR). F_g uses κ, not κ_eff.
+**AP19 — The bar kernel absorbs a pole.** The collision residue r(z) has pole orders ONE LESS than the OPE — the d log(z-w) kernel absorbs one power. Virasoro r-matrix: (c/2)/z³ + 2T/z, NOT (c/2)/z⁴ + 2T/z² + ∂T/z.
+
+**AP20 — An invariant of one algebra is not an invariant of a system.** κ(A) is intrinsic; κ_eff = κ(matter) + κ(ghost) is composite; κ(B) where B = A! is the dual's. F_g always uses κ(A). State WHICH algebra's κ.
+
+**AP21 — A class is not a scalar; Clifford ≠ exterior.** u = η² = λ = κ(B)·ω_g is LINEAR in κ (a class), NOT κ² (a scalar). The gravity dichotomy (c≠26 vs c=26) is whether this class vanishes. Squaring κ destroys the bifurcation.
+
+**AP22 — Generating function index mismatch.** Â(iℏ)-1 starts at ℏ². If F_1 ≠ 0, the pairing Σ F_g ℏ^{power} must use ℏ^{2g} (not ℏ^{2g-2}) unless an explicit 1/ℏ² appears.
+
+**AP23 — Flat section vs weighted transport.** √(Q_L) is the flat section of ∇^sh. The shadow generating function H(t) = t²√(Q_L) is NOT horizontal — the t² is the arity offset.
 
 ## Cross-Volume Bridges
 
