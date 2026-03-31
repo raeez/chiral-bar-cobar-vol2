@@ -58,7 +58,7 @@ endef
 #  Targets
 # ============================================================================
 
-.PHONY: all fast clean veryclean count check test help publish
+.PHONY: all fast clean veryclean count check test dist help publish
 
 ## all: Full build → out/
 ##   Idempotent: no-op if no .tex files changed since last successful build.
@@ -142,6 +142,20 @@ publish:
 	@if [ -f $(PDF) ]; then cp $(PDF) $(OUT_PDF); echo "  ✓  $(OUT_PDF)"; \
 	else echo "  ⚠  $(PDF) not found — run 'make fast' first."; fi
 
+## dist: Create Vol2Archive.zip for distribution.
+dist: publish
+	@echo "  ── Creating Vol2Archive.zip ──"
+	@rm -f $(OUT_DIR)/Vol2Archive.zip
+	@mkdir -p $(OUT_DIR)
+	@zip -r $(OUT_DIR)/Vol2Archive.zip \
+		main.tex chapters/ appendices/ compute/ \
+		Makefile README.md CLAUDE.md \
+		$(OUT_DIR)/ainfinity_chiral_algebras.pdf \
+		-x '.*' -x '**/.*' -x '**/__pycache__/*' -x '**/*.pyc' \
+		-x 'compute/.venv/*' \
+		>$(LOG_DIR)/dist.log 2>&1
+	@echo "  ✓  $(OUT_DIR)/Vol2Archive.zip ($$(du -h $(OUT_DIR)/Vol2Archive.zip | cut -f1))"
+
 ## check: Halt on first error — use for CI or pre-commit validation.
 check:
 	@echo "  ── Error check (halt-on-error) ──"
@@ -223,6 +237,7 @@ help:
 	@echo ""
 	@echo "  make            Full build → out/ ($(PASSES) passes, stamp-based)"
 	@echo "  make fast       Quick converging build (up to $(FAST_PASSES) passes)"
+	@echo "  make dist       Create Vol2Archive.zip in out/"
 	@echo "  make check      Halt-on-error validation"
 	@echo "  make clean      Remove build debris (preserves stamp)"
 	@echo "  make veryclean  Remove everything (forces rebuild)"
