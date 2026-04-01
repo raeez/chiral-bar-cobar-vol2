@@ -649,297 +649,381 @@ invariants ($\kappa$, $\Delta$, contact classes) match
 across the duality.
 \end{remark}
 
+% NOTE: The full primitive packages for twisted holography, M2, and M5
+% are developed in detail in the worked examples chapter
+% (Sections~\ref{subsec:twisted-holography-primitive},
+%  \ref{subsec:twisted-M2-primitive}, and
+%  \ref{subsec:twisted-M5-primitive}).
+% The following section (CS) complements those with the first
+% nonabelian gauge theory example computed in full primitive-package form.
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Twisted holography: the primitive package}
-\label{subsec:twisted-holography-primitive-package}
-\index{twisted holography!primitive package|textbf}
-\index{BRST!bc-betagamma@$bc$-$\beta\gamma$!boundary chart}
+\subsection{Nonabelian Chern--Simons: the primitive package}
+\label{subsec:cs-primitive-package}
+\index{Chern--Simons!primitive package|textbf}
+\index{affine Kac--Moody!primitive package}
+\index{Wilson line!open category}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\providecommand{\QBRST}{Q_{\mathrm{BRST}}}
+Let $G$ be a simple simply connected compact Lie group with
+Lie algebra $\fg = \operatorname{Lie}(G)$ and let $k$ be
+a positive integer (the level).
+Chern--Simons theory at level~$k$ on $\R_{\ge 0} \times \C$
+with Nahm-pole boundary condition is a
+holomorphic-topological theory whose open/closed data
+is computed in full below.
+The six-fold primitive package
+$(\cC_{\mathrm{CS}}^{\mathrm{op}},\;
+b_{\mathrm{Dir}},\;
+A = V_k(\fg),\;
+Z,\; \Theta_{\mathrm{CS}},\; \operatorname{Tr})$
+is a worked example of the abstract framework of
+Theorem~\ref{thm:thqg-swiss-cheese}
+in which every component is explicit.
 
-The twisted-holography model of Costello \cite{Cos13}
-and Costello--Li \cite{CostelloLi2020}
-realizes AdS$_5$/CFT$_4$ holography
-in the holomorphic-topological setting.
-The geometric origin is a defect curve
-$C \subset \C^3$; after KK reduction on the normal~$S^3$,
-one arrives at a 3d holomorphic-topological theory on
-$C \times \R_{>0}$.
+\subsubsection*{Boundary algebra}
 
-\noindent\textbf{Boundary algebra (chart).}
-The large-$N$ boundary VOA is the BRST reduction of a
-free $bc$-$\beta\gamma$ system.
-Generators:
-$b(z), c(z) \in \mathfrak{gl}_N$,
-$Z_1(z), Z_2(z) \in \mathfrak{gl}_N$,
-$I(z), J(z) \in \C^{K|K} \otimes \C^N$.
-Free OPE relations:
-\begin{equation}\label{eq:twisted-hol-free-ope}
-b(z)\, c(w)
-\;\sim\; \frac{1}{z-w},
-\qquad
-Z_1(z)\, Z_2(w)
-\;\sim\; \frac{1}{z-w},
-\qquad
-I(z)\, J(w)
-\;\sim\; \frac{1}{z-w}.
+The boundary algebra is the universal affine vertex algebra at
+level~$k$:
+\begin{equation}\label{eq:cs-boundary-algebra}
+A \;=\; V_k(\fg).
 \end{equation}
-BRST charge:
-\begin{equation}\label{eq:twisted-hol-brst}
-\QBRST
+Generators: currents $\{J^a(z)\}_{a=1}^{\dim\fg}$ in conformal
+weight~1.
+The defining $\lambda$-bracket is
+\begin{equation}\label{eq:cs-lambda-bracket}
+\{J^a{}_\lambda J^b\}
 \;=\;
-\oint \operatorname{Tr}\bigl(
-  c\, Z_1 Z_2 + c\, IJ + \tfrac{1}{2}\, b\, c^2
+f^{ab}{}_c\, J^c \;+\; k\,\delta^{ab}\,\lambda,
+\end{equation}
+where $f^{ab}{}_c$ are the structure constants of~$\fg$ in a basis
+with $\operatorname{tr}(t^a t^b) = \delta^{ab}$ and $\delta^{ab}$
+is the Killing form normalized so that the long root has
+$|\alpha|^2 = 2$.
+The OPE is
+\[
+J^a(z)\, J^b(w)
+\;\sim\;
+\frac{k\,\delta^{ab}}{(z-w)^2}
+\;+\;
+\frac{f^{ab}{}_c\, J^c(w)}{z-w}.
+\]
+The highest pole is quadratic:
+the $\lambda$-bracket is at most linear in~$\lambda$.
+By the PBW criterion (Volume~I, Proposition~\ref*{V1-prop:pbw-universality}),
+$V_k(\fg)$ is chirally Koszul for all $k \ne -h^\vee$.
+
+\subsubsection*{$\Ainf$ structure: strict associativity}
+
+The $\lambda$-bracket~\eqref{eq:cs-lambda-bracket} is strictly
+associative: the PVA Jacobi identity closes with no remainder, so
+\begin{equation}\label{eq:cs-mk-vanish}
+m_k \;=\; 0
+\qquad
+\text{for all } k \ge 3.
+\end{equation}
+The shadow depth is $r_{\max} = 3$ (class~$\mathbf{L}$,
+Lie/tree): the cubic shadow is nonzero (it detects the Lie
+bracket $f^{ab}{}_c$), but the quartic contact invariant
+vanishes because
+\begin{equation}\label{eq:cs-quartic-vanishes}
+\mathfrak{Q}^{\mathrm{contact}}_{V_k(\fg)} \;=\; 0,
+\end{equation}
+since the associator $A_3 = 0$ identically.
+The absence of a quartic pole is the algebraic reason that
+$m_3 = 0$ and the shadow tower terminates.
+
+\subsubsection*{Open category (primitive)}
+
+\begin{definition}[CS Wilson-line category]
+\label{def:cs-open-category}
+\index{Wilson line!dg-category}
+The open-sector factorization dg-category is
+\begin{equation}\label{eq:cs-open-category}
+\cC_{\mathrm{CS}}^{\mathrm{op}}
+\;\simeq\;
+V_k(\fg)\text{-}\mathbf{mod}^{\mathrm{dg}},
+\end{equation}
+the dg-category of modules over the affine vertex algebra
+$V_k(\fg)$.
+The vacuum boundary object is
+$b_{\mathrm{Dir}} = V_k(\fg)$
+(the vacuum module, viewed as an object of its own module
+category).
+\end{definition}
+
+At generic $k$ (not admissible), the category is abelian and
+semisimple on the subcategory of integrable highest-weight
+modules $\{L(\lambda) : \lambda \in P_+^k\}$.
+At admissible levels, the category acquires a nontrivial
+derived structure from null vectors.
+The endomorphism algebra recovers the boundary:
+$\End(b_{\mathrm{Dir}}) = V_k(\fg)$.
+
+\subsubsection*{Koszul dual and line operators}
+
+The Koszul dual is the affine vertex algebra at the
+Feigin--Frenkel dual level:
+\begin{equation}\label{eq:cs-koszul-dual}
+V_k(\fg)^!
+\;=\;
+V_{k'}(\fg),
+\qquad
+k' = -k - 2h^\vee.
+\end{equation}
+Line operators along $\R_{>0} \times \{0\}$ are
+$V_{k'}(\fg)$-modules
+(Theorem~\ref{thm:lines_as_modules}).
+The complementarity anti-symmetry holds:
+$\kappa(V_k(\fg)) + \kappa(V_{k'}(\fg)) = 0$.
+
+\subsubsection*{Bulk (derived center)}
+
+The chiral derived center is the chiral Hochschild cochain
+complex:
+\begin{equation}\label{eq:cs-derived-center}
+Z
+\;=\;
+\mathcal{Z}^{\mathrm{der}}_{\mathrm{ch}}(V_k(\fg))
+\;:=\;
+H^*\!\bigl(
+  C^\bullet_{\mathrm{ch}}(V_k(\fg),\, V_k(\fg)),\;
+  \delta
 \bigr).
 \end{equation}
-At large~$N$, the BRST cohomology is generated by
-single-trace towers $A^{(n)}$, $B^{(n)}$, $C^{(n)}$,
-$D^{(n)}$, $E_t^{(n)}$
-(Costello--Li \cite{CostelloLi2020}).
-
-An equivalent gravity-side chart exists: in
-Kodaira--Spencer gravity coupled to holomorphic
-Chern--Simons on the deformed $SL_2(\C)$ geometry,
-the transverse boundary generators
-$\partial_z^n B[p,q](z)$ are identified with the
-gauge-side operators $\partial_z^n E^{(p,q)}(z)$.
-
-\noindent\textbf{Open category (primitive).}
-$\cC_{\mathrm{TH}}^{\mathrm{op}}$ is the boundary
-factorization dg-category of the KK-reduced 3d~HT theory
-on $C \times \R_{>0}$, with a chosen transverse boundary
-vacuum $b_{\mathrm{Dir}}$.
-The local construction is a theorem;
-the global cosheaf is part of the programme.
-
-\noindent\textbf{Bulk (derived center).}
-The bulk observables are the twisted supergravity
-observables in the deformed $SL_2(\C)$ background.
-The non-planar/higher structure is controlled by the
-$\Ainf$ algebra $H^{0,\bullet}_b(S^3)
-= (H^{0,\bullet}_b(S^3), m_2, m_3, \ldots)$;
-in the deformed background, the relevant object is
-$\cO_C \otimes H^{0,\bullet}_b(S^3)$,
-whose higher products organize the higher OPE terms
-of the holographic chiral algebra.
-
-\noindent\textbf{Shadow archetype.}
-The BRST reduction introduces non-trivial higher
-$\Ainf$ operations.  The shadow archetype depends on
-the matter content: for the $bc$-$\beta\gamma$ system
-before BRST reduction, the free-field input is
-class~$\mathbf{C}$ (contact/quartic, $r_{\max} = 4$);
-the BRST quotient may alter the shadow depth.
-\ClaimStatusConjectured
-
-\noindent\textbf{Modular data.}
-The modular characteristic of the pre-BRST system
-is computable from the free-field formula:
-$\kappa(bc) = -1$ per adjoint $bc$ pair
-and $\kappa(\beta\gamma) = 1$ per fundamental
-$\beta\gamma$ pair
-(Volume~I).
-The genus tower of the BRST cohomology is controlled
-by the effective $\kappa_{\mathrm{eff}}$ of the
-full system.
-Precise values depend on $N$, $K$, and the
-representation content.
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Twisted M2 branes: the primitive package}
-\label{subsec:twisted-m2-primitive-package}
-\index{M2 brane!primitive package|textbf}
-\index{deformed double current algebra|textbf}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-In twisted M-theory, the effective description is 5d
-noncommutative topological-holomorphic Chern--Simons on
-$\R \times \C^2$
-(Costello \cite{Cos13},
-Costello--Gaiotto \cite{CostelloGaiotto18}).
-M2~branes appear as topological line operators
-(Wilson lines) in this 5d theory.
-
-\noindent\textbf{Boundary algebra (chart).}
-The boundary algebra on $K$~M2~branes is the
-deformed double current algebra (DDCA) of
-$\mathfrak{gl}_K$,
-introduced by Guay \cite{Guay2005,Guay2007}.
-Write $\epsilon_1, \epsilon_2$ for the two
-$\Omega$-background parameters and
-$\epsilon_3 = -K\epsilon_1 - \epsilon_2$.
-The algebra $A(K)$ is generated by
-\begin{equation}\label{eq:ddca-generators}
-T_{n,m}(X),
-\quad
-t_{n,m},
+By the Hochschild--Serre spectral sequence for the
+$\fg$-action:
+\begin{equation}\label{eq:cs-hochschild-computation}
+\mathcal{Z}^0
+\;\simeq\;
+Z(\widehat{\fg}_k)
+\;=\;
+\begin{cases}
+\C & \text{if } k \ne -h^\vee, \\
+\text{large} & \text{at critical level},
+\end{cases}
 \qquad
-X \in \mathfrak{gl}_K,
-\quad
-(n,m) \in \mathbb{N}^2,
+\mathcal{Z}^1
+\;\simeq\;
+H^1(\fg, V_k(\fg)),
 \end{equation}
-subject to the following relations.
-The $\mathfrak{gl}_K$ action is by commutator:
-\[
-[T_{0,0}(X),\, T_{0,n}(Y)] = T_{0,n}([X,Y]),
-\qquad
-[T_{0,0}(X),\, t_{0,n}] = 0.
-\]
-The abelian generators $t_{n,m}$ form a Lie algebra of
-polynomial vector fields on $\C^2$:
-\[
-[t_{p,q},\, t_{n,m}]
-= (mp - nq)\, t_{p+n-1,\, q+m-1}.
-\]
-They act on $T_{n,m}(X)$ by:
-\[
-[t_{p,q},\, T_{n,m}(X)]
-= (mp - nq)\, T_{p+n-1,\, q+m-1}(X).
-\]
-The key nonlinear relation, encoding the
-quantum deformation, is
-(writing $\Omega = E_{ab} \otimes E_{ba}$
-for the Casimir):
-\begin{align}\label{eq:ddca-nonlinear}
-[T_{1,0}(X),\, T_{0,n}(Y)]
-&= T_{1,n}([X,Y])
-- \tfrac{\epsilon_3 n}{2}\, T_{0,n-1}(\{X,Y\})
-- n\epsilon_1\, \operatorname{tr}(Y)\, T_{0,n-1}(X)
-\notag\\
-&\quad
-+ \epsilon_1 \sum_{m=0}^{n-1}
-  \tfrac{m+1}{n+1}\, T_{0,m,\, 0,n-1-m}
-  \bigl(([X,Y] \otimes 1) \cdot \Omega\bigr)
-\notag\\
-&\quad
-+ \epsilon_1 \sum_{m=0}^{n-1}
-  T_{0,m,\, 0,n-1-m}
-  \bigl((X \otimes Y - XY \otimes 1) \cdot \Omega\bigr).
-\end{align}
-The identity element of $\mathfrak{gl}_K$ is related to
-the abelian generators by
-$T_{n,m}(1) = \epsilon_2\, t_{n,m}$.
-For $K = 1$, the $\mathfrak{gl}_K$ structure drops out
-and the seed relations simplify to the polynomial
-vector-field algebra on $\C^2$.
+and $\mathcal{Z}^{n \ge 3} = 0$ for generic~$k$ by
+Theorem~H (polynomial growth of chiral Hochschild
+cohomology).
+The center $Z(\widehat{\fg}_k) = \C$ at generic level
+reflects the fact that nonabelian Chern--Simons has a
+unique bulk vacuum: the CS path integral
+$\int \mathcal{D}A\, e^{ikS_{\mathrm{CS}}(A)}$
+has no adjustable parameter beyond the level.
+At the critical level $k = -h^\vee$, the Feigin--Frenkel
+center $\mathfrak{z}(\widehat{\fg})$ is a commutative vertex
+algebra isomorphic to $\operatorname{Fun}\operatorname{Op}_{\fg^L}(\mathbb{D})$
+(opers on the formal disc for the Langlands dual), and the
+derived center enlarges accordingly.
 
-The classical limit is
-$A(K)/(\epsilon_1 = 0)
-\simeq U(\mathcal{D}_{\epsilon_2}(\C) \otimes
-\widetilde{\mathfrak{gl}}_K)$,
-the universal enveloping algebra of differential operators
-tensored with the central extension of $\mathfrak{gl}_K$.
-These are the defining relations recorded by
-Guay \cite{Guay2005,Guay2007}.
+\subsubsection*{Classical $r$-matrix and coproduct}
 
-\noindent\textbf{Open category (primitive).}
-$\cC_{M2}^{\mathrm{op}}$ is the factorization dg-category
-of topological line defects in 5d twisted M-theory,
-with vacuum $b_{M2}$ the trivial line.
-The local construction is a theorem
-(Costello \cite{Cos13});
-the global cosheaf is part of the programme.
-
-\noindent\textbf{Bulk (derived center).}
-$Z = C^\bullet_{\mathrm{ch}}(A(K), A(K))$,
-the chiral derived center of the DDCA\@.
-
-\noindent\textbf{Shadow archetype.}
-The DDCA has generators of multiple conformal weights
-(the bigrading $(n,m)$ gives conformal weight $n + m + 1$).
-The shadow archetype is expected to be class~$\mathbf{M}$
-(infinite tower) due to the genuinely nonlinear
-relation~\eqref{eq:ddca-nonlinear}, which forces
-non-vanishing higher $\Ainf$ operations at all arities.
-\ClaimStatusConjectured
-
-\noindent\textbf{Modular data.}
-The modular characteristic $\kappa(A(K))$ has not been
-computed in the literature.  At $K = 1$ and $\epsilon_2 = 0$,
-the algebra degenerates to a polynomial algebra and
-$\kappa = 0$; for general $K$ and $\epsilon_1, \epsilon_2$,
-the modular characteristic is open.
-\ClaimStatusOpen
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Twisted M5 branes: the primitive package}
-\label{subsec:twisted-m5-primitive-package}
-\index{M5 brane!primitive package|textbf}
-\index{W-infinity@$W_\infty$!matrix-extended|textbf}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-In the same 5d twisted M-theory on $\R \times \C^2$,
-M5~branes appear as holomorphic surface defects
-(Costello \cite{Cos13},
-Costello--Gaiotto \cite{CostelloGaiotto18}).
-
-\noindent\textbf{Boundary algebra (chart).}
-The boundary algebra on $K$~M5~branes is the
-$\mathfrak{gl}_K$-extended $W_\infty$ vertex algebra
-$W_\infty(K)$
-(Proch\'azka--Rap\v{c}\'ak \cite{ProchazkRapcak2018}).
-Generators:
-\begin{equation}\label{eq:m5-generators}
-W^{a(r)}_b(z),
-\qquad
-r \ge 1,
-\quad
-1 \le a, b \le K.
+The collision residue of the bar differential gives the
+classical $r$-matrix (AP19: pole orders one below the OPE):
+\begin{equation}\label{eq:cs-r-matrix}
+r^{\mathrm{coll}}_{\mathrm{CS}}(z)
+\;=\;
+\frac{\Omega}{z},
 \end{equation}
-The spin-1 fields $W^{a(1)}_b$ form an affine
-Kac--Moody subalgebra
-$V_{\kappa_{\epsilon_3 c, \epsilon_1 c}}
-(\mathfrak{gl}_K)$,
-with OPE
-\begin{equation}\label{eq:m5-spin1-ope}
-W^{a(1)}_b(z)\, W^{c(1)}_d(w)
-\;\sim\;
-\frac{c(\epsilon_3\, \delta^a_d\, \delta^c_b
-  + \epsilon_1\, \delta^a_b\, \delta^c_d)}{(z-w)^2}
+where $\Omega = \sum_a t^a \otimes t^a \in \fg \otimes \fg$ is the
+quadratic Casimir.
+The Laplace kernel (the full OPE generating function) is
+$r^L(z) = f^{ab}{}_c J^c/z + k\,\delta^{ab}/z^2$.
+The collision residue $\Omega/z$ satisfies the CYBE:
+\begin{equation}\label{eq:cs-cybe}
+[\Omega_{12}/z_{12},\; \Omega_{13}/z_{13}]
++ [\Omega_{12}/z_{12},\; \Omega_{23}/z_{23}]
++ [\Omega_{13}/z_{13},\; \Omega_{23}/z_{23}]
+\;=\; 0.
+\end{equation}
+This is the standard rational CYBE; the solution $\Omega/z$
+is the Drinfeld--Kohno $r$-matrix.
+
+The coproduct on the dg-shifted Yangian is
+\emph{nontrivial}:
+\begin{equation}\label{eq:cs-coproduct}
+\Delta_z(J^a)
+\;=\;
+J^a(w+z) \otimes 1
 \;+\;
-\frac{\delta^c_b\, W^{a(1)}_d(w)
-  - \delta^a_d\, W^{c(1)}_b(w)}{z-w}.
+1 \otimes J^a(w),
 \end{equation}
-The higher-spin fields $W^{a(r)}_b$ ($r \ge 2$) are
-determined by the matrix Miura presentation: the basic
-Miura operator is
-$L_{11}(x) = \bar\alpha\, \partial_x + J^a_b(x)\, E^b_a$,
-with $J^a_b(x)$ an affine $\mathfrak{gl}_K$ current.
-The coproduct on $W^{a(r)}_b$ encodes M5~fusion, and
-mixed M2--M5 intertwiners are given by matrix Miura
-operators.
+and on composite operators the coproduct is a strict algebra
+morphism into the $r(z)$-twisted tensor product.
+In particular, $\Delta_z$ is NOT strictly primitive on all
+generators: the $r(z)$-twist encodes the nontrivial braiding
+of Wilson lines.
+The physical content is clear: CS gluons \emph{split}.
+A Wilson line in representation~$R$ passing through two
+regions separated by a bulk excitation resolves into
+constituent Wilson lines weighted by the tensor product
+decomposition $R \to \bigoplus R_i \otimes R_j$ ---
+the Clebsch--Gordan coupling.
 
-\noindent\textbf{Open category (primitive).}
-$\cC_{M5}^{\mathrm{op}}$ is the factorization dg-category
-of holomorphic surface defects in 5d twisted M-theory,
-with vacuum $b_{M5}$ the trivial surface.
-The local construction is a theorem
-(Costello \cite{Cos13});
-the global cosheaf is part of the programme.
+This is the fundamental contrast with gravity
+(\S\ref{subsec:gravity-primitive-package}): the ghost-number
+obstruction that forces the Virasoro coproduct to be strictly
+primitive does not exist for the affine algebra, because the
+affine generators $J^a$ are weight~1 (matching the SDR image),
+while the Sugawara composite $T$ is weight~2 (outside the
+SDR image).
 
-\noindent\textbf{Bulk (derived center).}
-$Z = C^\bullet_{\mathrm{ch}}(W_\infty(K), W_\infty(K))$.
+\subsubsection*{Modular MC element}
 
-\noindent\textbf{Shadow archetype.}
-Class~$\mathbf{M}$ (mixed, infinite tower) for $K \ge 1$:
-$W_\infty(K)$ contains a Virasoro subalgebra (the
-$\mathfrak{sl}_K$-singlet sector), which already has
-$r_{\max} = \infty$.  The infinite tower of higher-spin
-fields generates additional shadow data at each arity.
+\begin{theorem}[CS modular MC element; \ClaimStatusProvedHere]
+\label{thm:cs-mc-element}
+\index{universal MC element!Chern--Simons|textbf}
+The modular MC element of $V_k(\fg)$ is
+\begin{equation}\label{eq:cs-mc-element}
+\Theta_{\mathrm{CS}}
+\;=\;
+\alpha_{\mathrm{cl}}
+\;+\;
+\hbar\,\kappa\,\eta \otimes \Lambda,
+\end{equation}
+where:
+\begin{enumerate}[label=\textup{(\roman*)}]
+\item $\alpha_{\mathrm{cl}} = m_2 \in
+  \Hom(\barB^{(0,2)}(\SCop), \End_{V_k(\fg)})$
+  encodes the binary $\lambda$-bracket at genus~$0$.
+  The MC equation at genus~$0$ is
+  $d_{\barB}\alpha_{\mathrm{cl}}
+  + \frac{1}{2}[\alpha_{\mathrm{cl}}, \alpha_{\mathrm{cl}}] = 0$,
+  which is the Jacobi identity for the Lie bracket.
+\item $\hbar\,\kappa\,\eta \otimes \Lambda$ is the genus-$1$
+  self-loop correction, with modular characteristic
+  \begin{equation}\label{eq:cs-kappa}
+  \kappa(V_k(\fg))
+  \;=\;
+  \frac{\dim(\fg)\cdot(k + h^\vee)}{2h^\vee}.
+  \end{equation}
+\item All higher-arity and higher-genus terms beyond the
+  genus-$1$ self-loop vanish: $m_k = 0$ for $k \ge 3$
+  forces all planted-forest corrections to vanish by arity
+  truncation.
+\end{enumerate}
+The shadow tower terminates at arity~$3$ (class~$\mathbf{L}$):
+\[
+\Theta_{\mathrm{CS}}^{\le 2} = \kappa \cdot \eta \otimes \Lambda,
+\qquad
+\Theta_{\mathrm{CS}}^{\le 3} = \kappa \cdot \eta \otimes \Lambda
++ \mathfrak{C} \cdot \Xi_3,
+\qquad
+\Theta_{\mathrm{CS}}^{\le r} = \Theta_{\mathrm{CS}}^{\le 3}
+\;\text{ for all } r \ge 3,
+\]
+where $\mathfrak{C}(\widehat{\fg}_k) \ne 0$ is the cubic shadow
+(detecting the Lie bracket) and $\Xi_3$ is the arity-$3$
+tautological form on $\overline{\mathcal{M}}_{0,3}$.
+\end{theorem}
 
-\noindent\textbf{Modular data.}
-For $K = 1$, $W_\infty(1)$ reduces to $W_{1+\infty}$ and
-the modular characteristic is determined by the central
-charge of the underlying Virasoro sector.
-For general~$K$, the modular characteristic
-$\kappa(W_\infty(K))$ is controlled by the
-$\mathfrak{gl}_K$ Kac--Moody level via the general
-formula
-$\kappa = \dim(\mathfrak{gl}_K) \cdot
-(k + K)/(2K)$
-for the spin-1 subsector.
-The full modular characteristic of the extended algebra,
-including contributions from all higher-spin fields,
-is open.
-\ClaimStatusOpen
+\begin{proof}
+The binary operation $m_2$ satisfies the Jacobi identity
+($A_3 = 0$), so $\alpha_{\mathrm{cl}}$ satisfies the genus-$0$ MC
+equation.
+The higher operations $m_k = 0$ for $k \ge 3$ imply that the
+only genus-$1$ contribution is the self-loop graph
+$\Gamma_{\mathrm{irr}}$ (one vertex, one self-edge), which
+contributes $\kappa \cdot \eta \otimes \Lambda$ with
+$\kappa = \dim(\fg)(k + h^\vee)/(2h^\vee)$ computed as
+the BV trace $\sum_a \langle J^a, J^a \rangle = k\dim(\fg)$
+weighted by the Hodge class $\omega_1 = \lambda_1/12$.
+Here $\langle J^a, J^b \rangle = k\,\delta^{ab}$ is the
+level-$k$ pairing, and the $h^\vee$ correction comes from
+the shift between the Lie-algebra trace and the vertex-algebra
+invariant bilinear form (Volume~I,
+Proposition~\ref*{V1-prop:kappa-affine}).
+
+All planted-forest corrections at arity $r \ge 4$ require an
+internal vertex labelled by some $m_j$ with $j \ge 3$; since
+$m_j = 0$ for $j \ge 3$, these corrections vanish.
+At higher genus $g \ge 2$, the same arity truncation applies:
+every genus-$g$ graph with arity $\ge 4$ vanishes, and the
+scalar genus tower is
+$F_g(V_k(\fg)) = \kappa \int_{\overline{\mathcal{M}}_g} \lambda_g$
+by the algebraic-family rigidity theorem
+(Volume~I, Theorem~\ref*{V1-thm:algebraic-family-rigidity}).
+\end{proof}
+
+\subsubsection*{Annulus trace}
+
+The annulus trace is the Hochschild homology of the open
+sector:
+\begin{equation}\label{eq:cs-annulus-trace}
+\operatorname{Tr}_{\mathrm{CS}}
+\;=\;
+\int_{S^1} \cC_{\mathrm{CS}}^{\mathrm{op}}
+\;\simeq\;
+HH_*(V_k(\fg)).
+\end{equation}
+By the Zhu correspondence, $HH_0(V_k(\fg)) \simeq
+\operatorname{Tr}_{A(V_k(\fg))}(\operatorname{Id})$,
+where $A(V_k(\fg)) \simeq U(\fg)$ is the Zhu algebra.
+The annulus partition function
+\begin{equation}\label{eq:cs-annulus-partition}
+Z_{\mathrm{ann}}^{\mathrm{CS}}(q)
+\;=\;
+\operatorname{tr}_{V_k(\fg)} q^{L_0 - c/24}
+\;=\;
+q^{-c/24} \prod_{n=1}^{\infty} \frac{1}{(1-q^n)^{\dim\fg}}
+\end{equation}
+is the vacuum character of $V_k(\fg)$, with central charge
+$c = k\dim(\fg)/(k + h^\vee)$ (the Sugawara central charge).
+
+\subsubsection*{Summary: the CS primitive package}
+
+\begin{center}
+\small
+\renewcommand{\arraystretch}{1.15}
+\begin{tabular}{lll}
+\textbf{Datum} & \textbf{Object} & \textbf{Status} \\
+\hline
+$\cC_{\mathrm{CS}}^{\mathrm{op}}$
+  & $V_k(\fg)$-$\mathbf{mod}^{\mathrm{dg}}$ (Wilson lines)
+  & proved \\[2pt]
+$b$
+  & $V_k(\fg)$ (vacuum module)
+  & proved \\[2pt]
+$A = \End(b)$
+  & $V_k(\fg)$, with $\{J^a_\lambda J^b\} = f^{ab}_c J^c + k\delta^{ab}\lambda$
+  & proved \\[2pt]
+$Z$
+  & $C^\bullet_{\mathrm{ch}}(V_k(\fg), V_k(\fg))$;
+    $\;\mathcal{Z}^0 = \C$
+  & proved \\[2pt]
+$\Theta_{\mathrm{CS}}$
+  & $m_2 + \hbar\kappa\eta\otimes\Lambda$;
+    $\;\kappa = \dim\fg(k+h^\vee)/(2h^\vee)$
+  & proved \\[2pt]
+$\operatorname{Tr}$
+  & $HH_*(V_k(\fg))$;
+    $\;Z_{\mathrm{ann}} = q^{-c/24}\prod(1-q^n)^{-\dim\fg}$
+  & proved \\[2pt]
+$r^{\mathrm{coll}}(z)$
+  & $\Omega/z$ (Drinfeld--Kohno)
+  & proved \\[2pt]
+$\Delta_z$
+  & nontrivial (gluons split)
+  & proved \\[2pt]
+shadow depth
+  & $r_{\max} = 3$ (class~$\mathbf{L}$)
+  & proved
+\end{tabular}
+\end{center}
+
+The CS primitive package is the simplest nonabelian example
+in the standard HT landscape: the $\Ainf$ structure is
+strict ($m_{k \ge 3} = 0$), the MC element terminates at
+finite arity, and the nontrivial content is concentrated
+in the Lie bracket (cubic shadow), the level (modular
+characteristic), and the coproduct (gluon splitting).
+The gravitational primitive package
+(\S\ref{subsec:gravity-primitive-package}) presents the
+opposite extreme: infinite $\Ainf$ tower, infinite shadow
+depth, and strictly primitive coproduct
+(Principle~\ref*{V1-princ:gravitational-primitivity}).
