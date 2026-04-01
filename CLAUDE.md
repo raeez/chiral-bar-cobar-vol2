@@ -115,6 +115,8 @@ All Vol I anti-patterns AP1-AP32 apply here. The following encode deep mathemati
 
 **AP26 — Fock inner product ≠ BPZ inner product.** At weight ≥ 4 for rank ≥ 3 W-algebras, dim(Fock) > dim(W-algebra) and ⟨W₄|Λ⟩_Fock ≠ 0 even though ⟨W₄|Λ⟩_BPZ = 0. W-algebra decompositions MUST use BPZ (Wick contractions), not the free-field dot product.
 
+**AP33 — Koszul duality ≠ Feigin-Frenkel duality ≠ negative-level substitution.** Three operations share surface similarities but differ. Koszul: A ↦ A^! = (H*(B(A)))^v. FF involution: k ↦ -k-2h^v within same family. Negative-level: H_k ↦ H_{-k}. For Heisenberg: κ(H_k^!) = -k = κ(H_{-k}), but H_k^! ≠ H_{-k} as chiral algebras. H_k^! = Sym^ch(V*). NEVER write H_k^! = H_{-k}.
+
 **Meta-principle:** Every error traces to confusing two objects that share a name, formula, or special-case coincidence. The meta-rule: never trust a coincidence. Verify at the most general case, highest weight, most general level, most general family.
 
 ## Cross-Volume Bridges
@@ -126,7 +128,7 @@ All Vol I anti-patterns AP1-AP32 apply here. The following encode deep mathemati
 | Hochschild | BV-BRST origin of Vol I's Theorem H complex | Theorem H | Proved (all genera) |
 | DK/YBE | r(z) = ∫₀^∞ e^{-λz}{·_λ·}dλ provides DK-0 shadow | MC3 (DK extension) | Proved (Laplace) |
 | PVA-Coisson | PVA descent at X = pt recovers Coisson structure | Deformation theory | Proved |
-| W-algebras | Feynman-diagrammatic m_k matches bar differential at all genera | MC5 (BRST = bar) | **Proved** (all genera) |
+| W-algebras | Feynman-diagrammatic m_k matches bar differential at genus 0 | MC5 (BRST = bar) | Proved (genus 0); conjectural at g≥1 (conj:master-bv-brst) |
 | Affine monodromy | Reduced HT monodromy = quantum group R-matrix; C_line^red ≃ Rep_q(𝔤) on eval modules; Jones polynomial from bar complex | Thm A + affine half-space BV + Drinfeld-Kohno | **Proved** (affine lineage) |
 
 ## Build

@@ -6809,3 +6809,2326 @@ Five parallel agents audited the entire live `\input` surface (56 files) for eac
    Issue: the active Virasoro standard-families package had drifted back into a false theorem-level concrete realization, presenting the line side as the proved category `\mathrm{Vir}_{26-c}\text{-mod}^{\mathrm{dg}}` and marking the Virasoro RTT/fusion package as proved, even though the repaired live doctrine only supports these as an expected Virasoro realization of the abstract line side.
    Fix: rewrote the opener, the line-side computation, the RTT construction, the evaluation-module fusion package, and the downstream summary line so they now consistently use the expected-model register and conjectural status.
    Status: `FIXED`
+
+## 2026-04-01 — Codex Beilinson Rectification Iteration 260
+
+- Target: gravity-summary survivors still flattening the abstract line side into the concrete Virasoro model
+- Iteration: `260`
+- Status: rectification completed on the modified live surface; source-level verification is clean, but no canonical closing build evidence was taken for this pass
+
+### Verification Run
+
+- Continued the hostile sweep after the Virasoro line-side repair and found one real downstream summary-layer survivor cluster in the active gravity chapter.
+- The opener bullet list, the theorem-level vertex list, and the gravitational MC summary theorem were still advertising the proved open face as `\mathrm{Vir}_{26-c}\text{-mod}` and the spectral braiding as the Virasoro fusion kernel, even though the repaired live doctrine only supports an abstract line-side package together with an expected Virasoro realization.  The closing summary box had already been partly repaired and only needed to be checked for consistency.
+- Rewrote the active gravity chapter so those high-visibility summaries now speak honestly about the abstract line-side package, then add the expected Virasoro realization and its conical-defect / fusion-kernel reading in separate expected-model sentences.
+- Ran hostile local reread and fixed-string greps to confirm that the retired slogans `\mathrm{Vir}_c \leftrightarrow \mathrm{Vir}_{26-c}\text{-mod}`, `\item \textbf{Lines} \simeq \mathrm{Vir}_{26-c}\text{-mod}`, and `open face = \mathrm{Vir}_{26-c}\text{-mod}` no longer survive in the active gravity chapter; the remaining `\mathrm{Vir}_{26-c}\text{-mod}` mention in the closing box is now only the intentional expected-model shorthand.
+
+### Findings
+
+320. `2026-04-01-320`
+   Severity: `SERIOUS`
+   Class: `D`
+   Location: `chapters/connections/3d_gravity.tex:55-60`; `chapters/connections/3d_gravity.tex:172-186`; `chapters/connections/3d_gravity.tex:825-837`
+   Issue: the active gravity chapter still had a coordinated summary-layer overclaim, flattening the abstract open-colour line side into the concrete Virasoro module category and fusion-kernel model inside high-visibility theorem and overview surfaces.
+   Fix: rewrote the opener, the gravitational Koszul-triangle theorem band, and the gravitational MC theorem band so they now isolate the proved abstract line-side package and move the Virasoro-module / conical-defect / fusion-kernel content into explicitly expected-model language.
+   Status: `FIXED`
+
+## 2026-04-01 — Codex Beilinson Rectification Iteration 261
+
+- Target: remaining “line-operator category/categories” terminology in the active `line-operators` chapter
+- Iteration: `261`
+- Status: rectification completed on the modified live surface; source-level verification is clean, but no canonical closing build evidence was taken for this pass
+
+### Verification Run
+
+- Continued the hostile sweep after the Virasoro and gravity repairs and found one local but real terminology survivor cluster in the active `line-operators` chapter.
+- Two chapter-local explanatory lines still said “line-operator category,” and the later DS-reduction remark title and index entry still said “line-operator categories,” even though the surrounding active summary surface had already been normalized to the simpler “line category / line categories” register.
+- Rewrote that local cluster so it now uniformly says “line category” and “line categories.”
+- Ran hostile local reread and fixed-string greps to confirm that the retired phrases “line-operator category” and “line-operator categories” no longer survive across the active `line-operators` / gravity / preface / introduction band checked in this pass.
+
+### Findings
+
+321. `2026-04-01-321`
+   Severity: `MINOR`
+   Class: `E`
+   Location: `chapters/connections/line-operators.tex:452`; `chapters/connections/line-operators.tex:718`; `chapters/connections/line-operators.tex:1641-1644`
+   Issue: the active `line-operators` chapter still had a small terminology survivor cluster using the older phrases “line-operator category” and “line-operator categories,” out of step with the normalized manuscript-wide register.
+   Fix: rewrote the local explanatory prose, proposition statement, DS-reduction remark title, and index entry so they now use “line category” / “line categories.”
+   Status: `FIXED`
+
+## 2026-04-01 — Codex Beilinson Rectification Iteration 262
+
+- Target: remaining foundational/affine uses of the older “line-operator category” register
+- Iteration: `262`
+- Status: rectification completed on the modified live surface; source-level verification is clean, but no canonical closing build evidence was taken for this pass
+
+### Verification Run
+
+- Continued the broader live-surface scan after the local `line-operators` cleanup and found one tidy active companion cluster in the foundations chapter and the affine half-space BV chapter.
+- The foundational subsection title still read “The line-operator category: MC couplings vs.\ Koszul modules,” the nearby theorem proof summary still spoke of the associative monoidal structure on the “line-operator category,” and the affine half-space summary still said the “line-operator category is equivalent to modules for the open-colour Koszul dual.”
+- Rewrote that active cluster so it now uses the normalized register throughout: “line category” in the foundational subsection and theorem line, and “line category is modeled by modules for the open-colour Koszul dual” in the affine summary.
+- Ran hostile local reread and fixed-string grep to confirm that the retired phrase “line-operator category” no longer survives in the touched foundational/affine band.
+
+### Findings
+
+322. `2026-04-01-322`
+   Severity: `MINOR`
+   Class: `E`
+   Location: `chapters/theory/foundations.tex:780`; `chapters/theory/foundations.tex:928`; `chapters/connections/affine_half_space_bv.tex:1637`
+   Issue: the active foundations and affine half-space BV surfaces still contained a small survivor cluster using the older “line-operator category” register, even though the surrounding live manuscript had already been normalized to “line category.”
+   Fix: rewrote the foundational subsection title and theorem sentence, and rewrote the affine summary line so it now says the line category is modeled by modules for the open-colour Koszul dual.
+   Status: `FIXED`
+
+## 2026-04-01 — Codex Beilinson Rectification Iteration 263
+
+- Target: late-chapter Virasoro/DS survivors still slipping back into concrete-model shorthand
+- Iteration: `263`
+- Status: rectification completed on the modified live surface; source-level verification is clean, but no canonical closing build evidence was taken for this pass
+
+### Verification Run
+
+- Continued the broader live-surface scan and found one local but real survivor cluster in the later Virasoro/DS discussion of `line-operators.tex`.
+- The chapter still had a few lines that slipped back into the older concrete-model register: a braided-category comparison was phrased directly against `\mathrm{Vir}_{26-c}\text{-mod}`, the `\mathcal W_{1+\infty}` remark said the Virasoro line category itself was the spin-2 truncation, and the DS-reduction route spoke of a reduced Steinberg algebra acting directly on `\mathrm{Vir}_{26-c}\text{-mod}`.
+- Rewrote that local band so it now consistently treats `\mathrm{Vir}_{26-c}\text{-mod}` as the expected Virasoro line-side model, and replaced the older “governed by the Koszul dual” wording with the normalized modeled-by register.
+- Ran hostile local reread and fixed-string greps to confirm that the retired phrases “Virasoro line category” and “should be governed by the Koszul dual” no longer survive in the touched late-chapter band.
+
+### Findings
+
+323. `2026-04-01-323`
+   Severity: `MINOR`
+   Class: `E`
+   Location: `chapters/connections/line-operators.tex:1413-1445`; `chapters/connections/line-operators.tex:1522-1525`
+   Issue: the late Virasoro/DS discussion in the active `line-operators` chapter still slipped back into the older concrete-model register, talking as though `\mathrm{Vir}_{26-c}\text{-mod}` itself were the line-side object rather than the expected Virasoro model of that object.
+   Fix: rewrote the comparison, `\mathcal W_{1+\infty}`, and DS-reduction remarks so they now consistently present `\mathrm{Vir}_{26-c}\text{-mod}` as the expected Virasoro line-side model.
+   Status: `FIXED`
+
+## 2026-04-01 — Codex Beilinson Rectification Iteration 264
+
+- Target: lingering comparison-register survivors in the active `line-operators` and factorization-bridge summaries
+- Iteration: `264`
+- Status: rectification completed on the modified live surface; source-level verification is clean, but no canonical closing build evidence was taken for this pass
+
+### Verification Run
+
+- Continued the broader live-surface sweep and found one small but real comparison-register cluster in the active `line-operators` chapter, together with a matching sentence in the active factorization bridge.
+- The chapter was still saying `\cA^!_{\mathrm{line}}`-modules “form the line-operator category,” still speaking of the “identification of line operators with `\mathcal A^!_{\mathrm{line}}`-modules,” and still titling the kernel remark “From line-operator identification to spectral kernel.”  The factorization bridge likewise still said the `\bR`-direction factorization “encodes the line-operator category.”
+- Rewrote that band so it now consistently uses the normalized line-category / modeled-by register: `\cA^!_{\mathrm{line}}`-modules model the line category, the theorem is described as a comparison rather than an identification of line operators, and the factorization bridge now says the `\bR`-direction encodes the line category.
+- Ran hostile local reread and fixed-string greps to confirm that the retired phrases “line operators are,” “line-operator identification,” and “line-operator category” no longer survive across the active band checked in this pass.
+
+### Findings
+
+324. `2026-04-01-324`
+   Severity: `MINOR`
+   Class: `E`
+   Location: `chapters/connections/line-operators.tex:513-517`; `chapters/connections/line-operators.tex:596-600`; `chapters/connections/line-operators.tex:655-660`; `chapters/connections/dg_shifted_factorization_bridge.tex:1906-1909`
+   Issue: the active `line-operators` and factorization-bridge summaries still contained a small survivor cluster in the older comparison register, speaking of line operators being identified with modules or of the factorization data encoding the “line-operator category,” out of step with the normalized line-category / modeled-by surface.
+   Fix: rewrote the local summary lines, remark title, and bridge sentence so they now uniformly describe the theorem as modeling the line category by modules and the `\bR`-direction factorization as encoding the line category.
+   Status: `FIXED`
+
+## 2026-04-01 — Codex Beilinson Rectification Iteration 265
+
+- Target: remaining over-strong Yangian slogan on the active top-layer roadmap surface
+- Iteration: `265`
+- Status: rectification completed on the modified live surface; source-level verification is clean, but no canonical closing build evidence was taken for this pass
+
+### Verification Run
+
+- Rechecked the active Yangian and line-side top-layer summaries after the recent core repairs and found one genuine high-visibility survivor in the roadmap.
+- The active `main.tex` scope-summary paragraph was still saying “the field-theoretic open-colour Koszul dual is a dg-shifted Yangian,” even though the repaired live surface elsewhere now consistently advertises the scoped forward-use formulation that the open-colour dual carries the dg-shifted Yangian package.
+- Rewrote that roadmap sentence so it now matches the normalized package-language register.
+- Ran hostile local reread plus fixed-string greps to confirm that the retired slogan “is a dg-shifted Yangian” no longer survives across the active top-layer summary band checked in this pass, while the intended package-language instances remain.
+
+### Findings
+
+325. `2026-04-01-325`
+   Severity: `MINOR`
+   Class: `D`
+   Location: `main.tex:507-509`
+   Issue: the active roadmap still contained one over-strong top-layer slogan saying the field-theoretic open-colour Koszul dual “is a dg-shifted Yangian,” which no longer matched the scoped-use doctrine enforced elsewhere on the live surface.
+   Fix: rewrote the roadmap line so it now says the field-theoretic open-colour Koszul dual carries the dg-shifted Yangian package.
+   Status: `FIXED`
+
+## 2026-04-01 — Codex Beilinson Rectification Iteration 266
+
+- Target: remaining summary-level Yangian/line-side compression in the active `spectral-braiding` core chapter
+- Iteration: `266`
+- Status: rectification completed on the modified live surface; source-level verification is clean, but no canonical closing build evidence was taken for this pass
+
+### Verification Run
+
+- Continued the live-surface sweep and found one real summary-level survivor in the active `spectral-braiding` core chapter.
+- The local $E_1$-chiral Yangian subsection still compressed the scoped-use doctrine into the older slogans that the open-colour Koszul dual “is a dg-shifted Yangian” and that “line operators are `\cA^!_{\mathrm{line}}`-modules,” even though the surrounding repaired surface now consistently uses the forward package statement and the line-category / modeled-by register.
+- Rewrote that local summary sentence so it now says the open-colour Koszul dual carries the dg-shifted Yangian package, and the line category is modeled by `\cA^!_{\mathrm{line}}`-modules.
+- Ran hostile local reread and fixed-string greps to confirm that the summary-level survivor is gone. The only remaining active exact hits for “is a dg-shifted Yangian” are now the theorem statement itself and a separate gravity-local proposition, not the summary band repaired in this pass.
+
+### Findings
+
+326. `2026-04-01-326`
+   Severity: `MINOR`
+   Class: `E`
+   Location: `chapters/connections/spectral-braiding-core.tex:1357-1362`
+   Issue: the active `spectral-braiding` core chapter still had a local summary sentence compressing the scoped-use doctrine into the older wording “is a dg-shifted Yangian” and “line operators are … modules,” out of step with the normalized package-language and modeled-by register used elsewhere on the live surface.
+   Fix: rewrote the sentence so it now says the open-colour Koszul dual carries the dg-shifted Yangian package and the line category is modeled by `\cA^!_{\mathrm{line}}`-modules.
+   Status: `FIXED`
+
+## 2026-04-01 — Codex Beilinson Rectification Iteration 267
+
+- Target: broader live-surface appraisal after the recent rewrites, with focus on newly active THQG material
+- Iteration: `267`
+- Status: rectification completed on the modified live surface; source-level verification is clean, but no canonical closing build evidence was taken for this pass
+
+### Verification Run
+
+- Took a wider stock of the active manuscript surface by re-mapping the current `\input` graph from `main.tex`, checking the broad diff footprint, and sweeping for high-risk line-side/Yangian summary survivors across both the older core chapters and the newly active THQG band.
+- That broader appraisal found one real live survivor cluster in the active `thqg_gravitational_yangian` chapter: the chapter was still reverting to the older “line-operator category” and direct module-category identification register, even though the repaired live surface elsewhere now treats the line side as a line category modeled by modules for the open-colour dual.
+- Rewrote the local Virasoro specialization remark, subsection title, definition title, index entries, setup paragraph, and recap item so they now uniformly speak of the line category, modeled here by modules for the open-colour dual `\cA^!`, with the Yangian enhancement kept as a separate layer.
+- Ran hostile local reread and fixed-string greps to confirm that the retired phrase “line-operator category” no longer survives in the active `thqg_gravitational_yangian` band and that the new line-category / modeled-by wording is present throughout the patched cluster.
+
+### Findings
+
+327. `2026-04-01-327`
+   Severity: `MINOR`
+   Class: `E`
+   Location: `chapters/connections/thqg_gravitational_yangian.tex:2045-2047`; `chapters/connections/thqg_gravitational_yangian.tex:2098-2125`; `chapters/connections/thqg_gravitational_yangian.tex:2574-2577`
+   Issue: after the recent large-scale rewrites and new THQG additions, the active `thqg_gravitational_yangian` chapter still contained a local survivor cluster in the older line-operator/module-category register, flattening the line side into `\cA^!\text{-}\mathsf{mod}` instead of using the now-normalized line-category / modeled-by language.
+   Fix: rewrote the local summary, subsection heading, definition, and recap so the chapter now presents the line side as a line category modeled by modules for the open-colour dual, with the Yangian enhancement treated separately.
+   Status: `FIXED`
+
+## 2026-04-01 — Codex Beilinson Rectification Iteration 268
+
+- Target: remaining theorem-role physical-reading seam in the active `thqg_gravitational_yangian` chapter
+- Iteration: `268`
+- Status: rectification completed on the modified live surface; source-level verification is clean, but no canonical closing build evidence was taken for this pass
+
+### Verification Run
+
+- Continued the broadened live-surface appraisal over the newly active THQG input band and found one real theorem-role survivor in the active `thqg_gravitational_yangian` chapter.
+- The proposition on the binary collision kernel was still marked `\ClaimStatusProvedHere` while stating the gravitational reading as flat physics: it called $\eta_{ij}$ the gravitational propagator and identified the binary and higher collision residues directly with single- and multi-graviton exchange amplitudes.
+- Rewrote that proposition so the proved content now stays on the holomorphic boundary-to-boundary collision propagator kernel, while the graviton language is explicitly presented as the gravitational reading of that HT package.
+- Ran hostile local reread plus fixed-string greps to confirm that the retired title “Gravitational propagator from collision residue” and the flat amplitude slogans no longer survive in the patched active band.
+
+### Findings
+
+328. `2026-04-01-328`
+   Severity: `MODERATE`
+   Class: `D`
+   Location: `chapters/connections/thqg_gravitational_yangian.tex:898-939`
+   Issue: the active `\ClaimStatusProvedHere` proposition on the collision kernel still collapsed the repaired distinction between proved HT data and physical reading, stating the graviton propagator and exchange-amplitude interpretation as flat theorem-level content.
+   Fix: rewrote the proposition so it now proves the collision propagator kernel and states the graviton/exchange content only as the gravitational reading of that HT package.
+   Status: `FIXED`
+
+## 2026-04-01 — Codex Beilinson Rectification Iteration 269
+
+- Target: remaining theorem-role Virasoro-model survivor in the active `thqg_gravitational_yangian` chapter
+- Iteration: `269`
+- Status: rectification completed on the modified live surface; source-level verification is clean, but no canonical closing build evidence was taken for this pass
+
+### Verification Run
+
+- Continued the active THQG appraisal and found one real theorem-role survivor lower in the same `thqg_gravitational_yangian` chapter.
+- The chapter was still presenting a concrete Virasoro-module realization as if it were proved on the live surface: a definition of “gravitational highest-weight modules,” a `\ClaimStatusProvedHere` proposition titled “Verma modules as gravitational representations,” and a follow-on “gravitational representation category” remark.
+- Rewrote that whole local band so it now matches the repaired manuscript-wide doctrine: these are explicitly the expected Virasoro highest-weight model, the expected Verma-module model, and the expected Virasoro highest-weight category inside the expected Virasoro realization of the line-side package.
+- Ran hostile local reread plus fixed-string greps to confirm that the retired theorem-level slogans “Verma modules as gravitational representations,” “gravitational representation category,” and the associated flat representation wording no longer survive in the patched active band.
+
+### Findings
+
+329. `2026-04-01-329`
+   Severity: `MODERATE`
+   Class: `D`
+   Location: `chapters/connections/thqg_gravitational_yangian.tex:1964-2030`
+   Issue: the active chapter still isolated a concrete Virasoro highest-weight realization as a proved theorem-level package, contradicting the repaired live doctrine that the Virasoro module picture is only the expected realization of the abstract line-side package.
+   Fix: rewrote the local definition/proposition/remark cluster into the expected-model register, replacing the proved “Verma modules as gravitational representations” package with explicitly expected Virasoro highest-weight and Verma-module models.
+   Status: `FIXED`
+
+## 2026-04-01 — Codex Beilinson Rectification Iteration 270
+
+- Target: remaining proved-computation physical-reading seam in the active `thqg_gravitational_yangian` chapter
+- Iteration: `270`
+- Status: rectification completed on the modified live surface; source-level verification is clean, but no canonical closing build evidence was taken for this pass
+
+### Verification Run
+
+- Continued the active THQG appraisal and found one real local survivor cluster in the same `thqg_gravitational_yangian` chapter.
+- The chapter opener, the two `\ClaimStatusProvedHere` computation blocks for the ternary and quartic shadow data, and the chapter-level Yangian/gravity dictionary were still flattening those algebraic outputs into proved graviton-vertex physics: “three-graviton vertex,” “quartic graviton vertex,” “binary graviton exchange,” “tree-level 3-graviton consistency,” and the old “line-operator category” dictionary row.
+- Rewrote that whole local band so the proved content now stays on the ternary shadow, quartic contact term, and abstract line-side model, while the graviton-vertex/factorization/consistency language is explicitly presented as the gravitational reading of those data.
+- Ran hostile local reread plus fixed-string greps to confirm that the retired computation titles and flat dictionary slogans no longer survive in the patched active band.
+
+### Findings
+
+330. `2026-04-01-330`
+   Severity: `MODERATE`
+   Class: `D`
+   Location: `chapters/connections/thqg_gravitational_yangian.tex:74-78`; `chapters/connections/thqg_gravitational_yangian.tex:1881-1954`; `chapters/connections/thqg_gravitational_yangian.tex:2348-2368`
+   Issue: the active chapter still presented ternary and quartic shadow data as if the corresponding graviton vertices, scattering consistency statements, and line-category identification were themselves proved physical outputs, rather than gravitational readings of the proved algebraic package.
+   Fix: rewrote the opener, both computation blocks, and the Yangian/gravity dictionary so the algebraic outputs remain the theorem-level content and the graviton-physics language is explicitly labeled as the gravitational reading.
+   Status: `FIXED`
+
+## 2026-04-01 — Codex Beilinson Rectification Iteration 271
+
+- Target: remaining celestial/asymptotic-symmetry theorem-role seam in the active THQG soft-graviton surface
+- Iteration: `271`
+- Status: rectification completed on the modified live surface; source-level verification is clean, but no canonical closing build evidence was taken for this pass
+
+### Verification Run
+
+- Widened the THQG appraisal from the Yangian band into the active soft/celestial chapters and found one real theorem-role survivor there.
+- The active proposition in `thqg_soft_graviton_theorems.tex` was still stated as if the celestial soft algebra itself were proved to be the asymptotic symmetry algebra of the dual holographic theory, and the matching recap paragraph in `thqg_3d_gravity_movements_vi_x.tex` was still saying the celestial transfer flatly identifies the null-infinity soft algebra with Virasoro/BMS data.
+- Rewrote both so the theorem-level content now stays on the shadow-depth structure of the celestial soft algebra, while the asymptotic-symmetry, Virasoro-at-null-infinity, and BMS content is explicitly presented as the celestial/gravitational reading of that algebraic package.
+- Ran hostile local reread plus fixed-string greps to confirm that the retired flat slogans “The celestial soft algebra ... is the asymptotic symmetry algebra ...” and “The celestial transfer identifies the soft graviton algebra ...” no longer survive in the patched active band.
+
+### Findings
+
+331. `2026-04-01-331`
+   Severity: `MODERATE`
+   Class: `D`
+   Location: `chapters/connections/thqg_soft_graviton_theorems.tex:2112-2160`; `chapters/connections/thqg_3d_gravity_movements_vi_x.tex:1512-1518`
+   Issue: the active celestial/soft theorem surface still collapsed the proved algebraic structure of the celestial soft algebra into a stronger theorem-level asymptotic-symmetry and BMS identification, out of step with the repaired reading-vs-proof doctrine elsewhere on the live manuscript surface.
+   Fix: rewrote the proposition and the matching movement-summary paragraph so the theorem proves the shadow-depth structure of the celestial soft algebra, while the asymptotic-symmetry and BMS statements are explicitly framed as the celestial/gravitational reading.
+   Status: `FIXED`
+
+## 2026-04-01 — Codex Beilinson Rectification Iteration 272
+
+- Target: remaining theorem-role celestial/physical-reading seam in the active soft-OPE theorem
+- Iteration: `272`
+- Status: rectification completed on the modified live surface; source-level verification is clean, but no canonical closing build evidence was taken for this pass
+
+### Verification Run
+
+- Continued the active THQG soft/celestial sweep and checked the strongest remaining proved theorem statements against the chapter’s own status note, which says the algebraic theorems are proved while the celestial-holography interpretation is only physical/structural.
+- The main theorem in the chapter was still titled “Soft graviton OPE” and still stated its operators and leading pole directly in soft-graviton language, which overstated the physical reading at theorem level.
+- Rewrote that theorem so it now proves the celestial soft OPE determined by the shadow connection, with the soft-graviton content explicitly presented as the celestial/gravitational reading of that OPE.
+- Ran hostile local reread plus fixed-string greps to confirm that the retired title and flat phrases “soft graviton operator” and “standard graviton OPE” no longer survive in the patched active band.
+
+### Findings
+
+332. `2026-04-01-332`
+   Severity: `MODERATE`
+   Class: `D`
+   Location: `chapters/connections/thqg_soft_graviton_theorems.tex:2040-2088`
+   Issue: the active `\ClaimStatusProvedHere` OPE theorem still collapsed the proved algebraic content of the shadow-connection OPE into theorem-level soft-graviton physics, contradicting the chapter’s own declared split between proved algebraic results and physical/structural celestial interpretation.
+   Fix: rewrote the theorem as a celestial soft OPE theorem, with the soft-graviton language retained only as the celestial/gravitational reading of the proved OPE.
+   Status: `FIXED`
+
+## 2026-04-01 — Codex Beilinson Rectification Iteration 273
+
+- Target: remaining theorem-level Weinberg/leading-soft overclaim in the active THQG soft/celestial chapter
+- Iteration: `273`
+- Status: rectification completed on the modified live surface; source-level verification is clean, but no canonical closing build evidence was taken for this pass
+
+### Verification Run
+
+- Continued the soft/celestial chapter audit and found one real theorem-level survivor in the leading-soft band.
+- The main theorem was still proving a “Leading soft graviton theorem” with the momentum-space Weinberg factor built directly into the theorem statement, and the companion movement summary still advertised “Weinberg’s leading soft theorem from $S_2$” as if the physical reading were the proved object.  This conflicted with the chapter’s own status note that the algebraic theorems are proved while the celestial-holography interpretation is physical/structural.
+- Rewrote the theorem so it now proves the leading celestial soft factor determined by the arity-$2$ shadow, with the Weinberg factor only in the celestial/gravitational reading.  Propagated the same repair to the corresponding movement summary and to the local subsection-intro/universality prose so the band is internally consistent.
+- Ran hostile local reread plus fixed-string greps to confirm that the retired theorem title and the old flat Weinberg-leading-theorem prose no longer survive in the patched active band.
+
+### Findings
+
+333. `2026-04-01-333`
+   Severity: `MODERATE`
+   Class: `D`
+   Location: `chapters/connections/thqg_soft_graviton_theorems.tex:564-716`; `chapters/connections/thqg_3d_gravity_movements_vi_x.tex:1106-1166`
+   Issue: the active leading-soft theorem band still collapsed the proved arity-$2$ shadow/Ward statement into theorem-level Weinberg soft-graviton physics, contradicting the chapter’s explicit algebra-vs-interpretation status split.
+   Fix: rewrote the theorem as a leading celestial soft factor theorem, kept the Weinberg factor only as the celestial/gravitational reading, and aligned the companion movement summary plus the local subsection-intro/universality prose with that narrower theorem-level content.
+   Status: `FIXED`
+
+## 2026-04-01 — Codex Beilinson Rectification Iteration 274
+
+- Target: remaining theorem-level Cachazo--Strominger/subleading-soft overclaim in the active THQG soft/celestial chapter
+- Iteration: `274`
+- Status: rectification completed on the modified live surface; source-level verification is clean, but no canonical closing build evidence was taken for this pass
+
+### Verification Run
+
+- Continued the same soft/celestial band one step down and found the analogous theorem-level survivor in the subleading-soft section.
+- The active chapter was still proving a “Subleading soft graviton theorem” with the Cachazo--Strominger momentum-space factor built directly into the theorem statement, even though the local doctrine now says the proved content is the arity-$3$ shadow/Ward package and the soft-graviton interpretation is a celestial/gravitational reading.  The neighboring movement theorem had also already been softened, so the main chapter band had fallen out of sync with it.
+- Rewrote that whole local band so it now proves the subleading celestial soft factor determined by the cubic shadow, with the Cachazo--Strominger factor only in the celestial/gravitational reading.  Aligned the subsection intro and the local cubic-gauge-triviality consequences so they now refer to the proved celestial soft factor and treat the subleading soft theorem only as the corresponding reading.
+- Ran hostile local reread plus fixed-string greps to confirm that the retired theorem title and the old flat “The subleading soft graviton theorem of Cachazo--Strominger ...” phrasing no longer survive in the patched active band.
+
+### Findings
+
+334. `2026-04-01-334`
+   Severity: `MODERATE`
+   Class: `D`
+   Location: `chapters/connections/thqg_soft_graviton_theorems.tex:773-930`; `chapters/connections/thqg_3d_gravity_movements_vi_x.tex:1178-1194`
+   Issue: the active subleading-soft theorem band still collapsed the proved arity-$3$ shadow/Ward statement into theorem-level Cachazo--Strominger soft-graviton physics, out of step with the chapter’s repaired algebra-vs-interpretation doctrine and with the already-softened movement companion.
+   Fix: rewrote the theorem as a subleading celestial soft factor theorem, kept the Cachazo--Strominger factor only in the celestial/gravitational reading, and aligned the subsection intro plus the local cubic-gauge-triviality consequences with that narrower theorem-level content.
+   Status: `FIXED`
+
+## 2026-04-01 — Codex Beilinson Rectification Iteration 275
+
+- Target: remaining theorem-vs-reading collapse in the higher-soft hierarchy of the active THQG soft/celestial surface
+- Iteration: `275`
+- Status: rectification completed on the modified live surface; source-level verification is clean, but no canonical closing build evidence was taken for this pass
+
+### Verification Run
+
+- Continued the same soft/celestial ladder one step deeper and found the next surviving theorem-level collapse in the higher-soft hierarchy.
+- The active chapter had already been repaired at leading and subleading order, but the sub-subleading theorem, the general-arity theorem, and the recursion corollary had drifted back into flat “soft graviton theorem” language.  The matching movement summary had the same problem: it advertised the higher hierarchy, quintic component, and shadow-connection table as if the graviton-soft-theorem reading were the proved object.
+- Rewrote the higher-soft band so it now proves the sub-subleading celestial soft factor, the general arity-$r$ celestial soft factor, and the celestial soft factor recursion, with the soft-graviton hierarchy explicitly marked as the celestial/gravitational reading.  Propagated the same repair into the movement summary, including the quintic-summary theorem and the shadow-connection hierarchy table.
+- Ran hostile local reread plus fixed-string greps to confirm that the retired theorem titles and flat summary slogans no longer survive in the patched active band.
+
+### Findings
+
+335. `2026-04-01-335`
+   Severity: `MODERATE`
+   Class: `D`
+   Location: `chapters/connections/thqg_soft_graviton_theorems.tex:1415-1594`; `chapters/connections/thqg_3d_gravity_movements_vi_x.tex:1093-1105`; `chapters/connections/thqg_3d_gravity_movements_vi_x.tex:1408-1458`
+   Issue: after the leading and subleading repairs, the active higher-soft hierarchy still reverted to theorem-level soft-graviton language, with the sub-subleading, general-arity, recursion, and quintic-summary surfaces advertising the celestial/gravitational reading as if it were the proved content.
+   Fix: rewrote the higher-soft hierarchy so the theorem-level content stays on celestial soft factors and their Ward identities, and marked the graviton soft theorems, quintic Ward identity, and hierarchy table entries explicitly as the celestial/gravitational reading.
+   Status: `FIXED`
+
+## 2026-04-01 — Codex Beilinson Rectification Iteration 276
+
+- Target: remaining theorem-role symmetry-identification survivor in the active THQG celestial-soft algebra section
+- Iteration: `276`
+- Status: rectification completed on the modified live surface; source-level verification is clean, but no canonical closing build evidence was taken for this pass
+
+### Verification Run
+
+- Continued the broadened THQG appraisal and found a stronger survivor than a heading-level slogan: the active celestial-soft algebra proposition was still promoting BMS and related symmetry identifications to theorem-level content.
+- The proposition in the celestial-soft algebra section still stated exact supertranslation/BMS identifications and class-by-class algebra equalities, and the nearby large-$c$ remark still advertised a precise $\mathcal{W}_{1+\infty}$ identification.  The movement-summary companion still said the integrated factors “give” the celestial Weinberg and quartic-contact theorems.  This contradicted the repaired doctrine elsewhere in the live chapter, where the algebraic soft package is proved and the BMS / $\mathcal{W}_{1+\infty}$ layer is explicitly a celestial/gravitational reading or expected large-$c$ model.
+- Rewrote that local band so the theorem-level content now stays on the celestial soft algebra, its binary and ternary subalgebras, and its shadow-depth stratification; the BMS and $\mathcal{W}_{1+\infty}$ statements are explicitly framed as celestial/gravitational or expected large-$c$ readings.  Propagated the same repair to the matching celestial-transfer proposition in the movement summary.
+- Ran hostile local reread plus fixed-string greps to confirm that the retired exact-identification slogans no longer survive in the patched active band.
+
+### Findings
+
+336. `2026-04-01-336`
+   Severity: `MODERATE`
+   Class: `D`
+   Location: `chapters/connections/thqg_soft_graviton_theorems.tex:1968-2043`; `chapters/connections/thqg_3d_gravity_movements_vi_x.tex:1477-1498`
+   Issue: the active celestial-soft algebra surface still collapsed the proved algebraic soft package into theorem-level BMS and $\mathcal{W}_{1+\infty}$ identifications, and the movement-summary companion still presented integrated factors as directly giving the physical theorems.
+   Fix: rewrote the proposition, proof, nearby large-$c$ remark, and movement-summary companion so the theorem-level content stays on the celestial soft algebra and its stratification, while the BMS / $\mathcal{W}_{1+\infty}$ / celestial-theorem language is explicitly presented as the relevant reading or expected model.
+   Status: `FIXED`
+
+## 2026-04-01 — Codex Beilinson Rectification Iteration 277
+
+- Target: companion theorem-role symmetry-identification survivor in the later shadow-depth stratification proposition
+- Iteration: `277`
+- Status: rectification completed on the modified live surface; source-level verification is clean, but no canonical closing build evidence was taken for this pass
+
+### Verification Run
+
+- Continued the same THQG soft/celestial sweep after the earlier celestial-soft algebra repair and found the companion survivor one subsection lower, in the later shadow-depth stratification proposition.
+- That proposition still hard-coded $\mathrm{BMS}_4$, $\mathrm{BMS}_4 \rtimes \mathfrak{q}_4$, and $\mathcal{W}_{1+\infty}$ into the theorem-level table and proof, even though the repaired doctrine now keeps those symmetry identifications in the celestial/gravitational or expected large-$c$ reading rather than as proved algebra equalities on the live surface.
+- Rewrote the proposition and proof so the theorem-level content now classifies the celestial soft algebra by which arity sectors survive, while the asymptotic-symmetry column and proof text explicitly present the BMS and $\mathcal{W}_{1+\infty}$ layers as the corresponding reading or expected model.
+- Ran hostile local reread plus fixed-string greps to confirm that the retired exact-identification table entries and proof slogan no longer survive in the patched proposition band.
+
+### Findings
+
+337. `2026-04-01-337`
+   Severity: `MODERATE`
+   Class: `D`
+   Location: `chapters/connections/thqg_soft_graviton_theorems.tex:2128-2194`
+   Issue: the later shadow-depth stratification proposition still advertised theorem-level BMS and $\mathcal{W}_{1+\infty}$ equalities, reintroducing the same symmetry-identification overclaim that had just been removed from the earlier celestial-soft algebra proposition.
+   Fix: rewrote the table and proof so the theorem now states only the celestial-soft-algebra stratification by surviving arity sectors, with BMS and $\mathcal{W}_{1+\infty}$ retained only as the celestial/gravitational or expected large-$c$ reading.
+   Status: `FIXED`
+
+## 2026-04-01 — Codex Beilinson Rectification Iteration 278
+
+- Target: recap-layer survivor cluster in the active THQG soft/celestial summary surface
+- Iteration: `278`
+- Status: rectification completed on the modified live surface; source-level verification is clean, but no canonical closing build evidence was taken for this pass
+
+### Verification Run
+
+- Continued the THQG soft/celestial sweep into the recap layer and found the next real survivor cluster in the summary tables, the single-equation-origin remark, and the parallel movement recap box.
+- Even after the theorem/proof bands had been narrowed to celestial soft factors with gravitational readings layered on top, the summary subsection still advertised a flat “soft graviton dictionary,” counted “soft theorems,” and said the soft graviton theorems themselves were algebraic consequences of the Maurer--Cartan equation.  The high-visibility movement recap box repeated the same compression by listing “Soft graviton theorems: $S_2 = $ Weinberg, ...”.
+- Rewrote that recap cluster so it now consistently presents the celestial soft-factor hierarchy together with its gravitational reading: the summary title, table headers/captions, single-equation-origin remark, interdependence remark, and movement recap box all now stay in that scoped register.
+- Ran hostile local reread plus fixed-string greps to confirm that the retired summary slogan and recap-box wording no longer survive on the patched active surface.
+
+### Findings
+
+338. `2026-04-01-338`
+   Severity: `MODERATE`
+   Class: `D`
+   Location: `chapters/connections/thqg_soft_graviton_theorems.tex:2237-2331`; `chapters/connections/thqg_3d_gravity_movements_vi_x.tex:2166-2170`
+   Issue: the active summary and recap layer still flattened the repaired celestial-soft-factor package into bare “soft graviton theorem” language, reintroducing the old doctrine precisely where the reader encounters the chapter’s highest-visibility recap.
+   Fix: rewrote the summary subsection, table headers/captions, single-equation-origin and interdependence remarks, and the movement recap box so they now speak of celestial soft factors and explicitly mark the soft graviton theorems as the celestial/gravitational reading.
+   Status: `FIXED`
+
+## 2026-04-01 — Codex Beilinson Rectification Iteration 279
+
+- Target: higher-genus/transfer aftermath seam in the active THQG soft/celestial surface
+- Iteration: `279`
+- Status: rectification completed on the modified live surface; source-level verification is clean, but no canonical closing build evidence was taken for this pass
+
+### Verification Run
+
+- Continued the same aftermath sweep and found the next real physical-reading survivor in the higher-genus memory remark, with a nearby companion in the celestial-transfer aftermath sentence.
+- The higher-genus remark still said the Ward identities themselves “encode gravitational memory effects” and that gravitational memory simply “is” the genus-$1$ correction to the leading soft theorem, which was flatter than the repaired theorem-level doctrine elsewhere in the chapter.  The nearby celestial-transfer paragraph also still advertised “BMS soft theorems at every order” rather than the all-arity celestial-soft hierarchy read through the BMS package.
+- Rewrote that local band so the higher-genus correction now stays theorem-level on the shadow/curvature package, with gravitational memory explicitly presented as its celestial/gravitational reading, and so the transfer paragraph now speaks of the full celestial soft hierarchy extending the BMS reading.
+- Ran hostile local reread plus fixed-string greps to confirm that the retired flat memory/BMS phrases no longer survive in the patched active band.
+
+### Findings
+
+339. `2026-04-01-339`
+   Severity: `MODERATE`
+   Class: `D`
+   Location: `chapters/connections/thqg_soft_graviton_theorems.tex:2204-2228`; `chapters/connections/thqg_3d_gravity_movements_vi_x.tex:1520-1529`
+   Issue: the active higher-genus aftermath band still flattened the repaired celestial-soft package into direct gravitational memory and all-arity BMS soft-theorem language, out of step with the chapter’s reading-vs-proof split.
+   Fix: rewrote the higher-genus memory remark and the nearby celestial-transfer aftermath sentence so they now keep theorem-level content on the shadow/curvature package and present memory/BMS soft theorems explicitly as the celestial/gravitational reading.
+   Status: `FIXED`
+
+## 2026-04-01 — Codex Beilinson Rectification Iteration 280
+
+- Target: infinite-tower/formality survivor cluster in the active THQG soft/celestial chapter
+- Iteration: `280`
+- Status: rectification completed on the modified live surface; source-level verification is clean, but no canonical closing build evidence was taken for this pass
+
+### Verification Run
+
+- Continued the same chapter one band upward into the infinite-tower and operadic-complexity discussion, where the doctrine is especially vulnerable to slipping back into theorem-level gravitational language.
+- The non-termination proposition still stated its conclusion as “the system of soft graviton Ward identities,” and the two companion remarks underneath still framed the local conclusions directly as the “soft graviton tower” and the “soft graviton context,” even though the repaired live surface elsewhere now treats those as the celestial/gravitational reading of the celestial soft-factor hierarchy.
+- Rewrote that local cluster so the proposition now states an infinite tower of celestial soft-factor Ward identities, and the formality/operadic-complexity remarks now present the gravitational story only as the celestial/gravitational reading of the underlying modular $L_\infty$ and $A_\infty$ structures.
+- Ran hostile local reread plus fixed-string greps to confirm that the retired theorem-level “soft graviton Ward identities at genus~$0$,” “soft graviton tower,” and “soft graviton context” phrases no longer survive in the patched active band.
+
+### Findings
+
+340. `2026-04-01-340`
+   Severity: `MODERATE`
+   Class: `D`
+   Location: `chapters/connections/thqg_soft_graviton_theorems.tex:1772-1848`
+   Issue: the active infinite-tower/formality band still collapsed the proved celestial-soft hierarchy into theorem-level soft-graviton and gravitational-formality language, reintroducing the same reading-vs-proof bug already repaired elsewhere in the chapter.
+   Fix: rewrote the non-termination proposition and its two companion remarks so the theorem-level content stays on celestial soft-factor Ward identities and the modular $L_\infty$ / $A_\infty$ packages, with the gravitational tower and theorem language explicitly retained only as the celestial/gravitational reading.
+   Status: `FIXED`
+
+## 2026-04-01 — Codex Beilinson Rectification Iteration 281
+
+- Target: remaining depth-counting/open-directions survivor cluster in the active THQG soft/celestial chapter
+- Iteration: `281`
+- Status: rectification completed on the modified live surface; source-level verification is clean, but no canonical closing build evidence was taken for this pass
+
+### Verification Run
+
+- Continued the same active chapter sweep and found the next live survivor cluster in the early arity-truncation summary remark and the late open-directions remark.
+- Those two remarks were still counting and forecasting bare “soft graviton theorems” on the theorem surface: the arity-truncation table still advertised “\# soft theorems,” and the open-directions remark still led with “Loop-level soft theorems” and spoke of non-perturbative corrections to the soft theorems themselves.  That lagged behind the repaired doctrine elsewhere in the chapter, where the theorem-level objects are celestial soft factors and the soft-graviton layer is the celestial/gravitational reading.
+- Rewrote that pair so the arity-truncation remark now counts celestial soft factors and only then notes the corresponding soft graviton theorems in the reading, while the open-directions remark now talks about loop-level celestial soft factors and non-perturbative corrections to the celestial soft hierarchy, with the soft-graviton theorem language explicitly kept in the reading.
+- Ran hostile local reread plus fixed-string greps to confirm that the retired “\# soft theorems” and “Loop-level soft theorems” phrases no longer survive in the patched active band.
+
+### Findings
+
+341. `2026-04-01-341`
+   Severity: `MODERATE`
+   Class: `D`
+   Location: `chapters/connections/thqg_soft_graviton_theorems.tex:384-410`; `chapters/connections/thqg_soft_graviton_theorems.tex:2371-2394`
+   Issue: the active chapter still had a surviving summary/open-directions cluster that counted and projected bare soft-graviton theorems instead of the repaired celestial-soft-factor package, reintroducing the old doctrine in two high-visibility local remarks.
+   Fix: rewrote the arity-truncation and open-directions remarks so they now speak first of celestial soft factors and their hierarchy, with soft-graviton-theorem language explicitly retained only as the celestial/gravitational reading.
+   Status: `FIXED`
+
+## 2026-04-01 — Codex Beilinson Rectification Iteration 282
+
+- Target: structural-prose survivor cluster above the repaired subleading/sub-subleading theorem bands
+- Iteration: `282`
+- Status: rectification completed on the modified live surface; source-level verification is clean, but no canonical closing build evidence was taken for this pass
+
+### Verification Run
+
+- Continued the same THQG soft/celestial sweep and found the next live survivor cluster in the structural prose immediately above the already-repaired theorem bands.
+- The local subsection titles, the cubic-gauge-triviality theorem title, and the quartic-contact setup/definition were still advertising bare “subleading/sub-subleading soft theorems,” even though the live theorem surface in that same band had already been narrowed to celestial soft factors with the soft-graviton story kept as the celestial/gravitational reading.
+- Rewrote that structural cluster so it now consistently speaks of the Virasoro subleading celestial soft factor, the sub-subleading celestial soft factor, and the quartic contact invariant for the celestial soft hierarchy, while leaving the corresponding gravitational-reading statements where they already belong in the body.
+- Ran hostile local reread plus fixed-string greps to confirm that the retired subsection, theorem-title, and definition slogans no longer survive in the patched active band.
+
+### Findings
+
+342. `2026-04-01-342`
+   Severity: `MODERATE`
+   Class: `D`
+   Location: `chapters/connections/thqg_soft_graviton_theorems.tex:910-1056`
+   Issue: the active structural prose above the repaired subleading/sub-subleading theorem bands was still advertising bare soft-theorem objects, creating a local doctrine mismatch inside the same section even after the theorem-level statements themselves had been narrowed.
+   Fix: rewrote the subsection titles, the cubic-gauge-triviality theorem title, the quartic-contact setup paragraph, and the quartic-contact definition so they now consistently refer to celestial soft factors and the celestial soft hierarchy.
+   Status: `FIXED`
+
+## 2026-04-01 — Codex Beilinson Rectification Iteration 283
+
+- Target: BMS supertranslation/superrotation corollary survivor band in the active THQG soft/celestial chapter
+- Iteration: `283`
+- Status: rectification completed on the modified live surface; source-level verification is clean, but no canonical closing build evidence was taken for this pass
+
+### Verification Run
+
+- Continued the same active chapter sweep and found the next load-bearing reading-vs-proof survivor in the BMS corollary band.
+- The live chapter still had corollaries titled “BMS supertranslation Ward identity” and “Superrotation Ward identity,” and the surrounding proof/remark prose still said those theorem-level statements generated the BMS algebra outright.  That contradicted the repaired doctrine elsewhere in the chapter, where the theorem-level content now stays on celestial soft factors and twisted celestial Ward identities, with the BMS package presented as the celestial/gravitational reading.
+- Rewrote that local band so the corollaries now state twisted arity-$2$ and arity-$3$ celestial Ward identities together with their supertranslation/superrotation reading, and aligned the local proof/remark prose so the BMS structure is explicitly interpretive rather than theorem-level.
+- Ran hostile local reread plus fixed-string greps to confirm that the retired BMS/superrotation corollary titles and the old “generate the extended BMS algebra” slogan no longer survive in the patched active band.
+
+### Findings
+
+343. `2026-04-01-343`
+   Severity: `MODERATE`
+   Class: `D`
+   Location: `chapters/connections/thqg_soft_graviton_theorems.tex:720-1015`
+   Issue: the active BMS supertranslation/superrotation corollary band still promoted the celestial/gravitational symmetry reading to theorem level, even after the surrounding theorem surface had been narrowed to celestial soft factors and their Ward identities.
+   Fix: rewrote the supertranslation and superrotation corollaries, together with their local proof/remark companion prose, so the theorem-level content now stays on twisted celestial Ward identities and the BMS algebra appears only as the celestial/gravitational reading.
+   Status: `FIXED`
+
+## 2026-04-01 — Codex Beilinson Rectification Iteration 284
+
+- Target: high-visibility THQG soft/celestial orientation layer and its movement-summary companion
+- Iteration: `284`
+- Status: rectification completed on the modified live surface; source-level verification is clean, but no canonical closing build evidence was taken for this pass
+
+### Verification Run
+
+- Continued the broadened live-surface appraisal of the newly active THQG material and found the next real survivor cluster in the section-level orientation prose rather than in a theorem body.
+- The top section title, its opening overview bullets, the celestial-holography bridge paragraph, and the matching movement-summary heading were still advertising the repaired results as flat soft-graviton theorems, even though the theorem bands immediately below now correctly prove celestial soft factors and celestial Ward identities first, with the gravitational theorem language only as the celestial/gravitational reading.
+- Rewrote that whole high-visibility band so it now consistently presents the celestial soft hierarchy as the theorem-level package, and treats the Weinberg/Cachazo--Strominger/BMS/soft-graviton language explicitly as the reading.  This included the top section heading and overview in `thqg_soft_graviton_theorems.tex`, the celestial-holography transition paragraph, and the matching movement heading plus opener in `thqg_3d_gravity_movements_vi_x.tex`.
+- Ran hostile local reread plus fixed-string greps to confirm that the retired section-level slogans “reproduces the Weinberg leading soft graviton theorem,” “Movement IX: soft graviton theorems,” “soft graviton theorems of the preceding subsections admit,” and “Ward identities are the soft graviton theorems” no longer survive in the patched active band.
+
+### Findings
+
+344. `2026-04-01-344`
+   Severity: `MODERATE`
+   Class: `D`
+   Location: `chapters/connections/thqg_soft_graviton_theorems.tex:16-133`; `chapters/connections/thqg_soft_graviton_theorems.tex:1952-1964`; `chapters/connections/thqg_3d_gravity_movements_vi_x.tex:1087-1100`
+   Issue: the active THQG soft/celestial orientation layer still flattened the repaired celestial-soft theorem package back into soft-graviton theorems at the section-heading and chapter-summary level, creating a high-visibility doctrine mismatch above the now-correct theorem bands.
+   Fix: rewrote the section and movement headings, the opening overview bullets, and the celestial-holography transition prose so they now present celestial soft factors and the celestial soft hierarchy as the theorem-level content, with soft-graviton theorem language explicitly retained only as the celestial/gravitational reading.
+   Status: `FIXED`
+
+## 2026-04-01 — Codex Beilinson Rectification Iteration 285
+
+- Target: movement-summary arity-$3$ to arity-$5$ survivor cluster in the active THQG gravity-transfer chapter
+- Iteration: `285`
+- Status: rectification completed on the modified live surface; source-level verification is clean, but no canonical closing build evidence was taken for this pass
+
+### Verification Run
+
+- Widened the appraisal from the repaired section headings into the matching movement-summary body and found the next real survivor cluster in the arity-$3$ to arity-$5$ local recap band of `thqg_3d_gravity_movements_vi_x.tex`.
+- The movement chapter was still using old theorem-level soft-graviton slogans there: the arity-$3$ summary still said the three-graviton soft theorem was a theorem-level consequence, the arity-$4$ subsubsection and theorem were still titled “quartic contact soft theorem,” the arity-$5$ heading still advertised the “first new soft theorem,” and the shadow-connection hierarchy table still flattened the repaired package into rows like “Read as quartic contact soft theorem” and “Read as higher gravitational soft theorems.”
+- Rewrote that whole local cluster so it now matches the repaired main THQG chapter: the arity-$4$ package is presented as the quartic celestial soft factor and its gravitational reading, the arity-$5$ heading now speaks of the first new higher-arity celestial soft factor, the arity-$3$ sentence keeps the theorem-language in the reading, and the hierarchy table now consistently describes the gravitational layer as a reading of the celestial package.
+- Ran hostile local reread plus fixed-string greps to confirm that the retired slogans “quartic contact soft theorem,” “first new soft theorem,” “Read as Weinberg soft graviton,” “higher gravitational soft theorems,” and “first nonlinear gravitational soft theorem is at arity” no longer survive in the patched active band.
+
+### Findings
+
+345. `2026-04-01-345`
+   Severity: `MODERATE`
+   Class: `D`
+   Location: `chapters/connections/thqg_3d_gravity_movements_vi_x.tex:1193-1196`; `chapters/connections/thqg_3d_gravity_movements_vi_x.tex:1259-1278`; `chapters/connections/thqg_3d_gravity_movements_vi_x.tex:1411-1477`
+   Issue: the active THQG movement-summary arity-$3$ to arity-$5$ band still re-promoted the celestial-soft package to theorem-level soft-graviton language through local headings, theorem titles, and the hierarchy table, even after the corresponding main chapter had been repaired.
+   Fix: rewrote the local arity-$3$ reading sentence, the arity-$4$ heading/theorem/index line, the arity-$5$ heading, and the shadow-connection hierarchy table plus recap sentence so they now present celestial soft factors at theorem level and keep the gravitational soft-theorem language explicitly in the reading.
+   Status: `FIXED`
+
+## 2026-04-01 — Codex Beilinson Rectification Iteration 286
+
+- Target: theorem-level growth/non-universality survivor cluster in the active THQG soft/celestial chapter
+- Iteration: `286`
+- Status: rectification completed on the modified live surface; source-level verification is clean, but no canonical closing build evidence was taken for this pass
+
+### Verification Run
+
+- Continued the same active THQG sweep and found the next real survivor cluster in the main soft/celestial chapter itself, this time inside a proved higher-arity growth proposition and the nearby sub-subleading remarks.
+- The live theorem surface there still drifted back into theorem-level soft-graviton wording: the polynomial-growth proposition indexed itself under “soft graviton theorem” and said “each successive soft theorem is suppressed,” while the sub-subleading non-universality/BPZ remarks still described the hierarchy in terms of the “final soft theorem,” “one term in an infinite tower,” and the “sub-subleading soft theorem becomes trivial.”
+- Rewrote that whole local band so it now stays on celestial soft factors and the celestial hierarchy at theorem level: the polynomial-growth proposition is indexed and phrased in terms of celestial soft factors, the class-$\mathbf{C}$/class-$\mathbf{M}$ contrast is stated as finite versus infinite celestial hierarchy, and the BPZ remark now says the sub-subleading celestial soft factor becomes trivial in the semiclassical limit.
+- Ran hostile local reread plus fixed-string greps to confirm that the retired slogans “soft graviton theorem!polynomial growth,” “each successive soft theorem,” “final soft theorem,” “one term in an infinite tower,” and “sub-subleading soft theorem becomes” no longer survive in the patched active band.
+
+### Findings
+
+346. `2026-04-01-346`
+   Severity: `MODERATE`
+   Class: `D`
+   Location: `chapters/connections/thqg_soft_graviton_theorems.tex:1489-1516`; `chapters/connections/thqg_soft_graviton_theorems.tex:1874-1892`
+   Issue: the active THQG soft/celestial chapter still had a local theorem-level survivor band in which the proved higher-arity growth statement and the nearby sub-subleading remarks reverted to soft-graviton-theorem bookkeeping rather than the repaired celestial-soft-factor doctrine.
+   Fix: rewrote the polynomial-growth proposition’s index and asymptotic wording, the class-$\mathbf{C}$/class-$\mathbf{M}$ hierarchy comparison, and the BPZ trivialization sentence so the live theorem surface now stays on celestial soft factors and the celestial soft hierarchy, with soft-graviton language remaining only where explicitly interpretive.
+   Status: `FIXED`
+
+## 2026-04-01 — Codex Beilinson Rectification Iteration 287
+
+- Target: celestial-transfer theorem-vs-reading survivor in the active gravity chapter after the broad landscape appraisal
+- Iteration: `287`
+- Status: rectification completed on the modified live surface; source-level verification is clean, but no canonical closing build evidence was taken for this pass
+
+### Verification Run
+
+- Launched the next rectification loop pass from the broadened landscape appraisal and inspected the active THQG/gravity quartet for the next load-bearing cross-chapter contradiction.
+- The strongest survivor was in the celestial-transfer paragraph of `3d_gravity.tex`: after the repaired THQG soft/celestial chapter had been narrowed to celestial soft factors and celestial OPE data, the main gravity chapter was still saying flatly that the celestial stress tensor “generates the soft graviton algebra, the asymptotic symmetry algebra at null infinity.”  That re-promoted the celestial/gravitational reading to theorem-level content on a high-visibility active surface.
+- Rewrote that sentence so it now stays on the proved celestial OPE algebra and Virasoro OPE at theorem level, with the soft-graviton/asymptotic-symmetry package explicitly presented only as the celestial/gravitational reading.  The nearby movement chapter already carried the scoped version, so no further local propagation was needed there.
+- Ran hostile local reread plus fixed-string greps to confirm that the retired flat slogan “The celestial stress tensor generates the soft graviton algebra” and the companion flat phrase “asymptotic symmetry algebra at null infinity” no longer survive across the active THQG/gravity band checked in this pass.
+
+### Findings
+
+347. `2026-04-01-347`
+   Severity: `MODERATE`
+   Class: `D`
+   Location: `chapters/connections/3d_gravity.tex:1722-1734`
+   Issue: the active gravity chapter’s celestial-transfer paragraph still flattened the repaired celestial-soft package into theorem-level soft-graviton/asymptotic-symmetry language, contradicting the scoped theorem surface now used in the THQG soft/celestial chapter.
+   Fix: rewrote the celestial-transfer sentence so it now presents the celestial OPE algebra and Virasoro OPE as the theorem-level content, with the soft-graviton and asymptotic-symmetry package explicitly kept in the celestial/gravitational reading.
+   Status: `FIXED`
+
+## 2026-04-01 — Codex Beilinson Rectification Iteration 288
+
+- Target: line-side model compression survivor cluster in the active gravitational-Yangian chapter
+- Iteration: `288`
+- Status: rectification completed on the modified live surface; source-level verification is clean, but no canonical closing build evidence was taken for this pass
+
+### Verification Run
+
+- Continued the new rectification loop on the active THQG core quartet and found the next load-bearing survivor in the newly active gravitational-Yangian chapter.
+- The chapter was still collapsing the line side into its module model in several high-visibility local places: the setup paragraph still said the Yangian controls the category of line operators, the local definition equated the line category directly with `\cA^!\text{-}\mathsf{mod}`, the Yangian-gravity dictionary identified `\cC_\cA = \cA^!\text{-mod}`, the synthesis recap repeated the same formula, and the Heisenberg/affine/Virasoro standard-family computations wrote the corresponding `\cC`-symbols as if those model categories were the line side itself.
+- Rewrote that whole local cluster so it now matches the repaired manuscript-wide doctrine: the gravitational Yangian contributes additional structure to the line side on the affine/proved lane, `\cA^!\text{-}\mathsf{mod}` is introduced as the standard algebraic model `\cC_\cA^{\mathrm{model}}`, the braiding and meromorphic tensor product are phrased on that model category, the dictionary and synthesis recap now speak of a module model for the line category, and the Heisenberg/affine/Virasoro examples now present standard line-side models rather than literal line-side identifications.
+- Ran hostile local reread to confirm that the setup, definition, dictionary, synthesis remark, and standard-family examples now all use one coherent model-language regime.
+
+### Findings
+
+348. `2026-04-01-348`
+   Severity: `MODERATE`
+   Class: `D`
+   Location: `chapters/connections/thqg_gravitational_yangian.tex:2089-2155`; `chapters/connections/thqg_gravitational_yangian.tex:2364-2369`; `chapters/connections/thqg_gravitational_yangian.tex:2428-2476`; `chapters/connections/thqg_gravitational_yangian.tex:2558-2564`
+   Issue: the active gravitational-Yangian chapter still compressed the line side into its module-category model in its local setup, definition, dictionary, synthesis recap, and standard-family examples, contradicting the repaired package-first doctrine used elsewhere on the live surface.
+   Fix: introduced `\cC_\cA^{\mathrm{model}} := \cA^!\text{-}\mathsf{mod}` as the standard algebraic model for the line side, rewrote the local setup and braiding language around that model category, and updated the dictionary/synthesis/example bands so they now speak of module models rather than direct line-side identifications.
+   Status: `FIXED`
+
+## 2026-04-01 — Codex Beilinson Rectification Iteration 289
+
+- Target: standard-family physical-reading survivor band in the active gravitational-Yangian chapter
+- Iteration: `289`
+- Status: rectification completed on the modified live surface; source-level verification is clean, but no canonical closing build evidence was taken for this pass
+
+### Verification Run
+
+- Launched the next rectification loop pass on the active THQG core quartet and stayed inside the newly active gravitational-Yangian chapter.
+- After the line-side model cleanup, the next real survivor was the wrap-up prose of the Heisenberg and affine standard-family computations: both computations still ended with flat physical-identification slogans, saying “The gravitational theory is free” and “the gravitational theory is the semistrict higher-spin gravity whose scattering is controlled by the rational $R$-matrix of~$\fg$.”  That promoted the gravitational reading to theorem-level content inside `\ClaimStatusProvedHere` computation blocks.
+- Rewrote those two wrap-up lines so the algebraic computation remains the proved content, while the free-theory and semistrict higher-spin interpretations are now explicitly framed as the gravitational reading of the corresponding Yangian packages.
+- Ran hostile local reread plus fixed-string checks to confirm the retired flat slogans no longer survive in the active computation band.
+
+### Findings
+
+349. `2026-04-01-349`
+   Severity: `MODERATE`
+   Class: `D`
+   Location: `chapters/connections/thqg_gravitational_yangian.tex:2434-2459`
+   Issue: the active Heisenberg and affine standard-family computations in the gravitational-Yangian chapter still ended with flat physical-identification slogans, promoting the gravitational reading to theorem level inside proved computation blocks.
+   Fix: rewrote the Heisenberg and affine wrap-up sentences so the free-theory and higher-spin-scattering claims now appear explicitly as the gravitational reading of the proved algebraic Yangian data.
+   Status: `FIXED`
+
+## 2026-04-01 — Codex Beilinson Rectification Iteration 290
+
+- Target: Virasoro summary-reading survivor in the active gravitational-Yangian chapter
+- Iteration: `290`
+- Status: rectification completed on the modified live surface; source-level verification is clean, but no canonical closing build evidence was taken for this pass
+
+### Verification Run
+
+- Launched the next rectification loop pass on the active THQG core quartet and stayed within the standard-family summary band of the gravitational-Yangian chapter.
+- The next real survivor was the closing Virasoro summary sentence of the proved computation block: it still said the infinite shadow tower “mirrors the expected infinite graviton-vertex tower,” which was too flat for the repaired theorem-versus-reading doctrine and subtly promoted the gravitational interpretation into the computation summary itself.
+- Rewrote that sentence so the proved content stays on the explicit genus-zero binary shadow data, while the graviton-vertex language is now explicitly presented as an expected feature of the gravitational reading.
+- Ran hostile local reread plus a fixed-string check to confirm the retired summary slogan no longer survives in the active computation band.
+
+### Findings
+
+350. `2026-04-01-350`
+   Severity: `MODERATE`
+   Class: `D`
+   Location: `chapters/connections/thqg_gravitational_yangian.tex:2489-2493`
+   Issue: the closing Virasoro summary sentence in the active gravitational-Yangian chapter still compressed the infinite shadow tower into a too-flat graviton-vertex slogan, promoting the physical reading inside a proved computation block.
+   Fix: rewrote the sentence so the computation summary now stays on explicit genus-zero binary shadow data, with the infinite graviton-vertex tower phrased explicitly as the expected gravitational reading.
+   Status: `FIXED`
+
+## 2026-04-01 — Codex Beilinson Rectification Iteration 291
+
+- Target: opener-level theorem-vs-reading survivor cluster in the active gravitational-Yangian chapter
+- Iteration: `291`
+- Status: rectification completed on the modified live surface; source-level verification is clean, but no canonical closing build evidence was taken for this pass
+
+### Verification Run
+
+- Launched the next rectification loop pass on the active THQG core quartet and stayed within the high-visibility opener and recap bands of the gravitational-Yangian chapter.
+- The next real survivor was an opener-level compression bug: the chapter still opened by saying the binary collision extracts an `$r$`-matrix controlling gravitational scattering, the local Virasoro roadmap item still advertised an “explicit gravitational `$r$`-matrix,” the Virasoro subsection intro still said it computes the “explicit gravitational `$r$`-matrix, the three-graviton vertex,” and the closing recap still summarized the Virasoro package as a “gravitational `$r$`-matrix.”  That flattened the proved binary-kernel package back into its gravitational reading.
+- Rewrote that whole local cluster so it now stays on the theorem-level binary-kernel package: the opener presents the `$r$`-matrix as extracted from the line-side package, with scattering language explicitly placed in the gravitational reading; the Virasoro roadmap/subsection/construction now advertise the explicit Virasoro binary kernel; and the closing recap now summarizes the same object as the Virasoro binary kernel with higher-order poles.
+- Ran hostile local reread plus fixed-string greps to confirm the retired flat opener slogans no longer survive in the active chapter band.
+
+### Findings
+
+351. `2026-04-01-351`
+   Severity: `MODERATE`
+   Class: `D`
+   Location: `chapters/connections/thqg_gravitational_yangian.tex:45-49`; `chapters/connections/thqg_gravitational_yangian.tex:75-79`; `chapters/connections/thqg_gravitational_yangian.tex:1770-1843`; `chapters/connections/thqg_gravitational_yangian.tex:2569-2570`
+   Issue: the high-visibility opener, Virasoro roadmap item, Virasoro binary-kernel subsection, and closing recap of the active gravitational-Yangian chapter were still collapsing the proved binary-kernel package into flat “gravitational `$r$`-matrix / scattering / three-graviton vertex” language.
+   Fix: rewrote that cluster so the theorem-level content now stays on the extracted binary kernel, with the scattering/graviton language explicitly marked as the gravitational reading and the local recap terminology normalized to “Virasoro binary kernel.”
+   Status: `FIXED`
+
+## 2026-04-01 — Codex Beilinson Rectification Iteration 292
+
+- Target: theorem-role survivor in the active gravitational-Yangian CYBE/sgYBE band
+- Iteration: `292`
+- Status: rectification completed on the modified live surface; source-level verification is clean, but no canonical closing build evidence was taken for this pass
+
+### Verification Run
+
+- Launched the next rectification loop pass on the active THQG core quartet and stayed inside the CYBE-to-sgYBE development of the gravitational-Yangian chapter.
+- The next real survivor was a theorem-role seam in the active algebraic band: the proved `$A_\infty$`-CYBE proposition still ended by saying the class-`M` tower encodes the “full nonlinear gravitational scattering,” and the adjacent sgYBE remark title still advertised the stable-graph package as a “gravitational scattering equation.”  That was flatter than the repaired local doctrine, which keeps the theorem-level content on algebraic identities and treats scattering language as the gravitational reading.
+- Rewrote that pair so the proposition now ends on an infinite tower of higher-depth algebraic identities, with the nonlinear-scattering hierarchy explicitly placed in the gravitational reading, and the sgYBE remark title now says “The sgYBE and its gravitational-reading organization.”
+- Ran hostile local reread plus fixed-string greps to confirm the retired theorem-level scattering slogan and the old remark title no longer survive in the active band.
+
+### Findings
+
+352. `2026-04-01-352`
+   Severity: `MODERATE`
+   Class: `D`
+   Location: `chapters/connections/thqg_gravitational_yangian.tex:1245-1252`; `chapters/connections/thqg_gravitational_yangian.tex:1637-1647`
+   Issue: the active `$A_\infty$`-CYBE proposition and adjacent sgYBE remark were still promoting the gravitational-scattering reading as if it were theorem-level algebraic content.
+   Fix: rewrote the proposition so class-`M` now ends on higher-depth algebraic identities, with nonlinear scattering stated only as the gravitational reading, and renamed/scoped the sgYBE remark accordingly.
+   Status: `FIXED`
+
+## 2026-04-01 — Codex Beilinson Rectification Iteration 293
+
+- Target: theorem-level physical-reading survivor in the active THQG movement-summary band
+- Iteration: `293`
+- Status: rectification completed on the modified live surface; source-level verification is clean, but no canonical closing build evidence was taken for this pass
+
+### Verification Run
+
+- Launched the next rectification loop pass on the active THQG movement-summary layer and checked the arity-$3$ and arity-$5$ theorem bands against the already repaired core celestial-soft chapter.
+- The next real survivor was that the movement-summary theorems were still embedding the physical reading directly inside the proved theorem text: the cubic gauge-triviality theorem still concluded with “no independent physical information” and the three-graviton soft reading, while the quintic theorem was still stated as the first genuinely new five-graviton Ward identity.
+- Rewrote that local theorem band so the proved theorem-level content now stays on the celestial soft hierarchy itself: the cubic theorem ends on “no independent new arity-$3$ contribution,” the quintic theorem ends on “first genuinely new arity-$5$ component,” and the gravitational-reading statements now sit in the surrounding prose after the proofs.
+- Ran hostile local reread plus fixed-string greps to confirm the retired theorem-level phrases no longer survive in the active movement-summary chapter.
+
+### Findings
+
+353. `2026-04-01-353`
+   Severity: `MODERATE`
+   Class: `D`
+   Location: `chapters/connections/thqg_3d_gravity_movements_vi_x.tex:1186-1195`; `chapters/connections/thqg_3d_gravity_movements_vi_x.tex:1258-1260`; `chapters/connections/thqg_3d_gravity_movements_vi_x.tex:1416-1445`
+   Issue: the active movement-summary chapter still embedded the physical-reading conclusions directly inside the proved arity-$3$ and arity-$5$ theorem statements, promoting the gravitational reading to theorem-level content.
+   Fix: rewrote those theorem statements so they now stay on celestial-hierarchy content, with the three-graviton and five-point soft-reading language moved to the post-proof movement-summary prose.
+   Status: `FIXED`
+
+## 2026-04-01 — Codex Beilinson Rectification Iteration 294
+
+- Target: recap-table survivor in the active THQG movement-summary hierarchy
+- Iteration: `294`
+- Status: rectification completed on the modified live surface; source-level verification is clean, but no canonical closing build evidence was taken for this pass
+
+### Verification Run
+
+- Launched the next rectification loop pass on the active THQG movement-summary/core soft-hierarchy recap band and compared the movement-summary hierarchy table against the already repaired theorem band immediately above it.
+- The next real survivor was a recap-level lag in the movement-summary table: the arity-$3$ row still said “No new physics,” and the arity-$5$ row still said “Read as a new five-graviton Ward identity,” which no longer matched the repaired local theorem surface that now speaks in terms of no new independent arity-$3$ soft factor and the first genuinely new arity-$5$ component.
+- Rewrote those two table rows so the gravitational-reading column now says “Read as no new independent soft factor” at arity~$3$ and “Read as the first genuinely new arity-$5$ soft Ward identity” at arity~$5$.
+- Ran hostile local reread plus fixed-string greps to confirm the retired recap-table phrases no longer survive in the active movement-summary chapter.
+
+### Findings
+
+354. `2026-04-01-354`
+   Severity: `MODERATE`
+   Class: `D`
+   Location: `chapters/connections/thqg_3d_gravity_movements_vi_x.tex:1459-1466`
+   Issue: the active movement-summary hierarchy table still used older recap slogans in its gravitational-reading column, lagging behind the repaired theorem-level arity-$3$ and arity-$5$ statements immediately above it.
+   Fix: rewrote the arity-$3$ and arity-$5$ reading rows so they now mirror the scoped theorem-level register used in the live movement-summary band.
+   Status: `FIXED`
+
+## 2026-04-01 — Codex Beilinson Rectification Iteration 295
+
+- Target: AdS$_3$/CFT$_2$ bridge-paragraph survivor in the active movement-summary chapter
+- Iteration: `295`
+- Status: rectification completed on the modified live surface; source-level verification is clean, but no canonical closing build evidence was taken for this pass
+
+### Verification Run
+
+- Launched the next rectification loop pass on the active THQG movement-summary/core recap prose and checked the short AdS$_3$/CFT$_2$ bridge paragraph immediately after the leading celestial soft-factor proof.
+- The next real survivor was a flat recap slogan: the movement-summary chapter still said “the soft graviton is the boundary stress tensor” and “the soft theorem is the statement that gravitational scattering at leading order is determined by the conformal Ward identity,” which was stronger than the scoped reading-language now used elsewhere on the repaired live surface.
+- Rewrote that paragraph so it now stays explicitly in reading-language throughout: in the AdS$_3$/CFT$_2$ reading, the boundary stress tensor is read as the soft graviton, and the leading-order scattering statement is read through the conformal Ward identity.
+- Ran hostile local reread plus fixed-string greps to confirm the retired flat recap slogans no longer survive in the active movement-summary chapter.
+
+### Findings
+
+355. `2026-04-01-355`
+   Severity: `MODERATE`
+   Class: `D`
+   Location: `chapters/connections/thqg_3d_gravity_movements_vi_x.tex:1172-1176`
+   Issue: the short AdS$_3$/CFT$_2$ bridge paragraph in the active movement-summary chapter was still stating the soft-graviton and leading-scattering content in flat theorem-level language rather than as the gravitational reading of the proved celestial-soft package.
+   Fix: rewrote that recap paragraph so it now stays explicitly in AdS$_3$/CFT$_2$ reading-language, matching the repaired scope register elsewhere on the live surface.
+   Status: `FIXED`
+
+## 2026-04-01 — Codex Beilinson Rectification Iteration 296
+
+- Target: recap-prose survivor in the active THQG movement-summary hierarchy paragraph
+- Iteration: `296`
+- Status: rectification completed on the modified live surface; source-level verification is clean, but no canonical closing build evidence was taken for this pass
+
+### Verification Run
+
+- Launched the next rectification loop pass on the active THQG movement-summary/core recap prose and stayed in the hierarchy-summary paragraph immediately below the repaired table.
+- The next real survivor was a compact slogan seam: after the theorem and table bands had already been narrowed, the recap paragraph still said the arity-$4$ reading was “the first nonlinear gravitational soft theorem,” which was flatter than the repaired register elsewhere on the live surface.
+- Rewrote that sentence so it now says the honest thing: in the celestial/gravitational reading, the arity-$4$ sector is the first nonlinear soft Ward identity with genuinely new content.
+- Ran hostile local reread plus a fixed-string grep to confirm the retired “gravitational soft theorem” slogan no longer survives in the active movement-summary chapter.
+
+### Findings
+
+356. `2026-04-01-356`
+   Severity: `MODERATE`
+   Class: `D`
+   Location: `chapters/connections/thqg_3d_gravity_movements_vi_x.tex:1472-1479`
+   Issue: the recap paragraph under the movement-summary hierarchy table still promoted the arity-$4$ gravitational reading as a flat “first nonlinear gravitational soft theorem,” overshooting the repaired theorem-versus-reading register used elsewhere in the live THQG band.
+   Fix: rewrote that sentence so the arity-$4$ reading is now described as the first nonlinear soft Ward identity with genuinely new content.
+   Status: `FIXED`
+
+## 2026-04-01 — Codex Beilinson Rectification Iteration 297
+
+- Target: theorem-role survivor in the active movement-summary celestial-transfer proposition
+- Iteration: `297`
+- Status: rectification completed on the modified live surface; source-level verification is clean, but no canonical closing build evidence was taken for this pass
+
+### Verification Run
+
+- Launched the next rectification loop pass on the active movement-summary/core transfer band and checked the proved celestial-transfer proposition against the repaired theorem-versus-reading register used elsewhere in the live THQG soft hierarchy.
+- The next real survivor was inside the proved proposition itself: item~(iii) was still stating the Weinberg/quartic-contact reading directly in the theorem statement, even though that clause is interpretive rather than algebraic.  The theorem-level content should stop at the existence of the integrated arity-$2$ and arity-$4$ factors.
+- Rewrote that proposition so item~(iii) now states only the algebraic integrated-factor package, and moved the Weinberg/quartic-contact reading into the explanatory paragraph immediately below the proof.
+- Ran hostile local reread plus a fixed-string grep to confirm the retired theorem-level phrasing no longer survives in the active movement-summary proposition band.
+
+### Findings
+
+357. `2026-04-01-357`
+   Severity: `MODERATE`
+   Class: `D`
+   Location: `chapters/connections/thqg_3d_gravity_movements_vi_x.tex:1499-1503`; `chapters/connections/thqg_3d_gravity_movements_vi_x.tex:1525-1536`
+   Issue: the active celestial-transfer proposition in the movement-summary chapter still embedded the Weinberg/quartic-contact reading directly inside its proved theorem statement, even though that clause is interpretive rather than algebraic.
+   Fix: rewrote the proposition so the statement now ends on the integrated arity-$2$ and arity-$4$ factors, and moved the physical reading into the post-proof explanatory paragraph.
+   Status: `FIXED`
+
+## 2026-04-01 — Codex Beilinson Rectification Iteration 298
+
+- Target: high-visibility shadow-tower summary survivor in the main gravity chapter
+- Iteration: `298`
+- Status: rectification completed on the modified live surface; source-level verification is clean, but no canonical closing build evidence was taken for this pass
+
+### Verification Run
+
+- Launched the next rectification loop pass on the active THQG movement-summary / gravity-summary surface and checked the shadow-tower summary table in the main gravity chapter against the repaired theorem-versus-reading register already enforced in the THQG soft hierarchy.
+- The next real survivor was a flat summary-layer overclaim: the active gravity table still listed the cubic, quartic, and quintic shadows directly as “three-graviton vertex,” “four-graviton contact interaction,” and “five-graviton vertex,” and the sentence below it still said every $r$-th shadow is the $r$-graviton vertex.  That flattened the repaired physical reading back into theorem-level summary prose.
+- Rewrote that whole local band so the table now consistently says those shadows are read as the corresponding graviton-vertex/contact data, and the follow-up sentence now says that in the gravitational reading each $r$-th shadow contributes the corresponding $r$-graviton vertex.
+- Ran hostile local reread plus fixed-string greps to confirm the retired flat vertex slogans no longer survive in the active gravity-summary band.
+
+### Findings
+
+358. `2026-04-01-358`
+   Severity: `MODERATE`
+   Class: `D`
+   Location: `chapters/connections/3d_gravity.tex:1483-1505`
+   Issue: the high-visibility shadow-tower summary table and takeaway sentence in the active gravity chapter were still presenting the graviton-vertex dictionary as flat theorem-level identifications rather than as the gravitational reading of the shadow data.
+   Fix: rewrote the table entries and the follow-up sentence so graviton-vertex/contact language is now explicitly kept in the gravitational reading.
+   Status: `FIXED`
+
+## 2026-04-01 — Codex Beilinson Rectification Iteration 299
+
+- Target: local model-language survivor in the active gravity chapter
+- Iteration: `299`
+- Status: rectification completed on the modified live surface; source-level verification is clean, but no canonical closing build evidence was taken for this pass
+
+### Verification Run
+
+- Launched the next rectification loop pass on the high-visibility gravity/THQG summary surface and checked the late gravity-chapter discussion of the strongly coupled line side against the normalized modeled-by register already enforced elsewhere in the manuscript.
+- The next real survivor was a local compression seam: the gravity chapter still said line operators “are controlled by a Virasoro algebra at large negative central charge,” which lagged behind the repaired package-first/model-language regime.
+- Rewrote that sentence so it now says line operators are modeled by modules for a Virasoro algebra at large negative central charge.
+- Ran hostile local reread plus a fixed-string grep to confirm the retired “are controlled by” wording no longer survives in the active gravity band.
+
+### Findings
+
+359. `2026-04-01-359`
+   Severity: `MODERATE`
+   Class: `D`
+   Location: `chapters/connections/3d_gravity.tex:1838-1842`
+   Issue: the late strongly-coupled line-side sentence in the active gravity chapter still used the older “are controlled by” formulation, which lagged behind the manuscript-wide modeled-by register for line-side realizations.
+   Fix: rewrote the sentence so it now says the line operators are modeled by modules for a Virasoro algebra at large negative central charge.
+   Status: `FIXED`
+
+## 2026-04-01 — Codex Beilinson Rectification Iteration 300
+
+- Target: high-visibility EFT-truncation table survivor in the active movement-summary chapter
+- Iteration: `300`
+- Status: rectification completed on the modified live surface; source-level verification is clean, but no canonical closing build evidence was taken for this pass
+
+### Verification Run
+
+- Launched the next rectification loop pass on the remaining high-visibility gravity/THQG summary tables and checked the Virasoro EFT-truncation table in the movement-summary chapter against the repaired reading-language regime already enforced in the main gravity chapter.
+- The next real survivor was a flat propagation bug: the movement-summary EFT table still listed “Three-graviton vertex,” “Five-graviton vertex,” “Six-graviton vertex,” and “Full perturbative gravity” as if those were direct theorem-level outputs of the obstruction data.
+- Rewrote that whole local band so the lead-in now says “In the Virasoro gravitational reading,” the third column is explicitly “Gravitational reading,” and each row now says those data are read as the corresponding genus tower / graviton-vertex / contact / full-hierarchy statements.
+- Ran hostile local reread plus fixed-string greps to confirm the retired flat table slogans no longer survive in the active movement-summary chapter.
+
+### Findings
+
+360. `2026-04-01-360`
+   Severity: `MODERATE`
+   Class: `D`
+   Location: `chapters/connections/thqg_3d_gravity_movements_vi_x.tex:777-793`
+   Issue: the high-visibility Virasoro EFT-truncation table in the active movement-summary chapter was still presenting graviton-vertex and full-gravity content as flat outputs rather than as the gravitational reading of the obstruction tower.
+   Fix: rewrote the table lead-in, column header, and entries so that all such content is now explicitly kept in the Virasoro gravitational reading.
+   Status: `FIXED`
+
+## 2026-04-01 — Codex Beilinson Rectification Iteration 301
+
+- Target: local theorem-vs-reading seam in the active gravity chapter's $m_3$ explanation
+- Iteration: `301`
+- Status: rectification completed on the modified live surface; source-level verification is clean, but no canonical closing build evidence was taken for this pass
+
+### Verification Run
+
+- Launched the next rectification loop pass on the remaining gravity-side explanatory bands and checked the local gloss immediately following the explicit formula for `m_3(T,T,T;\lambda_{12},\lambda_{23})`.
+- The next real survivor was a compact physical-identification seam: the chapter still introduced the four summands by saying “The four terms have gravitational content,” then listed the geometric correction / response / backreaction / three-graviton coupling as if that dictionary were theorem-level content rather than the gravitational reading of the algebraic expression.
+- Rewrote that local gloss so it now says explicitly: “In the gravitational reading, the four terms are read as …”, keeping the graviton-coupling interpretation on the reading side rather than in the raw algebraic statement.
+- Ran hostile local reread plus a fixed-string grep to confirm the retired flat “gravitational content” wording no longer survives in the active gravity chapter.
+
+### Findings
+
+361. `2026-04-01-361`
+   Severity: `MODERATE`
+   Class: `D`
+   Location: `chapters/connections/3d_gravity.tex:127-133`
+   Issue: the local explanatory gloss under the explicit `m_3` formula in the active gravity chapter still presented the graviton dictionary as direct content of the formula instead of as the gravitational reading of that algebraic expression.
+   Fix: rewrote the sentence so the geometric correction / response / backreaction / three-graviton-coupling dictionary is now explicitly framed as the gravitational reading.
+   Status: `FIXED`
+
+## 2026-04-01 — Codex Beilinson Rectification Iteration 302
+
+- Target: compact gravity-summary lag in the active preface
+- Iteration: `302`
+- Status: rectification completed on the modified live surface; source-level verification is clean, but no canonical closing build evidence was taken for this pass
+
+### Verification Run
+
+- Launched the next rectification loop pass on the remaining preface-level gravity summary band and compared its compact shadow-tower synopsis against the already repaired gravity-chapter summary.
+- The next real survivor was a propagation lag: the preface still said the cubic shadow is read as encoding “three-point graviton vertex corrections,” still said “the quintic graviton vertex is likewise read as remaining nonzero,” and still measured how fast the “number of independent graviton vertex corrections” grows.  Those lines lagged behind the cleaner reading-language now used in the live gravity chapter.
+- Rewrote that compact preface band so it now says the cubic shadow is read as the three-graviton vertex, the quintic obstruction is read as a nonvanishing five-graviton contribution, and the completion-entropy sentence now speaks of graviton-vertex complexity growth.
+- Ran hostile local reread plus fixed-string greps to confirm the retired lagging phrases no longer survive in the active preface band.
+
+### Findings
+
+362. `2026-04-01-362`
+   Severity: `MODERATE`
+   Class: `D`
+   Location: `chapters/frame/preface.tex:1448-1469`
+   Issue: the compact gravity synopsis in the active preface was still using older graviton-correction phrasing that lagged behind the repaired gravity-chapter summary and slightly flattened the shadow-to-gravity reading.
+   Fix: rewrote the cubic, quintic, and completion-entropy clauses so they now match the cleaned reading-language used in the live gravity chapter.
+   Status: `FIXED`
+
+## 2026-04-01 — Codex Beilinson Rectification Iteration 303
+
+- Target: doctrine seam in the active preface's 3d MC-element gravity paragraph
+- Iteration: `303`
+- Status: rectification completed on the modified live surface; source-level verification is clean, but no canonical closing build evidence was taken for this pass
+
+### Verification Run
+
+- Launched the next rectification loop pass on the remaining high-visibility gravity-transfer and summary bands and checked the preface paragraph “The 3d MC element for gravity” against the repaired doctrine now used elsewhere on the live gravity surface.
+- The next real survivor was a doctrine mismatch: the preface still said the genus expansion of `\alpha_{\mathrm{grav}}` is read as the loop expansion of quantum gravity, even though the repaired chapter and preface summary bands now consistently route that reading through the effective-scalar specialization.
+- Rewrote that paragraph so the genus expansion is now read, after effective scalar specialization, as the loop expansion of the effective scalar gravitational package, and the BV-master-equation sentence now stays inside that same effective reading.
+- Ran hostile local reread plus a fixed-string grep to confirm the retired flat “loop expansion of quantum gravity” wording no longer survives in the active preface band.
+
+### Findings
+
+363. `2026-04-01-363`
+   Severity: `MODERATE`
+   Class: `D`
+   Location: `chapters/frame/preface.tex:1474-1484`
+   Issue: the high-visibility preface paragraph on the 3d MC element still routed the genus expansion directly to quantum gravity rather than through the effective-scalar specialization, contradicting the repaired live gravity doctrine elsewhere on the active surface.
+   Fix: rewrote the paragraph so the genus expansion and BV-master-equation reading now explicitly stay inside the effective-scalar gravitational reading.
+   Status: `FIXED`
+
+## 2026-04-01 — Codex Beilinson Rectification Iteration 304
+
+- Target: theorem-role contradiction in the active gravity chapter's line-side paragraph
+- Iteration: `304`
+- Status: rectification completed on the modified live surface; source-level verification is clean, but no canonical closing build evidence was taken for this pass
+
+### Verification Run
+
+- Launched the next rectification loop pass on the remaining gravity-transfer/high-visibility bands and checked the local line-side paragraph just below the Virasoro Koszul-dual proposition in the main gravity chapter.
+- The next real survivor was a theorem-role contradiction: after the chapter had already been repaired to present the proved line-side object as the abstract open-colour package and the Virasoro picture as only an expected realization, the very next sentence still said flatly that line operators along `\R_+ \times \{0\}` are `\mathrm{Vir}_{26-c}`-modules.
+- Rewrote that sentence so it now matches the repaired doctrine: in the expected Virasoro realization, those line operators are modeled by modules for `\mathrm{Vir}_{26-c}`.
+- Ran hostile local reread plus a fixed-string grep to confirm the retired theorem-level module claim no longer survives in the active gravity chapter.
+
+### Findings
+
+364. `2026-04-01-364`
+   Severity: `MODERATE`
+   Class: `D`
+   Location: `chapters/connections/3d_gravity.tex:206-208`
+   Issue: the local line-side paragraph in the active gravity chapter still contradicted the repaired theorem surface by stating the Virasoro module model as a direct theorem-level identification.
+   Fix: rewrote the sentence so it now explicitly places the `\mathrm{Vir}_{26-c}` module picture inside the expected Virasoro realization.
+   Status: `FIXED`
+
+## 2026-04-01 — Codex Beilinson Rectification Iteration 305
+
+- Target: introduction-level gravity overview arity/loop and theorem-vs-reading compression
+- Iteration: `305`
+- Status: rectification completed on the modified live surface; source-level verification is clean, but no canonical closing build evidence was taken for this pass
+
+### Verification Run
+
+- Launched the next rectification loop pass on the remaining introduction-level gravity summaries and checked the main introduction’s AdS$_3$/Virasoro overview against the repaired gravity chapter.
+- The next real survivor was a doctrine/computation mismatch: the introduction was still flattening the Laplace kernel into the graviton propagator at theorem level and, more seriously, was misreading the shadow tower `m_3,m_4,\ldots` as a `(k-2)`-loop graviton-scattering hierarchy, even though the repaired live gravity surface keeps arity on the interaction/shadow side while genus tracks loop order.
+- Rewrote that paragraph so the Laplace kernel is now explicitly in the gravitational reading, the `\Ainf` shadow tower is read as the perturbative graviton-interaction hierarchy, and genus alone tracks loop order.
+- Ran hostile local reread plus fixed-string greps to confirm the retired flat propagator wording and the old `(k-2)`-loop formula no longer survive across the active introduction/gravity/preface band checked in this pass.
+
+### Findings
+
+365. `2026-04-01-365`
+   Severity: `MODERATE`
+   Class: `B`
+   Location: `chapters/theory/introduction.tex:1553-1561`
+   Issue: the high-visibility introduction overview conflated arity with loop order by saying `m_k` contributes the `(k-2)`-loop graviton-scattering amplitude, and it also stated the propagator interpretation too flatly at theorem level.
+   Fix: rewrote the paragraph so the Laplace kernel is explicitly part of the gravitational reading, the `\Ainf` tower is read as the perturbative graviton-interaction hierarchy, and loop order is assigned to genus rather than arity.
+   Status: `FIXED`
+
+## 2026-04-01 — Codex Beilinson Rectification Iteration 306
+
+- Target: theorem-vs-reading survivor in the THQG Yangian CYBE remark
+- Iteration: `306`
+- Status: rectification completed on the modified live surface; source-level verification is clean, but no canonical closing build evidence was taken for this pass
+
+### Verification Run
+
+- Launched the next rectification loop pass on the remaining high-visibility THQG gravity/Yangian bands and checked the local CYBE interpretation remark in the active THQG Yangian chapter.
+- The next real survivor was a theorem-role mismatch: the remark was still speaking as if binary graviton exchange and the leading soft graviton theorem were the theorem-level objects, rather than the gravitational/celestial reading of the binary kernel and its CYBE consistency.
+- Rewrote that remark so the theorem-level content now stays on the binary kernel and the CYBE, while the graviton-exchange and leading-soft language is explicitly kept in the gravitational/celestial reading.
+- Ran hostile local reread plus fixed-string greps to confirm the retired phrases “binary graviton exchange” and “leading soft graviton theorem enforces the CYBE” no longer survive on the active THQG band checked in this pass.
+
+### Findings
+
+366. `2026-04-01-366`
+   Severity: `MODERATE`
+   Class: `D`
+   Location: `chapters/connections/thqg_gravitational_yangian.tex:1163-1177`
+   Issue: the CYBE interpretation remark in the active THQG Yangian chapter still flattened the gravitational and celestial reading into theorem-level scattering and soft-theorem language.
+   Fix: rewrote the remark so the CYBE remains the theorem-level algebraic statement, with pairwise graviton exchange and the leading soft factor presented only as the gravitational/celestial reading of that compatibility.
+   Status: `FIXED`
+
+## 2026-04-01 — Codex Beilinson Rectification Iteration 307
+
+- Target: summary-layer reading survivors in the active THQG soft chapter
+- Iteration: `307`
+- Status: rectification completed on the modified live surface; source-level verification is clean, but no canonical closing build evidence was taken for this pass
+
+### Verification Run
+
+- Launched the next rectification loop pass on the remaining active THQG soft/celestial bands and checked the shadow-complexity summary remark together with the nearby conformally soft-limit remark in the main THQG soft chapter.
+- The next real survivor was a summary-layer reading mismatch: one remark was still presenting the theorem-level output as “independent soft graviton theorems,” and the conformally soft-limit remark still said the arity-$r$ specialization flatly produces the conformally soft graviton, rather than keeping both inside the celestial/gravitational reading.
+- Rewrote that local cluster so the summary now speaks of independent soft-graviton statements at each surviving arity, and the conformally soft-limit sentence now explicitly places the conformally soft graviton insertion in the celestial/gravitational reading.
+- Ran hostile local reread plus fixed-string greps to confirm the retired phrases “independent soft graviton theorems” and “produces the conformally soft graviton” no longer survive on the active THQG soft/celestial band checked in this pass.
+
+### Findings
+
+367. `2026-04-01-367`
+   Severity: `MODERATE`
+   Class: `D`
+   Location: `chapters/connections/thqg_soft_graviton_theorems.tex:418-420,2145-2147`
+   Issue: the active THQG soft chapter still had two recap/remark lines that flattened the repaired celestial theorem layer back into direct soft-graviton language.
+   Fix: rewrote the summary remark and conformally soft-limit remark so the surviving arity hierarchy and conformally soft insertion are both explicitly kept in the celestial/gravitational reading.
+   Status: `FIXED`
+
+## 2026-04-01 — Codex Beilinson Rectification Iteration 308
+
+- Target: recap-layer survivor shared by the main THQG soft chapter and its movement-summary mirror
+- Iteration: `308`
+- Status: rectification completed on the modified live surface; source-level verification is clean, but no canonical closing build evidence was taken for this pass
+
+### Verification Run
+
+- Launched the next rectification loop pass on the remaining active THQG soft/celestial recap and transfer prose and checked the celestial-soft openings in the main THQG soft chapter together with the matching movement-summary band.
+- The next real survivor was a recap-layer reading collapse: both files were still flattening the repaired celestial Ward-identity hierarchy back into bare “soft graviton theorems,” even though the theorem-level content had already been narrowed elsewhere on the live surface.
+- Rewrote both openings so they now say the Ward identities are read as the corresponding soft-graviton hierarchy, while keeping the theorem-level surface on celestial soft factors and Ward identities.
+- Ran hostile local reread plus a fixed-string grep to confirm the retired phrase “read as the soft graviton theorems” no longer survives across the active THQG soft chapter and its movement-summary mirror.
+
+### Findings
+
+368. `2026-04-01-368`
+   Severity: `MODERATE`
+   Class: `D`
+   Location: `chapters/connections/thqg_soft_graviton_theorems.tex:1966-1968`; `chapters/connections/thqg_3d_gravity_movements_vi_x.tex:1096-1099`
+   Issue: the main THQG soft chapter and its movement-summary mirror still compressed the celestial theorem layer into the flat slogan “soft graviton theorems,” lagging behind the repaired theorem-versus-reading split elsewhere on the active surface.
+   Fix: rewrote both openings so the celestial Ward identities are read as the corresponding soft-graviton hierarchy, rather than being advertised as theorem-level soft graviton theorems.
+   Status: `FIXED`
+
+## 2026-04-01 — Codex Beilinson Rectification Iteration 309
+
+- Target: theorem-vs-reading survivor in the active celestial-soft algebra proof band
+- Iteration: `309`
+- Status: rectification completed on the modified live surface; source-level verification is clean, but no canonical closing build evidence was taken for this pass
+
+### Verification Run
+
+- Launched the next rectification loop pass on the remaining active celestial-soft algebra and movement-summary bands and checked the superrotation/BMS proof cluster together with the nearby celestial-soft OPE proof band in the main THQG soft chapter.
+- The next real survivor was a theorem-role mismatch: that proof prose was still sliding from celestial Ward identities and celestial soft OPE data into flat BMS-generation and graviton-OPE identifications.
+- Rewrote that local cluster so the arity-$2$ and arity-$3$ Ward identities are explicitly read as the supertranslation/superrotation sectors of the BMS package, and the leading celestial soft OPE is explicitly read as the graviton OPE.
+- Ran hostile local reread plus fixed-string greps to confirm the retired phrases “identities generate supertranslations” and “this is the graviton OPE” no longer survive on the active THQG soft/celestial band checked in this pass.
+
+### Findings
+
+369. `2026-04-01-369`
+   Severity: `MODERATE`
+   Class: `D`
+   Location: `chapters/connections/thqg_soft_graviton_theorems.tex:1028-1037,2121-2122`
+   Issue: the active celestial-soft algebra proof band still flattened the repaired theorem layer into direct BMS-generation and graviton-OPE language.
+   Fix: rewrote the proof prose so the BMS and graviton-OPE content is explicitly kept in the celestial/gravitational reading of the celestial Ward-identity and OPE data.
+   Status: `FIXED`
+
+## 2026-04-01 — Codex Beilinson Rectification Iteration 310
+
+- Target: movement-summary survivor in the arity-2 and arity-5 celestial soft recap
+- Iteration: `310`
+- Status: rectification completed on the modified live surface; source-level verification is clean, but no canonical closing build evidence was taken for this pass
+
+### Verification Run
+
+- Launched the next rectification loop pass on the remaining active THQG soft-factor and BMS-reading prose and checked the arity-2 theorem recap together with the quintic aftermath in the movement-summary chapter.
+- The next real survivor was a theorem-vs-reading mismatch in the recap prose: the movement-summary chapter was still phrasing both bands as literal “insertion of a soft graviton” statements, which quietly identified the celestial insertion itself with the graviton inside the theorem-layer narrative.
+- Rewrote those two lines so the leading band now speaks of the celestial stress tensor insertion read as a soft-graviton insertion, and the quintic band now says the new Ward identity is read as constraining a soft-graviton insertion into a five-point function.
+- Ran hostile local reread plus a fixed-string grep to confirm the retired phrase “insertion of a soft graviton” no longer survives across the active THQG soft/movement-summary surface checked in this pass.
+
+### Findings
+
+370. `2026-04-01-370`
+   Severity: `MODERATE`
+   Class: `D`
+   Location: `chapters/connections/thqg_3d_gravity_movements_vi_x.tex:1141-1144,1442-1444`
+   Issue: the movement-summary chapter still had two local recap lines that identified the celestial insertion itself with a soft graviton, flattening the repaired theorem-versus-reading split.
+   Fix: rewrote both lines so the celestial insertion remains theorem-level, while the soft-graviton language is explicitly kept as the celestial/gravitational reading.
+   Status: `FIXED`
+
+## 2026-04-01 — Codex Beilinson Rectification Iteration 311
+
+- Target: theorem-level reading leak in the active celestial-soft structure proposition
+- Iteration: `311`
+- Status: rectification completed on the modified live surface; source-level verification is clean, but no canonical closing build evidence was taken for this pass
+
+### Verification Run
+
+- Launched the next rectification loop pass on the remaining active BMS and celestial-soft wording and checked the `\ClaimStatusProvedHere` proposition on the structure of the celestial soft algebra.
+- The next real survivor was a theorem-level reading leak: the proposition was still naming its arity-$2$ and arity-$3$ components as the “Weinberg and Cachazo--Strominger sectors,” and it was still reading the resulting subalgebras too directly as the supertranslation algebra and the extended BMS algebra inside the proved statement itself.
+- Rewrote that proposition so the theorem-level content now stays on the arity-$2$ and arity-$3$ celestial soft sectors, with the Weinberg/Cachazo--Strominger and BMS language explicitly kept in the celestial/gravitational reading.
+- Ran hostile local reread plus fixed-string greps to confirm the retired phrases “Weinberg and Cachazo--Strominger” and the old direct algebra wording no longer survive in that active proposition band.
+
+### Findings
+
+371. `2026-04-01-371`
+   Severity: `MODERATE`
+   Class: `D`
+   Location: `chapters/connections/thqg_soft_graviton_theorems.tex:2001-2014`
+   Issue: the active celestial-soft structure proposition still mixed theorem-level arity data with reading-level Weinberg/Cachazo--Strominger and BMS identifications.
+   Fix: rewrote the proposition so the proved content remains on arity-$2$ and arity-$3$ celestial soft sectors, while the named soft-theorem and BMS identifications are presented only as the celestial/gravitational reading.
+   Status: `FIXED`
+
+## 2026-04-01 — Codex Beilinson Rectification Iteration 312
+
+- Target: scope bug in the twisted arity-$2$ celestial Ward-identity corollary
+- Iteration: `312`
+- Status: rectification completed on the modified live surface; source-level verification is clean, but no canonical closing build evidence was taken for this pass
+
+### Verification Run
+
+- Launched the next rectification loop pass on the remaining theorem-adjacent BMS and celestial-soft lines and checked the twisted arity-$2$ celestial Ward-identity corollary together with its proof.
+- The next real survivor was a mathematical scope mismatch: the corollary statement still said “for every holomorphic function $f$” on $\mathbb{P}^1$, which on the sphere gives only constants, while the proof and reading immediately below were already speaking as if the full supertranslation family were present through meromorphic twists.
+- Rewrote that local band so the statement now uses meromorphic test functions that are holomorphic at the insertion points, and the proof now matches that same scope. I also aligned the reading-language to the normalized “supertranslation sector of the BMS package” register.
+- Ran hostile local reread plus fixed-string greps to confirm the retired phrase “for every holomorphic function,” the old `H^0(\mathbb{P}^1,\mathcal{O})` scope, and the older “supertranslation subalgebra” wording no longer survive in the active corollary/proof band.
+
+### Findings
+
+372. `2026-04-01-372`
+   Severity: `SERIOUS`
+   Class: `D`
+   Location: `chapters/connections/thqg_soft_graviton_theorems.tex:736-761`
+   Issue: the active twisted arity-$2$ celestial Ward-identity corollary had an internal scope contradiction: the statement only allowed global holomorphic functions on $\mathbb{P}^1$ (hence constants), while the proof and physical reading were already using the larger meromorphic test-function family needed for the intended supertranslation package.
+   Fix: rewrote the statement and proof so they now consistently use meromorphic test functions regular at the insertion points, and normalized the BMS reading-language at the same time.
+   Status: `FIXED`
+
+## 2026-04-01 — Codex Beilinson Rectification Iteration 313
+
+- Target: proof-level BMS reading survivor in the superrotation band
+- Iteration: `313`
+- Status: rectification completed on the modified live surface; source-level verification is clean, but no canonical closing build evidence was taken for this pass
+
+### Verification Run
+
+- Launched the next rectification loop pass on the adjacent THQG soft/celestial theorem and proof bands and checked the superrotation proof right below the repaired celestial-soft structure proposition.
+- The next real survivor was a proof-level reading leak: the local proof still culminated in the flatter phrase “the extended BMS algebra, which is a semi-direct product,” even though the nearby repaired proposition had already been narrowed to the weaker “extended BMS package” language.
+- Rewrote that proof line so the arity-$2$/arity-$3$ Ward identities are now read as the extended BMS package, modeled on the standard semi-direct-product form of $\mathrm{BMS}_4$.
+- Ran hostile local reread plus a fixed-string grep to confirm the retired phrase “extended BMS algebra, which is a” no longer survives on the active THQG soft/celestial surface checked in this pass.
+
+### Findings
+
+373. `2026-04-01-373`
+   Severity: `MODERATE`
+   Class: `D`
+   Location: `chapters/connections/thqg_soft_graviton_theorems.tex:1037-1041`
+   Issue: the superrotation proof band still over-identified the physical reading as the extended BMS algebra inside theorem-adjacent prose, lagging behind the weaker package-language already adopted in the nearby repaired proposition.
+   Fix: rewrote the proof line so the BMS content is explicitly presented as the extended BMS package, modeled on the semi-direct-product form of $\mathrm{BMS}_4$.
+   Status: `FIXED`
+
+## 2026-04-01 — Codex Beilinson Rectification Iteration 314
+
+- Target: scope mismatch in the twisted arity-$3$ celestial Ward-identity corollary
+- Iteration: `314`
+- Status: rectification completed on the modified live surface; source-level verification is clean, but no canonical closing build evidence was taken for this pass
+
+### Verification Run
+
+- Launched the next rectification loop pass on the adjacent superrotation and soft-factor bands and checked the twisted arity-$3$ celestial Ward-identity corollary together with its proof.
+- The next real survivor was an internal scope mismatch: the corollary statement only said “a vector field on the celestial sphere,” the proof suddenly specialized to a conformal Killing vector, and the repaired surrounding doctrine wanted the broader superrotation-family reading. The statement and proof were no longer aligned on what family of test fields the algebraic identity actually used.
+- Rewrote that local band so the theorem-level statement and proof now consistently use meromorphic vector fields holomorphic at the insertion points, while the conformal-Killing specialization is mentioned only inside the celestial/gravitational reading. I also aligned the corollary’s closing sentence with the normalized “extended BMS package” wording.
+- Ran hostile local reread plus fixed-string greps to confirm the retired unconstrained “vector field” phrasing, the old “conformal Killing vector” proof scope, and the stronger “extended BMS algebra $\mathrm{BMS}_4$” slogan no longer survive in that active corollary/proof band.
+
+### Findings
+
+374. `2026-04-01-374`
+   Severity: `SERIOUS`
+   Class: `D`
+   Location: `chapters/connections/thqg_soft_graviton_theorems.tex:1008-1034`
+   Issue: the active twisted arity-$3$ celestial Ward-identity corollary had an internal scope contradiction between an unconstrained vector-field statement, a proof that only discussed conformal Killing vectors, and a broader superrotation reading.
+   Fix: rewrote the statement and proof so they now consistently use meromorphic vector fields regular at the insertion points, with the conformal-Killing specialization and BMS identification kept explicitly in the celestial/gravitational reading.
+   Status: `FIXED`
+
+## 2026-04-01 — Codex Beilinson Rectification Iteration 315
+
+- Target: proof-level BMS reading survivor in the class-by-class celestial-soft stratification proof
+- Iteration: `315`
+- Status: rectification completed on the modified live surface; source-level verification is clean, but no canonical closing build evidence was taken for this pass
+
+### Verification Run
+
+- Launched the next rectification loop pass on the adjacent theorem/proof and recap bands and checked the class-by-class proof immediately below the celestial-soft stratification proposition.
+- The next real survivor was a proof-level reading mismatch: even after the proposition had been repaired, the proof still compressed class `\mathbf{G}` to bare “supertranslations” and class `\mathbf{L}` to the flatter “extended `\mathrm{BMS}_4` algebra,” which over-identified the physical reading in theorem-adjacent prose.
+- Rewrote that proof band so class `\mathbf{G}` now points to the supertranslation sector of the BMS package, and class `\mathbf{L}` now points to the extended BMS package, matching the repaired proposition above it.
+- Ran hostile local reread plus fixed-string greps to confirm the retired phrases “Only arity-$2$ Ward identities (supertranslations)” and “extended `\mathrm{BMS}_4` algebra” no longer survive in that active proof band.
+
+### Findings
+
+375. `2026-04-01-375`
+   Severity: `MODERATE`
+   Class: `D`
+   Location: `chapters/connections/thqg_soft_graviton_theorems.tex:2211-2218`
+   Issue: the proof immediately below the repaired celestial-soft stratification proposition still lagged behind it by using flatter BMS-identification language for the class `\mathbf{G}` and `\mathbf{L}` readings.
+   Fix: rewrote the proof so its class-by-class reading language now matches the repaired proposition’s package-first register.
+   Status: `FIXED`
+
+## 2026-04-01 — Codex Beilinson Rectification Iteration 316
+
+- Target: movement-summary shorthand survivor in the soft-hierarchy recap layer
+- Iteration: `316`
+- Status: rectification completed on the modified live surface; source-level verification is clean, but no canonical closing build evidence was taken for this pass
+
+### Verification Run
+
+- Launched the next rectification loop pass on the nearby celestial-soft stratification and movement-summary bands and checked the arity-summary table together with the closing recap bullets in the movement-summary chapter.
+- The next real survivor was a recap-layer shorthand mismatch: those lines still used the flatter slogans “Read as the Weinberg leading soft theorem” and “$S_2$ is read as Weinberg,” which lagged behind the more careful celestial-factor-first register already established in the repaired main THQG soft chapter.
+- Rewrote that recap band so the arity-$2$ entry now says “Read as the leading Weinberg soft statement,” and the closing summary line now uses the same wording.
+- Ran hostile local reread plus fixed-string greps to confirm the retired phrases “Read as the Weinberg leading soft theorem” and “$S_2$ is read as Weinberg” no longer survive in that active movement-summary band.
+
+### Findings
+
+376. `2026-04-01-376`
+   Severity: `MODERATE`
+   Class: `D`
+   Location: `chapters/connections/thqg_3d_gravity_movements_vi_x.tex:1460,2176`
+   Issue: the movement-summary table and recap bullet still compressed the repaired arity-$2$ reading to a bare “Weinberg” slogan, lagging behind the more careful theorem-versus-reading register used elsewhere on the active surface.
+   Fix: rewrote both lines so they now speak of the leading Weinberg soft statement rather than the flatter shorthand.
+   Status: `FIXED`
+
+## 2026-04-01 — Codex Beilinson Rectification Iteration 317
+
+- Target: scope leak in the leading-soft universality remark
+- Iteration: `317`
+- Status: rectification completed on the modified live surface; source-level verification is clean, but no canonical closing build evidence was taken for this pass
+
+### Verification Run
+
+- Launched the next rectification loop pass on the remaining universality and transfer-summary lines and checked the leading-soft universality remark in the main THQG soft chapter.
+- The next real survivor was a scope leak: the remark still said the leading soft-graviton statement is universal “across all chiral algebras,” even though the theorem-level setup in that subsection is explicitly the modular Koszul class.
+- Rewrote that line so it now says the leading soft-graviton statement is universal across all modular Koszul chiral algebras, matching the actual hypotheses used in the subsection.
+- Ran hostile local reread plus a fixed-string grep to confirm the retired phrase “universal across all chiral algebras” no longer survives on the active THQG soft/movement-summary/introduction/preface band checked in this pass.
+
+### Findings
+
+377. `2026-04-01-377`
+   Severity: `MODERATE`
+   Class: `D`
+   Location: `chapters/connections/thqg_soft_graviton_theorems.tex:722-723`
+   Issue: the leading-soft universality remark over-advertised its scope by speaking about “all chiral algebras” instead of the modular Koszul class actually assumed in the surrounding theorem-level discussion.
+   Fix: rewrote the line so the advertised universality now lands on modular Koszul chiral algebras, matching the subsection’s real hypothesis regime.
+   Status: `FIXED`
+
+## 2026-04-01 — Codex Beilinson Rectification Iteration 318
+
+- Target: transfer-summary shorthand survivor in the movement chapter
+- Iteration: `318`
+- Status: rectification completed on the modified live surface; source-level verification is clean, but no canonical closing build evidence was taken for this pass
+
+### Verification Run
+
+- Launched the next rectification loop pass on the remaining transfer and aftermath summaries and checked the celestial-transfer recap paragraph in the movement-summary chapter against the neutral theorem-level proposition just above it.
+- The next real survivor was a summary-layer shorthand mismatch: the recap sentence was still saying the integrated factors `\widetilde{S}_2` and `\widetilde{S}_4` are read as the “celestial Weinberg and quartic-contact statements,” which compressed the repaired integrated-factor language back into a looser slogan.
+- Rewrote that sentence so it now says those factors are read as the integrated leading Weinberg and quartic-contact soft statements, matching the local theorem-level package more closely.
+- Ran hostile local reread plus a fixed-string grep to confirm the retired phrase “celestial Weinberg” no longer survives on the active movement-summary / gravity / introduction / preface surface checked in this pass.
+
+### Findings
+
+378. `2026-04-01-378`
+   Severity: `MINOR`
+   Class: `D`
+   Location: `chapters/connections/thqg_3d_gravity_movements_vi_x.tex:1535-1537`
+   Issue: the transfer-summary paragraph in the movement chapter still used the stale shorthand “celestial Weinberg,” which lagged behind the neutral integrated-factor language of the proposition it summarized.
+   Fix: rewrote the sentence so the recap now speaks of the integrated leading Weinberg and quartic-contact soft statements.
+   Status: `FIXED`
+
+## 2026-04-01 — Codex Beilinson Rectification Iteration 319
+
+- Target: theorem-adjacent reading leak in the leading/subleading soft-factor bands
+- Iteration: `319`
+- Status: rectification completed on the modified live surface; source-level verification is clean, but no canonical closing build evidence was taken for this pass
+
+### Verification Run
+
+- Launched the next rectification loop pass on the remaining theorem-adjacent and recap lines and checked the leading and subleading celestial soft-factor theorem/proof bands in the main THQG soft chapter.
+- The next real survivor was a local reading-register mismatch: one theorem line still said the leading celestial soft factor is “identified with” the Weinberg soft factor, and the nearby subleading proof still ended with the flatter line “this is the Cachazo--Strominger factor,” even though the repaired chapter surface elsewhere now keeps those physics statements explicitly in the celestial/gravitational reading.
+- Rewrote that local cluster so both the leading and subleading bands now use the same reading-first wording: “read as the Weinberg soft factor” and “read as the Cachazo--Strominger factor.”
+- Ran hostile local reread plus fixed-string greps to confirm the retired phrases “identified with the” and “this is the Cachazo--Strominger factor” no longer survive in the active THQG soft chapter.
+
+### Findings
+
+379. `2026-04-01-379`
+   Severity: `MODERATE`
+   Class: `D`
+   Location: `chapters/connections/thqg_soft_graviton_theorems.tex:672-673,911-913`
+   Issue: the leading and subleading celestial soft-factor theorem/proof bands still had a small but real theorem-adjacent reading leak, using harder identification language than the repaired reading-first register adopted elsewhere in the chapter.
+   Fix: rewrote both lines so the Weinberg and Cachazo--Strominger statements are now explicitly presented as the celestial/gravitational reading of the algebraic soft factors.
+   Status: `FIXED`
+
+## 2026-04-01 — Codex Beilinson Rectification Iteration 320
+
+- Target: chapter-opening summary survivor in the THQG soft hierarchy overview
+- Iteration: `320`
+- Status: rectification completed on the modified live surface; source-level verification is clean, but no canonical closing build evidence was taken for this pass
+
+### Verification Run
+
+- Launched the next rectification loop pass on the remaining chapter-opening and theorem-adjacent summary bands and checked the “Four results” overview at the start of the main THQG soft chapter.
+- The next real survivor was a summary-layer reading mismatch: even after the theorem and proof bands had been narrowed, the opener was still advertising the chapter in the older “soft-graviton theorem package / Weinberg theorem and BMS extension / Cachazo--Strominger theorem” shorthand, which was flatter than the repaired celestial-factor-first register used in the body.
+- Rewrote that opening band so it now speaks of the corresponding soft-graviton hierarchy, the leading Weinberg soft statement together with its supertranslation/BMS reading, the Cachazo--Strominger subleading soft statement, and the sub-subleading soft statement.
+- Ran hostile local reread plus fixed-string greps to confirm the retired phrases “soft-graviton theorem package,” “Weinberg leading soft graviton theorem and its BMS extension,” and “Cachazo--Strominger subleading soft graviton theorem” no longer survive in that active chapter-opening band.
+
+### Findings
+
+380. `2026-04-01-380`
+   Severity: `MODERATE`
+   Class: `D`
+   Location: `chapters/connections/thqg_soft_graviton_theorems.tex:105-127`
+   Issue: the chapter-opening “Four results” overview still summarized the repaired celestial hierarchy in a flatter soft-theorem/BMS register than the theorem and proof bands now support.
+   Fix: rewrote the opener so its reading-language matches the repaired body: celestial soft factors first, Weinberg/Cachazo--Strominger/BMS content explicitly second.
+   Status: `FIXED`
+
+## 2026-04-01 — Codex Beilinson Rectification Iteration 321
+
+- Target: movement-summary arity-2 theorem-band wording survivor
+- Iteration: `321`
+- Status: rectification completed on the modified live surface; source-level verification is clean, but no canonical closing build evidence was taken for this pass
+
+### Verification Run
+
+- Launched the next rectification loop pass on the remaining movement-summary theorem/proof bands and checked the arity-2 theorem in the THQG movement-summary chapter against the repaired summary register already used elsewhere on the active surface.
+- The next real survivor was a local wording lag: the theorem band was still saying “this is read as the Weinberg leading soft graviton theorem,” and the proof close still said “this is the $2$-dimensional avatar of Weinberg's universal soft graviton theorem,” which overshot the newer “leading Weinberg soft statement” register already used in the chapter’s recaps.
+- Rewrote that pair so both the theorem statement and the proof close now use the same scoped wording: “the leading Weinberg soft statement.”
+- Ran hostile local reread plus fixed-string greps to confirm the retired phrases “Weinberg leading soft graviton theorem” and “Weinberg's universal soft graviton theorem” no longer survive in the active THQG movement-summary / soft chapter band checked in this pass.
+
+### Findings
+
+381. `2026-04-01-381`
+   Severity: `MODERATE`
+   Class: `D`
+   Location: `chapters/connections/thqg_3d_gravity_movements_vi_x.tex:1141-1144,1168-1169`
+   Issue: the movement-summary arity-2 theorem band still used the older “Weinberg leading soft graviton theorem / Weinberg's universal soft graviton theorem” wording, lagging behind the repaired “leading Weinberg soft statement” register already used elsewhere on the active surface.
+   Fix: rewrote the theorem statement and proof close so they now uniformly use “the leading Weinberg soft statement.”
+   Status: `FIXED`
+
+## 2026-04-01 — Codex Beilinson Rectification Iteration 322
+
+- Target: movement-summary arity-4 theorem-adjacent reading leak
+- Iteration: `322`
+- Status: rectification completed on the modified live surface; source-level verification is clean, but no canonical closing build evidence was taken for this pass
+
+### Verification Run
+
+- Launched the next rectification loop pass on the remaining movement-summary theorem/proof bands and checked the arity-$4$ quartic-contact discussion in the THQG movement-summary chapter against the repaired main soft/celestial chapter.
+- The next real survivor was a local theorem-adjacent reading leak: the bridge sentence before the quartic-contact Ward-identity display was still phrasing the equation as “inserting a soft graviton into a four-point function and extracting the quartic contact contribution,” which over-identified the physical reading on the theorem-level surface.
+- Rewrote that sentence so it now keeps the equation theorem-level and places the soft-graviton language explicitly in the celestial/gravitational reading: the Ward identity from $S_4$ is read as extracting the quartic contact contribution in a four-point function.
+- Ran hostile local reread plus a fixed-string grep to confirm the retired “soft graviton into a” phrasing no longer survives in the active THQG movement-summary / soft chapter band checked in this pass.
+
+### Findings
+
+382. `2026-04-01-382`
+   Severity: `MODERATE`
+   Class: `D`
+   Location: `chapters/connections/thqg_3d_gravity_movements_vi_x.tex:1393-1395`
+   Issue: the movement-summary arity-$4$ bridge sentence still flattened the quartic Ward identity into literal soft-graviton insertion language instead of keeping that as the celestial/gravitational reading of the displayed equation.
+   Fix: rewrote the sentence so the quartic-contact extraction now appears explicitly as a reading of the Ward identity from $S_4$, not as theorem-level physical content.
+   Status: `FIXED`
+
+## 2026-04-01 — Codex Beilinson Rectification Iteration 323
+
+- Target: movement-summary celestial-transfer recap BMS-language survivor
+- Iteration: `323`
+- Status: rectification completed on the modified live surface; source-level verification is clean, but no canonical closing build evidence was taken for this pass
+
+### Verification Run
+
+- Launched the next rectification loop pass on the remaining movement-summary recap bands and checked the celestial-transfer aftermath paragraph in the THQG movement-summary chapter against the repaired main soft/celestial chapter.
+- The next real survivor was a small but real register mismatch: the flat-space recap still said the resulting celestial soft algebra “is read as the BMS algebra,” even though the repaired theorem and proof bands elsewhere now consistently use the weaker “BMS package” language.
+- Rewrote that sentence so the flat-space limit is now read as the BMS package, while preserving the surrounding OPE/Ward-identity reading.
+- Ran hostile local reread plus a fixed-string grep to confirm the retired phrase “read as the BMS algebra” no longer survives across the active THQG soft/movement-summary/gravity/preface/introduction band checked in this pass.
+
+### Findings
+
+383. `2026-04-01-383`
+   Severity: `MODERATE`
+   Class: `D`
+   Location: `chapters/connections/thqg_3d_gravity_movements_vi_x.tex:1528-1531`
+   Issue: the movement-summary celestial-transfer recap still flattened the repaired soft/celestial structure into “the BMS algebra,” overshooting the normalized package-level register already adopted elsewhere on the live surface.
+   Fix: rewrote the flat-space-limit sentence so it now says the celestial soft algebra is read as the BMS package.
+   Status: `FIXED`
+
+## 2026-04-01 — Codex Beilinson Rectification Iteration 324
+
+- Target: high-visibility leading/subleading heading-index survivor cluster in the main THQG soft chapter
+- Iteration: `324`
+- Status: rectification completed on the modified live surface; source-level verification is clean, but no canonical closing build evidence was taken for this pass
+
+### Verification Run
+
+- Launched the next rectification loop pass on the remaining high-visibility heading and recap bands and checked the arity-$2$ and arity-$3$ subsection headers in the main THQG soft/celestial chapter against the repaired celestial-soft-factor-first register already used in the chapter opener and theorem bands.
+- The next real survivor was a heading/index mismatch: the leading arity-$2$ subsection was still titled “The leading soft theorem from the modular characteristic,” and the corresponding leading/subleading `\index{...|textbf}` entries were still using the older “soft graviton theorem” wording, even though the repaired live surface now treats the theorem-level content as celestial soft factors and Ward identities, with soft-graviton statements kept in the reading.
+- Rewrote that local cluster so the subsection title now reads “The leading celestial soft factor from the modular characteristic,” and the leading/subleading bold index entries now say “leading celestial soft factor” and “subleading celestial soft factor.”
+- Ran hostile local reread plus fixed-string greps to confirm the retired heading “The leading soft theorem from the modular characteristic” and the old bold index phrase `leading soft graviton theorem|textbf` no longer survive on the active THQG soft surface checked in this pass.
+
+### Findings
+
+384. `2026-04-01-384`
+   Severity: `MODERATE`
+   Class: `D`
+   Location: `chapters/connections/thqg_soft_graviton_theorems.tex:575-577,793-794`
+   Issue: the main THQG soft chapter still had a high-visibility heading/index survivor cluster that advertised the arity-$2$ and arity-$3$ bands in the older soft-theorem register, lagging behind the repaired celestial-soft-factor-first doctrine used in the body.
+   Fix: retitled the leading arity-$2$ subsection and normalized the leading/subleading bold index entries to the celestial soft-factor register.
+   Status: `FIXED`
+
+## 2026-04-01 — Codex Beilinson Rectification Iteration 325
+
+- Target: large-$c$ $\mathcal{W}_{1+\infty}$ comparison remark survivor in the main THQG soft chapter
+- Iteration: `325`
+- Status: rectification completed on the modified live surface; source-level verification is clean, but no canonical closing build evidence was taken for this pass
+
+### Verification Run
+
+- Launched the next rectification loop pass on the remaining theorem-adjacent comparison and aftermath bands and checked the large-$c$ $\mathcal{W}_{1+\infty}$ remark in the main THQG soft/celestial chapter against the repaired expected-model register already enforced elsewhere on the active surface.
+- The next real survivor was a theorem-vs-reading seam inside that remark itself: just before the line “The expected large-$c$ model is,” the prose was still flatly saying that the higher soft sectors are the normal-ordered products $:T^{r-1}:$ and their descendants “which generate the $\mathcal{W}_{1+\infty}$ algebra,” which over-identified the large-$c$ picture at theorem level.
+- Rewrote that band so the explicit Virasoro / $:T^{r-1}:$ / $\mathcal{W}_{1+\infty}$ identification now sits explicitly inside the expected large-$c$ reading: the binary sector is Virasoro, and the higher sectors are modeled by those normal-ordered products, giving the standard $\mathcal{W}_{1+\infty}$ package.
+- Ran hostile local reread plus a fixed-string grep to confirm the retired flat phrase “which generate the” no longer survives in the active THQG soft / movement-summary / gravity band checked in this pass.
+
+### Findings
+
+385. `2026-04-01-385`
+   Severity: `MODERATE`
+   Class: `D`
+   Location: `chapters/connections/thqg_soft_graviton_theorems.tex:2066-2071`
+   Issue: the large-$c$ $\mathcal{W}_{1+\infty}$ comparison remark still slipped from the repaired expected-model language back into a flat theorem-level identification of the higher soft sectors with the $\mathcal{W}_{1+\infty}$ generators.
+   Fix: rewrote the local comparison sentence so the explicit $:T^{r-1}:$ / $\mathcal{W}_{1+\infty}$ picture is now explicitly part of the expected large-$c$ reading.
+   Status: `FIXED`
+
+## 2026-04-01 — Codex Beilinson Rectification Iteration 326
+
+- Target: internal reading-language mismatch in the celestial soft OPE theorem/proof band
+- Iteration: `326`
+- Status: rectification completed on the modified live surface; source-level verification is clean, but no canonical closing build evidence was taken for this pass
+
+### Verification Run
+
+- Launched the next rectification loop pass on the remaining OPE and aftermath bands and checked the celestial soft OPE theorem/proof cluster in the main THQG soft/celestial chapter for internal reading-language consistency.
+- The next real survivor was a local theorem/proof mismatch: the theorem-level reading still ended with “soft graviton OPE,” while the proof immediately below had already shifted to the narrower “graviton OPE” wording. That left the band internally inconsistent even after the earlier celestial-soft-factor repairs.
+- Rewrote that pair so the theorem now says the celestial soft OPE is read as the corresponding graviton OPE, and the proof’s leading-pole sentence now says it is read as the corresponding leading graviton OPE.
+- Ran hostile local reread plus fixed-string greps to confirm the retired phrase “soft graviton OPE” no longer survives on the active THQG soft / movement-summary surface checked in this pass.
+
+### Findings
+
+386. `2026-04-01-386`
+   Severity: `MODERATE`
+   Class: `D`
+   Location: `chapters/connections/thqg_soft_graviton_theorems.tex:2110-2129`
+   Issue: the celestial soft OPE theorem and its proof were still using two different physical-reading labels (“soft graviton OPE” versus “graviton OPE”), leaving the repaired theorem/proof band internally inconsistent.
+   Fix: normalized the theorem/proof reading-language so the band now consistently uses the corresponding graviton-OPE wording.
+   Status: `FIXED`
+
+## 2026-04-01 — Codex Beilinson Rectification Iteration 327
+
+- Target: large-$c$ comparison-remark opener survivor in the main THQG soft chapter
+- Iteration: `327`
+- Status: rectification completed on the modified live surface; source-level verification is clean, but no canonical closing build evidence was taken for this pass
+
+### Verification Run
+
+- Launched the next rectification loop pass on the remaining large-$c$ comparison, higher-genus aftermath, and closing-summary bands and checked the opening sentence of the $\mathfrak{w}_{1+\infty}$ comparison remark in the main THQG soft/celestial chapter.
+- The next real survivor was a literature-summary opener mismatch: even after the rest of that remark had been repaired to the celestial-soft / expected-model register, its first sentence was still using the flatter slogan “the soft graviton algebra for Einstein gravity in 4d,” which lagged behind the repaired doctrine already used elsewhere on the active surface.
+- Rewrote that opener so it now says “the celestial soft algebra in the gravitational reading of 4d Einstein gravity,” while preserving the external literature citation and the rest of the large-$c$ comparison.
+- Ran hostile local reread plus a fixed-string grep to confirm the retired phrase “soft graviton algebra” no longer survives on the active THQG soft / movement-summary / gravity band checked in this pass.
+
+### Findings
+
+387. `2026-04-01-387`
+   Severity: `MODERATE`
+   Class: `D`
+   Location: `chapters/connections/thqg_soft_graviton_theorems.tex:2062-2064`
+   Issue: the opening sentence of the large-$c$ $\mathfrak{w}_{1+\infty}$ comparison remark still advertised the literature link in the flatter “soft graviton algebra” register, even though the repaired local band now treats the theorem-level object as the celestial soft algebra together with its gravitational reading.
+   Fix: rewrote the opener so it now speaks of the celestial soft algebra in the gravitational reading of 4d Einstein gravity.
+   Status: `FIXED`
+
+## 2026-04-01 — Codex Beilinson Rectification Iteration 328
+
+- Target: closing-summary single-equation remark survivor in the main THQG soft chapter
+- Iteration: `328`
+- Status: rectification completed on the modified live surface; source-level verification is clean, but no canonical closing build evidence was taken for this pass
+
+### Verification Run
+
+- Launched the next rectification loop pass on the remaining closing-summary and aftermath bands and checked the “single-equation origin” recap remark in the main THQG soft/celestial chapter against the repaired celestial-soft-factor-first register used elsewhere on the live surface.
+- The next real survivor was a compact but real summary-layer reading leak: that remark was still saying “the soft graviton theorems are the corresponding celestial/gravitational reading,” which flattened the repaired theorem-level hierarchy of celestial soft factors and Ward identities back into a harder soft-theorem slogan.
+- Rewrote that recap line so it now says the celestial soft factors descend from the Maurer--Cartan equation, and the corresponding soft-graviton hierarchy is the celestial/gravitational reading.
+- Ran hostile local reread plus a fixed-string grep to confirm the retired phrase “soft graviton theorems are the” no longer survives on the active THQG soft / movement-summary surface checked in this pass.
+
+### Findings
+
+388. `2026-04-01-388`
+   Severity: `MODERATE`
+   Class: `D`
+   Location: `chapters/connections/thqg_soft_graviton_theorems.tex:2346-2361`
+   Issue: the closing “single-equation origin” remark still summarized the repaired celestial-soft hierarchy in the flatter slogan “soft graviton theorems,” lagging behind the theorem-vs-reading distinction enforced elsewhere in the chapter.
+   Fix: rewrote the summary so the theorem-level content stays on celestial soft factors, while the physical side is described as the corresponding soft-graviton hierarchy in the celestial/gravitational reading.
+   Status: `FIXED`
+
+## 2026-04-01 — Codex Beilinson Rectification Iteration 329
+
+- Target: leading/subleading exposition-layer theorem-language survivor cluster in the main THQG soft chapter
+- Iteration: `329`
+- Status: rectification completed on the modified live surface; source-level verification is clean, but no canonical closing build evidence was taken for this pass
+
+### Verification Run
+
+- Launched the next rectification loop pass on the remaining aftermath and exposition bands and checked the leading-soft universality remark together with the subleading subsection opener in the main THQG soft/celestial chapter.
+- The next real survivor was a compact but high-visibility exposition-layer register mismatch: the leading remark was still saying “the leading soft graviton theorem is universal,” and the subleading opener was still saying “theorem of Cachazo--Strominger arises,” even though the repaired headings, theorem bands, and chapter opener now consistently use the softer “statement / factor” register.
+- Rewrote that pair so the leading band now says “the leading soft statement is universal,” and the subleading opener now says “the Cachazo--Strominger subleading soft statement arises from the arity-$3$ Ward identity.”
+- Ran hostile local reread plus fixed-string greps to confirm the retired phrases “leading soft graviton theorem is universal” and “theorem of Cachazo--Strominger arises” no longer survive on the active THQG soft surface checked in this pass.
+
+### Findings
+
+389. `2026-04-01-389`
+   Severity: `MODERATE`
+   Class: `D`
+   Location: `chapters/connections/thqg_soft_graviton_theorems.tex:723-724,797-799`
+   Issue: the leading-soft universality remark and the subleading subsection opener were still advertising the repaired celestial-soft hierarchy in the older theorem-language register, lagging behind the “statement / factor” wording now used in the chapter’s headings and theorem summaries.
+   Fix: rewrote both lines so they now speak of the leading soft statement and the Cachazo--Strominger subleading soft statement.
+   Status: `FIXED`
+
+## 2026-04-01 — Codex Beilinson Rectification Iteration 330
+
+- Target: sub-subleading exposition-layer theorem-language survivor in the main THQG soft chapter
+- Iteration: `330`
+- Status: rectification completed on the modified live surface; source-level verification is clean, but no canonical closing build evidence was taken for this pass
+
+### Verification Run
+
+- Launched the next rectification loop pass on the remaining exposition and aftermath bands and checked the non-universality remark in the sub-subleading celestial-soft section of the main THQG soft/celestial chapter.
+- The next real survivor was a compact exposition-layer register mismatch: that remark was still talking about the “sub-subleading soft graviton theorem,” the “leading and subleading theorems,” and “the sub-subleading theorem,” even though the repaired chapter now consistently treats these physical claims as soft statements in the celestial/gravitational reading.
+- Rewrote that local cluster so it now says “sub-subleading soft statement,” “leading and subleading soft statements,” and “the sub-subleading statement.”
+- Ran hostile local reread plus fixed-string greps to confirm the retired phrases “sub-subleading soft graviton theorem” and “leading and subleading theorems” no longer survive on the active THQG soft surface checked in this pass.
+
+### Findings
+
+390. `2026-04-01-390`
+   Severity: `MODERATE`
+   Class: `D`
+   Location: `chapters/connections/thqg_soft_graviton_theorems.tex:1499-1503`
+   Issue: the sub-subleading non-universality remark still used the older theorem-language register, lagging behind the repaired “statement / factor” wording now used elsewhere in the chapter.
+   Fix: rewrote the remark so the non-universality discussion now speaks consistently of soft statements rather than soft theorems.
+   Status: `FIXED`
+
+## 2026-04-01 — Codex Beilinson Rectification Iteration 331
+
+- Target: superrotation proof-band scope bug in the main THQG soft chapter
+- Iteration: `331`
+- Status: rectification completed on the modified live surface; source-level verification is clean, but no canonical closing build evidence was taken for this pass
+
+### Verification Run
+
+- Launched the next rectification loop pass on the remaining BMS-reading and aftermath bands and checked the superrotation proof close in the main THQG soft/celestial chapter against the repaired meromorphic-vector-field and package-level BMS language.
+- The next real survivor was a scope bug, not just a wording lag: after the corollary had already been narrowed to meromorphic vector fields and an “extended BMS package” reading, the proof was still ending with the exact formula `\mathrm{BMS}_4 = \mathrm{Diff}(S^2) \ltimes C^\infty(S^2)`, which over-identified the physical package on the active theorem surface.
+- Rewrote that proof close so it now keeps only the structural content actually supported locally: the extended BMS package is modeled on the standard semi-direct-product form of superrotations acting on supertranslations.
+- Ran hostile local reread plus a fixed-string grep to confirm the retired `\mathrm{Diff}(S^2)` equality no longer survives on the active THQG soft / movement-summary surface checked in this pass.
+
+### Findings
+
+391. `2026-04-01-391`
+   Severity: `MODERATE`
+   Class: `D`
+   Location: `chapters/connections/thqg_soft_graviton_theorems.tex:1043-1045`
+   Issue: the superrotation proof still wrote the exact equality `\mathrm{BMS}_4 = \mathrm{Diff}(S^2) \ltimes C^\infty(S^2)` even after the local theorem surface had been narrowed to a meromorphic-vector-field statement and an extended-BMS-package reading.
+   Fix: rewrote the proof close so it now refers only to the standard semi-direct-product form of superrotations acting on supertranslations.
+   Status: `FIXED`
+
+## 2026-04-01 — Codex Beilinson Rectification Iteration 332
+
+- Target: conformally soft-limit reading-language survivor in the main THQG soft chapter
+- Iteration: `332`
+- Status: rectification completed on the modified live surface; source-level verification is clean, but no canonical closing build evidence was taken for this pass
+
+### Verification Run
+
+- Launched the next rectification loop pass on the remaining aftermath and comparison prose and checked the conformally soft-limit remark in the main THQG soft/celestial chapter against the repaired celestial-first register used elsewhere on the live surface.
+- The next real survivor was a compact theorem-adjacent reading leak: the remark was still saying that the enhanced pole structure “yields ... the conformally soft graviton insertion,” which over-identified the physical reading instead of first naming the celestial object produced by the shadow representation.
+- Rewrote that line so it now says the enhanced pole structure yields the corresponding conformally soft celestial insertion, read in the celestial/gravitational interpretation as the conformally soft graviton insertion.
+- Ran hostile local reread plus fixed-string greps to confirm the retired phrase “conformally soft graviton insertion” no longer survives on the active THQG soft / movement-summary / gravity surface checked in this pass.
+
+### Findings
+
+392. `2026-04-01-392`
+   Severity: `MODERATE`
+   Class: `D`
+   Location: `chapters/connections/thqg_soft_graviton_theorems.tex:2153-2156`
+   Issue: the conformally soft-limit remark still flattened the celestial object produced by the arity-$r$ shadow specialization directly into the gravitational insertion, rather than treating the graviton picture as the celestial/gravitational reading.
+   Fix: rewrote the line so the theorem-level object is now the conformally soft celestial insertion, with the graviton insertion explicitly kept in the interpretation layer.
+   Status: `FIXED`
+
+## 2026-04-01 — Codex Beilinson Rectification Iteration 333
+
+- Target: higher-genus memory remark scope and reading-language survivor in the main THQG soft chapter
+- Iteration: `333`
+- Status: rectification completed on the modified live surface; source-level verification is clean, but no canonical closing build evidence was taken for this pass
+
+### Verification Run
+
+- Launched the next rectification loop pass on the remaining summary and aftermath remarks and checked the higher-genus memory remark in the main THQG soft/celestial chapter.
+- The next real survivor was a compact but genuine scope bug: the remark opened with an all-genera reading of higher-genus corrections as gravitational memory effects, but then immediately collapsed the story to “gravitational memory is carried by the genus-$1$ correction,” and it also used the flatter phrase “soft graviton waveform.”
+- Rewrote that band so the physical description now speaks of shifts in the asymptotic radiative profile, and the genus-$1$ term is explicitly presented as the leading memory contribution rather than the whole higher-genus effect.
+- Ran hostile local reread plus fixed-string greps to confirm the retired phrases “soft graviton waveform” and “gravitational memory is carried by the” no longer survive on the active THQG soft / movement-summary surface checked in this pass.
+
+### Findings
+
+393. `2026-04-01-393`
+   Severity: `MODERATE`
+   Class: `D`
+   Location: `chapters/connections/thqg_soft_graviton_theorems.tex:2248-2254`
+   Issue: the higher-genus memory remark still mixed an all-genera reading with a genus-$1$-only formulation and used the flatter “soft graviton waveform” phrase, which overstated the local scope and lagged behind the repaired reading-language register.
+   Fix: rewrote the remark so the all-genera effect is described as shifts in the asymptotic radiative profile, while the genus-$1$ term is explicitly the leading memory contribution.
+   Status: `FIXED`
+
+## 2026-04-01 — Codex Beilinson Rectification Iteration 334
+
+- Target: class-$\mathbf{C}$ summary-band reading-language survivor in the main THQG soft chapter
+- Iteration: `334`
+- Status: rectification completed on the modified live surface; source-level verification is clean, but no canonical closing build evidence was taken for this pass
+
+### Verification Run
+
+- Launched the next rectification loop pass on the remaining comparison and class-summary bands and checked the class-by-class celestial-soft-algebra summary in the main THQG soft/celestial chapter.
+- The next real survivor was a compact class-summary reading leak: the class-$\mathbf{C}$ line was still saying “this is the quartic extension of the BMS package,” which was flatter than the surrounding repaired `is read as` register already used for the other class summaries.
+- Rewrote that sentence so it now says the class-$\mathbf{C}$ quartic sector is, in the celestial/gravitational reading, read as a quartic extension of the BMS package.
+- Ran hostile local reread plus a fixed-string grep to confirm the retired phrase “this is the quartic extension of the BMS package” no longer survives on the active THQG soft surface checked in this pass.
+
+### Findings
+
+394. `2026-04-01-394`
+   Severity: `MODERATE`
+   Class: `D`
+   Location: `chapters/connections/thqg_soft_graviton_theorems.tex:2227-2229`
+   Issue: the class-$\mathbf{C}$ summary line in the celestial-soft-algebra stratification proof still used a flatter physical-reading slogan than the neighboring repaired class summaries.
+   Fix: rewrote the line so the quartic extension statement is now explicitly presented in the `is read as` register.
+   Status: `FIXED`
+
+## 2026-04-01 — Codex Beilinson Rectification Iteration 335
+
+- Target: movement-summary hierarchy-table reading-language survivor
+- Iteration: `335`
+- Status: rectification completed on the modified live surface; source-level verification is clean, but no canonical closing build evidence was taken for this pass
+
+### Verification Run
+
+- Launched the next rectification loop pass on the remaining comparison, recap, and table bands and checked the arity-hierarchy table in the THQG movement-summary chapter against the repaired celestial-first register used elsewhere on the active soft/celestial surface.
+- The next real survivor was a compact summary-table reading leak: the final `$r \ge 6$` row was still saying “Read as higher gravitational Ward identities in the soft hierarchy,” which was flatter than the repaired celestial-soft / Ward-identity language used in the neighboring rows and in the main chapter.
+- Rewrote that row so it now says “Read as higher soft Ward identities in the celestial/gravitational hierarchy.”
+- Ran hostile local reread plus a fixed-string grep to confirm the retired phrase “higher gravitational Ward identities in the soft hierarchy” no longer survives on the active THQG movement-summary / soft surface checked in this pass.
+
+### Findings
+
+395. `2026-04-01-395`
+   Severity: `MODERATE`
+   Class: `D`
+   Location: `chapters/connections/thqg_3d_gravity_movements_vi_x.tex:1468`
+   Issue: the final row of the movement-summary arity-hierarchy table still used a flatter physical-reading slogan than the repaired celestial-first register enforced elsewhere on the live THQG soft surface.
+   Fix: rewrote the `$r \ge 6$` row so it now speaks of higher soft Ward identities in the celestial/gravitational hierarchy.
+   Status: `FIXED`
+
+## 2026-04-01 — Codex Beilinson Rectification Iteration 336
+
+- Target: result-interdependence recap survivor in the main THQG soft chapter
+- Iteration: `336`
+- Status: rectification completed on the modified live surface; source-level verification is clean, but no canonical closing build evidence was taken for this pass
+
+### Verification Run
+
+- Launched the next rectification loop pass on the remaining comparison and recap bands and checked the chapter-closing “Relation to results (G1)--(G5) and (G7)--(G10)” recap in the main THQG soft/celestial chapter.
+- The next real survivor was a compact interdependence-summary overstatement: the `(G5)` bullet was still saying the leading celestial soft factor “is equivalent to the CYBE package for the gravitational Yangian” and that “this is the leading soft theorem,” which was stronger than the repaired Yangian/soft-factor register now used elsewhere on the live surface.
+- Rewrote that bullet so it now says the leading celestial soft factor supplies the leading-soft entry of the CYBE package for the gravitational Yangian, and in the celestial/gravitational reading this is the leading soft statement.
+- Ran hostile local reread plus fixed-string greps to confirm the retired phrases “factor is equivalent to the CYBE package” and “leading soft theorem.” no longer survive on the active THQG soft / gravitational-Yangian surface checked in this pass.
+
+### Findings
+
+396. `2026-04-01-396`
+   Severity: `MODERATE`
+   Class: `D`
+   Location: `chapters/connections/thqg_soft_graviton_theorems.tex:2386-2390`
+   Issue: the `(G5)` item in the chapter’s result-interdependence recap still used a flatter equivalence/theorem slogan than the repaired Yangian and celestial-soft-factor doctrine now support.
+   Fix: rewrote the bullet so the leading celestial soft factor now supplies the leading-soft entry of the CYBE package, with the physical side described as the leading soft statement in the celestial/gravitational reading.
+   Status: `FIXED`
+
+## 2026-04-01 — Codex Beilinson Rectification Iteration 337
+
+- Target: residual `this is` reading-language cluster across the main THQG soft chapter and the movement-summary mirror
+- Iteration: `337`
+- Status: rectification completed on the modified live surface; source-level verification is clean, but no canonical closing build evidence was taken for this pass
+
+### Verification Run
+
+- Launched the next rectification loop pass on the remaining comparison and recap bands and checked the last few `this is ...` reading clauses in the main THQG soft chapter and the matching movement-summary mirror.
+- The next real survivor was a compact three-line register mismatch: one proof close still said the cubic angular-momentum coupling “is the subleading soft factor,” the class-`\mathbf{G}` summary still said the surviving arity-2 sector “is the supertranslation sector of the BMS package,” and the movement-summary recap still said the arity-4 content “is the first nonlinear soft Ward identity with genuinely new content.” All three lagged behind the repaired `this is read as ...` register already used elsewhere on the active surface.
+- Rewrote that cluster so each clause now explicitly stays in the reading layer: the cubic contribution is read as the subleading soft factor, the class-`\mathbf{G}` sector is read as the supertranslation sector of the BMS package, and the arity-4 recap is read as the first nonlinear soft Ward identity with genuinely new content.
+- Ran hostile local reread plus fixed-string greps to confirm the retired phrases “this is the subleading soft factor,” “this is the supertranslation sector of the BMS package,” and “this is the first nonlinear” no longer survive on the active THQG soft / movement-summary surface checked in this pass.
+
+### Findings
+
+397. `2026-04-01-397`
+   Severity: `MODERATE`
+   Class: `D`
+   Location: `chapters/connections/thqg_soft_graviton_theorems.tex:923-924,2214-2217`; `chapters/connections/thqg_3d_gravity_movements_vi_x.tex:1474-1476`
+   Issue: a small cluster of residual `this is ...` reading clauses still used a harder theorem-level register than the repaired celestial-first doctrine now used elsewhere on the live THQG soft surface.
+   Fix: rewrote the cluster so each clause now explicitly uses the `this is read as ...` register.
+   Status: `FIXED`
+
+## 2026-04-01 — Codex Beilinson Rectification Iteration 338
+
+- Target: cubic gauge-triviality exposition-layer theorem-language survivor in the main THQG soft chapter
+- Iteration: `338`
+- Status: rectification completed on the modified live surface; source-level verification is clean, but no canonical closing build evidence was taken for this pass
+
+### Verification Run
+
+- Launched the next rectification loop pass on the remaining active reading-language hits and checked the explanatory bullets in the cubic gauge-triviality theorem band of the main THQG soft/celestial chapter.
+- The next real survivor was a compact exposition-layer register mismatch: those bullets were still saying “the subleading soft theorem is trivially satisfied” and “the subleading soft theorem carries non-trivial information,” even though the repaired chapter now consistently treats the physical layer here as the subleading soft statement/readout of the theorem-level celestial soft factor.
+- Rewrote that pair so both bullets now speak of the subleading soft statement.
+- Ran hostile local reread plus fixed-string greps to confirm the retired prose phrase “subleading soft theorem” no longer survives in the active theorem band; the remaining matches are index entries only.
+
+### Findings
+
+398. `2026-04-01-398`
+   Severity: `MODERATE`
+   Class: `D`
+   Location: `chapters/connections/thqg_soft_graviton_theorems.tex:944-950`
+   Issue: the cubic gauge-triviality theorem’s explanatory bullets still used the older theorem-language register for the physical reading, lagging behind the repaired “statement / factor” doctrine used elsewhere in the chapter.
+   Fix: rewrote both bullets so they now speak of the subleading soft statement rather than the subleading soft theorem.
+   Status: `FIXED`
+
+## 2026-04-01 — Codex Beilinson Rectification Iteration 339
+
+- Target: residual recap-level `reading this is ...` survivor in the main THQG soft chapter
+- Iteration: `339`
+- Status: rectification completed on the modified live surface; source-level verification is clean, but no canonical closing build evidence was taken for this pass
+
+### Verification Run
+
+- Launched the next rectification loop pass on the remaining active theorem-adjacent and recap prose and checked the `(G5)` interdependence bullet in the chapter-closing summary band.
+- The next real survivor was a single residual register mismatch: even after the substantive wording fix in the previous pass, that bullet still ended with the bare clause “in the celestial/gravitational reading this is the leading soft statement,” which lagged behind the explicit `is read as` phrasing now used elsewhere across the repaired THQG soft surface.
+- Rewrote that clause so it now reads “in the celestial/gravitational reading this is read as the leading soft statement.”
+- Ran hostile local reread plus a fixed-string grep to confirm that no active `reading this is the` / `reading, this is the` survivor remains on the THQG soft and movement-summary surface checked in this pass.
+
+### Findings
+
+399. `2026-04-01-399`
+   Severity: `MINOR`
+   Class: `D`
+   Location: `chapters/connections/thqg_soft_graviton_theorems.tex:2388-2390`
+   Issue: the `(G5)` result-interdependence bullet still had one residual `reading this is ...` clause after the larger recap repair, leaving it slightly out of sync with the normalized `is read as` register used elsewhere on the live surface.
+   Fix: rewrote the clause so it now explicitly says the leading soft statement is read in the celestial/gravitational interpretation.
+   Status: `FIXED`
+
+## 2026-04-01 — Codex Beilinson Rectification Iteration 340
+
+- Target: movement-summary arity-2 proof-close reading-language survivor
+- Iteration: `340`
+- Status: rectification completed on the modified live surface; source-level verification is clean, but no canonical closing build evidence was taken for this pass
+
+### Verification Run
+
+- Launched the next rectification loop pass on the remaining active proof-close and recap lines and checked the movement-summary arity-2 theorem band against the repaired main THQG soft/celestial chapter.
+- The next real survivor was a compact proof-close register mismatch: the movement-summary mirror still said “this is the $2$-dimensional avatar of the leading Weinberg soft statement,” which was flatter than the explicit `is read as` phrasing now used elsewhere across the repaired live surface.
+- Rewrote that line so it now says the Virasoro Ward identity is read as the $2$-dimensional avatar of the leading Weinberg soft statement.
+- Ran hostile local reread plus fixed-string greps to confirm the retired phrase no longer survives in that active movement-summary band.
+
+### Findings
+
+400. `2026-04-01-400`
+   Severity: `MINOR`
+   Class: `D`
+   Location: `chapters/connections/thqg_3d_gravity_movements_vi_x.tex:1165-1166`
+   Issue: the movement-summary arity-2 proof close still used the flatter clause “this is the $2$-dimensional avatar ...” instead of the repaired explicit reading register used elsewhere on the active THQG soft surface.
+   Fix: rewrote the proof close so it now says this is read as the $2$-dimensional avatar of the leading Weinberg soft statement.
+   Status: `FIXED`
+
+## 2026-04-01 — Codex Beilinson Rectification Iteration 341
+
+- Target: movement-summary celestial-soft recap cluster with bare identifications
+- Iteration: `341`
+- Status: rectification completed on the modified live surface; source-level verification is clean, but no canonical closing build evidence was taken for this pass
+
+### Verification Run
+
+- Launched the next rectification loop pass on the remaining active recap language and checked the movement-summary overview immediately above the arity-by-arity theorem bands.
+- The next real survivor was a compact recap-cluster mismatch: that paragraph introduced the hierarchy explicitly as a celestial/gravitational reading, but then immediately reverted to flatter identifications in the itemized clauses `$S_2$ is the Weinberg leading soft factor`, `$S_4$ is the first quartic-contact correction`, and `$S_5$ is the first genuinely new higher-arity Ward identity`.
+- Rewrote that local cluster so those three clauses now uniformly stay in the repaired `is read as` register.
+- Ran hostile local reread plus fixed-string greps to confirm the retired bare-identification wording is gone from that active movement-summary band and the patched reading-language is present.
+
+### Findings
+
+401. `2026-04-01-401`
+   Severity: `MINOR`
+   Class: `D`
+   Location: `chapters/connections/thqg_3d_gravity_movements_vi_x.tex:1097-1102`
+   Issue: the movement-summary recap paragraph still flattened the celestial/gravitational reading back into bare identifications for the arity-2, arity-4, and arity-5 entries, despite introducing the hierarchy explicitly as a reading.
+   Fix: rewrote the local recap cluster so `$S_2$`, `$S_4$`, and `$S_5$` are all explicitly phrased as being read in the celestial/gravitational interpretation.
+   Status: `FIXED`
+
+## 2026-04-01 — Codex Beilinson Rectification Iteration 342
+
+- Target: general-arity celestial-soft theorem band with residual bare higher-soft identifications
+- Iteration: `342`
+- Status: rectification completed on the modified live surface; source-level verification is clean, but no canonical closing build evidence was taken for this pass
+
+### Verification Run
+
+- Launched the next rectification loop pass on the remaining active overview and theorem-adjacent language and checked the general-arity celestial-soft subsection in the main THQG soft chapter.
+- The next real survivor was a compact theorem-band register mismatch: the subsection opener still said the coupled Ward-identity tower “becomes an infinite tower of higher soft graviton relations,” and the theorem statement still said the factors $S^{(r-2)}$ “are the order-$(r-2)$ higher soft graviton factors,” which lagged behind the repaired `is read as` doctrine used elsewhere on the live surface.
+- Rewrote that local pair so the opener now says the tower is read as an infinite tower of higher soft statements, and the theorem now says the factors are read as the corresponding order-$(r-2)$ higher soft factors.
+- Ran hostile local reread plus fixed-string greps to confirm the retired `higher soft graviton` phrasing is gone from that active theorem band and the patched reading-language is present.
+
+### Findings
+
+402. `2026-04-01-402`
+   Severity: `MINOR`
+   Class: `D`
+   Location: `chapters/connections/thqg_soft_graviton_theorems.tex:1540-1580`
+   Issue: the general-arity celestial-soft subsection and theorem still slipped from theorem-level celestial-factor language into bare higher-soft identifications inside the celestial/gravitational reading clause.
+   Fix: rewrote the subsection opener and theorem close so both now explicitly keep the higher-soft package in the repaired `is read as` register.
+   Status: `FIXED`
+
+## 2026-04-01 — Codex Beilinson Rectification Iteration 343
+
+- Target: leading-soft subsection opener/title still using theorem-language register
+- Iteration: `343`
+- Status: rectification completed on the modified live surface; source-level verification is clean, but no canonical closing build evidence was taken for this pass
+
+### Verification Run
+
+- Launched the next rectification loop pass on the remaining active overview and proof-adjacent language and checked the high-visibility leading-soft band in the main THQG soft chapter.
+- The next real survivor was a compact top-layer register mismatch: the subsection opener still said “the leading soft graviton theorem is the statement that ...”, and the nearby universality remark title still read “Universality of the leading soft theorem,” even though the repaired body of the chapter now consistently uses the softer statement/reading split.
+- Rewrote that opener/title pair so the subsection now speaks of the leading soft statement, and the universality remark title matches the same register.
+- Ran hostile local reread plus fixed-string greps to confirm the retired theorem-language heading is gone from that active leading-soft band and the patched statement-language is present.
+
+### Findings
+
+403. `2026-04-01-403`
+   Severity: `MINOR`
+   Class: `D`
+   Location: `chapters/connections/thqg_soft_graviton_theorems.tex:580-585,715`
+   Issue: the leading-soft subsection still had a high-visibility opener/title pair on the older “soft graviton theorem” register, slightly out of sync with the repaired statement/reading doctrine now used elsewhere on the active THQG soft surface.
+   Fix: rewrote the subsection opener and the universality remark title so both now speak of the leading soft statement.
+   Status: `FIXED`
+
+## 2026-04-01 — Codex Beilinson Rectification Iteration 344
+
+- Target: cubic-source summary remark with flat “soft graviton complexity” close
+- Iteration: `344`
+- Status: rectification completed on the modified live surface; source-level verification is clean, but no canonical closing build evidence was taken for this pass
+
+### Verification Run
+
+- Launched the next rectification loop pass on the remaining active summary and theorem-adjacent language and checked the cubic-source mechanism remark in the main THQG soft chapter.
+- The next real survivor was a compact summary-level reading leak: after correctly proving a classification of shadow-depth behavior and obstruction propagation, the closing sentence still said “This gives a clean algebraic taxonomy of soft graviton complexity,” which flattened the celestial/gravitational interpretation back into theorem-level language.
+- Rewrote that sentence so it now says the remark gives a clean algebraic taxonomy of the celestial soft hierarchy, read in the celestial/gravitational interpretation as soft-graviton complexity.
+- Ran hostile local reread plus fixed-string greps to confirm the retired flat sentence is gone from that active remark band and the patched reading-language is present.
+
+### Findings
+
+404. `2026-04-01-404`
+   Severity: `MINOR`
+   Class: `D`
+   Location: `chapters/connections/thqg_soft_graviton_theorems.tex:1754-1756`
+   Issue: the cubic-source mechanism remark still closed with a flat theorem-level slogan about “soft graviton complexity,” even though the body of the remark only proves algebraic facts about the celestial soft hierarchy and their obstruction-theoretic source.
+   Fix: rewrote the closing sentence so the algebraic classification stays theorem-level while the graviton-complexity language is explicitly presented as the celestial/gravitational reading.
+   Status: `FIXED`
+
+## 2026-04-01 — Codex Beilinson Rectification Iteration 345
+
+- Target: higher-arity consequence band with flat “soft graviton Ward identities” reading
+- Iteration: `345`
+- Status: rectification completed on the modified live surface; source-level verification is clean, but no canonical closing build evidence was taken for this pass
+
+### Verification Run
+
+- Launched the next rectification loop pass on the remaining active summary and theorem-adjacent language and checked the higher-arity consequence proposition in the main THQG soft chapter.
+- The next real survivor was a compact theorem-band reading leak: after stating the proved hierarchy as a system of celestial soft-factor Ward identities, the closing reading clause still upgraded it directly to an “infinite hierarchy of soft graviton Ward identities.”
+- Rewrote that sentence so the theorem-level hierarchy now reads, in the celestial/gravitational interpretation, as the corresponding infinite hierarchy of soft Ward identities.
+- Ran hostile local reread plus fixed-string greps to confirm the retired “soft graviton Ward identities” phrasing is gone from the active THQG soft/movement-summary surface and the patched wording is present.
+
+### Findings
+
+405. `2026-04-01-405`
+   Severity: `MINOR`
+   Class: `D`
+   Location: `chapters/connections/thqg_soft_graviton_theorems.tex:1811-1814`
+   Issue: the higher-arity consequence proposition still summarized the celestial-soft hierarchy too flatly as “soft graviton Ward identities,” rather than preserving the repaired theorem-versus-reading distinction at the end of the statement.
+   Fix: rewrote the closing clause so the celestial-soft hierarchy is read as the corresponding infinite hierarchy of soft Ward identities.
+   Status: `FIXED`
+
+## 2026-04-01 — Codex Beilinson Rectification Iteration 346
+
+- Target: sub-subleading theorem close with residual flat factor identification
+- Iteration: `346`
+- Status: rectification completed on the modified live surface; source-level verification is clean, but no canonical closing build evidence was taken for this pass
+
+### Verification Run
+
+- Launched the next rectification loop pass on the remaining active summary and theorem-adjacent language and checked the sub-subleading celestial-soft theorem band in the main THQG soft chapter.
+- The next real survivor was a compact theorem-close reading leak: the theorem still ended with the flat clause “$S^{(2)}$ is the sub-subleading soft graviton factor,” even though the repaired live surface elsewhere now consistently keeps that physical content inside the explicit `is read as` register.
+- Rewrote that line so the theorem now says $S^{(2)}$ is read as the sub-subleading soft graviton factor.
+- Ran hostile local reread plus fixed-string greps to confirm the retired flat clause is gone from that active theorem band and the patched reading-language is present.
+
+### Findings
+
+406. `2026-04-01-406`
+   Severity: `MINOR`
+   Class: `D`
+   Location: `chapters/connections/thqg_soft_graviton_theorems.tex:1465-1466`
+   Issue: the sub-subleading celestial-soft theorem still closed with a flat identification of the factor `S^{(2)}` with its gravitational reading, slightly out of sync with the repaired theorem-versus-reading doctrine used elsewhere on the active THQG soft surface.
+   Fix: rewrote the theorem close so `$S^{(2)}$` is explicitly said to be read as the sub-subleading soft graviton factor.
+   Status: `FIXED`
+
+## 2026-04-01 — Codex Beilinson Rectification Iteration 347
+
+- Target: open-directions remark with residual “soft graviton theorems” wording
+- Iteration: `347`
+- Status: rectification completed on the modified live surface; source-level verification is clean, but no canonical closing build evidence was taken for this pass
+
+### Verification Run
+
+- Launched the next rectification loop pass on the remaining active summary and theorem-adjacent language and checked the open-directions remark at the end of the main THQG soft chapter.
+- The next real survivor was a compact recap-level register mismatch: the non-perturbative bullet still sent the repaired celestial-soft package back to “the corresponding soft graviton theorems,” even though the live chapter now consistently treats the physical layer as the corresponding soft hierarchy or soft statements in the celestial/gravitational reading.
+- Rewrote that clause so the non-perturbative discussion now points to the corresponding soft hierarchy.
+- Ran hostile local reread plus fixed-string greps to confirm the retired “corresponding soft graviton ...” wording is gone from the active THQG soft/movement-summary surface and the patched hierarchy-language is present.
+
+### Findings
+
+407. `2026-04-01-407`
+   Severity: `MINOR`
+   Class: `D`
+   Location: `chapters/connections/thqg_soft_graviton_theorems.tex:2423-2426`
+   Issue: the open-directions remark still described non-perturbative corrections in terms of “the corresponding soft graviton theorems,” which lagged behind the repaired theorem-versus-reading register used elsewhere on the live THQG soft surface.
+   Fix: rewrote the clause so the non-perturbative corrections now refer, in the celestial/gravitational reading, to the corresponding soft hierarchy.
+   Status: `FIXED`
+
+## 2026-04-01 — Codex Beilinson Rectification Iteration 348
+
+- Target: operadic-complexity summary remark with residual “soft graviton theorems” clause
+- Iteration: `348`
+- Status: rectification completed on the modified live surface; source-level verification is clean, but no canonical closing build evidence was taken for this pass
+
+### Verification Run
+
+- Launched the next rectification loop pass on the remaining active summary and theorem-adjacent language and checked the operadic-complexity conjecture remark in the main THQG soft chapter.
+- The next real survivor was a compact summary-level reading leak: after correctly counting independent celestial soft factors via shadow depth and transferred $A_\infty$ data, the remark still said that in the celestial/gravitational reading these “become the corresponding soft graviton theorems.”
+- Rewrote that clause so it now says these are read as the corresponding independent soft statements in the hierarchy.
+- Ran hostile local reread plus fixed-string greps to confirm the retired clause is gone from that active remark band and the patched hierarchy-language is present; the only remaining `graviton theorems` hits in the chapter are elsewhere and were left for later passes.
+
+### Findings
+
+408. `2026-04-01-408`
+   Severity: `MINOR`
+   Class: `D`
+   Location: `chapters/connections/thqg_soft_graviton_theorems.tex:1873-1876`
+   Issue: the operadic-complexity remark still flattened the repaired celestial-soft counting statement back into “soft graviton theorems,” rather than keeping the physical layer explicitly in the softer hierarchy/statement register.
+   Fix: rewrote the clause so the independent celestial soft factors are read as the corresponding independent soft statements in the hierarchy.
+   Status: `FIXED`
+
+## 2026-04-01 — Codex Beilinson Rectification Iteration 349
+
+- Target: Weinberg--Cachazo--Strominger comparison remark with residual theorem-language opener
+- Iteration: `349`
+- Status: rectification completed on the modified live surface; source-level verification is clean, but no canonical closing build evidence was taken for this pass
+
+### Verification Run
+
+- Launched the next rectification loop pass on the remaining active comparison and summary language and checked the Weinberg--Cachazo--Strominger comparison remark in the main THQG soft chapter.
+- The next real survivor was a compact comparison-level register mismatch: the remark opener still said “the soft graviton theorems form a hierarchy,” even though the repaired active chapter now consistently uses the softer statement/hierarchy register for the physical reading.
+- Rewrote that opener so it now says the soft graviton statements form a hierarchy.
+- Ran hostile local reread plus fixed-string greps to confirm the retired opener slogan is gone from the active THQG soft/movement-summary surface and the patched wording is present.
+
+### Findings
+
+409. `2026-04-01-409`
+   Severity: `MINOR`
+   Class: `D`
+   Location: `chapters/connections/thqg_soft_graviton_theorems.tex:527-528`
+   Issue: the Weinberg--Cachazo--Strominger comparison remark still opened with the older “soft graviton theorems form a hierarchy” slogan, slightly out of sync with the repaired statement/hierarchy register used elsewhere on the active THQG soft surface.
+   Fix: rewrote the opener so it now says the soft graviton statements form a hierarchy.
+   Status: `FIXED`
+
+## 2026-04-01 — Codex Beilinson Rectification Iteration 350
+
+- Target: arity-truncation/counting summary with residual “soft-graviton statements” clause
+- Iteration: `350`
+- Status: rectification completed on the modified live surface; source-level verification is clean, but no canonical closing build evidence was taken for this pass
+
+### Verification Run
+
+- Launched the next rectification loop pass on the remaining active comparison and summary language and checked the arity-truncation/counting summary just below the celestial-soft hierarchy table in the main THQG soft chapter.
+- The next real survivor was a compact summary-level register mismatch: after correctly counting surviving celestial soft factors by shadow depth, the closing sentence still said these become “independent soft-graviton statements” at each surviving arity.
+- Rewrote that clause so it now says these are the corresponding independent soft statements at each surviving arity.
+- Ran hostile local reread plus fixed-string greps to confirm the retired “soft-graviton statements” wording is gone from that active summary band and the patched hierarchy-language is present.
+
+### Findings
+
+410. `2026-04-01-410`
+   Severity: `MINOR`
+   Class: `D`
+   Location: `chapters/connections/thqg_soft_graviton_theorems.tex:419-421`
+   Issue: the arity-truncation/counting summary still described the physical reading as “independent soft-graviton statements,” which lagged behind the repaired statement/hierarchy register used elsewhere on the active THQG soft surface.
+   Fix: rewrote the clause so the summary now refers to the corresponding independent soft statements at each surviving arity.
+   Status: `FIXED`
+
+## 2026-04-01 — Codex Beilinson Rectification Iteration 351
+
+- Target: summary-band `soft-graviton hierarchy` register survivor cluster
+- Iteration: `351`
+- Status: rectification completed on the modified live surface; source-level verification is clean, but no canonical closing build evidence was taken for this pass
+
+### Verification Run
+
+- Launched the next rectification loop pass on the remaining active comparison and recap language and checked the top-level THQG soft chapter summaries together with the movement-summary mirror.
+- The next real survivor was a compact register cluster: several active summary bands were still saying the celestial/gravitational reading is the “corresponding soft-graviton hierarchy,” even though the repaired chapter now more consistently uses the softer “soft hierarchy” language once the reading is already explicit.
+- Rewrote that cluster across the main chapter opening, the celestial OPE-algebra bridge, the single-equation closing recap, and the movement-summary opener so they now uniformly say “corresponding soft hierarchy.”
+- Ran hostile local reread plus fixed-string greps to confirm the retired `soft-graviton hierarchy` wording is gone from the active THQG soft/movement-summary surface and the patched summary-language is present.
+
+### Findings
+
+411. `2026-04-01-411`
+   Severity: `MINOR`
+   Class: `D`
+   Location: `chapters/connections/thqg_soft_graviton_theorems.tex:105-106,1974-1975,2350-2364; chapters/connections/thqg_3d_gravity_movements_vi_x.tex:1092-1093`
+   Issue: multiple active summary bands still used the slightly flatter phrase “soft-graviton hierarchy” inside already-explicit celestial/gravitational reading clauses, lagging behind the softer hierarchy register established elsewhere by the recent rectification passes.
+   Fix: rewrote the active summary cluster so those lines now uniformly say “corresponding soft hierarchy.”
+   Status: `FIXED`
+
+## 2026-04-01 — Codex Beilinson Rectification Iteration 352
+
+- Target: HMPS comparison remark with residual “BMS group structure” wording
+- Iteration: `352`
+- Status: rectification completed on the modified live surface; source-level verification is clean, but no canonical closing build evidence was taken for this pass
+
+### Verification Run
+
+- Launched the next rectification loop pass on the remaining active proof-close and comparison language and checked the He--Mitra--Pasterski--Strominger comparison remark in the leading-soft/BMS band.
+- The next real survivor was a compact doctrine seam: after the surrounding live surface had already been normalized to BMS-package language, that remark still said “The BMS group structure then arises ...”, which re-hardened the reading layer into a stronger group-level slogan.
+- Rewrote that sentence so it now says the BMS-package reading then arises in the same interpretation.
+- Ran hostile local reread plus fixed-string greps to confirm the retired “BMS group structure” wording is gone from that active comparison band and the patched package-language is present.
+
+### Findings
+
+412. `2026-04-01-412`
+   Severity: `MINOR`
+   Class: `D`
+   Location: `chapters/connections/thqg_soft_graviton_theorems.tex:778-781`
+   Issue: the HMPS comparison remark still spoke of a full “BMS group structure” arising from the leading shadow connection, which lagged behind the softer BMS-package register now used elsewhere on the active THQG soft surface.
+   Fix: rewrote the sentence so it now refers to the BMS-package reading arising in that interpretation.
+   Status: `FIXED`
+
+## 2026-04-01 — Codex Beilinson Rectification Iteration 353
+
+- Target: superrotation proof band with residual “soft graviton symmetry / BMS4” wording
+- Iteration: `353`
+- Status: rectification completed on the modified live surface; source-level verification is clean, but no canonical closing build evidence was taken for this pass
+
+### Verification Run
+
+- Launched the next rectification loop pass on the remaining active proof-close and recap language and checked the superrotation proof band in the main THQG soft chapter.
+- The next real survivor was a compact proof-level doctrine seam: that line still appealed to the “standard identification of the subleading soft graviton symmetry with superrotations” and named the target directly as the superrotation sector of `\mathrm{BMS}_4`, even though the repaired live surface elsewhere now uses the softer BMS-package and soft-statement register.
+- Rewrote that clause so it now says the conformal-Killing specialization is read as the superrotation sector of the BMS package, following the standard superrotation reading of the subleading soft statement.
+- Ran hostile local reread plus fixed-string greps to confirm the retired “subleading soft graviton symmetry” wording is gone from that active proof band and the patched package-language is present.
+
+### Findings
+
+413. `2026-04-01-413`
+   Severity: `MINOR`
+   Class: `D`
+   Location: `chapters/connections/thqg_soft_graviton_theorems.tex:1033-1037`
+   Issue: the superrotation proof band still used the harder “subleading soft graviton symmetry / `\mathrm{BMS}_4`” phrasing, slightly out of sync with the repaired BMS-package and soft-statement register used elsewhere on the active THQG soft surface.
+   Fix: rewrote the clause so it now refers to the superrotation sector of the BMS package and to the standard superrotation reading of the subleading soft statement.
+   Status: `FIXED`
+
+## 2026-04-01 — Codex Beilinson Rectification Iteration 354
+
+- Target: sub-subleading factor band with residual “graviton factor” wording
+- Iteration: `354`
+- Status: rectification completed on the modified live surface; source-level verification is clean, but no canonical closing build evidence was taken for this pass
+
+### Verification Run
+
+- Launched the next rectification loop pass on the remaining proof-close and recap language and checked the sub-subleading theorem band against the already normalized leading and subleading factor language.
+- The next real survivor was a compact local consistency seam: the leading and subleading readings were already phrased as soft factors, but the sub-subleading theorem close alone still said “sub-subleading soft graviton factor.”
+- Rewrote that line so it now simply says “sub-subleading soft factor,” matching the factor-language register used across the surrounding live band.
+- Ran hostile local reread plus fixed-string greps to confirm the retired “graviton factor” wording is gone from that active theorem band and the patched factor-language is present.
+
+### Findings
+
+414. `2026-04-01-414`
+   Severity: `MINOR`
+   Class: `E`
+   Location: `chapters/connections/thqg_soft_graviton_theorems.tex:1465-1466`
+   Issue: the sub-subleading theorem close used the slightly inconsistent phrase “sub-subleading soft graviton factor,” even though the leading and subleading readings in the same chapter had already been normalized to the simpler “soft factor” register.
+   Fix: rewrote the theorem close so it now says `$S^{(2)}$` is read as the sub-subleading soft factor.
+   Status: `FIXED`
+
+## 2026-04-01 — Codex Beilinson Rectification Iteration 355
+
+- Target: late class-by-class comparison table with stronger BMS shorthand than the proof below
+- Iteration: `355`
+- Status: rectification completed on the modified live surface; source-level verification is clean, but no canonical closing build evidence was taken for this pass
+
+### Verification Run
+
+- Launched the next rectification loop pass on the remaining late-summary language and checked the class-by-class comparison table in the main THQG soft chapter.
+- The next real survivor was a compact summary-table mismatch: the gravitational-reading column still used stronger shorthand such as `Extended \mathrm{BMS}_4` and bare `Quartic gravity`, even though the proof immediately below had already been normalized to the BMS-package language.
+- Rewrote the table rows so the gravitational-reading column now matches the proof band directly below it.
+- Ran hostile local reread plus fixed-string greps to confirm the retired stronger row labels are gone and the patched table language is present.
+
+### Findings
+
+415. `2026-04-01-415`
+   Severity: `MINOR`
+   Class: `D`
+   Location: `chapters/connections/thqg_soft_graviton_theorems.tex:2188-2196`
+   Issue: the late class-by-class comparison table still used stronger BMS/gravity shorthand than the proof immediately below it, reintroducing a harder summary-level register than the repaired live surface supported.
+   Fix: rewrote the table's gravitational-reading column so the class `\mathbf{G}`/`\mathbf{L}`/`\mathbf{C}` rows now align with the proof's “BMS package / quartic extension of the BMS package” language.
+   Status: `FIXED`
+
+## 2026-04-01 — Codex Beilinson Rectification Iteration 356
+
+- Target: class-`\mathbf{L}` proof summary with flatter extended-BMS wording than neighboring class summaries
+- Iteration: `356`
+- Status: rectification completed on the modified live surface; source-level verification is clean, but no canonical closing build evidence was taken for this pass
+
+### Verification Run
+
+- Launched the next rectification loop pass on the active THQG soft proof band directly below the repaired class-comparison table.
+- The next real survivor was a compact proof-level consistency seam: the `\mathbf{L}` class summary still said its celestial/gravitational reading “is the extended BMS package,” while the neighboring `\mathbf{G}` and `\mathbf{C}` summaries had already been normalized to the explicit `is read as` register.
+- Rewrote the `\mathbf{L}` summary so it now says the `(2,3)`-generated celestial soft algebra, in the celestial/gravitational reading, is read as the extended BMS package.
+- Ran hostile local reread plus fixed-string greps to confirm the retired flatter clause is gone and that no parallel survivor of that exact form remains on the active THQG soft / movement-summary / gravity / preface / introduction surface checked in this pass.
+
+### Findings
+
+416. `2026-04-01-416`
+   Severity: `MINOR`
+   Class: `D`
+   Location: `chapters/connections/thqg_soft_graviton_theorems.tex:2221-2224`
+   Issue: the class-`\mathbf{L}` proof summary used the flatter clause “celestial/gravitational reading is the extended BMS package,” which was out of step with the neighboring class summaries already using the explicit `is read as` register.
+   Fix: rewrote the class-`\mathbf{L}` summary so the reading-language now matches the repaired `\mathbf{G}` and `\mathbf{C}` lines.
+   Status: `FIXED`
+
+## 2026-04-01 — Codex Beilinson Rectification Iteration 357
+
+- Target: asymptotic-symmetry stratification proposition opener with harder algebra-language than the repaired table it introduces
+- Iteration: `357`
+- Status: rectification completed on the modified live surface; source-level verification is clean, but no canonical closing build evidence was taken for this pass
+
+### Verification Run
+
+- Launched the next rectification loop pass on the late celestial-soft stratification proposition and reread the opener against the already repaired class table directly below it.
+- The next real survivor was a compact scope seam: the proposition still said the corresponding celestial-soft subalgebras are read as “asymptotic symmetry algebras,” even though the table itself had already been normalized to the weaker BMS-package and expected-model register.
+- Rewrote the index entry and proposition lead-in so this band now speaks of asymptotic-symmetry packages rather than asymptotic symmetry algebras.
+- Ran hostile local reread plus fixed-string greps to confirm the retired algebra-language is gone from the checked active THQG soft / movement-summary / gravity / preface / introduction surface and that the patched package-language is present in the proposition opener.
+
+### Findings
+
+417. `2026-04-01-417`
+   Severity: `MINOR`
+   Class: `D`
+   Location: `chapters/connections/thqg_soft_graviton_theorems.tex:2169-2174`
+   Issue: the asymptotic-symmetry stratification proposition still introduced its class table by saying the corresponding subalgebras are read as asymptotic symmetry algebras, which was stronger than the BMS-package language already used in the repaired table entries.
+   Fix: rewrote the index entry and the proposition lead-in so this active summary band now uses the package-level register throughout.
+   Status: `FIXED`
+
+## 2026-04-01 — Codex Beilinson Rectification Iteration 358
+
+- Target: asymptotic-symmetry stratification proposition with one remaining local index/close mismatch after the package-language opener repair
+- Iteration: `358`
+- Status: rectification completed on the modified live surface; source-level verification is clean, but no canonical closing build evidence was taken for this pass
+
+### Verification Run
+
+- Launched the next rectification loop pass on the same late stratification proposition and reread the local band after the package-language opener repair.
+- The next real survivor was a compact companion mismatch: the local index entry still said `BMS group!generalization from shadow tower`, and the proposition close still fell back to the vaguer phrase “asymptotic-symmetry content,” even though the repaired opener and table now advertise package-level readings.
+- Rewrote that local pair so the index now says `BMS package!generalization from shadow tower`, and the proposition close now says the shadow depth controls the corresponding asymptotic-symmetry package.
+- Ran hostile local reread plus fixed-string greps to confirm the retired local `BMS group` / `asymptotic-symmetry content` pair is gone from the checked active THQG soft / movement-summary / gravity / preface / introduction surface and the patched package-language is present.
+
+### Findings
+
+418. `2026-04-01-418`
+   Severity: `MINOR`
+   Class: `D`
+   Location: `chapters/connections/thqg_soft_graviton_theorems.tex:2170,2204-2205`
+   Issue: after the proposition lead-in had been normalized to package-language, its local index entry still used the older `BMS group` tag and its closing sentence still retreated to the weaker “asymptotic-symmetry content” wording, leaving the local band internally inconsistent.
+   Fix: rewrote the local index entry and proposition close so the whole stratification band now stays in the package-level register.
+   Status: `FIXED`
+
+## 2026-04-01 — Codex Beilinson Rectification Iteration 359
+
+- Target: class-`\mathbf{M}` table row with stronger large-`c` / `L_\infty` shorthand than the repaired proof and nearby complexity remark
+- Iteration: `359`
+- Status: rectification completed on the modified live surface; source-level verification is clean, but no canonical closing build evidence was taken for this pass
+
+### Verification Run
+
+- Launched the next rectification loop pass on the late celestial-soft stratification table and reread the class-`\mathbf{M}` row against the proof immediately below it and the nearby operadic-complexity remark.
+- The next real survivor was a compact summary-table mismatch: the class-`\mathbf{M}` gravitational-reading column still said `Expected \mathcal{W}_{1+\infty} / full gravitational L_\infty-algebra`, even though the proof had already shifted to the expected-model wording and the nearby complexity remark used the weaker `gravitational L_\infty-package` register.
+- Rewrote the row so it now reads `Expected large-$c$ model via \mathcal{W}_{1+\infty} / full gravitational L_\infty-package`.
+- Ran hostile local reread plus fixed-string checks to confirm the retired stronger shorthand is gone and the patched row now matches the proof and nearby remark.
+
+### Findings
+
+419. `2026-04-01-419`
+   Severity: `MINOR`
+   Class: `D`
+   Location: `chapters/connections/thqg_soft_graviton_theorems.tex:2197-2200`
+   Issue: the class-`\mathbf{M}` row of the late stratification table still used stronger large-`c` and `L_\infty` shorthand than the repaired proof band and the nearby complexity remark, reintroducing a harder summary-level register than the local live surface supported.
+   Fix: rewrote the row so it now uses the expected-model wording for `\mathcal{W}_{1+\infty}` and the package-level wording for the gravitational `L_\infty` side.
+   Status: `FIXED`
+
+## 2026-04-01 — Codex Beilinson Rectification Iteration 360
+
+- Target: large-`c` `\mathfrak{w}_{1+\infty}` comparison remark with one remaining harder identification than the expected-model language used below it
+- Iteration: `360`
+- Status: rectification completed on the modified live surface; source-level verification is clean, but no canonical closing build evidence was taken for this pass
+
+### Verification Run
+
+- Launched the next rectification loop pass on the late large-`c` `\mathfrak{w}_{1+\infty}` comparison remark and reread the opener against the expected-model language already present in the rest of that remark.
+- The next real survivor was a compact theorem-vs-reading seam: the remark still said the celestial soft algebra in the gravitational reading of 4d Einstein gravity “is identified with a deformation of” `\mathfrak{w}_{1+\infty}`, even though the very next lines already downgrade the claim to an expected large-`c` model and a package-level Ward-identity reading.
+- Rewrote the opener so it now says that in the literature this gravitational-reading algebra is read as a deformation of `\mathfrak{w}_{1+\infty}`.
+- Ran hostile local reread plus fixed-string greps to confirm the retired harder identification is gone from the checked active THQG soft / movement-summary / gravity / preface / introduction surface and the patched reading-language is present in the remark opener.
+
+### Findings
+
+420. `2026-04-01-420`
+   Severity: `MINOR`
+   Class: `D`
+   Location: `chapters/connections/thqg_soft_graviton_theorems.tex:2064-2066`
+   Issue: the large-`c` `\mathfrak{w}_{1+\infty}` comparison remark still used the harder phrase “is identified with a deformation of,” which overreached relative to the expected-model and package-level reading language used immediately below.
+   Fix: rewrote the opener so it now says the gravitational-reading celestial soft algebra is read as a deformation of `\mathfrak{w}_{1+\infty}`.
+   Status: `FIXED`
