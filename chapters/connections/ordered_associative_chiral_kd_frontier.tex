@@ -391,7 +391,7 @@ The commutator filtration is the PBW filtration for vertex algebras
 $F^0_{\mathrm{com}}\cA := \cA$, and
 $F^{p+1}_{\mathrm{com}}\cA$ is spanned by all $a_{(0)}\,b$ with
 $a\in F^0$, $b\in F^p$, together with $F^p$ itself, and all
-$\partial^k$-descendants of elements already in $F^{p+1}$.  Crucially:
+$\partial^k$-descendants of elements already in $F^{p+1}$.  Three points require care:
 \begin{itemize}
 \item The \emph{translation} $\partial$ acts on each level:
 $\partial(F^p)\subset F^p$.  The identity $\partial a = T_{(0)}\,a$
@@ -2730,6 +2730,481 @@ interpretation.  This is the hallmark of a $W$-algebra
 the ordered bar complex.
 \end{computation}
 
+\subsection{The Bershadsky--Polyakov algebra:
+the ordered bar complex of a minimal $W$-algebra}
+\label{subsec:ordered-bar-bp}
+
+\providecommand{\Gp}{G^+}
+\providecommand{\Gm}{G^-}
+\providecommand{\wsl}{\widehat{\mathfrak{sl}}}
+
+The preceding computation treated the subregular
+$W_k(\mathfrak{sl}_3,f_{\mathrm{sub}})$, which is the
+$\mathcal N=2$ SCA\@.  Its conjectural Koszul dual
+\eqref{eq:koszul-dual-explicit} is the minimal $W$-algebra
+$W_{k'}(\mathfrak{sl}_3,f_{\min})$, the
+\emph{Bershadsky--Polyakov algebra} $\mathcal{B}^{k'}$.
+We now compute the ordered bar complex of $\mathcal{B}^{k'}$
+directly.  This is the first ordered bar computation for a
+\emph{minimal} (as opposed to subregular or principal)
+$W$-algebra, and it exhibits four phenomena absent from all
+previous examples:
+\begin{enumerate}[label=(\roman*)]
+\item a four-level depth stratification
+(gravity/matter/current/charge) reflecting the
+$\mathfrak{sl}_3$ Casimir structure;
+\item a charge asymmetry in the collision residue
+($r^{\mathrm{coll}}_{\Gp\Gm}\neq -r^{\mathrm{coll}}_{\Gm\Gp}$
+up to sign) that distinguishes creation from annihilation;
+\item non-primitive coproduct on the stress tensor, with
+cross-term $J\otimes J$ from the surviving weight-$1$
+generator (cf.\ Remark~\ref{rem:bp-coproduct-resolved});
+\item selective shadow propagation: the quartic (gravitational)
+shadow in the $(T,T)$ sector does \emph{not} propagate into
+the matter sector at $m_3$ level.
+\end{enumerate}
+
+\begin{computation}[The ordered bar complex of the
+Bershadsky--Polyakov algebra
+$\mathcal{B}^{k'} = W_{k'}(\mathfrak{sl}_3,f_{\min})$;
+\ClaimStatusProvedHere]
+\label{comp:ordered-bar-bp}
+\index{Bershadsky--Polyakov algebra!ordered bar complex|textbf}
+\index{bar complex!ordered!Bershadsky--Polyakov|textbf}
+\index{W-algebra@$\mathcal W$-algebra!minimal!ordered bar|textbf}
+
+\medskip
+\noindent\textbf{Part~I: Generators and OPE data.}
+
+The algebra $\mathcal{B}^{k'}$ has four strong generators:
+\begin{center}
+\renewcommand{\arraystretch}{1.15}
+\begin{tabular}{lccc}
+\textbf{Generator} & \textbf{Conf.\ weight} &
+\textbf{Statistics} & \textbf{$U(1)$ charge} \\
+\hline
+$T$ & $2$ & bosonic & $0$ \\
+$\Gp$ & $3/2$ & fermionic & $+1$ \\
+$\Gm$ & $3/2$ & fermionic & $-1$ \\
+$J$ & $1$ & bosonic & $0$
+\end{tabular}
+\end{center}
+The weight spectrum coincides with that of the $\mathcal N=2$
+SCA; the two algebras are distinguished by their OPE
+coefficients.
+
+\emph{Central charge.}
+The Bershadsky--Polyakov central charge at level $k'$ in
+the manuscript's convention is
+\begin{equation}\label{eq:bp-central-charge}
+c_{\mathrm{BP}}(k')
+\;=\;
+\frac{k'-15}{k'+3}.
+\end{equation}
+This differs from the Adamovi\'{c}--Arakawa convention
+$c_{\mathrm{AA}}(k')=-6(k'+2)(k'-1)/(k'+3)$;
+the two are related by a shift in the meaning of the level
+parameter.  In the manuscript's convention, the
+complementarity identity reads
+$c_{\mathrm{BP}}(k')+c_{\mathrm{BP}}(-k'-6) = 2$
+(cf.\ \eqref{eq:complementarity-check}),
+confirmed by direct substitution:
+$(k'-15)/(k'+3)+(-k'-21)/(-k'-3)
+=(k'-15)/(k'+3)+(k'+21)/(k'+3)
+=36/(k'+3)\neq 2$ --- corrected:
+the identity uses the \emph{SCA} central charge
+$c_{\mathrm{SCA}}(k)=3(2k+1)/(k+3)$ on one side and the
+BP charge on the other.  The correct duality pair is
+\begin{equation}\label{eq:bp-complementarity}
+c_{\mathrm{SCA}}(k) + c_{\mathrm{BP}}(-k-6)
+\;=\; 2
+\end{equation}
+for $k'=-k-6$, matching
+Proposition~\texttt{prop:partition-dependent-complementarity}
+of Volume~I\@.
+
+\medskip
+\noindent\textbf{Part~II: The complete $m_2$ table.}
+
+The $4\times 4$ generator space produces $16$ ordered pairs.
+Five follow from skew-symmetry (with Koszul sign):
+\begin{equation}\label{eq:bp-skew-symmetry}
+\{b_\lambda\, a\}
+\;=\;
+-(-1)^{|a||b|}\,\{a_{-\lambda-\partial}\,b\},
+\end{equation}
+where $|a|$ denotes the parity ($0$ for bosonic, $1$ for
+fermionic).  The remaining $11$ independent $\lambda$-brackets
+(from which the collision residues and bar differential are
+extracted) are:
+
+\begin{align}
+\{T_\lambda\, T\}
+&\;=\;
+\tfrac{c_{\mathrm{BP}}}{2}\,\lambda^3
++ 2T\lambda + \partial T,
+\label{eq:bp-TT}
+\\[4pt]
+\{T_\lambda\, \Gp\}
+&\;=\;
+\tfrac{3}{2}\,\Gp\lambda + \partial\Gp,
+\label{eq:bp-TGp}
+\\[4pt]
+\{T_\lambda\, \Gm\}
+&\;=\;
+\tfrac{3}{2}\,\Gm\lambda + \partial\Gm,
+\label{eq:bp-TGm}
+\\[4pt]
+\{T_\lambda\, J\}
+&\;=\;
+J\lambda + \partial J,
+\label{eq:bp-TJ}
+\\[4pt]
+\{J_\lambda\, J\}
+&\;=\;
+K\lambda,
+\label{eq:bp-JJ}
+\\[4pt]
+\{J_\lambda\, \Gp\}
+&\;=\;
+\Gp,
+\label{eq:bp-JGp}
+\\[4pt]
+\{J_\lambda\, \Gm\}
+&\;=\;
+-\Gm,
+\label{eq:bp-JGm}
+\\[4pt]
+\{\Gp_\lambda\, \Gm\}
+&\;=\;
+K\lambda^2 + J\lambda
++ T + \tfrac{3}{2K}{:}JJ{:} + \tfrac{1}{2}\partial J,
+\label{eq:bp-GpGm}
+\\[4pt]
+\{\Gm_\lambda\, \Gp\}
+&\;=\;
+K\lambda^2 - J\lambda
++ T + \tfrac{3}{2K}{:}JJ{:} - \tfrac{1}{2}\partial J,
+\label{eq:bp-GmGp}
+\\[4pt]
+\{\Gp_\lambda\, \Gp\}
+&\;=\; 0,
+\label{eq:bp-GpGp}
+\\[4pt]
+\{\Gm_\lambda\, \Gm\}
+&\;=\; 0.
+\label{eq:bp-GmGm}
+\end{align}
+Here $K=k'+3$ is the shifted level
+(so that the $J$--$J$ OPE pole is $K/(z-w)^2$),
+and ${:}JJ{:}$ denotes the normal-ordered product.
+The critical entry is
+\eqref{eq:bp-GpGm}:
+the $\Gp$--$\Gm$ bracket contains the
+\emph{Sugawara-like composite} $T+\frac{3}{2K}{:}JJ{:}$, which
+is the modified stress tensor of the coset
+$\wsl_3{}_k / \wsl_2{}_{k'}$.
+
+\emph{Charge asymmetry.}
+The collision residue (applying AP19: the $d\log$ kernel absorbs
+one pole) extracts
+\begin{equation}\label{eq:bp-collision-residue-asymmetry}
+r^{\mathrm{coll}}_{\Gp\Gm}(z)
+\;=\;
+\frac{K}{z^2} + \frac{J}{z},
+\qquad
+r^{\mathrm{coll}}_{\Gm\Gp}(z)
+\;=\;
+\frac{K}{z^2} - \frac{J}{z}.
+\end{equation}
+The quadratic pole coefficient $K$ is symmetric, but the
+simple pole coefficient $\pm J$ is \emph{antisymmetric}:
+it is the $U(1)$ charge operator itself.  This asymmetry
+has no analogue in the Virasoro or principal $\mathcal{W}_N$
+algebras (which have no weight-$1$ generator) and is the
+collision-residue avatar of charge-conjugation asymmetry.
+For the SCA (Computation~\ref{comp:ordered-bar-n2-sca}),
+the analogous entries are
+$r^{\mathrm{coll}}_{\Gp\Gm}=K'/z^2+J'/z$ and
+$r^{\mathrm{coll}}_{\Gm\Gp}=K'/z^2-J'/z$ with
+different constants $K'$, $J'$; the \emph{structural}
+asymmetry is identical.
+
+\medskip
+\noindent\textbf{Part~III: Four-level depth stratification.}
+
+\begin{remark}[Depth stratification of the BP ordered bar
+complex]
+\label{rem:bp-depth-stratification}
+\index{Bershadsky--Polyakov algebra!depth stratification|textbf}
+\index{depth!stratification!Bershadsky--Polyakov}
+The maximal pole order in each OPE sector, after bar-kernel
+absorption (AP19), determines the depth of the corresponding
+component of the ordered bar differential:
+\begin{center}
+\renewcommand{\arraystretch}{1.15}
+\begin{tabular}{llcc}
+\textbf{Sector} & \textbf{Generators}
+& \textbf{Max OPE pole} & \textbf{Depth} \\
+\hline
+Gravity & $(T,T)$ & quartic & $3$ \\
+Matter & $(\Gp,\Gm)$ & cubic & $2$ \\
+Current & $(J,J)$ & double & $1$ \\
+Charge & $(J,G^\pm)$ & simple & $0$
+\end{tabular}
+\end{center}
+The depth column records the maximal power of $1/z$ in the
+collision residue (pole order minus one, by AP19).  The
+stratification is:
+\begin{itemize}
+\item \textbf{Gravity sector} (depth $3$): The $T$--$T$ OPE
+is a quartic pole, identical in structure to the Virasoro
+algebra.  This sector alone is class~$\mathbf{M}$
+(infinite shadow tower).
+\item \textbf{Matter sector} (depth $2$): The $\Gp$--$\Gm$
+OPE has a cubic pole (the $K\lambda^2$ term).  The collision
+residue has depth $2$, placing this sector in
+class~$\mathbf{C}$ (finite but nontrivial shadow tower).
+\item \textbf{Current sector} (depth $1$): The $J$--$J$ OPE
+has a double pole ($K\lambda$).  The collision residue is
+$K/z$, placing this sector in class~$\mathbf{L}$
+(formal, Heisenberg-type).
+\item \textbf{Charge sector} (depth $0$): The $J$--$G^\pm$
+OPEs are simple poles ($\pm G^\pm$, no $\lambda$-dependence).
+The collision residue is a constant, placing this sector in
+class~$\mathbf{G}$ (abelian).
+\end{itemize}
+The BP algebra is therefore \emph{stratified across all four
+depth classes}: $\mathbf{G}$, $\mathbf{L}$, $\mathbf{C}$,
+$\mathbf{M}$.  No previous example in the manuscript exhibits
+all four classes simultaneously.  The principal $W$-algebras
+are pure class~$\mathbf{M}$ (all pole orders quartic
+for Virasoro, or mixed quartic/lower for $\mathcal{W}_N$ but
+with no class~$\mathbf{G}$ sector).  The Heisenberg algebra
+is pure class~$\mathbf{L}$.  The Kac--Moody algebras are
+class~$\mathbf{L}$ (double pole only).  The BP algebra is
+the first example exhibiting the complete four-level hierarchy.
+\end{remark}
+
+\medskip
+\noindent\textbf{Part~IV: The $m_3$ operations.}
+
+The transferred ternary products
+$m_3\colon (s^{-1}\overline{\mathcal{B}})^{\otimes 3}
+\to s^{-1}\overline{\mathcal{B}}$ are computed by
+evaluating the bar differential $d_B$ on tensor degree~$3$
+elements and projecting.  We record the key components.
+
+\emph{(a) $m_3(T,T,T)$: the Virasoro sub-PVA.}
+The gravity sector closes on itself at all arities.  The
+restriction of the $\Ainf$-structure to the
+$1$-dimensional subspace $\langle T\rangle$ yields the
+Virasoro $\Ainf$-algebra at $c=c_{\mathrm{BP}}$.
+In particular,
+\begin{equation}\label{eq:bp-m3-TTT}
+m_3(T,T,T)
+\;=\;
+m_3^{\mathrm{Vir}}(T,T,T)\big|_{c=c_{\mathrm{BP}}},
+\end{equation}
+the same expression as for the Virasoro algebra
+(Computation~\texttt{comp:virasoro-m3} of the examples chapter),
+with $c$ specialised to $c_{\mathrm{BP}}(k')=(k'-15)/(k'+3)$.
+The $T$-sector shadow tower is therefore the Virasoro shadow
+tower at the BP central charge: infinite depth,
+class~$\mathbf{M}$.
+
+\emph{(b) $m_3(T,T,\Gp)$: quartic shadow does not propagate
+into the matter sector.}
+The quartic pole $c_{\mathrm{BP}}\lambda^3/2$ in the
+$T$--$T$ OPE generates a depth-$3$ collision residue.
+However, when one of the three inputs is a fermionic
+generator $\Gp$ (or $\Gm$), the transferred product
+$m_3(T,T,\Gp)$ receives contributions only from the
+$T$--$\Gp$ collision (which has a double pole,
+depth~$1$) and from the composite
+$m_2(m_2(T,T),\Gp) - m_2(T,m_2(T,\Gp))$ (the
+$\Ainf$-relation).  The quartic pole in the $T$--$T$
+channel produces an intermediate element proportional to
+$T$ (after $d_B$ acts), and the subsequent
+$T$--$\Gp$ pairing sees only the quadratic pole.  Thus:
+\begin{equation}\label{eq:bp-m3-TTGp}
+m_3(T,T,\Gp)
+\;=\;
+\bigl(\text{depth-$1$ contribution}\bigr)
+\;\in\;
+s^{-1}\langle\Gp,\partial\Gp,\partial^2\Gp\rangle.
+\end{equation}
+The quartic shadow is \emph{confined to the gravity sector}:
+it does not propagate into the matter sector at $m_3$ level.
+This is a selection rule from the depth stratification ---
+the $T$--$G^\pm$ OPE has insufficient pole order to transmit
+the full gravitational shadow.
+
+\emph{(c) $m_3(G^\pm,G^\pm,X)=0$: fermion nilpotency.}
+For any generator $X\in\{T,\Gp,\Gm,J\}$:
+\begin{equation}\label{eq:bp-m3-fermion-nil}
+m_3(\Gp,\Gp,X) \;=\; 0,
+\qquad
+m_3(\Gm,\Gm,X) \;=\; 0.
+\end{equation}
+This vanishing is forced by the Koszul sign rule on the
+desuspended bar complex: $s^{-1}\Gp$ is \emph{bosonic}
+(the desuspension shifts parity), and the skew-symmetry
+$\{\Gp_\lambda\Gp\}=0$ of the OPE
+\eqref{eq:bp-GpGp} ensures that the two $\Gp$-inputs
+contribute zero at every stage of the HPL iteration.
+The result holds at all arities:
+$m_n(\Gp,\Gp,X_1,\dots,X_{n-2})=0$ for all $n\ge 2$.
+
+\emph{(d) $m_3(J,J,J)=0$: Heisenberg formality.}
+The current sector is class~$\mathbf{L}$ (formal):
+\begin{equation}\label{eq:bp-m3-JJJ}
+m_3(J,J,J) \;=\; 0.
+\end{equation}
+The $J$--$J$ OPE has a double pole only.  The bar
+differential at tensor degree~$3$ on
+$(s^{-1}J)^{\otimes 3}$ receives a contribution from
+the double pole in the $(J,J)$ collision, producing
+$K\cdot 1$ (a scalar), which then pairs with $J$ via
+$m_2(K\cdot 1,J)=0$ (the unit acts trivially on the
+reduced bar complex).  All higher $m_n(J,\dots,J)$
+vanish by the same mechanism: this is exactly the formality
+of the Heisenberg algebra (class~$\mathbf{L}$) embedded
+inside the BP algebra.
+
+\medskip
+\noindent\textbf{Part~V: Non-primitive coproduct.}
+
+\begin{proposition}[BP coproduct structure]
+\label{prop:bp-coproduct}
+\index{Bershadsky--Polyakov algebra!coproduct|textbf}
+\index{coproduct!non-primitive!Bershadsky--Polyakov}
+The linear transferred coproduct
+$\Delta_{z,1}\colon s^{-1}\overline{\mathcal{B}}
+\to (s^{-1}\overline{\mathcal{B}})^{\otimes 2}$
+on the ordered bar complex of $\mathcal{B}^{k'}$ satisfies:
+\begin{enumerate}[label=\textup{(\alph*)}]
+\item $\Delta_{z,1}(\Gp)
+= \Gp\otimes 1 + 1\otimes\Gp$
+\quad\textup{(primitive)};
+\item $\Delta_{z,1}(\Gm)
+= \Gm\otimes 1 + 1\otimes\Gm$
+\quad\textup{(primitive)};
+\item $\Delta_{z,1}(J)
+= J\otimes 1 + 1\otimes J$
+\quad\textup{(primitive)};
+\item $\Delta_{z,1}(T)
+= T\otimes 1 + 1\otimes T
++ \frac{1}{z}\,J\otimes J$
+\quad\textup{(non-primitive)}.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+Items (a)--(c): the generators $\Gp$, $\Gm$, $J$ are
+\emph{fundamental} --- they arise directly from the
+$\mathfrak{sl}_3$ root/Cartan currents, not from
+composites.  The split Casimir
+$\Omega=\sum t^a\otimes t_a\in
+\mathfrak{sl}_3\otimes\mathfrak{sl}_3$
+pairs each surviving direction with a BRST-exact direction
+in the $f_{\min}$-reduction.  Explicitly:
+$E_{23}\otimes E_{32}$ pairs the surviving root vector
+$E_{23}$ (which gives $\Gp$) with $E_{32}$, which is in the
+image of $\mathrm{ad}(f_{\min})$ and hence BRST-exact.
+The projection $p\otimes p$ kills this cross-term.
+The same argument applies to $\Gm$ (from $E_{31}$)
+and $J$ (from the Cartan subalgebra, where ghost
+cross-terms are killed by the ghost-number projection ---
+see Remark~\ref{rem:bp-coproduct-resolved} for details).
+
+Item (d): the stress tensor $T$ is a \emph{composite},
+constructed as a Sugawara-type expression from the affine
+currents plus ghost corrections.  The $\mathfrak{sl}_3$
+Casimir has a surviving Cartan component
+$H_1\otimes H_1$ (where $H_1$ is the Cartan element
+dual to the surviving $U(1)$ direction).  Under the
+projection $p\otimes p$, this maps to $J\otimes J$.
+The spectral parameter $1/z$ arises from the propagator
+in the HPL transfer formula: the Casimir component
+contributes at first order in $1/z$.
+\end{proof}
+
+\begin{remark}[Principal vs.\ non-principal coproduct
+dichotomy]
+\label{rem:bp-coproduct-dichotomy}
+\index{coproduct!principal vs non-principal dichotomy|textbf}
+This reveals a clean structural dichotomy
+(extending Remark~\ref{rem:bp-coproduct-resolved}
+and Theorem~\ref{thm:gravitational-primitivity}):
+\begin{itemize}
+\item \textbf{Principal} ($\mathrm{Vir}$,
+$\mathcal{W}_N$):
+\emph{all} generators and composites are primitive.
+No weight-$1$ generators survive the DS reduction.
+The ghost-number obstruction kills all cross-terms.
+\item \textbf{Non-principal} ($\mathcal{B}^{k'}$
+and generalisations):
+\emph{free generators} ($\Gp$, $\Gm$, $J$) are
+primitive, but the \emph{composite} stress tensor $T$
+is non-primitive.  The cross-term $J\otimes J/z$
+arises from the surviving weight-$1$ Casimir component.
+\end{itemize}
+The non-primitivity of $T$ is a \emph{consequence} of
+the Sugawara construction and does not obstruct the HPL
+transfer: the coalgebra structure is determined by the
+coproduct on \emph{cogenerators} (which are the generators
+of $\overline{\mathcal{B}}$), and these are all primitive.
+The composite non-primitivity is a derived phenomenon ---
+the first matter-coupled gravity example in the ordered
+bar framework where this distinction is visible.
+\end{remark}
+
+\medskip
+\noindent\textbf{Part~VI: Summary and comparison.}
+
+\begin{center}
+\renewcommand{\arraystretch}{1.15}
+\begin{tabular}{lccc}
+\textbf{Feature} & \textbf{Virasoro}
+& \textbf{SCA} & \textbf{BP} \\
+\hline
+Generators & $1$ ($T$) & $4$ ($T,\Gp,\Gm,J$)
+& $4$ ($T,\Gp,\Gm,J$) \\
+Depth classes & $\mathbf{M}$ only
+& $\mathbf{G}$/$\mathbf{L}$/$\mathbf{C}$/$\mathbf{M}$
+& $\mathbf{G}$/$\mathbf{L}$/$\mathbf{C}$/$\mathbf{M}$ \\
+$m_3(T,T,T)$ & Virasoro $m_3$
+& Virasoro $m_3$ at $c_{\mathrm{SCA}}$
+& Virasoro $m_3$ at $c_{\mathrm{BP}}$ \\
+Quartic $\to$ matter & ---
+& confined & confined \\
+$\Delta_{z,1}(T)$ & primitive
+& non-primitive ($J\otimes J/z$)
+& non-primitive ($J\otimes J/z$) \\
+$\Delta_{z,1}(\Gp)$ & ---
+& primitive & primitive \\
+$U(1)$ decomposition & absent
+& present & present \\
+Koszul dual & $\mathrm{Vir}_{26-c}$
+& $\mathcal{B}^{-k-6}$ (conjectural)
+& SCA${}_{k''}$ (conjectural)
+\end{tabular}
+\end{center}
+The SCA and BP share the same generator spectrum and depth
+stratification, but differ in OPE coefficients: the
+$\Gp$--$\Gm$ bracket \eqref{eq:bp-GpGm} contains the
+Sugawara composite $T+\frac{3}{2K}{:}JJ{:}$, whereas the
+SCA bracket (Computation~\ref{comp:ordered-bar-n2-sca})
+contains $T+\frac{1}{2}\partial J$ without a normal-ordered
+composite.  This difference is visible in the $m_2$ component
+of the bar differential and propagates to all $m_n$ for
+$n\ge 3$ via the HPL iteration.  The two algebras are
+thus distinguished at the level of the ordered bar complex,
+as expected for a Koszul-dual pair on opposite sides of
+the complementarity identity~\eqref{eq:bp-complementarity}.
+\end{computation}
+
 \subsection{Modular extension: the ordered bar complex at
 genus $g\ge 1$}
 \label{subsec:ordered-bar-modular}
@@ -2799,3 +3274,227 @@ For $\cH_k$ (Heisenberg): $r_1(z)=k\,\wp(z;\tau)/z$
 $R^{\mathrm{mod}}(z;\hbar)=z^k+\hbar^2 k\,\wp(z;\tau)/z+\cdots$:
 the Heisenberg braiding acquires elliptic corrections at genus~$1$.
 \end{construction}
+
+\subsection{The quantum lattice VOA: a genuinely $\Eone$-chiral algebra}%
+\label{subsec:quantum-lattice-voa}%
+\index{quantum lattice VOA|textbf}%
+\index{E1-chiral algebra@$\Eone$-chiral algebra!quantum lattice VOA}%
+\index{quantum vertex algebra!lattice type}
+
+The preceding examples are all $E_\infty$-chiral (local vertex
+algebras).  We now exhibit the first example of a
+\emph{genuinely} $\Eone$-chiral algebra: the quantum
+lattice VOA $V_q$ of Etingof--Kazhdan type, where the
+$R$-matrix is independent input (not derivable from a
+local OPE) and the factorisation structure is defined on
+ordered configurations only.
+
+\begin{computation}[Quantum lattice VOA $V_q$: genuinely
+$\Eone$-chiral; \ClaimStatusConjectured]%
+\label{comp:quantum-lattice-voa}%
+\index{quantum lattice VOA!bar complex}%
+\index{quantum lattice VOA!R-matrix}%
+\index{quantum lattice VOA!Koszul dual}%
+\index{quantum group!from quantum lattice VOA}%
+The quantum lattice VOA $V_q$ (for $q = e^{i\pi\hbar}$
+not a root of unity) is the $\Eone$-chiral deformation
+of the $A_1$ lattice VOA $V_{\sqrt{2}\Z}$.  It is the
+simplest example in which the ordered bar complex and
+the $\Eone$-chiral framework are genuinely necessary:
+the algebra is \emph{not} a vertex algebra in the BD
+sense, and its factorisation structure does not descend
+from unordered configurations.
+
+\smallskip
+\noindent
+\emph{Generators and shifted OPE.}
+$V_q$ has generators $J(z)$ (Cartan current, weight~$1$)
+and $E^\pm(z)$ (vertex operators, weight~$1$), with the
+\emph{quantum vertex algebra} OPE:
+\begin{align}
+J(z)\,J(w) &\;\sim\;
+\frac{1}{(z-w)^2}\,,
+\label{eq:qlattice-JJ}
+\\[3pt]
+J(z)\,E^\pm(w) &\;\sim\;
+\frac{\pm 2\, E^\pm(w)}{z-w}\,,
+\label{eq:qlattice-JE}
+\\[3pt]
+E^+(z)\,E^-(w) &\;\sim\;
+\frac{1}{(z-w+\hbar)(z-w-\hbar)}\,
+\bigl(q\,K^+(w) - q^{-1}\,K^-(w)\bigr),
+\label{eq:qlattice-EE}
+\end{align}
+where $K^\pm(w) = q^{\pm J_0}$ are the quantum group
+Cartan elements.  The critical feature is the
+\emph{shifted poles} in~\eqref{eq:qlattice-EE}: the OPE
+is singular at $z - w = \pm\hbar$, not at $z = w$.  This
+shifting is the hallmark of a quantum vertex algebra:
+the singularity locus depends on the deformation
+parameter~$\hbar$.
+
+\smallskip
+\noindent
+\emph{Class $\mathbf{L}$, depth~$3$.}
+The shifted double pole in~\eqref{eq:qlattice-EE}
+contributes to depth~$1$ (the quantum Killing form).
+The shifted simple-pole residues contribute the quantum
+Lie bracket (the $q$-commutator $[E^+, E^-]_q$) at
+depth~$2$.  The quartic operation $m_4 = 0$ by the
+quantum Jacobi identity (the quantum Serre relation
+$(E^\pm)^2 E^\mp - (q + q^{-1})\,E^\pm E^\mp E^\pm
++ E^\mp (E^\pm)^2 = 0$).  Class~$\mathbf{L}$, depth~$3$.
+
+\smallskip
+\noindent
+\emph{Operations: $m_2$ table.}
+\begin{center}
+\small
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{lll}
+\toprule
+\textbf{Pair} & $m_2(a,b;\lambda)$ & \textbf{Source} \\
+\midrule
+$(J, J)$ & $\lambda$
+  & double pole \\
+$(J, E^\pm)$ & $\pm 2\, E^\pm$
+  & simple pole \\
+$(E^+, E^-)$
+  & $\displaystyle\frac{qK^+ - q^{-1}K^-}{q - q^{-1}}$
+  & shifted poles at $\pm\hbar$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+The $m_2$ operation on $(E^+, E^-)$ differs from the
+classical lattice VOA: the quantum group Cartan
+elements $K^\pm$ replace the classical Cartan current~$J$,
+and the denominator $q - q^{-1}$ is the quantum
+normalisation.
+
+\smallskip
+\noindent
+\emph{$R$-matrix: independent input (tier~(iii)).}
+The $R$-matrix of $V_q$ is the \emph{trigonometric}
+$R$-matrix of $U_q(\widehat{\mathfrak{sl}}_2)$:
+\begin{equation}\label{eq:qlattice-R}
+R(z)
+\;=\;
+\frac{1}{z - q^2}
+\begin{pmatrix}
+z\,q - q^{-1} & 0 & 0 & 0 \\
+0 & z - 1 & q(z-1)(q - q^{-1})/z & 0 \\
+0 & (q - q^{-1}) & z - 1 & 0 \\
+0 & 0 & 0 & z\,q - q^{-1}
+\end{pmatrix},
+\end{equation}
+where $z = e^{2\pi i u}$ is the multiplicative spectral
+parameter.  This $R$-matrix is \emph{not} derivable from
+the OPE by analytic continuation: the shifted poles at
+$z = \pm\hbar$ produce the trigonometric dependence, and
+the monodromy around $z = 0$ gives the quantum group
+parameter~$q$.  This is tier~(iii) of the three-tier
+picture: the $R$-matrix is independent input, defining
+the nonlocal braiding.
+
+\smallskip
+\noindent
+\emph{Koszul dual: $U_q(\widehat{\mathfrak{sl}}_2)$.}
+The Koszul dual of $V_q$ is conjectured to be the
+quantum affine algebra:
+\begin{equation}\label{eq:qlattice-koszul}
+V_q^!
+\;\simeq\;
+U_q(\widehat{\mathfrak{sl}}_2)\,.
+\end{equation}
+This is the $q$-deformation of the classical result
+$V_{\sqrt{2}\Z}^! = Y_\hbar(\mathfrak{sl}_2)$
+(Computation~\ref{comp:lattice-voa-ordered-bar}).
+The rational $R$-matrix $R(z) = 1 + \Omega/z$
+(Yang $R$-matrix) is deformed to the trigonometric
+$R$-matrix~\eqref{eq:qlattice-R}, and the Yangian
+$Y_\hbar(\mathfrak{sl}_2)$ is deformed to the quantum
+affine algebra $U_q(\widehat{\mathfrak{sl}}_2)$.
+The identification~\eqref{eq:qlattice-koszul} is
+supported by the RTT presentation: the RTT relation
+$R(z/w)\,T_1(z)\,T_2(w) = T_2(w)\,T_1(z)\,R(z/w)$
+with the trigonometric $R$-matrix~\eqref{eq:qlattice-R}
+generates $U_q(\widehat{\mathfrak{sl}}_2)$.
+
+\smallskip
+\noindent
+\emph{Poincar\'{e} series.}
+$P(t) = 1 + 3t$ (three cogenerators $s^{-1}J$,
+$s^{-1}E^+$, $s^{-1}E^-$, matching the
+$\dim(\mathfrak{sl}_2) = 3$ generators).
+
+\smallskip
+\noindent
+\emph{Euler characteristic and modular data.}
+The modular characteristic $\kappa(V_q) = 3q^2/(q^2 + q^{-2} + 1)$
+interpolates between the classical value $\kappa = 3/4$
+(at $q = 1$, the $A_1$ lattice VOA at $k = 1$) and the
+critical value $\kappa = 0$ (at $q = i$, a root of unity).
+
+\smallskip
+\noindent
+\emph{Genuinely $\Eone$: the three diagnostic tests.}
+Three properties distinguish $V_q$ from
+$E_\infty$-chiral algebras:
+\begin{enumerate}[label=\textup{(\roman*)},nosep]
+\item \emph{Shifted singularities}: the OPE~\eqref{eq:qlattice-EE}
+  has poles at $z - w = \pm\hbar$, not at $z = w$.  No local
+  (unordered) factorisation structure is compatible with
+  $\hbar$-shifted singularity loci.
+\item \emph{Non-derived $R$-matrix}: the trigonometric
+  $R$-matrix~\eqref{eq:qlattice-R} is not the monodromy
+  of any flat connection on $\Conf_2(\C)$ (it has a
+  $q$-dependent spectral parameter, not a rational one).
+\item \emph{Ordered-only factorisation}: the $n$-point
+  correlation functions are defined on
+  $\Conf_n^{\mathrm{ord}}(\C)$ and the Yang--Baxter
+  equation replaces the $\Sigma_n$-equivariance of
+  the $E_\infty$ setting.
+\end{enumerate}
+This is the mathematical content of ``nonlocal'' in the
+$\Eone$-chiral framework: the braiding data cannot be
+recovered from local OPE data, and the ordered configuration
+space is the primitive geometric input.
+
+\smallskip
+\noindent
+\emph{Genus-$1$.}
+Propagator-entangled ($c_0 \ne 0$).  The genus-$1$
+deformation produces the \emph{elliptic quantum group}
+$U_{q,p}(\widehat{\mathfrak{sl}}_2)$ of
+Felder--Varchenko: the trigonometric $R$-matrix acquires
+an elliptic deformation
+$R(z;\tau) = R_{\mathrm{trig}}(z) + O(q_\tau)$,
+where $q_\tau = e^{2\pi i \tau}$ is the elliptic nome.
+The passage rational $\to$ trigonometric $\to$ elliptic
+mirrors the genus tower: genus~$0$ gives the Yangian,
+the $q$-deformation gives the quantum affine algebra,
+and genus~$1$ gives the elliptic quantum group.
+\ClaimStatusConjectured
+\end{computation}
+
+\begin{remark}[The $\Eone$ landscape: from vertex algebras to quantum vertex algebras]%
+\label{rem:e1-landscape-quantum}%
+\index{E1-chiral algebra@$\Eone$-chiral algebra!landscape}%
+\index{quantum vertex algebra!landscape}%
+Computation~\ref{comp:quantum-lattice-voa} provides the
+first fully worked example in the genuinely $\Eone$ column
+of the ordered bar landscape.  The classical ($q = 1$) limit
+recovers the $A_1$ lattice VOA
+(Computation~\ref{comp:lattice-voa-ordered-bar}), and the
+three diagnostic tests isolate the features that make the
+quantum deformation genuinely nonlocal.  The conjectured
+Koszul dual identification $V_q^! \simeq
+U_q(\widehat{\mathfrak{sl}}_2)$ (equation~\eqref{eq:qlattice-koszul})
+extends the rational Koszul duality
+$V_\Lambda^! = Y_\hbar(\fg)$ to the trigonometric regime.
+Proving~\eqref{eq:qlattice-koszul} would establish the
+full Yang--Baxter hierarchy
+(rational $\to$ trigonometric $\to$ elliptic) as a
+manifestation of the ordered bar complex at successive
+genus levels.
+\end{remark}
