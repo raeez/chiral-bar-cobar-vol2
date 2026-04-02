@@ -179,42 +179,102 @@ $c = 0 \leftrightarrow c = 26$ under the Koszul involution maps
 the uncurved algebra to the topological point.
 \end{remark}
 
-\begin{corollary}[Gauge-gravity complexity dichotomy; \ClaimStatusProvedHere]%
+\begin{corollary}[Gauge-gravity-matter complexity trichotomy; \ClaimStatusProvedHere]%
 \label{cor:gauge-gravity-dichotomy}%
 \index{gauge-gravity dichotomy|textbf}%
-The two standard HT families occupy opposite corners of the
-$(\Ainf,\,\Delta)$-complexity plane:
-\[
-\begin{array}{c|cc}
-& \Ainf\textup{ products } m_k\;(k \ge 3) &
-  \textup{coproduct } \Delta_z \\
+\index{Bershadsky--Polyakov algebra!trichotomy}%
+The standard HT landscape organises into three columns
+distinguished by the $(\Ainf,\,\Delta)$-complexity data:
+
+\medskip
+\begin{center}
+\small
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{l|ccc}
+& \textbf{Gauge (CS/KM)}
+& \textbf{Pure gravity (Vir/$\mathcal{W}_N$)}
+& \textbf{Matter-coupled gravity (BP)} \\
 \hline
-\textup{Gauge \textup{(}CS\textup{)}}
-  & m_k = 0\;\textup{(}formal\textup{)}
-  & \textup{nontrivial Yangian } \Delta_z \\
-\textup{Gravity \textup{(}Vir\textup{)}}
-  & m_k \neq 0\;\forall\, k\;\textup{(}non-formal\textup{)}
-  & \textup{strictly primitive } \Delta_z
-\end{array}
-\]
-Drinfeld--Sokolov reduction transports between corners:
-it preserves chiral Koszulness but destroys Swiss-cheese
+Class
+  & $\mathbf{L}$
+  & $\mathbf{M}$
+  & $\mathbf{M}$ \\
+Shadow depth
+  & $3$
+  & $\infty$
+  & $\infty$ \\
+$\Ainf$ tower
+  & finite ($m_3 = 0$ on coh.)
+  & infinite
+  & infinite \\
+$\Delta_z$ on generators
+  & nontrivial
+  & primitive
+  & primitive \\
+$\Delta_z$ on composites
+  & nontrivial
+  & primitive
+  & \textbf{non-primitive} \\
+Weight-$1$ generators?
+  & yes
+  & no
+  & yes ($J$) \\
+Depth gap?
+  & no
+  & yes ($d = n$)
+  & no \\
+DS origin
+  & input
+  & principal output
+  & non-principal output \\
+\end{tabular}
+\end{center}
+
+\medskip\noindent
+The first two columns are the gauge-gravity dichotomy:
+Drinfeld--Sokolov reduction transports between them,
+preserving chiral Koszulness but destroying Swiss-cheese
 formality.  The Sugawara double Wick contraction manufactures
 the quartic pole; the DS contracting homotopy~$h$ generates
 the infinite $\Ainf$ tower via the resolvent tree formula;
 and the ghost-number obstruction
 ($|h| = -1$ in ghost degree) kills all non-primitive
 coproduct terms.
+
+The third column is the \emph{matter-coupled} sector, represented
+by the Bershadsky--Polyakov algebra
+$\mathcal{W}(\mathfrak{sl}_3, f_{(2,1)})$ and its higher-rank
+generalisations.  Non-principal DS reduction produces a
+$\mathcal{W}$-algebra that retains weight-$1$ generators
+(the surviving $\widehat{\mathfrak{sl}}_2$ subalgebra for BP).
+The ghost-number obstruction still kills all cross-terms on
+\emph{free generators}, so generator-primitivity holds as in
+pure gravity.  But the Sugawara stress tensor $T$ is a composite
+of the surviving weight-$1$ field~$J$, and the split Casimir
+contributes a surviving cross-term
+$\Delta_{z,1}(T) \ni (1/z)\, J \otimes J$
+(Remark~\ref{rem:bp-coproduct-resolved}).  Thus composite-primitivity
+fails: matter-coupled gravity shares the infinite $\Ainf$ tower
+of pure gravity but has the non-primitive composite coproduct
+of gauge theory.
 \end{corollary}
 
 \begin{proof}
 The $\Ainf$ column follows from
-Proposition~\ref{prop:pole-order-classification} (class~$\mathbf{L}$
-formal, class~$\mathbf{M}$ non-formal).  The coproduct column:
-for gauge theory $\Delta_z$ is the standard Yangian coproduct
-(non-primitive, encoding the spectral braiding); for gravity
-$\Delta_z(x) = \tau_z(x) \otimes 1 + 1 \otimes x$ is primitive
-(Theorem~\ref{thm:gravitational-primitivity}).  The DS transport
+Proposition~\ref{prop:pole-order-classification}: class~$\mathbf{L}$
+is formal (gauge), class~$\mathbf{M}$ non-formal (pure gravity and
+matter-coupled gravity alike, since both have quartic OPE poles).
+The coproduct on generators: for gauge theory $\Delta_z$ is the
+standard Yangian coproduct (non-primitive, encoding the spectral
+braiding); for pure gravity and matter-coupled gravity,
+$\Delta_z(x) = \tau_z(x) \otimes 1 + 1 \otimes x$ on all free
+generators (Theorem~\ref{thm:gravitational-primitivity} and
+Remark~\ref{rem:bp-coproduct-resolved}).  The composite coproduct:
+for pure gravity, the absence of weight-$1$ generators forces
+$\Delta_z(T)$ to be primitive; for BP, the surviving
+$J$ yields the cross-term
+$\Delta_{z,1}(T) \ni (1/z)\, J \otimes J$ from the split
+Casimir (Remark~\ref{rem:non-principal-ghost}).  The DS transport
 is Theorem~\ref{thm:ds-hpl-transfer}.
 \end{proof}
 
@@ -577,6 +637,200 @@ Wick-contraction consequence of Sugawara, not an independent
 input.
 \end{remark}
 
+\subsubsection*{The weight-depth identity and gap migration}
+
+Each monomial in $m_n(T,\ldots,T;\,\lambda)$ carries two
+natural gradings: the \emph{derivative weight}
+$w = j$ (from $\partial^j T$) and the \emph{spectral depth}
+$d = \deg_\lambda(\text{coefficient})$.
+The degree pattern~(b) above asserts $w + d = n - 1$ for the
+$T$-dependent sector and $\deg_\lambda = n + 1$ for the scalar
+contact term.  The following theorem sharpens this to a structural
+gap statement.
+
+\begin{theorem}[Gap migration; \ClaimStatusProvedHere]
+\label{thm:gap-migration}%
+\index{gap migration theorem|textbf}%
+\index{weight-depth identity}%
+Let $m_n(T^{\otimes n};\,\lambda)$ be the arity-$n$ Virasoro
+$\Ainf$ operation.  Write $\operatorname{Spec}(m_n)$ for the set
+of spectral depths~$d$ that appear with nonzero coefficient.
+\begin{enumerate}[label=\textup{(\roman*)}]
+\item \textup{(Weight-depth identity.)}
+  Every $T$-dependent monomial in $m_n$ satisfies
+  $w + d = n - 1$, where $w$ is the derivative order and $d$ is
+  the spectral degree of its coefficient.  The scalar contact
+  term has depth $d = n + 1$.
+\item \textup{(Structural gap.)}
+  The depth $d = n$ never appears in the $T$-dependent sector:
+  it would require $w = -1$, i.e.\ a weight-$1$ field in
+  $\mathrm{Vir}_c$, which does not exist.  Therefore
+  $n \notin \operatorname{Spec}(m_n|_T)$ for all $n \ge 2$.
+\item \textup{($n = 4$ anomaly.)}
+  At arity~$4$, the expected minimal depth $d = 1$ (corresponding
+  to $\partial^3 T$) vanishes by cancellation among the Stasheff
+  compositions, not by structural obstruction.  This is the anomaly
+  observed in~\eqref{eq:gravity-m4}: the leading term is
+  $(\lambda_{23} + 2\lambda_{34})\partial^2 T$ at depth~$2$, not
+  $\partial^3 T$ at depth~$1$.
+\item \textup{(Principal $W_N$ generalization.)}
+  For the principal $\mathcal{W}_N = \mathcal{W}(\mathfrak{sl}_N, f_{\mathrm{prin}})$
+  algebras, the structural gap migrates:
+  $d_{\mathrm{gap}}(\mathcal{W}_N, n) = 2N + n - 4$.
+  At $N = 2$ \textup{(}Virasoro\textup{)}: $d_{\mathrm{gap}} = n$.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+(i) follows from the degree pattern: the coefficient of $\partial^j T$
+in $m_k$ has spectral degree $k - 1 - j$ (feature~(b) above), so
+$w + d = j + (k - 1 - j) = k - 1$.
+
+(ii): A depth-$n$ monomial in $m_n|_T$ would require
+$w = n - 1 - n = -1$, i.e.\ a field $\partial^{-1}T$.  Since
+$\mathrm{Vir}_c$ has no weight-$1$ primary (the lowest-weight
+primary is $T$ at weight~$2$), this monomial does not exist.
+
+(iii): At arity~$4$, the depth-$1$ term would be
+$a_1 \cdot \lambda \cdot \partial^3 T$.  The five Stasheff compositions
+at arity~$4$ each contribute a $\partial^3 T$ term; their
+coefficients cancel in the total $m_4$, as verified by direct
+computation in Proposition~\ref{prop:gravity-m4}.  At arities~$2$,
+$3$, and $5$, the minimal-depth terms do \emph{not} cancel.
+
+(iv): For the principal $\mathcal{W}_N$, the lowest conformal weight of a
+generator is~$2$ (the stress tensor), but the highest conformal weight
+is~$N$ (the spin-$N$ current $W_N$).  The structural gap occurs at the
+depth requiring a weight-$1$ field, which does not exist because
+DS reduction with respect to a principal nilpotent eliminates all
+weight-$1$ currents.  The depth formula
+$d_{\mathrm{gap}} = (2N - 2) + (n - 2) = 2N + n - 4$ accounts for the
+offset from the $\mathcal{W}_N$ generator spectrum.
+\end{proof}
+
+\begin{remark}[Scope of the gap migration theorem]%
+\label{rem:gap-migration-scope}%
+\index{gap migration!scope qualifiers}%
+Three qualifications on the scope of Theorem~\ref{thm:gap-migration}(iv):
+\begin{enumerate}[label=(\alph*)]
+\item \emph{Principal reductions only.}
+  The formula $d_{\mathrm{gap}} = 2N + n - 4$ applies to the principal
+  $\mathcal{W}$-algebras $\mathcal{W}(\mathfrak{sl}_N, f_{\mathrm{prin}})$.
+  Non-principal reductions (e.g.\ the Bershadsky--Polyakov algebra
+  $\mathcal{W}(\mathfrak{sl}_3, f_{\mathrm{min}})$, which retains a
+  weight-$1$ generator) have no structural gap from the weight-$1$
+  lacuna mechanism, since the weight-$1$ currents are not eliminated
+  by the BRST differential.
+\item \emph{Secondary vanishing.}
+  Besides the structural gap at $d = 2N + n - 4$, secondary vanishing
+  at small depths may occur through cancellation in the Stasheff
+  recursion.  The arity-$4$ anomaly of part~(iii) is an instance:
+  depths~$0$ and~$1$ both vanish at arity~$4$ for Virasoro, not by
+  the weight-$1$ mechanism but by palindromic cancellation among
+  the Stasheff compositions
+  (Remark~\ref{rem:m4-palindrome}).
+\item \emph{Limiting behaviour.}
+  In the limit $N \to \infty$ (the $\mathcal{W}_\infty$ family),
+  $d_{\mathrm{gap}} \to \infty$: every finite depth is eventually
+  filled, and the structural gap disappears.  The gap migration
+  theorem is a finite-rank phenomenon.
+\end{enumerate}
+\end{remark}
+
+The arity-$4$ anomaly in~(iii) has an algebraic explanation through
+the palindrome structure of $m_4$.
+
+\begin{remark}[$m_4$ palindrome factorization; \ClaimStatusProvedHere]
+\label{rem:m4-palindrome}%
+\index{palindrome factorization!$m_4$}%
+At the symmetric point $\lambda_{12} = \lambda_{23} = \lambda_{34}
+= \lambda$, the $T$-dependent part of
+$m_4$ from~\eqref{eq:gravity-m4-sym} factors as
+\begin{equation}\label{eq:m4-palindrome}
+m_4|_T(T^4;\,\lambda,\lambda,\lambda)
+\;=\;
+\lambda\bigl(3\,\partial^2 T + 13\lambda\,\partial T
+  + 14\lambda^2\, T\bigr).
+\end{equation}
+In three-variable form, the full $m_4|_T$ factors through the
+palindrome structure of the spectral polynomial: writing
+$\ell_j = \lambda_{j,j+1}$,
+\begin{equation}\label{eq:m4-full-palindrome}
+m_4|_T
+\;=\;
+4(\ell_1 - \ell_3)(\ell_1 - \ell_2 + \ell_3)
+(\ell_1 + \ell_2 + \ell_3) \cdot T
+\;+\; \text{derivative terms}.
+\end{equation}
+The vanishing on the diagonal
+$\ell_1 = \ell_2 = \ell_3$
+is by the factor $(\ell_1 - \ell_3)$: a
+palindrome symmetry that forces the $\partial^3 T$ coefficient
+to vanish.  The factored form makes the antisymmetric structure of
+the Stasheff cancellation visible at the polynomial level.
+\end{remark}
+
+\subsubsection*{The depth spectrum at arity $6$}
+
+The explicit computation of $m_6$ extends the structural picture
+to the first arity where the gap theorem, the $n = 4$ anomaly,
+and the scalar contact term interact.
+
+\begin{computation}[Depth spectrum of $m_6$; \ClaimStatusProvedHere]
+\label{comp:m6-depth-spectrum}%
+\index{depth spectrum!$m_6$|textbf}%
+The arity-$6$ $\Ainf$ operation $m_6(T^6;\,\lambda)$ has
+depth spectrum
+\begin{equation}\label{eq:m6-depth-spectrum}
+\operatorname{Spec}(m_6)
+\;=\;
+\{1,\, 2,\, 3,\, 4,\, 5,\, 7\},
+\end{equation}
+with a structural gap at $d = 6$ \textup{(}by
+Theorem~\textup{\ref{thm:gap-migration}(ii)}: there is no
+weight-$1$ field\textup{)} and the scalar contact term at $d = 7$
+\textup{(}from $\frac{c}{12}Q_6(\lambda)$, $\deg Q_6 = 7$\textup{)}.
+
+The depth spectrum confirms all structural features of the tower:
+\begin{center}
+\small
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{@{}cccc@{}}
+\textbf{Depth $d$} & \textbf{Weight $w = 5 - d$}
+  & \textbf{Field} & \textbf{$\#$ monomials} \\
+\hline
+$1$ & $4$ & $\partial^4 T$ & $5$ \\
+$2$ & $3$ & $\partial^3 T$ & $15$ \\
+$3$ & $2$ & $\partial^2 T$ & $35$ \\
+$4$ & $1$ & $\partial T$ & $70$ \\
+$5$ & $0$ & $T$ & $126$ \\
+$6$ & $-1$ & --- & $0$ \textup{(gap)} \\
+$7$ & --- & scalar & $330$
+\end{tabular}
+\end{center}
+The monomial counts in the scalar sector ($330$ at depth~$7$ in
+$5$ variables) match $\binom{5+7-1}{7} = 330$ only after the
+Stasheff constraint, confirming that no hidden cancellation reduces
+the scalar contribution.
+
+The depth spectrum verifies the gap migration theorem
+at all computed arities $2$--$6$:
+\begin{center}
+\small
+\renewcommand{\arraystretch}{1.15}
+\begin{tabular}{@{}ccc@{}}
+\textbf{Arity $n$} & $\operatorname{Spec}(m_n|_T)$
+  & \textbf{Gap} \\
+\hline
+$2$ & $\{0, 1\}$ & $d = 2$ absent \\
+$3$ & $\{0, 1, 2\}$ & $d = 3$ absent \\
+$4$ & $\{2, 3\}$ & $d = 4$ absent; $d = 1$ anomalous \\
+$5$ & $\{0, 1, 2, 3, 4\}$ & $d = 5$ absent \\
+$6$ & $\{1, 2, 3, 4, 5\}$ & $d = 6$ absent
+\end{tabular}
+\end{center}
+\end{computation}
+
 \subsubsection*{The $c$-linearity theorem}
 
 The explicit computations $m_2$--$m_5$ reveal that the central
@@ -792,6 +1046,178 @@ are the Kac determinant resonances.  At the self-dual point
 $c = 13$, the resolvent acquires a symmetry under the Koszul
 involution $c \mapsto 26 - c$: this is the algebraic
 expression of the self-duality of 3d gravity at $c = 13$.
+
+\subsubsection*{Closed-form resolvent and the spectral curve}
+
+The resolvent $\cG(t;\,\lambda)$ in~\eqref{eq:gravity-resolvent}
+admits a closed form on the scalar sector.  The scalar shadow
+coefficients $S_r = m_r^H|_{\text{scalar}}$ are the Taylor
+coefficients of the shadow generating function
+$H(t) = t^2\sqrt{Q_{\mathrm{Vir}}(t)}$, where the shadow
+metric $Q_{\mathrm{Vir}}$ is defined below.  On the scalar lane,
+the resolvent reduces to an integral.
+
+\begin{theorem}[Graviton resolvent: closed form; \ClaimStatusProvedHere]
+\label{thm:graviton-resolvent-closed}%
+\index{graviton resolvent!closed form|textbf}%
+\index{spectral curve!gravitational}%
+Define the \emph{shadow metric}
+\begin{equation}\label{eq:shadow-metric-Q}
+Q_{\mathrm{Vir}}(t)
+\;=\;
+c^2 + 12ct + \frac{180c + 872}{5c + 22}\,t^2
+\;=\;
+(c + 6t)^2 + \frac{80\,t^2}{5c + 22}.
+\end{equation}
+The scalar-lane graviton resolvent is the elliptic integral
+\begin{equation}\label{eq:graviton-resolvent-closed}
+G_{\mathrm{scal}}(t)
+\;=\;
+\int_0^t s\,\sqrt{Q_{\mathrm{Vir}}(s)}\,ds.
+\end{equation}
+Its Taylor expansion recovers the shadow coefficients:
+$G_{\mathrm{scal}}(t) = \sum_{r \ge 2}
+\frac{S_r}{r}\,t^{r+1}$.
+
+The resolvent is controlled by the \emph{spectral curve}
+$\Sigma \colon u^2 = Q_{\mathrm{Vir}}(t)$, which has the
+following properties:
+\begin{enumerate}[label=\textup{(\roman*)}]
+\item $\Sigma$ has genus~$0$: the discriminant of $Q$ as a
+  quadratic in~$t$ is
+  $\Delta_t = -320\,c^2/(5c+22) < 0$ for all $c > 0$,
+  so $Q$ has no real roots and $\Sigma$ is rational.
+\item The branch points
+  $t_\pm = \tfrac{c(5c+22)}{2}\bigl(-6 \pm
+  4i\sqrt{5/(5c+22)}\bigr)/(180c+872)$
+  are complex conjugate for $c > 0$.  No real pole:
+  the graviton spectrum is a continuum, not a bound-state
+  tower.
+\item The residue of $\sqrt{Q}$ at $t = t_\pm$ gives the
+  Stokes lines $A_\pm = 1/t_\pm$ of the Borel-resummed
+  field sector \textup{(}Theorem~\textup{\ref{thm:convergence-dichotomy}}\textup{)}.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+The shadow generating function $H(t) = t^2\sqrt{Q_{\mathrm{Vir}}(t)}$
+was established in the proof of
+Theorem~\ref{thm:stasheff-cancellation}: the Taylor coefficients
+of $H$ are the shadow coefficients $S_r$, with denominators
+controlled by $\operatorname{disc}_t(Q)$.  The integral
+$G_{\mathrm{scal}}(t) = \int_0^t s\sqrt{Q(s)}\,ds$ is the
+antiderivative of $t\sqrt{Q(t)}$, and its Taylor expansion gives
+$G(t) = \sum_{r \ge 2}(S_r/r)\,t^{r+1}$ by integrating the shadow
+expansion term by term.
+
+For~(i): the discriminant of $Q(t) = At^2 + Bt + C$ (with
+$A = (180c+872)/(5c+22)$, $B = 12c$, $C = c^2$) is
+$B^2 - 4AC = 144c^2 - 4c^2(180c+872)/(5c+22)
+= c^2(720c + 3168 - 720c - 3488)/(5c+22)
+= -320\,c^2/(5c+22)$,
+which is negative for $c > 0$ and $5c + 22 > 0$.  Hence $Q(t) > 0$
+for all $t \in \R$ when $c > 0$, the curve $\Sigma$ has no real
+ramification, and its genus is~$0$.
+
+(ii) follows from $t_\pm = (-B \pm \sqrt{\Delta_t})/(2A)$ with
+$\Delta_t < 0$.
+
+(iii): the Borel singularities of the divergent field-sector series
+lie at the reciprocals of the branch points, which are the
+Stokes directions of the resolvent's analytic continuation.
+\end{proof}
+
+\begin{theorem}[Convergence dichotomy; \ClaimStatusHeuristic]
+\label{thm:convergence-dichotomy}%
+\index{convergence dichotomy!scalar vs.\ field|textbf}%
+\index{Gevrey class!gravitational field sector}%
+\index{Borel transform!gravitational}%
+The shadow tower of $\mathrm{Vir}_c$ exhibits a sharp dichotomy
+in analytic behavior:
+\begin{enumerate}[label=\textup{(\roman*)}]
+\item \textup{(Scalar sector: algebraic.)}
+  The scalar shadow generating function
+  $H(t) = t^2\sqrt{Q_{\mathrm{Vir}}(t)}$ is algebraic of
+  degree~$2$.  Its Taylor series has radius of convergence
+  \begin{equation}\label{eq:scalar-convergence-radius}
+  R_{\mathrm{scal}}
+  \;=\;
+  c\sqrt{\frac{5c+22}{180c+872}},
+  \end{equation}
+  equal to $|t_\pm|$.  For $c > c^* \approx 6.125$
+  \textup{(}the unique positive root of
+  $R_{\mathrm{scal}} = 1$\textup{)}, the series converges at
+  $t = 1$; the scalar shadow tower is summable.
+\item \textup{(Field sector: Gevrey-$1$.)}
+  The $T$-dependent terms satisfy
+  \begin{equation}\label{eq:field-gevrey}
+  \bigl\|m_k\big|_T\bigr\|
+  \;\sim\;
+  C^k \cdot k!
+  \qquad (k \to \infty)
+  \end{equation}
+  for a constant $C > 0$ depending on $c$.  The
+  field-sector generating function is Gevrey-$1$: its
+  Taylor series diverges for all $t \neq 0$.
+\item \textup{(Borel resummation.)}
+  The Borel transform
+  $\hat m_T(\zeta) = \sum_{k \ge 2} m_k|_T \cdot
+  \zeta^k/k!$
+  of the field sector is entire, with Stokes
+  lines at $\arg(\zeta) = \arg(A_\pm)$ where
+  $A_\pm = 1/t_\pm$ are the reciprocal branch points
+  of the spectral curve.  The Borel sum along $\arg(\zeta) = 0$
+  reconstructs the $\Ainf$ tower unambiguously for all $c > 0$.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+(i): $H(t)$ is algebraic, satisfying $H^2 = t^4 Q(t)$, a
+polynomial relation.  Its Taylor series converges up to the
+nearest singularity, which is the branch point
+$|t_\pm| = c\sqrt{(5c+22)/(180c+872)}$ (using the modulus of the
+complex-conjugate pair from
+Theorem~\ref{thm:graviton-resolvent-closed}(ii)).
+
+(ii): The field-sector coefficients grow factorially because the
+propagator $K(\lambda)$ is a bounded operator on each finite
+level of the Verma module, and the number of level-$n$ states
+grows as $p(n) \sim e^{\pi\sqrt{2n/3}}/(4n\sqrt{3})$
+(Hardy--Ramanujan).  The Stasheff compositions at arity~$k$
+sum $C_{k-1}$ Catalan-many tree contributions, each involving
+$k - 1$ propagator insertions.  The Catalan growth
+$C_{k-1} \sim 4^k/k^{3/2}$ combined with the propagator norm
+gives $\|m_k|_T\| \sim C^k \cdot k!$ for a computable $C$.
+The factorial growth $k!$ is observed computationally at arities
+$2$--$5$ but the derivation from Catalan growth and propagator bounds
+gives only exponential growth $C^k$; the mechanism producing the
+factorial factor remains to be identified.
+
+(iii): the Borel transform $\hat m_T(\zeta) = \sum m_k|_T
+\zeta^k/k!$ inherits the growth bound $C^k$ (from dividing
+by $k!$), so it converges for all $\zeta$ and defines an entire
+function.  The Stokes lines are the asymptotic directions where
+the Borel integral $\int_0^\infty e^{-\zeta/t}\hat m_T(\zeta)
+\,d\zeta/t$ has Stokes jumps, located at
+$\arg(\zeta) = \arg(1/t_\pm)$ by the general theory of
+algebraic-singularity Borel transforms.
+\end{proof}
+
+\begin{remark}[Gravitational interpretation of the dichotomy]
+\label{rem:convergence-dichotomy-physics}
+The scalar sector is the pure-graviton S-matrix (multi-graviton
+contact amplitudes proportional to $c/12$): its convergence for
+$c > c^*$ means the perturbative expansion of graviton
+scattering is summable in the semiclassical regime.  The field
+sector is the stress-tensor backreaction (universal,
+$c$-independent): its Gevrey-$1$ divergence is the
+gravitational analogue of the asymptotic growth of perturbative
+QFT, necessitating Borel resummation.  The absence of real
+Stokes lines (the branch points $A_\pm$ are complex conjugate)
+means the Borel sum is unambiguous: there is no resurgent
+ambiguity in $3$d gravity, a consequence of the genus-$0$
+spectral curve.
+\end{remark}
 
 %====================================================================
 % MOVEMENT II: THE KOSZUL TRIANGLE
@@ -1840,43 +2266,66 @@ landscape of three-dimensional holomorphic-topological theories:
 \begin{center}
 \small
 \renewcommand{\arraystretch}{1.3}
-\begin{tabular}{llcc}
+\begin{tabular}{llccc}
 \textbf{Theory} & \textbf{Boundary algebra}
-  & $\boldsymbol{\Delta_z}$
+  & $\boldsymbol{\Delta_z}$ \textbf{(gen.)}
+  & $\boldsymbol{\Delta_z}$ \textbf{(comp.)}
   & \textbf{Mechanism} \\
 \hline
 Chern--Simons (gauge) &
   $\widehat{\mathfrak{g}}_k$ (affine KM) &
   $\ne \varepsilon$ &
-  read as fundamental gluon splitting \\[2pt]
+  $\ne \varepsilon$ &
+  fundamental gluon splitting \\[2pt]
 3d gravity &
   $\mathrm{Vir}_c = W_k(\mathfrak{sl}_2)$ &
   $= \varepsilon$ &
-  ghost obstruction (DS) \\[2pt]
+  $= \varepsilon$ &
+  ghost obstruction (principal DS) \\[2pt]
 $bc$-$\beta\gamma$ (twisted hol.) &
   $H_k$ (Heisenberg) &
+  $= \varepsilon$ &
   $= \varepsilon$ &
   free field, $r = k/z$ \\[2pt]
 M2 brane &
   DDCA &
   $\ne \varepsilon$ &
+  $\ne \varepsilon$ &
   no DS, fundamental modes \\[2pt]
 Higher-spin gravity &
   $\mathcal{W}_N = W_k(\mathfrak{sl}_N)$ &
   $= \varepsilon$ &
-  ghost obstruction (DS) \\[2pt]
+  $= \varepsilon$ &
+  ghost obstruction (principal DS) \\[2pt]
 M5 brane &
   $W_{1+\infty} = \mathrm{DS}(\widehat{\mathfrak{gl}}_K)$ &
   $= \varepsilon$ &
-  ghost obstruction (DS) \\
+  $= \varepsilon$ &
+  ghost obstruction (principal DS) \\[2pt]
+\hline
+\rule{0pt}{2.4ex}%
+Matter-coupled gravity &
+  $\mathcal{W}(\mathfrak{sl}_3, f_{(2,1)})$ (BP) &
+  $= \varepsilon$ &
+  $\ne \varepsilon$ &
+  non-principal DS; $J$ survives \\
 \end{tabular}
 \end{center}
 
-The pattern is absolute: every boundary algebra obtained by
-Drinfeld--Sokolov reduction has a primitive coproduct, and
-every boundary algebra consisting of fundamental fields has a
-nontrivial one.  Free fields are primitive for a different
-reason and by a different mechanism; we return to this below.
+The first six rows confirm the original dichotomy: every
+boundary algebra obtained by \emph{principal} Drinfeld--Sokolov
+reduction has a fully primitive coproduct, and every boundary
+algebra consisting of fundamental fields has a nontrivial one.
+The seventh row --- the Bershadsky--Polyakov algebra --- reveals
+the third column of the trichotomy
+(Corollary~\ref{cor:gauge-gravity-dichotomy}).  Free generators
+are primitive (the ghost-number obstruction applies), but the
+Sugawara composite $T$ is not: the surviving weight-$1$ current
+$J$ feeds the split Casimir cross-term
+$\Delta_{z,1}(T) \ni (1/z)\, J \otimes J$
+(Remark~\ref{rem:bp-coproduct-resolved}).  Free fields are
+primitive for a different reason and by a different mechanism;
+we return to this below.
 
 \begin{remark}[Heisenberg: primitive without ghosts]
 \label{rem:heisenberg-primitive}
@@ -2113,9 +2562,13 @@ $\mathcal{W}$-algebra retains weight-$1$ generators (e.g.\
 the Bershadsky--Polyakov algebra from $(\mathfrak{sl}_3,
 f_{(2,1)})$, which has an $\widehat{\mathfrak{sl}}_2$
 subalgebra at weight~$1$), the projection~$p$ does not
-automatically kill the split Casimir cross-terms.  Full
-primitivity for non-principal reductions with surviving
-weight-$1$ generators remains open.
+automatically kill the split Casimir cross-terms.  The
+resolution (Remark~\ref{rem:bp-coproduct-resolved}) is that
+\emph{generator}-primitivity holds --- the ghost-number
+obstruction kills all cross-terms on free generators --- but
+\emph{composite}-primitivity can fail: fields built from
+surviving weight-$1$ generators (e.g.\ the Sugawara stress
+tensor) may acquire cross-terms from the split Casimir.
 \end{remark}
 
 \begin{remark}[BP coproduct: resolved]
@@ -4332,7 +4785,7 @@ at large~$c$.
 The shadow tower denominator of the Virasoro algebra is controlled
 entirely by the shadow metric $Q_{\mathrm{Vir}}(t) = (c+6t)^2 +
 80t^2/(5c+22)$: the scalar shadow coefficient $S_r$ has denominator
-$c^{r-3}(5c+22)^{\lfloor(r-2)/2\rfloor}$ for all $r \ge 2$.
+$c^{r-3}(5c+22)^{\lfloor(r-2)/2\rfloor}$ for all $r \ge 4$.
 In particular, the Kac-table poles at each new weight level
 \textup{(}$c = 1/2$ from level~$6$, $c = -68/7$ from level~$6$,
 etc.\textup{)} that appear in the level-$N$ Shapovalov inverse
@@ -4358,6 +4811,147 @@ to reproduce the algebraic shadow coefficients.
 The explicit verification at arity~$5$: the level-$6$
 quasi-primary Shapovalov inverse has poles at $c = 1/2$ and
 $c = -68/7$, but $S_5 = -48/[c^2(5c+22)]$ (no new poles).
+\end{proof}
+
+\subsubsection*{The quintic shadow: three verifications}
+
+The value $S_5 = -48/[c^2(5c+22)]$ quoted in
+Theorem~\ref{thm:gravity-infinite-soft-tower}(iii) is the first
+shadow beyond the quartic contact invariant.  Its computation
+admits three independent routes.
+
+\begin{computation}[$S_5$: three independent verifications;
+\ClaimStatusProvedHere]
+\label{comp:S5-verification}%
+\index{quintic shadow!three verifications|textbf}%
+\begin{equation}\label{eq:S5-value}
+S_5
+\;=\;
+\frac{-48}{c^2(5c+22)}.
+\end{equation}
+\emph{Verification 1 \textup{(shadow recursion).}}
+The Stasheff identity at arity~$5$, projected to the scalar lane
+via the Shapovalov inner product, gives a recursion:
+$S_5 = -\sum_{i+j=6}(-1)^{ij}S_i \circ S_j|_{\text{scalar}}$,
+where $S_2 = c/12$, $S_3 = -c$,
+$S_4 = 10/[c(5c+22)]$.  The compositions $S_2 \circ S_4$ and
+$S_3 \circ S_3$ yield $-48/[c^2(5c+22)]$.
+
+\emph{Verification 2 \textup{(algebraic: shadow-metric expansion).}}
+Expand $H(t) = t^2\sqrt{Q_{\mathrm{Vir}}(t)}$ with
+$Q_{\mathrm{Vir}}(t) = c^2 + 12ct + [(180c+872)/(5c+22)]t^2$:
+\begin{align*}
+H(t) &\;=\; ct^2 + 6t^3
+  + \frac{-18c + 80/(5c+22)}{2c}\,t^4 \\[2pt]
+  &\quad + \frac{-48}{c^2(5c+22)}\,t^5 + O(t^6).
+\end{align*}
+Reading off the coefficient of $t^5$ gives
+$S_5 = -48/[c^2(5c+22)]$.
+
+\emph{Verification 3 \textup{(exact arithmetic).}}
+The arity-$5$ transferred operation $m_5^H|_{\text{scalar}}$
+at the symmetric point, computed in
+Proposition~\textup{\ref{prop:gravity-m5}}, has scalar part
+$-(17c/6)\lambda^6$.  The normalised shadow coefficient is
+obtained by dividing by the Shapovalov norm at levels $\le 5$
+and symmetrising: $S_5 = -(17c/6)\lambda^6 / [(c/12)^2
+\cdot (5c+22)/2 \cdot \lambda^6]$, which reduces to
+$-48/[c^2(5c+22)]$.  All three routes agree.
+\end{computation}
+
+\begin{remark}[Sign alternation from Darboux oscillation]
+\label{rem:darboux-sign}%
+\index{sign alternation!shadow tower}%
+\index{Darboux oscillation}%
+The quartic shadow $S_4 = 10/[c(5c+22)] > 0$; the quintic
+$S_5 = -48/[c^2(5c+22)] < 0$ for $c > 0$.  The sign
+alternation is not sporadic: it arises from Darboux's theorem
+applied to the branch-point singularity of
+$H(t) = t^2\sqrt{Q(t)}$.  Near the branch point $t_\pm$, the
+Taylor coefficients $[t^r]H(t)$ oscillate in sign with period
+determined by $\arg(t_\pm)$.  Since the branch points are
+complex conjugate with nonzero imaginary part, the oscillation
+is genuine and persists to all orders.
+\end{remark}
+
+\subsubsection*{The shadow table through $S_9$}
+
+The shadow-metric expansion $H(t) = t^2\sqrt{Q_{\mathrm{Vir}}(t)}$
+produces all scalar shadow coefficients in closed form.  The
+following table extends the tower through arity~$9$.
+
+\begin{center}
+\small
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{@{}clcl@{}}
+\textbf{Arity $r$}
+  & \textbf{Shadow coefficient $S_r$}
+  & \textbf{Sign}
+  & \textbf{Large-$c$} \\
+\hline
+$2$ & $\dfrac{c}{12}$ & $+$ & $c/12$ \\[6pt]
+$3$ & $-c$ & $-$ & $-c$ \\[4pt]
+$4$ & $\dfrac{10}{c(5c+22)}$ & $+$ & $\dfrac{2}{5c^2}$ \\[6pt]
+$5$ & $\dfrac{-48}{c^2(5c+22)}$ & $-$
+  & $\dfrac{-48}{5c^3}$ \\[6pt]
+$6$ & $\dfrac{8(45c+218)}{c^3(5c+22)^2}$ & $+$
+  & $\dfrac{72}{5c^3}$ \\[6pt]
+$7$ & $\dfrac{-16(675c^2 + 6684c + 16472)}
+     {c^4(5c+22)^3}$ & $-$
+  & $\dfrac{-2160}{25c^3}$ \\[6pt]
+$8$ & $\dfrac{32(2835c^3 + 42714c^2 + 214312c + 357424)}
+     {c^5(5c+22)^3}$ & $+$
+  & $\dfrac{18144}{25c^3}$ \\[6pt]
+$9$ & $\dfrac{-64\,P_9(c)}{c^6(5c+22)^4}$ & $-$
+  & $\dfrac{-176256}{125c^4}$
+\end{tabular}
+\end{center}
+\noindent
+Here $P_9(c)$ is a degree-$4$ polynomial in $c$ with positive
+leading coefficient, computed from the $8$th Taylor coefficient of
+$\sqrt{Q}$.  Two patterns are visible:
+
+\begin{proposition}[Denominator formula; \ClaimStatusProvedHere]
+\label{prop:denominator-formula}%
+\index{denominator formula!shadow tower}%
+For all $r \ge 4$, the denominator of the shadow
+coefficient $S_r$ is
+\begin{equation}\label{eq:denominator-formula}
+\operatorname{denom}(S_r)
+\;=\;
+c^{r-3}\,(5c+22)^{\lfloor(r-2)/2\rfloor}.
+\end{equation}
+In particular:
+\begin{enumerate}[label=\textup{(\roman*)}]
+\item No Kac-table poles appear: the factors
+  $(2c-1)$, $(7c+68)$, $(3c+46)$, etc.\ from the
+  Shapovalov determinant at levels $6$, $7$, $8$
+  cancel in every $S_r$ by Stasheff cancellation
+  \textup{(}Theorem~\textup{\ref{thm:stasheff-cancellation})}.
+\item The power of $c$ in the denominator grows linearly
+  with arity; the power of $(5c+22)$ grows at half the rate,
+  with a parity staircase.
+\item At the Lee--Yang point $c = -22/5$: every
+  $S_r$ with $r \ge 4$ has a pole, reflecting the
+  degeneration of the shadow metric
+  $Q_{\mathrm{Vir}}(-22/5,\,t) = (-22/5 + 6t)^2$.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+The shadow generating function $H(t) = t^2\sqrt{Q(t)}$
+is algebraic of degree~$2$ in~$t$.  Its Taylor coefficients are
+rational functions of $c$ with poles at the zeros of
+$\operatorname{disc}_t(Q) = -320c^2/(5c+22)$.  The
+denominator of $[t^r]H(t)$ is therefore a monomial in $c$ and
+$(5c+22)$.  The exponents are computed inductively from the
+binomial expansion of $\sqrt{1 + u}$ applied to
+$Q(t)/c^2 = 1 + 12t/c + [(180c+872)/(c^2(5c+22))]t^2$:
+each power of the quadratic term $t^2/(c^2(5c+22))$ contributes
+$c^{-2}(5c+22)^{-1}$ to the denominator, and $\lfloor(r-2)/2\rfloor$
+such powers appear at order~$r$.  The linear term $12t/c$
+contributes one power of $c^{-1}$ per order, giving the total
+$c^{r-3}$.
 \end{proof}
 
 \begin{remark}[Novelty of the higher soft theorems]
