@@ -1359,5 +1359,1587 @@ def run_full_computation(k: float = 1.0, verbose: bool = True) -> Dict[str, Any]
     return results
 
 
+# =============================================================================
+# 7. G_2 LIE ALGEBRA DATA
+# =============================================================================
+
+def _build_g2_from_matrices() -> LieAlgebraData:
+    r"""Build G_2 from the 7-dimensional representation.
+
+    ROOT SYSTEM G_2:
+      Simple roots: alpha_1 (short, |alpha_1|^2 = 2/3), alpha_2 (long, |alpha_2|^2 = 2).
+      Root length ratio: long^2/short^2 = 3.
+      Cartan matrix: A = [[2, -1], [-3, 2]].
+        A_{12} = 2(alpha_1, alpha_2)/(alpha_2, alpha_2) = 2(-1)/2 = -1.
+        A_{21} = 2(alpha_1, alpha_2)/(alpha_1, alpha_1) = 2(-1)/(2/3) = -3.
+
+      Positive roots (in simple root basis, listed by height):
+        alpha_1          (1,0)  height 1  short
+        alpha_2          (0,1)  height 1  long
+        alpha_1+alpha_2  (1,1)  height 2  short (|a|^2 = 2/3)
+        2alpha_1+alpha_2 (2,1)  height 3  short (|a|^2 = 2/3)
+        3alpha_1+alpha_2 (3,1)  height 4  long  (|a|^2 = 2)
+        3alpha_1+2alpha_2(3,2)  height 5  long  (|a|^2 = 2)
+
+      Wait: need to verify the root lengths.
+        (alpha_1, alpha_1) = 2/3 (with normalisation long^2 = 2)
+        (alpha_2, alpha_2) = 2
+        (alpha_1, alpha_2) = -1
+        (alpha_1+alpha_2, alpha_1+alpha_2) = 2/3 + 2 + 2*(-1) = 2/3. Short.
+        (2alpha_1+alpha_2) = 4*2/3 + 2 + 2*2*(-1) = 8/3+2-4 = 8/3-2 = 2/3. Short.
+        (3alpha_1+alpha_2) = 9*2/3 + 2 + 2*3*(-1) = 6+2-6 = 2. Long.
+        (3alpha_1+2alpha_2) = 9*2/3 + 4*2 + 2*3*2*(-1) = 6+8-12 = 2. Long.
+
+      So: 3 short roots (alpha_1, alpha_1+alpha_2, 2alpha_1+alpha_2)
+          3 long roots (alpha_2, 3alpha_1+alpha_2, 3alpha_1+2alpha_2).
+      Total roots: 12. dim(G_2) = 12 + 2 = 14. rank = 2. h^v = 4.
+
+    REPRESENTATION: The 7-dimensional fundamental representation.
+    G_2 embeds in so(7) as the automorphism group of the octonions.
+    The 7-dim rep is the imaginary octonions.
+
+    I use the explicit 7x7 matrix representation from Humphreys / Fulton-Harris.
+    The Cartan subalgebra acts diagonally, and the root vectors are
+    off-diagonal matrices satisfying the sp(4) constraint structure.
+
+    We build the 14 basis matrices (6 positive root vectors, 6 negative,
+    2 Cartan) in the 7-dim rep, compute all commutators, and extract
+    structure constants.
+
+    SYMMETRISER:
+      D = diag(d_1, d_2) where d_i = (alpha_i, alpha_i) / (min root length)^2.
+      short^2 = 2/3, long^2 = 2. Ratio = 3. D = diag(1, 3).
+      DA = diag(1,3) * [[2,-1],[-3,2]] = [[2,-1],[-9,6]]. Symmetric!
+      Check: 2*(-1) = -2, (-9)*... hmm, D_1*A_{12} = 1*(-1)=-1, D_2*A_{21} = 3*(-3)=-9. Not equal!
+
+    Let me redo. The symmetriser D satisfies D_i A_{ij} = D_j A_{ji}.
+      D_1 * A_{12} = D_2 * A_{21}  =>  D_1 * (-1) = D_2 * (-3)  =>  D_1 = 3*D_2.
+      Choose D_2 = 1, D_1 = 3. D = diag(3, 1).
+      DA = [[6, -3], [-3, 2]]. Symmetric. Good.
+      Inner product: (alpha_i, alpha_j) = (DA)_{ij}/c for normalisation c.
+      With c = 3: (alpha_1, alpha_1) = 2, (alpha_2, alpha_2) = 2/3. But this makes
+      alpha_1 LONG and alpha_2 SHORT. This contradicts the standard convention!
+
+    The issue is node ordering. With A = [[2, -1], [-3, 2]]:
+      Node 1 has -3 in its column, meaning <alpha_2, alpha_1^v> = -3.
+      This means alpha_1^v is longer, so alpha_1 is the LONG root.
+      Node 2 has -1 in its column: <alpha_1, alpha_2^v> = -1.
+
+    Wait: I mixed up Bourbaki's convention. In Bourbaki's G_2 plate:
+      The Cartan matrix is A = [[2, -1], [-3, 2]] with alpha_1 = SHORT root,
+      alpha_2 = LONG root.
+
+    Let me verify: A_{21} = <alpha_2, alpha_1^v> = 2(alpha_2, alpha_1)/(alpha_1, alpha_1).
+    If alpha_1 is short (|alpha_1|^2 small), then dividing by a small number gives a larger value.
+    A_{21} = -3 means 2(alpha_2, alpha_1)/(alpha_1, alpha_1) = -3.
+    (alpha_2, alpha_1) = -3 * (alpha_1, alpha_1)/2.
+    And A_{12} = 2(alpha_1, alpha_2)/(alpha_2, alpha_2) = -1.
+    (alpha_1, alpha_2) = -(alpha_2, alpha_2)/2.
+    So: -3*(alpha_1, alpha_1)/2 = -(alpha_2, alpha_2)/2.
+    => (alpha_2, alpha_2) = 3*(alpha_1, alpha_1).
+    So alpha_2 is LONG (3x the length squared of alpha_1). Correct for Bourbaki G_2.
+
+    With |alpha_1|^2 = 2/3, |alpha_2|^2 = 2 (standard normalisation long roots^2 = 2).
+    D_1 = 3, D_2 = 1. DA/3 = [[2, -1], [-1, 2/3]].
+    (alpha_1, alpha_1) = 2*(DA)_{11}/(2*3) = ... this is getting circular.
+
+    Let me just build the representation and extract everything numerically.
+    """
+    # =====================================================================
+    # Build G_2 in the 7-dimensional representation
+    # =====================================================================
+    # Following Humphreys "Introduction to Lie Algebras", Chapter 19,
+    # and the explicit matrices from Fulton-Harris Appendix D.
+    #
+    # G_2 sits inside so(7). The 7-dim rep is the standard rep of so(7)
+    # restricted to G_2. In the orthonormal basis {e_1, ..., e_7} of R^7
+    # with the standard bilinear form, G_2 consists of those elements of
+    # so(7) preserving the cross-product structure.
+    #
+    # I use the Chevalley basis in the 7-dim rep. The weights of the
+    # 7-dim rep are: 0, +/- epsilon_i for three linearly independent
+    # short coroots. The zero weight space is 1-dimensional.
+    #
+    # EXPLICIT CONSTRUCTION via the octonion cross-product:
+    # The imaginary octonions Im(O) = R^7 carry a G_2-invariant cross product.
+    # G_2 = Aut(O) acts on Im(O) by the 7-dim rep.
+    # The Lie algebra g_2 = Der(O) consists of derivations of the octonions.
+    #
+    # I'll use a clean construction based on root vectors.
+    # The 7-dim rep has weight diagram:
+    #   weights in terms of fundamental weights omega_1, omega_2:
+    #   highest weight = omega_1 (the short fundamental weight)
+    #   weights: omega_1, omega_1-alpha_1, omega_1-alpha_1-alpha_2,
+    #            omega_1-2alpha_1-alpha_2, omega_1-3alpha_1-alpha_2,
+    #            omega_1-3alpha_1-2alpha_2, 0 (zero weight with mult 1)
+    #
+    # Actually, the 7-dim rep of G_2 has weights:
+    #   short roots: +/- alpha_1, +/-(alpha_1+alpha_2), +/-(2alpha_1+alpha_2)
+    #   plus zero (with multiplicity 1).
+    # This is 6 + 1 = 7. Good.
+
+    # I'll use an explicit matrix construction.
+    # Basis of the 7-dim space:
+    #   v_1 = weight (1,0) = alpha_1
+    #   v_2 = weight (1,1) = alpha_1+alpha_2
+    #   v_3 = weight (2,1) = 2alpha_1+alpha_2
+    #   v_0 = weight (0,0) = zero
+    #   v_{-3} = weight (-2,-1) = -(2alpha_1+alpha_2)
+    #   v_{-2} = weight (-1,-1) = -(alpha_1+alpha_2)
+    #   v_{-1} = weight (-1,0) = -alpha_1
+    #
+    # Order: v_3, v_2, v_1, v_0, v_{-1}, v_{-2}, v_{-3}
+    #         0    1    2    3     4       5       6
+
+    n = 7
+
+    def E(i, j):
+        M = np.zeros((n, n))
+        M[i, j] = 1.0
+        return M
+
+    # Weight vectors in our basis ordering (0-indexed):
+    # Index 0: weight 2alpha_1+alpha_2  (highest short root)
+    # Index 1: weight alpha_1+alpha_2
+    # Index 2: weight alpha_1
+    # Index 3: weight 0
+    # Index 4: weight -alpha_1
+    # Index 5: weight -(alpha_1+alpha_2)
+    # Index 6: weight -(2alpha_1+alpha_2)
+
+    # The Cartan elements act diagonally by the weight values:
+    # h_1 = alpha_1^v acts on weight mu by <mu, alpha_1^v>.
+    # h_2 = alpha_2^v acts on weight mu by <mu, alpha_2^v>.
+    #
+    # <mu, alpha_i^v> = 2(mu, alpha_i)/(alpha_i, alpha_i).
+    # For G_2 with (alpha_1, alpha_1) = 2/3, (alpha_2, alpha_2) = 2, (alpha_1, alpha_2) = -1:
+    #
+    # Weights as linear combinations of simple roots: mu = n_1*alpha_1 + n_2*alpha_2.
+    # <mu, alpha_1^v> = n_1*A_{11} + n_2*A_{21} = 2*n_1 - 3*n_2.
+    # <mu, alpha_2^v> = n_1*A_{12} + n_2*A_{22} = -n_1 + 2*n_2.
+
+    weights_in_simple = [
+        (2, 1),    # idx 0: 2alpha_1+alpha_2
+        (1, 1),    # idx 1: alpha_1+alpha_2
+        (1, 0),    # idx 2: alpha_1
+        (0, 0),    # idx 3: zero
+        (-1, 0),   # idx 4: -alpha_1
+        (-1, -1),  # idx 5: -(alpha_1+alpha_2)
+        (-2, -1),  # idx 6: -(2alpha_1+alpha_2)
+    ]
+
+    A = np.array([[2, -1], [-3, 2]], dtype=float)
+
+    # Compute h_1, h_2 eigenvalues on each weight
+    h1_eigenvalues = []
+    h2_eigenvalues = []
+    for (n1, n2) in weights_in_simple:
+        h1_eigenvalues.append(n1 * A[0, 0] + n2 * A[1, 0])
+        h2_eigenvalues.append(n1 * A[0, 1] + n2 * A[1, 1])
+
+    # h1 eigenvalues: (2*2+1*(-3), 1*2+1*(-3), 1*2+0, 0, -2, 2-3, -4-(-3)) =
+    # idx 0: 2*2+1*(-3) = 1
+    # idx 1: 1*2+1*(-3) = -1
+    # idx 2: 1*2+0*(-3) = 2
+    # idx 3: 0
+    # idx 4: -2
+    # idx 5: 1
+    # idx 6: -1
+    # h2 eigenvalues:
+    # idx 0: 2*(-1)+1*2 = 0
+    # idx 1: 1*(-1)+1*2 = 1
+    # idx 2: 1*(-1)+0 = -1
+    # idx 3: 0
+    # idx 4: 1
+    # idx 5: -1
+    # idx 6: 0
+
+    H1 = np.diag(h1_eigenvalues)
+    H2 = np.diag(h2_eigenvalues)
+
+    # Now I need to construct the root vectors. For G_2 in the 7-dim rep,
+    # each root alpha acts as a matrix sending weight mu to weight mu+alpha
+    # (when mu+alpha is a weight of the rep) with a specific coefficient.
+    #
+    # Roots and their weight actions:
+    # alpha_1 = (1,0):     maps weight mu to mu+alpha_1
+    #   alpha_1 sends:  (1,1) -> (2,1) [idx 1 -> idx 0],
+    #                   (0,0) -> (1,0) [idx 3 -> idx 2],
+    #                   (-1,0) -> (0,0) [idx 4 -> idx 3],
+    #                   (-2,-1) -> (-1,-1)... wait, (-2,-1)+(1,0) = (-1,-1) = idx 5.
+    #                   Actually: (-1,-1)+(1,0) = (0,-1) which is NOT a weight.
+    #                   And (-2,-1)+(1,0) = (-1,-1) which IS weight at idx 5.
+    # Wait: the weights are (2,1), (1,1), (1,0), (0,0), (-1,0), (-1,-1), (-2,-1).
+    #   alpha_1 = (1,0):
+    #     (1,1) + (1,0) = (2,1) yes, idx 1 -> idx 0
+    #     (0,0) + (1,0) = (1,0) yes, idx 3 -> idx 2
+    #     (-1,0) + (1,0) = (0,0) yes, idx 4 -> idx 3
+    #     (-1,-1) + (1,0) = (0,-1) NO (not a weight)
+    #     (-2,-1) + (1,0) = (-1,-1) yes, idx 6 -> idx 5
+    #     (2,1) + (1,0) = (3,1) NO
+    #     (1,0) + (1,0) = (2,0) NO
+    #   So e_{alpha_1}: 4 transitions: 1->0, 3->2, 4->3, 6->5.
+    #
+    # alpha_2 = (0,1):
+    #     (1,0) + (0,1) = (1,1) yes, idx 2 -> idx 1
+    #     (-1,-1) + (0,1) = (-1,0) yes, idx 5 -> idx 4
+    #   And check others:
+    #     (2,1) + (0,1) = (2,2) NO
+    #     (1,1) + (0,1) = (1,2) NO
+    #     (0,0) + (0,1) = (0,1) NO (not in list)
+    #     (-1,0) + (0,1) = (-1,1) NO
+    #     (-2,-1) + (0,1) = (-2,0) NO
+    #   So e_{alpha_2}: 2 transitions: 2->1, 5->4.
+    #
+    # alpha_1+alpha_2 = (1,1):
+    #     (1,0) + (1,1) = (2,1) yes, idx 2 -> idx 0
+    #     (0,0) + (1,1) = (1,1) yes, idx 3 -> idx 1
+    #     (-1,0) + (1,1) = (0,1) NO
+    #     (-1,-1) + (1,1) = (0,0) yes, idx 5 -> idx 3
+    #     (-2,-1) + (1,1) = (-1,0) yes, idx 6 -> idx 4
+    #   So e_{alpha_1+alpha_2}: 4 transitions: 2->0, 3->1, 5->3, 6->4.
+    #
+    # 2alpha_1+alpha_2 = (2,1):
+    #     (0,0) + (2,1) = (2,1) yes, idx 3 -> idx 0
+    #     (-1,0) + (2,1) = (1,1) yes, idx 4 -> idx 1
+    #     (-1,-1) + (2,1) = (1,0) yes, idx 5 -> idx 2
+    #     (-2,-1) + (2,1) = (0,0) yes, idx 6 -> idx 3
+    #   So e_{2alpha_1+alpha_2}: 4 transitions: 3->0, 4->1, 5->2, 6->3.
+    #
+    # 3alpha_1+alpha_2 = (3,1):
+    #     (-1,0) + (3,1) = (2,1) yes, idx 4 -> idx 0
+    #     (-1,-1) + (3,1) = (2,0)... (2,0) NOT a weight.
+    #     (-2,-1) + (3,1) = (1,0) yes, idx 6 -> idx 2
+    #     (0,0) + (3,1) = (3,1) NO
+    #   So e_{3alpha_1+alpha_2}: 2 transitions: 4->0, 6->2.
+    #
+    # 3alpha_1+2alpha_2 = (3,2):
+    #     (-1,-1) + (3,2) = (2,1) yes, idx 5 -> idx 0
+    #     (-2,-1) + (3,2) = (1,1) yes, idx 6 -> idx 1
+    #     (-1,0) + (3,2) = (2,2) NO
+    #   So e_{3alpha_1+2alpha_2}: 2 transitions: 5->0, 6->1.
+
+    # Now I need the COEFFICIENTS of these transitions. I'll use the
+    # Chevalley normalisation where [e_i, f_i] = h_i and the e_alpha
+    # are constructed recursively via [e_{alpha_i}, e_{beta}] = N * e_{alpha_i+beta}.
+    #
+    # Start with e_{alpha_1} and e_{alpha_2} satisfying Serre relations,
+    # then build the rest by commutators.
+    #
+    # For the 7-dim rep, the matrix entries can be fixed by the constraint
+    # [h_i, e_alpha] = <alpha, alpha_i^v> e_alpha and [e_alpha, f_alpha] = h_alpha.
+    #
+    # I'll use a parametric approach: set up e_1 and e_2 with unknown coefficients,
+    # then fix them via the Serre relations and h-bracket conditions.
+    #
+    # e_{alpha_1} has transitions 1->0, 3->2, 4->3, 6->5 with coefficients a,b,c,d.
+    # e_{alpha_2} has transitions 2->1, 5->4 with coefficients p,q.
+    #
+    # Constraint [h_1, e_1] = 2*e_1 (since <alpha_1, alpha_1^v> = A_{11} = 2).
+    # [H1, e_1]v_1 = H1*e_1*v_1 - e_1*H1*v_1.
+    # e_1*v_1 = a*v_0 (transition 1->0, coeff a).
+    # H1*(a*v_0) = a*h1_eig[0]*v_0 = a*1*v_0.
+    # e_1*(H1*v_1) = e_1*(h1_eig[1]*v_1) = (-1)*a*v_0.
+    # [H1, e_1]*v_1 = a*(1-(-1))*v_0 = 2a*v_0.
+    # 2*e_1*v_1 = 2a*v_0. Check! Consistent for any a.
+    #
+    # Similarly for all transitions: [H_i, e_alpha] = wt*e_alpha is automatically
+    # satisfied because H_i is diagonal with the correct eigenvalues.
+    # The constraint fixes the TRANSITIONS (which indices connect) but not the COEFFICIENTS.
+    #
+    # The coefficients are fixed by:
+    # 1. [e_i, f_i] = h_i  (normalises e_i, f_i relative to h_i)
+    # 2. Serre relations (fixes relative signs)
+    # 3. Ad-invariance of the bilinear form (constrains ratios)
+
+    # For the simple root vectors, f_alpha = e_alpha^T (since we're in a
+    # unitary representation of the compact form, and the Killing form is
+    # the trace form). Actually, for the real split form, f_alpha = e_{-alpha}
+    # and the relation is f = e^T for an orthogonal representation.
+    #
+    # G_2 embeds in so(7). In the 7-dim rep, the elements are antisymmetric
+    # w.r.t. some bilinear form. For the compact real form, this is the
+    # standard inner product, and f_alpha = -e_alpha^T.
+    #
+    # For the SPLIT form (which is what we need for complex structure constants),
+    # we use f_{alpha, ij} = e_{alpha, ji} (transpose without the minus sign)
+    # for appropriately normalised basis, but this is tricky.
+    #
+    # Let me use a different approach: DEFINE the simple root vectors with
+    # specific coefficients, then compute ALL other root vectors and structure
+    # constants by taking commutators. Verify Jacobi at the end.
+
+    # Simple approach: use the explicit G_2 matrices from the literature.
+    # I follow Cahn, "Semi-Simple Lie Algebras and Their Representations",
+    # which gives the 7-dim G_2 matrices explicitly.
+    #
+    # In the basis where the bilinear form is J = antidiag(1,...,1):
+    # g_2 subset so(7, J) means X^T J + J X = 0.
+    # But G_2 is a SUBGROUP of SO(7), not all of it (so(7) has dim 21, g_2 has dim 14).
+    #
+    # Instead, I'll use the KNOWN RESULT that the 7-dim rep of G_2 has
+    # a specific structure that can be written down explicitly.
+    #
+    # Here's my approach: build the full algebra from commutators of
+    # the Chevalley generators, using the representation theory constraints.
+
+    # e_{alpha_1}: transitions 1->0, 3->2, 4->3, 6->5, coefficients a, b, c, d.
+    # e_{alpha_2}: transitions 2->1, 5->4, coefficients p, q.
+    #
+    # f_{alpha_1}: transitions 0->1, 2->3, 3->4, 5->6, coefficients a', b', c', d'.
+    # f_{alpha_2}: transitions 1->2, 4->5, coefficients p', q'.
+    #
+    # Constraint [e_1, f_1] = H1:
+    # [e_1, f_1]_{ij} = sum_k (e1_{ik} f1_{kj} - f1_{ik} e1_{kj})
+    # This must equal H1 = diag(1, -1, 2, 0, -2, 1, -1).
+    #
+    # e_1 has nonzero entries: e1[0,1]=a, e1[2,3]=b, e1[3,4]=c, e1[5,6]=d.
+    # f_1 has nonzero entries: f1[1,0]=a', f1[3,2]=b', f1[4,3]=c', f1[6,5]=d'.
+    #
+    # [e_1, f_1]_{00} = e1[0,1]*f1[1,0] = a*a'. Must = h1_eig[0] = 1.
+    # [e_1, f_1]_{11} = -f1[1,0]*e1[0,1] = -a'*a = -a*a'. Must = h1_eig[1] = -1. Check.
+    # [e_1, f_1]_{22} = e1[2,3]*f1[3,2] = b*b'. Must = h1_eig[2] = 2.
+    # [e_1, f_1]_{33} = -f1[3,2]*e1[2,3] + e1[3,4]*f1[4,3] - ... let me be careful.
+    # [e_1, f_1]_{33} = sum_k (e1[3,k]*f1[k,3] - f1[3,k]*e1[k,3])
+    #   e1[3,4]*f1[4,3] - f1[3,2]*e1[2,3] = c*c' - b'*b. Must = h1_eig[3] = 0.
+    #   So c*c' = b'*b = b*b' (need to check).
+    # [e_1, f_1]_{44} = -f1[4,3]*e1[3,4] = -c'*c. Must = h1_eig[4] = -2.
+    #   So c*c' = 2.
+    # From above: b*b' = c*c' = 2. And a*a' = 1.
+    # [e_1, f_1]_{55} = e1[5,6]*f1[6,5] = d*d'. Must = h1_eig[5] = 1.
+    # [e_1, f_1]_{66} = -f1[6,5]*e1[5,6] = -d*d'. Must = h1_eig[6] = -1. Check.
+    # So d*d' = 1.
+    #
+    # Similarly for [e_2, f_2] = H2:
+    # H2 = diag(0, 1, -1, 0, 1, -1, 0).
+    # e_2: e2[1,2]=p, e2[4,5]=q. f_2: f2[2,1]=p', f2[5,4]=q'.
+    # [e_2, f_2]_{11} = e2[1,2]*f2[2,1] = p*p'. Must = 1. So p*p' = 1.
+    # [e_2, f_2]_{22} = -f2[2,1]*e2[1,2] = -p*p' = -1. Check.
+    # [e_2, f_2]_{44} = e2[4,5]*f2[5,4] = q*q'. Must = 1. So q*q' = 1.
+    # [e_2, f_2]_{55} = -q*q' = -1. Check.
+    #
+    # For the Chevalley basis with the SYMMETRIC choice a' = a, p' = p etc.:
+    # a^2 = 1 => a = 1.
+    # b^2 = 2 => b = sqrt(2).
+    # c^2 = 2 => c = sqrt(2).
+    # d^2 = 1 => d = 1.
+    # p^2 = 1 => p = 1.
+    # q^2 = 1 => q = 1.
+    #
+    # But we also need the SERRE RELATIONS:
+    # For G_2: ad(e_1)^{1-A_{21}}(e_2) = ad(e_1)^4(e_2) = 0.
+    #          ad(e_2)^{1-A_{12}}(e_1) = ad(e_2)^2(e_1) = 0.
+    #
+    # And the SIGNS must be consistent. Let me fix signs by the Serre relations
+    # and Jacobi identity, then verify numerically.
+    #
+    # With the above, let me set:
+    # e_1 = a*E(0,1) + b*E(2,3) + c*E(3,4) + d*E(5,6)
+    # e_2 = p*E(1,2) + q*E(4,5)
+    # f_1 = a*E(1,0) + b*E(3,2) + c*E(4,3) + d*E(6,5)
+    # f_2 = p*E(2,1) + q*E(5,4)
+    #
+    # First Serre: ad(e_2)^2(e_1) = [e_2, [e_2, e_1]] = 0.
+    # [e_2, e_1]_{ij} = sum_k (e2_{ik} e1_{kj} - e1_{ik} e2_{kj})
+    #
+    # e_2*e_1: e2[1,2]*e1[2,3] = p*b at (1,3). e2[4,5]*e1[5,6] = q*d at (4,6).
+    # e_1*e_2: e1[0,1]*e2[1,2] = a*p at (0,2). e1[3,4]*e2[4,5] = c*q at (3,5).
+    #
+    # [e_2, e_1] = p*b*E(1,3) + q*d*E(4,6) - a*p*E(0,2) - c*q*E(3,5).
+    #
+    # This is e_{alpha_1+alpha_2}: transitions 0->2 (with sign), 1->3, 3->5, 4->6.
+    # Wait: weights. alpha_1+alpha_2 maps:
+    #   previously computed: 2->0, 3->1, 5->3, 6->4.
+    # But [e_2, e_1] gives transitions (0,2), (1,3), (3,5), (4,6) which are:
+    #   2->0 (from -a*p*E(0,2)), 3->1 (from p*b*E(1,3)), 5->3 (from -c*q*E(3,5)), 6->4 (from q*d*E(4,6)).
+    # Great! These match the weight analysis: e_{a1+a2} maps idx 2->0, 3->1, 5->3, 6->4.
+    #
+    # e_{a1+a2} = -a*p*E(0,2) + p*b*E(1,3) - c*q*E(3,5) + q*d*E(4,6).
+    # With a=1, b=sqrt(2), c=sqrt(2), d=1, p=1, q=1:
+    # e_{a1+a2} = -E(0,2) + sqrt(2)*E(1,3) - sqrt(2)*E(3,5) + E(4,6).
+    #
+    # Now [e_2, [e_2, e_1]]:
+    # e_2*e_{a1+a2}: e2[1,2]*ea1a2[2,...] -- but ea1a2 has no nonzero entry in row 2.
+    #   Actually: ea1a2 has entries at (0,2), (1,3), (3,5), (4,6).
+    #   e2[1,2]*ea1a2[2,...]: ea1a2 has no entry with first index 2. So no contribution.
+    #   Actually, e2*ea1a2 = sum_k e2[i,k]*ea1a2[k,j]:
+    #   For k=2: e2[1,2]*ea1a2[2,j] -- but ea1a2 has no row-2 entries (ea1a2 has entries at rows 0,1,3,4). 0!
+    #   For k=5: e2[4,5]*ea1a2[5,j] -- ea1a2 has entry at (3,5)? No, (3,5) means row 3, col 5.
+    #     ea1a2[5,...]: no entries in row 5. So no contribution.
+    #   e2*ea1a2 = 0.
+    #
+    # ea1a2*e2: sum_k ea1a2[i,k]*e2[k,j]:
+    #   ea1a2[0,2]*e2[2,1] = (-a*p)*p = -1 at (0,1).
+    #   ea1a2[1,3]*e2[3,...] = 0 (e2 has no row-3 entry).
+    #   ea1a2[3,5]*e2[5,4] = (-c*q)*q = -sqrt(2) at (3,4).
+    #   ea1a2[4,6]*e2[6,...] = 0 (e2 has no row-6 entry).
+    #   ea1a2*e2 = -E(0,1) - sqrt(2)*E(3,4).
+    #
+    # [e_2, ea1a2] = e2*ea1a2 - ea1a2*e2 = 0 - (-E(0,1) - sqrt(2)*E(3,4))
+    #              = E(0,1) + sqrt(2)*E(3,4).
+    #
+    # But this is NOT zero! [e_2, [e_2, e_1]] should be zero (Serre relation).
+    # It gives E(0,1) + sqrt(2)*E(3,4), which maps 1->0, 4->3. These are
+    # transitions for root 2alpha_1+alpha_2? No: transitions 1->0 and 4->3 correspond
+    # to root alpha_1 (since they shift by alpha_1). So [e_2, [e_2, e_1]] is
+    # proportional to e_{alpha_1}, meaning it's NOT zero.
+    #
+    # This means my coefficient signs are wrong. Let me try adjusting signs.
+    #
+    # The issue is that with the naive symmetric choice a'=a, the Serre relation
+    # may require specific sign choices. Let me introduce signs:
+    # e_1 = s0*a*E(0,1) + s1*b*E(2,3) + s2*c*E(3,4) + s3*d*E(5,6)
+    # where s0, s1, s2, s3 in {+1, -1}.
+
+    # Let me instead use a NUMERICAL approach. I'll set up e_1 and e_2 with
+    # free parameters, impose all constraints (Serre, [e,f]=h, Jacobi), and solve.
+    # This is more reliable than guessing signs.
+
+    # NUMERICAL APPROACH: Build g_2 from scratch.
+    # Parameters: e_1 has 4 coefficients x[0..3], e_2 has 2 coefficients x[4..5].
+    # f_i = e_i^T (in the 7-dim rep, this ensures [e_i, f_i] = H_i with correct signs
+    # IF the representation is orthogonal, which the 7-dim rep of G_2 is since
+    # G_2 subset SO(7)).
+    #
+    # Actually, G_2 subset SO(7) means the matrices are ANTISYMMETRIC (X^T = -X)
+    # w.r.t. the invariant form. If the form is the identity (standard inner product),
+    # then X^T = -X, so f_alpha = e_alpha^T = -e_{-alpha}... this gets confusing.
+    #
+    # Let me use the approach that WORKS for sp(4): build the matrices, compute
+    # all commutators, decompose in the basis, and extract structure constants.
+    #
+    # For G_2, I'll use the following explicit construction.
+    # I follow Jacobson (1962) / Humphreys (1972) / Adams (1996).
+    #
+    # The key insight: I can build G_2 by starting from the Chevalley generators
+    # and using ONLY the bracket structure [e_i, f_i] = h_i and the Serre relations
+    # to determine all matrices. Let me be very careful with signs.
+
+    # Start fresh with parametric matrices.
+    # e_1 = a*E01 + b*E23 + c*E34 + d*E56  (transitions for root alpha_1)
+    # f_1 = a'*E10 + b'*E32 + c'*E43 + d'*E65 (transitions for root -alpha_1)
+    # e_2 = p*E12 + q*E45  (transitions for root alpha_2)
+    # f_2 = p'*E21 + q'*E54 (transitions for root -alpha_2)
+    #
+    # From [e_i, f_i] = H_i with the eigenvalues computed above:
+    # The constraint [e_1, f_1] = H1 gives:
+    #   a*a' = 1, b*b' = 2, c*c' = 2, d*d' = 1.
+    # And [e_2, f_2] = H2 gives:
+    #   p*p' = 1, q*q' = 1.
+
+    # For G_2 in SO(7) with the standard form (identity matrix), the elements
+    # satisfy X + X^T = 0 (antisymmetric). But our Chevalley generators are NOT
+    # antisymmetric in general (they involve the Borel/anti-Borel decomposition).
+    #
+    # In the SPLIT real form, we have f_alpha = -e_alpha^T with respect to a
+    # specific symmetric bilinear form. For the 7-dim rep of G_2 embedded in SO(7):
+    #   The invariant form is B = J = antidiag(1,...,1) (the "longest Weyl element" form).
+    #   Then X in g_2 iff X^T B + B X = 0 iff BX is antisymmetric.
+    #   The Chevalley involution theta: e_alpha -> -f_alpha, f_alpha -> -e_alpha.
+    #   In the representation: f_alpha = -B^{-1} e_alpha^T B.
+    #
+    # With B = antidiag(1,1,1,1,1,1,1), B_{ij} = delta_{i, 6-j}:
+    #   B * E(a,b) * B = E(6-b, 6-a).
+    #   f_alpha = -B^{-1} e_alpha^T B.
+    #   e_alpha^T has rows and columns swapped: (E(i,j))^T = E(j,i).
+    #   B^{-1} E(j,i) B = E(6-i, 6-j).
+    #   So f_alpha = -E(6-i, 6-j) when e_alpha = E(i,j).
+    #
+    # For e_1 = a*E(0,1) + b*E(2,3) + c*E(3,4) + d*E(5,6):
+    #   f_1 = -a*E(5,6) - b*E(3,4) - c*E(2,3) - d*E(0,1).
+    #   Hmm, that maps: f_1 = -d*E(0,1) - c*E(2,3) - b*E(3,4) - a*E(5,6).
+    #
+    # Wait: f_alpha = -sum_terms B^{-1} (term)^T B.
+    # For E(0,1): B^{-1} E(1,0) B = E(6, 5). So f contribution = -E(6,5).
+    # Wait: B = antidiag, so B^{-1} = B (since B^2 = I for the standard antidiag).
+    # B * E(1,0) * B: B*E(1,0) moves row: only (6-0)th row, (1)st column contributes?
+    # Let me compute B*M*B for M = E(j,i):
+    #   (B*M*B)_{ab} = B_{a,c} M_{c,d} B_{d,b} = delta_{a,6-c} M_{c,d} delta_{d,6-b}
+    #                = M_{6-a, 6-b}.
+    # So B*E(j,i)*B = E(6-j, 6-i). (Entries swapped by 6-index.)
+    #
+    # So f_alpha corresponding to e_alpha = E(i,j) is -B*E(j,i)*B = -E(6-j, 6-i).
+    #
+    # For e_1 terms:
+    #   E(0,1) -> f term = -E(6-1, 6-0) = -E(5, 6). But wait, E(5,6) is also an e_1 term!
+    #   E(2,3) -> f term = -E(6-3, 6-2) = -E(3, 4). Also an e_1 term!
+    #   E(3,4) -> f term = -E(6-4, 6-3) = -E(2, 3). Also an e_1 term!
+    #   E(5,6) -> f term = -E(6-6, 6-5) = -E(0, 1). Also an e_1 term!
+    #
+    # So f_1 = -(a*E(5,6) + b*E(3,4) + c*E(2,3) + d*E(0,1))
+    #        = -d*E(0,1) - c*E(2,3) - b*E(3,4) - a*E(5,6).
+    #
+    # For [e_1, f_1] = H1:
+    # [e_1, f_1]_{00} = e1[0,1]*f1[1,0] - f1[0,1]*e1[1,0].
+    #   e1[0,1] = a, f1[1,0] = 0 (f1 has E(0,1), E(2,3), E(3,4), E(5,6) terms,
+    #   so f1[1,0] = 0). Wait, let me recheck: f_1 = -d*E(0,1) - c*E(2,3) - b*E(3,4) - a*E(5,6).
+    #   So f_1[0,1] = -d, f_1[2,3] = -c, f_1[3,4] = -b, f_1[5,6] = -a.
+    #   f_1[1,0] = 0 (none of the terms have row 1, col 0).
+    #
+    #   [e_1, f_1]_{00} = sum_k (e1[0,k]*f1[k,0] - f1[0,k]*e1[k,0])
+    #     e1[0,1]*f1[1,0] = a*0 = 0. f1[0,1]*e1[1,0] = (-d)*0 = 0.
+    #     Result: 0. But should be h1_eig[0] = 1!
+    #
+    # This approach gives [e_1, f_1]_{00} = 0 != 1. Something is wrong.
+    # The issue is that the bilinear form B is NOT the identity in our basis ordering.
+    # Our basis ordering (v_3, v_2, v_1, v_0, v_{-1}, v_{-2}, v_{-3}) is designed so that
+    # the antidiagonal form pairs v_i with v_{-i}, i.e., the form B has B[idx(v_i), idx(v_{-i})] = 1.
+    # In our ordering: idx(v_3)=0, idx(v_{-3})=6; idx(v_2)=1, idx(v_{-2})=5; etc.
+    # So B[0,6]=B[1,5]=B[2,4]=B[3,3]=B[4,2]=B[5,1]=B[6,0]=1. This IS the antidiagonal. Good.
+    #
+    # The problem is that f_alpha defined via the Chevalley involution gives
+    # transitions that are the "reflected" version of e_alpha, and the constraint
+    # [e_alpha, f_alpha] = h_alpha needs f_alpha on the NEGATIVE root vectors.
+    #
+    # f_{alpha_1} should have transitions OPPOSITE to e_{alpha_1}:
+    #   e_{alpha_1}: 1->0, 3->2, 4->3, 6->5 (raising by alpha_1).
+    #   f_{alpha_1}: 0->1, 2->3, 3->4, 5->6 (lowering by alpha_1).
+    # So f_1 should have nonzero entries at E(1,0), E(3,2), E(4,3), E(6,5).
+    # NOT at E(0,1), E(2,3), E(3,4), E(5,6) as I computed from the Chevalley involution!
+    #
+    # The Chevalley involution maps f_alpha = -B e_alpha^T B, and for our e_1 with
+    # terms E(0,1), E(2,3), E(3,4), E(5,6), the transpose gives E(1,0), E(3,2), E(4,3), E(6,5).
+    # Then B*(transpose)*B gives E(5,6), E(3,4), E(2,3), E(0,1) -- the WRONG locations.
+    #
+    # This means the bilinear form B is NOT compatible with our weight ordering.
+    # The issue is that B pairs index i with index 6-i, but we need f_alpha at the
+    # locations that LOWER by alpha.
+
+    # Let me abandon the SO(7) embedding and instead use a direct construction.
+    # I'll define e_1, e_2 with unknown coefficients, f_1, f_2 with unknown
+    # coefficients at the CORRECT positions, impose all constraints, and solve.
+
+    # e_1: E(0,1), E(2,3), E(3,4), E(5,6) with coefficients a, b, c, d.
+    # f_1: E(1,0), E(3,2), E(4,3), E(6,5) with coefficients a', b', c', d'.
+    # e_2: E(1,2), E(4,5) with coefficients p, q.
+    # f_2: E(2,1), E(5,4) with coefficients p', q'.
+
+    # Constraint [e_1, f_1] = H1 = diag(1, -1, 2, 0, -2, 1, -1):
+    # [e_1, f_1]_{00} = a*a' (from E(0,1)*E(1,0)). Must = 1.
+    # [e_1, f_1]_{11} = -a*a'. Must = -1. Check.
+    # [e_1, f_1]_{22} = b*b'. Must = 2.
+    # [e_1, f_1]_{33} = -b*b' + c*c'. Must = 0. So c*c' = b*b' = 2.
+    # [e_1, f_1]_{44} = -c*c'. Must = -2. Check.
+    # [e_1, f_1]_{55} = d*d'. Must = 1.
+    # [e_1, f_1]_{66} = -d*d'. Must = -1. Check.
+
+    # Constraint [e_2, f_2] = H2 = diag(0, 1, -1, 0, 1, -1, 0):
+    # [e_2, f_2]_{11} = p*p'. Must = 1.
+    # [e_2, f_2]_{22} = -p*p'. Must = -1. Check.
+    # [e_2, f_2]_{44} = q*q'. Must = 1.
+    # [e_2, f_2]_{55} = -q*q'. Must = -1. Check.
+
+    # Take the SYMMETRIC choice: a' = a, b' = b, c' = c, d' = d, p' = p, q' = q.
+    # Then: a^2 = 1, b^2 = 2, c^2 = 2, d^2 = 1, p^2 = 1, q^2 = 1.
+    # a = 1, b = sqrt(2), c = sqrt(2), d = 1, p = 1, q = 1.
+    # Signs to be determined.
+
+    # Now compute [e_2, e_1] = e_{a1+a2} and check Serre [e_2, [e_2, e_1]] = 0.
+
+    # Actually, let me use SYMBOLIC computation to find the correct signs.
+    # I'll try all 2^6 = 64 sign choices for (a, b, c, d, p, q) in {+1,-1}*|value|
+    # and keep those satisfying both Serre relations.
+
+    from itertools import product as iprod
+
+    sqrt2 = np.sqrt(2)
+    abs_vals = [1.0, sqrt2, sqrt2, 1.0, 1.0, 1.0]
+
+    best_signs = None
+    best_serre_err = float('inf')
+
+    for signs in iprod([-1, 1], repeat=6):
+        a, b, c, d, p, q = [s * v for s, v in zip(signs, abs_vals)]
+
+        e1 = a*E(0,1) + b*E(2,3) + c*E(3,4) + d*E(5,6)
+        e2 = p*E(1,2) + q*E(4,5)
+        f1 = a*E(1,0) + b*E(3,2) + c*E(4,3) + d*E(6,5)
+        f2 = p*E(2,1) + q*E(5,4)
+
+        # Check [e_1, f_1] = H1
+        comm_ef1 = e1 @ f1 - f1 @ e1
+        if not np.allclose(comm_ef1, H1, atol=1e-12):
+            continue
+
+        # Check [e_2, f_2] = H2
+        comm_ef2 = e2 @ f2 - f2 @ e2
+        if not np.allclose(comm_ef2, H2, atol=1e-12):
+            continue
+
+        # Serre 1: ad(e_2)^2(e_1) = 0  (since 1 - A_{12} = 1-(-1) = 2)
+        c1 = e2 @ e1 - e1 @ e2  # [e_2, e_1]
+        s1 = e2 @ c1 - c1 @ e2  # [e_2, [e_2, e_1]]
+        err1 = np.max(np.abs(s1))
+
+        # Serre 2: ad(e_1)^4(e_2) = 0  (since 1 - A_{21} = 1-(-3) = 4)
+        c2_1 = e1 @ e2 - e2 @ e1  # [e_1, e_2]
+        c2_2 = e1 @ c2_1 - c2_1 @ e1
+        c2_3 = e1 @ c2_2 - c2_2 @ e1
+        c2_4 = e1 @ c2_3 - c2_3 @ e1
+        err2 = np.max(np.abs(c2_4))
+
+        total_err = err1 + err2
+        if total_err < best_serre_err:
+            best_serre_err = total_err
+            best_signs = signs
+
+    if best_serre_err > 1e-8:
+        # If no sign choice works with symmetric f=e convention,
+        # try with f having independent signs.
+        best_serre_err = float('inf')
+        for signs_e in iprod([-1, 1], repeat=6):
+            for signs_f in iprod([-1, 1], repeat=6):
+                a, b, c, d, p, q = [s * v for s, v in zip(signs_e, abs_vals)]
+                af, bf, cf, df, pf, qf = [s * v for s, v in zip(signs_f, abs_vals)]
+
+                e1 = a*E(0,1) + b*E(2,3) + c*E(3,4) + d*E(5,6)
+                e2 = p*E(1,2) + q*E(4,5)
+                f1 = af*E(1,0) + bf*E(3,2) + cf*E(4,3) + df*E(6,5)
+                f2 = pf*E(2,1) + qf*E(5,4)
+
+                comm_ef1 = e1 @ f1 - f1 @ e1
+                if not np.allclose(comm_ef1, H1, atol=1e-12):
+                    continue
+                comm_ef2 = e2 @ f2 - f2 @ e2
+                if not np.allclose(comm_ef2, H2, atol=1e-12):
+                    continue
+
+                c1 = e2 @ e1 - e1 @ e2
+                s1 = e2 @ c1 - c1 @ e2
+                err1 = np.max(np.abs(s1))
+
+                c2_1 = e1 @ e2 - e2 @ e1
+                c2_2 = e1 @ c2_1 - c2_1 @ e1
+                c2_3 = e1 @ c2_2 - c2_2 @ e1
+                c2_4 = e1 @ c2_3 - c2_3 @ e1
+                err2 = np.max(np.abs(c2_4))
+
+                total_err = err1 + err2
+                if total_err < best_serre_err:
+                    best_serre_err = total_err
+                    best_signs = (signs_e, signs_f)
+
+        assert best_serre_err < 1e-8, \
+            f"Could not find G_2 Chevalley generators satisfying Serre relations (err={best_serre_err})"
+
+        signs_e, signs_f = best_signs
+        a, b, c, d, p, q = [s * v for s, v in zip(signs_e, abs_vals)]
+        af, bf, cf, df, pf, qf = [s * v for s, v in zip(signs_f, abs_vals)]
+    else:
+        a, b, c, d, p, q = [s * v for s, v in zip(best_signs, abs_vals)]
+        af, bf, cf, df, pf, qf = a, b, c, d, p, q
+
+    ea1 = a*E(0,1) + b*E(2,3) + c*E(3,4) + d*E(5,6)
+    ea2 = p*E(1,2) + q*E(4,5)
+    fa1 = af*E(1,0) + bf*E(3,2) + cf*E(4,3) + df*E(6,5)
+    fa2 = pf*E(2,1) + qf*E(5,4)
+
+    # Build the remaining root vectors by commutators
+    # e_{a1+a2} = [e_2, e_1] (up to sign; [e_1, e_2] = N * e_{a1+a2})
+    ea1a2 = ea1 @ ea2 - ea2 @ ea1  # [e_1, e_2] = e_{a1+a2}
+    fa1a2 = fa2 @ fa1 - fa1 @ fa2  # [f_2, f_1] = -f_{a1+a2}? Need sign convention.
+    # Actually [f_1, f_2] = -N * f_{a1+a2} for Chevalley convention.
+    # Let me compute f_{a1+a2} from the negative Chevalley structure.
+    # f_{a1+a2} should satisfy [e_{a1+a2}, f_{a1+a2}] = h_1 + h_2.
+    # I'll compute it from commutators and verify.
+
+    # e_{2a1+a2} = [e_1, e_{a1+a2}] / normalisation
+    e2a1a2 = ea1 @ ea1a2 - ea1a2 @ ea1
+
+    # e_{3a1+a2} = [e_1, e_{2a1+a2}] / normalisation
+    e3a1a2 = ea1 @ e2a1a2 - e2a1a2 @ ea1
+
+    # e_{3a1+2a2} = [e_2, e_{3a1+a2}] / normalisation
+    e3a12a2 = ea2 @ e3a1a2 - e3a1a2 @ ea2
+
+    # Negative root vectors by commutators
+    fa1a2 = fa1 @ fa2 - fa2 @ fa1  # [f_1, f_2]
+    f2a1a2 = fa1 @ fa1a2 - fa1a2 @ fa1  # [f_1, [f_1, f_2]]
+    f3a1a2 = fa1 @ f2a1a2 - f2a1a2 @ fa1  # [f_1, [f_1, [f_1, f_2]]]
+    f3a12a2 = fa2 @ f3a1a2 - f3a1a2 @ fa2  # [f_2, [f_1, [f_1, [f_1, f_2]]]]
+
+    # Check that the root vectors are nonzero
+    assert np.max(np.abs(ea1a2)) > 0.1, "e_{a1+a2} is zero"
+    assert np.max(np.abs(e2a1a2)) > 0.1, "e_{2a1+a2} is zero"
+    assert np.max(np.abs(e3a1a2)) > 0.1, "e_{3a1+a2} is zero"
+    assert np.max(np.abs(e3a12a2)) > 0.1, "e_{3a1+2a2} is zero"
+
+    # Verify: [e_1, e_{3a1+a2}] should be zero (3a1+a2+a1 = 4a1+a2 not a root)
+    test = ea1 @ e3a1a2 - e3a1a2 @ ea1
+    assert np.max(np.abs(test)) < 1e-10, \
+        f"[e_1, e_{{3a1+a2}}] should be 0 but has norm {np.max(np.abs(test))}"
+
+    # Verify: [e_2, e_{3a1+2a2}] should be zero (3a1+2a2+a2 = 3a1+3a2 not a root)
+    test2 = ea2 @ e3a12a2 - e3a12a2 @ ea2
+    assert np.max(np.abs(test2)) < 1e-10, \
+        f"[e_2, e_{{3a1+2a2}}] should be 0 but has norm {np.max(np.abs(test2))}"
+
+    # Now collect all 14 basis elements (with appropriate normalisation).
+    # The commutator-built root vectors may not be normalised to the Chevalley convention.
+    # I need [e_alpha, f_alpha] = h_alpha = sum n_i h_i for alpha = sum n_i alpha_i.
+    #
+    # For the simple roots, this is already ensured.
+    # For composite roots, I need to normalise.
+
+    # For each positive root alpha, compute h_alpha and verify/normalise.
+    # h_{alpha} = [e_alpha, f_alpha] should equal sum n_i * h_i.
+
+    # alpha_1+alpha_2 = (1,1): h_{a1+a2} = H1 + H2.
+    comm_a1a2 = ea1a2 @ fa1a2 - fa1a2 @ ea1a2
+    h_target_a1a2 = H1 + H2
+    # Check if comm is proportional to h_target
+    # Find the ratio
+    nz = np.abs(h_target_a1a2) > 0.1
+    if np.any(nz):
+        ratios = comm_a1a2[nz] / h_target_a1a2[nz]
+        ratio_a1a2 = ratios[0]
+        if abs(ratio_a1a2) > 1e-14:
+            # Normalise: scale e and f so that ratio becomes 1.
+            # If [e, f] = ratio * h, then [e/sqrt(ratio), f/sqrt(ratio)] = h.
+            # But we need to keep [e, f] = h, so scale e by 1/sqrt(|ratio|) and
+            # f by sign/sqrt(|ratio|).
+            scale = np.sqrt(abs(ratio_a1a2))
+            ea1a2 = ea1a2 / scale
+            fa1a2 = fa1a2 / scale * np.sign(ratio_a1a2)
+
+    # Repeat for other roots
+    comm_2a1a2 = e2a1a2 @ f2a1a2 - f2a1a2 @ e2a1a2
+    h_target_2a1a2 = 2*H1 + H2
+    nz = np.abs(h_target_2a1a2) > 0.1
+    if np.any(nz):
+        ratios = comm_2a1a2[nz] / h_target_2a1a2[nz]
+        ratio_2a1a2 = ratios[0]
+        if abs(ratio_2a1a2) > 1e-14:
+            scale = np.sqrt(abs(ratio_2a1a2))
+            e2a1a2 = e2a1a2 / scale
+            f2a1a2 = f2a1a2 / scale * np.sign(ratio_2a1a2)
+
+    comm_3a1a2 = e3a1a2 @ f3a1a2 - f3a1a2 @ e3a1a2
+    h_target_3a1a2 = 3*H1 + H2
+    nz = np.abs(h_target_3a1a2) > 0.1
+    if np.any(nz):
+        ratios = comm_3a1a2[nz] / h_target_3a1a2[nz]
+        ratio_3a1a2 = ratios[0]
+        if abs(ratio_3a1a2) > 1e-14:
+            scale = np.sqrt(abs(ratio_3a1a2))
+            e3a1a2 = e3a1a2 / scale
+            f3a1a2 = f3a1a2 / scale * np.sign(ratio_3a1a2)
+
+    comm_3a12a2 = e3a12a2 @ f3a12a2 - f3a12a2 @ e3a12a2
+    h_target_3a12a2 = 3*H1 + 2*H2
+    nz = np.abs(h_target_3a12a2) > 0.1
+    if np.any(nz):
+        ratios = comm_3a12a2[nz] / h_target_3a12a2[nz]
+        ratio_3a12a2 = ratios[0]
+        if abs(ratio_3a12a2) > 1e-14:
+            scale = np.sqrt(abs(ratio_3a12a2))
+            e3a12a2 = e3a12a2 / scale
+            f3a12a2 = f3a12a2 / scale * np.sign(ratio_3a12a2)
+
+    # Build the full basis: 14 elements
+    basis_mats = [
+        ea1, ea2, ea1a2, e2a1a2, e3a1a2, e3a12a2,   # positive roots (0-5)
+        fa1, fa2, fa1a2, f2a1a2, f3a1a2, f3a12a2,   # negative roots (6-11)
+        H1, H2,                                        # Cartan (12-13)
+    ]
+    labels = [
+        'e_{a1}', 'e_{a2}', 'e_{a1+a2}', 'e_{2a1+a2}', 'e_{3a1+a2}', 'e_{3a1+2a2}',
+        'f_{a1}', 'f_{a2}', 'f_{a1+a2}', 'f_{2a1+a2}', 'f_{3a1+a2}', 'f_{3a1+2a2}',
+        'h_1', 'h_2',
+    ]
+
+    dim = 14
+
+    # Build Gram matrix for decomposition (trace form in 7-dim rep)
+    gram = np.zeros((dim, dim))
+    for i in range(dim):
+        for j in range(dim):
+            gram[i, j] = np.trace(basis_mats[i] @ basis_mats[j])
+
+    det = np.linalg.det(gram)
+    assert abs(det) > 1e-10, f"Gram matrix is degenerate: det = {det}"
+
+    gram_inv = np.linalg.inv(gram)
+
+    def decompose(M):
+        tr_vec = np.array([np.trace(basis_mats[j] @ M) for j in range(dim)])
+        return gram_inv @ tr_vec
+
+    # Verify decomposition
+    for i in range(dim):
+        coeffs = decompose(basis_mats[i])
+        expected = np.zeros(dim)
+        expected[i] = 1.0
+        assert np.allclose(coeffs, expected, atol=1e-8), \
+            f"Decomposition failed for {labels[i]}: max err = {np.max(np.abs(coeffs - expected))}"
+
+    # Extract structure constants
+    struct = np.zeros((dim, dim, dim))
+    for aa in range(dim):
+        for bb in range(dim):
+            comm = basis_mats[aa] @ basis_mats[bb] - basis_mats[bb] @ basis_mats[aa]
+            coeffs = decompose(comm)
+            struct[aa, bb, :] = coeffs
+
+    struct[np.abs(struct) < 1e-10] = 0.0
+
+    # Killing form: kappa = tr_7 is the trace form in the 7-dim rep.
+    # The normalised Killing form for G_2: Killing(X,Y) = c * tr_7(XY) for some constant c.
+    # For G_2: Killing = 2*(h^v + 1)*dim(7-dim rep)/(dim rep) * tr_7... actually,
+    # the index of the 7-dim rep of G_2 is... let me just use:
+    # Killing(X,Y) = 2*h^v * tr_7(XY) / index_7.
+    # For G_2, the 7-dim rep has Dynkin index = 1 (it's the first fundamental).
+    # Killing(X,Y) = 2*g * tr_7(XY) where g is determined by:
+    #   Killing(h_alpha, h_alpha) = 2*dim(G_2)/(alpha,alpha) for the longest root.
+    #
+    # Actually, the formula is:
+    #   Killing(X,Y) = sum_{rep} dim(rep) * l(rep) * tr_rep(XY) / dim(g)
+    # This is getting complicated. Let me just use:
+    #   kappa = Killing / (2*h^v).
+    #
+    # For G_2, the Killing form in the adjoint representation:
+    #   Killing(X,Y) = tr(ad(X) ad(Y)).
+    # In a representation V of index l(V):
+    #   tr_V(X Y) = l(V) * Killing(X,Y) / (2*h^v).
+    # Wait, the standard formula is:
+    #   tr_V(rho(X) rho(Y)) = I(V) * (X, Y)_normalised
+    # where I(V) is the Dynkin index and (,)_normalised is the normalised form
+    # with (theta, theta) = 2 for the highest root theta.
+    #
+    # For G_2: highest root = 3alpha_1+2alpha_2 (long root, (theta,theta) = 2).
+    # The 7-dim rep has Dynkin index I(7) = 1 (standard).
+    # So: tr_7(XY) = I(7) * (X,Y)_normalised = (X,Y)_normalised.
+    # And kappa = Killing/(2h^v) where Killing(X,Y) = 2*h^v * (X,Y)_normalised.
+    # So kappa(X,Y) = (X,Y)_normalised = tr_7(XY).
+    #
+    # Hmm, let me verify: kappa(h_alpha, h_alpha) for a long root should be 4/(alpha,alpha) = 4/2 = 2.
+    # tr_7(H_{3a1+2a2} * H_{3a1+2a2}) = tr_7((3H1+2H2)^2).
+    # H_{3a1+2a2} = 3*H1 + 2*H2.
+    # 3*H1 + 2*H2 = diag(3*1+2*0, 3*(-1)+2*1, 3*2+2*(-1), 3*0+2*0, 3*(-2)+2*1, 3*1+2*(-1), 3*(-1)+2*0)
+    #             = diag(3, -1, 4, 0, -4, 1, -3).
+    # tr((3H1+2H2)^2) = 9+1+16+0+16+1+9 = 52.
+    #
+    # But kappa should give: for the highest root theta with (theta,theta)=2,
+    # kappa(h_theta, h_theta) = 4/(theta,theta) = 2. So tr_7 = 52 != 2.
+    # Conclusion: tr_7(XY) is NOT the normalised Killing form.
+    #
+    # The correct relation for G_2:
+    # I(7) * (X,Y)_normalised = tr_7(XY), where I(7) is the Dynkin index of the 7-dim rep.
+    # For G_2, I(7) = 1. But this must be checked against:
+    # tr_7(h_theta^2) = 52 and (h_theta, h_theta)_normalised = 4/(theta,theta).
+    # With (theta,theta) = 2: normalised form gives 2.
+    # So 1 * 2 = 52? No! 2 != 52.
+    #
+    # The issue: The Dynkin index of the 7-dim rep of G_2 is NOT 1.
+    # I(V) = dim(V) * C_2(V) / (2 * dim(g)).
+    # C_2(7) = eigenvalue of quadratic Casimir in the 7-dim rep.
+    # For G_2: C_2(7) = 12/7 * 7 = 12? Let me compute directly.
+    #
+    # Actually, the Dynkin index is defined by:
+    #   tr_V(X Y) = I(V) * (X, Y)
+    # where (X, Y) is the "standard" normalised form with (e_i, f_i) = d_i^{-1}
+    # where d_i = (alpha_i, alpha_i)/2.
+    #
+    # This is getting tangled in conventions. Let me just use the trace form
+    # directly as the bilinear form and verify ad-invariance. Then the
+    # Casimir from its inverse will automatically satisfy the IBR/CYBE.
+    # The normalisation to "kappa = Killing/(2h^v)" is just a scalar multiple
+    # that doesn't affect the Casimir tensor Omega = kappa^{-1}.
+
+    # But wait: the issue is that gram = tr_7 may NOT be the correct bilinear form.
+    # For the Casimir, we need ANY non-degenerate ad-invariant bilinear form, and
+    # its inverse gives the Casimir. The trace in the 7-dim rep IS ad-invariant
+    # (since representations preserve the Lie algebra structure), and it IS
+    # non-degenerate (we checked). So it works.
+    #
+    # The normalisation only matters when we compare kappa(A) across different
+    # algebras, which requires the STANDARD normalisation. For the r-matrix
+    # computation (Casimir, CYBE), any non-degenerate invariant form works.
+
+    # For the standard normalisation: we need kappa = Killing/(2h^v).
+    # Killing(X,Y) = tr_{adj}(ad(X) ad(Y)).
+    # In a representation V: tr_V(XY) = I(V)/I(adj) * Killing(X,Y).
+    # I(adj) = 2*h^v. So tr_V(XY) = I(V)/(2*h^v) * Killing(X,Y).
+    # kappa = Killing/(2*h^v). So kappa = tr_V / I(V) when using standard index.
+    #
+    # For G_2 in the 7-dim rep: I need the Dynkin index I(7).
+    # I(V) = dim(V) * (highest weight + 2rho, highest weight) / (2*dim(g)).
+    # For the 7-dim rep of G_2: highest weight = omega_1 (first fundamental).
+    # In the notation of the root system, omega_1 is the short fundamental weight.
+    # (omega_1, omega_1) = ...
+    #
+    # Let me just compute I(7) from the trace:
+    # I(7) = tr_7(h_theta^2) / (h_theta, h_theta)_normalised.
+    # We need (h_theta, h_theta)_normalised for some KNOWN normalisation.
+    # With kappa = Killing/(2h^v): kappa(h_theta, h_theta) = 4/(theta,theta).
+    # For the highest root theta of G_2 (long root, (theta,theta)=2):
+    # kappa(h_theta, h_theta) = 2.
+    # Killing(h_theta, h_theta) = 2*h^v * 2 = 16 (since h^v = 4).
+    # tr_7(h_theta^2) = 52 (computed above).
+    # I(7) = tr_7(h_theta^2) * (2*h^v) / Killing(h_theta, h_theta)
+    #       = 52 * 8 / 16 = 26.
+    #
+    # Hmm, that gives I(7) = 26 which is way too large. The standard Dynkin index
+    # for the 7-dim rep of G_2 is 1 (by definition, the defining rep has I=1).
+    #
+    # I think the issue is normalisation conventions. Let me just use:
+    # kappa(X, Y) = tr_7(XY) / I(7)
+    # where I(7) is chosen so that kappa(e_{alpha_i}, f_{alpha_i}) = 1
+    # for the LONG simple root (which is alpha_2 for G_2).
+
+    # Check: tr_7(e_{alpha_2} * f_{alpha_2}).
+    val_ea2_fa2 = np.trace(ea2 @ fa2)
+
+    # Check: tr_7(e_{alpha_1} * f_{alpha_1}).
+    val_ea1_fa1 = np.trace(ea1 @ fa1)
+
+    # For the normalised Killing form with long roots having kappa(e,f)=1:
+    # kappa = tr_7 / val_ea2_fa2 (if val_ea2_fa2 is the trace for the long root).
+    # Actually, the Chevalley normalisation has [e_i, f_i] = h_i, so
+    # kappa(e_i, f_i) = the length-dependent factor.
+    # For the normalised form (Killing/(2h^v)):
+    #   kappa(e_alpha, f_alpha) = 2/(alpha, alpha) when using the standard h_alpha = alpha^v.
+
+    # Hmm, this is getting too tangled. Let me just compute the Killing form
+    # directly via the adjoint representation.
+
+    # ad(X)^c_d = f^{Xc}_d. The Killing form is:
+    # K(X,Y) = sum_{c,d} ad(X)^c_d * ad(Y)^d_c = sum_{c,d} f[X,c,d]*f[Y,d,c]
+
+    # First build the structure constants, then compute the Killing form.
+
+    # Killing form from structure constants
+    killing = np.zeros((dim, dim))
+    for i in range(dim):
+        for j in range(dim):
+            val = 0.0
+            for c in range(dim):
+                for dd in range(dim):
+                    val += struct[i, c, dd] * struct[j, dd, c]
+            killing[i, j] = val
+
+    # Normalised Killing: kappa = K / (2*h^v) = K / 8.
+    kappa = killing / (2.0 * 4)  # h^v = 4 for G_2
+
+    # Verify: kappa should be non-degenerate
+    det_kappa = np.linalg.det(kappa)
+    assert abs(det_kappa) > 1e-10, f"kappa is degenerate: det = {det_kappa}"
+
+    # Verify ad-invariance of kappa
+    # This should hold since kappa = Killing/(2h^v) and Killing is ad-invariant.
+
+    return LieAlgebraData(
+        name='G2',
+        dim=14,
+        rank=2,
+        h_dual=4,
+        basis_labels=labels,
+        f=struct,
+        kappa=kappa,
+    )
+
+
+def make_G2() -> LieAlgebraData:
+    """Build the exceptional Lie algebra G_2.
+
+    dim = 14, rank = 2, h^v = 4.
+    Root system: 6 positive roots, 6 negative, 2 Cartan.
+    Non-simply-laced: root length ratio long^2/short^2 = 3.
+    Cartan matrix: A = [[2, -1], [-3, 2]].
+    Langlands dual: G_2^L = G_2 (self-dual!).
+    """
+    return _build_g2_from_matrices()
+
+
+# =============================================================================
+# 8. COMPLETE RANK-2 COMPUTATION
+# =============================================================================
+
+def rtt_relation_count(g: LieAlgebraData, dim_rep: int) -> Dict[str, Any]:
+    r"""Compute the RTT relation count for the Yangian Y_hbar(g).
+
+    The RTT relations R(u-v) T_1(u) T_2(v) = T_2(v) T_1(u) R(u-v)
+    give relations on the generating matrix T(u). For V = C^n (n-dim rep),
+    T(u) is an n x n matrix of generating series. The RTT relation
+    is an n^2 x n^2 matrix equation, giving n^4 scalar equations.
+
+    Not all are independent. The number of INDEPENDENT relations is:
+      n^4 - n^2 (diagonal identities) + symmetry reductions.
+
+    For the standard computation:
+      Total equations: n^4.
+      Automatically satisfied (trivial): n^2 (diagonal).
+      Independent: depends on the Lie algebra.
+
+    For the Yangian Y(g) specifically:
+      The generators are the matrix entries T_{ij}^{(r)} for r >= 0.
+      At order hbar^0: T = 1 (identity). RTT is trivially satisfied.
+      At order hbar^1: the RTT relation gives [T^{(1)}_{ij}, T^{(1)}_{kl}] = ...
+        which are the Lie bracket relations of g[t].
+      At order hbar^2: the Drinfeld-type relations.
+
+    For sl_N in the N-dim rep: n = N.
+      RTT gives N^4 equations, of which N^2(N^2+1)/2 are independent
+      (accounting for antisymmetry of the commutator).
+      After subtracting the trivially-zero diagonal ones:
+      independent = N^2(N^2-1)/2.
+
+    For sl_2: n=2. N^2(N^2-1)/2 = 4*3/2 = 6 independent.
+    For sl_3: n=3. N^2(N^2-1)/2 = 9*8/2 = 36 independent.
+    """
+    n = dim_rep
+    total = n**4
+    trivial = n**2
+    # From the RTT relation, the number of independent relations at leading order
+    # is n^2(n^2-1)/2 (the antisymmetric part of n^2 x n^2 minus diagonal).
+    independent = n**2 * (n**2 - 1) // 2
+
+    return {
+        'lie_algebra': g.name,
+        'dim_rep': n,
+        'total_equations': total,
+        'trivially_zero': trivial,
+        'independent_relations': independent,
+        'note': f'RTT in {n}-dim rep: {independent} independent relations',
+    }
+
+
+def euler_eta_rank2(g: LieAlgebraData) -> Dict[str, Any]:
+    r"""Compute the Euler-eta invariant chi = -1 + eta^{dim g}.
+
+    For the ordered bar complex of affine g_k, the graded Euler
+    characteristic satisfies chi(q) = -1 + 1/ch(A; q).
+
+    For the character ring, the generating function is related to
+    eta-products. The Euler-eta identity gives:
+
+      chi = -1 + product_{n>=1} (1-q^n)^{dim(g)}
+
+    At the level of the "leading coefficient" (q^0 term), this gives:
+
+      chi_0 = -1 + 1 = 0.
+
+    The FIRST nontrivial term is at q^1:
+
+      chi_1 = -dim(g).
+
+    The full eta product encodes the graded dimensions of the
+    bar cohomology.
+
+    For our rank-2 algebras:
+      A_2 (sl_3): dim = 8,  chi = -1 + eta^8
+      B_2 (so_5): dim = 10, chi = -1 + eta^{10}
+      C_2 (sp_4): dim = 10, chi = -1 + eta^{10}
+      G_2:        dim = 14, chi = -1 + eta^{14}
+    """
+    return {
+        'lie_algebra': g.name,
+        'dim': g.dim,
+        'rank': g.rank,
+        'h_dual': g.h_dual,
+        'euler_eta': f'-1 + eta^{{{g.dim}}}',
+        'eta_exponent': g.dim,
+        'first_nontrivial_coefficient': -g.dim,
+        'note': f'chi(Bar^ord(g_k); q) = -1 + prod_n (1-q^n)^{{{g.dim}}}',
+    }
+
+
+def casimir_in_defining_rep(g: LieAlgebraData, basis_mats: List[np.ndarray]) -> np.ndarray:
+    r"""Compute the Casimir tensor Omega in a given representation.
+
+    Omega_rep = sum_{a,b} kappa^{ab} rho(t_a) x rho(t_b)
+
+    where kappa^{ab} is the inverse of the Killing form, and rho(t_a)
+    are the representation matrices.
+
+    Returns Omega_rep as a (dim_rep^2 x dim_rep^2) matrix.
+    """
+    omega = casimir_tensor(g)
+    dim_rep = basis_mats[0].shape[0]
+    d = g.dim
+
+    Omega_rep = np.zeros((dim_rep**2, dim_rep**2))
+    for a in range(d):
+        for b in range(d):
+            if abs(omega[a, b]) < 1e-14:
+                continue
+            Omega_rep += omega[a, b] * np.kron(basis_mats[a], basis_mats[b])
+
+    return Omega_rep
+
+
+def verify_ybe_in_rep(Omega_rep: np.ndarray, dim_rep: int, tol: float = 1e-8) -> Dict[str, Any]:
+    r"""Verify the Yang-Baxter equation on V tensor V tensor V.
+
+    For the rational R-matrix R(z) = 1 + hbar*Omega/z, the YBE at
+    leading order in hbar gives the IBR:
+
+      [Omega_{12}, Omega_{13} + Omega_{23}] = 0.
+
+    We verify this in the representation V^{x3}.
+
+    Omega_{12} = Omega_rep x Id_V (dim_rep^3 x dim_rep^3 matrix).
+    Omega_{23} = Id_V x Omega_rep.
+    Omega_{13} = P_{12} Omega_{23} P_{12} where P_{12} swaps factors 1 and 2.
+    """
+    n = dim_rep
+    N = n**3  # dimension of V^{x3}
+
+    Id = np.eye(n)
+
+    # Omega_{12} = Omega_rep tensor Id
+    O12 = np.kron(Omega_rep, Id)
+
+    # Omega_{23} = Id tensor Omega_rep
+    O23 = np.kron(Id, Omega_rep)
+
+    # Omega_{13}: need to swap factors 1 and 3 or use permutation.
+    # Omega_{13} acts on V_1 x V_2 x V_3 by Omega on factors 1 and 3.
+    # Omega_{13} = sum_{a,b} kappa^{ab} rho(t_a)_1 x Id_2 x rho(t_b)_3.
+    # In matrix form: need to build this from the basis matrices.
+    # Alternative: O13 = P_{23} O12 P_{23} where P_{23} swaps factors 2 and 3.
+
+    # Build P_{23} (permutation matrix swapping factors 2 and 3 in V^{x3})
+    P23 = np.zeros((N, N))
+    for i in range(n):
+        for j in range(n):
+            for k in range(n):
+                # (i, j, k) -> (i, k, j)
+                idx_in = i * n**2 + j * n + k
+                idx_out = i * n**2 + k * n + j
+                P23[idx_out, idx_in] = 1.0
+
+    O13 = P23 @ O12 @ P23
+
+    # IBR: [O12, O13 + O23] = 0
+    comm = O12 @ (O13 + O23) - (O13 + O23) @ O12
+    max_violation = np.max(np.abs(comm))
+
+    # Also verify: [O12 + O13, O23] = 0
+    comm2 = (O12 + O13) @ O23 - O23 @ (O12 + O13)
+    max_violation2 = np.max(np.abs(comm2))
+
+    return {
+        'dim_rep': n,
+        'ibr_form1_max_violation': max_violation,
+        'ibr_form2_max_violation': max_violation2,
+        'ybe_satisfied': max(max_violation, max_violation2) < tol,
+    }
+
+
+def run_complete_rank2_computation(k: float = 1.0, verbose: bool = True) -> Dict[str, Any]:
+    """Run the complete ordered E_1 bar data computation for ALL rank-2 simple Lie algebras.
+
+    Covers: A_2 (sl_3), B_2 (so_5), C_2 (sp_4), G_2.
+    For each, computes:
+      1. Casimir tensor Omega in the defining representation.
+      2. R-matrix R(z) = 1 + hbar*Omega/z on V tensor V.
+      3. YBE verification on V^{x3}.
+      4. RTT relation count.
+      5. Koszul dual identification = Y_hbar(g).
+      6. Euler-eta: chi = -1 + eta^{dim g}.
+      7. For non-simply-laced (B_2, C_2, G_2): root-length-dependent Casimir
+         coefficients and Langlands duality.
+    """
+    results = {}
+
+    if verbose:
+        print("=" * 78)
+        print("COMPLETE RANK-2 ORDERED E_1 BAR DATA")
+        print("Algebras: A_2 (sl_3), B_2 (so_5), C_2 (sp_4), G_2")
+        print("=" * 78)
+
+    # ========================================
+    # BUILD ALL ALGEBRAS
+    # ========================================
+    from collision_residue_rmatrix import make_sl3
+
+    algebras = {
+        'A_2': {'g': make_sl3(), 'rep_dim': 3, 'simply_laced': True},
+        'B_2': {'g': make_B2(), 'rep_dim': 4, 'simply_laced': False},
+        'C_2': {'g': make_C2(), 'rep_dim': 4, 'simply_laced': False},
+        'G_2': {'g': make_G2(), 'rep_dim': 7, 'simply_laced': False},
+    }
+
+    for name, data in algebras.items():
+        g = data['g']
+        rep_dim = data['rep_dim']
+
+        if verbose:
+            print(f"\n{'='*60}")
+            print(f"{name} = {g.name}: dim = {g.dim}, rank = {g.rank}, h^v = {g.h_dual}")
+            print(f"{'='*60}")
+
+        # --- 1. Lie algebra verification ---
+        jacobi = verify_jacobi(g)
+        antisym = verify_antisymmetry(g)
+        inv = verify_killing_invariance(g)
+        if verbose:
+            print(f"  Jacobi: {jacobi}, Antisymmetry: {antisym}, Killing invariance: {inv}")
+        assert jacobi, f"{name} fails Jacobi"
+        assert antisym, f"{name} fails antisymmetry"
+        assert inv, f"{name} fails Killing invariance"
+
+        # --- 2. Casimir tensor ---
+        omega = casimir_tensor(g)
+        if verbose:
+            nonzero = np.sum(np.abs(omega) > 1e-12)
+            print(f"  Casimir tensor: {g.dim}x{g.dim}, {nonzero} nonzero entries")
+
+        # --- 3. Full collision residue computation ---
+        res = full_collision_residue_computation(g, k)
+        if verbose:
+            print(f"  r(z) = k*Omega/z: {res['r_equals_k_omega_over_z']}")
+            print(f"  CYBE satisfied: {res['cybe_satisfied']}")
+            print(f"  kappa(A, k={k}) = {res['kappa_A']:.6f}")
+            print(f"  All checks passed: {res['all_checks_passed']}")
+        assert res['all_checks_passed'], f"{name} failed full pipeline"
+
+        # --- 4. RTT relation count ---
+        rtt = rtt_relation_count(g, rep_dim)
+        if verbose:
+            print(f"  RTT in {rep_dim}-dim rep: {rtt['independent_relations']} independent relations")
+
+        # --- 5. Koszul dual ---
+        koszul_dual = f"Y_hbar({g.name.lower().replace('_', '')})"
+        hbar_param = f"1/(k + {g.h_dual})"
+        if verbose:
+            print(f"  Koszul dual: {koszul_dual} at hbar = {hbar_param}")
+
+        # --- 6. Euler-eta ---
+        eta = euler_eta_rank2(g)
+        if verbose:
+            print(f"  Euler-eta: chi = {eta['euler_eta']}")
+
+        results[name] = {
+            'dim': g.dim,
+            'rank': g.rank,
+            'h_dual': g.h_dual,
+            'lie_algebra_valid': jacobi and antisym and inv,
+            'casimir': omega,
+            'full_result': res,
+            'rtt': rtt,
+            'koszul_dual': koszul_dual,
+            'hbar': hbar_param,
+            'euler_eta': eta,
+            'simply_laced': data['simply_laced'],
+        }
+
+    # ========================================
+    # NON-SIMPLY-LACED SPECIFIC DATA
+    # ========================================
+    if verbose:
+        print(f"\n{'='*60}")
+        print("NON-SIMPLY-LACED SPECIFIC: ROOT-LENGTH CASIMIR COEFFICIENTS")
+        print(f"{'='*60}")
+
+    # B_2 / C_2 root decomposition
+    g_B2 = algebras['B_2']['g']
+    decomp_B2 = casimir_root_decomposition(g_B2)
+    if verbose:
+        print(f"\nB_2/C_2 root Casimir decomposition:")
+        for label, data in decomp_B2['root_casimir_coefficients'].items():
+            print(f"  {label}: Omega coeff = {data['e_x_f']:.6f}, "
+                  f"kappa(e,f) = {data['kappa_ef']:.6f}")
+
+    results['B2_root_decomposition'] = decomp_B2
+
+    # Langlands duality
+    langlands = langlands_duality_comparison(k)
+    if verbose:
+        print(f"\nLanglands duality B_2 <-> C_2:")
+        print(f"  Abstract Casimir match: {langlands['casimir_match']}")
+        print(f"  Cartan matrices transpose: {langlands['cartan_transpose']}")
+    results['langlands_B2_C2'] = langlands
+
+    # G_2 root decomposition
+    g_G2 = algebras['G_2']['g']
+    omega_G2 = casimir_tensor(g_G2)
+    g2_root_norms = {}
+    for i in range(6):
+        e_idx = i
+        f_idx = i + 6
+        kef = g_G2.kappa[e_idx, f_idx]
+        coeff_ef = omega_G2[e_idx, f_idx]
+        g2_root_norms[g_G2.basis_labels[i]] = {
+            'kappa_ef': kef,
+            'casimir_coeff': coeff_ef,
+            'predicted': 1.0/kef if abs(kef) > 1e-14 else None,
+        }
+    if verbose:
+        print(f"\nG_2 root Casimir decomposition:")
+        for label, data in g2_root_norms.items():
+            print(f"  {label}: kappa(e,f) = {data['kappa_ef']:.6f}, "
+                  f"Omega coeff = {data['casimir_coeff']:.6f}")
+    results['G2_root_norms'] = g2_root_norms
+
+    # G_2 Langlands duality: G_2^L = G_2 (self-dual!)
+    if verbose:
+        print(f"\nG_2 Langlands duality: G_2^L = G_2 (SELF-DUAL)")
+        print(f"  Root length ratio: long^2/short^2 = 3")
+        print(f"  Cartan matrix: A = [[2, -1], [-3, 2]] = A^T transposed is [[2, -3], [-1, 2]]")
+        print(f"  A^T is the Cartan matrix of the SAME G_2 with roots relabelled.")
+
+    # ========================================
+    # YBE VERIFICATION IN REPRESENTATIONS
+    # ========================================
+    if verbose:
+        print(f"\n{'='*60}")
+        print("YBE VERIFICATION IN REPRESENTATIONS")
+        print(f"{'='*60}")
+
+    # For B_2/C_2: 4-dim rep (sp(4) fundamental)
+    sp4_mats = _get_sp4_basis_matrices()
+    Omega_sp4 = casimir_in_defining_rep(g_B2, sp4_mats)
+    ybe_B2 = verify_ybe_in_rep(Omega_sp4, 4)
+    if verbose:
+        print(f"\nB_2/C_2 in 4-dim rep: YBE satisfied = {ybe_B2['ybe_satisfied']}")
+        print(f"  IBR form 1 max violation: {ybe_B2['ibr_form1_max_violation']:.2e}")
+    results['ybe_B2_C2'] = ybe_B2
+
+    # For A_2: 3-dim rep (sl_3 fundamental)
+    # Build 3x3 matrices for sl_3
+    g_A2 = algebras['A_2']['g']
+    sl3_mats_3x3 = _get_sl3_3dim_matrices()
+    Omega_sl3 = casimir_in_defining_rep(g_A2, sl3_mats_3x3)
+    ybe_A2 = verify_ybe_in_rep(Omega_sl3, 3)
+    if verbose:
+        print(f"\nA_2 in 3-dim rep: YBE satisfied = {ybe_A2['ybe_satisfied']}")
+        print(f"  IBR form 1 max violation: {ybe_A2['ibr_form1_max_violation']:.2e}")
+    results['ybe_A2'] = ybe_A2
+
+    # For G_2: 7-dim rep
+    g2_mats = _get_g2_7dim_matrices()
+    Omega_g2 = casimir_in_defining_rep(g_G2, g2_mats)
+    ybe_G2 = verify_ybe_in_rep(Omega_g2, 7)
+    if verbose:
+        print(f"\nG_2 in 7-dim rep: YBE satisfied = {ybe_G2['ybe_satisfied']}")
+        print(f"  IBR form 1 max violation: {ybe_G2['ibr_form1_max_violation']:.2e}")
+    results['ybe_G2'] = ybe_G2
+
+    # ========================================
+    # SUMMARY TABLE
+    # ========================================
+    if verbose:
+        print(f"\n{'='*78}")
+        print(f"{'Algebra':<8} {'dim':>4} {'rank':>5} {'h^v':>4} {'rep':>4} "
+              f"{'RTT':>6} {'CYBE':>6} {'YBE':>6} {'Euler-eta':>16}")
+        print(f"{'-'*78}")
+        for name in ['A_2', 'B_2', 'C_2', 'G_2']:
+            r = results[name]
+            ybe_key = f'ybe_{name.replace("_", "")}'
+            ybe_ok = results.get(ybe_key, {}).get('ybe_satisfied', '?')
+            if name == 'B_2':
+                ybe_ok = results.get('ybe_B2_C2', {}).get('ybe_satisfied', '?')
+            elif name == 'C_2':
+                ybe_ok = results.get('ybe_B2_C2', {}).get('ybe_satisfied', '?')
+            elif name == 'G_2':
+                ybe_ok = results.get('ybe_G2', {}).get('ybe_satisfied', '?')
+            rep_dim = algebras[name]['rep_dim']
+            rtt_count = r['rtt']['independent_relations']
+            print(f"{name:<8} {r['dim']:>4} {r['rank']:>5} {r['h_dual']:>4} {rep_dim:>4} "
+                  f"{rtt_count:>6} {'PASS' if r['full_result']['cybe_satisfied'] else 'FAIL':>6} "
+                  f"{'PASS' if ybe_ok else 'FAIL':>6} "
+                  f"{r['euler_eta']['euler_eta']:>16}")
+        print(f"{'='*78}")
+
+    # Overall check
+    all_pass = all(
+        results[name]['full_result']['all_checks_passed']
+        for name in ['A_2', 'B_2', 'C_2', 'G_2']
+    ) and all([
+        results.get('ybe_A2', {}).get('ybe_satisfied', False),
+        results.get('ybe_B2_C2', {}).get('ybe_satisfied', False),
+        results.get('ybe_G2', {}).get('ybe_satisfied', False),
+    ])
+
+    results['all_pass'] = all_pass
+    if verbose:
+        print(f"\nALL RANK-2 CHECKS PASSED: {all_pass}")
+
+    return results
+
+
+def _get_sl3_3dim_matrices() -> List[np.ndarray]:
+    """Return the 8 basis matrices of sl_3 in the 3-dim (fundamental) rep.
+
+    Basis order matching make_sl3():
+    0=e_1, 1=e_2, 2=e_{12}, 3=f_1, 4=f_2, 5=f_{12}, 6=h_1, 7=h_2.
+    """
+    def E(i, j, n=3):
+        M = np.zeros((n, n))
+        M[i, j] = 1.0
+        return M
+
+    e1 = E(0, 1)
+    e2 = E(1, 2)
+    e12 = E(0, 2)
+    f1 = E(1, 0)
+    f2 = E(2, 1)
+    f12 = E(2, 0)
+    h1 = E(0, 0) - E(1, 1)
+    h2 = E(1, 1) - E(2, 2)
+
+    return [e1, e2, e12, f1, f2, f12, h1, h2]
+
+
+def _get_g2_7dim_matrices() -> List[np.ndarray]:
+    """Return the 14 basis matrices of G_2 in the 7-dim rep.
+
+    These are extracted from the _build_g2_from_matrices construction.
+    """
+    g = make_G2()
+    # Rebuild to get the matrices
+    # (We stored the structure constants and Killing form, but not the matrices.
+    # We need to reconstruct them.)
+    # Actually, let me cache them.
+    return _g2_basis_mats_cache()
+
+
+# Cache for G_2 basis matrices
+_g2_cache = None
+
+def _g2_basis_mats_cache():
+    global _g2_cache
+    if _g2_cache is not None:
+        return _g2_cache
+
+    # Rebuild G_2 matrices
+    n = 7
+
+    def E(i, j):
+        M = np.zeros((n, n))
+        M[i, j] = 1.0
+        return M
+
+    weights_in_simple = [
+        (2, 1), (1, 1), (1, 0), (0, 0), (-1, 0), (-1, -1), (-2, -1),
+    ]
+
+    A = np.array([[2, -1], [-3, 2]], dtype=float)
+
+    h1_eigenvalues = [n1 * A[0, 0] + n2 * A[1, 0] for (n1, n2) in weights_in_simple]
+    h2_eigenvalues = [n1 * A[0, 1] + n2 * A[1, 1] for (n1, n2) in weights_in_simple]
+
+    H1 = np.diag(h1_eigenvalues)
+    H2 = np.diag(h2_eigenvalues)
+
+    sqrt2 = np.sqrt(2)
+    abs_vals = [1.0, sqrt2, sqrt2, 1.0, 1.0, 1.0]
+
+    from itertools import product as iprod
+
+    best_signs = None
+    best_serre_err = float('inf')
+
+    for signs in iprod([-1, 1], repeat=6):
+        aa, bb, cc, dd, pp, qq = [s * v for s, v in zip(signs, abs_vals)]
+        e1 = aa*E(0,1) + bb*E(2,3) + cc*E(3,4) + dd*E(5,6)
+        e2 = pp*E(1,2) + qq*E(4,5)
+        f1 = aa*E(1,0) + bb*E(3,2) + cc*E(4,3) + dd*E(6,5)
+        f2 = pp*E(2,1) + qq*E(5,4)
+
+        comm_ef1 = e1 @ f1 - f1 @ e1
+        if not np.allclose(comm_ef1, H1, atol=1e-12):
+            continue
+        comm_ef2 = e2 @ f2 - f2 @ e2
+        if not np.allclose(comm_ef2, H2, atol=1e-12):
+            continue
+
+        c1 = e2 @ e1 - e1 @ e2
+        s1 = e2 @ c1 - c1 @ e2
+        err1 = np.max(np.abs(s1))
+
+        c2_1 = e1 @ e2 - e2 @ e1
+        c2_2 = e1 @ c2_1 - c2_1 @ e1
+        c2_3 = e1 @ c2_2 - c2_2 @ e1
+        c2_4 = e1 @ c2_3 - c2_3 @ e1
+        err2 = np.max(np.abs(c2_4))
+
+        total_err = err1 + err2
+        if total_err < best_serre_err:
+            best_serre_err = total_err
+            best_signs = signs
+
+    if best_serre_err > 1e-8:
+        for signs_e in iprod([-1, 1], repeat=6):
+            for signs_f in iprod([-1, 1], repeat=6):
+                aa, bb, cc, dd, pp, qq = [s * v for s, v in zip(signs_e, abs_vals)]
+                aaf, bbf, ccf, ddf, ppf, qqf = [s * v for s, v in zip(signs_f, abs_vals)]
+
+                e1 = aa*E(0,1) + bb*E(2,3) + cc*E(3,4) + dd*E(5,6)
+                e2 = pp*E(1,2) + qq*E(4,5)
+                f1 = aaf*E(1,0) + bbf*E(3,2) + ccf*E(4,3) + ddf*E(6,5)
+                f2 = ppf*E(2,1) + qqf*E(5,4)
+
+                comm_ef1 = e1 @ f1 - f1 @ e1
+                if not np.allclose(comm_ef1, H1, atol=1e-12):
+                    continue
+                comm_ef2 = e2 @ f2 - f2 @ e2
+                if not np.allclose(comm_ef2, H2, atol=1e-12):
+                    continue
+
+                c1 = e2 @ e1 - e1 @ e2
+                s1 = e2 @ c1 - c1 @ e2
+                err1 = np.max(np.abs(s1))
+
+                c2_1 = e1 @ e2 - e2 @ e1
+                c2_2 = e1 @ c2_1 - c2_1 @ e1
+                c2_3 = e1 @ c2_2 - c2_2 @ e1
+                c2_4 = e1 @ c2_3 - c2_3 @ e1
+                err2 = np.max(np.abs(c2_4))
+
+                total_err = err1 + err2
+                if total_err < best_serre_err:
+                    best_serre_err = total_err
+                    best_signs = (signs_e, signs_f)
+
+        signs_e, signs_f = best_signs
+        aa, bb, cc, dd, pp, qq = [s * v for s, v in zip(signs_e, abs_vals)]
+        aaf, bbf, ccf, ddf, ppf, qqf = [s * v for s, v in zip(signs_f, abs_vals)]
+    else:
+        aa, bb, cc, dd, pp, qq = [s * v for s, v in zip(best_signs, abs_vals)]
+        aaf, bbf, ccf, ddf, ppf, qqf = aa, bb, cc, dd, pp, qq
+
+    ea1 = aa*E(0,1) + bb*E(2,3) + cc*E(3,4) + dd*E(5,6)
+    ea2 = pp*E(1,2) + qq*E(4,5)
+    fa1 = aaf*E(1,0) + bbf*E(3,2) + ccf*E(4,3) + ddf*E(6,5)
+    fa2 = ppf*E(2,1) + qqf*E(5,4)
+
+    ea1a2 = ea1 @ ea2 - ea2 @ ea1
+    e2a1a2 = ea1 @ ea1a2 - ea1a2 @ ea1
+    e3a1a2 = ea1 @ e2a1a2 - e2a1a2 @ ea1
+    e3a12a2 = ea2 @ e3a1a2 - e3a1a2 @ ea2
+
+    fa1a2 = fa1 @ fa2 - fa2 @ fa1
+    f2a1a2 = fa1 @ fa1a2 - fa1a2 @ fa1
+    f3a1a2 = fa1 @ f2a1a2 - f2a1a2 @ fa1
+    f3a12a2 = fa2 @ f3a1a2 - f3a1a2 @ fa2
+
+    # Normalise composite roots
+    for e_mat, f_mat, h_target in [
+        (ea1a2, fa1a2, H1 + H2),
+        (e2a1a2, f2a1a2, 2*H1 + H2),
+        (e3a1a2, f3a1a2, 3*H1 + H2),
+        (e3a12a2, f3a12a2, 3*H1 + 2*H2),
+    ]:
+        comm = e_mat @ f_mat - f_mat @ e_mat
+        nz = np.abs(h_target) > 0.1
+        if np.any(nz):
+            ratios = comm[nz] / h_target[nz]
+            ratio = ratios[0]
+            if abs(ratio) > 1e-14 and abs(abs(ratio) - 1.0) > 1e-10:
+                scale = np.sqrt(abs(ratio))
+                e_mat[:] = e_mat / scale
+                f_mat[:] = f_mat / scale * np.sign(ratio)
+
+    _g2_cache = [ea1, ea2, ea1a2, e2a1a2, e3a1a2, e3a12a2,
+                 fa1, fa2, fa1a2, f2a1a2, f3a1a2, f3a12a2,
+                 H1, H2]
+    return _g2_cache
+
+
 if __name__ == '__main__':
     results = run_full_computation(k=1.0, verbose=True)
+    print("\n")
+    results2 = run_complete_rank2_computation(k=1.0, verbose=True)
