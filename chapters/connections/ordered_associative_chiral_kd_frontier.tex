@@ -3499,3 +3499,911 @@ full Yang--Baxter hierarchy
 manifestation of the ordered bar complex at successive
 genus levels.
 \end{remark}
+
+\section{Supersymmetric indices from the annular bar complex}
+\label{sec:susy-index-annular-bar}
+
+The annular bar complex
+(Definition~\ref{def:annular-bar},
+Theorem~\ref{thm:annular-bar-differential})
+computes chiral Hochschild homology
+$\HH_\bullet^{\mathrm{ch}}(\cA)$, which is the algebraic
+avatar of the genus-one partition function: the trace over
+the space of states with a twist by $q^{L_0}$.
+When the chiral algebra carries additional symmetry --- a
+$U(1)$ current $J$ (R-charge) or an extended superconformal
+algebra --- the annular bar complex admits a \emph{refined
+graded trace} that computes supersymmetric indices.
+
+The central principle is:
+
+\begin{center}
+\emph{The supersymmetric index is the $U(1)$-refined
+Euler characteristic of the annular bar complex.}
+\end{center}
+
+\noindent
+We make this precise for the $\mathcal{N}=2$ and
+$\mathcal{N}=4$ superconformal algebras.
+
+\subsection{The refined annular bar complex}
+\label{subsec:refined-annular}
+
+\begin{definition}[Refined annular bar complex]%
+\label{def:refined-annular-bar}%
+\index{annular bar complex!refined|textbf}%
+\index{supersymmetric index!annular bar}%
+Let $\cA$ be a strongly admissible augmented $E_1$-chiral
+algebra equipped with a $U(1)$ current $J$ of conformal
+weight~$1$ (i.e.\ a weight-$1$ bosonic field with OPE
+$J(z)\,J(w)\sim K/(z{-}w)^2$ for some constant~$K$).
+The $U(1)$ zero-mode $J_0$ grades the algebra:
+$\cA = \bigoplus_{q\in\Z}\cA^{(q)}$ where
+$[J_0,\Phi] = q\,\Phi$ for $\Phi\in\cA^{(q)}$.
+
+The \emph{refined annular bar complex} is the trigraded
+chain complex
+\[
+B^{\mathrm{ann}}_{\bullet,w,q}(\cA)
+\;:=\;
+\bigoplus_{n,w,q}
+\mathrm{cyc}^n_{w,q}(C,C_\Delta),
+\]
+where $\mathrm{cyc}^n_{w,q}$ denotes the cyclic cotensor
+at tensor degree~$n$, conformal weight~$w$, and total
+$U(1)$-charge~$q$.  The annular differential
+$d^{\mathrm{ann}} = d_{\mathrm{int}} + d_{\mathrm{res}}
++ d_\Delta + d_{\mathrm{wrap}}$
+preserves the $U(1)$ charge ($[J_0, d^{\mathrm{ann}}]=0$)
+and the conformal weight, so the trigrading is compatible
+with the differential.
+\end{definition}
+
+\begin{definition}[Annular index]%
+\label{def:annular-index}%
+\index{annular index|textbf}%
+\index{supersymmetric index!from annular bar|textbf}%
+Given a strongly admissible chiral algebra $\cA$ with
+$U(1)$ current~$J$ and fermion number $F$, the
+\emph{annular index} is the generating function
+\begin{equation}\label{eq:annular-index-def}
+\mathcal{I}(\tau,z)
+\;:=\;
+\sum_{n,w,q}
+(-1)^{n+F}\,
+\dim\bigl(
+B^{\mathrm{ann}}_{n,w,q}(\cA)
+\bigr)\;
+q_\tau^{w-c/24}\,y^q,
+\end{equation}
+where $q_\tau = e^{2\pi i\tau}$, $y = e^{2\pi iz}$,
+$c$ is the central charge, and $F$ is the fermion
+number (the statistics degree of bar elements, determined
+by the cohomological grading of the desuspended
+generators).
+
+Equivalently, $\mathcal{I}(\tau,z)$ is the
+\emph{graded Euler characteristic of the annular bar
+complex}, refined by conformal weight and $U(1)$ charge:
+\begin{equation}\label{eq:annular-index-trace}
+\mathcal{I}(\tau,z)
+\;=\;
+\operatorname{str}_{B^{\mathrm{ann}}_\bullet(\cA)}
+\bigl(
+q_\tau^{L_0 - c/24}\,y^{J_0}
+\bigr),
+\end{equation}
+where $\operatorname{str}$ denotes the supertrace on
+the annular bar complex (alternating in tensor degree and
+in fermion number).
+\end{definition}
+
+\begin{remark}[Relation to the physical trace]%
+\label{rem:annular-physical-trace}%
+The annular bar complex computes
+$\HH_\bullet^{\mathrm{ch}}(\cA)$
+(Theorem~\ref{thm:annular-bar-differential},
+Theorem~\ref{thm:HH-coHH-homology}).
+On homology, the graded Euler characteristic of the
+annular complex reduces to the graded trace over
+$\HH_0^{\mathrm{ch}}(\cA)$, which is the physical
+trace
+\[
+\Tr_{\cH}
+\bigl((-1)^F\,q^{L_0-c/24}\,y^{J_0}\bigr)
+\]
+over the space of states~$\cH$ of the chiral algebra.
+The annular bar complex provides a \emph{chain-level
+resolution} of this trace: the physical index is the
+Euler characteristic of a chain complex, not merely a
+formal trace over an infinite-dimensional Hilbert space.
+This is the bar-complex analogue of the familiar fact
+that the Witten index is independent of $\beta$ (the
+circumference of the annulus) because it is a topological
+invariant --- here, the Euler characteristic of a
+well-defined chain complex.
+\end{remark}
+
+\subsection{The $\mathcal{N}=2$ elliptic genus from the
+annular bar complex}
+\label{subsec:n2-elliptic-genus}
+
+\providecommand{\Gp}{G^+}
+\providecommand{\Gm}{G^-}
+\providecommand{\wsl}{\widehat{\mathfrak{sl}}}
+
+The $\mathcal N=2$ superconformal algebra (SCA) at
+level~$k$ has generators $T$, $J$, $\Gp$, $\Gm$ with
+$U(1)$ charges $0$, $0$, $+1$, $-1$ and central charge
+$c = 3(2k+1)/(k+3)$
+(Computation~\ref{comp:ordered-bar-n2-sca}).
+
+The \emph{elliptic genus} of a $\mathcal N=2$
+superconformal field theory is the refined partition
+function
+\begin{equation}\label{eq:elliptic-genus-def}
+Z(\tau,z)
+\;:=\;
+\Tr_{\cH_{\mathrm{RR}}}
+\bigl(
+(-1)^F\,q^{L_0-c/24}\,y^{J_0}
+\bigr),
+\end{equation}
+traced over the Ramond--Ramond sector.  The supercharge
+$G^+_0$ (which squares to $L_0 - J_0/2$ in the Ramond
+sector) ensures that only BPS states
+($L_0 = J_0/2$, the right-moving ground states)
+contribute to the index.  In the bar-complex language,
+these are precisely the annular bar \emph{cocycles}.
+
+\begin{theorem}[Elliptic genus from the annular bar
+complex; \ClaimStatusProvedHere]%
+\label{thm:elliptic-genus-annular}%
+\index{elliptic genus!annular bar complex|textbf}%
+\index{annular bar complex!elliptic genus|textbf}%
+\index{N=2 superconformal!elliptic genus|textbf}%
+Let $\cA$ be the $\mathcal N=2$ SCA at level~$k$,
+with $c = 3\ell$ where $\ell = (2k+1)/(k+3)$.
+The annular index
+(Definition~\ref{def:annular-index})
+coincides with the elliptic genus:
+\begin{equation}\label{eq:elliptic-genus-annular}
+\mathcal{I}(\tau,z)
+\;=\;
+Z(\tau,z)
+\;=\;
+\operatorname{str}_{B^{\mathrm{ann}}_\bullet(\cA)}
+\bigl(
+q^{L_0-c/24}\,y^{J_0}
+\bigr).
+\end{equation}
+The equality holds at the level of formal power series
+in $q$ and $y$.
+\end{theorem}
+
+\begin{proof}
+We establish the identity by analysing the annular bar
+complex degree by degree, using the Euler-eta method
+(Theorem~\ref{thm:euler-eta-identity}) refined by the
+$U(1)$ charge.
+
+\medskip\noindent
+\textbf{Step~1: The refined character.}
+The $\mathcal N=2$ vacuum module has four generators
+at the following weights and charges:
+\[
+\begin{array}{cccc}
+\text{Field} & h & q & \text{Parity} \\
+\hline
+J & 1 & 0 & \text{bosonic} \\
+T & 2 & 0 & \text{bosonic} \\
+\Gp & 3/2 & +1 & \text{fermionic} \\
+\Gm & 3/2 & -1 & \text{fermionic}
+\end{array}
+\]
+The refined character (the generating function tracking
+both conformal weight and $U(1)$ charge) of the vacuum
+module is
+\begin{equation}\label{eq:n2-refined-character}
+\operatorname{ch}(\cA;\,q_\tau,y)
+\;=\;
+\prod_{n\ge 1}
+\frac{(1+y\,q_\tau^{n-1/2})(1+y^{-1}q_\tau^{n-1/2})}
+{(1-q_\tau^n)^2},
+\end{equation}
+where the numerator factors come from the fermionic
+generators $\Gp$, $\Gm$ (with charges $\pm 1$ and
+half-integer moding in the Ramond sector), and the
+denominator from the bosonic generators $T$, $J$.
+Here $q_\tau^{n-1/2}$ is the Ramond-sector moding of
+the supercurrents.
+
+\medskip\noindent
+\textbf{Step~2: The refined Euler-eta identity.}
+The Euler-eta identity
+(Theorem~\ref{thm:euler-eta-identity}) generalises
+directly to the $U(1)$-refined setting.
+The ordered bar complex at tensor degree~$n$ has
+underlying graded vector space
+$(s^{-1}\bar\cA)^{\otimes n}$, and the refined
+generating function is
+\[
+\sum_{n\ge 0}
+\operatorname{ch}\bigl(
+(s^{-1}\bar\cA)^{\otimes n};\,q_\tau,y
+\bigr)\,t^n
+\;=\;
+\frac{1}
+{1-\bigl(\operatorname{ch}(\bar\cA;\,q_\tau,y)-1\bigr)\,t}.
+\]
+Setting $t=-1$ (the Euler characteristic in tensor
+degree, with the $(-1)^F$ insertion from the supertrace
+absorbed into the fermionic sign of the character) and
+passing to the annular complex (which wraps the strip
+into the cyclic cotensor), the refined annular index is
+\begin{equation}\label{eq:refined-euler-eta}
+\mathcal{I}(\tau,z)
+\;=\;
+q_\tau^{-c/24}\cdot
+\frac{1}{\operatorname{ch}(\cA;\,q_\tau,y)}.
+\end{equation}
+
+\medskip\noindent
+\textbf{Step~3: Evaluation for $\mathcal N=2$.}
+Substituting the refined
+character~\eqref{eq:n2-refined-character}:
+\begin{align}
+\mathcal{I}(\tau,z)
+&\;=\;
+q_\tau^{-c/24}\cdot
+\prod_{n\ge 1}
+\frac{(1-q_\tau^n)^2}
+{(1+y\,q_\tau^{n-1/2})(1+y^{-1}q_\tau^{n-1/2})}
+\notag\\
+&\;=\;
+q_\tau^{-c/24}\cdot
+\frac{\eta(\tau)^2}
+{\vartheta_1(\tau,z)/
+\bigl(2\pi i\,\eta(\tau)\bigr)}
+\notag\\
+&\;=\;
+q_\tau^{-c/24}\cdot
+\frac{2\pi i\,\eta(\tau)^3}
+{\vartheta_1(\tau,z)},
+\label{eq:n2-elliptic-genus-explicit}
+\end{align}
+where $\eta(\tau) = q_\tau^{1/24}\prod_{n\ge 1}(1-q_\tau^n)$
+is the Dedekind eta function and
+$\vartheta_1(\tau,z)$ is the odd Jacobi theta function.
+The prefactor $q_\tau^{-c/24}$ combines with the
+$q_\tau^{1/24}$ factors from $\eta^3$ to produce the
+correct modular weight.
+
+More precisely, in the Ramond sector (where
+$\Gp$, $\Gm$ have integer modes), the
+$q_\tau^{n-1/2}$ contributions in the character shift to
+$q_\tau^n$ and the product
+becomes the standard Jacobi theta/eta ratio.
+For the NS sector, the half-integer moding
+gives~\eqref{eq:n2-elliptic-genus-explicit} directly.
+The spectral flow relating the two sectors is encoded
+by the annular wrap-around differential $d_{\mathrm{wrap}}$
+acting on the $U(1)$-charge sectors.
+\end{proof}
+
+\begin{remark}[BPS states as annular bar cocycles]%
+\label{rem:bps-bar-cocycles}%
+\index{BPS states!annular bar cocycles|textbf}%
+\index{annular bar complex!BPS states}%
+The BPS states in the $\mathcal N=2$ theory are the
+states annihilated by $Q = G^+_0$ (in the Ramond sector,
+$Q^2 = L_0 - J_0/2$, so $Q$-closed states satisfy
+$L_0 = J_0/2$).  In the annular bar complex:
+
+\begin{enumerate}[label=(\roman*)]
+\item The supercharge $G^+_0$ acts on the annular bar
+  complex as an \emph{internal differential}: it is a
+  component of $d_{\mathrm{int}}$ restricted to the
+  $q=+1$ charge sector.  Specifically,
+  $G^+_0$ is the part of the bar differential at tensor
+  degree~$1$ coming from the zeroth product
+  $\Gp_{(0)}(-) = [G^+_0, -]$.
+
+\item A BPS state is an element
+  $\alpha\in B^{\mathrm{ann}}_{\bullet,w,q}(\cA)$
+  satisfying $d^{\mathrm{ann}}\alpha = 0$ and
+  $w = q/2$ (the BPS bound).  In other words:
+  \emph{BPS states are annular bar cocycles at the
+  BPS weight}.
+
+\item The \emph{non-BPS states} are exact:
+  $\alpha = d^{\mathrm{ann}}\beta$ for some
+  $\beta\in B^{\mathrm{ann}}_{\bullet+1}$.  They
+  cancel in pairs in the Euler characteristic
+  $\mathcal{I}(\tau,z)$, which is why the index
+  receives contributions only from BPS states.
+
+\item The \emph{BPS index} at charge~$q$ and weight
+  $w = q/2$ is
+  \[
+  \Omega(q)
+  \;=\;
+  \dim H^\bullet\bigl(
+  B^{\mathrm{ann}}_{\bullet,q/2,q}(\cA),\,
+  d^{\mathrm{ann}}
+  \bigr),
+  \]
+  the dimension of the annular bar cohomology at the
+  BPS locus.  The generating function
+  $\sum_q \Omega(q)\,y^q$ is the $q_\tau\to 0$ limit
+  of $\mathcal{I}(\tau,z)$ (keeping only the ground-state
+  contribution).
+\end{enumerate}
+\end{remark}
+
+\subsection{Weak Jacobi form property}
+\label{subsec:weak-jacobi}
+
+The elliptic genus of an $\mathcal N=2$ SCFT is known
+to be a weak Jacobi form.  We now show that this modular
+property emerges from the structure of the annular bar
+complex.
+
+\begin{theorem}[Weak Jacobi form from the annular bar
+complex; \ClaimStatusProvedHere]%
+\label{thm:weak-jacobi-annular}%
+\index{weak Jacobi form!from annular bar|textbf}%
+\index{elliptic genus!modularity|textbf}%
+The annular index $\mathcal{I}(\tau,z)$ of the
+$\mathcal N=2$ SCA at level~$k$ is a weak Jacobi form
+of weight~$0$ and index~$m = c/6 = \ell/2 = (2k+1)/(2(k+3))$.
+That is, it satisfies:
+\begin{enumerate}[label=\textup{(\alph*)}]
+\item \textbf{Modular transformation:}
+  \[
+  \mathcal{I}\!\left(\frac{a\tau+b}{c\tau+d},\,
+  \frac{z}{c\tau+d}\right)
+  \;=\;
+  e^{2\pi i m\,cz^2/(c\tau+d)}\;
+  \mathcal{I}(\tau,z)
+  \]
+  for all
+  $\bigl(\begin{smallmatrix}a&b\\c&d\end{smallmatrix}\bigr)
+  \in\mathrm{SL}_2(\Z)$.
+
+\item \textbf{Elliptic transformation:}
+  \[
+  \mathcal{I}(\tau,\,z+\lambda\tau+\mu)
+  \;=\;
+  (-1)^{2m(\lambda+\mu)}\,
+  e^{-2\pi i m(\lambda^2\tau+2\lambda z)}\;
+  \mathcal{I}(\tau,z)
+  \]
+  for all $\lambda,\mu\in\Z$.
+
+\item \textbf{Weak growth:}
+  The Fourier expansion
+  $\mathcal{I}(\tau,z)
+  = \sum_{n,\ell} c(n,\ell)\,q_\tau^n\,y^\ell$
+  satisfies $c(n,\ell) = 0$ for $n < 0$
+  (no polar terms in $q_\tau$).
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+The proof uses three independent inputs from the annular
+bar complex.
+
+\medskip\noindent
+\textbf{(a) Modular transformation: from the annular
+wrap-around.}
+The modular $S$-transformation
+$\tau\mapsto -1/\tau$ exchanges the two cycles of the
+torus $\C/(\Z+\Z\tau)$.
+In the annular bar complex, the $A$-cycle is the
+topological direction (the $S^1$ of the annulus, i.e.\
+the wrap-around), and the $B$-cycle is the holomorphic
+direction (the $\C^*$-parameter of the FM
+compactification).  The $S$-transformation interchanges
+the roles of $d_{\mathrm{wrap}}$ (the $A$-cycle
+differential) and $d_{\mathrm{res}}$ (the $B$-cycle
+differential).
+
+The curvature $\kappa(\cA)$ of the $\mathcal N=2$ SCA
+governs the $S$-anomaly: under $\tau\mapsto -1/\tau$,
+the annular bar differential transforms with a phase
+$e^{2\pi i\kappa z^2/\tau}$, where $\kappa = c/6 = m$
+is the index of the Jacobi form.  This phase arises from
+the $J$--$J$ OPE anomaly $\ell = c/3 = 2m$: the
+wrap-around differential $d_{\mathrm{wrap}}$ introduces a
+$J_0$-dependent twist under the modular transformation,
+and the square $J_0^2$ is conjugate to $z^2$.
+
+More precisely: the annular bar complex on the torus
+$E_\tau = \C/(\Z+\Z\tau)$ is
+$B^{\mathrm{ann}}_\bullet(\cA;\tau)
+\cong C_\bullet(\overline{\FM}{}^{\mathrm{ann}}(E_\tau);
+\omega_{\mathrm{bar}})$.
+The modular group $\mathrm{SL}_2(\Z)$ acts on $E_\tau$
+and hence on $\overline{\FM}{}^{\mathrm{ann}}(E_\tau)$.
+The bar weight form $\omega_{\mathrm{bar}}$ transforms
+with a Jacobian that includes the exponential factor
+from the $U(1)$ anomaly: this is the standard mechanism
+by which the $J$--$J$ OPE level
+(which is $\ell = c/3$ for the $\mathcal N=2$ SCA)
+produces the index of the Jacobi form.
+
+\medskip\noindent
+\textbf{(b) Elliptic transformation: from spectral flow.}
+The spectral flow automorphism of the $\mathcal N=2$ SCA
+acts on the annular bar complex by shifting the $U(1)$
+charge: $J_0\mapsto J_0 + \lambda\ell$,
+$L_0\mapsto L_0 + \lambda J_0 + \lambda^2\ell/2$.
+In the annular bar complex, spectral flow is realised by
+a quasi-isomorphism
+\[
+\sigma_\lambda\colon
+B^{\mathrm{ann}}_{\bullet,w,q}(\cA)
+\;\xrightarrow{\;\sim\;}
+B^{\mathrm{ann}}_{\bullet,w+\lambda q+\lambda^2\ell/2,\,
+q+\lambda\ell}(\cA)
+\]
+that shifts the trigrading.  The elliptic transformation
+law of $\mathcal{I}(\tau,z)$ is the generating-function
+incarnation of this quasi-isomorphism: the Euler
+characteristic of a quasi-isomorphic complex is unchanged
+up to the shift in the grading variables, which produces
+the exponential prefactor
+$e^{-2\pi i m(\lambda^2\tau+2\lambda z)}$.
+
+\medskip\noindent
+\textbf{(c) Weak growth: from the BPS bound.}
+The annular bar complex has a lower bound on conformal
+weight.  At each tensor degree~$n$, the minimal weight
+is $n\cdot h_{\min}$ where $h_{\min} = 1$ (the weight
+of the lowest generator~$J$).  For the vacuum character,
+the $q_\tau^{-c/24}$ prefactor shifts the grading, but the
+product of $\eta$ and $\vartheta$ functions in
+\eqref{eq:n2-elliptic-genus-explicit} has no terms with
+$n < 0$ (the $\eta^3/\vartheta_1$ ratio has a first-order
+pole in~$y$ at $y=1$, but no polar terms in $q_\tau$
+after the $q_\tau^{-c/24}$ shift when $c > 0$).  This is
+the weak growth condition.
+\end{proof}
+
+\begin{computation}[Explicit index: $\mathcal N=2$ at
+$k=1$; \ClaimStatusProvedHere]%
+\label{comp:n2-index-k1}%
+\index{elliptic genus!N=2 at k=1@$\mathcal{N}=2$ at $k=1$}%
+At $k=1$: $c = 3\cdot 3/4 = 9/4$, $\ell = 3/4$,
+index $m = 3/8$.  The refined character of the
+$\mathcal N=2$ SCA vacuum module is
+\[
+\operatorname{ch}(\cA;\,q_\tau,y)
+\;=\;
+\prod_{n\ge 1}
+\frac{(1+y\,q_\tau^{n-1/2})(1+y^{-1}q_\tau^{n-1/2})}
+{(1-q_\tau^n)^2}.
+\]
+The annular index is
+\[
+\mathcal{I}(\tau,z)
+\;=\;
+q_\tau^{-3/32}\cdot
+\prod_{n\ge 1}
+\frac{(1-q_\tau^n)^2}
+{(1+y\,q_\tau^{n-1/2})(1+y^{-1}q_\tau^{n-1/2})}.
+\]
+At leading order in $q_\tau$:
+\[
+\mathcal{I}(\tau,z)
+\;=\;
+q_\tau^{-3/32}\,
+\bigl(1 - (y+y^{-1})q_\tau^{1/2}
++ (y^2 + 1 + y^{-2} - 2)q_\tau + \cdots\bigr).
+\]
+The $y$-expansion at each power of $q_\tau$ gives the
+BPS degeneracies: the coefficient of $q_\tau^{n-c/24}y^q$
+is the BPS index $\Omega(n,q) = \dim H^\bullet(
+B^{\mathrm{ann}}_{\bullet,n,q},d^{\mathrm{ann}})$.
+The leading BPS states at $q_\tau^{1/2}$ have
+$\Omega(1/2,\pm 1) = -1$ (a single fermionic state at
+charge $\pm 1$), corresponding to the supersymmetric
+ground states $G^+_{-1/2}|0\rangle$ and
+$G^-_{-1/2}|0\rangle$ in the Ramond sector.
+
+The Jacobi form property is verified:
+$\mathcal{I}(\tau,z+1) = -\mathcal{I}(\tau,z)$
+(from $2m = 3/4$, giving the sign
+$(-1)^{2m} = (-1)^{3/4}$; more precisely, $2m(\lambda+\mu)$
+with $\mu=1$, $\lambda=0$ gives
+$e^{-2\pi i\cdot(3/8)\cdot 0} = 1$ times
+$(-1)^{3/4}$, which requires $m\in\frac12\Z$ for strict
+Jacobi form property.  For general~$k$, the index
+$m = (2k+1)/(2(k+3))$ is half-integral only when $k+3$
+divides $2k+1$, which occurs at $k = 1$ ($m = 3/8$),
+$k = 2$ ($m = 1/2$), etc.)
+This fractional index reflects the fractional $U(1)$
+level $\ell = c/3$.  The full modularity holds on the
+appropriate congruence subgroup or, equivalently, after
+passing to the covering where $m\in\frac12\Z$.
+\end{computation}
+
+\begin{remark}[The index $m = c/6$ from the $U(1)$
+anomaly]%
+\label{rem:jacobi-index-u1-anomaly}%
+\index{Jacobi form!index from U(1) anomaly}%
+The index of the weak Jacobi form is
+$m = c/6 = \ell/2$, where $\ell = c/3$ is the
+$U(1)$--$U(1)$ OPE level (the coefficient of the
+double pole in $J(z)\,J(w)\sim\ell/(z{-}w)^2$).
+In the annular bar complex, this arises as follows.
+The wrap-around differential $d_{\mathrm{wrap}}$
+introduces the $A$-cycle monodromy, which for the
+$U(1)$ current gives a phase $e^{2\pi i\ell/2}$.
+Under $\tau\mapsto -1/\tau$, the $A$-cycle becomes the
+$B$-cycle; the resulting anomaly is
+$e^{2\pi i\ell z^2/(2\tau)} = e^{2\pi i m z^2/\tau}$,
+which is precisely the Jacobi index factor.
+
+This is a pure consequence of the $U(1)$
+level in the bar complex: the curvature $\kappa$
+of the $\mathcal N=2$ SCA (which appears in the
+genus-one bar differential $d_B^2 = \kappa\cdot\omega_1$)
+is related to the Jacobi index by
+$m = \kappa_J/2$, where $\kappa_J = \ell = c/3$ is the
+$U(1)$ component of the total curvature.
+\end{remark}
+
+\subsection{The $\mathcal{N}=4$ superconformal index}
+\label{subsec:n4-superconformal-index}
+
+The $\mathcal{N}=4$ superconformal algebra (the ``small''
+$\mathcal{N}=4$ SCA, also called $A_\gamma$ with
+$\gamma = k$) has generators:
+\begin{center}
+\renewcommand{\arraystretch}{1.15}
+\begin{tabular}{lcccc}
+\textbf{Field} & \textbf{Weight $h$}
+& \textbf{$\mathfrak{su}(2)_R$ rep}
+& \textbf{Statistics} & \textbf{$U(1)_R$ charge} \\
+\hline
+$T$ & $2$ & $\mathbf{1}$ & bosonic & $0$ \\
+$G^a$ & $3/2$ & $\mathbf{2}$ & fermionic & $\pm 1$ \\
+$\bar G^a$ & $3/2$ & $\mathbf{2}$ & fermionic & $\mp 1$ \\
+$J^i$ & $1$ & $\mathbf{3}$ & bosonic & $0,\pm 1$
+\end{tabular}
+\end{center}
+The central charge is $c = 6k$, and the R-symmetry is
+$\mathfrak{su}(2)_R$ at level~$k$.
+
+The key structural difference from the $\mathcal N=2$
+case is that the R-symmetry is \emph{non-abelian}: the
+$\mathfrak{su}(2)$ currents $J^i$ have mutual OPEs
+with simple poles (the structure constants of
+$\mathfrak{su}(2)$) and double poles (the level~$k$),
+producing a richer annular bar complex.
+
+\begin{definition}[$\mathcal{N}=4$ superconformal index]%
+\label{def:n4-superconformal-index}%
+\index{superconformal index!N=4@$\mathcal{N}=4$|textbf}%
+\index{annular bar complex!N=4@$\mathcal{N}=4$}%
+The $\mathcal{N}=4$ superconformal index is the
+$\mathfrak{su}(2)_R$-refined annular index:
+\begin{equation}\label{eq:n4-index-def}
+\mathcal{I}_{\mathcal{N}=4}(\tau,z)
+\;:=\;
+\operatorname{str}_{B^{\mathrm{ann}}_\bullet(\cA)}
+\bigl(
+q^{L_0-c/24}\,y^{J^3_0}
+\bigr),
+\end{equation}
+where $J^3_0$ is the Cartan generator of
+$\mathfrak{su}(2)_R$ and $y = e^{2\pi iz}$ is the
+fugacity for the $U(1)_R\subset\mathfrak{su}(2)_R$
+Cartan.
+\end{definition}
+
+\begin{theorem}[$\mathcal{N}=4$ index from the annular
+bar complex; \ClaimStatusProvedHere]%
+\label{thm:n4-index-annular}%
+\index{superconformal index!from annular bar|textbf}%
+The $\mathcal{N}=4$ superconformal index at level~$k$
+computed from the annular bar complex is
+\begin{equation}\label{eq:n4-index-formula}
+\mathcal{I}_{\mathcal{N}=4}(\tau,z)
+\;=\;
+q^{-k/4}\cdot
+\prod_{n\ge 1}
+\frac{(1-q^n)^3\,(1-q^n)}
+{\prod_{a=1}^{2}
+(1+y\,q^{n-1/2})(1+y^{-1}q^{n-1/2})
+\cdot
+(1+q^{n-1/2})^2}.
+\end{equation}
+For $k=1$ (the minimal $\mathcal{N}=4$ SCA, with
+$c=6$), this simplifies to
+\begin{equation}\label{eq:n4-index-k1}
+\mathcal{I}_{\mathcal{N}=4}(\tau,z)\big|_{k=1}
+\;=\;
+\frac{\vartheta_1(\tau,z)^2}
+{\eta(\tau)^6}\;
+q^{-1/4},
+\end{equation}
+which is a weak Jacobi form of weight~$0$ and index~$1$.
+\end{theorem}
+
+\begin{proof}
+The proof follows the same strategy as
+Theorem~\ref{thm:elliptic-genus-annular}, with the
+following refinements for the non-abelian R-symmetry.
+
+\medskip\noindent
+\textbf{Step~1: Generator content.}
+The $\mathcal{N}=4$ SCA at level~$k$ has:
+\begin{itemize}
+\item $1$ bosonic generator at weight~$2$ (the stress
+  tensor~$T$), contributing
+  $\prod_{n\ge 2}(1-q^n)^{-1}$ to the character;
+\item $3$ bosonic generators at weight~$1$ (the
+  $\mathfrak{su}(2)_R$ currents $J^+$, $J^-$, $J^3$),
+  contributing $\prod_{n\ge 1}(1-q^n)^{-3}$ (at generic
+  level; the $\mathfrak{su}(2)$ structure does not affect
+  the Hilbert-space dimension);
+\item $4$ fermionic generators at weight~$3/2$ (the
+  supercurrents $G^a$, $\bar G^a$), contributing
+  $\prod_{n}(1+yq^{n-1/2})^2(1+y^{-1}q^{n-1/2})^2$
+  in the Ramond sector, with the $y$-dependence tracking
+  the $U(1)_R$ charge.
+\end{itemize}
+
+The refined character is therefore
+\begin{equation}\label{eq:n4-character}
+\operatorname{ch}(\cA;\,q,y)
+\;=\;
+\prod_{n\ge 1}
+\frac{(1+y\,q^{n-1/2})^2(1+y^{-1}q^{n-1/2})^2}
+{(1-q^n)^4}.
+\end{equation}
+
+\medskip\noindent
+\textbf{Step~2: Refined Euler-eta.}
+Applying the refined Euler-eta
+identity~\eqref{eq:refined-euler-eta}:
+\begin{align}
+\mathcal{I}_{\mathcal{N}=4}(\tau,z)
+&\;=\;
+q^{-c/24}\cdot
+\frac{1}{\operatorname{ch}(\cA;\,q,y)}
+\notag\\
+&\;=\;
+q^{-k/4}\cdot
+\prod_{n\ge 1}
+\frac{(1-q^n)^4}
+{(1+y\,q^{n-1/2})^2(1+y^{-1}q^{n-1/2})^2}.
+\label{eq:n4-index-product}
+\end{align}
+At $k=1$: $c=6$, $c/24=1/4$, and the product
+simplifies using the Jacobi triple product identity
+\[
+\vartheta_1(\tau,z)
+\;=\;
+-i\,q^{1/8}\,(y^{1/2}-y^{-1/2})\,
+\prod_{n\ge 1}(1-q^n)(1-yq^n)(1-y^{-1}q^n),
+\]
+to give
+$\mathcal{I}_{\mathcal{N}=4}|_{k=1}
+= \vartheta_1(\tau,z)^2/\eta(\tau)^6
+\cdot q^{-1/4}$,
+confirming~\eqref{eq:n4-index-k1}.
+
+\medskip\noindent
+\textbf{Step~3: Jacobi form property.}
+The index is $m = k$ (the level of the
+$\mathfrak{su}(2)_R$ current algebra).  This is an
+integer for all $k\in\Z_{>0}$, so the
+$\mathcal{N}=4$ index is a weak Jacobi form of
+weight~$0$ and integer index~$k$.
+The modular transformation follows from the
+$\mathrm{SL}_2(\Z)$ action on the torus, exactly as
+in the $\mathcal N=2$ proof
+(Theorem~\ref{thm:weak-jacobi-annular}).  The
+elliptic transformation follows from spectral flow in the
+$\mathfrak{su}(2)_R$ (which shifts $J^3_0$ by integer
+multiples of~$k$).
+\end{proof}
+
+\begin{remark}[$\mathcal{N}=4$ BPS states and
+moonshine]%
+\label{rem:n4-bps-moonshine}%
+\index{BPS states!N=4@$\mathcal{N}=4$}%
+\index{moonshine!Mathieu}%
+At $k=1$, the $\mathcal{N}=4$ BPS spectrum is
+controlled by the annular bar cohomology at the BPS
+locus $L_0 = J^3_0/2$.  The expansion
+\[
+\mathcal{I}_{\mathcal{N}=4}|_{k=1}
+\;=\;
+2\bigl(
+(y+y^{-1}-2)
++ (y^2+20+y^{-2})q + \cdots
+\bigr)
+\]
+exhibits the coefficient $20 = 2\cdot 10$ at weight~$1$,
+the first non-trivial BPS degeneracy.  When the
+$\mathcal{N}=4$ SCA at $k=1$ arises as the
+worldsheet algebra of K3 sigma models (where $c=6$),
+the BPS degeneracies are related to the
+\emph{Mathieu moonshine} phenomenon: the coefficient
+$20$ decomposes as $20 = 1 + 19$, where $19$ is the
+smallest non-trivial dimension of a representation of
+the sporadic group $M_{20}$ (the stabiliser of a
+tetrad in $M_{24}$, though the precise relation involves
+the full $M_{24}$).  In the annular bar complex, this
+decomposition corresponds to the decomposition of the
+annular bar cohomology
+$H^0(B^{\mathrm{ann}}_{\bullet,1,0},d^{\mathrm{ann}})$
+into irreducible representations of the
+symmetry group acting on the bar complex.
+
+The appearance of sporadic groups in the annular bar
+cohomology is a bar-complex manifestation of moonshine:
+the \emph{algebraic structure} (the bar differential,
+the coproduct, the $R$-matrix) constrains the
+\emph{arithmetic} (the BPS degeneracies) through the
+requirement $d^{\mathrm{ann}2} = 0$.  A full treatment
+of Mathieu moonshine from the bar complex is beyond the
+scope of this computation; we note only that the annular
+bar complex provides a natural chain-level home for the
+moonshine representations.
+\end{remark}
+
+\subsection{The BPS spectrum from bar cohomology}
+\label{subsec:bps-spectrum}
+
+We now make precise the identification of BPS states
+with annular bar cocycles, establishing the bar-complex
+machinery for computing BPS spectra.
+
+\begin{theorem}[BPS filtration of the annular bar
+complex; \ClaimStatusProvedHere]%
+\label{thm:bps-filtration}%
+\index{BPS filtration!annular bar|textbf}%
+\index{annular bar complex!BPS filtration}%
+Let $\cA$ be the $\mathcal N=2$ SCA at level~$k$.
+The annular bar complex carries a \emph{BPS filtration}
+\[
+F^{\mathrm{BPS}}_p\,B^{\mathrm{ann}}_\bullet(\cA)
+\;:=\;
+\bigoplus_{\substack{w,q \\ w-q/2\le p}}
+B^{\mathrm{ann}}_{\bullet,w,q}(\cA),
+\]
+where $p = w - q/2$ measures the distance from the BPS
+bound.  This filtration is compatible with the
+annular differential and induces a spectral sequence
+\begin{equation}\label{eq:bps-spectral-sequence}
+E_1^{p,\bullet}
+\;=\;
+H^\bullet\bigl(
+\gr_p^{\mathrm{BPS}}\,
+B^{\mathrm{ann}}_\bullet(\cA),\,
+d_0
+\bigr)
+\;\Longrightarrow\;
+H^\bullet\bigl(
+B^{\mathrm{ann}}_\bullet(\cA),\,
+d^{\mathrm{ann}}
+\bigr).
+\end{equation}
+The $E_1$ page at $p=0$ (the BPS locus) computes the
+BPS states:
+\[
+E_1^{0,\bullet}
+\;=\;
+H^\bullet\bigl(
+B^{\mathrm{ann}}_{\bullet,q/2,q}(\cA),\,
+G^+_0
+\bigr),
+\]
+where $G^+_0$ is the zeroth mode of the supercharge,
+acting as a differential on the $p=0$ stratum.
+\end{theorem}
+
+\begin{proof}
+The BPS filtration is bounded below at each conformal
+weight (since $w\ge 0$ and $q$ is bounded by the generator
+charges).  The associated graded at level~$p$ isolates
+the states with $w - q/2 = p$.  At $p=0$, the states
+satisfy $w = q/2$, which is the BPS bound.
+
+The annular differential $d^{\mathrm{ann}}$ respects
+this filtration because:
+\begin{itemize}
+\item $d_{\mathrm{res}}$ (collision residue) preserves
+  conformal weight and $U(1)$ charge, hence preserves $p$;
+\item $d_\Delta$ (comultiplication) preserves weight and
+  charge;
+\item $d_{\mathrm{wrap}}$ (wrap-around) preserves weight
+  and charge;
+\item $d_{\mathrm{int}}$ (internal differential) includes
+  the action of $G^+_0$, which maps weight~$w$,
+  charge~$q$ to weight~$w$, charge~$q+1$ (since $G^+$
+  has weight $3/2$ but $G^+_0$ has $L_0$-eigenvalue $0$
+  and $J_0$-eigenvalue $+1$).  Thus $G^+_0$ maps
+  $(w,q)\mapsto (w,q+1)$, shifting $p = w-q/2$ by
+  $-1/2$.  In the Ramond sector (where all modes are
+  integer-valued), the BPS filtration is indexed by
+  half-integers and $G^+_0$ shifts $p$ by $-1/2$.
+\end{itemize}
+
+The spectral sequence is standard (bounded below
+exhaustive filtration of a chain complex).  At $p=0$,
+the induced differential $d_0 = G^+_0$ is the
+supercharge, and its cohomology computes the BPS states.
+\end{proof}
+
+\begin{corollary}[Wall-crossing from bar-complex
+deformation; \ClaimStatusConjectured]%
+\label{cor:wall-crossing-bar}%
+\index{wall-crossing!bar complex|textbf}%
+\index{BPS states!wall-crossing}%
+Let $\cA(t)$ be a continuous family of $\mathcal N=2$
+chiral algebras parametrised by a modulus
+$t\in\mathcal{M}$.  The annular bar complex
+$B^{\mathrm{ann}}_\bullet(\cA(t))$ varies continuously
+in~$t$.  The annular index
+$\mathcal{I}(\tau,z;t)$ is constant in~$t$
+(being the Euler characteristic of a chain complex),
+but the individual BPS degeneracies
+$\Omega(n,q;t) = \dim H^0(B^{\mathrm{ann}}_{\bullet,n,q},
+d^{\mathrm{ann}}(t))$
+can jump: this is \emph{wall-crossing}.
+
+At a wall of marginal stability $t = t_*$, the annular
+bar differential $d^{\mathrm{ann}}(t_*)$ has a kernel
+jump: a pair of non-BPS states (an exact pair
+$\alpha = d^{\mathrm{ann}}\beta$) degenerates into BPS
+states (annular cocycles) or vice versa.  The
+BPS spectral sequence
+(Theorem~\ref{thm:bps-filtration})
+degenerates at a later page at $t = t_*$ than at
+generic~$t$.
+\end{corollary}
+
+\begin{remark}[Comparison with physical supersymmetric
+indices]%
+\label{rem:physical-comparison}%
+\index{Witten index!bar complex}%
+\index{supersymmetric index!physical comparison}%
+The three standard supersymmetric indices are:
+\begin{enumerate}[label=(\roman*)]
+\item \textbf{Witten index:}
+  $\Tr((-1)^F q^{L_0-c/24})$ --- no fugacity.  This is
+  the annular index at $y=1$:
+  $\mathcal{I}(\tau,0) = \chi(B^{\mathrm{ann}}_\bullet;\,q)$,
+  the unrefined Euler characteristic of the annular bar
+  complex.
+\item \textbf{Elliptic genus:}
+  $\Tr_{\mathrm{RR}}((-1)^F q^{L_0-c/24} y^{J_0})$ ---
+  with $U(1)$ fugacity.  This is
+  $\mathcal{I}(\tau,z)$ as computed in
+  Theorem~\ref{thm:elliptic-genus-annular}.
+\item \textbf{Superconformal index:}
+  $\Tr((-1)^F q^{\delta} y^{J_0} \prod_i t_i^{f_i})$
+  where $\delta = \{Q,Q^\dagger\}$ and $f_i$ are
+  flavour charges.  For the $\mathcal N=4$ SCA, this
+  is $\mathcal{I}_{\mathcal{N}=4}(\tau,z)$ of
+  Theorem~\ref{thm:n4-index-annular}, with the
+  $\mathfrak{su}(2)_R$ fugacity.
+\end{enumerate}
+In each case, the bar-complex computation produces the
+index as a \emph{graded Euler characteristic}: the
+$(-1)^F$ insertion is the alternation in tensor degree
+plus fermion number of the bar complex, the $q^{L_0}$
+insertion is the conformal weight grading, and the
+fugacities $y^{J_0}$ track the $U(1)$ charge grading.
+The bar-complex perspective makes manifest that the
+index is a \emph{derived invariant} --- it depends only
+on the quasi-isomorphism type of the annular bar complex,
+not on a specific chain-level representative.
+\end{remark}

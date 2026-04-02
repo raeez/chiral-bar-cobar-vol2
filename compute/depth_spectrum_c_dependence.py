@@ -238,14 +238,20 @@ def compute_lee_yang(max_arity=10):
             S4 = sc * 12.0 / c_test if abs(c_test) > 1e-14 else float('inf')
             print(f"  {c_test:>15.6f} {sc:>18.6e} {S4:>18.6e}")
 
-    print("\n  RESULT: The Lee-Yang point c=-22/5 is a POLE of the shadow coefficients.")
-    print("  The scalar sector of m_k diverges as c -> -22/5 for k >= 4.")
-    print("  The T-sector (field depths) is UNCHANGED.")
-    print("  Spec|_T at c=-22/5 is the SAME as at any other c.")
-    print("  The pole means: the bar complex on the vacuum module of M(2,5)")
-    print("  has divergent scalar shadow coefficients at the symmetric point.")
-    print("  This does NOT affect the depth spectrum (populated/unpopulated depths),")
-    print("  only the MAGNITUDES of the scalar coefficients.")
+    print("\n  RESULT: The bar complex scalar m_k is PERFECTLY REGULAR at c=-22/5.")
+    print("  The scalar of m_k is EXACTLY (c/12)*P_k(lambda) where P_k is")
+    print("  a c-INDEPENDENT polynomial. No poles anywhere in the c-plane.")
+    print()
+    print("  The Lee-Yang pole at c=-22/5 appears in the EXTRACTED shadow")
+    print("  coefficients S_r(c) from the shadow integrability analysis")
+    print("  (shadow_integrability_investigation.py), which involve DIVIDING")
+    print("  by c and taking ratios. The denominator formula")
+    print("      denom(S_r) = c^{r-3} * (5c+22)^{floor((r-2)/2)}")
+    print("  describes the poles of the INDIVIDUAL S_r(c), not the bar complex.")
+    print("  The bar complex scalar itself is a polynomial in lambda times c/12.")
+    print()
+    print("  The depth spectrum at c=-22/5 is IDENTICAL to all other c != 0.")
+    print("  Spec|_T is c-independent. The scalar depth k+1 is present.")
 
 
 # =========================================================================
@@ -664,47 +670,62 @@ def synthesis():
   depth spectrum of the arity-k A_infty operation for Virasoro at central charge c.
 
   Then:
-  (i)   Spec|_T(m_k, c) is c-INDEPENDENT for all c in C.
+  (i)   Spec|_T(m_k, c) is c-INDEPENDENT for all c in C (including c = -22/5).
   (ii)  Spec(m_k, c) = Spec|_T(m_k) union {k+1}  for c != 0.
   (iii) Spec(m_k, 0) = Spec|_T(m_k)  (no scalar at c=0).
-  (iv)  The gap at d=k is always present (arithmetic impossibility).
+  (iv)  The gap at d=k is ARITHMETIC (no field of weight w = -1 exists).
   (v)   For even k >= 4: depths 0 and 1 are absent from Spec|_T (period-2 vanishing).
+  (vi)  For k=2: all depths 0, 1 are populated (no secondary vanishing).
+  (vii) The scalar of m_k is EXACTLY (c/12)*P_k(lambda), P_k c-independent.
+        The bar complex scalar is LINEAR in c with NO POLES anywhere.
 
   The depth spectrum is:
 
-    k=2: Spec|_T = {0, 1},           Spec(c!=0) = {0, 1, 3}
-    k=3: Spec|_T = {0, 1, 2},        Spec(c!=0) = {0, 1, 2, 4}
-    k=4: Spec|_T = {2, 3},           Spec(c!=0) = {2, 3, 5}
-    k=5: Spec|_T = {0, 1, 2, 3, 4},  Spec(c!=0) = {0, 1, 2, 3, 4, 6}      [WAIT: check depth 0]
-    k=6: Spec|_T = {2, 3, 4, 5},     Spec(c!=0) = {2, 3, 4, 5, 7}
-    k=7: Spec|_T = {0, 1, 2, 3, 4, 5, 6}, Spec(c!=0) = {0, 1, 2, 3, 4, 5, 6, 8}
-    k=8: Spec|_T = {2, 3, 4, 5, 6, 7},    Spec(c!=0) = {2, 3, 4, 5, 6, 7, 9}
-    k=9: all depths 0..8,             Spec(c!=0) = {0, 1, ..., 8, 10}
-    k=10: depths 2..9,               Spec(c!=0) = {2, 3, ..., 9, 11}
+    k=2: Spec|_T = {0, 1},                  Spec(c!=0) = {0, 1, 3}
+    k=3: Spec|_T = {0, 1, 2},               Spec(c!=0) = {0, 1, 2, 4}
+    k=4: Spec|_T = {2, 3},                  Spec(c!=0) = {2, 3, 5}
+    k=5: Spec|_T = {0, 1, 2, 3, 4},         Spec(c!=0) = {0, 1, 2, 3, 4, 6}
+    k=6: Spec|_T = {2, 3, 4, 5},            Spec(c!=0) = {2, 3, 4, 5, 7}
+    k=7: Spec|_T = {0, 1, 2, 3, 4, 5, 6},   Spec(c!=0) = {0, 1, 2, 3, 4, 5, 6, 8}
+    k=8: Spec|_T = {2, 3, 4, 5, 6, 7},      Spec(c!=0) = {2, 3, 4, 5, 6, 7, 9}
+    k=9: Spec|_T = {0, 1, ..., 8},           Spec(c!=0) = {0, 1, ..., 8, 10}
+    k=10: Spec|_T = {2, 3, ..., 9},          Spec(c!=0) = {2, 3, ..., 9, 11}
+
+  Period-2 pattern (for k >= 3):
+    Odd k:  Spec|_T = {0, 1, ..., k-1}  (fully populated)
+    Even k: Spec|_T = {2, 3, ..., k-1}  (depths 0, 1 absent)
+    Exception: k=2 has Spec|_T = {0, 1} (trivially full, base of recursion).
+
+  Depth-0 coefficients (the d^{k-1}T term):
+    For odd k: CONSTANT (lambda-independent, c-independent).
+    Sequence: k=3: +1, k=5: -1, k=7: +2, k=9: -5.
+    Absolute values: 1, 1, 2, 5 = tangent numbers T_1, T_2, T_3, T_4.
+    Signed: (-1)^{n+1} * T_n where n = (k-1)/2.
+    For even k >= 4: IDENTICALLY ZERO.
+
+  Even-arity symmetric-point vanishing:
+    At the symmetric point lambda_1 = ... = lambda_{k-1} = t, the ENTIRE
+    T-sector of m_k vanishes IDENTICALLY for even k >= 4 (for all t).
+    This is a polynomial identity in t, not a special-value coincidence.
+    Odd k: fully populated at the symmetric point.
 
   Special c values:
   ================
   c = 0 (Witt algebra): scalar sector ABSENT. Spec = Spec|_T only.
-    The Witt algebra has infinite A_infty tower but no shadow (class L without quartic pole).
+    The Witt algebra has infinite A_infty tower but no shadow.
+    Class L (shadow depth 2) without quartic pole, yet m_k != 0 for all k.
 
-  c = -22/5 (Lee-Yang): scalar sector has POLES (divergent coefficients).
-    The depth spectrum (populated/unpopulated) is unchanged, but the scalar
-    magnitudes blow up. The pole structure: denom(S_r) = c^{r-3} * (5c+22)^{floor((r-2)/2)}.
+  c = -22/5 (Lee-Yang): depth spectrum UNCHANGED. Bar complex scalar is
+    perfectly regular (linear in c). The Lee-Yang pole appears ONLY in the
+    extracted shadow coefficients S_r(c) = P_k/k after dividing by c,
+    not in the bar complex itself.
 
-  c = 1/2 (Ising): scalar sector is small (proportional to c = 1/2).
-    Depth spectrum identical to all other c != 0.
-    The MODULE bar complex (on irreducible L_{1/2,h}) is a different object.
+  c = 1/2 (Ising): depth spectrum identical. Scalar magnitude = c/12 * P_k.
+    The MODULE bar complex (on irreducible L_{1/2,h}) is a DIFFERENT object.
 
-  c = 25 (near-critical): no special feature in the depth spectrum.
-    The curved bar differential d^2 = kappa * omega_g with kappa = c - 26 = -1
-    is small, but this affects genus >= 1 only, not the genus-0 bar complex.
-
-  c = 26 (critical): kappa = 0, SC-formal. Same depth spectrum.
-    The formality means higher bar cohomology vanishes, but the operations m_k
-    themselves do NOT vanish (they are the CHAIN-LEVEL data).
-
-  c = 13 (self-dual): Koszul self-duality point. Same depth spectrum.
-    Vir_13^! = Vir_13.
+  c = 25, c = 26, c = 13: depth spectrum identical. The genus-0 bar
+    complex sees no special structure at these values.
+    The curvature kappa = c - 26 affects genus >= 1 only.
 
   The ONLY c-value where the depth spectrum CHANGES is c = 0:
   the scalar depth k+1 drops out, leaving Spec|_T alone.

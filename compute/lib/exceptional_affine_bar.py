@@ -710,7 +710,7 @@ def print_exceptional_summary(k=1):
         print(f"      sum(exponents) = {sum(data['exponents'])} = |Φ⁺| ✓")
 
         print(f"\n  (2) Curvature:")
-        print(f"      κ(V_{k}({name})) = {data['dim']}·{k} / (2·({k}+{data['h_dual']}))")
+        print(f"      κ(V_{k}({name})) = {data['dim']}·({k}+{data['h_dual']}) / (2·{data['h_dual']})")
         print(f"                       = {curv['kappa']}  ≈  {curv['kappa_float']:.6f}")
         if curv['complementarity_verified']:
             print(f"      κ + κ' = 0  ✓  (Koszul complementarity)")
@@ -721,7 +721,7 @@ def print_exceptional_summary(k=1):
         print(f"      Termination: {shadow['termination_mechanism']}")
 
         print(f"\n  (4) Collision residue:")
-        print(f"      r(z) = {coll['r_matrix_formula']}")
+        print(f"      {coll['r_matrix_formula']}")
         print(f"      {coll['pole_absorption']}")
         print(f"      Casimir: {coll['casimir_structure']['description']}")
 

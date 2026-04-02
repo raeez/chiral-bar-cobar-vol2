@@ -197,25 +197,25 @@ class TestCurvature:
             )
 
     @pytest.mark.parametrize("name", ["E6", "E7", "E8"])
-    def test_kappa_semiclassical_limit(self, name):
-        """κ → dim(g)/2 as k → ∞."""
+    def test_kappa_grows_linearly(self, name):
+        """κ grows linearly in k: κ = (dim/2h∨)·k + dim/2."""
         dim_g = _EXCEPTIONAL_E_DATA[name]['dim']
-        result = curvature_kappa(name, 10**6)
-        expected_limit = Fraction(dim_g, 2)
-        # At k = 10^6, κ should be very close to dim(g)/2
-        diff = abs(result['kappa'] - expected_limit)
-        assert diff < Fraction(1, 100), (
-            f"{name}: semiclassical limit: κ = {result['kappa']}, "
-            f"expected ≈ {expected_limit}"
-        )
+        h_dual = _EXCEPTIONAL_E_DATA[name]['h_dual']
+        # At large k, the slope is dim/(2h∨)
+        k_large = 10**6
+        result = curvature_kappa(name, k_large)
+        slope = Fraction(dim_g, 2 * h_dual)
+        expected = slope * (k_large + h_dual)
+        assert result['kappa'] == expected
 
     @pytest.mark.parametrize("name,k,expected", [
-        # E6, k=2: 78·2/(2·14) = 156/28 = 39/7
-        ("E6", 2, Fraction(39, 7)),
-        # E7, k=2: 133·2/(2·20) = 266/40 = 133/20
-        ("E7", 2, Fraction(133, 20)),
-        # E8, k=2: 248·2/(2·32) = 496/64 = 31/4
-        ("E8", 2, Fraction(31, 4)),
+        # κ = dim·(k+h∨)/(2h∨)
+        # E6, k=2: 78·14/(2·12) = 78·14/24 = 1092/24 = 91/2
+        ("E6", 2, Fraction(91, 2)),
+        # E7, k=2: 133·20/(2·18) = 133·20/36 = 2660/36 = 665/9
+        ("E7", 2, Fraction(665, 9)),
+        # E8, k=2: 248·32/(2·30) = 248·32/60 = 7936/60 = 1984/15
+        ("E8", 2, Fraction(1984, 15)),
     ])
     def test_kappa_at_k2(self, name, k, expected):
         """κ at k=2."""
