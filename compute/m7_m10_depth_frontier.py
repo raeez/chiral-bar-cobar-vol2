@@ -40,7 +40,7 @@ sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 # derivative_order = 1 means dT
 # derivative_order = n means d^n T
 
-MAX_DERIV = 10  # track up to d^10 T
+MAX_DERIV = 20  # track up to d^20 T (needs to exceed 2*(k-2) for arity k)
 
 def fd_add(*dicts: Dict[int, float], signs=None) -> Dict[int, float]:
     """Add field-coeff dicts with optional signs."""

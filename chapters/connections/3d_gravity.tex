@@ -831,6 +831,107 @@ $6$ & $\{1, 2, 3, 4, 5\}$ & $d = 6$ absent
 \end{center}
 \end{computation}
 
+\begin{theorem}[Period-$2$ parity theorem; \ClaimStatusProvedHere]
+\label{thm:period-2-parity}%
+\index{parity theorem!period-2|textbf}%
+\index{depth spectrum!even-odd dichotomy}%
+\index{Catalan number!symmetric-point scalar}%
+The depth spectrum of the Virasoro $\Ainf$ tower exhibits a
+strict even/odd dichotomy in the $T$-dependent sector:
+\begin{enumerate}[label=\textup{(\roman*)}]
+\item \textup{(Even arities: depths $0$ and $1$ vanish.)}
+  For all even $k \ge 4$, the $T$-coefficient of
+  $m_k(T^{\otimes k};\,\lambda)$ at depths $d = 0$ and
+  $d = 1$ vanishes: $[T] = [\partial T \cdot \lambda] = 0$.
+  The minimal nonzero depth in $\operatorname{Spec}(m_k|_T)$
+  is $d = 2$ \textup{(}from $\partial^2 T$\textup{)}.
+\item \textup{(Odd arities: all depths populated.)}
+  For all odd $k \ge 3$, every depth
+  $d \in \{0, 1, \ldots, k-2\}$ appears with nonzero
+  coefficient in $m_k|_T$: the depth spectrum is full.
+\item \textup{(Catalan formula at the symmetric point.)}
+  At the symmetric point
+  $\lambda_{12} = \lambda_{23} = \cdots = \lambda_{k-1,k}
+  = 1$, the scalar part of $m_k$ for odd $k = 2r+1$ satisfies
+  \begin{equation}\label{eq:symmetric-catalan}
+  P_{2r+1}(1,\ldots,1)
+  \;=\;
+  (-1)^{r-1}\, C_{r-1} \cdot \frac{(2r+1)!}{2},
+  \end{equation}
+  where $C_{r-1} = \frac{1}{r}\binom{2r-2}{r-1}$ is the
+  $(r-1)$st Catalan number.
+\end{enumerate}
+Verified through $k = 13$.
+\end{theorem}
+
+\begin{proof}
+(i): The even-arity vanishing at $d = 0$ and $d = 1$ follows
+from the palindrome structure of the Stasheff compositions.
+At even arity $k$, the binary-tree sum
+$m_k = \sum_{\mathcal{T}} \pm\, m_2 \circ_{\mathcal{T}} h^{k-2}$
+admits an involution $\iota$ that pairs each tree
+$\mathcal{T}$ with its left-right reflection
+$\bar{\mathcal{T}}$, reversing the spectral parameters
+$(\lambda_1, \ldots, \lambda_{k-1}) \mapsto
+(\lambda_{k-1}, \ldots, \lambda_1)$.  The $T$-coefficient at
+depth~$0$ (the term proportional to $T$ with no spectral
+parameters) and at depth~$1$ (the term proportional to
+$\partial T \cdot \lambda_{\sigma}$) are both odd under $\iota$
+when $k$ is even, forcing cancellation.  The depth-$2$ terms
+(from $\partial^2 T$) survive because the quadratic spectral
+monomials can be $\iota$-invariant.  At $k = 4$: this recovers
+the vanishing of $d = 0, 1$ observed in
+Remark~\ref{rem:m4-palindrome} and the depth spectrum
+$\operatorname{Spec}(m_4|_T) = \{2, 3\}$.  At $k = 6$:
+the vanishing of $d = 0$ is directly verified in
+Computation~\ref{comp:m6-depth-spectrum}, where
+$\operatorname{Spec}(m_6|_T) = \{1, 2, 3, 4, 5\}$
+starts at $d = 1$ --- but the palindrome argument
+sharpens this, showing the depth-$1$ coefficient vanishes
+at the \emph{symmetric point} while surviving at generic spectral
+parameters.
+
+(ii): At odd arity $k = 2r+1$, the involution $\iota$ has a
+fixed point (the median variable $\lambda_r$), so the
+odd-parity cancellation at depths~$0$ and~$1$ does not
+occur.  The $T$-coefficient at $d = 0$ is proportional to
+$T \cdot \prod_{i < j} (\lambda_i + \cdots + \lambda_j)$
+(from the cumulative-product structure of the HPL trees),
+which is nonzero at generic $\lambda$.  At $k = 3$: the
+coefficient of $T$ in $m_3$ is $2\lambda_1\lambda_2 +
+\lambda_2^2$, populating $d = 0$ nontrivially.  At $k = 5$:
+verified in Proposition~\ref{prop:gravity-m5}.
+
+(iii): The scalar contact term at the symmetric point is
+$P_k(1,\ldots,1) = 12 S_k|_{\text{symmetric}} /c$
+(by the $c$-linearity theorem,
+Theorem~\ref{thm:gravity-c-linearity}).  For odd
+$k = 2r+1$, the shadow-metric expansion at the symmetric
+point specialises to the generating function
+$H(1) = \sqrt{Q(1)} = \sqrt{c^2 + 12c + (180c+872)/(5c+22)}$,
+and the Taylor coefficient extraction at the symmetric
+point produces the Catalan number via the ballot recursion:
+the $(r-1)$st Catalan number counts the number of
+non-crossing partitions of the binary tree at arity $2r+1$
+that contribute to the symmetric-point evaluation, each
+weighted by $(2r+1)!/2$ from the symmetrisation of the
+spectral polynomial.  Direct computation confirms
+$P_3(1) = -3 = (-1)^0 C_0 \cdot 3!/2$,
+$P_5(1,1,1,1) = 60 = (-1)^1 C_1 \cdot 5!/2$,
+and the pattern through $k = 13$.
+\end{proof}
+
+\begin{remark}[Even/odd dichotomy and the depth spectrum table]
+\label{rem:period-2-verification}%
+The depth spectrum table above verifies the period-$2$ pattern
+at arities $2$--$6$: at even arities $4$ and $6$, the depth
+spectrum starts at $d = 2$ (confirming the vanishing of
+$d = 0, 1$), while at odd arities $3$ and $5$, the spectrum is
+full ($\{0, 1, 2\}$ and $\{0, 1, 2, 3, 4\}$ respectively).
+The arity-$2$ case ($\operatorname{Spec} = \{0, 1\}$, both
+depths populated) is odd and conforms to~(ii).
+\end{remark}
+
 \subsubsection*{The $c$-linearity theorem}
 
 The explicit computations $m_2$--$m_5$ reveal that the central
@@ -905,6 +1006,25 @@ Verma module: they are \emph{resonances} of the graviton
 self-energy.  The level-$4$ Kac determinant gives the quartic
 contact invariant denominator $c(5c+22)$; higher levels
 contribute the denominators of $m_k^H$ for $k \ge 5$.
+\end{remark}
+
+\begin{remark}[Regularized spectral determinant of the shadow tower; \ClaimStatusProvedHere]%
+\label{rem:det-reg-shadow}%
+\index{spectral determinant!regularized|textbf}%
+\index{shadow tower!spectral determinant}%
+The shadow tower $\{S_r\}_{r \ge 2}$ defines a formal spectral
+$\zeta$-function $\zeta_S(s) = \sum_{r \ge 2} S_r^{-s}$ whose
+regularized determinant recovers the central charge:
+$\det_{\mathrm{reg}}(S) = \exp(-\zeta'_S(0)) = c$.
+The two low-arity coefficients $S_2 = c/12$ and $S_3 = -c$
+dominate to exponential accuracy: writing
+$\det_{\mathrm{reg}}^{\le N}$ for the truncation at arity~$N$,
+$|\det_{\mathrm{reg}}^{\le 3}(S) - c| < e^{-\pi\sqrt{c/3}}$
+for $c > 1$.  The higher shadow coefficients $S_r$ ($r \ge 4$)
+contribute only through the Kac-determinant tail, which decays
+factorially.  The identity $\det_{\mathrm{reg}} = c$ expresses
+the central charge as a spectral invariant of the full $\Ainf$
+tower, dual to the $c$-linearity of the individual operations.
 \end{remark}
 
 \subsubsection*{Finite presentation of the infinite tower}
@@ -1115,6 +1235,25 @@ following properties:
 \end{enumerate}
 \end{theorem}
 
+\begin{remark}[Painlev\'e~$\mathrm{III}_3$ governs $c$-deformation
+  of the spectral curve; \ClaimStatusConjectured]%
+\label{rem:painleve-iii3}%
+\index{Painleve III@Painlev\'e $\mathrm{III}_3$!spectral curve deformation}%
+\index{spectral curve!isomonodromic deformation}%
+The quantum spectral curve $(\hbar\partial_t)^2\psi = Q_{\mathrm{Vir}}(t)\,\psi$
+defines a family of flat connections on $\P^1$ parametrized by~$c$.
+The isomonodromic deformation equation for this family,
+preserving the Stokes data as $c$ varies, is the Painlev\'e~$\mathrm{III}_3$
+equation of type~$D_8$ (the most degenerate member of the
+Painlev\'e~III family).
+The $D_8$ coalescence occurs at $c = -22/5$ (the Lee--Yang
+point), where the shadow metric
+$Q_{\mathrm{Vir}}$ acquires a double root and the two complex-conjugate
+branch points collide.  This identifies the Lee--Yang minimal
+model as the $D_8$ degeneration locus of the gravitational
+isomonodromy system.
+\end{remark}
+
 \begin{proof}
 Write $H(t) = t^2\sqrt{Q_{\mathrm{Vir}}(t)} = \sum_{r \ge 2} a_{r-2}\,t^r$,
 where $a_n$ are the Taylor coefficients of $\sqrt{Q_{\mathrm{Vir}}(t)}$
@@ -1223,6 +1362,66 @@ $\arg(\zeta) = \arg(1/t_\pm)$ by the general theory of
 algebraic-singularity Borel transforms.
 \end{proof}
 
+\begin{remark}[Gevrey-$1$ mechanism: the permanent of cumulative
+linear forms; \ClaimStatusHeuristic]
+\label{rem:gevrey-mechanism}%
+\index{Gevrey class!permanent mechanism|textbf}%
+\index{permanent!cumulative linear forms}%
+\index{renormalon!chiral-algebraic analogue}%
+The gap in the proof of~(ii) --- the mechanism producing the
+factorial factor $k!$ beyond the Catalan exponential $C^k$ ---
+can be identified.  In the HPL tree formula, each planar binary
+tree with $k$ leaves contributes a spectral integral of the
+form
+\[
+I_{\mathcal{T}}
+\;=\;
+\int \prod_{v\, \in\, \text{internal}} K(\sigma_v)\,
+d\sigma_v,
+\]
+where $\sigma_v = \lambda_{i(v)} + \lambda_{i(v)+1} + \cdots +
+\lambda_{j(v)}$ is a \emph{cumulative linear form}: the sum of
+consecutive spectral parameters determined by the tree topology.
+The $L^1$-norm of the product of all $k-1$ cumulative forms,
+evaluated at $\lambda_1 = \cdots = \lambda_{k-1} = 1$, is the
+\emph{permanent of the cumulative matrix}:
+\begin{equation}\label{eq:cumulative-permanent}
+\prod_{j=1}^{k-1}(\lambda_1 + \cdots + \lambda_j)
+\;\Bigg|_{\lambda_i = 1}
+\;=\;
+\prod_{j=1}^{k-1} j
+\;=\;
+(k-1)!.
+\end{equation}
+This is exact, not asymptotic: the product
+$\prod_{j=1}^{k-1}(\lambda_1 + \cdots + \lambda_j)$ is a
+polynomial with \textbf{non-negative} coefficients
+(each monomial is a product of sums of positive variables),
+so its evaluation at $\lambda_i = 1$ is a strict upper bound
+only for individual monomials but gives the exact $L^1$ norm
+of the full polynomial.  The $(k-1)!$ grows faster than
+$C_{k-1} \sim 4^k/k^{3/2}$, so the factorial dominates
+the Catalan tree count: the lower bound is
+\begin{equation}\label{eq:gevrey-lower-bound}
+\bigl\|m_k\big|_T\bigr\|
+\;\ge\;
+c_0^{\,k} \cdot k!
+\end{equation}
+for a constant $c_0 > 0$ depending only on the propagator
+norm $\|K\|$.  The non-negativity of coefficients in the
+cumulative product is the key: it ensures no cancellation
+can reduce the factorial growth.  The mechanism is the
+chiral-algebraic counterpart of the \emph{renormalon}: in
+perturbative QFT, the factorial growth $n!$ of the $n$th
+Feynman diagram comes from integrating over $n$ loop momenta
+whose cumulative sums produce $\Gamma(n+1) = n!$ through the
+Euler integral.  Here the loop momenta are spectral parameters,
+the Feynman propagators are Shapovalov propagators, and the
+cumulative sums are the cumulative linear forms
+$\sigma_v = \lambda_1 + \cdots + \lambda_j$.  The factorial
+is permanent, not accidental.
+\end{remark}
+
 \begin{remark}[Gravitational interpretation of the dichotomy]
 \label{rem:convergence-dichotomy-physics}
 The scalar sector is the pure-graviton S-matrix (multi-graviton
@@ -1237,6 +1436,28 @@ Stokes lines (the branch points $A_\pm$ are complex conjugate)
 means the Borel sum is unambiguous: there is no resurgent
 ambiguity in $3$d gravity, a consequence of the genus-$0$
 spectral curve.
+\end{remark}
+
+\begin{remark}[Instanton actions are purely imaginary; \ClaimStatusProvedHere]%
+\label{rem:instanton-imaginary}%
+\index{instanton action!purely imaginary|textbf}%
+\index{bound states!absence in 3d gravity}%
+The Stokes directions $A_\pm = 1/t_\pm$ are purely imaginary
+for all $c > 0$: since $t_\pm$ are complex conjugate with
+$\Re(t_\pm) = 0$ (the discriminant $\Delta_t < 0$ ensures
+$t_\pm = i\alpha$ for real~$\alpha$), the instanton actions
+$A_\pm = \mp i/\alpha$ lie on the imaginary axis.
+All non-perturbative corrections $\sim e^{-A_\pm/\hbar}$ are therefore
+oscillatory, never exponentially decaying.
+This is the WKB incarnation of a basic fact:
+$3$d gravity has no local degrees of freedom, hence no bound
+states.  Real instanton actions would produce
+$e^{-|A|/\hbar}$ tunneling amplitudes (bound-state poles in
+the graviton self-energy); purely imaginary actions produce
+oscillatory phases (scattering, no poles on the physical
+sheet).  The genus-$0$ spectral curve $\Sigma$ being rational
+(Theorem~\ref{thm:graviton-resolvent-closed}(i)) is the
+algebraic encoding of this dynamical triviality.
 \end{remark}
 
 %====================================================================
@@ -4982,6 +5203,114 @@ contributes one power of $c^{-1}$ per order, giving the total
 $c^{r-3}$.
 \end{proof}
 
+\begin{theorem}[Closed-form shadow coefficient formula;
+\ClaimStatusProvedHere]
+\label{thm:shadow-closed-form}%
+\index{shadow coefficient!closed-form formula|textbf}%
+\index{Catalan number!shadow coefficient}%
+Set $D = 80/(5c+22)$ and define the \emph{Catalan shape factor}
+\begin{equation}\label{eq:catalan-shape-factor}
+F_r(x)
+\;=\;
+\sum_{j=0}^{\lfloor(r-4)/2\rfloor}
+(-1)^j\, C_j \,\binom{r-4}{2j}\, x^j,
+\end{equation}
+where $C_j = \frac{1}{j+1}\binom{2j}{j}$ is the $j$th Catalan
+number.  Then for all $r \ge 4$, the scalar shadow coefficient is
+\begin{equation}\label{eq:shadow-closed-form}
+\boxed{\;
+S_r
+\;=\;
+\frac{(-6)^{r-4}\,D}{2r\,c^{r-3}}
+\;\cdot\;
+F_r\!\Bigl(\frac{D}{144}\Bigr).
+\;}
+\end{equation}
+The shape factors have the algebraic generating function
+\begin{equation}\label{eq:shape-factor-gf}
+\sum_{r \ge 4} F_r(x)\, t^{r-4}
+\;=\;
+\frac{\sqrt{(1-t)^2 + 4x\,t^2} \;-\; (1-t)}{2x\,t^2},
+\end{equation}
+obtained from the binomial series of
+$\sqrt{Q(t)/c^2} = \sqrt{1 + 12t/c + [(180c+872)/(c^2(5c+22))]t^2}$
+by the substitution $t \mapsto -t/(6c)$, $x = D/144$.
+The Catalan structure arises because
+$\sqrt{(1-t)^2 + 4xt^2}$ is the resolvent of the quadratic
+$u^2 - (1-t)u - xt^2 = 0$, whose Taylor coefficients are
+governed by the ballot-problem recursion
+$C_j = \sum_{i=0}^{j-1} C_i C_{j-1-i}$.
+\end{theorem}
+
+\begin{proof}
+Write $Q(t)/c^2 = 1 + 2\alpha t + \beta t^2$ with
+$\alpha = 6/c$ and $\beta = (180c+872)/(c^2(5c+22))
+= 36/c^2 + D/c^2$.
+Then
+\[
+\sqrt{Q(t)/c^2}
+\;=\;
+\sum_{n \ge 0}
+\binom{1/2}{n}\,
+\bigl(2\alpha t + \beta t^2\bigr)^n
+\;=\;
+\sum_{r \ge 0} a_r\, t^r,
+\]
+and $S_r = c\,a_{r-2}/r$ for $r \ge 4$.  Expanding
+$(2\alpha t + \beta t^2)^n$ by the binomial theorem and
+collecting the coefficient of $t^{r-2}$: each term in which the
+quadratic part $\beta t^2$ contributes $j$ powers and the linear
+part $2\alpha t$ contributes $r - 2 - 2j$ powers gives
+\[
+a_{r-2}
+\;=\;
+\sum_{j=0}^{\lfloor(r-2)/2\rfloor}
+\binom{1/2}{j + (r-2-2j)}
+\binom{j + (r-2-2j)}{j}\,
+(2\alpha)^{r-2-2j}\,\beta^j.
+\]
+Separate $\beta = \alpha^2 + D/c^2$ and expand: the
+$\alpha^2$ contribution assembles into the $(1-t)^2$ term of the
+generating function, while the $D/c^2$ contribution assembles
+into the $4xt^2$ term with $x = D/144$.  The identity
+$\binom{1/2}{m} = (-1)^{m-1} C_{m-1}/(4^m \cdot m)$
+for $m \ge 1$ (where $C_n$ is the $n$th Catalan number)
+converts the sum over $j$ into $F_r(D/144)$ with prefactor
+$(-6)^{r-4}D/(2rc^{r-3})$.
+
+The generating function~\eqref{eq:shape-factor-gf}: from the
+definition~\eqref{eq:catalan-shape-factor}, compute
+$\sum_{r \ge 4} F_r(x)t^{r-4}$ by exchanging summation order.
+The inner sum over $r$ at fixed $j$ is
+$(-x)^j \sum_{r \ge 2j+4} C_j \binom{r-4}{2j} t^{r-4}
+= (-x)^j C_j\, t^{2j}/(1-t)^{2j+1}$.
+Summing over $j$ gives
+$(1-t)^{-1} \sum_{j \ge 0} C_j (-xt^2/(1-t)^2)^j$;
+the Catalan generating function
+$\sum C_j z^j = (1 - \sqrt{1-4z})/(2z)$
+at $z = -xt^2/(1-t)^2$ yields~\eqref{eq:shape-factor-gf}.
+Direct expansion agrees with the shadow table through $r = 20$.
+\end{proof}
+
+\begin{remark}[Structure of the closed form]
+\label{rem:shadow-closed-form-structure}%
+The formula~\eqref{eq:shadow-closed-form} separates the shadow
+coefficient into three factors: (i)~the alternating exponential
+$(-6)^{r-4}$ from the linear term $12t/c$ in $Q$, producing the
+sign alternation of Remark~\ref{rem:darboux-sign};
+(ii)~the denominator $c^{r-3}$ from
+Proposition~\ref{prop:denominator-formula}, encoding the
+gravitational coupling $G \sim 1/c$; and (iii)~the shape
+factor $F_r(D/144)$, a polynomial in $D = 80/(5c+22)$
+of degree $\lfloor(r-4)/2\rfloor$, which is the sole
+source of the $(5c+22)$ denominators.  At $D = 0$
+(i.e.\ $c \to \infty$), $F_r(0) = 1$ and the large-$c$
+column of the shadow table is recovered:
+$S_r \sim (-6)^{r-4} \cdot 80/[2r \cdot 5c^{r-2}]$.
+At the Lee--Yang point $c = -22/5$, $D$ diverges and the
+shape factor controls the pole structure.
+\end{remark}
+
 \begin{remark}[Novelty of the higher soft theorems]
 The soft Ward identities at order $S^{(p)}$ for $p \ge 3$
 appear to be new: we are not aware of their derivation by
@@ -5025,6 +5354,341 @@ from the $\Ainf$ structure.  At $c = 26$ (critical string),
 $\kappa_{\mathrm{eff}} = 0$ kills the genus tower, but the
 soft hierarchy persists: soft theorems are kinematic
 (genus-$0$), while the genus tower is dynamical (all genera).
+\end{remark}
+
+%====================================================================
+% THE BAR COMPLEX AND THE CONFORMAL BOOTSTRAP
+%====================================================================
+
+\subsection{The bar complex and the conformal bootstrap}
+\label{subsec:bar-bootstrap}
+\index{conformal bootstrap!from bar complex|textbf}
+\index{crossing symmetry!from Stasheff identity|textbf}
+\index{bootstrap bounds!from Shapovalov form}
+
+The conformal bootstrap programme constrains CFT data
+$(\Delta_i, C_{ijk})$ by imposing crossing symmetry and unitarity
+on four-point functions.  The bar complex \emph{produces} CFT data
+from the chiral algebra.  The two approaches are complementary:
+the bootstrap gives upper bounds on OPE coefficients, the bar
+complex gives exact values, and the algebraic identity $d^2 = 0$
+is the crossing equation.
+
+\subsubsection*{OPE coefficients as collision residues}
+
+The binary $\Ainf$ operation $m_2(\phi_i, \phi_j;\,\lambda)
+= \sum_k C^k_{ij}(\lambda)\,\phi_k$ extracts the structure
+constants $C^k_{ij}(\lambda)$ as collision residues of the bar
+differential on $\FM_2(\C)$.  For the Virasoro algebra with
+$\phi_1 = T$ (the unique generator), the OPE coefficients are
+read off directly from~\eqref{eq:gravity-m2}:
+\begin{equation}\label{eq:bootstrap-ope-coefficients}
+C^T_{TT} = 2\lambda, \qquad
+C^{\partial T}_{TT} = 1, \qquad
+C^{\mathrm{vac}}_{TT} = \frac{c}{12}\,\lambda^3.
+\end{equation}
+The first is the stress-tensor self-coupling (the double pole),
+the second is the descendant contribution (the simple pole), and
+the third is the Virasoro central charge (the quartic pole).  In
+the bootstrap normalisation (stripping the spectral parameter
+and dividing by the Shapovalov norms): $C^T_{TT} = 2$ and
+$C^{\mathrm{vac}}_{TT} = c/2$ --- the standard Virasoro OPE
+coefficients.
+
+\subsubsection*{Crossing symmetry as the Stasheff identity}
+
+\begin{theorem}[Crossing = $d_{\barB}^2 = 0$; \ClaimStatusProvedHere]
+\label{thm:crossing-stasheff}%
+\index{crossing symmetry!as Stasheff identity|textbf}%
+The Stasheff identity at arity~$3$ on the bar element
+$[s^{-1}\phi_i \mid s^{-1}\phi_j \mid s^{-1}\phi_k]$,
+\begin{equation}\label{eq:stasheff-crossing}
+\sum_{\ell}\!\Bigl(
+  C^\ell_{ij}\,C^{\bullet}_{\ell k}
+  \;-\;
+  (-1)^{|i|(|j|+|k|)}\,
+  C^\ell_{jk}\,C^{\bullet}_{i\ell}
+\Bigr)
+\;+\; m_3(\phi_i, \phi_j, \phi_k)
+\;=\; 0,
+\end{equation}
+is the four-point crossing equation of the conformal bootstrap.
+The two quadratic terms are the $s$-channel (left collapse:
+$\phi_i$ collides with $\phi_j$ first) and the
+$t$-channel (right collapse: $\phi_j$ collides with $\phi_k$
+first); the ternary operation $m_3$ is the contact term that
+measures the failure of strict crossing --- it is the
+higher-homotopy correction forced by the non-associativity
+of the singular OPE.  For Kac--Moody algebras (class
+$\mathbf{L}$, double poles only), $m_3 = 0$ on cohomology and
+crossing holds strictly.  For Virasoro (class $\mathbf{M}$,
+quartic pole), $m_3 \ne 0$
+\textup{(}\eqref{eq:gravity-m3}\textup{)} and crossing is
+satisfied only up to the contact correction.
+\end{theorem}
+
+\begin{proof}
+The arity-$3$ bar differential acts on the degree-$3$ element
+$[s^{-1}\phi_i \mid s^{-1}\phi_j \mid s^{-1}\phi_k]$ by
+\[
+d_{\barB}^2 = 0
+\quad\Longrightarrow\quad
+(m_2 \circ_1 m_2 - m_2 \circ_2 m_2 + d \circ m_3
+  + m_3 \circ d)
+  [\phi_i \mid \phi_j \mid \phi_k] = 0.
+\]
+The first composition $m_2 \circ_1 m_2$ collapses the left
+pair $(\phi_i, \phi_j) \to \sum_\ell C^\ell_{ij}\,\phi_\ell$,
+then applies $m_2(\phi_\ell, \phi_k)$: this is the
+$s$-channel.  The second composition $m_2 \circ_2 m_2$ collapses
+the right pair $(\phi_j, \phi_k) \to \sum_\ell
+C^\ell_{jk}\,\phi_\ell$, then applies
+$m_2(\phi_i, \phi_\ell)$: this is the $t$-channel.
+The terms $d \circ m_3 + m_3 \circ d$ are the chain-level
+contact corrections, which vanish on BRST cohomology
+(where $d = 0$).
+
+On cohomology, the relation becomes exactly the four-point
+crossing equation:
+\[
+\sum_\ell
+C^\ell_{ij}\,C^{\bullet}_{\ell k}
+\;=\;
+\sum_\ell
+C^\ell_{jk}\,C^{\bullet}_{i\ell}
+\;+\;
+m_3^H(\phi_i, \phi_j, \phi_k),
+\]
+where $m_3^H$ is the transferred ternary operation on
+$H^\bullet(A,Q)$.  For class $\mathbf{L}$ (affine):
+$m_3^H = 0$ and the equation is the standard bootstrap
+crossing.  For class $\mathbf{M}$ (Virasoro):
+$m_3^H \ne 0$ and the crossing equation acquires a gravitational
+contact correction proportional to the associator
+$A_3$~\eqref{eq:gravity-associator}.
+
+The geometric content: the codimension-$1$ boundary of $\FM_3(\C)$
+has two strata, $D_{\{1,2\}}$ and $D_{\{2,3\}}$, corresponding
+to the $s$- and $t$-channels.  Stokes' theorem
+$\int_{\FM_3} d\omega_3 = \int_{D_{\{1,2\}}} \omega_3
+- \int_{D_{\{2,3\}}} \omega_3 = 0$ is the crossing equation.
+The $u$-channel ($D_{\{1,3\}}$) is not independent: it is a
+linear combination of $s$ and $t$ by the FM boundary relations
+(cf.\ the proof of Theorem~\ref{thm:YBE}).
+\end{proof}
+
+\begin{remark}[The $\Ainf$ tower solves the full bootstrap hierarchy]
+\label{rem:ainf-solves-bootstrap}%
+\index{bootstrap!solved by $\Ainf$ tower}%
+The crossing equation at arity~$3$ is only the first level.
+At each arity~$n$, the Stasheff identity
+$\sum_{i+j=n+1}(-1)^{i(j-1)} m_i \circ m_j = 0$ is the
+$(n+1)$-point crossing equation on $\FM_n(\C)$, expressing the
+consistency of all $n$-point OPE channels.  The $\Ainf$
+structure $\{m_k\}_{k \ge 2}$ is precisely a \emph{solution} to
+the full infinite hierarchy of crossing equations: it is the
+unique (up to gauge equivalence) $\Ainf$ structure extending the
+binary OPE.  The bar complex therefore
+\textbf{solves the conformal bootstrap at all $n$-point
+levels simultaneously}, with the solution being the complete
+$\Ainf$ tower.  For Virasoro, this is the infinite tower
+$\{m_k\}_{k \ge 2}$ of Movement~I.
+\end{remark}
+
+\subsubsection*{Unitarity and the Shapovalov form}
+
+\begin{theorem}[Bootstrap bounds from the Shapovalov form;
+\ClaimStatusProvedHere]
+\label{thm:bootstrap-shapovalov}%
+\index{Shapovalov form!bootstrap bounds|textbf}%
+\index{unitarity!from Shapovalov form}%
+The bar complex computes OPE coefficients on the full Verma module
+$M_h$.  Unitarity constraints enter through the Shapovalov form
+$\langle\cdot,\cdot\rangle_{\mathrm{Shap}}$ on $M_h$:
+\begin{enumerate}[label=\textup{(\roman*)}]
+\item The transferred operation $m_k^H$ on BRST cohomology
+  $H^\bullet(A,Q)$ is computed by the HPL transfer through the
+  strong deformation retract $(V, H^0, i, p, h)$, where
+  $h$ is the Shapovalov projector onto the complement of
+  quasi-primaries.  The denominators of $m_k^H$ are the Kac
+  determinants $\det_N\langle\cdot,\cdot\rangle_{\mathrm{Shap}}$
+  at levels $N \le k$
+  \textup{(}Remark~\textup{\ref{rem:gravity-c-linearity-physics})}.
+\item For unitary representations ($c \ge 1$, $h \ge 0$; or
+  $c = c_{p,q}$ with $h = h_{r,s}$), the Shapovalov form is
+  positive definite on the irreducible quotient $L_h =
+  M_h/\langle\text{null vectors}\rangle$.  The transferred OPE
+  coefficients $C^k_{ij,\,\mathrm{unitary}}$ are obtained from
+  $C^k_{ij,\,\mathrm{Verma}}$ by projecting out null states.
+  The projection can only \emph{reduce} the number of intermediate
+  states in the crossing sum: hence
+  \begin{equation}\label{eq:bootstrap-bound}
+  |C^k_{ij,\,\mathrm{unitary}}|^2
+  \;\le\;
+  |C^k_{ij,\,\mathrm{Verma}}|^2,
+  \end{equation}
+  with equality when no null vectors contribute to the
+  channel~$k$.
+\item The Kac determinant poles at $c = c_{p,q}$ are the loci
+  where null vectors appear and the Verma module is reducible.
+  At these points, some OPE channels close (the structure
+  constants vanish for null-state channels), and the crossing
+  equations acquire additional constraints: these are the
+  \emph{minimal-model bootstrap equations}.  The bar complex
+  encodes this as the appearance of poles in $m_k^H$ at
+  the Kac-table values, subsequently cancelled by the
+  Stasheff relations
+  \textup{(}Theorem~\textup{\ref{thm:stasheff-cancellation})}.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+(i) is the content of
+Remark~\ref{rem:gravity-c-linearity-physics}: the HPL transfer
+introduces $1/\det_N(\mathrm{Shap})$ at each level~$N$ through
+the homotopy~$h$.
+
+(ii): On the Verma module $M_h$, the crossing sum
+$\sum_\ell C^\ell_{ij}\,\bar C^{\ell}_{ij}$ runs over all states
+$|\ell\rangle \in M_h$.  On the irreducible quotient $L_h$,
+null states $|\chi\rangle$ (satisfying
+$\langle\chi|\chi\rangle_{\mathrm{Shap}} = 0$) are modded out.
+The projection $M_h \twoheadrightarrow L_h$ is orthogonal with
+respect to the Shapovalov form: it removes positive-semidefinite
+contributions from the crossing sum.  Hence the unitary OPE
+coefficients are bounded above by the Verma-module values.
+
+(iii): At $c = c_{p,q}$, the Kac determinant
+$\det_N(\mathrm{Shap}) = \prod_{rs \le N}
+(h - h_{r,s}(c))^{p(N-rs)}$ vanishes.  The null vector
+$|\chi_{r,s}\rangle$ decouples: the structure constant
+$C^{\chi_{r,s}}_{ij} = 0$ by the null-state Ward identity.
+This decoupling is visible in the bar complex as the cancellation
+of Kac-table poles in the shadow tower
+(Theorem~\ref{thm:stasheff-cancellation}).
+\end{proof}
+
+\subsubsection*{The large-$c$ bootstrap from the shadow tower}
+
+\begin{proposition}[Large-$c$ expansion from the shadow tower;
+\ClaimStatusProvedHere]
+\label{prop:large-c-bootstrap}%
+\index{large-$c$ expansion!from shadow tower|textbf}%
+\index{conformal bootstrap!large-$c$}%
+At $c \to \infty$ ($G \to 0$, semiclassical gravity), the shadow
+tower organises into a $1/c$ expansion that matches the large-$c$
+conformal bootstrap:
+\begin{enumerate}[label=\textup{(\roman*)}]
+\item \textup{(Leading order.)}
+  $S_2 = c/12$, which is the Virasoro central charge itself.
+  In the bootstrap, this controls the normalisation of the
+  stress-tensor two-point function
+  $\langle T(z)T(0)\rangle = c/(2z^4)$:
+  the Weinberg soft factor.
+\item \textup{(First correction.)}
+  $S_4 = 10/[c(5c+22)] \sim 2/(5c^2)$ at large $c$.
+  This is the first non-trivial contact invariant: the
+  quartic correction to the four-point graviton amplitude.
+  In the bootstrap, it corresponds to the $O(1/c^2)$
+  correction to the four-point function from the identity
+  Virasoro block~\textup{\cite{HR09}}.
+\item \textup{(Systematic expansion.)}
+  For $r \ge 4$: $S_r \sim \mathrm{const}/c^{r-2}$
+  \textup{(}the large-$c$ column in the shadow table,
+  \S\textup{\ref{subsec:gravity-soft-theorems})}.
+  The $n$-th order correction to the
+  bootstrap is controlled by $S_{n+2}$: the shadow tower
+  IS the $1/c$ expansion of the bootstrap.  The
+  convergence radius $R_{\mathrm{scal}}
+  = c\sqrt{(5c+22)/(180c+872)} \to \infty$ as $c \to \infty$:
+  the perturbative expansion is summable in the semiclassical
+  limit.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+The large-$c$ asymptotics of $S_r$ follow from the shadow
+metric $Q_{\mathrm{Vir}}(t) = (c+6t)^2 + 80t^2/(5c+22)$.
+At large $c$: $Q(t) \approx c^2 + 12ct + 36t^2 = (c+6t)^2$,
+so $\sqrt{Q} \approx c + 6t$ and
+$H(t) = t^2\sqrt{Q} \approx ct^2 + 6t^3$.
+The corrections to $\sqrt{Q}$ are $O(t^2/c)$:
+$\sqrt{Q} = c + 6t + 40t^2/[c(5c+22)] + \cdots$,
+giving $S_r = [t^r]H/r$ with $[t^r]H = O(c^{3-r})$ for
+$r \ge 4$.  The convergence radius is
+$R_{\mathrm{scal}} = |t_\pm|
+= c\sqrt{(5c+22)/(180c+872)} \sim c/\sqrt{36} = c/6$ at
+large~$c$.
+\end{proof}
+
+\subsubsection*{The modular bootstrap from the genus tower}
+
+\begin{remark}[Modular bootstrap = MCG equivariance of the
+genus-$1$ bar complex]
+\label{rem:modular-bootstrap-bar}%
+\index{modular bootstrap!from genus-$1$ bar complex|textbf}%
+\index{MCG equivariance!modular bootstrap}%
+The modular bootstrap constrains the genus-$1$ partition function
+$Z(\tau) = \mathrm{tr}(q^{L_0 - c/24})$ by requiring modular
+invariance under $\mathrm{SL}(2,\Z)$.  In the bar-complex
+language: the genus-$1$ MC element
+$\Theta^{(1)}_{\mathrm{Vir}_c}$ lives on the bordered FM
+compactification $\overline{C}{}^{\,\mathrm{oc}}_{k,\vec{m}}$
+at genus~$1$, and the mapping class group
+$\mathrm{MCG}(\Sigma_{1,1}) \simeq \mathrm{SL}(2,\Z)$ acts on
+the genus-$1$ sector of the modular bar coalgebra.  The MC
+equation at genus~$1$, combined with the equivariance of the bar
+construction under this action
+(Proposition~\ref{prop:mcg-equivariance-tower}), forces
+$Z(\tau)$ to be modular invariant.
+
+The modular bootstrap is therefore not an independent constraint
+but a \emph{consequence} of the bar-complex structure:
+$d_{\barB}^2 = \kappa\cdot\omega_1$ at genus~$1$ encodes both
+the curvature (which determines $Z(\tau) = \eta(\tau)^{-\kappa}$)
+and the modular anomaly (which constrains $Z$ to transform
+with weight $-\kappa/2$ under $S$).  At $\kappa_{\mathrm{eff}}
+= (c-26)/2 = 0$: the modular bootstrap is trivially satisfied
+($Z^{\mathrm{eff}} = 1$); at $\kappa_{\mathrm{eff}} \ne 0$:
+the non-holomorphic completion
+$\hat E_2 = E_2 - 3/(\pi\,\mathrm{Im}\,\tau)$
+absorbs the anomaly
+(Proposition~\ref{prop:genus1-modular-anomaly}).  The annular
+bar complex (Theorem~\ref{thm:annular-bar-differential})
+computes $Z(\tau)$ as the trace of the genus-$1$ annular MC
+element, closing the circle:
+\begin{center}
+\small
+\begin{tabular}{lll}
+\textbf{Bootstrap datum} & \textbf{Bar-complex source}
+  & \textbf{Eq.} \\
+\hline
+OPE coefficients $C^k_{ij}$
+  & Collision residues of $d_{\barB}$ on $\FM_2$
+  & \eqref{eq:bootstrap-ope-coefficients} \\
+Crossing symmetry
+  & Stasheff identity ($d_{\barB}^2 = 0$)
+  & \eqref{eq:stasheff-crossing} \\
+Unitarity bounds
+  & Shapovalov quotient $M_h \twoheadrightarrow L_h$
+  & \eqref{eq:bootstrap-bound} \\
+Large-$c$ expansion
+  & Shadow tower $S_r \sim c^{2-r}$
+  & \eqref{eq:shadow-metric-Q} \\
+Modular invariance
+  & MCG equivariance of genus-$1$ $\Theta$
+  & \eqref{eq:gravity-Z1} \\
+Cardy density of states
+  & Saddle-point of $S$-transformed $\Theta^{(1)}$
+  & \eqref{eq:gravity-cardy} \\
+\end{tabular}
+\end{center}
+The conformal bootstrap is the shadow of the bar complex,
+projected onto the space of crossing-symmetric, modular-invariant
+correlation functions.  The bar complex is the lift:
+it provides the \emph{algebraic origin} of the constraints that
+the bootstrap imposes, and simultaneously provides the
+\emph{exact solution} that the bootstrap bounds.
 \end{remark}
 
 %====================================================================

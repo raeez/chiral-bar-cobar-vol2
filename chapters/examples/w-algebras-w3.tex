@@ -1862,6 +1862,539 @@ coefficient of the two-tensor $W \otimes W$ in the full
 $\mathcal{W}_3$ $r$-matrix.
 \end{computation}
 
+%% ------------------------------------------------------------------
+%%  W_N spin chains from the ordered bar complex
+%% ------------------------------------------------------------------
+
+\subsection{$\mathcal{W}_N$ spin chains from the ordered bar
+$R$-matrix}
+\label{subsec:wn-spin-chains}
+
+The spectral $R$-matrix extracted from the ordered bar complex
+of a chiral algebra defines, upon iteration on a lattice, an
+\emph{integrable spin chain}.  For affine Kac--Moody algebras
+this recovers classical integrable lattice models: the
+$V_k(\mathfrak{sl}_2)$ $R$-matrix $R(z) = 1 + \hbar\,\Omega/z
++ O(z^{-2})$ produces the XXX Heisenberg spin chain, and
+$V_k(\mathfrak{sl}_N)$ produces the $\mathrm{SU}(N)$ Sutherland
+model.  For W-algebras, the DS reduction creates a new
+class of integrable chains: \emph{higher-spin chains} whose
+Hilbert space at each site is an infinite-dimensional module
+for~$\mathcal{W}_N$.
+
+\subsubsection{The $\mathcal{W}_3$ spin chain}
+
+The $\mathcal{W}_3$ spectral $r$-matrix
+(equation~\eqref{eq:ww-collision-residue} and the
+components $r^{TT}$, $r^{TW}$, $r^{WW}$ of
+\S\ref{subsec:W3}) is a $2 \times 2$ matrix in the
+$\{T, W\}$ basis of generators, acting on the tensor product
+of two $\mathcal{W}_3$-modules.  The key feature distinguishing
+this from the affine $r$-matrix is its \emph{multi-component}
+nature: the two generators $T$ (spin~$2$) and $W$ (spin~$3$)
+define two species of ``particles'' propagating on the chain.
+
+\begin{construction}[$\mathcal{W}_3$ transfer matrix;
+\ClaimStatusConditional]
+\label{constr:w3-transfer-matrix}
+\index{transfer matrix!W3@$\mathcal{W}_3$}%
+\index{spin chain!W3@$\mathcal{W}_3$}%
+Let $V_1, \ldots, V_L$ be $\mathcal{W}_3$-modules at sites
+$1, \ldots, L$, and let $V_0$ be the auxiliary space carrying
+the $\mathcal{W}_3$ action.  The \emph{transfer matrix} is
+\begin{equation}
+\label{eq:w3-transfer-matrix}
+\mathcal{T}(u)
+\;:=\;
+\operatorname{tr}_{V_0}\!\bigl(
+  R_{0L}(u - \theta_L) \cdots R_{02}(u - \theta_2)\,
+  R_{01}(u - \theta_1)
+\bigr),
+\end{equation}
+where $R_{0i}(u)$ is the $\mathcal{W}_3$ $R$-matrix acting on
+$V_0 \otimes V_i$, the $\theta_i$ are inhomogeneity parameters,
+and the trace is over the auxiliary space.  The $R$-matrix
+decomposes by generator species:
+\begin{equation}
+\label{eq:w3-R-matrix-components}
+R(u) \;=\; \id \;+\; \frac{\hbar}{u}\,r^{\mathcal{W}_3}(u),
+\end{equation}
+where $r^{\mathcal{W}_3}(u)$ is the $2 \times 2$ block matrix
+\[
+r^{\mathcal{W}_3}(u)
+\;=\;
+\begin{pmatrix}
+r^{TT}(u) & r^{TW}(u) \\
+r^{WT}(u) & r^{WW}(u)
+\end{pmatrix}
+\]
+with entries given by the Laplace-transformed $\lambda$-brackets.
+The components $r^{TT}$ and $r^{WW}$ govern intra-species
+scattering (spin-$2$ with spin-$2$, spin-$3$ with spin-$3$);
+the off-diagonal $r^{TW}$, $r^{WT}$ govern inter-species
+scattering.
+
+The Yang--Baxter equation
+(Theorem~\ref{thm:w3-CYBE}) guarantees that the transfer
+matrices at different spectral parameters commute:
+\begin{equation}
+\label{eq:w3-transfer-commute}
+[\mathcal{T}(u),\; \mathcal{T}(v)] \;=\; 0
+\qquad\text{for all } u, v.
+\end{equation}
+The eigenvalues of $\mathcal{T}(u)$ therefore define $L$
+commuting Hamiltonians --- the $\mathcal{W}_3$ spin chain
+is integrable.
+\end{construction}
+
+\begin{remark}[Multi-component nature]%
+\label{rem:multi-component-chain}%
+\index{spin chain!multi-component}%
+The $\mathcal{W}_3$ chain is a \emph{two-species} integrable
+model.  The Hilbert space at each site $V_i$ decomposes into
+eigenspaces of $L_0$ (from $T$) and $W_0$ (from $W$); a state
+carries both a conformal weight~$h$ and a $W_3$-charge~$w$.
+In contrast, the $\mathfrak{sl}_2$ Heisenberg chain has a single
+species (spin $j$ at each site) and the $\mathfrak{sl}_N$
+Sutherland model has $N-1$ species (one for each fundamental
+weight).  The number of species in the $\mathcal{W}_N$ chain
+is $N - 1$ (one per generator $W_s$, $s = 2, \ldots, N$),
+matching the rank of $\mathfrak{sl}_N$.
+\end{remark}
+
+\subsubsection{Nested Bethe ansatz for the $\mathcal{W}_3$ chain}
+
+\begin{construction}[Nested Bethe ansatz; \ClaimStatusConjectured]
+\label{constr:w3-bethe-ansatz}
+\index{Bethe ansatz!W3@$\mathcal{W}_3$}%
+\index{Bethe ansatz!nested}%
+The two-species structure of the $\mathcal{W}_3$ chain demands
+a \emph{nested} Bethe ansatz with two sets of Bethe roots.
+In the standard nested ansatz for the
+$\mathfrak{sl}_3$ chain (from which the $\mathcal{W}_3$
+chain descends via DS), the two nesting levels correspond to
+the two simple roots $\alpha_1, \alpha_2$:
+\begin{enumerate}[label=\textup{(\roman*)}]
+\item \emph{Level~$1$ roots}
+  $\{u_1^{(1)}, \ldots, u_{M_1}^{(1)}\}$: these diagonalise
+  the $T$-sector (spin-$2$) of the transfer matrix, analogous
+  to the magnon roots of the XXX chain.  They satisfy:
+  \begin{equation}
+  \label{eq:bethe-level-1}
+  \prod_{j=1}^{L}
+  \frac{u_a^{(1)} - \theta_j + \hbar/2}
+       {u_a^{(1)} - \theta_j - \hbar/2}
+  \;=\;
+  -\prod_{b \ne a}^{M_1}
+  \frac{u_a^{(1)} - u_b^{(1)} + \hbar}
+       {u_a^{(1)} - u_b^{(1)} - \hbar}
+  \;\cdot\;
+  \prod_{c=1}^{M_2}
+  \frac{u_a^{(1)} - u_c^{(2)} - \hbar/2}
+       {u_a^{(1)} - u_c^{(2)} + \hbar/2},
+  \end{equation}
+  for $a = 1, \ldots, M_1$.
+
+\item \emph{Level~$2$ roots}
+  $\{u_1^{(2)}, \ldots, u_{M_2}^{(2)}\}$: these diagonalise
+  the $W$-sector (spin-$3$) interactions.  They satisfy:
+  \begin{equation}
+  \label{eq:bethe-level-2}
+  \prod_{a=1}^{M_1}
+  \frac{u_c^{(2)} - u_a^{(1)} + \hbar/2}
+       {u_c^{(2)} - u_a^{(1)} - \hbar/2}
+  \;=\;
+  -\prod_{d \ne c}^{M_2}
+  \frac{u_c^{(2)} - u_d^{(2)} + \hbar}
+       {u_c^{(2)} - u_d^{(2)} - \hbar},
+  \end{equation}
+  for $c = 1, \ldots, M_2$.
+\end{enumerate}
+
+The nesting structure reflects the $A_2$ Dynkin diagram of
+$\mathfrak{sl}_3$: the level-$1$ roots couple to both the
+physical sites and the level-$2$ roots, while the level-$2$
+roots couple only to the level-$1$ roots.  The
+$\mathcal{W}_3$ Bethe equations are expected to be the
+DS reduction of these $\mathfrak{sl}_3$ Bethe equations,
+with the constraint that only states annihilated by the
+BRST charge $Q_{\mathrm{DS}}$ survive.  In general, for
+$\mathcal{W}_N$, the nested Bethe ansatz requires $N - 1$
+levels of roots, one for each node of the $A_{N-1}$ Dynkin
+diagram.
+\end{construction}
+
+\subsubsection{DS from the Potts model to the $\mathcal{W}_3$
+chain}
+
+\begin{construction}[DS reduction on lattice models;
+\ClaimStatusConjectured]
+\label{constr:ds-potts-to-w3}
+\index{Drinfeld--Sokolov reduction!lattice models}%
+\index{Potts model!DS reduction}%
+The affine $\widehat{\mathfrak{sl}}_3$ chain at level~$k$
+with fundamental representations $V = \mathbb{C}^3$ at each
+site is the \emph{$3$-state Potts model} (or more precisely,
+the integrable vertex model associated to the Yang $R$-matrix
+$R^{\mathfrak{sl}_3}(u) = 1 + \hbar P^{(3)}/u$, where
+$P^{(3)}$ is the permutation on $\mathbb{C}^3 \otimes
+\mathbb{C}^3$).  The Hilbert space is $(\mathbb{C}^3)^{\otimes
+L}$, of dimension~$3^L$.
+
+DS reduction acts fibrewise: at each site, the
+$\mathfrak{sl}_3$ representation $V_i$ is replaced by its
+BRST cohomology
+\begin{equation}
+\label{eq:ds-site-reduction}
+V_i^{\mathrm{DS}}
+\;:=\;
+H^\bullet(V_i,\; Q_{\mathrm{DS}}),
+\end{equation}
+where $Q_{\mathrm{DS}}$ is the DS BRST differential built from
+the principal nilpotent embedding
+$\mathfrak{sl}_2 \hookrightarrow \mathfrak{sl}_3$.  For
+finite-dimensional representations, $V_i^{\mathrm{DS}}$ is
+the subspace of $\mathfrak{n}_+$-invariants, which for the
+fundamental representation $\mathbb{C}^3$ is one-dimensional
+(the highest-weight vector).  The chain therefore reduces to
+a model on the highest-weight sectors:
+\begin{equation}
+\label{eq:ds-chain-reduction}
+\mathcal{H}^{\mathrm{DS}}
+\;=\;
+H^\bullet\!\bigl((\mathbb{C}^3)^{\otimes L},\;
+  Q_{\mathrm{DS}}^{\otimes L}\bigr).
+\end{equation}
+
+For infinite-dimensional representations (Verma modules,
+Wakimoto modules), the DS reduction is nontrivial: the
+BRST cohomology retains a genuine $\mathcal{W}_3$-module
+structure at each site.  The reduced chain is the
+$\mathcal{W}_3$ spin chain of
+Construction~\ref{constr:w3-transfer-matrix}, with the
+$R$-matrix inherited from the affine $R$-matrix via
+the DS-bar intertwining theorem (Volume~I):
+\begin{equation}
+\label{eq:ds-r-matrix-transport}
+R^{\mathcal{W}_3}(u)
+\;=\;
+\bigl(Q_{\mathrm{DS}} \otimes Q_{\mathrm{DS}}\bigr)\!
+\left(R^{\mathfrak{sl}_3}(u)\right).
+\end{equation}
+The pole escalation
+(Proposition~\ref{prop:ds-complexity-transport-sl3}) manifests
+on the chain level: the affine $R$-matrix has a simple pole
+at $u = 0$, while the reduced $\mathcal{W}_3$ $R$-matrix
+has poles up to order~$5$ (from $r^{WW}$), reflecting the
+class $\mathbf{L} \to \mathbf{M}$ transport.
+\end{construction}
+
+\begin{remark}[State counting]%
+\label{rem:state-counting}%
+\index{spin chain!state counting under DS}%
+For the affine chain with $V = \mathbb{C}^3$ at each site,
+the Hilbert space has dimension~$3^L$.  After DS reduction
+with the fundamental representation, only the
+$\mathfrak{n}_+$-invariant sector survives at each site,
+giving a $1$-dimensional space per site and a trivial chain.
+The nontrivial $\mathcal{W}_3$ chain arises when the sites
+carry \emph{infinite-dimensional} representations --- Verma
+modules $M(h, w)$ labelled by conformal weight~$h$ and
+$W_3$-charge~$w$.  In this setting, each site retains
+infinitely many states after DS reduction, and the chain
+dynamics is genuinely quantum-gravitational.
+\end{remark}
+
+\subsubsection{The Gaudin limit}
+
+\begin{construction}[$\mathcal{W}_3$ Gaudin model;
+\ClaimStatusConjectured]
+\label{constr:w3-gaudin}
+\index{Gaudin model!W3@$\mathcal{W}_3$}%
+\index{Hitchin system!W3 singularities@$\mathcal{W}_3$ singularities}%
+The Gaudin limit is the degeneration where all
+inhomogeneity parameters $\theta_i$ are sent to a common
+value.  More precisely, set $\theta_i = \varepsilon\, z_i$
+and take $\varepsilon \to 0$.  The transfer matrix expands as
+\[
+\mathcal{T}(u)
+\;=\;
+L + \varepsilon \sum_{i=1}^{L} \frac{H_i^{\mathrm{Gaud}}}{u - z_i}
++ O(\varepsilon^2),
+\]
+where the \emph{Gaudin Hamiltonians} are
+\begin{equation}
+\label{eq:w3-gaudin-hamiltonians}
+H_i^{\mathrm{Gaud}}
+\;=\;
+\sum_{j \ne i}
+\frac{r^{\mathcal{W}_3}(z_i - z_j)}{z_i - z_j}
+\;\in\;
+\End(V_1 \otimes \cdots \otimes V_L).
+\end{equation}
+Since $r^{\mathcal{W}_3}$ is a $2 \times 2$ matrix in the
+$\{T, W\}$ basis, each Gaudin Hamiltonian decomposes as
+\begin{equation}
+\label{eq:w3-gaudin-decomposition}
+H_i^{\mathrm{Gaud}}
+\;=\;
+H_i^{TT} + H_i^{TW} + H_i^{WT} + H_i^{WW},
+\end{equation}
+with the $TT$-component recovering the Virasoro Gaudin
+Hamiltonian (a quadratic Hitchin Hamiltonian) and the
+$WW$-component providing the cubic Hitchin Hamiltonian
+from the spin-$3$ current.
+
+The commutativity $[H_i^{\mathrm{Gaud}}, H_j^{\mathrm{Gaud}}] = 0$
+follows from the CYBE (Theorem~\ref{thm:w3-CYBE}) and the
+standard Gaudin argument.  The Gaudin Hamiltonians are
+the commuting Hamiltonians of the \emph{Hitchin system}
+on $\mathbb{P}^1$ with $\mathcal{W}_3$-type singularities
+at the points $z_1, \ldots, z_L$: the $H_i^{TT}$ component
+is the quadratic Hitchin Hamiltonian (from the Killing form
+pairing of the stress tensor), and $H_i^{WW}$ is the
+cubic Hitchin Hamiltonian (from the spin-$3$ Casimir).
+\end{construction}
+
+\begin{remark}[$\mathcal{W}_N$ Gaudin and higher Hitchin
+Hamiltonians]%
+\label{rem:wn-gaudin}%
+\index{Gaudin model!W\_N@$\mathcal{W}_N$}%
+\index{Hitchin system!higher Hamiltonians}%
+For general $\mathcal{W}_N$, the Gaudin model has $N - 1$
+species of Hamiltonians $H_i^{W_s W_{s'}}$, and the cubic,
+quartic, \ldots, $N$-th order Hitchin Hamiltonians appear
+from the generators $W_3, W_4, \ldots, W_N$.  The
+$\mathcal{W}_N$ Gaudin model is the
+\emph{higher-spin Hitchin system} on $\mathbb{P}^1$,
+whose spectral curve is the $N$-sheeted cover defined by
+the characteristic polynomial $\det(\zeta - \Phi(z)) = 0$
+of the $\mathfrak{sl}_N$ Higgs field~$\Phi$.  The Gaudin
+eigenvalues are the periods of the Liouville $1$-form
+$\zeta\, dz$ on this spectral curve.
+\end{remark}
+
+\subsubsection{Trigonometric and elliptic deformations}
+
+\begin{construction}[Trigonometric $\mathcal{W}_3$ chain;
+\ClaimStatusConjectured]
+\label{constr:w3-trig-chain}
+\index{spin chain!trigonometric W3@trigonometric $\mathcal{W}_3$}%
+The trigonometric (genus-$1$) deformation replaces the rational
+$R$-matrix by the $R$-matrix from the \emph{annular bar
+complex} $B^{\mathrm{ann}}(\mathcal{W}_3)$
+(Theorem~\ref{thm:annular-bar-differential}).
+The annular bar complex lives on $\mathbb{C}^\times$ (the
+punctured disc, equivalently a cylinder $\mathbb{C}/\mathbb{Z}$),
+and its $R$-matrix acquires a trigonometric dependence:
+\begin{equation}
+\label{eq:w3-trig-r-matrix}
+R^{\mathrm{trig}}_{\mathcal{W}_3}(u)
+\;=\;
+1 + \hbar\, r^{\mathrm{trig}}(u),
+\qquad
+r^{\mathrm{trig}}(u)
+\;=\;
+\sum_{n=0}^{N_{\max}}
+\frac{r_n^{\mathcal{W}_3}}{\sin^{n+1}(\pi u/L)}
+\cdot (\text{trig.\ polynomial in } u),
+\end{equation}
+where $r_n^{\mathcal{W}_3}$ are the same generators appearing
+in the rational $r$-matrix, now dressed by trigonometric
+functions from the cylinder periodicity.
+
+For the affine pre-image $V_k(\mathfrak{sl}_3)$: the
+rational chain is the $\mathrm{SU}(3)$ Sutherland model with
+$1/\sinh^2$-type interaction, and the trigonometric deformation
+is the $XXZ$-type chain with the
+$R$-matrix $R^{\mathrm{trig}}_{\mathfrak{sl}_3}(u)$ of
+Jimbo~\cite{Jim86}.  DS reduction transports this to the
+trigonometric $\mathcal{W}_3$ chain.
+
+The elliptic (genus-$1$) $\mathcal{W}_3$ chain would arise
+from the bar complex on an elliptic curve $E_\tau$, producing
+an $R$-matrix involving elliptic functions (Weierstrass
+$\wp$-functions and their derivatives).  The
+curvature-braiding entanglement at genus~$1$
+(Theorem~\ref{thm:elliptic-spectral-dichotomy})
+controls whether this elliptic chain is integrable:
+integrability requires the spectral and curvature
+parameters to decouple.
+\end{construction}
+
+\subsubsection{The Virasoro gravitational spin chain}
+
+\begin{construction}[Gravitational spin chain;
+\ClaimStatusConjectured]
+\label{constr:virasoro-spin-chain}
+\index{spin chain!gravitational}%
+\index{Virasoro!spin chain}%
+\index{Verma module!tensor product chain}%
+The Virasoro $r$-matrix $r^{\mathrm{Vir}}(z)
+= (c/2)/z^3 + 2T/z$ (the collision residue, with the
+$d\log$ kernel absorbing one pole from the quartic OPE)
+defines a \emph{gravitational spin chain}.  The fundamental
+distinction from all affine chains is dimensional: the
+Virasoro algebra has no finite-dimensional nontrivial
+representations, so the chain must use \emph{Verma modules}
+$V_{h_i}$ (or their quotients) at each site.
+
+The Hilbert space is
+\begin{equation}
+\label{eq:virasoro-hilbert-space}
+\mathcal{H}_{\mathrm{grav}}
+\;=\;
+\bigotimes_{i=1}^{L} V_{h_i},
+\end{equation}
+where $V_{h_i}$ is the Verma module of highest weight~$h_i$
+for the Virasoro algebra at central charge~$c$.  The transfer
+matrix
+\begin{equation}
+\label{eq:virasoro-transfer-matrix}
+\mathcal{T}_{\mathrm{grav}}(u)
+\;=\;
+\operatorname{tr}_{V_0}\!\bigl(
+  R_{0L}(u) \cdots R_{01}(u)
+\bigr)
+\end{equation}
+is an operator on $\mathcal{H}_{\mathrm{grav}}$, where
+the auxiliary-space trace is over a Verma module $V_0 = V_{h_0}$.
+This trace is well-defined in the formal algebraic sense
+(as a generating function in $u^{-1}$) because only
+finitely many descendants at each level contribute to
+each coefficient.
+
+The gravitational chain has several distinctive features:
+\begin{enumerate}[label=\textup{(\roman*)}]
+\item \emph{Infinite-dimensional sites:} each
+  $V_{h_i}$ is infinite-dimensional, so the spin chain
+  is an infinite-body quantum system even at finite~$L$.
+  The spectrum is discrete (graded by $L_0$-eigenvalues)
+  but unbounded above.
+
+\item \emph{Higher poles in the $R$-matrix:}
+  the Virasoro $r$-matrix has a \emph{cubic} pole at
+  $z = 0$ (from the quartic OPE pole after $d\log$
+  absorption), compared to the simple pole of the
+  $\mathfrak{sl}_2$ Yang $R$-matrix.  The cubic pole
+  produces long-range interactions: the nearest-neighbour
+  Hamiltonian $H = \sum_i r_{i,i+1}$ involves not just
+  exchange ($T/z$) but also three-body contact terms
+  ($c/z^3$).
+
+\item \emph{Central charge dependence:} the coupling
+  constant of the gravitational chain is the central
+  charge~$c$.  At the self-dual point $c = 13$
+  ($\mathcal{W}_2^! = \mathcal{W}_{2,13}$),
+  the chain is self-dual under Koszul duality.
+  At $c = 26$ (the critical string), the effective
+  curvature $\kappa_{\mathrm{eff}} = 0$ and the
+  curved bar complex straightens: $d^2 = 0$.
+  The gravitational chain at $c = 26$ is the
+  \emph{free-string spin chain}; the non-vanishing
+  of $m_k$ for $k \ge 3$ is the gravitational
+  self-interaction that prevents the chain from being
+  a free model even at the critical string.
+
+\item \emph{Gaudin limit = KZ equation:}
+  the Gaudin limit of the gravitational chain
+  gives the Virasoro Gaudin Hamiltonians
+  $H_i^{\mathrm{Gaud}} = \sum_{j \ne i}
+  r^{\mathrm{Vir}}(z_i - z_j)/(z_i - z_j)$,
+  which are the Hamiltonians of the Knizhnik--Zamolodchikov
+  connection for Virasoro conformal blocks.  The flatness
+  of the KZ connection is the Gaudin integrability,
+  which is the CYBE for the Virasoro $r$-matrix.
+\end{enumerate}
+\end{construction}
+
+\begin{remark}[Comparison: affine vs.\ gravitational chains]%
+\label{rem:affine-vs-gravitational}%
+\index{spin chain!affine vs.\ gravitational}%
+The following table summarizes the chain-theoretic consequences
+of DS reduction from $V_k(\mathfrak{sl}_N)$ to
+$\mathcal{W}_N$:
+\begin{center}
+\small
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{lll}
+\toprule
+& \textbf{Affine}
+  $V_k(\mathfrak{sl}_N)$
+& \textbf{W-algebra}
+  $\mathcal{W}_N$ \\
+\midrule
+$R$-matrix pole & Simple
+  & Up to $2N - 1$ \\
+Chain model & Sutherland/$XXX$
+  & Higher-spin chain \\
+Site spaces & Finite-dim.\ or Weyl
+  & Verma modules \\
+Bethe levels & $N - 1$
+  & $N - 1$ \\
+Gaudin limit & Hitchin (quadratic)
+  & Hitchin (all orders) \\
+Complexity class & $\mathbf{L}$
+  & $\mathbf{M}$ \\
+Interaction range & Nearest-neighbour
+  & Long-range \\
+\bottomrule
+\end{tabular}
+\end{center}
+\noindent
+The long-range character of the gravitational chain
+--- interaction terms scaling as $1/z^{2s-1}$ for the
+spin-$s$ generator --- is the lattice incarnation of the
+pole escalation from class~$\mathbf{L}$ to class~$\mathbf{M}$
+under DS reduction
+(Proposition~\ref{prop:ds-complexity-transport-sl3}).
+\end{remark}
+
+\begin{remark}[General $\mathcal{W}_N$ spin chains]%
+\label{rem:general-wn-chains}%
+\index{spin chain!general W\_N@general $\mathcal{W}_N$}%
+For the $\mathcal{W}_N$ algebra with generators
+$W_2 = T, W_3, \ldots, W_N$, the spectral $r$-matrix is an
+$(N-1) \times (N-1)$ matrix in the $\{W_2, W_3, \ldots, W_N\}$
+basis, with the $(s, s')$ component $r^{W_s W_{s'}}(z)$ having
+pole order $s + s' - 1$ (before $d\log$ absorption).
+The corresponding spin chain has $N - 1$ species of particles,
+the nested Bethe ansatz has $N - 1$ levels of roots, and the
+Gaudin limit gives the full Hitchin integrable system on
+$\mathbb{P}^1$ with all $N - 1$ independent Hitchin
+Hamiltonians (degrees $2, 3, \ldots, N$ in the Higgs field).
+The hierarchy is:
+\begin{center}
+\small
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{lllll}
+\toprule
+$N$ & Algebra & Chain & Species & Gaudin \\
+\midrule
+$2$ & $\mathrm{Vir}_c$ & Gravitational chain
+  & $1$ ($T$) & KZ (quadratic) \\
+$3$ & $\mathcal{W}_3$ & Higher-spin chain
+  & $2$ ($T, W$) & Hitchin ($2, 3$) \\
+$4$ & $\mathcal{W}_4$ & Higher-spin chain
+  & $3$ ($T, W_3, W_4$) & Hitchin ($2, 3, 4$) \\
+$N$ & $\mathcal{W}_N$ & Higher-spin chain
+  & $N-1$ & Hitchin ($2, \ldots, N$) \\
+\bottomrule
+\end{tabular}
+\end{center}
+\noindent
+This hierarchy is the lattice shadow of the pole-order
+dichotomy (class $\mathbf{L}$ vs.\ class $\mathbf{M}$)
+and the gauge-gravity dichotomy
+(Remark~\ref{rem:gauge-gravity-yangian-dichotomy}):
+the affine chains are gauge-theoretic (class $\mathbf{L}$,
+finite-dimensional sites, simple-pole $R$-matrix), while
+the W-algebra chains are gravitational
+(class $\mathbf{M}$, infinite-dimensional sites,
+higher-pole $R$-matrix).
+\end{remark}
+
+
 \subsection{Conclusion}
 
 The W-algebra shadow depth classification is now complete
@@ -1887,7 +2420,12 @@ $W_3$ examples have been computed in full, including:
   \to \mathcal{W}_{3,c(k)}$: central charge formula, stress
   tensor decomposition, weight-$1$ elimination, and the
   $(W,W)$ collision residue
-  (\S\ref{subsec:ds-transport-sl3-w3}).
+  (\S\ref{subsec:ds-transport-sl3-w3});
+\item The $\mathcal{W}_N$ spin chain hierarchy: multi-component
+  transfer matrices, nested Bethe ansatz, DS reduction from
+  Potts/$\mathrm{SU}(N)$ chains, and the Gaudin limit
+  recovering the higher-spin Hitchin system
+  (\S\ref{subsec:wn-spin-chains}).
 \end{itemize}
 
-The W-algebras connect classical integrable systems, quantum groups, and geometric representation theory through explicitly computable $A_\infty$ chiral algebra structures.
+The W-algebras connect classical integrable systems, quantum groups, and geometric representation theory through explicitly computable $A_\infty$ chiral algebra structures.  The spin chain perspective reveals a new axis of this connection: the ordered bar $R$-matrix, iterated on a lattice, produces integrable chains whose complexity class (affine = $\mathbf{L}$, W-algebra = $\mathbf{M}$) is the lattice shadow of the pole-order dichotomy, and whose Gaudin limit recovers the Hitchin system with all higher-spin Hamiltonians.
