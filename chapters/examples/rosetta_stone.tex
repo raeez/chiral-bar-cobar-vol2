@@ -1237,6 +1237,401 @@ The Poincar\'{e} series of the bar complex is
 $P(t) = 1 + t$ (one cogenerator in degree~$1$).
 \end{computation}
 
+\begin{computation}[Complete $E_1$ ordered shadow for $\cH_k$;
+\ClaimStatusProvedHere]%
+\label{comp:heisenberg-e1-ordered-shadow}%
+\index{Heisenberg algebra!E1 ordered shadow@$E_1$ ordered shadow|textbf}%
+\index{ordered shadow!Heisenberg|textbf}%
+\index{hydrogen atom!E1 ordered shadow@$E_1$ ordered shadow}%
+The Heisenberg algebra is the hydrogen atom of the $E_1$ ordered
+shadow programme: all data reduce to a single scalar~$k$, the shadow
+tower terminates at arity~$2$, and the entire ordered structure is
+computed in closed form at every genus.  We assemble the complete
+package.
+
+\smallskip
+\noindent
+\emph{(1) The ordered shadow polynomial.}
+The single nonvanishing operation is
+\begin{equation}\label{eq:e1-shadow-m2}
+m_2(J,J;\lambda) \;=\; k\lambda,
+\end{equation}
+valid for all $k \in \bC$.  The spectral parameter $\lambda$ is the
+Fourier dual of the collision coordinate $z_1 - z_2$ on
+$\FM_2(\bC)$, and records the weight of the residue: the double pole
+$k/(z_1 - z_2)^2$ produces $k\lambda$ via the substitution
+$(z_1 - z_2)^{-n-1} \leftrightarrow \lambda^{(n)}/n!$.  The shadow
+tower terminates: $m_k = 0$ for all $k \ge 3$
+(Proposition~\ref{prop:rosetta-heisenberg-mk}).  The depth spectrum is
+$\{1\}$: the shadow depth is $r_{\max} = 2$ (class~G, Gaussian),
+bar cogenerators live in arity~$2$ only, and the weight-depth
+identity $w + d = n - 1$ is satisfied trivially ($w = 0$, $d = 1$,
+$n = 2$).
+
+\smallskip
+\noindent
+\emph{(2) The $E_1$ content: spectral ordering.}
+The spectral parameter $\lambda$ in $m_2(J,J;\lambda) = k\lambda$
+carries the ordering information of the $E_1$-structure.  On the
+ordered bar complex $\barBch^{\mathrm{ord}}(\cH_k)$, the
+differential at tensor degree~$2$ is
+\[
+d_{\mathrm{res}}[s^{-1}J \,|\, s^{-1}J]
+\;=\; k,
+\]
+with the ordering $z_1 < z_2$ on $\bR$ recorded in the tensor
+sequence $s^{-1}J \otimes s^{-1}J$ (the first factor corresponds to
+the earlier point).  The parameter $\lambda$ is the \emph{directed}
+spectral flow: under the transposition $\sigma_{12}$ that exchanges
+the two points, $\lambda \mapsto -\lambda$, and
+$m_2(J,J;-\lambda) = -k\lambda = -m_2(J,J;\lambda)$.  The
+antisymmetry in $\lambda$ reflects the Koszul sign of the
+desuspension: $s^{-1}J$ has odd cohomological degree.
+
+The ordered bar complex has generating function
+(Computation~\ref{comp:heisenberg-dim-table}):
+\[
+\sum_{n,w \ge 1}
+\dim\barBch^{\mathrm{ord}}_{n,w}\; t^n q^w
+\;=\;
+\frac{tq(1-q)}{1-q-tq},
+\]
+with $\dim\barBch^{\mathrm{ord}}_{n,w} = \binom{w-1}{n-1}$
+(compositions of $w$ into $n$ positive parts).
+
+\smallskip
+\noindent
+\emph{(3) The $R$-matrix: Taylor expansion to order~$50$.}
+The collision residue is $r^{\mathrm{coll}}(z) = k/z$ (the
+$d\log$ kernel absorbs one power from the double-pole OPE:
+$k/(z-w)^2 \cdot d\log(z-w) \leadsto k/z$; AP19, AP41).  The
+connection on $\Conf_2^{\mathrm{ord}}(\bC)$ is
+$\nabla = d - k\, d\log(z)$, and the monodromy around
+the generator $\gamma$ is $\exp(-2\pi i k)$.  The spectral
+$R$-matrix on modules is
+\begin{equation}\label{eq:e1-shadow-R}
+R(z) \;=\; e^{k\hbar/z}
+\;=\;
+\sum_{n=0}^{\infty} \frac{(k\hbar)^n}{n!\, z^n}.
+\end{equation}
+This is the abelian braiding: the Yang--Baxter equation
+$R_{12}R_{13}R_{23} = R_{23}R_{13}R_{12}$ is trivially satisfied
+because $R$ is a scalar (all factors commute).  The Taylor
+expansion to order~$50$ in $u = 1/z$:
+\begin{align}\label{eq:e1-R-expansion-50}
+R(z) \;&=\;
+1 + k\hbar\, u + \tfrac{k^2\hbar^2}{2}\, u^2
++ \tfrac{k^3\hbar^3}{6}\, u^3
++ \tfrac{k^4\hbar^4}{24}\, u^4
++ \tfrac{k^5\hbar^5}{120}\, u^5
+\notag\\
+&\quad
++ \tfrac{k^6\hbar^6}{720}\, u^6
++ \tfrac{k^7\hbar^7}{5040}\, u^7
++ \tfrac{k^8\hbar^8}{40320}\, u^8
++ \tfrac{k^9\hbar^9}{362880}\, u^9
++ \tfrac{k^{10}\hbar^{10}}{3628800}\, u^{10}
+\notag\\
+&\quad + \cdots
++ \tfrac{(k\hbar)^n}{n!}\, u^n + \cdots
++ \tfrac{(k\hbar)^{50}}{50!}\, u^{50}
++ O(u^{51}),
+\end{align}
+with $u = 1/z$ and the general coefficient
+$(k\hbar)^n/n!$.  At $k = 1$, $\hbar = 1$:
+\[
+R(z)\big|_{k=\hbar=1}
+\;=\;
+e^{1/z}
+\;=\;
+1 + \frac{1}{z} + \frac{1}{2z^2}
++ \frac{1}{6z^3} + \frac{1}{24z^4}
++ \frac{1}{120z^5} + \cdots.
+\]
+The $50$th coefficient is $1/50! \approx 3.28 \times 10^{-65}$:
+the series converges faster than any power, confirming that
+the Heisenberg $R$-matrix is an entire function of $1/z$.
+
+The three-tier placement
+(Section~\ref{subsec:ordered-three-tier}): $\cH_k$ is
+tier~(ii) --- the $R$-matrix is nontrivial but \emph{derived}
+from the local OPE $J(z)J(w) \sim k/(z-w)^2$ via the
+monodromy of the flat connection on $\Conf_2^{\mathrm{ord}}(\bC)$.
+The descent $\barBch^{\mathrm{ord}} \to \barBch$ is
+$R$-matrix twisted
+(Proposition~\ref{prop:r-matrix-descent}), but since
+$R$ is scalar, the twist amounts to a phase and the two
+complexes carry the same cohomological information.
+
+\smallskip
+\noindent
+\emph{(4) Genus-$1$ $E_1$ shadow.}
+At genus~$1$, the rational propagator $1/z$ is replaced by the
+elliptic propagator $G_\tau(z) = \zeta(z|\tau) - \tfrac{\pi^2}{3}
+E_2(\tau)\cdot z$ on $E_\tau = \bC/(\Z + \Z\tau)$.
+The genus-$1$ binary operation acquires an Eisenstein correction:
+\begin{equation}\label{eq:e1-shadow-genus1-m2}
+m_2^{(1)}(J,J;\lambda;\tau)
+\;=\;
+k\lambda
+\;-\;
+\frac{\pi^2 k}{3}\, E_2(\tau)\, \lambda.
+\end{equation}
+The correction $-(\pi^2 k/3)\, E_2(\tau)\, \lambda$ arises from
+the regularization of the elliptic propagator: the Weierstrass
+$\zeta$-function $\zeta(z|\tau)$ has quasi-periodicity
+$\zeta(z+\tau|\tau) - \zeta(z|\tau) = -2\pi i + 2\eta_\tau$,
+and the subtraction $-(\pi^2/3)\, E_2(\tau)\cdot z$ renders $G_\tau$
+with monodromy $-2\pi i$
+(equation~\eqref{eq:rosetta-monodromy}).  The Eisenstein series
+\begin{equation}\label{eq:e2-expansion}
+E_2(\tau)
+\;=\;
+1 - 24\sum_{n=1}^{\infty} \sigma_1(n)\, q^n
+\;=\;
+1 - 24q - 72q^2 - 96q^3 - 168q^4 - 144q^5 - \cdots
+\end{equation}
+(with $q = e^{2\pi i \tau}$ and $\sigma_1(n) = \sum_{d|n} d$)
+encodes the genus-$1$ deformation of the Heisenberg shadow.
+
+The genus-$1$ $r$-matrix, from
+equation~\eqref{eq:heisenberg-hydrogen-genus1-r}, is
+\begin{equation}\label{eq:e1-genus1-r}
+r^{(1)}_{\cH_k}(z)
+\;=\;
+k\cdot\wp(z|\tau)
+\;=\;
+k\biggl(
+\frac{1}{z^2}
+- \sum_{n=1}^{\infty}(2n+1)\, G_{2n+2}(\tau)\, z^{2n}
+\biggr),
+\end{equation}
+where $\wp$ is the Weierstrass elliptic function and
+$G_{2n+2}(\tau) = \sum_{\substack{(m,n) \neq (0,0)}}
+(m + n\tau)^{-(2n+2)}$ are the Eisenstein series.  The
+key structural fact: since $c_0 = J_{(0)}J = 0$ (no simple pole),
+the $r$-matrix is the Weierstrass $\wp$-function, which is
+\emph{doubly periodic} on $E_\tau$ --- no $B$-cycle monodromy.
+Curvature and braiding decouple
+(Theorem~\ref{thm:higher-genus-spectral-dichotomy}\ref{item:genus-g-decoupling}).
+This is the simplest instance of the decoupling
+regime: the Heisenberg is the unique standard family with $c_0 = 0$.
+
+The genus-$1$ $R$-matrix is therefore
+\begin{equation}\label{eq:e1-genus1-R}
+R^{(1)}(z;\tau)
+\;=\;
+\exp\bigl(k\hbar\cdot\wp(z|\tau)\bigr)
+\;=\;
+\exp\biggl(
+k\hbar\Bigl(
+\frac{1}{z^2}
+- 3G_4(\tau)\, z^2
+- 5G_6(\tau)\, z^4
+- \cdots
+\Bigr)
+\biggr),
+\end{equation}
+a doubly periodic meromorphic function on $E_\tau$ (with
+an essential singularity at $z = 0$).
+
+\smallskip
+\noindent
+\emph{(5) Genus-$2$ $E_1$ shadow: the Bergman kernel replacement.}
+At genus~$g \ge 2$, the propagator on $\Sigma_g$ is the abelian
+differential of the third kind $f(z,w) = \partial_z \log E(z,w)$,
+where $E(z,w)$ is the Szeg\H{o} prime form.  The genus-$g$
+collision residue for $\cH_k$ is
+(Theorem~\ref{thm:higher-genus-spectral-dichotomy}):
+\begin{equation}\label{eq:e1-genus-g-r}
+r^{(\Sigma_g)}_{\cH_k}(z,w)
+\;=\;
+k \cdot B(z,w),
+\end{equation}
+where $B(z,w) = \partial_z \partial_w \log E(z,w)$ is the
+Bergman kernel --- the unique symmetric bidifferential on
+$\Sigma_g \times \Sigma_g$ with a double pole on the diagonal
+and no other singularities.  Since $c_0 = 0$, the zeroth-pole
+term $c_0 \cdot f(z,w)$ in the general formula
+\eqref{eq:genus-g-r-matrix} vanishes, and only the Bergman
+kernel term survives.  The $B$-cycle monodromy vanishes
+(equation~\eqref{eq:genus-g-r-monodromy} with $c_0 = 0$):
+the genus-$g$ $r$-matrix for $\cH_k$ is a globally meromorphic
+bidifferential on $\Sigma_g \times \Sigma_g$ at every genus.
+
+At genus~$2$ specifically, the Bergman kernel on a genus-$2$ curve
+$\Sigma_2$ with period matrix $\Omega = \bigl(\begin{smallmatrix}
+\tau_1 & \tau_{12} \\ \tau_{12} & \tau_2
+\end{smallmatrix}\bigr)$ is
+\[
+B(z,w)
+\;=\;
+\frac{1}{(z-w)^2}
+\;+\;
+\sum_{i,j=1}^{2}
+\bigl(\mathrm{Im}\,\Omega\bigr)^{-1}_{ij}\;
+\omega_i(z)\,\omega_j(w)
+\;+\;
+(\text{higher-order diagonal corrections}),
+\]
+and the genus-$2$ Heisenberg $r$-matrix is $r^{(2)} = k \cdot B$.
+The genus-$2$ $R$-matrix is $R^{(2)}(z,w) = \exp(k\hbar\cdot B(z,w))$,
+again globally meromorphic (no $B$-cycle monodromy).  The genus tower
+is $F_g = k \cdot \lambda_g^{\mathrm{FP}}$ at all genera
+(Theorem~\ref{thm:ahat-lagrangian}), with the free energy
+$F^{\mathrm{tot}} = k \cdot (\hbar/2)/\sin(\hbar/2)$.
+
+\smallskip
+\noindent
+\emph{(6) The Euler-eta and pentagonal verification.}
+The genus-$1$ partition function
+$Z_1(\cH_k) = \eta(\tau)^{-k}$
+(Computation~\ref{comp:heisenberg-line-bundle}) gives, at $k = 1$:
+\begin{equation}\label{eq:e1-euler-eta}
+\eta(q)
+\;=\;
+q^{1/24}\prod_{n=1}^{\infty}(1 - q^n)
+\;=\;
+q^{1/24}\sum_{n=-\infty}^{\infty}(-1)^n\, q^{n(3n-1)/2},
+\end{equation}
+where the last equality is Euler's pentagonal theorem.  The
+pentagonal numbers $\omega(n) = n(3n-1)/2$ for $n \in \Z$ are
+\begin{align}\label{eq:pentagonal-numbers}
+&n = 0:\; 0, \quad
+n = 1:\; 1, \quad
+n = -1:\; 2, \quad
+n = 2:\; 5, \quad
+n = -2:\; 7,
+\notag\\
+&n = 3:\; 12, \quad
+n = -3:\; 15, \quad
+n = 4:\; 22, \quad
+n = -4:\; 26, \quad
+n = 5:\; 35,
+\notag\\
+&n = -5:\; 40, \quad
+n = 6:\; 51, \quad
+n = -6:\; 57, \quad
+n = 7:\; 70, \quad
+n = -7:\; 77,
+\notag\\
+&n = 8:\; 92, \quad
+n = -8:\; 100, \quad
+n = 9:\; 117, \quad
+n = -9:\; 126, \quad
+n = 10:\; 145.
+\end{align}
+The expansion of $\eta(q)/q^{1/24} = \prod_{n=1}^{\infty}(1-q^n)$
+to $100$ terms, writing $P(q) = \prod_{n \ge 1}(1-q^n)$:
+\begin{align}\label{eq:eta-100-terms}
+P(q) \;&=\;
+1 - q - q^2 + q^5 + q^7
+- q^{12} - q^{15} + q^{22} + q^{26}
+- q^{35}
+\notag\\
+&\quad
+- q^{40} + q^{51} + q^{57}
+- q^{70} - q^{77} + q^{92} + q^{100}
+- q^{117} - q^{126}
+\notag\\
+&\quad
++ q^{145} + q^{155}
+- q^{176} - q^{187}
++ q^{210} + q^{222}
+- q^{247} - q^{260}
+\notag\\
+&\quad
++ q^{287} + q^{301}
+- q^{330} - q^{345}
++ q^{376} + q^{392}
+- q^{425} - q^{442}
+\notag\\
+&\quad
++ q^{477} + q^{495}
+- q^{532} - q^{551}
++ q^{590} + q^{610}
+- q^{651} - q^{672}
+\notag\\
+&\quad
++ q^{715} + q^{737}
++ O(q^{782}).
+\end{align}
+Each nonzero exponent is a pentagonal number $n(3n-1)/2$, and
+each coefficient is $(-1)^n$ --- there are no other terms.  This
+is the content of Euler's identity:
+\[
+\prod_{n=1}^{\infty}(1 - q^n)
+\;=\;
+\sum_{n=-\infty}^{\infty}(-1)^n\, q^{n(3n-1)/2}
+\;=\;
+1 + \sum_{n=1}^{\infty}(-1)^n\bigl(q^{n(3n-1)/2} + q^{n(3n+1)/2}\bigr).
+\]
+Verification: the exponents
+$\{0, 1, 2, 5, 7, 12, 15, 22, 26, 35, 40, 51, 57, 70, 77,
+92, 100, 117, 126, 145, 155, 176, 187, 210, 222, 247, 260,
+287, 301, 330, 345, 376, 392, 425, 442, 477, 495, 532, 551,
+590, 610, 651, 672, 715, 737, \ldots\}$
+are precisely the generalised pentagonal numbers
+$\omega(n) = n(3n-1)/2$ for $n = 0, \pm 1, \pm 2, \ldots$,
+listed in order.  The signs alternate: $+$ for even $|n|$, $-$
+for odd $|n|$.
+
+The inverse $P(q)^{-1} = \sum_{n=0}^{\infty} p(n)\, q^n$ is the
+partition generating function, with
+\[
+p(0) = 1,\;
+p(1) = 1,\;
+p(2) = 2,\;
+p(3) = 3,\;
+p(4) = 5,\;
+p(5) = 7,\;
+p(6) = 11,\;
+p(7) = 15,\;
+\ldots
+\]
+the partition numbers.  The Heisenberg bar complex, through the genus
+tower and the $E_1$ ordered shadow, \emph{knows} the combinatorics
+of integer partitions: the ordered bar complex counts compositions
+(Computation~\ref{comp:heisenberg-dim-table}), the $\Sigma_n$-descent
+quotients them to partitions, and the Euler characteristic of the
+alternating sum recovers the pentagonal identity.
+
+\smallskip
+\noindent
+\emph{Summary of the $E_1$ ordered dictionary.}
+\begin{center}
+\small
+\renewcommand{\arraystretch}{1.25}
+\begin{tabular}{@{}l@{\;\;}l@{}}
+\textbf{$E_1$ ordered datum} & \textbf{Value for $\cH_k$} \\
+\hline
+Shadow polynomial $m_2(J,J;\lambda)$
+  & $k\lambda$ \\[2pt]
+Shadow depth $r_{\max}$
+  & $2$ (class~G) \\[2pt]
+Higher operations $m_{k \ge 3}$
+  & $0$ (Koszul / formal) \\[2pt]
+$R$-matrix $R(z)$
+  & $e^{k\hbar/z}$ (scalar, abelian) \\[2pt]
+Three-tier placement
+  & tier~(ii): $\Einf$ with OPE poles \\[2pt]
+Genus-$1$ $r$-matrix
+  & $k\cdot\wp(z|\tau)$ (doubly periodic) \\[2pt]
+Genus-$1$ correction to $m_2$
+  & $-(\pi^2 k/3)\, E_2(\tau)\, \lambda$ \\[2pt]
+Genus-$g$ $r$-matrix
+  & $k \cdot B(z,w)$ (Bergman kernel) \\[2pt]
+$B$-cycle monodromy
+  & $0$ at all genera ($c_0 = 0$) \\[2pt]
+Euler characteristic
+  & $\eta(q)^{-k}$ (pentagonal numbers) \\[2pt]
+Partition function
+  & compositions $\to$ partitions via $\Sigma_n$
+\end{tabular}
+\end{center}
+The single scalar~$k$ determines the entire $E_1$ ordered shadow.
+\end{computation}
+
 \begin{computation}[Heisenberg classifying space; \ClaimStatusProvedHere]
 \label{comp:heisenberg-classifying-space}
 We verify the representability theorem (Theorem~\ref{thm:bar-representability}) for $\cA = \cH_k$.  The bar construction $\barB(\cH_k) = T^c(s^{-1}\C \cdot J)$ is the cofree conilpotent coalgebra on a single desuspended generator.  For any conilpotent test coalgebra $\cC$, the space of twisting morphisms is:

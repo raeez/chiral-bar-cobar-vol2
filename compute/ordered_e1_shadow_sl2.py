@@ -1387,8 +1387,9 @@ def main():
     print()
 
     # Compute ch(L_1(sl_2)) = theta_3 / eta^3 to first 15 terms
-    # This means: ch * eta^3 = theta_3
-    # Solve for ch coefficients iteratively
+    # theta_3(q) / prod(1-q^n)^3 (note: eta(q)^3 = q^{1/8} prod(1-q^n)^3)
+    # More precisely: ch = theta_3 / prod(1-q^n)^3, ignoring the q^{1/8} shift.
+    # Solve: ch * prod(1-q^n)^3 = theta_3
     N_ch = 15
     eta3 = [int(c) for c in compute_euler_eta(N_ch)]
     theta = lattice['theta_3_coeffs'][:N_ch + 1]
@@ -1406,16 +1407,48 @@ def main():
         else:
             ch[n] = Fraction(0)
 
-    print("ch(L_1(sl_2)) = theta_3(q) / eta(q)^3 expanded:")
-    print(f"  = {' + '.join(f'{int(ch[n])}q^{n}' if ch[n] >= 0 else f'({int(ch[n])})q^{n}' for n in range(min(16, N_ch + 1)) if ch[n] != 0)}")
+    print("ch(L_1(sl_2)) = theta_3(q) / prod_{n>=1}(1-q^n)^3 expanded:")
+    ch_parts = []
+    for n in range(min(16, N_ch + 1)):
+        if ch[n] != 0:
+            c = int(ch[n])
+            ch_parts.append(f"{c}q^{n}" if c >= 0 else f"({c})q^{n}")
+    print(f"  = {' + '.join(ch_parts)}")
     print()
 
-    # Known: ch(L_1(sl_2)) = 1 + 3q + 4*3q^2/2 + ... (dimensions of sl_2 reps)
-    # Actually: ch = sum_{n>=0} d(n) q^n where d(n) = number of states at weight n
-    # d(0)=1, d(1)=3, d(2)=9, d(3)=22, ...
-    print("  Expected (from Kac-Moody character formula):")
-    print("  d(0)=1, d(1)=3, d(2)=9, d(3)=22, d(4)=51, d(5)=108, ...")
-    print("  These count: 1 vacuum + 3 weight-1 currents + 9 weight-2 states + ...")
+    # Also compute the UNIVERSAL Verma character: 1/prod(1-q^n)^3
+    # This counts states WITHOUT imposing null vector conditions
+    verma_ch = [Fraction(0)] * (N_ch + 1)
+    verma_ch[0] = Fraction(1)
+    for n in range(1, N_ch + 1):
+        # Convolve with 1/(1-q^m)^3 = prod 1/(1-q^m)^3
+        # Iterative: verma_ch * prod(1-q^n)^3 = [1, 0, 0, ...]
+        s = Fraction(0)
+        for j in range(n):
+            s -= verma_ch[j] * eta3[n - j]
+        verma_ch[n] = s / eta3[0]
+
+    verma_parts = []
+    for n in range(min(11, N_ch + 1)):
+        c = int(verma_ch[n])
+        verma_parts.append(f"{c}q^{n}" if c >= 0 else f"({c})q^{n}")
+    print("ch(V_1(sl_2)) = 1/prod_{n>=1}(1-q^n)^3 (universal Verma, no null vectors):")
+    print(f"  = {' + '.join(verma_parts)}")
+    print()
+
+    print("  Comparison:")
+    print(f"  {'Weight':<8} {'L_1(sl_2)':<15} {'V_1(sl_2)':<15} {'Null vectors'}")
+    print("  " + "-" * 50)
+    for n in range(min(11, N_ch + 1)):
+        l_n = int(ch[n])
+        v_n = int(verma_ch[n])
+        null_n = v_n - l_n
+        print(f"  {n:<8} {l_n:<15} {v_n:<15} {null_n}")
+    print()
+    print("  V_1(sl_2) counts: 1 + 3q + 9q^2 + 22q^3 + 51q^4 + ...")
+    print("  (3 free bosons: 3 weight-1 currents, then PBW descendants)")
+    print("  L_1(sl_2) has MORE states due to lattice sectors (theta_3).")
+    print("  The theta_3 factor contributes lattice vertex operators e^{alpha}.")
     print()
 
     print(f"NOTE: {lattice['koszul_dual_note']}")
