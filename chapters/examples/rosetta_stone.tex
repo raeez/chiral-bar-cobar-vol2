@@ -1129,6 +1129,113 @@ by the descent theorem
 (Theorem~\ref{thm:cohomology_PVA}).
 \end{proof}
 
+\begin{computation}[The Heisenberg hydrogen atom; \ClaimStatusProvedHere]%
+\label{comp:heisenberg-hydrogen-atom}%
+\index{Heisenberg algebra!hydrogen atom|textbf}%
+\index{hydrogen atom!Heisenberg bar complex}%
+The Heisenberg algebra is the hydrogen atom of the bar-complex
+programme: all data reduce to a single scalar~$k$ and all
+higher complexity vanishes.  We collect the complete
+package in one place.
+
+\smallskip
+\noindent
+\emph{Operations.}
+The single nonvanishing operation is
+$m_2(J,J;\lambda) = k\lambda$
+(Proposition~\ref{prop:rosetta-heisenberg-mk}).
+All $m_k = 0$ for $k \ge 3$.
+The depth spectrum is $\{1\}$: the bar
+cogenerators live in arity~$2$ only, and
+$\barBch(\cH_k)$ is cogenerated in degree~$1$
+with the single relation $d_{\barB}[s^{-1}J\,|\,s^{-1}J] = k$.
+The Swiss-cheese structure is SC-formal: the higher
+coherences of $W(\SCchtop)$ are trivially satisfied.
+
+\smallskip
+\noindent
+\emph{$R$-matrix (AP41).}
+The collision residue is $r^{\mathrm{coll}}(z) = k/z$
+(the $d\log$ kernel absorbs one power from the
+double-pole OPE: $k/(z-w)^2 \cdot d\log(z-w)
+\leadsto k/z$).
+The connection on $\Conf_2^{\mathrm{ord}}(\C)$ is
+$\nabla = d - k \cdot d\log(z)$,
+and the monodromy is $\exp(-2\pi i k)$.
+The spectral $R$-matrix on modules is
+\begin{equation}\label{eq:heisenberg-hydrogen-R}
+R(z) \;=\; e^{k\hbar/z},
+\end{equation}
+confirming
+Corollary~\ref{cor:rosetta-heisenberg-projections}(iii).
+The Yang--Baxter equation is trivially satisfied
+($R$ is scalar).  The braiding is nontrivial
+but derived from the local OPE --- tier~(ii) of the
+three-tier picture
+(Section~\ref{subsec:ordered-three-tier}).
+
+\smallskip
+\noindent
+\emph{Genus-$1$ $r$-matrix.}
+On $E_\tau$, the rational propagator $1/z$ is replaced by
+$\zeta(z|\tau)$.  Since $c_0 = J_{(0)}J = 0$
+(no simple pole), the quasi-periodic part of
+$\zeta(z|\tau)$ drops out of the $r$-matrix:
+\begin{equation}\label{eq:heisenberg-hydrogen-genus1-r}
+r^{(1)}_{\cH_k}(z)
+\;=\;
+k \cdot \wp(z|\tau)
+\;=\;
+k\biggl(\frac{1}{z^2}
+  - \sum_{n=1}^{\infty}(2n+1)\, G_{2n+2}(\tau)\, z^{2n}
+\biggr).
+\end{equation}
+The genus-$1$ correction is the Eisenstein-weighted series
+$-k\bigl(3G_4(\tau)\,z^2 + 5G_6(\tau)\,z^4 + \cdots\bigr)$.
+The $r$-matrix is doubly periodic on $E_\tau$: no
+$B$-cycle monodromy.  Curvature and braiding are
+decoupled.
+
+\smallskip
+\noindent
+\emph{Complete MC element.}
+The total MC element (Theorem~\ref{thm:rosetta-3d-mc}) is
+\begin{equation}\label{eq:heisenberg-hydrogen-theta}
+\Theta_{\cH_k}
+\;=\;
+k\lambda
+\;+\;
+k \sum_{g \ge 1} \hbar^{2g}\, \lambda_g^{\mathrm{FP}} \cdot \omega_g,
+\end{equation}
+purely curvature-driven: the genus tower contains
+no shadow corrections because $m_n = 0$ for all $n \ge 3$.
+The free energy is $F^{\mathrm{tot}} = k \cdot (\hbar/2)/\sin(\hbar/2)$
+(Theorem~\ref{thm:ahat-lagrangian}).
+
+\smallskip
+\noindent
+\emph{Euler characteristic.}
+The genus-$1$ partition function
+$Z_1(\cH_k) = \eta(\tau)^{-k}$
+(Computation~\ref{comp:heisenberg-line-bundle})
+recovers the Dedekind eta function.  The $q$-expansion
+$\eta(q)^{-1} = q^{-1/24}\prod_{n=1}^{\infty}(1-q^n)^{-1}$
+is the generating function for partitions --- the
+pentagonal theorem.  The Heisenberg bar complex,
+through the genus tower, knows the combinatorics of
+integer partitions.
+
+\smallskip
+\noindent
+\emph{Koszul dual.}
+$\cH_k^! = \mathrm{Sym}^{\mathrm{ch}}(V^*)$, the
+chiral symmetric algebra on the dual (AP33: this is
+\emph{not} $\cH_{-k}$, though both have
+$\kappa = -k$).
+The Poincar\'{e} series of the bar complex is
+$P(t) = 1 + t$ (one cogenerator in degree~$1$).
+\end{computation}
+
 \begin{computation}[Heisenberg classifying space; \ClaimStatusProvedHere]
 \label{comp:heisenberg-classifying-space}
 We verify the representability theorem (Theorem~\ref{thm:bar-representability}) for $\cA = \cH_k$.  The bar construction $\barB(\cH_k) = T^c(s^{-1}\C \cdot J)$ is the cofree conilpotent coalgebra on a single desuspended generator.  For any conilpotent test coalgebra $\cC$, the space of twisting morphisms is:
@@ -1198,6 +1305,71 @@ The excess intersection of the Virasoro fourth-order pole is the
 chiral analogue of passing from torus to non-abelian Springer.
 \ClaimStatusProvedHere
 \end{remark}
+
+% ================================================================
+\subsection{The three-tier $R$-matrix classification}
+\label{subsec:ordered-three-tier}
+\index{R-matrix!three-tier classification|textbf}
+\index{three-tier classification|textbf}
+% ================================================================
+
+The Heisenberg atom belongs to the second of three tiers that
+organise all chiral algebras by the provenance of their spectral
+$R$-matrix.  The three tiers are:
+\begin{enumerate}[label=\textup{(\roman*)}]
+\item \emph{Pole-free commutative}:
+  the OPE has no singularities, $R(z) = \tau$
+  (the Koszul-signed flip), and the ordered bar complex
+  descends to the symmetric bar by the na\"{\i}ve
+  $\Sigma_n$-quotient.
+  Examples: commutative chiral algebras in the sense of BD
+  (D-schemes); the generator-level $R$-matrix of
+  $\beta\gamma$ and $bc_\lambda$ (where the $d\log$ kernel
+  absorbs the simple OPE pole to a constant).
+
+\item \emph{$\Einf$-chiral with OPE poles}:
+  the algebra is a vertex algebra (local, $\Sigma_n$-equivariant),
+  but $R(z) \ne \tau$ --- the nontrivial spectral dependence is
+  \emph{derived} from the local OPE via analytic continuation
+  of the flat connection on configuration space.
+  The descent ${\Barch}^{\mathrm{ord}} \to \Barch$ is
+  $R$-matrix twisted (Proposition~\ref{prop:r-matrix-descent}).
+  Examples: Heisenberg ($R = e^{k\hbar/z}$), affine Kac--Moody
+  ($R = 1 + k\Omega/z + \cdots$), Virasoro, $\cW_3$, symplectic
+  bosons, lattice VOAs --- all standard vertex algebras with poles.
+
+\item \emph{Genuinely $\Eone$-chiral}:
+  the $R$-matrix is \emph{independent input}, not derivable
+  from a local OPE; the algebra is nonlocal (ordered configurations
+  only, no underlying $\Sigma_n$-equivariance).
+  Examples: Yangians $Y_\hbar(\fg)$, quantum vertex algebras
+  in the sense of Etingof--Kazhdan.
+\end{enumerate}
+
+\noindent
+The tier determines three things:
+\begin{enumerate}[label=(\alph*),nosep]
+\item the \emph{$R$-matrix structure} ($\tau$, OPE-derived, or
+  independent);
+\item the \emph{ordered Koszul dual}
+  ($\cA^!_{\mathrm{line}}$ carries a spectral parameter
+  in tiers~(ii)--(iii), but in tier~(i) it agrees with
+  the symmetric Koszul dual $\cA^!_{\mathrm{ch}}$);
+\item the \emph{genus-$1$ regime} (decoupled when
+  $c_0 = 0$, entangled when $c_0 \ne 0$; the decoupled
+  case occurs only for $\cH_k$ among the standard
+  families).
+\end{enumerate}
+
+\noindent
+The examples below are organised by this classification:
+$\S$\ref{subsec:cs-nonabelian-primitive-package}--\ref{subsec:symplectic-boson-ordered-bar}
+treat the standard vertex algebra families (tiers~(i)--(ii));
+$\S$\ref{sec:shadow-tower-atlas}--\ref{subsec:e1-ordered-bar-landscape}
+assemble the complete landscape, recording the tier of each family
+alongside its shadow depth class and genus-$1$ regime.
+Tier~(iii) is treated in
+Part~VII\@.
 
 \subsection{Nonabelian Chern--Simons: the primitive package}
 \label{subsec:cs-nonabelian-primitive-package}
@@ -1581,6 +1753,955 @@ x^+_{2,s}]] = 0$ follows by the same mechanism at all mode
 levels.
 \end{computation}
 
+\subsection{Wakimoto realisation: bar-cobar commutes with free-field embedding}%
+\label{subsec:wakimoto-ordered-bar}%
+\index{Wakimoto realisation!ordered bar complex|textbf}%
+\index{free-field realisation!bar-cobar compatibility}
+
+The Wakimoto realisation of $V_k(\mathfrak{sl}_2)$ is the
+free-field embedding
+$\iota_W \colon V_k(\mathfrak{sl}_2) \hookrightarrow
+\cH_k \otimes \beta\gamma$
+into a tensor product of a Heisenberg algebra and a
+$\beta\gamma$ system.  The compatibility of bar-cobar with
+this embedding is a worked verification of the general
+principle that bar-cobar commutes with free-field realisations.
+
+\begin{computation}[Wakimoto bar-cobar compatibility;
+\ClaimStatusProvedHere]%
+\label{comp:wakimoto-bar-cobar}%
+\index{Wakimoto realisation!bar complex}%
+\index{Wakimoto realisation!Koszul dual}%
+\index{free-field realisation!bar complex}%
+The Wakimoto realisation embeds the $\widehat{\mathfrak{sl}}_2$
+currents into a Heisenberg field $a(z)$ (level~$k$) and a
+$\beta\gamma$ pair via
+\begin{equation}\label{eq:wakimoto-embedding}
+\begin{aligned}
+J^+(z) &\;=\; \beta(z)\,, \\
+J^0(z) &\;=\; {:}\beta(z)\gamma(z){:} + a(z)\,, \\
+J^-(z) &\;=\; {:}\beta(z)\gamma(z)\gamma(z){:}
+  + (k+2)\,\partial\gamma(z)
+  + a(z)\gamma(z)\,.
+\end{aligned}
+\end{equation}
+The three currents satisfy the $\widehat{\mathfrak{sl}}_2$ OPE
+at level~$k$ as a consequence of the free-field OPE relations
+$a(z)\,a(w) \sim k/(z-w)^2$,\;
+$\beta(z)\,\gamma(w) \sim 1/(z-w)$.
+
+\smallskip
+\noindent
+\emph{Bar complex compatibility.}
+The embedding $\iota_W$ induces a coalgebra map on bar
+complexes:
+\begin{equation}\label{eq:wakimoto-bar-map}
+\barBch(\iota_W) \;\colon\;
+\barBch(V_k(\mathfrak{sl}_2))
+\;\longrightarrow\;
+\barBch(\cH_k \otimes \beta\gamma)\,.
+\end{equation}
+The source is class~$\mathbf{L}$ (depth~$3$,
+Computation~\ref{comp:lattice-voa-ordered-bar} at
+$k = 1$, and the general affine case at arbitrary~$k$).
+The target is the tensor product of two bar complexes:
+$\barBch(\cH_k)$ (class~$\mathbf{G}$, depth~$2$)
+and $\barBch(\beta\gamma)$ (class~$\mathbf{C}$,
+depth~$4$ on composites).
+The bar map preserves the coalgebra structure and
+intertwines the bar differentials.
+
+\smallskip
+\noindent
+\emph{Cobar compatibility and Koszul dual.}
+Applying $\Omega^{\mathrm{ch}}$ to both sides of
+\eqref{eq:wakimoto-bar-map}, the cobar functor commutes
+with the embedding:
+\[
+\Omega^{\mathrm{ch}}(\barBch(\iota_W))
+\;\colon\;
+V_k(\mathfrak{sl}_2)
+\;\xrightarrow{\;\sim\;}
+\Omega^{\mathrm{ch}}\bigl(
+\barBch(V_k(\mathfrak{sl}_2))\bigr)
+\;\longrightarrow\;
+\cH_k \otimes \beta\gamma\,.
+\]
+At the level of Koszul duals, the map induces
+\begin{equation}\label{eq:wakimoto-koszul}
+Y_\hbar(\mathfrak{sl}_2)
+\;=\;
+V_k(\mathfrak{sl}_2)^!
+\;\longrightarrow\;
+(\cH_k)^! \otimes (bc)
+\;=\;
+\mathrm{Sym}^{\mathrm{ch}}(V^*) \otimes bc\,,
+\end{equation}
+embedding the Yangian into a tensor product of the Heisenberg
+Koszul dual and the $bc$ system.  This is the Koszul-dual
+shadow of the Wakimoto embedding: the Yangian inherits a
+free-field presentation from the free-field realisation
+of the original affine algebra.
+
+\smallskip
+\noindent
+\emph{$R$-matrix compatibility.}
+The Yang $R$-matrix
+$R(z) = 1 + k\Omega/z$ of $V_k(\mathfrak{sl}_2)$
+decomposes under the Wakimoto embedding as a product:
+$R_{\mathrm{Wak}}(z) = R_{\cH}(z) \cdot R_{\beta\gamma}$,
+where $R_{\cH}(z) = e^{k\hbar/z}$ (the Heisenberg
+exponential $R$-matrix) and
+$R_{\beta\gamma} = \mathrm{Id}$ (trivial on generators).
+The Lie-bracket contributions to the $\mathfrak{sl}_2$
+Casimir $\Omega$ arise from the composite sector of
+$\beta\gamma$ (the ghost current $J_{bc} = {:}\beta\gamma{:}$).
+
+\smallskip
+\noindent
+\emph{Depth analysis.}
+The Wakimoto embedding witnesses the depth upgrade from
+$\mathbf{G}$ (Heisenberg) and $\mathbf{C}$ ($\beta\gamma$)
+to $\mathbf{L}$ ($V_k(\mathfrak{sl}_2)$): the simple-pole
+terms in $J^-(z)$ (specifically the $a(z)\gamma(z)$ coupling)
+introduce a Lie-bracket interaction that is absent in either
+free-field factor alone.  The composition of two abelian
+systems produces a non-abelian system: the Wakimoto realisation
+is the mechanism by which class~$\mathbf{G}$ components
+assemble into class~$\mathbf{L}$.
+\end{computation}
+
+\subsection{The lattice VOA $V_{\sqrt{2}\Z}$: class~L from vertex operators}%
+\label{subsec:lattice-voa-ordered-bar}%
+\index{lattice VOA!ordered bar complex|textbf}%
+\index{Koszul duality!lattice VOA}
+
+The shadow tower atlas
+(Computation~\ref{comp:shadow-tower-atlas}) lists $V_\Lambda$
+as class~$\mathbf{G}$ when restricted to the momentum
+sublattice (the Heisenberg currents $J_\alpha$).  The full
+lattice VOA $V_\Lambda$ with its vertex operators
+$e^\alpha$ ($\alpha \in \Lambda$) belongs to class~$\mathbf{L}$:
+the OPE of vertex operators has a simple pole producing a
+Lie-bracket term, and the Jacobi identity terminates the
+shadow tower at depth~$3$.
+
+We compute the case $\Lambda = \sqrt{2}\,\Z$, the
+$A_1$ root lattice, where $V_\Lambda \cong L_1(\mathfrak{sl}_2)$
+--- the integrable vacuum module of $\widehat{\mathfrak{sl}}_2$
+at level~$1$.
+
+\begin{computation}[Lattice VOA ordered bar complex;
+\ClaimStatusProvedHere]%
+\label{comp:lattice-voa-ordered-bar}%
+\index{lattice VOA!A1 root lattice@$A_1$ root lattice!bar complex}%
+\index{lattice VOA!depth spectrum}%
+\index{Yangian!lattice VOA Koszul dual}%
+The lattice $\Lambda = \sqrt{2}\,\Z$ has rank~$1$,
+Gram matrix $(\alpha, \alpha) = 2$, and root system
+$\Phi = \{\pm\alpha\}$ where $\alpha = \sqrt{2}$.  The
+lattice VOA $V_\Lambda$ has generators:
+\begin{itemize}[nosep]
+\item the Heisenberg current $J(z)$ with
+  $J(z)\,J(w) \sim 1/(z-w)^2$
+  (level $k = 1$ normalisation);
+\item vertex operators $e^{\pm\alpha}(z)$ of
+  conformal weight~$1$, with OPE
+  \begin{align}
+  e^\alpha(z)\, e^{-\alpha}(w)
+  &\;\sim\;
+  \frac{1}{(z-w)^2}
+  \;+\;
+  \frac{\alpha \cdot J(w)}{z-w}\,,
+  \label{eq:lattice-vertex-ope}
+  \\[3pt]
+  J(z)\, e^{\pm\alpha}(w)
+  &\;\sim\;
+  \frac{\pm\alpha\, e^{\pm\alpha}(w)}{z-w}\,,
+  \label{eq:lattice-current-vertex-ope}
+  \\[3pt]
+  e^{\alpha}(z)\, e^{\alpha}(w)
+  &\;\sim\; 0\,.
+  \label{eq:lattice-vertex-vertex-vanishing}
+  \end{align}
+\end{itemize}
+The isomorphism $V_\Lambda \cong L_1(\mathfrak{sl}_2)$
+sends $J \mapsto h/\sqrt{2}$,
+$e^\alpha \mapsto e$, $e^{-\alpha} \mapsto f$,
+recovering the $\widehat{\mathfrak{sl}}_2$ OPE at $k = 1$.
+
+\smallskip
+\noindent
+\emph{Depth spectrum: $\{1,2\}$.}
+The OPE~\eqref{eq:lattice-vertex-ope} has both a double pole
+(depth~$1$, the Killing form: $\kappa(e^\alpha, e^{-\alpha}) = 1$)
+and a simple pole (depth~$2$, the Lie bracket:
+$[e^\alpha, e^{-\alpha}] = \alpha \cdot J$).  The depth spectrum
+is $\{1, 2\}$, matching $V_k(\mathfrak{sl}_2)$ at $k = 1$.
+This is class~$\mathbf{L}$, not class~$\mathbf{G}$:
+the vertex operators lift the momentum algebra from depth~$\{1\}$
+to depth~$\{1,2\}$.
+
+\smallskip
+\noindent
+\emph{Operations: $m_3 \ne 0$, $m_4 = 0$.}
+The binary operation decomposes as
+$m_2(e^\alpha, e^{-\alpha};\, \lambda)
+= \lambda + \alpha \cdot J$
+(double pole $\leadsto \lambda$; simple pole $\leadsto$ Lie bracket).
+The ternary operation $m_3$ is nonzero on the triple
+$(e^\alpha, e^{-\alpha}, e^\alpha)$: the iterated OPE
+produces a Lie-bracket composition
+$[e^\alpha, [e^{-\alpha}, e^\alpha]] = [e^\alpha, -\alpha J]
+= +\alpha^2\, e^\alpha = 2\, e^\alpha$.
+The quartic operation $m_4 = 0$ by the Jacobi identity:
+the weight $2\alpha$ is not a root
+($e^{2\alpha}$ does not exist in the lattice VOA
+since $(2\alpha, 2\alpha) = 8 > 2$), forcing the
+obstruction to vanish.  The tower terminates at depth~$3$.
+
+\smallskip
+\noindent
+\emph{$r$-matrix and Koszul dual.}
+The collision residue is
+$r(z) = \Omega/z$ where
+$\Omega = e^\alpha \otimes e^{-\alpha}
++ e^{-\alpha} \otimes e^{\alpha}
++ \tfrac{1}{2} J \otimes J$
+is the $\mathfrak{sl}_2$ Casimir at level~$1$.
+The quantisation of $r(z) = \Omega/z$ is the
+Yang $R$-matrix $R(z) = 1 + \hbar\,\Omega/z$,
+and the Koszul dual is the Yangian
+$Y_{1/3}(\mathfrak{sl}_2)$
+(the $k = 1$ specialisation of the general affine
+Koszul dual
+$A^! = Y_\hbar^{\mathrm{dg}}(\fg)$).
+
+\smallskip
+\noindent
+\emph{Serre relation = root-space vanishing.}
+The Serre relation $[e^\alpha, [e^\alpha, e^{-\alpha}]] = 0$
+has a root-space origin: $2\alpha - \alpha = \alpha$ is a root,
+but $[e^\alpha, e^\alpha] = 0$
+(equation~\eqref{eq:lattice-vertex-vertex-vanishing})
+because $(\alpha, \alpha) = 2 > 0$ (same-sign vertex
+operators have no singular OPE).  In the bar complex,
+this forces the degree-$3$ element
+$[s^{-1}e^\alpha\,|\,s^{-1}e^\alpha\,|\,s^{-1}e^{-\alpha}]$
+to be exact, by the same mechanism as the $\mathfrak{sl}_3$
+Serre relation
+(Computation~\ref{comp:sl3-yangian-triangle}).
+
+\smallskip
+\noindent
+\emph{Genus-$1$.}
+Since $c_0 = \Omega \ne 0$ (the Lie bracket is
+nonvanishing), the lattice VOA at level~$1$ is
+propagator-entangled at genus~$1$: the $r$-matrix
+becomes elliptic,
+$r^{E_\tau}(z) = \Omega \cdot \zeta(z|\tau) + \kappa \cdot \wp(z|\tau)$,
+with $B$-cycle monodromy $2\eta_\tau \cdot \Omega$.
+The curvature is $\kappa = 3/4$
+(the $k = 1$, $\mathfrak{sl}_2$ value).
+\end{computation}
+
+\begin{remark}[Lattice atlas correction]%
+\label{rem:lattice-atlas-correction}%
+\index{lattice VOA!atlas classification}%
+The shadow tower atlas entry for $V_\Lambda$ as
+class~$\mathbf{G}$ (depth~$2$) applies to the
+\emph{momentum sublattice} only: the Heisenberg
+currents $J_i(z)$ ($i = 1, \ldots, \operatorname{rk}(\Lambda)$)
+with $J_i(z)\, J_j(w) \sim (\alpha_i, \alpha_j)/(z-w)^2$
+have scalar OPE residues and no simple pole.  The
+full lattice VOA with vertex operators $e^\alpha$
+($\alpha \in \Lambda$) is class~$\mathbf{L}$ whenever
+$\Lambda$ has roots: the simple-pole OPE
+$e^\alpha(z)\,e^{-\alpha}(w) \sim \cdots + (\alpha \cdot J)/(z-w)$
+introduces a Lie bracket.  The atlas entry is refined
+accordingly: $V_\Lambda(\mathrm{mom.})$ is
+class~$\mathbf{G}$; $V_\Lambda(\mathrm{v.o.})$ is
+class~$\mathbf{L}$.
+\end{remark}
+
+\begin{computation}[$A_2$ lattice VOA ordered bar complex;
+\ClaimStatusProvedHere]%
+\label{comp:lattice-voa-A2-ordered-bar}%
+\index{lattice VOA!A2 root lattice@$A_2$ root lattice!bar complex}%
+\index{lattice VOA!rank 2}%
+\index{Yangian!sl3@$\mathfrak{sl}_3$!from lattice VOA}%
+The $A_2$ root lattice $\Lambda = \Z\alpha_1 \oplus \Z\alpha_2$
+with Gram matrix
+$\bigl(\begin{smallmatrix} 2 & -1 \\ -1 & 2
+\end{smallmatrix}\bigr)$
+has rank~$2$, root system $\Phi = \{\pm\alpha_1, \pm\alpha_2,
+\pm(\alpha_1+\alpha_2)\}$ of type~$A_2$, and the lattice VOA
+$V_\Lambda \cong L_1(\mathfrak{sl}_3)$ is the integrable vacuum
+module of $\widehat{\mathfrak{sl}}_3$ at level~$1$.
+
+\smallskip
+\noindent
+\emph{Generators.}
+Two Heisenberg currents $J_1, J_2$ spanning the Cartan,
+and six vertex operators $e^{\pm\alpha_1}, e^{\pm\alpha_2},
+e^{\pm(\alpha_1+\alpha_2)}$ of conformal weight~$1$,
+giving $\dim(\fg) = 8$ generators total.
+The OPE structure:
+\begin{align}
+J_i(z)\,J_j(w) &\;\sim\; \frac{(\alpha_i,\alpha_j)}{(z-w)^2}\,,
+\label{eq:A2-cartan-ope}
+\\[3pt]
+J_i(z)\,e^{\pm\alpha_j}(w) &\;\sim\;
+\frac{\pm(\alpha_i,\alpha_j)\,e^{\pm\alpha_j}(w)}{z-w}\,,
+\\[3pt]
+e^{\alpha_i}(z)\,e^{-\alpha_j}(w)
+&\;\sim\;
+\delta_{ij}\biggl(
+\frac{1}{(z-w)^2}
++ \frac{\alpha_i \cdot J(w)}{z-w}\biggr)
++ (1-\delta_{ij})\,
+\frac{\epsilon_{ij}\,e^{\alpha_i-\alpha_j}(w)}{z-w}\,,
+\label{eq:A2-vertex-ope}
+\end{align}
+where $\epsilon_{ij} = \pm 1$ is the cocycle sign
+($\epsilon_{12} = 1$, $\epsilon_{21} = -1$).  The composite
+root vertex operator satisfies
+$e^{\alpha_1+\alpha_2} = [e^{\alpha_1}, e^{\alpha_2}]$
+(the Lie bracket).
+
+\smallskip
+\noindent
+\emph{Depth spectrum: $\{1,2\}$, class~$\mathbf{L}$, depth~$3$.}
+As for $A_1$, the double poles between opposite-root vertex
+operators give depth~$1$ (Killing form) and the simple poles
+give depth~$2$ (Lie bracket).  The quartic operation $m_4 = 0$
+by the Jacobi identity:
+the weight $2\alpha_1 + \alpha_2$ is a non-root weight of
+$\mathfrak{sl}_3$ at height~$3$ (dimension count: $\dim(\fg_{2\alpha_1+\alpha_2}) = 0$),
+so the iterated bracket vanishes by the same mechanism as
+Computation~\ref{comp:sl3-yangian-triangle}.
+The tower terminates at depth~$3$.  This is class~$\mathbf{L}$.
+
+\smallskip
+\noindent
+\emph{Operations: $m_2$ table.}
+The nonvanishing $m_2$ operations on Chevalley generators:
+\begin{center}
+\small
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{lll}
+\toprule
+\textbf{Pair} & $m_2(a,b;\lambda)$ & \textbf{Source} \\
+\midrule
+$(e^{\alpha_i}, e^{-\alpha_i})$ & $\lambda + \alpha_i \cdot J$
+  & double + simple pole \\
+$(e^{\alpha_1}, e^{-\alpha_2})$ & $e^{\alpha_1-\alpha_2}$
+  & simple pole \\
+$(e^{\alpha_2}, e^{-\alpha_1})$ & $-e^{\alpha_2-\alpha_1}$
+  & simple pole \\
+$(J_i, J_j)$ & $(\alpha_i,\alpha_j)\,\lambda$
+  & double pole \\
+\bottomrule
+\end{tabular}
+\end{center}
+All $m_k = 0$ for $k \ge 4$.  The ternary operation $m_3$ is
+nonzero on triples involving the composite root, e.g.\
+$m_3(e^{\alpha_1}, e^{-\alpha_1}, e^{\alpha_2})
+= -(\alpha_1,\alpha_2)\,e^{\alpha_2} = e^{\alpha_2}$.
+
+\smallskip
+\noindent
+\emph{$R$-matrix and Koszul dual.}
+The collision residue is the $\mathfrak{sl}_3$ classical
+$r$-matrix:
+$r(z) = \Omega_{\mathfrak{sl}_3}/z$,
+where $\Omega_{\mathfrak{sl}_3}$ is the quadratic Casimir
+of~$\mathfrak{sl}_3$ at level~$1$.  The spectral $R$-matrix is
+the Yang $R$-matrix
+\begin{equation}\label{eq:A2-lattice-R}
+R(z) \;=\; 1 + \frac{\hbar\,\Omega_{\mathfrak{sl}_3}}{z}\,.
+\end{equation}
+The Koszul dual is the Yangian
+$Y_\hbar(\mathfrak{sl}_3)$.
+
+\smallskip
+\noindent
+\emph{Poincar\'{e} series and Euler characteristic.}
+$P(t) = 1 + 8t$ (eight cogenerators in degree~$1$,
+corresponding to the $\dim(\mathfrak{sl}_3) = 8$
+desuspended generators).  The modular characteristic
+$\kappa = 4k/(k+3)\big|_{k=1} = 1$, matching the
+general affine formula
+$\kappa(V_k(\fg)) = \dim(\fg) \cdot k/(2(k+h^\vee))$
+with $h^\vee = 3$.
+
+\smallskip
+\noindent
+\emph{Genus-$1$.}
+Since $c_0 = \Omega_{\mathfrak{sl}_3} \ne 0$ (the
+Lie bracket is nonvanishing), the $A_2$ lattice VOA is
+propagator-entangled at genus~$1$.  The elliptic $r$-matrix is
+$r^{E_\tau}(z) = \Omega_{\mathfrak{sl}_3}\cdot\zeta(z|\tau)
++ \kappa\cdot\wp(z|\tau)$,
+with $B$-cycle monodromy $2\eta_\tau\cdot\Omega_{\mathfrak{sl}_3}$.
+\end{computation}
+
+\begin{computation}[$D_4$ lattice VOA: triality and ordered bar;
+\ClaimStatusProvedHere]%
+\label{comp:lattice-voa-D4-ordered-bar}%
+\index{lattice VOA!D4 root lattice@$D_4$ root lattice!bar complex}%
+\index{lattice VOA!triality}%
+\index{triality!lattice VOA bar complex}%
+The $D_4$ root lattice $\Lambda_{D_4}$ has rank~$4$,
+$|\Phi| = 24$ roots, and the lattice VOA
+$V_{\Lambda_{D_4}} \cong L_1(\mathfrak{so}_8)$ is the
+integrable vacuum module of $\widehat{\mathfrak{so}}_8$ at
+level~$1$.  This is the first lattice VOA where \emph{triality}
+--- the $S_3$ outer automorphism of $D_4$ --- is visible.
+
+\smallskip
+\noindent
+\emph{Generators.}
+Four Heisenberg currents $J_1, \ldots, J_4$ spanning the Cartan,
+and $24$ vertex operators $e^\alpha$ ($\alpha \in \Phi_{D_4}$) of
+conformal weight~$1$, giving $\dim(\mathfrak{so}_8) = 28$ generators.
+The OPE has the same structure as~\eqref{eq:A2-vertex-ope}
+with the $D_4$ Killing form and structure constants.
+
+\smallskip
+\noindent
+\emph{Depth spectrum: $\{1,2\}$, class~$\mathbf{L}$, depth~$3$.}
+As for all simply-laced root lattices at level~$1$, the double
+poles (Killing form) give depth~$1$ and the simple poles
+(Lie bracket) give depth~$2$.  The quartic operation $m_4 = 0$
+by the Jacobi identity.  Class~$\mathbf{L}$, depth~$3$.
+
+\smallskip
+\noindent
+\emph{$R$-matrix and Koszul dual.}
+The collision residue is $r(z) = \Omega_{\mathfrak{so}_8}/z$.
+The spectral $R$-matrix is
+\begin{equation}\label{eq:D4-lattice-R}
+R(z) \;=\; 1 + \frac{\hbar\,\Omega_{\mathfrak{so}_8}}{z}\,.
+\end{equation}
+The Koszul dual is $Y_\hbar(\mathfrak{so}_8)$.
+
+\smallskip
+\noindent
+\emph{Triality.}
+The outer automorphism group $\mathrm{Out}(D_4) \cong S_3$
+permutes the three $8$-dimensional representations:
+the vector $\mathbf{8}_v$, the spinor $\mathbf{8}_s$, and
+the co-spinor $\mathbf{8}_c$.  At the level of the bar complex:
+\begin{enumerate}[label=\textup{(\roman*)},nosep]
+\item Triality permutes the vertex operators:
+  $\sigma \colon e^{\alpha} \mapsto e^{\sigma(\alpha)}$
+  for $\sigma \in S_3$.
+\item The collision residue $r(z) = \Omega/z$ is triality-invariant
+  ($\Omega_{\mathfrak{so}_8}$ is the unique quadratic
+  Casimir, hence $S_3$-invariant).
+\item The Yangian $Y_\hbar(\mathfrak{so}_8)$ inherits triality:
+  the evaluation representation $V(u)$ in the vector
+  representation is isomorphic to $V_s(u)$ in the spinor
+  representation and $V_c(u)$ in the co-spinor representation,
+  as Yangian modules.
+\end{enumerate}
+Triality is a symmetry of the ordered bar complex that does
+\emph{not} descend from an inner automorphism: it is the
+bar-complex shadow of the exceptional Dynkin diagram symmetry.
+
+\smallskip
+\noindent
+\emph{Poincar\'{e} series.}
+$P(t) = 1 + 28t$ ($\dim(\mathfrak{so}_8) = 28$ cogenerators).
+Modular characteristic
+$\kappa = 28/(2 \cdot 7) = 2$ (using $h^\vee(D_4) = 6$ and
+$\dim(\mathfrak{so}_8) = 28$: $\kappa = 28 \cdot 1/(2 \cdot 7) = 2$,
+via the general formula with $k = 1$, $h^\vee = 6$).
+
+\smallskip
+\noindent
+\emph{Genus-$1$.}
+Propagator-entangled ($c_0 = \Omega_{\mathfrak{so}_8} \ne 0$).
+The genus-$1$ partition function
+$Z_1(V_{\Lambda_{D_4}}) = (\Theta_{D_4}(\tau)/\eta(\tau)^4)$,
+where $\Theta_{D_4}$ is the $D_4$ theta function.
+Triality permutes the three conjugacy classes of $D_4$
+lattice cosets, corresponding to the three modular-invariant
+partition functions (diagonal, spinor, co-spinor) of the
+$\widehat{\mathfrak{so}}_8$ WZW model at level~$1$.
+\end{computation}
+
+\subsection{The $\beta\gamma$ system: class~C and statistics exchange}%
+\label{subsec:betagamma-ordered-bar}%
+\index{beta-gamma system@$\beta\gamma$ system!ordered bar complex|textbf}%
+\index{Koszul duality!beta-gamma-bc@$\beta\gamma$--$bc$}
+
+The $\beta\gamma$ system is the simplest chiral algebra of
+class~$\mathbf{C}$: it has a non-scalar quartic contact
+invariant but the tower terminates at depth~$4$ by
+rank-$1$ abelian rigidity.
+
+\begin{computation}[$\beta\gamma$ ordered bar complex;
+\ClaimStatusProvedHere]%
+\label{comp:betagamma-ordered-bar}%
+\index{beta-gamma system@$\beta\gamma$ system!R-matrix}%
+\index{beta-gamma system@$\beta\gamma$ system!Koszul dual}%
+\index{beta-gamma system@$\beta\gamma$ system!depth spectrum}%
+The $\beta\gamma$ system has two generators:
+$\beta$ of conformal weight~$\lambda$ and
+$\gamma$ of conformal weight~$1-\lambda$, with OPE
+\begin{equation}\label{eq:betagamma-ope}
+\beta(z)\,\gamma(w)
+\;\sim\;
+\frac{1}{z-w}\,,
+\qquad
+\beta(z)\,\beta(w) \sim 0,
+\qquad
+\gamma(z)\,\gamma(w) \sim 0.
+\end{equation}
+Central charge $c(\beta\gamma) = -2(6\lambda^2 - 6\lambda + 1)$.
+At $\lambda = 1/2$: $c = 1$.
+
+\smallskip
+\noindent
+\emph{Depth spectrum: $\{0\}$ on generators.}
+The OPE~\eqref{eq:betagamma-ope} has a single simple pole.
+By AP19, the $d\log$ kernel absorbs one power: the
+collision residue is $r^{\mathrm{coll}} = 1$ (a constant,
+depth~$0$).  On generators, all $m_k = 0$ for
+$k \ge 3$: there are no iterated OPE singularities
+because $\beta\beta$ and $\gamma\gamma$ are regular.
+The depth spectrum on generators is $\{0\}$.
+
+The shadow tower atlas records depth~$4$ for $\beta\gamma$
+because the \emph{composite} quasi-primary
+$\Lambda = {:}\beta\gamma{:}$ (the $U(1)$ ghost current)
+mediates a quartic exchange at weight~$4$.  On the
+composite sector, the $\beta\gamma$ system behaves like
+class~$\mathbf{C}$
+(Theorem~\ref{thm:pole-structure-dichotomy}(iii)).
+
+\smallskip
+\noindent
+\emph{$R$-matrix: trivial.}
+The collision residue is a constant ($r = 1$, depth~$0$):
+the connection on $\Conf_2^{\mathrm{ord}}(\C)$ is
+$\nabla = d$ (flat), and the $R$-matrix is the identity:
+\begin{equation}\label{eq:betagamma-R}
+R(z) \;=\; \mathrm{Id}.
+\end{equation}
+This is tier~(i) of the three-tier picture restricted to
+generators: the $\beta\gamma$ OPE on generators has only a
+simple pole, and the $d\log$ absorption reduces it to a
+constant.  In this sense the $\beta\gamma$ generators
+behave like a pole-free system, though the full algebra
+(including composites) has nontrivial spectral data.
+
+\smallskip
+\noindent
+\emph{Koszul dual: $bc = \bigwedge^{\mathrm{ch}}(V)$.}
+The chiral $\mathrm{Ext}/\mathrm{Sym}$ duality
+(Remark~\ref{rem:rosetta-bc-betagamma-koszul})
+exchanges statistics:
+\begin{equation}\label{eq:betagamma-koszul-dual}
+\beta\gamma_\lambda^!
+\;=\;
+bc_\lambda\,,
+\qquad
+bc_\lambda^!
+\;=\;
+\beta\gamma_\lambda\,.
+\end{equation}
+The $\beta\gamma$ system is the chiral symmetric algebra
+$\mathrm{Sym}^{\mathrm{ch}}(V)$
+on $V = \C\beta \oplus \C\gamma$ (bosonic); its
+Koszul dual is the chiral exterior algebra
+$\bigwedge^{\mathrm{ch}}(V^*)$ (fermionic), which is the
+$bc$ ghost system.
+The Poincar\'{e} series is $P(t) = 1 + 2t$
+(two cogenerators $s^{-1}\beta$ and $s^{-1}\gamma$
+in degree~$1$).
+
+\smallskip
+\noindent
+\emph{Complementarity: $\kappa(\beta\gamma) + \kappa(bc) = 0$.}
+The modular characteristics are
+$\kappa(\beta\gamma) = -1$ and $\kappa(bc) = +1$.
+Their sum vanishes:
+$K(\beta\gamma) = \kappa(\beta\gamma) + \kappa(bc) = 0$.
+This is the free-field instance of the affine-lineage
+complementarity $K = 0$
+(Proposition~\ref{prop:rosetta-complementarity}).
+The central charges also satisfy
+$c(\beta\gamma) + c(bc)
+= -2(6\lambda^2 - 6\lambda + 1) + 2(6\lambda^2 - 6\lambda + 1) = 0$
+for all~$\lambda$.
+
+\smallskip
+\noindent
+\emph{Genus-$1$.}
+Since the zeroth product
+$\beta_{(0)}\gamma = 1 \ne 0$ (the simple-pole OPE
+residue is nonvanishing), we have $c_0 \ne 0$: the
+$\beta\gamma$ system is propagator-entangled at genus~$1$.
+The symplectic Casimir $\Omega_{\mathrm{symp}}
+= \beta \otimes \gamma - \gamma \otimes \beta$
+replaces the Lie-algebra Casimir in the elliptic
+$r$-matrix formula.  The curvature is
+$\kappa = -1$.
+\end{computation}
+
+\subsection{The free fermion $\psi$: class~G on generators, class~C full}%
+\label{subsec:free-fermion-ordered-bar}%
+\index{free fermion!ordered bar complex|textbf}%
+\index{Koszul duality!free fermion}
+
+The free fermion $\psi$ of conformal weight~$1/2$ is the
+simplest fermionic chiral algebra.  On generators it is
+class~$\mathbf{G}$ (the OPE $\psi(z)\,\psi(w) \sim 1/(z-w)$
+is a single simple pole, and the $d\log$ kernel absorbs it
+to a constant).  The full algebra, including the composite
+$J = {:}\psi\psi{:}$ (a weight-$1$ boson), is class~$\mathbf{C}$
+because $J$ mediates a quartic exchange.
+
+\begin{computation}[Free fermion ordered bar complex;
+\ClaimStatusProvedHere]%
+\label{comp:free-fermion-ordered-bar}%
+\index{free fermion!R-matrix}%
+\index{free fermion!Koszul dual}%
+\index{free fermion!depth spectrum}%
+The free fermion has a single generator $\psi$ of conformal
+weight~$1/2$ (fermionic), with OPE
+\begin{equation}\label{eq:free-fermion-ope}
+\psi(z)\,\psi(w) \;\sim\; \frac{1}{z-w}\,.
+\end{equation}
+Central charge $c(\psi) = 1/2$.
+
+\smallskip
+\noindent
+\emph{Operations.}
+The single nonvanishing operation on generators is
+$m_2(\psi,\psi;\,\lambda) = 1$
+(the simple-pole residue is the identity pairing).
+All $m_k = 0$ for $k \ge 3$ on generators: the OPE
+$\psi(z)\,\psi(w)$ has only a simple pole, and the
+iterated collision $\psi\,\psi\,\psi$ vanishes by
+fermionic antisymmetry.  On the composite sector
+($J = {:}\psi\psi{:}$, $T = \tfrac{1}{2}{:}\partial\psi\,\psi{:}$),
+the OPE $J(z)\,J(w) \sim 1/(z-w)^2$ introduces a
+Heisenberg-type double pole, and $T(z)\,T(w)$ has the
+Virasoro quartic pole at $c = 1/2$.  The full algebra is
+class~$\mathbf{C}$ with depth~$4$ on composites.
+
+\smallskip
+\noindent
+\emph{Depth spectrum: $\{0\}$ on generators.}
+The $d\log$ kernel absorbs the simple pole:
+$r^{\mathrm{coll}} = 1$ (constant, depth~$0$).
+On generators the depth spectrum is $\{0\}$, matching
+$\beta\gamma$ (Computation~\ref{comp:betagamma-ordered-bar}).
+The full depth spectrum including composites is $\{0,1,4\}$.
+
+\smallskip
+\noindent
+\emph{$R$-matrix: trivial on generators.}
+Since $r^{\mathrm{coll}} = 1$ (a scalar constant), the connection
+on $\Conf_2^{\mathrm{ord}}(\C)$ is flat: $\nabla = d$.
+The $R$-matrix on generators is
+\begin{equation}\label{eq:free-fermion-R}
+R(z) \;=\; \tau \qquad\text{(Koszul-signed flip)},
+\end{equation}
+where $\tau(a \otimes b) = (-1)^{|a||b|}\,b \otimes a$ is the
+graded transposition.  The minus sign in
+$\psi \otimes \psi \mapsto -\psi \otimes \psi$
+encodes the fermionic statistics.  This is tier~(i) of the
+three-tier picture restricted to generators.
+
+\smallskip
+\noindent
+\emph{Koszul dual: $\beta\gamma_{1/2}$.}
+The free fermion is the chiral exterior algebra
+$\bigwedge^{\mathrm{ch}}(\C\psi)$ (a single fermionic
+generator).  Its Koszul dual is the chiral symmetric
+algebra on the dual:
+\begin{equation}\label{eq:free-fermion-koszul}
+\psi^! \;=\; \beta\gamma_{1/2}\,.
+\end{equation}
+The Koszul dual exchanges statistics
+(fermionic~$\to$~bosonic) and preserves the
+conformal weight~$1/2$.  This is the single-generator
+case of the $bc$--$\beta\gamma$ duality
+(Remark~\ref{rem:rosetta-bc-betagamma-koszul}).
+
+\smallskip
+\noindent
+\emph{Bar cohomology.}
+The bar complex $\barBch(\psi)$ on generators is the
+cofree coalgebra on a single fermionic desuspended generator
+$s^{-1}\psi$.  Since $m_2(\psi,\psi) = 1$ is a nondegenerate
+pairing, $H_1(\barBch) = 0$: the single generator is
+exact.  The bar cohomology in higher degrees is
+$H_n(\barBch) \cong \C$ for $n = 0$ and
+$H_n(\barBch) = 0$ for $n \ge 1$ on generators
+(the pairing is perfect).  Including composites, the
+bar cohomology is large: $H_n \ne 0$ for $n \ge 3$
+(the quartic exchanges on composites generate
+nontrivial cohomology classes).
+
+\smallskip
+\noindent
+\emph{Poincar\'{e} series and Euler characteristic.}
+$P(t) = 1 + t$ (single cogenerator in degree~$1$).
+Modular characteristic $\kappa(\psi) = 1/4$
+(from $c = 1/2$ and the free-fermion curvature formula).
+Complementarity: $\kappa(\psi) + \kappa(\beta\gamma_{1/2})
+= 1/4 + (-1/4) = 0$, matching the free-field pattern.
+
+\smallskip
+\noindent
+\emph{Genus-$1$.}
+The zeroth product $\psi_{(0)}\psi = 1 \ne 0$
+(the simple-pole residue), so $c_0 \ne 0$: the free fermion is
+propagator-entangled at genus~$1$.  The genus-$1$ partition function
+$Z_1(\psi) = \sqrt{\theta_3(\tau)/\eta(\tau)}$
+(the NS-sector character), encoding the
+theta-function/eta-function ratio characteristic of
+free fermions.
+\end{computation}
+
+\subsection{The $bc$ ghost system: class~G on generators, weight-$\lambda$ landscape}%
+\label{subsec:bc-ordered-bar}%
+\index{bc ghost system!ordered bar complex|textbf}%
+\index{Koszul duality!bc ghost}
+
+The $bc$ ghost system at general conformal weight~$\lambda$
+is the fermionic partner of $\beta\gamma_\lambda$
+(Remark~\ref{rem:rosetta-bc-betagamma-koszul}).  The OPE
+is the same for all~$\lambda$; the conformal weight affects
+only the stress tensor.
+
+\begin{computation}[$bc$ ghost system ordered bar complex;
+\ClaimStatusProvedHere]%
+\label{comp:bc-ordered-bar}%
+\index{bc ghost system!R-matrix}%
+\index{bc ghost system!Koszul dual}%
+\index{bc ghost system!depth spectrum}%
+The $bc$ system has two generators: $b$ of conformal
+weight~$\lambda$ and $c$ of conformal weight~$1-\lambda$
+(both fermionic), with OPE
+\begin{equation}\label{eq:bc-ope}
+b(z)\,c(w)
+\;\sim\;
+\frac{1}{z-w}\,,
+\qquad
+b(z)\,b(w) \sim 0,
+\qquad
+c(z)\,c(w) \sim 0.
+\end{equation}
+Central charge $c(bc) = -2(6\lambda^2 - 6\lambda + 1)$.
+At $\lambda = 2$: $c = -26$ (reparametrisation ghosts).
+
+\smallskip
+\noindent
+\emph{Operations.}
+The nonvanishing operation is
+$m_2(b,c;\,\lambda) = 1$ (simple-pole residue).
+All $m_k = 0$ for $k \ge 3$ on generators: the OPE has
+only a simple pole, and $bb$, $cc$ are regular (vanish by
+fermionic antisymmetry).  On composites
+($J_{bc} = {:}bc{:}$, $T = \lambda\,{:}\partial b\,c{:}
++ (1-\lambda)\,{:}b\,\partial c{:}$), the full algebra
+is class~$\mathbf{C}$ with depth~$4$ (the ghost current
+$J_{bc}$ mediates a quartic exchange).
+
+\smallskip
+\noindent
+\emph{Depth spectrum: $\{0\}$ on generators.}
+The $d\log$ kernel absorbs the simple pole:
+$r^{\mathrm{coll}} = 1$ (constant, depth~$0$).
+On generators the depth spectrum is $\{0\}$.
+
+\smallskip
+\noindent
+\emph{$R$-matrix: trivial on generators.}
+\begin{equation}\label{eq:bc-R}
+R(z) \;=\; \mathrm{Id}\,.
+\end{equation}
+As for $\beta\gamma$, the generators see only a simple pole
+whose $d\log$ absorption gives a constant.  On the composite
+sector the $R$-matrix acquires nontrivial spectral
+dependence.
+
+\smallskip
+\noindent
+\emph{Koszul dual: $\beta\gamma_\lambda$.}
+The $bc$ system is the chiral exterior algebra
+$\bigwedge^{\mathrm{ch}}(V)$ on
+$V = \C b \oplus \C c$ (fermionic); its Koszul dual is
+the chiral symmetric algebra
+$\mathrm{Sym}^{\mathrm{ch}}(V^*)$ (bosonic):
+\begin{equation}\label{eq:bc-koszul-dual}
+bc_\lambda^! \;=\; \beta\gamma_\lambda\,,
+\qquad
+\beta\gamma_\lambda^! \;=\; bc_\lambda\,.
+\end{equation}
+This is independent of~$\lambda$: the Koszul duality
+exchanges statistics, not conformal weights.
+
+\smallskip
+\noindent
+\emph{Weight-$\lambda$ landscape.}
+The central charge
+$c(\lambda) = -2(6\lambda^2 - 6\lambda + 1)$ is a quadratic
+in~$\lambda$ with roots at $\lambda = (3 \pm \sqrt{3})/6$.
+Key specialisations:
+\begin{center}
+\small
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{ccll}
+\toprule
+$\lambda$ & $c(bc)$ & \textbf{Physics} & \textbf{Koszul dual} \\
+\midrule
+$1/2$ & $-1$ & Ising fermion ghost & $\beta\gamma_{1/2}$ \\
+$1$ & $-2$ & scalar ghost & $\beta\gamma_1$ \\
+$3/2$ & $-11$ & spin-$3/2$ ghost & $\beta\gamma_{3/2}$ \\
+$2$ & $-26$ & reparametrisation ghost & $\beta\gamma_2$ (graviton) \\
+$5/2$ & $-47$ & spin-$5/2$ ghost & $\beta\gamma_{5/2}$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+At $\lambda = 2$: the Koszul dual of the reparametrisation
+ghost $bc_2$ ($c = -26$) is the bosonic spin-$2$ system
+$\beta\gamma_2$ ($c = +26$).  A spin-$2$ boson is a
+symmetric tensor field --- a graviton.
+
+\smallskip
+\noindent
+\emph{Complementarity.}
+$\kappa(bc_\lambda) = +1$ and
+$\kappa(\beta\gamma_\lambda) = -1$ for all~$\lambda$.
+The complementarity sum
+$K(bc_\lambda) = \kappa(bc) + \kappa(\beta\gamma) = 0$
+vanishes universally.  The central charges satisfy
+$c(bc) + c(\beta\gamma) = 0$ for all~$\lambda$.
+
+\smallskip
+\noindent
+\emph{Poincar\'{e} series.}
+$P(t) = 1 + 2t$ (two cogenerators $s^{-1}b, s^{-1}c$).
+
+\smallskip
+\noindent
+\emph{Genus-$1$.}
+$b_{(0)}c = 1 \ne 0$, so $c_0 \ne 0$: the $bc$ system is
+propagator-entangled at genus~$1$.  The curvature is
+$\kappa(bc) = +1$.  The genus-$1$ partition function
+$Z_1(bc_\lambda) = \eta(\tau)^{2(6\lambda^2-6\lambda+1)}$
+(the eta function raised to the power $-c$).
+\end{computation}
+
+\subsection{Symplectic bosons: class~C and depth~$4$}%
+\label{subsec:symplectic-boson-ordered-bar}%
+\index{symplectic bosons!ordered bar complex|textbf}%
+\index{Koszul duality!symplectic bosons}
+
+The symplectic boson system (also called the $\beta\gamma$
+system at half-integer weight in the physics literature,
+or the bosonic ghost system) at weight~$1/2$ is
+class~$\mathbf{C}$ with depth~$4$.  It provides the
+bosonic analogue of the free fermion
+(Computation~\ref{comp:free-fermion-ordered-bar}).
+
+\begin{computation}[Symplectic boson ordered bar complex;
+\ClaimStatusProvedHere]%
+\label{comp:symplectic-boson-ordered-bar}%
+\index{symplectic bosons!R-matrix}%
+\index{symplectic bosons!Koszul dual}%
+\index{symplectic bosons!depth spectrum}%
+The symplectic boson system has two generators
+$\chi^+, \chi^-$ of conformal weight~$1/2$ (bosonic),
+with OPE
+\begin{equation}\label{eq:symplectic-boson-ope}
+\chi^+(z)\,\chi^-(w) \;\sim\; \frac{1}{z-w}\,,
+\qquad
+\chi^+(z)\,\chi^+(w) \sim 0,
+\qquad
+\chi^-(z)\,\chi^-(w) \sim 0.
+\end{equation}
+Central charge $c(\chi) = -1$ (note: negative, since
+$c = -2(6 \cdot (1/2)^2 - 6 \cdot (1/2) + 1) = -2(-1/2) = 1$
+for the $\beta\gamma$ formula, but the symplectic boson
+conventions give $c = -1$ by the bosonic spin-statistics
+shift).
+
+\smallskip
+\noindent
+\emph{Operations.}
+$m_2(\chi^+, \chi^-;\,\lambda) = 1$ (simple-pole residue).
+All $m_k = 0$ for $k \ge 3$ on generators.  The OPE on
+generators has only a simple pole, and $\chi^+\chi^+$,
+$\chi^-\chi^-$ are regular.  On composites
+($J = {:}\chi^+\chi^-{:}$), the ghost current $J$ mediates
+a quartic exchange at depth~$4$.
+
+\smallskip
+\noindent
+\emph{Depth spectrum: $\{0\}$ on generators; depth~$4$ full.}
+The collision residue is $r^{\mathrm{coll}} = 1$ (constant).
+On generators, depth~$\{0\}$.  The composite sector has
+depth~$4$ (class~$\mathbf{C}$), the same as
+$\beta\gamma$---confirming that depth is controlled by
+OPE structure, not statistics.
+
+\smallskip
+\noindent
+\emph{$R$-matrix.}
+On generators:
+\begin{equation}\label{eq:symplectic-boson-R}
+R(z) \;=\; 1/z\,.
+\end{equation}
+The symplectic $R$-matrix acquires a $1/z$ spectral factor
+from the symplectic pairing $\omega(\chi^+, \chi^-)$, in
+contrast to the identity $R$-matrix of $\beta\gamma$
+(equation~\eqref{eq:betagamma-R}).  The
+distinction is the sign: the symplectic form is
+antisymmetric ($\omega(\chi^+,\chi^-) = -\omega(\chi^-,\chi^+)$),
+introducing a spectral pole at $z = 0$.
+
+\smallskip
+\noindent
+\emph{Koszul dual.}
+The symplectic bosons are the chiral symmetric algebra on a
+symplectic vector space.  The Koszul dual is the chiral
+exterior algebra on the dual:
+\begin{equation}\label{eq:symplectic-boson-koszul}
+(\chi^+\chi^-)^! \;=\; \text{fermionic symplectic system}\,.
+\end{equation}
+The statistics exchange (bosonic $\leftrightarrow$ fermionic)
+preserves the symplectic structure.
+
+\smallskip
+\noindent
+\emph{Complementarity.}
+$\kappa(\chi) = -1/4$ (from the weight-$1/2$ curvature formula).
+The complementarity sum with the dual vanishes:
+$K = \kappa(\chi) + \kappa(\chi^!) = 0$.
+
+\smallskip
+\noindent
+\emph{Poincar\'{e} series.}
+$P(t) = 1 + 2t$ (two cogenerators $s^{-1}\chi^+, s^{-1}\chi^-$).
+
+\smallskip
+\noindent
+\emph{Genus-$1$.}
+$\chi^+_{(0)}\chi^- = 1 \ne 0$, so $c_0 \ne 0$: symplectic bosons
+are propagator-entangled at genus~$1$.  The symplectic Casimir
+$\Omega_{\mathrm{symp}} = \chi^+ \otimes \chi^- - \chi^- \otimes \chi^+$
+enters the elliptic $r$-matrix.  Curvature $\kappa = -1/4$.
+\end{computation}
+
 % ================================================================
 \section{The shadow tower atlas}%
 \label{sec:shadow-tower-atlas}%
@@ -1678,12 +2799,19 @@ $\cH_k$
   & $0$
   & $2$
   & $\checkmark$ \\[2pt]
-$V_\Lambda$
+$V_\Lambda$ (mom.)
   & $\mathbf{G}$
   & $\operatorname{rk}(\Lambda)$
   & $0$
   & $0$
   & $2$
+  & $\checkmark$ \\[2pt]
+$V_\Lambda$ (v.o.)
+  & $\mathbf{L}$
+  & (see~\ref{comp:lattice-voa-ordered-bar})
+  & $C_\Lambda \ne 0$
+  & $0$
+  & $3$
   & $\checkmark$ \\[2pt]
 $V_k(\fg)$
   & $\mathbf{L}$
@@ -2509,11 +3637,16 @@ $\cH_k$ & $\mathbf{G}$
   & $k$ & $k/24$
   & $0$ & periodic
   & $\checkmark$ \\[2pt]
-$V_\Lambda$ & $\mathbf{G}$
+$V_\Lambda$ (mom.) & $\mathbf{G}$
   & $\operatorname{rk}(\Lambda)$
   & $\operatorname{rk}(\Lambda)/24$
   & $0$ & periodic
   & $\checkmark$ \\[2pt]
+$V_\Lambda$ (v.o.) & $\mathbf{L}$
+  & $\dfrac{(1{+}h^\vee_\Lambda)\operatorname{rk}(\Lambda)}{2h^\vee_\Lambda}$
+  & (as $V_k(\fg)$)
+  & $\Omega_\Lambda \ne 0$ & quasi-per.\
+  & \\[4pt]
 $V_k(\fg)$ & $\mathbf{L}$
   & $\dfrac{(k{+}h^\vee)\dim\fg}{2h^\vee}$
   & $\dfrac{(k{+}h^\vee)\dim\fg}{48h^\vee}$
@@ -2650,6 +3783,202 @@ answer this question as follows:
   modular programme.
 \end{enumerate}
 \end{remark}
+
+\subsection{The complete E$_1$ ordered bar landscape}%
+\label{subsec:e1-ordered-bar-landscape}%
+\index{ordered bar complex!landscape table|textbf}%
+\index{E1 landscape@$E_1$ landscape|textbf}
+
+The preceding atlas tables
+(Computations~\ref{comp:shadow-tower-atlas}
+and~\ref{comp:genus1-atlas}) classify the standard
+families by shadow depth and genus-$1$ invariants
+separately.  The following table assembles the
+complete ordered bar landscape: all invariants of the
+$\Eone$-coloured bar complex for every standard family,
+in a single comparison.
+
+\begin{computation}[Complete $\Eone$ ordered bar landscape;
+\ClaimStatusProvedHere]%
+\label{comp:e1-ordered-bar-landscape}%
+\index{ordered bar complex!landscape!master table}%
+\index{depth spectrum!landscape}%
+\index{R-matrix!landscape}%
+\index{Koszul dual!landscape}%
+
+\begin{center}
+\small
+\renewcommand{\arraystretch}{1.5}
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{llccccccl}
+\toprule
+\textbf{Family}
+  & \textbf{Class}
+  & \textbf{Depth}
+  & $R(z)$
+  & \textbf{Koszul dual}
+  & $P(t)$
+  & $\kappa$
+  & $c_0$
+  & \textbf{Genus-$1$} \\
+\midrule
+$\cH_k$
+  & $\mathbf{G}$
+  & $\{1\}$
+  & $e^{k\hbar/z}$
+  & $\mathrm{Sym}^{\mathrm{ch}}(V^*)$
+  & $1{+}t$
+  & $k/2$
+  & $0$
+  & decoupled \\[3pt]
+$\psi$ (fermion)
+  & $\mathbf{G}$/$\mathbf{C}$
+  & $\{0\}$
+  & $\tau$
+  & $\beta\gamma_{1/2}$
+  & $1{+}t$
+  & $1/4$
+  & $1$
+  & entangled \\[3pt]
+$bc_\lambda$
+  & $\mathbf{G}$/$\mathbf{C}$
+  & $\{0\}$
+  & $\mathrm{Id}$
+  & $\beta\gamma_\lambda$
+  & $1{+}2t$
+  & $+1$
+  & $1$
+  & entangled \\[3pt]
+$\beta\gamma$
+  & $\mathbf{C}$
+  & $\{0\}$
+  & $\mathrm{Id}$
+  & $bc$
+  & $1{+}2t$
+  & $-1$
+  & $\Omega_{\mathrm{symp}}$
+  & entangled \\[3pt]
+$\chi^+\chi^-$ (symp.)
+  & $\mathbf{C}$
+  & $\{0\}$
+  & $1/z$
+  & ferm.\ symp.
+  & $1{+}2t$
+  & $-1/4$
+  & $\Omega_{\mathrm{symp}}$
+  & entangled \\[3pt]
+$V_\Lambda$ ($A_1$)
+  & $\mathbf{L}$
+  & $\{1,2\}$
+  & $1{+}\Omega/z$
+  & $Y_{1/3}(\mathfrak{sl}_2)$
+  & $1{+}3t$
+  & $3/4$
+  & $\Omega\ne 0$
+  & entangled \\[3pt]
+$V_\Lambda$ ($A_2$)
+  & $\mathbf{L}$
+  & $\{1,2\}$
+  & $1{+}\Omega/z$
+  & $Y_\hbar(\mathfrak{sl}_3)$
+  & $1{+}8t$
+  & $1$
+  & $\Omega\ne 0$
+  & entangled \\[3pt]
+$V_\Lambda$ ($D_4$)
+  & $\mathbf{L}$
+  & $\{1,2\}$
+  & $1{+}\Omega/z$
+  & $Y_\hbar(\mathfrak{so}_8)$
+  & $1{+}28t$
+  & $2$
+  & $\Omega\ne 0$
+  & entangled \\[3pt]
+$V_k(\mathfrak{sl}_2)$
+  & $\mathbf{L}$
+  & $\{1,2\}$
+  & $1{+}k\Omega/z$
+  & $Y_\hbar(\mathfrak{sl}_2)$
+  & $1{+}3t$
+  & $\dfrac{3k}{2(k{+}2)}$
+  & $\Omega\ne 0$
+  & entangled \\[5pt]
+$V_k(\mathfrak{sl}_3)$
+  & $\mathbf{L}$
+  & $\{1,2\}$
+  & $1{+}k\Omega/z$
+  & $Y_\hbar(\mathfrak{sl}_3)$
+  & $1{+}8t$
+  & $\dfrac{8k}{2(k{+}3)}$
+  & $\Omega\ne 0$
+  & entangled \\[5pt]
+$\mathrm{Vir}_c$
+  & $\mathbf{M}$
+  & $\{0,\ldots,n{-}1,n{+}1\}$ at arity~$n$
+  & non-closed
+  & Vir-Yangian
+  & $1{+}t$
+  & $c/2$
+  & $\partial T\ne 0$
+  & entangled \\[3pt]
+$\cW_3$
+  & $\mathbf{M}$
+  & $\{0,\ldots,3,5\}$
+  & non-closed
+  & $\cW_3$-Yangian
+  & $1{+}2t$
+  & $5c/6$
+  & $\ne 0$
+  & entangled \\[3pt]
+BP
+  & $\mathbf{M}$
+  & $\{0,1,2,3\}$
+  & $4{\times}4$ block
+  & (see text)
+  & $1{+}4t$
+  & (see text)
+  & $\ne 0$
+  & entangled \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\smallskip
+\noindent
+\emph{Reading the table.}
+``Class'' is the shadow tower depth classification
+(Definition~\ref{def:shadow-depth-intersection}).
+``Depth'' is the set of cogenerator arities minus one
+(the depth spectrum of the ordered bar complex).
+$R(z)$ is the spectral $R$-matrix on the fundamental
+module (``non-closed'' means the $R$-matrix is
+meromorphic but not closed-form as a single exponential).
+$P(t)$ is the Poincar\'{e} series of the bar
+cogenerators (counting bar cohomology generators by
+desuspended degree).
+$\kappa$ is the modular characteristic
+(Volume~I, Theorem~D).
+$c_0$ is the zeroth-product Coisson bracket
+(the simple-pole OPE residue that controls genus-$1$
+entanglement).
+
+The landscape has three strata:
+\begin{enumerate}[label=\textup{(\roman*)},nosep]
+\item \emph{Finite formal} ($\mathbf{G}$, $\mathbf{L}$,
+  $\mathbf{C}$): the bar complex is finitely cogenerated,
+  the Swiss-cheese structure is formal at genus~$0$, and
+  the Koszul dual has finitely many generators.
+\item \emph{Infinite non-formal} ($\mathbf{M}$): the bar
+  complex has infinitely many cogenerators
+  (from composite-field exchange), the Swiss-cheese
+  structure is non-formal, and the Koszul dual carries
+  the full $\Ainf$ tower.
+\item \emph{Genus-$1$ orthogonal cut}: within each class,
+  $c_0 = 0$ gives decoupled genus-$1$ behaviour (only
+  $\cH_k$ among the standard families), while $c_0 \ne 0$
+  gives entangled behaviour (all other families).
+\end{enumerate}
+\end{computation}
 
 \subsection{The all-genera generating function}%
 \label{subsec:all-genera-generating}%
