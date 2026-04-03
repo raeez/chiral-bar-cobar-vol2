@@ -346,10 +346,10 @@ class TestModularBarCurvature:
         assert simplify(curv['period_correction'] - c / 48) == 0
 
     def test_genus2_faber_pandharipande(self):
-        """Genus 2: lambda_2^FP = 1/1152."""
+        """Genus 2: lambda_2^FP = 7/5760."""
         from lib.modular_pva_quantization import modular_bar_curvature
         curv = modular_bar_curvature('virasoro', 2, c=Symbol('c'))
-        assert curv['faber_pandharipande'] == Rational(1, 1152)
+        assert curv['faber_pandharipande'] == Rational(7, 5760)
 
 
 # ===================================================================
@@ -430,11 +430,11 @@ class TestGenusExpansionCoefficients:
         assert simplify(coeffs[1]['theta_g'] - c / 48) == 0
 
     def test_genus2_coefficient_virasoro(self):
-        """Virasoro genus 2: Theta_2 = c/(2*1152) = c/2304."""
+        """Virasoro genus 2: Theta_2 = 7c/11520."""
         from lib.modular_pva_quantization import genus_expansion_coefficients
         c = Symbol('c')
         coeffs = genus_expansion_coefficients('virasoro', max_g=2, c=c)
-        expected = c / 2 * Rational(1, 1152)
+        expected = c / 2 * Rational(7, 5760)
         assert simplify(coeffs[2]['theta_g'] - expected) == 0
 
     def test_genus1_coefficient_w3(self):
@@ -618,11 +618,11 @@ class TestQuantumCorrectionFormula:
         assert simplify(result['theta_g'] - c / 48) == 0
 
     def test_genus2_formula_virasoro(self):
-        """Virasoro: Theta_2 = c/2304."""
+        """Virasoro: Theta_2 = 7c/11520."""
         from lib.modular_pva_quantization import quantum_correction_formula
         c = Symbol('c')
         result = quantum_correction_formula('virasoro', 2, c=c)
-        expected = c / 2 * Rational(1, 1152)
+        expected = c / 2 * Rational(7, 5760)
         assert simplify(result['theta_g'] - expected) == 0
 
     def test_genus3_formula_w3(self):

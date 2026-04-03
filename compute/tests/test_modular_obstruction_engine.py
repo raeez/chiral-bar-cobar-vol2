@@ -589,10 +589,10 @@ class TestGenus2:
         assert result['ob2_class_vanishes'] is True
 
     def test_genus2_fp_number(self):
-        """Faber-Pandharipande genus-2 number = 1/1152."""
+        """Faber-Pandharipande genus-2 number = 7/5760."""
         from lib.modular_obstruction_engine import genus2_obstruction
         result = genus2_obstruction('virasoro')
-        assert result['faber_pandharipande_g2'] == Rational(1, 1152)
+        assert result['faber_pandharipande_g2'] == Rational(7, 5760)
 
 
 # ===================================================================

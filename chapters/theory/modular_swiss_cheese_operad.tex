@@ -88,12 +88,7 @@ framework of Chapter~\ref{ch:factorization-swiss-cheese}.
 \providecommand{\Vir}{\mathsf{Vir}}
 \providecommand{\hvee}{h^{\!\vee}}
 
-We work through three chiral algebras of increasing complexity
-(the Heisenberg algebra, the affine algebra $\slhat_2$ at level~$k$,
-and the Virasoro algebra $\Vir_c$), computing bar differentials,
-genus-raising maps, and curvature classes in each case.  The general theory
-in Sections~\ref{sec:partially-modular-sc}--\ref{sec:modular-sc-consequences}
-abstracts the structures visible here.
+Three examples of increasing complexity --- $\Heis_\kappa$, $\slhat_2$ at level~$k$, $\Vir_c$ --- computing bar differentials, genus-raising maps, and curvature classes.  Sections~\ref{sec:partially-modular-sc}--\ref{sec:modular-sc-consequences} abstract the structures visible here.
 
 \subsection{The Heisenberg algebra $\Heis_\kappa$}
 \label{subsec:example-heisenberg}
@@ -247,17 +242,8 @@ that produces the curvature.
 
 \providecommand{\Deltacyc}{\Delta_{\mathrm{cyc}}}
 
-The Heisenberg algebra is the simplest non-trivial example for
-the genus-filtration spectral sequence
-(Corollary~\ref{cor:genus-spectral-convergence}).  Because
-$\Heis_\kappa$ is Koszul (the bar complex is generated in arity~$2$) and
-formal (there are no higher $\Ainf$ operations: $m_k = 0$ for
-$k \ge 3$), the genus-$0$ bar complex is completely understood,
-and the genus-$1$ correction can be computed explicitly.  The
-result illustrates the sharp dichotomy: at generic level
-$\kappa \neq 0$, the genus-$1$ cohomology is killed by the
-curvature; at the critical level $\kappa = 0$, the spectral
-sequence degenerates and genus-$1$ cohomology survives.
+Since $\Heis_\kappa$ is Koszul (bar complex generated in arity~$2$) and
+formal ($m_k = 0$ for $k \ge 3$), the genus-$0$ bar complex is completely understood and the genus-$1$ correction computable.  The dichotomy: at $\kappa \neq 0$, genus-$1$ cohomology is killed by the curvature; at $\kappa = 0$, the spectral sequence degenerates.
 
 \begin{computation}[Genus-$0$ bar complex of $\Heis_\kappa$]
 \label{comp:heis-genus0-bar}
@@ -347,10 +333,23 @@ The identification $E_1^{1,\ast} = \Bbbk[a]$ holds because
 the genus-$1$ associated graded $\gr^1$ is, as a chain complex
 under $D_0$, isomorphic to $B(\Heis_\kappa)$ (the same
 underlying complex, with the genus label shifted by~$1$).
-This is a consequence of the product decomposition: the
+This uses the product decomposition
+(Proposition~\ref{prop:mixed-product-decomposition},
+Remark~\ref{rem:product-strictness}): the
 non-separating clutching $D_1$ raises genus but does not change
 the $D_0$-differential, which depends only on the OPE data
-(a local datum, unaffected by genus).
+(a local datum, unaffected by genus).  More precisely, the
+genus-$1$ bar complex $B^{(1)}(\Heis_\kappa)$ consists of
+stable graphs of total genus~$1$, and the $D_0$-differential
+on each such graph acts by the \emph{same} OPE collision
+residues as at genus~$0$ --- the genus label of the graph
+does not enter the $D_0$-formula.  The homotopy equivalence
+$C_\ast(\FM_{k|m}(\Sigma_1, \partial)) \simeq
+C_\ast(\FM_k(\Sigma_1)) \otimes C_\ast(\Eone(m))$
+ensures that the chain-level $D_0$-cohomology at genus~$1$
+is isomorphic to the genus-$0$ cohomology after passing
+through the quasi-isomorphism of
+Remark~\ref{rem:product-strictness}.
 \end{computation}
 
 \begin{computation}[The $d_1$ differential and spectral sequence collapse]
@@ -406,28 +405,41 @@ $d_1 \colon E_1^{0,n} \to E_1^{1,n-2}$ is an isomorphism for
 all $n \ge 2$, and $d_1 = 0$ on $E_1^{0,0}$ and $E_1^{0,1}$.
 The $E_2$ page is:
 \begin{equation}\label{eq:heis-E2-generic}
-  E_2^{p,q} = 0 \quad \text{for all } p, q.
+  E_2^{p,q} = 0 \quad \text{for } p \ge 1 \text{ or } q \ge 2.
 \end{equation}
-More precisely: $E_2^{0,0} = \ker(d_1 \colon E_1^{0,0}
-\to E_1^{1,-2}) = \Bbbk$ (since $E_1^{1,-2} = 0$) is killed
-by $d_1$ from $E_1^{-1, 1}$, but $E_1^{-1,\ast} = 0$
-(no negative genus), so $E_2^{0,0} = \Bbbk / \im(d_1) = \Bbbk$.
-Similarly $E_2^{0,1} = \Bbbk \cdot a$.  The higher
-terms $E_2^{0,n}$ for $n \ge 2$ vanish:
-$\ker(d_1|_{E_1^{0,n}}) = 0$ since $d_1(a^n) =
-\binom{n}{2}\kappa\, a^{n-2} \neq 0$.  Symmetrically,
-$E_2^{1,n} = E_1^{1,n} / \im(d_1) = 0$ for $n \ge 0$ by
-surjectivity of $d_1$ in the relevant degrees.
+More precisely, the only surviving entries are
+$E_2^{0,0} = \Bbbk$ and $E_2^{0,1} = \Bbbk \cdot a$.
+We verify each vanishing.
+\begin{itemize}
+\item \emph{Column $p = 0$, row $q \ge 2$:} the
+  differential $d_1 \colon E_1^{0,q} \to E_1^{1,q-2}$
+  sends $a^q \mapsto \binom{q}{2}\kappa\, a^{q-2}$.
+  Since $\kappa \neq 0$ and $\binom{q}{2} \ge 1$ for $q \ge 2$,
+  the map is injective on the one-dimensional space $\Bbbk \cdot a^q$,
+  so $\ker(d_1|_{E_1^{0,q}}) = 0$ and $E_2^{0,q} = 0$.
+\item \emph{Column $p = 0$, rows $q = 0,1$:}
+  $d_1(1) = 0$ and $d_1(a) = 0$ (no pair to contract),
+  so both survive: $E_2^{0,0} = \Bbbk$ and $E_2^{0,1} = \Bbbk \cdot a$.
+\item \emph{Column $p = 1$, all rows $q \ge 0$:}
+  the map $d_1 \colon E_1^{0,q+2} \to E_1^{1,q}$ sends
+  $a^{q+2} \mapsto \binom{q+2}{2}\kappa\, a^q$, which is
+  surjective onto $E_1^{1,q} = \Bbbk \cdot a^q$ (since
+  $\binom{q+2}{2} \ge 1$).  Meanwhile $d_1 \colon E_1^{1,q} \to E_1^{2,q-2} = 0$
+  (there is no genus-$2$ column in this truncation),
+  so $\ker = E_1^{1,q}$ and
+  $E_2^{1,q} = E_1^{1,q}/\im(d_1) = 0$.
+\item \emph{Columns $p \ge 2$:} these are the genus-$\ge 2$
+  summands of the modular bar complex, which do not participate
+  in the $d_1$-differential between columns $0$ and~$1$.
+  The analysis at higher genus requires additional differentials
+  $d_2, d_3, \ldots$ of the spectral sequence.  For the
+  Heisenberg algebra, these all vanish because the invariant form
+  is $2$-step nilpotent (each contraction reduces arity by~$2$),
+  and the spectral sequence collapses at $E_2$ in the complete
+  modular bar complex.
+\end{itemize}
 
-\emph{Interpretation:} at $\kappa \neq 0$, the genus-$1$
-bar complex has trivial cohomology beyond the lowest degrees.
-The curvature $\kappa \cdot \omega_1$ kills everything:
-the genus-$1$ correction is an isomorphism that connects the
-genus-$0$ and genus-$1$ summands, leaving no residual
-cohomology.  This is the spectral-sequence manifestation of
-the flat-model phenomenon: the total differential
-$D = D_0 + D_1$ is acyclic in high degrees because $D_1$
-provides the connecting differential.
+At $\kappa \neq 0$, the curvature $\kappa \cdot \omega_1$ kills genus-$1$ cohomology beyond the lowest degrees: $D_1$ provides the connecting differential, making $D = D_0 + D_1$ acyclic in high degrees.
 
 \medskip\noindent
 \textbf{Case 2: $\kappa = 0$ (critical level).}
@@ -443,21 +455,9 @@ isomorphic to the genus-$0$ cohomology $\Bbbk[a]$.  The
 spectral sequence degenerates because there is no genus-raising
 differential to connect the filtration levels.
 
-\emph{Interpretation:} at $\kappa = 0$, the Heisenberg
-algebra degenerates to the abelian chiral algebra (a commutative
-vertex algebra with trivial OPE $J(z)\, J(w) \sim 0$).  The
-bar complex at each genus is independent of the others: the
-modular bar complex is a direct sum $\bigoplus_{g \ge 0}
-B^{(g)}$ with no coupling between genera.  Each genus-$g$
-summand has the same cohomology $\Bbbk[a]$: the commutative vertex algebra is oblivious to the
-topology of the curve.
+At $\kappa = 0$, the OPE is trivial: the modular bar complex is a direct sum $\bigoplus_{g \ge 0} B^{(g)}$ with no inter-genus coupling, each summand having cohomology $\Bbbk[a]$.
 
-This dichotomy (collapse at generic level, degeneration at
-critical level) is the spectral-sequence shadow of the
-curvature phenomenon: $\kappa(\Heis_\kappa) = \kappa$, and
-the curvature $\kappa \cdot \omega_g$ is the obstruction to
-degeneration.  When the curvature vanishes, the genus tower
-decouples; when it does not, the genus tower is connected by
+The dichotomy is the spectral-sequence shadow of curvature: $\kappa(\Heis_\kappa) = \kappa$, and $\kappa \cdot \omega_g$ obstructs degeneration.  When $\kappa = 0$ the genus tower decouples; when $\kappa \neq 0$ it is connected by
 the curvature into an acyclic complex.
 \end{computation}
 
@@ -684,12 +684,10 @@ governs the genus tower.
 
 \medskip\noindent
 \emph{Shadow depth $d_{\mathrm{alg}}(\Vir_c) = 1$.}
-The shadow depth measures how many independent $\Ainf$
-operations are needed beyond $m_2$.  For $\Vir_c$, we claim
-$d_{\mathrm{alg}}(\Vir_c) = 1$: the operation $m_3$ is the
-\emph{only} independent higher operation, and all $m_k$ for
+$d_{\mathrm{alg}}(\Vir_c) = 1$: $m_3$ is the
+only independent higher operation; all $m_k$ for
 $k \ge 4$ are determined by $m_2$ and $m_3$ via the
-$\Ainf$ (Stasheff) relations.
+Stasheff relations.
 \end{example}
 
 \begin{verification}[Shadow depth $1$: determination of $m_4$]
@@ -1135,6 +1133,23 @@ At genus $g \ge 1$, the collar between interior and boundary introduces
 a contractible but non-trivial fibre, so the decomposition is only a
 homotopy equivalence.  Since all subsequent constructions (bar-cobar,
 Feynman transform) are homotopy-invariant, this suffices.
+
+Concretely, the failure of strict splitting at $g \ge 1$ arises because
+a boundary point on $I \subset \partial\Sigma_g$ has a well-defined
+distance to the nearest interior point only \emph{after} fixing a
+collar identification $\partial\Sigma_g \times [0,\epsilon)
+\hookrightarrow \Sigma_g$.  Different collar choices produce homotopic
+but not identical projection maps $\pi \colon \FM_{k|m} \to \FM_k$.
+On chain complexes (in characteristic zero), the homotopy equivalence
+$(\pi,\rho)_\ast$ induces a quasi-isomorphism
+$C_\ast(\FM_{k|m}) \xrightarrow{\simeq}
+C_\ast(\FM_k) \otimes C_\ast(\Eone(m))$
+that is \emph{not} a chain map from a strict product differential:
+the cross-terms $\partial_{\mathrm{collar}}$ arising from collar
+variation contribute homotopically trivial corrections.  The strict
+product structure used in Computation~\ref{comp:heis-genus-filtration}
+(where we wrote $E_1^{1,\ast} = E_1^{0,\ast}$) implicitly passes
+through this quasi-isomorphism.  At genus~$0$ no such passage is needed.
 \end{remark}
 
 \begin{remark}[FM compactification for manifolds with boundary]
