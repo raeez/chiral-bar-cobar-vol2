@@ -252,7 +252,7 @@ This ordered/E<sub>1</sub> sector is exactly the input to Volume III:
 
 ### Gravity and Soft Theorems
 
-- **Soft graviton theorems from shadow obstruction tower**: Soft order p corresponds to arity r = p+2; the shadow Postnikov tower of Vol I directly controls the soft graviton hierarchy at genus 0.
+- **Soft graviton theorems from shadow obstruction tower**: Soft order p corresponds to arity r = p+2; the shadow obstruction tower of Vol I directly controls the soft graviton hierarchy at genus 0.
 - **Critical string dichotomy**: c &ne; 26 gives matrix-algebra factors (Clifford), perturbative gravity; c = 26 gives exterior-algebra factors, topological gravity. The dichotomy is whether &kappa;<sub>eff</sub> &middot; &omega;<sub>g</sub> vanishes.
 - **Four Pillars of Catalan universality**: The Catalan numbers C<sub>n</sub> = (2n)!/n!(n+1)! govern gravitational bar cohomology &mdash; proved at N = 2,3 via planted-tree enumeration and h-collapse; conjectured for N &geq; 4 with the Z<sub>N&minus;1</sub> mechanism as the open frontier.
 - **W<sub>3</sub> quartic quasi-primary**: &Lambda; = :TT: &minus; (3/10)&part;<sup>2</sup>T with coefficient 16/(22+5c).
