@@ -4018,7 +4018,7 @@ Five parallel agents audited the entire live `\input` surface (56 files) for eac
 - Re-read the detailed shadow-tower paragraph in `chapters/frame/preface.tex`, comparing it against the repaired gravity chapter after the effective-scalar genus-tower fixes.
 - Verified a real live overclaim: the paragraph still presented the whole Virasoro shadow obstruction tower as the perturbative expansion of 3d gravity, even though the repaired live surface now routes that genus package through the effective scalar specialization.
 - Rewrote the sentence so the paragraph now says the shadow obstruction tower is read, via its effective scalar specialization, as that perturbative expansion.
-- Ran hostile local re-read and grep to confirm that the retired phrase `The Virasoro shadow Postnikov tower of Vol~I is read as the perturbative` is gone from the live preface surface.
+- Ran hostile local re-read and grep to confirm that the retired phrase `The Virasoro shadow obstruction tower of Vol~I is read as the perturbative` is gone from the live preface surface.
 - Ran `pkill -9 -f pdflatex 2>/dev/null || true; sleep 3; rm -f main.aux main.log main.out; make fast FAST_PASSES=3`. The wrapper footer remained noisy, so I classified `main.log` directly rather than trusting the printed convergence line.
 - Direct `main.log` classification is clean on the meaningful checks: `38` unique undefined-reference labels, all `V1-*`; `0` non-`V1-*` undefined references; `0` undefined citations; `0` label-change warnings; `69` overfull lines.
 
@@ -4631,7 +4631,7 @@ Five parallel agents audited the entire live `\input` surface (56 files) for eac
 ### Verification Run
 
 - Re-read the highest-visibility Vol~I summary passages in the active preface and introduction after the broader live-surface reevaluation.
-- Verified a real live contradiction: the preface was still stating the shadow Postnikov tower as the full $L_\infty$ formality obstruction tower of the bar complex, while the introduction already scoped that identification to arities $2$, $3$, and~$4$ and treated the all-arity extension as conjectural.
+- Verified a real live contradiction: the preface was still stating the shadow obstruction tower as the full $L_\infty$ formality obstruction tower of the bar complex, while the introduction already scoped that identification to arities $2$, $3$, and~$4$ and treated the all-arity extension as conjectural.
 - Rewrote the preface summary so it now matches the narrower live scope: agreement at arities $2$, $3$, and~$4$, with the all-arity extension marked conjectural.
 - Ran hostile local re-read and grep to confirm that the active preface and introduction now present the same formality-identification scope.
 
@@ -4641,7 +4641,7 @@ Five parallel agents audited the entire live `\input` surface (56 files) for eac
    Severity: `MODERATE`
    Class: `D`
    Location: `chapters/frame/preface.tex:61`; `chapters/theory/introduction.tex:61`
-   Issue: the two highest-visibility live summaries disagreed about the scope of the Vol~I formality-identification package: the preface stated the full shadow Postnikov tower equality outright, while the introduction only asserted it at arities $2$, $3$, and~$4$ and marked the all-arity extension conjectural.
+   Issue: the two highest-visibility live summaries disagreed about the scope of the Vol~I formality-identification package: the preface stated the full shadow obstruction tower equality outright, while the introduction only asserted it at arities $2$, $3$, and~$4$ and marked the all-arity extension conjectural.
    Fix: narrowed the preface summary to the same scoped statement already used in the introduction.
    Status: `FIXED`
 
@@ -13942,3 +13942,94 @@ Five parallel agents audited the entire live `\input` surface (56 files) for eac
    
    All 16 functions verified. Cross-checked against genus2_obstruction_engine.py (F_2 values match), genus1_intersection.py (degeneration limits recover genus-1 answers), and AP-RED anti-pattern (height increments = 2).
    Status: `COMPUTED`
+
+## 2026-04-05 — Codex Beilinson Rectification Iteration 565
+
+- Target: panoramic live-surface assessment, then the operadic-complexity status/proof cluster in `thqg_gravitational_complexity.tex` and `thqg_soft_graviton_theorems.tex`
+- Iteration: `565`
+- Status: rectification completed on the modified live surface; source-level verification is clean, and `make fast` completed without a new hard failure, but the workspace still carries a large background of unresolved references/citations
+
+### Verification Run
+
+- Began from first principles on the live manuscript surface: mapped the active `\input` graph from `main.tex`, checked the dirty workspace state, inspected `git diff --stat`, and read the active `main.log`.
+- Panoramic state at the start of the pass: the live manuscript still builds to `1485pp`; the workspace carried one live dirty diff in `chapters/connections/thqg_soft_graviton_theorems.tex` plus two unrelated untracked artifacts (`spectral-braiding-core.tex.bak`, `check_chapter.pdf`); the latest `make fast` background remained heavy (`10` undefined citations, `552` undefined references, `362` overfull boxes), so local ghost-label checks were used as the primary falsification tool on the touched surface.
+- The highest-risk live target from that survey was the user-visible status upgrade in `thqg_soft_graviton_theorems.tex` from `operadic complexity conjecture` to `operadic complexity theorem`. Tracing that claim to ground exposed a larger dependency break: the active source chapter `thqg_gravitational_complexity.tex` still cited a non-existent theorem label `\ref{conj:operadic-complexity-detailed}`, and several proved-here claims were leaning on that absent all-arity equality.
+- Rectified the source chapter first: rewrote the `r_{\max}=d_\infty=f_\infty` bridge as the expected operadic-complexity relation verified only at low arity and on the standard archetypes; narrowed the bulk-vertex theorem to a proved shadow-tower stabilization theorem; downgraded the quasi-isomorphism-invariance proposition to the conditional/expected register; and repaired the Koszul-duality proof so it now runs directly through the filtered quasi-isomorphism of cyclic deformation complexes rather than the missing equality.
+- Propagated that repair through the active mirrors: softened the mixed-class `full L_\infty` advertisements in the complexity chapter to expected language, rewrote the main theorem summary to track only the proved obstruction-theoretic content, and rolled back the soft-graviton chapter’s over-promotion to the honest conjectural/low-arity-verified register.
+- Hostile fixed-string checks confirmed that the retired ghost labels/slogans `conj:operadic-complexity-detailed`, `ex:operadic-complexity-verification`, `operadic complexity theorem`, `proved at all arities`, `Full $L_\infty$`, and `Complete gravitational $L_\infty$` no longer survive on the modified surface in their old over-strong roles.
+- Ran `make fast` after the load-bearing theorem/proof rewrites. It completed four passes with the same broad unresolved-reference background (`10` undefined citations, `552` undefined references) but no new hard failure specific to this operadic-complexity cluster.
+
+### Findings
+
+630. `2026-04-05-630`
+   Severity: `SERIOUS`
+   Class: `D`
+   Location: `chapters/connections/thqg_soft_graviton_theorems.tex:1879-1898`
+   Issue: the live soft-graviton chapter had upgraded the operadic-complexity package from conjecture to theorem and from low-arity verification to all-arity proof, while simultaneously citing removed labels (`rem:thqg-VI-operadic-complexity`, `ex:operadic-complexity-verification`) and outrunning the actual support on the live surface.
+   Fix: restored the local package to the conjectural/low-arity-verified register, removed the broken label-dependent wording, and recast the surrounding mixed-class interpretation as a suggestion from low-arity data rather than an established all-arity theorem.
+   Status: `FIXED`
+
+631. `2026-04-05-631`
+   Severity: `SERIOUS`
+   Class: `C`
+   Location: `chapters/connections/thqg_gravitational_complexity.tex:161-219`
+   Issue: the source complexity chapter was still citing a non-existent theorem label `\ref{conj:operadic-complexity-detailed}` and using that absent result to support the definition-level equality `r_{\max}=d_\infty=f_\infty`, the bulk-vertex theorem, and the proof of quasi-isomorphism invariance.
+   Fix: rewrote the equality as the expected operadic-complexity relation, narrowed the theorem to proved shadow-depth stabilization of the obstruction tower, changed the nearby index metadata to match the narrowed theorem surface, and downgraded the quasi-isomorphism-invariance proposition to an explicit expected/conditional statement.
+   Status: `FIXED`
+
+632. `2026-04-05-632`
+   Severity: `MODERATE`
+   Class: `A`
+   Location: `chapters/connections/thqg_gravitational_complexity.tex:1209-1227`
+   Issue: the Koszul-duality invariant proposition was proved through the same missing `r_{\max}=d_\infty` bridge even though the proof itself already contained a direct stronger route via the filtered quasi-isomorphism `\Defcyc(\cA)\simeq\Defcyc(\cA^!)`.
+   Fix: removed the unsupported dependence on the absent operadic-complexity theorem and rewrote the proof directly from the filtered quasi-isomorphism of cyclic deformation complexes, which identifies the genus-`0`, arity-`r` shadow cohomology groups on both sides.
+   Status: `FIXED`
+
+633. `2026-04-05-633`
+   Severity: `MODERATE`
+   Class: `E`
+   Location: `chapters/connections/thqg_gravitational_complexity.tex:389-391`, `chapters/connections/thqg_gravitational_complexity.tex:1603-1606`, `chapters/connections/thqg_gravitational_complexity.tex:1630-1655`, `chapters/connections/thqg_soft_graviton_theorems.tex:1876-1880`
+   Issue: after the source theorem/proof repair, several nearby mirrors were still advertising the mixed class as a flat theorem-level `full L_\infty` package or “maximally non-formal” structure, creating a new propagation mismatch across the active surface.
+   Fix: softened those mirrors to the proved shadow-tower register or to explicit expected-language (`expected full L_\infty`, `low-arity data suggests`, `obstruction-theoretic complexity`) so the modified surface now distinguishes cleanly between proved stabilization/classification content and the broader expected bulk-reading consequences.
+   Status: `FIXED`
+
+## 2026-04-05 — Codex Beilinson Rectification Iteration 566
+
+- Target: first-principles re-audit of the operadic-complexity bridge after checking the source theorem surface in Vol~I, then rectification of the active complexity chapter `thqg_gravitational_complexity.tex`
+- Iteration: `566`
+- Status: rectified on the modified live surface; hostile source-level verification is clean; `make fast` reproduced the same broad background counts before the recurring `pdflatex` kill race
+
+### Verification Run
+
+- Re-opened the source theorem surface in Vol~I at `~/chiral-bar-cobar/chapters/theory/higher_genus_modular_koszul.tex` and checked the exact statements of the operadic complexity theorem (`thm:operadic-complexity-detailed`) and the all-arity shadow/formality identification theorem (`thm:shadow-formality-identification`).
+- That direct source check falsified the main conservative premise of Iteration `565`: the all-arity equality `r_{\max}=d_\infty=f_\infty` is now genuinely proved in Vol~I, so the active Vol~II complexity chapter had become under-claimed relative to its traced source.
+- Re-audited the live Vol~II complexity band line by line, restored the proved operadic-complexity bridge in the definition/theorem/proposition cluster, and kept the stronger direct Koszul-duality proof from Iteration `565` because it remains independently correct and cleaner than routing back through `r_{\max}=d_\infty`.
+- Propagation reread across the active mirrors confirmed that the dirty theorem-aligned wording in `thqg_soft_graviton_theorems.tex`, `thqg_holographic_reconstruction.tex`, and `thqg_modular_pva_extensions.tex` is now consistent with the restored complexity chapter surface.
+- Hostile fixed-string checks on `thqg_gravitational_complexity.tex` confirm there are no surviving `expected`-register leftovers in the restored operadic-complexity band, the Vol~I theorem/proposition provenance is now explicit where needed, and the mixed-class tables/summary have returned to the full `L_\infty` register supported by the source theorem.
+- Closing verification: `make fast` again hit the same global background state (`1485pp`, `10` undefined citations, `552` undefined references, `362` overfull) and then exited with the recurring `Killed: 9` race at the end of the fast-build cycle; no new hard failure specific to this repaired cluster appeared before that race.
+
+### Findings
+
+634. `2026-04-05-634`
+   Severity: `SERIOUS`
+   Class: `D`
+   Location: `chapters/connections/thqg_gravitational_complexity.tex:161-233`
+   Issue: after direct first-principles inspection of Vol~I, the active complexity chapter was now under-claiming the source theorem surface: the definition-level equality, the bulk-vertex theorem proof, and the quasi-isomorphism-invariance proposition had all been downgraded to an expected/conditional register that the traced Vol~I theorem no longer justified.
+   Fix: restored the proved operadic-complexity bridge using explicit Vol~I theorem citations, reinstated the bulk-vertex consequence, and returned the shadow-depth quasi-isomorphism proposition to the proved register.
+   Status: `FIXED`
+
+635. `2026-04-05-635`
+   Severity: `MODERATE`
+   Class: `E`
+   Location: `chapters/connections/thqg_gravitational_complexity.tex:403-428`, `chapters/connections/thqg_gravitational_complexity.tex:1619-1624`, `chapters/connections/thqg_gravitational_complexity.tex:1646-1667`
+   Issue: once the source theorem surface was restored, the mixed-class tables and main summary still lagged in the softer “expected full `L_\infty` / obstruction-theoretic complexity” register, creating a new local mismatch with the now-proved operadic-complexity dictionary.
+   Fix: restored the mixed-class entries and the chapter summary to the supported `full L_\infty` / homotopy-algebraic complexity wording, while preserving the direct Koszul-duality proof improvement from the previous pass.
+   Status: `FIXED`
+
+636. `2026-04-05-636`
+   Severity: `MODERATE`
+   Class: `C`
+   Location: `chapters/connections/thqg_gravitational_complexity.tex:412-415`, `chapters/connections/thqg_gravitational_complexity.tex:1000`
+   Issue: the restored theorem/proof band was still citing the low-arity shadow/formality dictionary as though it were a local proposition, obscuring that the supporting statement lives in Vol~I.
+   Fix: rewrote those proof-local citations as explicit Vol~I provenance (`Proposition~\ref*{prop:shadow-formality-low-arity}`), aligning the chapter’s cross-volume citation style with the rest of the active theorem surface.
+   Status: `FIXED`
