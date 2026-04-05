@@ -56,7 +56,7 @@ def _kappa_data(algebra_type: str, **params) -> Dict[str, Any]:
     """Return kappa(A) and kappa(A!) for a standard family.
 
     The modular characteristic kappa is the leading coefficient of the
-    shadow Postnikov tower.  It controls the genus-1 curvature:
+    shadow obstruction tower.  It controls the genus-1 curvature:
       d^2_B = kappa(A) * omega_g.
 
     Parameters

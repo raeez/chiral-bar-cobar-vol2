@@ -171,7 +171,7 @@ def quartic_contact_virasoro(c=None):
     r"""Quartic contact invariant Q^contact_Vir = 10/(c(5c+22)).
 
     This is the first nonlinear modular shadow coefficient beyond kappa.
-    It measures the quartic resonance obstruction in the shadow Postnikov
+    It measures the quartic resonance obstruction in the shadow obstruction
     tower for the Virasoro algebra.
 
     Poles: c = 0 and c = -22/5.

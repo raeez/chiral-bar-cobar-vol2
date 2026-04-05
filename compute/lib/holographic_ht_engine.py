@@ -159,7 +159,7 @@ class MCElementData:
     Theta_A := D_A - d_0 in MC(g^mod_A).
     Components: Theta_{g,n;d} with g = loop genus, n = arity, d = depth.
 
-    The shadow Postnikov tower consists of finite-order projections:
+    The shadow obstruction tower consists of finite-order projections:
     Theta_A^{<=2} = kappa (scalar shadow)
     Theta_A^{<=3} = kappa + cubic shadow
     Theta_A^{<=4} = kappa + cubic + quartic shadow

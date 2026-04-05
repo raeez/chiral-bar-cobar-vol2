@@ -52,7 +52,7 @@ The geometric arena is not extracted from Theta_A; it is the base ring of the co
 
 And beyond the five:
 
-(F) Shadow obstruction tower: pi_{r,bullet}(Theta_A) for r = 2, 3, 4, ... is the shadow Postnikov tower, each level a natural transformation (constr:shadow-extraction-explicit).
+(F) Shadow obstruction tower: pi_{r,bullet}(Theta_A) for r = 2, 3, 4, ... is the shadow obstruction tower, each level a natural transformation (constr:shadow-extraction-explicit).
 
 (G) Modular Koszul datum: the six-fold datum Pi_X(L) is canonically recovered from Theta_A (thm:platonic-recovery).
 
