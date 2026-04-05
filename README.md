@@ -14,16 +14,16 @@
 
 <br>
 
-![Pages](https://img.shields.io/badge/pages-1481-a371f7?style=for-the-badge&labelColor=0d1117)
-![Claims](https://img.shields.io/badge/tagged%20claims-2413-3fb950?style=for-the-badge&labelColor=0d1117)
+![Pages](https://img.shields.io/badge/pages-1520+-a371f7?style=for-the-badge&labelColor=0d1117)
+![Claims](https://img.shields.io/badge/tagged%20claims-2500+-3fb950?style=for-the-badge&labelColor=0d1117)
 ![Build](https://img.shields.io/badge/build-passing-3fb950?style=for-the-badge&labelColor=0d1117)
 
 <br>
 
-![Proved Here](https://img.shields.io/badge/proved%20here-2023-3fb950?style=flat-square&labelColor=0d1117)
-![Proved Elsewhere](https://img.shields.io/badge/proved%20elsewhere-163-58a6ff?style=flat-square&labelColor=0d1117)
-![Conjectured](https://img.shields.io/badge/conjectured-188-d29922?style=flat-square&labelColor=0d1117)
-![Heuristic](https://img.shields.io/badge/heuristic-39-8b949e?style=flat-square&labelColor=0d1117)
+![Proved Here](https://img.shields.io/badge/proved%20here-2100+-3fb950?style=flat-square&labelColor=0d1117)
+![Proved Elsewhere](https://img.shields.io/badge/proved%20elsewhere-170+-58a6ff?style=flat-square&labelColor=0d1117)
+![Conjectured](https://img.shields.io/badge/conjectured-190+-d29922?style=flat-square&labelColor=0d1117)
+![Heuristic](https://img.shields.io/badge/heuristic-40+-8b949e?style=flat-square&labelColor=0d1117)
 
 <br>
 
@@ -417,6 +417,6 @@ make fast            # Single-pass pdflatex (quick check)
 
 <div align="center">
 
-<sub>1,481 pages &ensp;&middot;&ensp; 99 active .tex files &ensp;&middot;&ensp; 2,413 tagged claims &ensp;&middot;&ensp; 182K source lines &ensp;&middot;&ensp; 100% claim-tag coverage</sub>
+<sub>1,520+ pages &ensp;&middot;&ensp; 94 active .tex files &ensp;&middot;&ensp; 2,500+ tagged claims &ensp;&middot;&ensp; 190K source lines &ensp;&middot;&ensp; 100% claim-tag coverage</sub>
 
 </div>
