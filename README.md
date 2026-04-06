@@ -14,16 +14,16 @@
 
 <br>
 
-![Pages](https://img.shields.io/badge/pages-1520+-a371f7?style=for-the-badge&labelColor=0d1117)
-![Claims](https://img.shields.io/badge/tagged%20claims-2500+-3fb950?style=for-the-badge&labelColor=0d1117)
+![Pages](https://img.shields.io/badge/pages-1511-a371f7?style=for-the-badge&labelColor=0d1117)
+![Claims](https://img.shields.io/badge/tagged%20claims-2376-3fb950?style=for-the-badge&labelColor=0d1117)
 ![Build](https://img.shields.io/badge/build-passing-3fb950?style=for-the-badge&labelColor=0d1117)
 
 <br>
 
-![Proved Here](https://img.shields.io/badge/proved%20here-2100+-3fb950?style=flat-square&labelColor=0d1117)
-![Proved Elsewhere](https://img.shields.io/badge/proved%20elsewhere-170+-58a6ff?style=flat-square&labelColor=0d1117)
-![Conjectured](https://img.shields.io/badge/conjectured-190+-d29922?style=flat-square&labelColor=0d1117)
-![Heuristic](https://img.shields.io/badge/heuristic-40+-8b949e?style=flat-square&labelColor=0d1117)
+![Proved Here](https://img.shields.io/badge/proved%20here-1981-3fb950?style=flat-square&labelColor=0d1117)
+![Proved Elsewhere](https://img.shields.io/badge/proved%20elsewhere-164-58a6ff?style=flat-square&labelColor=0d1117)
+![Conjectured](https://img.shields.io/badge/conjectured-188-d29922?style=flat-square&labelColor=0d1117)
+![Heuristic](https://img.shields.io/badge/heuristic-43-8b949e?style=flat-square&labelColor=0d1117)
 
 <br>
 
@@ -77,10 +77,10 @@ The stable-graph modular bar coalgebra in log-FM coordinates carries the five-co
 The monograph has **zero conjectural algebraic inputs** beyond the standing physical axioms, which have themselves been made explicit as derived consequences.
 
 > **Proved core.** &ensp; All six theorems F/G/J/K/L/M. Homotopy-Koszulity of SC<sup>ch,top</sup> (Kontsevich formality + transfer from classical Swiss-cheese). PVA descent D2&ndash;D6 (exchange cylinder + three-face Stokes on FM<sub>3</sub>(&Copf;)). Recognition theorem (Weiss cosheaf descent). Spectral Drinfeld strictification (root-space one-dimensionality + Jacobi collapse). Affine monodromy = quantum group R-matrix. W<sub>N</sub> Koszul duality for all N. Soft graviton theorems from shadow obstruction tower. R-matrix descent via algebraic strong unitarity. Curvature-braiding entanglement at genus 1 (elliptic spectral dichotomy).
-> &ensp; 2,023 claims proved here + 163 proved elsewhere. Every claim has a machine-readable status tag.
+> &ensp; 1,981 claims proved here + 164 proved elsewhere. Every claim has a machine-readable status tag.
 
 > **Frontier.** &ensp; Conditional and conjectural material is isolated in Part IX. No earlier part depends on Part IX. 188 precisely scoped conjectures remain, concentrated in the holographic, celestial, and gravitational extension sectors.
-> &ensp; 39 heuristic claims, all explicitly flagged.
+> &ensp; 43 heuristic claims, all explicitly flagged.
 
 ### Standing Hypotheses &mdash; Made Explicit
 
@@ -417,6 +417,6 @@ make fast            # Single-pass pdflatex (quick check)
 
 <div align="center">
 
-<sub>1,520+ pages &ensp;&middot;&ensp; 94 active .tex files &ensp;&middot;&ensp; 2,500+ tagged claims &ensp;&middot;&ensp; 190K source lines &ensp;&middot;&ensp; 100% claim-tag coverage</sub>
+<sub>1,511 pages &ensp;&middot;&ensp; 99 active .tex files &ensp;&middot;&ensp; 2,376 tagged claims &ensp;&middot;&ensp; 183K source lines &ensp;&middot;&ensp; 100% claim-tag coverage</sub>
 
 </div>
