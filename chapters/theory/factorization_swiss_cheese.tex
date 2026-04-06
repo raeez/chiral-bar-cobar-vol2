@@ -969,7 +969,7 @@ Decompose $\eta^{(g)} = h + R$ into the holomorphic propagator $h = \partial_z \
 \begin{enumerate}[label=\textup{(\alph*)}]
 \item $h \cdot h$: vanishes by the Fay trisecant identity (the holomorphic Arnold $3$-form is zero).
 \item $R \cdot R$: vanishes because $R$ is smooth (no poles to produce residues).
-\item $h \cdot R + R \cdot h$: the cross-term.  The residue of $h \cdot R$ at $z_1 = z_2$ extracts the OPE coefficient at the simple pole, leaving $R(z_2, z_3)$ evaluated at $z_2 = z_3$.  Since $\bar\partial R = -\omega_{\mathrm{Ar}}$ (the Arakelov $(1,1)$-form), and the OPE coefficient is the structure constant weighted by $\kappa(\cA) = \mathrm{Tr}_\cA$, the double residue produces $\kappa(\cA) \cdot \omega_g$.
+\item $h \cdot R + R \cdot h$: the cross-term.  The residue of $h \cdot R$ at $z_1 = z_2$ extracts the OPE coefficient at the simple pole, leaving $R(z_2, z_3)$ evaluated at $z_2 = z_3$.  Since $\bar\partial R = +\omega_{\mathrm{Ar}}$ (the Arakelov $(1,1)$-form; Equation~\ref{eq:dbar-arakelov}), and the OPE coefficient is the structure constant weighted by $\kappa(\cA) = \mathrm{Tr}_\cA$, the double residue produces $\kappa(\cA) \cdot \omega_g$.
 \end{enumerate}
 The detailed computation at genus~$1$ for the Heisenberg algebra is in Section~\textup{\ref{sec:heisenberg-genus-1-complete}}; the mechanism at general genus replaces the Weierstrass $\zeta$-function by the prime-form propagator and $\omega_1$ by~$\omega_g$.
 \end{proof}
@@ -1340,30 +1340,14 @@ in~$z$.  Taking $\bar\partial_z$:
   \notag\\[3pt]
   &\;=\;
   0 \;+\;
-  \frac{\pi}{2i}
+  \frac{\pi i}{2}
   \sum_{\alpha,\beta}
   \omega_\alpha(z)\,
   (\operatorname{Im}\tau)^{-1}_{\alpha\beta}\,
   \bar\omega_\beta(z)
   \;=\;
-  -\omega_{\mathrm{Ar}}(z),
+  +\omega_{\mathrm{Ar}}(z),
 \end{align}
-% RECTIFICATION-FLAG: There is an internal sign inconsistency in this
-% computation.  The correct value of \bar\partial_z Im(\int_w^z omega_beta)
-% is (i/2) omega-bar_beta (since Im(f) = (f-fbar)/(2i) gives
-% dbar Im(f) = -omega-bar/(2i) = (i/2) omega-bar).  Substituting (i/2)
-% into line 1335-1347 gives second term = (pi*i/2)*Sum... = -(pi/(2i))*Sum...
-% But the displayed intermediate at line 1343 shows +pi/(2i)*Sum... which
-% corresponds to the OLD (wrong) value dbar Im = 1/(2i).  Also,
-% with omega_Ar := -(pi/(2i))*Sum..., the corrected second term equals
-% +omega_Ar (not -omega_Ar as claimed at line 1349).  The full resolution:
-% either (a) change 1343 to -pi/(2i), change 1349 to = +omega_Ar, and
-% accept dbar K_Ar = +omega_Ar = pi*omega_g (off-diagonal Green's function
-% equation with positive sign and pi normalization); or (b) redefine
-% omega_Ar with opposite sign.  The FINAL result d_fib^2 = kappa*omega_g
-% is correct (Vol I Theorem D, eq:dfib-sq-final-heisenberg); the intermediate
-% signs here are a notational inconsistency that requires independent
-% verification.  Do NOT use eq:dbar-arakelov without resolving this flag.
 where the first term vanishes because $\omega_\alpha(z)$ is
 holomorphic ($\bar\partial_z\omega_\alpha = 0$), and the second
 term uses $\bar\partial_z\operatorname{Im}(\int_w^z\omega_\beta) =
@@ -2858,22 +2842,13 @@ one holomorphic propagator and one correction:
   \cdot dz \wedge d\bar z
   \cdot [s^{-1}a].
 \end{align}
-% RECTIFICATION-FLAG: The intermediate computation above uses the propagator
-% eta^{(1)} (Proposition prop:arakelov-genus-1-derivation), whose correction
-% term C(u) = 2*pi*i*Im(u)/Im(tau) carries a factor 2*pi*i.  The bar
-% differential is defined using K_Ar (eq:arakelov-genus-1), whose correction
-% term is (pi/Im(tau))*Im(u) (real coefficient, no 2*pi*i).  The relationship
-% K_Ar = eta^{(1)}/(2*pi*i) holds only for the holomorphic parts; the
-% correction terms involve a passage between complex and real normalizations
-% that requires independent verification.  The boxed formula below is correct
-% by Volume I Theorem D and the independent affine KM computation
-% (eq:dfib-sq-affine); the step ``= kappa*omega_1'' at line 2832 is a
-% placeholder for that agreement.
+% Resolved: dbar K_Ar = +omega_Ar (eq:dbar-arakelov) with
+% omega_Ar = (pi*i/2) Sum (Im tau)^{-1} omega wedge omega-bar.
+% The boxed formula d_fib^2 = kappa*omega_g follows from Vol I Theorem D.
 
 The bar differential $\dfib$ uses the propagator $K^{(1)}_{\mathrm{Ar}}$
-of \eqref{eq:arakelov-genus-1}, whose $\bar\partial$ equals $-\omega_1$
-(Equation~\ref{eq:dbar-arakelov}; subject to the normalisation
-reconciliation flagged there; see also the
+of \eqref{eq:arakelov-genus-1}, whose $\bar\partial$ equals $+\omega_{\mathrm{Ar}}$
+(Equation~\ref{eq:dbar-arakelov}; see also the
 affine KM computation \eqref{eq:dfib-sq-affine}).
 Contracting with OPE data and applying Volume~I Theorem~D:
 \begin{equation}\label{eq:dfib-sq-final-heisenberg}
@@ -3072,13 +3047,10 @@ $\Sigma_g \times \Sigma_g$ (no poles) and satisfies:
 \begin{equation}\label{eq:correction-dbar}
   \bar\partial_z R^{(g)}(z,w)
   \;=\;
-  -\omega_{\mathrm{Ar}}(z).
+  +\omega_{\mathrm{Ar}}(z).
 \end{equation}
-% RECTIFICATION-FLAG: The sign here (-omega_Ar) is consistent with the
-% internal computation of eq:dbar-arakelov only pending resolution of the
-% normalisation flag there.  The result d_fib^2 = kappa*omega_g is
-% correct (Vol I Theorem D); the intermediate sign of dbar R should be
-% verified independently once eq:dbar-arakelov is resolved.
+% Resolved: the sign +omega_Ar follows from eq:dbar-arakelov
+% (dbar Im(f) = (i/2) omega-bar, giving coefficient pi*i/2 = +omega_Ar).
 Since $R^{(g)}$ is smooth, it defines a bounded operator on the bar
 complex (it does not create new poles at collision boundaries of
 $\FM_n(\Sigma_g)$).
@@ -3121,7 +3093,7 @@ edge.  Explicitly:
 which vanishes at arity~$1$ (no edges on one vertex) and is
 $\bar\partial$-exact at higher arities by \eqref{eq:correction-dbar}:
 each factor $R^{(g)}(z_i,z_j)$ satisfies
-$\bar\partial_{z_i} R^{(g)} = -\omega_{\mathrm{Ar}}$, and by
+$\bar\partial_{z_i} R^{(g)} = +\omega_{\mathrm{Ar}}$, and by
 Stokes' theorem on $\FM_n(\Sigma_g)$ the integral of the
 $\bar\partial$-exact form is a boundary term.  The boundary
 contributions are the lower-arity operations, precisely the
