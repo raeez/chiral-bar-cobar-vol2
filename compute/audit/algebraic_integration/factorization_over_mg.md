@@ -62,7 +62,7 @@ For affine sl_2 at level k (rank k+1): the monodromy representation rho: SL(2,Z)
 
 **c_1(V_A) = kappa(A) * c_1(E)** where E is the Hodge line bundle on M_{1,1}.
 
-This is Theorem D of the manuscript at genus 1. It captures exactly ONE number: kappa(A) = c(A)/2. For Heisenberg: kappa = k/2. For Virasoro: kappa = c/2. For affine sl_2 at level k: kappa = k*dim(sl_2)/(2(k+2)) = 3k/(2(k+2)).
+This is Theorem D of the manuscript at genus 1. It captures exactly ONE number: kappa(A). For Heisenberg: kappa = k (NOT k/2; see AP39/AP48). For Virasoro: kappa = c/2. For affine sl_2 at level k: kappa = dim(sl_2)*(k+h^v)/(2*h^v) = 3(k+2)/4 (NOT 3k/(2(k+2))).
 
 The FULL Chern character ch(V_A) = sum ch_i(V_A) captures the spectral discriminant Delta_A(x) = det(1 - x*T_{br,A}), where T_{br,A} is the branch operator (conformal_blocks.md line 217). This is a POLYNOMIAL whose degree equals the number of generators of A!.
 
