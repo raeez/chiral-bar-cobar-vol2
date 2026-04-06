@@ -2284,3 +2284,454 @@ shadow connection.
 Computational verification:
 \texttt{compute/lib/seiberg\_witten\_shadow.py}.
 \end{remark}
+
+
+% ======================================================================
+%
+%  K3 x E: THE COSTELLO-LI PROTOTYPE
+%
+% ======================================================================
+
+\subsection{\texorpdfstring{$K3 \times E$}{K3 x E}: the Costello--Li prototype}
+\label{subsec:k3e-holographic-datum}
+\index{K3 surface!twisted holography|textbf}
+\index{Costello--Li programme!K3 x E@$K3 \times E$|textbf}
+\index{holographic modular Koszul datum!K3 x E@$K3 \times E$|textbf}
+\index{Kodaira--Spencer theory!K3 x E@$K3 \times E$}
+
+The product $X = K3 \times E$ of a K3 surface with an elliptic curve
+is a compact Calabi--Yau threefold whose Costello--Li holographic datum
+is completely computable: the boundary chiral algebra is free-field
+(class~$\mathsf{G}$), the shadow obstruction tower terminates at arity~$2$,
+and every component of the holographic sextuple admits an explicit
+closed-form expression.  This makes $K3 \times E$ the simplest
+nontrivial testing ground for the full holographic modular Koszul
+framework applied to a geometric CY$_3$ target.
+
+\subsubsection{The HT twist and Kodaira--Spencer reduction}
+\label{subsubsec:k3e-ht-twist}
+\index{HT twist!K3 x E@$K3 \times E$}
+
+The holomorphic-topological twist of type~IIB on $K3 \times E$
+decomposes the CY$_3$ into:
+\begin{itemize}
+\item \emph{Holomorphic direction:} the elliptic curve $E$
+  ($\dim_\C = 1$).
+\item \emph{Topological directions:} the K3 surface
+  ($\dim_\C = 2$, $\dim_\R = 4$).
+\end{itemize}
+The B-model twist produces Kodaira--Spencer gravity on $X$, whose
+field is the Beltrami differential
+$\mu \in \Omega^{0,1}(T^{1,0}_X)$ with action
+$S = \int_X \mu \,\dbar\mu + \tfrac{1}{3!}\int_X \mu^3$.
+The observables are polyvector fields: by HKR,
+\begin{equation}\label{eq:k3e-hh-hkr}
+\HH^n(X) = \bigoplus_{p+q=n} \PV^{p,q}(X),
+\qquad
+\PV^{p,q}(X) = H^q\!\bigl(X, \textstyle\bigwedge^p T^{1,0}_X\bigr)
+\overset{\text{CY}}{=} h^{3-p,q}(X).
+\end{equation}
+
+The Hodge diamond of $K3 \times E$ is computed by K\"unneth from
+\begin{equation}\label{eq:k3e-hodge-kunneth}
+h^{p,q}(K3 \times E) = \sum_{a+c=p,\; b+d=q}
+h^{a,b}(K3) \cdot h^{c,d}(E).
+\end{equation}
+The nonzero entries are:
+\begin{center}
+\renewcommand{\arraystretch}{1.2}
+\small
+\begin{tabular}{c|cccccccc}
+$(p,q)$ & $(0,0)$ & $(1,0)$ & $(0,1)$ & $(1,1)$ & $(2,1)$ & $(1,2)$
+  & $(3,0)$ & $(0,3)$ \\
+\hline
+$h^{p,q}$ & $1$ & $1$ & $1$ & $21$ & $21$ & $21$ & $1$ & $1$
+\end{tabular}
+\end{center}
+with the remaining nonzero entries fixed by $h^{p,q} = h^{q,p}
+= h^{3-p,3-q}$ (CY$_3$ Hodge symmetry).  In particular:
+\begin{equation}\label{eq:k3e-hodge-key}
+h^{1,1} = h^{2,1} = 21, \qquad
+\chi(K3 \times E) = \chi(K3)\cdot\chi(E) = 24 \cdot 0 = 0.
+\end{equation}
+The total polyvector field dimension is
+$\dim \PV^*(X) = \dim \PV^*(K3) \cdot \dim \PV^*(E)
+= 24 \cdot 4 = 96$.
+
+\begin{remark}[Self-mirror with $\kappa_{\mathrm{KS}} = 0$]
+\label{rem:k3e-self-mirror}
+Since $h^{1,1} = h^{2,1} = 21$, the threefold $K3 \times E$
+is self-mirror: the KS modular characteristic
+$\kappa_{\mathrm{KS}} = h^{1,1} - h^{2,1} = 0$.
+The KS boundary algebra has vanishing modular characteristic,
+and the KS genus-$g$ free energies all vanish:
+$F_g^{\mathrm{KS}} = 0$ for all $g \geq 1$.  This is the entry
+$K3 \times T^2$ in the KS landscape table of
+\S\ref*{subsec:thqg-ks-landscape}.
+
+The boundary chiral algebra $\cA_E$ discussed below is a
+\emph{different} object from the KS boundary algebra: it arises
+from reducing the B-model \emph{along} K3 to obtain a chiral
+algebra \emph{on} $E$, rather than from the abstract KS
+deformation theory.  The two algebras have different $\kappa$
+values: $\kappa_{\mathrm{KS}} = 0$ vs.\
+$\kappa(\cA_E) = 24$.  The discrepancy is an instance of AP48:
+$\kappa$ depends on the full algebra, not on a single
+invariant of the geometry.
+\end{remark}
+
+
+\subsubsection{The boundary chiral algebra}
+\label{subsubsec:k3e-boundary}
+\index{boundary chiral algebra!K3 x E@$K3 \times E$}
+
+The Costello--Li reduction along the topological K3 directions
+produces a chiral algebra $\cA_E$ on $E$ with generators from
+$\PV^*(K3)$.  Each polyvector class $\alpha \in \PV^{p,q}(K3)
+= H^{2-p,q}(K3)$ contributes a generator of conformal weight $2 - p$:
+
+\begin{center}
+\renewcommand{\arraystretch}{1.2}
+\small
+\begin{tabular}{lccc}
+\textbf{Sector} & \textbf{Hodge type} & \textbf{Count}
+  & \textbf{Conformal weight} \\
+\hline
+$\PV^{0,0}(K3) = H^{2,0}(K3)$ & holomorphic 2-form & $1$ & $2$ \\
+$\PV^{0,2}(K3) = H^{2,2}(K3)$ & volume form & $1$ & $2$ \\
+$\PV^{1,1}(K3) = H^{1,1}(K3)$ & $(1{,}1)$-forms & $20$ & $1$ \\
+$\PV^{2,0}(K3) = H^{0,0}(K3)$ & constant & $1$ & $0$ \\
+$\PV^{2,2}(K3) = H^{0,2}(K3)$ & anti-hol.\ 2-form & $1$ & $0$ \\
+\hline
+\multicolumn{2}{c}{\textbf{Total}} & $\mathbf{24}$
+  & $= \chi(K3)$
+\end{tabular}
+\end{center}
+
+The central charge of the boundary algebra is
+$c(\cA_E) = \chi(K3) = 24$.
+
+\begin{proposition}[$K3 \times E$ boundary datum;
+\ClaimStatusProvedHere]
+\label{prop:k3e-boundary-datum}
+\index{K3 surface!boundary chiral algebra}
+The boundary chiral algebra $\cA_E$ from the Costello--Li reduction of
+Kodaira--Spencer gravity on $K3 \times E$ along K3 is the free-field
+algebra of $24$ bosons with level matrix equal to the Mukai pairing
+on $H^*(K3, \Z)$:
+\begin{equation}\label{eq:k3e-boundary-ope}
+J^a(z)\, J^b(w) \;\sim\; \frac{G^{ab}_{\mathrm{Mukai}}}{(z-w)^2},
+\qquad a, b = 1, \ldots, 24,
+\end{equation}
+where $G^{ab}_{\mathrm{Mukai}}$ is the Mukai pairing of signature
+$(4, 20)$.  The algebra is free-field because the Bogomolov--Tian--Todorov
+theorem guarantees that the Schouten bracket vanishes on K3 cohomology
+\textup{(}unobstructed deformations\textup{)}.
+
+\begin{enumerate}[label=\textup{(\roman*)}]
+\item $\kappa(\cA_E) = 24$ \textup{(}$= \operatorname{rank}$; AP48:
+  for free bosons, $\kappa = \operatorname{rank}$, not $c/2$\textup{)}.
+\item Shadow depth: class $\mathsf{G}$ \textup{(}Gaussian,
+  $r_{\max} = 2$\textup{)}.  All higher shadows vanish: $C = Q = 0$.
+\item The critical discriminant $\Delta = 8\kappa S_4 = 0$
+  \textup{(}$S_4 = 0$ for free fields\textup{)}.
+\item The shadow metric $Q_L(t) = (2\kappa)^2 = 2304$ is constant.
+\end{enumerate}
+Computational verification:
+\texttt{compute/lib/cy\_twisted\_holography\_k3e\_engine.py}.
+\end{proposition}
+
+\begin{proof}
+The BTT theorem for the CY surface K3 gives $l_2 = 0$
+on Dolbeault cohomology: the Schouten bracket of any two
+harmonic polyvector fields is exact.  The reduction along K3
+therefore produces a free-field chiral algebra on $E$ with level
+matrix determined by the Poincar\'e/Mukai pairing on $H^*(K3)$.
+The signature $(4, 20)$ is the Mukai lattice signature:
+$(3, 19)$ from $H^2(K3)$ plus $(1, 1)$ from the
+$H^0 \oplus H^4$ pairing.
+
+For the modular characteristic: $\cA_E$ consists of 24 free
+bosons, so $\kappa = \operatorname{rank} = 24$ by the
+Heisenberg formula (Volume~I, Proposition~\ref{prop:heisenberg-kappa}).
+The shadow depth is $r_{\max} = 2$ because the OPE is purely
+quadratic (no cubic or higher terms).
+\end{proof}
+
+
+\subsubsection{The holographic modular Koszul datum
+\texorpdfstring{$\cH(K3 \times E)$}{H(K3 x E)}}
+\label{subsubsec:k3e-holographic-datum}
+
+\begin{computation}[$K3 \times E$ holographic datum;
+\ClaimStatusProvedHere]
+\label{comp:k3e-holographic-datum}
+\index{holographic modular Koszul datum!K3 x E@$K3 \times E$!components}
+The six components of
+$\cH(K3 \times E) = (\cA, \cA^!, \mathcal{C}, r(z),
+\Theta_\cA, \nabla^{\mathrm{hol}})$ are:
+\begin{center}
+\renewcommand{\arraystretch}{1.35}
+\small
+\begin{tabular}{lp{9.5cm}}
+\textbf{Component} & \textbf{Value} \\
+\hline
+(a) $\cA$ & Free-field: $24$ bosons at Mukai level $G^{ab}$,
+  $c = 24$, $\kappa = 24$ \\
+(b) $\cA^!$ & Koszul dual: $24$ bosons at level $-G^{ab}$,
+  $\kappa(\cA^!) = -24$; complementarity sum
+  $\kappa + \kappa' = 0$ \textup{(}AP24: vanishes for
+  free fields\textup{)} \\
+(c) $\mathcal{C}$ & $\cA^!\text{-}\mathsf{mod}$;
+  the derived center $\Zder^{\mathrm{ch}}(\cA_E)$
+  has Hilbert polynomial
+  $P_{\cA}(t) = 24 + 576\,t + 24\,t^2$ \\
+(d) $r(z)$ & $r(z) = \Omega_{\mathrm{Mukai}}/z$
+  \textup{(}single pole; AP19\textup{)};
+  CYBE trivially satisfied \textup{(}abelian\textup{)} \\
+(e) $\Theta_\cA$ & $\Theta_\cA^{\leq 2} = \kappa = 24$;
+  $\Theta_\cA^{(g,r)} = 0$ for $r \geq 3$
+  \textup{(}class $\mathsf{G}$: tower terminates\textup{)} \\
+(f) $\nabla^{\mathrm{hol}}$ & Trivial on the shadow metric
+  \textup{(}$Q_L$ constant\textup{)};
+  nontrivial at the holographic level with
+  universal residue $\tfrac{1}{2}$
+\end{tabular}
+\end{center}
+
+The genus-$g$ free energies are
+$F_g(\cA_E) = \kappa \cdot \lambda_g^{\mathrm{FP}}$:
+\begin{equation}\label{eq:k3e-genus-amplitudes}
+F_1 = 1, \qquad
+F_2 = \tfrac{7}{240}, \qquad
+F_3 = \tfrac{31}{40320}.
+\end{equation}
+
+\emph{Three-path verification} \textup{(}Multi-Path Mandate\textup{)}:
+\begin{enumerate}
+\item \emph{KS reduction}: reduce KS theory along K3 to obtain
+  $24$ free bosons, compute $\kappa = \operatorname{rank} = 24$.
+\item \emph{HKR comparison}: $\dim \PV^*(K3) = 24$ generators;
+  $\dim \HH^*(K3 \times E) = 96$ total; Hilbert polynomial
+  from Theorem~H.
+\item \emph{Koszul complementarity}: $\kappa(\cA^!) = -24$;
+  $F_1(\cA) + F_1(\cA^!) = 1 + ({-}1) = 0$ \textup{(}Theorem~C
+  for free fields\textup{)}.
+\end{enumerate}
+Computational verification:
+\texttt{compute/lib/cy\_twisted\_holography\_k3e\_engine.py},
+functions
+\texttt{holographic\_datum\_k3e()},
+\texttt{shadow\_tower\_k3e()},
+\texttt{koszul\_dual\_k3e()}.
+\end{computation}
+
+
+\subsubsection{Noncommutative deformations and the Brauer group}
+\label{subsubsec:k3e-nc-deformations}
+\index{noncommutative deformation!K3 x E@$K3 \times E$|textbf}
+\index{Brauer group!K3 x E@$K3 \times E$}
+\index{Hochschild cohomology!K3 x E@$K3 \times E$}
+
+The deformation theory of $D^b(K3 \times E)$ is controlled by
+$\HH^2(K3 \times E) = 23$, decomposed by HKR as:
+\begin{equation}\label{eq:k3e-hh2-decomposition}
+\HH^2(K3 \times E)
+\;=\;
+\underbrace{H^1(T_X)}_{h^{2,1} = 21}
+\;\oplus\;
+\underbrace{H^0\!\bigl(\textstyle\bigwedge^2 T_X\bigr)}_{h^{1,0} = 1}
+\;\oplus\;
+\underbrace{H^2(\cO_X)}_{h^{0,2} = 1}.
+\end{equation}
+The $21$-dimensional summand parametrizes complex structure deformations
+(Kodaira--Spencer); the two remaining directions are genuinely
+noncommutative:
+\begin{enumerate}[label=\textup{(\roman*)}]
+\item The $B$-field direction $H^0(\bigwedge^2 T_X) \cong \C$
+  deforms the derived category to the twisted category
+  $D^b(K3 \times E, \alpha)$ for $\alpha \in \operatorname{Br}(K3 \times E)$.
+\item The volume direction $H^2(\cO_X) \cong \C$ scales the
+  holomorphic volume form $\Omega_{3,0}$.
+\end{enumerate}
+
+Deformation quantization of $K3 \times E$ is one-parameter:
+$H^0(\bigwedge^2 T_{K3 \times E}) = \C$, generated entirely by the
+K3 symplectic form $\omega_{K3}^{-1} \in H^0(\bigwedge^2 T_{K3})$.
+The elliptic curve contributes no Poisson structure
+($\bigwedge^2 T_E = 0$ for $\dim_\C E = 1$), and $H^0(T_{K3}) = 0$
+eliminates mixed terms.  The star product is the Moyal product
+in local Darboux coordinates on K3:
+\begin{equation}\label{eq:k3e-star-product}
+f \star_\hbar g
+= f g + \hbar\,\{f, g\}_{K3}
++ \sum_{n \geq 2} \frac{\hbar^n}{n!}\,
+\omega^{i_1 j_1} \cdots \omega^{i_n j_n}\,
+(\partial_{i_1} \cdots \partial_{i_n} f)\,
+(\partial_{j_1} \cdots \partial_{j_n} g).
+\end{equation}
+
+The analytic Brauer group satisfies (for generic K3 with Picard
+rank $\rho = 0$):
+\begin{equation}\label{eq:k3e-brauer}
+\operatorname{Br}(K3 \times E)
+\;\supset\;
+\operatorname{Br}(K3) \oplus \operatorname{Br}(E)
+\;\cong\;
+(\Q/\Z)^{22} \oplus (\Q/\Z).
+\end{equation}
+The mixed term $H^1(K3, \operatorname{Pic}^0(E)) = 0$ vanishes
+because $h^{0,1}(K3) = 0$.  For algebraic K3 with Picard rank
+$\rho \geq 1$, the transcendental Brauer rank drops to $22 - \rho$.
+
+\begin{remark}[Chiral Hochschild comparison]
+\label{rem:k3e-chiral-hochschild}
+\index{chiral Hochschild cohomology!K3 x E@$K3 \times E$}
+By the Costello--Gwilliam theorem for holomorphic field theories,
+$\operatorname{ChirHoch}^n(\cA_X) \cong \HH^n(X)$ for the
+chiral de Rham complex $\cA_X = \Omega^{\mathrm{ch}}(X)$
+of a CY manifold $X$.  In particular,
+$\dim \operatorname{ChirHoch}^2(\Omega^{\mathrm{ch}}(K3 \times E)) = 23$:
+the chiral algebra \emph{sees} the full CY$_3$ deformation space,
+including the noncommutative directions.  The full Hochschild
+diamond is
+\begin{equation}\label{eq:k3e-hh-full}
+(\HH^0, \HH^1, \HH^2, \HH^3, \HH^4, \HH^5, \HH^6)
+= (1, 2, 23, 44, 23, 2, 1),
+\end{equation}
+with CY Serre duality $\HH^n \cong \HH^{6-n}$ verified
+\textup{(}computational:
+\texttt{compute/lib/cy\_nc\_deformation\_k3e\_engine.py}\textup{)}.
+\end{remark}
+
+
+\subsubsection{Swiss-cheese structure and the CDR shadow}
+\label{subsubsec:k3e-swiss-cheese}
+\index{Swiss-cheese!K3 x E@$K3 \times E$}
+\index{chiral de Rham complex!K3 x E@$K3 \times E$}
+
+The chiral de Rham complex $\Omega^{\mathrm{ch}}(K3 \times E)$
+is a sheaf of vertex superalgebras on $K3 \times E$ whose
+global sections carry an $\cN = 2$ superconformal structure
+(Malikov--Schechtman--Vaintrob).  On K3 alone:
+\begin{equation}\label{eq:k3-cdr-sigma-model}
+H^*\!\bigl(K3, \Omega^{\mathrm{ch}}_{K3}\bigr)
+\;\cong\; V_{K3}
+\qquad (c = 6,\; \cN = (4,4)\;\text{SCVA}).
+\end{equation}
+By K\"unneth for factorization homology,
+\begin{equation}\label{eq:k3e-cdr-kunneth}
+H^*\!\bigl(K3 \times E, \Omega^{\mathrm{ch}}\bigr)
+\;\cong\;
+V_{K3} \otimes V_E,
+\end{equation}
+where $V_E$ is the $c = 1$ Heisenberg algebra on~$E$.  The total
+central charge is $c = 6 + 1 = 7$.
+
+The HT twist projects to $c = 0$: the topological twist
+kills the central charge.  The Swiss-cheese algebra
+$\mathsf{SC}^{\mathrm{ch,top}}$ on $\C_z \times \R_t$
+encodes the factorization structure of the CDR along the
+holomorphic direction~$E$ and the topological directions~K3.
+Since the boundary algebra $\cA_E$ is free-field (class $\mathsf{G}$),
+the Swiss-cheese operations $m_k^{\mathrm{SC}}$ vanish for $k \geq 3$:
+the Swiss-cheese structure is \emph{formal} in the sense of
+Definition~\ref*{V1-def:swiss-cheese-formal}.  This is
+consistent with the shadow depth classification: class~$\mathsf{G}$
+algebras have trivial higher $A_\infty$ structure on the
+bar cohomology.
+
+\begin{remark}[Factorization homology and the elliptic genus]
+\label{rem:k3e-factorization-homology}
+\index{factorization homology!K3 x E@$K3 \times E$}
+\index{elliptic genus!K3 x E@$K3 \times E$}
+The CDR Euler characteristic gives
+$\chi(\Omega^{\mathrm{ch}}(K3 \times E)) = \chi(K3) \cdot \chi(E)
+= 24 \cdot 0 = 0$: the Witten genus vanishes.  This
+vanishing of the elliptic genus does \emph{not} imply
+$F_g = 0$ \textup{(}AP31\textup{)}: the elliptic genus is a
+\emph{refined} trace with $(-1)^F$ insertion, while
+$F_g = \kappa \cdot \lambda_g^{\mathrm{FP}}$ is the bar complex
+curvature at genus~$g$ (no grading insertion).  The BPS partition
+function is related to $1/\Phi_{10}$, the reciprocal of the Igusa
+cusp form (DMVV formula for $K3 \times E_\tau$); the shadow
+partition function $Z^{\mathrm{sh}} = \exp(\sum F_g \hbar^{2g})$
+is the perturbative shadow of this non-perturbative BPS count.
+
+Computational verification of factorization homology:
+\texttt{compute/lib/cy\_factorization\_homology\_k3e\_engine.py}.
+\end{remark}
+
+
+\subsubsection{Connection to Volume~I}
+\label{subsubsec:k3e-vol1-connection}
+
+The $K3 \times E$ example instantiates every layer of the
+Volume~I engine:
+
+\begin{center}
+\renewcommand{\arraystretch}{1.25}
+\small
+\begin{tabular}{lll}
+\textbf{Vol~I result} & \textbf{$K3 \times E$ instance} & \textbf{Value} \\
+\hline
+Theorem~A (adjunction) & $D_{\mathrm{Ran}}(B(\cA_E))
+  \simeq B(\cA_E^!)$ & free-field Verdier \\
+Theorem~B (inversion) & $\Omega(B(\cA_E)) \simeq \cA_E$ & immediate
+  (class $\mathsf{G}$) \\
+Theorem~C (complementarity) & $\kappa + \kappa' = 0$;
+  $F_g + F_g' = 0$ for all $g$ & $24 + ({-}24) = 0$ \\
+Theorem~D (leading coeff.) & $F_g = \kappa\cdot
+  \lambda_g^{\mathrm{FP}}$ & $\kappa = 24$ \\
+Theorem~H (Hochschild) & $P_{\cA}(t) = 24 + 576\,t + 24\,t^2$ &
+  $\HH^0 = 24,\; \HH^2 = 24$ \\
+\hline
+Shadow class & $\mathsf{G}$ (Gaussian) & $r_{\max} = 2$ \\
+Shadow metric & $Q_L = (2\kappa)^2 = 2304$ & constant \\
+MC element & $\Theta_\cA = \Theta_\cA^{\leq 2} = \kappa$
+  & terminates at arity $2$ \\
+$r$-matrix & $r(z) = \Omega_{\mathrm{Mukai}}/z$ &
+  signature $(4,20)$
+\end{tabular}
+\end{center}
+
+\noindent
+The moduli space of K3 has dimension~$20$ (complex structure
+deformations from $h^{1,1}(K3)$), plus $\dim \cM_E = 1$
+and $21$ K\"ahler moduli, for a total of~$42$.
+The period domain for K3 complex structures is
+$\mathrm{SO}(3,19)/(\mathrm{SO}(3) \times \mathrm{SO}(19))$
+with arithmetic group $O(3, 19; \Z)$.
+The holographic shadow connection $\nabla^{\mathrm{hol}}$ on the
+K3 moduli space is trivial at the shadow metric level
+($Q_L$ constant for class~$\mathsf{G}$), but acquires nontrivial
+monodromy at the full holographic level from the arithmetic structure
+of the K3 period domain.
+
+\begin{remark}[Comparison across CY$_3$ geometries]
+\label{rem:k3e-cy3-comparison}
+The $K3 \times E$ datum contrasts with the other standard CY$_3$
+targets as follows:
+\begin{center}
+\renewcommand{\arraystretch}{1.25}
+\small
+\begin{tabular}{lcccc}
+\textbf{CY$_3$} & $\kappa(\cA)$ & \textbf{Class}
+  & \textbf{Complementarity} & $\HH^2$ \\
+\hline
+$K3 \times E$ & $24$ & $\mathsf{G}$ & $\kappa + \kappa' = 0$ & $23$ \\
+Quintic & $-100$ & $\mathsf{G}$ & $\kappa + \kappa' = 0$ & $204$ \\
+D3 ($\cN\!=\!4$ SYM) & $\frac{N^2(N+1)}{2N}$ & $\mathsf{L}$ &
+  $\kappa + \kappa' = 0$ & --- \\
+ABJM & $-(N^2{+}1)$ & $\mathsf{M}$ & nonzero & ---
+\end{tabular}
+\end{center}
+The $K3 \times E$ boundary algebra is the unique standard CY$_3$
+example that is simultaneously free-field (class~$\mathsf{G}$) and has
+a positive modular characteristic ($\kappa = 24 > 0$): the
+quintic has $\kappa < 0$ and the D3 brane has $\kappa > 0$ but is
+class~$\mathsf{L}$.  The positivity of $\kappa$ ensures that
+$F_g > 0$ at all genera --- the shadow obstruction tower
+produces genuine nonvanishing genus amplitudes, despite the vanishing
+of the elliptic genus.
+\end{remark}
