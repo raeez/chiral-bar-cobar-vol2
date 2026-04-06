@@ -1348,16 +1348,36 @@ in~$z$.  Taking $\bar\partial_z$:
   \;=\;
   -\omega_{\mathrm{Ar}}(z),
 \end{align}
+% RECTIFICATION-FLAG: There is an internal sign inconsistency in this
+% computation.  The correct value of \bar\partial_z Im(\int_w^z omega_beta)
+% is (i/2) omega-bar_beta (since Im(f) = (f-fbar)/(2i) gives
+% dbar Im(f) = -omega-bar/(2i) = (i/2) omega-bar).  Substituting (i/2)
+% into line 1335-1347 gives second term = (pi*i/2)*Sum... = -(pi/(2i))*Sum...
+% But the displayed intermediate at line 1343 shows +pi/(2i)*Sum... which
+% corresponds to the OLD (wrong) value dbar Im = 1/(2i).  Also,
+% with omega_Ar := -(pi/(2i))*Sum..., the corrected second term equals
+% +omega_Ar (not -omega_Ar as claimed at line 1349).  The full resolution:
+% either (a) change 1343 to -pi/(2i), change 1349 to = +omega_Ar, and
+% accept dbar K_Ar = +omega_Ar = pi*omega_g (off-diagonal Green's function
+% equation with positive sign and pi normalization); or (b) redefine
+% omega_Ar with opposite sign.  The FINAL result d_fib^2 = kappa*omega_g
+% is correct (Vol I Theorem D, eq:dfib-sq-final-heisenberg); the intermediate
+% signs here are a notational inconsistency that requires independent
+% verification.  Do NOT use eq:dbar-arakelov without resolving this flag.
 where the first term vanishes because $\omega_\alpha(z)$ is
 holomorphic ($\bar\partial_z\omega_\alpha = 0$), and the second
 term uses $\bar\partial_z\operatorname{Im}(\int_w^z\omega_\beta) =
-\frac{1}{2i}\bar\omega_\beta(z)$.  The Arakelov $(1,1)$-form
+\frac{i}{2}\bar\omega_\beta(z)$ (from $\operatorname{Im}(f) =
+(f - \bar f)/(2i)$, so $\bar\partial\operatorname{Im}(f) =
+-\bar\partial\bar f/(2i) = -\bar\omega_\beta/(2i) = (i/2)\bar\omega_\beta$).
+The Arakelov $(1,1)$-form
 $\omega_{\mathrm{Ar}} = -\frac{\pi}{2i}\sum_{\alpha,\beta}
 (\operatorname{Im}\tau)^{-1}_{\alpha\beta}\,
 \omega_\alpha \wedge \bar\omega_\beta$ is the
-unique $(1,1)$-form on~$\Sigma_g$ with
-$\int_{\Sigma_g}\omega_{\mathrm{Ar}} = 1$ and constant
-pointwise norm with respect to the Arakelov metric.
+$(1,1)$-form on~$\Sigma_g$ with constant
+pointwise norm with respect to the Arakelov metric and satisfying
+$\int_{\Sigma_g}\omega_{\mathrm{Ar}} = \pi$.  The unit-integral form
+is $\omega_g := \frac{1}{\pi}\omega_{\mathrm{Ar}}$.
 
 Contracting with OPE data: the square $\dfib^{\,2}$ of the
 bar differential on a degree-$k$ bar element involves two
@@ -1810,10 +1830,11 @@ The equivalence requires:
 
 The local homotopy-Koszulity theorem
 (Theorem~\ref{thm:homotopy-Koszul}) ensures that the bar-cobar
-adjunction is a Quillen equivalence at genus~$0$.  The
-factorization framework extends this to all genera, where the bar
-complex is a \emph{curved} factorization coalgebra and the
-relevant category is the coderived category.
+adjunction is a Quillen equivalence at genus~$0$.  At genus~$g \geq 1$,
+the bar complex is a \emph{curved} factorization coalgebra and cobar
+reconstruction is replaced by the Feynman transform; recovery then
+follows from the Feynman involutivity theorem of Volume~I
+(Theorem~\ref*{V1-thm:feynman-involution}).
 
 \begin{theorem}[Factorization Swiss-cheese Koszul duality; \ClaimStatusProvedHere]
 \label{thm:factorization-SC-koszul}
@@ -2246,9 +2267,9 @@ clutching map $\Delta_{\mathrm{cyc}}$
 of tensor factors by $\langle{-},{-}\rangle_{\mathrm{inv}}$ and
 raises genus by~$1$.  The bar complex $\barB(F_\cA)$, viewed as a
 factorization coalgebra on $\Ran(\Sigma_g)$ parametrised by $\Mbar_g$,
-is the \emph{universal} object on which both clutching correspondences
-act: it is the simultaneous presentation of all convolution products
-at all genera.
+is the object on which both clutching correspondences act: it encodes
+convolution products genus by genus, assembled into a single
+factorization coalgebra over $\coprod_g \Mbar_g$.
 
 Thus: the bar complex presents the Swiss-cheese coalgebra, as the
 Steinberg variety presents the Hecke algebra.  Both are
@@ -2620,8 +2641,11 @@ has the Laurent expansion
   \;+\;
   \frac{2\pi i\,\operatorname{Im}(u)}{\operatorname{Im}\tau},
 \end{equation}
-where $c_1(\tau) = -\frac{1}{3}\frac{\vartheta_1'''(0|\tau)}
-{\vartheta_1'(0|\tau)}$ encodes the Eisenstein series $E_2(\tau)$
+where $c_1(\tau) = \frac{1}{3}\frac{\vartheta_1'''(0|\tau)}
+{\vartheta_1'(0|\tau)}$ (from the Taylor expansion
+$\partial_u\log\vartheta_1 = 1/u + c_1 u + \cdots$ with
+$\vartheta_1 = \vartheta_1'(0)u + \frac{\vartheta_1'''(0)}{6}u^3+\cdots$),
+encoding the Eisenstein series $E_2(\tau)$
 via $c_1(\tau) = -\frac{\pi^2}{3}E_2(\tau)$, and the
 non-holomorphic term $\operatorname{Im}(u)/\operatorname{Im}\tau$
 is smooth at $u = 0$ and contributes nothing to the residue.
@@ -2708,8 +2732,8 @@ The self-contraction residue is:
   \;=\; 0,
 \]
 since $1/u^2$ has zero residue.  This shows $\dfib([s^{-1}a]) = 0$
-at the level of the holomorphic part of the propagator alone.
-the curving comes from the iterated application.
+at the level of the holomorphic part of the propagator alone;
+the curvature arises from the iterated application in Step~2.
 
 \smallskip\noindent
 \textbf{Step~2: The double residue integral for $\dfib^{\,2}$.}
@@ -2848,7 +2872,8 @@ one holomorphic propagator and one correction:
 
 The bar differential $\dfib$ uses the propagator $K^{(1)}_{\mathrm{Ar}}$
 of \eqref{eq:arakelov-genus-1}, whose $\bar\partial$ equals $-\omega_1$
-(Equation~\ref{eq:dbar-arakelov}; see also the
+(Equation~\ref{eq:dbar-arakelov}; subject to the normalisation
+reconciliation flagged there; see also the
 affine KM computation \eqref{eq:dfib-sq-affine}).
 Contracting with OPE data and applying Volume~I Theorem~D:
 \begin{equation}\label{eq:dfib-sq-final-heisenberg}
@@ -3049,6 +3074,11 @@ $\Sigma_g \times \Sigma_g$ (no poles) and satisfies:
   \;=\;
   -\omega_{\mathrm{Ar}}(z).
 \end{equation}
+% RECTIFICATION-FLAG: The sign here (-omega_Ar) is consistent with the
+% internal computation of eq:dbar-arakelov only pending resolution of the
+% normalisation flag there.  The result d_fib^2 = kappa*omega_g is
+% correct (Vol I Theorem D); the intermediate sign of dbar R should be
+% verified independently once eq:dbar-arakelov is resolved.
 Since $R^{(g)}$ is smooth, it defines a bounded operator on the bar
 complex (it does not create new poles at collision boundaries of
 $\FM_n(\Sigma_g)$).
