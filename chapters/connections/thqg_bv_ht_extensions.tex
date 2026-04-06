@@ -304,9 +304,11 @@ twisting morphisms to the Koszul dual; its cohomology determines
 the space of conformal boundary conditions.  Specifically:
 \begin{enumerate}
 \item The bar differential $d_{\barB}$ decomposes as
-  $d_{\barB} = d_2 + d_3$, where $d_2$ encodes the affine OPE and
-  $d_3$ encodes the cubic interaction
-  $f^{abc} J^a J^b J^c / (z - w)$.
+  $d_{\barB} = d_2 + d_3$, where $d_2$ encodes the binary OPE
+  residues (both the double-pole $k\,\delta^{ab}/(z-w)^2$ and the
+  simple-pole $f^{abc}J^c(w)/(z-w)$ terms), and $d_3$ encodes the
+  transferred ternary operation $m_3$ arising from the normal-ordered
+  triple composite $:J^a J^b J^c:$.
 \item The bar cohomology $H^\bullet(\barBch(\hat{\fg}_k))$ is the
   Koszul-dual coalgebra.  For generic $k \neq -h^\vee$, the affine
   algebra is Koszul (by PBW universality,
@@ -333,10 +335,12 @@ J^a(z) J^b(w) \sim
   \frac{k \, \delta^{ab}}{(z-w)^2}
   + \frac{f^{abc} J^c(w)}{z-w}.
 \]
-The double-pole term contributes $d_2$ (the quadratic part of the bar
-differential), and the simple-pole term contributes $d_3$ (since the
-structure constants $f^{abc}$ produce a ternary operation in the
-$\Ainf$-structure after desuspension).
+Both the double-pole and simple-pole terms contribute to $d_2$
+(the binary part of the bar differential, extracting collision
+residues of two-point OPE).  The component $d_3$ arises from the
+transferred ternary operation $m_3$, which is the normal-ordered
+triple composite $:J^a J^b J^c:$ obtained by iterating $m_2$
+via the homological transfer formula.
 
 Item (2) is established in Volume~I: the PBW universality theorem shows
 that the universal vertex algebra $V_k(\fg)$ is chirally Koszul for all
@@ -380,10 +384,9 @@ match:
 \begin{tabular}{lcl}
 $\bar{\partial}$ & $\longleftrightarrow$ & internal differential $d_1$
   on bar elements \\
-$[J^a, \cdot] \cdot c^a$ & $\longleftrightarrow$ & bar differential
-  $d_2$ (binary OPE) \\
-$k \, \partial c^a c^a$ & $\longleftrightarrow$ & bar differential
-  $d_3$ (ternary structure constant)
+$[J^a, \cdot] \cdot c^a + k \, \partial c^a c^a$
+  & $\longleftrightarrow$ & bar differential
+  $d_2 + d_3$ (binary OPE + transferred ternary)
 \end{tabular}
 \end{center}
 \end{proposition}
@@ -1514,27 +1517,31 @@ curved $\Ainf$-structure with $m_0 = \kappa \cdot \hbar$.
 \begin{construction}[BV measure and Mumford isomorphism]
 % label removed: constr:bv-mumford
 For a chiral algebra $\cA$ of central charge $c$ and curvature
-$\kappa = c$, the BV partition function at genus $g$ is related to the
-Mumford isomorphism.  The Mumford isomorphism states:
+$\kappa = \kappa(\cA)$, the BV partition function at genus $g$ is
+related to the Mumford isomorphism.  The Mumford isomorphism states:
 \[
 \det(\pi_* \omega_{\cC/\ov{\cM}_g})^{\otimes c}
   \cong
   \lambda_c,
 \]
 where $\lambda_c$ is the $c$-th power of the Hodge bundle determinant.
-The BV measure $\mu^{\mathrm{BV}}_g$ is a section of $\lambda_c^{-1}$,
-and the partition function $Z_g(\cA) = \int_{\ov{\cM}_g}
-\mu^{\mathrm{BV}}_g(\Theta_\cA)$ is the integral of a section of the
-dual Hodge bundle.
+The BV measure $\mu^{\mathrm{BV}}_g$ is a section of a power of the
+dual Hodge bundle determined by $\kappa(\cA)$, and the partition
+function $Z_g(\cA) = \int_{\ov{\cM}_g}
+\mu^{\mathrm{BV}}_g(\Theta_\cA)$ is the corresponding integral.
+Note that $\kappa(\cA)$ is in general distinct from $c$: for Virasoro,
+$\kappa = c/2$; for rank-$N$ Heisenberg, $\kappa = N$; for affine
+$\hat{\fg}_k$, $\kappa = \dim(\fg)(k + h^\vee)/(2h^\vee)$.
 
-For the Heisenberg algebra at rank $N$:
+For the Heisenberg algebra at rank $N$ ($\kappa = N$):
 \[
-Z_g(\cH_N) = \int_{\ov{\cM}_g} \lambda_N^{-1}
-  = \frac{2^{2g-1}-1}{2^{2g-1}}\cdot\frac{|B_{2g}|}{(2g)!} \cdot N^g + \text{lower-order terms},
+Z_g(\cH_N) = N \cdot
+  \frac{2^{2g-1}-1}{2^{2g-1}}\cdot\frac{|B_{2g}|}{(2g)!}
+  + \text{(nonlinear shadow corrections for }g \geq 2\text{)},
 \]
-where $B_{2g}$ is the $2g$-th Bernoulli number.  The leading term
-comes from the Bernoulli contribution to the Hodge integral
-$\int_{\ov{\cM}_g} \lambda_g^{2g-2}$.
+where $B_{2g}$ is the $2g$-th Bernoulli number.  On the proved
+scalar lane, $F_g(\cH_N) = \kappa \cdot \lambda_g^{\mathrm{FP}}$
+is linear in $\kappa = N$ at every genus.
 \end{construction}
 
 \subsection{Anomaly-cancelled partition functions}
