@@ -158,6 +158,8 @@
 \DeclareMathOperator{\End}{End}
 \DeclareMathOperator{\id}{id}
 \DeclareMathOperator{\Sym}{Sym}
+\DeclareMathOperator{\IndCoh}{IndCoh}
+\DeclareMathOperator{\QCoh}{QCoh}
 \DeclareMathOperator{\Sh}{Sh}
 \DeclareMathOperator{\Res}{Res}
 \DeclareMathOperator{\CE}{CE}
@@ -219,10 +221,30 @@
 \providecommand{\cN}{\mathcal{N}}
 \providecommand{\cC}{\mathcal{C}}
 \providecommand{\cH}{\mathcal{H}}
+\providecommand{\fsl}{\mathfrak{sl}}
+\providecommand{\fso}{\mathfrak{so}}
+\providecommand{\fsp}{\mathfrak{sp}}
+\providecommand{\Ran}{\mathrm{Ran}}
+\providecommand{\Loc}{\mathrm{Loc}}
+\providecommand{\cB}{\mathcal{B}}
+\providecommand{\cF}{\mathcal{F}}
+\providecommand{\cG}{\mathcal{G}}
+\providecommand{\cJ}{\mathcal{J}}
+\providecommand{\cL}{\mathcal{L}}
+\providecommand{\cM}{\mathcal{M}}
+\providecommand{\cP}{\mathcal{P}}
+\providecommand{\cR}{\mathcal{R}}
+\providecommand{\cU}{\mathcal{U}}
+\providecommand{\cW}{\mathcal{W}}
+\providecommand{\cZ}{\mathcal{Z}}
 \providecommand{\ov}[1]{\overline{#1}}
 \providecommand{\h}{\hbar}
+\providecommand{\bN}{\mathbb{N}}
+\providecommand{\bP}{\mathbb{P}}
+\providecommand{\bQ}{\mathbb{Q}}
 \providecommand{\bR}{\mathbb{R}}
 \providecommand{\bC}{\mathbb{C}}
+\providecommand{\bZ}{\mathbb{Z}}
 \providecommand{\fg}{\mathfrak{g}}
 \providecommand{\cM}{\mathcal{M}}
 \providecommand{\BDref}[1]{\textup{[\cite{BD04}, #1]}}
@@ -400,6 +422,24 @@ the chirally Koszul locus, the open-colour Koszul dual is a
 dg-shifted Yangian whose spectral Drinfeld class vanishes at
 every filtration for all simple Lie algebras.
 
+The Lagrangian principle organizes both volumes.  The bar
+construction is a shifted Lagrangian embedding
+$\cL_\cA \hookrightarrow \cM_{\mathrm{vac}}$ into the derived
+moduli of local bulk vacua; the Swiss-cheese coalgebra is its
+self-intersection $\cL_\cA \times_{\cM_{\mathrm{vac}}} \cL_\cA$.
+The five theorems of Volume~I are five faces of this Lagrangian:
+bar-cobar adjunction is the neighbourhood theorem, Koszul
+inversion is formal Darboux, complementarity is the pair of
+complementary Lagrangians, the modular characteristic
+$\kappa(\cA) \cdot \omega_g$ is the curvature of the family
+over~$\overline{\cM}_g$, and the Hochschild ring is the ring of
+functions on the self-intersection.  Gravitational S-duality
+arises from Verdier intertwining: the exchange
+$\barB(\cA) \mapsto \mathbb{D}_{\Ran}(\barB(\cA)) \simeq
+\barB(\cA^!)$ transposes boundary conditions ($c \mapsto 26-c$
+for Virasoro), identifying the matter and ghost sectors as
+Lagrangian complements.
+
 PVA descent extracts a $(-1)$-shifted Poisson vertex algebra on
 cohomology: Jacobi from the three-face Stokes identity on
 $\FM_3(\C)$, Leibniz from regular-part factorization, vanishing
@@ -411,17 +451,75 @@ Yang--Baxter from the same $\FM_3(\C)$ boundary cancellation.
 For affine Kac--Moody on evaluation modules, the reduced braided
 line category identifies with the corresponding quantum group
 category, and the colored Jones polynomial is recovered from
-bar-complex monodromy.
+bar-complex monodromy: the KZ connection on
+$\FM_k(\C) \setminus \bigcup D_S$ braids the bar elements,
+and its holonomy in each irreducible summand evaluates the
+colored Jones invariant of the resulting braid closure.
+
+The gravitational $\Ainf$ tower has closed-form structure.
+The field polynomial at the symmetric point factorises as
+$\varphi_k(x) = (-1)^n C_n \prod_{m=2}^{k}(x+m)$, where
+$C_n$ is the $n$-th Catalan number ($k = 2n{+}3$ odd; the
+polynomial vanishes identically for even~$k$).  The Catalan
+factor counts planar binary trees on $\Conf_k^<(\R)$, the
+topological colour; the Pochhammer factor
+$\prod(x+m)$ records $L_0$-eigenvalues on $\FM_k(\C)$, the
+holomorphic colour.  The scalar shadow obeys the closed-form
+formula $S_r = (-6)^{r-4}\,D/(2r\,c^{r-3})\,F_r(D/144)$,
+where $D = 8\kappa S_4$ is the critical discriminant and $F_r$
+is a polynomial with Catalan coefficients.
 
 At genus~$g \ge 1$, the curvature
 $d_{\mathrm{fib}}^{\,2} = \kappa(\cA) \cdot \omega_g$ from the
-Hodge bundle produces a curved $\SCchtop$-algebra.  The total
-differential restores flatness over~$\overline{\cM}_g$.  The
-3d Maurer--Cartan element $\alpha_T \in \mathrm{MC}(\gSC_T)$
-packages the full holomorphic-topological system: its six
-projections recover the boundary algebra, line operations,
-spectral $R$-matrix, bulk-boundary comparison, genus tower,
-and PVA bracket.
+Hodge bundle produces a curved $\SCchtop$-algebra.
+The annular bar complex extracts five quantum chaos diagnostics:
+the spectral form factor (slope-ramp-plateau decomposition from
+the genus tower), out-of-time-order correlators as $R$-matrix
+traces on $\FM_4(\C)$, the Maldacena--Shenker--Stanford bound
+$\lambda_L \le 2\pi/\beta$ as a consequence of
+$d_{\mathrm{fib}}^2 = \kappa \cdot \omega_1$, the scrambling
+time $t_* \sim (\beta/2\pi)\log c$ from the arity transition in
+the ordered bar complex, and random-matrix universality from
+eigenvalue statistics of the annular fibre differential.
+The total differential restores flatness
+over~$\overline{\cM}_g$.  The 3d Maurer--Cartan element
+$\alpha_T \in \mathrm{MC}(\gSC_T)$ packages the full
+holomorphic-topological system: its six projections recover the
+boundary algebra, line operations, spectral $R$-matrix,
+bulk-boundary comparison, genus tower, and PVA bracket.
+
+The shadow depth classification (classes $\mathbf{G}$, $\mathbf{L}$,
+$\mathbf{C}$, $\mathbf{M}$ of termination arities $2$, $3$, $4$,
+$\infty$) equals the operadic complexity:
+$r_{\max}(\cA) = d_\infty(\cA) = f_\infty(\cA)$, the
+$A_\infty$-depth equals the $L_\infty$-formality level.  The
+Drinfeld--Sokolov ghost-number obstruction kills the HPL-transferred
+coproduct at every arity for all principal reductions and all
+simple~$\fg$; the gravitational coproduct is strictly primitive,
+and all higher-spin gravitons in $\cW_N$-gravity
+share this property.
+
+New example families extend the standard landscape.  Coulomb branch
+vertex algebras of $3$d $\cN=4$ gauge theories exhibit the
+progression $\mathbf{L} \to \mathbf{L} \to \mathbf{M}$ as rank
+increases: abelian theories are class~$\mathbf{L}$, non-abelian
+theories of rank~$\ge 3$ are class~$\mathbf{M}$.  Cohomological
+Hall algebras of quivers produce bar-DT dictionaries in which the
+MacMahon function is the bar Poincar\'e series.  The complete orbit
+landscape for non-principal $\mathcal{W}$-algebras of
+$\mathfrak{sl}_4$ (six nilpotent orbits, four distinct bar-complex
+types) is computed.  Coset and orbifold bar complexes are treated
+by equivariant bar constructions.
+
+For chirally Koszul algebras with semisimple genus-$0$ Frobenius
+structure, the tautological relations descended from the MC equation
+generate the Pixton ideal
+$\cP^*(\overline{\cM}_g)$, via the chain
+MC $\to$ KdV $\to$ $r$-spin $\to$ Pixton
+(using Faber--Shadrin--Zvonkine and
+Pandharipande--Pixton--Zvonkine).  The shadow CohFT satisfies the
+string equation unconditionally at rank~$1$, bypassing the flat-unit
+obstruction of AP30 through double-ramification cycles.
 \end{abstract}
 
 \bigskip
@@ -611,7 +709,10 @@ constructed from the Swiss-cheese structure via
 \input{chapters/theory/raviolo}
 \input{chapters/theory/raviolo-restriction}
 \input{chapters/theory/fm-calculus}
+\input{appendices/orientations}
+\input{appendices/fm-proofs}
 \input{chapters/theory/pva-descent-repaired}
+\input{appendices/pva-expanded-repaired}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \part{The Standard HT Landscape}
@@ -882,9 +983,6 @@ depends on material in this part.
 \appendix
 
 \input{appendices/brace-signs}
-\input{appendices/orientations}
-\input{appendices/fm-proofs}
-\input{appendices/pva-expanded-repaired}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % BIBLIOGRAPHY
@@ -919,6 +1017,8 @@ depends on material in this part.
 \bibitem{BrochierWoike2022} A.~Brochier and L.~Woike, \emph{A classification of modular functors via factorization homology}, arXiv:2212.11259, 2022.
 
 \bibitem{BV73} J.\,M.~Boardman and R.\,M.~Vogt, \emph{Homotopy Invariant Algebraic Structures on Topological Spaces}, Lecture Notes in Math., vol.~347, Springer, 1973.
+
+\bibitem{Bur15} A.~Buryak, \emph{Double ramification cycles and integrable hierarchies}, Comm.\ Math.\ Phys.\ \textbf{336} (2015), no.~3, 1085--1107, arXiv:1403.1719.
 
 \bibitem{CDM12} S.~Chmutov, S.~Duzhin, and J.~Mostovoy, \emph{Introduction to Vassiliev Knot Invariants}, Cambridge Univ.\ Press, 2012.
 
@@ -959,6 +1059,8 @@ depends on material in this part.
 \bibitem{FM94} W.~Fulton and R.~MacPherson, \emph{A compactification of configuration spaces}, Ann.\ of Math.\ \textbf{139} (1994), 183--225.
 
 \bibitem{FMS86} D.~Friedan, E.~Martinec, and S.~Shenker, \emph{Conformal invariance, supersymmetry and string theory}, Nucl.\ Phys.\ B \textbf{271} (1986), 93--165.
+
+\bibitem{FSZ10} C.~Faber, S.~Shadrin, and D.~Zvonkine, \emph{Tautological relations and the $r$-spin Witten conjecture}, Ann.\ Sci.\ \'Ec.\ Norm.\ Sup\'er.\ \textbf{43} (2010), no.~4, 621--658, arXiv:math/0612510.
 
 \bibitem{GGW21} O.~Gwilliam, R.~Grady, and B.~Williams, \emph{Renormalization of holomorphic field theories}, Selecta Math.\ \textbf{27} (2021), Paper No.~69.
 
@@ -1020,6 +1122,8 @@ depends on material in this part.
 \bibitem{Pol98} J.~Polchinski, \emph{String Theory}, vols.~1--2, Cambridge Univ.\ Press, 1998.
 
 \bibitem{PT01} B.~Ponsot and J.~Teschner, \emph{Clebsch--Gordan and Racah--Wigner coefficients for a continuous series of representations of $\mathcal{U}_q(\mathfrak{sl}(2,\mathbb{R}))$}, Comm.\ Math.\ Phys.\ \textbf{224} (2001), 613--655, arXiv:math/0007097.
+
+\bibitem{PPZ15} R.~Pandharipande, A.~Pixton, and D.~Zvonkine, \emph{Relations on $\overline{\mathcal{M}}_{g,n}$ via $3$-spin structures}, J.\ Amer.\ Math.\ Soc.\ \textbf{28} (2015), no.~1, 279--309, arXiv:1303.1043.
 
 \bibitem{ProchazkRapcak2018} T.~Proch\'azka and M.~Rap\v{c}\'ak, \emph{Webs of $W$-algebras}, J.\ High Energy Phys.\ \textbf{2018} (2018), no.~11, 109, arXiv:1711.01006.
 
