@@ -159,19 +159,13 @@ factorization-algebraic input of this chapter.
 \label{sec:worked-examples-factorization}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-Before developing the general theory, we compute the factorization
-Swiss-cheese structure for the three canonical examples: the free boson
-(Heisenberg), the affine Kac--Moody algebra, and the Virasoro
-algebra.  These three examples illustrate the full range of the
-theory's complexity: Heisenberg has trivial bar differential
-($d_{\barB} = 0$, class~$\mathbf{G}$), affine Kac--Moody has
-nontrivial $m_2$ but trivial $m_{k \geq 3}$ (class~$\mathbf{L}$),
-and Virasoro has genuinely infinite $A_\infty$ structure driven by
-the quartic OPE pole (class~$\mathbf{M}$).
-Each computation is carried out in explicit coordinates,
-with all signs and structure maps written out.  The general
-definitions and constructions follow in
-Sections~\ref{sec:BD-factorization-SC}--\ref{sec:factorization-koszul-duality}.
+The three canonical examples already exhibit the full range of complexity.
+The Heisenberg algebra has trivial bar differential ($d_{\barB} = 0$, class~$\mathbf{G}$).
+Affine Kac--Moody has nontrivial $m_2$ but $m_{k \geq 3} = 0$ (class~$\mathbf{L}$):
+double-pole OPE, cubic shadow terminates.
+Virasoro has genuinely infinite $A_\infty$ structure driven by the quartic pole (class~$\mathbf{M}$):
+the shadow obstruction tower does not terminate.
+Each computation is carried out in explicit coordinates with all signs and structure maps written out.
 
 %%----------------------------------------------------------------------
 \subsection{The Heisenberg algebra (free boson)}
@@ -390,39 +384,23 @@ and $f^{ab}_{\ \ c}$ are the structure constants.
 \smallskip\noindent
 \textbf{Modular characteristic from the tadpole.}
 The modular characteristic $\kappa(\hat\fg_k)$ is computed from the
-self-contraction (tadpole graph): the one-loop Feynman diagram with
-a single vertex and one internal edge, contributing
-\begin{equation}\label{eq:tadpole-trace}
-  \kappa(\hat\fg_k)
-  \;=\;
-  \sum_{a=1}^{d} \Res_{z=w}
-  \Bigl[\frac{k\,\kappa^{aa}}{(z-w)^2}\Bigr]
-  \;=\;
-  k \cdot \sum_a \kappa^{aa}
-  \;=\;
-  k \cdot d,
-\end{equation}
-using $\sum_a \kappa^{aa} = \operatorname{Tr}_\fg(\id) = d = \dim\fg$
-(the trace of the identity in the Killing normalisation).  However,
-this must be corrected for the Sugawara shift: the true modular
-characteristic includes the contribution from the Sugawara stress tensor
-$T = \frac{1}{2(k+h^\vee)}\sum_a {:}J^a J^a{:}$, which shifts the
-effective level by $h^\vee$.  The corrected formula is
+genus-$1$ self-contraction (tadpole graph).  The bar propagator is
+$d\log(z-w)$; the double-pole OPE term $k\kappa^{aa}/(z-w)^2$, after
+absorbing one power via the $d\log$ kernel (AP19: the bar kernel
+reduces pole order by one), contributes a simple-pole residue
+$k\kappa^{aa}$ at self-contraction.  Summing over the basis and
+including the Sugawara normal-ordering shift from
+$T = \frac{1}{2(k+h^\vee)}\sum_a {:}J^a J^a{:}$:
 \begin{equation}\label{eq:modular-char-affine}
   \kappa(\hat\fg_k)
   \;=\;
-  \frac{(k + h^\vee) \cdot d}{2h^\vee}
-  \;=\;
-  \frac{k \cdot d}{2h^\vee} + \frac{d}{2},
+  \frac{(k + h^\vee) \cdot d}{2h^\vee},
 \end{equation}
-where the second term $d/2$ is the one-loop shift from normal
-ordering (the vacuum anomaly).  At $k = 0$:
-$\kappa(\hat\fg_0) = d/2$, the half-dimension of~$\fg$
-(the pure vacuum anomaly).  At $k = -h^\vee$: the Sugawara tensor
-is undefined, $\kappa(\hat\fg_{-h^\vee}) = 0$ (the bar complex
-is flat), and the construction requires the Feigin--Frenkel
-centre (the critical level is a different story, as cautioned in
-the Critical Pitfalls).
+where $d = \dim\fg$ and $h^\vee$ is the dual Coxeter number.
+At $k = 0$: $\kappa(\hat\fg_0) = d/2$ (pure vacuum anomaly).
+At $k = -h^\vee$: the Sugawara tensor is undefined and the
+construction requires the Feigin--Frenkel centre; we have
+$\kappa(\hat\fg_{-h^\vee}) = 0$ and the bar complex is flat.
 
 \smallskip\noindent
 \textbf{Genus-$1$ bar differential.}
@@ -2015,7 +1993,7 @@ $\Omegach(\barB(F)) \simeq F$: at genus~$0$, the
 Feynman transform reduces to the cobar functor $\Omegach$,
 and $\mathrm{FT}^2 \simeq \id$ specialises to
 Part~(ii).  At genus~$g \geq 1$, the Feynman transform
-additionally sums over nonseparating edge contractions
+also sums over nonseparating edge contractions
 (the genus-raising moves), and the involutivity
 $\mathrm{FT}^2 \simeq \id$ ensures that this sum produces
 a quasi-inverse to the bar construction.
