@@ -2447,16 +2447,28 @@ def euler_eta_rank2(g: LieAlgebraData) -> Dict[str, Any]:
 def casimir_in_defining_rep(g: LieAlgebraData, basis_mats: List[np.ndarray]) -> np.ndarray:
     r"""Compute the Casimir tensor Omega in a given representation.
 
-    Omega_rep = sum_{a,b} kappa^{ab} rho(t_a) x rho(t_b)
+    Omega_rep = sum_{a,b} kappa_rep^{ab} rho(t_a) x rho(t_b)
 
-    where kappa^{ab} is the inverse of the Killing form, and rho(t_a)
-    are the representation matrices.
+    where kappa_rep^{ab} is the inverse of the representation-derived
+    Killing form kappa_rep[a,b] = Tr(rho(t_a) rho(t_b)).
+
+    Using the rep-derived form (rather than the abstract g.kappa) ensures
+    consistent normalization: the abstract Killing form and the rep trace
+    differ by the Dynkin index I_rho, and for non-simply-laced algebras
+    (B_2, C_2, G_2) the root-length-dependent scaling must be absorbed.
 
     Returns Omega_rep as a (dim_rep^2 x dim_rep^2) matrix.
     """
-    omega = casimir_tensor(g)
     dim_rep = basis_mats[0].shape[0]
-    d = g.dim
+    d = len(basis_mats)
+
+    # Compute Killing form from the representation itself
+    kappa_rep = np.zeros((d, d))
+    for a in range(d):
+        for b in range(d):
+            kappa_rep[a, b] = np.trace(basis_mats[a] @ basis_mats[b])
+
+    omega = np.linalg.inv(kappa_rep)
 
     Omega_rep = np.zeros((dim_rep**2, dim_rep**2))
     for a in range(d):
