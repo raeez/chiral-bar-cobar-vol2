@@ -246,6 +246,10 @@ All Vol I anti-patterns AP1-AP34 apply here. In particular, AP34 (bar-cobar inve
 | FG-shadow-stratification | Commutator filtration spectral sequence; E_1-page = FG bar | conj:FG-shadow (now theorem) | Proved |
 | Gauge-gravity dichotomy | m_k=0 (gauge) vs m_k≠0 (gravity); DS transports L→M | rem:gauge-gravity-yangian-dichotomy | Proved |
 
+## Agent Anti-Patterns (AAP1-AAP8)
+
+Cross-volume agent workflow anti-patterns identified from 300-commit archaeology. See Vol I CLAUDE.md for full descriptions. Summary: AAP1 (tool-markup leak into .tex), AAP2 (fragmented terminology renames), AAP3 (formula reimplemented N times in compute), AAP4 (\\begin{proof} after \\begin{conjecture}), AAP5 (build-artifact commit noise), AAP6 (status oscillation across sessions), AAP7 (intra-file formula inconsistency), AAP8 (README/metadata documentation drift). These operate at the agent workflow layer, distinct from AP1-AP58 which catch mathematical and E₁/E_∞ errors.
+
 ## Build
 
 ```
