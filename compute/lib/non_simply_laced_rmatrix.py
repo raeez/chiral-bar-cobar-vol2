@@ -1363,6 +1363,12 @@ def run_full_computation(k: float = 1.0, verbose: bool = True) -> Dict[str, Any]
 # 7. G_2 LIE ALGEBRA DATA
 # =============================================================================
 
+# Cache for G_2 basis matrices populated by _build_g2_from_matrices.
+# This ensures _get_g2_7dim_matrices returns the SAME matrices used to
+# derive the structure constants in make_G2().f, avoiding the sign-convention
+# mismatch that arises from independent brute-force sign searches.
+_g2_build_basis_mats = None
+
 def _build_g2_from_matrices() -> LieAlgebraData:
     r"""Build G_2 from the 7-dimensional representation.
 
@@ -2148,6 +2154,11 @@ def _build_g2_from_matrices() -> LieAlgebraData:
         'h_1', 'h_2',
     ]
 
+    # Cache the basis matrices so that _get_g2_7dim_matrices returns the
+    # exact same matrices used to derive the structure constants below.
+    global _g2_build_basis_mats
+    _g2_build_basis_mats = [m.copy() for m in basis_mats]
+
     dim = 14
 
     # Build Gram matrix for decomposition (trace form in 7-dim rep)
@@ -2798,157 +2809,23 @@ def _get_sl3_3dim_matrices() -> List[np.ndarray]:
 def _get_g2_7dim_matrices() -> List[np.ndarray]:
     """Return the 14 basis matrices of G_2 in the 7-dim rep.
 
-    These are extracted from the _build_g2_from_matrices construction.
+    Returns the SAME matrices used by _build_g2_from_matrices to derive
+    the structure constants in make_G2().f.  This guarantees that
+    [rho(t_a), rho(t_b)] = sum_c f^c_{ab} rho(t_c) holds exactly.
+
+    The matrices are cached during the first call to make_G2() /
+    _build_g2_from_matrices().  If that has not yet been called,
+    calling this function triggers it.
     """
-    g = make_G2()
-    # Rebuild to get the matrices
-    # (We stored the structure constants and Killing form, but not the matrices.
-    # We need to reconstruct them.)
-    # Actually, let me cache them.
-    return _g2_basis_mats_cache()
+    global _g2_build_basis_mats
+    if _g2_build_basis_mats is None:
+        make_G2()  # populates _g2_build_basis_mats as a side effect
+    return _g2_build_basis_mats
 
-
-# Cache for G_2 basis matrices
-_g2_cache = None
 
 def _g2_basis_mats_cache():
-    global _g2_cache
-    if _g2_cache is not None:
-        return _g2_cache
-
-    # Rebuild G_2 matrices
-    n = 7
-
-    def E(i, j):
-        M = np.zeros((n, n))
-        M[i, j] = 1.0
-        return M
-
-    weights_in_simple = [
-        (2, 1), (1, 1), (1, 0), (0, 0), (-1, 0), (-1, -1), (-2, -1),
-    ]
-
-    A = np.array([[2, -1], [-3, 2]], dtype=float)
-
-    h1_eigenvalues = [n1 * A[0, 0] + n2 * A[1, 0] for (n1, n2) in weights_in_simple]
-    h2_eigenvalues = [n1 * A[0, 1] + n2 * A[1, 1] for (n1, n2) in weights_in_simple]
-
-    H1 = np.diag(h1_eigenvalues)
-    H2 = np.diag(h2_eigenvalues)
-
-    sqrt2 = np.sqrt(2)
-    abs_vals = [1.0, sqrt2, sqrt2, 1.0, 1.0, 1.0]
-
-    from itertools import product as iprod
-
-    best_signs = None
-    best_serre_err = float('inf')
-
-    for signs in iprod([-1, 1], repeat=6):
-        aa, bb, cc, dd, pp, qq = [s * v for s, v in zip(signs, abs_vals)]
-        e1 = aa*E(0,1) + bb*E(2,3) + cc*E(3,4) + dd*E(5,6)
-        e2 = pp*E(1,2) + qq*E(4,5)
-        f1 = aa*E(1,0) + bb*E(3,2) + cc*E(4,3) + dd*E(6,5)
-        f2 = pp*E(2,1) + qq*E(5,4)
-
-        comm_ef1 = e1 @ f1 - f1 @ e1
-        if not np.allclose(comm_ef1, H1, atol=1e-12):
-            continue
-        comm_ef2 = e2 @ f2 - f2 @ e2
-        if not np.allclose(comm_ef2, H2, atol=1e-12):
-            continue
-
-        c1 = e2 @ e1 - e1 @ e2
-        s1 = e2 @ c1 - c1 @ e2
-        err1 = np.max(np.abs(s1))
-
-        c2_1 = e1 @ e2 - e2 @ e1
-        c2_2 = e1 @ c2_1 - c2_1 @ e1
-        c2_3 = e1 @ c2_2 - c2_2 @ e1
-        c2_4 = e1 @ c2_3 - c2_3 @ e1
-        err2 = np.max(np.abs(c2_4))
-
-        total_err = err1 + err2
-        if total_err < best_serre_err:
-            best_serre_err = total_err
-            best_signs = signs
-
-    if best_serre_err > 1e-8:
-        for signs_e in iprod([-1, 1], repeat=6):
-            for signs_f in iprod([-1, 1], repeat=6):
-                aa, bb, cc, dd, pp, qq = [s * v for s, v in zip(signs_e, abs_vals)]
-                aaf, bbf, ccf, ddf, ppf, qqf = [s * v for s, v in zip(signs_f, abs_vals)]
-
-                e1 = aa*E(0,1) + bb*E(2,3) + cc*E(3,4) + dd*E(5,6)
-                e2 = pp*E(1,2) + qq*E(4,5)
-                f1 = aaf*E(1,0) + bbf*E(3,2) + ccf*E(4,3) + ddf*E(6,5)
-                f2 = ppf*E(2,1) + qqf*E(5,4)
-
-                comm_ef1 = e1 @ f1 - f1 @ e1
-                if not np.allclose(comm_ef1, H1, atol=1e-12):
-                    continue
-                comm_ef2 = e2 @ f2 - f2 @ e2
-                if not np.allclose(comm_ef2, H2, atol=1e-12):
-                    continue
-
-                c1 = e2 @ e1 - e1 @ e2
-                s1 = e2 @ c1 - c1 @ e2
-                err1 = np.max(np.abs(s1))
-
-                c2_1 = e1 @ e2 - e2 @ e1
-                c2_2 = e1 @ c2_1 - c2_1 @ e1
-                c2_3 = e1 @ c2_2 - c2_2 @ e1
-                c2_4 = e1 @ c2_3 - c2_3 @ e1
-                err2 = np.max(np.abs(c2_4))
-
-                total_err = err1 + err2
-                if total_err < best_serre_err:
-                    best_serre_err = total_err
-                    best_signs = (signs_e, signs_f)
-
-        signs_e, signs_f = best_signs
-        aa, bb, cc, dd, pp, qq = [s * v for s, v in zip(signs_e, abs_vals)]
-        aaf, bbf, ccf, ddf, ppf, qqf = [s * v for s, v in zip(signs_f, abs_vals)]
-    else:
-        aa, bb, cc, dd, pp, qq = [s * v for s, v in zip(best_signs, abs_vals)]
-        aaf, bbf, ccf, ddf, ppf, qqf = aa, bb, cc, dd, pp, qq
-
-    ea1 = aa*E(0,1) + bb*E(2,3) + cc*E(3,4) + dd*E(5,6)
-    ea2 = pp*E(1,2) + qq*E(4,5)
-    fa1 = aaf*E(1,0) + bbf*E(3,2) + ccf*E(4,3) + ddf*E(6,5)
-    fa2 = ppf*E(2,1) + qqf*E(5,4)
-
-    ea1a2 = ea1 @ ea2 - ea2 @ ea1
-    e2a1a2 = ea1 @ ea1a2 - ea1a2 @ ea1
-    e3a1a2 = ea1 @ e2a1a2 - e2a1a2 @ ea1
-    e3a12a2 = ea2 @ e3a1a2 - e3a1a2 @ ea2
-
-    fa1a2 = fa1 @ fa2 - fa2 @ fa1
-    f2a1a2 = fa1 @ fa1a2 - fa1a2 @ fa1
-    f3a1a2 = fa1 @ f2a1a2 - f2a1a2 @ fa1
-    f3a12a2 = fa2 @ f3a1a2 - f3a1a2 @ fa2
-
-    # Normalise composite roots
-    for e_mat, f_mat, h_target in [
-        (ea1a2, fa1a2, H1 + H2),
-        (e2a1a2, f2a1a2, 2*H1 + H2),
-        (e3a1a2, f3a1a2, 3*H1 + H2),
-        (e3a12a2, f3a12a2, 3*H1 + 2*H2),
-    ]:
-        comm = e_mat @ f_mat - f_mat @ e_mat
-        nz = np.abs(h_target) > 0.1
-        if np.any(nz):
-            ratios = comm[nz] / h_target[nz]
-            ratio = ratios[0]
-            if abs(ratio) > 1e-14 and abs(abs(ratio) - 1.0) > 1e-10:
-                scale = np.sqrt(abs(ratio))
-                e_mat[:] = e_mat / scale
-                f_mat[:] = f_mat / scale * np.sign(ratio)
-
-    _g2_cache = [ea1, ea2, ea1a2, e2a1a2, e3a1a2, e3a12a2,
-                 fa1, fa2, fa1a2, f2a1a2, f3a1a2, f3a12a2,
-                 H1, H2]
-    return _g2_cache
+    """Legacy alias for _get_g2_7dim_matrices."""
+    return _get_g2_7dim_matrices()
 
 
 def ds_reduction_rank2() -> Dict[str, Any]:
