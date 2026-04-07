@@ -14,7 +14,7 @@
 
 <br>
 
-![Pages](https://img.shields.io/badge/pages-1511-a371f7?style=for-the-badge&labelColor=0d1117)
+![Pages](https://img.shields.io/badge/pages-1518-a371f7?style=for-the-badge&labelColor=0d1117)
 ![Claims](https://img.shields.io/badge/tagged%20claims-2376-3fb950?style=for-the-badge&labelColor=0d1117)
 ![Build](https://img.shields.io/badge/build-passing-3fb950?style=for-the-badge&labelColor=0d1117)
 
