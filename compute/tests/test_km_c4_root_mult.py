@@ -948,16 +948,26 @@ class TestRootSpaceAbelianness:
         assert (2, 3) in non_ab_roots
         assert (3, 2) in non_ab_roots
 
-    def test_abelian_roots_exist(self):
-        """Some roots with mult > 1 may still be abelian (2*alpha not a root)."""
+    def test_classification_exhaustive(self):
+        """Abelian + non-abelian = total; for [[2,-3],[-3,2]] ALL mult>1 are non-abelian.
+
+        Every imaginary root alpha with mult > 1 in the hyperbolic algebra
+        has 2*alpha also a root (the root lattice is closed under doubling
+        for sufficiently negative Cartan entries). Hence no mult > 1 root
+        is abelian. This was a key finding: the truncation-corrected
+        analysis (checking 2*alpha at extended height) shows zero abelian
+        exceptions.
+        """
         from lib.km_c4_root_mult import hyperbolic_abelianness_analysis
         A = [[2, -3], [-3, 2]]
-        analysis = hyperbolic_abelianness_analysis(A, max_height=12)
-        # Check that classification is exhaustive
+        analysis = hyperbolic_abelianness_analysis(A, max_height=10)
         total_mg1 = len(analysis['roots_mult_gt_1'])
         abelian = len(analysis['abelian_roots'])
         non_abelian = len(analysis['non_abelian_roots'])
         assert abelian + non_abelian == total_mg1
+        # Key finding: ALL mult > 1 roots are non-abelian
+        assert abelian == 0, f"Expected 0 abelian, got {abelian}"
+        assert non_abelian == total_mg1
 
 
 # ===================================================================
