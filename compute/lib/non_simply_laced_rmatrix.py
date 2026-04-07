@@ -834,31 +834,15 @@ def make_C2() -> LieAlgebraData:
 # =============================================================================
 
 def rep_rmatrix_B2_defining(g: LieAlgebraData, k: float) -> np.ndarray:
-    r"""Compute the R-matrix in the 5-dimensional defining representation of so(5).
+    r"""Compute the R-matrix in the 4-dimensional fundamental of sp(4) (= spin rep of so(5)).
 
-    The 5-dim rep of so(5) = B_2 has R(z) = k/z * sum_{a,b} kappa^{ab} rho(t_a) x rho(t_b).
+    Uses the 4-dim fundamental representation of sp(4).  Under the isomorphism
+    so(5) ≅ sp(4), this is the SPIN representation of so(5), not the 5-dim
+    vector representation.  The 5-dim vector rep of so(5) corresponds to the
+    second fundamental (omega_2) of sp(4).
 
-    Since so(5) ≅ sp(4), we first need the 5-dim rep. The 5-dim rep of so(5)
-    is the STANDARD (vector) representation.
-
-    As sp(4), the 5-dim rep decomposes as: 5 = 4 + 1? No, sp(4) in 5 dimensions
-    is the second fundamental (= adjoint of sp(2) = su(2) ≅ so(3), not applicable here).
-
-    Actually, sp(4) has fundamental representations of dimensions 4 and 5.
-    The 4-dim is the standard symplectic rep.
-    The 5-dim is Lambda^2(4) / trivial = the second exterior power modulo a piece.
-    More precisely, for sp(4), the 5-dim irrep has highest weight omega_2
-    (second fundamental weight).
-
-    Under the isomorphism so(5) ≅ sp(4):
-      - The 4-dim rep of sp(4) = the SPIN representation of so(5).
-      - The 5-dim rep of so(5) = the second fundamental of sp(4).
-
-    For now, let me compute in the 4-dim fundamental of sp(4), which is the
-    spin representation of so(5).
-
-    Returns the 4x4 tensor 4x4 = 16x16 matrix for r_{12}(z) = (k/z) * Omega in rep.
-    Actually returns the 16-component tensor Omega_{12} = sum kappa^{ab} rho(t_a) x rho(t_b).
+    Returns the 16-component tensor Omega_{12} = sum kappa^{ab} rho(t_a) x rho(t_b)
+    as a (4^2 x 4^2) = (16 x 16) matrix.
     """
     # Use the 4-dim matrices from our construction
     basis_mats = _get_sp4_basis_matrices()
@@ -2936,7 +2920,7 @@ def run_definitive_rank2(verbose: bool = True) -> Dict[str, Any]:
     from .collision_residue_rmatrix import make_sl3
     algebras = {
         'A_2': (make_sl3, 3, [1, 2]),
-        'B_2': (make_B2, 5, [1, 3]),
+        'B_2': (make_B2, 4, [1, 3]),  # 4-dim = sp(4) fundamental (spin rep of so(5))
         'C_2': (make_C2, 4, [1, 3]),
         'G_2': (make_G2, 7, [1, 5]),
     }
