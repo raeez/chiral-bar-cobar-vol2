@@ -1815,15 +1815,22 @@ def nonsymmetric_hyperbolic_analysis(a: int, b: int,
     The root system is asymmetric: the Weyl group is still infinite
     (for ab > 4), but mult(m,n) != mult(n,m) in general.
 
-    IMPORTANT: For non-symmetric matrices, this function uses Peterson
-    recursion (exact arithmetic via Fraction) rather than the denominator
-    identity, because the denominator identity engine has rounding issues
-    for highly asymmetric Cartan matrices.
+    CAVEAT: Both the denominator identity engine and the Peterson recursion
+    engine use inner_product(alpha, beta, A) = sum A_{ij} m_i n_j, which
+    is NOT symmetric when A is non-symmetric. The correct bilinear form
+    for the Peterson recursion (Kac, Theorem 11.2) is the SYMMETRIZED form
+    (alpha|beta) = sum d_i A_{ij} m_i n_j where d_i A_{ij} = d_j A_{ji}.
+    For non-symmetric A, the current implementation gives UNRELIABLE results.
+
+    This function therefore REQUIRES a == b (symmetric Cartan matrix) for
+    the multiplicity computation. For a != b, it raises an error directing
+    the user to implement the symmetrized bilinear form.
 
     Parameters
     ----------
     a, b : int
         Off-diagonal entries: A = [[2, -a], [-b, 2]] with a, b > 0.
+        Currently requires a == b.
     max_height : int
         Maximum root height.
 
@@ -1834,15 +1841,17 @@ def nonsymmetric_hyperbolic_analysis(a: int, b: int,
     """
     if a * b <= 4:
         raise ValueError(f"Not hyperbolic: a*b = {a*b} <= 4")
+    if a != b:
+        raise NotImplementedError(
+            f"Non-symmetric Cartan matrices [[2,-{a}],[-{b},2]] require "
+            f"a symmetrized bilinear form (d_i A_ij = d_j A_ji). "
+            f"The current inner_product uses the raw Cartan matrix, "
+            f"giving unreliable multiplicities for a != b. "
+            f"Implementation of the symmetrized Peterson recursion is needed."
+        )
 
     A = [[2, -a], [-b, 2]]
-
-    if a == b:
-        # Symmetric: denominator identity is reliable
-        mults = hyperbolic_root_multiplicities(-a, -b, max_height)
-    else:
-        # Non-symmetric: use Peterson recursion (exact arithmetic)
-        mults = peterson_all_roots(A, max_height)
+    mults = hyperbolic_root_multiplicities(-a, -b, max_height)
 
     # Abelianness analysis
     obstruction_roots = []
