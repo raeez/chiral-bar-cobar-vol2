@@ -626,11 +626,15 @@ class TestQuantumCorrectionFormula:
         assert simplify(result['theta_g'] - expected) == 0
 
     def test_genus3_formula_w3(self):
-        """W_3: Theta_3 = (5c/6) * (1/82944)."""
+        """W_3: Theta_3 = kappa(W_3) * lambda_3^FP = (5c/6) * (31/967680).
+
+        lambda_3^FP = (2^5-1)|B_6|/(2^5 * 6!) = 31/967680.
+        kappa(W_3) = 5c/6.
+        """
         from lib.modular_pva_quantization import quantum_correction_formula
         c = Symbol('c')
         result = quantum_correction_formula('w3', 3, c=c)
-        expected = 5 * c / 6 * Rational(1, 82944)
+        expected = 5 * c / 6 * Rational(31, 967680)
         assert simplify(result['theta_g'] - expected) == 0
 
     def test_genus1_proved_status(self):
