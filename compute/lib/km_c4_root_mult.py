@@ -105,7 +105,10 @@ def inner_product(alpha: Tuple[int, ...], beta: Tuple[int, ...],
     For alpha = sum_i m_i alpha_i and beta = sum_j n_j alpha_j:
       (alpha | beta) = sum_{i,j} m_i A_{ij} n_j
 
-    Assumes the Cartan matrix is symmetrizable with all d_i = 1.
+    Assumes the Cartan matrix is SYMMETRIC (a_{01} = a_{10}), so that
+    A itself is a symmetric bilinear form.  For non-symmetric GCM
+    (non-simply-laced), the symmetrised matrix DA should be used instead.
+    This module only handles rank-2 symmetric Cartan matrices.
     """
     rank = len(A)
     return sum(alpha[i] * A[i][j] * beta[j]
