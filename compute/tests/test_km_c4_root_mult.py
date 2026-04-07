@@ -770,6 +770,30 @@ class TestMultiPathVerification:
         assert len(mismatches) == 0, \
             f"Truncation-dependent mults: {mismatches}"
 
+    def test_path7_peterson_crosscheck_full(self):
+        """Path 7: Peterson recursion cross-checks denominator identity at ALL roots.
+
+        The Peterson recursion is an INDEPENDENT method from the
+        denominator identity. Agreement at every root is a strong
+        multi-path verification (AP10 compliance).
+        """
+        from lib.km_c4_root_mult import peterson_multiplicity
+
+        A = [[2, -3], [-3, 2]]
+        mults = hyperbolic_root_multiplicities(-3, -3, max_height=8)
+
+        mismatches = []
+        for alpha, denom_mult in sorted(mults.items(), key=lambda x: sum(x[0])):
+            # Pass known multiplicities at lower heights
+            known = {r: mults[r] for r in mults if sum(r) < sum(alpha)}
+            pet_mult = peterson_multiplicity(alpha, A, known_mults=known)
+            pet_int = round(float(pet_mult))
+            if pet_int != denom_mult:
+                mismatches.append((alpha, pet_int, denom_mult))
+
+        assert len(mismatches) == 0, \
+            f"Peterson vs DenomId mismatches: {mismatches}"
+
     def test_total_mult_partition_identity(self):
         """The sum of all c(alpha) at height h equals the coefficient
         of the negative log of the RHS at height h.
@@ -799,3 +823,598 @@ class TestMultiPathVerification:
                             c_val += mults[red] / d
                 # c_val should be positive for any root
                 assert c_val > 0, f"c({m},{n}) = {c_val} <= 0"
+
+
+# ===================================================================
+# 15. PETERSON RECURSION (independent verification path)
+# ===================================================================
+
+class TestPetersonRecursion:
+    """Peterson recursion as independent verification of root multiplicities.
+
+    The Peterson recursion (Kac, Theorem 11.2) is structurally independent
+    from the Weyl-Kac denominator identity. Agreement is a genuine
+    multi-path verification (AP10).
+    """
+
+    def test_simple_roots(self):
+        """Simple roots have Peterson mult = 1."""
+        from lib.km_c4_root_mult import peterson_multiplicity
+        A = [[2, -3], [-3, 2]]
+        assert peterson_multiplicity((1, 0), A) == 1
+        assert peterson_multiplicity((0, 1), A) == 1
+
+    def test_height_2(self):
+        """Peterson at (1,1) for hyperbolic: mult = 1."""
+        from lib.km_c4_root_mult import peterson_multiplicity
+        A = [[2, -3], [-3, 2]]
+        assert peterson_multiplicity((1, 1), A) == 1
+
+    def test_first_mult_gt_1(self):
+        """Peterson at (2,3): mult = 2, first root with mult > 1."""
+        from lib.km_c4_root_mult import peterson_multiplicity
+        A = [[2, -3], [-3, 2]]
+        mults = hyperbolic_root_multiplicities(-3, -3, max_height=6)
+        known = {r: mults[r] for r in mults if sum(r) < 5}
+        result = peterson_multiplicity((2, 3), A, known_mults=known)
+        assert round(float(result)) == 2
+
+    def test_diagonal_root(self):
+        """Peterson at (3,3): mult = 3."""
+        from lib.km_c4_root_mult import peterson_multiplicity
+        A = [[2, -3], [-3, 2]]
+        mults = hyperbolic_root_multiplicities(-3, -3, max_height=8)
+        known = {r: mults[r] for r in mults if sum(r) < 6}
+        result = peterson_multiplicity((3, 3), A, known_mults=known)
+        assert round(float(result)) == 3
+
+    def test_finite_type_A2(self):
+        """Peterson for A2: highest root (1,1) has mult = 1; (2,0) is not a root."""
+        from lib.km_c4_root_mult import peterson_multiplicity
+        A = [[2, -1], [-1, 2]]
+        assert peterson_multiplicity((1, 1), A) == 1
+        # (2,0) is not a root of A2
+        m = peterson_multiplicity((2, 0), A)
+        assert round(float(m)) == 0
+
+    def test_peterson_vs_denominator_systematic(self):
+        """Systematic comparison of Peterson vs denominator identity up to height 7."""
+        from lib.km_c4_root_mult import peterson_multiplicity
+        A = [[2, -3], [-3, 2]]
+        mults = hyperbolic_root_multiplicities(-3, -3, max_height=8)
+
+        mismatches = []
+        for alpha in sorted(mults.keys(), key=lambda x: (sum(x), x)):
+            if sum(alpha) > 7:
+                continue
+            known = {r: mults[r] for r in mults if sum(r) < sum(alpha)}
+            pet = round(float(peterson_multiplicity(alpha, A, known_mults=known)))
+            if pet != mults[alpha]:
+                mismatches.append((alpha, pet, mults[alpha]))
+
+        assert len(mismatches) == 0, f"Mismatches: {mismatches}"
+
+
+# ===================================================================
+# 16. ROOT SPACE ABELIANNESS
+# ===================================================================
+
+class TestRootSpaceAbelianness:
+    """Abelianness classification for hyperbolic root spaces.
+
+    The key mathematical fact: a root space g_alpha is non-abelian
+    only if mult(alpha) >= 2 AND 2*alpha is a root.
+    """
+
+    def test_simple_roots_abelian(self):
+        """Simple roots have mult = 1, hence trivially abelian."""
+        from lib.km_c4_root_mult import hyperbolic_root_space_abelian
+        A = [[2, -3], [-3, 2]]
+        mults = hyperbolic_root_multiplicities(-3, -3, max_height=8)
+        assert hyperbolic_root_space_abelian((1, 0), A, mults) is True
+        assert hyperbolic_root_space_abelian((0, 1), A, mults) is True
+
+    def test_mult_one_always_abelian(self):
+        """Any root with mult = 1 is trivially abelian."""
+        from lib.km_c4_root_mult import hyperbolic_root_space_abelian
+        A = [[2, -3], [-3, 2]]
+        mults = hyperbolic_root_multiplicities(-3, -3, max_height=10)
+        for alpha, m in mults.items():
+            if m == 1:
+                assert hyperbolic_root_space_abelian(alpha, A, mults) is True, \
+                    f"mult-1 root {alpha} reported as non-abelian"
+
+    def test_first_non_abelian_root(self):
+        """Root (2,3) with mult = 2: non-abelian because 2*(2,3) = (4,6) is a root."""
+        from lib.km_c4_root_mult import hyperbolic_root_space_abelian
+        A = [[2, -3], [-3, 2]]
+        mults = hyperbolic_root_multiplicities(-3, -3, max_height=12)
+        # (2,3) has mult 2
+        assert mults[(2, 3)] == 2
+        # (4,6) must be a root for non-abelianness
+        assert (4, 6) in mults and mults[(4, 6)] >= 1
+        # Therefore non-abelian
+        assert hyperbolic_root_space_abelian((2, 3), A, mults) is False
+
+    def test_full_abelianness_analysis(self):
+        """Full analysis: non-abelian roots exist at height 5."""
+        from lib.km_c4_root_mult import hyperbolic_abelianness_analysis
+        A = [[2, -3], [-3, 2]]
+        analysis = hyperbolic_abelianness_analysis(A, max_height=10)
+        assert analysis['c4_obstruction_exists'] is True
+        assert analysis['first_non_abelian_height'] == 5
+        # (2,3) and (3,2) should be the first non-abelian roots
+        non_ab_roots = {e['root'] for e in analysis['non_abelian_roots']}
+        assert (2, 3) in non_ab_roots
+        assert (3, 2) in non_ab_roots
+
+    def test_abelian_roots_exist(self):
+        """Some roots with mult > 1 may still be abelian (2*alpha not a root)."""
+        from lib.km_c4_root_mult import hyperbolic_abelianness_analysis
+        A = [[2, -3], [-3, 2]]
+        analysis = hyperbolic_abelianness_analysis(A, max_height=12)
+        # Check that classification is exhaustive
+        total_mg1 = len(analysis['roots_mult_gt_1'])
+        abelian = len(analysis['abelian_roots'])
+        non_abelian = len(analysis['non_abelian_roots'])
+        assert abelian + non_abelian == total_mg1
+
+
+# ===================================================================
+# 17. OBSTRUCTION COCYCLE DIMENSIONS
+# ===================================================================
+
+class TestObstructionCocycleDim:
+    """Obstruction cocycle space dimensions at root sectors."""
+
+    def test_mult_one_zero_obstruction(self):
+        """Mult = 1: obstruction dim = 0."""
+        from lib.km_c4_root_mult import obstruction_cocycle_dim
+        result = obstruction_cocycle_dim(1, False, 3)
+        assert result['obstruction_dim'] == 0
+        assert result['mechanism'] == 'root_space_one_dimensionality'
+
+    def test_abelian_zero_obstruction(self):
+        """Mult > 1, abelian: obstruction dim = 0 (full Cartan gauge)."""
+        from lib.km_c4_root_mult import obstruction_cocycle_dim
+        result = obstruction_cocycle_dim(5, True, 4)
+        assert result['obstruction_dim'] == 0
+        assert result['mechanism'] == 'abelian_gauge_twist'
+        assert result['gauge_dim'] == 5  # Full Cartan twist
+
+    def test_non_abelian_positive_obstruction(self):
+        """Mult > 1, non-abelian: obstruction may be positive."""
+        from lib.km_c4_root_mult import obstruction_cocycle_dim
+        result = obstruction_cocycle_dim(2, False, 5)
+        # mult=2, height=5: free_ml = min(4!, 2) = 2
+        # rigidity = 1, gauge = 2 (inner autos of 2-dim non-abelian)
+        assert result['cocycle_dim'] == 2
+        assert result['equations_from_rigidity'] == 1
+
+    def test_high_mult_large_obstruction(self):
+        """High mult, non-abelian: large obstruction space."""
+        from lib.km_c4_root_mult import obstruction_cocycle_dim
+        result = obstruction_cocycle_dim(16, False, 10)
+        assert result['obstruction_dim'] > 0
+        assert result['cocycle_dim'] == 16  # min(9!, 16) = 16
+
+    def test_obstruction_grows_with_mult(self):
+        """Obstruction dimension grows with multiplicity (non-abelian)."""
+        from lib.km_c4_root_mult import obstruction_cocycle_dim
+        obs_dims = []
+        for m in [2, 4, 8, 16]:
+            result = obstruction_cocycle_dim(m, False, 10)
+            obs_dims.append(result['obstruction_dim'])
+        # Should be non-decreasing
+        for i in range(1, len(obs_dims)):
+            assert obs_dims[i] >= obs_dims[i - 1]
+
+
+# ===================================================================
+# 18. GROWTH RATE ANALYSIS
+# ===================================================================
+
+class TestGrowthRate:
+    """Multiplicity growth rate analysis."""
+
+    def test_finite_bounded(self):
+        """Finite type: bounded growth."""
+        from lib.km_c4_root_mult import multiplicity_growth_analysis
+        A = [[2, -1], [-1, 2]]  # A2
+        result = multiplicity_growth_analysis(A)
+        assert result['growth'] == 'bounded'
+
+    def test_affine_constant(self):
+        """Affine type: constant growth (mult = rank for imaginary)."""
+        from lib.km_c4_root_mult import multiplicity_growth_analysis
+        A = [[2, -2], [-2, 2]]  # A1^(1)
+        result = multiplicity_growth_analysis(A)
+        assert result['growth'] == 'constant'
+
+    def test_hyperbolic_exponential(self):
+        """Hyperbolic type: exponential growth."""
+        from lib.km_c4_root_mult import multiplicity_growth_analysis
+        A = [[2, -3], [-3, 2]]
+        result = multiplicity_growth_analysis(A, max_height=10)
+        assert result['growth'] == 'exponential'
+        assert result['avg_growth_ratio'] > 1.3
+
+    def test_diagonal_mult_sequence(self):
+        """Diagonal multiplicities (n,n) form an increasing sequence."""
+        from lib.km_c4_root_mult import multiplicity_growth_analysis
+        A = [[2, -3], [-3, 2]]
+        result = multiplicity_growth_analysis(A, max_height=12)
+        diag = result['diagonal_mults']
+        # Known: mult(1,1)=1, (2,2)=1, (3,3)=3, (4,4)=6, (5,5)=16
+        assert len(diag) >= 5
+        for i in range(1, len(diag)):
+            assert diag[i][1] >= diag[i - 1][1]
+
+    def test_more_hyperbolic_faster_growth(self):
+        """[[2,-4],[-4,2]] grows faster than [[2,-3],[-3,2]]."""
+        from lib.km_c4_root_mult import multiplicity_growth_analysis
+        A3 = [[2, -3], [-3, 2]]
+        A4 = [[2, -4], [-4, 2]]
+        r3 = multiplicity_growth_analysis(A3, max_height=8)
+        r4 = multiplicity_growth_analysis(A4, max_height=8)
+        assert r4['max_mult'] >= r3['max_mult']
+
+
+# ===================================================================
+# 19. AFFINE STRICTIFICATION PROOF
+# ===================================================================
+
+class TestAffineStrictificationProof:
+    """Detailed affine strictification proof pathway."""
+
+    def test_sl2_hat_proof(self):
+        """sl_2^hat: all mult = 1, standard argument suffices."""
+        from lib.km_c4_root_mult import affine_strictification_proof
+        result = affine_strictification_proof('A', 1)
+        assert result['c4_holds'] is True
+        assert result['proof_sectors']['real']['multiplicity'] == 1
+        assert result['proof_sectors']['imaginary']['abelian'] is True
+
+    def test_sl3_hat_proof(self):
+        """sl_3^hat: real mult=1, imaginary mult=2 but abelian."""
+        from lib.km_c4_root_mult import affine_strictification_proof
+        result = affine_strictification_proof('A', 2)
+        assert result['c4_holds'] is True
+        assert result['proof_sectors']['imaginary']['multiplicity'] == 2
+        assert result['proof_sectors']['imaginary']['abelian'] is True
+        assert result['proof_sectors']['imaginary']['mechanism'] == 'abelian_gauge_twist'
+
+    def test_e8_hat_proof(self):
+        """E_8^hat: imaginary mult = 8, still abelian."""
+        from lib.km_c4_root_mult import affine_strictification_proof
+        result = affine_strictification_proof('E', 8)
+        assert result['c4_holds'] is True
+        assert result['proof_sectors']['imaginary']['multiplicity'] == 8
+        assert result['proof_sectors']['imaginary']['abelian'] is True
+
+    def test_energy_operator_check(self):
+        """Energy operator d acts by scalar n on g_{n*delta}."""
+        from lib.km_c4_root_mult import affine_strictification_proof
+        result = affine_strictification_proof('A', 3)
+        assert result['energy_operator_check']['status'] == 'verified'
+
+    @pytest.mark.parametrize("finite_type,finite_rank", [
+        ('A', 1), ('A', 2), ('A', 4), ('B', 2), ('B', 3),
+        ('C', 3), ('D', 4), ('G', 2), ('F', 4), ('E', 6), ('E', 7), ('E', 8),
+    ])
+    def test_all_untwisted_affine(self, finite_type, finite_rank):
+        """C4 holds for all untwisted affine algebras."""
+        from lib.km_c4_root_mult import affine_strictification_proof
+        result = affine_strictification_proof(finite_type, finite_rank)
+        assert result['c4_holds'] is True
+
+
+# ===================================================================
+# 20. EXPLICIT SPECTRAL DRINFELD CLASS
+# ===================================================================
+
+class TestSpectralDrinfeldExplicit:
+    """Explicit spectral Drinfeld class at root sectors."""
+
+    def test_real_root_vanishes(self):
+        """Spectral Drinfeld class vanishes at real root (mult=1)."""
+        from lib.km_c4_root_mult import spectral_drinfeld_explicit
+        A = [[2, -3], [-3, 2]]
+        mults = hyperbolic_root_multiplicities(-3, -3, max_height=8)
+        result = spectral_drinfeld_explicit((1, 0), A, mults)
+        assert result['vanishes'] is True
+        assert result['mechanism'] == 'root_space_one_dimensionality'
+
+    def test_non_abelian_obstruction(self):
+        """At (2,3) with mult=2: the class is potentially nontrivial."""
+        from lib.km_c4_root_mult import spectral_drinfeld_explicit
+        A = [[2, -3], [-3, 2]]
+        mults = hyperbolic_root_multiplicities(-3, -3, max_height=12)
+        result = spectral_drinfeld_explicit((2, 3), A, mults)
+        assert result['mult'] == 2
+        assert result['abelian'] is False
+        assert result['height'] == 5
+        # The obstruction analysis is computed
+        assert 'obstruction' in result
+        assert result['obstruction']['cocycle_dim'] >= 1
+
+    def test_not_a_root(self):
+        """At a non-root: class vanishes trivially."""
+        from lib.km_c4_root_mult import spectral_drinfeld_explicit
+        A = [[2, -3], [-3, 2]]
+        mults = hyperbolic_root_multiplicities(-3, -3, max_height=8)
+        # (7, 0) at height 7 is likely not a root at this truncation
+        result = spectral_drinfeld_explicit((7, 0), A, mults)
+        # If mult = 0, it vanishes
+        if result['mult'] == 0:
+            assert result['vanishes'] is True
+
+    def test_high_mult_root(self):
+        """At (5,5) with mult=16: large free multilinear dim, large obstruction."""
+        from lib.km_c4_root_mult import spectral_drinfeld_explicit
+        A = [[2, -3], [-3, 2]]
+        mults = hyperbolic_root_multiplicities(-3, -3, max_height=12)
+        result = spectral_drinfeld_explicit((5, 5), A, mults)
+        assert result['mult'] == 16
+        assert result['height'] == 10
+        # Free multilinear dim = (height-1)! = 9! = 362880
+        # This is the UPPER BOUND from the free Lie algebra
+        assert result['free_multilinear_dim'] == factorial(9)
+        # The constrained dim in the obstruction is min(free, mult) = 16
+        assert result['obstruction']['cocycle_dim'] == 16
+
+
+# ===================================================================
+# 21. GABBER-KAC ANALYSIS
+# ===================================================================
+
+class TestGabberKac:
+    """Gabber-Kac theorem constraints on root multiplicities."""
+
+    def test_A2_serre_exponents(self):
+        """A2: Serre exponents = 2 (standard)."""
+        from lib.km_c4_root_mult import gabber_kac_analysis
+        A = [[2, -1], [-1, 2]]
+        result = gabber_kac_analysis(A)
+        assert result['serre_exponents'][(0, 1)] == 2
+        assert result['serre_exponents'][(1, 0)] == 2
+
+    def test_hyperbolic_serre_exponents(self):
+        """Hyperbolic [[2,-3],[-3,2]]: Serre exponents = 4."""
+        from lib.km_c4_root_mult import gabber_kac_analysis
+        A = [[2, -3], [-3, 2]]
+        result = gabber_kac_analysis(A)
+        assert result['serre_exponents'][(0, 1)] == 4
+        assert result['serre_exponents'][(1, 0)] == 4
+        assert result['max_serre_exponent'] == 4
+
+    def test_weight_space_finiteness(self):
+        """Weight-space finiteness holds for all symmetrizable GCM."""
+        from lib.km_c4_root_mult import gabber_kac_analysis
+        for A in [[[2, -1], [-1, 2]], [[2, -3], [-3, 2]], [[2, -4], [-4, 2]]]:
+            result = gabber_kac_analysis(A)
+            assert result['weight_space_finiteness'] is True
+
+    def test_c4_implications_structure(self):
+        """Gabber-Kac analysis provides implications for all three types."""
+        from lib.km_c4_root_mult import gabber_kac_analysis
+        A = [[2, -3], [-3, 2]]
+        result = gabber_kac_analysis(A)
+        assert 'finite' in result['c4_implications']
+        assert 'affine' in result['c4_implications']
+        assert 'indefinite' in result['c4_implications']
+
+
+# ===================================================================
+# 22. COMPREHENSIVE OBSTRUCTION SUMMARY
+# ===================================================================
+
+class TestObstructionSummary:
+    """Comprehensive C4 obstruction summary."""
+
+    def test_finite_type_clean(self):
+        """Finite type: no obstruction."""
+        from lib.km_c4_root_mult import c4_obstruction_summary
+        A = [[2, -1], [-1, 2]]
+        result = c4_obstruction_summary(A)
+        assert result['c4_holds'] is True
+        assert result['km_type'] == 'finite'
+
+    def test_affine_type_clean(self):
+        """Affine type: no obstruction (abelian gauge-twist)."""
+        from lib.km_c4_root_mult import c4_obstruction_summary
+        A = [[2, -2], [-2, 2]]
+        result = c4_obstruction_summary(A)
+        assert result['c4_holds'] is True
+        assert result['km_type'] == 'affine'
+
+    def test_hyperbolic_obstruction_exists(self):
+        """Hyperbolic: obstruction exists at non-abelian root spaces."""
+        from lib.km_c4_root_mult import c4_obstruction_summary
+        A = [[2, -3], [-3, 2]]
+        result = c4_obstruction_summary(A, max_height=10)
+        assert result['c4_holds'] is False
+        assert result['non_abelian_mult_gt_1'] > 0
+        assert result['total_obstruction_dim'] >= 0
+
+    def test_hyperbolic_first_obstruction_at_5(self):
+        """First non-abelian root is at height 5 for [[2,-3],[-3,2]]."""
+        from lib.km_c4_root_mult import c4_obstruction_summary
+        A = [[2, -3], [-3, 2]]
+        result = c4_obstruction_summary(A, max_height=10)
+        assert result['first_non_abelian_height'] == 5
+
+    def test_hyperbolic_44_also_fails(self):
+        """[[2,-4],[-4,2]]: C4 also fails, likely at lower height."""
+        from lib.km_c4_root_mult import c4_obstruction_summary
+        A = [[2, -4], [-4, 2]]
+        result = c4_obstruction_summary(A, max_height=10)
+        assert result['c4_holds'] is False
+        assert result['non_abelian_mult_gt_1'] > 0
+
+    def test_obstruction_sectors_have_root_data(self):
+        """Obstruction sectors contain full root data."""
+        from lib.km_c4_root_mult import c4_obstruction_summary
+        A = [[2, -3], [-3, 2]]
+        result = c4_obstruction_summary(A, max_height=8)
+        for sector in result['obstruction_sectors']:
+            assert 'root' in sector
+            assert 'mult' in sector
+            assert 'obstruction' in sector
+            assert sector['mult'] >= 2
+            assert sector['abelian'] is False
+
+
+# ===================================================================
+# 23. THE PRECISE OBSTRUCTION CONDITION
+# ===================================================================
+
+class TestPreciseObstructionCondition:
+    """The theorem: W1 (mult=1) or W2 (abelian) is the precise boundary."""
+
+    def test_structure(self):
+        """The condition has the expected structure."""
+        from lib.km_c4_root_mult import precise_obstruction_condition
+        result = precise_obstruction_condition()
+        assert 'W1: mult_one' in result['sufficient_conditions']
+        assert 'W2: abelian' in result['sufficient_conditions']
+
+    def test_proved_classes(self):
+        """Proved for simple and untwisted affine."""
+        from lib.km_c4_root_mult import precise_obstruction_condition
+        result = precise_obstruction_condition()
+        proved = result['proved_for']
+        assert any('simple' in p for p in proved)
+        assert any('affine' in p for p in proved)
+
+    def test_failure_class(self):
+        """Fails for hyperbolic."""
+        from lib.km_c4_root_mult import precise_obstruction_condition
+        result = precise_obstruction_condition()
+        assert any('hyperbolic' in f for f in result['fails_for'])
+
+    def test_first_obstruction(self):
+        """First obstruction at (2,3) of [[2,-3],[-3,2]]."""
+        from lib.km_c4_root_mult import precise_obstruction_condition
+        result = precise_obstruction_condition()
+        assert result['first_obstruction']['root'] == (2, 3)
+        assert result['first_obstruction']['mult'] == 2
+        assert result['first_obstruction']['height'] == 5
+
+    def test_w5_insufficient(self):
+        """Weight-space finiteness (W5) is INSUFFICIENT."""
+        from lib.km_c4_root_mult import precise_obstruction_condition
+        result = precise_obstruction_condition()
+        assert 'INSUFFICIENT' in result['weaker_candidates']['W5']
+
+
+# ===================================================================
+# 24. HYPERBOLIC [[2,-4],[-4,2]]: STRONGER OBSTRUCTION
+# ===================================================================
+
+class TestHyperbolic44:
+    """The a=4 hyperbolic algebra: stronger obstruction, faster growth."""
+
+    @pytest.fixture
+    def mults_44(self):
+        return hyperbolic_root_multiplicities(-4, -4, max_height=10)
+
+    def test_simple_roots_mult_one(self, mults_44):
+        """Simple roots still have mult = 1."""
+        assert mults_44[(1, 0)] == 1
+        assert mults_44[(0, 1)] == 1
+
+    def test_imaginary_root_11(self, mults_44):
+        """(1,1) is imaginary with |alpha|^2 = -4."""
+        A = [[2, -4], [-4, 2]]
+        assert norm_squared((1, 1), A) == -4
+        assert (1, 1) in mults_44
+
+    def test_mult_growth_faster_than_33(self, mults_44):
+        """Multiplicities grow faster than [[2,-3],[-3,2]]."""
+        mults_33 = hyperbolic_root_multiplicities(-3, -3, max_height=10)
+        # Compare diagonal multiplicities at matching heights
+        for n in range(3, 6):
+            if (n, n) in mults_44 and (n, n) in mults_33:
+                assert mults_44[(n, n)] >= mults_33[(n, n)], \
+                    f"At ({n},{n}): a=4 gives {mults_44[(n,n)]} < a=3 gives {mults_33[(n,n)]}"
+
+    def test_c4_fails(self, mults_44):
+        """C4 fails for [[2,-4],[-4,2]]."""
+        result = c4_full_analysis('hyperbolic', A=[[2, -4], [-4, 2]], max_height=8)
+        assert result['c4_holds'] is False
+
+    def test_symmetry(self, mults_44):
+        """Symmetry m(a,b) = m(b,a) for symmetric Cartan matrix."""
+        for (m, n), v in mults_44.items():
+            if (n, m) in mults_44:
+                assert mults_44[(n, m)] == v
+
+
+# ===================================================================
+# 25. CROSS-FAMILY CONSISTENCY
+# ===================================================================
+
+class TestCrossFamilyConsistency:
+    """Cross-family consistency checks across algebra types.
+
+    These tests verify that the C4 analysis is internally consistent
+    across the finite/affine/hyperbolic classification.
+    """
+
+    def test_finite_to_affine_boundary(self):
+        """A1^(1) at the finite-affine boundary: all mult = 1, C4 holds."""
+        from lib.km_c4_root_mult import affine_c4_analysis
+        # sl_2^hat: finite_rank = 1
+        result = affine_c4_analysis(finite_rank=1)
+        assert result['c4_holds'] is True
+        # All imaginary roots have mult = 1 (rank = 1)
+        assert result['sectors']['imaginary']['mult'] == 1
+
+    def test_affine_to_hyperbolic_boundary(self):
+        """At the affine-hyperbolic boundary: a=2 (affine) vs a=3 (hyperbolic).
+
+        [[2,-2],[-2,2]] is affine A1^(1): C4 holds.
+        [[2,-3],[-3,2]] is hyperbolic: C4 fails.
+        This is a SHARP boundary in the Cartan matrix.
+        """
+        from lib.km_c4_root_mult import c4_full_analysis
+        affine_result = c4_full_analysis('affine', finite_rank=1)
+        hyp_result = c4_full_analysis('hyperbolic', A=[[2, -3], [-3, 2]], max_height=8)
+        assert affine_result['c4_holds'] is True
+        assert hyp_result['c4_holds'] is False
+
+    def test_all_simple_types_consistent(self):
+        """All simple Lie types: C4 holds with same mechanism."""
+        for lie_type, rank in [('A', 1), ('A', 5), ('B', 3), ('C', 3),
+                               ('D', 4), ('E', 6), ('E', 8), ('F', 4), ('G', 2)]:
+            result = simple_root_multiplicity(lie_type, rank)
+            assert result['c4_holds'] is True
+            assert result['mechanism'] == 'root_space_one_dimensionality'
+
+    def test_obstruction_absent_for_affine_present_for_hyperbolic(self):
+        """The abelianness of imaginary root spaces is the precise
+        boundary between C4 holding (affine) and failing (hyperbolic).
+        """
+        from lib.km_c4_root_mult import (
+            hyperbolic_abelianness_analysis, affine_root_multiplicities
+        )
+        # Affine sl_3^hat: imaginary roots are abelian
+        aff = affine_root_multiplicities(finite_rank=2)
+        assert aff['imaginary_abelian'] is True
+
+        # Hyperbolic: some roots with mult > 1 are non-abelian
+        A = [[2, -3], [-3, 2]]
+        hyp = hyperbolic_abelianness_analysis(A, max_height=10)
+        assert hyp['c4_obstruction_exists'] is True
+
+    def test_weaker_condition_boundary(self):
+        """The W1-or-W2 condition is exactly the finite+affine boundary."""
+        from lib.km_c4_root_mult import weaker_vanishing_condition
+        # W1: mult = 1 (simple Lie algebras, real roots of any KM)
+        assert weaker_vanishing_condition(1, False)['vanishes'] is True
+        # W2: abelian (imaginary roots of affine KM)
+        assert weaker_vanishing_condition(8, True)['vanishes'] is True
+        # Neither: non-abelian mult > 1 (hyperbolic)
+        assert weaker_vanishing_condition(2, False)['vanishes'] is False
+        assert weaker_vanishing_condition(16, False)['vanishes'] is False
