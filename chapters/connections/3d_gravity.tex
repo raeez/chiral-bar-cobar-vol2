@@ -5673,6 +5673,89 @@ At the Lee--Yang point $c = -22/5$, $D$ diverges and the
 shape factor controls the pole structure.
 \end{remark}
 
+The Virasoro closed form lives on the $T$-line of the
+deformation space.  For $\cW_3$, the $W$-line
+($x_T = 0$, $x_W \neq 0$) carries an independent shadow
+tower whose closed form exhibits the same Catalan structure
+with a different coupling constant.
+
+\begin{theorem}[$\cW_3$ $W$-line shadow coefficients;
+\ClaimStatusProvedHere]
+\label{thm:w3-w-line-closed-form}%
+\index{W3@$\cW_3$!W-line shadow|textbf}%
+\index{Catalan number!W-line shadow}%
+On the $W$-line of the $\cW_3$ deformation space, the quartic
+shadow decomposes as
+\begin{equation}\label{eq:w3-quartic-decomposition}
+Q_{TTTT} = \frac{10}{c(5c{+}22)}, \quad
+Q_{TTWW} = \frac{6\beta}{1}\, Q_{TTTT}, \quad
+Q_{WWWW} = \beta^2\, Q_{TTTT},
+\end{equation}
+where $\beta = 32/(5c+22)$ is the $\Lambda$-coupling.  Each
+pair of $W$-legs contributes one factor of~$\beta$.  The
+$W$-line shadow metric is
+$Q_W(t) = (4c^2/9)(1 + \delta\, t^2)$ with
+$\delta = 122880/(c^2(5c{+}22)^3)$, and the even-arity
+$W$-line shadow coefficients are
+\begin{equation}\label{eq:w3-w-line-catalan}
+\boxed{\;
+S_{2r}^W
+\;=\;
+\frac{(-1)^r\, C_{r-1}\; \cdot\; 30720^{r-1}}
+     {3\,(2r{-}3)\; c^{2r-3}\; (5c{+}22)^{3(r-1)}},
+\qquad r \ge 2,
+\;}
+\end{equation}
+where $30720 = 3 \cdot 10 \cdot 32^2$: the conformal
+weight~$3$ of~$W$ times the Virasoro contact number~$10$
+times the square of the $\Lambda$-coupling~$32$.
+Odd-arity $W$-line coefficients vanish by the $\Z_2$
+symmetry $W \to -W$.  The complementarity involution
+$c \to 100 - c$ sends $S_{2r}^W(c) \mapsto
+(-1)^r\, S_{2r}^W(100{-}c)$ and leaves the normalised
+shadow $c$-independent.
+\end{theorem}
+
+\begin{proof}
+The $W$-line shadow metric follows from restricting the
+two-dimensional shadow metric of $\cW_3$
+\textup{(}Computation~\textup{\ref{comp:w3-shadow-metric}}\textup{)}
+to $x_T = 0$.  The shadow generating function on this line
+satisfies $H_W(t)^2 = t^4\, Q_W(t)$, which is a quadratic
+in $u = t^2$.  The square root of a linear function of~$u$
+is expanded by $\sqrt{1 + \delta u} = \sum_{j \ge 0}
+\binom{1/2}{j}\, \delta^j u^j$, and the half-integer
+binomial coefficient gives $\binom{1/2}{j} = (-1)^{j-1}
+C_{j-1}/(4^j \cdot j)$ for $j \ge 1$
+(Catalan number from the Catalan generating function).
+The coefficient of $t^{2r}$ in $H_W$ yields~%
+\eqref{eq:w3-w-line-catalan}.
+Verified through arity~$14$
+\textup{(}\texttt{w3\_shadow\_closed\_form.py},
+$47$~tests\textup{)}.
+\end{proof}
+
+\begin{remark}[The number $30720$]
+\label{rem:number-30720}%
+\index{30720}
+The coupling constant $30720 = 2^{11} \cdot 3 \cdot 5$ arises
+as the product $\mathrm{wt}(W) \cdot Q_{\mathrm{Vir}}^{\mathrm{contact}}
+\cdot \beta^2 = 3 \cdot 10 \cdot 1024$, where:
+$\mathrm{wt}(W) = 3$ is the conformal weight of the
+$\cW_3$ generator~$W$;
+$Q_{\mathrm{Vir}}^{\mathrm{contact}} = 10/[c(5c{+}22)]$
+is the Virasoro contact quartic
+\textup{(}Theorem~\textup{\ref{thm:quartic-contact}}\textup{)};
+and $\beta^2 = 1024/(5c{+}22)^2$ is the squared
+$\Lambda$-coupling from the composite
+$\Lambda = {:\!TT\!:} - \tfrac{3}{10}\,\partial^2 T$.
+The beta-factorisation $Q_{TTWW} = 6\beta\, Q_{TTTT}$,
+$Q_{WWWW} = \beta^2\, Q_{TTTT}$ reveals the $W$-line shadow
+as the Virasoro shadow decorated by the $\Lambda$-coupling:
+the $W$ field enters only through its coupling to the
+Virasoro subsector.
+\end{remark}
+
 The closed-form formula shows that the shape factor
 $F_r$ inherits a $\Z_2$ parity from the
 Catalan coefficients that define it.  We now show that this
@@ -5865,6 +5948,41 @@ Theorem~\ref{thm:gravity-infinite-soft-tower} is controlled
 by the scalar shadow $S_r$; the full graviton
 \emph{amplitude} at each arity is controlled by
 $\widetilde{S}_k$.
+\end{remark}
+
+\begin{remark}[Genus-$1$ Catalan correction]
+\label{rem:genus-1-catalan-correction}%
+\index{Catalan number!genus-1 correction|textbf}%
+\index{quasi-modular form!shadow correction}%
+\index{G2 Eisenstein@$G_2$ Eisenstein series!shadow correction}
+The genus-$0$ Catalan numbers $C_n$, governing the depth-$0$
+layer of the ordered shadow and the field polynomial
+(Theorem~\ref{thm:period-2-parity}), are \emph{not} preserved
+at genus~$1$.  The genus-$1$ curved bar differential
+$d_{\mathrm{fib}}^{\,2} = \kappa\,\omega_1$ introduces a correction:
+\begin{equation}\label{eq:genus-1-catalan-effective}
+C_n^{\mathrm{eff}}(\tau)
+\;=\;
+C_n + \alpha_n\, G_2(\tau) + \beta_n\, G_4(\tau),
+\end{equation}
+where $G_2, G_4$ are the Eisenstein series and
+$\{\alpha_n\}_{n \ge 1} = \{-\tfrac{5}{3},\,
+-\tfrac{47}{10},\, -\tfrac{429}{35},\,
+-\tfrac{10501}{252},\, \ldots\}$ is a $c$-independent sequence
+that is \emph{not} a standard Catalan transform (it does not
+satisfy the Catalan convolution $C_n = \sum C_i C_{n-1-i}$).
+The correction is quasi-modular: the $G_2$ anomaly arises
+from $c_0 = \{a_{(0)}b\} \neq 0$ (the first-order OPE coefficient),
+which couples to the quasi-periodic defect of the
+Weierstrass $\zeta$-function on the genus-$1$ sewing torus.
+When $c_0 = 0$ (e.g.\ Heisenberg with its abelian Lie
+bracket), $G_2$ does not enter and the
+correction reduces to the holomorphic $G_4$ term alone.
+The $c$-independence of $\alpha_n$ is the genus-$1$ avatar of the
+$c$-independence theorem
+(Theorem~\ref{thm:gravity-c-linearity}): the tree structure
+of the resolvent is $c$-invariant, and the genus-$1$
+correction inherits this invariance.
 \end{remark}
 
 \begin{remark}[Novelty of the higher soft theorems]
