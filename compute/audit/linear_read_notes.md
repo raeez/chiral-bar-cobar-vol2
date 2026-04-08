@@ -14084,3 +14084,46 @@ Five parallel agents audited the entire live `\input` surface (56 files) for eac
    Issue: the restored theorem/proof band was still citing the low-arity shadow/formality dictionary as though it were a local proposition, obscuring that the supporting statement lives in Vol~I.
    Fix: rewrote those proof-local citations as explicit Vol~I provenance (`Proposition~\ref*{prop:shadow-formality-low-arity}`), aligning the chapter’s cross-volume citation style with the rest of the active theorem surface.
    Status: `FIXED`
+
+## 2026-04-08 — Foundational Mathematical Audit of the Volume II Spine
+
+- Target: `chapters/theory/locality.tex`, `chapters/theory/raviolo.tex`, `chapters/connections/hochschild.tex`, `main.tex`, `chapters/connections/concordance.tex`
+- Iteration: `foundation-pass-1`
+- Status: `BLOCKED: the recognition theorem and the physics-bridge theorem still advertise proof strength beyond the checked local argument surface`
+
+### Summary
+
+Ran a hostile first-principles audit of the load-bearing theorem spine rather than the exposition surface. The bulk/Hochschild lane had a concrete scope inflation that could be repaired locally and was fixed on the live surface. Two deeper foundational theorems remain mathematically unstable after rereading their actual proofs: the HT prefactorization recognition theorem and the physics bridge.
+
+### Verification
+
+- Re-read the live theorem/proof surfaces for `thm:recognition-SC`, `thm:physics-bridge`, `thm:bulk_hochschild`, and `thm:bulk-CHC`.
+- Patched the theorem statements and status ledgers so the bulk/Hochschild identifications are no longer advertised as abstract theorems for arbitrary logarithmic `\SCchtop`-algebras.
+- `rg` checks on `main.tex`, `chapters/connections/concordance.tex`, and `chapters/connections/hochschild.tex` confirm the old unconditional wording is gone from the touched live surface.
+- Ran `make fast` after `pkill -9 -f pdflatex`; build completed four passes with no new fatal TeX error, but the global surface still did not converge (`14` undefined citations, `541` undefined references, `295` overfull boxes). No undefined-reference warning was detected for the touched labels `thm:bulk_hochschild`, `thm:bulk-CHC`, `thm:physics-bridge`, or `thm:boundary-linear-bulk-boundary`.
+
+### Findings
+
+637. `2026-04-08-637`
+   Severity: `SERIOUS`
+   Class: `S/P`
+   Location: `chapters/connections/hochschild.tex:379-409`, `chapters/connections/hochschild.tex:656-666`, `main.tex:631-666`, `chapters/connections/concordance.tex:32-90`
+   Issue: the live bulk/Hochschild theorem surface was selling abstract scope it did not prove. `thm:bulk_hochschild` and `thm:bulk-CHC` were stated for arbitrary logarithmic `\SCchtop`-algebras, while both proofs actually use a chosen HT prefactorization model `\mathsf{Obs}`, reduction along `\R`, and factorization homology; the top-level status ledgers in `main.tex` and `concordance.tex` were still advertising these lanes as unconditional.
+   Fix: restricted the theorem statements and scope remarks in `chapters/connections/hochschild.tex` to HT prefactorization realizations in the scope of `thm:physics-bridge`; moved `thm:Obs-is-SC` and `thm:bulk-CHC` out of the unconditional bucket in `main.tex`; downgraded the concordance entry for `\text{bulk} \simeq \text{chiral Hochschild}` to `Conditional (physical realization)`.
+   Status: `FIXED`
+
+638. `2026-04-08-638`
+   Severity: `SERIOUS`
+   Class: `P/S`
+   Location: `chapters/theory/locality.tex:378-492`
+   Issue: the proof of `thm:recognition-SC` is not mathematically closed as written. In Step `3a`, the argument starts from a `C_\ast(W(\SCchtop))`-algebra and immediately speaks of “evaluating the prefactorization algebra” before such an object has been constructed. In Step `3b`, one-color recognition theorems are applied factor-by-factor and the mixed-color assembly is then asserted via K\"unneth and Boardman--Vogt product language, but no fully specified two-color comparison functor or universal-property argument is supplied. On hostile reread this is a blueprint, not a finished equivalence proof.
+   Fix: none in this pass. A truthful repair likely requires either downgrading theorem status and downstream advertisements, or replacing the proof with a fully functorial two-color recognition argument.
+   Status: `OPEN`
+
+639. `2026-04-08-639`
+   Severity: `SERIOUS`
+   Class: `P/C`
+   Location: `chapters/theory/raviolo.tex:405-449`
+   Issue: Step `(i)` of `thm:physics-bridge` does not justify the claimed propagator factorization. The displayed computation gives `Q(K_\C \otimes \delta_\R) = \delta_\C \otimes \delta_\R + K_\C \otimes \delta'_\R`, and the extra term is then discarded by fiat. More fundamentally, the proof never establishes that the Green's kernel of `Q = \dbar_z + d_t` is the tensor product of separate Green's kernels merely because the operator splits additively. The theorem therefore proves less than it claims under hypotheses `(a)`--`(c)`.
+   Fix: none in this pass. A truthful repair likely requires either adding explicit factorized-propagator hypotheses or replacing Step `(i)` with a genuine parametrix/Schwinger-kernel argument that proves the separation.
+   Status: `OPEN`

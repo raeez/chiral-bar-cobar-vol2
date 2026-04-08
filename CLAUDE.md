@@ -30,27 +30,19 @@ Every chapter depends on Vol I's five theorems. Cross-references to Vol I labels
 | **(D)** Leading coefficient | Curvature κ(A)·ω_g governs the genus tower; curved Swiss-cheese = Swiss-cheese + Hodge deformation |
 | **(H)** Hochschild ring | BV-BRST origin of the deformation ring; bulk ≃ chiral Hochschild (Theorem H gets its physical explanation) |
 
-## Ten Parts (Treatise Architecture)
+## Five Parts (Treatise Architecture)
 
-**I. The Open Primitive** (part:swiss-cheese). The primitive datum is a category, not an algebra: the open/closed factorization dg-category C on a tangential log curve. SC^{ch,top} constructed, recognition theorem, homotopy-Koszulity proved. Chapters: foundations, locality, axioms, equivalence, BV construction, factorization Swiss-cheese.
+**I. The Open Primitive** (part:swiss-cheese). The primitive datum is a category, not an algebra: the open/closed factorization dg-category C on a tangential log curve. SC^{ch,top} constructed, recognition theorem, homotopy-Koszulity proved. Raviolo VA, raviolo restriction, FM calculus, PVA descent (D2-D6 all proved). Chapters: foundations, locality, axioms, equivalence, BV construction, factorization Swiss-cheese, raviolo, raviolo-restriction, fm-calculus, orientations, fm-proofs, pva-descent-repaired, pva-expanded-repaired.
 
-**II. The Universal Bulk** (part:bbl-core). The bulk is the chiral derived center Z^der_ch(A), not the bar complex. Chiral Hochschild cochains, brace dg algebra, bar-cobar review, line operators, spectral braiding (proved core), Koszul triangle (proved core), celestial boundary transfer (proved core).
+**II. The Characteristic Datum** (part:examples). Each algebra family in Vol I's standard landscape is a test case for the full open/closed architecture: boundary algebra, universal bulk, line-sector operations, modular MC element. Heisenberg Rosetta Stone, worked examples, W-algebra computations. Chiral Hochschild cochains, brace dg algebra, bar-cobar review, line operators. Chapters: rosetta_stone, examples-computing, examples-complete-proved, examples-worked, w-algebras-virasoro, w-algebras-w3, hochschild, brace, bar-cobar-review, line-operators.
 
-**III. Modularity as Trace and Clutching** (part:modularity). Modularity arises from trace and clutching on the open sector, not as an axiom on the closed algebra. Modular Swiss-cheese operad, relative Feynman transform, modular PVA quantization (core), physical origins.
+**III. The Seven Faces of r(z) in 3d HT** (part:bbl-core). The collision residue r(z) appears in seven guises: Drinfeld-Kohno associator, spectral R-matrix (YBE), Sklyanin classical r-matrix, Koszul-dual line-side modeling algebra, celestial OPE, dg-shifted Yangian, holographic boundary-to-bulk map. Also: modular Swiss-cheese operad, relative Feynman transform, modular PVA quantization, physical origins, affine half-space BV, planted-forest synthesis, gravitational complexity, 3d gravity, soft graviton theorems, critical string dichotomy, symplectic polarization.
 
-**IV. Descent and the Classical Shadow** (part:descent). Extracts classical PVA from the quantum SC structure. Raviolo VA, raviolo restriction, FM calculus, PVA descent (D2-D6 all proved).
+**IV. The Standard HT Landscape** (part:holography). The Koszul triangle acquires depth through anomaly completion: YM boundary packages, celestial and twisted holography, logarithmic monodromy, anomaly-completed Koszul duality, holographic reconstruction, modular bootstrap.
 
-**V. The Standard HT Landscape** (part:examples). Worked examples: Rosetta stone, free multiplet, LG, CS (proved), Virasoro, W_3.
+**V. The Frontier** (part:frontier). All frontier/conjectural material from chapter splits. No earlier part depends on this part.
 
-**VI. Three-Dimensional Quantum Gravity** (part:quantization). Modular Koszul duality of Virasoro IS 3d quantum gravity. Affine half-space BV, planted-forest synthesis, gravitational complexity, 3d gravity movements, perturbative finiteness, soft graviton theorems, critical string dichotomy, symplectic polarization.
-
-**VII. The Ordered Sector and Factorization Transport** (part:ordered). The E_1 wing: ordered associative chiral KD (core), dg-shifted factorization bridge, gravitational Yangian.
-
-**VIII. Holographic and Celestial Frontier** (part:holography). YM synthesis (core), celestial holography (core), logarithmic HT monodromy (core), anomaly-completed holography (core), modular bootstrap.
-
-**IX. Extensions, Conditional Results, and Frontier** (part:frontier). All frontier/conjectural material from chapter splits. No earlier part depends on this part.
-
-**Conclusion and Aftermatter** (unnumbered). Conclusion, appendices (brace signs, orientations, FM proofs, PVA expanded).
+**Aftermatter** (unnumbered). Conclusion, appendices (brace signs, orientations, FM proofs, PVA expanded).
 
 ## Standing Hypotheses — MADE EXPLICIT
 
@@ -67,7 +59,7 @@ The former axioms are now derived:
 | (H3) | FM compactification, logarithmic forms, AOS relations, Stokes exactness | Theorem of configuration space geometry (Theorem thm:FM-calculus) |
 | (H4) | Factorization compatibility with C_*(W(SC^{ch,top})) | Recognition theorem (Theorem thm:recognition-SC) — already proved |
 
-All results in Parts I–VII hold unconditionally for any logarithmic SC^{ch,top}-algebra. Physical theories (gauge theories satisfying Theorem thm:physics-bridge) provide the standard class of examples.
+All results in Parts I–IV hold unconditionally for any logarithmic SC^{ch,top}-algebra. Physical theories (gauge theories satisfying Theorem thm:physics-bridge) provide the standard class of examples.
 
 ## The Multi-Path Verification Mandate
 
@@ -157,13 +149,13 @@ All Vol I anti-patterns AP1-AP34 apply here. In particular, AP34 (bar-cobar inve
 
 **AP36 — R(z) ≠ τ does NOT imply genuinely E₁; the discriminant is provenance, not value.** The R-matrix R(z) on the ordered bar complex can be nontrivial for BOTH E_∞ and E₁ algebras. For E_∞-chiral algebras (all vertex algebras), R(z) is DERIVED from the local OPE via analytic continuation — it is the monodromy of the flat connection on configurations, determined by the OPE pole residues. For genuinely E₁-chiral algebras (quantum vertex algebras), R(z) is INDEPENDENT INPUT — part of the defining data, not derivable from a local symmetric structure. The Heisenberg H_k has R(z) ≠ τ (nontrivial spectral dependence from OPE poles), but it IS E_∞ because R(z) is determined by the local OPE J(z)J(w) ~ k/(z-w)². The condition R(z) = τ (Koszul-signed flip) characterizes the pole-free subclass (commutative chiral algebras with no OPE singularities), which is a STRICT SUBCLASS of E_∞-chiral, not all of it. NEVER write "E_∞ implies R(z) = τ." The correct three-tier picture: (i) pole-free commutative: R(z) = τ, (ii) vertex algebras with poles: R(z) ≠ τ but derived from locality, (iii) genuinely E₁: R(z) ≠ τ and independent input. Both (i) and (ii) are E_∞.
 
-**AP37 — Three bar complexes, three objects: FG bar ≠ full symmetric bar ≠ ordered bar.** (a) The FG bar B^{FG}(A) (Francis-Gaitsgory) uses ONLY the zeroth product a_{(0)}b (the chiral Lie bracket), ignoring all higher OPE poles. It is the bar complex of A viewed as a chiral Lie algebra. (b) The full symmetric bar B^{Σ}(A) uses ALL OPE products {a_{(n)}b}_{n≥0} and takes Σ_n-coinvariants — this is the bar complex of Vol I Theorem A. (c) The ordered bar B^{ord}(A) uses ALL OPE products but retains the linear ordering — no Σ_n quotient. These are THREE DIFFERENT chain complexes producing three different Koszul duals: B^{FG} gives the chiral Lie Koszul dual, B^{Σ} gives the full chiral Koszul dual A^! of Vol I, B^{ord} gives the ordered (associative) chiral Koszul dual of Part VII. There is a natural map B^{ord} → B^{Σ} (take coinvariants) and a filtration on B^{Σ} whose associated graded recovers B^{FG} (retain only zeroth poles). NEVER conflate these. In particular, B^{FG}(A) does NOT see higher poles and therefore misses the curvature κ(A).
+**AP37 — Three bar complexes, three objects: FG bar ≠ full symmetric bar ≠ ordered bar.** (a) The FG bar B^{FG}(A) (Francis-Gaitsgory) uses ONLY the zeroth product a_{(0)}b (the chiral Lie bracket), ignoring all higher OPE poles. It is the bar complex of A viewed as a chiral Lie algebra. (b) The full symmetric bar B^{Σ}(A) uses ALL OPE products {a_{(n)}b}_{n≥0} and takes Σ_n-coinvariants — this is the bar complex of Vol I Theorem A. (c) The ordered bar B^{ord}(A) uses ALL OPE products but retains the linear ordering — no Σ_n quotient. These are THREE DIFFERENT chain complexes producing three different Koszul duals: B^{FG} gives the chiral Lie Koszul dual, B^{Σ} gives the full chiral Koszul dual A^! of Vol I, B^{ord} gives the ordered (associative) chiral Koszul dual of Part III. There is a natural map B^{ord} → B^{Σ} (take coinvariants) and a filtration on B^{Σ} whose associated graded recovers B^{FG} (retain only zeroth poles). NEVER conflate these. In particular, B^{FG}(A) does NOT see higher poles and therefore misses the curvature κ(A).
 
 **AP38 — Ordered-to-unordered descent is R-matrix twisted, not naive, even for E_∞.** For E_∞-chiral algebras with OPE poles (all interesting vertex algebras), the ordered bar B^{ord}(A) and the symmetric bar B^{Σ}(A) are DIFFERENT chain complexes: one lives on ordered configurations, the other on Σ_n-coinvariants. The descent B^{ord} → B^{Σ} requires the R-matrix as twisting datum: B^{Σ}_n ≃ (B^{ord}_n)^{R-Σ_n} (Proposition prop:r-matrix-descent). For pole-free commutative algebras, R(z) = τ and the descent is the naive Σ_n-quotient. For vertex algebras with poles (Heisenberg, Kac-Moody, Virasoro), R(z) ≠ τ and the descent is genuinely twisted — this is nontrivial mathematics even though both sides are E_∞. The ordered bar complex of an E_∞-chiral algebra with poles carries STRICTLY MORE INFORMATION than the symmetric bar: the R-matrix monodromy is the surplus datum. NEVER write "ordered = unordered for E_∞" without specifying whether you mean pole-free E_∞ (true, R = τ) or E_∞ with poles (false without R-twist). The manuscript's three-tier picture at ordered_associative_chiral_kd_core.tex lines 2204-2214 is correct and should be preserved.
 
 **AP39 — NEVER equate "E_∞-chiral" with "no OPE poles" or "commutative chiral algebra in the BD sense."** BD's "commutative chiral algebra" (= no poles, = D-scheme) is a STRICT SUBCLASS of E_∞-chiral, not a synonym. E_∞-chiral = LOCAL = Σ_n-equivariant factorization = ALL vertex algebras. The BD commutative subclass is the pole-free stratum within E_∞. The false identification "E_∞ = no poles" was introduced into the manuscript during the 2 April 2026 editing session and caused cascading errors. Specific false glosses that must NEVER appear: "E_∞-chiral algebras (commutative chiral algebras in the sense of BD — those whose chiral product has no OPE singularities)" — this parenthetical restricts E_∞ to the pole-free subclass. The correct parenthetical is the original: "E_∞-chiral algebras (commutative chiral algebras)" — where "commutative" means LOCAL/Σ_n-equivariant, not pole-free.
 
-**AP40 — BD do not study E₁-chiral algebras. E₁-chiral is a NEW concept.** All of Beilinson-Drinfeld's chiral algebras are E_∞-chiral (local, Σ_n-equivariant). The concept of "E₁-chiral algebra" (nonlocal, ordered configurations, no Σ_n symmetry) is introduced in THIS manuscript (Vol II, Part VII) as a genuinely new algebraic structure. It is NOT a BD concept. NEVER say "BD chiral algebras include E₁" or "some BD chiral algebras are E₁." NEVER say "E₁-chiral algebra is a standard notion." It is the manuscript's contribution, motivated by the Etingof-Kazhdan theory of quantum vertex algebras.
+**AP40 — BD do not study E₁-chiral algebras. E₁-chiral is a NEW concept.** All of Beilinson-Drinfeld's chiral algebras are E_∞-chiral (local, Σ_n-equivariant). The concept of "E₁-chiral algebra" (nonlocal, ordered configurations, no Σ_n symmetry) is introduced in THIS manuscript (Vol II, Part III) as a genuinely new algebraic structure. It is NOT a BD concept. NEVER say "BD chiral algebras include E₁" or "some BD chiral algebras are E₁." NEVER say "E₁-chiral algebra is a standard notion." It is the manuscript's contribution, motivated by the Etingof-Kazhdan theory of quantum vertex algebras.
 
 **AP41 — The Heisenberg R-matrix is R(z) = exp(kℏ/z), NOT trivial.** The Heisenberg OPE J(z)J(w) ~ k/(z-w)² has a double pole. By AP19, the d log kernel absorbs one power: the COLLISION RESIDUE is r^{coll}(z) = k/z (a simple pole in the collision residue, from a double pole in the OPE). The connection on Conf₂^ord(ℂ) is ∇ = d - k·d log(z), and the monodromy is exp(-2πik) — a nontrivial scalar phase. The spectral R-matrix on modules is R(z) = exp(kℏ/z) (confirmed in rosetta_stone.tex line 1102). A previous version of this anti-pattern (and multiple agent computations on 2 April 2026) INCORRECTLY claimed R = 1 for Heisenberg by integrating the LAPLACE kernel k/z² instead of the COLLISION RESIDUE k/z. This error arose from forgetting AP19: the bar complex uses d log propagators, not dz propagators. NEVER compute R-matrix monodromy from the raw OPE kernel — always apply the d log absorption first.
 
@@ -319,6 +311,49 @@ pkill -9 -f pdflatex 2>/dev/null || true; sleep 2; make    # Full build (single 
 
 Same engine as Vol I: memoir, EB Garamond, newtxmath, thmtools, microtype.
 
+## The Symphonic Standard (PERMANENT)
+
+**The monograph must move like the greatest symphony the world has ever known.** Every sentence carries mathematical weight. Every construction is inevitable. Every theorem earns its place by solving a problem the reader already feels. This standard applies to ALL writing: manuscript, standalone papers, working notes, concordance, preface, introduction, appendices. No exceptions.
+
+### The Voices and What They Demand
+
+**Gelfand** (functorial inevitability): Every definition is a theorem in disguise. The right level of generality is natural, not maximal. Constructions have a "could not be otherwise" quality.
+
+**Beilinson** (falsification and depth): No false ideas survive. Sparse, surgical prose. The epistemic hierarchy is always visible.
+
+**Drinfeld** (deformation-theoretic soul): Quantum groups emerge from geometry. The R-matrix is a shadow of the MC element. Every construction has a deformation-theoretic origin.
+
+**Kazhdan** (D-modules as language): The correct categorical framework is substance, not decoration. No shortcuts in geometric arguments.
+
+**Etingof** (crystal clarity): Every fact earns its keep through computation. A graduate student can follow the argument on first reading.
+
+**Nekrasov** (partition functions as algebra): The generating function IS the mathematical object. No gap between physics and mathematics.
+
+**Polyakov** (the functional integral is real): The OPE is a consequence of locality. Physical reasoning is the deepest layer.
+
+**Kapranov** (higher categories as substance): Operads have geometric content. Categorical structures solve problems, never invoked for their own sake.
+
+**Ginzburg** (the Chriss-Ginzburg standard): Every object solves a problem. Every paragraph forces the next. No dead weight. The architecture of text mirrors mathematics.
+
+**Costello** (factorization algebras as rigorous physics): Perturbative QFT is a theorem. The physical story comes first, then framework, then results.
+
+**Gaiotto** (dualities as tools): Dualities compute invariants. Worked examples are where the theory proves itself.
+
+**Witten** (physical insight precedes proof): The deep structure is geometric. The introduction states what is true in three pages, not thirty. No hedging.
+
+### Prose Laws (apply to ALL writing in the programme)
+
+1. **No AI slop.** Zero tolerance for: "notably", "crucially", "remarkably", "it is worth noting", "interestingly", "this is particularly significant." Delete them.
+2. **No hedging where the mathematics is clear.** Proved → state it. Open → state it. No "we believe that" when the status is known.
+3. **No em dashes for subordinate clauses.** Use colons, semicolons, or separate sentences.
+4. **No passive voice hedging.** "It can be shown that" → state the theorem.
+5. **Every paragraph forces the next.** Momentum from mathematical necessity.
+6. **State once, prove once, use everywhere.** No duplication.
+7. **Every chapter opens with the problem it solves.** Not "In this chapter we study..."
+8. **Scope is always explicit.** "For all" specifies the universe. "Proved" specifies hypotheses.
+9. **The physical and mathematical are unified.** Not separate sections but woven together.
+10. **Comparison with prior work is surgical.** One sentence per paper.
+
 ## LaTeX Rules
 
 - Use `\providecommand` (not `\newcommand`) for macros — many pre-defined in the compatibility block
@@ -336,33 +371,36 @@ All commits authored by Raeez Lorgat. **Never credit an LLM.** No "co-authored-b
 
 ## File Map
 
-**Theory** (chapters/theory/, 10 files): Parts I–II.
-- foundations, locality, axioms, equivalence, bv-construction: Part I (Swiss-Cheese)
+**Theory** (chapters/theory/): Part I.
+- foundations, locality, axioms, equivalence, bv-construction: Part I (Swiss-Cheese core)
 - raviolo, raviolo-restriction: Part I (promoted from appendix)
-- fm-calculus, pva-descent-repaired: Part II (Descent Calculus)
+- fm-calculus, orientations, fm-proofs, pva-descent-repaired, pva-expanded-repaired: Part I (FM calculus + PVA descent)
 - introduction: global introduction
+- factorization_swiss_cheese: Part I
+- modular_swiss_cheese_operad: Part III
 
-**Examples** (chapters/examples/): Part IV.
-- rosetta_stone, examples-computing, examples-worked: proved core
-- examples-complete-proved: proved computations (split from examples-complete)
-- examples-complete-conditional: conditional computations (split, Part VIII)
-- w-algebras-stable: general framework (split from w-algebras)
-- w-algebras-conditional: Virasoro/W₃ conditional (split, Part VIII)
+**Examples** (chapters/examples/): Part II.
+- rosetta_stone, examples-computing, examples-worked: Part II (proved core)
+- examples-complete-proved: Part II (proved computations, split from examples-complete)
+- examples-complete-conditional: Part V (conditional computations, frontier)
+- w-algebras-virasoro, w-algebras-w3: Part II
 
-**Connections — Core** (used in Parts III, V, VI, VII):
-- hochschild, brace, bar-cobar-review, line-operators: Part III core
-- spectral-braiding-core, ht_bulk_boundary_line_core, celestial_boundary_transfer_core: Part III (split)
-- ht_physical_origins: Part III (merged from physical_origins + holomorphic_topological + bv_ht_physics)
-- modular_pva_quantization_core, affine_half_space_bv, fm3_planted_forest_synthesis, 3d_gravity: Part V
-- ordered_associative_chiral_kd_core, dg_shifted_factorization_bridge: Part VI
-- ym_synthesis_core, celestial_holography_core, log_ht_monodromy_core, anomaly_completed_core: Part VII
+**Connections — Core** (Parts II, III, IV):
+- hochschild, brace, bar-cobar-review, line-operators: Part II
+- dnp_identification_master, spectral-braiding-core, ht_bulk_boundary_line_core, celestial_boundary_transfer_core: Part III (seven faces)
+- ordered_associative_chiral_kd_core, dg_shifted_factorization_bridge, thqg_gravitational_yangian: Part III (E_1/ordered sector)
+- relative_feynman_transform, modular_pva_quantization_core, ht_physical_origins: Part III
+- affine_half_space_bv, fm3_planted_forest_synthesis, thqg_gravitational_complexity, 3d_gravity: Part III (gravity)
+- thqg_3d_gravity_movements_vi_x, thqg_critical_string_dichotomy, thqg_perturbative_finiteness, thqg_soft_graviton_theorems, thqg_symplectic_polarization: Part III
+- ym_synthesis_core, celestial_holography_core, log_ht_monodromy_core, anomaly_completed_core: Part IV (standard HT landscape)
+- thqg_holographic_reconstruction, thqg_modular_bootstrap: Part IV
 
-**Connections — Frontier** (Part VIII, all splits):
+**Connections — Frontier** (Part V, all splits):
 - spectral-braiding-frontier, ht_bulk_boundary_line_frontier, celestial_boundary_transfer_frontier
 - modular_pva_quantization_frontier, ordered_associative_chiral_kd_frontier
 - ym_synthesis_frontier, celestial_holography_frontier, log_ht_monodromy_frontier, anomaly_completed_frontier
 
-**Aftermatter**: conclusion (Part IX). Concordance removed (external compile route, matching Vol I).
+**Aftermatter**: conclusion (unnumbered). Concordance removed (external compile route, matching Vol I).
 
 **Appendices**: brace-signs, orientations, fm-proofs, pva-expanded-repaired
 
