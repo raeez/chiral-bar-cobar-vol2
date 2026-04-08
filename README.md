@@ -14,13 +14,13 @@
 
 <br>
 
-![Pages](https://img.shields.io/badge/pages-1518-a371f7?style=for-the-badge&labelColor=0d1117)
-![Claims](https://img.shields.io/badge/tagged%20claims-2376-3fb950?style=for-the-badge&labelColor=0d1117)
+![Pages](https://img.shields.io/badge/pages-1520-a371f7?style=for-the-badge&labelColor=0d1117)
+![Claims](https://img.shields.io/badge/tagged%20claims-2378-3fb950?style=for-the-badge&labelColor=0d1117)
 ![Build](https://img.shields.io/badge/build-passing-3fb950?style=for-the-badge&labelColor=0d1117)
 
 <br>
 
-![Proved Here](https://img.shields.io/badge/proved%20here-1981-3fb950?style=flat-square&labelColor=0d1117)
+![Proved Here](https://img.shields.io/badge/proved%20here-1983-3fb950?style=flat-square&labelColor=0d1117)
 ![Proved Elsewhere](https://img.shields.io/badge/proved%20elsewhere-164-58a6ff?style=flat-square&labelColor=0d1117)
 ![Conjectured](https://img.shields.io/badge/conjectured-188-d29922?style=flat-square&labelColor=0d1117)
 ![Heuristic](https://img.shields.io/badge/heuristic-43-8b949e?style=flat-square&labelColor=0d1117)
@@ -417,6 +417,6 @@ make fast            # Single-pass pdflatex (quick check)
 
 <div align="center">
 
-<sub>1,511 pages &ensp;&middot;&ensp; 99 active .tex files &ensp;&middot;&ensp; 2,376 tagged claims &ensp;&middot;&ensp; 183K source lines &ensp;&middot;&ensp; 100% claim-tag coverage</sub>
+<sub>1,520 pages &ensp;&middot;&ensp; 99 active .tex files &ensp;&middot;&ensp; 2,378 tagged claims &ensp;&middot;&ensp; 184K source lines &ensp;&middot;&ensp; 100% claim-tag coverage</sub>
 
 </div>
