@@ -55,11 +55,10 @@
 \makeatother
 \usepackage[unicode,pdfencoding=auto,psdextra]{hyperref}
 % Cross-volume label import from Vol I (V1- prefix on all cross-refs)
-% DISABLED: Vol I aux tree (2.5MB, 22K lines) exceeds xr-hyper \read
-% capacity after the latest Vol I rebuild.  V1- prefixed cross-refs
-% resolve as "??" until a flat cross-ref export is implemented.
+% Uses flat export: run  python3 scripts/export_vol1_xrefs.py  in Vol I
+% to regenerate ../chiral-bar-cobar/vol1-xrefs.aux after each Vol I build.
 \usepackage{xr-hyper}
-%\externaldocument[V1-]{../chiral-bar-cobar/main}
+\externaldocument[V1-]{../chiral-bar-cobar/vol1-xrefs}
 \usepackage{geometry}
 \geometry{top=1.2in, bottom=1.2in, left=1.25in, right=1.25in, footskip=0.5in}
 \setlength{\headheight}{28pt}
@@ -215,6 +214,7 @@
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\Z}{\mathbb{Z}}
 \newcommand{\N}{\mathbb{N}}
+\newcommand{\Q}{\mathbb{Q}}
 % Compatibility with Vol I notation in moved chapters
 \providecommand{\cD}{\mathcal{D}}
 \providecommand{\cT}{\mathcal{T}}
@@ -341,6 +341,8 @@
 % Bar-cobar (matching Vol I)
 \newcommand{\barB}{\bar{B}}
 \newcommand{\barBgeom}{\bar{B}_{\mathrm{geom}}}
+\newcommand{\Barch}{\overline{B}^{\mathrm{ch}}}
+\newcommand{\Barchord}{\overline{B}^{\mathrm{ord}}}
 \newcommand{\Omegach}{\Omega^{\mathrm{ch}}}
 
 % Categories
@@ -395,141 +397,47 @@
 \itshape
 
 \noindent
-The bar complex of a chiral algebra~$\cA$ carries two structures:
-a differential~$D_\cA$ from OPE residues on the Fulton--MacPherson
-space~$\FM_k(\C)$, and a deconcatenation coproduct~$\Delta$ from
-the ordered configuration space~$\Conf_k^<(\R)$.  A bar element
-of degree~$k$ lives on $\FM_k(\C) \times \Conf_k^<(\R)$; the
-coderivation property
-$\Delta \circ D_\cA = (D_\cA \otimes \id + \id \otimes D_\cA)
-\circ \Delta$ says that holomorphic collisions commute with
-topological cuts.  The bar complex is a coalgebra over the
-chiral-topological Swiss-cheese operad~$\SCchtop$, and
-$(\barB(\cA), D_\cA, \Delta)$ presents the Swiss-cheese algebra
-as the Steinberg variety presents the Hecke algebra.
+The ordered bar complex
+$B^{\mathrm{ord}}(\cA) = T^c(s^{-1}\bar\cA)$
+of a chiral algebra~$\cA$ carries a differential from OPE
+residues on~$\FM_k(\C)$ and a deconcatenation coproduct
+from~$\Conf_k^<(\R)$.  Together these make it a coalgebra
+over the Swiss-cheese operad~$\SCchtop$: the differential
+is the holomorphic colour, the coproduct is the
+topological colour, and the bar complex presents the
+Swiss-cheese algebra as the Steinberg variety presents the
+Hecke algebra.  The ordered bar is the primitive object;
+the symmetric bar $B^{\Sigma}(\cA)$ of Volume~I is its
+$\Sigma_n$-coinvariant shadow, and the modular
+characteristic $\kappa(\cA) = \mathrm{av}(r(z))$ is the
+leading scalar that survives averaging.
 
-Volume~I is Koszul duality on a curve.  Volume~II is the
-dimensional lift to~$\C \times \R$: the bar differential is the
-holomorphic colour, the coproduct is the topological colour,
-and three functors on the bar coalgebra produce three distinct
-objects: $\Omega(\barB(\cA)) \simeq \cA$ (bar-cobar inversion),
-$\mathbb{D}_{\Ran}(\barB(\cA)) \simeq \barB(\cA^!)$ (Verdier
-intertwining), and
-$\cZ^{\mathrm{der}}_{\mathrm{ch}}(\cA) =
-\RHom_{\cA\text{-}\cA}(\cA, \cA)$ (universal bulk observables).
-$\SCchtop$ is homotopy-Koszul (Kontsevich formality $+$ transfer
-from the classical Swiss-cheese operad), Koszul self-dual, and
-bar-cobar on $\SCchtop$-algebras is a Quillen equivalence.  On
-the chirally Koszul locus, the open-colour Koszul dual is a
-dg-shifted Yangian whose spectral Drinfeld class vanishes at
-every filtration for all simple Lie algebras.
+Three functors act on the bar coalgebra:
+$\Omega(\barB(\cA)) \simeq \cA$ (inversion),
+$\mathbb{D}_{\Ran}(\barB(\cA)) \simeq \barB(\cA^!)$
+(Verdier intertwining),
+$\cZ^{\mathrm{der}}_{\mathrm{ch}}(\cA)$ (universal bulk).
+$\SCchtop$ is homotopy-Koszul and Koszul self-dual.
+PVA descent extracts a $({-}1)$-shifted Poisson vertex
+algebra from the three-face Stokes identity
+on~$\FM_3(\C)$.
+Line operators carry modules for the Koszul dual~$\cA^!$;
+spectral braiding satisfies Yang--Baxter; for affine
+Kac--Moody the braided line category is the quantum group
+category.  The collision residue
+$r(z) = \Res^{\mathrm{coll}}_{0,2}(\Theta_\cA)$
+appears in seven guises, from the Drinfeld--Kohno
+associator to the holographic boundary-to-bulk map:
+the physics is the homotopy type.
 
-The Lagrangian principle organizes both volumes.  The bar
-construction is a shifted Lagrangian embedding
-$\cL_\cA \hookrightarrow \cM_{\mathrm{vac}}$ into the derived
-moduli of local bulk vacua; the Swiss-cheese coalgebra is its
-self-intersection $\cL_\cA \times_{\cM_{\mathrm{vac}}} \cL_\cA$.
-The five theorems of Volume~I are five faces of this Lagrangian:
-bar-cobar adjunction is the neighbourhood theorem, Koszul
-inversion is formal Darboux, complementarity is the pair of
-complementary Lagrangians, the modular characteristic
-$\kappa(\cA) \cdot \omega_g$ is the curvature of the family
-over~$\overline{\cM}_g$, and the Hochschild ring is the ring of
-functions on the self-intersection.  Gravitational S-duality
-arises from Verdier intertwining: the exchange
-$\barB(\cA) \mapsto \mathbb{D}_{\Ran}(\barB(\cA)) \simeq
-\barB(\cA^!)$ transposes boundary conditions ($c \mapsto 26-c$
-for Virasoro), identifying the matter and ghost sectors as
-Lagrangian complements.
-
-PVA descent extracts a $(-1)$-shifted Poisson vertex algebra on
-cohomology: Jacobi from the three-face Stokes identity on
-$\FM_3(\C)$, Leibniz from regular-part factorization, vanishing
-of~$m_{k \ge 3}$ from contractibility of~$\R$.  In the
-boundary-linear sector, bulk observables identify with chiral
-Hochschild cochains of the boundary algebra; line operators carry
-modules for the Koszul dual; spectral braiding satisfies
-Yang--Baxter from the same $\FM_3(\C)$ boundary cancellation.
-For affine Kac--Moody on evaluation modules, the reduced braided
-line category identifies with the corresponding quantum group
-category, and the colored Jones polynomial is recovered from
-bar-complex monodromy: the KZ connection on
-$\FM_k(\C) \setminus \bigcup D_S$ braids the bar elements,
-and its holonomy in each irreducible summand evaluates the
-colored Jones invariant of the resulting braid closure.
-
-The gravitational $\Ainf$ tower has closed-form structure.
-The field polynomial at the symmetric point factorises as
-$\varphi_k(x) = (-1)^n C_n \prod_{m=2}^{k}(x+m)$, where
-$C_n$ is the $n$-th Catalan number ($k = 2n{+}3$ odd; the
-polynomial vanishes identically for even~$k$).  The Catalan
-factor counts planar binary trees on $\Conf_k^<(\R)$, the
-topological colour; the Pochhammer factor
-$\prod(x+m)$ records $L_0$-eigenvalues on $\FM_k(\C)$, the
-holomorphic colour.  The scalar shadow obeys the closed-form
-formula $S_r = (-6)^{r-4}\,D/(2r\,c^{r-3})\,F_r(D/144)$,
-where $D = 8\kappa S_4$ is the critical discriminant and $F_r$
-is a polynomial with Catalan coefficients.
-
-At genus~$g \ge 1$, the curvature
-$d_{\mathrm{fib}}^{\,2} = \kappa(\cA) \cdot \omega_g$ from the
-Hodge bundle produces a curved $\SCchtop$-algebra.
-The annular bar complex extracts five quantum chaos diagnostics:
-the spectral form factor (slope-ramp-plateau decomposition from
-the genus tower), out-of-time-order correlators as $R$-matrix
-traces on $\FM_4(\C)$, the Maldacena--Shenker--Stanford bound
-$\lambda_L \le 2\pi/\beta$ as a consequence of
-$d_{\mathrm{fib}}^2 = \kappa \cdot \omega_1$, the scrambling
-time $t_* \sim (\beta/2\pi)\log c$ from the arity transition in
-the ordered bar complex, and random-matrix universality from
-eigenvalue statistics of the annular fibre differential.
-The total differential restores flatness
-over~$\overline{\cM}_g$.  The 3d Maurer--Cartan element
-$\alpha_T \in \mathrm{MC}(\gSC_T)$ packages the full
-holomorphic-topological system: its six projections recover the
-boundary algebra, line operations, spectral $R$-matrix,
-bulk-boundary comparison, genus tower, and PVA bracket.
-
-The shadow depth classification (classes $\mathbf{G}$, $\mathbf{L}$,
-$\mathbf{C}$, $\mathbf{M}$, $\mathbf{W}$ of termination arities $2$, $3$, $4$,
-$\infty$, and undefined respectively) equals the operadic complexity
-on the Koszul locus; class~$\mathbf{W}$ (wild, e.g.\ Kronecker $K_m$ for $m \geq 3$)
-marks the non-Koszul boundary where the bar spectral sequence does not
-collapse and the shadow tower cannot be constructed
-(Volume~I, Remark~\ref*{rem:wild-quiver-boundary}):
-$r_{\max}(\cA) = d_\infty(\cA) = f_\infty(\cA)$, the
-$A_\infty$-depth equals the $L_\infty$-formality level.  The
-Drinfeld--Sokolov ghost-number obstruction kills the HPL-transferred
-coproduct at every arity for all principal reductions and all
-simple~$\fg$; the gravitational coproduct is strictly primitive,
-and all higher-spin gravitons in $\cW_N$-gravity
-share this property.  Soft graviton theorems at order~$p$
-correspond to arity-$(p{+}2)$ shadows: the infinite $\Ainf$
-tower generates an infinite hierarchy of soft theorems beyond
-the subleading BMS level, with the Bekenstein--Hawking entropy
-recovered from the shadow CohFT at genus~$1$.
-
-New example families extend the standard landscape.  Coulomb branch
-vertex algebras of $3$d $\cN=4$ gauge theories exhibit the
-progression $\mathbf{L} \to \mathbf{L} \to \mathbf{M}$ as rank
-increases: abelian theories are class~$\mathbf{L}$, non-abelian
-theories of rank~$\ge 3$ are class~$\mathbf{M}$.  Cohomological
-Hall algebras of quivers produce bar-DT dictionaries in which the
-MacMahon function is the bar Poincar\'e series.  The complete orbit
-landscape for non-principal $\mathcal{W}$-algebras of
-$\mathfrak{sl}_4$ (six nilpotent orbits, four distinct bar-complex
-types) is computed.  Coset and orbifold bar complexes are treated
-by equivariant bar constructions.
-
-For chirally Koszul algebras with semisimple genus-$0$ Frobenius
-structure, the tautological relations descended from the MC equation
-generate the Pixton ideal
-$\cP^*(\overline{\cM}_g)$, via the chain
-MC $\to$ KdV $\to$ $r$-spin $\to$ Pixton
-(using Faber--Shadrin--Zvonkine and
-Pandharipande--Pixton--Zvonkine).  The shadow CohFT satisfies the
-string equation unconditionally at rank~$1$, bypassing the flat-unit
-obstruction of AP30 through double-ramification cycles.
+At genus~$g \ge 1$, curvature
+$\kappa(\cA) \cdot \omega_g$ produces a curved
+$\SCchtop$-algebra.  The Virasoro $\lambda$-bracket
+generates ten movements of three-dimensional quantum
+gravity, from the $\Ainf$ Koszul triangle through
+gravitational S-duality $c \mapsto 26 - c$ to a
+conjectured Cardy--Bekenstein--Hawking entropy extraction
+via the shadow CohFT.
 \end{abstract}
 
 \bigskip
@@ -725,51 +633,46 @@ constructed from the Swiss-cheese structure via
 \input{chapters/theory/pva-expanded-repaired}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\part{The Characteristic Datum}
-\label{part:examples}
+\part{The $E_1$ Core}
+\label{part:e1-core}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \noindent
-Each algebra family in Volume~I's standard landscape is now a
-test case for the full open/closed architecture: boundary
-algebra, universal bulk, line-sector operations, modular MC
-element.  The Heisenberg Rosetta Stone computes every direct datum by hand,
-confirming the four-functor table ($\barB$: twisting morphisms;
-$\Omega$: boundary recovery; open-colour duality: line-side modeling algebra;
-$C^\bullet_{\mathrm{ch}}$: universal bulk).  The shadow archetype
-($\mathsf{G}$/$\mathsf{L}$/$\mathsf{C}$/$\mathsf{M}$) classifies
-the boundary-holographic complexity of each family.
-$\mathcal{W}$-algebra computations connect to Volume~I's
-Drinfeld--Sokolov framework: bar-cobar commutes with DS reduction,
-so the full Swiss-cheese structure descends through the BRST
-functor.
+The ordered bar coalgebra $B^{\mathrm{ord}}(\cA) = T^c(s^{-1}\bar\cA)$
+with its deconcatenation coproduct is the native object of the
+Swiss-cheese open colour.  It carries strictly more data than the
+symmetric bar $B^{\Sigma}(\cA)$ of Volume~I: the $R$-matrix
+$R(z) \in \End(B^{\mathrm{ord}}_2)$, the KZ associator, and the
+full Yangian deformation survive on the ordered side but are killed
+by the $\Sigma_n$-coinvariant projection
+$\mathrm{av}\colon B^{\mathrm{ord}} \twoheadrightarrow B^{\Sigma}$.
+The modular characteristic $\kappa(\cA) = \mathrm{av}(r(z))$
+is the leading scalar shadow of the collision residue
+$r(z) = \Res^{\mathrm{coll}}_{0,2}(\Theta_\cA)$;
+the five main theorems of Volume~I are the invariants that survive
+averaging.
 
-The universal bulk of a boundary algebra~$\cA$ is not its bar complex
-but its chiral derived center: the cohomology of chiral Hochschild
-cochains $\cZ^{\mathrm{der}}_{\mathrm{ch}}(\cA) =
-H^*(C^\bullet_{\mathrm{ch}}(\cA, \cA), \delta)$.  The brace dg
-algebra structure on~$C^\bullet_{\mathrm{ch}}$ makes the pair
-$(\cZ^{\mathrm{der}}_{\mathrm{ch}}, \cA)$ the terminal local
-open/closed pair: the chiral Swiss-cheese theorem.  The bar
-complex enters as a separate object: it classifies
-\emph{twisting morphisms} (couplings between~$\cA$ and the
-open-colour Koszul dual~$\cA^!_{\mathrm{line}}$), while the derived
-center classifies \emph{bulk operators acting on the boundary}.
+Line operators carry modules for the open-colour Koszul
+dual~$\cA^!_{\mathrm{line}}$.  The ordered associative
+projection is the second wing of chiral Koszul duality:
+$B^{\mathrm{ord}}$ with deconcatenation is an $E_1$-coalgebra whose
+bar-cobar theory, diagonal bicomodule, and open trace parallel the
+closed-colour theory of Part~\ref{part:swiss-cheese}.  The bordered
+theory on the strip extends to the annulus: gluing introduces the
+wrap-around face whose differential closes the two-sided bar
+complex into the Hochschild complex.  The dg-shifted Yangian
+package produces spectral quasi-factorization data; for all simple
+Lie algebras the spectral Drinfeld obstruction vanishes and the
+data strictify.
 
-\input{chapters/examples/rosetta_stone}
-\input{chapters/examples/examples-computing}
-\input{chapters/examples/examples-complete-proved}
-\input{chapters/examples/examples-worked}
-\input{chapters/examples/w-algebras-virasoro}
-\input{chapters/examples/w-algebras-w3}
-
-\input{chapters/connections/hochschild}
-\input{chapters/connections/brace}
 \input{chapters/connections/bar-cobar-review}
 \input{chapters/connections/line-operators}
+\input{chapters/connections/ordered_associative_chiral_kd_core}
+\input{chapters/connections/dg_shifted_factorization_bridge}
+\input{chapters/connections/thqg_gravitational_yangian}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\part{The Seven Faces of $r(z)$ in 3d HT}
+\part{The Seven Faces of $r(z)$}
 \label{part:bbl-core}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -785,41 +688,57 @@ reads the same binary datum through a different algebraic lens;
 together they constitute the characteristic datum of a
 three-dimensional holomorphic--topological theory.
 
-The open colour of the Swiss-cheese operad is an $E_1$-algebra
-with its own bar-cobar theory, diagonal bicomodule, and open
-trace.  The ordered associative projection is the second wing of
-chiral Koszul duality.  The bordered theory on the strip extends
-naturally to the annulus: gluing the two ends introduces a single
-new boundary stratum---the wrap-around face---whose differential
-closes the two-sided bar complex into the Hochschild complex, so
-that the annular FM compactification computes the trace.
-Spectral quasi-factorization data arise
-from the dg-shifted Yangian package; for all simple Lie algebras
-the spectral Drinfeld obstruction vanishes, and the
-quasi-factorization data strictify.
-
 \input{chapters/connections/dnp_identification_master}
 \input{chapters/connections/spectral-braiding-core}
 \input{chapters/connections/ht_bulk_boundary_line_core}
 \input{chapters/connections/celestial_boundary_transfer_core}
-\input{chapters/connections/ordered_associative_chiral_kd_core}
-\input{chapters/connections/dg_shifted_factorization_bridge}
-\input{chapters/connections/thqg_gravitational_yangian}
+\input{chapters/connections/affine_half_space_bv}
+\input{chapters/connections/fm3_planted_forest_synthesis}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\part{The Characteristic Datum and Modularity}
+\label{part:examples}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\noindent
+Each algebra family in Volume~I's standard landscape is a
+test case for the full open/closed architecture: boundary
+algebra, universal bulk, line-sector operations, modular MC
+element.  The Heisenberg Rosetta Stone computes every direct datum by hand,
+confirming the four-functor table ($\barB$: twisting morphisms;
+$\Omega$: boundary recovery; open-colour duality: line-side modeling algebra;
+$C^\bullet_{\mathrm{ch}}$: universal bulk).  The shadow archetype
+($\mathsf{G}$/$\mathsf{L}$/$\mathsf{C}$/$\mathsf{M}$) classifies
+the boundary-holographic complexity of each family.
+
+The universal bulk of a boundary algebra~$\cA$ is not its bar complex
+but its chiral derived center
+$\cZ^{\mathrm{der}}_{\mathrm{ch}}(\cA) =
+H^*(C^\bullet_{\mathrm{ch}}(\cA, \cA), \delta)$.  The brace dg
+algebra structure on~$C^\bullet_{\mathrm{ch}}$ makes the pair
+$(\cZ^{\mathrm{der}}_{\mathrm{ch}}, \cA)$ the terminal local
+open/closed pair: the chiral Swiss-cheese theorem.
+
+The genus-zero Swiss-cheese operad $\SCchtop$ of
+Part~\ref{part:swiss-cheese} extends to all genera by adjoining
+clutching maps on the closed colour.  The Feynman transform of
+the resulting modular operad produces the universal Maurer--Cartan
+equation for the genus tower.  Modular homotopy-Koszulity ensures
+that bar-cobar duality lifts from genus zero to the full modular
+envelope.
+
+\input{chapters/examples/rosetta_stone}
+\input{chapters/examples/examples-computing}
+\input{chapters/examples/examples-complete-proved}
+\input{chapters/examples/examples-worked}
+\input{chapters/examples/w-algebras-virasoro}
+\input{chapters/examples/w-algebras-w3}
+\input{chapters/connections/hochschild}
+\input{chapters/connections/brace}
 \input{chapters/theory/modular_swiss_cheese_operad}
 \input{chapters/connections/relative_feynman_transform}
 \input{chapters/connections/modular_pva_quantization_core}
 \input{chapters/connections/ht_physical_origins}
-
-\input{chapters/connections/affine_half_space_bv}
-\input{chapters/connections/fm3_planted_forest_synthesis}
-\input{chapters/connections/thqg_gravitational_complexity}
-\input{chapters/connections/3d_gravity}
-\input{chapters/connections/thqg_3d_gravity_movements_vi_x}
-\input{chapters/connections/thqg_critical_string_dichotomy}
-\input{chapters/connections/thqg_perturbative_finiteness}
-\input{chapters/connections/thqg_soft_graviton_theorems}
-\input{chapters/connections/thqg_symplectic_polarization}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \part{The Standard HT Landscape}
@@ -830,7 +749,7 @@ quasi-factorization data strictify.
 The Koszul triangle
 (boundary~$\cA$, bulk~$\cZ^{\mathrm{der}}_{\mathrm{ch}}$,
 lines~$\cC_{\mathrm{line}}$)
-of Part~III acquires depth through anomaly completion: the
+of Part~\ref{part:bbl-core} acquires depth through anomaly completion: the
 transgression algebra $B_\Theta$ of Volume~I's universal MC class
 packages the obstruction into a single dg algebra with
 genus-Clifford completion.  Yang--Mills boundary packages,
@@ -850,13 +769,37 @@ anomaly completion organizes the genus-dependent obstruction data.
 \input{chapters/connections/thqg_modular_bootstrap}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\part{Three-Dimensional Quantum Gravity}
+\label{part:gravity}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\noindent
+The climax.  The Virasoro $\lambda$-bracket
+$\{T_\lambda T\} = \partial T + 2T\lambda + (c/12)\lambda^3$
+generates the full gravitational theory.
+The quartic pole forces the infinite $\Ainf$ tower, the Koszul
+involution $c \mapsto 26 - c$, the curvature $\kappa = c/2$, and the
+genus expansion.  Gravity is the most downstream application: it
+requires the full $E_1$ + modular + complementarity machinery of
+Parts~I--V.  This Part unfolds ten movements of the resulting
+three-dimensional quantum gravity.
+
+\input{chapters/connections/thqg_gravitational_complexity}
+\input{chapters/connections/3d_gravity}
+\input{chapters/connections/thqg_3d_gravity_movements_vi_x}
+\input{chapters/connections/thqg_critical_string_dichotomy}
+\input{chapters/connections/thqg_perturbative_finiteness}
+\input{chapters/connections/thqg_soft_graviton_theorems}
+\input{chapters/connections/thqg_symplectic_polarization}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \part{The Frontier}
 \label{part:frontier}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \noindent
 The chapters in this part extend the proved core of
-Parts~I--IV into conditional, conjectural, and frontier territory.
+Parts~I--VI into conditional, conjectural, and frontier territory.
 Every result here either depends on additional unproved analytic input
 beyond the logarithmic $\SCchtop$ framework, carries conjectural
 status, or addresses directions not yet fully resolved.  No earlier part
@@ -944,6 +887,8 @@ depends on material in this part.
 \bibitem{CM14} G.~Caviglia and I.~Moerdijk, \emph{A model structure for enriched coloured operads}, arXiv:1401.6983, 2014.
 
 \bibitem{Deligne70} P.~Deligne, \emph{\'Equations diff\'erentielles \`a points singuliers r\'eguliers}, Lecture Notes in Math., vol.~163, Springer, Berlin, 1970.
+
+\bibitem{Dimofte25} T.~Dimofte, \emph{Slab constructions and fiber functors in 3d holomorphic--topological QFT}, lecture notes, Perimeter Institute, 2025.
 
 \bibitem{DNP25} T.~Dimofte, W.~Niu, and V.~Py, \emph{Line operators in 3d holomorphic QFT: meromorphic tensor categories and dg-shifted Yangians}, arXiv:2506.09728, 2025.
 

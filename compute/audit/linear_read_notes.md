@@ -14127,3 +14127,7 @@ Ran a hostile first-principles audit of the load-bearing theorem spine rather th
    Issue: Step `(i)` of `thm:physics-bridge` does not justify the claimed propagator factorization. The displayed computation gives `Q(K_\C \otimes \delta_\R) = \delta_\C \otimes \delta_\R + K_\C \otimes \delta'_\R`, and the extra term is then discarded by fiat. More fundamentally, the proof never establishes that the Green's kernel of `Q = \dbar_z + d_t` is the tensor product of separate Green's kernels merely because the operator splits additively. The theorem therefore proves less than it claims under hypotheses `(a)`--`(c)`.
    Fix: none in this pass. A truthful repair likely requires either adding explicit factorized-propagator hypotheses or replacing Step `(i)` with a genuine parametrix/Schwinger-kernel argument that proves the separation.
    Status: `OPEN`
+
+### Full Catalogue
+
+- Consolidated audit document: `compute/audit/full_volume_math_catalogue_2026-04-08.md`
