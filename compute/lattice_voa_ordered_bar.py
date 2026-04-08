@@ -853,30 +853,32 @@ class LatticeBarComplex:
     # -----------------------------------------------------------------
 
     def modular_characteristic(self) -> Fraction:
-        """Compute κ = dim(g) · k / (2(k + h∨)) for the lattice VOA.
+        """Compute κ for the lattice VOA.
 
+        For lattice VOAs V_Λ with roots (V_Λ ≅ L₁(g)):
+          κ = dim(g) · k / (2(k + h∨))
         At level k=1 for simply-laced g:
           κ = dim(g) / (2(1 + h∨))
 
-        For lattice VOAs without roots (Leech):
-          κ = rank/2 (pure Heisenberg at k=1)
+        For lattice VOAs without roots (e.g. Leech):
+          κ = rank  (pure Heisenberg: rank copies of H₁)
 
-        Note: for Heisenberg at level k, κ = k/2.
-        For the lattice VOA V_Λ ≅ L₁(g), the central charge is
-          c = rank(Λ)
-        and the Sugawara construction gives
-          κ = dim(g)/(2(1+h∨)).
+        Note: for Heisenberg at level k, κ(H_k) = k (NOT k/2).
+        The formula κ = k/2 is WRONG — it confuses κ with c/2
+        (AP39, AP48). For lattice VOAs, κ = rank by additivity:
+        κ(V_Λ) = rank · κ(H₁) = rank · 1 = rank.
         """
         if self.L.num_roots == 0:
-            # Pure Heisenberg (no vertex operators)
-            return Fraction(self.L.rank, 2)
+            # Pure Heisenberg: rank copies at level 1, κ(H_1) = 1 each
+            # κ = rank (NOT rank/2 — that was AP39/AP48 confusion)
+            return Fraction(self.L.rank)
 
         # For lattice VOA V_Λ ≅ L₁(g) at level 1:
         dim_g = self.L.dim_lie_algebra
         # Determine h∨ from the root system
         h_dual = self._dual_coxeter_number()
         if h_dual is None:
-            return Fraction(self.L.rank, 2)  # fallback to Heisenberg
+            return Fraction(self.L.rank)  # fallback to Heisenberg: κ = rank
         return Fraction(dim_g, 2 * (1 + h_dual))
 
     def _dual_coxeter_number(self) -> Optional[int]:
@@ -1282,7 +1284,7 @@ def compute_Leech_complete() -> Dict[str, Any]:
     - m₃ = 0 (no Lie bracket sector)
     - R-matrix: R(z) = exp(ℏ Ω_{H₂₄}/z) with Ω_{H₂₄} = Σ J^i ⊗ J^i
     - Koszul dual: Sym^{ch}(V*) (24 commuting copies)
-    - κ = 12 (rank 24, level 1: κ = 24/2 = 12)
+    - κ = 24 (rank 24, level 1: κ = rank = 24; AP48: NOT c/2 = 12)
     """
     L = make_Leech()
     B = LatticeBarComplex(L)
@@ -1344,7 +1346,7 @@ def compute_general_even_unimodular() -> Dict[str, Any]:
        - Class G, shadow depth 2
        - m₂(J^i, J^j; λ) = δ_{ij} λ
        - m_k = 0 for k ≥ 3
-       - κ = r/2
+       - κ = r (rank copies of H₁; AP48: NOT r/2)
 
     2. If Φ ≠ ∅ (e.g. E₈ for r=8, or E₈⊕E₈ for r=16):
        - Class L, shadow depth 3
@@ -1790,7 +1792,7 @@ def run_tests() -> Tuple[int, int]:
     check("Leech shadow depth = 2", dsL['shadow_depth'] == 2)
 
     kappaL = BL.modular_characteristic()
-    check("Leech κ = 12", kappaL == Fraction(12))
+    check("Leech κ = 24", kappaL == Fraction(24))
 
     # Leech Euler-eta (Ramanujan tau)
     eeL = BL.euler_eta_verification(20)

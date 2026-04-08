@@ -24,6 +24,9 @@ PASSES    := 6
 FAST_PASSES := 4
 PYTEST_FAST_TIMEOUT ?= 120
 
+# iCloud destination for release PDFs
+ICLOUD_DIR := /Users/raeez/Library/Mobile Documents/com~apple~CloudDocs/research
+
 # Source files
 SOURCES   := $(wildcard *.tex) \
              $(wildcard chapters/theory/*.tex) \
@@ -166,14 +169,43 @@ $(OUT_WN): $(WN_TEX)
 		exit 1; \
 	fi
 
-## release: Clean rebuild + named release PDF + working notes at root.
+## release: Full rebuild — manuscript + working notes → out/ + root + iCloud
 release:
 	@rm -f $(STAMP) $(PDF) $(WN_PDF)
 	@rm -rf $(OUT_DIR)
 	@mkdir -p $(LOG_DIR) $(OUT_DIR)
-	@$(MAKE) --no-print-directory $(STAMP) working-notes publish
-	@cp $(PDF) Ainfinity_Chiral_Algebras_and_Chiral_Hochschild_Cohomology.pdf
-	@echo "  ✓  Ainfinity_Chiral_Algebras_and_Chiral_Hochschild_Cohomology.pdf"
+	@echo ""
+	@echo "  ══════════════════════════════════════════"
+	@echo "  ── RELEASE BUILD (Vol II) ──"
+	@echo "  ══════════════════════════════════════════"
+	@echo ""
+	@echo "  [1/2] Main manuscript"
+	@$(MAKE) --no-print-directory $(STAMP)
+	@$(MAKE) --no-print-directory publish
+	@if [ -f $(PDF) ]; then \
+		cp $(PDF) Ainfinity_Chiral_Algebras_and_Chiral_Hochschild_Cohomology.pdf; \
+		echo "  ✓  Ainfinity_Chiral_Algebras_and_Chiral_Hochschild_Cohomology.pdf (root)"; \
+	fi
+	@echo ""
+	@echo "  [2/2] Working notes"
+	@$(MAKE) --no-print-directory working-notes
+	@if [ -f $(OUT_WN) ]; then cp $(OUT_WN) working_notes.pdf; echo "  ✓  working_notes.pdf (root)"; fi
+	@echo ""
+	@echo "  ── Copying to iCloud ──"
+	@mkdir -p "$(ICLOUD_DIR)"
+	@if [ -f Ainfinity_Chiral_Algebras_and_Chiral_Hochschild_Cohomology.pdf ]; then \
+		cp Ainfinity_Chiral_Algebras_and_Chiral_Hochschild_Cohomology.pdf "$(ICLOUD_DIR)/"; \
+		echo "    ✓  Ainfinity_Chiral_Algebras_and_Chiral_Hochschild_Cohomology.pdf"; \
+	fi
+	@if [ -f $(OUT_WN) ]; then \
+		cp $(OUT_WN) "$(ICLOUD_DIR)/working_notes_vol2.pdf"; \
+		echo "    ✓  working_notes_vol2.pdf"; \
+	fi
+	@echo ""
+	@echo "  ══════════════════════════════════════════"
+	@echo "  Release complete. Output in out/:"
+	@ls -1 $(OUT_DIR)/*.pdf 2>/dev/null | sed 's/^/    /'
+	@echo "  ══════════════════════════════════════════"
 
 ## dist: Create Vol2Archive.zip for distribution.
 dist: publish

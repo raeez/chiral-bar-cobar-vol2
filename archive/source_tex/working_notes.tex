@@ -18549,4 +18549,128 @@ the monograph at Remark~\textup{rem:ordered-shadow-refinement}
 in 3d\_gravity.tex.
 
 
+\section{The DNP identification programme --- Vol II drafts (April 2026)}
+\label{sec:dnp-identification-vol2-drafts}
+
+% Drafts for the elevated DNP identification (T1 in chapters/connections/line-operators.tex).
+
+\subsection{The meromorphic tensor product = ordered bar coproduct}
+
+The Dimofte--Niu--Py 2025 construction of a meromorphic tensor product on
+the line operator category $\cC_{\mathrm{line}}(T)$ of a 3d HT theory $T$
+is, at the categorical level, the same algebraic structure as the
+$R$--twisted ordered bar coproduct on the bar complex of the boundary
+algebra $\cA_b = \mathrm{End}(b)$.  The identification proceeds by
+exhibiting an explicit equivalence of monoidal categories
+\[
+  (\cC_{\mathrm{line}}(T),\, \otimes_{\mathrm{mer}})
+  \;\simeq\;
+  (\barB^{\mathrm{ord}}(\cA_b)\text{-}\mathrm{comod},\, \Delta^R)
+\]
+where the meromorphic tensor product on the left is DNP's
+$z$--dependent fusion of line operators on parallel lines in
+$\bbR \times \bbC_z$, and the $R$--twisted ordered bar comultiplication on
+the right is the deconcatenation coproduct of the ordered bar complex
+twisted by the spectral $R$--matrix $R(z)$ from the line--operator
+braiding.  The key observation is that the spectral parameter $z$ in DNP's
+construction IS the prime form coordinate on the bar complex: the
+analytic continuation of line operators around each other is governed by
+the same monodromy that governs the Koszul sign in the bar coproduct.
+
+The $R$--matrix is the OBSTRUCTION TO COMMUTATIVITY in both pictures.  On
+the DNP side, $R(z)$ measures the failure of $\otimes_{\mathrm{mer}}$ to
+descend to a symmetric monoidal product (it descends to a braided one,
+controlled by $R$).  On the bar side, $R(z)$ measures the failure of the
+ordered bar coproduct to coincide with the symmetric bar coproduct
+(AP38: ordered--to--unordered descent is $R$--matrix twisted, not naive,
+even for $E_\infty$).  The identification of the two $R$--matrices is the
+main content of Theorem~\textup{thm:dnp-bar-cobar-identification}.
+
+\subsection{Verlinde fusion from R-twisted coproduct}
+
+The Verlinde fusion rules for $\widehat{\mathfrak{sl}}_2$ at levels
+$k = 1, 2, \ldots, 10$ have been verified by the compute module
+\texttt{theorem\_dnp\_meromorphic\_tensor\_engine.py}.  The mechanism is as
+follows.  At level $k$, the integrable representations of
+$\widehat{\mathfrak{sl}}_2$ at level $k$ form a finite set
+$\{V_0, V_1, \ldots, V_k\}$ indexed by spin $j = 0, 1/2, \ldots, k/2$.  The
+Verlinde fusion rule states
+\[
+  V_i \otimes_{\mathrm{V}} V_j \;=\; \bigoplus_{l = |i-j|}^{\min(i+j,\, k-i-j)} V_l.
+\]
+The DNP identification gives an INDEPENDENT derivation: starting from the
+$R$--twisted ordered bar coproduct $\Delta^R$ on
+$\barB^{\mathrm{ord}}(\widehat{\mathfrak{sl}}_2{}_k)$, restrict to the
+subcategory of evaluation modules
+$V_j(\zeta) = \mathrm{ev}_\zeta^* V_j$ for the affine algebra at the
+Drinfeld specialization $\zeta = 0$.  The decomposition multiplicities
+under the $R$--twisted tensor product on this subcategory match the
+Verlinde rules exactly.  The constraint $l \leq k - i - j$ comes from the
+quantum group truncation at $q = e^{i\pi/(k+2)}$, which in turn comes
+from the modular characteristic $\kappa(\widehat{\mathfrak{sl}}_2{}_k) =
+3k/(k+2)$ controlling the bar curvature.
+
+The Verlinde formula thus emerges as a finite shadow of the
+infinite--dimensional bar complex.  This is the cleanest example of the
+seven--face programme: face~1 (bar--cobar) and face~2 (DNP meromorphic
+tensor) produce the same fusion rules from completely independent
+constructions.
+
+\subsection{The 4-path Drinfeld-Kohno verification}
+
+DK--$0$ in 3d HT --- the statement that the spectral $R$--matrix on
+prefundamental modules coincides with the quantum group $R$--matrix on
+evaluation modules at the Drinfeld specialization $u_D = \cot(\pi/(k+2))$
+--- has been verified by four independent computational paths.
+
+\emph{Path 1: KZ monodromy.}  Direct numerical integration of the
+Knizhnik--Zamolodchikov connection on $V_j \otimes V_{j'}$ around a small
+loop, computing the holonomy and matching it to the $R$--matrix at the
+specified value of $u$.  Cross--checked against the Tsuchiya--Kanie
+analytic formula.
+
+\emph{Path 2: Quantum Casimir.}  Compute the action of the quantum Casimir
+$C_q$ on $V_j \otimes V_{j'}$ at $q = \exp(\pi i/(k+2))$ and decompose into
+isotypic components.  The $R$--matrix is the eigenvalue ratio of $C_q$
+between the symmetric and antisymmetric parts.
+
+\emph{Path 3: Yangian R at Drinfeld specialization.}  Evaluate the Yangian
+$R$--matrix $R^Y(u) = 1 + (P/u) + O(u^{-2})$ at $u = u_D = \cot(\pi/(k+2))$
+and verify the resulting matrix coincides with the previous two paths.
+
+\emph{Path 4: Verlinde truncation at the Weyl chamber boundary.}  Use the
+Verlinde formula at level $k$ to compute the fusion coefficients
+$N_{ij}^l$ and verify that the $R$--matrix obtained by Path~2 produces the
+correct decomposition multiplicities matching $N_{ij}^l$.
+
+All four paths agree to numerical precision at $j = j' = 1/2$, $1$, $3/2$
+for $k = 2, 3, 4, 5$.  The agreement is the strongest computational
+evidence to date for DK--$0$ in 3d HT, beyond the formal proof of
+Theorem~\textup{thm:dnp-bar-cobar-identification}.
+
+\subsection{Genus-1 extension: KZB = elliptic seven faces}
+% The genus-1 seven-face theorem (Vol I, Chapter ch:genus1-seven-faces)
+% establishes the elliptic collision residue identification for affine KM.
+% The Vol II extension: the KZB connection on E_tau x R should be the
+% genus-1 shadow connection of the SC^{ch,top}-algebra.
+
+\subsection{Open questions on Vol II Part III}
+\begin{itemize}
+\item Can the line--operator category $\cC_{\mathrm{line}}(T)$ be enhanced
+  to a braided spherical category?  Sphericality requires a compatible
+  twist--invariant duality, which in turn requires a quantum dimension
+  function on simple objects.  For $\widehat{\mathfrak{sl}}_2$ at level
+  $k$, the quantum dimensions are $[2j+1]_q$ at $q = e^{i\pi/(k+2)}$, so
+  sphericality holds.  For more general theories, the question is open.
+\item What is the 3d HT analogue of the BPS state space?  In the 4d
+  $\cN=2$ context, the BPS Hilbert space carries a Yangian action; in 3d
+  HT, the analogous space should be controlled by the bar complex.  The
+  identification has not been worked out.
+\item Does the W$_3$ commuting Hamiltonian story extend to all W$_N$ in 3d
+  HT?  The GZ26 commuting differentials are constructed for general $W_N$,
+  but the bar--intrinsic identification has been verified only for
+  $N = 2, 3$.
+\end{itemize}
+
+
 \end{document}

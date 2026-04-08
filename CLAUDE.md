@@ -115,6 +115,12 @@ The Vol I `CLAUDE.md` supplies the source protocol. For Vol II, the Codex-native
 - The **pole-order dichotomy**: double poles → class L (formal SC structure), quartic poles → class M (non-formal, genuinely infinite A∞). DS reduction transports L→M via Sugawara: the affine double-pole OPE becomes the Virasoro quartic-pole OPE, escalating shadow depth from finite to infinite.
 - The **self-dual point c* ≠ critical string point c_crit**. For W_N: c* = α_N/2 (Koszul self-duality), c_crit = α_N (matter-ghost cancellation: c = |c_ghost| = α_N). For Virasoro: c*=13, c_crit=26. For W₃: c*=50, c_crit=100. NEVER conflate these. The formula c_crit = α_N/(2(H_N−1)) is WRONG for N≥3; the correct ghost curvature is κ_ghost = −α_N·(H_N−1), not −α_N/2.
 
+## E₁/Ordered as Primitive (PERMANENT, 2026-04-08)
+
+**The E₁/ordered story is the natural primitive of the manuscript. The modular/symmetric story is its Σ_n-coinvariant shadow.** This is especially load-bearing in Vol II, where the SC^{ch,top} operad governs everything: the bar differential is the closed colour (E_∞, holomorphic), the deconcatenation coproduct is the open colour (E₁, topological). The open colour IS the E₁ direction. The averaging map av: g^{E₁}_A → g^mod_A is the Σ_n-coinvariant projection (T^c → Sym^c). The E₁ MC element Θ^{E₁} (r-matrix, KZ associator, higher Yangian coherences) projects to the modular MC element Θ_A (κ, cubic shadow, quartic resonance class) under av. κ = av(r(z)) at arity 2. The five main theorems A-D+H are the invariants that survive averaging. See Vol I `princ:e1-primacy` and the `subsec:e1-as-primitive` section in the Vol I introduction for the full statement.
+
+**Vol II consequence:** The bar-cobar review chapter (bar-cobar-review.tex), the line operators chapter, the ordered_associative_chiral_kd chapters, and the dg-shifted factorization bridge are NATIVELY E₁ — they should be read as primary, not auxiliary. The PVA descent, modular PVA quantization, and Swiss-cheese operad chapters describe the modular/symmetric framework that is the av-image of the E₁ primitive.
+
 ## Anti-Patterns (inherited from Vol I + Vol II-specific)
 
 All Vol I anti-patterns AP1-AP34 apply here. In particular, AP34 (bar-cobar inversion ≠ open-to-closed passage) is especially load-bearing in Vol II: the three functors on B(A) are (1) Ω(B(A)) ≅ A (reconstruction), (2) Ω(D_Ran(B(A))) ≅ A! (Koszul duality), (3) RHom(Ω(B(A)), A) = C^•_ch(A,A) (derived centre = universal bulk). NEVER write "bar-cobar inversion produces the bulk." The following encode deep mathematical errors found propagated across both volumes:
@@ -195,6 +201,38 @@ All Vol I anti-patterns AP1-AP34 apply here. In particular, AP34 (bar-cobar inve
 
 **AP58 — The full hierarchy of chiral operadic structures.** From most to least symmetric: commutative associative (no poles, no bracket) → PVA (commutative product + Poisson bracket, classical shadow) → E_∞-chiral = vertex algebra (local, Σ_n-equivariant, OPE with poles) → P_∞-chiral (partial symmetry, homotopy-coherent intermediate) → E₁-chiral = nonlocal/quantum vertex algebra (ordered only, no Σ_n). The bar complex and Koszul duality operate at the E_∞ and E₁ levels. The PVA is the associated graded / classical limit / cohomological shadow. NEVER place PVA at the same level as E_∞-chiral or P_∞-chiral — it lives one categorical level down (on cohomology, not on chain complexes).
 
+**AP59 — Three distinct invariants must never be conflated: p_max, k_max, r_max.** A chiral algebra A has THREE distinct numerical invariants: (a) p_max(A) = generator OPE pole order, (b) k_max(A) = collision depth (from arity-2 collision residue), (c) r_max(A) = shadow depth (arity at which the obstruction tower terminates). The relation k_max = p_max - 1 always holds (d log absorption, AP19), but r_max is INDEPENDENT of p_max. The βγ system is the archetypal witness: p_max(βγ) = 1, k_max(βγ) = 0, r_max(βγ) = 4 (class C). Conflation produces wrong classifications. Found in T6 first draft (CRITICAL F16/F17, 2026-04-07). **Rule: when discussing depth, always specify which of the three invariants. Formal definitions in Vol I chapters/theory/three_invariants.tex.**
+
+**AP60 — Status inflation when combining new and known content.** When a theorem combines a new identification with classical results, the natural temptation is to tag the entire theorem `\ClaimStatusProvedHere`. The classical components are `\ClaimStatusProvedElsewhere` (with attribution); only the genuinely new identification is ProvedHere. Found in T5 (Sklyanin theorem) first draft (SERIOUS F12, 2026-04-07): combined Drinfeld 1985 + Semenov-Tian-Shansky 1983 with the new three-parameter identification of ℏ. **Rule: before tagging a theorem ProvedHere, identify which sub-claims are genuinely new and which are reproved classical results.**
+
+**AP61 — Hardcoded values from CLAUDE.md descriptions inherit conflations.** Compute engines that copy values from CLAUDE.md "shadow archetypes" descriptions can inherit semantic conflations. CLAUDE.md uses "depth" in informal slogans where the precise invariant is ambiguous; an engine reading these slogans must verify against the primary source. **Rule: never copy a numerical invariant from a CLAUDE.md description without verifying against (1) the OPE table, (2) landscape_census.tex, (3) at least one cross-engine comparison.**
+
+**AP81-AP104 (from the 2026-04-08 bar/SC/E_1 primacy swarm; see Vol I CLAUDE.md for full descriptions):**
+- **AP81**: Operadic bar of P-algebra ≠ operadic bar of operad P. Use B_P(A) for algebra bar, BP for operad bar.
+- **AP82**: Three coalgebra structures on bar: Lie^c (Harrison, coLie), Sym^c (coshuffle, cocommutative), T^c (deconcatenation, coassociative). NEVER conflate.
+- **AP83**: Coshuffle (2^n terms, cocommutative) ≠ deconcatenation (n+1 terms, non-cocommutative). Found at bar_construction.tex line 1563.
+- **AP84**: B_{Com}(A) is cofree coLie, NOT cocommutative. The CE complex is cocommutative; the operadic bar is coLie. Quasi-isomorphic in char 0, categorically distinct.
+- **AP85**: Factorization coproduct (Vol I, Sym^c, cocommutative) ≠ deconcatenation coproduct (Vol II, T^c, non-cocommutative). Live on different objects. R-matrix descent relates them.
+- **AP86**: FM_n(X) does not factor as a product. Only boundary strata D_S ≃ FM_{|S|} × FM_{n-|S|+1} factor. Bar coproduct restricts to strata, not global product.
+- **AP87**: SC^{ch,top,!} mixed-sector dimension = (k-1)!·C(k+m,m), NOT (k-1)!·m!. Shuffle binomial, not plain factorial product.
+- **AP88**: Cooperad P¡ vs operad P^! notation collision. Use P¡ for cooperad, P^! for its linear dual operad.
+- **AP89**: B_{SC}(A) for one-coloured A is ILL-FORMED. SC^{ch,top} is two-coloured; use promotion A ↦ (A,A).
+- **AP90**: Promotion functor A ↦ (A,A): self-action gives SC^{ch,top} input. B_{SC}(A,A) decomposes into closed + open + mixed sectors.
+- **AP91**: Curved d² = κ·ω_g is NOT a coderivation at g ≥ 1. Factor-2 discrepancy at interior splittings. Only period-corrected D^{(g)} is both flat and coderivation. (CRITICAL for Vol II higher-genus SC theory.)
+- **AP92**: Algebra-level curvature μ_0 (genus 0, strict d²=0) vs fiberwise d_fib² = κ·ω_g (genus ≥ 1, Hodge-class). Different objects at different scales.
+- **AP93**: δF_g^cross lives in CLOSED sector, NOT mixed sector. "Mixed channels" (propagator structure) ≠ "mixed sector" (closed-open SC interaction).
+- **AP94**: Polynomial Hilbert series ≠ polynomial RING. ChirHoch^*(Vir_c) has total dim ≤ 4, concentrated in {0,1,2}. NEVER write ℂ[Θ].
+- **AP95**: Chiral Hochschild ≠ Gel'fand-Fuchs of Diff(S¹). GF is infinite-dimensional; ChirHoch bounded by Theorem H. Unrelated invariants.
+- **AP96**: Shadow algebra A^sh is bigraded LIE ALGEBRA, NOT graded-commutative ring. Bracket has degree 0, arity map -2.
+- **AP97**: Averaging map av: g^{E_1} → g^mod is LOSSY. av(r(z)) = κ(A); the R-matrix has strictly more information.
+- **AP98**: κ Eulerian weight is parity-dependent. Even desuspension → symmetric weight 2. Odd → antisymmetric weight 1.
+- **AP99**: K11 (Lagrangian criterion) is CONDITIONAL on perfectness + bar-cobar normal-complex identification. Items (i)-(ii) unconditional; item (iii) conditional.
+- **AP100**: Theorem C: eigenspace decomposition (C1) unconditional; scalar F_g = κ·λ_g (C2) requires uniform weight. Multi-weight: F_g = κ·λ_g^FP + δF_g^cross.
+- **AP101**: "qi, not merely iso on cohomology" is tautological. Use "qi of A∞-algebras" for structured notion, "chain qi" for linear notion.
+- **AP102**: Theorems MUST specify which bar: B^ord (ordered/E_1), B^Σ (symmetric/E_∞), or B^Lie (FG/zeroth pole).
+- **AP103**: Cotriple bar resolution (monadic, always defined) ≠ Koszul-dual operadic bar (P¡-coalgebra, Koszul locus). Same Tor, different categories.
+- **AP104**: E_1/ordered is the PRIMITIVE. Modular/symmetric is the av-image. NEVER present the ordered story as "an extension" or "auxiliary."
+
 **AP35 — Accidentally correct theorem (false proof, true conclusion).** A correct answer is NOT evidence of a correct proof. When two errors cancel (orientation double-error, factorial/derivative double-error), fix BOTH — the cancellation is accidental and will break under generalization. In Vol II: orientation convention +∂_{ε_S} vs correct -∂_{ε_S} in fm-proofs appendix — double error cancelled giving correct final signs. Elliptic r-matrix: factorial AND derivative order both off by one — errors partially cancelled (correct pole structure, wrong regular part). **Rule: verify proof steps independently of the conclusion.**
 
 **AP36 — Biconditional overclaim (⟹ proved, ⟺ claimed).** "Convolution formality = one-channel" retracted to one-directional. DS-KD intertwining claimed for "all Koszul at generic level" but only proved on abelian-n+ lane. "Filtration formality" conflated with "dg formality." **Rule: before writing "iff," verify BOTH directions independently.**
@@ -225,7 +263,7 @@ All Vol I anti-patterns AP1-AP34 apply here. In particular, AP34 (bar-cobar inve
 
 **AP49 — Cross-volume formula propagation without convention check.** Vol I uses OPE modes; Vol II uses λ-brackets/divided powers; Vol III uses motivic/categorical conventions. NEVER paste between volumes without explicit conversion.
 
-**Meta-principle:** Every error traces to confusing two objects that share a name, formula, or special-case coincidence. The meta-rule: never trust a coincidence. Verify at the most general case, highest weight, most general level, most general family. **The meta-meta-meta-rule (from AP35-AP43): the same error can recur at different EPISTEMIC levels.** AP35-AP39 catch errors in the VERIFICATION LAYER (false proofs, biconditional overclaims, convention mismatches). AP40-AP43 catch errors in the COMMUNICATION LAYER (environment/tag mismatches, prose lies, slogans without scope, undefined objects).
+**Meta-principle:** Every error traces to confusing two objects that share a name, formula, or special-case coincidence. The meta-rule: never trust a coincidence. Verify at the most general case, highest weight, most general level, most general family. **The meta-meta-meta-rule (from AP35-AP43): the same error can recur at different EPISTEMIC levels.** AP35-AP39 catch errors in the VERIFICATION LAYER (false proofs, biconditional overclaims, convention mismatches). AP40-AP43 catch errors in the COMMUNICATION LAYER (environment/tag mismatches, prose lies, slogans without scope, undefined objects). **The meta^5-rule (from AP81-AP104): the same error can recur at the OPERADIC-ARCHITECTURAL level.** AP81-AP104 catch errors in the OPERADIC LAYER: algebra-vs-operad bar (AP81), three-coalgebra conflation (AP82-AP85), FM non-factoring (AP86), mixed-sector dimensions (AP87), cooperad notation (AP88), type violations (AP89-AP90), curved coderivation (AP91-AP92), closed-vs-mixed (AP93), polynomial conflation (AP94-AP95), shadow Lie-vs-ring (AP96), averaging lossy (AP97), Eulerian parity (AP98), K11 conditionality (AP99), Theorem C layers (AP100), qi tautology (AP101), bar disambiguation (AP102), cotriple vs operadic (AP103), E_1 primacy (AP104).
 
 ## Cross-Volume Bridges
 
@@ -246,9 +284,32 @@ All Vol I anti-patterns AP1-AP34 apply here. In particular, AP34 (bar-cobar inve
 | FG-shadow-stratification | Commutator filtration spectral sequence; E_1-page = FG bar | conj:FG-shadow (now theorem) | Proved |
 | Gauge-gravity dichotomy | m_k=0 (gauge) vs m_k≠0 (gravity); DS transports L→M | rem:gauge-gravity-yangian-dichotomy | Proved |
 
-## Agent Anti-Patterns (AAP1-AAP8)
+## Anti-Patterns from the 2026-04-07 Frontier Research Swarm (AP62-AP80)
 
-Cross-volume agent workflow anti-patterns identified from 300-commit archaeology. See Vol I CLAUDE.md for full descriptions. Summary: AAP1 (tool-markup leak into .tex), AAP2 (fragmented terminology renames), AAP3 (formula reimplemented N times in compute), AAP4 (\\begin{proof} after \\begin{conjecture}), AAP5 (build-artifact commit noise), AAP6 (status oscillation across sessions), AAP7 (intra-file formula inconsistency), AAP8 (README/metadata documentation drift). These operate at the agent workflow layer, distinct from AP1-AP58 which catch mathematical and E₁/E_∞ errors.
+From the 125-agent session. See Vol I CLAUDE.md for FULL descriptions with examples and derivations. Summary:
+- **AP62**: Bar cohomology "depends only on dim(g)" TRUE for Euler char, FALSE for individual dims (Garland-Lepowsky concentration is semisimple-only)
+- **AP63**: CE(g_-) ≠ chiral bar for multi-generator algebras (Orlik-Solomon correction). sl₃ chiral H²=36 vs CE H²=20
+- **AP64**: Same cohomology, different gradings → different sequences (sl₂: 2n+1 in CE weight vs Riordan-like in PBW degree)
+- **AP65**: ORDERED (E1) bar is PRIMITIVE; unordered is derived quotient losing quantum group data
+- **AP66**: Partition-type GFs (free fields) are NOT D-finite; interacting algebras ARE D-finite
+- **AP67**: Strong generation ≠ FREE strong generation (W(p) Koszulness OPEN because of this)
+- **AP68**: PVA slab ghost c ≠ chiral algebra κ (SVir κ corrected from (c+11)/2 to (3c-2)/4)
+- **AP69**: τ_shadow satisfies κ-DEFORMED KdV (u_t+(6/κ)uu_x+u_xxx=0), NOT standard KdV. Obstruction κ(κ-1)
+- **AP70**: Shadow L^sh(s) has POLES at s=1,2; negative integers are trivial zeros; F_g ↔ L^sh(1-2g) FAILS
+- **AP71**: Shadow κ ≠ Dyson β ≠ Painlevé parameter. Tracy-Witten F₂ is P_II not P_I. At c=13, κ=6.5 not 13
+- **AP72**: W-algebra NOP bar does NOT have d²=0; chiral bar needs full singular OPE + Orlik-Solomon
+- **AP73**: BV=bar chain-level: PROVED for classes G/L, CONDITIONAL for C/M (harmonic decoupling)
+- **AP74**: Shadow Eisenstein proof cites FALSE Bernoulli-Dirichlet identity (AP35 applied; LHS entire, RHS has poles)
+- **AP75**: Koszulness ≠ H^k=0 in conformal weight grading (only in PBW degree grading)
+- **AP76**: Y_{1,1,1} has c=0 (NOT 3); κ=Ψ from Heisenberg channel (NOT c/2)
+- **AP77**: Stokes ratio tests on convergent (geometric) series give spurious instanton actions; use direct Padé
+- **AP78**: Hardy-Ramanujan 1729 "coincidence" in δF₂ is illusory (A₂(6)=439/2, not 1729/4)
+- **AP79**: W(p) has 4 strong generators (T + sl₂ triplet), not 2
+- **AP80**: Agents can produce engine without test file (check both artifacts)
+
+## Agent Anti-Patterns (AAP1-AAP18)
+
+Cross-volume agent workflow anti-patterns. See Vol I CLAUDE.md for full descriptions. Summary: AAP1 (tool-markup leak), AAP2 (fragmented renames), AAP3 (formula reimplemented N times), AAP4 (proof after conjecture), AAP5 (build-artifact noise), AAP6 (status oscillation), AAP7 (intra-file formula inconsistency), AAP8 (README drift), AAP9 (premature relaunch → cascading rate limits), AAP10 (engine without test file), AAP11 (test expectations encode AP10), AAP12 (asymptotic tolerance too tight), AAP13 (silent model downgrade without testing), AAP14 (worktree branch collisions), AAP15 (parallel pdflatex SIGKILL races), AAP16 (git stash is destructive — FORBIDDEN), AAP17 (truncated agent reports — verify via git diff), AAP18 (confabulating operadic theory — compute or cite, never analogize).
 
 ## Build
 

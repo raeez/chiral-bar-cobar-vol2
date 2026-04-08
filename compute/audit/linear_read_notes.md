@@ -1,5 +1,56 @@
 # Linear Read Notes
 
+## 2026-04-07 — Codex Metacognitive Fortification
+
+- Target: `AGENTS.md`, `.agents/skills/*`, `.codex/hooks.json`, `.codex/hooks/*`
+- Status: COMPLETE
+
+### Summary
+
+Replaced the old root instruction surface with a Codex-first constitutional layer, moved long rectification/verification workflows into repo-local skills, and added deterministic Codex hooks for routing, shell guardrails, verification nudges, and convergence enforcement.
+
+### Findings
+
+1. `2026-04-07-001`
+   Severity: `MODERATE`
+   Class: `C`
+   Location: `AGENTS.md`
+   Issue: the Vol II root instruction surface lagged behind the repo's richer Claude-side metacognitive machinery. It lacked a Codex-specific execution kernel, progressive-disclosure structure, and a compressed anti-pattern architecture keyed to Codex's actual runtime.
+   Fix: rewrote `AGENTS.md` around a five-layer stack: constitutional layer, repo skills, repo hooks, findings ledger, and live truth surface; added a Codex-native resonance loop, verification mandate, hostile examiners, and compressed failure families.
+   Status: `FIXED`
+
+2. `2026-04-07-002`
+   Severity: `MODERATE`
+   Class: `C`
+   Location: `.agents/skills/`
+   Issue: Claude had local command playbooks and hook-based routing, but Codex had no repo-local skill surface for rectification, formula verification, propagation, build triage, or frontier research.
+   Fix: added five focused repo skills: `vol2-beilinson-rectification`, `vol2-formula-verification`, `vol2-cross-volume-propagation`, `vol2-build-surface`, and `vol2-frontier-research`.
+   Status: `FIXED`
+
+3. `2026-04-07-003`
+   Severity: `MODERATE`
+   Class: `C`
+   Location: `.codex/hooks.json`, `.codex/hooks/*`
+   Issue: Codex had no repo-local deterministic guardrails analogous to the existing Claude hooks, so routing, destructive-shell blocking, verification follow-through, and convergence enforcement depended entirely on prompt text.
+   Fix: added SessionStart, UserPromptSubmit, PreToolUse, PostToolUse, and Stop hooks with repo-specific routing and continuation logic.
+   Status: `FIXED`
+
+4. `2026-04-07-004`
+   Severity: `MINOR`
+   Class: `B`
+   Location: `.codex/hooks/pre_bash_guard.sh`
+   Issue: the first draft of the pre-tool deny messages used raw backticks inside double-quoted shell strings, causing unintended command substitution in a sample invocation; the staged-content attribution scan was also too broad and risked false positives on innocuous mentions like `CLAUDE.md`.
+   Fix: removed shell-active backticks from deny strings and narrowed the staged diff scan to attribution-shaped phrases rather than generic model/vendor names.
+   Status: `FIXED`
+
+### Verification
+
+- `wc -c AGENTS.md` -> `21237 AGENTS.md`
+- `find .codex/hooks -type f -maxdepth 1 -print0 | xargs -0 -n1 bash -n` -> passed
+- `jq . .codex/hooks.json` -> passed
+- Sample `UserPromptSubmit`, `PreToolUse`, and `PostToolUse` invocations produced the expected JSON payloads
+- Repo skill metadata and `SKILL.md` files are present under `.agents/skills/`
+
 ## 2026-04-02 — Genus-1 Derived Intersection for V_k(sl₂)
 
 - Target: `compute/lib/genus1_intersection.py`, function `genus1_intersection_affine_sl2`
