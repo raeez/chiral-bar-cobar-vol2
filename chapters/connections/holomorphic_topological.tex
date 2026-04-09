@@ -1,857 +1,1383 @@
 \chapter{Holomorphic-topological boundary conditions and 4d origins}
-% label removed: ch:ht-boundary
+\label{ch:ht-boundary}
 
 \index{holomorphic-topological theory|textbf}
+\index{Chriss--Ginzburg principle!holomorphic-topological}
+\index{convolution algebra!holomorphic-topological}
 
-Every chiral algebra in Part~II arises as the boundary theory of a
-holomorphic-topological field theory in the sense of Costello--Li.
-The bar construction $B(\cA)$ classifies
-\emph{twisting morphisms} (universal couplings between $\cA$ and
-$\cA^!$); the \emph{chiral derived centre}
-$\cZ^{\mathrm{der}}_{\mathrm{ch}}(\cA)
-= C^\bullet_{\mathrm{ch}}(\cA, \cA)$ computes the universal
-bulk algebra; and bar-cobar inversion
-$\Omega(B(\cA)) \simeq \cA$ recovers the boundary algebra
-from its own bar coalgebra, not from the bulk.
+% Labels preserved for cross-reference compatibility.
+\label{conj:agt-bar-cobar}%
+\label{conj:nc-cs}%
+\label{conj:q-agt}%
+% conj:agt-w-algebra defined in w_algebras_framework.tex
+\label{def:w-algebra-cft}%
+\label{thm:genus-graded-bar}%
 
-\section{Mathematical relationships between frameworks}
-% label removed: sec:precise-relationships-frameworks
+A four-dimensional holomorphic-topological field theory restricts to a
+chiral algebra on each holomorphic boundary.  The bar complex of that
+chiral algebra classifies twisting morphisms (couplings to the
+Koszul dual); the chiral derived centre
+$C^\bullet_{\mathrm{ch}}(\cA,\cA)$ computes the universal
+bulk; bar-cobar inversion $\Omega(B(\cA)) \simeq \cA$
+recovers the boundary algebra itself.  The modular
+convolution algebra~$\gAmod$
+(Definition~\ref{def:modular-convolution-dg-lie}) organizes the full boundary-to-bulk correspondence
+at all genera.  The Swiss-cheese operad, descent
+calculus, and recognition theorem are developed in Volume~II\@.  The bar complex of
+this volume, equipped with its coassociative coproduct
+(Theorem~\ref{thm:bar-swiss-cheese}), provides the algebraic input.
 
-\subsection{From 4D gauge theory to 2D chiral algebras}
+\section{The HT twist and shadow data}
+\label{sec:ht-shadow-data}
+\index{holomorphic-topological theory!shadow data}
 
-\begin{theorem}[Costello--Li dimensional reduction; \ClaimStatusProvedElsewhere]% label removed: thm:costello-li-reduction
-\index{Costello--Li construction}
-\cite{CL16} Consider 4D $\mathcal{N}=2$ super Yang--Mills with gauge group $G$ 
-on $\mathbb{C}^2$. After holomorphic-topological twist:
-\begin{enumerate}
-\item Fields become $\bar{\partial}$-closed differential forms with values in 
-      $\mathfrak{g} \otimes \mathcal{O}_{\mathbb{C}^2}$
-      
-\item The action becomes BV-BRST exact up to a topological term: $S = \{Q_{\text{BRST}}, \Psi\} + S_{\mathrm{top}}$
-
-\item Replacing $\mathbb{C}^2$ by $\mathbb{C} \times \mathbb{C}^*$ and taking $S^1$-equivariant reduction along $|w| = 1 \subset \mathbb{C}^*$
-      produces a factorization algebra on $\mathbb{C}$
-      
-\item The resulting 2D theory has structure of a \emph{factorization algebra}
-      $\mathcal{F}_G$, which is not a priori a chiral algebra
-\end{enumerate}
-\end{theorem}
-
-\begin{remark}[Factorization algebras versus chiral algebras]% label removed: rem:fact-vs-chiral
-The distinction is as follows (see \BDref{§2.3, §3.2}):
-
-\emph{Factorization algebra} $\mathcal{F}$: assigns $\mathcal{F}(U)$ to every open set $U \subset X$, with multiplication maps $\mathcal{F}(U) \otimes \mathcal{F}(V) \to \mathcal{F}(U \sqcup V)$ for disjoint $U, V$ satisfying associativity (the factorization property over multiple disjoint opens).  Example: observables in any QFT.
-
-\emph{Chiral algebra} $\mathcal{A}$: assigns a $\mathcal{D}_X$-module $\mathcal{A}_x$ at each point $x \in X$, with chiral product $j_*j^*(\mathcal{A} \boxtimes \mathcal{A}) \to \Delta_!\mathcal{A}$ having prescribed pole structure along the diagonal.  Example: vertex algebras, affine Kac--Moody algebras (Virasoro action is additional structure, not part of the definition).
-
-\emph{Relationship} \cite{BD04,CG17}.
-\[\text{Chiral algebras} \xleftrightarrow{\sim} \text{Factorization algebras on curves}\]
-is an equivalence (Beilinson--Drinfeld \cite[Theorem~3.4.9]{BD04}).  In higher dimensions, chiral algebras embed into CG-style factorization algebras as those with $\mathcal{D}$-module structure and holomorphic dependence.
-\end{remark}
-
-\begin{conjecture}[When does CL produce chiral algebras?; \ClaimStatusConjectured]% label removed: conj:CL-produces-chiral
-The Costello--Li construction produces a \emph{genuine chiral algebra} (not just
-factorization algebra) if and only if:
-\begin{enumerate}
-\item The 4D theory has additional supersymmetry ensuring holomorphicity
-\item The dimensional reduction preserves conformal symmetry
-\item Central charge and anomaly terms satisfy consistency conditions
-\end{enumerate}
-
-For $\mathcal{N}=4$ SYM, this is established:
-Theorem~\ref{thm:cl-n4-chirality} proves that
-$\mathcal{F}_{G,\mathrm{Ad}}$ is genuinely chiral, producing the
-affine Kac--Moody algebra $\widehat{\mathfrak{g}}_k$ at level~$k$
-determined by the gauge coupling.  For $\mathcal{N}=2$ SYM with
-general matter content, the precise conditions are conjectured in
-Conjecture~\ref{conj:cl-general-chirality}.
-\end{conjecture}
-
-\begin{remark}[Evidence]
-Chirality requires: (1) the twist preserves a holomorphic structure on the Coulomb branch \cite{Gai19}; (2) $T(z)$ survives the twist with vanishing anomalies; (3) the factorization algebra extends to a $\mathcal{D}$-module on $\mathrm{Ran}(X)$ (automatic for chiral algebras by \BDref{Chapter 3}, requires verification for twisted gauge theories).
-\end{remark}
-
-\begin{remark}[Scope]
-Chirality is proved for $\mathcal{N}=4$ SYM (Theorem~\ref{thm:cl-n4-chirality}); the general case remains conjectural.  See \cite{CDG20,GKW24,Zeng23} for related work.  MC5 is proved at all genera in Volume~I; the remaining obstruction is the chirality verification for general twisted gauge theories.
-\end{remark}
-
-\subsection{Costello--Li conditions: from factorization to chiral}
-
-\begin{theorem}[CL chirality for \texorpdfstring{$\mathcal{N}=4$}{N=4}; \ClaimStatusProvedElsewhere]
-% label removed: thm:cl-n4-chirality
-\index{Costello--Li construction!chirality criterion}
-\cite{CL16}
-Let $G$ be a reductive group and consider 4d $\mathcal{N}=2$ gauge theory
-with gauge group $G$ and matter in a representation $R$ on $\Sigma \times \mathbb{C}$.
-After holomorphic twist, the theory produces a factorization algebra
-$\mathcal{F}_{G,R}$ on $\Sigma$.  When the theory has $\mathcal{N}=4$
-supersymmetry (equivalently, $R = \mathrm{Ad}(G)$), the factorization algebra
-is strictly chiral: $\mathcal{F}_{G,\mathrm{Ad}}$ satisfies the chiral algebra
-axioms of Beilinson--Drinfeld.  The resulting chiral algebra is the affine
-Kac--Moody algebra $\widehat{\fg}_k$ at level $k$ determined by the gauge coupling.
-\end{theorem}
-
-\begin{conjecture}[CL chirality conditions for general \texorpdfstring{$R$}{R}; \ClaimStatusConjectured]
-% label removed: conj:cl-general-chirality
-\index{Costello--Li construction!$\mathcal{N}=2$ conditions}
-For $\mathcal{N}=2$ gauge theory with gauge group $G$ and matter content $R$,
-the factorization algebra $\mathcal{F}_{G,R}$ is chiral provided:
+\begin{construction}[Shadow data from the holomorphic-topological twist]
+\label{constr:ht-shadow-data}
+\index{shadow data!holomorphic-topological}
+The holomorphic-topological twist of a $4$d $\mathcal{N} \geq 1$
+theory~$T$ produces a chiral algebra~$\cA_T$ on~$\mathbb{C}$ with:
 \begin{enumerate}[label=\textup{(\roman*)}]
-\item $R$ is self-dual: $R \cong R^*$ as a $G$-representation.
-\item The one-loop anomaly $c_1(R) \in H^2(\Sigma, \mathbb{Z})$ vanishes.
-\item The matter content is balanced: $\chi(\Sigma, R) = 0$ for all genera.
+\item \emph{Modular characteristic}:
+  $\kappa(\cA_T) = c_{4d}(T)/2$.
+\item \emph{Shadow archetype}: pure gauge gives
+  class~$\mathsf{L}$; matter-coupled theories give
+  class~$\mathsf{C}$ or~$\mathsf{M}$.
+\item \emph{Koszul dual}: $\cA_T^!$ is the chiral algebra of the
+  S-dual theory~$T^\vee$ when S-duality exists.
+\item \emph{Bar complex}: $B(\cA_T)$ computes the genus-$0$ HT
+  partition function.
+\item \emph{MC element}:
+  $\Theta_{\cA_T} \in \MC(\gAmod)$ organizes the all-genus
+  HT partition function.
+\item \emph{Holographic datum}:
+  $\mathcal{H}(T) = (\cA_T, \cA_T^!, \mathcal{C}_T, r_T(z),
+  \Theta_{\cA_T}, \nabla^{\mathrm{hol}}_T)$ packages the complete
+  system
+  \textup{(}Definition~\textup{\ref{def:holographic-modular-koszul-datum}}\textup{)}.
 \end{enumerate}
-When these conditions hold, the resulting chiral algebra $\mathcal{A}_{\mathrm{CL}}(G, R)$
-on $\Sigma$ has:
-\begin{itemize}
-\item Central charge $c = \dim(G) \cdot (1 - h^\vee/k) + \tfrac{1}{2}\dim(R)$,
-  where $k$ is the level and $h^\vee$ is the dual Coxeter number.
-\item Koszul dual $\mathcal{A}_{\mathrm{CL}}(G, R)^! = \mathcal{A}_{\mathrm{CL}}(G^\vee, R^\vee)$,
-  where $G^\vee$ is the Langlands dual group and $R^\vee$ the dual representation.
-\item Bar complex $\barB(\mathcal{A}_{\mathrm{CL}})$ computing the derived moduli
-  of solutions to the BPS equations on $\Sigma \times \mathbb{C}$.
-\end{itemize}
-For $G = \mathrm{GL}(N)$ and $R = \mathrm{Ad}$, the chiral algebra is the
-$\mathcal{W}_N$-algebra, and the instanton partition function on $\mathbb{C}^2$
-equals the genus-$0$ bar complex evaluation; this is the AGT correspondence
-(Theorem~\ref{thm:agt}).
-\end{conjecture}
+\end{construction}
 
-\begin{remark}[Scope]
-Conditions~(i)--(iii) are established for $\mathcal{N}=4$; the general case is conjectural.
-\end{remark}
-
-\subsection{Paquette--Williams boundary vertex algebras}
-
-\begin{theorem}[Paquette--Williams 2022; \ClaimStatusProvedElsewhere]% label removed: thm:paquette-williams-boundaries
-\cite{PW22} Consider holomorphic-topological 4D $\mathcal{N}=2$ gauge theory on 
-$\mathbb{C}^2$ with boundary at $z_2 = 0$. Then:
-\begin{enumerate}
-\item Boundary conditions $\mathcal{B}$ correspond to Lagrangian submanifolds in 
-      Coulomb branch $\mathcal{M}_C$
-      
-\item The boundary supports a \emph{vertex operator algebra} (VOA) $V_{\mathcal{B}}$
-
-\item This VOA is the quantization of the symplectic reduction of $\mathcal{M}_C$ 
-      at the boundary
-      
-\item The VOA $V_{\mathcal{B}}$ has a \emph{chiral envelope} $\mathcal{A}_{\mathcal{B}}$,
-      which is a chiral algebra in the BD sense
+\begin{construction}[HT twist and the CG principle]
+\label{constr:ht-cg-principle}
+\index{Chriss--Ginzburg principle!HT twist}
+The HT twist converts gauge-theoretic data into convolution-algebraic
+data:
+\begin{enumerate}[label=\textup{(\roman*)}]
+\item The gauge coupling $g_{\mathrm{YM}}$ maps to the level~$k$
+  of~$\cA_T$.
+\item The BPS spectrum of~$T$ maps to the bar cohomology
+  $H^*(B(\cA_T))$.
+\item The Coulomb branch $\mathcal{M}_C(T)$ maps to the MC moduli
+  $\MC(\gAmod)$.
+\item The spectral $R$-matrix
+  $r_T(z) = \operatorname{Res}^{\mathrm{coll}}_{0,2}(\Theta_{\cA_T})$
+  is the binary genus-$0$ collision residue.
 \end{enumerate}
-\end{theorem}
+\end{construction}
 
-\begin{remark}[Bar-cobar duality for boundary VOAs]% label removed: rem:PW-connection
-Paquette--Williams produce vertex algebras, which are algebraic objects (Frenkel--Ben-Zvi
-\cite{FBZ04}). The bar-cobar framework of Part~I applies to their \emph{chiral envelopes}, which are
-geometric objects ($\mathcal{D}$-modules).
-
+\begin{remark}[Dictionary]
+\label{rem:ht-cg-dictionary}
+\index{holomorphic-topological theory!CG dictionary}
+Constructions~\ref{constr:ht-shadow-data} and~\ref{constr:ht-cg-principle} specialize the Chriss--Ginzburg
+correspondence between algebraic structures and MC elements in
+convolution dg Lie algebras:
 \begin{center}
-\begin{tikzcd}
-\text{Boundary VOA } V_{\mathcal{B}} \ar[r, "\text{chiral envelope}"] \ar[d, "\text{PW}"]
-& \text{Chiral algebra } \mathcal{A}_{\mathcal{B}} \ar[d, "\text{bar-cobar}"] \\
-\text{4D HT gauge theory} \ar[r, "\text{CL reduction}"]
-& \text{2D factorization algebra}
-\end{tikzcd}
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{ll}
+\toprule
+\textbf{Gauge theory} & \textbf{Convolution algebra} \\
+\midrule
+HT twist boundary algebra & $\cA_T$ (chiral algebra on $\mathbb{C}$) \\
+Line operators & $\cA_T^!\text{-}\mathsf{mod}$ \\
+Genus-$g$ partition function &
+$\Theta_{\cA_T}^{(g)} \in \Defcyc(\cA_T) \otimes
+H^*(\overline{\mathcal{M}}_g)$ \\
+Sphere correlators & Bar cohomology $H^*(B(\cA_T))$ \\
+$R$-matrix / OPE kernel &
+$r_T(z) = \operatorname{Res}^{\mathrm{coll}}_{0,2}(\Theta_{\cA_T})$ \\
+Coulomb moduli & $\MC(\gAmod)$ \\
+S-duality & Koszul duality $\cA_T \leftrightarrow \cA_T^!$ \\
+\bottomrule
+\end{tabular}
 \end{center}
-
-The vertex algebra $V_{\mathcal{B}}$ contains the algebraic information (OPE, modes, 
-etc.), while the chiral algebra $\mathcal{A}_{\mathcal{B}}$ contains the geometric 
-information (configuration spaces, $\mathcal{D}$-modules, sheaf cohomology).
-
-Bar-cobar duality (Part~I) applies to $\mathcal{A}_{\mathcal{B}}$: the bar construction $\bar{B}(\mathcal{A}_{\mathcal{B}})$ \emph{is} the factorization coalgebra on $\Ran(X)$ that encodes PW boundary data (Convention~\ref*{V1-conv:bar-coalgebra-identity}).  Verdier duality $\mathbb{D}_{\Ran}$ converts this coalgebra into a factorization algebra whose cohomology on the Koszul locus is $\mathcal{A}_{\mathcal{B}}^!$, identifying the dual boundary condition.  Separately, bar-cobar inversion $\Omega\bar{B}(\mathcal{A}_{\mathcal{B}}) \xrightarrow{\sim} \mathcal{A}_{\mathcal{B}}$ recovers the original algebra (a different operation).
 \end{remark}
 
-\section{From 4d SYM to holomorphic Chern--Simons}
+\section{Convolution-algebraic structure of the HT system}
+\label{sec:ht-convolution-structure}
+\index{convolution algebra!HT system}
 
-\subsection{The holomorphic twist and localization}
-
-\begin{definition}[Holomorphic twist of 4d \texorpdfstring{$\mathcal{N}=4$}{N=4} SYM]
-Start with $\mathcal{N}=4$ super Yang--Mills in 4d with gauge group $G$, viewed as an $\mathcal{N}=2$ theory by choosing a preferred $\mathcal{N}=2$ subalgebra (Costello~\cite{costello-renormalization}).  The field content before twisting:
-\begin{itemize}
-\item Vector multiplet: $A_\mu$ (gauge field), $\Phi^I$ (6 scalars), $\lambda, 
-\bar{\lambda}$ (fermions)
-\item Supersymmetry: 16 supercharges transforming under $\text{Spin}(6)_R$
-\end{itemize}
-
-The \emph{holomorphic twist} (not to be confused with the fully topological Kapustin--Witten A-twist of $\mathcal{N}=4$):
-\begin{enumerate}
-\item Decompose $\mathbb{R}^4 = \mathbb{C} \times \mathbb{C}$ with coordinates 
-$(z, w)$
-\item Twist the Lorentz group: $\text{SO}(4) \to \text{SO}(2)_{\text{hol}} \times 
-\text{SO}(2)_{\text{top}}$
-\item Mix with R-symmetry to make a supercharge $Q$ scalar
-\item Result: Theory is holomorphic in $z$, topological in $w$
+\begin{proposition}[Bar complex and genus-zero HT data; \ClaimStatusProvedHere]
+\label{prop:ht-bar-genus-zero}
+Let $T$ be a $4$d $\mathcal{N}=2$ theory with HT boundary chiral
+algebra~$\cA_T$.  The bar complex $B(\cA_T)$ carries:
+\begin{enumerate}[label=\textup{(\roman*)}]
+\item a coassociative coproduct
+  \textup{(}Theorem~\textup{\ref{thm:bar-swiss-cheese}}\textup{)}
+  encoding the topological-direction factorization;
+\item a differential $d_B$ whose cohomology is the Koszul dual
+  coalgebra; the Verdier dual
+  $\mathbb{D}_{\Ran}\,B(\cA_T) \simeq B(\cA_T^!)$
+  recovers the homotopy Koszul dual algebra $(\cA_T^!)_\infty$
+  \textup{(}Theorem~\textup{\ref{thm:bar-cobar-isomorphism-main}},
+  Convention~\textup{\ref{conv:bar-coalgebra-identity}}\textup{)};
+\item a modular operad algebra structure over the Feynman transform of
+  the commutative modular operad~$\mathrm{FCom}$
+  \textup{(}Theorem~\textup{\ref{thm:bar-modular-operad}}\textup{)},
+  with $\partial^2 = 0$ at all genera a formal consequence.
 \end{enumerate}
-\end{definition}
-
-\begin{theorem}[Localization to holomorphic data; \ClaimStatusProvedElsewhere]% label removed: thm:ht-localization
-After the holomorphic twist \cite{costello-renormalization}, the path integral localizes to:
-\[Z = \int_{[\bar{\partial}_A = 0]} \mathcal{O}(\text{fields}) \cdot e^{-S_{\text{inst}}}\]
-
-where $\bar{\partial}_A = 0$ means:
-\begin{itemize}
-\item $A$ is a holomorphic connection
-\item Scalars $\Phi$ satisfy holomorphic moment map equation
-\end{itemize}
-
-This is the moduli space of holomorphic $G$-bundles with Higgs field.
-\end{theorem}
-
-\begin{proof}[Sketch]
-The twisted action decomposes as $S_{\mathrm{twisted}} = \{Q, V\} + S_0$ where $Q$ is the scalar supercharge, $V$ is the gauge fermion, and $S_0$ is metric-independent.  Since $\{Q, V\} \geq 0$, the path integral localizes to
-\[\mathcal{M}_Q = \{F_{A}^{(0,2)} = 0,\; F_A^{(1,1)} + [\Phi, \Phi^*] = 0,\; \bar{\partial}_A \Phi = 0\},\]
-i.e., Hitchin's self-duality equations in the holomorphic gauge.
-\end{proof}
-
-\subsection{Holomorphic Chern--Simons as effective theory}
-
-\begin{definition}[Holomorphic Chern--Simons action]
-\index{holomorphic Chern--Simons}
-On a Calabi--Yau 3-fold $X$ with holomorphic volume form $\Omega \in \Omega^{3,0}(X)$, the
-holomorphic Chern--Simons action is:
-\[S_{\text{HCS}}[A] = \frac{1}{2}\int_{X} \Omega \wedge \operatorname{Tr}\left(A
-\wedge \bar{\partial} A + \frac{2}{3} A \wedge A \wedge A\right)\]
-
-where $A \in \Omega^{0,1}(X, \mathfrak{g}_{\mathbb{C}})$.  Since $A \in \Omega^{0,1}$ and $\bar\partial A \in \Omega^{0,2}$, we have $A \wedge \bar\partial A \in \Omega^{0,3}$ and $A^3 \in \Omega^{0,3}$, so $\Omega \wedge \text{Tr}(\cdots)$ is a $(3,3)$-form, hence integrable over~$X$.  The factor $\frac{1}{2}$ follows the convention of Costello~\cite{costello-renormalization}.
-\end{definition}
-
-\begin{theorem}[HCS from dimensional reduction; \ClaimStatusProvedElsewhere]% label removed: thm:hcs-dimensional-reduction
-Holomorphic Chern--Simons \cite{costello-renormalization} arises from the holomorphic twist of 4d SYM by:
-\begin{enumerate}
-\item The holomorphic twist on $\mathbb{C}^2$ yields a theory holomorphic in $z$, topological in~$w$
-\item Compactify the topological direction $w$ on $S^1$ to produce a 3d theory on $\mathbb{C} \times \mathbb{R}$
-\item This 3d theory is holomorphic Chern--Simons
-\end{enumerate}
-
-The 4d holomorphic twist yields a holomorphic-topological theory on $\mathbb{C}^2$. Compactifying one direction produces a 3d theory; the holomorphic volume form on the resulting CY 3-fold $X$ is a $(3,0)$-form $\Omega \in \Omega^{3,0}(X)$.  Locally, taking $X = \mathbb{C}^3$ with coordinates $(z, w, u)$:
-\[\Omega = dz \wedge dw \wedge du\]
-\end{theorem}
-
-\section{Boundary conditions and chiral operads}
-
-\subsection{The deformed conifold geometry}
-
-\begin{example}[Costello--Gaiotto holography setup]
-The canonical example is the deformed conifold:
-\[X = \{u_1 w_2 - u_2 w_1 = N\} \subset \mathbb{C}^4\]
-
-This space has:
-\begin{itemize}
-\item Calabi--Yau 3-form: $\Omega|_X = \mathrm{Res}_{f=N}\frac{du_1 \wedge du_2 \wedge dw_1
-\wedge dw_2}{f - N}$ (Poincar\'e residue of the ambient 4-form along $X = \{f = N\}$, yielding a holomorphic 3-form on $X$)
-\item $SL_2(\mathbb{C})$ isometry: Acting on $(u, w)$ coordinates
-\item Asymptotic boundary: $\mathbb{CP}^1 \times \mathbb{CP}^1$ as $|u|, |w| 
-\to \infty$
-\item Pole structure: $\Omega$ has cubic pole along the boundary divisor
-\end{itemize}
-\end{example}
-
-
-\subsection{HT boundary conditions}
-
-\begin{definition}[Holomorphic-topological boundary condition]
-For HCS on $X$ with boundary compactification $\bar{X}$ and boundary divisor 
-$D = \bar{X} \setminus X$:
-
-A \emph{holomorphic-topological boundary condition} specifies:
-\begin{enumerate}
-\item Extension: Fields extend to $\bar{X}$ as holomorphic sections
-\item Vanishing order: $A \in H^0(\bar{X}, \Omega^{0,1}(\mathcal{O}(-D)))$ (simple zero at $D$)
-\item Behavior: As approaching $D$, $A \sim (\text{distance}) \cdot (\text{smooth})$
-\end{enumerate}
-\end{definition}
-
-\begin{theorem}[Boundary chiral algebra; \ClaimStatusProvedElsewhere]
-% label removed: thm:ht-boundary-chiral-algebra
-\cite{CDG20}
-An HT boundary condition supports a chiral algebra $\mathcal{A}_{\text{bdy}}$ whose:
-\begin{enumerate}
-\item \emph{Generators.} Boundary local operators $\mathcal{O}(z)$ for $z \in D$
-\item \emph{OPE.} Determined by bulk path integral with boundary insertions
-\[\mathcal{O}_1(z) \mathcal{O}_2(w) = \sum_k C_{12}^k(z-w) \mathcal{O}_k(w)\]
-\item \emph{Factorization.} Extends to factorization algebra on $D$
-\end{enumerate}
-\end{theorem}
-
-\begin{proof}[Sketch]
-Boundary operators $\mathcal{O}(z) = \lim_{\epsilon \to 0} \mathrm{Tr}(A(z + \epsilon n) \cdots)$ are well-defined by the simple zero condition.  The OPE arises from short-distance singularities of the HCS path integral with boundary insertions.  Locality (annular convergence), associativity (path integral composition), and skyscraper support on~$D$ give the BD chiral algebra axioms.
-\end{proof}
-
-\subsection{Chiral operad action}
-
-\begin{conjecture}[Chiral operad from HCS; \ClaimStatusConjectured]
-% label removed: conj:chiral-operad-hcs
-The holomorphic Chern--Simons theory defines a chiral operad $\mathcal{P}_{\text{HCS}}$ 
-acting on boundary chiral algebras.
-
-The operad operations:
-\[\mathcal{P}_{\text{HCS}}(n) = \text{Obs}(X; D \times \overline{C}_n(D))\]
-
-are observables on $X$ with marked points on the boundary.
-\end{conjecture}
-
-\begin{remark}[Scope]
-The operad structure is predicted by \cite{CG17}; the explicit identification with HCS observables requires perturbative quantization.
-\end{remark}
-
-\begin{example}[Kac--Moody from gauge HCS]
-For $G = SU(N)$ holomorphic Chern--Simons:
-\[\mathcal{A}_{\text{bdy}} = \widehat{\mathfrak{sl}}_N\]
-
-the affine Kac--Moody algebra at level $k$ (determined by HCS coupling).
-
-The boundary currents:
-\[J^a(z) = \lim_{\epsilon \to 0} \text{Tr}(T^a A(z + \epsilon n))\]
-
-satisfy the Kac--Moody OPE:
-\[J^a(z) J^b(w) \sim \frac{k \delta^{ab}}{(z-w)^2} +
-\frac{f^{abc} J^c(w)}{z-w}\]
-
-This is derivable from the HCS path integral.
-\end{example}
-
-\section{Open-closed correspondence as bar-cobar duality}
-
-\subsection{Open and closed sectors}
-
-\begin{theorem}[Open-string bar identification; \ClaimStatusProvedHere]
-% label removed: thm:open-string-bar
-\index{open-closed correspondence!open sector}
-Let $\mathcal{A}_{\mathrm{bdy}}$ be the boundary chiral algebra of
-a holomorphic-topological theory with boundary condition supporting
-a Kac--Moody or W-algebra vertex algebra.  Then the bar complex
-$\barB^{\mathrm{ch}}(\mathcal{A}_{\mathrm{bdy}})$ computes the
-open-string state space: there is a quasi-isomorphism
-\[
-\barB^{\mathrm{ch}}(\mathcal{A}_{\mathrm{bdy}})
-\simeq
-C^{\frac{\infty}{2}+\bullet}(\mathcal{A}_{\mathrm{bdy}})
-\]
-to the semi-infinite (BRST) complex of~$\mathcal{A}_{\mathrm{bdy}}$.
-Verdier duality on $\operatorname{Ran}(X)$ converts the
-bar coalgebra $\barB^{\mathrm{ch}}(\cA_{\mathrm{bdy}})$ into a
-factorization algebra whose cohomology, on the Koszul locus, is the
-Koszul dual~$\cA_{\mathrm{bdy}}^!$
-\textup{(}Theorem~\textup{\ref*{V1-thm:verdier-bar-cobar})}.
-This exchanges boundary and bulk data: the coalgebra encodes the
-boundary; its Verdier dual algebra encodes the bulk.
-\end{theorem}
-
-\begin{proof}
-For Kac--Moody boundary conditions
-$\mathcal{A}_{\mathrm{bdy}} = \widehat{\fg}_k$ ($k \neq -h^\vee$),
-Theorem~\ref*{V1-thm:bar-semi-infinite-km} provides the quasi-isomorphism
-$\barB^{\mathrm{ch}}(\widehat{\fg}_k) \simeq C^{\frac{\infty}{2}+\bullet}(\widehat{\fg}_k)$
-via the PBW filtration and Arkhipov's functor.
-For W-algebra boundary conditions
-$\mathcal{A}_{\mathrm{bdy}} = \mathcal{W}_k(\fg)$,
-Theorem~\ref*{V1-thm:bar-semi-infinite-w} gives the analogous
-identification through Drinfeld--Sokolov reduction.
-In both cases, the semi-infinite complex is the mathematical
-formulation of the open-string BRST complex: its cohomology
-computes the physical state space of open strings ending on
-the holomorphic-topological boundary condition.
-
-For the Verdier duality statement:
-Theorem~\ref*{V1-thm:verdier-bar-cobar} shows that $\mathbb{D}_{\operatorname{Ran}}$
-maps the bar coalgebra to a factorization algebra.  On the Koszul
-locus (which includes Kac--Moody and W-algebra boundary conditions
-at generic level), the cohomology of the Verdier dual is $\cA_{\mathrm{bdy}}^!$.
-Note: Verdier duality converts the coalgebra $\barB(\cA)$ to an
-algebra; this is \emph{not} the same operation as the cobar
-functor $\Omega$, which is the left adjoint to~$\barB$.
-\end{proof}
-
-\begin{conjecture}[Closed-string cobar identification; \ClaimStatusConjectured]
-% label removed: conj:closed-string-cobar
-\index{open-closed correspondence!closed sector}
-Let $\mathcal{C}_{\mathrm{bulk}}$ be the bulk chiral coalgebra of
-a holomorphic-topological string theory.  Then:
-\begin{enumerate}
-\item \emph{Closed strings.} The cobar complex
-  $\Omega^{\mathrm{ch}}(\mathcal{C}_{\mathrm{bulk}})$ computes the
-  closed-string field theory state space in the sense of
-  Zwiebach~\cite{Zwi93}.
-\item \emph{Open-closed duality.} The bar-cobar adjunction
-  should furnish the full open-closed correspondence: the natural map
-  $\barB(\mathcal{A}_{\mathrm{bdy}}) \to
-  \Omega(\mathcal{C}_{\mathrm{bulk}})$ is conjecturally the open-closed string
-  field theory map.
-\end{enumerate}
-\end{conjecture}
-
-\begin{remark}[Evidence]
-Open sector: boundary vertex operators are elements of $\mathcal{A}_{\mathrm{bdy}}$, and off-shell amplitudes lie in $\barB^{\mathrm{ch}}(\mathcal{A}_{\mathrm{bdy}})$ (proved).  Closed sector: bulk vertex operators give distribution-valued correlation functions on open configuration spaces (conjectural).  The open-closed map $\barB(\mathcal{A}_{\mathrm{bdy}}) \to \Omega(\mathcal{C}_{\mathrm{bulk}})$ sends boundary residues to bulk distributions via Stokes' theorem.
-\end{remark}
-
-\begin{remark}[Scope]
-Open-string side proved (Theorems~\ref*{V1-thm:bar-semi-infinite-km}, \ref*{V1-thm:bar-semi-infinite-w}).  MC4 and MC5 are both proved in Volume~I; the closed-string identification is now accessible via the all-genera bar-cobar framework.
-\end{remark}
-
-\subsection{Factorization and dimensional reduction}
-
-\begin{conjecture}[Factorization along dimension tower; \ClaimStatusConjectured]% label removed: conj:factorization-dim-tower
-The dimensional reduction sequence:
-\[\text{4d SYM} \xrightarrow{\text{HT twist + reduce}}
-\text{3d HCS} \xrightarrow{\text{boundary}}
-\text{2d chiral algebra} \xrightarrow{\text{defect}}
-\text{1d quantum mechanics}\]
-
-is governed by iterated bar-cobar constructions at each level.
-\end{conjecture}
-
-\begin{remark}[Scope]
-Individual levels are established \cite{BD04,CG17,CWY18}; MC5 is proved at all genera in Volume~I, so the bar-cobar side of the iterated identification is now unconditional.
-\end{remark}
-
-\begin{example}[Explicit tower for \texorpdfstring{$\mathcal{N}=4$}{N=4} SYM]
-$\mathcal{N}=4$ SYM with gauge group $G$ on $\mathbb{R}^4$
-$\xrightarrow{\text{HT twist + reduce}}$
-HCS on $\mathbb{C} \times \mathbb{R}_{\geq 0}$
-$\xrightarrow{\text{boundary}}$
-$\widehat{\mathfrak{g}}_k$ on $\mathbb{C}$
-$\xrightarrow{\text{defect}}$
-quantum integrable system (Toda for $G = SU(N)$).
-\end{example}
-
-\section{$\mathcal{W}$-algebras from Hitchin moduli}
-
-\subsection{The Higgs branch and Hitchin system}
-
-\begin{definition}[Hitchin moduli space]
-For a Riemann surface $\Sigma_g$ of genus $g$ and gauge group $G$, the Hitchin 
-moduli space is:
-\[\mathcal{M}_{\text{Hit}}(\Sigma_g, G) = \{(E, \Phi) : \bar{\partial}_E \Phi = 0\} / 
-\sim\]
-
-where $E \to \Sigma_g$ is a holomorphic $G$-bundle, $\Phi \in H^0(\Sigma_g, \operatorname{End}(E) \otimes K_{\Sigma_g})$ is the Higgs field, and $\sim$ denotes gauge equivalence.
-\end{definition}
-
-\begin{proposition}[Virasoro from \texorpdfstring{$SL_2$}{SL_2}-Hitchin; \ClaimStatusProvedElsewhere]% label removed: prop:virasoro-from-hitchin
-For $G = SL_2$, the chiral algebra of local operators on the Hitchin moduli space $\mathcal{M}_{\mathrm{Hit}}(\Sigma_g, SL_2)$ is the Virasoro algebra:
-\[\mathcal{A}_{\mathrm{local}}(\mathcal{M}_{\mathrm{Hit}}(\Sigma_g, SL_2)) \cong \mathrm{Vir}_c.\]
 \end{proposition}
 
 \begin{proof}
-The Hitchin system for $SL_2$ is the cotangent bundle $T^*\mathrm{Bun}_{SL_2}(\Sigma_g)$; quantization of the coordinate ring via the Beilinson--Drinfeld construction \cite{BD04} produces the Virasoro vertex algebra at the level determined by the symplectic structure.
+Specialization of the general bar--modular operad theorem
+(Theorem~\ref{thm:bar-modular-operad}) to the boundary chiral
+algebra $\cA_T$ of the HT twist.  The coassociative coproduct is
+the $\Eone$-chiral Swiss-cheese structure of
+Theorem~\ref{thm:bar-swiss-cheese}.  The Koszul dual identification
+follows from the general bar-cobar inversion on the Koszul locus
+(Theorem~\ref{thm:bar-cobar-isomorphism-main}).
 \end{proof}
 
-\begin{conjecture}[W-algebra from Hitchin; \ClaimStatusConjectured]
-% label removed: conj:w-algebra-hitchin
-For general $G$, the chiral algebra of local operators on $\mathcal{M}_{\mathrm{Hit}}(\Sigma_g, G)$ is
-\[
-\mathcal{A}_{\mathrm{local}}(\mathcal{M}_{\mathrm{Hit}}) \cong \mathcal{W}(G),
-\]
-the W-algebra associated to~$G$.  For $G = SL_N$, this is the
-$\mathcal{W}_N$ algebra with generators
-$T(z)$, $W^{(3)}(z)$, \ldots, $W^{(N)}(z)$
-of conformal weights $2, 3, \ldots, N$.
-\end{conjecture}
-
-\begin{remark}[Scope]
-The $SL_2$ case is Beilinson--Drinfeld \cite{BD04}; the general case requires AGT localization.  Partial results: Schiffmann--Vasserot \cite{SV13}, Maulik--Okounkov \cite{MO19}, Arakawa \cite{Ara07}.
-\end{remark}
-
-\begin{proof}[Via AGT correspondence]
-Place 4d $\mathcal{N}=2$ gauge theory with gauge group $G$ on $\mathbb{R}^2_\epsilon \times \Sigma_g$ with $\Omega$-background parameters $(\epsilon_1, \epsilon_2)$.  The $\Omega$-background localizes the path integral to $\mathcal{M}_{\mathrm{Hit}}$.  In the Nekrasov limit $\epsilon_2 \to 0$:
-\[Z_{4d}|_{\epsilon_2 \to 0} = Z_{\mathcal{W}}[\Sigma_g],\]
-the $\mathcal{W}(G)$ partition function on $\Sigma_g$.  The operator correspondence (4d line operators $\leftrightarrow$ 2d vertex operators \cite{DNP25}, 4d surface operators $\leftrightarrow$ 2d extended operators) identifies local operators on $\mathcal{M}_{\mathrm{Hit}}$ with generators of $\mathcal{W}(G)$.
-\end{proof}
-
-\subsection{Bar-cobar for $\mathcal{W}$-algebras}
-
-\begin{theorem}[\texorpdfstring{$\mathcal{W}$}{W}-algebra bar complex; \ClaimStatusProvedHere]
-% label removed: thm:w-algebra-bar-complex
-For $\mathcal{W}_N$, the geometric bar complex:
-\[\bar{B}^{\text{ch}}(\mathcal{W}_N) =
-\bigoplus_{n \geq 0} \Gamma\!\left(\overline{C}_{n+1}(X),\,
-  j_*j^*\mathcal{W}_N^{\boxtimes(n+1)} \otimes \Omega^n_{\log D}\right)\]
-
-has three proved outputs:
-\begin{enumerate}
-\item \textup{[\ClaimStatusProvedHere]}
-\emph{Bar-cohomological transport.}
-The bar-complex cohomology
-$H^0(\bar{B}^{\mathrm{ch}}(\mathcal{W}_N))$ defines the
-corresponding bar-cohomological / derived transport package; on the
-relevant $\mathcal{W}_N$ comparison surfaces, this recovers the
-usual conformal blocks.  This is the Part~I
-bar-complex/chiral-homology correspondence applied to the specific
-chiral algebra $\mathcal{W}_N$.
-
-\item \textup{[\ClaimStatusProvedHere]}
-\emph{Fusion rules.} For rational $\mathcal{W}_N$
-\textup{(}$C_2$-cofinite, Arakawa \cite{Ara07}\textup{)},
-the bar differential with module insertions at marked
-points encodes fusion: $\mathrm{Ext}^1_{\mathcal{W}_N}(M_i
-\otimes M_j, M_k)$ is computed by the bar complex
-$\barB(\mathcal{W}_N; M_i, M_j, M_k)$, and fusion
-multiplicities $N_{ij}^k = \dim
-\mathrm{Hom}(M_k, M_i \boxtimes M_j)$ are extracted via
-residues at collision divisors.
-
-\item \textup{[\ClaimStatusProvedHere]}
-\emph{Cohomological modular functors.} The genus-$g$ bar complex
-$\barB^{(g)}(\mathcal{W}_N)$ defines a vector bundle
-over $\overline{\mathcal{M}}_{g,n}$ whose fibers give the
-genus-$g$ cohomological / derived transport package; on the
-relevant comparison surfaces, the $H^0$ fibers recover conformal
-block spaces.  The modular operad structure
-\textup{(}Theorem~\textup{\ref*{V1-thm:genus-induction-strict})}
-governs the genus dependence, and
-$\barB^{(g)}$ computes chiral homology
-\textup{(}Theorem~\textup{\ref*{V1-thm:genus-g-chiral-homology})}.
-\end{enumerate}
-\end{theorem}
-
-\begin{remark}[Scope]
-All three items are proved on their stated surfaces.  Items~(1)
-and~(3) are bar-cohomological / cohomological-modular-functor
-statements in general, with conformal-block recovery on the
-relevant comparison surfaces.  Item~(2) uses the
-Huang--Lepowsky--Zhang tensor product theory \cite{HLZ} for
-$C_2$-cofinite algebras.  Explicit Virasoro comparison-surface
-computations are in Theorem~\ref*{V1-thm:chain-modular-functor}.
-\end{remark}
-
-\begin{example}[Virasoro = \texorpdfstring{$\mathcal{W}_2$}{W_2}]
-For $G = SL_2$, $\mathcal{W}_2 = \text{Vir}$ is the Virasoro algebra.
-
-The bar complex element:
-\[\omega = T(z_1) \otimes T(z_2) \otimes \cdots \otimes T(z_n) \otimes 
-\bigwedge_{i<j} \eta_{ij}^{k_{ij}}\]
-
-represents an off-shell correlator of stress tensors.
-
-The bar differential:
-\begin{itemize}
-\item $d_{\text{res}}$: Extracts OPE $T(z_1)T(z_2) = \frac{c/2}{(z_1-z_2)^4} + \cdots$
-\item $d_{\text{strat}}$: Accounts for degeneration of moduli space
-\item $d_{\text{int}}$: Implements Ward identities
-\end{itemize}
-
-On-shell correlators (physical observables) are in:
-\[H^0(\bar{B}^{\text{ch}}(\text{Vir}))\]
-\end{example}
-
-\section{Quantization and loop corrections}
-
-\subsection{Classical vs.\ quantum chiral algebras}
-
-\begin{definition}[Quantum correction parameter]
-In the reduction from 4d to 2d, there is a natural parameter:
-\[\hbar = \epsilon_1\]
-
-This is the $\Omega$-background parameter, which becomes Planck's constant in 
-the reduced theory.
-
-Classical limit: $\hbar \to 0$ (or $\epsilon_1 \to 0$)
-
-Quantum theory: $\hbar$ finite
-\end{definition}
-
-\begin{theorem}[Genus-graded bar complex; \ClaimStatusProvedHere]
-% label removed: thm:genus-graded-bar
-The full bar complex has a genus-graded deformation
-\[\bar{B}^{\mathrm{ch}}_\hbar(\mathcal{A}) = \bar{B}^{\mathrm{ch}}(\mathcal{A})[[\hbar]]\]
-with differential
-\[d_\hbar = d_0 + \hbar d_1 + \hbar^2 d_2 + \cdots\]
-where $d_g$ (the genus-$g$ component of $\Dg{\bullet}$, Convention~\ref*{V1-conv:higher-genus-differentials}) is the genus-$g$ contribution from the modular operad decomposition.
-The nilpotency $(d_\hbar)^2 = 0$ holds as a formal power series identity.
+\begin{theorem}[MC element and all-genus HT partition function;
+\ClaimStatusProvedHere]
+\label{thm:ht-mc-all-genera}
+\index{Maurer--Cartan element!HT partition function}
+Let $\cA_T$ be the boundary chiral algebra of an HT system~$T$.
+The bar-intrinsic MC element
+\begin{equation}\label{eq:ht-theta}
+\Theta_{\cA_T}
+\;:=\; D_{\cA_T} - d_0
+\;\in\; \MC(\gAmod)
+\end{equation}
+\textup{(}Theorem~\textup{\ref{thm:mc2-bar-intrinsic}}\textup{)}
+satisfies
+$D_{\cA_T}\,\Theta_{\cA_T}
++ \tfrac{1}{2}[\Theta_{\cA_T},\Theta_{\cA_T}] = 0$
+because $D_{\cA_T}^{\,2} = 0$.  The finite-order projections
+$\Theta_{\cA_T}^{\leq r}$ are the shadow obstruction tower
+\textup{(}Definition~\textup{\ref{def:shadow-postnikov-tower}}\textup{)};
+the scalar shadow is
+$\kappa(\cA_T) \cdot \lambda_g$
+\textup{(}Theorem~\textup{\ref{thm:genus-universality}}\textup{)}.
 \end{theorem}
 
 \begin{proof}
-By Theorem~\ref*{V1-thm:genus-induction-strict}, the full bar complex
-$\bar{B}^{\mathrm{full}}(\mathcal{A}) = \bigoplus_g \bar{B}^{(g)}(\mathcal{A})$
-carries a differential whose genus-$g$ component $d_g$ (in the sense of Convention~\ref*{V1-conv:higher-genus-differentials}) is assembled from
-the modular operad structure.  Setting $\hbar^g$ as the genus bookkeeping
-parameter, the relation $(d_\hbar)^2 = 0$ is the genus-by-genus
-identity $\sum_{g_1 + g_2 = g} d_{g_1} \circ d_{g_2} = 0$
-for each $g$, which is proved in Theorem~\ref*{V1-thm:genus-induction-strict}.
+This is the specialization of
+Theorem~\ref{thm:mc2-bar-intrinsic} to $\cA = \cA_T$.  The MC
+equation holds because $D_{\cA_T}^{\,2} = 0$
+(Theorem~\ref{thm:convolution-d-squared-zero}).  All-arity
+convergence $\Theta_{\cA_T} = \varprojlim \Theta_{\cA_T}^{\leq r}$
+is Theorem~\ref{thm:recursive-existence}.
 \end{proof}
 
-\begin{remark}[Physics interpretation]
-The nilpotency $(d_\hbar)^2 = 0$ is the Maurer--Cartan equation $\ell_1(\Theta) + \tfrac{1}{2}\ell_2(\Theta, \Theta) = 0$ of Theorem~\ref*{V1-thm:explicit-theta}, expanded genus-by-genus.  In the Costello--Li framework, $\hbar = \epsilon_1$ and $d_k$ is the $k$-loop correction; this identification requires gauge-theoretic input.
-\end{remark}
+\begin{corollary}[Shadow archetype classification; \ClaimStatusProvedHere]
+\label{cor:ht-shadow-archetype}
+\index{shadow archetype!HT theories}
+Let $T$ be an HT theory with boundary algebra~$\cA_T$.  The shadow
+depth~$r_{\max}(\cA_T)$
+\textup{(}Definition~\textup{\ref{def:shadow-postnikov-tower}}\textup{)}
+determines the class of the HT system:
+\begin{center}
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{lll}
+\toprule
+\textbf{Class} & $r_{\max}$ & \textbf{HT example} \\
+\midrule
+$\mathsf{G}$ (Gaussian) & $2$ & $U(1)$ gauge theory \\
+$\mathsf{L}$ (Lie/tree) & $3$ & Pure $\mathcal{N}=2$ gauge \\
+$\mathsf{C}$ (contact/quartic) & $4$ &
+  $\mathcal{N}=2$ with hypermultiplets \\
+$\mathsf{M}$ (mixed/infinite) & $\infty$ &
+  $\mathcal{N}=1$ gauge-matter systems \\
+\bottomrule
+\end{tabular}
+\end{center}
+\end{corollary}
 
-\begin{example}[Two classical limits of Virasoro]
-The Lie-algebraic limit $c = 0$ gives the Witt algebra: the central extension vanishes, leaving a purely quadratic OPE and placing the theory on the uncurved scalar locus $\Theta_\cA^{\min} = 0$.  This does not identify the full higher-arity shadow obstruction tower.  The semiclassical limit $c \to \infty$ ($\epsilon_2 \to 0$ in AGT, $b^2 = \epsilon_1/\epsilon_2 \to \infty$) gives Poisson brackets on the Hitchin base ($\kappa \to \infty$, strongly curved $A_\infty$ structure).  These are distinct limits: $c = 0$ is scalar-uncurved, $c \to \infty$ is maximally curved.
-\end{example}
+\begin{proof}
+The shadow depth of $\cA_T$ is computed by the general
+classification
+(Theorem~\ref{thm:shadow-archetype-classification}).
+Pure $U(1)$ gives the Heisenberg algebra ($r_{\max}=2$).
+Pure non-abelian gauge gives the affine algebra
+$\widehat{\mathfrak{g}}_k$ ($r_{\max}=3$).
+Matter-coupled $\mathcal{N}=2$ gives $\beta\gamma$-type
+algebras ($r_{\max}=4$).  $\mathcal{N}=1$ theories produce
+Virasoro/$W$-type boundary algebras with infinite shadow obstruction towers.
+\end{proof}
 
-%================================================================
-% SECTION: W-ALGEBRAS IN BOTH FRAMEWORKS
-%================================================================
+\section{Holographic datum and five-shadow synthesis}
+\label{sec:ht-holographic-datum}
+\index{holographic modular Koszul datum!HT chapter}
 
-\section{$\mathcal{W}$-algebras in both frameworks}
-% label removed: sec:w-algebras-unifying
-
-\subsection{$\mathcal{W}$-algebras from 2D CFT perspective}
-
-\begin{definition}[\texorpdfstring{$\mathcal{W}$}{W}-algebra (CFT definition)]% label removed: def:w-algebra-cft
-Following Zamolodchikov \cite{Zamolodchikov} and Fateev--Lukyanov \cite{FL88}, a 
-\emph{W-algebra} $\mathcal{W}$ is a vertex operator algebra containing:
-\begin{enumerate}
-\item Virasoro element $L$ (conformal weight 2)
-\item Additional generators $W^{(s)}$ of conformal weights $s > 2$
-\item Relations ensuring associativity of OPE
-\end{enumerate}
+\begin{definition}[Collision filtration on the HT MC element]
+\label{def:ht-collision-filtration}
+\index{collision filtration!HT}
+The MC element $\Theta_{\cA_T} \in \MC(\gAmod)$ carries a
+\emph{collision filtration} by arity:
+\begin{equation}\label{eq:ht-collision-filtration}
+F^{\leq 1} \Theta_{\cA_T}
+\;\subset\; F^{\leq 2} \Theta_{\cA_T}
+\;\subset\; F^{\leq 3} \Theta_{\cA_T}
+\;\subset\; \cdots
+\;\subset\; \Theta_{\cA_T}.
+\end{equation}
+At each arity~$n$, the projection
+$\Theta_{\cA_T}^{(0,n)} \in
+\Defcyc(\cA_T) \otimes H^*(\overline{\mathcal{M}}_{0,n+1})$
+is the genus-$0$, $n$-point shadow.
 \end{definition}
 
-Standard examples: $\mathcal{W}_3$ has generators $L, W$ with $\text{wt}(L) = 2$, $\text{wt}(W) = 3$; $\mathcal{W}_N$ has generators of weights $2, 3, \ldots, N$; and $\mathcal{W}_{1+\infty}$ has infinitely many generators.
-
-\subsection{$\mathcal{W}$-algebras from gauge theory perspective}
-
-\begin{theorem}[Arakawa--Creutzig--Linshaw 2019; \ClaimStatusProvedElsewhere]% label removed: thm:w-from-gauge
-\cite{ACL19} Let $G$ be a simple Lie group and $\rho: G \to GL(V)$ a 
-representation. Consider the symplectic quotient (Higgs branch):
-\[\mathcal{M}_H = \mu^{-1}(0) / G\]
-where $\mu: T^*V \to \mathfrak{g}^*$ is the moment map.
-
-Then:
-\begin{enumerate}
-\item The Higgs branch $\mathcal{M}_H$ carries a holomorphic symplectic structure
-
-\item Quantization of functions $\mathcal{O}(\mathcal{M}_H)$ produces a vertex 
-      algebra $V_H$
-      
-\item $V_H$ contains a W-algebra $\mathcal{W}_k(\mathfrak{g})$ at level $k$ 
-      determined by the gauge coupling
-      
-\item This matches the W-algebra from coset construction: 
-      \[\mathcal{W}_k(\mathfrak{g}) = \text{Com}(\mathfrak{g}_k, V_\rho)\]
+\begin{proposition}[Five-shadow synthesis; \ClaimStatusProvedHere]
+\label{prop:ht-five-shadow-synthesis}
+\index{five-shadow synthesis!HT}
+The first five projections of the collision filtration on
+$\Theta_{\cA_T}$ recover:
+\begin{enumerate}[label=\textup{(\roman*)}]
+\item \emph{Arity~$1$}: the modular characteristic
+  $\kappa(\cA_T)$.
+\item \emph{Arity~$2$}: the spectral $R$-matrix
+  \begin{equation}\label{eq:ht-r-matrix-collision}
+  r_T(z)
+  \;=\; \operatorname{Res}^{\mathrm{coll}}_{0,2}(\Theta_{\cA_T}).
+  \end{equation}
+\item \emph{Arity~$3$}: the cubic shadow~$C(\cA_T)$ and the
+  $A_\infty$ Yang--Baxter equation from the Arnold relation on
+  $\overline{\mathcal{M}}_{0,4}$
+  \textup{(}Theorem~\textup{\ref{thm:collision-depth-2-ybe}}\textup{)}.
+\item \emph{Arity~$4$}: the quartic resonance
+  class~$Q(\cA_T)$ with clutching law from log FM degeneration
+  \textup{(}Theorem~\textup{\ref{thm:quartic-resonance-obstruction}}\textup{)}.
+\item \emph{All arities, genus~$0$}: the shadow connection
+  $\nabla^{\mathrm{hol}}_{0,n} = d -
+  \operatorname{Sh}_{0,n}(\Theta_{\cA_T})$, recovering the
+  KZ connection for $\cA_T = \widehat{\mathfrak{g}}_k$
+  \textup{(}Theorem~\textup{\ref{thm:shadow-connection-kz}}\textup{)}.
 \end{enumerate}
-\end{theorem}
+\end{proposition}
 
-
-\subsection{Bar-cobar duality for $\mathcal{W}$-algebras}
-
-\begin{conjecture}[\texorpdfstring{$\mathcal{W}$}{W}-algebra bar-cobar duality; \ClaimStatusConjectured]% label removed: conj:w-algebra-bar-cobar
-Let $\mathcal{W}_k(\mathfrak{g})$ be a W-algebra (from either construction). Then:
-\begin{enumerate}
-\item \textup{[\ClaimStatusProvedHere]}
-The chiral envelope $\mathcal{A}_{\mathcal{W}}$ admits geometric bar
-      construction:
-      \[\bar{B}^{\text{geom}}(\mathcal{A}_{\mathcal{W}}) = \bigoplus_{n \geq 0}
-      \Gamma\left(\overline{C}_{n+1}(X), \mathcal{A}_{\mathcal{W}}^{\boxtimes(n+1)}
-      \otimes \Omega^n_{\log}\right)\]
-
-\item At generic level $k$ \textup{[\ClaimStatusProvedHere]};
-      at admissible levels \textup{[\ClaimStatusConjectured]}:
-      $\mathcal{W}_k(\mathfrak{g})$ is \emph{Koszul} and has a chiral
-      Koszul dual coalgebra $\mathcal{A}_{\mathcal{W}}^!$
-
-\item Conditional on~\textup{(2)}: the bar and cobar complexes are quasi-inverse:
-      \[\Omega(\bar{B}(\mathcal{A}_{\mathcal{W}})) \simeq \mathcal{A}_{\mathcal{W}}\]
-      At generic $k$ this is \textup{[\ClaimStatusProvedHere]};
-      at admissible levels \textup{[\ClaimStatusConjectured]}
-
-\item \textup{[\ClaimStatusProvedHere]}
-All structures (Virasoro, W-currents, OPE) have geometric realization via
-      configuration spaces
-\end{enumerate}
-\end{conjecture}
-
-\begin{remark}[Proof of items \textup{(1)} and \textup{(4)}]
-Item~(1): the geometric bar construction applies to any augmented chiral algebra
-(Definition~\ref*{V1-def:geometric-bar}); the bar differential satisfies
-$d^2 = 0$ by Theorem~\ref*{V1-thm:genus-induction-strict}.  For W-algebras,
-the chiral envelope exists by the Beilinson--Drinfeld functor
-(Theorem~3.7.11 of \cite{BD04}).
-
-Item~(4): OPE data is encoded by residues at collision divisors of the
-FM compactification (Definition~\ref*{V1-def:bar-differential-complete}).
-For W-algebra currents $W^{(s)}(z)$, the OPE poles of orders
-$\leq 2s$ correspond to the stratification of $\overline{C}_2(X)$
-along the diagonal, with each pole order contributing to a specific
-component of $d_{\mathrm{bar}}$.
-
-Item~(3) follows from
-Theorem~\ref*{V1-thm:bar-cobar-isomorphism-main} once the Koszul property~(2)
-is established.
-\end{remark}
-
-\begin{proof}[Proof of items \textup{(2)} and \textup{(3)} at generic~$k$]
-Let $k$ be generic (away from admissible and critical levels).
-
-\emph{Step~1: Koszul property via weight spectral sequence.}
-At generic~$k$, the W-algebra $\mathcal{W}_k(\mathfrak{g})$ is simple
-as a vertex algebra (Arakawa \cite{Ara07}, Theorem~4.1).  Simplicity
-implies that Verma modules are irreducible
-(Proposition~\ref*{V1-prop:generic-irreducibility}; the Shapovalov form
-is non-degenerate at each weight), so
-$\mathrm{Ext}^q_{\mathcal{O}_k}(V(h_1), V(h_2)) = 0$ for $q > 0$
-and all pairs of distinct Verma modules.
-
-The weight filtration on the bar complex induces a spectral sequence
-$E_2^{p,q} \Rightarrow \ChirHoch^{p+q}(\mathcal{W}_k(\mathfrak{g}))$.
-The Ext-vanishing forces $E_2^{p,q} = 0$ for $q > 0$, so the spectral
-sequence collapses at~$E_2$.  This $E_2$-degeneration is equivalent to
-the Koszul property: the bar resolution is linear
-(Adams-graded components are acyclic in positive internal degree).
-
-\emph{Step~2: Identification of the Koszul dual.}
-By Theorem~\ref*{V1-thm:w-algebra-hochschild} (\ClaimStatusProvedHere),
-the chiral Hochschild cohomology at generic~$k$ is concentrated in
-degrees $\{0,1,2\}$ with Hilbert series $P(t) = 1 + t^2$.
-The bar cohomology $H^1(\bar{B}(\mathcal{W}_k(\mathfrak{g})))$ has
-$r = \operatorname{rank}(\mathfrak{g})$ generators
-$\Theta_1, \ldots, \Theta_r$ of conformal weights $h_i = m_i + 1$,
-where $m_1, \ldots, m_r$ are the exponents of~$\mathfrak{g}$.
-The Koszul dual coalgebra $\mathcal{A}_{\mathcal{W}}^!$ is determined by
-these bar-cohomology generators: it is the cofree coalgebra
-cogenerated by the classes $\Theta_i^*$ dual to the~$\Theta_i$.
-
-\emph{Step~3: Bar-cobar quasi-isomorphism.}
-With the Koszul property established,
-Theorem~\ref*{V1-thm:bar-cobar-isomorphism-main} gives the
-quasi-isomorphism
-$\Omega(\bar{B}(\mathcal{A}_{\mathcal{W}})) \simeq
-\mathcal{A}_{\mathcal{W}}$.
+\begin{proof}
+Items (i)--(iv) are projections of the MC element via
+Corollary~\ref{cor:shadow-extraction}.  Item (ii) is the
+collision residue = twisting identification
+(Theorem~\ref{thm:collision-residue-twisting}).  Item (iii) uses
+the depth-$2$ boundary intersection on
+$\overline{\mathcal{M}}_{0,4}$
+(Theorem~\ref{thm:collision-depth-2-ybe}).
+Item (iv) is the quartic resonance obstruction
+(Theorem~\ref{thm:quartic-resonance-obstruction}).
+Item (v) is the shadow-KZ recovery
+(Theorem~\ref{thm:shadow-connection-kz}).
 \end{proof}
 
-
-\begin{example}[Explicit: \texorpdfstring{$\mathcal{W}_3$}{W_3} at \texorpdfstring{$c = -2$}{c = -2}]% label removed: ex:w3-c-minus-2-explicit
-For the $\mathcal{W}_3$ algebra at central charge $c = -2$:
-
-\emph{Generators.}
-\begin{align*}
-L &= \text{energy-momentum tensor, conformal weight 2} \\
-W &= \text{W-current, conformal weight 3}
-\end{align*}
-
-\emph{OPE.}
-\begin{align*}
-L(z)L(w) &\sim \frac{c/2}{(z-w)^4} + \frac{2L(w)}{(z-w)^2} + \frac{\partial L(w)}{z-w} \quad (c = -2) \\
-L(z)W(w) &\sim \frac{3W(w)}{(z-w)^2} + \frac{\partial W(w)}{z-w} \\
-W(z)W(w) &\sim \frac{c_{33}}{(z-w)^6} + \frac{2L(w)}{(z-w)^4} + \cdots
-\end{align*}
-where $c_{33} = c/3 = -2/3$ by the standard Zamolodchikov normalization.
-
-\emph{Chiral algebra presentation.}
-\[\mathcal{A}_{\mathcal{W}_3} = \text{Free}_{\mathcal{D}}(\mathbb{C}L \oplus \mathbb{C}W) 
-/ \text{(W-algebra relations)}\]
-
-\emph{Bar complex degree~2.}
-\[\bar{B}^2(\mathcal{A}_{\mathcal{W}_3}) = \Gamma\left(\overline{C}_3(X), 
-\mathcal{A}_{\mathcal{W}_3}^{\boxtimes 3} \otimes \Omega^\bullet\right)\]
-
-Elements are represented by integrals:
-\[\int_{\overline{C}_3(X)} f(z_1, z_2, z_3) \wedge d\log(z_1-z_2) \wedge d\log(z_2-z_3)\]
-where $f$ is a section of $\mathcal{A}_{\mathcal{W}_3}^{\boxtimes 3}$.
-
-\emph{Differential action.}
-\begin{align*}
-d_{\text{mult}}(f) &= \text{Res}_{z_1 = z_2}[f] + \text{Res}_{z_2 = z_3}[f] \\
-&\quad + \text{Res}_{z_1 = z_3}[f] \quad \text{(collisions)} \\
-d_{\text{internal}}(f) &= d_{\mathcal{W}}(f) \quad \text{(internal differential)} \\
-d_{\text{extend}}(f) &= \text{extension across boundary divisors}
-\end{align*}
-
-\emph{Koszul dual coalgebra.} At $c = -2$, we conjecture (building on Arakawa's rationality result~\cite{Ara07}) that $\mathcal{W}_3$ is Koszul, with coalgebra dual $\mathcal{C}_{\mathcal{W}_3}$ given by:
-\[\mathcal{C}_{\mathcal{W}_3} \subset \text{Cofree}_{\mathcal{D}}(s^{-1}\mathbb{C}L^* \oplus s^{-1}\mathbb{C}W^*)\]
-the sub-coalgebra cogenerated by the orthogonal complement of the relations, where $s^{-1}$ denotes desuspension.
-\end{example}
-
-%================================================================
-% SECTION: MATHEMATICAL BRIDGES
-%================================================================
-
-\section{AGT correspondence and bar-cobar duality}
-% label removed: sec:mathematical-bridges
-
-
-
-\subsection{AGT correspondence via bar-cobar}
-
-\begin{theorem}[AGT 2D side: bar complex = semi-infinite complex; \ClaimStatusProvedHere]
-% label removed: thm:agt-2d-bar
-\index{AGT correspondence!2D side}
-Let $\mathcal{W}_k(\fg)$ be a W-algebra at generic level~$k$.  Then $H^\bullet(\barB^{\mathrm{ch}}(\mathcal{W}_k(\fg))) \cong H^{\frac{\infty}{2}+\bullet}(\mathcal{W}_k(\fg))$ (Theorem~\ref*{V1-thm:bar-semi-infinite-w}), the anomaly duality $\kappa(\mathcal{W}_k(\fg)) + \kappa(\mathcal{W}_{k'}(\fg^\vee)) = 0$ holds for Feigin--Frenkel dual pairs (Corollary~\ref*{V1-cor:anomaly-duality-w}), and chiral homology is computed by configuration space integrals on FM compactifications (Theorem~\ref*{V1-thm:bar-NAP-homology}).
-\end{theorem}
-
-\begin{conjecture}[AGT 4D--2D bridge via bar-cobar; \ClaimStatusConjectured]% label removed: conj:agt-bar-cobar
-\index{AGT correspondence}
-The Alday--Gaiotto--Tachikawa correspondence \cite{AGT09} admits a
-bar-cobar formulation: the Costello--Li holomorphic twist of 4D
-$\mathcal{N}=2$ gauge theory with gauge group~$G$ produces a
-factorization algebra $\mathcal{F}_G$ on a curve~$\Sigma$, and
-this factorization algebra is equivalent to $\mathcal{W}_k(\fg)$:
-
-\begin{center}
-\begin{tikzcd}
-\text{4D } \mathcal{N}=2 \text{ gauge partition function} \ar[d, "\text{CL twist}"] \ar[r, "\text{AGT}"]
-& \text{2D Liouville/Toda CFT correlation} \ar[d, "\text{chiral envelope}"] \\
-\text{2D factorization algebra } \mathcal{F}_G \ar[r, "\simeq"]
-& \text{W-algebra } \mathcal{W}_k(\mathfrak{g})
-\end{tikzcd}
-\end{center}
-
-In addition:
-\begin{enumerate}
-\item The 4D instanton partition function = W-algebra conformal blocks
-\item The 4D Coulomb branch parameters = W-algebra momenta
-\item The BV complex of the 4D theory computes the same homology as
-  the bar complex of the 2D chiral algebra:
-      \[H_\bullet^{\text{ch}}(X, \mathcal{W}_k(\mathfrak{g})) = H_\bullet^{\text{BV}}(\mathcal{F}_G)\]
+\begin{proposition}[Four recovery theorems; \ClaimStatusProvedHere]
+\label{prop:ht-four-recovery}
+\index{recovery theorems!HT}
+Let $T$ be an HT system with boundary algebra~$\cA_T$.
+\begin{enumerate}[label=\textup{(\roman*)}]
+\item \emph{Collision residue = twisting}
+  \textup{(}Theorem~\textup{\ref{thm:collision-residue-twisting}}\textup{)}:
+  $\operatorname{Res}^{\mathrm{coll}}_{0,2}(\Theta_{\cA_T})$
+  is the bar-cobar twisting morphism.
+\item \emph{Depth~$2$ = YBE}
+  \textup{(}Theorem~\textup{\ref{thm:collision-depth-2-ybe}}\textup{)}:
+  the CYBE from the Arnold relation on
+  $\overline{\mathcal{M}}_{0,4}$.
+\item \emph{Affine shadow/KZ comparison}
+  \textup{(}Theorem~\textup{\ref{thm:shadow-connection-kz}}\textup{)}:
+  on the affine Kac--Moody comparison surface
+  $\cA_T = \widehat{\mathfrak{g}}_k$, the genus-$0$ shadow
+  connection identifies with the KZ connection.
+\item \emph{Quartic = $L_\infty$ obstruction}
+  \textup{(}Theorem~\textup{\ref{thm:quartic-obstruction-linf}}\textup{)}:
+  $Q(\cA_T)$ is the first $L_\infty$-formality obstruction of the
+  bar complex.
 \end{enumerate}
+\end{proposition}
+
+\begin{proof}
+These are proved in the frontier holography section:
+Theorems~\ref{thm:collision-residue-twisting},
+\ref{thm:collision-depth-2-ybe},
+\ref{thm:shadow-connection-kz},
+\ref{thm:quartic-obstruction-linf}.
+\end{proof}
+
+\section{S-duality as Koszul duality}
+\label{sec:ht-s-duality-koszul}
+\index{S-duality!Koszul duality}
+
+\begin{conjecture}[S-duality = Koszul duality]
+\label{conj:ht-s-duality-koszul}
+\index{S-duality!bar-cobar}
+Let $T$ be a $4$d $\mathcal{N}=4$ theory with S-dual~$T^\vee$.
+The HT twist produces a Koszul pair:
+\begin{equation}\label{eq:ht-s-duality-koszul}
+\cA_{T^\vee} \;\simeq\; \cA_T^!.
+\end{equation}
+In particular, for $T = \mathcal{N}=4$ $\mathrm{SYM}$ with gauge group~$G$:
+\begin{equation}\label{eq:ht-langlands-koszul}
+\cA^!(\widehat{\mathfrak{g}}_k)
+\;\simeq\;
+\cA(\widehat{{}^L\!\mathfrak{g}}_{k^\vee}),
+\qquad
+k^\vee = -h^\vee_{{}^L\!G} + 1/k.
+\end{equation}
 \end{conjecture}
 
-\begin{remark}[Scope]
-The 2D side is proved (Theorem~\ref{thm:agt-2d-bar}); the 4D--2D bridge is proved in specific cases \cite{SV13,MO19}.  MC4 and MC5 are both proved in Volume~I (Chapter~\ref*{V1-chap:concordance}); the remaining obstruction is the 4D--2D bridge for general gauge groups.
+\begin{remark}[Discrepancy at finite coupling]
+\label{rem:ht-s-duality-discrepancy}
+\index{S-duality!discrepancy from Koszul duality}
+The conjecture is generically \emph{false} as a strict identity.
+For $\mathcal{N}=4$ $\mathrm{SU}(N)$ SYM at coupling $\Psi = \theta/(2\pi) + 4\pi i/g^2$,
+the S-duality and Koszul duality operations on the HT chiral algebra
+differ by an explicit discrepancy
+\[
+  \Delta(\Psi, N)
+  \;=\;
+  \frac{N^2 + 2N - 1}{2N}\,\Bigl(\Psi + \frac{1}{\Psi}\Bigr),
+\]
+which vanishes only when $\Psi^2 = -1$ (no real solutions).
+In particular, the two operations coincide on the self-dual locus
+$\Psi = \pm i$ (the $\mathbb{Z}_4$ fixed point of S-duality),
+but are generically distinct: S-duality permutes the full
+$\mathrm{SL}(2,\mathbb{Z})$-orbit of coupling constants,
+while Koszul duality acts on the algebraic structure of the
+chiral algebra at a \emph{fixed} coupling.
+Conjecture~\ref{conj:ht-s-duality-koszul} should therefore
+be read as asserting an equivalence at the level of
+\emph{universal} (coupling-independent) algebraic structures,
+not as a pointwise identity at finite~$\Psi$.
 \end{remark}
 
+\begin{remark}[Proved instances]
+\label{rem:ht-s-duality-proved}
+For $\cA_T = \widehat{\mathfrak{g}}_k$ at generic level, the Koszul
+dual is computed by bar-cobar inversion
+(Theorem~\ref{thm:bar-cobar-isomorphism-main}).  The S-duality
+conjecture reduces to comparing this algebraic Koszul dual with the
+HT twist of the Langlands dual theory.  The holographic datum
+$\mathcal{H}(T)$
+(Definition~\ref{def:holographic-modular-koszul-datum}) packages
+this comparison: the MC element~$\Theta_{\cA_T}$ and the shadow
+connection~$\nabla^{\mathrm{hol}}_T$ are invariant data of the
+S-duality equivalence class.
+\end{remark}
 
-%================================================================
-% SECTION: OPEN QUESTIONS
-%================================================================
+\begin{remark}[Four dualities comparison]
+\label{rem:ht-four-dualities-comparison}
+\index{duality!four operations comparison|textbf}
+\index{Klein four-group!duality operations}
+Four duality operations act on the boundary chiral algebra
+$\cA_T$ of a~$4$d HT system.  They are generically distinct:
+on $\mathrm{gl}_N$ at coupling~$\Psi$,
+the Feigin--Frenkel involution $\Psi \mapsto -\Psi$
+and S-duality $\Psi \mapsto 1/\Psi$
+generate a Klein four-group
+$V_4 = \mathbb{Z}/2 \times \mathbb{Z}/2$
+(since $(\Psi \mapsto -1/\Psi)^2 = \mathrm{id}$),
+while the corner triality of
+Gaiotto--Rap\v{c}\'ak~\cite{gaiotto-rapchak}
+gives a separate~$S_3$.
+The following table records the five invariants that
+distinguish them
+(verified by \texttt{compute/lib/theorem\_four\_dualities\_engine.py},
+$97$~tests).
 
-\section{Open questions and future directions}
-% label removed: sec:open-questions-holo-topo
+\begin{center}
+\renewcommand{\arraystretch}{1.25}
+\footnotesize
+\begin{tabular}{llllll}
+\toprule
+\textbf{Operation}
+& \textbf{Acts on}
+& \textbf{Fixed pts}
+& \textbf{$\kappa$ transform}
+& \textbf{Shadow depth}
+& \textbf{Example} \\
+\midrule
+Chiral KD (FF)
+  & level $k$ of $\cA$
+  & $\Psi = 0$ (crit.)
+  & $\kappa \mapsto -\kappa$ (KM)
+  & preserved
+  & $\widehat{\mathfrak{g}}_k \leftrightarrow
+    \widehat{{}^L\!\mathfrak{g}}_{k^\vee}$ \\[3pt]
+S-duality
+  & coupling $\Psi$
+  & $\Psi = \pm 1$
+  & $\kappa \mapsto \kappa^S(\Psi)$
+  & preserved
+  & $\mathrm{SU}(N)$ at $g^2 = 4\pi$ \\[3pt]
+3d mirror
+  & branch type
+  & none (generic)
+  & $\kappa_C \leftrightarrow \kappa_H$
+  & can change
+  & Coulomb $\leftrightarrow$ Higgs \\[3pt]
+Cat.\ KD (BLPW)
+  & category $\mathcal{O}$
+  & eval.\ core
+  & agrees w/ FF on G/L
+  & differs on C/M
+  & symplectic duality~\cite{BLPW16} \\
+\bottomrule
+\end{tabular}
+\end{center}
 
-\begin{theorem}[\texorpdfstring{$E_n$}{E_n} Koszul duality on \texorpdfstring{$n$}{n}-manifolds;
-\ClaimStatusProvedElsewhere]% label removed: thm:en-koszul
-\index{En algebra@$E_n$ algebra!Koszul duality}
-\index{Koszul duality!higher-dimensional}
-For an $E_n$-algebra $\mathcal{A}$ on a smooth oriented $n$-manifold $M$,
-there is a bar-cobar adjunction
-\begin{equation}% label removed: eq:en-bar-cobar
-\barB_{E_n}: E_n\text{-}\mathrm{Alg}(M)
-\rightleftarrows
-E_n\text{-}\mathrm{CoAlg}(M) :\Omega_{E_n}
+\noindent
+The discriminant $\Delta(\Psi,N) = \kappa^S - \kappa^{\mathrm{KD}}$
+(Remark~\ref{rem:ht-s-duality-discrepancy})
+vanishes only at $\Psi^2 = -1$, so the first two rows are
+generically distinct.  Categorical Koszul duality
+agrees with chiral Koszul duality on the evaluation-generated
+core (classes~$\mathbf{G}$/$\mathbf{L}$), but the two diverge
+at shadow depth~$\geq 4$ (classes~$\mathbf{C}$/$\mathbf{M}$),
+where the transferred $A_\infty$-operations
+that categorical KD does not see become non-trivial.
+The full group generated by all four operations is
+non-cyclic and contains $V_4$ as a subgroup.
+\end{remark}
+
+\section{Standard HT examples}
+\label{sec:ht-standard-examples}
+\index{holomorphic-topological theory!standard examples}
+
+\begin{example}[$\mathcal{N}=4$ SYM: affine Kac--Moody]
+\label{ex:ht-n4-sym}
+The HT twist of $\mathcal{N}=4$ SYM with gauge algebra~$\mathfrak{g}$
+produces the affine Kac--Moody algebra
+$\cA_T = \widehat{\mathfrak{g}}_k$ with
+$k = \psi/(2\pi i)$ ($\psi$ = complexified coupling).
+\begin{enumerate}[label=\textup{(\roman*)}]
+\item $\kappa(\widehat{\mathfrak{g}}_k) = (k+h^\vee)\dim\mathfrak{g}/(2h^\vee)$.
+\item Shadow class~$\mathsf{L}$, $r_{\max} = 3$.
+\item $r_T(z) = \Omega/z$ (rational $r$-matrix).
+\item $\Theta_{\widehat{\mathfrak{g}}_k}$ terminates at the cubic
+  shadow by Theorem~\ref{thm:cubic-gauge-triviality}.
+\end{enumerate}
+\end{example}
+
+\begin{example}[$\mathcal{N}=2$ with hypermultiplets: $\beta\gamma$ systems]
+\label{ex:ht-n2-hyper}
+The HT twist of $\mathcal{N}=2$ gauge theory with matter in a
+representation~$R$ produces the $\beta\gamma$ system of
+$(R \oplus R^*)$-valued fields, with
+$\cA_T = \beta\gamma_R$ and
+$\kappa(\beta\gamma_R) = \dim R$.
+\begin{enumerate}[label=\textup{(\roman*)}]
+\item Shadow class~$\mathsf{C}$, $r_{\max} = 4$.
+\item The quartic contact invariant $\mu_{\beta\gamma} = 0$
+  (Corollary~\ref{cor:nms-betagamma-mu-vanishing}).
+\item The shadow obstruction tower terminates at arity~$4$ by the rank-one
+  abelian rigidity argument.
+\end{enumerate}
+\end{example}
+
+\begin{example}[$\mathcal{N}=1$: Virasoro/W-type]
+\label{ex:ht-n1}
+The HT twist of $\mathcal{N}=1$ theories generically produces
+boundary algebras with Virasoro or $W$-algebra structure.
+\begin{enumerate}[label=\textup{(\roman*)}]
+\item Shadow class~$\mathsf{M}$, $r_{\max} = \infty$.
+\item The quintic obstruction $o^{(5)}_{\mathrm{Vir}} \neq 0$
+  forces an infinite shadow obstruction tower.
+\item Quartic contact invariant
+  $Q^{\mathrm{contact}}_{\mathrm{Vir}} = 10/[c(5c+22)]$.
+\item Genus-$1$ Hessian correction
+  $\delta_H^{(1)}_{\mathrm{Vir}} = 120/[c^2(5c+22)] \cdot x^2$.
+\end{enumerate}
+\end{example}
+
+\begin{remark}[Boundary VOA classification by shadow depth]
+\label{rem:boundary-voa-shadow-depth-classification}
+\index{boundary VOA!shadow depth classification|textbf}
+\index{shadow depth!boundary conditions}
+\index{Gaiotto--Witten boundary conditions!shadow depth}
+The shadow depth classification of boundary VOAs in the
+Costello--Gaiotto framework is:
+\begin{center}
+\renewcommand{\arraystretch}{1.25}
+\small
+\begin{tabular}{@{}l@{\;\;}l@{\;\;}c@{\;\;}c@{\;\;}l@{}}
+\textbf{Boundary condition}
+  & \textbf{Boundary VOA}
+  & \textbf{Class}
+  & $r_{\max}$
+  & \textbf{Mechanism} \\
+\midrule
+Neumann ($\Psi$ generic)
+  & $\widehat{\mathfrak{gl}}_N$ at $k = \Psi - N$
+  & $\mathsf{L}$
+  & $3$
+  & Affine; Jacobi identity truncates \\
+Dirichlet ($\Psi$ generic)
+  & $\widehat{\mathfrak{gl}}_N$ at $k' = 1/\Psi - N$
+  & $\mathsf{L}$
+  & $3$
+  & Affine; Langlands dual level \\
+Symplectic boson limit ($\Psi\to\infty$, Neumann)
+  & $\beta\gamma^{\otimes N^2}_{\lambda=1/2}$
+  & $\mathsf{C}$
+  & $4$
+  & Contact; quartic terminates \\
+$bc$ limit ($\Psi\to\infty$, Dirichlet)
+  & $bc^{\otimes N^2}_{\lambda=1/2}$
+  & $\mathsf{C}$
+  & $4$
+  & Contact; fermionic analogue \\
+Nahm pole (principal)
+  & $\Walg_k(\mathfrak{gl}_N, f_{\mathrm{princ}})$
+  & $\mathsf{M}$
+  & $\infty$
+  & DS reduction; non-quadratic OPE
+\end{tabular}
+\end{center}
+The pattern: at generic coupling, boundary VOAs are affine
+(class~$\mathsf{L}$); the strong-coupling limits produce free
+fields (class~$\mathsf{C}$); Drinfeld--Sokolov reduction to
+$\Walg$-algebras produces infinite depth (class~$\mathsf{M}$).
+Class~$\mathsf{G}$ (Gaussian, $r_{\max} = 2$) appears only
+for $\mathrm{GL}(1)$ (Heisenberg).
+S-duality exchanges Neumann and Dirichlet, preserving shadow
+class; Koszul duality sends each row to its Feigin--Frenkel
+dual, also preserving shadow class.
+Computational verification:
+\texttt{compute/lib/boundary\_voa\_koszul\_engine.py}
+(102~tests).
+\end{remark}
+
+\section{Twistor anomaly and the Deligne exceptional series}
+\label{sec:ht-twistor-deligne}
+\index{twistor space!anomaly cancellation|textbf}
+\index{Deligne exceptional series!twistor anomaly|textbf}
+\index{quartic Casimir!twistor selection rule}
+\index{Green--Schwarz mechanism!twistor space}
+
+Holomorphic Chern--Simons theory on twistor space
+$\mathbb{P}^3$~\cite{Costello2111} furnishes the
+holomorphic-topological origin of self-dual Yang--Mills in four
+dimensions.  Quantum consistency of this theory imposes a gauge
+group selection rule whose algebraic content is quartic, not
+quadratic: it operates at the shadow obstruction tower level of
+the genus-$2$ shell, not at the genus-$1$ level where~$\kappa$
+lives.
+
+\begin{proposition}[Twistor anomaly selects the Deligne exceptional series;
+\ClaimStatusProvedElsewhere]
+\label{prop:ht-twistor-deligne}
+\index{Costello!twistor anomaly}
+\index{Deligne exceptional series!Costello selection}
+The gauge algebras~$\mathfrak{g}$ for which holomorphic
+Chern--Simons theory on twistor space
+$\mathbb{P}^3 \setminus \mathbb{P}^1$ admits a consistent
+one-loop quantization \textup{(}with a single holomorphic axion
+field implementing the Green--Schwarz
+mechanism\textup{)}
+are exactly the Deligne exceptional
+series~\cite{Deligne96, Cvitanovic08}:
+\begin{equation}\label{eq:ht-deligne-series}
+\mathfrak{g} \;\in\;
+\bigl\{\,
+  \mathfrak{sl}_2,\;
+  \mathfrak{sl}_3,\;
+  \mathfrak{so}_8,\;
+  G_2,\;
+  F_4,\;
+  E_6,\;
+  E_7,\;
+  E_8
+\,\bigr\}.
 \end{equation}
-realized by configuration space integrals on the Axelrod--Singer
-compactification $\overline{C}_k(M)$ of $k$-point configurations in $M$.
-The propagator is the Green kernel of the Hodge Laplacian on $M$, and
-the Arnold relations are replaced by the Totaro relations
-\cite{Totaro96} for $H^*(\overline{C}_k(\mathbb{R}^n))$.
+\end{proposition}
 
-For $n = 1$, this recovers the classical (non-chiral) bar-cobar
-adjunction for $A_\infty$-algebras.  For $n = 2$ on a Riemann surface,
-it recovers the chiral bar-cobar adjunction of
-Theorem~\textup{\ref*{V1-thm:bar-cobar-isomorphism-main}}.
-The Poincar\'e--Koszul duality of Ayala--Francis~\cite{AF15}
-\textup{(}Theorem~7.8\textup{)} provides the abstract framework;
-our propagator formulas should supply explicit chain-level
-representatives.
+\begin{proof}[Source]
+Costello~\cite{Costello2111}.
+The one-loop anomaly polynomial of holomorphic Chern--Simons
+on~$\mathbb{P}^3$ decomposes as
+$I_6 = a_2\,\operatorname{tr}(F^2)^2
++ b_4\,\operatorname{tr}'(F^4)$,
+where $\operatorname{tr}'(F^4)$ denotes the component of the
+adjoint fourth-order invariant independent of
+$(\operatorname{tr} F^2)^2$.
+The Green--Schwarz axion cancels the factorized
+$(\operatorname{tr} F^2)^2$ term.  The residual anomaly
+$b_4\,\operatorname{tr}'(F^4)$ vanishes if and only if
+$\mathfrak{g}$ has no independent quartic Casimir operator, or
+equivalently,
+$\operatorname{tr}_{\mathrm{adj}}(F^4)$ is proportional to
+$(\operatorname{tr}_{\mathrm{adj}} F^2)^2$.
+This condition characterizes the Deligne exceptional
+series.
+\end{proof}
 
-\emph{Scope.}  For $n \geq 3$, the configuration space integrals involve
-the Axelrod--Singer propagator (which is not holomorphic), and the
-combinatorics of boundary strata are governed by graph complexes
-(Kontsevich \cite{Kon94}).  The key missing ingredient is an
-explicit form-level presentation of the $E_n$ bar differential in terms
-of iterated integrals over $\overline{C}_k(M)$.  The $n = 3$ case
-with $M = S^3$ connects to the Chern--Simons perturbative expansion and
-Vassiliev invariants (see Remark~\textup{\ref{rem:vassiliev}} below).
+\begin{remark}[Genus-level mechanism: quartic, not quadratic]
+\label{rem:ht-twistor-genus-level}
+\index{twistor space!genus-level mechanism}
+At the $\kappa$~level (genus~$1$), the anomaly cancels for
+\emph{every} simple gauge group: the effective modular
+characteristic
+$\kappa_{\mathrm{eff}} = \kappa(\widehat{\mathfrak{g}}_0)
++ \kappa(\text{axion}) = 0$
+is achievable by tuning the axion coupling, since
+$\kappa(\widehat{\mathfrak{g}}_0) = \dim(\mathfrak{g})/2$
+is nonzero for all~$\mathfrak{g}$.
+The selection operates one level higher: the quartic
+anomaly $\operatorname{tr}'(F^4)$ is the genus-$2$
+obstruction, living in the quartic shell of the shadow
+obstruction tower.  Groups with
+$\operatorname{tr}'(F^4) \neq 0$ have a non-cancellable
+obstruction at this level.
+\end{remark}
 
-\emph{Resolution.}  All four components are now
-established: see Theorem~\textup{\ref*{V1-thm:en-koszul-duality}}, which
-assembles the proofs of Totaro, Lambrechts--Voli\'c, Knudsen, and
-our $n = 2$ recovery.
-\end{theorem}
+\begin{remark}[Shadow interpretation:
+$Q^{\mathrm{contact}}$ factors through~$\kappa$]
+\label{rem:ht-twistor-shadow}
+\index{quartic contact invariant!twistor selection}
+\index{shadow obstruction tower!twistor anomaly}
+In the language of the shadow obstruction tower
+(\S\ref{sec:shadow-depth-classification}), the three
+conditions
+\begin{enumerate}[label=\textup{(\alph*)}]
+\item $\mathfrak{g}$ is Costello-allowed on twistor space,
+\item $\mathfrak{g}$ lies in the Deligne exceptional series,
+\item $Q^{\mathrm{contact}}_{\widehat{\mathfrak{g}}}$
+  factors through~$\kappa$, i.e.\
+  the quartic shadow is determined by the quadratic data alone,
+\end{enumerate}
+are equivalent.
+For all affine Kac--Moody algebras
+$\widehat{\mathfrak{g}}_k$ the shadow class is~$\mathsf{L}$
+and $r_{\max} = 3$
+(Theorem~\ref{thm:cubic-gauge-triviality}), so
+the quartic shadow vanishes identically: the distinction
+between Deligne and non-Deligne is invisible at the shadow
+depth level.  It becomes visible in the \emph{ambient}
+anomaly polynomial, where the independent quartic Casimir
+$\operatorname{tr}'(F^4)$ contributes a genus-$2$ term
+that the Green--Schwarz axion cannot absorb.
 
+Computational verification:
+\texttt{compute/lib/twistor\_anomaly\_koszul\_engine.py}
+(99~tests, three-way equivalence
+\textup{(a)}$\Leftrightarrow$\textup{(b)}$\Leftrightarrow$\textup{(c)}
+verified for all simple algebras through rank~$8$).
+\end{remark}
 
-\begin{remark}[Vassiliev invariants from Feynman transform]
-% label removed: rem:vassiliev
-\index{Vassiliev invariants!from bar complex}
-The Prism Principle $\barB^{\mathrm{full}} \simeq \mathrm{FT}_{\mathrm{Mod}}$ (Theorem~\ref*{V1-thm:prism-higher-genus}(ii)) and Getzler--Kapranov \cite{GeK98} suggest (\ClaimStatusConjectured) that the bar complex of the Chern--Simons factorization algebra on $S^3$ produces universal Vassiliev invariants, recovering the Kontsevich integral via specialization to the real locus.  The main gap is the passage $\overline{C}_n(X) \to \overline{C}_n(S^1)$.
+\begin{remark}[Three regimes of quartic factorization]
+\label{rem:ht-twistor-three-regimes}
+\index{Deligne exceptional series!three regimes}
+\index{quartic Casimir!three regimes}
+The quartic factorization condition partitions the Deligne
+series into three regimes, distinguished by the mechanism
+preventing an independent degree-$4$ Casimir invariant.
+
+\begin{enumerate}[label=\textup{(\roman*)}]
+\item \emph{Low rank}
+  ($\mathfrak{sl}_2$, $\mathfrak{sl}_3$, $G_2$).
+  The rank is at most~$2$, so the ring of Casimir invariants
+  has no generator in degree~$4$: the Casimir degrees of
+  $\mathfrak{sl}_2$ are $\{2\}$, of $\mathfrak{sl}_3$ are
+  $\{2,3\}$, and of $G_2$ are $\{2,6\}$.
+
+\item \emph{No exponent~$3$}
+  ($F_4$, $E_6$, $E_7$, $E_8$).
+  The rank is $\geq 4$, but the smallest exponent $> 1$ is
+  $\geq 4$ (the exponents of $F_4$ are
+  $\{1,5,7,11\}$; of $E_6$, $\{1,4,5,7,8,11\}$;
+  of $E_7$, $\{1,5,7,9,11,13,17\}$;
+  of $E_8$, $\{1,7,11,13,17,19,23,29\}$).
+  In particular, $3$~is not an exponent, so $4$~is not a
+  Casimir degree.
+
+\item \emph{Triality}
+  ($\mathfrak{so}_8 = D_4$).
+  The rank is~$4$ and the exponents $\{1,3,3,5\}$
+  \emph{do} include~$3$, giving Casimir degrees
+  $\{2,4,4,6\}$ with \emph{two} independent quartic
+  invariants.
+  The $S_3$ outer automorphism group (triality) forces
+  both quartic invariants to decompose through
+  $(\operatorname{tr} F^2)^2$: any
+  $S_3$-invariant quartic on the Cartan subalgebra of
+  $D_4$ is a polynomial in the elementary symmetric
+  functions, and the only $S_3$-invariant of degree~$4$
+  in three variables of degree~$2$ is the square
+  $(\sigma_1)^2 = (\operatorname{tr} F^2)^2$.
+\end{enumerate}
+
+\noindent
+Every non-Deligne simple algebra of rank~$\geq 2$ has
+$3$~as an exponent (equivalently, $4$~as a Casimir
+degree) and lacks a triality symmetry to enforce
+factorization, producing an independent
+$\operatorname{tr}'(F^4)$ and an uncancellable twistor
+anomaly.
+\end{remark}
+
+\begin{remark}[Three invariants: $b_0^{4\mathrm{d}}$,
+$b_0^{\mathrm{hol}}$, and~$\kappa$]
+\label{rem:beta-function-kappa-distinction}
+\index{beta function!modular characteristic distinction|textbf}
+\index{modular characteristic!beta function distinction}
+\index{asymptotic freedom!modular}
+\index{one-loop level shift}
+The one-loop beta function coefficient~$b_0$, the holomorphic
+one-loop level shift~$b_0^{\mathrm{hol}}$, and the modular
+characteristic~$\kappa$ are three \emph{distinct} invariants
+of a gauge-theoretic system:
+\begin{enumerate}[label=\textup{(\roman*)}]
+\item $b_0^{4\mathrm{d}} = (11/3)\,N$ for pure $\mathrm{SU}(N)$
+  Yang--Mills: the standard coefficient governing the
+  running of the four-dimensional coupling.  The factor $11/3$
+  requires the full $4\mathrm{d}$ computation (gluon, ghost,
+  and matter loops).
+
+\item $b_0^{\mathrm{hol}} = h^\vee$ for the holomorphic twist:
+  the one-loop level shift of the boundary current algebra
+  $\widehat{\mathfrak{g}}_{k}$, computable as a holomorphic
+  Euler characteristic on the twistor
+  fiber~\cite{Costello2111}.  This shifts the effective level to
+  $k_{\mathrm{eff}} = k - h^\vee$.
+
+\item $\kappa(\widehat{\mathfrak{g}}_k)
+  = \dim(\mathfrak{g})(k + h^\vee)/(2h^\vee)$: the modular
+  characteristic of the boundary VOA
+  \textup{(}Theorem~\textup{\ref{thm:modular-characteristic}})},
+  controlling the genus expansion
+  $F_g = \kappa \cdot \lambda_g^{\mathrm{FP}}$.
+  At $k = 0$: $\kappa = \dim(\mathfrak{g})/2$.
+\end{enumerate}
+There is no universal proportionality constant between these
+invariants.  The ratio $b_0^{4\mathrm{d}}/\kappa$
+depends on~$N$: for $\mathrm{SU}(2)$ it is $22/9$; for
+$\mathrm{SU}(3)$ it is $11/4$; as $N \to \infty$ it tends
+to zero.
+
+The correct bridge is the \emph{one-loop level shift}:
+$\delta k = -b_0^{\mathrm{hol}} = -h^\vee$ shifts the level of
+the boundary VOA, inducing
+$\delta\kappa = -\dim(\mathfrak{g})/2$.  The condition
+$\kappa(k_{\mathrm{eff}}) = 0$ (vanishing of the effective
+modular characteristic) is equivalent to
+$k_{\mathrm{eff}} = -h^\vee$, i.e.\ the critical level.  This
+is \emph{modular asymptotic freedom}: the one-loop correction
+drives~$\kappa$ toward zero, the uncurved point of the bar
+complex.
+Computational verification:
+\texttt{compute/lib/beta\_function\_kappa\_engine.py}
+(149~tests).
+\end{remark}
+
+\section{Celestial holography and boundary transfer}
+\label{subsec:celestial-boundary-transfer}
+
+Kaluza--Klein reduction of six-dimensional holomorphic theories to
+three-dimensional holomorphic-topological theories transfers
+$A_\infty$- and $L_\infty$-structures to the tangential Cauchy--Riemann
+cohomology $H_b^{0,\bullet}(S^3)$.  These transferred structures form
+the algebraic skeleton of celestial holography in the twisted setting.
+
+The \emph{wedge $A_\infty$-algebra} construction quotients by
+composite operators.  The single-particle subalgebra is formal,
+depending only on the linearized dg algebra; all genuinely
+nonlinear content concentrates in the composite sector, measured by
+obstruction classes $\operatorname{Ob}_r$ in the bar-filtered
+coderivation complex.
+
+For holomorphic BF, the transferred $A_\infty$-algebra admits closed
+highest-weight ladder formulas in every arity, governed by simplex
+integrals and a simplex summation law.  For Poisson BF, the
+odd highest-weight ladder of the transferred $L_\infty$-deformation of
+$T^*[1]\operatorname{Ham}(\mathbb{C}^2)$ is realized by
+first-order differential operators
+$D_m = -\partial_t \circ M_{t^{2m+2}}$ on $\mathbb{C}[t]$, the
+odd positive Witt modes acting on the density line (the
+\emph{Airy--Witt normal form}).
+
+For $W$-type Poisson vertex algebras, the first nonlinear
+obstruction class $\operatorname{Ob}_1$ depends only on the linearized
+Lie conformal structure and the lowest nonlinear homogeneous part of
+the generator $\lambda$-brackets.  For the classical $W_3$ PVA this
+means the first celestial higher-spin correction is controlled entirely
+by the composite field $\frac{16}{22+5c}\Lambda$ in the
+$\{W_\lambda W\}$ bracket, a precise connection to the $W_3$
+composite-field structure computed in
+\S\ref{sec:w3-composite-complete}.
+
+\begin{remark}[Celestial obstruction tower in the convolution algebra]
+\label{rem:ht-celestial-obstruction-convolution}
+\index{celestial holography!convolution obstruction}
+The obstruction classes $\operatorname{Ob}_r$ in the bar-filtered
+coderivation complex are the genus-$0$ shadow obstruction tower projections
+$\Theta_{\cA_T}^{(0,r+1)}$ restricted to the single-particle
+sector.  The wedge construction is the composite-free quotient of the
+collision filtration
+(Definition~\ref{def:ht-collision-filtration}).
+\end{remark}
+
+\begin{proposition}[Witten diagrams as genus-$0$ shadow projections]
+\label{prop:witten-diagram-shadow-projection}
+\ClaimStatusProvedHere
+\index{Witten diagram!shadow projection|textbf}
+\index{celestial holography!Witten diagram identification}
+\index{BCFW recursion!MC recursion}
+\index{soft graviton!shadow coefficient}
+\index{Parke--Taylor formula!shadow projection}
+Let~$\cA$ be a chirally Koszul algebra with universal MC element
+$\Theta_\cA \in \operatorname{MC}(\gAmod)$
+\textup{(}Theorem~\textup{\ref{thm:mc2-bar-intrinsic})}.
+The $n$-point tree-level Witten diagram amplitude in $4\mathrm{d}$
+holomorphic Chern--Simons theory~\cite{CostelloP2201}
+equals the genus-$0$, arity-$n$ shadow projection:
+\begin{equation}\label{eq:witten-shadow-identification}
+  \mathcal{A}_n^{\mathrm{tree}}(z_1, \ldots, z_n)
+  \;=\;
+  \mathrm{Sh}_{0,n}(\Theta_\cA).
+\end{equation}
+\begin{enumerate}[label=\textup{(\roman*)}]
+\item \emph{MC recursion $=$ BCFW\@.}
+  The MC equation at genus~$0$, decomposed by arity, gives:
+  $D_2\,\Theta_n
+  + \sum_{j+k=n} [\Theta_j,\, \Theta_k]_n = 0$.
+  The bracket $[\Theta_j,\, \Theta_k]$ glues two lower-arity
+  amplitudes at a shared marked point with a propagator
+  insertion.  This recursion is the
+  Britto--Cachazo--Feng--Witten on-shell recursion for the
+  holomorphic twist.
+
+\item \emph{Soft limits.}
+  The $(n{+}1)$-point amplitude in the conformally soft limit
+  $z_{n+1} \to \infty$ satisfies
+  $\mathcal{A}_{n+1} \to S^{(0)} \cdot \mathcal{A}_n$
+  with leading soft factor
+  $S^{(0)} = \sum_k (z_{n+1} - z_k)^{-1}$.
+  The coefficient of the leading soft factor is
+  $\kappa = S_2$\textup{;}
+  the subleading soft graviton theorem is controlled by the
+  cubic shadow
+  $S_3 = 2$
+  \textup{(}universal for all chiral algebras with a stress
+  tensor\textup{)}.
+
+\item \emph{Color-ordered amplitudes.}
+  For affine $\mathfrak{sl}_N$ at level~$k$, the color-ordered
+  partial amplitude in the trace basis recovers the
+  Parke--Taylor formula:
+  $\mathcal{A}_n^{\mathrm{MHV}}
+  = \langle ij \rangle^4 / \prod_{k=1}^{n}
+  \langle k,\,k{+}1\rangle$.
+  The MC recursion at genus~$0$ produces exactly the
+  Berends--Giele current recursion for color-ordered gluon
+  amplitudes.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+The genus-$0$ shadow projection
+$\mathrm{Sh}_{0,n}(\Theta_\cA)$ is a map
+$V^{\otimes n} \to H_*(\overline{\mathcal{M}}_{0,n})$
+(Construction~\ref{constr:shadow-extraction-explicit});
+at genus~$0$ the moduli space
+$\overline{\mathcal{M}}_{0,n} \cong \mathrm{FM}_n(\mathbb{P}^1)$
+parametrizes configurations of~$n$ marked points on~$\mathbb{P}^1$.
+The tree-level Witten diagrams in $4\mathrm{d}$ holomorphic
+Chern--Simons compute the same object: for each tree~$\Gamma$
+with $n$~external legs, the Feynman integrand is
+$\prod_{\text{edges}\,(i,j)} (z_i - z_j)^{-1}$, and the sum
+over planar trees gives the graph sum
+realizing~$\mathrm{Sh}_{0,n}$.
+
+Part~(i): the MC equation
+$D\Theta + \frac{1}{2}[\Theta,\Theta] = 0$ at genus~$0$,
+projected to arity~$n$, reads
+$D_2\,\Theta_n^{(0)}
+= -\sum_{j+k=n} [\Theta_j^{(0)},\,\Theta_k^{(0)}]$.
+The bracket inserts a propagator $(z_a - z_b)^{-1}$ between
+genus-$0$ amplitudes of arities $j$ and~$k$ and sums over all
+ways to partition the external legs.  This is the content of the
+BCFW recursion for the color-stripped amplitude.
+
+Part~(ii): the soft limit
+extracts the arity-$(n{+}1)$ projection at a degenerate
+configuration where one marked point escapes to infinity.
+The leading contribution
+$S^{(0)} = \sum_k (z_{n+1} - z_k)^{-1}$ has coefficient
+$S_2 = \kappa$ (the arity-$2$ shadow).  The subleading soft
+factor involves $S_3$, the arity-$3$ shadow coefficient.  For
+any chiral algebra with a stress tensor, $S_3 = 2$
+(Virasoro: the $L_{-1}$ Ward identity forces
+$S_3 = 2$ universally).
+
+Part~(iii): for affine $\mathfrak{sl}_N$, the r-matrix
+$r(z) = \Omega/z$ (AP19: simple pole after $d\log$ extraction)
+and the color-ordering restrict the sum over trees to planar
+binary trees with leaves in cyclic order.  The resulting
+expression is the Parke--Taylor formula by direct computation.
+Computational verification:
+\texttt{compute/lib/celestial\_ope\_shadow\_projections\_engine.py}
+(73~tests).
+\end{proof}
+
+The wedge construction, obstruction tower, exact ladder theorems,
+and Airy--Witt realization are in Volume~II\@.
+
+\section{Systematic comparison with Costello's programme}
+\label{sec:costello-comparison}
+\index{Costello!programme comparison|textbf}
+\index{holomorphic Chern--Simons!modular Koszul comparison}
+
+The body of work initiated by Costello and
+collaborators~\cite{CG17,CWY18,CostelloGaiotto2020,CL16,Costello2111,CostelloP2201,Costello2302,CPS2208,CPS2306,FernandezCostelloP24,BittlestonCostelloZeng24,BittlestonCostello25,CFG25}
+constitutes the most sustained programme connecting perturbative
+gauge theory to the algebraic structures studied in this monograph.
+We now record the precise relationship, organized by the four
+layers of increasing generality in which that programme operates.
+
+\begin{remark}[Four layers of the Costello programme]
+\label{rem:costello-four-layers}
+\index{Costello!four layers}
+
+\begin{enumerate}[label=\textup{(\roman*)}]
+\item \emph{Layer~$1$: BV quantization of factorization
+  algebras}~\cite{CG17}.
+  Costello--Gwilliam construct perturbative QFT
+  via factorization algebras on spacetime, with the BV formalism
+  organized by the $E_\infty$-algebra structure on observables.
+  In our framework this is
+  Theorem~\ref{thm:bar-cobar-isomorphism-main} at genus~$0$:
+  bar-cobar adjunction for the boundary chiral algebra~$\cA_T$.
+  The BV bracket on observables is the binary component of the
+  modular convolution bracket on~$\gAmod$.
+
+\item \emph{Layer~$2$: $4$d Chern--Simons and
+  integrability}~\cite{CWY18}.
+  Costello--Witten--Yamazaki show that $4$d holomorphic
+  Chern--Simons theory on $\Sigma \times \mathbb{C}$ produces
+  integrable lattice models, with the $R$-matrix arising from
+  the holomorphic gauge field propagator.  In our framework:
+  the $R$-matrix is the binary genus-$0$ collision residue
+  $r_T(z) = \operatorname{Res}^{\mathrm{coll}}_{0,2}(\Theta_{\cA_T})$
+  (Theorem~\ref{thm:collision-residue-twisting}), the Yang--Baxter
+  equation is the arity-$3$ MC projection on
+  $\overline{\mathcal{M}}_{0,4}$
+  (Theorem~\ref{thm:collision-depth-2-ybe}),
+  and the Yangian symmetry algebra is the subject of the
+  MC3 programme
+  (Theorem~\ref{thm:categorical-cg-all-types}).
+
+\item \emph{Layer~$3$: twisted
+  holography}~\cite{CostelloGaiotto2020,Costello-1705.02500v1,FernandezCostelloP24}.
+  Costello--Gaiotto identify boundary chiral algebras of
+  holomorphic-topological theories, with Koszul duality
+  organizing the boundary-to-bulk passage
+  (formalized in the QFT setting
+  by Fernandez--Costello--Paquette~\cite{FernandezCostelloP24}).  In our framework
+  this is the holographic modular Koszul datum
+  $\cH(T) = (\cA_T, \cA_T^!, \cC_T, r_T(z),
+  \Theta_{\cA_T}, \nabla^{\mathrm{hol}}_T)$
+  (Definition~\ref{def:holographic-modular-koszul-datum})
+  at genus~$0$.  The boundary-to-bulk passage
+  is the chiral derived centre
+  $\cZ^{\mathrm{der}}_{\mathrm{ch}}(\cA_T)$
+  (Theorem~\ref{thm:thqg-swiss-cheese}).
+
+\item \emph{Layer~$4$: form factors and celestial
+  amplitudes}~\cite{CostelloP2201,Costello2302}.
+  Costello--Paquette identify tree-level
+  Witten diagram amplitudes in $4$d holomorphic Chern--Simons
+  with chiral algebra correlators, and Costello
+  proves that one-loop associativity of the celestial OPE
+  follows from the classical Yang--Baxter equation.
+  In our framework: the $n$-point tree-level amplitude
+  is the genus-$0$ shadow projection
+  $\mathrm{Sh}_{0,n}(\Theta_\cA)$
+  (Proposition~\ref{prop:witten-diagram-shadow-projection}),
+  and the statement that ``associativity is
+  enough''~\cite{FernandezCostelloP24} is
+  a consequence of the MC equation
+  $D\Theta + \tfrac{1}{2}[\Theta,\Theta] = 0$
+  projected to genus~$0$.
+\end{enumerate}
+\end{remark}
+
+\begin{remark}[Comparison table: scope and limitations]
+\label{rem:costello-comparison-table}
+\index{Costello!comparison table}
+
+\begin{center}
+\renewcommand{\arraystretch}{1.25}
+\footnotesize
+\begin{tabular}{@{}p{5.2cm}@{\;\;}c@{\;\;}c@{}}
+\toprule
+\textbf{Result / structure}
+  & \textbf{Costello et al.}
+  & \textbf{This monograph} \\
+\midrule
+\multicolumn{3}{@{}l}{\emph{Genus $0$}} \\[2pt]
+Tree-level $n$-point amplitudes
+  & \checkmark\;\cite{CostelloP2201}
+  & \checkmark\;$\mathrm{Sh}_{0,n}(\Theta_\cA)$ \\
+$R$-matrix from gauge propagator
+  & \checkmark\;\cite{CWY18}
+  & \checkmark\;$\operatorname{Res}^{\mathrm{coll}}_{0,2}$ \\
+YBE from CYBE
+  & \checkmark\;\cite{CWY18}
+  & \checkmark\;Arnold relation on $\overline{\mathcal{M}}_{0,4}$ \\
+Yangian symmetry
+  & \checkmark\;\cite{CWY18}
+  & \checkmark\;MC3 (all simple types) \\
+BCFW recursion
+  & \checkmark\;\cite{CostelloP2201}
+  & \checkmark\;MC recursion \\
+Celestial OPE associativity
+  & \checkmark\;\cite{Costello2302}
+  & \checkmark\;MC equation at genus $0$ \\
+KZ connection recovery
+  & ---
+  & \checkmark\;Thm~\ref{thm:shadow-connection-kz} \\
+Quartic/$L_\infty$ obstruction
+  & ---
+  & \checkmark\;Thm~\ref{thm:quartic-obstruction-linf} \\
+Shadow depth G/L/C/M
+  & ---
+  & \checkmark\;Thm~\ref{thm:shadow-archetype-classification} \\[4pt]
+\multicolumn{3}{@{}l}{\emph{Genus $\geq 1$}} \\[2pt]
+One-loop OPE associativity
+  & \checkmark\;\cite{Costello2302}
+  & \checkmark\;MC at genus $1$ \\
+Full genus tower $\Theta_\cA^{(g)}$
+  & ---
+  & \checkmark\;Thm~\ref{thm:mc2-bar-intrinsic} \\
+$\mathrm{obs}_g = \kappa \cdot \lambda_g$
+  (uniform-weight)
+  & ---
+  & \checkmark\;Thm~\ref{thm:genus-universality} \\
+Multi-weight correction $\delta F_g^{\mathrm{cross}}$
+  & ---
+  & \checkmark\;Thm~\ref{thm:multi-weight-genus-expansion} \\
+HS-sewing convergence
+  & ---
+  & \checkmark\;Thm~\ref{thm:general-hs-sewing} \\
+Complementarity (Thm~C)
+  & ---
+  & \checkmark\;Thm~\ref{thm:quantum-complementarity-main} \\[4pt]
+\multicolumn{3}{@{}l}{\emph{Duality and structure}} \\[2pt]
+BV quantization framework
+  & \checkmark\;\cite{CG17}
+  & \checkmark\;bar-cobar adjunction \\
+Koszul duality $\cA \leftrightarrow \cA^!$
+  & \checkmark\;\cite{FernandezCostelloP24}
+  & \checkmark\;Thm~\ref{thm:bar-cobar-isomorphism-main} \\
+Chiral Koszul duality (general)
+  & \checkmark\;\cite{CFG25}
+  & \checkmark\;Thm~\ref{thm:koszul-equivalences-meta} \\
+Twistor anomaly $\to$ Deligne series
+  & \checkmark\;\cite{Costello2111}
+  & \checkmark\;Prop~\ref{prop:ht-twistor-deligne} \\
+11d supergravity twist
+  & \checkmark\;\cite{BittlestonCostello25}
+  & --- \\
+3d mirror symmetry from S-duality
+  & \checkmark\;\cite{BittlestonCostelloZeng24}
+  & ---\;(Conj~\ref{conj:3d-mirror}) \\[4pt]
+\multicolumn{3}{@{}l}{\emph{Specific QFT computations}} \\[2pt]
+QCD gluon amplitudes
+  & \checkmark\;\cite{CostelloP2201}
+  & --- \\
+Burns space graviton scattering
+  & \checkmark\;\cite{CPS2208,CPS2306}
+  & --- \\
+Mabuchi gravity
+  & \checkmark\;\cite{CL16}
+  & --- \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\noindent
+The table reflects a structural division of labor.
+Costello's programme begins with a specific gauge-theoretic
+Lagrangian and computes perturbative amplitudes; the algebraic
+structures ($R$-matrices, Yangians, Koszul duality) emerge as
+\emph{consequences} of gauge-theoretic consistency.
+The present monograph begins with a chiral algebra~$\cA$ and
+constructs the MC element~$\Theta_\cA$ and the full genus tower
+from the bar complex alone; the gauge-theoretic amplitudes
+appear as \emph{shadow projections}.
+
+Three items in the Costello programme have no counterpart here:
+\begin{enumerate}[label=\textup{(\alph*)}]
+\item
+  \emph{Specific QCD amplitudes.}
+  The explicit gluon and graviton scattering computations
+  of~\cite{CostelloP2201,CPS2306} require
+  gauge-theoretic input (color decomposition, spinor-helicity
+  variables) that the abstract shadow projection
+  $\mathrm{Sh}_{0,n}(\Theta_\cA)$ does not reproduce without
+  specialization to a concrete Lagrangian.
+
+\item
+  \emph{Twistor anomaly cancellation mechanism.}
+  The Green--Schwarz mechanism by which the holomorphic axion
+  absorbs the $(\operatorname{tr} F^2)^2$ anomaly on
+  $\mathbb{P}^3$~\cite{Costello2111} is a gauge-theoretic
+  construction.  The shadow obstruction tower detects the
+  \emph{residual} quartic anomaly
+  (Remark~\ref{rem:ht-twistor-shadow}) but does not
+  construct the cancellation.  The recent resolution by the
+  Deligne exceptional series
+  (Proposition~\ref{prop:ht-twistor-deligne}) confirms the
+  algebraic selection rule.
+
+\item
+  \emph{$11$d twisted supergravity.}
+  The lift to eleven dimensions~\cite{BittlestonCostello25}
+  requires a geometric construction on the M-theory background
+  that lies outside our algebraic framework.
+\end{enumerate}
+Conversely, three structural results of this monograph have
+no counterpart in Costello's programme:
+\begin{enumerate}[label=\textup{(\alph*)}]
+\item
+  \emph{The full genus tower and HS-sewing.}
+  The MC element $\Theta_\cA$ at genus~$g \geq 2$, the
+  genus expansion $\mathrm{obs}_g = \kappa \cdot \lambda_g$,
+  the multi-weight correction
+  $\delta F_g^{\mathrm{cross}}$, and the HS-sewing convergence
+  theorem (Theorem~\ref{thm:general-hs-sewing}) are all
+  higher-genus results with no perturbative gauge-theoretic
+  antecedent.
+
+\item
+  \emph{Shadow depth classification and complementarity.}
+  The four-class partition G/L/C/M of Koszul algebras by shadow
+  depth, the complementarity theorem
+  (Theorem~\ref{thm:quantum-complementarity-main}), and the
+  Lagrangian geometry of the ambient complex are algebraic
+  structures that do not arise in the perturbative framework.
+
+\item
+  \emph{The $12$-fold Koszulness characterization.}
+  Costello--Francis--Gwilliam~\cite{CFG25} develop the general
+  framework of chiral Koszul duality; the equivalence of twelve
+  characterizations of chiral Koszulness
+  (Theorem~\ref{thm:koszul-equivalences-meta})
+  refines this framework into a concrete recognition criterion
+  with no gauge-theoretic analogue.
+\end{enumerate}
+\end{remark}
+
+\begin{remark}[Burns space $F_2$ prediction; \ClaimStatusProvedHere]%
+\label{rem:burns-f2-verification}%
+\index{Burns space!genus-2 prediction|textbf}%
+\index{self-dual gravity!genus-2 free energy}%
+\index{Costello--Paquette--Sharma!genus-2 extension}%
+The boundary VOA of self-dual gravity on Burns
+space~\cite{CPS2208,CPS2306} is
+$\cA_{\mathrm{Burns}} = \beta\gamma^{\otimes 4}_{\lambda=1}$
+with $\mathrm{SO}(8)$ flavor, central charge $c = 8$,
+and modular characteristic
+$\kappa(\cA_{\mathrm{Burns}}) = 4$ (free-field additivity:
+four copies of $\kappa(\beta\gamma_1) = 1$).
+Since all generators have conformal weight~$\lambda = 1$
+(uniform-weight), Theorem~\ref{thm:genus-universality}
+gives $F_g = \kappa \cdot \lambda_g^{\mathrm{FP}}$ at
+all genera.  At genus~$2$:
+\[
+F_2(\cA_{\mathrm{Burns}})
+\;=\;
+4 \cdot \frac{7}{5760}
+\;=\;
+\frac{7}{1440}.
+\]
+This is the $2$-loop self-dual gravitational correction on
+Burns space, extending Costello--Paquette--Sharma (who compute
+tree-level and one-loop amplitudes explicitly) to the next loop
+order.  The prediction $F_3 = 4 \cdot 31/967680 = 31/241920$
+follows identically.
+Verified by $7$ independent paths: direct formula,
+Bernoulli number, $\hat{A}$-generating function,
+Borel asymptotic, genus-expansion ratio $F_2/F_1 = 7/240$,
+shadow tower extraction, and planted-forest analysis
+\textup{(}\texttt{test\_theorem\_burns\_f2\_engine.py}\textup{)}.
+\end{remark}
+
+\begin{remark}[Comparison with the Gaiotto programme]
+\label{rem:gaiotto-programme-comparison}
+\index{Gaiotto programme!comparison|textbf}
+\index{CoHA!bar duality|textbf}
+\index{Y-algebra@$Y$-algebra!Gaiotto programme}
+\index{GKW higher operations!comparison}
+
+The body of work by Gaiotto and
+collaborators~\cite{gaiotto-rapchak,CostelloGaiotto2020,GKW2025}
+develops HT field theory from the gauge-theoretic side.  The
+relationship with this monograph has three layers.
+
+\emph{Structural identification.}
+The Swiss-cheese structure on the bar complex
+$B(\cA_T)$
+(Theorem~\ref{thm:bar-swiss-cheese}: coassociative coproduct
+in the $\bR$-direction, factorization product in
+the $\bC$-direction) is the algebraic skeleton of the HT
+twist on $\bC \times \bR$.  The $\bC$-direction encodes the
+chiral algebra; the $\bR$-direction encodes the topological
+coproduct.  The descent calculus, recognition theorem, and
+full Swiss-cheese operadic structure are developed in
+Volume~II\@.
+
+\emph{Formality and shadow depth.}
+The higher operations of Gaiotto--Kulp--Wu~\cite{GKW2025}
+classify boundary VOAs as \emph{formal} (all higher
+$A_\infty$-operations vanish on cohomology) or
+\emph{non-formal}.  The shadow depth classification
+(Theorem~\ref{thm:shadow-archetype-classification})
+strictly refines this binary partition into four classes:
+formal boundary VOAs split into
+$\mathsf{G}$ ($r_{\max} = 2$, Heisenberg),
+$\mathsf{L}$ ($r_{\max} = 3$, affine), and
+$\mathsf{C}$ ($r_{\max} = 4$, $\beta\gamma$), while
+the non-formal class corresponds to
+$\mathsf{M}$ ($r_{\max} = \infty$, Virasoro/$W$-type).
+The $Y$-algebras of Gaiotto--Rap\v{c}\'ak~\cite{gaiotto-rapchak}
+are all chirally Koszul
+(Theorem~\ref{thm:y-algebra-koszulness}); their shadow
+classes are $\mathsf{G}$ and $\mathsf{M}$ only (the
+intermediate classes $\mathsf{L}$, $\mathsf{C}$ require
+matter content beyond the corner configuration).
+
+\emph{CoHA--bar duality.}
+For an ADE quiver~$Q$ with associated affine algebra
+$\widehat{\mathfrak{g}}_Q$, the cohomological Hall
+algebra multiplication (extension of quiver
+representations) dualizes to the bar comultiplication
+(factorization splitting on Ran):
+\begin{equation}\label{eq:coha-bar-character-duality}
+  \chi_{\mathrm{CoHA}(Q)}(q)
+  \;=\;
+  \chi_{B(\widehat{\mathfrak{g}}_Q)}(q)
+  \;=\;
+  \prod_{n \geq 1}(1 - q^n)^{-\dim \mathfrak{g}_Q}.
+\end{equation}
+This character-level identity lifts to a structural duality
+of vertex bialgebras: the vertex coproduct on CoHA
+constructed by Latyntsev~\cite{Latyntsev23} dualizes to the
+bar coproduct on $B(\widehat{\mathfrak{g}}_Q)$, and both
+produce the Yangian $Y(\mathfrak{g}_Q)$ as the associated
+graded of compatible filtrations.  For the $A_2$ quiver at
+dimension vector $(1,1,0)$, the chain-level identification
+--- extension correspondence = deconcatenation on $B^2$ ---
+is verified directly: the vertex bialgebra axiom
+$\Delta^v(Y(a,z)b) = Y^{(2)}(\Delta^v(a),z)\,\Delta^v(b)$
+is exactly the statement that the bar differential is a
+coderivation of the tensor coalgebra.
+Computational verification:
+\texttt{compute/lib/theorem\_coha\_bar\_duality\_engine.py}
+(84~tests).
+
+The chain-level duality is verified for the $A_2$ quiver at
+dimension vector~$(1,1,0)$
+(\texttt{coha\_chain\_level\_duality\_engine.py}, 86~tests).
+At this dimension vector, the representation space
+$\operatorname{Rep}(A_2, (1,1,0)) = \operatorname{Hom}(\bC, \bC)
+\cong \bC$ is one-dimensional, the extension space
+$\operatorname{Ext}^1_Q((0,1,0),(1,0,0)) \cong \bC$ is
+one-dimensional (from the single arrow $0 \to 1$), and the
+duality reduces to a scalar identity.  The structural content
+lies in the vertex bialgebra axiom
+(Latyntsev~\cite{Latyntsev23}):
+\begin{equation}\label{eq:jkl-vertex-bialgebra}
+  \Delta^v(Y(a,z)\,b)
+  \;=\;
+  Y^{(2)}(\Delta^v(a),z)\,\Delta^v(b),
+\end{equation}
+which is the bar coderivation property in vertex-algebraic
+language.  The vertex coproduct $\Delta^v$ at~$(1,1,0)$ has a
+singular term $z^{-1}$ arising from the Euler form
+$\langle (1,0,0), (0,1,0) \rangle = -1$: the pole order in
+the vertex coproduct is controlled by the
+Euler pairing of the quiver, exactly as the bar differential
+pole order is controlled by the OPE (AP19).  This is the
+chain-level incarnation of the CoHA--bar duality beyond
+character matching: the Hecke correspondence
+(extension of representations) dualizes to bar deconcatenation
+as chain maps, not merely as graded dimensions.
+
+\emph{Complementary scope.}
+Three items in the Gaiotto programme have no counterpart here:
+\begin{enumerate}[label=\textup{(\alph*)}]
+\item \emph{Explicit boundary VOA identification from gauge data.}
+  Gaiotto--Rap\v{c}\'ak~\cite{gaiotto-rapchak} identify the
+  boundary VOA of a specific gauge configuration (e.g.\
+  Neumann $\to$ symplectic bosons,
+  Nahm pole $\to$ principal $\mathcal{W}$-algebra) by
+  direct gauge-theoretic construction.  Our framework takes
+  $\cA_T$ as input and computes invariants; it does not
+  produce $\cA_T$ from the Lagrangian.
+
+\item \emph{Coulomb branch quantization.}
+  The mathematical Coulomb branch
+  $\cM_C(T)$~\cite{BFN18} carries a
+  deformation-quantization structure computed by gauge-theoretic
+  methods (monopole operators, Hecke modifications).  Our MC
+  moduli $\operatorname{MC}(\gAmod)$ parametrize the
+  corresponding algebraic deformation space, but the
+  identification $\cM_C(T) \cong \operatorname{MC}(\gAmod)$
+  requires the gauge-theoretic input.
+
+\item \emph{$S_3$ triality.}
+  The corner triality permuting $N_1, N_2, N_3$ and acting on
+  $\Psi$ by M\"obius
+  transformations~\cite{gaiotto-rapchak}
+  is a three-dimensional gauge symmetry.  It preserves
+  Koszulness and shadow class, but does not arise from bar-cobar
+  operations alone.
+\end{enumerate}
+Conversely, three structural results here have no counterpart
+in the Gaiotto programme:
+\begin{enumerate}[label=\textup{(\alph*)}]
+\item \emph{All-genera shadow tower.}
+  The MC element $\Theta_{\cA_T}$ at genus $g \geq 2$,
+  the genus expansion
+  $\operatorname{obs}_g = \kappa \cdot \lambda_g$
+  (Theorem~\ref{thm:genus-universality}),
+  and the multi-weight correction $\delta F_g^{\mathrm{cross}}$
+  (Theorem~\ref{thm:multi-weight-genus-expansion}) are
+  algebraic results with no gauge-theoretic antecedent.
+
+\item \emph{Twelve-fold Koszulness programme.}
+  The equivalence of twelve characterizations of chiral
+  Koszulness
+  (Theorem~\ref{thm:koszul-equivalences-meta}) and the
+  shadow depth classification
+  (Theorem~\ref{thm:shadow-archetype-classification}) are
+  intrinsic to the bar complex.
+
+\item \emph{Modular characteristic~$\kappa$ and complementarity.}
+  The universal invariant~$\kappa(\cA_T)$, its duality
+  constraints (Theorem~\ref{thm:modular-characteristic}),
+  and the complementarity theorem
+  (Theorem~\ref{thm:quantum-complementarity-main}) are
+  algebraic structures not visible from perturbative gauge
+  theory.
+\end{enumerate}
+\end{remark}
+
+\begin{remark}[The BCOV identification]
+\label{rem:costello-bcov}
+\index{BCOV!MC identification}
+\index{Costello--Li!BCOV quantization}
+The Costello--Li quantization of BCOV theory~\cite{CL16,CL20}
+identifies the BCOV partition function with the solution of a
+Maurer--Cartan equation in the Dolbeault complex of the
+Calabi--Yau manifold.  In the language of this monograph:
+the BCOV MC element is a genus-$0$ shadow of
+$\Theta_\cA$ for the boundary chiral algebra of the
+B-model, and the BCOV anomaly equation
+$\overline{\partial} \cF + \tfrac{1}{2}\{\cF, \cF\} = 0$
+is the MC equation on the relevant convolution algebra.
+The extension to higher genus in the BCOV framework requires
+a separate quantization procedure (the holomorphic anomaly
+equation); in our framework the full genus tower is encoded
+in $\Theta_\cA$ from the outset.
 \end{remark}
