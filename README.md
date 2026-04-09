@@ -39,10 +39,10 @@ Every chapter depends on Vol I's five theorems:
 
 | Metric | Value |
 |--------|------:|
-| Pages | ~1,478 |
-| Tagged claims | ~2,378 |
-| Proved here | ~1,983 |
-| Conjectured | ~188 |
+| Pages | ~1,600 |
+| Tagged claims | ~2,568 |
+| Source files | 105 .tex |
+| Connection chapters | 72 |
 
 Zero conjectural algebraic inputs beyond the standing physical axioms, which have been made explicit as derived consequences.
 
@@ -69,7 +69,7 @@ chiral-bar-cobar-vol2/
     frame/                  preface
     theory/                 Part I (~16 files)
     examples/               Parts IV-V (~13 files)
-    connections/            Parts II-III + VI-VII (~65 files)
+    connections/            Parts II-III + V-VII (~72 files)
   appendices/               brace signs, orientations, FM proofs
   compute/                  60 lib + 63 test files
 ```
