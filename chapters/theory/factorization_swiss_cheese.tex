@@ -22,36 +22,70 @@
 \label{sec:factorization-substrate}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-A chiral algebra is not an algebra over an operad; it is a
-factorizable $D$-module on the Ran space, a global object
-whose structure maps are defined by diagonal restrictions on
-products of the curve, not by operations between fibres at points.
-The distinction is load-bearing: an operad composes operations
-between \emph{fibres} at specified points, while factorization
-composes \emph{restriction maps} between $D$-modules on different
-strata of configuration space.
-The operad
-$\SCchtop$ is what remains after formal completion at collision
-points: it is the local shadow, not the governing structure.
-At genus~$0$ on~$\mathbb{P}^1$ the local shadow determines the
-global object, because $\mathbb{P}^1 \smallsetminus \{\mathrm{pt}\}
-\simeq \C$ and every factorizable $D$-module on $\Ran(\C)$ is
-determined by its formal-disc data.  At genus~$g \geq 1$ this is
-false: the periods of~$\Sigma_g$, the monodromy of the $D$-module
-connection around $B$-cycles, and the factorization pattern on
-$\Ran(\Sigma_g)$ carry genuinely more information than the local
-operadic data.  The curvature $\dfib^{\,2} = \kappa(\cA) \cdot
-\omega_g$ is the measure of this excess: global information
-invisible to the formal-disc model.
+% FOUR OBJECTS (AP25/AP34/AP50):
+% 1. B(A) = bar coalgebra = T^c(s^{-1} A-bar) with deconcatenation + twist
+% 2. A^i = H^*(B(A)) = dual coalgebra (Koszul cohomology of bar)
+% 3. A^! = ((A^i)^v) = dual ALGEBRA (linear or Verdier dual)
+% 4. Z^der_ch(A) = derived chiral center = Hochschild cochains = bulk
 
-All results in this chapter apply to logarithmic $\SCchtop$-algebras (Definition~\ref{def:log-SC-algebra}).  Beyond the affine and $\cW$-algebra lineages, the question of which chiral algebras admit a logarithmic $\SCchtop$-algebra structure remains open.
+The associative bar complex $B_{\mathrm{Ass}}(\cA) = T^c(s^{-1}\bar\cA)$
+captures open-string data: ordered configurations on~$\R$, with
+deconcatenation coproduct encoding topological factorization
+along the real line.  The commutative bar complex
+$B_{\mathrm{Com}}(\cA)$ captures closed-string data: unordered
+configurations on~$\Sigma_g$, with coshuffle coproduct encoding
+holomorphic factorization on the curve.  Neither captures the
+\emph{mixed sector}: bulk operators on~$\Sigma_g$ acting on
+boundary states on~$\R$.  One needs a two-coloured structure
+whose closed colour governs configurations in the complex plane,
+whose open colour governs configurations on the real line, and
+whose mixed operations encode the passage from bulk to boundary.
+The Swiss-cheese operad $\SCchtop$ provides exactly this.
 
-The Swiss-cheese structure is constructed directly from
-factorization data; the local operadic model follows as a
-consequence.  The treatment is parallel: Beilinson--Drinfeld
-(algebraic, $D$-module) and Costello--Gwilliam (differential-geometric,
-prefactorization algebra) reach the same object through complementary
-routes, and their equivalence is proved at the end of the chapter.
+The two-colour structure is not optional.  The bar complex
+$B_{\SCchtop}(\cA)$ for a single-colour input is ill-formed:
+the Swiss-cheese operad acts on a \emph{pair}
+$(\cA_{\mathsf{cl}}, \cA_{\mathsf{op}})$, and the standard
+construction promotes a chiral algebra~$\cA$ to such a pair via
+$\cA \mapsto (\cA, \cA)$.  The bar differential on the closed
+colour is the coderivation determined by the chiral product: it
+encodes holomorphic factorization on~$\C$.  The deconcatenation
+coproduct on the open colour encodes topological factorization
+on~$\R$.  The mixed sector carries bulk-to-boundary module maps,
+with directionality enforced by the operad: open-to-closed
+operations are \emph{empty}.  The physical realisation is the
+slab $\Sigma_g \times [0,1]$, which is a bimodule between two
+boundary chiral algebras (one at each boundary component), not a
+Swiss-cheese disk with a single boundary.
+
+A chiral algebra is a factorizable $D$-module on the Ran space,
+not an algebra over an operad.  Factorization composes
+\emph{restriction maps} between $D$-modules on configuration
+spaces; an operad composes operations between \emph{fibres} at
+specified points.  The operad $\SCchtop$ is the local shadow:
+what remains after formal completion at collision points.  At
+genus~$0$ on~$\mathbb{P}^1$, the local shadow determines the
+global object ($\mathbb{P}^1 \smallsetminus \{\mathrm{pt}\}
+\simeq \C$, so every factorizable $D$-module on $\Ran(\C)$ is
+determined by its formal-disc data).  At genus~$g \geq 1$ this
+fails: the periods of~$\Sigma_g$, the monodromy of the
+$D$-module connection around $B$-cycles, and the factorization
+pattern on $\Ran(\Sigma_g)$ carry genuinely more information than
+the local operadic data.  The curvature $\dfib^{\,2} = \kappa(\cA)
+\cdot \omega_g$ measures this excess: global information invisible
+to the formal-disc model.
+
+All results in this chapter apply to logarithmic
+$\SCchtop$-algebras
+(Definition~\ref{def:log-SC-algebra}).  Beyond the affine and
+$\cW$-algebra lineages, the question of which chiral algebras
+admit a logarithmic $\SCchtop$-structure remains open.  The
+Swiss-cheese structure is constructed directly from factorization
+data; the local operadic model follows as a consequence.  Two
+parallel routes reach the same object: Beilinson--Drinfeld
+(algebraic, $D$-module) and Costello--Gwilliam
+(differential-geometric, prefactorization algebra).  Their
+equivalence is proved at the end of the chapter.
 
 \begin{definition}[Ran space and factorization pattern]
 \label{def:ran-space}
@@ -136,21 +170,15 @@ structure by three steps:
 \item Identify the formal neighbourhood of the small diagonal in
   $X^n$ with $\FM_n(\C)$, the Fulton--MacPherson compactification.
 \end{enumerate}
-This extraction loses all global information: monodromy around
-cycles, the $D$-module connection, period integrals over homology
-classes.  At genus~$0$ on~$\mathbb{P}^1$ the loss is trivial
-($\mathbb{P}^1 \smallsetminus \{\mathrm{pt}\} \simeq \C$, so
-the formal disc covers the curve).  At genus~$g \geq 1$ the loss
-is precisely the curvature $\kappa(\cA) \cdot \omega_g$, which is
-the monodromy obstruction of the $D$-module connection around the
-$B$-cycles of~$\Sigma_g$.
-
-Thus the local model $\SCchtop$
+This extraction loses all global information: $D$-module
+monodromy around cycles, period integrals over homology classes,
+the Arakelov correction that produces $\dfib^{\,2} = \kappa(\cA)
+\cdot \omega_g$.  The local model $\SCchtop$
 (Definition~\ref{def:SC-operations}) is the genus-$0$ shadow of
 the factorization structure.  The homotopy-Koszulity theorem
-(Theorem~\ref{thm:homotopy-Koszul}) is a theorem about this local
-model; its promotion to an all-genus statement requires the
-factorization-algebraic input of this chapter.
+(Theorem~\ref{thm:homotopy-Koszul}) is a theorem about this
+shadow; its promotion to all genera requires the factorization
+input of the present chapter.
 \end{remark}
 
 
@@ -185,13 +213,19 @@ $\mathrm{Lie} \hookrightarrow \mathrm{Com}
 \label{sec:worked-examples-factorization}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-The three canonical examples already exhibit the full range of complexity.
-The Heisenberg algebra has trivial bar differential ($d_{\barB} = 0$, class~$\mathbf{G}$).
-Affine Kac--Moody has nontrivial $m_2$ but $m_{k \geq 3} = 0$ (class~$\mathbf{L}$):
-double-pole OPE, cubic shadow terminates.
-Virasoro has genuinely infinite $A_\infty$ structure driven by the quartic pole (class~$\mathbf{M}$):
-the shadow obstruction tower does not terminate.
-Each computation is carried out in explicit coordinates with all signs and structure maps written out.
+The abstractions of the preceding section reduce to explicit
+linear algebra in three examples.  Each example instantiates a
+distinct shadow class, and each class is forced by the pole
+structure of the OPE:
+the Heisenberg algebra has trivial bar differential
+($d_{\barB} = 0$, class~$\mathbf{G}$, simple pole);
+affine Kac--Moody has nontrivial $m_2$ but
+$m_{k \geq 3} = 0$ (class~$\mathbf{L}$, double pole, cubic
+shadow terminates);
+the Virasoro algebra has genuinely infinite $A_\infty$ structure
+(class~$\mathbf{M}$, quartic pole, obstruction tower does not
+terminate).  All signs, structure maps, and propagators are written
+out in coordinates.
 
 %%----------------------------------------------------------------------
 \subsection{The Heisenberg algebra (free boson)}
@@ -412,7 +446,7 @@ and $f^{ab}_{\ \ c}$ are the structure constants.
 The modular characteristic $\kappa(\hat\fg_k)$ is computed from the
 genus-$1$ self-contraction (tadpole graph).  The bar propagator is
 $d\log(z-w)$; the double-pole OPE term $k\kappa^{aa}/(z-w)^2$, after
-absorbing one power via the $d\log$ kernel (AP19: the bar kernel
+absorbing one power via the $d\log$ kernel (the bar kernel
 reduces pole order by one), contributes a simple-pole residue
 $k\kappa^{aa}$ at self-contraction.  Summing over the basis and
 including the Sugawara normal-ordering shift from
@@ -594,7 +628,7 @@ $\eta_{12}\wedge\eta_{23} + \eta_{23}\wedge\eta_{31} +
 to vanish identically, since each propagator contributes at most
 a single $d\log$ factor.  For the Virasoro quartic pole, the
 situation is different: the coefficient $(c/2)(z_1-z_2)^{-4}$
-after absorbing one power via the $d\log$ kernel (AP19) leaves
+after absorbing one power via the $d\log$ kernel leaves
 a residual $(z_1-z_2)^{-3}$ factor.  On the blowup
 $\FM_3(\C)$, this higher-order singularity survives the
 angular integration because the polar coordinates contribute
@@ -846,17 +880,13 @@ $\operatorname{av}$-images of the full Swiss-cheese data.
 \label{sec:BD-factorization-SC}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-The worked examples of the preceding section were computed in the
-local model on~$\C$: the formal-disc neighbourhood where the operad
-$\SCchtop$ governs.  The next step is the global setting of
-Beilinson--Drinfeld, where chiral algebras are factorizable
-$D$-modules on the Ran space of a curve~$\Sigma_g$.  The
-BD~framework brings two essential features unavailable in the local
-model: the $D$-module connection (which produces global monodromy)
-and the moduli-space dependence (which produces the curvature
-$\kappa(\cA) \cdot \omega_g$ at genus~$g \geq 1$).  We extend this
-framework to the two-colored Swiss-cheese setting on the product
-$\Sigma_g \times \R$.
+The local model on~$\C$ cannot see $D$-module monodromy around
+cycles of~$\Sigma_g$ or the moduli-space dependence that produces
+the curvature $\kappa(\cA) \cdot \omega_g$ at genus $g \geq 1$.
+Both require the global setting of Beilinson--Drinfeld, where
+chiral algebras are factorizable $D$-modules on the Ran space of
+a curve~$\Sigma_g$.  The two-coloured Swiss-cheese structure
+extends to this setting on the product $\Sigma_g \times \R$.
 
 \begin{definition}[BD factorization Swiss-cheese algebra]
 \label{def:BD-SC}
