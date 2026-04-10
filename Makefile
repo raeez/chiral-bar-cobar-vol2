@@ -67,7 +67,14 @@ endef
 #  Targets
 # ============================================================================
 
-.PHONY: all fast clean veryclean count check test dist release help publish working-notes
+.PHONY: all fast clean veryclean count check test dist release help publish working-notes icloud
+
+## icloud: Copy latest PDFs to iCloud Drive
+icloud: main.pdf
+	@mkdir -p "$(ICLOUD_DIR)"
+	@cp -v main.pdf "$(ICLOUD_DIR)/vol2_ainfinity_chiral_algebras.pdf"
+	@[ -f out/ainfinity_chiral_algebras.pdf ] && cp -v out/ainfinity_chiral_algebras.pdf "$(ICLOUD_DIR)/vol2_release.pdf" || true
+	@echo "Vol II PDFs copied to iCloud."
 
 ## all: Full build → out/
 ##   Idempotent: no-op if no .tex files changed since last successful build.

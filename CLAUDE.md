@@ -71,6 +71,12 @@ V2-AP33: RECTIFICATION-FLAG must NOT become permanent debt. Every flag needs res
 V2-AP34: Divided-power convention in lambda-brackets. Vol II uses {T_lambda T} = (c/12)*lambda^3 (divided power). OPE mode T_{(3)}T = c/2 maps to (c/2)/3! = c/12. EVERY lambda-bracket MUST use divided powers. Grep for c/2.*lambda^3 — if found, almost certainly wrong (should be c/12). W3: c/3*lambda^5 wrong, correct c/360.
 V2-AP35: Unresolved logical connectives after correction. When correcting a formula, audit ALL "therefore"/"hence"/"it follows" within 5 lines. A correction that changes the conclusion but leaves "therefore" pointing to old reasoning is a non-sequitur worse than the original error.
 
+### From 100-Commit Archaeology (V2-AP36-39, April 2026)
+V2-AP36: Terminology rename atomicity. When renaming terminology X -> Y: (1) enumerate ALL variant forms (X, "X tower", "X Postnikov", compound forms), (2) grep all three volumes including compute/, audit/, *.md, (3) complete ALL replacements in a SINGLE commit, (4) verify zero residual hits before committing. The "shadow Postnikov tower" -> "shadow obstruction tower" rename required 5 commits (114 + 27 + 4 + 1 + 1 files). Follow-up cleanup commits are evidence of incomplete propagation.
+V2-AP37: Arakelov form canonical normalisation. Canonical: omega_1 = i/(2 Im(tau)) dz wedge dz-bar (integral = 1). Arakelov kernel: omega_Ar = -(pi/Im(tau)) dz wedge dz-bar (integral = -1). Relationship: omega_1 = -omega_Ar/(2*pi). The same sign/normalisation error was fixed THREE times across THREE commits. Before writing ANY Arakelov normalisation, verify the integral over the fundamental domain evaluates to the stated value.
+V2-AP38: Phantom label retirement schedule. After chapter migration, install phantom labels as temporary fix but track each in a retirement list. Phantom labels with no retirement path for 3+ sessions should be flagged. 366 phantom labels installed across 2 commits after Vol I -> Vol II migration.
+V2-AP39: Macro portability check after migration. After migrating ANY chapter from Vol I to Vol II: (1) compile Vol II, (2) grep compile log for "Undefined control sequence", (3) add \providecommand for each missing macro in Vol II's preamble. 7 macros required addition across 2 commits. Never assume Vol I macros are available.
+
 ## Cross-Volume Bridges
 
 | Bridge | Vol II claim | Vol I anchor | Status |
