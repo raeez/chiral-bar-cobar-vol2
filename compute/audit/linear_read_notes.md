@@ -1,5 +1,111 @@
 # Linear Read Notes
 
+## 2026-04-10 - Claude/Codex Parity Sweep
+
+- Target: `.claude/*`, `.agents/skills/*`, `.codex/hooks/*`, `AGENTS.md`
+- Status: COMPLETE
+
+### Summary
+
+Closed the concrete parity gaps between the Claude-side and Codex-side workflow surfaces in Vol II. Added missing Codex skills for deep audit, compute-engine work, explicit research swarms, and six-layer route-spec architecture; expanded Codex prompt routing to reach them; strengthened the Codex post-Bash review hook to carry the Beilinson post-edit gate as far as runtime allows; and added an explicit Claude-to-Codex parity map to `AGENTS.md`.
+
+### Findings
+
+1. `2026-04-10-006`
+   Severity: `MODERATE`
+   Class: `C`
+   Location: `.agents/skills/`
+   Issue: Claude had explicit command surfaces for `/audit`, `/compute-engine`, `/research-swarm`, and the route-spec architecture, but Codex only exposed rectification/build/propagation/formula/frontier skills. This left part of the real repo workflow discoverable for Claude but not for Codex.
+   Fix: added four new Codex skills: `vol2-deep-audit`, `vol2-compute-engine`, `vol2-research-swarm`, and `vol2-six-layer-architecture`.
+   Status: `FIXED`
+
+2. `2026-04-10-007`
+   Severity: `MODERATE`
+   Class: `C`
+   Location: `.codex/hooks/user_prompt_router.sh`
+   Issue: Codex prompt routing did not yet steer compute-engine tasks, explicit swarm/delegation requests, six-layer architectural rewrites, or findings-first audits toward dedicated repo skills.
+   Fix: extended prompt routing so those prompt families now point at the new Codex skills.
+   Status: `FIXED`
+
+3. `2026-04-10-008`
+   Severity: `MODERATE`
+   Class: `D/W`
+   Location: `.claude/hooks/beilinson-gate.sh`, `.codex/hooks/post_bash_review.sh`
+   Issue: Claude had an explicit post-edit Beilinson gate, while Codex only had a build/test failure review hook. The result was partial hook parity: Codex guarded verification output, but not the broader post-edit truth checks.
+   Fix: strengthened `post_bash_review.sh` to emit a Beilinson-gate reminder on phase-ending Bash actions when dirty `.tex`/`.py` files exist, and documented the remaining runtime limitation plus the cognitive mirror in `AGENTS.md`.
+   Status: `FIXED`
+
+4. `2026-04-10-009`
+   Severity: `MODERATE`
+   Class: `C`
+   Location: `AGENTS.md`
+   Issue: the repo had no explicit map showing where each Claude-side command/hook/spec lived on the Codex side, so parity could drift again invisibly.
+   Fix: added a Claude-to-Codex parity map to `AGENTS.md`, including the current runtime limitation and the requirement that unmatched Claude behaviors be mirrored mechanically where possible and cognitively otherwise.
+   Status: `FIXED`
+
+### Verification
+
+- Enumerated `.claude/commands/*`, `.claude/hooks/*`, `.claude/specs/*`, `.agents/skills/*`, and `.codex/hooks/*`.
+- Confirmed the new Codex skills exist on disk.
+- Reread `user_prompt_router.sh`, `post_bash_review.sh`, and `AGENTS.md` after patching to confirm the new parity mapping and routing logic.
+
+## 2026-04-10 - AGENTS Constitution Upgrade
+
+- Target: `AGENTS.md`
+- Status: COMPLETE
+
+### Summary
+
+Upgraded the Vol II root instruction surface into a tighter Codex/GPT-5.4 runtime constitution. The new file keeps the existing mathematical spine, but adds issue-shaped task intake, compaction-safe handoff state, cross-volume anti-pattern compression, empirical priors mined from the last 100 commits in all three repos, dated dirty-worktree awareness, explicit post-edit gates, and a refreshed active build graph aligned with `main.tex`.
+
+### Findings
+
+1. `2026-04-10-001`
+   Severity: `MODERATE`
+   Class: `C`
+   Location: `AGENTS.md`
+   Issue: the previous Vol II constitution was strong on mathematical invariants but weaker on modern Codex execution design. It did not explicitly encode issue-shaped task intake, observable artifact handoff, or compaction-safe memory discipline, so too much runtime reliability still depended on ephemeral chat context.
+   Fix: rewrote the opening architecture around prompt geometry, live-surface primacy, mode routing, a sharper resonance loop, and context-hygiene rules that externalize target, status, open risk, and next falsifier.
+   Status: `FIXED`
+
+2. `2026-04-10-002`
+   Severity: `MODERATE`
+   Class: `C/D`
+   Location: `AGENTS.md`
+   Issue: cross-volume anti-pattern coverage lived mostly in the three `CLAUDE.md` files. The old Vol II root layer did not compress enough of the shared Vol I and Vol III failure surface, nor did it memorialize the failure families most visible in the last 100 commits per repo.
+   Fix: added cross-volume anti-pattern scope, empirical priors from the three recent 100-commit windows, and updated failure families covering status inflation, convention drift, propagation failure, dirty-surface blindness, `E_1/E_infinity/center` confusion, and workflow self-deception.
+   Status: `FIXED`
+
+3. `2026-04-10-003`
+   Severity: `MODERATE`
+   Class: `B/C`
+   Location: `AGENTS.md`
+   Issue: the previous file map lagged behind the current `main.tex` input graph and no longer reflected the active build surface accurately.
+   Fix: replaced the stale file map with an active build graph aligned to the current `main.tex` `\input` surface, while preserving the superseded split-file collision map for propagation audits.
+   Status: `FIXED`
+
+4. `2026-04-10-004`
+   Severity: `MODERATE`
+   Class: `D`
+   Location: `AGENTS.md`
+   Issue: the old constitution did not expose the current dirty-worktree state across Volumes I-III, even though active collision risk is heavily concentrated there.
+   Fix: added a dated dirty collision surface snapshot for all three repos and made rereading `git status --short` a constitutional rule before trusting any narrative summary.
+   Status: `FIXED`
+
+5. `2026-04-10-005`
+   Severity: `MODERATE`
+   Class: `D/W`
+   Location: `AGENTS.md`
+   Issue: recent Vol II archaeology repeatedly surfaced `V2-AP32` through `V2-AP35`, but the root layer did not explicitly gate against standalone-document artifact leaks, unresolved `RECTIFICATION-FLAG` debt, or stale logical connectives after formula corrections.
+   Fix: added the Beilinson post-edit gate and expanded the dirty-surface family to cover standalone artifacts, flag debt, generated build noise, and connective-drift re-audits.
+   Status: `FIXED`
+
+### Verification
+
+- Reread the upgraded `AGENTS.md` end-to-end after patching.
+- Re-extracted the active `main.tex` input graph and aligned the new active-build-graph section with the live surface.
+- `git status --short AGENTS.md compute/audit/linear_read_notes.md` shows only the intended instruction-surface files modified by this session.
+
 ## 2026-04-07 — Codex Metacognitive Fortification
 
 - Target: `AGENTS.md`, `.agents/skills/*`, `.codex/hooks.json`, `.codex/hooks/*`

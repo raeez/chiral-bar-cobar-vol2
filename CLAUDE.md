@@ -80,7 +80,7 @@ V2-AP35: Unresolved logical connectives after correction. When correcting a form
 | Hochschild | BV-BRST origin of Thm H | Theorem H | Proved |
 | DK/YBE | r(z) via Laplace provides DK-0 | MC3 | Proved |
 | PVA-Coisson | PVA descent recovers Coisson | Deformation theory | Proved |
-| W-algebras | Feynman-diag m_k matches bar diff | MC5 | Analytic HS-sewing proved at all genera; genuswise BV/BRST/bar identification conjectural (g=0 algebraic BRST/bar comparison proved) |
+| W-algebras | Feynman-diag m_k matches bar diff | MC5 | (1) Analytic HS-sewing proved at all genera; (2) genus-0 algebraic BRST/bar proved; (3) D^co-level BV=bar proved for all shadow classes including class M; (4) genuswise chain-level BV/BRST/bar conjectural (class M chain-level false); (5) tree-level amplitude pairing conditional on cor:string-amplitude-genus0 |
 | Affine monodromy | C_line^red = Rep_q(g) on eval modules | Thm A + DK | Proved |
 | Soft theorems | Shadow tower controls soft graviton hierarchy | Thm H | Proved g=0 |
 | Two-colour | ordered -> A^!_line, symmetric -> A^!_ch | two-color-master | Proved |
