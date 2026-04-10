@@ -150,6 +150,13 @@ A \emph{strict rational dg-shifted Yangian} consists of the following data:
   \[
     r(z)=\frac{\Omega}{z}+r_{\mathrm{reg}}(z),\qquad \Omega\in Y\otimes Y;
   \]
+  (AP126: here $\Omega$ is an abstract element of $Y\otimes Y$, not the
+  affine Casimir specifically; in the affine specialization
+  $Y\mapsto U(\widehat{\mathfrak g}_k)$, the residue element absorbs
+  the level $k$, so the affine realization reads
+  $r(z)=k\,\Omega_{\mathrm{aff}}/z$ with $\Omega_{\mathrm{aff}}$ the
+  quadratic Casimir tensor of $\mathfrak g$, vanishing at $k=0$, cf.\
+  the affine specialization at the start of Section~\ref{sec:strict}.)
   \item the parameter-dependent classical Yang-Baxter equation
   \[
     [r_{12}(u),r_{13}(u+v)] + [r_{12}(u),r_{23}(v)] + [r_{13}(u+v),r_{23}(v)] = 0.
@@ -219,7 +226,7 @@ which vanishes by the classical Yang-Baxter equation. Summing over all triples g
 \end{proof}
 
 \begin{lemma}[Residues and infinitesimal braid operators; \ClaimStatusProvedHere]\label{lem:inf-braid}
-If $r(z)=\Omega/z+O(1)$ near $z=0$, and $\Omega_{ij}$ denotes the action of $\Omega$ in factors $i,j$, then
+If $r(z)=k\,\Omega/z+O(1)$ at level~$k$ near $z=0$ \textup{(}AP126\textup{)}, and $\Omega_{ij}$ denotes the action of $\Omega$ in factors $i,j$, then
 \[
   [\Omega_{ij},\Omega_{kl}]=0 \qquad \text{if }\{i,j\}\cap\{k,l\}=\varnothing,
 \]
@@ -233,9 +240,9 @@ for distinct $i,j,k$.
 \begin{proof}
 The disjoint-support commutators are tautologically zero. For the three-term relation, substitute $u=\lambda x$ and $v=\lambda y$ into the Yang-Baxter equation, multiply by $\lambda^2$, and let $\lambda\to 0$. Using
 \[
-  r(\lambda x)=\frac{\Omega}{\lambda x}+O(1),
+  r(\lambda x)=\frac{k\,\Omega}{\lambda x}+O(1),
   \qquad
-  r(\lambda(x+y))=\frac{\Omega}{\lambda(x+y)}+O(1),
+  r(\lambda(x+y))=\frac{k\,\Omega}{\lambda(x+y)}+O(1),
 \]
 one obtains
 \[
@@ -266,9 +273,9 @@ In a tree chart one has
 \[
   z_i-z_j = \Big(\prod_{e\in P(i,j)}t_e\Big)u_{ij},
 \]
-with $u_{ij}$ a unit. Since $r(z)=\Omega/z+O(1)$, one has
+with $u_{ij}$ a unit. Since $r(z)=k\,\Omega/z+O(1)$ at level~$k$ \textup{(}AP126\textup{)}, one has
 \[
-  r(z_i-z_j)d(z_i-z_j)=\Omega\,d\log(z_i-z_j)+\text{regular terms}.
+  r(z_i-z_j)d(z_i-z_j)=k\,\Omega\,d\log(z_i-z_j)+\text{regular terms}.
 \]
 Expanding the logarithmic derivative gives
 \[
@@ -276,9 +283,9 @@ Expanding the logarithmic derivative gives
 \]
 Summing over all pairs $i<j$ therefore yields
 \[
-  \sum_{i<j}r(z_i-z_j)d(z_i-z_j)=\sum_{e\in E(T)}\Big(\sum_{i<j:\,e\in P(i,j)}\Omega_{ij}\Big)\frac{dt_e}{t_e}+\text{regular terms},
+  \sum_{i<j}r(z_i-z_j)d(z_i-z_j)=k\sum_{e\in E(T)}\Big(\sum_{i<j:\,e\in P(i,j)}\Omega_{ij}\Big)\frac{dt_e}{t_e}+\text{regular terms},
 \]
-which is the claimed logarithmic form.
+which is the claimed logarithmic form \textup{(}with overall level factor~$k$; at $k=0$ the connection reduces to the exterior derivative, as required\textup{)}.
 \end{proof}
 
 \begin{corollary}[Local monodromy around a boundary divisor; \ClaimStatusProvedHere]\label{cor:strict-monodromy}
@@ -1551,7 +1558,9 @@ $\widehat{\mathfrak{sl}}_2$ level-$1$ WZW fusion rules.
 \label{comp:formal-R-expansion}
 \index{R-matrix@$R$-matrix!formal expansion}
 The formal monodromy operator, equivalently the asymptotic $R$-matrix,
-admits the $z^{-1}$-expansion
+admits the $z^{-1}$-expansion (with $\Omega$ denoting the Sugawara-normalized
+residue tensor $k\,\Omega_{\mathrm{Cas}}/(k+h^\vee)$ absorbing the level prefix;
+cf.\ AP126 and the level-explicit form at~\eqref{eq:R-level-explicit} below)
 \begin{equation}\label{eq:R-formal-expansion}
   R(z) \;=\; 1 + \frac{\Omega}{z} + \frac{\Omega^2}{2z^2} + \frac{\Omega^3}{6z^3}+\cdots
   \;=\; \exp\!\Bigl(\frac{\Omega}{z}\Bigr)\quad (\text{leading order}).
@@ -1564,8 +1573,12 @@ and corrections of order $O(z^{-3})$ arise from the non-abelian exponentiation
   \qquad
   R(z)\big|_{V_0} = e^{-3/(2z)}\bigl(1+O(z^{-3})\bigr).
 \]
-The leading-order formula $R(z)=1+\Omega/z+O(z^{-2})$
-identifies $\Omega$ as the collision residue, consistent with
+The leading-order formula
+\begin{equation}\label{eq:R-level-explicit}
+  R(z)=1+k\,\Omega/z+O(z^{-2})
+\end{equation}
+at level~$k$ \textup{(}AP126\textup{)}
+identifies $k\,\Omega$ as the collision residue, consistent with
 Lemma~\ref{lem:inf-braid}.
 \end{computation}
 
@@ -1712,21 +1725,30 @@ On the Clebsch--Gordan components:
 Define the genus-$1$ $R$-matrix as the ratio of the connection
 form~\eqref{eq:kzb-connection} to its genus-$0$ counterpart:
 \begin{equation}\label{eq:genus1-r-matrix}
-  r_1(z;\tau) \;:=\; \frac{1}{k+2}\,\Omega\cdot \partial_z\!\log\theta_1(z;\tau).
+  r_1(z;\tau) \;:=\; \frac{k}{k+2}\,\Omega\cdot \partial_z\!\log\theta_1(z;\tau).
 \end{equation}
 Expanding in $z$:
 \[
   r_1(z;\tau)
-  = \frac{\Omega}{(k+2)z}
-    - \frac{\Omega}{k+2}\sum_{n=1}^{\infty}2\,
+  = \frac{k\,\Omega}{(k+2)z}
+    - \frac{k\,\Omega}{k+2}\sum_{n=1}^{\infty}2\,
     \frac{q^{2n}}{1-q^{2n}}\cdot 2\pi i\cos(2\pi nz)
-  = \frac{\Omega}{(k+2)z}
-    + \frac{\Omega}{k+2}\bigl(2G_2(\tau)-\wp(z;\tau)-\pi^2/3\bigr),
+  = \frac{k\,\Omega}{(k+2)z}
+    + \frac{k\,\Omega}{k+2}\bigl(2G_2(\tau)-\wp(z;\tau)-\pi^2/3\bigr),
 \]
 where the Eisenstein correction $G_2(\tau)$ accounts for the
 (conditionally convergent) sum and $\wp$ is the Weierstrass
-$\wp$-function. Thus the genus-$1$ $R$-matrix is the genus-$0$
-rational $R$-matrix $\Omega/((k+2)z)$ dressed by the elliptic
+$\wp$-function. (AP126: the $k$ prefix on $r_1$ is inherited from
+the collision residue of the affine $r$-matrix
+$r_{\widehat{\fg}_k}(z) = k\,\Omega/((k+h^\vee)z)$; the intrinsic
+KZB connection~\eqref{eq:kzb-connection} retains the standard
+Sugawara normalization $(k+h^\vee)^{-1}$, so the identification of
+$r_1$ with the connection form carries the rescaling factor
+$k/(k+h^\vee)$. At $k=0$ both the connection trivializes in the
+collision sector and $r_1$ vanishes, consistent with
+Theorem~\ref{thm:affine-monodromy-identification}.) Thus the
+genus-$1$ $R$-matrix is the genus-$0$
+rational $R$-matrix $k\,\Omega/((k+2)z)$ dressed by the elliptic
 Weierstrass function, exactly as predicted by the shadow obstruction tower:
 the genus-$1$ period correction to the Casimir is controlled by
 $G_2(\tau)$ and reproduces the curvature $\kappa\cdot\omega_1$
@@ -1896,7 +1918,7 @@ a finite-rank operator, and the $z^{-2}$ term is a scalar
 (proportional to the identity on $V_i \otimes V_j$).  The
 scalar term does not contribute to the braiding (it exponentiates
 to a scalar phase), so the braiding is governed by
-$r(z) = \Omega/z$ up to scalars.
+$r(z) = k\,\Omega/z$ at level~$k$ \textup{(}AP126\textup{)} up to scalars.
 
 \smallskip\noindent
 \emph{Step (iii-c): Exponentiation to KZ monodromy.}
@@ -1914,9 +1936,9 @@ This follows from the standard computation: the
 path-ordered exponential of $r(\zeta)\,d\zeta$ along the
 half-circle $\zeta = z_{ij} e^{i\theta}$,
 $\theta \in [0,\pi]$, gives
-$\mathrm{P}\!\exp(\int_0^\pi (\Omega/z_{ij} e^{i\theta})
+$\mathrm{P}\!\exp(\int_0^\pi (k\,\Omega/z_{ij} e^{i\theta})
 \cdot iz_{ij} e^{i\theta}\, d\theta)
-= \exp(i\pi\, \Omega)$, with the normalization
+= \exp(i\pi\,k\, \Omega)$, with the normalization
 $1/(k+h^\vee)$ from Theorem~\ref{thm:reduced-equals-kz}.
 
 By the Drinfeld--Kohno theorem (part~(ii)), this half-monodromy
