@@ -10,6 +10,10 @@ if [[ "$PROMPT_LC" =~ audit|rectif|fortif|beilinson|prove|proof|theorem|lemma|cl
   CONTEXT="RECTIFICATION_SESSION_ACTIVE"$'\n'
 fi
 
+if [[ "$PROMPT_LC" =~ audit|review|red-team|redteam|pressure-test|pressure[[:space:]-]?test|falsif ]]; then
+  CONTEXT+="Prefer the repo skill \`vol2-deep-audit\` for a findings-first pass. Read the live surface before editing, prioritize mathematical bugs and status drift, and anchor findings to exact files or labels."$'\n'
+fi
+
 if [[ "$PROMPT_LC" =~ audit|rectif|fortif|beilinson ]]; then
   CONTEXT+="Prefer the repo skill \`vol2-beilinson-rectification\`. Register substantial work in update_plan, read the live surface before editing, log findings in compute/audit/linear_read_notes.md, and do not stop until the session is marked CONVERGED or BLOCKED."$'\n'
 fi
@@ -28,6 +32,18 @@ fi
 
 if [[ "$PROMPT_LC" =~ frontier|research|programme|program|synthesis|new[[:space:]]+theorem|conjecture|architecture ]]; then
   CONTEXT+="Prefer the repo skill \`vol2-frontier-research\`. Separate proved core, conditional bridge, conjectural extension, and heuristic picture. Keep the work local unless the user explicitly authorizes delegation."$'\n'
+fi
+
+if [[ "$PROMPT_LC" =~ compute[[:space:]-]?engine|new[[:space:]]+engine|scaffold[[:space:]]+engine|compute[[:space:]]+module|test[[:space:]]+engine|engine[[:space:]]+test ]]; then
+  CONTEXT+="Prefer the repo skill \`vol2-compute-engine\`. Read nearby compute patterns first, lock conventions before coding, and derive expected values independently of the engine output."$'\n'
+fi
+
+if [[ "$PROMPT_LC" =~ swarm|sub-agent|subagent|parallel[[:space:]]+agent|delegate|delegation ]]; then
+  CONTEXT+="If and only if the user has explicitly authorized delegation, prefer the repo skill \`vol2-research-swarm\`. Keep the critical-path task local, split only independent sidecar tasks, and integrate only after local verification."$'\n'
+fi
+
+if [[ "$PROMPT_LC" =~ factorization[[:space:]-]?swiss|modular[[:space:]-]?swiss|relative[[:space:]-]?feynman|route[[:space:]]+[abc]|six-layer|local[[:space:]-]?global[[:space:]-]?tension ]]; then
+  CONTEXT+="Prefer the repo skill \`vol2-six-layer-architecture\`. Read `.claude/specs/master.md` and the relevant Route A/B/C spec before treating any architectural statement as live truth."$'\n'
 fi
 
 if [[ -n "$CONTEXT" ]]; then
