@@ -40,10 +40,11 @@ Every chapter depends on Vol I's five theorems:
 | Metric | Value |
 |--------|------:|
 | Pages | ~1,633 |
-| Tagged claims | ~2,568 |
-| Source files | 105 .tex |
+| Tagged claims | ~2,604 |
+| Source files | 106 chapter .tex + 2 appendices |
 | Connection chapters | 72 |
-| Anti-patterns | V2-AP1 through V2-AP35 (24 E_1/E_inf hierarchy + 11 empirical) |
+| Compute modules | 61 lib + 63 test |
+| Anti-patterns | V2-AP1 through V2-AP39 (24 E_1/E_inf hierarchy + 15 empirical) |
 | Seven-faces master | Per-face status tags (F1-F7 with individual scope qualifiers) |
 | Cross-volume bridges | 15 (including 3D gravity climax row) |
 
