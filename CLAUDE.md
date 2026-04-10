@@ -80,7 +80,7 @@ V2-AP35: Unresolved logical connectives after correction. When correcting a form
 | Hochschild | BV-BRST origin of Thm H | Theorem H | Proved |
 | DK/YBE | r(z) via Laplace provides DK-0 | MC3 | Proved |
 | PVA-Coisson | PVA descent recovers Coisson | Deformation theory | Proved |
-| W-algebras | Feynman-diag m_k matches bar diff | MC5 | Proved g=0; conj g>=1 |
+| W-algebras | Feynman-diag m_k matches bar diff | MC5 | Analytic HS-sewing proved at all genera; genuswise BV/BRST/bar identification conjectural (g=0 algebraic BRST/bar comparison proved) |
 | Affine monodromy | C_line^red = Rep_q(g) on eval modules | Thm A + DK | Proved |
 | Soft theorems | Shadow tower controls soft graviton hierarchy | Thm H | Proved g=0 |
 | Two-colour | ordered -> A^!_line, symmetric -> A^!_ch | two-color-master | Proved |
@@ -89,6 +89,7 @@ V2-AP35: Unresolved logical connectives after correction. When correcting a form
 | Annular bar-HH | B^ann computes HH^ch | Thm H | Proved |
 | FG-shadow-strat | Commutator filtration spectral sequence | Shadow tower | Proved |
 | Gauge-gravity | m_k=0 (gauge) vs m_k!=0 (gravity) dichotomy | G/L/C/M | Proved |
+| 3D gravity | Part VI: 3d quantum gravity = derived center of boundary chiral algebra; W-algebra Hochschild bulk reconstruction | Thm H + MC5 | Boundary-linear bulk = Hochschild proved; full global triangle (boundary -> bulk -> boundary) conjectural beyond the Koszul locus |
 
 ## Build
 
