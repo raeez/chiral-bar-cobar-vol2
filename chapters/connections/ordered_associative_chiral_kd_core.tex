@@ -1369,6 +1369,46 @@ The $E_\infty$ theorem is the $\Sigma_n$-coinvariant of the $E_1$ theorem.
 The boundary algebras $\cA$ (Dirichlet) and $\cA^!$ (Neumann) are linked by the universal twisting morphism $\tau \in \cA^! \otimes \cA$ and by the Verdier intertwining $\mathbb{D}_{\Ran}(\barB(\cA)) \simeq \barB(\cA^!)$ (Theorem~A of Volume~I).  The full Drinfeld double $U = \cA \bowtie \cA^!$, whose module category should be the line-operator category $\cC_{\mathrm{line}}$, is not yet constructed at the bar-complex level.  The ingredients are present: the algebra structure (boundary operator composition), the coalgebra structure (deconcatenation coproduct on $B^{\mathrm{ord}}(\cA)$), the Hopf pairing (from complementarity / the cyclic structure), and the opposite-duality (Theorem~\ref{thm:opposite}, the $E_1$ analogue of the antipode).  The assembly of these into a single Hopf algebra $U$ with $\cC_{\mathrm{line}} \simeq U\text{-mod}$ is the \emph{Drinfeld double programme}, connecting the bar-cobar framework to Dimofte's geometric Tannakian reconstruction \cite{Dimofte25}.
 \end{remark}
 
+\begin{remark}[Dimofte's $K$-matrix and shadow depth]
+\label{rem:dimofte-k-matrix}
+In the PIRSA lecture series \cite{Dimofte25}, Dimofte isolates a single chiral operator $K_\cA(z)$ which controls the deviation of the boundary coproduct from the primitive (Hopf) coproduct.  Its explicit form is
+\begin{equation}
+\label{eq:dimofte-k-matrix}
+K_\cA(z) \;=\; z^{\alpha_0}\,\exp\!\Biggl(\sum_{n>0} \frac{\alpha_{-n}}{-n}\, z^{n}\Biggr)\,\exp\!\Biggl(\sum_{n>0} \frac{\alpha_{n}}{-n}\, z^{-n}\Biggr),
+\end{equation}
+where $\{\alpha_n\}_{n\in\Z}$ are the modes of a free boson identified with the $\mathfrak{u}(1)^r$ Cartan factor of the boundary algebra $\cA$, and $\alpha_0$ is the zero-mode charge.  The operator $K_\cA(z)$ is itself a vertex operator: it lives inside $\cA$, not over it.
+The interpretation is diagnostic.  For class~$\mathbf{G}$ (Heisenberg, free fermion, lattice vertex algebra) the boundary coproduct is already primitive and $K_\cA(z) = 1$; the boundary Hopf algebra is the Hopf primitive and no deviation is needed.  For classes $\mathbf{L}$ and $\mathbf{C}$ (affine Kac--Moody at generic level, $\beta\gamma$) the deviation $K_\cA(z) \neq 1$ is polynomial in the mode expansion: finitely many negative powers of $z$ contribute and the corresponding Hopf corrections terminate.  For class~$\mathbf{M}$ (Virasoro, $\mathcal{W}_N$) the deviation has an infinite expansion and the corrections never terminate.  Dimofte reads this as a ``BPS decomposition'' of the boundary Hilbert space along the $\mathfrak{u}(1)^r$ direction: the free-boson factor is the generic stratum and the higher $\alpha_n$ modes record BPS corrections.
+The sanity check is immediate: at $K_\cA(z) = 1$, equation~\eqref{eq:dimofte-k-matrix} reduces to $z^0 \cdot 1 \cdot 1 = 1$ (all non-zero modes $\alpha_n$ ($n\neq 0$) act trivially and $\alpha_0 = 0$), and the twisted coproduct returns to the primitive coproduct $\Delta(a) = a \otimes 1 + 1 \otimes a$ on the boundary generators, recovering the class~$\mathbf{G}$ behaviour.
+The conceptual punchline matches the shadow-depth classification of Volume~I: the partition $\{\mathbf{G},\mathbf{L},\mathbf{C},\mathbf{M}\}$ by shadow depth $d_{\mathrm{alg}} \in \{0,1,2,\infty\}$ coincides with the partition by ``$K$-matrix complexity''.
+\begin{center}
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{lll}
+\toprule
+Class & $K_\cA(z)$ & $d_{\mathrm{alg}}$ \\
+\midrule
+$\mathbf{G}$ (Heisenberg, fermion, lattice) & $1$ & $0$ \\
+$\mathbf{L}$ (affine Kac--Moody) & polynomial, simple pole & $1$ \\
+$\mathbf{C}$ ($\beta\gamma$) & polynomial, double pole & $2$ \\
+$\mathbf{M}$ (Virasoro, $\mathcal{W}_N$) & infinite expansion & $\infty$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+Equivalently: $K_\cA(z) = 1$ iff the boundary coproduct is primitive iff the shadow tower terminates at depth zero.  This is the $K$-matrix shadow of the pole-order hierarchy summarised in Table~\ref{tab:two-colour-koszul-duals} and in the shadow-depth discussion of Volume~I.  It is not an $r$-matrix statement: the $K$-matrix modifies the coproduct, not the product, and the level-$k$ vanishing check of AP126 does not apply directly; the corresponding $r$-matrix check is the one already recorded in the Volume~II affine constructions (classical $r$-matrix $k\,\Omega/z$ vanishes at $k=0$, in which case $\cA = \cH_0$ collapses to the trivial Heisenberg and $K_\cA(z) = 1$, consistent with class~$\mathbf{G}$).
+\end{remark}
+
+\begin{remark}[Double bosonization and the HT universal algebra]
+\label{rem:dimofte-double-bosonization}
+Majid's double bosonization construction \cite{Majid95} produces a quasi-triangular Hopf algebra from a braided Hopf algebra.  Given a braided Hopf algebra $H$ in a braided monoidal category $\cC$, and its categorical dual $H^{*\mathrm{op}}$, the double bosonization is
+\begin{equation}
+\label{eq:double-bosonization}
+R(H) \;=\; H^{*\mathrm{op}} \bowtie_{R^{21}} \cB \bowtie_R H,
+\end{equation}
+where $\cB$ is the transmutation of $\cC$ and $R$ is the $R$-matrix of the braiding.  The double bosonization is universal in the following sense: any quasi-triangular Hopf algebra whose module category recovers $\cC$ as the category of braided $H$-modules factors through $R(H)$.  When $\cC = \Vect$ and $H$ is ordinary, $R(H)$ is the classical Drinfeld double $D(H)$.
+The conjectural picture at the $E_1$-chiral level is this.  The ordered bar coalgebra $B^{\mathrm{ord}}(\cA) = T^c(s^{-1}\bar\cA)$ (augmentation ideal, AP132) carries the $R$-matrix $r(z)$ at arity two as the binary collision residue of the local OPE on $\bar\cA$.  The full tower of higher collisions presents $B^{\mathrm{ord}}(\cA)$ as a braided Hopf object in a ``meromorphic $z$-dependent'' braided monoidal category: the category of line operators $\cC_{\mathrm{line}}$ discussed at length in this chapter.  Apply the double bosonization~\eqref{eq:double-bosonization} to this braided Hopf datum.  The output, $R(B^{\mathrm{ord}}(\cA))$, should be the HT universal algebra of the boundary theory: a quasi-triangular Hopf algebra whose module category is a rigidified enhancement of $\cC_{\mathrm{line}}$, and which extends the Drinfeld double programme (Remark~\ref{rem:drinfeld-double-programme}) from its ad-hoc assembly $\cA \bowtie \cA^!$ to a canonical universal construction.
+One piece is missing: the correct definition of ``braided Hopf algebra in the meromorphic $z$-dependent tensor category''.  Ordinary braided Hopf algebras live in a braided monoidal category with a scalar braiding; here the braiding is $r(z)$, which depends on a spectral parameter and carries poles.  The spectral-braiding core programme of Chapter~\ref{chap:spectral-braiding} (Dimofte's item~6 of~\cite{Dimofte25}) supplies precisely this: a meromorphic braided category whose braiding is $r(z)$ with controlled pole behaviour.  With that category in hand, the double bosonization~\eqref{eq:double-bosonization} becomes a well-defined functor on the $E_1$-chiral side, and $R(B^{\mathrm{ord}}(\cA))$ acquires a precise meaning.
+Two caveats.  First, this construction is stated as a conjecture; no part of it is proved here.  Second, the Calabi--Yau parallel, in which the double bosonization acts on CY-braided objects and produces BPS algebras, is the natural home of this construction in Volume~III and is deferred to that volume.
+\end{remark}
+
 \section{Repository integration notes}
 \label{sec:integration}
 
@@ -2062,9 +2102,16 @@ R(z)\colon
 \Barchord_2(e_j\otimes e_i;\,z_2<z_1).
 \]
 For $\widehat{\mathfrak{sl}}_2$ at level~$k$:
-$R(z)=1+\Omega/z+O(z^{-2})$ where
+$R(z)=1+\hbar\,\Omega/z+O(z^{-2})$ with
+$\hbar=1/(k+2)$, where
 $\Omega=e\otimes f+f\otimes e+\tfrac12 h\otimes h$
-is the Casimir.  The Yang--Baxter equation
+is the Casimir.  (At $k=0$ the level-stripped
+coefficient $\hbar\to 1/2$ remains nonzero because
+the $\widehat{\mathfrak{sl}}_2$ Sugawara shift
+$k+2$ survives; the strict classical $r$-matrix
+on the underlying affine current algebra is
+$k\,\Omega/z$, which vanishes at $k=0$ in accordance
+with Anti-Pattern~\ref*{AP:126}.)  The Yang--Baxter equation
 $R_{12}(z_1{-}z_2)\,R_{13}(z_1{-}z_3)\,
 R_{23}(z_2{-}z_3)
 =R_{23}(z_2{-}z_3)\,R_{13}(z_1{-}z_3)\,
@@ -2690,12 +2737,12 @@ in Table~\ref{tab:two-colour-koszul-duals}.
 \widehat{\mathfrak{sl}}_2
   & \widehat{\mathfrak{sl}}_{2,\,-k-4}
   & Y_{1/(k+2)}(\mathfrak{sl}_2)
-  & 1+\Omega/z+O(z^{-2})
+  & 1+\Omega/((k+2)z)+O(z^{-2})
   & \mathbf{L} \\
 \widehat{\mathfrak{sl}}_3
   & \widehat{\mathfrak{sl}}_{3,\,-k-6}
   & Y_{1/(k+3)}(\mathfrak{sl}_3)
-  & 1+\Omega/z+O(z^{-2})
+  & 1+\Omega/((k+3)z)+O(z^{-2})
   & \mathbf{L} \\
 \mathrm{Vir}_c
   & \mathrm{Vir}_{26-c}
@@ -2902,11 +2949,12 @@ equation~\eqref{eq:ybe-from-bar}
 Proposition~\ref{prop:ybe-from-d-squared}).
 
 \emph{For $\widehat{\mathfrak{sl}}_2$ at level~$k$.}
-The $R$-matrix is $R(z)=1+\Omega/z+O(z^{-2})$ with
+The $R$-matrix is $R(z)=1+\hbar\,\Omega/z+O(z^{-2})$ with
+$\hbar=1/(k+2)$ and
 $\Omega=e\otimes f+f\otimes e+\tfrac12 h\otimes h$
 (the Casimir), and the Yangian $Y_\hbar(\mathfrak{sl}_2)$
 is generated by $E(u)$, $F(u)$, $H(u)$ with
-$\hbar=1/(k+2)$.  The RTT relation
+the same $\hbar$.  The RTT relation
 $R(u{-}v)\,T_1(u)\,T_2(v)=T_2(v)\,T_1(u)\,R(u{-}v)$
 with $T(u)=\bigl(\begin{smallmatrix}
 H(u) & F(u) \\ E(u) & -H(u)
@@ -3680,8 +3728,10 @@ collision residue is \emph{linear} in $\hbar$ (it comes
 from a simple pole), and it involves only the
 permutation~$P$, not the full $R$-matrix.  This is
 the Yangian analogue of the fact that the affine OPE
-has collision residue $r^{\mathrm{coll}}(z) =
-\Omega/z$ (a simple pole with the Casimir).
+at level~$k$ has collision residue $r^{\mathrm{coll}}(z) =
+k\,\Omega/z$ (a simple pole with the Casimir, scaled by
+the level; at $k=0$ the affine current algebra is abelian
+and the residue vanishes).
 
 At the Lie-algebra level
 (setting $T_1(v)\,T_2(v) \to 1\otimes 1$ at leading
