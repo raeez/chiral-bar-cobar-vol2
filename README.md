@@ -39,11 +39,13 @@ Every chapter depends on Vol I's five theorems:
 
 | Metric | Value |
 |--------|------:|
-| Pages | ~1,500 |
+| Pages | ~1,633 |
 | Tagged claims | ~2,568 |
 | Source files | 105 .tex |
 | Connection chapters | 72 |
-| Anti-patterns | V2-AP1 through V2-AP31 (24 E_1/E_inf hierarchy + 7 empirical) |
+| Anti-patterns | V2-AP1 through V2-AP35 (24 E_1/E_inf hierarchy + 11 empirical) |
+| Seven-faces master | Per-face status tags (F1-F7 with individual scope qualifiers) |
+| Cross-volume bridges | 15 (including 3D gravity climax row) |
 
 Zero conjectural algebraic inputs beyond the standing physical axioms, which have been made explicit as derived consequences.
 
