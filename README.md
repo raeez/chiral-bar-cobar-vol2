@@ -43,7 +43,7 @@ Every chapter depends on Vol I's five theorems:
 | Tagged claims | ~2,604 |
 | Source files | 106 chapter .tex + 2 appendices |
 | Connection chapters | 72 |
-| Compute modules | 61 lib + 63 test |
+| Compute modules | 53 lib + 64 test |
 | Anti-patterns | V2-AP1 through V2-AP39 (24 E_1/E_inf hierarchy + 15 empirical) |
 | Seven-faces master | Per-face status tags (F1-F7 with individual scope qualifiers) |
 | Cross-volume bridges | 15 (including 3D gravity climax row) |
@@ -75,5 +75,5 @@ chiral-bar-cobar-vol2/
     examples/               Parts IV-V (~13 files)
     connections/            Parts II-III + V-VII (~72 files)
   appendices/               brace signs, orientations, FM proofs
-  compute/                  60 lib + 63 test files
+  compute/                  53 lib + 64 test files
 ```
