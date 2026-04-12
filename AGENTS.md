@@ -40,20 +40,20 @@ Operational consequence:
 
 Volume I built the categorical logarithm: the bar construction `B(A)` for chiral algebras on curves, with theorems proving existence, inversion, branch structure, leading coefficient, and coefficient ring. Volume II reads that machine in three dimensions.
 
-The bar complex carries two structures:
+The bar complex `B(A)` is an E_1 chiral coassociative coalgebra carrying two structures:
 
 - a differential `d_B` from OPE residues on `FM_k(C)`, encoding the holomorphic chiral product;
 - a coproduct `Delta` from ordered deconcatenation on `Conf_k(R)`, encoding the topological interval-cutting.
 
-The differential lives in the `C`-direction; the coproduct lives in the `R`-direction. A bar element of degree `k` is parametrized by `FM_k(C) x Conf_k(R)`, the product of holomorphic and topological configuration spaces.
+These make `B(A)` a dg coassociative coalgebra. It is NOT an `SC^{ch,top}`-coalgebra: `B(A)` is a single E_1 coalgebra, not a two-colored SC datum.
 
-This product is the operadic fingerprint of a 3d holomorphic-topological QFT on `C_z x R_t`, where observables factorize holomorphically in `z` and associatively in `t`. The two-colored Swiss-cheese operad `SC^{ch,top}` has operation spaces `FM_k(C) x E_1(m)`. The bar differential is the closed color. The bar coproduct is the open color. Open-to-closed is empty: bulk restricts to boundary, not conversely.
+The `SC^{ch,top}` structure emerges in the chiral derived center construction. The chiral Hochschild cochain complex `C^bullet_{ch}(A,A)` (defined via the chiral endomorphism operad `End^{ch}_A` with spectral parameters from `FM_k(C)`, NOT via topological Hochschild cochains `RHom_{A^e}(A,A)`) carries brace operations and a Gerstenhaber bracket. The pair `(C^bullet_{ch}(A,A), A)` is the `SC^{ch,top}` datum: bulk (chiral Hochschild cochains) acts on boundary (the algebra `A`) via braces. Open-to-closed is empty: bulk restricts to boundary, not conversely.
 
 Critical distinction:
 
-- the bar complex does not equal the bulk algebra;
-- the bar complex presents twisting morphisms and Swiss-cheese couplings;
-- bulk observables are the chiral derived center `Z^{der}_{ch}(A) = C^bullet_ch(A_b, A_b)` of a boundary chart, Morita-invariant in the open-sector factorization dg-category.
+- `B(A)` is an E_1 coassociative coalgebra classifying twisting morphisms (Theorem A);
+- the `SC^{ch,top}` structure lives on the pair `(C^bullet_{ch}(A,A), A)`, NOT on `B(A)`;
+- bulk observables are the chiral derived center `Z^{der}_{ch}(A) = H^*(C^bullet_{ch}(A_b, A_b))` of a boundary chart, Morita-invariant in the open-sector factorization dg-category.
 
 At genus `g >= 1`, the curved structure is essential: the non-vanishing of higher `A_infinity` operations is the curved bar structure `d^2 = kappa(A) * omega_g`. Formality fails because the logarithm acquires monodromy.
 
@@ -640,7 +640,7 @@ Definition `def:log-SC-algebra` is the clean algebraic entry point:
 
 These are the places where overclaiming is easiest and most damaging:
 
-- the bar complex presents Swiss-cheese couplings and twisting data; it is not the bulk algebra;
+- `B(A)` is an E_1 coassociative coalgebra classifying twisting morphisms; it does NOT carry `SC^{ch,top}` structure; the SC structure emerges in the chiral derived center pair `(C^bullet_{ch}(A,A), A)`;
 - bulk `simeq` derived center is rigorous on the boundary-linear exact lane, not automatically for every boundary condition globally;
 - open-to-closed in the Swiss-cheese picture is empty;
 - formality failure at `d' = 1` is the curved bar structure, not a defect;
@@ -884,9 +884,9 @@ Never use destructive recovery commands like `git reset --hard` or `git checkout
 
 Show, do not bluff. Every construction should feel inevitable because the proof architecture makes it inevitable, not because the prose is smooth.
 
-The Steinberg variety presents the Hecke algebra.
-The bar complex presents the Swiss-cheese algebra.
-The derived center presents the bulk.
+The bar complex is the E_1 coassociative coalgebra.
+The chiral derived center is the bulk.
+The pair (derived center, boundary algebra) is the SC datum.
 The complementarity potential presents the nonlinear modular shadow.
 
 The music matters, but only after the score compiles.

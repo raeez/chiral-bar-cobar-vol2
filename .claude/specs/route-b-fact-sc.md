@@ -129,16 +129,11 @@ ADD qualifier after sentence: "(This is a property of the local model; the globa
 
 ### introduction.tex Rewrites
 
-**Lines 87-91: "bar complex is SCchtop-algebra"**
-REPLACE "algebra" with "coalgebra" on every instance where the bar complex is called an "SC^{ch,top}-algebra." The bar complex is an SC^{ch,top}-COALGEBRA (it has a coproduct, not a product). The Koszul dual A^! carries the algebra structure.
+**Lines 87-91: "bar complex is SCchtop-algebra" — SUPERSEDED BY AP165**
+The bar complex B(A) is NEITHER an SC^{ch,top}-algebra NOR an SC^{ch,top}-coalgebra. It is an E_1 chiral coassociative coalgebra. The SC^{ch,top} structure emerges in the chiral derived center: the pair (C^bullet_{ch}(A,A), A) is the SC datum. See AP165/B54-B56 in Vol I CLAUDE.md.
 
-**Line 158-159: "bar complex is a Swiss-cheese algebra"**
-REPLACE: "the bar complex is a Swiss-cheese algebra, and a formal one"
-WITH: "the bar complex is a Swiss-cheese coalgebra (the local model of a factorization coalgebra on $\operatorname{Ran}(X)$), and a formal one"
-
-**Line 350: "governed by...operad"**
-REPLACE: "The structures above are governed by a single two-coloured operad $\SCchtop$"
-WITH: "The structures above are locally modelled by a single two-coloured operad $\SCchtop$, extracted from the factorization structure on $\operatorname{Ran}(X) \times \operatorname{Ran}(\R)$"
+**Lines 158-159, 350: SUPERSEDED BY AP165**
+Same correction applies throughout: B(A) is E_1 coassociative, not SC.
 
 **Lines 281-285: "MC element lives at genus 0"**
 ADD at end of paragraph: "At genus~$0$, the local operadic model suffices; the global family structure over $\overline{\cM}_g$ requires the factorization-algebraic framework of Chapter~\ref{ch:factorization-swiss-cheese}."
