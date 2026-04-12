@@ -48,8 +48,8 @@ For E_3: CFG (arXiv:2602.12412) construct a filtered E_3-algebra from BV quantis
 
 ### The missing rung: E_1-chiral quantum groups and the modular operad
 The E_2-to-E_3 step requires:
-1. The modular operad governing A_inf-algebras in E_1-chiral algebras (not yet constructed).
-2. The chiral coproduct Delta: A -> A otimes A on the E_1-chiral algebra (not visible in the shadow tower; sources: Gaiotto-Rapcak-Zhou arXiv:2309.16929, Jindal-Kaubrys-Latyntsev arXiv:2603.21707).
+1. The modular operad governing A_inf-algebras in E_1-chiral algebras (Definition def:modular-operad-ainf-chiral: genus-0 proved = SC x E_1^tr; clutching via B^{ann} + R-matrix monodromy; genus >= 2 operadic verification open).
+2. The chiral coproduct Delta: A -> A otimes A on the E_1-chiral algebra (not visible in the shadow tower; EXTERNAL comparison points: Gaiotto-Rapcak-Zhou arXiv:2309.16929 (type A only), Jindal-Kaubrys-Latyntsev arXiv:2603.21707 (ADE quivers only); the programme's own chiral coproduct is the Drinfeld coproduct via bar-cobar).
 3. Curved Dunn additivity at genus >= 1 (conjectural).
 
 An E_1-chiral quantum group is: E_1-chiral algebra A + chiral coproduct Delta + R-matrix R(z) + quasi-triangularity + antipode, such that Mod_A is braided monoidal (E_2 in Cat). This provides the data for the E_2-to-E_3 step.
@@ -60,18 +60,18 @@ The volume goes: E_1 (Parts I-II) -> E_2 (Parts III-IV) -> E_3 (Parts V-VI). Par
 
 CRITICAL DISTINCTION: E_N-CHIRAL != E_N-TOPOLOGICAL. Chiral depends on complex structure. Topological does not. The conformal vector T(z) (Sugawara) is what enables TOPOLOGIZATION: chiral -> topological. Without conformal vector: stuck at chiral. With conformal vector at non-critical level: can topologize.
 
-The volume must define E_N at BOTH chiral and topological levels for N=1,2,3.
+The volume defines E_N at BOTH chiral and topological levels for N=1,2,3. All six definitions are in the manuscript (session 2026-04-12).
 
 **E_1 level (Parts I-II):**
-- E_1-chiral: E_1-algebra in chiral algebras on X. Ordered OPE data. Bar complex B^{ord}(A). MANUSCRIPT HAS THIS.
-- E_1-topological: E_1-algebra (just associative, no holomorphic dependence). Deconcatenation coproduct on Conf^<(R). MANUSCRIPT HAS THIS (it's the topological factor of SC^{ch,top}).
+- E_1-chiral (def:e1-chiral-algebra, axioms.tex): E_1-algebra in D-modules on X. Ordered OPE data. Bar complex B^{ord}(A). DONE.
+- E_1-topological (def:e1-topological-algebra, axioms.tex): E_1-algebra (just associative, no holomorphic dependence). DONE.
 
 **E_2 level (Parts III-IV):**
-- E_2-chiral: chiral algebra with braiding from the OPE. The derived center Z^{der}_{ch}(A) carries this via chiral Hochschild. Depends on complex structure of X. The R-matrix R(z) has spectral parameter from the holomorphic direction. LIVES ON Z(A), NOT on A.
-- E_2-topological: braided algebra independent of complex structure. Would require topologizing the chiral E_2 via conformal vector. At this level: the Drinfeld center of the E_1-topological algebra.
+- E_2-chiral (def:E2-chiral-algebra, spectral-braiding-core.tex): E_2 on Z^{der}_{ch}(A), NOT on A. R-matrix R(z) with spectral parameter. DONE.
+- E_2-topological (def:E2-topological-algebra, spectral-braiding-core.tex): requires conformal vector to topologize. DONE.
 
 **E_3 level (Parts V-VI = CLIMAX):**
-- E_3-chiral = E_2-chiral x E_1-top: the HT bulk. Holomorphic on X, topological on R. Factorisation algebra on X x R. This is the HOLOMORPHIC-TOPOLOGICAL structure. NOT AUTOMATIC from the chiral algebra. Requires a 3d HT theory whose boundary is A. For gauge-theoretic examples (Kac-Moody): the 3d holomorphic CS theory (from 6d holomorphic gauge theory) provides this — proved by Costello-Li / CFG. For GENERAL vertex algebras: requires quantizing the Poisson vertex model, which is HARD OPEN WORK, not automatic. The E_2 -> E_3-chiral step is CONJECTURAL in general.
+- E_3-chiral = E_2-chiral x E_1-top: the HT bulk. Holomorphic on X, topological on R. Factorisation algebra on X x R. This is the HOLOMORPHIC-TOPOLOGICAL structure. NOT AUTOMATIC from the chiral algebra. Requires a 3d HT theory whose boundary is A. For gauge-theoretic examples (Kac-Moody): the 3d holomorphic CS theory (from 6d holomorphic gauge theory) provides this — proved by Costello-Li / CFG. For W-algebras via DS (including Virasoro): the Costello-Gaiotto theorem provides the 3d HT theory (holomorphic CS with DS boundary conditions); the remaining gap is T_DS = [Q_tot, G'] in the DS-modified BV complex. For chiral algebras without gauge-theoretic origin: requires quantizing the Poisson vertex model (hard open work). The E_2 -> E_3-chiral step is CONJECTURAL for non-gauge-theoretic algebras.
 - E_3-topological = E_2-top x E_1-top = full TQFT: INDEPENDENT of complex structure. Requires BOTH a 3d HT theory (for E_3-chiral) AND a conformal vector at non-critical level (for topologization). This is Chern-Simons. CFG (arXiv:2602.12412) construct the E_3-topological structure from BV quantisation of CS. THE VOLUME'S CLIMAX IS CONSTRUCTING E_3-TOPOLOGICAL ON Z^{der}_{ch}(A) WHEN A HAS A CONFORMAL VECTOR AT NON-CRITICAL LEVEL AND A 3D HT ORIGIN.
 
 The topologization step (chiral -> topological) at each level:
@@ -92,24 +92,24 @@ Each step adds one E_1 factor. Each step has a chiral and a topological version.
 - Chiral coproduct Delta: A -> A otimes A is on A itself, NOT the deconcatenation on B(A). Deconcatenation is structural; the Hopf coproduct is independent structure.
 - The r-matrix from collision residues is the CLASSICAL SHADOW. A chiral quantum group needs: coproduct + full R(z) + quasi-triangularity + antipode. The coproduct is NOT visible in the shadow tower.
 - Bar chain models are indexed by topologico-combinatoric stratifications with bulk-to-boundary structure, not by manifolds.
-- Sources of chiral coproducts: Gaiotto-Rapcak-Zhou (arXiv:2309.16929, type A, M2-M5 fusions), Jindal-Kaubrys-Latyntsev (arXiv:2603.21707, ADE quivers, CoHA vertex coproducts).
+- Sources of chiral coproducts (EXTERNAL references for comparison, not internal constructions of this programme): Gaiotto-Rapcak-Zhou (arXiv:2309.16929, type A only, M2-M5 fusions), Jindal-Kaubrys-Latyntsev (arXiv:2603.21707, ADE quivers only, CoHA vertex coproducts). The chiral coproduct in THIS programme is the Drinfeld coproduct via bar-cobar, not a CoHA coproduct.
 
 ## Preface Geometric Escalation (Platonic Ideal)
 
 The preface walks through topologico-combinatoric stratified spaces from a point to E_3. At each stage a degree of freedom is gained, a new configuration space appears, and a new algebraic structure emerges on a specific object. The volume climbs to E_3-TOPOLOGICAL (not E_3-chiral).
 
-| Stage | Space | Structure gained | Lives on |
-|-------|-------|-----------------|----------|
-| 0 | Point | Classical Koszul duality | A |
-| 1 | R | E_1 coalgebra (deconcatenation) | B(A) |
-| 2 | [0,1], R_≥0 | A_inf, modules, line operators | B(A), C(I) |
-| 3 | C | Chiral product (bar differential) | B(A) |
-| 4 | C x R | E_1 dg coalgebra (both structures) | B(A) |
-| 5 | H (half-plane, dH=R) | SC^{ch,top} (bulk -> boundary) | PAIR (Z^{der}_{ch}, A) |
-| 6 | D (formal disk) | Vertex algebras, End^{ch}_A | Local model |
-| 7 | Annulus, Sigma_g | Modular tower, curvature kappa*omega_g | Theta_A |
-| 8 | Drinfeld center | E_2 (chiral Deligne) | Z^{der}_{ch}(A) |
-| 9 | Topologization | E_3-TOPOLOGICAL (Sugawara + conformal vector) | Z^{der}_{ch}(A) |
+| Stage | Space | Operad / Structure | Lives on |
+|-------|-------|-------------------|----------|
+| 0 | Point | Ass (classical Koszul duality) | A |
+| 1 | R | Ass^c cooperad (deconcatenation coproduct) | B(A) |
+| 2 | [0,1], R_≥0 | W(Ass) = A_inf; modules via one-sided bar | B(A), C(I) |
+| 3 | C | BD chiral operad {FM_k(C)} (OPE residues); E_inf: hol E_2; E_1: Ass^{ch} | bar DIFFERENTIAL d_B on B(A) |
+| 4 | C x R | Coalgebra over (Ass^{ch})^! (Koszul dual cooperad of chiral Ass) | B(A) = E_1 dg coassociative coalgebra |
+| 5 | H (half-plane, dH=R) | SC^{ch,top} (two-colored: closed FM_k(C), open E_1, no open-to-closed) | PAIR (Z^{der}_{ch}, A) |
+| 6 | D (formal disk) | End^{ch}_A (chiral endomorphism operad, Aut(O)-equivariant) | VA = local model on D |
+| 7 | Annulus, Sigma_g | SC^{ch,top}_mod (partially modular); curvature d^2 = kappa*omega_g | Theta_A, genus tower |
+| 8 | Drinfeld center | E_2-chiral Gerstenhaber (chiral Deligne-Tamarkin) | Z^{der}_{ch}(A) = C^bullet_{ch}(A,A) |
+| 9 | Topologization | E_3-TOPOLOGICAL (Sugawara + conformal vector; Dunn: E_2^top x E_1^top) | Z^{der}_{ch}(A) |
 
 Stage 9 = E_3-TOPOLOGICAL is the POINT OF THE VOLUME. NOT E_3-chiral: the conformal vector KILLS the chiral direction at the cohomological level. Sugawara at non-critical level: T(z) = {Q, G(z)}, so C-translations are Q-exact, the complex structure on C becomes irrelevant in cohomology, the two colors of SC^{ch,top} collapse, and Z^{der}_{ch}(A) becomes a genuine E_3-TOPOLOGICAL algebra independent of the complex structure on C. Without conformal vector: stuck at SC^{ch,top} (two colors remain distinct, holomorphic direction carries nontrivial cohomological information). At critical level k = -h^v: Sugawara undefined, center jumps, topologization fails.
 
@@ -119,7 +119,7 @@ E_3-topological is a SPECIAL CASE requiring conformal vector. SC^{ch,top} is the
 
 SC^{ch,top} must be understood AS A FIRST-CLASS OBJECT with five redundant presentations:
 1. **Operadic**: generators (codim-1 boundary strata of FM_k(C) x Conf_m(R)), relations (codim-2)
-2. **Koszul dual**: SC^{ch,top} is Koszul self-dual; W(SC^{ch,top}) = cofibrant replacement
+2. **Koszul dual**: (SC^{ch,top})^! = (Lie, Ass, shuffle-mixed); NOT self-dual (Com <-> Lie, Ass self-dual); W(SC^{ch,top}) = cofibrant replacement
 3. **Factorization**: Z^{der}_{ch}(A) = E_2-chiral center acting on A via universal brace
 4. **BV/BRST**: Obs(U) = logarithmic SC-algebra; QME = open/closed MC equation
 5. **Convolution**: g^{SC}_T = L_inf convolution from bar cooperad B(SC^{ch,top})
@@ -235,6 +235,70 @@ AP157: Degeneration-dependent "invariants." Separating degeneration gives zero g
 ## Opus 4.6 Failure Modes (Vol II-Specific)
 
 FM24: B-cycle i^2 error. q = e^{2*pi*i*pi*i/(k+2)} is real, not root of unity. Counter: verify |q|=1.
+
+### Exhaustive Error Catalogue (2026-04-12 session, 55+ agents)
+
+**CATEGORICAL LEVEL ERRORS (the most dangerous class):**
+
+FM40: Dunn on A instead of Z(A). Applied "E_1 ⊗ E_1 = E_2" to the boundary algebra A. WRONG. A is E_1. Dunn applies to Z(A) (bulk/derived center) or Mod_A (module category). Counter: before ANY Dunn claim, verify the target is Z(A) or Mod_A, NEVER A.
+
+FM41: R-matrix makes A into E_2. Claimed R-matrix promotes A from E_1 to E_2. WRONG. R-matrix makes Mod_A braided (E_2 in Cat). A remains E_1. Quantum groups U_q(g) are E_1; Rep(U_q(g)) is E_2 in Cat. Counter: E_2 lives one categorical level up from A. Always.
+
+FM42: YBE = A_inf associativity. Claimed "YBE is the A_inf associativity condition viewed through Dunn." WRONG. YBE is the COMPATIBILITY condition between two E_1 structures (braiding coherence). A_inf associativity is coherence of a SINGLE E_1. Different conditions. Counter: separate associativity (single E_1) from compatibility (interaction of two E_1's).
+
+**FACTORISATION HOMOLOGY ERRORS:**
+
+FM43: Bar = factorisation homology of R. Claimed B(A) = ∫_R A. WRONG. ∫_R A = A (trivial). B(A) = k ⊗_A^L k = ∫_{[0,1]}^{k,k} A (interval with augmentation boundary). Counter: factorisation homology of a contractible manifold without boundary is the algebra itself.
+
+FM44: Bar complex = "chain model for factorisation cohomology." Imprecise. B(A) is a factorisation COALGEBRA. Chiral homology is derived global sections of this coalgebra — a separate, non-trivial operation. The bar complex is to chiral homology as a sheaf is to its cohomology. Counter: never conflate local (coalgebra) with global (cohomology).
+
+**COPRODUCT CONFLATION ERRORS:**
+
+FM45: Deconcatenation = chiral coproduct. Conflated the structural deconcatenation on B(A) (exists for any bar complex) with the Hopf-type chiral coproduct Δ: A → A⊗A (independent structure on A). WRONG. These are different coproducts on different objects. Counter: always specify WHICH coproduct and on WHICH object.
+
+FM46: r-matrix sufficient for quantum group. Implied the r-matrix from collision residues gives quantum group structure. WRONG. r-matrix is the classical shadow. Full quantum group needs: coproduct Δ + full R(z) + quasi-triangularity + antipode. The coproduct is NOT visible in the shadow tower (shadow tower sees fusion/product, not splitting/coproduct). Counter: "r-matrix is necessary but not sufficient."
+
+**E_3 OVERCLAIMING ERRORS:**
+
+FM47: E_inf → E_3-chiral automatic. Claimed E_inf chiral algebra automatically produces E_3-chiral. WRONG. E_2 on Z(A) is automatic (Deligne conjecture). E_3-chiral requires a 3d HT theory whose boundary is A. For KM: proved (holomorphic CS from 6d). For GENERAL vertex algebras: requires quantizing the Poisson vertex model — HARD OPEN WORK, not automatic. Counter: nothing beyond E_2 on Z(A) is automatic.
+
+FM48: E_3-topological from E_inf alone. Implied conformal vector is derivable from vertex algebra axioms. WRONG. Conformal vector is ADDITIONAL STRUCTURE. Not every VA has one. E_3-topological requires BOTH a 3d HT theory AND a conformal vector at non-critical level. Counter: E_3-top needs two independent inputs (3d theory + conformal vector).
+
+**NOTATION ERRORS:**
+
+FM49: Y_z^\hbar notation. Changed Y_\hbar to Y_z^\hbar across 531 occurrences. WRONG. The algebra Y_\hbar(g) does not depend on z. The spectral parameter z lives on Δ_z, R(z), T(z), ev_z — structures ON the algebra, not the algebra itself. Y_z^\hbar is non-standard and misleading. Reverted. Counter: NEVER put the spectral parameter in the algebra symbol. It parametrises coproduct/R-matrix, not the algebra.
+
+FM50: Ordered configuration spaces = geometric ordering on R ⊂ X. Repeatedly said "choosing R ⊂ X provides the ordering." WRONG. The E_1 ordering is ALGEBRAIC (operations depend on sequence, not just set). It does NOT require embedding R into X. Counter: the E_1 structure is operadic/algebraic, not geometric. Ordered configurations of the E_1 operad are about labeled configurations, not about real submanifolds.
+
+**STRUCTURAL PATTERN ERRORS:**
+
+FM51: "Emergent third dimension" from bar degree. Claimed bar degree provides a "transverse E_1 direction." WRONG. Bar degree is a grading on a chain complex. An E_1 structure requires operations, coherences, A_inf. A grading provides none of this. Counter: a grading is not an operadic structure.
+
+FM52: Within-surface SC = holographic bulk-boundary. Claimed the half-plane bar complex "is where the bulk-boundary correspondence should be made precise." WRONG. The within-surface SC (R ⊂ C) governs restriction to a real locus. The holographic bulk-boundary goes through the derived center (circle model / Hochschild). Counter: SC governs within-surface structure; holography goes through Hochschild/derived center.
+
+FM53: Two "independent" E_1 structures. Claimed within-surface E_1 and transverse E_1 are independent. WRONG. They are Koszul dual through the Hom functor: C*(A,A) = Hom(B(A), A). The A_inf-coalgebra on B(A) and the A_inf-algebra on C*(A,A) determine each other. Counter: Koszul dual, not independent.
+
+FM54: Spectral R(z) = categorical braiding. Conflated the spectral R-matrix R(z) (family of maps with parameter z) with the E_2 braiding from Dunn (single natural transformation, no parameter). These are different objects. How they relate in the D-module enriched setting requires proof. Counter: spectral ≠ categorical. The relationship needs a theorem, not an assertion.
+
+### Meta-Patterns (from the error catalogue)
+
+MP1: CATEGORICAL LEVEL CHECK. Before any claim about E_n or Dunn, verify: which categorical level? Algebra (E_1) / Module category (E_2 in Cat) / Center (E_2). NEVER skip this check.
+
+MP2: AUTOMATIC vs REQUIRES CONSTRUCTION. E_2 on Z(A) is automatic (Deligne). Everything above E_2 requires a specific construction (3d HT theory for E_3-chiral, conformal vector for E_3-top). Never say "automatic" above E_2.
+
+MP3: DISTINGUISH SIMILAR OBJECTS. When two mathematical objects look similar (deconcatenation vs chiral coproduct, spectral vs categorical braiding, algebraic vs geometric ordering), EXPLICITLY NAME AND DISTINGUISH before using either.
+
+MP4: NOTATION CHANGES NEED MATHEMATICAL JUSTIFICATION. Before ANY bulk notation change: (a) verify the new notation is mathematically correct, (b) verify it's consistent with the literature, (c) check it doesn't conflict with existing usage. The Y_z^\hbar disaster: 531 changes, mathematically wrong, reverted.
+
+MP5: GRADING ≠ OPERADIC STRUCTURE. A filtration/grading on a complex is NOT an E_n structure. An E_n structure requires operations parametrised by configuration spaces. A grading is just a Z-indexed decomposition.
+
+MP6: SINGLE vs PAIR. Before any claim that two structures interact (Dunn, braiding, compatibility), verify: is the claimed property intrinsic to ONE structure, or does it govern how TWO structures compose? YBE governs interaction of two E_1's. A_inf governs a single E_1. Deconcatenation is structural on one coalgebra. The chiral coproduct requires two copies.
+
+FM55: RT invariants = unordered E_1 chiral homology. Claimed RT invariants arise from E_1 ordered bar complex. WRONG. RT invariants arise from E_inf factorisation homology (CFG's E_3 trace on BV-quantised CS). Counter: RT = E_inf factorisation homology trace, NOT E_1 ordered bar complex.
+
+FM56: "Symmetric monoidal category of chiral algebras." Chiral algebras form a PSEUDO-TENSOR category (BD), NOT a symmetric monoidal category. The correct ambient is: symmetric monoidal dg category of D-modules on X. Counter: NEVER say "monoidal category of chiral algebras" — say "D-modules on X" or "factorisation algebras on X."
+
+FM57: Costello-Gaiotto already provides 3d HT for Virasoro. The manuscript says "quantizing the PV model is hard open work" for Virasoro E_3-chiral. MISLEADING: the Costello-Gaiotto theorem (holomorphic CS with DS boundary conditions) ALREADY provides the 3d HT theory whose boundary is Vir_c. The actual gap is T_DS = [Q_tot, G'] in the DS-modified BV complex, which is much more specific. Counter: cite Costello-Gaiotto for the 3d HT theory; state the gap as the BRST identity, not as "quantize the PV model."
 
 ## Cross-Volume Bridges
 

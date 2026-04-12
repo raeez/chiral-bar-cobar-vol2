@@ -30,7 +30,7 @@ Every chapter depends on Vol I's five theorems:
 - **I. The Open Primitive**: SC^{ch,top} constructed, recognition theorem, homotopy-Koszulity proved, PVA descent D2-D6 proved
 - **II. The E_1 Core**: Ordered bar B^{ord}(A) as primary structure; line operators, dg-shifted Yangian, spectral Drinfeld strictification (all simple types)
 - **III. The Seven Faces of r(z)**: Collision residue as R-matrix, Yangian, Sklyanin, Drinfeld-Kohno, celestial OPE, holographic map
-- **IV. The Characteristic Datum and Modularity**: Standard landscape examples, modular Swiss-cheese operad, Feynman transform, modular PVA quantization
+- **IV. The Characteristic Datum and Moduldegree**: Standard landscape examples, modular Swiss-cheese operad, Feynman transform, modular PVA quantization
 - **V. The Standard HT Landscape**: YM boundary, celestial holography, anomaly-completed Koszul duality, holographic reconstruction
 - **VI. Three-Dimensional Quantum Gravity**: The climax; Virasoro lambda-bracket generates the full gravitational theory; critical string dichotomy c=26 vs c!=26
 - **VII. The Frontier**: All conditional and conjectural material; no earlier part depends on this
@@ -43,7 +43,7 @@ Every chapter depends on Vol I's five theorems:
 | Tagged claims | ~2,604 |
 | Source files | 19 theory + 13 examples + 72 connections = 104 chapter .tex + 2 appendices |
 | Compute modules | 53 lib + 64 test |
-| Anti-patterns | V2-AP1 through V2-AP39 + AP150-AP157 + FM24 |
+| Anti-patterns | V2-AP1 through V2-AP39 + AP150-AP175 + FM24-FM57 |
 | Seven-faces master | Per-face status tags (F1-F7 with individual scope qualifiers) |
 | Cross-volume bridges | 15 (including 3D gravity climax row) |
 | Standalone papers | 3 (preface_full_survey, bar_chain_models_chiral_quantum_groups, ordered_associative_chiral_kd) |

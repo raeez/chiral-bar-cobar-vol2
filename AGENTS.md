@@ -102,7 +102,7 @@ Before any nontrivial work, lock these seven items:
 
 1. the exact target file, theorem, formula, bridge, or live surface;
 2. the task type: question-answering, audit, rectification, formula verification, build triage, or frontier synthesis;
-3. the convention bridge: grading, shifts, OPE modes versus lambda-brackets, open/closed colors, genus and arity scope, Vol I versus Vol II versus Vol III normalization;
+3. the convention bridge: grading, shifts, OPE modes versus lambda-brackets, open/closed colors, genus and degree scope, Vol I versus Vol II versus Vol III normalization;
 4. the live evidence surface: local file, nearby context, current diff, compute/tests, logs, and citations if any;
 5. the narrowest falsifier that could kill the current claim;
 6. the propagation surface if the claim changes;
@@ -151,7 +151,7 @@ All shared anti-patterns remain live:
 
 `AGENTS.md` compresses them into a smaller family-level operating surface. If a task touches one of those domains, open the relevant `CLAUDE.md` slice and the matching skill before editing.
 
-## Claude-To-Codex Parity Map
+## Claude-To-Codex Pdegree Map
 
 Claude-side workflows in this repo must have an explicit Codex-side home.
 
@@ -302,7 +302,7 @@ Before trusting any local argument, lock the conventions:
 - bar/cobar/Koszul-dual object identity;
 - open/closed color directionality;
 - lambda-bracket versus OPE-mode conventions;
-- genus/arity/filtration/family scope;
+- genus/degree/filtration/family scope;
 - Vol I versus Vol II versus Vol III terminology.
 
 ### 2. Read The Surface
