@@ -1581,10 +1581,140 @@ the $b \leftrightarrow b^{-1}$ symmetry, generate enough
 constraints to pin down the braiding.
 \end{remark}
 
+\subsubsection{Route D: Shift-equation uniqueness via Eberhardt}
+\label{subsubsec:route-D-eberhardt}
+
+Eberhardt~\cite{Eberhardt23} proves, via difference Galois theory,
+that for $b^2$ irrational and $c \in \C \setminus (-\infty, 1]$
+the Ponsot--Teschner fusion kernel~$\mathbb{F}$ is the
+\emph{unique} meromorphic solution to the shift equations
+\begin{equation}\label{eq:shift-equations}
+\mathbb{F}(\alpha_s + b/2) \;=\;
+M_+(\alpha_s)\,\mathbb{F}(\alpha_s)\,M_-(\alpha_s)^{-1}
+\end{equation}
+in the internal momentum $\alpha_s$, where $M_\pm$ are the
+$2 \times 2$ monodromy matrices of the $(2,1)$-degenerate
+BPZ equation. An analogous equation holds with $b \to b^{-1}$.
+For $b^2$ irrational the two shift lattices $\Z b + \Z b^{-1}$
+are dense in~$\R$, so a meromorphic solution is determined by
+its values on a single point.
+
+Roussillon~\cite{Roussillon24} independently establishes a
+convergent series representation of the fusion kernel valid at all
+irrational central charges, confirming the analytic framework. The
+broader context---Virasoro TQFT and its modular
+properties---appears in Collier--Eberhardt--Zhang~\cite{CEZ23}.
+
+The bar-cobar $R$-matrix satisfies the shift equations because:
+\begin{enumerate}[label=\textup{(\roman*)}]
+\item \textbf{Pentagon identity.}
+  The pentagon identity for Virasoro conformal blocks is
+  Theorem~\ref{thm:pentagon} (proved in
+  Section~\ref{sec:log-ht-monodromy}).
+
+\item \textbf{Degenerate eigenvalue matching.}
+  On the $(2,1)$-degenerate module, the bar-cobar braiding
+  eigenvalues $\sigma_\pm = e^{\pm i\pi b\alpha_2}$ match the
+  Ponsot--Teschner eigenvalues
+  (Remark~\ref{rem:virasoro-degenerate-truncation}).
+
+\item \textbf{Pentagon $+$ degenerate insertions $\Rightarrow$
+  shift equations.}
+  The pentagon identity applied to a configuration where one
+  external leg carries the $(2,1)$-degenerate representation
+  reduces the crossing relation to a rank-$2$ difference equation
+  in the internal momentum $\alpha_s$, with shift $b/2$.
+  This is the Moore--Seiberg
+  bootstrap~\cite{MooreSeiberg89}: the pentagon with one
+  degenerate insertion generates the shift
+  equations~\eqref{eq:shift-equations}, and the second pentagon
+  with $b \to b^{-1}$ generates the companion shift equation.
+\end{enumerate}
+
+The gap therefore reduces to a single analytic question:
+
+\begin{hypothesis}[Meromorphicity of the bar-cobar $R$-matrix]
+\label{hyp:bar-cobar-meromorphic}
+The bar-cobar spectral $R$-matrix
+$R_{\alpha_1,\alpha_2}^{\mathrm{bar}}$, restricted to the
+principal series $\alpha_i \in Q/2 + i\R_+$, is meromorphic in
+the external momenta~$\alpha_i$.
+\end{hypothesis}
+
+This is strictly weaker than
+Hypothesis~\ref{hyp:finite-monodromy} (Route~C), which demands
+finite monodromy exponent for \emph{all} $n$-point monodromies on
+$\Conf_n(\C)$; Hypothesis~\ref{hyp:bar-cobar-meromorphic} concerns
+only the $4$-point function. The meromorphicity is expected: the
+bar-cobar $R$-matrix is built from iterated residues of meromorphic
+forms on $\FM_k(\C) \times \Conf_m(\R)$, and each such residue
+is a rational function of the external momenta with poles on the
+null-vector lattice $\alpha_1 + \alpha_2 - Q + mb + nb^{-1}$
+($m, n \in \Z_{\ge 0}$).
+
+\begin{theorem}[Shift-equation identification;
+\ClaimStatusConditional{} (conditional on Hypothesis~\ref{hyp:bar-cobar-meromorphic})]
+\label{thm:shift-equation-identification}
+\index{uniqueness!shift-equation (Eberhardt)}
+Let\/ $b^2 \in \C \setminus \Q$ and\/
+$c = 1 + 6(b + b^{-1})^2 \in \C \setminus (-\infty, 1]$.
+If Hypothesis~\textup{\ref{hyp:bar-cobar-meromorphic}} holds,
+then
+\[
+R_{\alpha_1,\alpha_2}^{\mathrm{bar}}
+\;=\;
+\mathbb{F}_{\alpha_s}^{\alpha_t}
+\!\left[\begin{smallmatrix}
+\alpha_2 & \alpha_3 \\
+\alpha_1 & \alpha_4
+\end{smallmatrix}\right]
+\]
+on the principal series $\alpha_i \in Q/2 + i\R_+$.
+\end{theorem}
+
+\begin{proof}
+The bar-cobar $R$-matrix satisfies the pentagon identity
+(Theorem~\ref{thm:pentagon}) and matches the $(2,1)$-degenerate
+braiding eigenvalues
+(Remark~\ref{rem:virasoro-degenerate-truncation}). By the
+Moore--Seiberg bootstrap (pentagon with one degenerate
+insertion~\cite{MooreSeiberg89}), it therefore satisfies the shift
+equations~\eqref{eq:shift-equations} with monodromy matrices
+$M_\pm$ determined by the BPZ equation.
+Hypothesis~\ref{hyp:bar-cobar-meromorphic} supplies the
+meromorphicity input. Eberhardt's uniqueness
+theorem~\cite[Theorem~1.1]{Eberhardt23}, via the difference Galois
+theory of $q$-difference equations at $q = e^{i\pi b^2}$ with
+$b^2$ irrational, then gives
+$R^{\mathrm{bar}} = \mathbb{F}^{\PT}$, since $\mathbb{F}$ is
+the unique meromorphic solution.
+\end{proof}
+
+\begin{remark}[Comparison of gap hypotheses across routes]
+\label{rem:route-D-comparison}
+The four routes require the following gap inputs:
+\begin{center}
+\begin{tabular}{lll}
+Route & Gap hypothesis & Scope \\
+\hline
+A & Analytic continuation in $k$ & All $b^2$ \\
+B & Geometric Steinberg conjecture & All $c$ \\
+C & Finite monodromy exponent (all $n$-point) & $b^2 \notin \Q$ \\
+D & Meromorphicity ($4$-point only) & $b^2 \notin \Q$ \\
+\end{tabular}
+\end{center}
+Route~D has the weakest gap hypothesis: a single
+analytic property of the $4$-point $R$-matrix, rather than the
+all-$n$ monodromy control of Route~C or the analytic continuation
+in the level of Route~A. Route~A remains closest to unconditional
+for degenerate modules; Route~D is the strongest path for the
+principal series at irrational $b^2$.
+\end{remark}
+
 \subsubsection{Synthesis: the identification as a conditional theorem}
 \label{subsubsec:synthesis-PT}
 
-Combining the three routes:
+Combining the four routes:
 
 \begin{theorem}[Virasoro $R$-matrix identification;
 \ClaimStatusConditional{} (conditional on one of the following)]
@@ -1615,6 +1745,11 @@ following:
  and the bar-cobar $R$-matrix is an admissible Virasoro braiding
  in the sense of
  Definition~\textup{\ref{def:admissible-vir-braiding}}.
+
+\item \textbf{Shift-equation uniqueness}
+ (Route~D): $b^2 \notin \Q$ and
+ Hypothesis~\textup{\ref{hyp:bar-cobar-meromorphic}} holds for
+ the bar-cobar $R$-matrix on the principal series.
 \end{enumerate}
 \end{theorem}
 
@@ -1639,12 +1774,21 @@ Proposition~\ref{prop:field-theory-r}, (R3) by skew-symmetry, and
 (R5) by the meromorphy of the propagator; (R4) follows from the
 BPZ reflection acting on the Koszul-dual modules). Hence
 $R = \mathbb{F}$.
+
+\textbf{(D)}: Theorem~\ref{thm:shift-equation-identification}
+gives $R^{\mathrm{bar}} = \mathbb{F}^{\PT}$ directly from
+Eberhardt's uniqueness theorem~\cite{Eberhardt23}, using the
+pentagon identity (Theorem~\ref{thm:pentagon}) and degenerate
+matching (Remark~\ref{rem:virasoro-degenerate-truncation}) to
+verify the shift equations, and
+Hypothesis~\ref{hyp:bar-cobar-meromorphic} for the meromorphicity
+input.
 \end{proof}
 
-\begin{remark}[Strongest route: Route A is closest to unconditional]
+\begin{remark}[Strongest routes]
 \label{rem:strongest-route}
-Of the three routes, Route~A requires the least new input: the
-affine monodromy identification is proved
+Of the four routes, Route~A requires the least new input for
+degenerate modules: the affine monodromy identification is proved
 (Theorem~\ref{thm:affine-monodromy-identification}), DS reduction
 commutes with bar-cobar (Vol~I), and the analytic continuation
 from integer $k$ to continuous $b^2$ is the content of the
@@ -1672,6 +1816,16 @@ $\zeta$-regularized infinite product that arises from the
 bar-cobar configuration-space integrals on
 $\FM_n(\C) \times \Conf_n(\R)$ in the limit $n \to \infty$?
 The affirmative answer would complete the identification.
+
+Route~D is the strongest path for the principal series at
+irrational $b^2$: it requires only the meromorphicity of the
+$4$-point bar-cobar $R$-matrix
+(Hypothesis~\ref{hyp:bar-cobar-meromorphic}), which is a
+weaker input than the all-$n$ monodromy control of Route~C.
+The Eberhardt uniqueness theorem~\cite{Eberhardt23} then
+does all the work, converting the pentagon identity and
+degenerate matching---both proved---into the full identification
+via difference Galois theory.
 \end{remark}
 
 \begin{remark}[Physical content: graviton braiding from the
