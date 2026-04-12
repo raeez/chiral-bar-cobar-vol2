@@ -11,7 +11,7 @@
          │         (Virasoro via DS, one route)         │
          │                                              │
          ├─── [A0a] Direct algebraic proof ─────────────┤
-         │          (T ∈ im(d_HH) on C*(A,A))          │
+         │          ([T,-] null-homotopic on C*_ch)     │
          │                                              ▼
 [B] Genus ≥ 2 ─────────────────────────────► [E] Global triangle
     operadic                                     beyond Koszul
@@ -45,37 +45,45 @@ The question is: what ADDITIONAL hypothesis (if any) is needed to promote E_2 �
 
 **Two proof strategies:**
 
-**A0a. Direct algebraic route (preferred, no physics input).**
-The conformal vector T ∈ A acts on the Hochschild cochain complex C*(A,A) via the A-bimodule structure. The claim is that T is in the image of the Hochschild differential d_HH on C*(A,A):
-$$T = d_{\mathrm{HH}}(G) \quad \text{for some } G \in C^{*-1}(A,A).$$
-If this holds, then:
-- Step 1: The translation operator ∂_z = [T, -] is d_HH-exact on C*(A,A).
-- Step 2: The factorisation algebra Z(A) on X is locally constant in Hochschild cohomology (translations are exact → z-dependence is cohomologically trivial).
+**A0a. Direct algebraic route (harder than originally thought; may require BV/ghost extension).**
+The goal is to show that the translation operator [T, -] acts trivially on the cohomology of the chiral Hochschild cochain complex C^•_ch(A,A). The precise algebraic condition is:
+$$[T, -] = [d_{\mathrm{ch}},\, h] \quad \text{for some degree } {-1} \text{ operator } h \text{ on } C^\bullet_{\mathrm{ch}}(A,A),$$
+i.e., the operator [T, -]: C^n_ch → C^n_ch is chain-homotopic to zero with respect to the chiral Hochschild differential d_ch.
+
+**Degree analysis (why the previous formulation was wrong).** One might hope to write T = d_HH(G) for some G ∈ C^{-1}(A,A), which would immediately give [T, -] = [d_HH(G), -] as a boundary. But this is degree-impossible: T lives in C^0_ch(A,A) = A (a 0-cochain), and there are no (−1)-cochains since Hochschild arity is non-negative. The equation T = d_HH(G) for G ∈ C^{-1} cannot make sense in the chiral Hochschild complex.
+
+**What the correct formulation requires.** The null-homotopy h is a degree −1 *operator* on C^•_ch(A,A), NOT an element of C^{-1}. This is an endomorphism of the cochain complex that lowers internal (cohomological) degree by 1. The existence of such an operator is what makes [T, -] cohomologically trivial.
+
+If such h exists, the topologization proceeds exactly as in Construction constr:topologization in 3d_gravity.tex:
+- Step 1: [T, -] = [d_ch, h] implies ∂_z acts as a d_ch-coboundary on C^•_ch(A,A).
+- Step 2: The factorisation algebra Z(A) on X becomes locally constant in d_ch-cohomology.
 - Step 3: Lurie/Ayala-Francis recognition: locally constant factorisation algebra on X = E_2-topological algebra.
 - Step 4: Dunn with existing E_1^{top} (transverse) → E_3-topological.
 
-This is purely algebraic — no 3d HT theory, no gauge theory, no BV-BRST needed. The hypothesis is just: T ∈ im(d_HH).
+**The 3d input problem.** For classical vertex algebras (no ghosts, δ_Q = 0), the chiral Hochschild complex C^•_ch(A,A) is concentrated in non-negative internal degrees. A degree −1 homotopy operator h requires fields of negative internal degree. In the 3d BV-BRST framework, these negative-degree fields exist: they are the antighosts G(z) of ghost number −1 in the 3d bulk BV complex. Construction constr:topologization uses exactly this: T = [Q, G] where Q is the 3d BRST differential and G is the antighost. The graded Jacobi identity then gives [T, O] = [Q, [G, O]] for Q-closed O, which is the desired null-homotopy.
 
-**Key question for A0a:** Is T ∈ im(d_HH) automatic for any conformal vector at non-critical level? Or is it an additional hypothesis?
+Thus the "purely algebraic" route A0a faces a structural obstruction: the negative-degree homotopy fields that make [T, -] null-homotopic naturally arise from 3d BV antighosts, which reintroduces 3d input. Whether a purely 2d algebraic construction of h (without appealing to the 3d BV complex) exists remains the central open question.
 
-For KM at non-critical: T_Sug = (1/(2(k+h∨))) Σ_a :J^a J_a:. The Sugawara construction shows T_Sug IS a cup product of currents (it's in the image of the multiplication map μ: A⊗A → A, which is related to d_HH). Whether this means T_Sug ∈ im(d_HH) on the Hochschild complex requires checking.
+**Key question for A0a:** Can the null-homotopy h: C^n_ch → C^{n-1}_ch be constructed intrinsically from the conformal vector T and the chiral algebra structure of A, without invoking a 3d HT theory? Or does any construction of h necessarily pass through the 3d BV extension?
 
-For general VA with conformal vector: T is an element of weight 2 in A. It may or may not be in im(d_HH). This is the content of the theorem.
+For KM at non-critical: T_Sug = (1/(2(k+h∨))) Σ_a :J^a J_a:. The Sugawara antighost G_Sug is constructed in the 3d holomorphic CS complex (Vol I, Construction constr:sugawara-antighost). Whether G_Sug can be "seen" intrinsically in the 2d chiral Hochschild complex (via some extension or enlargement that avoids the full 3d BV machinery) is the test case.
+
+For general VA with conformal vector: the question is whether the conformal vector axioms alone force the existence of h, or whether 3d input is always needed.
 
 **A0b. Physical route (via 3d HT theory).**
 If A arises as the boundary of a 3d HT theory (gauge-theoretic or not), and T = [Q, G] in the BRST complex of that 3d theory, then Construction constr:topologization gives E_3-topological. This is the route through items A and A1-A3 below.
 
 **Sub-items for A0:**
 
-- **A0.1.** Determine whether T ∈ im(d_HH) is automatic for conformal vectors at non-critical level, or whether it requires an additional hypothesis (e.g., T comes from Sugawara, or A is chirally Koszul, or A has finite shadow depth).
+- **A0.1.** Determine whether a null-homotopy h with [T, -] = [d_ch, h] can be constructed intrinsically from conformal vector axioms, or whether it necessarily passes through a 3d BV extension. The test case is KM at non-critical level: can the Sugawara antighost G_Sug be "seen" in a purely 2d enlargement of C^•_ch(A,A)?
 
-- **A0.2.** If T ∈ im(d_HH) is automatic: write the proof as a Theorem in 3d_gravity.tex, replacing Conjecture conj:E3-topological-climax.
+- **A0.2.** If h can be constructed intrinsically: write the proof as a Theorem in 3d_gravity.tex, replacing Conjecture conj:E3-topological-climax. Identify the minimal hypotheses on A (e.g., Sugawara origin of T, chirally Koszul, finite shadow depth).
 
-- **A0.3.** If T ∈ im(d_HH) requires a hypothesis: identify the minimal hypothesis, add it to the theorem statement, and verify it for all standard families (KM, Virasoro, W_N, Heisenberg, lattice VOAs).
+- **A0.3.** If h necessarily requires 3d input: characterize precisely WHICH 3d input is needed (full BV quantisation, or just the existence of the antighost G?). Determine whether a weaker algebraic surrogate (e.g., an extended chiral Hochschild complex with auxiliary negative-degree generators) can package the 3d input without invoking the full 3d HT theory. Verify the resulting theorem for all standard families (KM, Virasoro, W_N, Heisenberg, lattice VOAs).
 
-- **A0.4.** Verify: does this direct algebraic proof agree with the physical route (Construction constr:topologization) on the overlap (KM at non-critical level)?
+- **A0.4.** Verify: does the intrinsic null-homotopy (if it exists) agree with the BV null-homotopy from Construction constr:topologization on the overlap (KM at non-critical level)? Concretely: does the intrinsic h, restricted to the 3d BV setting, coincide with the operator O ↦ [G, O] where G is the Sugawara antighost?
 
-**This is the HIGHEST PRIORITY item in the roadmap.** If A0a succeeds, it closes the climax for ALL conformal vertex algebras at non-critical level, without case-by-case gauge-theory input.
+**This is the HIGHEST PRIORITY item in the roadmap.** The question of whether [T, -] null-homotopy can be proved intrinsically is still the right question. If A0a succeeds, it closes the climax for ALL conformal vertex algebras at non-critical level without case-by-case gauge-theory input. If it cannot bypass 3d input, the characterization of the minimal 3d input needed is itself a theorem worth proving (and the physical route A0b via Construction constr:topologization remains the primary path).
 
 ---
 
@@ -242,7 +250,7 @@ If A arises as the boundary of a 3d HT theory (gauge-theoretic or not), and T = 
 
 ## Priority ordering
 
-0. **A0** (THE MASTER THEOREM: conformal vector → E_3-topological. If the direct algebraic route A0a works, it closes the climax for ALL conformal VAs at once. This is the single highest-value target.)
+0. **A0** (THE MASTER THEOREM: conformal vector → E_3-topological. If the direct algebraic route A0a can construct [T,-] null-homotopy intrinsically, it closes the climax for ALL conformal VAs at once. If not, characterizing the minimal 3d input is itself the theorem. This is the single highest-value target.)
 1. **F1-F5** (immediate, no dependencies, clean up adversarial findings)
 2. **G1-G5** (immediate, infrastructure)
 3. **A1** (medium difficulty, would close the climax for Virasoro via DS — a backup if A0a fails)
