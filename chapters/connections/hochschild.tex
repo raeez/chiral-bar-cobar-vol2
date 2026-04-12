@@ -256,17 +256,17 @@ Hochschild cochain evaluation, which is the OPE of bulk
 operators near the boundary.
 
 The closed-color operations of $\mathsf{SC}^{\mathrm{ch,top}}$
-at arity~$(k,0)$ (purely closed) are
+at degree~$(k,0)$ (purely closed) are
 $C_*(\mathrm{FM}_k(\mathbb C))$, which are the chains on the
 Fulton--MacPherson compactification. Kontsevich formality
 $C_*(\mathrm{FM}_k(\mathbb C))\xrightarrow{\sim}E_2(k)$
 (Theorem~\ref{thm:homotopy-Koszul}) identifies these with
-the $E_2$-operations. The mixed operations at arity~$(k,m)$
+the $E_2$-operations. The mixed operations at degree~$(k,m)$
 are $C_*(\mathrm{FM}_k(\mathbb C))\times E_1(m)$, encoding
 $k$~bulk insertions near the boundary and $m$~boundary
 insertions along the topological direction; this is the
-Hochschild $C^*(\cA,\cA)$-action on~$\cA$ at arity~$k$
-composed with the $E_1$-structure at arity~$m$.
+Hochschild $C^*(\cA,\cA)$-action on~$\cA$ at degree~$k$
+composed with the $E_1$-structure at degree~$m$.
 \end{proof}
 
 \begin{remark}[The two colors are inevitable]
@@ -408,7 +408,7 @@ derived center of the open-sector category:
 \[
 \cO_{\mathrm{bulk}} \;\simeq\; Z_{\mathrm{der}}(\cC_\partial) \;:=\; \RHom_{\mathrm{Fun}(\cC_\partial, \cC_\partial)}(\id, \id),
 \]
-where $\cC_\partial$ is the dg-category of boundary conditions (Definition~\ref{def:oc-factorization-category}). This identification is \emph{Morita invariant}: it depends only on the category $\cC_\partial$, not on the choice of vacuum object $b$ used to present the boundary algebra $A_\partial = \End(b)$. The passage from $Z_{\mathrm{der}}(\cC_\partial)$ to $C^\bullet_{\mathrm{ch}}(A_\partial, A_\partial)$ is via the standard identification of the derived center of a compactly generated dg-category with the Hochschild cochain complex of any compact generator's endomorphism algebra \cite{Kel06}.
+where $\cC_\partial$ is the dg-category of boundary conditions (Definition~\ref{def:oc-factorization-category}). This identification is \emph{Morita invariant}: it depends only on the category $\cC_\partial$, not on the choice of vacuum object $b$ used to present the boundary algebra $A_\partial = \End(b)$. The passage from $Z_{\mathrm{der}}(\cC_\partial)$ to $C^\bullet_{\mathrm{ch}}(A_\partial, A_\partial)$ is via the standard identification of the derived center of a compactly generated dg-category with the Hochschild cochain complex of any compact generator's endomorphism algebra \cite{Kel06}; the integral-transform formalism of Ben-Zvi--Francis--Nadler~\cite{BZFN10} provides the derived-algebraic-geometric framework for this identification and for the categorical Hochschild theory more broadly.
 \end{remark}
 
 \begin{remark}[Scope of the bulk--Hochschild identification]
@@ -617,7 +617,7 @@ Let $\Conf_k(\R)$ denote ordered configurations $(t_1<\cdots<t_k)$ of $k$ points
 \[
 \mathbb{X}_{k,m} \;:=\; \FM_k(\C)\times \Conf_m(\R).
 \]
-Operations in $\OHT$ at arity $(k,m)$ are represented by chains on $\mathbb{X}_{k,m}$ decorated by edge--length parameters.
+Operations in $\OHT$ at degree $(k,m)$ are represented by chains on $\mathbb{X}_{k,m}$ decorated by edge--length parameters.
 Given $f\in \mathrm{C}^\bullet_{\mathrm{ch,top}}(A)$ and $g_1,\dots,g_m\in \mathrm{C}^\bullet_{\mathrm{ch,top}}(A)$, we define
 \[
 f\{g_1,\dots,g_m\} := \int_{\mathbb{X}} \;\;\Bigl(\text{pullback of kernels from } \mathbb{X}_{k,m'} \Bigr)\;\circ\;\Bigl(\text{insertions via trees along } \FM\times \Conf\Bigr),
@@ -689,7 +689,7 @@ parametrized by points in $\mathbb{X}_{k,m}$, i.e., by integration of propagator
 \[
 \mathrm{C}^\bullet_{\mathrm{ch,top}}(A) = \underline{\mathrm{Hom}}_{\text{cooperad}}\bigl((\OHT)^\vee, \mathrm{End}_A\bigr).
 \]
-This gives the map $\Phi \colon \mathrm{C}^\bullet_{\mathrm{ch,top}}(A) \to \mathsf{Obs}_{\mathrm{bulk}}(\mathbb{B}^3)$: a cochain $f$ of arity $(k,m)$ determines an observable by integrating $f$ against the propagator kernels over $\mathbb{X}_{k,m}$. In the reverse direction, restricting a bulk observable to the configuration-space strata recovers the cochain components.
+This gives the map $\Phi \colon \mathrm{C}^\bullet_{\mathrm{ch,top}}(A) \to \mathsf{Obs}_{\mathrm{bulk}}(\mathbb{B}^3)$: a cochain $f$ of degree $(k,m)$ determines an observable by integrating $f$ against the propagator kernels over $\mathbb{X}_{k,m}$. In the reverse direction, restricting a bulk observable to the configuration-space strata recovers the cochain components.
 
 \medskip
 \textbf{Step 2: Holomorphic weight filtration.}
@@ -1733,6 +1733,311 @@ Chapter~\textup{\ref{chap:ordered-associative}}
 \textup{(}Definition~\textup{\ref{def:annular-bar}}\textup{)}.
 \end{remark}
 
+\subsection{The punctured disk bar chain model and the $E_2$--$E_1$ gap}
+\label{subsec:punctured-disk-bar}
+
+The circle $S^1$ and the punctured disk
+$D^*:=D\setminus\{0\}$ are homotopy equivalent: the
+retraction $D^*\to S^1$ collapsing the radial direction
+is an equivalence.  At the level of homology, this
+equivalence is reflected in a canonical isomorphism
+$H^{\mathrm{ch}}_*(D^*,\cA)\cong\HH^{\mathrm{ch}}_*(\cA)$.
+At the level of \emph{chains}, the two models are
+genuinely different: the punctured disk chain complex
+$C^{\mathrm{ch}}_*(D^*,\cA)$ retains the full
+holomorphic collision data (OPE poles, spectral
+parameters, $E_2$ structure), while the circle chain
+complex $C^{\mathrm{top}}_*(S^1,\cA)$ retains only the
+topological/cyclic data ($E_1$ structure).
+This chain-level discrepancy is the bar-complex
+manifestation of the $E_2$--$E_1$ gap, and it is
+load-bearing for the passage from Rung~1 to
+Rung~2 in the geometric escalation
+(Preface, \S\,0).
+
+\subsubsection{Configuration spaces on $D^*$ versus $S^1$}
+
+\begin{definition}[Punctured disk configuration space]%
+\label{def:punctured-disk-config}%
+\index{configuration space!punctured disk|textbf}%
+\index{punctured disk!configuration space}%
+Let $D^*=D\setminus\{0\}\subset\C$.
+The \emph{punctured disk configuration space}
+$\FM_k(D^*)$ is the Fulton--MacPherson
+compactification of the space of $k$~distinct
+labelled points in~$D^*$: it is the pullback
+\[
+\FM_k(D^*)
+\;:=\;
+\FM_k(\C)\times_{\C^k}(D^*)^k,
+\]
+retaining all codimension-$1$ boundary strata from
+collisions of subsets $S\subseteq\{1,\ldots,k\}$
+($|S|\ge 2$), together with the boundary stratum
+at $|z_i|\to 0$ (approach to the puncture) and
+the constraint $|z_i|<1$ (containment in the disk).
+
+Compare this with
+$\Conf_k(S^1)=\{(\theta_1,\ldots,\theta_k)\in
+(S^1)^k:\theta_i\neq\theta_j\}$,
+the (uncompactified) configuration space of $k$~distinct
+points on the circle, which carries only angular/cyclic
+data with no holomorphic collision structure.
+\end{definition}
+
+The retraction $D^*\to S^1$, $z\mapsto z/|z|$, collapses the
+radial coordinate.  At the level of spaces, the induced map
+$\FM_k(D^*)\to\Conf_k(S^1)$ is a homotopy equivalence for
+each~$k$.  At the level of differential forms, the pullback
+$\Omega^\bullet(\Conf_k(S^1))\hookrightarrow
+\Omega^\bullet_{\log}(\FM_k(D^*))$ is an inclusion whose
+cokernel contains the logarithmic forms with holomorphic poles
+at collision divisors---these are the forms that encode OPE
+residues.  The chain-level distinction between $D^*$ and $S^1$
+is controlled by this cokernel.
+
+\subsubsection{The punctured disk bar chain model}
+
+\begin{definition}[Punctured disk bar chain model
+$B^{D^*}_\bullet(\cA)$; \ClaimStatusProvedHere]%
+\label{def:punctured-disk-bar}%
+\index{bar complex!punctured disk|textbf}%
+\index{punctured disk!bar chain model|textbf}%
+Let $\cA$ be a strongly admissible $E_1$-chiral algebra
+with ordered bar coalgebra $C=\Barchord(\cA)$.
+The \emph{punctured disk bar chain model} is the
+chain complex
+\begin{equation}\label{eq:punctured-disk-bar}
+B^{D^*}_\bullet(\cA)
+\;:=\;
+\bigoplus_{k\ge 0}
+\Omega^\bullet_{\log}\bigl(\FM_k(D^*)\bigr)
+\,\widehat\otimes\,
+\cA^{\widehat\otimes\,k},
+\end{equation}
+equipped with the differential
+\begin{equation}\label{eq:punctured-disk-diff}
+d^{D^*}
+\;=\;
+d_{\mathrm{int}} + d_{\mathrm{res}} + d_{\mathrm{cyc}},
+\end{equation}
+where:
+\begin{enumerate}[label=\textup{(\roman*)}]
+\item $d_{\mathrm{int}}$ is the internal differential
+ (BV-BRST operator $Q=m_1$ on each tensor factor);
+\item $d_{\mathrm{res}}$ is the collision residue
+ differential, extracting the residue at each
+ collision divisor $D_S\subset\FM_k(D^*)$ and
+ applying the operation $m_{|S|}$---this is the
+ holomorphic component, identical to the collision
+ differential on $\FM_k(\C)$;
+\item $d_{\mathrm{cyc}}$ is the cyclic/wraparound
+ differential encoding the periodicity of the
+ angular coordinate on $D^*\simeq(0,1)\times S^1$,
+ with $R$-matrix monodromy insertion as in the
+ circle bar chain model
+ \textup{(}Remark~\textup{\ref{rem:wraparound-monodromy}}\textup{)}.
+\end{enumerate}
+The identity $(d^{D^*})^2=0$ follows from the same
+codimension-$2$ cancellation argument as
+Theorem~\textup{\ref{thm:bar_differential_squared}},
+applied to the boundary complex of $\FM_k(D^*)$.
+\end{definition}
+
+The circle bar chain model
+$B^{S^1}_\bullet(\cA)$
+of Definition~\ref{def:circle-bar-chain-model}
+is the topological shadow: it uses
+$\Conf_k(S^1)$ in place of $\FM_k(D^*)$, and its
+differential $d^{\mathrm{ann}}$ retains only the
+cyclic/topological collision data.  The chain complex
+$B^{D^*}_\bullet(\cA)$ is strictly larger: it contains
+the full logarithmic forms encoding OPE poles,
+spectral parameters, and the radial collisions
+that are invisible to $S^1$.
+
+\subsubsection{The forgetful quasi-isomorphism}
+
+\begin{proposition}[Punctured disk to circle:
+chain-level quasi-isomorphism; \ClaimStatusProvedHere]%
+\label{prop:punctured-disk-S1-qiso}%
+\index{punctured disk!forgetful quasi-isomorphism|textbf}%
+\index{quasi-isomorphism!punctured disk to circle}%
+\index{state--field correspondence!chain-level}%
+The retraction $D^*\to S^1$ induces a quasi-isomorphism
+of chain complexes
+\begin{equation}\label{eq:punctured-disk-S1-qiso}
+\varphi\colon
+B^{D^*}_\bullet(\cA)
+\;\xrightarrow{\;\sim\;}
+B^{S^1}_\bullet(\cA)
+\end{equation}
+that is \emph{surjective} on chains and whose kernel
+$\ker\varphi$ is acyclic.  Concretely, $\varphi$ is
+the composite of:
+\begin{enumerate}[label=\textup{(\alph*)}]
+\item integration over the radial fibre
+ $(0,1)\subset D^*$, collapsing $\FM_k(D^*)$ to
+ $\Conf_k(S^1)$;
+\item restriction of the logarithmic forms
+ $\Omega^\bullet_{\log}(\FM_k(D^*))$ to the
+ cyclic forms $\Omega^\bullet(\Conf_k(S^1))$,
+ discarding the holomorphic pole data in the
+ collision divisors.
+\end{enumerate}
+At the level of homology, $\varphi$ induces an
+isomorphism
+\begin{equation}\label{eq:punctured-disk-homology}
+H_*\bigl(B^{D^*}_\bullet(\cA)\bigr)
+\;\cong\;
+H_*\bigl(B^{S^1}_\bullet(\cA)\bigr)
+\;\cong\;
+\HH^{\mathrm{ch}}_*(\cA).
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+The punctured disk $D^*$ deformation-retracts onto
+$S^1$ via $(r,\theta)\mapsto(1,\theta)$, so
+$\FM_k(D^*)\simeq\Conf_k(S^1)$ for each~$k$.
+The map $\varphi$ is defined on generators by
+integrating the radial component of the logarithmic
+forms and restricting the angular component to
+$S^1$-configurations.  It is a chain map: the
+collision residue differential $d_{\mathrm{res}}$
+on $\FM_k(D^*)$ is compatible with the cyclic
+differential on $\Conf_k(S^1)$ because the
+residue of a collision at a divisor $D_S$ depends
+only on the relative positions of the colliding
+points, not on the global radial coordinate.  The
+wraparound component $d_{\mathrm{cyc}}$ is
+preserved by $\varphi$ since it depends only on
+the angular periodicity.
+
+The kernel $\ker\varphi$ is spanned by forms that
+have non-trivial radial dependence---in particular,
+the logarithmic forms with holomorphic poles at
+collision divisors that are not pulled back from
+$S^1$.  The acyclicity of $\ker\varphi$ follows
+from the contractibility of the radial fibre
+$(0,1)$: the radial homotopy provides a contracting
+homotopy $h\colon\ker\varphi_k\to\ker\varphi_{k+1}$
+satisfying $dh+hd=\mathrm{id}$ on $\ker\varphi$.
+\end{proof}
+
+\begin{remark}[State--field correspondence at chain level]%
+\label{rem:state-field-chain-level}%
+\index{state--field correspondence!chain vs homology|textbf}%
+The quasi-isomorphism $\varphi$ of
+Proposition~\ref{prop:punctured-disk-S1-qiso}
+is the chain-level avatar of the state--field
+correspondence.  At the homology level, the
+state--field correspondence is an isomorphism:
+states (elements of the Fock space, i.e., the
+fibre at $0\in D$) are identified with fields
+(operator-valued distributions on~$D^*$).  At
+the chain level, this identification is only a
+quasi-isomorphism that \emph{forgets} holomorphic
+structure: the punctured disk chain complex
+$B^{D^*}_\bullet(\cA)$ carries the full field
+data (OPE poles, spectral parameters, radial
+ordering), while the circle chain complex
+$B^{S^1}_\bullet(\cA)$ carries only the state
+data (cyclic ordering, topological wraparound).
+The quasi-isomorphism $\varphi$ passes from fields
+to states by integrating out the holomorphic
+direction.
+\end{remark}
+
+\subsubsection{The $E_2$--$E_1$ gap}
+
+\begin{remark}[The chain-level $E_2$--$E_1$ gap;
+punctured disk versus circle]%
+\label{rem:E2-E1-chain-gap}%
+\index{E2-E1 gap@$E_2$--$E_1$ gap|textbf}%
+\index{punctured disk!E2-E1 gap@$E_2$--$E_1$ gap}%
+The two chain complexes $B^{D^*}_\bullet(\cA)$
+and $B^{S^1}_\bullet(\cA)$ compute the same
+homology $\HH^{\mathrm{ch}}_*(\cA)$, which carries
+an $E_2$-structure by the Deligne conjecture
+\textup{(}Proposition~\textup{\ref{prop:derived-center-E2}}\textup{)}.
+The $E_2$-structure is \emph{invisible} in
+$B^{S^1}_\bullet(\cA)$: the circle model sees
+only the $E_1$-cyclic structure (the wraparound
+differential $d_{\mathrm{wrap}}$, the cyclic
+ordering on $\Conf_k(S^1)$).  The $E_2$-structure
+\emph{is} visible in $B^{D^*}_\bullet(\cA)$: the
+holomorphic collision data in
+$\Omega^\bullet_{\log}(\FM_k(D^*))$---specifically,
+the OPE pole residues and the radial collision
+strata---encode the braiding coherences that promote
+$E_1$ to $E_2$.
+
+The quasi-isomorphism $\varphi$ is therefore
+\emph{not} an equivalence of $E_2$-algebras: it is
+an equivalence of chain complexes that forgets the
+$E_2$-refinement.  The $E_2$-structure on
+$\HH^{\mathrm{ch}}_*(\cA)$ can be
+\emph{recovered} from the circle model $B^{S^1}_\bullet(\cA)$
+only via the Deligne conjecture (an existence theorem),
+while it is \emph{exhibited} by the punctured disk
+model $B^{D^*}_\bullet(\cA)$ (a constructive chain-level
+witness).
+
+In the language of the geometric escalation:
+$S^1$ is a Rung~1 space (topological, $E_1$)
+and $D^*$ is a Rung~2 space (holomorphic, $E_2$).
+The quasi-isomorphism $\varphi$ is the projection
+from Rung~2 to Rung~1.  The kernel $\ker\varphi$ is
+acyclic---so the $E_2$--$E_1$ gap is invisible in
+homology---but non-zero at the chain level, and the
+$E_2$ operations live in the chain-level data that
+$\ker\varphi$ measures.
+\end{remark}
+
+\subsubsection{Relation to other bar chain models}
+
+The punctured disk bar chain model sits in the
+following network of bar chain models, interpolating
+between the formal disk and the circle.
+
+\begin{enumerate}[label=\textup{(\roman*)}]
+\item \emph{Formal disk $D$
+ \textup{(}Stage~6 of the geometric escalation\textup{)}}.
+ The vertex algebra structure on $\cA$ is defined on~$D$,
+ with configuration spaces $\FM_k(D)$.  The punctured
+ disk $D^*=D\setminus\{0\}$ is obtained by removing the
+ insertion point.  The inclusion $D^*\hookrightarrow D$
+ induces a restriction map on bar chain models: the
+ formal disk carries the full vertex algebra data
+ (including the vacuum and the state--field map at
+ $z=0$), while $D^*$ carries only the field data away
+ from the origin.
+
+\item \emph{Circle $S^1$
+ \textup{(}Rung~1, cyclic bar complex\textup{)}}.
+ The retraction $D^*\to S^1$ induces the forgetful
+ quasi-isomorphism $\varphi$ of
+ Proposition~\ref{prop:punctured-disk-S1-qiso},
+ discarding holomorphic data.
+
+\item \emph{Annulus $\mathrm{Ann}_\tau\subset D^*$
+ \textup{(}Section~\textup{\ref{subsec:annular-bar-complex}}\textup{)}}.
+ The annulus $\mathrm{Ann}_\tau=\{r_1<|z|<r_2\}$ embeds
+ in $D^*$ as the complement of two concentric disks.
+ The annular bar complex
+ $B^{\mathrm{ann}}_\bullet(\cA)$
+ is the restriction of the punctured disk bar chain
+ model to configurations supported on
+ $\mathrm{Ann}_\tau$, with the additional structure of
+ two boundary circles providing the bimodule datum.
+ The conformal modulus $\tau$ of the annulus is visible
+ at the chain level in $B^{D^*}_\bullet(\cA)$ through
+ the radial position of the configurations, connecting
+ to the chain-level modulus dependence of
+ Remark~\ref{rem:annular-modulus-dependence}.
+\end{enumerate}
+
 \subsection{The annular bar complex}
 \label{subsec:annular-bar-complex}
 
@@ -1861,6 +2166,446 @@ $\tau$-dependence to $\tau$-independent homology is the
 Hodge-to-de~Rham degeneration for the annular bar complex:
 the $E_1$-page carries the holomorphic data, and the
 $E_2$-page is the topological invariant.
+\end{remark}
+
+\subsection{The pair-of-pants bar chain model}
+\label{subsec:pants-bar-chain-model}
+
+The pair of pants $P = \mathbb{P}^1\setminus\{0,1,\infty\}$ is a
+genus-$0$ surface with three boundary circles
+$\partial_{\mathrm{in}}^1$, $\partial_{\mathrm{in}}^2$,
+$\partial_{\mathrm{out}}$.  It is the multiplication cobordism:
+its bar chain model encodes the product on chiral Hochschild
+homology.  The preceding annular bar complex
+(Construction~\ref{constr:annular-bar-vol2}) lives on a single
+boundary circle; the pair-of-pants model composes two such
+circles into a third.
+
+\begin{construction}[Pair-of-pants bar chain model;
+\ClaimStatusProvedHere]%
+\label{constr:pants-bar-model}%
+\index{pair of pants!bar chain model|textbf}%
+\index{bar complex!pair-of-pants|textbf}%
+\index{configuration space!three-punctured sphere}%
+Let $\cA$ be a strongly admissible augmented $E_1$-chiral algebra
+with ordered bar coalgebra $C = \Barchord(\cA)$ and diagonal
+bicomodule~$C_\Delta$.  The \emph{pair-of-pants bar chain model}
+$B^P_\bullet(\cA)$ is the chain complex on the stratified
+configuration space
+$\overline{\FM}_n^{\mathrm{ord}}(P)$
+of ordered configurations on $P$ with Fulton--MacPherson
+compactification.  Concretely:
+\begin{enumerate}[label=\textup{(\roman*)}]
+\item \emph{Generators.}
+  A degree-$n$ chain in $B^P_n(\cA)$ is a configuration of
+  $n$ labelled points in $P$ equipped with an element of
+  $\cA^{\otimes n}$, modulo the bar suspension shift.
+
+\item \emph{Configuration spaces.}
+  The compactification
+  $\overline{\FM}_n^{\mathrm{ord}}(P)$ has boundary strata
+  recording collisions near each of the three punctures
+  $\{0\}$, $\{1\}$, $\{\infty\}$.  Denote by
+  $\partial_0$, $\partial_1$, $\partial_\infty$
+  the boundary divisors corresponding to clusters of points
+  colliding at $0$, $1$, $\infty$ respectively.
+
+\item \emph{Differential.}
+  The total differential decomposes as
+  \begin{equation}\label{eq:pants-differential}
+    d^P \;=\; d_{\mathrm{int}} + d_{\mathrm{res}}
+    + d_{\partial_0} + d_{\partial_1} + d_{\partial_\infty},
+  \end{equation}
+  where $d_{\mathrm{int}}$ is the internal differential
+  on~$\cA$, $d_{\mathrm{res}}$ encodes OPE collision residues
+  from the holomorphic direction
+  (via $\FM_k(\mathbb{P}^1\setminus\{0,1,\infty\})$),
+  and $d_{\partial_0}$, $d_{\partial_1}$,
+  $d_{\partial_\infty}$ are the boundary strata contributions
+  from collisions at the three punctures.  Each boundary
+  stratum $\partial_i$ carries an $E_1$ structure: the
+  local coordinate at puncture~$i$ identifies collisions
+  there with the ordered bar differential on a half-line.
+
+\item \emph{Three $E_1$ structures.}
+  The three punctures induce three independent $E_1$ structures:
+  \begin{itemize}
+  \item $\partial_0$, $\partial_1$ are the two
+    \emph{input} circles, each carrying an annular bar complex
+    $B^{\mathrm{ann}}_\bullet(\cA)$
+    (Construction~\ref{constr:annular-bar-vol2});
+  \item $\partial_\infty$ is the \emph{output} circle,
+    carrying $B^{\mathrm{ann}}_\bullet(\cA)$.
+  \end{itemize}
+  The pair-of-pants multiplication composes the two input
+  annular bar complexes through $P$ into the output:
+  \[
+    \mu_P \colon
+    B^{\mathrm{ann}}_\bullet(\cA)
+    \otimes
+    B^{\mathrm{ann}}_\bullet(\cA)
+    \longrightarrow
+    B^{\mathrm{ann}}_\bullet(\cA).
+  \]
+  This agrees with the ordered fusion product
+  $\mu_P\colon C_\Delta\star C_\Delta\to C_\Delta$
+  of Theorem~\textup{\ref{thm:pair-of-pants}}.
+\end{enumerate}
+\end{construction}
+
+\begin{proposition}[Pair-of-pants product on $\HH^{\mathrm{ch}}_*$;
+\ClaimStatusProvedHere]%
+\label{prop:pants-product-HH}%
+\index{Hochschild homology!pair-of-pants product|textbf}%
+\index{pair of pants!product on Hochschild homology}%
+The pair-of-pants multiplication $\mu_P$ of
+Construction~\textup{\ref{constr:pants-bar-model}} is a chain map
+with respect to $d^P$.  On homology it induces the associative
+product
+\begin{equation}\label{eq:pants-HH-product}
+  \mu_P^H \colon
+  \HH^{\mathrm{ch}}_*(\cA)
+  \otimes
+  \HH^{\mathrm{ch}}_*(\cA)
+  \longrightarrow
+  \HH^{\mathrm{ch}}_*(\cA)
+\end{equation}
+that endows $\HH^{\mathrm{ch}}_*(\cA)$ with the structure of a
+graded associative algebra.
+\end{proposition}
+
+\begin{proof}
+That $\mu_P$ is a chain map follows from
+$(d^P)^2 = 0$ on $\overline{\FM}_n^{\mathrm{ord}}(P)$: the
+pair-of-pants is a genus-$0$ surface, so the bar differential is
+flat (no curvature correction at genus~$0$).
+Associativity of $\mu_P^H$ is the statement that the two
+decompositions of the genus-$0$ four-punctured sphere
+$\mathbb{P}^1\setminus\{0,1,\infty,\lambda\}$ into pairs of
+pants---pinching along the circle separating $\{0,1\}$ from
+$\{\infty,\lambda\}$, versus the circle separating $\{0,\lambda\}$
+from $\{1,\infty\}$---give chain-homotopic compositions.  This
+chain homotopy is provided by the codimension-$1$ strata of the
+moduli space $\overline{\cM}_{0,4}$: the cross-ratio $\lambda$
+parametrises the two degeneration channels, and the boundary of
+$\overline{\cM}_{0,4} \cong \mathbb{P}^1$ gives the associativity
+homotopy. The argument at the coalgebraic level is
+Theorem~\textup{\ref{thm:pair-of-pants}}.
+\end{proof}
+
+\begin{remark}[Degeneration: annulus pinch to pair of pants]%
+\label{rem:annulus-pinch-to-pants}%
+\index{pair of pants!annulus degeneration}%
+\index{degeneration!annulus to pair of pants}%
+The product $\mu_P^H$ on $\HH^{\mathrm{ch}}_*(\cA)$ arises
+geometrically from the degeneration of an annulus: pinch the waist
+circle of an annulus $\mathrm{Ann}_\tau$ to produce a nodal surface
+with two components, each a disk with one puncture.  Smoothing the
+node produces the pair of pants $P$.  At the chain level, the
+annular bar complex $B^{\mathrm{ann}}_\bullet(\cA)$ degenerates:
+the thin-annulus limit $\mathrm{Im}(\tau)\to\infty$ collapses the
+annulus into the sewing of two half-planes, and the pair-of-pants
+multiplication $\mu_P$ is the chain-level operation that composes
+through this sewing.  The identity
+$(d^P)^2 = 0$ at genus~$0$ reflects the
+absence of curvature in the degeneration: the smooth locus of
+$\overline{\cM}_{0,3}$ is a single point, and no non-trivial
+Arakelov correction appears.
+\end{remark}
+
+\subsection{The nodal bar chain model}
+\label{subsec:nodal-bar-chain-model}
+
+At a node, a smooth curve degenerates into irreducible components
+joined at ordinary double points.  The bar chain model on a nodal
+curve $\Sigma_{\Gamma}$---indexed by a stable graph
+$\Gamma\in\StGraph(g,n)$ labelling the boundary stratum of
+$\overline{\cM}_{g,n}$---is the tensor product of vertex bar
+complexes sewn at edges by the annular bar complex.  The
+curvature $\dfib^{\,2} = \kappa(\cA)\cdot\omega_g$ is
+concentrated on the boundary strata: the smooth locus carries a
+flat differential, and the nodal degenerations produce the global
+$(1,1)$-form $\omega_g$.
+
+\begin{construction}[Nodal bar chain model; \ClaimStatusProvedHere]%
+\label{constr:nodal-bar-model}%
+\index{nodal curve!bar chain model|textbf}%
+\index{bar complex!nodal curve|textbf}%
+\index{stable graph!bar complex indexing|textbf}%
+Let $\cA$ be a logarithmic $\SCchtop$-algebra
+(Definition~\ref{def:log-SC-algebra}), and let
+$\Gamma\in\StGraph(g,n)$ be a stable graph with vertex set
+$V(\Gamma)$, edge set $E(\Gamma)$, and leg set
+$L(\Gamma)$ of cardinality~$n$.  Each vertex~$v\in V(\Gamma)$
+carries a genus label $g(v)\ge 0$ and a valence
+$n(v) = |E_v| + |L_v|$, where $E_v$ is the set of half-edges at~$v$
+and $L_v$ is the set of legs at~$v$.  The total genus is
+$g = \sum_{v\in V(\Gamma)} g(v) + b_1(\Gamma)$,
+where $b_1(\Gamma) = |E(\Gamma)| - |V(\Gamma)| + 1$ is the first
+Betti number.
+
+The \emph{nodal bar complex on the stratum indexed by $\Gamma$}
+is:
+\begin{equation}\label{eq:nodal-bar-complex}
+  B_\Gamma(\cA)
+  \;:=\;
+  \biggl(\,
+  \bigotimes_{v\in V(\Gamma)}
+  B^{(g(v))}_{n(v)}(\cA)
+  \biggr)
+  \bigotimes_{e\in E(\Gamma)}
+  B^{\mathrm{ann}}_e(\cA),
+\end{equation}
+where the data are as follows.
+\begin{enumerate}[label=\textup{(\roman*)}]
+\item \emph{Vertex bar complexes.}
+  For each vertex $v\in V(\Gamma)$, the complex
+  $B^{(g(v))}_{n(v)}(\cA)$ is the genus-$g(v)$ bar complex
+  with $n(v)$ marked points---the bar complex of~$\cA$ on the
+  smooth component $\Sigma_v$ of genus~$g(v)$ with $n(v)$
+  punctures.  When $g(v) = 0$, this is the flat bar complex
+  (the ordinary bar differential with $(d^{(0)})^2 = 0$).
+  When $g(v)\ge 1$, the vertex bar complex carries the
+  curvature $\dfib^{\,2} = \kappa(\cA)\cdot\omega_{g(v)}$ of
+  the smooth component.
+
+\item \emph{Edge sewing.}
+  For each edge $e\in E(\Gamma)$, connecting vertices~$v_+$
+  and~$v_-$ (or a self-edge at a single vertex in the
+  non-separating case), the complex $B^{\mathrm{ann}}_e(\cA)$
+  is the annular bar complex
+  (Construction~\ref{constr:annular-bar-vol2}) placed at the node
+  corresponding to~$e$.  Concretely, the node is the thin-annulus
+  limit of a plumbing collar: a neighbourhood of the node in the
+  smoothing family is an annulus $\{|z\,w| < |t|\}$ with plumbing
+  parameter~$t$, and $B^{\mathrm{ann}}_e(\cA)$ is the annular bar
+  complex on this collar.
+
+  The sewing map at edge~$e$ is
+  \begin{equation}\label{eq:sewing-map}
+    \sigma_e \colon
+    B^{(g(v_+))}_{n(v_+)}(\cA)
+    \otimes
+    B^{\mathrm{ann}}_e(\cA)
+    \otimes
+    B^{(g(v_-))}_{n(v_-)}(\cA)
+    \longrightarrow
+    B_\Gamma(\cA),
+  \end{equation}
+  given by identifying the output boundary circle of the
+  annulus with a puncture of $\Sigma_{v_+}$ and the input
+  boundary circle with a puncture of~$\Sigma_{v_-}$.
+
+\item \emph{The tensor product structure.}
+  The tensor product in~\eqref{eq:nodal-bar-complex} is taken
+  over all vertices and edges simultaneously: the edge annuli
+  are the sewing connectors between vertex components.  For a
+  non-separating edge (self-edge at vertex~$v$), the two
+  half-edges both belong to the same vertex and the annular bar
+  complex sews two punctures of a single $\Sigma_v$, raising
+  the genus by~$1$.
+
+\item \emph{Differential.}
+  The total differential on $B_\Gamma(\cA)$ is the sum of the
+  vertex differentials and the annular sewing differentials:
+  \begin{equation}\label{eq:nodal-bar-differential}
+    d_\Gamma \;=\;
+    \sum_{v\in V(\Gamma)} d_v
+    \;+\;
+    \sum_{e\in E(\Gamma)} d^{\mathrm{ann}}_e,
+  \end{equation}
+  where $d_v$ is the bar differential on the vertex component
+  $B^{(g(v))}_{n(v)}(\cA)$ and $d^{\mathrm{ann}}_e$ is the
+  annular differential
+  (Theorem~\ref{thm:annular-bar-differential})
+  on the sewing collar at edge~$e$.
+\end{enumerate}
+\end{construction}
+
+\begin{proposition}[Curvature localisation on nodal strata;
+\ClaimStatusProvedHere]%
+\label{prop:nodal-curvature-source}%
+\index{curvature!localisation on nodal strata|textbf}%
+\index{nodal curve!curvature localisation}%
+\index{Arakelov form!nodal degeneration}%
+On the smooth locus of $\overline{\cM}_{g,n}$
+(the open stratum $\cM_{g,n}$), the bar differential
+$d^{(g)}$ on the genus-$g$ bar complex
+$\barB^{(g)}(\cA)$ satisfies
+$(d^{(g)})^2 = \kappa(\cA)\cdot\omega_g$, where the curvature
+arises from the $\bar\partial$-defect of the Arakelov propagator
+\textup{(}Volume~I, Theorem~D\textup{)}.  The restriction to
+the boundary stratum indexed by $\Gamma$ satisfies:
+\begin{equation}\label{eq:nodal-curvature-decomposition}
+  \dfib^{\,2}\big|_\Gamma
+  \;=\;
+  \sum_{v\in V(\Gamma)}
+  \kappa(\cA)\cdot\omega_{g(v)}
+  \;+\;
+  \sum_{e\in E(\Gamma)}
+  \kappa(\cA)\cdot\delta_e,
+\end{equation}
+where $\omega_{g(v)}$ is the Arakelov $(1,1)$-form on the smooth
+component $\Sigma_v$, and $\delta_e$ is the distributional
+$(1,1)$-current supported on the node corresponding to edge~$e$,
+arising from the $\bar\partial$-defect of the Arakelov kernel
+$K_{\mathrm{Ar}}$ in the thin-annulus limit of the sewing collar:
+\begin{equation}\label{eq:node-dbar-defect}
+  \bar\partial K_{\mathrm{Ar}}^{(g)}\big|_{e}
+  \;=\; -2\pi i\,\delta_e.
+\end{equation}
+In particular:
+\begin{enumerate}[label=\textup{(\alph*)}]
+\item At genus~$0$
+  \textup{(}$\Gamma$ a tree, $g(v)=0$ for all~$v$,
+  $b_1(\Gamma)=0$\textup{)}: the curvature vanishes,
+  $\dfib^{\,2}|_\Gamma = 0$, and the bar complex is flat.
+  This is why the pair-of-pants multiplication
+  \textup{(}Construction~\textup{\ref{constr:pants-bar-model}}\textup{)}
+  is strictly associative at genus~$0$.
+
+\item At genus~$1$
+  \textup{(}$\Gamma$ has $b_1(\Gamma)=1$ or a single vertex
+  with $g(v)=1$\textup{)}: the curvature is
+  $\kappa(\cA)\cdot\omega_1$, matching the one-loop anomaly
+  of the annular bar complex
+  \textup{(}equation~\eqref{eq:circle-bar-curvature}\textup{)}.
+
+\item At genus $g\ge 2$: the curvature
+  $\kappa(\cA)\cdot\omega_g$ decomposes over the stable graph
+  into vertex and edge contributions as
+  in~\eqref{eq:nodal-curvature-decomposition}, and the genus
+  tower is computed stratum by stratum: the genus-$g$ shadow
+  obstruction tower is the direct sum of vertex contributions
+  $\kappa(\cA)\cdot\omega_{g(v)}$ and edge contributions
+  $\kappa(\cA)\cdot\delta_e$ over all strata of
+  $\overline{\cM}_{g,n}$.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+Statement~(a) is the flatness of the genus-$0$ bar differential:
+when $g = 0$ and $\Gamma$ is a tree, the Arakelov form $\omega_0$
+is zero on $\mathbb{P}^1$ (the Arakelov form is
+$\omega_g = (i/2\mathrm{Im}(\tau))\,dz\wedge d\bar{z}$ on a
+genus-$g$ surface, which is undefined for $g = 0$ since
+$\mathbb{P}^1$ has no period matrix; the correct statement is
+that the propagator on $\mathbb{P}^1$ is globally holomorphic,
+so $\bar\partial K = 0$ and no curvature arises).
+
+Statement~(b) follows from
+equation~\eqref{eq:circle-bar-curvature}: the genus-$1$ curvature
+$\kappa(\cA)\cdot\omega_1$ was established as the one-loop anomaly
+of the circle bar chain model.  In the stable graph description,
+the genus-$1$ stratum is either a smooth torus ($\Gamma$ a single
+vertex with $g(v) = 1$) or a rational curve with a single node
+($\Gamma$ a single vertex with $g(v) = 0$ and one self-edge,
+$b_1(\Gamma) = 1$).  In the latter case the curvature comes
+entirely from the edge term $\kappa(\cA)\cdot\delta_e$.  In the
+former, it is $\kappa(\cA)\cdot\omega_1$ on the smooth torus.
+Both contribute $\kappa(\cA)\cdot\omega_1$ to the total
+curvature, as computed in Volume~I.
+
+Statement~(c) is proved by induction on the number of edges of
+$\Gamma$.  The base case (a single vertex with $g(v) = g$, no
+edges) gives $\dfib^{\,2} = \kappa(\cA)\cdot\omega_g$ from the
+vertex bar complex alone.  For each additional edge, the sewing
+via $B^{\mathrm{ann}}_e(\cA)$ introduces the node defect
+$\kappa(\cA)\cdot\delta_e$
+from~\eqref{eq:node-dbar-defect}.  The global relation
+\[
+  \omega_g
+  \;=\;
+  \sum_{v\in V(\Gamma)} \iota_{v*}\,\omega_{g(v)}
+  \;+\;
+  \sum_{e\in E(\Gamma)} \delta_e
+\]
+(where $\iota_{v*}$ denotes pushforward from the normalisation)
+is the distributional identity for the Arakelov form on a nodal
+curve, proved in Arakelov geometry
+(cf.\ Faltings~\cite{Faltings84}).  Combining this with
+the curvature formula
+$\dfib^{\,2} = \kappa(\cA)\cdot\omega_g$ on each stratum
+gives~\eqref{eq:nodal-curvature-decomposition}.
+\end{proof}
+
+\begin{remark}[Stable graph stratification and the genus tower]%
+\label{rem:stable-graph-genus-tower}%
+\index{stable graph!genus tower computation|textbf}%
+\index{genus tower!stable graph decomposition}%
+The stable graph stratification of $\overline{\cM}_{g,n}$ indexes
+all degeneration types of a genus-$g$ curve with $n$ marked
+points.  The nodal bar complex
+$B_\Gamma(\cA)$ of
+Construction~\ref{constr:nodal-bar-model} provides a bar chain
+model on each stratum, and the genus tower of Volume~I is computed
+stratum by stratum as follows.
+
+On the smooth locus $\cM_{g,n}\subset\overline{\cM}_{g,n}$,
+the bar differential is curved with
+$\dfib^{\,2} = \kappa(\cA)\cdot\omega_g$, and the curvature
+class lies in the cohomology of $\cM_{g,n}$ with coefficients
+in the chiral Hochschild complex.  On each boundary stratum
+$\partial_\Gamma\overline{\cM}_{g,n}$, the nodal bar complex
+$B_\Gamma(\cA)$ replaces the smooth bar complex: the curvature
+decomposes into vertex and edge contributions as
+in~\eqref{eq:nodal-curvature-decomposition}.  The total curvature
+on $\overline{\cM}_{g,n}$ is then
+\[
+  \dfib^{\,2}\big|_{\overline{\cM}_{g,n}}
+  \;=\;
+  \kappa(\cA)\cdot\omega_g
+  \;=\;
+  \kappa(\cA)\cdot
+  \biggl(
+  \sum_{\Gamma\in\StGraph(g,n)}
+  \frac{1}{|\Aut(\Gamma)|}
+  \,\iota_{\Gamma*}\,
+  \omega_\Gamma
+  \biggr),
+\]
+where $\omega_\Gamma = \sum_v \omega_{g(v)} + \sum_e \delta_e$
+and $\iota_{\Gamma*}$ is the pushforward from the normalisation
+of the boundary stratum to $\overline{\cM}_{g,n}$.
+
+The key structural point is that
+\emph{nodal degenerations are where the curvature lives}.  The
+smooth locus is where the propagator is holomorphic and the
+bar differential is flat at leading order; the curvature
+$\kappa(\cA)\cdot\omega_g$ is the failure of the
+holomorphic bar complex to extend flatly across the boundary
+strata.  The Arakelov propagator, which is smooth on the
+interior of $\cM_{g,n}$ but has a $\bar\partial$-defect at the
+nodes, provides the connection whose curvature is precisely
+$\kappa(\cA)\cdot\omega_g$.  This is why the genus tower is
+computable: each genus-$g$ obstruction class decomposes into
+contributions from stable graphs, and each contribution is
+determined by the curvature data on lower-genus components
+(the vertex contributions) and the sewing data at nodes
+(the edge contributions).
+\end{remark}
+
+\begin{remark}[Relation to the modular operad clutching]%
+\label{rem:nodal-bar-modular-operad}%
+\index{modular operad!nodal bar complex relation}%
+\index{clutching map!nodal bar sewing}%
+The sewing maps $\sigma_e$ of
+Construction~\ref{constr:nodal-bar-model} are the bar-complex
+incarnations of the clutching maps $\xi_\Gamma$ of the modular
+operad $\mathcal{O}^{\Ainf\text{-ch}}$
+(Definition~\ref{def:modular-operad-ainf-chiral}).  The modular
+associativity axiom---composition of clutching maps along nested
+stable graphs $\Gamma'\subset\Gamma$ is independent of the order
+of node formation---is the operadic statement that the nodal bar
+differential~\eqref{eq:nodal-bar-differential} satisfies
+$d_\Gamma^2 = \kappa(\cA)\cdot\omega_\Gamma$ regardless of which
+edges are sewn first.  The $R$-matrix monodromy
+$\mathrm{Mon}(R)$ at each edge
+(Construction~\ref{constr:genus1-ainf-chiral-operations})
+enters through the wrap-around differential $d_{\mathrm{wrap}}$
+of the annular sewing complex $B^{\mathrm{ann}}_e(\cA)$: it is
+the holonomy of the KZ connection around the sewing circle,
+entangling the holomorphic and transverse factors at each node.
 \end{remark}
 
 \subsection{The Drinfeld center of the chiral double}
@@ -2032,7 +2777,7 @@ pointwise-Drinfeld-centre assembly is therefore only a first-order
 approximation: the chiral derived centre contains additional
 $A_\infty$-pieces that do not come from any stalk. The obstruction is
 that class $\mathbf{M}$ breaks the ``classical stalk-wise reduction''
-strategy at arity three and above.
+strategy at degree three and above.
 
 \emph{Obstruction to step (2): factorization property of~$\cA^!$.}
 The Verdier dual $\cA^!$ is a factorization algebra only in the derived
@@ -2100,7 +2845,7 @@ with classical $r$-matrix $r(z) = k\,\Omega/z$. The centre is computed by direct
 the only invariant elements under the chiral adjoint action of $U_{\cH_k}$
 are the constant $1$ and the level generator $\kappa$ (which coincides
 with $k$ for the Heisenberg family: $\kappa^{\mathrm{Heis}} = k$,
-not $k/2$). All higher-arity invariants vanish by pointwise freeness.
+not $k/2$). All higher-degree invariants vanish by pointwise freeness.
 Hence
 \begin{equation}
 Z(U_{\cH_k}) \;\simeq\; \Bbbk[\kappa]
@@ -2204,7 +2949,7 @@ but the explicit computation of the Drinfeld centre of the Virasoro
 double $\Vir_c \bowtie \Vir_{26-c}$ has not been carried out. The
 difficulty is class $\mathbf{M}$: Virasoro has shadow depth
 $d_{\mathrm{alg}} = \infty$, and the pointwise reduction of step~(1) is
-obstructed at arity three and above. A direct calculation on the
+obstructed at degree three and above. A direct calculation on the
 ordered bar complex, avoiding the pointwise shortcut, would resolve the
 conjecture for Virasoro but is open. The same remark applies to $\cW_N$
 for $N \ge 2$: the base case is Heisenberg, the Virasoro case is open,

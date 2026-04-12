@@ -3,705 +3,783 @@
 \usepackage{mathrsfs}
 \usepackage[margin=1.2in]{geometry}
 \usepackage{enumitem}
+\usepackage[all]{xy}
 \usepackage{hyperref}
 
 \newtheorem{theorem}{Theorem}[section]
 \newtheorem{proposition}[theorem]{Proposition}
 \newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
 \newtheorem{conjecture}[theorem]{Conjecture}
 \newtheorem{definition}[theorem]{Definition}
 \newtheorem{construction}[theorem]{Construction}
 \newtheorem{question}[theorem]{Question}
 \theoremstyle{remark}
 \newtheorem{remark}[theorem]{Remark}
-\newtheorem{warning}[theorem]{Warning}
 
 \newcommand{\cA}{\mathcal{A}}
-\newcommand{\cB}{\mathcal{B}}
 \newcommand{\cC}{\mathcal{C}}
-\newcommand{\cM}{\mathcal{M}}
-\newcommand{\cD}{\mathcal{D}}
 \newcommand{\Ran}{\mathrm{Ran}}
 \newcommand{\Mod}{\mathrm{Mod}}
-\newcommand{\Comod}{\mathrm{Comod}}
 \newcommand{\Rep}{\mathrm{Rep}}
 \newcommand{\End}{\mathrm{End}}
 \newcommand{\Hom}{\mathrm{Hom}}
 \newcommand{\RHom}{\mathrm{RHom}}
 \newcommand{\HH}{\mathrm{HH}}
-\newcommand{\Bbar}{\overline{B}}
 \newcommand{\id}{\mathrm{id}}
 \newcommand{\op}{\mathrm{op}}
 \newcommand{\Cat}{\mathrm{Cat}}
-\newcommand{\Einf}{E_\infty}
-\newcommand{\Eone}{E_1}
-\newcommand{\Etwo}{E_2}
-\newcommand{\Ethree}{E_3}
 \newcommand{\bC}{\mathbb{C}}
 \newcommand{\bR}{\mathbb{R}}
-\newcommand{\bH}{\mathbb{H}}
 \newcommand{\bZ}{\mathbb{Z}}
 \newcommand{\fg}{\mathfrak{g}}
 \newcommand{\fgl}{\mathfrak{gl}}
+\newcommand{\fsl}{\mathfrak{sl}}
 \newcommand{\Ainf}{A_\infty}
-\newcommand{\Sym}{\mathrm{Sym}}
-\newcommand{\ch}{\mathrm{ch}}
-\newcommand{\Vect}{\mathrm{Vect}}
 \newcommand{\dlog}{d\!\log}
 
-\title{Bar chain models, $\Eone$-chiral quantum groups, \\and the missing operad}
+\title{$E_1$-chiral quantum groups and the $E_N$ ladder}
 \author{Raeez Lorgat}
-\date{April 2026 \\ \small Working paper}
+\date{April 2026}
 
 \begin{document}
 \maketitle
 
-\begin{abstract}
-We study the bar complex of a chiral algebra as a factorisation coalgebra and examine the
-chain-level structures it carries beyond its cohomology.  Several imprecisions in the standard
-informal treatment are identified and corrected: the bar complex is not factorisation homology
-of the line but of the interval with boundary conditions; the $\Etwo$ structure relevant to
-3d holomorphic-topological field theory lives on the module category, not on the algebra;
-and the $r$-matrix visible in the bar complex is the classical shadow of a quantum group
-structure that requires a chiral coproduct as independent input.  We formulate the
-definition of an $\Eone$-chiral quantum group, identify the modular operad governing
-$\Ainf$-algebras in $\Eone$-chiral algebras as the missing structural ingredient connecting
-the bar complex programme to 3d quantum gravity, and pose the open questions whose
-resolution would complete the connection.
-\end{abstract}
-
-\tableofcontents
-
 %% ====================================================================
-\section{Introduction}
-\label{sec:intro}
+\section{The Yangian as $E_1$-chiral quantum group}
+\label{sec:yangian}
 %% ====================================================================
 
-The bar complex $B(\cA)$ of a chiral algebra $\cA$ on a smooth curve $X$ is a
-factorisation coalgebra on the Ran space $\Ran(X)$.  Its derived global sections compute
-chiral homology; its bar filtration produces a spectral sequence whose degeneration detects
-Koszul duality; and its genus-$g$ curvature $d_B^2 = \kappa_{\ch}\,\omega_g$ extracts a
-tower of numerical invariants (the shadow obstruction tower) that govern the modular
-properties of the chiral algebra.
+The Yangian $Y_\hbar(\fsl_2)$ is presented by generators
+$t^{(r)}_{ij}$, $1 \le i,j \le 2$, $r \ge 1$, assembled into the
+generating series $T(u) = \mathbf{1} + \sum_{r \ge 1} T^{(r)} u^{-r}$
+with $T^{(r)} = (t^{(r)}_{ij})$, subject to the RTT relation
+\begin{equation}\label{eq:rtt}
+R(u-v)\, T_1(u)\, T_2(v) = T_2(v)\, T_1(u)\, R(u-v),
+\qquad
+R(z) = 1 - \frac{\hbar\, P}{z},
+\end{equation}
+where $P \in \End(\bC^2 \otimes \bC^2)$ is the permutation.
 
-These constructions, developed across two volumes~\cite{Vol1,Vol2}, provide compelling
-evidence for a conjecture: that the bar complex of a boundary chiral algebra encodes a
-3-dimensional quantum gravity theory on $X \times \bR_{\geq 0}$.  The present note
-examines this conjecture critically, identifies several imprecisions in its informal
-formulation, and isolates the structural gap that separates the existing results from a
-proof.
+\smallskip
+\noindent\textit{Multiplication.}
+The RTT relation~\eqref{eq:rtt} defines a $\bZ$-filtered associative
+algebra.  It is \emph{not} commutative: $[t^{(1)}_{ij},\, t^{(1)}_{kl}]
+= \hbar(\delta_{kj} t^{(1)}_{il} - \delta_{il} t^{(1)}_{kj})$.
+Multiplication is $E_1$ and no more.
 
-The gap is the absence of a modular operad governing $\Ainf$-algebras in $\Eone$-chiral
-algebras.  The bar complex provides the invariants; this operad would provide the
-objects producing them.
+\smallskip
+\noindent\textit{Coproduct.}
+The spectral coproduct
+\begin{equation}\label{eq:coproduct}
+\Delta_z \colon Y_\hbar(\fsl_2) \to
+Y_\hbar(\fsl_2) \,\widehat{\otimes}\, Y_\hbar(\fsl_2),
+\qquad
+\Delta_z(T(u)) = T(u) \otimes T(u-z),
+\end{equation}
+is coassociative: $(\id \widehat{\otimes}\, \Delta_w) \circ \Delta_z
+= (\Delta_z \widehat{\otimes}\, \id) \circ \Delta_{z+w}$.  At $z=0$
+it reduces to the Drinfeld coproduct $\Delta_0(T(u)) = T(u) \otimes T(u)$.
 
-\medskip
-\noindent\textbf{Conventions.}
-We work over $\bC$.  ``Chiral algebra'' means factorisation algebra on a smooth curve
-in the sense of Beilinson--Drinfeld.  ``$\Eone$-chiral algebra'' means an $\Eone$-algebra
-object in chiral algebras, as defined in~\cite{Vol2}.  All operadic
-structures are in the $\infty$-categorical sense unless stated otherwise.
+\smallskip
+\noindent\textit{$R$-matrix and quasi-triangularity.}
+The Yang $R$-matrix $R(z) = 1 - \hbar P/z$ satisfies the Yang--Baxter equation
+\begin{equation}\label{eq:ybe}
+R_{12}(z_1 - z_2)\, R_{13}(z_1 - z_3)\, R_{23}(z_2 - z_3)
+= R_{23}(z_2 - z_3)\, R_{13}(z_1 - z_3)\, R_{12}(z_1 - z_2).
+\end{equation}
+Quasi-triangularity:
+$R(z)\, \Delta_z(a) = \Delta_z^{\op}(a)\, R(z)$ for all $a \in Y_\hbar(\fsl_2)$.
 
-%% ====================================================================
-\section{The bar complex as factorisation coalgebra}
-\label{sec:bar-fact}
-%% ====================================================================
-
-\subsection{What the bar complex is}
-
-Let $\cA$ be a chiral algebra on a smooth curve $X$.  The bar construction
+\smallskip
+\noindent\textit{Braided module category.}
+For $Y_\hbar(\fsl_2)$-modules $M$, $N$, the spectral coproduct
+\eqref{eq:coproduct} defines a fusion product $M \otimes_z N$ by
+pulling back the $(Y_\hbar \widehat\otimes Y_\hbar)$-action.
+The braiding
 \[
-  B(\cA) = \bigoplus_{n \geq 0} (s\cA)^{\otimes n},
-  \qquad
-  d_B = \sum_{k \geq 2}\; \sum_i\; m_k^{(i)},
+\beta_{M,N}(z) \colon M \otimes_z N
+\xrightarrow{\;\; R(z) \cdot \sigma \;\;}
+N \otimes_{z} M
 \]
-equipped with the deconcatenation coproduct
-\[
-  \Delta(a_1|\cdots|a_n) = \sum_{i=0}^{n} (a_1|\cdots|a_i)\otimes(a_{i+1}|\cdots|a_n),
-\]
-is a dg coalgebra.  Here $m_k^{(i)}$ applies the $\Ainf$-operation $m_k$ to a
-consecutive block of $k$ tensor factors starting at position~$i$, and $s$ denotes the
-bar suspension.
+satisfies the braid relation by \eqref{eq:ybe}.
 
-\begin{theorem}[{Vol.~I, Theorem~A}]
-\label{thm:bar-fact-coalg}
-$B(\cA)$ carries the structure of a factorisation coalgebra on $\Ran(X)$.  The cobar
-construction $\Omega$ provides a left adjoint, and $\Omega B(\cA) \simeq \cA$ for
-connected~$\cA$.
+\smallskip
+\noindent\textit{What makes $Y_\hbar(\fsl_2)$ genuinely $E_1$.}
+The RTT relation \eqref{eq:rtt} is \emph{not} derived from a local OPE
+on a curve.  There is no vertex algebra $V$ for which
+$Y_\hbar(\fsl_2)$ arises as a chiral envelope.  The ordering of
+tensor factors is independent input.  In the hierarchy
+\[
+E_1\text{-chiral}
+\;\supsetneq\;
+E_\infty\text{-chiral (vertex algebras)},
+\]
+the Yangian sits in $E_1 \setminus E_\infty$: genuinely nonlocal.
+
+This example earns the following definition.
+
+
+%% ====================================================================
+\section{$E_1$-chiral quantum groups}
+\label{sec:def}
+%% ====================================================================
+
+\begin{definition}\label{def:e1-chiral-qg}
+An \textbf{$E_1$-chiral quantum group} on a smooth curve $X$ is a
+tuple $(\cA,\, \mu,\, \Delta,\, R,\, S)$ where:
+\begin{enumerate}[label=(\roman*)]
+\item $\cA$ is an $E_1$-chiral algebra on $X$: an $E_1$-algebra object in
+  factorisation algebras on $X$;
+\item $\mu$ is the $E_1$-chiral multiplication (the $\Ainf$-structure
+  $\{m_k\}_{k \ge 2}$ encoding the ordered OPE);
+\item $\Delta \colon \cA \to \cA \otimes \cA$ is a chiral coproduct
+  (coassociative coalgebra structure on $\cA$ itself, in the chiral
+  tensor category);
+\item $R(z) \in \cA^{\widehat\otimes 2}$ is a spectral $R$-matrix
+  satisfying the Yang--Baxter equation \eqref{eq:ybe};
+\item $R(z)\, \Delta(a) = \Delta^{\op}(a)\, R(z)$ for all $a \in \cA$
+  (quasi-triangularity);
+\item $S \colon \cA \to \cA$ is an antipode satisfying
+  $\mu \circ (\id \otimes S) \circ \Delta = \eta \circ \varepsilon$
+  and its mirror.
+\end{enumerate}
+\end{definition}
+
+The coproduct $\Delta$ is structure on $\cA$.  It is not the
+deconcatenation coproduct on the bar complex $B(\cA)$:
+deconcatenation is a structural feature of any bar construction
+and carries no information about $\cA$ beyond what the product
+already encodes.
+
+\begin{theorem}[Categorical level shift]\label{thm:level-shift}
+Let $(\cA, \mu, \Delta, R, S)$ be an $E_1$-chiral quantum group.
+Then:
+\begin{enumerate}[label=\textup{(\alph*)}]
+\item $\cA$ is an $E_1$-algebra.
+\item $\Mod_\cA$ is an $E_2$-algebra object in $\Cat$\textup: it is a
+  braided monoidal category with braiding $\beta_{M,N}(z) = R(z) \cdot \sigma$.
+\item The derived chiral centre $Z^{\mathrm{der}}_{\mathrm{ch}}(\cA)
+  = \RHom_{\cA\text{-}\cA}(\cA,\cA)$ carries an $E_2$-chiral
+  structure.
+\end{enumerate}
+$E_2$ lives on $\Mod_\cA$ and on $Z^{\mathrm{der}}_{\mathrm{ch}}(\cA)$,
+never on $\cA$.
 \end{theorem}
 
-The bar complex is a \emph{local} object on $\Ran(X)$.  Chiral homology
-$H^{\ch}_*(X,\cA)$ is the \emph{global} invariant obtained by taking derived global
-sections of this factorisation coalgebra.  The bar complex is to chiral homology as a
-sheaf is to its cohomology.
+\begin{proof}
+(a) is the definition.
 
-\subsection{What the bar complex is not}
+(b) The coproduct $\Delta$ defines the monoidal product
+$M \otimes_\Delta N$ on $\Mod_\cA$ by restriction of scalars
+along $\Delta$.  Coassociativity of $\Delta$ gives associativity of
+$\otimes_\Delta$.  The $R$-matrix $R(z)$ and quasi-triangularity
+give the braiding natural transformation
+$\beta_{M,N} \colon M \otimes N \to N \otimes M$
+satisfying the hexagon axioms (which follow from the YBE
+\eqref{eq:ybe}).  The antipode $S$ gives duals.
 
-\begin{warning}
-The bar complex is not factorisation homology of the line.  For an $\Eone$-algebra $A$,
-factorisation homology of $\bR$ is $A$ itself:
-$\int_{\bR} A \simeq A$.
-The bar construction computes a different invariant:
+(c) The Deligne conjecture (Kontsevich, Tamarkin): the Hochschild
+cochain complex of an $E_1$-algebra carries an $E_2$-algebra
+structure.  The chiral variant: for an $E_1$-chiral algebra, the
+chiral Hochschild cochains $C^\bullet_{\mathrm{ch}}(\cA,\cA)$
+carry $E_2$-chiral structure, computing the chiral derived centre.
+\end{proof}
+
+
+%% ====================================================================
+\section{The bar complex: what it sees and what it does not}
+\label{sec:bar}
+%% ====================================================================
+
+Let $\cA$ be an $E_1$-chiral algebra on a smooth curve $X$.
+
+\begin{proposition}[Bar complex as $E_1$ coalgebra
+{\cite[Theorem~A]{Vol1}}]\label{prop:bar}
+The bar construction
 \[
-  B(A) \;\simeq\; k \otimes_A^{\mathbf{L}} k
-  \;\simeq\; \int_{[0,1]}^{k,\,k} A,
+B(\cA) = \bigoplus_{n \ge 0} (s\cA)^{\otimes n},
+\qquad
+d_B = \sum_{k \ge 2} \sum_i m_k^{(i)},
+\qquad
+\Delta(a_1|\cdots|a_n) = \sum_{i=0}^{n}
+(a_1|\cdots|a_i) \otimes (a_{i+1}|\cdots|a_n),
 \]
-the factorisation homology of the \textbf{compact interval} with augmentation boundary
-conditions at both endpoints.  The boundary conditions are essential; without them, the
-answer is trivially~$A$.
-\end{warning}
+is an $E_1$ dg coassociative coalgebra on $\Ran(X)$.
+The differential $d_B$ is a coderivation of $\Delta$.
+The cobar construction $\Omega$ provides a left adjoint:
+$\Omega B(\cA) \simeq \cA$ for augmented $\cA$.
+\end{proposition}
 
-\subsection{The three bar complexes}
+The bar complex computes $B(\cA) \simeq k \otimes_\cA^{\mathbf{L}} k$,
+the factorisation homology of the interval $[0,1]$ with augmentation
+boundary conditions.  It is not factorisation homology of the line:
+$\int_\bR \cA \simeq \cA$.
 
-For a vertex algebra $V$ (an $\Einf$-chiral algebra), three bar-type constructions are
-available.  They are three different functors applied to three different algebraic
-structures carried by~$V$.
+\begin{proposition}[Classical $r$-matrix from collision residues]
+\label{prop:r-classical}
+Let $\cA = V_k(\fg)$ be the Kac--Moody vertex algebra at level $k$.
+The genus-$0$, degree-$2$ collision residue of the bar differential gives
+\begin{equation}\label{eq:classical-r}
+r(z) = \frac{k\,\Omega}{z},
+\end{equation}
+where $\Omega \in \fg \otimes \fg$ is the Casimir.  This $r(z)$
+satisfies the classical Yang--Baxter equation.
+\end{proposition}
 
+\begin{proof}
+The $m_2$ component of $d_B$ encodes the singular OPE
+$J^a(z) J^b(w) \sim k\, \kappa^{ab}/(z-w) + f^{ab}_c J^c(w)/(z-w)$.
+The $\dlog$-extraction procedure replaces the OPE pole
+$1/(z-w)$ by the logarithmic form $\dlog(z-w)$.  The collision
+residue at $z=w$ in degree 2 extracts the coefficient
+$k\,\Omega = k \sum_a J^a \otimes J_a$, divided by the spectral
+parameter $z = z_1 - z_2$.  The CYBE follows from the Jacobi
+identity of $\fg$ (equivalently, from the codimension-2 stratum
+of $\mathrm{FM}_3(\bC)$, which imposes the three-term relation).
+\end{proof}
+
+\begin{proposition}[Curvature]\label{prop:curvature}
+At genus $g \ge 1$, the bar complex has
+\begin{equation}\label{eq:curvature}
+d_B^2 = \kappa_{\mathrm{ch}} \cdot \omega_g,
+\end{equation}
+where $\kappa_{\mathrm{ch}}$ is the shadow obstruction class and
+$\omega_g$ is the Arakelov $(1,1)$-form on the genus-$g$ surface,
+normalised so that $\int_{\Sigma_g} \omega_g = 1$.
+\end{proposition}
+
+The bar complex sees the \emph{product} (fusion, encoded in $d_B$)
+and the \emph{classical $r$-matrix} (from collision residues).
+
+It does \emph{not} see:
 \begin{enumerate}[label=(\roman*)]
-\item $B^{FG}(V)$: the Francis--Gaitsgory bar complex, using only the commutative
-  product (the normally-ordered product, ignoring OPE poles).  This is the factorisation
-  homology of the underlying commutative algebra.
-
-\item $B^{\mathrm{ord}}(V)$: the ordered bar complex, using the full OPE with tensor
-  factors in a fixed sequence.  The $\Ainf$-operations $m_k$ encode the OPE pole data
-  after $\dlog$-extraction: an OPE pole of order $p$ contributes to~$m_p$.
-
-\item $B^{\Sigma}(V)$: the symmetric bar complex, using the full OPE with
-  $\Sigma_n$-coinvariants.  This is the chiral bar complex whose derived global
-  sections compute chiral homology.
+\item the chiral coproduct $\Delta \colon \cA \to \cA \otimes \cA$
+  (the coproduct encodes splitting, not fusion; it is independent
+  algebraic structure);
+\item the full quantum $R$-matrix $R(z)$ (only its classical limit
+  $r(z)$ appears in the shadow tower);
+\item quasi-triangularity or the antipode.
 \end{enumerate}
 
-The descent from ordered to symmetric,
-\[
-  B^{\mathrm{ord}}_n \;\twoheadrightarrow\; B^{\Sigma}_n
-  \;=\; \bigl(B^{\mathrm{ord}}_n\bigr)^{R\text{-}\Sigma_n},
-\]
-is $R$-matrix twisted: the transposition $\sigma_{i,i+1}$ acts via the braiding
-$R(z_i - z_{i+1})$ derived from analytic continuation of the OPE.  The Yang--Baxter
-equation ensures coherence.  For $\Einf$-chiral algebras, this $R$-matrix is canonically
-determined by the OPE.
+The shadow obstruction tower $\{F_g\}_{g \ge 1}$, extracted from
+\eqref{eq:curvature}, detects collision data.  The coproduct encodes
+the opposite operation and is invisible to the tower.
 
-\begin{remark}
-The $R$-twisted coinvariants formula is schematic.  The $R$-matrix $R(z)$ depends on
-a spectral parameter $z = z_i - z_{i+1}$, which parametrises positions on the
-configuration space.  The symmetrisation acts on the integrand (before integration over
-configuration space), not on the bar complex (after integration).  The formula
-$B^{\Sigma}_n = (B^{\mathrm{ord}}_n)^{R\text{-}\Sigma_n}$ is shorthand for:
-twist the configuration-space integrand by the $R$-matrix action, then integrate.
+Sources of the chiral coproduct: Gaiotto--Rap\v{c}\'ak--Zhou
+\cite{GRZ} construct coproducts on deformed double current algebras
+of $\fgl_K$ from M2--M5 fusions;
+Jindal--Kaubrys--Latyntsev \cite{JKL} construct vertex coproducts
+on CoHAs of quivers with potential, recovering Drinfeld's deformed
+coproduct for ADE quivers.
+
+
+%% ====================================================================
+\section{The $E_N$ ladder}
+\label{sec:ladder}
+%% ====================================================================
+
+For an $E_1$-chiral algebra $\cA$ on $X$, the following structures
+are obtained by ascending the $E_N$ hierarchy.  Each step adds one
+$E_1$ factor via Dunn additivity.
+
+\subsection*{$E_1$: the boundary algebra}
+
+$\cA$ is $E_1$-chiral: an $E_1$-algebra in factorisation algebras
+on $X$.  The bar complex $B(\cA)$ is the $E_1$ dg coassociative
+coalgebra of Proposition~\ref{prop:bar}.
+
+\emph{Status: proved} (Proposition~\ref{prop:bar}).
+
+\subsection*{$E_1 \to E_2$: Hochschild and Deligne}
+
+\begin{theorem}[$E_2$ on the derived centre]\label{thm:e2}
+The chiral derived centre
+\[
+Z^{\mathrm{der}}_{\mathrm{ch}}(\cA) = C^\bullet_{\mathrm{ch}}(\cA,\cA)
+\]
+carries an $E_2$-chiral algebra structure.  The $E_2$ decomposition
+$E_2 \simeq E_1^{\mathrm{hol}} \otimes E_1^{\mathrm{top}}$
+\textup(Dunn additivity\textup) gives:
+\begin{enumerate}[label=\textup{(\alph*)}]
+\item $E_1^{\mathrm{hol}}$: the chiral algebra structure of
+  $Z^{\mathrm{der}}_{\mathrm{ch}}(\cA)$ on $X$;
+\item $E_1^{\mathrm{top}}$: the $\Ainf$-algebra structure in the
+  transverse direction.
+\end{enumerate}
+The pair $(Z^{\mathrm{der}}_{\mathrm{ch}}(\cA),\, \cA)$ is the
+Swiss-cheese datum: the bulk $E_2$ acts on the boundary $E_1$.
+\end{theorem}
+
+\emph{Status: proved.}  The chiral Deligne conjecture follows from
+Kontsevich formality and homotopy transfer to the chiral setting.
+Dunn additivity applies to
+$Z^{\mathrm{der}}_{\mathrm{ch}}(\cA)$, not to $\cA$.
+
+\subsection*{$E_2 \to E_3$-chiral: the holomorphic-topological bulk}
+
+An $E_3$-chiral structure on $Z^{\mathrm{der}}_{\mathrm{ch}}(\cA)$
+is the factorisation algebra of a 3d holomorphic-topological theory
+on $X \times \bR$:
+\[
+E_3 \simeq E_2^{\mathrm{hol}} \otimes E_1^{\mathrm{top}}.
+\]
+This requires a 3d HT theory whose boundary condition is $\cA$.
+
+\begin{theorem}[$E_3$-chiral for Kac--Moody {\cite{CFG}}]
+\label{thm:e3-km}
+For $\cA = V_k(\fg)$ at non-critical level $k \ne -h^\vee$,
+holomorphic Chern--Simons theory on $X \times \bR$ provides the
+3d HT bulk.  The factorisation algebra of observables on
+$X \times \bR$ is an $E_3$-chiral algebra, and its restriction to
+the boundary $X \times \{0\}$ recovers $V_k(\fg)$.
+\end{theorem}
+
+\emph{Status: proved for $\cA = V_k(\fg)$} by Costello--Li and
+Costello--Francis--Gwilliam.  For a general vertex algebra $\cA$,
+the existence of a 3d HT theory with boundary $\cA$ is open.
+
+\subsection*{$E_3$-chiral $\to$ $E_3$-topological: topologisation}
+
+\begin{theorem}[Topologisation for Kac--Moody]
+\label{thm:topologise}
+Let $\cA = V_k(\fg)$ at non-critical level $k \ne -h^\vee$.
+Write $T(z) = \{Q, G(z)\}$ where $T(z)$ is the Sugawara conformal
+vector, $Q$ is the BRST operator, and $G(z)$ is the antighost.
+Then:
+\begin{enumerate}[label=\textup{(\alph*)}]
+\item Translations along $X$ are $Q$-exact: the complex structure of
+  $X$ is irrelevant in $Q$-cohomology.
+\item The $E_3$-chiral structure on
+  $Z^{\mathrm{der}}_{\mathrm{ch}}(\cA)$
+  \textup(Theorem~\ref{thm:e3-km}\textup) descends to an
+  $E_3$-topological structure on $H^\bullet(Z^{\mathrm{der}}_{\mathrm{ch}}(\cA), Q)$.
+\item The resulting $E_3$-topological theory is Chern--Simons at
+  level $k + h^\vee$.
+\end{enumerate}
+\end{theorem}
+
+\emph{Status: proved} \cite{CL, CFG}.  The $E_3$-topological
+factorisation homology trace reproduces the Reshetikhin--Turaev
+link invariant.
+
+\begin{conjecture}[Topologisation for general chiral algebras]
+\label{conj:topologise-general}
+Let $\cA$ be an $E_1$-chiral algebra carrying a conformal vector
+$T(z)$ at non-critical level, and suppose
+$Z^{\mathrm{der}}_{\mathrm{ch}}(\cA)$ admits an $E_3$-chiral
+structure from a 3d holomorphic-topological bulk.  Then
+$T(z) = \{Q, G(z)\}$ implies that the $E_3$-chiral structure
+descends to $E_3$-topological on
+$H^\bullet(Z^{\mathrm{der}}_{\mathrm{ch}}(\cA), Q)$.
+\end{conjecture}
+
+The conjecture presupposes the existence of the $E_3$-chiral
+structure, which is itself open for general $\cA$
+\textup(see the discussion after Theorem~\ref{thm:e3-km}\textup).
+
+At the \emph{critical level} $k = -h^\vee$, the Sugawara
+construction degenerates.  No conformal vector exists.  The
+$E_3$-chiral structure persists but topologisation fails: the
+theory is stuck at $\mathrm{SC}^{\mathrm{ch,top}}$, the
+Swiss-cheese structure with two distinct colours (holomorphic and
+topological).
+
+\begin{remark}[The generic case is $\mathrm{SC}^{\mathrm{ch,top}}$,
+not $E_3$]
+$E_3$-topological requires a conformal vector.  Most chiral algebras
+(Heisenberg, lattice VOAs, critical-level Kac--Moody, free fields
+without Sugawara) lack one or have it only at special levels.  The
+Swiss-cheese structure $\mathrm{SC}^{\mathrm{ch,top}}$, in which the
+two colours remain distinct, is the generic structure on
+$(Z^{\mathrm{der}}_{\mathrm{ch}}(\cA), \cA)$.
 \end{remark}
 
-%% ====================================================================
-\section{Bar chain models for stratified 1-configurations}
-\label{sec:bar-chain-1mfld}
-%% ====================================================================
-
-Bar chain models are indexed not by manifolds but by \emph{stratified configurations}:
-topologico-combinatoric stratifications of 1-dimensional spaces equipped with
-bulk-to-boundary structure.  The bar complex $B(\cA) = k \otimes_\cA^{\mathbf{L}} k$ is
-the bar chain model for the stratified configuration of the compact interval with two
-boundary strata and augmentation data at each.  Other stratified configurations---varying
-the combinatorics of bulk and boundary strata---give other bar chain models, each
-computing a different invariant.
-
-\subsection{$[0,1]$ with two boundary points, augmentation}
-
-For an $\Eone$-algebra $A$ with left module $M$ and right module $N$:
-\[
-  \int_{[0,1]}^{M,N} A \;=\; M \otimes_A^{\mathbf{L}} N.
-\]
-With $M = N = k$ (augmentation): this is $B(A)$, the standard bar construction.  The
-chain model uses ordered configurations on $[0,1]$ compactified by the associahedra
-$K_n$.  The deconcatenation coproduct reflects the ability to cut the interval at any
-interior point.  This is the Koszul dual; it encodes the representation theory of~$A$.
-
-\subsection{$S^1$ with no boundary, cyclic identification}
-
-\[
-  \int_{S^1} A \;=\; \HH_*(A,A),
-\]
-the Hochschild homology of $A$ with coefficients in itself.  The chain model is the
-cyclic bar complex: configurations of $n$ ordered points on $S^1$, with
-wraparound---the last point can collide with the first.  For an $\Eone$-chiral algebra,
-the wraparound involves the full $R$-matrix monodromy around the circle.
-
-This bar chain model is where the derived centre lives.  The derived centre
-$Z(\cA) = \HH^*(\cA,\cA)$, computed by the Hochschild cochain complex, is the
-endomorphism algebra of the identity functor on $\Mod_\cA$.  Its $\Etwo$ structure
-(by the Deligne conjecture) governs the holomorphic-topological bulk.  The genus-1
-curvature $d_B^2 = \kappa_{\ch}\,\omega_1$ is a chain-level obstruction visible in
-this bar chain model.
-
-\subsection{$[0,\infty)$ with one boundary point, module datum}
-
-For a right $A$-module $M$:
-\[
-  \int_{[0,\infty)}^{M} A \;\simeq\; M.
-\]
-The half-line is contractible, so factorisation homology collapses to the boundary
-datum.  The chain model is the one-sided bar resolution
-$\cdots \to A^{\otimes 2}\otimes M \to A\otimes M \to M$,
-which resolves $M$ as an $A$-module.  The chain-level data detects the $\Ainf$-module
-structure and provides the bar filtration on modules.
-
-\subsection{$\bH$ with boundary $\bR$, bulk-to-boundary Swiss-cheese stratification}
-
-The upper half-plane $\bH$ with boundary $\bR = \partial\bH$ is the geometry of the
-Swiss-cheese operad.  Its bar chain model involves two-dimensional configurations:
-$m$~bulk points in $\bH$ and $n$~boundary points on $\bR$, with three types of
-collision (bulk--bulk, boundary--boundary, bulk--boundary).  This model encodes the
-$\mathrm{SC}^{\ch,\mathrm{top}}$ structure at the chain level: how chiral data on
-$\bC$ interacts with ordered data on the boundary.
 
 %% ====================================================================
-\section{Two $\Ainf$ structures and Koszul duality}
-\label{sec:two-ainf}
+\section{The missing operad and open problems}
+\label{sec:frontier}
 %% ====================================================================
 
-The connection between the bar complex of a chiral algebra and 3-dimensional
-holomorphic-topological (HT) field theory passes through two $\Ainf$ structures that
-are Koszul dual to each other.
+The $E_2 \to E_3$ step for general $\cA$ (not necessarily Kac--Moody)
+requires constructing an $\Ainf$-algebra in $E_1$-chiral algebras.
+The operad governing such objects has not been constructed.
 
-\subsection{The boundary $\Ainf$-coalgebra}
-
-The bar complex $B(\cA)$ of the boundary chiral algebra $\cA$ is an
-$\Ainf$-coalgebra.  The $\Ainf$-coalgebra structure consists of:
-\begin{itemize}
-\item the deconcatenation coproduct $\Delta$ (structural, exists for any bar complex),
-\item the bar differential $d_B = \sum m_k$ (encoding the OPE poles of $\cA$).
-\end{itemize}
-
-This $\Ainf$-coalgebra lives on $\Ran(X)$ and is holomorphic in the $X$-direction.
-
-\subsection{The bulk $\Ainf$-algebra}
-
-The Hochschild cochain complex
-\[
-  C^*(\cA,\cA) = \RHom_{\cA\text{-}\cA}(\cA,\cA) \simeq \Hom(B(\cA), \cA)
-\]
-carries a natural $\Ainf$-algebra structure, dual to the $\Ainf$-coalgebra structure on
-$B(\cA)$ through the $\Hom$ functor.  By the Deligne conjecture (proved by Kontsevich,
-Tamarkin, and others), this extends to a full $\Etwo$ structure.
-
-This $\Etwo$ structure decomposes, by Dunn additivity, as
-$\Eone^{\mathrm{hol}} \otimes \Eone^{\mathrm{top}}$:
-\begin{itemize}
-\item $\Eone^{\mathrm{hol}}$: the chiral algebra structure of $Z(\cA) = \HH^*(\cA)$ on $X$,
-\item $\Eone^{\mathrm{top}}$: the $\Ainf$-algebra structure in the transverse direction.
-\end{itemize}
-
-This is the $\Ainf$-chiral algebra of the HT physicists: a chiral algebra on $X$ with
-$\Ainf$ structure in a transverse topological direction.  It is the factorisation
-algebra of the 3d HT bulk on $X \times \bR$.
-
-\subsection{Koszul duality bridges boundary and bulk}
-
-The two $\Ainf$ structures---coalgebra on $B(\cA)$ and algebra on
-$C^*(\cA,\cA)$---are Koszul dual through the $\Hom$ functor:
-\[
-  \underbrace{\cA}_{\substack{\text{boundary}\\(\Eone)}}
-  \;\xrightarrow{\;B\;}
-  \underbrace{B(\cA)}_{\substack{\Ainf\text{-coalgebra}\\\text{(from OPE poles)}}}
-  \;\xrightarrow{\;\Hom(-,\cA)\;}
-  \underbrace{C^*(\cA,\cA)}_{\substack{\Ainf\text{-algebra}\\\text{(transverse)}}}
-  \;\xleftarrow{\;\sim\;}
-  \underbrace{Z(\cA)}_{\substack{\text{bulk}\\(\Etwo)}}
-\]
-
-The boundary chiral algebra is $\Eone$.  The bulk algebra (the derived centre) is
-$\Etwo$.  The bar complex is the bridge: its $\Ainf$-coalgebra structure dualises to the
-$\Ainf$-algebra structure of the bulk.  The Dunn decomposition
-$\Etwo = \Eone \otimes \Eone$ applies to $Z(\cA)$ (the bulk), not to $\cA$ (the boundary).
-
-\begin{warning}
-The Dunn decomposition does \emph{not} apply at the algebra level.  The boundary algebra
-$\cA$ is $\Eone$ (associative, non-commutative).  The $\Etwo$ structure lives on
-$Z(\cA)$ or equivalently on $\Mod_\cA$.  Applying Dunn to $\cA$ itself is a categorical
-level error.
-\end{warning}
-
-%% ====================================================================
-\section{The categorical level shift}
-\label{sec:cat-level}
-%% ====================================================================
-
-\subsection{Quantum groups are $\Eone$, not $\Etwo$}
-
-A quantum group $U_q(\fg)$ is an $\Eone$-algebra: its multiplication is associative and
-non-commutative.  It is not $\Etwo$; it does not have homotopy-commutative multiplication.
-
-What is $\Etwo$ is the \emph{category of representations}
-$\Rep(U_q(\fg))$, which is a braided monoidal category---an $\Etwo$-algebra object in
-$\Cat$.  The $R$-matrix $R \in U_q(\fg)^{\otimes 2}$ provides the braiding
-$V\otimes W \xrightarrow{\sim} W\otimes V$ on modules.  It acts on modules, not on
-the algebra.
-
-\begin{center}
-\begin{tabular}{lll}
-\textbf{Level} & \textbf{Object} & \textbf{Structure} \\
-\hline
-Algebra & $U_q(\fg)$ & $\Eone$ \\
-Module category & $\Rep(U_q(\fg))$ & $\Etwo$ in $\Cat$ \\
-Centre & $Z(U_q(\fg))$ & $\Etwo$ \\
-\end{tabular}
-\end{center}
-
-\subsection{The level shift for chiral algebras}
-
-The same level shift governs the chiral setting:
-\begin{center}
-\begin{tabular}{lll}
-\textbf{Level} & \textbf{Object} & \textbf{Structure} \\
-\hline
-Boundary algebra & $\cA$ & $\Eone$-chiral \\
-Module category & $\Mod_\cA$ & $\Etwo$ in $\Cat$ (if braided) \\
-Derived centre & $Z(\cA) = \HH^*(\cA)$ & $\Etwo$-chiral (the HT bulk) \\
-\end{tabular}
-\end{center}
-
-The $\Etwo$ structure relevant to 3d holomorphic-topological field theory lives at the
-level of the derived centre $Z(\cA)$, not at the level of $\cA$ itself.  The Dunn
-decomposition $\Etwo = \Eone^{\mathrm{hol}} \otimes \Eone^{\mathrm{top}}$ applies to
-$Z(\cA)$ and gives the holomorphic + topological structure of the 3d bulk.
-
-\subsection{The chiral/topological distinction}
-\label{subsec:chiral-vs-top}
-
-At each $E_N$ level, one must distinguish \emph{chiral} from \emph{topological}
-structure.  The distinction is whether the algebraic data depends on the complex
-structure of the surface~$X$.
-
-\begin{definition}
-An $E_N$\textbf{-chiral} structure on $X \times \bR^{N-1}$ is an $E_N$-algebra in
-factorisation algebras that depends on the complex structure of~$X$.  An
-$E_N$\textbf{-topological} structure is one that is independent of the complex structure:
-it depends only on the smooth (or topological) type of the underlying manifold.
-\end{definition}
-
-The $\Etwo$ structure on the derived centre $Z(\cA) = \HH^*(\cA)$ discussed above is
-$\Etwo$\emph{-chiral}: the Dunn decomposition
-$\Etwo = \Eone^{\mathrm{hol}} \otimes \Eone^{\mathrm{top}}$ has one holomorphic factor
-that depends on the complex structure of~$X$.  This is the HT (holomorphic $\times$
-topological) structure of Costello and collaborators.
-
-When the boundary algebra $\cA$ carries a \textbf{conformal vector} (Sugawara
-construction), the holomorphic direction can be \emph{topologised}: the stress tensor
-$T(z)$ generates conformal transformations that trivialise the dependence on complex
-structure.  The $\Etwo$-chiral structure on $Z(\cA)$ then enhances to
-$\Etwo$-topological: a full 2d TQFT structure independent of the complex structure
-of~$X$.
-
-More generally, the climax of Volume~II concerns the $\Ethree$ level.  The derived
-centre $Z^{\mathrm{der}}_{\ch}(\cA)$, as a 3d bulk theory on $X \times \bR_{\geq 0}$,
-is naturally $\Ethree$-chiral (holomorphic on $X$, topological on $\bR^2$).  When $\cA$
-has conformal vector at non-critical level, topologisation promotes this to
-$\Ethree$-topological: a full 3d TQFT, i.e.\ Chern--Simons theory.
-
-\begin{warning}
-Topologisation fails at the \textbf{critical level} $k = k_{\mathrm{crit}}$.  At
-critical level, the Sugawara construction degenerates: the conformal vector ceases to
-exist.  The $\Ethree$-chiral structure persists but cannot be promoted to
-$\Ethree$-topological.  This is the algebraic shadow of the fact that Chern--Simons
-theory at critical level (equivalently, level $0$ after the standard shift) is
-degenerate.
-\end{warning}
-
-The following table summarises the distinction across categorical levels:
-
-\begin{center}
-\begin{tabular}{llll}
-\textbf{Level} & \textbf{Object} & \textbf{Structure} & \textbf{Type} \\
-\hline
-Boundary algebra & $\cA$ & $\Eone$-chiral & chiral \\
-Module category & $\Mod_\cA$ & $\Etwo$ in $\Cat$ & chiral \\
-Derived centre & $Z(\cA) = \HH^*(\cA)$ & $\Etwo$-chiral & chiral (HT) \\
-\quad + conformal vector & $Z(\cA)$ & $\Etwo$-topological & topological (TQFT) \\
-3d bulk & $Z^{\mathrm{der}}_{\ch}(\cA)$ & $\Ethree$-chiral & chiral (HT) \\
-\quad + conformal vector & $Z^{\mathrm{der}}_{\ch}(\cA)$ & $\Ethree$-topological & topological (CS) \\
-\end{tabular}
-\end{center}
-
-\noindent
-The passage from the penultimate row to the last---from $\Ethree$-chiral to
-$\Ethree$-topological---is the climax of Volume~II.  It is the conformal vector that
-provides the bridge, and the critical level that marks its boundary.
-
-%% ====================================================================
-\section{$\Eone$-chiral quantum groups}
-\label{sec:chiral-qg}
-%% ====================================================================
-
-\subsection{Definition}
-
-\begin{definition}
-\label{def:chiral-qg}
-An \textbf{$\Eone$-chiral quantum group} on a curve $X$ is an $\Eone$-chiral algebra
-$\cA$ on $X$ equipped with:
-\begin{enumerate}[label=(\alph*)]
-\item a \textbf{chiral coproduct} $\Delta : \cA \to \cA \otimes \cA$ (a coassociative
-  coalgebra structure on $\cA$ in the appropriate tensor product of chiral algebras),
-\item an \textbf{$R$-matrix} $R(z) \in \cA^{\hat\otimes 2}$,
-\item \textbf{quasi-triangularity}: $R\,\Delta(a) = \Delta^{\op}(a)\,R$ for all $a$,
-\item an \textbf{antipode} $S: \cA \to \cA$ satisfying the Hopf compatibility,
+\begin{conjecture}[The chiral-$\Ainf$ modular operad]
+\label{conj:operad}
+There exists a modular operad $\mathcal{O}^{\mathrm{ch}\text{-}\Ainf}$
+whose algebras consist of:
+\begin{enumerate}[label=\textup{(\alph*)}]
+\item an $E_1$-chiral algebra structure on $X$
+  \textup(governed by $\mathrm{SC}^{\mathrm{ch,top}}$ on the
+  within-surface strata\textup);
+\item an $\Ainf$-algebra structure in a transverse direction
+  $\bR$;
+\item compatibility: the modular operad encodes how
+  transverse $\Ainf$-operations interact with the
+  $E_1$ ordering on $X$;
+\item at genus $g \ge 1$: curvature $\kappa_{\mathrm{ch}} \cdot
+  \omega_g$ as the obstruction to extending the genus-$0$ structure.
 \end{enumerate}
-such that the category of chiral $\cA$-modules $\Mod_\cA$ is a braided monoidal
-category (an $\Etwo$-algebra in $\Cat$).
-\end{definition}
+The genus-$0$ part of $\mathcal{O}^{\mathrm{ch}\text{-}\Ainf}$
+recovers $\mathrm{SC}^{\mathrm{ch,top}}$.
+\end{conjecture}
 
-\begin{remark}
-The chiral coproduct~(a) is structure on $\cA$ itself.  It is \emph{not} the
-deconcatenation coproduct on $B(\cA)$.  The deconcatenation coproduct is a structural
-feature of the bar construction, present for any algebra.  The chiral coproduct is a
-Hopf-type structure that enables tensor products of $\cA$-modules.  Without it,
-$\Mod_\cA$ is a category but has no monoidal structure, and there is nothing to braid.
-\end{remark}
+\begin{conjecture}[Curved Dunn additivity]\label{conj:curved-dunn}
+For a curved $E_2$-algebra with curvature $d^2 = \kappa \cdot \omega$,
+there exists a decomposition as a curved $E_1$-algebra in curved
+$E_1$-algebras, with $\kappa \cdot \omega$ as the obstruction to the
+flat \textup(uncurved\textup) Dunn decomposition
+$E_2 \simeq E_1 \otimes E_1$.
+\end{conjecture}
 
-\subsection{What the bar complex provides, and what it does not}
-
-The bar complex $B(\cA)$ of an $\Eone$-chiral algebra provides:
-\begin{itemize}
-\item the $\Ainf$-coalgebra structure (bar differential + deconcatenation),
-\item the classical $r$-matrix $r(z) = k\,\Omega/z$ (from collision residues, after
-  $\dlog$-extraction),
-\item the curvature $d_B^2 = \kappa_{\ch}\,\omega_g$ (the genus tower),
-\item the Koszul dual algebra $\cA^!$ (from bar cohomology at genus~0).
-\end{itemize}
-
-The bar complex does \emph{not} provide:
-\begin{itemize}
-\item the chiral coproduct $\Delta: \cA \to \cA \otimes \cA$,
-\item the full quantum $R$-matrix $R(z)$ (only its classical limit $r(z)$),
-\item the quasi-triangularity condition,
-\item the antipode.
-\end{itemize}
-
-The $r$-matrix is necessary but not sufficient for a chiral quantum group.  It gives the
-braiding data semiclassically---what the $\Mod_\cA$ braiding should be in the classical
-limit---but without the chiral coproduct on $\cA$ there is no monoidal structure on $\Mod_\cA$ and
-therefore nothing to braid.
-
-\subsection{The coproduct is not visible in the shadows}
-
-The shadow obstruction tower $\{F_g\}_{g \geq 1}$ extracts numerical invariants from
-the curvature of the bar complex.  These invariants detect collision and fusion data: how
-operators come together.  Fusion is the product.
-
-The coproduct encodes the opposite operation: how a single operator splits into a pair.
-Product and coproduct are independent algebraic structures.  The shadow tower, built
-from the bar differential (which encodes the product/OPE), does not see the coproduct.
-
-\subsection{Sources of the chiral coproduct}
-
-Two recent constructions provide chiral/vertex coproducts:
-
-\begin{enumerate}[label=(\roman*)]
-\item \textbf{Gaiotto--Rap\v{c}\'ak--Zhou}~\cite{GRZ}: coproducts on the deformed
-  double current algebra of $\fgl_K$ and the $\fgl_K$-extended $\mathcal{W}_\infty$,
-  constructed from M2--M5 brane fusions in Costello's twisted M-theory.
-
-\item \textbf{Jindal--Kaubrys--Latyntsev}~\cite{JKL}: a vertex coproduct on the
-  Kontsevich--Soibelman cohomological Hall algebra (CoHA) of a quiver with potential,
-  forming a vertex bialgebra.  For ADE quivers, this recovers Drinfeld's deformed
-  coproduct on the Yangian.
-\end{enumerate}
-
-\begin{question}
-Do these coproducts lift to chiral coproducts on Kac--Moody vertex algebras
-$V_k(\fg)$ for arbitrary simple~$\fg$?  The Gaiotto--Rap\v{c}\'ak--Zhou construction
-is for type~A ($\fgl_K$).  The CoHA construction works for ADE quivers.  Whether
-either extends to give a canonical chiral coproduct on $V_k(\fg)$ itself (rather than on
-associated Yangians or CoHAs) is open.
+\begin{question}\label{q:coproduct-km}
+Does the Gaiotto--Rap\v{c}\'ak--Zhou coproduct \cite{GRZ}
+\textup(type $A$, from M2--M5 fusions\textup) or the
+Jindal--Kaubrys--Latyntsev vertex coproduct \cite{JKL}
+\textup(ADE quivers, from CoHA\textup) lift to a chiral
+coproduct on $V_k(\fg)$ for arbitrary simple $\fg$?
 \end{question}
 
+\begin{question}\label{q:genuine-e1}
+Construct an $E_1$-chiral quantum group $\cA$ that is not $E_\infty$:
+an $E_1$-chiral algebra with chiral coproduct $\Delta$, $R$-matrix
+$R(z)$, and antipode $S$ making $\Mod_\cA$ braided monoidal, where
+the $E_1$ ordering is not derived from any vertex algebra OPE.
+The Yangian $Y_\hbar(\fsl_2)$ of \S\ref{sec:yangian} is the
+candidate; the missing ingredient is a rigorous construction of the
+chiral algebra structure on a curve $X$ \textup(as opposed to the
+formal-variable presentation\textup).
+\end{question}
+
+\begin{question}\label{q:spectral-categorical}
+The $E_2$ braiding from the Deligne conjecture
+\textup(Theorem~\ref{thm:e2}\textup) is categorical, with no
+spectral parameter.  The $R$-matrix $R(z)$ of a chiral quantum group
+carries a spectral parameter $z$ from the holomorphic direction.
+Exhibit the natural isomorphism between the categorical braiding
+on $Z^{\mathrm{der}}_{\mathrm{ch}}(\cA)$ and the $R$-matrix braiding
+$R(z)$ on $\Mod_\cA$, in the $\mathcal{D}$-module enriched setting
+where position-dependence arises from the $\mathcal{D}$-module
+structure.
+\end{question}
+
+\begin{question}\label{q:global-triangle}
+The boundary-linear bulk reconstruction
+$Z^{\mathrm{der}}_{\mathrm{ch}}(\cA) \simeq
+C^\bullet_{\mathrm{ch}}(\cA,\cA)$ is proved.
+Extend this to the full global triangle:
+boundary $\to$ bulk $\to$ boundary.
+This is open beyond the Koszul locus.
+\end{question}
+
+
 %% ====================================================================
-\section{The missing operad}
-\label{sec:missing-operad}
+\section{The equivalence triangle for $\mathcal{W}_{1+\infty}$}
+\label{sec:equiv-triangle}
 %% ====================================================================
 
-\subsection{The structural gap}
+The preceding sections establish the $E_1$-chiral quantum group
+definition (Definition~\ref{def:e1-chiral-qg}) and note that the
+coproduct $\Delta$ is not visible in the shadow tower.  For the
+Yangian $Y_\hbar(\fsl_2)$, all three data (multiplication,
+coproduct, $R$-matrix) are supplied by the RTT formalism.  The
+question is whether the same package can be assembled for class~M
+algebras, where the bar-cobar adjunction does not produce a
+quasi-isomorphism at chains.
 
-The existing programme constructs:
-\begin{enumerate}[label=(\arabic*)]
-\item $\Eone$-chiral algebras on~$X$ (the boundary objects),
-\item their bar complexes $B(\cA)$ (factorisation coalgebras on $\Ran(X)$),
-\item the classical $r$-matrices (from collision residues),
-\item the curvature $d_B^2 = \kappa_{\ch}\,\omega_g$ (the shadow tower),
-\item the Swiss-cheese operad $\mathrm{SC}^{\ch,\mathrm{top}}$ (governing the
-  within-surface holomorphic-topological interaction).
+The test case is $\mathcal{W}_{1+\infty}$ at the self-dual level
+$c = 1$, where the Maulik--Okounkov (MO) $R$-matrix
+$R^{\mathrm{MO}}(u)$ is proved \cite{Vol1, Vol3}.  Strategy~3: use
+$R^{\mathrm{MO}}$ as input and reconstruct the remaining data
+($\Ainf$ operations and coproduct) via the \emph{equivalence
+triangle}
+\begin{equation}\label{eq:triangle}
+\xymatrix@C=3em{
+& \Ainf\text{-structure } \{m_k\} \ar[dr]^{\beta} \\
+R\text{-matrix } R(z) \ar[ur]^{\alpha} \ar[rr]_{\gamma^{-1} = \beta \circ \alpha}
+&& \text{coproduct } \Delta
+}
+\end{equation}
+whose three functors are:
+\begin{enumerate}[label=\textup{(\alph*)}]
+\item $\alpha$: \emph{$R$-matrix $\to$ $\Ainf$.}  Restrict the
+  spectral $R$-matrix data from
+  $\mathrm{FM}_n^{\mathrm{ord}}(\bC)$ to the Stasheff
+  associahedra $K_n \hookrightarrow \mathrm{FM}_n^{\mathrm{ord}}(\bC)$.
+  The boundary strata of $K_n$ encode the $\Ainf$ operations $m_k$:
+  $K_n$ is the Stasheff compactification of the moduli of $n$~points
+  on~$\bR$ (a codimension-$0$ submanifold of $\mathrm{FM}_n^{\mathrm{ord}}(\bC)$),
+  and the boundary stratification
+  $\partial K_n = \bigcup_{p+q=n+1} K_p \times K_q$
+  recovers the $\Ainf$ associativity relations $\sum m_p \circ m_q = 0$.
+\item $\beta$: \emph{$\Ainf \to$ coproduct.}  Given the $\Ainf$
+  operations $\{m_k\}$, form the ordered bar coalgebra
+  $B^{\mathrm{ord}}(\cA) = T^c(s^{-1}\bar{\cA})$
+  with bar differential $d_B = \sum m_k^{(i)}$.  The cobar construction
+  $\Omega(B^{\mathrm{ord}}(\cA))$ produces an $\Ainf$ algebra;
+  dualizing the deconcatenation coproduct on $B^{\mathrm{ord}}$
+  through Koszul duality gives the twisted coproduct
+  $\Delta_z \colon \cA^!_{\mathrm{line}} \to
+  \cA^!_{\mathrm{line}} \,\widehat{\otimes}\,
+  \cA^!_{\mathrm{line}}$
+  on the open-colour Koszul dual.
+\item $\gamma^{-1} = \beta \circ \alpha$:
+  \emph{$R$-matrix $\to$ coproduct} (composite).
+  The MO $R$-matrix $R^{\mathrm{MO}}(u)$ produces the coproduct
+  directly, bypassing the intermediate $\Ainf$ structure.
 \end{enumerate}
 
-What the programme does \emph{not} construct is the \textbf{modular operad governing
-$\Ainf$-algebras in $\Eone$-chiral algebras}.  This is the operad whose algebras are
-the 3d HT bulk theories with $\Eone$-chiral boundary.
+\subsection*{Step $\alpha$: extracting $\Ainf$ from the MO $R$-matrix}
 
-\subsection{What this operad must encode}
+The structure function of $\mathcal{W}_{1+\infty} \simeq
+Y(\widehat{\fgl}_1)$ is
+\begin{equation}\label{eq:structure-fn}
+g(u) = \frac{(u - h_1)(u - h_2)(u - h_3)}{(u + h_1)(u + h_2)(u + h_3)},
+\qquad h_1 + h_2 + h_3 = 0.
+\end{equation}
+The MO $R$-matrix on the charge-$n$ Fock space $\mathcal{F}_n$ has
+diagonal eigenvalues
+$R_{\lambda\lambda}(u) = \prod_{s \in \lambda} g(u + c(s))$
+where $c(s) = h_1 i + h_2 j$ is the content of box $s = (i,j)$
+in partition $\lambda$ \cite{Vol3}.
 
-An algebra over this operad should consist of:
-\begin{enumerate}[label=(\alph*)]
-\item an $\Eone$-chiral algebra structure on~$X$ (the boundary/holomorphic direction:
-  ordered operations on the curve, with OPE poles),
-\item an $\Ainf$-algebra structure in a transverse direction $\bR$ (the
-  bulk/topological direction),
-\item compatibility data: how the transverse $\Ainf$-operations interact with the
-  within-$X$ $\Eone$ ordering,
-\item at higher genus: a modular extension, with curvature $\kappa_{\ch}\,\omega_g$
-  as the obstruction to extending from genus~0.
-\end{enumerate}
+The functor $\alpha$ restricts the $\mathrm{FM}_n(\bC)$
+configuration-space data to associahedra:
 
-$\mathrm{SC}^{\ch,\mathrm{top}}$ encodes the within-surface structure~(a).  The full
-operad would combine~(a) with the transverse $\Ainf$ structure~(b) and the compatibility
-data~(c).
+\begin{construction}[$\alpha$: $R$-matrix to $\Ainf$]
+\label{constr:alpha}
+At arity $n$, the $\Ainf$ operation $m_n^{\mathrm{ch}}$ is
+extracted from the $R$-matrix as
+\begin{equation}\label{eq:alpha-mk}
+m_n^{\mathrm{ch}}(a_1, \ldots, a_n)
+\;=\;
+\int_{K_n}
+\omega^R_n(z_1, \ldots, z_n; a_1, \ldots, a_n),
+\end{equation}
+where $\omega^R_n$ is the propagator form on $K_n$ twisted by the
+$R$-matrix:
+\[
+\omega^R_n
+\;=\;
+\bigwedge_{i < j} \dlog(z_i - z_j)
+\;\cdot\;
+R_{i,i+1}(z_i - z_{i+1})
+\;\cdot\;
+a_1(z_1) \otimes \cdots \otimes a_n(z_n).
+\]
+For $n = 2$: $K_2$ is a point, and $m_2$ is the binary product
+$m_2(a,b) = \operatorname{Res}_{z=0}\, a(z)\, b(0)\, \dlog(z)$,
+the standard OPE extraction.
 
-\begin{remark}[On two $\Eone$ structures]
-An algebra over this operad carries two $\Eone$ structures:
-\begin{itemize}
-\item $\Eone^{(1)}$: the $\Eone$-chiral algebra structure on $X$ (from (a)),
-\item $\Eone^{(2)}$: the $\Ainf$-algebra structure on $\bR$ (from (b)).
-\end{itemize}
-These are \emph{not} independent.  They are Koszul dual through the bar construction
-(Section~\ref{sec:two-ainf}).  The compatibility datum~(c) encodes this Koszul duality
-at the operadic level.
+For $n = 3$: $K_3 \simeq [0,1]$ is an interval.  The integral
+over $K_3$ extracts the first higher product $m_3^{\mathrm{ch}}$
+from the triple collision with the $R$-matrix twist:
+\begin{equation}\label{eq:m3-from-R}
+m_3^{\mathrm{ch}}(a_1, a_2, a_3)
+\;=\;
+\int_0^1
+\Bigl[\operatorname{Res}_{z_{12}=0}\,
+R_{12}(z_{12})\, a_1(z_1)\, a_2(z_2)\Bigr]
+\;\cdot\; a_3(z_3)\;
+\dlog(z_{23})\, dt,
+\end{equation}
+where the integration variable $t$ parametrises $K_3$ and
+$z_{12}, z_{23}$ are the successive differences.  For class~L
+(Kac--Moody, $R(z) = 1 + \hbar\, P/z$), the integral evaluates
+to zero: $m_3 = 0$, consistent with Koszulness.
 
-For an $\Einf$-chiral algebra, $\Eone^{(1)}$ is derived from the local OPE and does not
-add independent information.  For a genuinely $\Eone$-chiral algebra, $\Eone^{(1)}$ is
-independent input---the ordered collision data is not determined by any local OPE---and
-the compatibility with $\Eone^{(2)}$ is a non-trivial constraint.
-\end{remark}
+For $\mathcal{W}_{1+\infty}$ (class~M): $m_3^{\mathrm{ch}} \neq 0$.
+The structure function~\eqref{eq:structure-fn} contributes terms
+at every order in $1/z$, producing a nonvanishing $K_3$ integral.
+In the spin-$2$ channel (Virasoro at $c = 1$ inside $\mathcal{W}_{1+\infty}$),
+the $m_3$ operation encodes the first higher correction to the Virasoro
+OPE, consistent with $d_{\mathrm{gen}}(\mathrm{Vir}) = 3$
+(generating depth~$3$: $m_3$ generates all higher $m_k$ by
+recursive composition).
+\end{construction}
 
-\begin{remark}[Relation to chiral quantum groups]
-The chiral coproduct of Definition~\ref{def:chiral-qg} should arise as part of the
-structure of an algebra over this operad.  The operad would provide the framework in
-which the coproduct, the $R$-matrix, and the transverse $\Ainf$ structure cohere into a
-single algebraic object.  The $R$-matrix would not be imposed but would emerge as the
-coherence datum between $\Eone^{(1)}$ and $\Eone^{(2)}$---visible at the level of the
-module category $\Mod_\cA$ (which is $\Etwo$ in $\Cat$), not at the level of $\cA$
-itself (which remains $\Eone$).
-\end{remark}
+\subsection*{Step $\beta$: cobar dualization to the coproduct}
 
-\subsection{Curved extensions}
+\begin{construction}[$\beta$: $\Ainf$ to coproduct]
+\label{constr:beta}
+Given the $\Ainf$ operations $\{m_k^{\mathrm{ch}}\}$ from
+Construction~\ref{constr:alpha}, form the ordered bar complex
+\[
+B^{\mathrm{ord}}(\mathcal{W}_{1+\infty})
+\;=\;
+T^c(s^{-1}\overline{\mathcal{W}_{1+\infty}})
+\]
+with bar differential $d_B = \sum_{k \ge 2} m_k^{(i)}$ and
+deconcatenation coproduct.  The open-colour Koszul dual is
+\[
+\cA^!_{\mathrm{line}}
+\;=\;
+H^*\bigl(B^{\mathrm{ord}}(\mathcal{W}_{1+\infty})\bigr)^\vee,
+\]
+which is $Y(\widehat{\fgl}_1)$ (the affine Yangian of $\fgl_1$).
+The twisted coproduct on $\cA^!_{\mathrm{line}}$ is obtained by
+dualizing the deconcatenation:
+\begin{equation}\label{eq:twisted-coprod}
+\Delta_z(f)(\bar a_1 \otimes \cdots \otimes \bar a_n)
+\;=\;
+\sum_{p=0}^{n}
+f(\bar a_1, \ldots, \bar a_p)
+\;\otimes_z\;
+f(\bar a_{p+1}, \ldots, \bar a_n),
+\end{equation}
+where $\otimes_z$ denotes the completed tensor product with
+spectral parameter~$z$ tracking the position of the cut.  The
+twisting by $z$ arises from the holomorphic coordinate:
+cutting the ordered sequence at position $p$ separates the
+configuration into two clusters whose relative position is~$z$.
+\end{construction}
 
-At genus $g \geq 1$, the bar complex has $d_B^2 = \kappa_{\ch}\,\omega_g \neq 0$.  The
-$\Ainf$ structure is \emph{curved}: the Stasheff relations are modified by the
-curvature term.  Standard Dunn additivity applies to $E_n$-algebras, not to curved
-algebras.
+\subsection*{The composite $\gamma^{-1}$: direct $R$-matrix to
+coproduct}
 
-\begin{conjecture}[Curved Dunn additivity]
-\label{conj:curved-dunn}
-There exists a curved analogue of the Dunn decomposition: a curved $\Etwo$-algebra
-decomposes as a curved $\Eone$-algebra in curved $\Eone$-algebras, with curvature
-$\kappa_{\ch}\,\omega_g$ as the obstruction to the flat decomposition.
-\end{conjecture}
-
-A proof would extend the chiral quantum group framework to higher genus and connect the
-shadow obstruction tower to curved operadic algebra.
-
-%% ====================================================================
-\section{The 3d gravity conjecture: status}
-\label{sec:3d-gravity}
-%% ====================================================================
-
-\subsection{What is proved}
-
-\begin{enumerate}[label=(\arabic*)]
-\item \textbf{Theorem~A} (bar--cobar adjunction): $B(\cA)$ is a factorisation
-  coalgebra, $\Omega B(\cA) \simeq \cA$.
-
-\item \textbf{Hochschild reconstruction}: the derived centre $Z(\cA) = \HH^*(\cA)$ is a
-  chiral algebra on $X$ carrying an $\Etwo$ structure.  This is proved
-  (boundary-linear bulk reconstruction).
-
-\item \textbf{Perturbative CS match}: at genus~0, the bar complex of the Kac--Moody
-  vertex algebra reproduces perturbative Chern--Simons theory (via the
-  Costello--Francis--Gwilliam programme).
-
-\item \textbf{Curvature at genus~1}: $d_B^2 = \kappa_{\ch}\,\omega_1$ matches the
-  one-loop gravitational anomaly.
-
-\item \textbf{Shadow tower}: the genus-$g$ invariants $F_g$ match
-  Faber--Pandharipande intersection numbers on $\overline{\cM}_g$.
-\end{enumerate}
-
-\subsection{What is conjectured}
-
-\begin{conjecture}[3d gravity $=$ derived centre]
-The derived centre $Z(\cA)$, with its $\Etwo$ structure, \emph{is} the factorisation
-algebra of observables of 3d quantum gravity on $X \times \bR_{\geq 0}$ with boundary
-theory~$\cA$.
-\end{conjecture}
-
-This requires:
-\begin{itemize}
-\item identifying the abstract Hochschild $\Etwo$ structure with the BV-quantised HT
-  theory (beyond the perturbative match),
-\item extending the identification to all genera (the full global triangle
-  boundary $\to$ bulk $\to$ boundary, not just the boundary-linear level),
-\item showing the bar complex satisfies surgery/gluing axioms in the transverse direction
-  (giving invariants of 3-manifolds, not just of $X \times \bR_{\geq 0}$).
-\end{itemize}
-
-\subsection{What is missing}
-
-The \textbf{modular operad governing $\Ainf$-algebras in $\Eone$-chiral algebras}
-(Section~\ref{sec:missing-operad}).  The bar complex provides the invariants.  This
-operad would provide the objects producing them.  Without it, the 3d gravity conjecture
-is a collection of matching invariants, not a structural identification.
-
-%% ====================================================================
-\section{Open questions}
-\label{sec:open}
-%% ====================================================================
-
-\begin{enumerate}[label=\textbf{Q\arabic*.}]
-
-\item \textbf{Construct the modular operad.}
-  Define the modular operad whose algebras are $\Ainf$-algebras in $\Eone$-chiral
-  algebras on~$X$.  Its genus-0 part should recover the existing bar complex / SC
-  structure.  Its higher-genus part should produce the curvature
-  $\kappa_{\ch}\,\omega_g$ as the operadic obstruction.
-
-\item \textbf{Construct the chiral coproduct for Kac--Moody.}
-  Determine whether the Gaiotto--Rap\v{c}\'ak--Zhou coproducts (type~A, from M2--M5
-  fusions) or the Jindal--Kaubrys--Latyntsev vertex coproducts (ADE quivers, from CoHA)
-  lift to chiral coproducts on $V_k(\fg)$ for arbitrary simple~$\fg$.
-
-\item \textbf{Prove curved Dunn additivity.}
-  Establish Conjecture~\ref{conj:curved-dunn}: the curved Dunn decomposition for
-  curved $\Etwo$-algebras, with curvature $\kappa_{\ch}\,\omega_g$.
-
-\item \textbf{Construct genuinely $\Eone$-chiral quantum groups.}
-  Find an $\Eone$-chiral algebra $\cA$ (not $\Einf$, not derived from any vertex
-  algebra) equipped with a chiral coproduct $\Delta$ and $R$-matrix $R(z)$ making
-  $\Mod_\cA$ braided monoidal.
-
-\item \textbf{Identify the correct monoidal structure.}
-  The construction ``$\Ainf$-algebras in $\Eone$-chiral algebras'' requires a symmetric
-  monoidal structure on the category of $\Eone$-chiral algebras.  Determine whether the
-  $*$-tensor product, the $!$-tensor product, or another structure is the correct choice.
-
-\item \textbf{Relate the spectral $R(z)$ to the categorical braiding.}
-  The $\Etwo$ braiding from Dunn additivity (on $Z(\cA)$) is a categorical braiding
-  with no spectral parameter.  The chiral $R$-matrix $R(z)$ depends on $z$.  Show that
-  the categorical braiding, applied in the $\cD$-module enriched setting, naturally
-  acquires position-dependence and recovers $R(z)$.
-
-\item \textbf{Prove the global triangle.}
-  Extend the boundary-linear bulk reconstruction ($\cB_{\mathrm{bulk}} \to Z(\cA)$) to
-  the full global triangle: boundary $\to$ bulk $\to$ boundary.  This is conjectural
-  beyond the Koszul locus.
-
-\item \textbf{Construct $\Ethree$-topological structure from conformal vector.}
-  Let $\cA$ be an $\Eone$-chiral algebra with conformal vector at non-critical level
-  $k \neq k_{\mathrm{crit}}$.  The derived centre $Z^{\mathrm{der}}_{\ch}(\cA)$ carries
-  $\Ethree$-chiral structure (Section~\ref{subsec:chiral-vs-top}).  Show that the
-  conformal vector defines a topologisation functor
+\begin{proposition}[Cohomological coproduct from MO $R$-matrix]
+\label{prop:gamma-inverse}
+At the cohomological level, the composite $\gamma^{-1} = \beta \circ \alpha$
+applied to the MO $R$-matrix $R^{\mathrm{MO}}(u)$
+of~\eqref{eq:structure-fn} produces a well-defined coproduct
+\begin{equation}\label{eq:gamma-coprod}
+\Delta_z^{\mathrm{MO}} \colon
+Y(\widehat{\fgl}_1)
+\;\longrightarrow\;
+Y(\widehat{\fgl}_1) \,\widehat{\otimes}\,
+Y(\widehat{\fgl}_1)
+\end{equation}
+satisfying:
+\begin{enumerate}[label=\textup{(\roman*)}]
+\item \emph{Coassociativity at cohomology:}
+  $(\Delta_z \widehat{\otimes}\, \id) \circ \Delta_{z+w}
+  = (\id \widehat{\otimes}\, \Delta_w) \circ \Delta_z$.
+\item \emph{Quasi-triangularity at cohomology:}
+  $R^{\mathrm{MO}}(z)\, \Delta_z(a)
+  = \Delta_z^{\mathrm{op}}(a)\, R^{\mathrm{MO}}(z)$ for all
+  $a \in Y(\widehat{\fgl}_1)$.
+\item \emph{Low-spin explicit form:} on the Cartan generators
+  $\psi_k$ (spin~$1$):
   \[
-    \Ethree\text{-chiral} \;\longrightarrow\; \Ethree\text{-topological}
+  \Delta_z(\psi(u))
+  \;=\;
+  \psi(u) \otimes \psi(u - z),
   \]
-  and that the resulting $\Ethree$-topological theory on $Z^{\mathrm{der}}_{\ch}(\cA)$
-  recovers Chern--Simons theory (for $\cA = V_k(\fg)$, at the appropriate level).
-  Determine the precise obstruction at critical level: is the failure of topologisation
-  controlled by a class in the deformation complex of $\Ethree$-algebras?
-
+  where $\psi(u) = 1 + \sum_{k \ge 0} \psi_k\, u^{-k-1}$; on the
+  positive root generators $e_k$ (spin~$2$):
+  \[
+  \Delta_z(e(u))
+  \;=\;
+  e(u) \otimes 1
+  \;+\;
+  \psi(u) \otimes e(u - z);
+  \]
+  and on the negative root generators $f_k$:
+  \[
+  \Delta_z(f(u))
+  \;=\;
+  1 \otimes f(u)
+  \;+\;
+  f(u - z) \otimes \psi(u).
+  \]
+  These match the Schiffmann--Vasserot spectral coproduct at $z = 0$
+  and the Drinfeld new coproduct $\Delta_{\mathrm{new}}$ at
+  leading spectral order.
 \end{enumerate}
+\end{proposition}
+
+\begin{proof}[Proof sketch]
+The well-definedness at cohomology follows from the general principle:
+the bar-cobar adjunction $\Omega \circ B \simeq \id$ holds at the
+level of the \emph{coderived category} for all shadow classes,
+including class~M \cite[thm:bv-bar-coderived]{Vol1}.  The
+obstruction to a chain-level quasi-isomorphism (which exists for
+classes G, L, C but fails for class~M) does not affect the
+cohomological coproduct, because:
+\begin{enumerate}[label=\textup{(\alph*)}]
+\item The MO $R$-matrix is a cohomological object: it acts on
+  $K_T(\mathrm{Hilb}^n) = H^*(B^{\mathrm{ord}})^\vee$, which is the
+  cohomology of the bar complex, not the chain-level complex itself.
+\item The functor $\alpha$ (restriction to associahedra) commutes with
+  passage to cohomology: the $K_n \hookrightarrow
+  \mathrm{FM}_n^{\mathrm{ord}}(\bC)$ embedding respects the
+  stratification that defines the bar differential.
+\item The functor $\beta$ (Koszul dualization of deconcatenation)
+  on cohomology is the classical Koszul duality, which is well-defined
+  for any algebra (the coderived correction is invisible at cohomology).
+\end{enumerate}
+
+Coassociativity~(i) follows from the tautological coassociativity of
+deconcatenation on $T^c$, which survives dualization.
+Quasi-triangularity~(ii) follows from the YBE for $R^{\mathrm{MO}}$
+(proved in \cite{Vol3}).
+
+The explicit formulas~(iii) are computed as follows.  The Cartan
+generator $\psi(u)$ is the diagonal part of the $R$-matrix
+action on the charge-$1$ Fock space.  On
+$\mathcal{F}_1 = \bigoplus_\lambda \bC \cdot |\lambda\rangle$
+(partitions of charge~$1$, i.e.\ a single box), the $R$-matrix
+eigenvalue is $g(u) = (u-h_1)(u-h_2)(u-h_3)/((u+h_1)(u+h_2)(u+h_3))$.
+The Gauss decomposition $R = F^{-1} \cdot D \cdot E$ (lower
+triangular, diagonal, upper triangular) extracts the
+Drinfeld-type generators.  The coproduct is read off from the
+matrix coproduct $\Delta(T(u)) = T(u) \,\dot\otimes\, T(u-z)$
+applied to the Gauss factors.  This is the Schiffmann--Vasserot
+coproduct for $Y(\widehat{\fgl}_1)$, obtained here from the
+MO $R$-matrix via $\gamma^{-1}$.
+\end{proof}
+
+\begin{remark}[The class~M obstruction]
+\label{rem:class-M-obstruction}
+For class~L algebras (Kac--Moody), $\gamma^{-1}$ produces a coproduct
+at chains: the bar-cobar adjunction is a quasi-isomorphism
+($\Omega(B(A)) \xrightarrow{\sim} A$), so all three vertices of the
+triangle~\eqref{eq:triangle} are equivalent at the chain level.
+
+For class~M algebras ($\mathcal{W}_{1+\infty}$, Virasoro), the
+chain-level bar-cobar map is \emph{not} a quasi-isomorphism: the
+cobar $\Omega(B(A))$ is a ``thickening'' of $A$ carrying additional
+acyclic data.  The triangle~\eqref{eq:triangle} holds at:
+\begin{enumerate}[label=\textup{(\alph*)}]
+\item \emph{Cohomology:} the coproduct~\eqref{eq:gamma-coprod} is
+  well-defined on $H^*(B^{\mathrm{ord}})^\vee = Y(\widehat{\fgl}_1)$.
+\item \emph{Coderived category:} the bar-cobar adjunction
+  $\Omega \circ B \simeq \id$ holds in the coderived sense
+  (see Vol~I, thm:bv-bar-coderived), producing a coproduct on the
+  coderived model of $\mathcal{W}_{1+\infty}$.
+\item \emph{Chains (open):} whether $\gamma^{-1}$ lifts to a
+  chain-level chiral coproduct on the $\Ainf$ model of
+  $\mathcal{W}_{1+\infty}$ is a question about the formality of the
+  $\Ainf$ structure extracted by $\alpha$.  For class~M, the
+  $\Ainf$ operations $m_k$ ($k \ge 3$) are all nonzero, and the
+  chain-level coproduct would need to be compatible with the full
+  $\Ainf$ tower.  This is the content of
+  Conjecture~\ref{conj:chain-level-coprod} below.
+\end{enumerate}
+\end{remark}
+
+\begin{conjecture}[Chain-level coproduct for class~M]
+\label{conj:chain-level-coprod}
+For $\mathcal{W}_{1+\infty}$ at $c = 1$, the cohomological coproduct
+$\Delta_z^{\mathrm{MO}}$ of Proposition~\ref{prop:gamma-inverse}
+lifts to a chain-level $\Ainf$-coproduct
+$\Delta_z^{\Ainf} \colon \mathcal{W}_{1+\infty}^{\Ainf}
+\to \mathcal{W}_{1+\infty}^{\Ainf}
+\,\widehat{\otimes}\, \mathcal{W}_{1+\infty}^{\Ainf}$
+on the $\Ainf$ model of $\mathcal{W}_{1+\infty}$ obtained from
+Construction~\ref{constr:alpha}, making
+$(\mathcal{W}_{1+\infty}^{\Ainf},\, \Delta_z^{\Ainf},\,
+R^{\mathrm{MO}}(z))$
+an $\Ainf$-bialgebra in the sense of Markl--Shnider.
+
+Evidence: the Jindal--Kaubrys--Latyntsev vertex coproduct on the
+CoHA of $\bC^3$ \cite{JKL} provides a chain-level construction for
+the positive half $Y^+(\widehat{\fgl}_1) \simeq \mathrm{CoHA}(\bC^3)$;
+the question is whether this extends through the Drinfeld double to
+the full affine Yangian.
+\end{conjecture}
+
 
 %% ====================================================================
 %% References
@@ -711,50 +789,52 @@ is a collection of matching invariants, not a structural identification.
 
 \bibitem{Vol1}
 R.~Lorgat,
-\emph{Chiral bar, chiral cobar: koszul duality, modular invariants, and the
-  quantum geometry of vertex algebras},
+\textit{Chiral bar, chiral cobar: Koszul duality, modular invariants,
+  and the quantum geometry of vertex algebras},
 Volume~I (2026).
 
 \bibitem{Vol2}
 R.~Lorgat,
-\emph{$A_\infty$-chiral algebras and 3D holomorphic-topological QFT},
+\textit{$A_\infty$-chiral algebras and 3D holomorphic-topological QFT},
 Volume~II (2026).
+
+\bibitem{Vol3}
+R.~Lorgat,
+\textit{Calabi--Yau categories, quantum groups, and BPS algebras},
+Volume~III (2026).
 
 \bibitem{GRZ}
 D.~Gaiotto, M.~Rap\v{c}\'ak, and Y.~Zhou,
-\emph{Deformed double current algebras, matrix extended $\mathcal{W}_\infty$
-  algebras, coproducts, and intertwiners from the M2--M5 intersection},
+\textit{Deformed double current algebras, matrix extended
+  $\mathcal{W}_\infty$ algebras, coproducts, and intertwiners from
+  the M2--M5 intersection},
 arXiv:2309.16929 (2023).
 
 \bibitem{JKL}
 S.~Jindal, S.~Kaubrys, and A.~Latyntsev,
-\emph{Critical CoHAs, vertex coalgebras, and deformed Drinfeld coproducts},
+\textit{Critical CoHAs, vertex coalgebras, and deformed Drinfeld
+  coproducts},
 arXiv:2603.21707 (2026).
+
+\bibitem{CL}
+K.~Costello and S.~Li,
+\textit{Twisted supergravity and its quantization},
+arXiv:1606.00365 (2016).
 
 \bibitem{CFG}
 K.~Costello, J.~Francis, and O.~Gwilliam,
-\emph{Chern--Simons factorisation algebras and knot polynomials},
+\textit{Chern--Simons factorisation algebras and knot polynomials},
 arXiv:2602.12412 (2026).
 
 \bibitem{BD}
 A.~Beilinson and V.~Drinfeld,
-\emph{Chiral Algebras},
+\textit{Chiral Algebras},
 AMS Colloquium Publications, vol.~51 (2004).
 
 \bibitem{Lurie-HA}
 J.~Lurie,
-\emph{Higher Algebra},
+\textit{Higher Algebra},
 available at the author's website (2017).
-
-\bibitem{AF}
-D.~Ayala and J.~Francis,
-\emph{Factorization homology of topological manifolds},
-J.~Topol.~\textbf{8}(4), 1045--1084 (2015).
-
-\bibitem{CG}
-K.~Costello and O.~Gwilliam,
-\emph{Factorization algebras in quantum field theory},
-Vols.~1--2, Cambridge University Press (2017, 2021).
 
 \end{thebibliography}
 

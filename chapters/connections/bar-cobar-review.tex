@@ -350,7 +350,7 @@ with:
 A twisting morphism $\tau: \overline{B}_{\mathrm{ch}}(\mathcal{A}) \to \mathcal{A}^!$ is a Maurer--Cartan element: $d_{\mathfrak{g}}\tau + \frac{1}{2}[\tau,\tau] = 0$. The universal twisting morphism is the projection $\tau_{\mathrm{univ}}: \overline{B}_{\mathrm{ch}}(\mathcal{A}) \twoheadrightarrow s^{-1}\overline{\mathcal{A}}$, and the MC equation for $\tau_{\mathrm{univ}}$ encodes exactly the $A_\infty$ relations \eqref{eq:ainfty-relation-raw}.
 
 \textbf{Step 3: Cluster factorization identity.}
-The compatibility $\{d_{\mathrm{res}}, d_{A_\infty}\} = 0$ (where $d_{\mathrm{res}}$ is the residue differential from FM boundary faces and $d_{A_\infty}$ is the $A_\infty$ differential) is the cluster factorization identity (Theorem~\ref{thm:cluster_factorization}): when a cluster of points collides in $\FM_k(\C)$, the resulting boundary term decomposes as a composition of lower-arity operations with spectral substitution $\Lambda_I = \sum_{i \in I} \lambda_i$. This identity is verified by Stokes' theorem on $\FM_k(\C)$ (Section~\ref{sec:FM_calculus}).
+The compatibility $\{d_{\mathrm{res}}, d_{A_\infty}\} = 0$ (where $d_{\mathrm{res}}$ is the residue differential from FM boundary faces and $d_{A_\infty}$ is the $A_\infty$ differential) is the cluster factorization identity (Theorem~\ref{thm:cluster_factorization}): when a cluster of points collides in $\FM_k(\C)$, the resulting boundary term decomposes as a composition of lower-degree operations with spectral substitution $\Lambda_I = \sum_{i \in I} \lambda_i$. This identity is verified by Stokes' theorem on $\FM_k(\C)$ (Section~\ref{sec:FM_calculus}).
 
 \textbf{Step 4: Adjunction.}
 The bar and cobar functors form an adjunction by the universal property: giving a map $\Omega_{\mathrm{ch}}(C) \to \mathcal{A}$ (from the free operad on $sC$) is equivalent to giving a twisting morphism $C \to \mathrm{End}_{\mathcal{A}}$, which is equivalent to giving a coalgebra map $C \to \overline{B}_{\mathrm{ch}}(\mathcal{A})$. Naturality in both variables is immediate from the universal constructions.
@@ -1391,6 +1391,171 @@ $s^{-1}\bar{\cA}$ with the induced coderivation, is therefore
 canonically an $E_1$ dg coassociative coalgebra.
 \end{proof}
 
+\begin{proposition}[The bar complex as derived tensor product and
+factorisation homology of the interval;
+\ClaimStatusProvedHere]
+\label{prop:bar-interval-identification}
+\index{bar complex!as derived tensor product|textbf}
+\index{bar complex!as factorisation homology of the interval|textbf}
+\index{factorisation homology!interval vs line|textbf}
+Let $A$ be an augmented $\Eone$-algebra over a field~$k$, with
+augmentation $\varepsilon \colon A \to k$.  Then:
+\begin{enumerate}[label=\textup{(\roman*)}]
+\item \textbf{Derived tensor product.}
+ The bar construction computes the derived tensor product of
+ augmentation modules:
+ \[
+   B(A) \;\simeq\; k \otimes_A^{\mathbf{L}} k.
+ \]
+ Here $k$ is a left \textup{(}resp.\ right\textup{)} $A$-module via
+ $\varepsilon$, and $\otimes_A^{\mathbf{L}}$ is the derived tensor
+ product in $A$-bimodules.
+
+\item \textbf{Factorisation homology of the interval.}
+ The bar construction computes the factorisation homology of the
+ compact interval $[0,1]$ with augmentation boundary conditions at
+ both endpoints:
+ \[
+   B(A) \;\simeq\; \int_{[0,1]}^{k,\,k} A.
+ \]
+ The superscript ${}^{k,k}$ denotes the augmentation boundary
+ conditions: the left $A$-module $k$ at $\{0\}$ and the right
+ $A$-module $k$ at $\{1\}$.
+
+\item \textbf{Factorisation homology of the line is trivial.}
+ In contrast, factorisation homology of $\bR$ \textup{(}with no
+ boundary\textup{)} recovers $A$ itself:
+ \[
+   \int_{\bR} A \;\simeq\; A.
+ \]
+ The bar construction is \textbf{not} factorisation homology of
+ the line.
+
+\item \textbf{Coproduct from interval cutting.}
+ The deconcatenation coproduct $\Delta$ on $B(A)$ reflects the
+ ability to cut the interval at any interior point:
+ for each $t \in (0,1)$, the decomposition
+ $[0,1] = [0,t] \cup_{\{t\}} [t,1]$ induces, via the
+ $\otimes$-excision property of factorisation homology, the map
+ \[
+   \Delta \colon
+   \int_{[0,1]}^{k,k} A
+   \;\longrightarrow\;
+   \int_{[0,t]}^{k,A} A
+   \;\otimes_A\;
+   \int_{[t,1]}^{A,k} A
+   \;\simeq\;
+   B(A) \otimes B(A).
+ \]
+ The coassociativity of $\Delta$ is the coherence of cutting at
+ two interior points.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+\textbf{Part (i).}
+The two-sided bar complex $B(A,A,A) = A \otimes T^c(s^{-1}\bar{A})
+\otimes A$ is the standard resolution of~$A$ as an $A$-bimodule
+(see e.g.\ Loday~\cite{loday1992cyclic}, \S1.1).
+Applying $k \otimes_A (-) \otimes_A k$ via the augmentation
+$\varepsilon$ yields the reduced bar complex
+$B(A) = T^c(s^{-1}\bar{A})$, which by definition computes
+$k \otimes_A^{\mathbf{L}} k =
+\Tor_\bullet^A(k,k)$.
+
+\textbf{Part (ii).}
+By Ayala--Francis~\cite{AF15} (Theorem~3.24; see also
+Lurie~\cite{HA}, \S5.5.4), factorisation homology of an
+$\Eone$-algebra $A$ on a compact $1$-manifold with boundary
+is computed by the two-sided bar construction with the
+prescribed boundary modules.
+For the interval $[0,1]$ with the augmentation module
+$k = A/\bar{A}$ at each boundary component, this gives
+\[
+  \int_{[0,1]}^{k,\,k} A
+  \;\simeq\;
+  k \otimes_A^{\mathbf{L}} k
+  \;\simeq\;
+  B(A),
+\]
+where the first equivalence is the Ayala--Francis
+$\otimes$-excision theorem applied to the collar-gluing
+$[0,1] = [0,\tfrac{1}{2}] \cup_{A} [\tfrac{1}{2},1]$,
+and the second is Part~(i).
+
+\textbf{Part (iii).}
+The line $\bR$ is a $1$-manifold without boundary.
+By the $\Eone$ recognition principle
+(Lurie~\cite{HA}, \S5.5.4.10), factorisation homology
+on $\bR$ is the identity:
+$\int_{\bR} A \simeq A$.
+This holds because $\bR$ is contractible and has no
+boundary where augmentation could impose conditions.
+The geometric point: $\bR$ is the \emph{universal cover}
+of all compact $1$-manifolds, and factorisation homology
+on the universal cover is the algebra itself (no
+identifications, no coinvariants, no derived tensor
+products).
+
+\textbf{Part (iv).}
+The $\otimes$-excision property of
+Ayala--Francis~\cite{AF15} (Theorem~3.24) states that
+for a collar-gluing $M = M_L \cup_{M_0} M_R$ of manifolds
+with boundary, factorisation homology satisfies
+\[
+  \int_M A
+  \;\simeq\;
+  \int_{M_L} A
+  \;\otimes_{\int_{M_0} A}\;
+  \int_{M_R} A.
+\]
+Applied to $[0,1] = [0,t] \cup_{\{t\}} [t,1]$ with $t$
+an interior point, the codomain of the structure map is
+$B(A) \otimes B(A)$: each half-interval contributes one
+copy of the bar complex.
+The totality of such cuts, over all $t$ and all
+multiple interior points, produces the full
+deconcatenation coproduct $\Delta$ of
+Theorem~\ref{thm:bar-swiss-cheese}(ii).
+Coassociativity of $\Delta$ is the coherence condition
+for the triple decomposition
+$[0,1] = [0,s] \cup [s,t] \cup [t,1]$, which is
+associativity of the collar-gluing.
+\end{proof}
+
+\begin{remark}[The interval vs.\ the line: boundary conditions
+are essential]
+\label{rem:interval-vs-line}
+The identification $B(A) \simeq \int_{[0,1]}^{k,k} A$ makes
+precise why the bar complex is a nontrivial invariant: it is the
+compact interval, not the line, that carries the augmentation
+boundary conditions forcing the derived tensor product.  Without
+boundary conditions, factorisation homology on any contractible
+manifold returns~$A$ itself.  This distinction is the source of
+common confusion.
+The three key $1$-manifolds and their factorisation homology are:
+\begin{center}
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{lll}
+\hline
+\textbf{Manifold} & \textbf{Fact.\ homology} & \textbf{Structure} \\
+\hline
+$\bR$ (line, no boundary) & $\int_{\bR} A \simeq A$ & trivial \\
+$[0,1]$ (interval, $\partial = \{0,1\}$)
+ & $\int_{[0,1]}^{k,k} A \simeq B(A)$
+ & $\Eone$ coalgebra \\
+$S^1$ (circle, no boundary)
+ & $\int_{S^1} A \simeq \mathrm{HH}_\ast(A)$
+ & cyclic homology \\
+\hline
+\end{tabular}
+\end{center}
+The half-line $[0,\infty)$ with a single boundary module $M$
+at $\{0\}$ gives the one-sided bar resolution
+$B(A,M) \simeq \int_{[0,\infty)}^{M} A$, computing
+$\Tor^A_\bullet(k,M)$.
+\end{remark}
+
 \begin{remark}[Relationship to Volume~I]
 \label{rem:bar-swiss-cheese-strategy}
 Volume~I constructs the holomorphic direction in full (bar
@@ -1484,7 +1649,7 @@ For the affine Kac--Moody algebra $\widehat{\fg}_k$:
 $\barBch$ yields $\cA^!_{\mathrm{ch}} =
 \widehat{\fg}_{-k-2h^\vee}$ (level duality),
 $\barB^{\mathrm{ord}}$ yields $\cA^!_{\mathrm{line}} =
-Y_z^\hbar(\fg)$ (the Yangian), and $\barB^{\mathrm{FG}}$ yields
+Y_\hbar(\fg)$ (the Yangian), and $\barB^{\mathrm{FG}}$ yields
 the chiral Lie Koszul dual (the $E_\infty$ shadow that forgets
 the spectral parameter).
 
@@ -1517,46 +1682,71 @@ algebra, the open-colour line-sector operations, the $R$-matrix, the
 genus tower, and the PVA shadow as direct data, while the
 chirally-Koszul comparison theorems recover the line-category
 package.
-By operadic Koszul self-duality
-(\S\ref{subsec:dg-yangian-operadic}), dualizing the
-correspondence reproduces the same type of algebra:
+By operadic Koszul duality
+(\S\ref{subsec:dg-yangian-operadic}), the Koszul dual
+of an $\SCchtop$-algebra is an $(\SCchtop)^!$-algebra
+(closed $\mathsf{Lie}$, open $\mathsf{Ass}$):
 on the chirally Koszul locus, $\cA^!_{\mathrm{line}}$ carries the dg-shifted Yangian package
 (Theorem~\ref{thm:yangian-recognition}), while the full
-two-colour Koszul duality involution returns~$\cA$
+two-colour duality involution returns~$\cA$
 (Theorem~\ref{thm:duality-involution}).
 
-\begin{theorem}[Koszul self-duality of the Swiss-cheese operad;
+\begin{proposition}[Koszul duality of the Swiss-cheese operad;
 \ClaimStatusProvedElsewhere]
 \label{thm:SC-self-duality}
-\index{Swiss-cheese operad!Koszul self-duality|textbf}
-\index{Koszul self-duality!Swiss-cheese operad|textbf}
-The chiral--topological Swiss-cheese operad is Koszul self-dual:
-$(\SCchtop)^! \simeq \SCchtop$. In particular, for any
-$\SCchtop$-coalgebra~$\cC$, the Verdier--Ran dual
-$\mathbb{D}_{\operatorname{Ran}}\cC$ carries a natural
-$\SCchtop$-algebra structure.
-\end{theorem}
+\index{Swiss-cheese operad!Koszul dual|textbf}
+\index{Koszul duality!Swiss-cheese operad|textbf}
+The Koszul dual cooperad of the chiral--topological Swiss-cheese
+operad has closed sector $\mathsf{Lie}^c$
+\textup{(}$\dim = (n-1)!$\textup{)},
+open sector $\mathsf{Ass}^c$ \textup{(}$\dim = m!$\textup{)},
+and mixed sector of dimension $(k-1)!\binom{k+m}{m}$:
+\[
+(\SCchtop)^! \;=\; (\mathsf{Lie},\, \mathsf{Ass},\,
+\text{shuffle-mixed}).
+\]
+In particular, $\SCchtop$ is \emph{not} self-dual as an operad:
+the closed colour $\mathsf{Com}$ \textup{(}$\dim = 1$\textup{)}
+is exchanged with $\mathsf{Lie}$ \textup{(}$\dim = (n-1)!$\textup{)}.
+The open colour $\mathsf{Ass}$ is self-dual.
+The bar-cobar duality \emph{functor} on $\SCchtop$-algebras
+is an involution: $(\cA^!)^! \simeq \cA$ on the chirally Koszul
+locus \textup{(}Theorem~\textup{\ref{thm:duality-involution})}.
+\end{proposition}
 
 \begin{proof}
-The classical Swiss-cheese operad is Koszul self-dual
-by Livernet~\cite{Liv06}: the two-coloured structure
-(closed colour $\mathsf{Com}$, open colour $\mathsf{Ass}$,
-Leibniz interaction) is self-dual as a whole.
-Note that the individual Koszul duals are
+The classical Swiss-cheese operad is Koszul
+by Livernet~\cite{Liv06}.
+The individual Koszul duals are
 $\mathsf{Com}^! = \mathsf{Lie}$ and
-$\mathsf{Ass}^! = \mathsf{Ass}$; in particular
-$\mathsf{Com}$ is \emph{not} self-dual.
-The self-duality is a property of the full two-coloured
-operad, not of its individual colours.
+$\mathsf{Ass}^! = \mathsf{Ass}$;
+the full two-coloured Koszul dual cooperad
+$\SCchtop^!$ has the structure stated above.
 Homotopy-Koszulity of~$\SCchtop$
 (Theorem~\ref{thm:homotopy-Koszul}) promotes this to an
-equivalence at the chain level.
+equivalence at the chain level, and the bar-cobar
+duality functor is an involution on $\SCchtop$-algebras
+(not on the operad itself).
 \end{proof}
 
-The self-duality of $\SCchtop$ acts on both colours
+\begin{remark}[Self-duality is of the functor, not the operad]
+\label{rem:SC-duality-functor-vs-operad}
+The claim $(\SCchtop)^! \simeq \SCchtop$ that appeared in
+earlier versions of this manuscript is \emph{false}: the Koszul
+dual exchanges $\mathsf{Com}$ (closed, $\dim = 1$) with
+$\mathsf{Lie}$ (closed, $\dim = (n-1)!$).
+What IS true: the bar-cobar duality \emph{functor} on
+$\SCchtop$-algebras is involutive, $(\cA^!)^! \simeq \cA$
+(Theorem~\ref{thm:duality-involution}).
+The involutivity is a property of Koszul duality as a functor,
+not of the operad being isomorphic to its own Koszul dual.
+\end{remark}
+
+The Koszul duality functor on $\SCchtop$-algebras acts on both colours
 simultaneously: the closed colour maps
-$\cA \mapsto \cA^!_{\mathrm{ch}}$ via Verdier duality, while
-the open colour maps
+$\cA \mapsto \cA^!_{\mathrm{ch}}$ via Verdier duality
+(exchanging $\mathsf{Com}$-structure with $\mathsf{Lie}$-structure),
+while the open colour maps
 $\cA \mapsto \cA^!_{\mathrm{line}}$ via linear duality on
 $\barB^{\mathrm{ord}}(\cA)$
 (Remark~\ref{rem:three-bar-complexes}). The full two-colour
@@ -1581,8 +1771,9 @@ On the Koszul locus, the homotopy Koszul dual
 $\cA^!_\infty$ is formal
 (Theorem~\ref{thm:koszul-dodecahedron}(iii)), so
 $\cA^!_\infty \simeq \cA^!$. By
-Theorem~\ref{thm:SC-self-duality}, the Koszul dual of an
-$\SCchtop$-algebra is again an $\SCchtop$-algebra.
+Proposition~\ref{thm:SC-self-duality}, the Koszul dual of an
+$\SCchtop$-algebra is an $(\SCchtop)^!$-algebra
+(with closed sector $\mathsf{Lie}$, open sector $\mathsf{Ass}$).
 The bar-cobar counit
 $\Omega(\barB(\cA)) \xrightarrow{\sim} \cA$ is a
 quasi-isomorphism on the Koszul locus
@@ -1650,7 +1841,7 @@ presents the chiral algebraic structure of\/~$\cA$:
  This is the chiral analogue of
  $\operatorname{Rep}(H_W) \simeq \cO$.
  \item \emph{Factorisation modules.}
- The closed-colour $\SCchtop$-structure on~$\cA^!_{\mathrm{line}}$
+ The closed-colour (Lie) sector of the $\SCchtop^{!}$-structure on~$\cA^!_{\mathrm{line}}$
  \textup{(}Theorem~\textup{\ref{thm:dual-sc-algebra})}
  makes it a chiral algebra whose module category is the
  factorisation-module category on~$\Ran(X)$. An object
@@ -1690,9 +1881,9 @@ presents the chiral algebraic structure of\/~$\cA$:
  (Theorem~\ref{thm:semisimple-purity}) but fails in general:
  Virasoro is Koszul but not collision-pure
  (Remark~\ref{rem:purity-sharp-boundary}).} \\
- $H_W$ self-dual ($\mathsf{SC}^! \simeq \mathsf{SC}$)
- & $(\SCchtop)^! \simeq \SCchtop$
- (Thm~\ref{thm:SC-self-duality}) \\
+ $H_W$ Koszul dual ($\mathsf{SC}^! = (\mathsf{Lie}, \mathsf{Ass})$)
+ & $(\SCchtop)^! = (\mathsf{Lie},\, \mathsf{Ass},\, \text{shuffle})$
+ (Prop.~\ref{thm:SC-self-duality}) \\
  Hecke involution $(H_W^!)^! \simeq H_W$
  & Duality involution $(\cA^!)^! \simeq \cA$
  (Thm~\ref{thm:duality-involution}) \\
@@ -1739,8 +1930,8 @@ is compared with the quantum-group braid representation generated by the
 $R$-matrix \textup{(}Theorem~\textup{\ref{thm:affine-monodromy-identification}}\textup{)}.
 
 Part~(iv): rows~1--4 follow from~(i)--(ii); rows~5--6
-from~(iii). Row~7 is the operadic self-duality
-Theorem~\ref{thm:SC-self-duality}, which is unconditional
+from~(iii). Row~7 is the operadic Koszul duality
+Proposition~\ref{thm:SC-self-duality}, which is unconditional
 (a property of $\SCchtop$ itself, not of individual algebras).
 Row~8 is the duality involution
 Theorem~\ref{thm:duality-involution}, which requires

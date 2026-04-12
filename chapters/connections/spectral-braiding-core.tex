@@ -12,7 +12,7 @@ The Yangian $Y(\fg)$ is the universal quantization of the classical $r$-matrix $
 
 The $E_1$ bar construction resolves all three deficiencies at once. The ordered bar coalgebra $B^{\mathrm{ord}}(A) = T^c(s^{-1}\bar A)$ with its deconcatenation coproduct \emph{is} the Yangian's coproduct: the spectral parameter is the coordinate on $\C$ (the holomorphic direction), the coproduct arises from the $E_1$-factorization along the topological half-line $\R_{\ge 0}$, and the Yang--Baxter equation is Stokes' theorem on the Fulton--MacPherson compactification $\FM_3(\C)$. The $\SCchtop$ structure emerges not on $B(A)$ itself but on the chiral derived center: the pair $(C^\bullet_{\mathrm{ch}}(A,A),\, A)$ of chiral Hochschild cochains and boundary algebra is the $\SCchtop$ datum. The symmetric bar $B^\Sigma$ is the $\Sigma_n$-coinvariant shadow; $R$-matrix descent relates $B^{\mathrm{ord}}$ to $B^\Sigma$.
 
-The spectral $R$-matrix $R(z) = \Res^{\mathrm{coll}}_{0,2}(\Theta^{\mathrm{oc}})$ is the genus-$0$, arity-$2$ collision residue of the open/closed MC element, extracted from the bulk-to-boundary composition of two parallel line operators. It equals the Laplace transform of the chiral $\lambda$-bracket (Proposition~\ref{prop:field-theory-r}), placing the RTT relation, the Sklyanin bracket, the Drinfeld presentation, and the PVA descent on a single geometric footing.
+The spectral $R$-matrix $R(z) = \Res^{\mathrm{coll}}_{0,2}(\Theta^{\mathrm{oc}})$ is the genus-$0$, degree-$2$ collision residue of the open/closed MC element, extracted from the bulk-to-boundary composition of two parallel line operators. It equals the Laplace transform of the chiral $\lambda$-bracket (Proposition~\ref{prop:field-theory-r}), placing the RTT relation, the Sklyanin bracket, the Drinfeld presentation, and the PVA descent on a single geometric footing.
 
 \subsection{Boundary data and factorization module structure}
 \label{subsec:boundary-module}
@@ -315,6 +315,100 @@ identified with the category of $\mathcal{H}$-modules equipped with
 the braiding induced by $R(z)$.
 \end{proof}
 
+\begin{proposition}[Spectral-to-categorical bridge; \ClaimStatusProvedHere]
+\label{prop:spectral-to-categorical}
+\index{braiding!spectral-to-categorical bridge|textbf}
+\index{R-matrix@$R$-matrix!spectral-to-categorical bridge}
+Let $A$ be a logarithmic $\SCchtop$-algebra whose tree-level line
+complex is resolved in degree~$0$
+\textup(Definition~\textup{\ref{def:resolved}}\textup).
+Let $L_1, L_2$ be objects of the reduced line category
+$\cC_{\mathrm{line}}^{\mathrm{red}}$, and let $\gamma_{12}$ be the
+half-circle exchange path in $\Conf_2(\CC)$ taking $z_1$ around~$z_2$
+counterclockwise through angle~$\pi$.  Then the categorical braiding
+\[
+\beta_{L_1,L_2} \colon L_1 \otimes L_2 \xrightarrow{\ \sim\ }
+  L_2 \otimes L_1
+\]
+of the reduced braided monoidal category
+$(\cC_{\mathrm{line}}^{\mathrm{red}}, \otimes, \beta)$ is
+the half-monodromy of the spectral $R$-matrix:
+\begin{equation}\label{eq:spectral-to-categorical}
+\beta_{L_1,L_2}
+\;=\; \mathrm{P}\!\exp\!\int_{\gamma_{12}} r(\zeta)\,d\zeta
+\;=\; R^{\mathrm{spec}}_{L_1,L_2}(z)\big|_{\text{half-monodromy}},
+\end{equation}
+where $r(z)$ is the infinitesimal spectral $r$-matrix of
+Proposition~\textup{\ref{prop:field-theory-r}} and
+$\mathrm{P}\!\exp$ denotes the path-ordered exponential.
+\end{proposition}
+
+\begin{proof}
+By the resolution hypothesis, the unconditionality theorem
+(Theorem~\ref{thm:unconditionality}) applies: the full quantum line
+complex admits a canonical $\h$-adic strong deformation retract
+$(p, i, h)$, and the reduced superconnection collapses to an ordinary
+logarithmic flat connection
+$\A_n = p_n A_n^{(1)} i_n$ on $\Conf_n(\CC)$
+(Theorem~\ref{thm:synthesis}(iv)).  The braiding on the reduced
+category is the parallel transport of this connection along the
+exchange path~$\gamma_{12}$.
+
+The spectral $R$-matrix $R(z)$ of
+Definition~\ref{def:spectral-braiding} is defined by analytic
+continuation of the composition isomorphism
+$\mathsf{Comp}_{z_1,z_2}$ in the spectral parameter
+$z = z_1 - z_2$.  On the resolved locus, the path-ordered
+exponential of $r(\zeta)\,d\zeta$ along $\gamma_{12}$ computes
+exactly this analytic continuation: the spectral $R$-matrix is the
+generating function (in $z$) of the flat-connection transport,
+and the categorical braiding is the transport evaluated on the
+specific exchange path.  The identification
+\eqref{eq:spectral-to-categorical} follows.
+\end{proof}
+
+\begin{remark}[Local vs.\ global: the spectral parameter and its elimination]
+\label{rem:spectral-vs-categorical}
+\index{spectral parameter!elimination via monodromy}
+Proposition~\ref{prop:spectral-to-categorical} resolves the
+relationship between two superficially different braidings:
+\begin{enumerate}[label=\textup{(\roman*)}]
+\item The \emph{spectral} $R$-matrix $R(z)$ is a \emph{family} of
+  isomorphisms $L_1 \otimes L_2 \xrightarrow{\sim} L_2 \otimes L_1$
+  parametrised by $z \in \CC^\times$: it is the \emph{local} datum,
+  defined pointwise on $\Conf_2(\CC)$.
+\item The \emph{categorical} braiding $\beta$ of the reduced line
+  category is a \emph{single} isomorphism with no spectral parameter:
+  it is the \emph{global} datum, obtained by integrating $R(z)$ along
+  a path in configuration space.
+\end{enumerate}
+The spectral parameter is the holomorphic coordinate on $\CC$; the
+categorical braiding is the monodromy of the flat connection that
+$R(z)$ defines.  Forgetting the spectral parameter amounts to
+computing the holonomy.
+
+For the affine lineage $V^k(\fg)$, the one-loop collapse
+(Theorem~\ref{thm:affine-half-space-bv}) ensures resolution in
+degree~$0$, and
+Theorem~\ref{thm:affine-monodromy-identification} verifies that
+the half-monodromy equals
+$\exp(-\pi i\, \Omega/(k + h^\vee))$, which by the Drinfeld--Kohno
+theorem is the quantum group $R$-matrix of $U_q(\fg)$ at
+$q = e^{i\pi/(k+h^\vee)}$.  This is the content of the classical
+Drinfeld--Kohno theorem, recast here as an instance of
+Proposition~\ref{prop:spectral-to-categorical}: the spectral
+$R$-matrix is the KZ connection form, and the categorical braiding
+is its monodromy.
+
+For non-Koszul algebras (class~$M$: $m_k \neq 0$ for $k \geq 3$),
+the resolution hypothesis may fail, and the reduced braiding
+receives contributions from the full $A_\infty$ tower.  The
+spectral-to-categorical passage in this regime requires the
+$A_\infty$ Yang--Baxter defect to vanish after projection
+(Theorem~\ref{thm:first-obstruction}), and is the subject of
+Conjecture~\ref{conj:rmatrix}.
+\end{remark}
+
 \begin{remark}[The $r$-matrix and the chiral coproduct]
 \label{rem:r-matrix-coproduct-warning}
 The classical $r$-matrix $r(z) = k\,\Omega/z$ extracted from collision
@@ -366,7 +460,8 @@ with Latyntsev's programme below).
 \label{def:E2-chiral-algebra}
 \index{E2-chiral algebra@$E_2$-chiral algebra|textbf}
 An \emph{$E_2$-chiral algebra} on a curve~$X$ is an $E_2$-algebra
-object in chiral algebras on~$X$.  This structure lives on the
+object in the symmetric monoidal dg category of $\cD$-modules on~$X$,
+equipped with chiral operations.  This structure lives on the
 \emph{chiral derived center}
 $\mathcal{Z}(\cA) = C^\bullet_{\mathrm{ch}}(\cA,\cA)$
 (the chiral Hochschild cochain complex), \emph{not} on the
@@ -493,7 +588,10 @@ $E_2$ closed-colour data, and topologisation---passage from
 the holomorphic-topological factorisation algebra to the
 underlying topological factorisation algebra by forgetting
 the holomorphic grading---promotes the composite to an
-$E_3$-algebra. The shadow tower
+$E_3$-algebra (proved for affine Kac--Moody at non-critical
+level, Volume~I Theorem~\ref*{thm:topologization};
+conjectural in general,
+Conjecture~\ref*{conj:topologization-general}). The shadow tower
 (Section~\ref{sec:shadow-tower-atlas}) then provides the
 perturbative invariants: the associated graded of the
 holomorphic weight filtration recovers the formal power
@@ -1974,7 +2072,7 @@ the component form is
 }
 \end{equation}
 where $T(u) = \sum_{I,J} E_{IJ} \otimes t_{IJ}(u) \in
-\operatorname{End}(V) \otimes Y_z^\hbar(\fg)[\![u^{-1}]\!]$.
+\operatorname{End}(V) \otimes Y_\hbar(\fg)[\![u^{-1}]\!]$.
 This is the \emph{spectral OPE}: it has the structure of a
 chiral bracket with singularity at $u = v$. The right-hand
 side is a \emph{difference} of products evaluated at $u$ and
@@ -2022,7 +2120,7 @@ variable), and the algebra on $\R_t$ is the ordinary
 Heisenberg, associative with no higher homotopies. The
 $A_\infty$ operations $m_k = 0$ for $k \ge 3$: the Heisenberg
 Yangian is \emph{formal}. This is the abelian calibration.
-The depth spectral sequence (Theorem~\ref{thm:bar-cohomology-concentration}(iv)) collapses immediately: the weight-depth identity $w + d = n - 1$ (Theorem~\ref{thm:gap-migration}(i)) is trivially satisfied at the sole nonvanishing arity $n = 2$, and the single weight-$1$ generator exhausts the bar cohomology in a single degree.
+The depth spectral sequence (Theorem~\ref{thm:bar-cohomology-concentration}(iv)) collapses immediately: the weight-depth identity $w + d = n - 1$ (Theorem~\ref{thm:gap-migration}(i)) is trivially satisfied at the sole nonvanishing degree $n = 2$, and the single weight-$1$ generator exhausts the bar cohomology in a single degree.
 \end{computation}
 
 \subsubsection*{The $\mathfrak{sl}_2$ computation}
@@ -2176,12 +2274,12 @@ that $\cA^!_{\mathrm{line}} \simeq \widehat{\mathfrak{u}(1)}_{-k}$.
 \subsubsection*{The $A_\infty$ structure: what is proved and
 what is open}
 
-The $E_1$-chiral $A_\infty$ structure on $Y_z^\hbar(\fg)$ is
+The $E_1$-chiral $A_\infty$ structure on $Y_\hbar(\fg)$ is
 the central open question. We state precisely what is known.
 
-The Yangian $Y_z^\hbar(\fg)$ is a \emph{filtered} algebra:
+The Yangian $Y_\hbar(\fg)$ is a \emph{filtered} algebra:
 the PBW filtration by total mode number $|t_{ij}^{(r)}| = r$
-gives $\gr Y_z^\hbar(\fg) \simeq U(\fg[t])$.
+gives $\gr Y_\hbar(\fg) \simeq U(\fg[t])$.
 
 \begin{proposition}[Associated graded is formal;
 \ClaimStatusProvedHere]
@@ -2200,11 +2298,11 @@ the tensor product of Koszul algebras is Koszul
 (Polishchuk--Positselski, Theorem~2.3.1).
 \end{proof}
 
-\begin{question}[$E_1$-chiral $A_\infty$ of $Y_z^\hbar(\fg)$;
+\begin{question}[$E_1$-chiral $A_\infty$ of $Y_\hbar(\fg)$;
 \ClaimStatusOpen]
 \label{q:yangian-Ainfty}
 \index{Yangian!$A_\infty$ structure}
-Is the full $Y_z^\hbar(\fg)$ (not just its associated graded)
+Is the full $Y_\hbar(\fg)$ (not just its associated graded)
 formal as an $E_1$-chiral algebra? The RTT
 relation~\eqref{eq:FRT-components} is quadratic in the
 generating functions $t_{ij}(u)$, but the mode-expanded
@@ -2216,9 +2314,9 @@ Two scenarios:
 \begin{enumerate}[label=\textup{(\alph*)}]
 \item \emph{Filtered formality:}
  There exists a filtered $A_\infty$ quasi-isomorphism
- $Y_z^\hbar(\fg) \xrightarrow{\sim} (U(\fg[t]), m_2)$
+ $Y_\hbar(\fg) \xrightarrow{\sim} (U(\fg[t]), m_2)$
  that is the identity on the associated graded. This would
- mean $Y_z^\hbar(\fg)$ is ``formal up to filtration'': the
+ mean $Y_\hbar(\fg)$ is ``formal up to filtration'': the
  higher $m_k$ vanish on $\gr$ but may be non-zero on the
  filtered level.
 \item \emph{Genuine non-formality:}
@@ -2234,7 +2332,7 @@ $\hbar$-deformation. This is not computed in either volume.
 
 \begin{remark}[The $E_1$-chiral algebra structure as the KZ connection]%
 \label{rem:E1-chiral-from-KZ}%
-The SC${}^{\mathrm{ch,top}}$-algebra structure on
+The SC${}^{\mathrm{ch,top},!}$-algebra structure on
 $\cA^!_{\mathrm{line}}$, whose existence is
 guaranteed by Theorem~\ref{thm:dual-sc-algebra}, is
 concretely realised by the derived additive KZ connection
@@ -2289,11 +2387,11 @@ bare $\Ainf$ algebra without spectral parameter.
 %% Explicit SC operations on the Yangian for sl_2
 %% ----------------------------------------------------------------
 
-\subsubsection*{Explicit $\SCchtop$-algebra operations on
-$Y_z^\hbar(\mathfrak{sl}_2)$}
+\subsubsection*{Explicit $\SCchtop^{!}$-algebra operations on
+$Y_\hbar(\mathfrak{sl}_2)$}
 
 Remark~\ref{rem:E1-chiral-from-KZ} identifies the
-$\SCchtop$-algebra structure on $\cA^!_{\mathrm{line}}$ with the
+$\SCchtop^{!}$-algebra structure on $\cA^!_{\mathrm{line}}$ with the
 derived additive KZ connection.
 Theorem~\ref{thm:dual-sc-algebra} proves its existence by
 operadic duality. The following exhibits the operations
@@ -2314,7 +2412,7 @@ $\fg = \mathfrak{sl}_2$). The transfer matrix is
 $T(u) = \bigl(\begin{smallmatrix}
 t_{11}(u) & t_{12}(u) \\ t_{21}(u) & t_{22}(u)
 \end{smallmatrix}\bigr)
-\in \End(V) \otimes Y_z^\hbar(\mathfrak{sl}_2)[\![u^{-1}]\!]$.
+\in \End(V) \otimes Y_\hbar(\mathfrak{sl}_2)[\![u^{-1}]\!]$.
 
 \begin{computation}[Operation $\mu_{0,2}$: the $E_1$ binary
 product; \ClaimStatusProvedHere]
@@ -2322,8 +2420,8 @@ product; \ClaimStatusProvedHere]
 The open-colour binary operation
 \[
 \mu_{0,2} \colon E_1(2) \otimes
-Y_z^\hbar(\mathfrak{sl}_2)^{\otimes 2} \to
-Y_z^\hbar(\mathfrak{sl}_2)
+Y_\hbar(\mathfrak{sl}_2)^{\otimes 2} \to
+Y_\hbar(\mathfrak{sl}_2)
 \]
 is the Yangian multiplication. Since $E_1(2) \simeq *$
 (contractible), $\mu_{0,2}$ is a single bilinear map: the
@@ -2348,7 +2446,7 @@ $\barB^{\mathrm{ord}}(\cA)$
 (Theorem~\ref{thm:dual-sc-algebra}(ii)).
 The crucial point: $\mu_{0,2}$ does \emph{not} depend on the
 spectral parameter. The product on
-$Y_z^\hbar(\mathfrak{sl}_2)$ is a purely topological
+$Y_\hbar(\mathfrak{sl}_2)$ is a purely topological
 ($E_1$-colour) datum.
 \end{computation}
 
@@ -2358,8 +2456,8 @@ $\lambda$-bracket; \ClaimStatusProvedHere]
 The closed-colour binary operation
 \[
 \mu_{2,0} \colon C_*(\FM_2(\C)) \otimes
-Y_z^\hbar(\mathfrak{sl}_2)^{\otimes 2} \to
-Y_z^\hbar(\mathfrak{sl}_2)
+Y_\hbar(\mathfrak{sl}_2)^{\otimes 2} \to
+Y_\hbar(\mathfrak{sl}_2)
 \]
 is the Sklyanin $\lambda$-bracket
 (Proposition~\ref{prop:sklyanin-from-RTT}).
@@ -2417,7 +2515,7 @@ $\{\cdot, \cdot\} = \lim_{\hbar \to 0}
 
 The \emph{integral kernel} for $\mu_{2,0}$ is the differential
 form on $\FM_2(\C)$ with values in
-$\End(Y_z^\hbar^{\otimes 2})$:
+$\End(Y_\hbar^{\otimes 2})$:
 \begin{equation}\label{eq:mu20-kernel}
 \mathcal{K}_{\mu_{2,0}}(z_1, z_2)
 \;=\;
@@ -2452,8 +2550,8 @@ closed-open action; \ClaimStatusProvedHere]
 The mixed operation with one closed and one open input,
 \[
 \mu_{1,1} \colon C_*(\FM_1(\C) \times E_1(1)) \otimes
-Y_z^\hbar(\mathfrak{sl}_2)^{\otimes 2} \to
-Y_z^\hbar(\mathfrak{sl}_2),
+Y_\hbar(\mathfrak{sl}_2)^{\otimes 2} \to
+Y_\hbar(\mathfrak{sl}_2),
 \]
 encodes how the spectral braiding acts on a single Yangian
 element. Since $\FM_1(\C) \simeq *$ and $E_1(1) \simeq *$
@@ -2508,7 +2606,7 @@ The integral kernel is the constant function on the
 \;=\;
 \Omega_{12}\,\delta(z_{\mathrm{cl}} - z_{\mathrm{op}})
 \;\in\;
-\End(Y_z^\hbar^{\otimes 2}),
+\End(Y_\hbar^{\otimes 2}),
 \end{equation}
 where the delta function enforces coincidence of the closed-colour
 insertion point $z_{\mathrm{cl}}$ with the open-colour
@@ -2521,8 +2619,8 @@ insertion point $z_{\mathrm{op}}$.
 The decisive mixed operation has one closed and two open inputs:
 \[
 \mu_{1,2} \colon C_*(\FM_1(\C) \times E_1(2)) \otimes
-Y_z^\hbar(\mathfrak{sl}_2)^{\otimes 3} \to
-Y_z^\hbar(\mathfrak{sl}_2).
+Y_\hbar(\mathfrak{sl}_2)^{\otimes 3} \to
+Y_\hbar(\mathfrak{sl}_2).
 \]
 Again $\FM_1(\C) \times E_1(2) \simeq *$ is contractible, so
 $\mu_{1,2}$ is a single trilinear map.
@@ -2542,7 +2640,7 @@ T_2(v)\,T_1(u)\,R_{12}(u{-}v)
 \;=\; 0.
 }
 \end{equation}
-The vanishing encodes the defining relation of $Y_z^\hbar(\fg)$:
+The vanishing encodes the defining relation of $Y_\hbar(\fg)$:
 the $R$-matrix intertwines the ordered product of transfer
 matrices. In component form for $\mathfrak{sl}_2$, with
 $R(w) = 1 + \hbar P/w$ \textup($w = u - v$\textup):
@@ -2589,8 +2687,8 @@ $E_1$ product; \ClaimStatusProvedHere]
 The open-colour ternary operation
 \[
 \mu_{0,3} \colon E_1(3) \otimes
-Y_z^\hbar(\mathfrak{sl}_2)^{\otimes 3} \to
-Y_z^\hbar(\mathfrak{sl}_2)
+Y_\hbar(\mathfrak{sl}_2)^{\otimes 3} \to
+Y_\hbar(\mathfrak{sl}_2)
 \]
 is the ternary multiplication
 $\mu_{0,3}(a, b, c) = a \cdot b \cdot c$.
@@ -2708,7 +2806,7 @@ $k \ge 3$ & 0 & Vanishes
 \bottomrule
 \end{tabular}
 \caption{$\SCchtop$-algebra operations on
-$Y_z^\hbar(\mathfrak{sl}_2)$. For the affine lineage,
+$Y_\hbar(\mathfrak{sl}_2)$. For the affine lineage,
 $\mu_{k,0} = 0$ for $k \ge 3$ at the associated-graded level
 (Proposition~\ref{prop:spectral-sequence-r-matrix}).
 Whether this vanishing lifts to the filtered level is
@@ -2796,7 +2894,7 @@ vanish on all non-trivial shuffles.
 \index{Yangian!deformation class}
 \index{Harrison cohomology!obstruction to formality}
 The Yangian deformation class
-$[Y_z^\hbar(\fg)] \in \HH^2\bigl(U(\fg[t]),\, U(\fg[t])\bigr)$
+$[Y_\hbar(\fg)] \in \HH^2\bigl(U(\fg[t]),\, U(\fg[t])\bigr)$
 is the class of the RTT deformation: in the decomposition of
 Proposition~\textup{\ref{prop:HH-Ugt-decomposition}}, it
 lies in the $\Lambda^2(\fg[t])$ summand and is represented by
@@ -2805,7 +2903,7 @@ the classical $r$-matrix $r(u-v) \in \fg \otimes \fg \otimes
 
 The obstruction to extending this deformation to a filtered
 $A_\infty$ quasi-isomorphism
-$Y_z^\hbar(\fg) \xrightarrow{\sim} (U(\fg[t]), m_2)$ lies in
+$Y_\hbar(\fg) \xrightarrow{\sim} (U(\fg[t]), m_2)$ lies in
 the Harrison cohomology group
 $\Har^3\bigl(U(\fg[t]),\, U(\fg[t])\bigr)$.
 \end{proposition}
@@ -2904,7 +3002,7 @@ There is also an independent line of evidence: the
 Etingof--Kazhdan quantization theorem
 \cite{etingof1996quantization} establishes formality of the
 quantum group $U_q(\fg)$ as a deformation of $U(\fg)$. The
-Yangian $Y_z^\hbar(\fg)$ is the rational degeneration of the
+Yangian $Y_\hbar(\fg)$ is the rational degeneration of the
 quantum affine algebra $U_q(\widehat{\fg})$, and the
 Etingof--Kazhdan formality machinery (itself
 cohomological in nature, controlling obstructions via Drinfeld
@@ -2918,11 +3016,11 @@ to future work.
 \begin{remark}[The Steinberg perspective on filtered formality]
 \label{rem:steinberg-filtered-formality}
 \index{Steinberg variety!filtered formality}
-The Yangian $Y_z^\hbar(\fg)$ acts on $\cO$-modules on the
+The Yangian $Y_\hbar(\fg)$ acts on $\cO$-modules on the
 Steinberg variety $Z = \widetilde{\cN} \times_{\cN}
 \widetilde{\cN}$, just as $U(\fg[t])$ acts on the undeformed
 correspondence in the factorisation-quantum-group picture above.
-Filtered formality of $Y_z^\hbar(\fg) \xrightarrow{\sim}
+Filtered formality of $Y_\hbar(\fg) \xrightarrow{\sim}
 (U(\fg[t]), m_2)$ is equivalent to a formal equivalence
 between the deformed and undeformed Steinberg categories
 $D^b\mathrm{Coh}(Z_\hbar) \simeq D^b\mathrm{Coh}(Z)$ as
@@ -2966,7 +3064,7 @@ Section~\textup{\ref*{V1-sec:bar-propagator}}). The
 Harrison obstruction
 $\Har^3(U(\fg[t]))$ of
 Proposition~\ref{prop:yangian-deformation-obstruction}
-is the arity-$3$ vertex contribution to
+is the degree-$3$ vertex contribution to
 $H^0(\mathrm{GC}_X^{\mathrm{ch}})$ restricted to tree-level
 graphs: it vanishes for class~$\mathbf{L}$ algebras
 (Lemma~\ref{lem:harrison-leading-vanishing}) because the
@@ -2987,7 +3085,7 @@ Grothendieck--Teichm\"uller group produces an infinite
 sequence of independent obstructions, one at each depth.
 
 The Drinfeld associator $\Phi_{\mathrm{KZ}}$, which governs
-the arity-$3$ component of the $\Eone$ MC element
+the degree-$3$ component of the $\Eone$ MC element
 $\Theta_\cA^{\Eone}$ (see
 Section~\ref{subsec:elliptic-spectral-dichotomy}), is the
 exponential of an element of $\mathfrak{grt}_1$: the
@@ -3019,7 +3117,7 @@ The Koszul involution $(-)^{!!} \simeq \id$ at the
 $E_1$-chiral level gives
 $\Omega^{E_1\text{-ch}}(B^{E_1\text{-ch}}(\cA)) \simeq \cA$.
 For $\cA = \widehat{\fg}_k$: the ordered bar produces
-$Y_z^\hbar(\fg)$, and the cobar recovers $\widehat{\fg}_k$.
+$Y_\hbar(\fg)$, and the cobar recovers $\widehat{\fg}_k$.
 
 The structures exchange:
 \begin{center}
@@ -3086,7 +3184,7 @@ $\kappa + \kappa^!$ is in general nonzero
 
 The all-genus generating function:
 \[
-\sum_{g \ge 1} F_g(Y_z^\hbar(\fg))\,x^{2g}
+\sum_{g \ge 1} F_g(Y_\hbar(\fg))\,x^{2g}
 \;=\;
 -\kappa(\widehat{\fg}_k)\bigl(\hat{A}(ix) - 1\bigr).
 \]
@@ -3172,7 +3270,7 @@ yet reach.
 \begin{enumerate}[label=\textup{(\roman*)}]
 \item The $A_\infty$ formality question
  (Question~\ref{q:yangian-Ainfty}). A positive answer would
- reduce the filtered Yangian $Y_z^\hbar(\fg)$ to its associated
+ reduce the filtered Yangian $Y_\hbar(\fg)$ to its associated
  graded as an $A_\infty$-algebra, collapsing the Harrison
  obstruction tower of
  Proposition~\ref{prop:harrison-leading-vanishing}. The
@@ -3182,15 +3280,16 @@ yet reach.
  spectral-parameter-dependent and mix the geometric and loop
  directions.
 \item Construction of a ``Yangian vertex algebra'': a vertex
- algebra-like object on $Y_z^\hbar(\fg)$ encoding the spectral
+ algebra-like object on $Y_\hbar(\fg)$ encoding the spectral
  OPE, state-field correspondence, and translation. The
  obstruction is that the Yangian is filtered by mode number, not
  graded by conformal weight. Theorem~\ref{thm:dual-sc-algebra}
  resolves the structural question (the open-colour dual
  $\cA^!_{\mathrm{line}}$ carries a canonical
- $\SCchtop$-algebra structure encoding both the Sklyanin
- $\lambda$-bracket (closed colour) and the Yangian product
- (open colour)), but the explicit ``vertex algebra''
+ $\SCchtop^{!}$-algebra structure, i.e.\ a $(\mathrm{Lie},\mathrm{Ass})$-algebra
+ structure, encoding both the Sklyanin
+ $\lambda$-bracket (closed colour $=$ Lie) and the Yangian product
+ (open colour $=$ Ass)), but the explicit ``vertex algebra''
  presentation remains a presentation problem.
 \item Quantization of the Sklyanin PVA
  \eqref{eq:sklyanin-bracket} via the modular programme
@@ -3618,17 +3717,17 @@ sum to zero at all orders, which is exactly the quantum YBE
 for $R(z) = \id + \hh\,r_0/z + O(z^{-2})$.
 \end{proof}
 
-\subsubsection*{The $\SCchtop$-algebra structure on $\cA^!_{\mathrm{line}}$}
+\subsubsection*{The $\SCchtop^{!}$-algebra structure on $\cA^!_{\mathrm{line}}$}
 
-\begin{theorem}[Dual $\SCchtop$-algebra;
+\begin{theorem}[Dual $\SCchtop^{!}$-algebra $= (\mathrm{Lie},\mathrm{Ass})$-algebra;
 \ClaimStatusProvedHere]
 \label{thm:dual-sc-algebra}
-\index{Swiss-cheese operad!dual algebra structure}
-\index{Koszul dual!$\SCchtop$-algebra}
+\index{Swiss-cheese operad!Koszul dual algebra structure}
+\index{Koszul dual!$\SCchtop^{!}$-algebra}
 \index{Sklyanin bracket!as closed-color cobar}
 \index{Yangian!as open-color cobar}
 The open-colour Koszul dual $\cA^!_{\mathrm{line}}$ inherits a canonical
-$\SCchtop$-algebra structure:
+$\SCchtop^{!}$-algebra structure (equivalently, a $(\mathrm{Lie},\mathrm{Ass})$-algebra structure, since $\SCchtop^{!}$ has closed sector $\operatorname{Com}^! = \operatorname{Lie}$ and open sector $\operatorname{Ass}^! = \operatorname{Ass}$; Proposition~\ref*{prop:sc-koszul-dual-three-sectors}):
 \begin{enumerate}[label=\textup{(\roman*)}]
 \item \emph{Closed color:} the coalgebra structure on
  $\barBch(\cA)$ induces, via Verdier duality on $\Ran(X)$,
@@ -3640,11 +3739,11 @@ $\SCchtop$-algebra structure:
 \item \emph{Compatibility:} $d_{\barB}$ is a coderivation
  of~$\Delta$ in the two-colour bar datum. Dually, the
  Sklyanin bracket and the Yangian product satisfy the
- Swiss-cheese composition law: the $\lambda$-bracket is a
+ $\SCchtop^{!}$ composition law: the $\lambda$-bracket is a
  derivation of the Yangian product up to homotopy controlled
- by the mixed-color operations of $\SCchtop$.
+ by the mixed-color operations of $\SCchtop^{!}$.
 \end{enumerate}
-The $\SCchtop$-algebra on $\cA^!_{\mathrm{line}}$ is the live
+The $\SCchtop^{!}$-algebra on $\cA^!_{\mathrm{line}}$ is the live
 strict model of the two-color Koszul dual package relevant for
 line operators and is Koszul dual to the
 two-colour bar datum $(\barBch(\cA),\, \barB^{\mathrm{ord}}(\cA))$.
@@ -3656,11 +3755,11 @@ gives $(\SCchtop)^! \simeq (\SCchtop)^{\vee}$
 (Ginzburg--Kapranov~\cite{GK94}, generalized by Vallette
 \cite{Val07} to the colored setting). The
 two-colour coalgebra structure on the bar datum $(\barBch(\cA),\, \barB^{\mathrm{ord}}(\cA))$ dualizes to an
-$\SCchtop$-algebra structure on the strict model
+$\SCchtop^{!}$-algebra structure on the strict model
 $\cA^!_{\mathrm{line}}$ used on the live line/Yangian surface.
 The two projections:
 
-(i) The closed-color projection of the $\SCchtop$-algebra
+(i) The closed-color projection of the $\SCchtop^{!}$-algebra
 structure maps are
 $C_\ast(\FM_k(\C)) \otimes
 (\cA^!_{\mathrm{line}})^{\otimes k}
@@ -3676,11 +3775,11 @@ $E_1(m) \otimes (\cA^!_{\mathrm{line}})^{\otimes m}
 $E_1$-algebra structure is the Yangian product, i.e.\ the
 concatenation algebra structure dual to deconcatenation.
 
-(iii) The mixed-color composition maps of $\SCchtop$ enforce
+(iii) The mixed-color composition maps of $\SCchtop^{!}$ enforce
 compatibility: the bar differential $d_{\barB}$, being a
 coderivation of $\Delta$, dualizes to the statement that the
 $\lambda$-bracket (from $d_{\barB}$) is a derivation of the
-product (from $\Delta$) up to higher $\SCchtop$-homotopies.
+product (from $\Delta$) up to higher $\SCchtop^{!}$-homotopies.
 \end{proof}
 
 \begin{remark}[This is not an accident]
@@ -3818,7 +3917,7 @@ $\Theta_\cA \in \MC(\mathfrak{g}_\cA^{\mathrm{mod}})$
  chiral bar complex $\barBch(\cA)$.
 \item \emph{Open-color projection:} the $R$-matrix
  $r(z) = \Res^{\mathrm{coll}}_{0,2}(\Theta_\cA)$
- is the collision residue of $\Theta_\cA$ at arity~$2$
+ is the collision residue of $\Theta_\cA$ at degree~$2$
  in the open-color sector. This is the invariant of the
  ordered bar complex $\barB^{\mathrm{ord}}(\cA)$.
 \item \emph{Full MC equation:} $D \cdot \Theta_\cA

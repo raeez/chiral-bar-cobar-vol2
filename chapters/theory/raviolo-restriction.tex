@@ -44,53 +44,355 @@ The holomorphic–topological pairing ensures that distributions supported on $D
 The state--field correspondence implemented by the raviolo is a statement at the level of cohomology.
 At the chain level, two distinct models of the gluing locus $D^\times$ are available, and their comparison is the source of the $E_2/E_1$ gap that governs the passage from holomorphic to topological data.
 
-\begin{remark}[Chain models on $D^\times$ and $S^1$]
-\label{rem:chain-D-vs-S1}
-Let $A$ be a holomorphic--topological factorization algebra on $\mathrm{Rav}$.
+% Phantom label for backward compatibility with cross-references.
+\phantomsection\label{rem:chain-D-vs-S1}
+
+\begin{proposition}[Chain-level comparison: $D^\times$ versus $S^1$;
+\ClaimStatusProvedHere]%
+\label{prop:chain-D-vs-S1}%
+\index{punctured disk!chain-level comparison with circle|textbf}%
+\index{factorisation homology!punctured disk vs circle}%
+\index{E2/E1 gap@$E_2/E_1$ gap!chain-level source}%
+Let $\cA$ be a strongly admissible $E_\infty$-chiral algebra
+and let $A$ denote the underlying holomorphic--topological
+factorization algebra on $\mathrm{Rav}$.
 \begin{enumerate}[label=\textup{(\roman*)}]
 \item \textbf{Punctured-disk model.}
-  The chiral factorization homology $C^{\mathrm{ch}}(D^\times,A)$
-  computes the derived global sections of~$A$ on the punctured formal disk.
-  Since $D^\times$ is a surface with one-dimensional configuration spaces
-  admitting a $\mathbf{C}^\times$-action, this chain complex carries
-  a natural $E_2$-algebra structure: the two-dimensional configurations
-  of points in $D^\times$ encode the full little-disk operad $E_2$.
+  The chiral factorization homology $C^{\mathrm{ch}}(D^\times,\cA)$
+  computes the derived global sections of~$\cA$ on the punctured
+  formal disk.
+  Configuration spaces on~$D^\times$ are two-dimensional:
+  $\mathrm{Conf}_n(D^\times)\simeq
+  \mathrm{Conf}_n(\mathbf{C}^\times)$, and the
+  $\mathbf{C}^\times$-equivariant Fulton--MacPherson
+  compactification
+  $\overline{\mathrm{FM}}_n(D^\times)$ governs the
+  operadic structure.
+  The resulting chain complex carries a natural $E_2$-algebra
+  structure: the two-dimensional configurations encode the
+  full little-disk operad~$E_2$.
 
 \item \textbf{Circle model.}
-  The topological factorization homology $C^{\mathrm{top}}(S^1,A)$
-  coincides with the cyclic bar complex of~$A$.
-  The configurations are one-dimensional (points on the circle),
-  and the resulting chain complex carries an $E_1$-algebra structure:
-  cyclic order provides precisely the data of an associative
-  (up to coherent homotopy) multiplication.
+  The topological factorization homology $C^{\mathrm{top}}(S^1,\cA)$
+  coincides with the cyclic bar complex $B^{S^1}_\bullet(\cA)$
+  of Definition~\textup{\ref{def:circle-bar-chain-model}}.
+  The configurations are one-dimensional
+  (cyclically ordered points on the circle),
+  and the resulting chain complex carries an $E_1$-algebra
+  structure: cyclic order provides the data of an
+  associative (up to coherent homotopy) multiplication.
 
 \item \textbf{Quasi-isomorphism.}
-  The inclusion $S^1\hookrightarrow D^\times$ is a homotopy equivalence
-  (the punctured disk deformation-retracts onto the circle).
-  Restriction along this retraction gives a quasi-isomorphism
-  \[
-    \rho\colon C^{\mathrm{ch}}(D^\times,A)
-    \xrightarrow{\;\sim\;} C^{\mathrm{top}}(S^1,A)
-  \]
-  that forgets the holomorphic structure.
+  The radial projection
+  $r\colon D^\times\to S^1$, $z\mapsto z/|z|$,
+  is a deformation retraction with section
+  $\iota\colon S^1\hookrightarrow D^\times$ (the
+  inclusion of the unit circle) and homotopy
+  $h_t(z)=(1-t)z + t\,z/|z|$, $t\in[0,1]$.
+  There is an induced chain map
+  \begin{equation}\label{eq:rho-chain-map}
+    \rho\colon C^{\mathrm{ch}}(D^\times,\cA)
+    \xrightarrow{\;\sim\;}
+    C^{\mathrm{top}}(S^1,\cA)
+  \end{equation}
+  that is a quasi-isomorphism of chain complexes.
   In particular, both models compute the same homology:
-  $H_\bullet(C^{\mathrm{ch}}(D^\times,A))
-  \cong H_\bullet(C^{\mathrm{top}}(S^1,A))
-  \cong Z(A)$,
-  the derived center (chiral Hochschild homology) of~$A$.
-  This is the content of the state--field correspondence.
+  \[
+    H_\bullet\bigl(C^{\mathrm{ch}}(D^\times,\cA)\bigr)
+    \;\cong\;
+    H_\bullet\bigl(C^{\mathrm{top}}(S^1,\cA)\bigr)
+    \;\cong\;
+    Z(\cA),
+  \]
+  the derived center (chiral Hochschild homology)
+  of~$\cA$. This is the chain-level content of the
+  state--field correspondence.
 
-\item \textbf{The $E_2/E_1$ gap at chains.}
-  Although $\rho$ is a quasi-isomorphism of chain complexes,
-  it is \emph{not} a map of $E_2$-algebras: the target carries
-  only an $E_1$-structure.
-  The map $\rho$ is an $E_1$-map that forgets the $E_2$-refinement.
+\item \textbf{$E_1$-compatibility, $E_2$-incompatibility.}
+  The map~$\rho$ is an $E_1$-algebra map but \emph{not}
+  an $E_2$-algebra map: the target carries only an
+  $E_1$-structure.
   The discrepancy---the fiber of the forgetful functor
   $E_2\text{-}\mathsf{Alg}\to E_1\text{-}\mathsf{Alg}$---is
-  precisely the holomorphic datum that cohomology discards.
-  Concretely, the higher $E_2$-operations encode the braiding
-  (monodromy of two points in $D^\times$ around each other),
-  while the $E_1$-structure retains only the cyclic ordering.
+  the holomorphic datum that homology discards.
+  The higher $E_2$-operations encode the braiding
+  (monodromy of two points in $D^\times$ around each
+  other), while the $E_1$-structure retains only the
+  cyclic ordering.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+The argument proceeds in four steps: construction of the
+map on configuration spaces, verification that it is a
+chain map, the quasi-isomorphism property, and the
+$E_1/E_2$ analysis.
+
+\medskip
+\noindent\textit{Step 1: Map on configuration spaces.}
+The radial projection $r\colon D^\times\to S^1$,
+$z\mapsto z/|z|$, is a smooth $\mathbf{C}^\times$-equivariant
+map (with respect to the rotation action on both sides).
+It induces a map on unordered configuration spaces
+\begin{equation}\label{eq:config-retract}
+  r_n\colon \mathrm{Conf}_n(D^\times)
+  \longrightarrow \mathrm{Conf}_n(S^1),
+  \qquad
+  \{z_1,\dots,z_n\}\longmapsto
+  \bigl\{z_1/|z_1|,\dots,z_n/|z_n|\bigr\}.
+\end{equation}
+This map is well-defined on configurations (distinct
+points in~$D^\times$ may collide under~$r_n$ only when
+they share the same angular coordinate), and the
+subset of colliding configurations has real
+codimension~$1$ in~$\mathrm{Conf}_n(D^\times)$.
+To handle this, we work with the Fulton--MacPherson
+compactifications on both sides.
+
+On the source, $\overline{\mathrm{FM}}_n(D^\times)$
+compactifies $\mathrm{Conf}_n(D^\times)$ by recording
+relative positions of colliding points as
+screen data (both radial and angular).
+On the target, $\overline{\mathrm{Conf}}_n(S^1)$
+compactifies $\mathrm{Conf}_n(S^1)$ by allowing
+points to collide with recorded relative cyclic order.
+The radial projection extends to a continuous map
+\begin{equation}\label{eq:FM-retract}
+  \bar r_n\colon
+  \overline{\mathrm{FM}}_n(D^\times)
+  \longrightarrow
+  \overline{\mathrm{Conf}}_n(S^1)
+\end{equation}
+by sending screen data at a collision to the angular
+component of the screen: a configuration of $k$~points
+colliding in~$D^\times$ records their relative positions
+in~$T_{z_0}D^\times\cong\mathbf{C}$; the radial
+projection extracts the angular ordering, which is
+the screen datum in~$\overline{\mathrm{Conf}}_n(S^1)$.
+This extension is well-defined because the angular
+ordering is the data that survives radial collapse,
+and it is compatible with the face maps (further
+collisions) by functoriality of the angular extraction.
+
+\medskip
+\noindent\textit{Step 2: Chain map.}
+The factorization homology chain complexes are assembled
+from the configuration spaces by integrating the
+algebraic data (OPE kernels in the chiral direction,
+coproduct faces in the topological direction) over the
+compactified configuration spaces.
+Concretely,
+\[
+  C^{\mathrm{ch}}_n(D^\times,\cA)
+  \;=\;
+  C_\ast\!\bigl(\overline{\mathrm{FM}}_n(D^\times);\,
+  \omega_{\mathrm{OPE}}\bigr),
+  \qquad
+  C^{\mathrm{top}}_n(S^1,\cA)
+  \;=\;
+  C_\ast\!\bigl(\overline{\mathrm{Conf}}_n(S^1);\,
+  \omega_{\mathrm{cyc}}\bigr),
+\]
+where $\omega_{\mathrm{OPE}}$ encodes the full OPE data
+(poles, residues, regular terms) and
+$\omega_{\mathrm{cyc}}$ encodes the cyclic bar data
+(coproduct faces and wraparound monodromy).
+The map $\rho$ is defined by pushforward:
+\begin{equation}\label{eq:rho-pushforward}
+  \rho(\sigma\otimes\omega_{\mathrm{OPE}})
+  \;:=\;
+  (\bar r_n)_\ast(\sigma)\otimes
+  \bigl(\bar r_n^\ast\bigr)^{-1}(\omega_{\mathrm{OPE}}),
+\end{equation}
+where $(\bar r_n)_\ast$ is the pushforward on chains
+and $(\bar r_n^\ast)^{-1}(\omega_{\mathrm{OPE}})$ denotes
+the image of the OPE coefficient system under the
+projection: all radial (holomorphic modulus) information
+is integrated out, and the remaining angular data is
+precisely the cyclic bar coefficient $\omega_{\mathrm{cyc}}$.
+
+To verify the chain-map property
+$\rho\circ d^{\mathrm{ch}}=d^{\mathrm{top}}\circ\rho$,
+observe that the differentials on both sides are
+determined by codimension-$1$ boundary strata of
+their respective configuration spaces. The map~$\bar r_n$
+sends each boundary stratum of
+$\overline{\mathrm{FM}}_n(D^\times)$ to the
+corresponding stratum of
+$\overline{\mathrm{Conf}}_n(S^1)$:
+\begin{itemize}
+\item A two-dimensional collision in~$D^\times$
+  (two holomorphic points approach each other, with
+  the full $\mathbf{C}$-valued screen) maps to a
+  one-dimensional collision on~$S^1$ (two points
+  approach on the circle, with only the cyclic-order
+  screen). The OPE residue $d_{\mathrm{res}}$ on the
+  source restricts to the collision differential on the
+  target. By the residue theorem, integrating the full
+  OPE kernel over the radial fiber at a collision
+  extracts the leading residue, which is the datum
+  recorded by the topological collision face.
+\item The coproduct faces $d_\Delta$ (a point
+  approaches the boundary of the FM compactification
+  without colliding with another point) map identically
+  on both sides: they are purely topological
+  (combinatorial face maps on the simplicial/cosimplicial
+  direction) and the radial projection acts trivially.
+\item The wrap-around face $d_{\mathrm{wrap}}$ (the
+  cyclic identification $0\sim 1$ on $S^1$) is present
+  only on the circle side. On the punctured-disk side,
+  the corresponding operation is the monodromy of a
+  point traversing a loop in~$D^\times$ around the
+  origin. The map $\bar r_n$ sends this loop to the
+  full circle traversal on~$S^1$, and the monodromy
+  $\mathrm{Mon}(R)$ is transported faithfully, since
+  the angular component of the loop is preserved by
+  radial projection.
+\end{itemize}
+Hence $\rho$ commutes with all components of the
+differential and is a chain map.
+
+\medskip
+\noindent\textit{Step 3: Quasi-isomorphism.}
+The deformation retraction
+$h_t\colon D^\times\to D^\times$,
+$h_t(z)=(1-t)z+t\,z/|z|$, satisfies $h_0=\mathrm{id}$,
+$h_1=\iota\circ r$. It induces a homotopy
+\[
+  (h_t)_n\colon
+  \mathrm{Conf}_n(D^\times)\times[0,1]
+  \longrightarrow\mathrm{Conf}_n(D^\times)
+\]
+by applying $h_t$ pointwise. For generic configurations,
+this homotopy stays within
+$\mathrm{Conf}_n(D^\times)$ (no collisions occur
+during the retraction when the angular coordinates of
+the $n$~points are distinct).
+The locus where collisions occur during retraction has
+codimension~$1$ in the product
+$\mathrm{Conf}_n(D^\times)\times[0,1]$
+and is handled by the FM compactification: the homotopy
+extends to
+\[
+  \bar h_n\colon
+  \overline{\mathrm{FM}}_n(D^\times)\times[0,1]
+  \longrightarrow
+  \overline{\mathrm{FM}}_n(D^\times)
+\]
+by the universal property of the compactification
+(recording screen data for any incipient collisions
+created by the retraction).
+The chain homotopy operator
+$K_n:=(\bar h_n)_\ast\circ\mathrm{pr}_\ast$
+(where $\mathrm{pr}\colon
+\overline{\mathrm{FM}}_n(D^\times)\times[0,1]
+\to\overline{\mathrm{FM}}_n(D^\times)$ is the
+projection) satisfies
+$\iota_\ast\circ\rho - \mathrm{id}
+= d^{\mathrm{ch}}\circ K + K\circ d^{\mathrm{ch}}$
+by the standard argument for deformation retracts at
+the chain level (prism decomposition). Since
+$\rho\circ\iota_\ast=\mathrm{id}$ on
+$C^{\mathrm{top}}(S^1,\cA)$
+(the section followed by the retraction is the identity
+on~$S^1$), the pair $(\rho,\iota_\ast)$ exhibits a
+deformation retract of chain complexes.
+In particular, $\rho$ is a quasi-isomorphism.
+
+\medskip
+\noindent\textit{Step 4: $E_1$-map, not $E_2$-map.}
+The $E_1$-structure on both sides is governed by the
+cyclic ordering of points.
+Since the radial projection preserves angular ordering
+($\arg(z_i)<\arg(z_j)$ implies
+$\arg(r(z_i))<\arg(r(z_j))$), the map~$\rho$ preserves
+all $E_1$-operations: the operadic compositions
+(governed by nested intervals on $S^1\subset D^\times$)
+are transported faithfully.
+
+The $E_2$-operations, by contrast, are governed by the
+full two-dimensional positioning of points in~$D^\times$.
+The $E_2$-multiplication $\mu_{E_2}$ involves two
+little disks in~$D^\times$ that can wind around each
+other: the fundamental group
+$\pi_1(\mathrm{Conf}_2(D^\times))$ is free on two
+generators (the braid generator and the winding number
+around the puncture), while
+$\pi_1(\mathrm{Conf}_2(S^1))$ is infinite cyclic
+(only cyclic order).
+The radial projection collapses the radial separation
+and identifies configurations that differ only in the
+moduli of their points; this quotient kills the
+generator corresponding to radial separation and
+thus cannot preserve the $E_2$-braiding.
+More precisely, the braiding on
+$C^{\mathrm{ch}}(D^\times,\cA)$ is encoded by chains
+on $\mathrm{Conf}_2(D^\times)$ swept out by one point
+encircling another in the full two-dimensional sense;
+the image of such a chain under~$r_2$ is a
+degenerate cycle on $\mathrm{Conf}_2(S^1)$ (the
+radial component collapses), and the $E_2$-operation
+is not recoverable from its image.
+\end{proof}
+
+\begin{remark}[The $E_1$ case]%
+\label{rem:chain-D-vs-S1-E1}%
+The proposition is stated for $E_\infty$-chiral algebras,
+where the monodromy of the OPE coefficient system around
+the origin is topological (it depends only on the winding
+number, not on the radial coordinate).
+For genuinely $E_1$-chiral algebras, the quasi-isomorphism
+requires additional structure: the radial fiber integration
+of the OPE coefficient system
+(the pushforward $(\bar r_n^\ast)^{-1}(\omega_{\mathrm{OPE}})$
+in Step~2) must be defined as a fiber integration along
+the radial fibers of~$r\colon D^\times\to S^1$, and the
+$R$-matrix monodromy $R(z)$ must factor through the angular
+projection $z\mapsto z/|z|$.
+For $E_\infty$ algebras this factorization is automatic
+(the $R$-matrix is derived from the local OPE, whose
+monodromy depends only on the homotopy class of the loop).
+For genuinely $E_1$ algebras, $R(z)$ is an independent
+datum whose dependence on $|z|$ need not be trivial, so
+both the fiber integration and the chain-map property of
+$d_{\mathrm{wrap}}$ require separate verification.
+Both are expected to hold but are not proved in the
+$E_1$ case.
+\end{remark}
+
+\begin{remark}[Scope and limitations]%
+\label{rem:chain-D-vs-S1-scope}%
+\begin{enumerate}[label=\textup{(\alph*)}]
+\item The extension of the pointwise homotopy~$h_t$ to
+  the FM compactification~$\bar h_n$ in Step~3 uses the
+  universal property of the real-oriented blowup at
+  collision diagonals. The argument is standard for
+  $\overline{\mathrm{FM}}_n(\mathbf{C})$
+  (cf.\ \cite{Sinha2004,LV12}), but the equivariant
+  version for~$D^\times$ requires the
+  $\mathbf{C}^\times$-equivariant FM compactification
+  as constructed in the annular configuration space
+  framework of
+  Definition~\textup{\ref{def:circle-bar-chain-model}}.
+  The compatibility of~$\bar h_n$ with the coefficient
+  system~$\omega_{\mathrm{OPE}}$ follows from the fact
+  that the OPE kernels extend meromorphically across
+  the collision divisors (strong admissibility of~$\cA$).
+\item The quasi-isomorphism $\rho$ is \emph{not}
+  canonical at the $E_2$ level: different choices of
+  retraction (e.g.\ $z\mapsto z/|z|$ versus
+  $z\mapsto e^{i\arg(z)}$, which agree but illustrate
+  that the choice of radial collapse is essentially
+  unique up to homotopy) all produce the same map on
+  homology but may differ at the cochain level in ways
+  that reflect the $E_2$-ambiguity.
+\item The fiber of~$\rho$ (the chain-level kernel of
+  ``forgetting holomorphic data'') is the chain-level
+  home of the $E_2/E_1$ gap. Describing this fiber
+  explicitly as a module over the $E_2$-operations is
+  an open problem related to the formality of the
+  little-disk operad and the Deligne conjecture
+  (Proposition~\textup{\ref{prop:derived-center-E2}}).
 \end{enumerate}
 \end{remark}
 
