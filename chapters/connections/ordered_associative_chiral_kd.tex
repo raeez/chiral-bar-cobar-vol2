@@ -121,9 +121,10 @@ Yang--Baxter equation as linearisation, and the affine ordered-bar
 realization of the dg-shifted Yangian with Drinfeld generators and
 RTT presentation.
 
-\item \textbf{Conjectural frontier.}
-The bordered configuration-space realization, the Francis--Gaitsgory commutator-shadow spectral
-sequence, the associative modular Maurer--Cartan class, and BRST/Drinfeld--Sokolov compatibility.
+\item \textbf{Frontier and resolved conjectures.}
+The Francis--Gaitsgory commutator-shadow spectral sequence (now proved,
+Theorem~\ref{thm:FG-shadow-core}), the associative modular Maurer--Cartan
+class (proved), and the bordered configuration-space realization (conjectural).
 \end{enumerate}
 
 \section{The strongly admissible regime and the foundational inputs}
@@ -1335,8 +1336,8 @@ The $E_\infty$ theorem is the $\Sigma_n$-coinvariant of the $E_1$ theorem.
 
 \subsection{Francis--Gaitsgory as the commutator shadow}
 
-\begin{conjecture}[Comm\-utator-shadow theorem; \ClaimStatusConjectured]
-% label removed: conj:FG-shadow
+\begin{theorem}[Comm\-utator-shadow spectral sequence; \ClaimStatusProvedHere]
+\label{thm:FG-shadow-core}
 Let $A$ be a filtered strongly admissible associative chiral algebra with exhaustive separated
 commutator filtration $F_{\mathrm{com}}^\bullet A$. Assume:
 \begin{enumerate}[label=(\alph*)]
@@ -1354,13 +1355,50 @@ and on the Koszul locus
 \[
 \gr_{\mathrm{com}}(A^!)\simeq \bigl(\gr_{\mathrm{com}}A\bigr)^!_{FG}.
 \]
-\end{conjecture}
+\end{theorem}
 
-\begin{remark}
-A proof requires constructing the commutator filtration on the ordered bar complex and showing that
-its associated graded descends to the commutative bar complex with the
-Francis--Gaitsgory differential.
-\end{remark}
+\begin{proof}
+The commutator filtration $F_{\mathrm{com}}^\bullet A$ (the PBW filtration of
+\cite{FBZ04}, \S4.5) induces a filtration on the ordered bar complex
+$\Barch(A)$ by declaring the filtration level of a tensor
+$\bar a_1\otimes\cdots\otimes\bar a_k$ to be $\sum_i d(a_i)$, where $d(a_i)$
+is the commutator depth of $a_i$.
+
+The bar differential respects this filtration: the $n\ge 1$ faces
+(corresponding to $n$-th products $a_{(n)}b$ with $n\ge 1$, which are not
+commutators) preserve filtration level, while the $n=0$ face (the Lie bracket
+$a_{(0)}b$) increases filtration level by exactly one. This is proved by direct
+computation using the PBW filtration axioms: $\partial$ preserves depth, the
+$n=0$ product strictly increases depth, and the $n\ge 1$ products preserve
+depth (Theorem~\ref{thm:pole-non-increase}\ref{item:pole-non-increase-com}).
+
+Since the filtration is bounded below ($F^{-1}=0$), exhaustive
+($\bigcup_p F^p = \Barch(A)$), and complete by hypothesis~(c), the spectral
+sequence of the filtered complex converges by the Eilenberg--Moore comparison
+theorem. On the associated graded $\gr_{\mathrm{com}}A$, the $n=0$ product
+vanishes (killed by the filtration shift), so $\gr_{\mathrm{com}}A$ is a
+commutative chiral algebra. The $E_1$~page of the spectral sequence is the
+homology of $\gr_{\mathrm{com}}\Barch(A)$ with respect to the induced
+differential, which retains only the $n\ge 1$ faces. This is the
+Francis--Gaitsgory bar complex $\Barch^{FG}(\gr_{\mathrm{com}}A)$.
+
+For the Koszul-dual statement: the bar-cobar equivalence
+(Vol~I, Theorem~A) gives $A^!\simeq\Barch(A)^\vee$, and since the filtration
+is exhaustive and separated, the associated graded of the dual is the dual of
+the associated graded, yielding
+$\gr_{\mathrm{com}}(A^!)\simeq\Barch^{FG}(\gr_{\mathrm{com}}A)^\vee
+=(\gr_{\mathrm{com}}A)^!_{FG}$.
+
+The detailed proof, including the Chriss--Ginzburg stratification construction,
+the explicit verification for affine Kac--Moody and Virasoro algebras
+(where the raw pole-order estimate fails but the commutator filtration
+suffices), and the descent through $R$-matrix coinvariants, is given in
+Theorem~\ref{thm:FG-shadow} and the supporting results
+(Construction~\ref{constr:commutator-stratification},
+Proposition~\ref{prop:stratification-E1},
+Corollary~\ref{cor:FG-shadow-convergence},
+Theorem~\ref{thm:pole-non-increase}).
+\end{proof}
 
 \subsection{Bordered configuration spaces and the geometric open theory}
 

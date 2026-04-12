@@ -1840,11 +1840,30 @@ where:
 \item $d_{\mathrm{int}}$ is the internal differential
  (BV-BRST operator $Q=m_1$ on each tensor factor);
 \item $d_{\mathrm{res}}$ is the collision residue
- differential, extracting the residue at each
- collision divisor $D_S\subset\FM_k(D^*)$ and
- applying the operation $m_{|S|}$---this is the
- holomorphic component, identical to the collision
- differential on $\FM_k(\C)$;
+ differential.  For each subset $S\subseteq\{1,\ldots,k\}$
+ with $|S|\ge 2$, the codimension-$1$ boundary stratum
+ $D_S\subset\FM_k(D^*)$ parametrises configurations where
+ the points $\{z_i\}_{i\in S}$ collide.  On a generator
+ $\omega\otimes(a_1\otimes\cdots\otimes a_k)$, the
+ contribution from $D_S$ is
+ \[
+   d_{\mathrm{res}}^S
+   \;=\;
+   \operatorname{Res}_{D_S}\!\bigl(\omega\bigr)
+   \,\otimes\,
+   \bigl(a_1\otimes\cdots\otimes
+   m_{|S|}(a_{i_1},\ldots,a_{i_{|S|}})
+   \otimes\cdots\otimes a_k\bigr),
+ \]
+ where $S=\{i_1<\cdots<i_{|S|}\}$,
+ $\operatorname{Res}_{D_S}$ extracts the logarithmic
+ residue along $D_S$ (the coefficient of
+ $d\log(z_{i_1}-z_{i_2})\wedge\cdots$ in the
+ expansion of $\omega$ near $D_S$), and
+ $m_{|S|}$ is the $|S|$-ary $\Ainf$-operation.
+ The total collision differential is
+ $d_{\mathrm{res}}=\sum_{|S|\ge 2}d_{\mathrm{res}}^S$,
+ identical to the collision differential on $\FM_k(\C)$;
 \item $d_{\mathrm{cyc}}$ is the cyclic/wraparound
  differential encoding the periodicity of the
  angular coordinate on $D^*\simeq(0,1)\times S^1$,
@@ -1873,11 +1892,14 @@ that are invisible to $S^1$.
 \subsubsection{The forgetful quasi-isomorphism}
 
 \begin{proposition}[Punctured disk to circle:
-chain-level quasi-isomorphism; \ClaimStatusProvedHere]%
+chain-level quasi-isomorphism;
+\ClaimStatusProvedHere]%
 \label{prop:punctured-disk-S1-qiso}%
 \index{punctured disk!forgetful quasi-isomorphism|textbf}%
 \index{quasi-isomorphism!punctured disk to circle}%
 \index{state--field correspondence!chain-level}%
+Let $\cA$ be a strongly admissible $E_1$-chiral algebra
+with ordered bar coalgebra $C=\Barchord(\cA)$.
 The retraction $D^*\to S^1$ induces a quasi-isomorphism
 of chain complexes
 \begin{equation}\label{eq:punctured-disk-S1-qiso}
@@ -1917,27 +1939,141 @@ $\FM_k(D^*)\simeq\Conf_k(S^1)$ for each~$k$.
 The map $\varphi$ is defined on generators by
 integrating the radial component of the logarithmic
 forms and restricting the angular component to
-$S^1$-configurations.  It is a chain map: the
-collision residue differential $d_{\mathrm{res}}$
-on $\FM_k(D^*)$ is compatible with the cyclic
-differential on $\Conf_k(S^1)$ because the
-residue of a collision at a divisor $D_S$ depends
-only on the relative positions of the colliding
-points, not on the global radial coordinate.  The
-wraparound component $d_{\mathrm{cyc}}$ is
-preserved by $\varphi$ since it depends only on
-the angular periodicity.
+$S^1$-configurations.
 
+\emph{Chain map property.}
+We verify $\varphi\circ d^{D^*} = d^{\mathrm{ann}}\circ\varphi$
+component by component.
+For $d_{\mathrm{int}}$: this acts on $\cA$-factors and commutes
+with $\varphi$ by functoriality.
+For $d_{\mathrm{res}}$: the collision residue at a divisor
+$D_S\subset\FM_k(D^*)$ depends only on the relative positions
+of the colliding points (the local holomorphic coordinate
+$z_i - z_j$), not on the global radial coordinate $|z_i|$.
+The retraction $\varphi$ acts on the global radial coordinate
+and is the identity on relative local coordinates near $D_S$,
+so $\varphi$ commutes with $d_{\mathrm{res}}$.
+For $d_{\mathrm{cyc}}$: the wraparound differential inserts
+the $R$-matrix monodromy $\mathrm{Mon}(R)$ when transporting
+a tensor factor around the angular coordinate.
+For an $E_\infty$-chiral algebra, $R(z)$ is derived from
+the local OPE and its monodromy depends only on the
+homotopy class of the loop.
+For a genuinely $E_1$-chiral algebra, $R(z)$ is an
+independent datum, but the structural axioms
+(Definition~\ref{def:e1-chiral-algebra},
+Proposition~\ref{prop:field-theory-r}) require it to be
+meromorphic on~$\C^\times$ with poles only at~$z=0$.
+On~$D^*$, the circles $\{|z|=r\}$ for $0<r<1$ enclose
+only this pole at the origin.  By Cauchy's theorem,
+deforming the integration contour from $\{|z|=r_1\}$ to
+$\{|z|=r_2\}$ crosses no poles, so the monodromy
+$\mathrm{Mon}(R)=\lim_{z\to e^{2\pi i}z}R(z)$ is
+independent of the radius~$r$.  The retraction
+$D^*\to S^1$ preserves winding numbers, so $\varphi$
+commutes with $d_{\mathrm{cyc}}$ for both $E_\infty$ and
+$E_1$ algebras.
+
+\emph{Acyclicity of $\ker\varphi$.}
 The kernel $\ker\varphi$ is spanned by forms that
 have non-trivial radial dependence---in particular,
 the logarithmic forms with holomorphic poles at
 collision divisors that are not pulled back from
-$S^1$.  The acyclicity of $\ker\varphi$ follows
-from the contractibility of the radial fibre
-$(0,1)$: the radial homotopy provides a contracting
-homotopy $h\colon\ker\varphi_k\to\ker\varphi_{k+1}$
-satisfying $dh+hd=\mathrm{id}$ on $\ker\varphi$.
+$S^1$.  Consider the radial
+deformation retraction $\rho_t\colon D^*\to D^*$,
+$z\mapsto(1-t)z+tz/|z|$ for $t\in[0,1]$.
+This induces, for each~$k$, a homotopy
+$\rho_{t*}\colon\FM_k(D^*)\to\FM_k(D^*)$
+terminating at the inclusion
+$\Conf_k(S^1)\hookrightarrow\FM_k(D^*)$.
+The retraction $\rho_t$ preserves the
+collision divisors $D_S$ (since $\rho_t$ does
+not change the relative positions of points
+within a cluster) and maps logarithmic forms
+to logarithmic forms.
+
+We verify that $\rho_t$ is compatible with
+the full differential $d^{D^*}$ along the contraction,
+which implies that $h=\int_0^1\rho_t^*\,dt$ is a
+well-defined contracting homotopy on $\ker\varphi$.
+The three components are:
+\begin{itemize}
+\item $d_{\mathrm{int}}$: acts on $\cA$-factors and
+  commutes with the geometric retraction by functoriality.
+\item $d_{\mathrm{res}}$: depends on relative local
+  coordinates $z_i-z_j$ near collision divisors.  Since
+  $\rho_t$ acts as a common dilation-contraction on
+  nearby points---for $z_j=z_i+w$ with $w$ small,
+  $\rho_t(z_i+w)-\rho_t(z_i)=w\cdot[(1-t)+t\cdot
+  \partial_z(z/|z|)|_{z_i}]+O(w^2)$, a smooth
+  rescaling of the relative coordinate preserving
+  $D_S=\{w=0\}$---the residue extraction
+  $\operatorname{Res}_{D_S}$ commutes with $\rho_t^*$.
+\item $d_{\mathrm{cyc}}$: the $R$-matrix monodromy
+  $\mathrm{Mon}(R)$ is independent of the radial
+  position by the Cauchy argument above (meromorphicity
+  of $R(z)$ on $\C^\times$ with poles only at $z=0$).
+  The retraction $\rho_t$ preserves angular coordinates
+  and hence preserves the monodromy insertion, so
+  $\rho_t^*$ commutes with $d_{\mathrm{cyc}}$.
+\end{itemize}
+Since $\rho_t$ commutes with $d^{D^*}$, the operator
+$h=\int_0^1\rho_t^*\,dt$ restricts to
+a well-defined contracting homotopy
+$h\colon\ker\varphi_k\to\ker\varphi_{k+1}$
+satisfying $dh+hd=\mathrm{id}$ on $\ker\varphi$,
+which gives the acyclicity.
+
+The argument applies uniformly to $E_\infty$ and $E_1$
+algebras: the $E_\infty$ case uses local constancy of
+the coefficient system along radial fibers (a stronger
+property), while the $E_1$ case uses only the
+meromorphicity of $R(z)$ on $\C^\times$ (which ensures
+radial-independence of the monodromy and compatibility of
+the residue extraction with radial deformation).
 \end{proof}
+
+\begin{remark}[The $E_1$ case: what the quasi-isomorphism
+forgets]%
+\label{rem:punctured-disk-S1-E1-gap}%
+\index{punctured disk!E1 quasi-isomorphism@$E_1$ quasi-isomorphism|textbf}%
+\index{fiber integration!E1 case@$E_1$ case}%
+The quasi-isomorphism $\varphi$ of
+Proposition~\ref{prop:punctured-disk-S1-qiso} is stated
+and proved for all strongly admissible $E_1$-chiral
+algebras (a class that includes all $E_\infty$-chiral
+algebras).  The chain map property and the acyclicity
+of~$\ker\varphi$ use three inputs:
+(i)~collision residues depend on local relative
+coordinates,
+(ii)~the $R$-matrix $R(z)$ is meromorphic on~$\C^\times$
+with poles only at~$z=0$
+(Definition~\ref{def:e1-chiral-algebra},
+Proposition~\ref{prop:field-theory-r}), and
+(iii)~by Cauchy's theorem, the monodromy
+$\mathrm{Mon}(R)$ is independent of the radius of the
+contour.  These hold for both $E_1$ and $E_\infty$
+algebras.
+
+The distinction between $E_1$ and $E_\infty$ is
+\emph{not} about the existence of $\varphi$ but about
+what $\varphi$ discards.  For $E_\infty$-chiral
+algebras, the $R$-matrix $R(z)$ is derived from the
+local OPE, and the full holomorphic collision data
+encoded in $B^{D^*}_\bullet(\cA)$ is recoverable from
+$B^{S^1}_\bullet(\cA)$ via the Deligne conjecture
+(which reconstructs the $E_2$-structure on homology).
+For genuinely $E_1$-chiral algebras, the independent
+$R$-matrix $R(z)$ carries information beyond what the
+OPE determines, and the passage $\varphi$ from $D^*$
+to $S^1$ genuinely loses this data: the circle model
+remembers only the monodromy $\mathrm{Mon}(R)$ (a
+single operator), not the full spectral family
+$R(z)$.  The spectral parameter dependence of
+$R(z)$---visible in $B^{D^*}_\bullet(\cA)$ through
+the holomorphic forms on $\FM_k(D^*)$---is the
+chain-level datum that $\varphi$ kills.
+\end{remark}
 
 \begin{remark}[State--field correspondence at chain level]%
 \label{rem:state-field-chain-level}%
@@ -2289,21 +2425,58 @@ graded associative algebra.
 \end{proposition}
 
 \begin{proof}
-That $\mu_P$ is a chain map follows from
-$(d^P)^2 = 0$ on $\overline{\FM}_n^{\mathrm{ord}}(P)$: the
-pair-of-pants is a genus-$0$ surface, so the bar differential is
-flat (no curvature correction at genus~$0$).
-Associativity of $\mu_P^H$ is the statement that the two
-decompositions of the genus-$0$ four-punctured sphere
-$\mathbb{P}^1\setminus\{0,1,\infty,\lambda\}$ into pairs of
-pants---pinching along the circle separating $\{0,1\}$ from
-$\{\infty,\lambda\}$, versus the circle separating $\{0,\lambda\}$
-from $\{1,\infty\}$---give chain-homotopic compositions.  This
-chain homotopy is provided by the codimension-$1$ strata of the
-moduli space $\overline{\cM}_{0,4}$: the cross-ratio $\lambda$
-parametrises the two degeneration channels, and the boundary of
-$\overline{\cM}_{0,4} \cong \mathbb{P}^1$ gives the associativity
-homotopy. The argument at the coalgebraic level is
+\emph{Chain-map property.}
+The map $\mu_P$ is defined by restriction to the
+codimension-$1$ boundary stratum of
+$\overline{\FM}_{n_1+n_2}^{\mathrm{ord}}(P)$
+corresponding to separation of the configuration
+into two clusters, one near $\{0\}$ and one near
+$\{1\}$.  To verify that $\mu_P$ commutes with the
+differentials, decompose $d^P$ as
+in~\eqref{eq:pants-differential}.
+The internal differential $d_{\mathrm{int}}$ acts
+tensorially and commutes with $\mu_P$ by functoriality.
+For $d_{\mathrm{res}}$: a bulk collision among
+points in the first (resp.\ second) input cluster
+is a boundary stratum of
+$\overline{\FM}_{n_1}^{\mathrm{ord}}$
+(resp.\ $\overline{\FM}_{n_2}^{\mathrm{ord}}$), and
+$\mu_P$ restricts to the identity on each factor.
+A bulk collision involving points from both clusters
+lies in codimension~$2$ of
+$\overline{\FM}_{n_1+n_2}^{\mathrm{ord}}(P)$
+(the cross-ratio must degenerate simultaneously with
+the collision), so contributes zero by the
+codimension-$2$ vanishing principle.  The boundary
+terms $d_{\partial_0}$, $d_{\partial_1}$,
+$d_{\partial_\infty}$ commute with $\mu_P$ because
+$\mu_P$ respects the local coordinate
+identifications at each puncture.  Since $P$ has
+genus~$0$, the bar differential is flat
+($(d^P)^2 = 0$, no curvature correction), so $\mu_P$
+is a chain map.
+
+\emph{Associativity.}
+The two compositions
+$\mu_P\circ(\mu_P\otimes\mathrm{id})$ and
+$\mu_P\circ(\mathrm{id}\otimes\mu_P)$ correspond to
+the two boundary strata of the moduli space
+$\overline{\cM}_{0,4}\cong\mathbb{P}^1$:
+the stratum at $\lambda=0$ (pinching the circle
+separating $\{0,1\}$ from $\{\lambda,\infty\}$) and
+the stratum at $\lambda=\infty$ (pinching the
+circle separating $\{0,\lambda\}$ from
+$\{1,\infty\}$).  The interval
+$\overline{\cM}_{0,4}\setminus\{0,\infty\}$
+connecting these two boundary strata provides a
+chain homotopy $h$ satisfying
+$\mu_P\circ(\mu_P\otimes\mathrm{id})
+-\mu_P\circ(\mathrm{id}\otimes\mu_P)
+= d^P\circ h + h\circ d^P$,
+constructed by integrating the bar chain model
+over the cross-ratio parameter~$\lambda$.
+Passage to homology then gives strict associativity
+of $\mu_P^H$.  The argument at the coalgebraic level is
 Theorem~\textup{\ref{thm:pair-of-pants}}.
 \end{proof}
 
@@ -2460,14 +2633,28 @@ the boundary stratum indexed by $\Gamma$ satisfies:
   \kappa(\cA)\cdot\delta_e,
 \end{equation}
 where $\omega_{g(v)}$ is the Arakelov $(1,1)$-form on the smooth
-component $\Sigma_v$, and $\delta_e$ is the distributional
-$(1,1)$-current supported on the node corresponding to edge~$e$,
-arising from the $\bar\partial$-defect of the Arakelov kernel
-$K_{\mathrm{Ar}}$ in the thin-annulus limit of the sewing collar:
+component $\Sigma_v$ (normalised so that
+$\int_{\Sigma_v}\omega_{g(v)}=1$; see the explicit
+formula in the proof below), and $\delta_e$ is the
+distributional $(1,1)$-current supported on the node
+corresponding to edge~$e$.  This current arises from
+the $\bar\partial$-defect of the Arakelov propagator
+$S^{(g)}(z,w):=\partial_z G_{\mathrm{Ar}}^{(g)}(z,w)$
+(where $G_{\mathrm{Ar}}^{(g)}$ is the Arakelov Green
+function on $\Sigma_g$) in the thin-annulus limit of
+the sewing collar.  On a smooth genus-$g$ surface,
+$\bar\partial_z S^{(g)}(z,w) = \pi\,\delta^{(2)}(z-w)
+- \pi\,\omega_g(z)$, so the propagator is holomorphic
+up to the harmonic correction $\omega_g$.  In the
+thin-annulus limit $t\to 0$ of the plumbing collar
+$\{|z\,w|<|t|\}$ at edge~$e$, this defect localises:
 \begin{equation}\label{eq:node-dbar-defect}
-  \bar\partial K_{\mathrm{Ar}}^{(g)}\big|_{e}
-  \;=\; -2\pi i\,\delta_e.
+  \bar\partial_z S^{(g)}(z,w)\big|_{e}
+  \;=\; \pi\,\delta_e(z),
 \end{equation}
+where $\delta_e$ is the $(1,1)$-current of unit mass
+at the node (the limit of $\omega_g$ restricted to the
+degenerating collar).
 In particular:
 \begin{enumerate}[label=\textup{(\alph*)}]
 \item At genus~$0$
@@ -2499,13 +2686,24 @@ In particular:
 
 \begin{proof}
 Statement~(a) is the flatness of the genus-$0$ bar differential:
-when $g = 0$ and $\Gamma$ is a tree, the Arakelov form $\omega_0$
-is zero on $\mathbb{P}^1$ (the Arakelov form is
-$\omega_g = (i/2\mathrm{Im}(\tau))\,dz\wedge d\bar{z}$ on a
-genus-$g$ surface, which is undefined for $g = 0$ since
-$\mathbb{P}^1$ has no period matrix; the correct statement is
-that the propagator on $\mathbb{P}^1$ is globally holomorphic,
-so $\bar\partial K = 0$ and no curvature arises).
+when $g = 0$ and $\Gamma$ is a tree, the propagator on
+$\mathbb{P}^1$ is the globally meromorphic function
+$K(z,w) = 1/(z-w)$, which satisfies $\bar\partial_z K = 0$
+away from the diagonal.  Since $\mathbb{P}^1$ has no period
+matrix and no harmonic correction term, the
+$\bar\partial$-defect that produces curvature at higher genus
+is absent, and $(d^{(0)})^2 = 0$.
+(At genus~$1$, the canonical Arakelov form is
+$\omega_1 = \frac{i}{2\operatorname{Im}(\tau)}\,
+dz\wedge d\bar{z}$ with $\int_{\Sigma_1}\omega_1 = 1$;
+at genus $g\ge 2$, the Arakelov form
+$\omega_g = \frac{i}{2g}\sum_{j,k=1}^g
+(\operatorname{Im}\Omega)^{-1}_{jk}\,
+\omega_j\wedge\bar\omega_k$
+where $\{\omega_j\}$ is a basis of holomorphic
+differentials and $\Omega$ is the period matrix,
+normalised so that $\int_{\Sigma_g}\omega_g = 1$.
+Neither exists at genus~$0$.)
 
 Statement~(b) follows from
 equation~\eqref{eq:circle-bar-curvature}: the genus-$1$ curvature
@@ -2520,26 +2718,56 @@ former, it is $\kappa(\cA)\cdot\omega_1$ on the smooth torus.
 Both contribute $\kappa(\cA)\cdot\omega_1$ to the total
 curvature, as computed in Volume~I.
 
-Statement~(c) is proved by induction on the number of edges of
-$\Gamma$.  The base case (a single vertex with $g(v) = g$, no
-edges) gives $\dfib^{\,2} = \kappa(\cA)\cdot\omega_g$ from the
-vertex bar complex alone.  For each additional edge, the sewing
-via $B^{\mathrm{ann}}_e(\cA)$ introduces the node defect
-$\kappa(\cA)\cdot\delta_e$
-from~\eqref{eq:node-dbar-defect}.  The global relation
+Statement~(c) is proved by induction on the number of edges
+$|E(\Gamma)|$.
+
+\emph{Base case}: $|E(\Gamma)|=0$, so $\Gamma$ has a single
+vertex with $g(v) = g$ and no edges.  Then
+$B_\Gamma(\cA) = B^{(g)}_{n}(\cA)$ and the curvature is
+$\dfib^{\,2} = \kappa(\cA)\cdot\omega_g$ from the vertex bar
+complex alone (Volume~I, Theorem~D).
+
+\emph{Inductive step}: suppose the decomposition holds for all
+stable graphs with $<|E(\Gamma)|$ edges.  Adding the edge~$e$
+that connects (or self-connects) vertex components introduces
+the sewing via $B^{\mathrm{ann}}_e(\cA)$.  By
+equation~\eqref{eq:node-dbar-defect}, the
+$\bar\partial$-defect of the propagator across the sewing
+collar localises to the distributional current
+$\kappa(\cA)\cdot\delta_e$ at the node.  The sewing map
+$\sigma_e$ of~\eqref{eq:sewing-map} is compatible with the
+curvature decomposition: the differential
+$d_\Gamma = \sum_v d_v + \sum_e d^{\mathrm{ann}}_e$
+of~\eqref{eq:nodal-bar-differential} satisfies
+$d_\Gamma^2 = \sum_v d_v^2 + \sum_e (d^{\mathrm{ann}}_e)^2$
+because the cross-terms $d_v\circ d^{\mathrm{ann}}_e
++ d^{\mathrm{ann}}_e\circ d_v$ vanish: $d_v$ acts on the
+vertex component $B^{(g(v))}_{n(v)}(\cA)$ and
+$d^{\mathrm{ann}}_e$ acts on the sewing collar
+$B^{\mathrm{ann}}_e(\cA)$, and these are supported on
+disjoint regions of the nodal curve (the smooth component
+interior and the plumbing collar respectively).
+
+The global consistency is the distributional identity for the
+Arakelov form on a nodal curve:
 \[
   \omega_g
   \;=\;
   \sum_{v\in V(\Gamma)} \iota_{v*}\,\omega_{g(v)}
   \;+\;
-  \sum_{e\in E(\Gamma)} \delta_e
+  \sum_{e\in E(\Gamma)} \delta_e,
 \]
-(where $\iota_{v*}$ denotes pushforward from the normalisation)
-is the distributional identity for the Arakelov form on a nodal
-curve, proved in Arakelov geometry
-(cf.\ Faltings~\cite{Faltings84}).  Combining this with
-the curvature formula
-$\dfib^{\,2} = \kappa(\cA)\cdot\omega_g$ on each stratum
+where $\iota_{v*}$ denotes pushforward from the normalisation.
+This identity holds because the Arakelov Green function on the
+smoothing family $\Sigma_t$ ($t$ the plumbing parameter)
+degenerates as $t\to 0$ into the sum of Green functions on
+each irreducible component plus the logarithmic contribution
+$\log|t|$ at each node, and $\bar\partial\partial\log|t|$
+produces $\delta_e$
+(cf.\ Wentworth~\cite{Wentworth91},
+Wolpert~\cite{Wolpert90}).
+Multiplying by $\kappa(\cA)$ and combining with the inductive
+hypothesis on each vertex component
 gives~\eqref{eq:nodal-curvature-decomposition}.
 \end{proof}
 
@@ -2599,28 +2827,80 @@ determined by the curvature data on lower-genus components
 (the edge contributions).
 \end{remark}
 
-\begin{remark}[Relation to the modular operad clutching]%
-\label{rem:nodal-bar-modular-operad}%
-\index{modular operad!nodal bar complex relation}%
-\index{clutching map!nodal bar sewing}%
-The sewing maps $\sigma_e$ of
-Construction~\ref{constr:nodal-bar-model} are the bar-complex
-incarnations of the clutching maps $\xi_\Gamma$ of the modular
+\begin{proposition}[Compatibility with the modular operad
+clutching; \ClaimStatusProvedHere]%
+\label{prop:nodal-bar-modular-operad}%
+\label{rem:nodal-bar-modular-operad}% backward-compatible label
+\index{modular operad!nodal bar complex compatibility|textbf}%
+\index{clutching map!nodal bar sewing|textbf}%
+Let $\xi_\Gamma$ denote the clutching maps of the modular
 operad $\mathcal{O}^{\Ainf\text{-ch}}$
-(Definition~\ref{def:modular-operad-ainf-chiral}).  The modular
-associativity axiom---composition of clutching maps along nested
-stable graphs $\Gamma'\subset\Gamma$ is independent of the order
-of node formation---is the operadic statement that the nodal bar
-differential~\eqref{eq:nodal-bar-differential} satisfies
-$d_\Gamma^2 = \kappa(\cA)\cdot\omega_\Gamma$ regardless of which
-edges are sewn first.  The $R$-matrix monodromy
-$\mathrm{Mon}(R)$ at each edge
-(Construction~\ref{constr:genus1-ainf-chiral-operations})
-enters through the wrap-around differential $d_{\mathrm{wrap}}$
-of the annular sewing complex $B^{\mathrm{ann}}_e(\cA)$: it is
-the holonomy of the KZ connection around the sewing circle,
-entangling the holomorphic and transverse factors at each node.
-\end{remark}
+\textup{(}Definition~\textup{\ref{def:modular-operad-ainf-chiral}}\textup{)},
+and let $\sigma_e$ denote the sewing maps of
+Construction~\textup{\ref{constr:nodal-bar-model}}.  Then:
+\begin{enumerate}[label=\textup{(\alph*)}]
+\item \emph{Operadic identification.}
+  For each edge $e\in E(\Gamma)$, the sewing map $\sigma_e$
+  of~\eqref{eq:sewing-map} realises the clutching map
+  $\xi_e$ at the bar-complex level: the bar differential on
+  $B_\Gamma(\cA)$ restricts to the vertex and edge
+  differentials on each factor,
+  as established in~\eqref{eq:nodal-bar-differential}.
+
+\item \emph{Modular associativity.}
+  For nested stable graphs $\Gamma'\subset\Gamma$
+  \textup{(}i.e., $\Gamma'$ is obtained from $\Gamma$ by
+  contracting a subset of edges\textup{)}, the composition
+  $\sigma_{\Gamma} = \sigma_{\Gamma/\Gamma'}\circ\sigma_{\Gamma'}$
+  is independent of the order in which edges are sewn.
+  At the level of differentials, this gives
+  $d_\Gamma^2 = \kappa(\cA)\cdot\omega_\Gamma$ regardless of
+  the order of node formation, because the cross-terms in
+  $d_\Gamma^2$ from different edges vanish by disjoint support
+  \textup{(}as in the proof of
+  Proposition~\textup{\ref{prop:nodal-curvature-source}}\textup{)}.
+
+\item \emph{$R$-matrix monodromy at sewing.}
+  At each edge $e$, the wrap-around differential
+  $d_{\mathrm{wrap}}$ of $B^{\mathrm{ann}}_e(\cA)$ inserts
+  the $R$-matrix monodromy $\mathrm{Mon}(R)$
+  \textup{(}Construction~\textup{\ref{constr:genus1-ainf-chiral-operations}}\textup{)},
+  which is the holonomy of the KZ connection around the
+  sewing circle.  This is the datum that entangles the
+  holomorphic and transverse factors at each node and
+  prevents the nodal bar complex from splitting as a
+  na\"ive tensor product.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+Part~(a): the sewing map $\sigma_e$ is defined by identifying
+boundary circles of vertex bar complexes with boundary circles
+of the annular bar complex.  This identification is the data of
+the clutching map $\xi_e$ in the modular operad, which glues
+two $(g_i,n_i)$-labelled components along marked points to produce
+a $(g,n)$-labelled component.  The compatibility of differentials
+is the content of~\eqref{eq:nodal-bar-differential}: the total
+differential $d_\Gamma = \sum_v d_v + \sum_e d^{\mathrm{ann}}_e$
+restricts to the vertex differential on each vertex factor and
+to the annular differential on each edge factor.
+
+Part~(b): if edges $e_1,e_2\in E(\Gamma)$ are sewn in two
+different orders, the resulting differentials agree because
+$d^{\mathrm{ann}}_{e_1}$ and $d^{\mathrm{ann}}_{e_2}$ act on
+disjoint sewing collars and therefore commute as operators
+on $B_\Gamma(\cA)$.  The curvature contributions
+$\kappa(\cA)\cdot\delta_{e_1}$ and
+$\kappa(\cA)\cdot\delta_{e_2}$ are distributional currents
+with disjoint support, so their sum is order-independent.
+
+Part~(c) follows from the construction of
+$d_{\mathrm{wrap}}$ in the annular bar complex: the monodromy
+$\mathrm{Mon}(R)$ is the algebraic datum encoding the failure
+of the bar complex to be periodic under the angular coordinate
+of the sewing circle, and it enters multiplicatively in the
+wrap-around face map.
+\end{proof}
 
 \subsection{The Drinfeld center of the chiral double}
 \label{subsec:drinfeld-center-chiral-double}
@@ -2823,7 +3103,8 @@ Volume~I's Theorem~H states that for any vertex algebra $\cA$ in the
 standard landscape, the chiral Hochschild complex is concentrated in
 cohomological degrees $\{0,1,2\}$ with total dimension bounded by four.
 
-\begin{conjecture}[Amplitude constraint on the chiral double]
+\begin{corollary}[Amplitude constraint on the chiral double;
+conditional on Conjecture~\textup{\ref{conj:drinfeld-center-equals-bulk}}]
 \label{conj:drinfeld-center-amplitude}
 If Conjecture~\textup{\ref{conj:drinfeld-center-equals-bulk}} holds, the
 Drinfeld centre of the chiral double is concentrated in cohomological
@@ -2834,18 +3115,22 @@ degrees $\{0,1,2\}$ with total dimension at most four:
 \;\le\; 4.
 \end{equation}
 The cohomological amplitude of $Z(U_\cA)$ is $[0,2]$.
-\end{conjecture}
+\end{corollary}
+
+\begin{proof}
+If $Z(U_\cA) \cong \ChirHoch^\bullet(\cA)$, the bound transfers
+directly from Theorem~H of Volume~I, which is unconditional.
+\end{proof}
 
 \begin{remark}[Status of the amplitude constraint]
 \label{rem:drinfeld-center-amplitude-status}
 Theorem~H is unconditional, but
 Conjecture~\ref{conj:drinfeld-center-equals-bulk} is not, so the bound
-on $Z(U_\cA)$ is conditional on the identification. What
-Conjecture~\ref{conj:drinfeld-center-amplitude} records is the
-\emph{shape} of the constraint: if the identification holds, the
-Drinfeld centre of the chiral double is forced into a four-dimensional
-cohomological window. This is a strong structural test on any
-future construction of the chiral double.
+on $Z(U_\cA)$ is conditional on the identification. The corollary
+records the \emph{shape} of the constraint: if the identification holds,
+the Drinfeld centre of the chiral double is forced into a
+four-dimensional cohomological window. This is a strong structural test
+on any future construction of the chiral double.
 \end{remark}
 
 \begin{computation}[Heisenberg base case for
@@ -2957,7 +3242,7 @@ correctly under the $k=0$ check.
 The analogous computation for the Virasoro vertex algebra $\Vir_c$ is
 not available. The expected output, by
 Conjecture~\textup{\ref{conj:drinfeld-center-equals-bulk}} combined
-with Conjecture~\textup{\ref{conj:drinfeld-center-amplitude}}, is a
+with Corollary~\textup{\ref{conj:drinfeld-center-amplitude}}, is a
 total cohomological dimension of at most four with amplitude $[0,2]$,
 but the explicit computation of the Drinfeld centre of the Virasoro
 double $\Vir_c \bowtie \Vir_{26-c}$ has not been carried out. The

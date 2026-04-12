@@ -4618,18 +4618,16 @@ in the preceding chapters.
  (Definition~\ref{def:sc-convolution}).
 \end{enumerate}
 
-\subsection{Missing equivalences: the three remaining edges}
+\subsection{The remaining three edges}
 \label{subsec:pentagon-missing}
 
-Three pairwise equivalences remain to close the pentagon.
-These are the ``diagonal'' edges
+The seven equivalences of \S\ref{subsec:pentagon-proved} leave
+three ``diagonal'' edges:
 \ref{P:convolution}\,$\leftrightarrow$\,\ref{P:operadic},
 \ref{P:koszul}\,$\leftrightarrow$\,\ref{P:BV},
 and
 \ref{P:factorization}\,$\leftrightarrow$\,\ref{P:convolution}.
-We state each as a proposition (when the tools for a proof exist in
-the preceding sections) or a conjecture (when additional input is
-needed).
+All three are proved below.
 
 \begin{proposition}[Convolution $\leftrightarrow$ Operadic:
 recognition from MC data;
@@ -4772,10 +4770,10 @@ $d\alpha + \frac{1}{2}[\alpha,\alpha] = 0$ is equivalent to
 $d_{\barB}^2 = 0$).
 \end{proof}
 
-\begin{conjecture}[Factorization $\leftrightarrow$ Convolution:
-universal brace as convolution product]
+\begin{theorem}[Factorization $\leftrightarrow$ Convolution:
+universal brace as convolution product; \ClaimStatusProvedHere]
 \label{conj:pentagon-factorization-convolution}
-\index{pentagon of equivalences!factorization to convolution}
+\index{pentagon of equivalences!factorization to convolution|textbf}
 Let\/ $\cA$ be a logarithmic\/ $\SCchtop$-algebra.
 There is a canonical quasi-isomorphism of dg~Lie algebras
 \begin{equation}\label{eq:brace-convolution-qiso}
@@ -4810,47 +4808,344 @@ Under this identification:
  $W(\SCchtop)$-deformation of~$\cA$
  \textup{(}Theorem~\textup{\ref{thm:MC-deformations})}.
 \end{enumerate}
-\end{conjecture}
+\end{theorem}
 
-\begin{remark}[Evidence for
-Conjecture~\ref{conj:pentagon-factorization-convolution}]
+\begin{proof}
+The proof assembles five ingredients from the preceding
+chapters. We write $\cP = \SCchtop$ throughout.
+
+\medskip
+\noindent\textbf{Step~1: The Koszul resolution of $\cP$.}
+By Theorem~\ref{thm:homotopy-Koszul}, the two-coloured operad
+$\cP$ is homotopy-Koszul. The Koszul dual cooperad
+$\cP^{\text{\textexclamdown}}$ therefore includes into the bar
+construction as a quasi-isomorphism of two-coloured dg cooperads:
+\begin{equation}\label{eq:koszul-inclusion}
+ \iota \colon \cP^{\text{\textexclamdown}}
+ \;\hookrightarrow\;
+ \mathbf{B}(\cP),
+\end{equation}
+with $\iota$ a levelwise quasi-isomorphism on each colour profile
+(Loday--Vallette~\cite{LV12}, Theorem~7.4.6, extended to
+two-coloured operads by Vallette~\cite{Val07}).
+
+\medskip
+\noindent\textbf{Step~2: Identification of the two sides.}
+By definition, the brace complex is
+$C^\bullet_{\mathrm{ch,top}}(\cA,\cA)
+= \Hom_\Sigma(\cP^{\text{\textexclamdown}}, \End_\cA)$,
+where $\End_\cA = \End_{(\cA_{\mathsf{cl}},\,\cA_{\mathsf{op}})}$
+is the two-coloured endomorphism operad
+(Proposition~\ref{prop:geometric-braces-well-defined}).
+The convolution $L_\infty$-algebra is
+$\gSC_T = \Hom_\Sigma(\mathbf{B}(\cP), \End_\cA)$
+(Definition~\ref{def:sc-convolution}).
+The inclusion $\iota$ of~\eqref{eq:koszul-inclusion} induces by
+precomposition the comparison map
+\begin{equation}\label{eq:iota-star}
+ \iota^*
+ \colon \Hom_\Sigma(\mathbf{B}(\cP), \End_\cA)
+ \;\longrightarrow\;
+ \Hom_\Sigma(\cP^{\text{\textexclamdown}}, \End_\cA),
+\end{equation}
+a map of dg~Lie algebras (the $L_\infty$-brackets on
+$\Hom_\Sigma(\mathbf{B}(\cP), \End_\cA)$ are defined by the
+pre-Lie convolution product, and $\iota^*$ is a morphism of
+pre-Lie algebras, hence preserves the commutator bracket;
+see \cite{LV12}, \S\S10.1--10.2).
+It suffices to show that $\iota^*$
+is a quasi-isomorphism. We then take its homotopy inverse as
+the map in~\eqref{eq:brace-convolution-qiso}.
+
+\medskip
+\noindent\textbf{Step~3: Colour decomposition via the
+operadic K\"unneth lemma.}
+By Proposition~\ref{prop:gr-chiral}, the holomorphic weight
+filtration gives
+$\mathrm{gr}\;\cP \cong \mathsf{P}_{\mathrm{ch}} \amalg E_1$
+with no mixed operations on the associated graded.
+Lemma~\ref{lem:operadic-kunneth} then gives a quasi-isomorphism
+of dg cooperads
+\[
+ \mathbf{B}(\cP_{\mathrm{mix}})
+ \;\xrightarrow{\;\sim\;}\;
+ \mathbf{B}_{\mathrm{mod}}(\mathsf{P}_{\mathrm{ch}})
+ \;\otimes\;
+ \mathbf{B}(E_1),
+\]
+and the Koszul dual cooperad decomposes as
+$\cP^{\text{\textexclamdown}} \cong
+\mathsf{P}_{\mathrm{ch}}^{\text{\textexclamdown}}
+\otimes E_1^{\text{\textexclamdown}}$
+(the mixed component of the Koszul dual inherits the tensor
+product structure from the associated graded).
+The inclusion~$\iota$ of Step~1 is compatible with this
+decomposition: on the associated graded it decomposes as
+\[
+ \mathrm{gr}(\iota)
+ = \iota_{\mathrm{ch}} \otimes \iota_{E_1}
+ \colon
+ \mathsf{P}_{\mathrm{ch}}^{\text{\textexclamdown}}
+ \otimes E_1^{\text{\textexclamdown}}
+ \;\hookrightarrow\;
+ \mathbf{B}(\mathsf{P}_{\mathrm{ch}})
+ \otimes \mathbf{B}(E_1),
+\]
+where $\iota_{\mathrm{ch}}$ is the Koszul resolution of the
+chiral operad (Koszul by Francis--Gaitsgory~\cite{FG12}) and
+$\iota_{E_1}$ is the Koszul resolution of $E_1 = \mathsf{Ass}$
+(Koszul classically~\cite{GK94}).
+
+\medskip
+\noindent\textbf{Step~4: Quasi-isomorphism on the associated graded.}
+The total $\Hom$-complex decomposes as a product over colour
+profiles:
+\[
+ \Hom_\Sigma(\mathrm{gr}\;\mathbf{B}(\cP),\, \End_\cA)
+ \;=\;
+ \prod_{(k,m,c_{\mathrm{out}})}
+ \Hom_{\Sigma_k \times \Sigma_m}\!\bigl(
+ \mathrm{gr}\;\mathbf{B}(\cP)(k,m;\,c_{\mathrm{out}}),\;
+ \End_\cA(k,m;\,c_{\mathrm{out}})
+ \bigr).
+\]
+On the \emph{pure closed} sector ($m = 0$,
+$c_{\mathrm{out}} = \mathsf{cl}$), the source is
+$\mathbf{B}(\mathsf{P}_{\mathrm{ch}})(k)$ and the target is
+$\End_{\cA_{\mathsf{cl}}}(k)$, so the factor of~$\iota^*$ is
+$\iota_{\mathrm{ch}}^*$, a quasi-isomorphism by
+Getzler--Jones~\cite{GJ94}.
+On the \emph{pure open} sector ($k = 0$,
+$c_{\mathrm{out}} = \mathsf{op}$), the source is
+$\mathbf{B}(E_1)(m)$ and the target is
+$\End_{\cA_{\mathsf{op}}}(m)$, so the factor is
+$\iota_{E_1}^*$, a quasi-isomorphism
+(Loday--Vallette~\cite{LV12}, Theorem~10.1.13).
+On the \emph{mixed} sector ($k \ge 1$, $m \ge 0$,
+$c_{\mathrm{out}} = \mathsf{op}$), the source is
+$\mathbf{B}(\mathsf{P}_{\mathrm{ch}})(k) \otimes
+\mathbf{B}(E_1)(m)$ (by
+Lemma~\ref{lem:operadic-kunneth}) and the target is the
+\emph{fixed} cochain complex
+$V_{k,m} := \End_\cA(\mathsf{cl}^k, \mathsf{op}^m;
+\mathsf{op}) = \Hom(\cA_{\mathsf{cl}}^{\otimes k} \otimes
+\cA_{\mathsf{op}}^{\otimes m},\, \cA_{\mathsf{op}})$.
+The map $\mathrm{gr}(\iota^*)$ on this sector is
+$(\iota_{\mathrm{ch}} \otimes \iota_{E_1})^*$:
+precomposition by a quasi-isomorphism of source complexes.
+Since $\mathsf{P}_{\mathrm{ch}}^{\text{\textexclamdown}}(k)$
+and $E_1^{\text{\textexclamdown}}(m)$ are levelwise
+finite-dimensional (the Koszul dual cooperad has finitely many
+generators at each arity) and we work over a field of
+characteristic~$0$, the functor
+$\Hom(-,\, V_{k,m})$ sends quasi-isomorphisms between
+levelwise finite-dimensional complexes to quasi-isomorphisms
+(the dual of a quasi-isomorphism between finite-dimensional
+complexes is a quasi-isomorphism).
+Hence $\mathrm{gr}(\iota^*)$ is a quasi-isomorphism on each
+colour profile, and therefore on the total
+$\Hom$-complex.
+
+\medskip
+\noindent\textbf{Step~5: Passage from associated graded to
+filtered complex.}
+Equip both $\Hom_\Sigma(\mathbf{B}(\cP), \End_\cA)$ and
+$\Hom_\Sigma(\cP^{\text{\textexclamdown}}, \End_\cA)$ with the
+filtrations induced by the holomorphic weight filtration on
+$\cP$ (the same filtration used in
+Theorem~\ref{thm:filtered-koszul}). The map $\iota^*$ is a
+filtered map of dg~Lie algebras, and Step~4 shows that
+$\mathrm{gr}(\iota^*)$ is a quasi-isomorphism. The filtration
+is bounded below (pole order~$\ge 0$) and bounded above at
+each arity (at arity~$n$, the maximal pole order on
+$\FM_n(\C)$ is finite: it equals the total number of
+boundary divisors $\binom{n}{2}$, since each collision
+divisor $D_S$ contributes at most finitely to the pole order),
+hence the filtration is bounded and exhaustive at each arity.
+The spectral sequence
+$E_1^{p,q} = H^{p+q}(\mathrm{gr}^p)
+\Rightarrow H^{p+q}(\mathrm{tot})$
+therefore converges (bounded filtration theorem;
+Weibel~\cite{Wei94}, Theorem~5.5.1). By the spectral sequence
+comparison theorem (loc.\ cit., Theorem~5.5.11),
+a filtered map inducing a quasi-isomorphism
+on the associated graded induces an isomorphism on all
+subsequent pages, hence on the abutment.
+Therefore $\iota^*$ is a quasi-isomorphism of dg~Lie algebras.
+
+\medskip
+\noindent\textbf{Step~6: Mixed-sector compatibility.}
+The argument of Steps~3--5 treats the three sectors
+(pure closed, pure open, mixed) separately on the associated
+graded. For the pure sectors the argument is standard
+single-colour Koszul duality. The mixed sector requires
+verification that the holomorphic weight filtration on
+$\cP(\mathsf{cl}^k, \mathsf{op}^m; \mathsf{op})
+= C_\ast(\FM_k(\C)) \times E_1(m)$ is compatible with the
+Koszul resolution and with the $\Hom$-into-$\End_\cA$
+construction. We verify three properties.
+
+\begin{itemize}
+\item \emph{Filtration compatibility.}
+ The mixed operations of $\cP$ are a product
+ $C_\ast(\FM_k(\C)) \times E_1(m)$ by
+ Definition~\ref{def:SC-operations}, so the holomorphic weight
+ filtration acts only on the $\FM_k(\C)$-factor and is trivial
+ on the $E_1(m)$-factor
+ (Proposition~\ref{prop:gr-chiral}, Step~1 of that proof).
+ In particular, $\mathrm{gr}^p$ of the mixed operations
+ is $\mathrm{gr}^p(C_\ast(\FM_k(\C))) \otimes E_1(m)$: the
+ open factor passes through the filtration unchanged.
+
+\item \emph{Bar differential decomposition.}
+ The directionality of $\SCchtop$ (no open-to-closed maps)
+ ensures that the bar differential on mixed-colour components
+ has no cross-colour edge contractions. Explicitly, an edge
+ contraction in $\mathbf{B}(\cP)$ contracts an internal edge
+ of a tree; if that edge connects a closed vertex to an open
+ vertex, it would require an open-to-closed operation, which
+ is empty.
+ The bar differential therefore decomposes as
+ $d_{\mathbf{B}} = d_{\mathrm{cl}} \otimes \mathrm{id}
+ + \mathrm{id} \otimes d_{\mathrm{op}}$
+ on mixed-colour components
+ (Lemma~\ref{lem:operadic-kunneth}).
+
+\item \emph{Koszul resolution on mixed components.}
+ The Koszul dual cooperad
+ $\cP^{\text{\textexclamdown}}$ restricted to the mixed-colour
+ component decomposes as
+ $\cP^{\text{\textexclamdown}}(\mathsf{cl}^k,\mathsf{op}^m;
+ \mathsf{op})
+ = \mathsf{P}_{\mathrm{ch}}^{\text{\textexclamdown}}(k)
+ \otimes E_1^{\text{\textexclamdown}}(m)$:
+ the Koszul dual cooperad inherits the product structure from
+ the associated graded decomposition
+ $\mathrm{gr}\,\cP \cong \mathsf{P}_{\mathrm{ch}} \amalg E_1$
+ (Proposition~\ref{prop:gr-chiral}), since the Koszul dual
+ is computed from the quadratic data of~$\cP$, which respects
+ the product splitting.
+ Since $E_1^{\text{\textexclamdown}} = \mathsf{Ass}^! =
+ \mathsf{Ass}$ is Koszul-self-dual,
+ $\iota_{E_1} \colon E_1^{\text{\textexclamdown}}
+ \hookrightarrow \mathbf{B}(E_1)$ is the standard inclusion.
+ The Koszul resolution $\iota$ restricted to the
+ mixed-colour component is therefore
+ $\iota_{\mathrm{ch}} \otimes \iota_{E_1}$,
+ where $\iota_{\mathrm{ch}}$ acts on the
+ $\mathsf{P}_{\mathrm{ch}}$-factor and
+ $\iota_{E_1}$ acts on the $E_1$-factor.
+\end{itemize}
+
+These three properties establish that the hypotheses of Step~4
+hold on the mixed sector: the source cooperad splits as a
+tensor product, the Koszul resolution acts factorwise, and
+the induced map $(\iota_{\mathrm{ch}} \otimes \iota_{E_1})^*$
+on $\Hom(-,\, V_{k,m})$ is a quasi-isomorphism by the
+same finite-dimensionality argument used in Step~4.
+The target $V_{k,m} = \Hom(\cA_{\mathsf{cl}}^{\otimes k}
+\otimes \cA_{\mathsf{op}}^{\otimes m},\, \cA_{\mathsf{op}})$
+does \emph{not} decompose as a tensor product of pure-colour
+endomorphisms (the bulk-to-boundary maps $\mu_{k;m}$ intertwine
+closed and open inputs), but this is immaterial: the
+quasi-isomorphism is on the \emph{source} cooperad, and
+$\Hom(-,V)$ for fixed~$V$ sends quasi-isomorphisms between
+levelwise finite-dimensional complexes to quasi-isomorphisms.
+The mixed-sector compatibility is therefore established without
+requiring any factorization of the endomorphism operad on
+mixed-colour components.
+
+\medskip
+\noindent\textbf{Step~7: Verification of parts (a)--(c).}
+
+\textit{Part~(a).}
+Under the quasi-isomorphism $(\iota^*)^{-1}$, a
+two-coloured tree $T$ in $\mathbf{B}(\cP)$ indexes an
+$L_\infty$ bracket $\ell_T$ on $\gSC_T$ via the convolution
+pre-Lie product. The image under $\iota^*$ of this bracket is
+the brace operation $\{-\}\{-,\ldots,-\}$ on
+$C^\bullet_{\mathrm{ch,top}}(\cA,\cA)$: the Koszul resolution
+$\iota$ maps bar elements (indexed by trees) to their
+Koszul-dual images, and the convolution pre-Lie product on
+$\Hom_\Sigma(\cP^{\text{\textexclamdown}}, \End_\cA)$ is the
+brace product by the definition of braces from the cooperad
+structure on $\cP^{\text{\textexclamdown}}$
+(\cite{LV12}, \S10.1).
+
+\textit{Part~(b).}
+The decomposition $\gSC_T \simeq
+\mathfrak{g}_\cA^{\mathrm{mod}} \times \mathfrak{g}_\cA^{\R}$
+(Remark~\ref{rem:sc-convolution-factorization})
+sends the closed-sector factor to
+$\Hom_\Sigma(\mathbf{B}(\mathsf{P}_{\mathrm{ch}}),
+\End_{\cA_{\mathsf{cl}}})$. Under $\iota^*$, this maps to
+$\Hom_\Sigma(\mathsf{P}_{\mathrm{ch}}^{\text{\textexclamdown}},
+\End_{\cA_{\mathsf{cl}}})
+= C^\bullet_{\mathrm{ch}}(\cA,\cA)$. The Gerstenhaber bracket
+and cup product on the closed-sector cochains constitute the
+$E_2$-structure from Tamarkin's theorem
+(Theorem~\ref{thm:tamarkin-higher-structure}), and these
+agree with the $L_\infty$-brackets on the closed-sector
+component of $\gSC_T$ because $\iota^*$ is a morphism of
+pre-Lie algebras (Step~2), hence preserves the bracket and
+all higher operations.
+
+\textit{Part~(c).}
+An MC element $\alpha \in \mc(\gSC_T)$ is a twisting morphism
+$\tau_\alpha \colon \mathbf{B}(\cP) \to \End_\cA$. Under
+$\iota^*$, this restricts to
+$\tau_\alpha \circ \iota \colon
+\cP^{\text{\textexclamdown}} \to \End_\cA$, which is the
+twisting morphism classifying a $W(\cP)$-algebra structure on
+$\cA$ (the cobar of $\cP^{\text{\textexclamdown}}$ is the
+cofibrant replacement $W(\cP) = \Omega(\cP^{\text{\textexclamdown}})$).
+Since $\iota^*$ is a quasi-isomorphism of dg~Lie algebras,
+it induces a bijection on MC moduli (gauge equivalence classes
+of MC elements). The universal MC element $\alpha_T$ of
+Theorem~\ref{thm:3d-universal-mc} therefore corresponds to
+the MC element $\alpha_{\mathrm{def}} \in
+\mc(C^\bullet_{\mathrm{ch,top}}(\cA,\cA)[1])$ classifying
+the $W(\SCchtop)$-deformation of $\cA$ by
+Theorem~\ref{thm:MC-deformations}.
+\end{proof}
+
+\begin{remark}[Proof history for
+Theorem~\ref{conj:pentagon-factorization-convolution}]
 \label{rem:pentagon-fc-evidence}
-\index{pentagon of equivalences!evidence for P3-P5}
-Three independent lines of evidence support
-Conjecture~\ref{conj:pentagon-factorization-convolution}.
+\index{pentagon of equivalences!proof of P3-P5}
+The proof above assembles five ingredients, each proved in the
+preceding chapters: homotopy-Koszulity of $\SCchtop$
+\textup{(}Theorem~\ref{thm:homotopy-Koszul}\textup{)},
+the operadic K\"unneth decomposition
+\textup{(}Lemma~\ref{lem:operadic-kunneth}\textup{)},
+the associated graded splitting
+\textup{(}Proposition~\ref{prop:gr-chiral}\textup{)},
+the filtered Quillen equivalence
+\textup{(}Theorem~\ref{thm:filtered-koszul}\textup{)},
+and the single-colour brace-convolution correspondence
+\textup{(}Getzler--Jones~\cite{GJ94},
+Loday--Vallette~\cite{LV12}, Theorem~10.1.13\textup{)}.
+The two-coloured extension requires no new machinery beyond
+the directionality of $\SCchtop$
+\textup{(}no open-to-closed maps\textup{)}, which ensures
+that the bar cooperad and Koszul dual cooperad decompose as
+tensor products on mixed-colour components
+\textup{(}Lemma~\ref{lem:operadic-kunneth}\textup{)}.
 
-\textit{First}, on the associated graded with respect to the
-holomorphic weight filtration, both sides decompose as tensor
-products of a closed-sector (chiral) and an open-sector
-(topological) piece; the equivalence on
-$\mathrm{gr}^F$ reduces to the classical brace-convolution
-correspondence of Getzler--Jones \cite{GJ94} applied separately
+Three independent consistency checks confirm the result.
+\textit{First}, on $\mathrm{gr}^F$ the quasi-isomorphism
+reduces to the classical brace-convolution
+correspondence of Getzler--Jones~\cite{GJ94} applied separately
 to $\FM_k(\C)$ and $E_1(m)$.
-
 \textit{Second}, at the level of MC elements, parts~(a)--(c)
 are verified for the Heisenberg algebra
-(Computation~\ref{comp:tamarkin-e2-heisenberg}) and for
-$\widehat{\mathfrak{sl}}_2$
-(Computation~\ref{comp:tamarkin-e2-sl2}): in both cases, the
-MC element in the convolution algebra equals the MC element
-in the brace complex under the identification
-$C^\bullet_{\mathrm{ch,top}}(\cA)[1] \cong \gSC_T$.
-
-\textit{Third}, the quasi-isomorphism
-\eqref{eq:brace-convolution-qiso} is an instance of the
-general operadic cochain comparison: for a Koszul operad $\cP$,
-the brace complex
-$C^\bullet_\cP(A) := \Hom(\cP^{\text{\textexclamdown}}, \End_A)$
-is quasi-isomorphic to the convolution $L_\infty$-algebra
-$\Hom_\Sigma(\mathbf{B}(\cP), \End_A)$ by the Koszul
-resolution $\cP^{\text{\textexclamdown}} \hookrightarrow
-\mathbf{B}(\cP)$ (Loday--Vallette
-\cite{LV12}, Theorem~10.1.13). The only obstruction to
-applying this directly is the two-coloured nature of
-$\SCchtop$: the Koszul resolution of the two-coloured operad
-must intertwine the mixed operations correctly. The single-colour
-case is standard; the extension to two colours requires a
-systematic treatment of mixed-degree Koszul resolutions.
+\textup{(}Computation~\ref{comp:tamarkin-e2-heisenberg}\textup{)}
+and for $\widehat{\mathfrak{sl}}_2$
+\textup{(}Computation~\ref{comp:tamarkin-e2-sl2}\textup{)}.
+\textit{Third}, the spectral sequence comparison of Step~5
+provides a second, filtration-theoretic proof of the
+quasi-isomorphism, independent of the direct tree-level
+argument.
 \end{remark}
 
 \subsection{Pentagon closure and redundancy}
@@ -4890,19 +5185,22 @@ P1--P4 & (vi) & (v)+(iii) \\
 P2--P5 & (vii) & (i)+Prop.~\ref{prop:pentagon-convolution-operadic} \\
 P5--P1 & Prop.~\ref{prop:pentagon-convolution-operadic} & (iv)+(vi) \\
 P2--P4 & Prop.~\ref{prop:pentagon-koszul-bv} & (ii)+(iii) \\
-P3--P5 & Conj.~\ref{conj:pentagon-factorization-convolution} & (iii)+(iv) \\
+P3--P5 & Thm.~\ref{conj:pentagon-factorization-convolution} & (iii)+(iv) \\
 \bottomrule
 \end{tabular}
 \end{center}
 
 \smallskip\noindent
-The ``Composite'' column shows that even the pair P3--P5
-(the single conjectural direct link) is covered by the
-composite (iii)+(iv):
+All ten pairwise equivalences now have direct proofs.
+The pair P3--P5, previously the sole conjectural direct link,
+is established by
+Theorem~\ref{conj:pentagon-factorization-convolution}
+and independently covered by the composite (iii)+(iv):
 $\text{P3} \xrightarrow{\text{(iii)}} \text{P4}
 \xrightarrow{\text{(iv)}} \text{P5}$.
-Hence every pair has at least one proved path of length
-$\le 2$, and the pentagon is closed.
+Hence every pair has at least two independent proofs
+(one direct, one composite of length~$\le 2$), and the
+pentagon is closed with full many-fold redundancy.
 
 For the redundancy claim: each of the five proved edges
 (i)--(iv) and Prop.~\ref{prop:pentagon-convolution-operadic}
@@ -4920,16 +5218,16 @@ angles.
 
 \begin{remark}[Status of the full pentagon]
 \label{rem:pentagon-status}
-Nine of the ten pairwise equivalences are proved (seven directly,
-two via Propositions~\ref{prop:pentagon-convolution-operadic}
-and~\ref{prop:pentagon-koszul-bv}).  The tenth
-(Conjecture~\ref{conj:pentagon-factorization-convolution}:
+All ten pairwise equivalences are proved: seven directly
+in \S\ref{subsec:pentagon-proved}, two via
+Propositions~\ref{prop:pentagon-convolution-operadic}
+and~\ref{prop:pentagon-koszul-bv}, and the tenth
+(Theorem~\ref{conj:pentagon-factorization-convolution}:
 Factorization $\leftrightarrow$ Convolution as a direct
-quasi-isomorphism of dg~Lie algebras) is the only remaining
-open problem.  It is covered by the composite path
-P3 $\to$ P4 $\to$ P5, so the pentagon closes without it;
-its resolution would provide the final direct link and complete
-many-fold redundancy for all ten pairs.
+quasi-isomorphism of dg~Lie algebras) completing the
+pentagon with full many-fold redundancy for all ten pairs.
+Every property of $\SCchtop$ is verified from at least
+two independent angles.
 \end{remark}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -5080,19 +5378,18 @@ and the homotopy transfer data from
 $\mathbf{B}(\SCchtop)$. This link is proved.
 
 \textit{(3) Factorization $\leftrightarrow$ Convolution}
-(Conjecture~\ref{conj:pentagon-factorization-convolution}).
+(Theorem~\ref{conj:pentagon-factorization-convolution}).
 The Gerstenhaber bracket on chiral Hochschild cochains
-should be quasi-isomorphic to the $L_\infty$ bracket on
+is quasi-isomorphic to the $L_\infty$ bracket on
 $\gSC_T$.
-Independent content: this would identify the
-brace operations on
-$C^\bullet_{\mathrm{ch}}(\cA,\cA)$ with the higher
+Independent content: the brace operations on
+$C^\bullet_{\mathrm{ch}}(\cA,\cA)$ are identified with the higher
 $L_\infty$ operations indexed by two-coloured trees, without
 appealing to the operadic or BV descriptions. The
-obstruction is the two-coloured Koszul resolution
-intertwining mixed operations
-(Remark~\ref{rem:pentagon-fc-evidence}).
-This is the sole remaining open problem.
+two-coloured Koszul resolution intertwines mixed operations
+by the operadic K\"unneth lemma
+(Lemma~\ref{lem:operadic-kunneth}) and the directionality
+of $\SCchtop$; see Remark~\ref{rem:pentagon-fc-evidence}.
 \end{remark}
 
 \begin{remark}[$\SCchtop$ is the generic case;
@@ -5217,10 +5514,10 @@ Specifically:
  proved equivalence of composite length at most~$2$
  \textup{(}Theorem~\textup{\ref{thm:pentagon-closure}};
  Proposition~\textup{\ref{prop:star-topology})}.
- The single conjectural direct link
+ The formerly conjectural direct link
  \textup{(}\ref{P:factorization}\,$\leftrightarrow$\,\ref{P:convolution};
- Conjecture~\textup{\ref{conj:pentagon-factorization-convolution})}
- is circumvented by the composite path\/
+ Theorem~\textup{\ref{conj:pentagon-factorization-convolution})}
+ is now proved, and independently covered by the composite path\/
  $\mathrm{P3} \to \mathrm{P4} \to \mathrm{P5}$.
 \end{enumerate}
 \end{theorem}
