@@ -115,7 +115,7 @@ Stage 9 = E_3-TOPOLOGICAL is the POINT OF THE VOLUME. NOT E_3-chiral: the confor
 
 ### SC^{ch,top} is the GENERIC case (corrected emphasis)
 
-E_3-topological is a SPECIAL CASE requiring conformal vector. SC^{ch,top} is the structure that MOST chiral algebras carry on their derived center pair. Examples stuck at SC^{ch,top}: Heisenberg, lattice VOAs, critical level, E_1-chiral algebras (Yangians), free fields without Sugawara, CY functor outputs.
+E_3-topological is a SPECIAL CASE requiring conformal vector. SC^{ch,top} is the structure that MOST chiral algebras carry on their derived center pair. Examples stuck at SC^{ch,top}: critical level KM V_{-h^v}(g), E_1-chiral algebras (Yangians), CY functor outputs lacking conformal vectors. NOTE: Heisenberg H_k (k != 0) and lattice VOAs are NOT stuck -- they carry conformal vectors (abelian Sugawara T = (1/(2k)):JJ: for H_k, c=1) and reach E_3-topological via abelian holomorphic CS.
 
 SC^{ch,top} must be understood AS A FIRST-CLASS OBJECT with five redundant presentations:
 1. **Operadic**: generators (codim-1 boundary strata of FM_k(C) x Conf_m(R)), relations (codim-2)
