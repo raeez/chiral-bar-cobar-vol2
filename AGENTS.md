@@ -57,6 +57,57 @@ Critical distinction:
 
 At genus `g >= 1`, the curved structure is essential: the non-vanishing of higher `A_infinity` operations is the curved bar structure `d^2 = kappa(A) * omega_g`. Formality fails because the logarithm acquires monodromy.
 
+## Programme Identity
+
+E_1-E_1 operadic Koszul duality in the homotopical modular chiral realm on algebraic curves. One form (eta = d log(z_1 - z_2)), one relation (Arnold), one object (Theta_A), one equation (D*Theta + 1/2[Theta,Theta] = 0). The primitive object is B^ord(A) = T^c(s^{-1}A-bar): ordered bar, deconcatenation coproduct, R-matrix, Yangian. The symmetric bar B^Sigma is the Sigma_n-coinvariant shadow. Physics IS the homotopy type.
+
+### Bar Complex Is E_1-Coassociative; SC^{ch,top} Emerges On The Derived Center
+
+The bar complex B^{ord}(A) = T^c(s^{-1}A-bar) is an E_1-chiral coassociative COALGEBRA (over ChirAss^!). It has a differential + deconcatenation coproduct. It does NOT carry SC^{ch,top} structure. The SC^{ch,top} structure emerges on the DERIVED CENTER Z^{der}_{ch}(A) = ChirHoch*(A,A), computed USING the bar complex as a resolution. The bar complex is the E_1 engine; the derived center is the SC^{ch,top}/E_3 output.
+
+Forbidden claims:
+
+- "B(A) is a coalgebra over SC^{ch,top}"
+- "the bar complex presents the Swiss-cheese algebra"
+- "the bar differential is the closed color"
+- "the bar coproduct is the open color"
+
+### The E_n Ladder (E_1 -> E_2 -> E_3-TOPOLOGICAL)
+
+The volume climbs the E_n ladder. Each rung adds one E_1 factor via Dunn additivity applied to the CENTER, not to the algebra. The rungs:
+
+- E_1 (Parts I-II): Ordered bar complex, Koszul duality, line operators. A is E_1.
+- E_2 (Parts III-IV): Derived center Z^{der}_{ch}(A) carries E_2 from Deligne conjecture. E_2 lives on Z(A) and Mod_A, NEVER on A. Quantum groups are E_1; Rep(U_q(g)) is E_2 in Cat.
+- Modular (Part IV continued): Curved bar d^2 = kappa * omega_g at genus >= 1.
+- E_3 (Parts V-VI = CLIMAX): E_3 = E_2 x E_1 by Dunn on Z(A). E_3-chiral requires a 3d HT theory. E_3-TOPOLOGICAL requires BOTH a 3d HT theory AND conformal vector at non-critical level.
+
+### SC^{ch,top} Is Not E_3; SC Is The Generic Case
+
+SC^{ch,top} is two-coloured with directionality (no open-to-closed). Dunn additivity does NOT apply to coloured operads. E_3 requires topologization: SC^{ch,top} + inner conformal vector (Sugawara at non-critical level, making C-translations Q-exact) = E_3-TOPOLOGICAL (NOT E_3-chiral). Without conformal vector: stuck at SC^{ch,top}. At critical level k = -h^v: Sugawara undefined, topologization fails.
+
+SC^{ch,top} is the GENERIC case. E_3-topological is a SPECIAL CASE requiring conformal vector. Most chiral algebras do NOT have conformal vector (critical level KM, E_1-chiral algebras, CY functor outputs). SC^{ch,top} must be understood as a first-class object with five redundant presentations: operadic, Koszul dual, factorization, BV/BRST, convolution.
+
+Status: thm:topologization PROVED for affine KM V_k(g) at non-critical level k != -h^v. General chiral algebras with conformal vector: CONJECTURAL (conj:topologization-general). Proof is cohomological; class M chain-level open.
+
+### The E_N Definition Ladder: Chiral vs Topological
+
+E_N-CHIRAL != E_N-TOPOLOGICAL. Chiral depends on complex structure. Topological does not. The conformal vector enables TOPOLOGIZATION: chiral -> topological.
+
+- E_1-chiral (def:e1-chiral-algebra): E_1-algebra in D-modules on X. Ordered OPE data.
+- E_1-topological (def:e1-topological-algebra): E_1-algebra, no holomorphic dependence.
+- E_2-chiral (def:E2-chiral-algebra): E_2 on Z^{der}_{ch}(A), NOT on A. R-matrix R(z) with spectral parameter.
+- E_2-topological (def:E2-topological-algebra): requires conformal vector to topologize.
+- E_3-chiral: E_2-chiral x E_1-top. The HT bulk. Requires a 3d HT theory.
+- E_3-topological: E_2-top x E_1-top = full TQFT. Requires BOTH 3d HT theory AND conformal vector.
+
+### Five Notions Of E_1-Chiral Algebra
+
+(A) strict ChirAss-algebra, (B) A_inf in End^{ch}_A, (C) EK quantum vertex algebra, (D) A_inf in E_1-chiral, (E) factorization on Ran^{ord}(X). Each has its own derived center. (B)<->(C) via Drinfeld associator on the Koszul locus. NEVER conflate.
+
+### Three Hochschild Theories
+
+(i) Topological HH: E_1-algebra input -> E_2 output (Deligne). (ii) Chiral HH (ChirHoch): E_inf-chiral input -> concentrated {0,1,2} (Theorem H). (iii) Categorical HH: dg category input -> E_2 with CY shifted Poisson. The geometry determines which Hochschild: curve X -> chiral, R -> topological, CY category -> categorical. NEVER conflate. Bare "Hochschild" MUST carry qualifier (chiral/topological/categorical) in non-historical contexts.
+
 ## The Operating Stack
 
 This repo uses a six-layer Codex-native stack:
@@ -96,6 +147,29 @@ This file is optimized for Codex/GPT-5.4 mathematical work:
 
 Prompt-shape rule from practice: prompts work best when they look like a good GitHub issue rather than an inspirational essay. File paths, theorem labels, nearby diffs, convention notes, and explicit acceptance checks matter.
 
+## GPT-5.4 Prompt Architecture
+
+When composing prompts for Codex/GPT-5.4 delegated tasks (via skills, hooks, or direct invocation), use XML-tagged blocks to structure the prompt. Each block type serves a distinct cognitive function and helps the model allocate effort correctly.
+
+### Block Types
+
+- `<task>`: The concrete deliverable. One sentence. File paths, theorem labels, acceptance criteria. This is the only mandatory block.
+- `<structured_output_contract>`: The exact output format expected. Use when the deliverable is structured (findings ledger, formula verification table, propagation report). Omit for free-form prose work.
+- `<verification_loop>`: The falsification discipline. Which checks must pass before the task is declared done. Maps to the Resonance Loop steps 3-8. Include when the task involves mathematical claims.
+- `<grounding_rules>`: Convention locks and anti-pattern reminders relevant to this specific task. Pull from the Core Failure Families or the AP catalogue. Include the narrowest relevant subset, not the entire catalogue.
+- `<missing_context_gating>`: What to do when context is insufficient. Options: (a) read the specified file, (b) ask the user, (c) flag the gap and proceed with the weaker claim. Default is (a). Use (b) only for irreversible architecture decisions.
+- `<completeness_contract>`: The propagation surface. After the core task, which other files, volumes, or surfaces must be checked for consistency. Maps to Resonance Loop step 7.
+- `<dig_deeper_nudge>`: A prompt to escalate reasoning effort when the first pass yields ambiguous results. Include when the task is frontier synthesis or stalled audit work. Maps to the `high` or `xhigh` effort escalation.
+- `<action_safety>`: Guardrails for destructive operations. Include when the task involves git operations, file deletion, large-scale rename, or cross-volume propagation. Maps to the Pre-Commit Gate.
+
+### Usage Discipline
+
+- Every delegated task gets at least `<task>`.
+- Mathematical work gets `<task>` + `<verification_loop>` + `<grounding_rules>`.
+- Audit and rectification get all blocks except `<dig_deeper_nudge>` (which is reserved for frontier stalls).
+- NEVER stuff all blocks into every prompt. Unused blocks waste context and dilute signal.
+- Block content should be terse: file paths, labels, grep targets, and one-sentence rules. Not prose essays.
+
 ## Task Intake - Prompt Geometry
 
 Before any nontrivial work, lock these seven items:
@@ -131,13 +205,13 @@ Default read order for nontrivial work:
 5. relevant compute/tests or logs;
 6. propagation surface across Vol I, Vol II, and Vol III when the claim is cross-volume.
 
-### Dirty Collision Surface Snapshot (2026-04-10)
+### Dirty Collision Surface Snapshot (2026-04-12)
 
 This snapshot is a prior, not permission to skip `git status`.
 
-- Vol I dirty surface is compute-heavy right now: `AGENTS.md`, eight chapter `.tex` files, twenty-six `compute/lib` files, twelve tests, thirteen standalones, many PDFs, and build logs are dirty.
-- Vol II dirty surface is concentrated: `chapters/connections/thqg_perturbative_finiteness.tex` plus rebuilt PDFs are dirty.
-- Vol III dirty surface is bridge-heavy: `chapters/connections/cy_holographic_datum_master.tex`, `chapters/examples/toroidal_elliptic.tex`, `chapters/theory/introduction.tex`, seven `compute/lib` files, six tests, two physics notes, PDFs, and `main.log` are dirty.
+- Vol I dirty surface is compute-heavy: `AGENTS.md`, eight chapter `.tex` files, twenty-six `compute/lib` files, twelve tests, thirteen standalones, many PDFs, and build logs are dirty.
+- Vol II dirty surface is concentrated: `chapters/connections/thqg_perturbative_finiteness.tex` plus rebuilt PDFs are dirty. SC^{ch,top} correction (AP165) and E_n ladder (AP150-AP175, FM40-FM57) installed across theory and connection chapters.
+- Vol III dirty surface is bridge-heavy: `chapters/connections/cy_holographic_datum_master.tex`, `chapters/examples/toroidal_elliptic.tex`, `chapters/theory/introduction.tex`, seven `compute/lib` files, six tests, two physics notes, PDFs, and `main.log` are dirty. pi_3(BU) correction (AP181), kappa_ch domain fix (AP182), McKay quiver fix (AP183) applied.
 
 Rule: rerun `git status --short` across every repo you touch before trusting any narrative summary. Dirty files are first-class collision surfaces, not background noise.
 
@@ -151,6 +225,45 @@ All shared anti-patterns remain live:
 
 `AGENTS.md` compresses them into a smaller family-level operating surface. If a task touches one of those domains, open the relevant `CLAUDE.md` slice and the matching skill before editing.
 
+### Structural And SC Corrections (AP150-AP175, April 2026)
+
+These APs arose from the SC adversarial audit and deep mathematical audit sessions. They are load-bearing for Vol II.
+
+**Agent and structural confabulation (AP150-AP157):**
+
+- AP150: Agent confabulation of mathematical structures. Agents stitch together disparate results from different categorical levels into claimed structures that do not exist. Counter: verify each arrow independently against .tex source.
+- AP151: Convention clash within single file. Two definitions of hbar in one file cascade into wrong q (real instead of root of unity). Counter: grep all definitions of hbar after writing any formula involving it.
+- AP152: "Ordered" ambiguity (labeled vs time-ordered). "Ordered configurations" on a curve means LABELED (non-coinvariant), not totally ordered. The bar complex is MIXED: holomorphic differential (from OPE on C) + topological coproduct (from deconcatenation along R). Counter: always specify which "ordered."
+- AP153: E_3 scope inflation. E_3 via HDC requires B-bar^Sigma to exist as E_2-coalgebra. For E_inf-chiral (vertex algebras): exists, E_3 follows. For genuinely E_1-chiral (Yangians): B-bar^Sigma does NOT exist, only E_2 via classical Deligne. Counter: every E_3 claim must specify E_inf vs E_1 input.
+- AP154: Two distinct E_3 structures. (a) Algebraic E_3: from HDC on E_2 bar coalgebra, no conformal vector needed. (b) Topological E_3: from Sugawara topologisation, requires conformal vector at non-critical level. These are NOT the same; identification conjectural. Counter: always specify which E_3.
+- AP155: "New invariant" overclaiming. The ordered chiral homology framework recovers known invariants (KZB from Bernard 1988, elliptic R-matrix from Felder 1994). Novelty is ARCHITECTURAL, not COMPUTATIONAL. Counter: check Bernard/Felder/Etingof-Varchenko/Calaque-Enriquez-Etingof.
+- AP156: Quasi-periodicity convention for wp_1. Two functions both called wp_1: theta_1'/theta_1 (periodic under z->z+1) vs Weierstrass zeta_tau (quasi-periodic under both). Different monodromy formulas. Counter: always specify which function.
+- AP157: Degeneration-dependent "invariants." A formula computed from a specific degeneration is NOT an invariant unless degeneration-independence is proved. Counter: always specify degeneration type and state whether independence is proved.
+
+**SC^{ch,top} corrections (AP158-AP165):**
+
+- AP158: SC^{ch,top} != E_3. SC is two-coloured with directionality. Dunn does NOT apply. E_3 requires topologization: SC^{ch,top} + conformal vector = E_3-TOPOLOGICAL (NOT E_3-chiral). The conformal vector KILLS the chiral direction. Without conformal vector: stuck at SC^{ch,top}. At critical level: Sugawara undefined, topologization fails.
+- AP159: Four Yangian types on different geometric spaces. (1) Classical Y_hbar(g): E_1-topological on R. (2) dg-shifted Y^{dg}_hbar(g): at point/formal disk. (3) Chiral Y(g)^{ch}: E_1-chiral on curve X. (4) Spectral: factorization on A^1_u. Conflating any two is a type error.
+- AP160: Three Hochschild theories. (i) Topological HH: E_1 -> E_2. (ii) Chiral ChirHoch: E_inf-chiral -> {0,1,2}. (iii) Categorical HH: dg category -> E_2 with CY shifted Poisson. Bare "Hochschild" MUST carry qualifier.
+- AP161: Five notions of E_1-chiral algebra are NOT interchangeable. (A)-(E) each have own derived center. (B)<->(C) on Koszul locus only. Counter: specify which notion.
+- AP162: E_3 requires conformal vector. NEVER claim E_3 without stating: (a) conformal vector exists, (b) level non-critical, (c) T(z) Q-exact in bulk. Status: PROVED for affine KM; CONJECTURAL for general. Proof cohomological; class M chain-level open.
+- AP163: "Lives on R x C" unjustified for E_1-chiral algebras. The SC bar complex is a coalgebra over a PRODUCT operad, NOT a factorization algebra on R x C. Counter: passage to factorization algebra requires chiral Deligne-Tamarkin principle.
+- AP164: Chiral Gerstenhaber != topological Gerstenhaber. Chiral bracket uses OPE residues on FM_k(C). Topological uses little 2-disks. Agree for E_inf via formality; diverge for E_1. Counter: always specify "chiral" or "topological."
+- AP165: B(A) is NOT an SC^{ch,top}-coalgebra. B(A) is E_1 chiral coassociative. SC^{ch,top} emerges in the derived center pair (C^bullet_{ch}(A,A), A). FORBIDDEN: "B(A) coalgebra over SC", "bar presents Swiss-cheese", "bar differential is closed color", "bar coproduct is open color."
+
+**SC adversarial audit corrections (AP166-AP175):**
+
+- AP166: SC^{ch,top} is NOT Koszul self-dual. SC^! = (Lie^c, Ass^c, shuffle-mixed) with closed dim = (n-1)!. SC = (Com, Ass) with closed dim = 1. MANIFESTLY DIFFERENT. FORBIDDEN: "(SC^{ch,top})^! ~ SC^{ch,top}." CORRECT: Koszul duality exchanges Com <-> Lie while preserving Ass; the duality functor is an involution.
+- AP167: Topologization scope. thm:topologization PROVED for affine KM V_k(g) at non-critical level. General: CONJECTURAL. Proof cohomological; class M chain-level open. Counter: every topologization reference must carry scope qualifier.
+- AP168: E_3 is TOPOLOGICAL, not chiral. Sugawara makes C-translations Q-exact, complex structure irrelevant in cohomology, two SC colors collapse, E_2^{hol} x E_1^{top} -> E_3^{top} via Dunn. FORBIDDEN: "E_3-chiral." CORRECT: "E_3-topological."
+- AP169: SC^{ch,top} is the GENERIC case; E_3 is special. Most chiral algebras lack conformal vector. SC^{ch,top} is the FINAL answer for these; treat as first-class object.
+- AP170: Two incompatible Yangian definitions. def:e1-chiral-yangian (weaker) vs def:chiral-yangian-datum (stronger, four axioms). Equivalence OPEN.
+- AP171: Associator dependence dichotomy. Cohomological derived center = associator-independent. Cochain-level = associator-dependent. Bar-side invariants (kappa, shadow tower) associator-FREE.
+- AP172: A^! is an SC^!-algebra, NOT an SC-algebra. Closed = Lie (Sklyanin bracket), Open = Ass (Yangian product). This is (Lie, Ass)-algebra, not (Com, Ass)-algebra. FORBIDDEN: "A^! is an SC-algebra."
+- AP173: Yangian derived center not computed. Z^{der}_{ch}(Y(g)^{ch}) not computed anywhere. Predicted infinite-dimensional. For E_1 input: only E_2, not E_3 (B^Sigma does not exist).
+- AP174: Chiral QG equivalence scope. Proved abstractly on Koszul locus. Concrete verification: sl_2 Yangian and affine KM only. Elliptic partial; toroidal absent. FORBIDDEN: "equivalence for all four families."
+- AP175: Pentagon of equivalences is a star. Five SC presentations are pairwise equivalent, but all route through the operadic hub. No single pentagon theorem.
+
 ## Claude-To-Codex Pdegree Map
 
 Claude-side workflows in this repo must have an explicit Codex-side home.
@@ -159,6 +272,7 @@ Claude-side workflows in this repo must have an explicit Codex-side home.
 
 - Claude `/audit` -> Codex `$vol2-deep-audit`
 - Claude `/rectify` -> Codex `$vol2-beilinson-rectification`
+- Claude `/chriss-ginzburg-rectify` -> Codex `$vol2-chriss-ginzburg-rectify`
 - Claude `/verify` -> Codex `$vol2-formula-verification`
 - Claude `/propagate` -> Codex `$vol2-cross-volume-propagation`
 - Claude `/build` -> Codex `$vol2-build-surface`
@@ -526,6 +640,58 @@ Rules:
 - long summaries, elegant slogans, and clean prose are not proof;
 - do not let compaction erase open risks: keep the audit ledger and explicit handoff state current.
 
+### Family F - Vol II Failure Modes (FM40-FM57) And Meta-Patterns (MP1-MP6)
+
+These are CRITICAL Vol II-specific errors from the 2026-04-12 session (55+ agents). They compress into three clusters: categorical level errors, factorisation/coproduct conflation, and E_3 overclaiming.
+
+**Categorical level errors (the most dangerous class):**
+
+- FM40: Dunn on A instead of Z(A). Applied "E_1 x E_1 = E_2" to the boundary algebra A. WRONG. A is E_1. Dunn applies to Z(A) (bulk/derived center) or Mod_A (module category). Counter: before ANY Dunn claim, verify the target is Z(A) or Mod_A, NEVER A.
+- FM41: R-matrix makes A into E_2. WRONG. R-matrix makes Mod_A braided (E_2 in Cat). A remains E_1. Quantum groups U_q(g) are E_1; Rep(U_q(g)) is E_2 in Cat. Counter: E_2 lives one categorical level up from A.
+- FM42: YBE = A_inf associativity. WRONG. YBE is the COMPATIBILITY condition between two E_1 structures (braiding coherence). A_inf associativity is coherence of a SINGLE E_1. Counter: separate associativity (single E_1) from compatibility (interaction of two E_1s).
+
+**Factorisation homology errors:**
+
+- FM43: Bar = factorisation homology of R. WRONG. int_R A = A (trivial). B(A) = k otimes_A^L k = int_{[0,1]}^{k,k} A (interval with augmentation boundary). Counter: factorisation homology of a contractible manifold without boundary is the algebra itself.
+- FM44: Bar complex = "chain model for factorisation cohomology." Imprecise. B(A) is a factorisation COALGEBRA. Chiral homology is derived global sections of this coalgebra, a separate non-trivial operation. Counter: never conflate local (coalgebra) with global (cohomology).
+
+**Coproduct conflation errors:**
+
+- FM45: Deconcatenation = chiral coproduct. WRONG. Deconcatenation is the structural cofree coalgebra coproduct on B(A). The Hopf-type chiral coproduct Delta: A -> A otimes A is independent structure on A. Different coproducts on different objects. Counter: always specify WHICH coproduct and on WHICH object.
+- FM46: r-matrix sufficient for quantum group. WRONG. r-matrix is the classical shadow. Full quantum group needs: coproduct + full R(z) + quasi-triangularity + antipode. The coproduct is NOT visible in the shadow tower. Counter: "r-matrix is necessary but not sufficient."
+
+**E_3 overclaiming errors:**
+
+- FM47: E_inf -> E_3-chiral automatic. WRONG. E_2 on Z(A) is automatic (Deligne conjecture). E_3-chiral requires a 3d HT theory whose boundary is A. For KM: proved (holomorphic CS). For GENERAL vertex algebras: requires quantizing the Poisson vertex model (hard open work). Counter: nothing beyond E_2 on Z(A) is automatic.
+- FM48: E_3-topological from E_inf alone. WRONG. Conformal vector is ADDITIONAL STRUCTURE. E_3-topological requires BOTH a 3d HT theory AND a conformal vector at non-critical level. Counter: E_3-top needs two independent inputs.
+
+**Notation errors:**
+
+- FM49: Y_z^hbar notation. Changed Y_hbar to Y_z^hbar across 531 occurrences. WRONG. The algebra Y_hbar(g) does not depend on z. The spectral parameter z lives on Delta_z, R(z), T(z), ev_z, not on the algebra itself. Reverted. Counter: NEVER put the spectral parameter in the algebra symbol.
+- FM50: Ordered configuration spaces = geometric ordering on R subset X. WRONG. The E_1 ordering is ALGEBRAIC (operations depend on sequence). It does NOT require embedding R into X. Counter: the E_1 structure is operadic/algebraic, not geometric.
+
+**Structural pattern errors:**
+
+- FM51: "Emergent third dimension" from bar degree. WRONG. Bar degree is a grading on a chain complex. An E_1 structure requires operations and coherences. A grading provides none. Counter: a grading is not an operadic structure.
+- FM52: Within-surface SC = holographic bulk-boundary. WRONG. Within-surface SC (R subset C) governs restriction to a real locus. Holographic bulk-boundary goes through derived center (Hochschild). Counter: SC governs within-surface; holography goes through Hochschild.
+- FM53: Two "independent" E_1 structures. WRONG. Within-surface E_1 and transverse E_1 are Koszul dual through the Hom functor: C*(A,A) = Hom(B(A), A). Counter: Koszul dual, not independent.
+- FM54: Spectral R(z) = categorical braiding. WRONG. Spectral R-matrix R(z) (family of maps with parameter) differs from E_2 braiding from Dunn (single natural transformation, no parameter). Counter: spectral != categorical; the relationship needs a theorem.
+
+**Additional structural errors:**
+
+- FM55: RT invariants = unordered E_1 chiral homology. WRONG. RT invariants arise from E_inf factorisation homology (CFG E_3 trace on BV-quantised CS). Counter: RT = E_inf factorisation homology trace, NOT E_1 ordered bar complex.
+- FM56: "Symmetric monoidal category of chiral algebras." WRONG. Chiral algebras form a PSEUDO-TENSOR category (BD), NOT a symmetric monoidal category. Counter: say "D-modules on X" or "factorisation algebras on X."
+- FM57: Costello-Gaiotto already provides 3d HT for Virasoro. The gap for Virasoro E_3-chiral is NOT "quantize the PV model" but the specific BRST identity T_DS = [Q_tot, G'] in the DS-modified BV complex. Counter: cite Costello-Gaiotto for the 3d HT theory; state the gap as the BRST identity.
+
+**Meta-patterns (from the error catalogue):**
+
+- MP1: CATEGORICAL LEVEL CHECK. Before any E_n or Dunn claim, verify: which categorical level? Algebra (E_1) / Module category (E_2 in Cat) / Center (E_2). NEVER skip.
+- MP2: AUTOMATIC vs REQUIRES CONSTRUCTION. E_2 on Z(A) is automatic (Deligne). Everything above E_2 requires a specific construction. Never say "automatic" above E_2.
+- MP3: DISTINGUISH SIMILAR OBJECTS. When two objects look similar (deconcatenation vs chiral coproduct, spectral vs categorical braiding), EXPLICITLY NAME AND DISTINGUISH before using either.
+- MP4: NOTATION CHANGES NEED MATHEMATICAL JUSTIFICATION. Before ANY bulk notation change: verify mathematically correct, consistent with literature, no conflict with existing usage.
+- MP5: GRADING != OPERADIC STRUCTURE. A filtration/grading on a complex is NOT an E_n structure. An E_n structure requires operations parametrised by configuration spaces.
+- MP6: SINGLE vs PAIR. Before any claim that two structures interact (Dunn, braiding, compatibility), verify: intrinsic to ONE structure, or governing how TWO structures compose? YBE governs interaction of two E_1s. A_inf governs a single E_1.
+
 ## Multi-Path Verification Mandate
 
 Every computational claim, formula, coefficient, table entry, theorem advertisement, or hardcoded expected value should be backed by multiple genuinely independent paths whenever feasible.
@@ -677,6 +843,8 @@ Repo-local Codex playbooks live in `.agents/skills/`:
   Findings-first mathematical audit and review surface.
 - `$vol2-beilinson-rectification`
   Deep audit/rectify/fortify loop on a chapter, theorem, or live surface.
+- `$vol2-chriss-ginzburg-rectify`
+  Full five-phase Chriss-Ginzburg fortification + Beilinson rectification. Platonic ideal convergence on a chapter. Supersedes `$vol2-beilinson-rectification` for deep structural work.
 - `$vol2-compute-engine`
   Compute-engine scaffolding and test-surface discipline for Vol II.
 - `$vol2-formula-verification`
