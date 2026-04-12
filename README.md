@@ -3,7 +3,7 @@
 **Volume II** of *Modular Homotopy Theory for Algebraic Factorization Algebras on Algebraic Curves*
 by Raeez Lorgat.
 
-The Swiss-cheese operad SC^{ch,top} is the natural home of the bar complex: the differential encodes holomorphic factorization on C, the deconcatenation coproduct encodes topological factorization on R, and the five Vol I theorems are the modular invariants that survive Sigma_n-coinvariance from this richer E_1 structure.
+The bar complex B(A) is an E_1 chiral coassociative coalgebra: the differential encodes the chiral product (holomorphic, from FM_k(C)), the deconcatenation coproduct encodes topological factorization on R. The SC^{ch,top} structure emerges in the chiral derived center: the chiral Hochschild cochain complex C^bullet_{ch}(A,A) carries brace operations and a Gerstenhaber bracket, and the pair (C^bullet_{ch}(A,A), A) is the SC^{ch,top} datum (bulk acting on boundary). The five Vol I theorems are the modular invariants that survive Sigma_n-coinvariance.
 
 ## The Three Volumes
 
@@ -19,10 +19,10 @@ Every chapter depends on Vol I's five theorems:
 
 | Vol I Theorem | What it supplies |
 |:---:|----------------|
-| **(A)** Bar-cobar adjunction | Bar complex reinterpreted as SC^{ch,top}-algebra |
+| **(A)** Bar-cobar adjunction | E_1 bar coalgebra; chiral derived center gives SC^{ch,top} datum |
 | **(B)** Koszul inversion | Lifted to raviolo VA setting and completed towers |
 | **(C)** Complementarity | Bulk-boundary-line triangle inherits (-1)-shifted symplectic structure |
-| **(D)** Modular characteristic | Curvature kappa(A) * omega_g governs curved Swiss-cheese at genus >= 1 |
+| **(D)** Modular characteristic | Curvature kappa(A) * omega_g governs curved A_infinity structure at genus >= 1 |
 | **(H)** Hochschild ring | BV-BRST origin; bulk = chiral Hochschild |
 
 ## Seven Parts
@@ -41,12 +41,12 @@ Every chapter depends on Vol I's five theorems:
 |--------|------:|
 | Pages | ~1,633 |
 | Tagged claims | ~2,604 |
-| Source files | 106 chapter .tex + 2 appendices |
-| Connection chapters | 72 |
+| Source files | 19 theory + 13 examples + 72 connections = 104 chapter .tex + 2 appendices |
 | Compute modules | 53 lib + 64 test |
-| Anti-patterns | V2-AP1 through V2-AP39 (24 E_1/E_inf hierarchy + 15 empirical) |
+| Anti-patterns | V2-AP1 through V2-AP39 + AP150-AP157 + FM24 |
 | Seven-faces master | Per-face status tags (F1-F7 with individual scope qualifiers) |
 | Cross-volume bridges | 15 (including 3D gravity climax row) |
+| Standalone papers | 3 (preface_full_survey, bar_chain_models_chiral_quantum_groups, ordered_associative_chiral_kd) |
 
 Zero conjectural algebraic inputs beyond the standing physical axioms, which have been made explicit as derived consequences.
 

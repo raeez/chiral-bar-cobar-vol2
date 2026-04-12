@@ -71,8 +71,8 @@ The volume must define E_N at BOTH chiral and topological levels for N=1,2,3.
 - E_2-topological: braided algebra independent of complex structure. Would require topologizing the chiral E_2 via conformal vector. At this level: the Drinfeld center of the E_1-topological algebra.
 
 **E_3 level (Parts V-VI = CLIMAX):**
-- E_3-chiral = E_2-chiral x E_1-top: the HT bulk. Holomorphic on X, topological on R. Factorisation algebra on X x R. This is the HOLOMORPHIC-TOPOLOGICAL structure. It DEPENDS on the complex structure of X. SC^{ch,top} governs this. MANUSCRIPT LARGELY HAS THIS.
-- E_3-topological = E_2-top x E_1-top = full TQFT: INDEPENDENT of complex structure. Requires conformal vector to topologize the E_2-chiral factor. This is Chern-Simons. CFG (arXiv:2602.12412) construct the E_3-topological structure from BV quantisation of CS. THE VOLUME'S CLIMAX IS CONSTRUCTING E_3-TOPOLOGICAL ON Z^{der}_{ch}(A) WHEN A HAS A CONFORMAL VECTOR AT NON-CRITICAL LEVEL.
+- E_3-chiral = E_2-chiral x E_1-top: the HT bulk. Holomorphic on X, topological on R. Factorisation algebra on X x R. This is the HOLOMORPHIC-TOPOLOGICAL structure. NOT AUTOMATIC from the chiral algebra. Requires a 3d HT theory whose boundary is A. For gauge-theoretic examples (Kac-Moody): the 3d holomorphic CS theory (from 6d holomorphic gauge theory) provides this — proved by Costello-Li / CFG. For GENERAL vertex algebras: requires quantizing the Poisson vertex model, which is HARD OPEN WORK, not automatic. The E_2 -> E_3-chiral step is CONJECTURAL in general.
+- E_3-topological = E_2-top x E_1-top = full TQFT: INDEPENDENT of complex structure. Requires BOTH a 3d HT theory (for E_3-chiral) AND a conformal vector at non-critical level (for topologization). This is Chern-Simons. CFG (arXiv:2602.12412) construct the E_3-topological structure from BV quantisation of CS. THE VOLUME'S CLIMAX IS CONSTRUCTING E_3-TOPOLOGICAL ON Z^{der}_{ch}(A) WHEN A HAS A CONFORMAL VECTOR AT NON-CRITICAL LEVEL AND A 3D HT ORIGIN.
 
 The topologization step (chiral -> topological) at each level:
 - E_1: trivial (E_1-chiral restricted to R = E_1-topological).

@@ -1,28 +1,29 @@
-"""Swiss-Cheese Bar-Cobar Engine: chain-level SC^{ch,top} computations.
+"""Bar-Cobar and Derived Center Engine: chain-level computations.
 
-Implements the SC^{ch,top} operad action on configuration spaces
-FM_k(C) x Conf_m(R), the bar differential (C-direction factorization),
-the coproduct (R-direction factorization), and curved Swiss-cheese
-at genus g >= 1 with curvature kappa * omega_g.
+The bar complex B(A) is an E_1 chiral coassociative coalgebra:
+  - bar differential d_B from OPE residues on FM_k(C) (chiral product)
+  - deconcatenation coproduct Delta from Conf_k(R) (topological)
+
+NOTE (AP165): B(A) is NOT an SC^{ch,top}-coalgebra. The SC^{ch,top}
+structure emerges in the chiral derived center: the pair
+(C^bullet_ch(A,A), A) is the SC datum, with bulk (chiral Hochschild
+cochains, defined via End^{ch}_A) acting on boundary (A) via braces.
 
 The key mathematical objects:
 
-1. **SC bar complex**: For a chiral algebra A (closed sector) and a
-   topological algebra M (open sector), the SC bar complex
-   B^{SC}(A, M) has:
-   - Underlying space: s^{-1}A^{otimes k} otimes M^{otimes m}
-     (desuspension in closed inputs, no shift in open)
-   - Differential d_{SC} = d_C + d_R + d_{mix}
-     where d_C = bar differential (C-direction collisions),
-     d_R = associahedron differential (R-direction collisions),
-     d_{mix} = mixed SC differential (C-into-R collisions)
+1. **E_1 bar complex**: For a chiral algebra A, the bar complex
+   B(A) = T^c(s^{-1} A-bar) has:
+   - Underlying space: s^{-1}A^{otimes k} (desuspended inputs)
+   - Differential d_B: coderivation from A_infinity operations
+   - Coproduct Delta: deconcatenation (E_1 coassociative)
 
-2. **Curved SC at genus g >= 1**: Replace d_C by d_C + kappa * omega_g
+2. **Curved A_infinity at genus g >= 1**: d^2_fib = kappa * omega_g
    where kappa = modular Koszul curvature and omega_g is the genus-g
-   period form (E_2(tau) at genus 1).
+   Hodge class (E_2(tau) at genus 1).
 
-3. **A-infinity structure maps**: Extracted from the SC bar complex via
-   homotopy transfer (Livernet, Kontsevich formality).
+3. **Chiral derived center**: C^bullet_ch(A,A) from chiral
+   endomorphism operad; the pair (C^bullet_ch(A,A), A) carries
+   SC^{ch,top} structure via brace operations.
 
 4. **Homotopy-Koszulity verification**: thm:homotopy-Koszul states
    SC^{ch,top} is homotopy-Koszul. This means the bar/cobar adjunction
