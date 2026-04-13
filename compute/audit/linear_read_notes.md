@@ -1,5 +1,52 @@
 # Linear Read Notes
 
+## 2026-04-13 - Bar-Cobar Review Fortification
+
+- Target: `chapters/connections/bar-cobar-review.tex`
+- Status: IN PROGRESS
+
+### Findings
+
+1. `2026-04-13-002`
+   Severity: `SERIOUS`
+   Class: `D`
+   Location: `chapters/connections/bar-cobar-review.tex:205-210`, `:625`, `:1355`, `:1620`, `:2280-2413`, `:4079-4088`
+   Issue: the review chapter still advertised stale Theorem A language from earlier Vol I drafts. It conflated the genus-zero bar differential package with Main Theorem A and repeatedly treated Verdier duality as landing directly on a bar coalgebra or on the classical dual, whereas the current Vol I convention is algebra-level: `\mathbb{D}_{\operatorname{Ran}}\barB_X(\cA)` is the homotopy Koszul dual factorization algebra, formal to the classical dual only on the Koszul locus.
+   Fix: rewrite the theorem-package summaries so Theorem A is stated with the algebra-level Verdier convention, and retarget the bar-differential/collision statements to the genus-zero bar-construction package rather than to Main Theorem A.
+   Status: `PENDING`
+
+2. `2026-04-13-003`
+   Severity: `SERIOUS`
+   Class: `D`
+   Location: `chapters/connections/bar-cobar-review.tex:4083-4087`, related higher-genus summary prose at `:3811-3819`, `:3870-3944`
+   Issue: the local review of Theorems B--D and C still compressed away critical scope qualifiers. Theorem B was stated only as a quasi-isomorphism, omitting the off-Koszul coderived inversion. Theorem C was written as though the Lagrangian decomposition had a uniform genus-zero/genus-positive form, obscuring the `g >= 1` Lagrangian statement and the pointed/curved genus-zero base case. Theorem D was summarized without noting the non-circular proof route now used in Vol I.
+   Fix: update the review table/remarks so Theorem B carries the on-locus quasi-isomorphism plus off-locus coderived clause, Theorem C explicitly separates the `g >= 1` Lagrangian statement from the genus-zero base case, and Theorem D records the scalar-shadow/determinant-line proof path as the non-circular route.
+   Status: `PENDING`
+
+3. `2026-04-13-004`
+   Severity: `MODERATE`
+   Class: `C/D`
+   Location: `chapters/connections/bar-cobar-review.tex:4079-4089`
+   Issue: MC2 was advertised only as `\Theta_\cA \in \MC(\gAmod)`, without identifying the actual completed carrier used by the current Vol I proof, namely the genus-completed coinvariant modular convolution algebra `G^1(\Defcyc(\cA)\widehat{\otimes}\Gmod) \cong \gAmod`.
+   Fix: add the carrier identification and the comparison between the strict shorthand `\gAmod` and the completed tensor-product presentation.
+   Status: `PENDING`
+
+4. `2026-04-13-005`
+   Severity: `MODERATE`
+   Class: `C`
+   Location: `chapters/connections/bar-cobar-review.tex:1818`, `:1915`, `:4071`
+   Issue: several local references still point to the nonexistent label `thm:bar-cobar-adjunction` rather than the live local label `thm:bar_cobar_adjunction`.
+   Fix: retarget the broken references to the live label.
+   Status: `PENDING`
+
+5. `2026-04-13-006`
+   Severity: `MODERATE`
+   Class: `D/W`
+   Location: `chapters/connections/bar-cobar-review.tex` near the Vol I theorem-package summary
+   Issue: the review chapter did not tell Vol II readers which Vol I statements were rectified after the original review prose was drafted, so the local summary surface still looked complete even where conventions had shifted.
+   Fix: add a dedicated `What changed in Vol I` remark listing the theorem-package rectifications relevant to this review chapter.
+   Status: `PENDING`
+
 ## 2026-04-13 - V2-AP26 Part Reference Rectification
 
 - Target: `chapters/connections/conclusion.tex`, mirrored `.claude/worktrees/*/chapters/connections/conclusion.tex`
