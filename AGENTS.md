@@ -228,8 +228,8 @@ Rule: rerun `git status --short` across every repo you touch before trusting any
 
 All shared anti-patterns remain live:
 
-- Vol I `CLAUDE.md`: `AP1` through `AP141` for the shared formula, status, propagation, and workflow hazards.
-- Vol II `CLAUDE.md`: `V2-AP1` through `V2-AP35` for the local `E_1/E_infinity` hierarchy, lambda-bracket, standalone, and connective-drift hazards.
+- Vol I `CLAUDE.md`: `AP1` through `AP141` + `B1`-`B85` for the shared formula, status, propagation, and workflow hazards. **B74-B85 (new, 2026-04-13):** formal-series/analytic confusion, chain-vs-cohomology level, abstract-machine non-sequiturs, stale classification lists, Khan-Zeng scope, orbifold route.
+- Vol II `CLAUDE.md`: `V2-AP1` through `V2-AP39` + `FM58`-`FM68` for the local `E_1/E_infinity` hierarchy, lambda-bracket, standalone, and session-specific hazards.
 - Vol III `CLAUDE.md`: `AP-CY1` through `AP-CY19` for center discipline, conditionality propagation, CY3 existence boundaries, and cross-volume bridge hazards.
 
 `AGENTS.md` compresses them into a smaller family-level operating surface. If a task touches one of those domains, open the relevant `CLAUDE.md` slice and the matching skill before editing.
