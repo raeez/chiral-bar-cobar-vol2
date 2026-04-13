@@ -10,8 +10,8 @@ The bar complex B(A) is an E_1 chiral coassociative coalgebra: the differential 
 | Volume | Title | Role |
 |:------:|-------|------|
 | **I** | *Modular Koszul Duality* | The algebraic engine: bar-cobar duality for chiral algebras on curves |
-| **II** | *A-infinity Chiral Algebras and 3D HT QFT* (this volume) | The 3D interpretation: what the engine computes |
-| **III** | *Calabi-Yau Quantum Groups* | The categorical completion: CY categories as quantum chiral algebras |
+| **II** | *A-infinity Chiral Algebras and 3D HT QFT* (this volume) | Derived centres interpreted physically as 3d HT gauge theories |
+| **III** | *Calabi-Yau Quantum Groups* | Concrete CY quantum groups as examples of Vol I's abstract E_1-chiral quantum groups |
 
 ## Connection to Volume I
 
@@ -39,7 +39,8 @@ Every chapter depends on Vol I's five theorems:
 
 | Metric | Value |
 |--------|------:|
-| Pages | 1,746 |
+| Pages | ~1,736 |
+| Preface | 1,998 lines (expanded from 791 in the 2026-04-13 reconstitution) |
 | Tagged claims | ~2,650+ |
 | Source files | 19 theory + 13 examples + 75 connections = 107 chapter .tex + 2 appendices |
 | Compute files | 61 lib + 63 test files |
