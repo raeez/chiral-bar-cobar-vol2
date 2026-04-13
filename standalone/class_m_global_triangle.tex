@@ -1,95 +1,206 @@
 \documentclass[11pt]{amsart}
-\usepackage{amsmath,amssymb,amsthm,enumitem}
-\newtheorem{theorem}{Theorem}
-\newtheorem{conjecture}[theorem]{Conjecture}
+\usepackage{amsmath,amssymb,amsthm,enumitem,mathrsfs}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
 \newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
 \newtheorem{remark}[theorem]{Remark}
 \newcommand{\Ainf}{A_\infty}
 \newcommand{\RHom}{\mathrm{RHom}}
-\title{The Class M Global Triangle: DS--Hochschild Chain-Level Compatibility}
+\newcommand{\ChirHoch}{\mathrm{ChirHoch}}
+\newcommand{\Zder}{Z^{\mathrm{der}}_{\mathrm{ch}}}
+
+\title{The Class M Global Triangle:\\
+DS--Hochschild Chain-Level Compatibility\\
+and the Virasoro Bulk--Boundary Correspondence}
+
 \begin{document}
 \maketitle
 
-\section{The problem}
+\begin{abstract}
+The bulk--boundary--line triangle is proved for boundary-linear
+families (classes G, L, C).  For class~M (Virasoro, $\mathcal{W}_N$),
+the triangle remains open due to the non-formal $\Ainf$ structure
+and nonlinear DS superpotential.  We show that cohomological
+DS--Hochschild compatibility is complete at all degrees and
+reduce the chain-level gap to a single input: the HPL transfer
+of $\RHom$ through the Drinfeld--Sokolov strong deformation
+retract.  We outline a proof strategy via the ghost-number
+bottleneck.
+\end{abstract}
 
-The bulk--boundary--line triangle asserts quasi-isomorphisms
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{The global triangle}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{theorem}[Proved for classes G/L/C]
+For any chirally Koszul boundary-linear logarithmic
+$\mathrm{SC}^{\mathrm{ch,top}}$-algebra~$A$ of class G, L, or~C,
 \[
 A_{\mathrm{bulk}}
 \;\simeq\;
-Z^{\mathrm{der}}(B_{\mathrm{boundary}})
+\Zder(B_{\mathrm{boundary}})
 \;\simeq\;
-Z^{\mathrm{der}}(C_{\mathrm{line}})
+\Zder(C_{\mathrm{line}})
 \;\simeq\;
 \mathrm{HH}^*_{\mathrm{ch}}(A^!_{\mathrm{line}}).
 \]
-
-\begin{theorem}[Proved]
-The global triangle closes for all boundary-linear families
-(classes G, L, C): Heisenberg, lattice VOAs, affine $V_k(\mathfrak{g})$
-at generic level, $\beta\gamma$-systems.  The proof uses the
-derived HKR theorem for boundary-linear superpotentials, the
-vanishing of the quartic contact class $q_4 = 0$ (since $m_n = 0$
-for $n \ge 3$), and Morita invariance of derived centres.
 \end{theorem}
 
-\begin{conjecture}
-The global triangle closes for class M (Virasoro, $\mathcal{W}_N$).
+\begin{conjecture}[Target]
+The triangle closes for $\mathrm{Vir}_c$ at generic~$c$.
 \end{conjecture}
 
-\section{The two obstructions}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Why classes G/L/C work and M does not}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+\subsection{The boundary-linear mechanism}
+For classes G/L/C, the superpotential of the 3d HT theory is
+\emph{linear} in normal directions to the boundary.  The derived
+HKR theorem gives the bulk--boundary quasi-isomorphism.  The
+quartic contact class $q_4$ vanishes ($m_n = 0$ for $n \ge 3$
+on cohomology), so the pointwise reduction to the derived centre
+is unobstructed.
+
+\subsection{The class M obstructions}
+For Virasoro:
 \begin{enumerate}
-\item \textbf{Non-formal $\Ainf$ structure.}
-  For class M, $m_k \neq 0$ for all $k \ge 3$ (infinite shadow depth).
-  The quartic contact class $q_4(\mathrm{Vir}_c) = 10/[c(5c+22)] \neq 0$.
-  The pointwise reduction to the derived centre is obstructed at
-  degree~$3$ and above.
-
-\item \textbf{Nonlinear DS superpotential.}
-  The Drinfeld--Sokolov boundary conditions produce a superpotential
-  nonlinear in normal directions.  The derived HKR theorem
-  (boundary-linear bulk--boundary) does not apply.
+\item $m_k \neq 0$ for all $k \ge 3$ (infinite shadow depth,
+  class~M). $q_4(\mathrm{Vir}_c) = 10/[c(5c+22)] \neq 0$.
+\item The DS boundary conditions produce a superpotential
+  nonlinear in normals.  Derived HKR does not apply.
 \end{enumerate}
 
-\section{Cohomological compatibility is complete}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Cohomological compatibility: complete}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-The DS-induced map on chiral Hochschild cohomology is verified at
-all degrees:
-$\mathrm{ChirHoch}^0$: $\mathbb{C} \xrightarrow{\sim} \mathbb{C}$;
-$\mathrm{ChirHoch}^1$: $\mathfrak{sl}_2 \to 0$
-(BRST-exactness, inner absorption, screening);
-$\mathrm{ChirHoch}^2$: $\mathbb{C} \xrightarrow{\sim} \mathbb{C}$
-($\Theta_k \mapsto (dc/dk)\,\Theta_c$, nonzero at generic~$k$);
-$\mathrm{ChirHoch}^{\ge 3}$: $0 \to 0$.
+\begin{proposition}[DS--Hochschild at all degrees]
+The DS-induced map on chiral Hochschild cohomology is:
+\begin{align*}
+\ChirHoch^0(V_k(\mathfrak{sl}_2)) &= \mathbb{C}
+  \xrightarrow{\;\sim\;} \mathbb{C}
+  = \ChirHoch^0(\mathrm{Vir}_c), \\
+\ChirHoch^1(V_k(\mathfrak{sl}_2)) &= \mathfrak{sl}_2
+  \xrightarrow{\;0\;} 0
+  = \ChirHoch^1(\mathrm{Vir}_c), \\
+\ChirHoch^2(V_k(\mathfrak{sl}_2)) &= \mathbb{C}
+  \xrightarrow{\;\sim\;} \mathbb{C}
+  = \ChirHoch^2(\mathrm{Vir}_c), \\
+\ChirHoch^{\ge 3} &= 0 \to 0.
+\end{align*}
+At degree~$1$: killed by BRST-exactness, inner absorption,
+screening.  At degree~$2$: $\Theta_k \mapsto (dc/dk)\,\Theta_c$
+with $dc/dk = -6(k{+}1)(k{+}3)/(k{+}2)^2 \neq 0$ generically.
+\end{proposition}
+
 The obstruction is purely chain-level.
 
-\section{Attack path: DS transport via HPL}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{The Annals-grade proof spine}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\textbf{Strategy C (strongest).}
-The global triangle holds for $V_k(\mathfrak{sl}_2)$ (class L).
-DS reduction gives $\mathrm{Vir}_c$.  Bar commutes with DS (proved).
-If chiral Hochschild cochains also commute with DS at chain level,
-the triangle transports.
+\begin{theorem}[Target theorem, precise form]
+The DS strong deformation retract $(p, i, h)$ on
+$V_k(\mathfrak{sl}_2)$ induces a quasi-isomorphism of
+$\Ainf$-bimodule cochain complexes:
+\[
+(p \otimes p)^* \colon
+C^*_{\mathrm{ch}}(\mathrm{Vir}_c, \mathrm{Vir}_c)
+\;\xrightarrow{\;\sim\;}
+C^*_{\mathrm{ch}}(V_k(\mathfrak{sl}_2), V_k(\mathfrak{sl}_2))^{Q_{\mathrm{DS}}}.
+\]
+Combined with the proved class~L global triangle for
+$V_k(\mathfrak{sl}_2)$, this gives the triangle for~$\mathrm{Vir}_c$.
+\end{theorem}
 
-The missing input: an HPL (homological perturbation lemma) transfer
-for $\RHom_A(M,N)$ through the DS strong deformation retract
-$(p, i, h)$.  The contracting homotopy~$h$ has ghost number~$-1$.
-The HPL higher homotopies $h_n$ have ghost number~$-n$.  The
-ghost-number bottleneck that trivialises the DS coproduct (proved)
-acts on the same filtration and may force the transferred $\RHom$
-to be strict.  At fixed conformal weight, the SDR data are explicit
-finite-dimensional matrices.
+\subsection*{Step 1: The DS SDR}
+The DS strong deformation retract $(p, i, h)$:
+$p\colon V_k(\mathfrak{sl}_2) \to \mathrm{Vir}_c$ (projection),
+$i\colon \mathrm{Vir}_c \to V_k(\mathfrak{sl}_2)$ (inclusion),
+$h\colon V_k(\mathfrak{sl}_2) \to V_k(\mathfrak{sl}_2)$
+(contracting homotopy, ghost number~$-1$).
+Satisfies $pi = \mathrm{id}$, $ip - \mathrm{id} = [d_{\mathrm{DS}}, h]$,
+$h^2 = 0$, $ph = 0$, $hi = 0$.
 
-\section{Open questions}
+\subsection*{Step 2: HPL for the bar side (proved)}
+The homological perturbation lemma transfers the $\Ainf$
+structure through $(p, i, h)$.  For the bar coalgebra:
+$B(\mathrm{DS}_\chi(A)) \simeq \mathrm{DS}_\chi(B(A))$.
+This is proved in Vol~I.
+
+\subsection*{Step 3: HPL for the Hom side (the gap)}
+The internal $\RHom$ functor
+$\RHom_A(M, N) = \mathrm{Hom}(B(A, M), N)$ involves BOTH
+the bar side (source) and the algebra side (target).  The
+HPL transfer of $\RHom$ through $(p, i, h)$ produces
+corrections from $m_k \circ h$ at each arity.
+
+\begin{lemma}[Key lemma: ghost-number truncation]
+The contracting homotopy~$h$ has ghost number~$-1$.  The
+HPL $n$-th order correction involves $n$ applications of~$h$,
+giving ghost number~$-n$.  If the chiral Hochschild cochain
+complex has ghost number bounded below by~$-N_0$, then
+the HPL terminates at order~$N_0$.
+\end{lemma}
+
+For the Virasoro DS complex, the ghost sector has generators
+$b, c$ at ghost numbers $-1, +1$.  The chiral Hochschild
+cochains $C^n_{\mathrm{ch}}$ at arity~$n$ involve $n$~inputs
+from the algebra.  The ghost-number grading on the inputs
+is bounded.
+
+\subsection*{Step 4: Weight-by-weight verification}
+At each conformal weight~$\Delta$, the SDR data $(p, i, h)$
+restrict to finite-dimensional vector spaces.  The HPL
+corrections are explicit finite-dimensional linear maps.
+The quasi-isomorphism property can be verified
+weight by weight.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Storyboard}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{enumerate}
-\item Does the ghost-number bottleneck force the HPL transfer of
-  $\RHom$ to terminate at finite order?
-\item Can the $D^{\mathrm{co}}$-level BV=bar identification
-  (proved for all classes) be promoted to ordinary derived category
-  for class~M?
-\item Is there a deformation argument from class C ($\beta\gamma$,
-  where the triangle holds) to class M (Virasoro)?
+\item \textbf{Phase 1.}  Formalise the ghost-number truncation
+  lemma.  Determine the exact bound $N_0$ on ghost number in
+  the DS Hochschild cochain complex.  If $N_0$ is finite,
+  the HPL terminates and the proof reduces to a finite
+  computation at each weight.
+
+\item \textbf{Phase 2.}  Compute the HPL corrections at
+  weights $\Delta = 0, 1, 2, 3$.  At $\Delta = 2$: the
+  cohomological isomorphism $\Theta_k \mapsto (dc/dk)\Theta_c$
+  is proved.  Verify the chain map property at this weight.
+
+\item \textbf{Phase 3.}  Prove the general weight-$\Delta$
+  case by induction, using the recursive structure of the
+  Virasoro $\Ainf$ operations (each $m_k$ at weight~$\Delta$
+  involves only lower-weight inputs).
+
+\item \textbf{Phase 4.}  Assemble: HPL for bar (proved) $+$
+  HPL for Hom (Phase~1--3) $+$ class~L triangle (proved)
+  $\Rightarrow$ class~M triangle for Virasoro.
+  Extend to $\mathcal{W}_N$ via the DS transport for
+  $\mathfrak{sl}_N$.
 \end{enumerate}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Consequences}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Closing the class~M global triangle gives the full
+bulk--boundary--line correspondence for Virasoro and all
+$\mathcal{W}$-algebras.  The bulk algebra of 3d quantum
+gravity IS the chiral Hochschild cohomology of the boundary
+Virasoro algebra---not just at the cohomological level
+(where it is proved) but at the chain level (where the
+$\Ainf$ structure lives).  This is the mathematical content
+of ``3d gravity = derived centre of 2d CFT.''
 
 \end{document}

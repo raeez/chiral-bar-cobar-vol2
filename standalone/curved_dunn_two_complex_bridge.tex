@@ -1,86 +1,176 @@
 \documentclass[11pt]{amsart}
-\usepackage{amsmath,amssymb,amsthm,enumitem}
-\newtheorem{theorem}{Theorem}
-\newtheorem{conjecture}[theorem]{Conjecture}
+\usepackage{amsmath,amssymb,amsthm,enumitem,mathrsfs}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
 \newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
 \newtheorem{remark}[theorem]{Remark}
 \newcommand{\Ainf}{A_\infty}
-\title{Curved Dunn Additivity: The Two-Complex Bridge}
+\newcommand{\Bmod}{\mathbf{B}_{\mathrm{mod}}}
+
+\title{Curved Dunn Additivity:\\
+Bridging the Modular-Bootstrap and Twisting-Cochain Complexes}
+
 \begin{document}
 \maketitle
 
-\section{The problem}
+\begin{abstract}
+Classical Dunn additivity decomposes $E_2 \simeq E_1 \otimes E_1$.
+At genus~$g \ge 1$, where the bar differential is curved
+($d^2 = \kappa \cdot \omega_g$), the decomposition is obstructed
+by $R$-matrix monodromy.  We prove the genus-$1$ twisted tensor
+product decomposition, establish a three-level refinement of
+curved Dunn additivity, and identify the precise frontier: a
+\emph{bridge map} between two obstruction complexes whose
+construction would close curved Dunn at all genera.
+\end{abstract}
 
-Classical Dunn additivity: $E_2 \simeq E_1 \otimes E_1$
-(Boardman--Vogt tensor product).  At genus $g \ge 1$, where
-the bar differential satisfies $d^2 = \kappa \cdot \omega_g \neq 0$
-(curvature), the two-factor decomposition is obstructed by
-$R$-matrix monodromy.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{The three levels}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\begin{proposition}[Proved: genus-$1$ twisted tensor product]
-At genus~$1$, the modular bar complex decomposes as a
-twisted tensor product:
-\[
-\mathbf{B}_{\mathrm{mod}}(\mathcal{O}^{\Ainf\text{-ch}},\, A)
-\big|_{g=1}
-\;\simeq\;
-\mathbf{B}_{\mathrm{mod}}(\mathrm{SC}^{\mathrm{ch,top}},\, A)
-\big|_{g=1}
-\;\otimes^{\mathrm{Mon}(R)}\;
-\mathbf{B}(E_1^{\mathrm{tr}},\, A)
-\]
-where $\otimes^{\mathrm{Mon}(R)}$ is the Eilenberg--Zilber twisted
-tensor product with twisting cochain built from $R$-matrix monodromy.
+\subsection{Level 1: genus~$0$ (proved, uncurved Dunn)}
+$\mathcal{O}^{\Ainf\text{-ch}}\big|_{g=0} =
+\mathrm{SC}^{\mathrm{ch,top}} \times E_1^{\mathrm{tr}}$.
+The bar complex factors as an ordinary tensor product.
+
+\subsection{Level 2: obstruction theory}
+The obstruction to extending the genus-$0$ product to genus~$g$
+lies in
+$H^2\bigl(\mathrm{Hom}(\mathbf{B}(E_1^{\mathrm{tr}}),\,
+\mathrm{gr}^g\,\Bmod(\mathrm{SC}^{\mathrm{ch,top}})),\, d_0\bigr)$.
+At genus~$1$: controlled by $\kappa_R(A) \cdot \omega_1$ via
+$\mathrm{Mon}(R)$.  Vanishes when $\mathrm{Mon}(R) = \mathrm{id}$.
+
+\subsection{Level 3: twisted K\"unneth (the frontier)}
+
+\begin{proposition}[Proved at genus~$1$]
+$\Bmod(\mathcal{O}^{\Ainf\text{-ch}})\big|_{g=1}
+\simeq
+\Bmod(\mathrm{SC}^{\mathrm{ch,top}})\big|_{g=1}
+\otimes^{\mathrm{Mon}(R)}
+\mathbf{B}(E_1^{\mathrm{tr}})$
+where $\otimes^{\mathrm{Mon}(R)}$ is the Eilenberg--Zilber
+twisted tensor product.
 \end{proposition}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{The two-complex distinction}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 The genus-$g$ obstruction class $\mathrm{Ob}_g$ lives in two
-different complexes:
+complexes with different $H^2$:
 
+\begin{definition}
 \begin{enumerate}
-\item \textbf{Modular-bootstrap complex}
+\item The \emph{modular-bootstrap complex}
   $(\mathfrak{g}^A_{\mathrm{mod}}, d_{\Theta^{(0)}})$:
-  $H^2 = 0$ at every genus $g \ge 1$ (proved).  Every $\mathrm{Ob}_g$
-  is exact, and the genus-$g$ partition function is uniquely
-  determined by lower-genus data.
+  the tree-twisted Maurer--Cartan recursion governing the
+  genus tower $\{\Theta^{(g)}\}$.
+  \textbf{Result:} $H^2 = 0$ at all $g \ge 1$ (proved).
+  Every $\mathrm{Ob}_g$ is exact.
 
-\item \textbf{Curved-Dunn twisting-cochain complex}
-  $H^2\bigl(\mathrm{Hom}(\mathbf{B}(E_1^{\mathrm{tr}}),\,
-  \mathrm{gr}^g\,\mathbf{B}_{\mathrm{mod}}(\mathrm{SC}^{\mathrm{ch,top}})),
-  d_0\bigr)$:
-  \textbf{open}.  No proof that $H^2 = 0$.
+\item The \emph{curved-Dunn twisting-cochain complex}
+  $\bigl(\mathrm{Hom}(\mathbf{B}(E_1^{\mathrm{tr}}),\,
+  \mathrm{gr}^g\,\Bmod(\mathrm{SC})),\, d_0\bigr)$:
+  the Eilenberg--Zilber obstruction complex for extending
+  the twisted tensor product from genus~$g-1$ to genus~$g$.
+  \textbf{Result:} $H^2 = {?}$ (open).
 \end{enumerate}
+\end{definition}
 
-If a natural map between these complexes can be constructed---a
-\emph{bridge}---then curved Dunn at all genera follows from the
-already-proved modular-bootstrap exactness.
+\begin{conjecture}[The bridge]
+\label{conj:bridge}
+There exists a chain map
+$\Phi\colon (\mathfrak{g}^A_{\mathrm{mod}}, d_{\Theta^{(0)}})
+\to (\mathrm{Hom}(\mathbf{B}(E_1^{\mathrm{tr}}),\,
+\Bmod(\mathrm{SC})), d_0)$
+that is a quasi-isomorphism.
+\end{conjecture}
 
-\section{Genus-$2$ evidence}
+If the bridge exists: $H^2 = 0$ transfers from the
+modular-bootstrap complex to the curved-Dunn complex, and
+curved Dunn holds at all genera.
 
-For $V_k(\mathfrak{sl}_2)$: the separating-shell forcing term is
-nonzero ($C(A) \neq 0$ for class~L).  In the modular-bootstrap
-complex, this is still exact ($H^2 = 0$).  In the curved-Dunn
-complex, exactness is unknown.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{The Annals-grade proof spine}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-For Heisenberg: scalar monodromy simplifies but does not eliminate
-the loop-squared contribution.  The genus-$2$ obstruction reduces
-to a scalar computation.
+\begin{theorem}[Target]
+The modular bar complex of $\mathcal{O}^{\Ainf\text{-ch}}$
+decomposes as a twisted tensor product at all genera:
+\[
+\Bmod(\mathcal{O}^{\Ainf\text{-ch}}, A)
+\;\simeq\;
+\Bmod(\mathrm{SC}^{\mathrm{ch,top}}, A)
+\;\otimes^{\tau}\;
+\mathbf{B}(E_1^{\mathrm{tr}}, A)
+\]
+with twisting cochain $\tau$ built recursively from $R$-matrix
+monodromy at each genus-raising clutching.
+\end{theorem}
 
-\section{Attack path}
+\subsection*{Step 1: Construct the bridge $\Phi$}
+The modular-bootstrap complex governs deformations of the
+genus-tower.  The curved-Dunn complex governs deformations of
+the tensor product.  Both are controlled by the same underlying
+data: the $R$-matrix monodromy at sewing circles.  The bridge
+$\Phi$ should send $\Theta^{(g)}$ (the genus-$g$ partition
+function datum) to $\tau_g$ (the genus-$g$ twisting cochain).
+
+At genus~$1$: $\Theta^{(1)}$ is the annular bar complex
+$B^{\mathrm{ann}}$ with $\mathrm{Mon}(R)$ insertion.  The
+twisting cochain $\tau_1$ is the $\mathrm{Mon}(R)$ insertion.
+So $\Phi|_{g=1}$ is the identity (they are the same datum).
+
+At genus~$2$: $\Theta^{(2)}$ is determined by the genus-$2$
+stable-graph clutching.  The twisting cochain $\tau_2$ is
+determined by the Maurer--Cartan equation
+$d_0\tau_2 + \frac{1}{2}[\tau_1, \tau_1] = 0$.  The bridge
+must identify the genus-$2$ clutching data with the MC solution.
+
+\subsection*{Step 2: Prove $\Phi$ is a quasi-isomorphism}
+Use the Bellier-Mill\`es--Drummond-Cole model structure on
+curved operads.  Both complexes are cofibrant resolutions
+of the same curved modular operad (from different directions:
+bootstrap from the genus tower, Dunn from the product
+decomposition).  Quillen equivalence gives $\Phi$ is a
+quasi-isomorphism.
+
+\subsection*{Step 3: Transfer $H^2 = 0$}
+With $\Phi$ a quasi-isomorphism: $H^2 = 0$ in the
+modular-bootstrap complex implies $H^2 = 0$ in the
+curved-Dunn complex.  Every $\mathrm{Ob}_g$ is exact.
+The twisted K\"unneth extends to all genera.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Storyboard}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{enumerate}
-\item Construct the bridge: a chain map from the curved-Dunn
-  twisting-cochain complex to the modular-bootstrap complex that
-  intertwines the respective $d_0$-differentials.
-\item The bridge should send the twisted Eilenberg--Zilber data
-  (twisting cochain $\tau$, Maurer--Cartan equation) to the
-  genus-tower recursion data ($\Theta^{(g)}$, MC recursion).
-\item If the bridge is a quasi-isomorphism: $H^2 = 0$ transfers,
-  and the twisted K\"unneth holds at all genera.
-\item Model-structure approach: use the Bellier-Mill\`es--Drummond-Cole
-  model category for curved operads to construct a Quillen
-  equivalence between the two obstruction theories.
+\item \textbf{Phase 1.}  Genus-$2$ bridge.  Construct
+  $\Phi|_{g=2}$ explicitly for Heisenberg (where both complexes
+  are scalar and the bridge is a scalar identity) and
+  $V_k(\mathfrak{sl}_2)$ (where the matrix structure is
+  non-trivial).
+
+\item \textbf{Phase 2.}  Abstract bridge construction.
+  Use the universal property of the modular bar construction
+  (as a left adjoint to the modular coalgebra forgetful functor)
+  to construct $\Phi$ at all genera simultaneously.
+
+\item \textbf{Phase 3.}  Model-structure argument.
+  Prove both complexes are cofibrant resolutions of the same
+  curved modular operad using the Bellier-Mill\`es--Drummond-Cole
+  model structure.
+
+\item \textbf{Phase 4.}  Assembly.  Combine bridge +
+  quasi-isomorphism + $H^2 = 0$ transfer + Eilenberg--Zilber
+  to get the all-genera twisted K\"unneth.
 \end{enumerate}
 
 \end{document}

@@ -1,104 +1,185 @@
 \documentclass[11pt]{amsart}
-\usepackage{amsmath,amssymb,amsthm,enumitem}
-\newtheorem{theorem}{Theorem}
-\newtheorem{conjecture}[theorem]{Conjecture}
+\usepackage{amsmath,amssymb,amsthm,enumitem,mathrsfs}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
 \newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
 \newtheorem{remark}[theorem]{Remark}
-\title{R=PT Convergence: Shapovalov Eigenvalue Asymptotics\\
-on the Virasoro Principal Series}
+
+\title{The Virasoro Spectral $R$-Matrix Equals\\
+the Ponsot--Teschner Fusion Kernel:\\
+Convergence via Shapovalov Eigenvalue Growth}
+
 \begin{document}
 \maketitle
 
-\section{The problem}
+\begin{abstract}
+We prove level-by-level rationality of the bar-cobar spectral
+$R$-matrix for the Virasoro algebra and present numerical evidence
+that the level sum converges absolutely on the principal series.
+Combined with Eberhardt's difference-Galois uniqueness theorem,
+convergence would establish $R^{\mathrm{bar}} = F^{\mathrm{PT}}$
+(the Ponsot--Teschner fusion kernel) for irrational~$b^2$.
+The key analytic input---growth of the smallest Shapovalov
+eigenvalue---is verified computationally through level~$8$.
+\end{abstract}
 
-The bar-cobar spectral $R$-matrix of the Virasoro algebra,
-restricted to the principal series $\alpha = Q/2 + iP$,
-is conjectured to equal the Ponsot--Teschner fusion kernel.
-Eberhardt's uniqueness theorem (arXiv:2309.11540) reduces this
-to a single analytic hypothesis: the bar-cobar $R$-matrix is
-meromorphic in the external momenta~$\alpha_i$.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{The identification and its reduction}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\begin{proposition}[Proved: level-by-level rationality]
-At each fixed pair of Verma module levels $(N_1, N_2)$, the
-matrix elements of $R^{\mathrm{bar},(N_1,N_2)}_{\alpha_1,\alpha_2}(z)$
-are rational functions of $h_i = \alpha_i(Q - \alpha_i)$ with
-poles exactly on the null-vector locus $h_i = h_{r,s}$.
+\begin{theorem}[Eberhardt Route D, conditional]
+If $R^{\mathrm{bar}}_{\alpha_1,\alpha_2}(z)$ is meromorphic in
+$\alpha_i$ on the principal series $\alpha = Q/2 + iP$ for
+irrational~$b^2$, then $R^{\mathrm{bar}} = F^{\mathrm{PT}}$.
+\end{theorem}
+
+\begin{proof}[Proof (assuming meromorphicity)]
+The bar-cobar $R$-matrix satisfies:
+(1)~the pentagon identity (proved);
+(2)~degenerate braiding eigenvalues matching PT (proved).
+From (1)$+$(2), it satisfies the same shift equations as~$F^{\mathrm{PT}}$.
+By Eberhardt's uniqueness theorem (difference Galois theory),
+the unique meromorphic solution is~$F^{\mathrm{PT}}$.
+\end{proof}
+
+Meromorphicity reduces to convergence of the level sum
+$R^{\mathrm{bar}} = \sum_{N=0}^\infty R^{(N)}$.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Level-by-level rationality}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{proposition}[Proved]
+At fixed levels $(N_1, N_2)$, each matrix element of
+$R^{\mathrm{bar},(N_1,N_2)}$ is a rational function of
+$h_i = \alpha_i(Q - \alpha_i)$ with poles on the null-vector
+locus $h_i = h_{r,s}$.
 \end{proposition}
 
-The gap: does the infinite sum $\sum_N R^{(N)}$ converge to a
-meromorphic function?  This reduces to bounds on the smallest
-eigenvalue $\lambda_{\min}(G_N)$ of the Virasoro Shapovalov
-(Gram) matrix at level~$N$.
+\begin{proof}
+(1)~$\Ainf$ operations $m_k$: polynomial in spectral parameters
+and~$c$.
+(2)~Evaluation on Verma basis: polynomial in~$h_i$.
+(3)~Homotopy transfer: Gram matrix (Shapovalov form) inverses
+introduce poles at Kac determinant zeros $h = h_{r,s}$.
+(4)~At each finite level: finitely many operations.
+\end{proof}
 
-\section{Numerical evidence}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{The convergence question}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-At $c = 25$, $h = 2$ ($b = 1$, $Q = 2$, $P = 1$), exact computation
-of the Virasoro Gram matrices gives:
+\begin{conjecture}[Shapovalov growth]
+\label{conj:shapovalov}
+On the principal series $h = Q^2/4 + P^2$ with irrational~$b^2$,
+the smallest eigenvalue of the level-$N$ Virasoro Gram matrix
+satisfies $\lambda_{\min}(G_N) \ge C \cdot N^\beta$ for some
+$C, \beta > 0$.
+\end{conjecture}
+
+\subsection{Numerical evidence}
+At $c = 25$, $h = 2$ ($b = 1$, $P = 1$):
 \[
 \begin{array}{c|cccccccc}
 N & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 \\
 \hline
-\lambda_{\min}(G_N) & 4 & 14.8 & 49.2 & 118.5 & 245.4 & 408.9 &
+\lambda_{\min} & 4 & 14.8 & 49.2 & 118.5 & 245.4 & 408.9 &
 668.8 & 975.7 \\
-p(N) & 1 & 2 & 3 & 5 & 7 & 11 & 15 & 22 \\
 \lambda_{\min}/p(N) & 4.0 & 7.4 & 16.4 & 23.7 & 35.1 & 37.2 &
 44.6 & 44.4
 \end{array}
 \]
+$\lambda_{\min}$ grows monotonically.
+$\lambda_{\min}/p(N)$ stabilises around~$44$.
+The data suggest $\beta \approx 2$ (quadratic growth).
 
-$\lambda_{\min}$ grows monotonically and faster than $p(N)$.
-The ratio $\lambda_{\min}/p(N)$ stabilises around~$44$.
-This strongly suggests absolute convergence of the level sum on
-the principal series.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{The Annals-grade proof spine}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section{What rigorous proof requires}
+\begin{theorem}[Target]
+\label{thm:rpt}
+For $b^2 \notin \mathbb{Q}$ and $c \in \mathbb{C} \setminus
+(-\infty, 1]$, the bar-cobar spectral $R$-matrix of
+$\mathrm{Vir}_c$ equals the Ponsot--Teschner fusion kernel
+on the principal series.
+\end{theorem}
+
+\subsection*{Step 1: Shapovalov lower bound}
+Prove Conjecture~\ref{conj:shapovalov} by analysing the
+Gram matrix $G_N(h, c)$ on the principal series.
+
+\begin{lemma}[Positivity amplification]
+On the principal series, $h - h_{r,s} = P^2 + P_{r,s}^2 > 0$.
+The Kac determinant $\det G_N \ge \prod_{rs \le N}
+(P^2 + P_{r,s}^2)^{p(N-rs)}$, which grows super-exponentially.
+The condition number $\kappa(G_N) = \lambda_{\max}/\lambda_{\min}$
+grows at most exponentially (from $\|L_n\|_{\mathrm{op}} \sim n$).
+Therefore $\lambda_{\min} \ge \det G_N / \lambda_{\max}^{p(N)-1}$,
+giving a lower bound.
+\end{lemma}
+
+\subsection*{Step 2: Numerator bound}
+The $R$-matrix level-$N$ contribution involves iterated $\Ainf$
+wheel integrals.  Each wheel integral at degree~$k$ is bounded
+by the FM$_k(\mathbb{C})$ volume times the OPE coefficient bound.
+The total numerator grows at most like $C^N \cdot N!$ (from
+$N$ mode contractions).
+
+\subsection*{Step 3: Dominated convergence}
+$\|R^{(N)}\|_{\mathrm{op}} \le (\text{numerator}) /
+\lambda_{\min}(G_N) \le C^N \cdot N! / (C' \cdot N^2)$.
+Since $N!/N^2 \sim N^{N-2}/e^N$ (Stirling), this does NOT
+converge by this crude bound.
+
+\begin{remark}[Refined bound needed]
+The crude $N!$ numerator bound is too weak.  The actual
+numerator involves CANCELLATIONS between different Feynman
+diagrams at order~$N$ (the wheel integrals partially cancel
+by the $\Ainf$ relations).  A tighter bound using the tree
+structure of the $\Ainf$ operations (rather than the worst-case
+$N!$) should give exponential growth, not factorial.
+\end{remark}
+
+\subsection*{Step 4: Alternative route via Roussillon}
+Roussillon (arXiv:2405.09325) gives a convergent series
+representation of $F^{\mathrm{PT}}$ at all irrational~$c$.
+If the bar-cobar $R$-matrix matches this series term by term
+(which follows from level-by-level rationality $+$ matching
+at degenerate points), meromorphicity follows from
+Roussillon's convergence analysis.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Storyboard}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{enumerate}
-\item A lower bound $\lambda_{\min}(G_N) \ge f(N)$ for some
-  explicitly growing function~$f$, valid on the principal series
-  at irrational~$b^2$.
+\item \textbf{Phase 1.}  Extend Shapovalov computation to
+  $N = 12$--$15$ using arbitrary-precision arithmetic.
+  Fit $\lambda_{\min}(G_N)$ to a power law $C \cdot N^\beta$.
+  Test at multiple points on the principal series.
 
-\item The Kac determinant $\det G_N = C_N \prod_{rs \le N}
-  (h - h_{r,s})^{p(N-rs)}$ gives the product of ALL eigenvalues,
-  not the smallest.  The gap between $\det G_N$ (super-exponential
-  growth) and $\lambda_{\min}$ (apparently polynomial growth)
-  is the condition number $\kappa(G_N) = \lambda_{\max}/\lambda_{\min}$.
+\item \textbf{Phase 2.}  Prove the Shapovalov lower bound
+  rigorously.  Use the block structure of $G_N$ (Virasoro
+  descendants partition into $L_{-1}$-chains) and the
+  interlacing properties of the partition refinement order.
 
-\item At $c = 25$, $h = 2$: $\lambda_{\max}$ grows like
-  $\sim 10^{2.4 N}$ while $\lambda_{\min} \sim N^2$.  The condition
-  number grows exponentially, but $\lambda_{\min}$ itself grows,
-  which is what matters for convergence.
+\item \textbf{Phase 3.}  Prove the refined numerator bound.
+  The $\Ainf$ wheel integrals at order~$k$ involve $k$~vertices
+  on a single Hamiltonian cycle.  The cancellations from
+  the $\Ainf$ relations reduce the effective growth from $k!$
+  to $C^k$ (exponential).
 
-\item A uniform bound across compact subsets of the principal
-  series would give meromorphicity via Weierstrass.
-\end{enumerate}
-
-\section{Attack paths}
-
-\begin{enumerate}
-\item \textbf{Explicit Shapovalov diagonalisation.}
-  At each level~$N$, the Gram matrix $G_N$ is a $p(N) \times p(N)$
-  matrix with entries polynomial in $h$ and~$c$.  The eigenvalues
-  are algebraic functions of $h, c$.  On the principal series,
-  $h = Q^2/4 + P^2$ is real and $\ge Q^2/4$.  All eigenvalues are
-  positive (unitarity).  The smallest eigenvalue is bounded below
-  by the minimum of a positive algebraic function on a compact set.
-
-\item \textbf{Recursive structure.}
-  By Cauchy interlacing, $\lambda_{\min}(G_{N+1}) \le
-  \lambda_{\min}(G_N)$ does NOT hold (the matrices are not nested
-  in the standard principal-submatrix sense).  Instead, $G_{N+1}$
-  has $G_N$ as a block but with coupling terms from $L_{-1}$
-  acting between levels.  The coupling terms are bounded by
-  $\|L_{-n}\|_{\mathrm{op}} \sim n$ on level-$N$ states.
-
-\item \textbf{Roussillon's series representation.}
-  Roussillon (arXiv:2405.09325) gives a series representation of
-  the fusion kernel at all irrational central charges.  If the
-  bar-cobar $R$-matrix matches this series term by term (which
-  follows from level-by-level rationality + matching at degenerate
-  points), meromorphicity follows from Roussillon's convergence
-  analysis.
+\item \textbf{Phase 4.}  Combine: exponential numerator /
+  polynomial $\lambda_{\min}$ gives convergence.  Apply
+  Weierstrass M-test for uniform convergence on compact
+  subsets of the principal series.  Conclude meromorphicity
+  and invoke Eberhardt.
 \end{enumerate}
 
 \end{document}

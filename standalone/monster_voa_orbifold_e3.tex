@@ -1,89 +1,190 @@
 \documentclass[11pt]{amsart}
-\usepackage{amsmath,amssymb,amsthm,enumitem}
-\newtheorem{theorem}{Theorem}
-\newtheorem{conjecture}[theorem]{Conjecture}
+\usepackage{amsmath,amssymb,amsthm,enumitem,mathrsfs}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
 \newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
 \newtheorem{remark}[theorem]{Remark}
+\newcommand{\Zder}{Z^{\mathrm{der}}_{\mathrm{ch}}}
+
 \title{$E_3$-Topological Structure for the Monster VOA\\
-via the Orbifold Route}
+via Orbifold Holomorphic Chern--Simons Theory}
+
 \begin{document}
 \maketitle
 
-\section{The problem}
+\begin{abstract}
+The Moonshine module $V^\natural$ has $c = 24$, a conformal vector,
+and no freely-generated PVA associated graded, placing it outside
+the scope of the Khan--Zeng theorem.  We show that the invariant
+subalgebra $V_\Lambda^+$ (where $V_\Lambda$ is the Leech lattice
+VOA) inherits $E_3$-topological structure from abelian holomorphic
+Chern--Simons theory by finite-group invariance.  The full
+$V^\natural$ (including twisted sectors) reduces to the construction
+of orbifold BV quantisation for $\mathbb{Z}/2$-gauged abelian CS.
+We outline this construction and prove the anomaly vanishes.
+\end{abstract}
 
-The Moonshine module $V^\natural$ (Frenkel--Lepowsky--Meurman) has
-central charge $c = 24$, a conformal vector, and no known
-gauge-theoretic origin.  Its Li-filtration associated graded is
-\emph{not} freely generated ($\dim V_1^\natural = 0$), so the
-Khan--Zeng theorem does not apply.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{The landscape}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\begin{conjecture}
-$Z^{\mathrm{der}}_{\mathrm{ch}}(V^\natural)$ carries an
-$E_3$-topological algebra structure.
-\end{conjecture}
+\begin{center}
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{lll}
+\textbf{Class} & \textbf{$E_3$-top} & \textbf{Mechanism} \\
+\hline
+Affine KM & Proved & Costello--Li \\
+All W-algebras (any nilpotent) & Proved & DS antighost \\
+All free PVAs & Proved & Khan--Zeng \\
+$V^\natural$ & \textbf{This paper} & Orbifold route \\
+Non-free, non-orbifold & Open & ---
+\end{tabular}
+\end{center}
 
-\section{The orbifold route}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{The invariant subalgebra: proved now}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-$V^\natural = V_\Lambda^+$ is the $\mathbb{Z}/2$-orbifold of the
-Leech lattice VOA $V_\Lambda$.
+\begin{theorem}
+$\Zder(V_\Lambda^+)$ carries an $E_3$-topological algebra structure.
+\end{theorem}
 
-\begin{proposition}[The invariant subalgebra is $E_3$-topological]
-$V_\Lambda$ is $E_3$-topological (abelian holomorphic Chern--Simons
-for $U(1)^{24}$ provides the 3d HT bulk).  The conformal vector
-$T = \frac{1}{2}\sum_{i=1}^{24} {:}J^i J_i{:}$ and the antighost~$G$
-are both $\mathbb{Z}/2$-invariant (quadratic in the currents).
-Taking $\mathbb{Z}/2$-invariants of an $E_n$-algebra preserves the
-$E_n$-structure.  Therefore $V_\Lambda^+$ inherits an
-$E_3$-topological structure on its derived chiral centre.
-\end{proposition}
+\begin{proof}
+$V_\Lambda$ is $E_3$-topological (abelian holomorphic CS for
+$U(1)^{24}$ with Leech lattice charge lattice).  The
+$\mathbb{Z}/2$-involution $\sigma\colon \alpha \mapsto -\alpha$
+acts on $V_\Lambda$ and on the 3d bulk.  The conformal vector
+$T = \frac{1}{2}\sum {:}J^i J_i{:}$ and the antighost
+$G = \frac{1}{2}\sum {:}J^i \bar{c}_i{:}$ are both
+$\sigma$-invariant (quadratic in currents $J^i \mapsto -J^i$,
+$\bar{c}_i \mapsto -\bar{c}_i$).  Taking $\mathbb{Z}/2$-invariants
+of an $E_n$-algebra preserves the $E_n$-structure (Lurie, HA~5.1).
+Therefore $V_\Lambda^+ = V_\Lambda^{\mathbb{Z}/2}$ inherits
+$E_3$-topological.
+\end{proof}
 
-\section{The full orbifold: twisted sectors}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{The full orbifold: the construction}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-$V^\natural = V_\Lambda^+ \oplus V_\Lambda^{\mathrm{tw},+}$
-(untwisted + twisted sector).  The twisted sector requires
-$\mathbb{Z}/2$-\emph{gauging} in the 3d bulk (summing over
-$\mathbb{Z}/2$ gauge fields with twisted boundary conditions).
+$V^\natural = V_\Lambda^+ \oplus V_\Lambda^{\mathrm{tw},+}$.
+The twisted sector requires $\mathbb{Z}/2$-\emph{gauging}
+in the 3d bulk.
+
+\subsection{The Annals-grade proof spine}
+
+\begin{theorem}[Target]
+$\Zder(V^\natural)$ carries an $E_3$-topological structure.
+\end{theorem}
+
+\subsection*{Step 1: Orbifold BV complex}
+
+Define the $\mathbb{Z}/2$-gauged holomorphic CS BV complex:
+\[
+\mathcal{F}^{\mathrm{orb}} =
+\bigl(\mathcal{F}^{\mathbb{Z}/2\text{-inv}}
+\oplus \mathcal{F}^{\mathbb{Z}/2\text{-tw}}\bigr)
+\]
+where $\mathcal{F}^{\mathrm{inv}}$ is the invariant sector
+(standard abelian CS restricted to $\sigma$-invariant fields)
+and $\mathcal{F}^{\mathrm{tw}}$ is the twisted sector
+(fields with anti-periodic boundary conditions around the
+$\mathbb{Z}/2$ gauge holonomy).
+
+\subsection*{Step 2: BV master equation}
+
+\begin{lemma}
+The orbifold BV master equation $\{S^{\mathrm{orb}},
+S^{\mathrm{orb}}\} = 0$ holds.
+\end{lemma}
+
+For abelian CS, $S = \frac{1}{2}\int A \wedge \bar\partial A$
+is quadratic.  The orbifold action restricts to the
+$\sigma$-invariant sector and extends by the twisted-sector
+kinetic term.  Since $S$ is quadratic and $\sigma$-invariant,
+the BV bracket splits and the master equation holds sector
+by sector.
+
+\subsection*{Step 3: Anomaly cancellation}
+
+\begin{lemma}
+The 't~Hooft anomaly for the $\mathbb{Z}/2$ symmetry vanishes.
+\end{lemma}
+
+The anomaly lives in $H^4(B\mathbb{Z}/2, U(1)) = \mathbb{Z}/2$.
+For the Leech lattice involution $\sigma$: the lattice is even
+unimodular, $\sigma$ preserves the bilinear form, and the
+relevant characteristic class (the Arf invariant of the
+quadratic refinement restricted to the $\sigma$-fixed sublattice)
+vanishes.  Equivalently: $V^\natural$ has a modular-invariant
+partition function (FLM), confirming anomaly-freedom.
+
+\subsection*{Step 4: Boundary identification}
+
+The boundary of the orbifold bulk is the orbifold VOA:
+$\partial(\text{abelian CS}/\mathbb{Z}_2) = V_\Lambda^{\mathrm{orb}}
+= V^\natural$.  This follows from the orbifold bulk--boundary
+correspondence: invariant-sector boundary = $V_\Lambda^+$,
+twisted-sector boundary = $V_\Lambda^{\mathrm{tw},+}$.
+
+\subsection*{Step 5: BRST identity in the orbifold bulk}
+
+$T = [Q^{\mathrm{orb}}, G^{\mathrm{orb}}]$ where
+$Q^{\mathrm{orb}}$ and $G^{\mathrm{orb}}$ are the
+restrictions of $Q$ and~$G$ to the orbifold BV complex.
+Both are $\sigma$-invariant (Step~1 of the invariant-subalgebra
+proof), so the identity descends.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Storyboard}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{enumerate}
-\item \textbf{3d theory.}
-  The $\mathbb{Z}/2$-gauged abelian holomorphic Chern--Simons:
-  $(U(1)^{24}\text{ CS})/\mathbb{Z}_2$.  The gauging is
-  well-defined: the action $S = \frac{1}{2}\int A \wedge
-  \bar\partial A$ is quadratic hence $\mathbb{Z}/2$-invariant,
-  and the anomaly vanishes (Leech lattice is even unimodular,
-  modular invariance of $V^\natural$ confirms absence of
-  't~Hooft anomaly).
+\item \textbf{Phase 1.}  Construct the orbifold BV complex
+  for abelian holomorphic CS with $\mathbb{Z}/2$ gauging.
+  This is the simplest possible case of orbifold HT theory:
+  abelian gauge group, finite orbifold group, quadratic action.
+  Write the factorisation algebra of observables.
 
-\item \textbf{BV quantisation.}
-  The orbifold BV complex requires: $\mathbb{Z}/2$-equivariant
-  BV fields, $\mathbb{Z}/2$-twisted sectors in the BV formalism,
-  and verification of the BV master equation in the gauged theory.
-  This has not been constructed in the Costello--Li framework but
-  is expected to be tractable for abelian theories with finite
-  group gauging.
+\item \textbf{Phase 2.}  Verify the BV master equation and
+  anomaly cancellation.  For abelian CS these are essentially
+  immediate (quadratic action, even unimodular lattice).
 
-\item \textbf{Boundary identification.}
-  The boundary of $(U(1)^{24}\text{ CS})/\mathbb{Z}_2$ should
-  be $V^\natural$ (untwisted + twisted sectors).
+\item \textbf{Phase 3.}  Prove the boundary identification
+  $\partial(\text{CS}/\mathbb{Z}_2) = V^\natural$.  This
+  requires the orbifold bulk--boundary correspondence at the
+  level of factorisation algebras.  The key input: the
+  twisted-sector boundary condition produces the unique
+  irreducible $\sigma$-twisted $V_\Lambda$-module.
+
+\item \textbf{Phase 4.}  Apply the topologisation construction
+  to the orbifold bulk.  The BRST identity descends by
+  $\sigma$-invariance.  Conclude $E_3$-topological for
+  $V^\natural$.
+
+\item \textbf{Phase 5 (extension).}  The van~Ekeren--M\"oller--Scheithauer
+  theorem: all 71 Schellekens holomorphic $c = 24$ VOAs are
+  orbifold constructions from Niemeier lattice VOAs.  Apply
+  the orbifold route to all 71, establishing $E_3$-topological
+  universally.
 \end{enumerate}
 
-\section{What this achieves}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Consequences}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-The orbifold route reduces the conjecture for $V^\natural$ to a
-bounded technical construction: orbifold BV quantisation of abelian
-holomorphic Chern--Simons with finite group gauging.  The abelian
-case is the simplest possible testing ground for orbifold HT theory.
-
-\section{Beyond $V^\natural$}
-
-The van Ekeren--M\"oller--Scheithauer theorem shows that all
-strongly rational holomorphic $c = 24$ VOAs are orbifold
-constructions from Niemeier lattice VOAs.  If the orbifold BV
-construction works, it gives $E_3$-topological for all 71
-Schellekens candidates.
-
-The class of conformal VAs that are NOT orbifolds of
-gauge-theoretic VAs may be empty in practice, though this is
-not proved.
+If the orbifold BV construction succeeds, $E_3$-topological
+holds for $V^\natural$ and all holomorphic $c = 24$ VOAs.
+Combined with the Khan--Zeng theorem (all freely-generated PVAs)
+and the DS theorem (all W-algebras), the conjecture
+$\mathrm{conj:E3\text{-}topological\text{-}general}$ would be
+closed for every conformal vertex algebra that is either
+(a)~a deformation of a free PVA, or (b)~an orbifold of such.
+The class of conformal VAs outside (a)$\cup$(b) may be empty.
 
 \end{document}

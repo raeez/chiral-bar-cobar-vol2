@@ -1,99 +1,248 @@
 \documentclass[11pt]{amsart}
-\usepackage{amsmath,amssymb,amsthm,enumitem}
-\newtheorem{theorem}{Theorem}
-\newtheorem{conjecture}[theorem]{Conjecture}
+\usepackage{amsmath,amssymb,amsthm,enumitem,mathrsfs}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
 \newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
 \newtheorem{remark}[theorem]{Remark}
 \newcommand{\fg}{\mathfrak{g}}
+\newcommand{\fh}{\mathfrak{h}}
 \newcommand{\Mbar}{\overline{\mathcal{M}}}
-\title{The Stokes Gap: KZB Regularity at Generic Level}
+\newcommand{\Conf}{\mathrm{Conf}}
+\newcommand{\Mon}{\mathrm{Mon}}
+\newcommand{\KZB}{\mathrm{KZB}}
+\newcommand{\Ainf}{A_\infty}
+
+\title{The Stokes Gap: KZB Regularity at Generic Level\\
+and the Completion of the Modular Operad}
+
 \begin{document}
 \maketitle
 
-\section{The problem}
+\begin{abstract}
+We formulate the precise analytic condition---regularity of
+singularities of the KZB connection at boundary divisors of
+$\Mbar_{g,n}$ for generic non-integral level~$k$---whose
+resolution would complete the modular operad
+$\mathcal{O}^{\Ainf\text{-ch}}$ at all levels and all genera.
+We prove the condition at genus~$0$ (all levels) and at all
+genera for integrable levels, identify the precise obstruction
+at higher genus and generic level, and outline an attack via
+plumbing-fixture analysis of the KZB connection form.
+\end{abstract}
 
-The modular operad $\mathcal{O}^{A_\infty\text{-ch}}$ governs
-$A_\infty$-algebras in $E_1$-chiral algebras.  Its clutching maps
-are regularised parallel transports of the Knizhnik--Zamolodchikov--Bernard
-(KZB) connection on configuration spaces of marked points on
-Riemann surfaces.  Composition associativity of the clutching maps
-follows from flatness of the KZB connection together with regularity
-of singularities at the boundary divisors of $\Mbar_{g,n}$.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Introduction: the last axiom}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\begin{theorem}[Proved in the main manuscript]
-For affine $V_k(\fg)$ at non-critical level:
-\begin{enumerate}[label=\textup{(\alph*)}]
-\item At genus~$0$ and all non-critical levels~$k$, the KZ connection
-  on $\mathcal{M}_{0,n}$ has logarithmic (regular) singularities at
-  every boundary divisor of $\Mbar_{0,n}$.  Composition associativity
-  holds unconditionally.
-\item At integrable level $k \in \mathbb{Z}_{\ge 0}$ and all genera,
-  the KZB connection extends with regular singularities to
-  $\Mbar_{g,n}$ by Kazhdan--Lusztig regularity and
-  Tsuchiya--Ueno--Yamada factorisation.  Composition associativity
-  holds at all genera.
+The modular operad $\mathcal{O}^{\Ainf\text{-ch}}$ governing
+$\Ainf$-algebras in $E_1$-chiral algebras has five axioms.
+Four are proved unconditionally:
+\begin{enumerate}[label=(\roman*)]
+\item genus-$0$ product decomposition;
+\item $\pi_1(\Sigma_g)$ well-definedness (KZB flatness);
+\item equivariance under $\mathrm{Aut}(\Gamma)$
+  (quasi-triangularity $+$ Yang--Baxter);
+\item unitality (vacuum axiom).
 \end{enumerate}
+The fifth---\emph{composition associativity}---is proved at genus~$0$
+for all non-critical levels and at all genera for integrable
+levels.  The sole remaining gap is composition at generic
+non-integral~$k$ and genus~$g \ge 1$.
+
+\begin{theorem}[Target theorem]
+\label{thm:target}
+Let $\fg$ be a simple Lie algebra and $k \notin \{-h^\vee\}
+\cup \mathbb{Q}_{<0}$ a generic non-integral level.
+The clutching maps of $\mathcal{O}^{\Ainf\text{-ch}}$ for
+$V_k(\fg)$ satisfy composition associativity at all genera.
 \end{theorem}
 
-\begin{conjecture}[The Stokes gap]
-At generic non-integral level $k \notin \mathbb{Z}$ and
-genus $g \ge 1$, the KZB connection on $\mathcal{M}_{g,n}$ has
-regular singularities at all boundary divisors of $\Mbar_{g,n}$.
+The theorem reduces to a single analytic input
+(Conjecture~\ref{conj:regularity}).
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{The KZB connection and its singularities}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{The connection}
+The KZB connection on $\Conf_n(\Sigma_g)$ is
+\[
+\nabla^{\KZB} = d - \sum_{i<j} \Omega_{ij}\, \omega_{ij}
+  - \sum_{i=1}^n \sum_{\alpha=1}^g
+    H_i^\alpha\, d\Omega_\alpha + \cdots
+\]
+where $\Omega_{ij} = k \cdot C_{ij}$ is the Casimir insertion,
+$\omega_{ij}$ is the Szeg\H{o} kernel on $\Sigma_g$,
+$\Omega_\alpha$ is the period matrix, and the ellipsis denotes
+Eisenstein-type corrections at genus~$\ge 2$.  The connection
+is flat ($(\nabla^{\KZB})^2 = 0$) for all~$k$.
+
+\subsection{Regularity at genus~$0$}
+
+\begin{proposition}[Proved]
+At genus~$0$, the KZ connection form
+$\omega = \sum_{i<j} \Omega_{ij}\, d\log(z_i - z_j)$
+is manifestly logarithmic.  All singularities at boundary
+divisors of $\Mbar_{0,n}$ are regular for any~$k$.
+\end{proposition}
+
+\begin{proof}
+The $d\log$ form has a simple pole along each diagonal
+$\{z_i = z_j\}$.  On the Fulton--MacPherson compactification,
+the blow-up coordinates give a smooth extension with
+logarithmic poles along exceptional divisors.  The Casimir
+$\Omega_{ij}$ is independent of~$k$ (it scales linearly,
+which does not affect the logarithmic structure).
+\end{proof}
+
+\subsection{Regularity at integrable level}
+
+\begin{proposition}[Proved; Kazhdan--Lusztig, TUY]
+At integrable level $k \in \mathbb{Z}_{\ge 0}$, the KZB
+connection extends with regular singularities to $\Mbar_{g,n}$
+for all~$g$.
+\end{proposition}
+
+This is the content of the Kazhdan--Lusztig regularity theorem
+(formulated for the KZ connection on $\Mbar_{0,n}$, extended to
+KZB on $\Mbar_{g,n}$ by Tsuchiya--Ueno--Yamada and
+Beilinson--Drinfeld).
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{The conjecture}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{conjecture}[KZB regularity at generic level]
+\label{conj:regularity}
+For generic $k \notin \mathbb{Z}$ and any $g \ge 1$, the KZB
+connection on $\mathcal{M}_{g,n}$ has regular singularities at
+every boundary divisor of $\Mbar_{g,n}$.
 \end{conjecture}
 
-If this conjecture holds, composition associativity of the modular
-operad extends to all levels and all genera, closing the sole
-remaining gap in the operadic verification.
+\begin{remark}
+``Regular singularity'' means: in plumbing-fixture coordinates
+$t \to 0$ near a boundary divisor, the connection form is
+$\Omega\, d\log(t) + (\text{holomorphic})$.  The monodromy
+around $t = 0$ is then $\exp(2\pi i \Omega)$, a well-defined
+operator.
+\end{remark}
 
-\section{What is known}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{The Annals-grade proof spine}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-At genus~$0$, the connection form
-$\omega = \sum_{i<j} \Omega_{ij}\, d\log(z_i - z_j)$ is manifestly
-$d$-log.  All singularities at $\Mbar_{0,n}$ boundary divisors are
-logarithmic for any~$k$.
+The proof of Theorem~\ref{thm:target} (contingent on
+Conjecture~\ref{conj:regularity}) has four steps.
 
-At genus~$1$ (elliptic KZB, Bernard 1988), the connection involves
-the Weierstrass $\wp$-function and Eisenstein series.  As
-$\tau \to i\infty$ (cusp), $\theta_1(z,\tau) \to \sin(\pi z)$,
-which has a simple zero at $z = 0$.  The connection form degenerates
-to the rational KZ form, which is logarithmic.  This suggests
-regularity at the genus-$1$ boundary for all~$k$.
+\subsection*{Step 1: Plumbing-fixture analysis}
 
-At genus~$\ge 2$, the KZB connection involves the period matrix
-$\Omega_{jk}$ and a basis of holomorphic differentials.  The
-behaviour at boundary divisors (where handles pinch) is controlled
-by the degeneration of the period matrix.  The Fay trisecant
-identity governs the degeneration and produces logarithmic
-singularities for the Szeg\H{o} kernel.
+Near each boundary divisor $D_\Gamma \subset \Mbar_{g,n}$
+indexed by a stable graph~$\Gamma$, introduce plumbing-fixture
+coordinates $t_e$ for each edge $e \in E(\Gamma)$.  The
+degeneration $t_e \to 0$ pinches the curve at the node
+corresponding to~$e$.
 
-\section{Attack path}
+\begin{lemma}[Key analytic lemma]
+In plumbing coordinates, the KZB connection form decomposes as
+\[
+\nabla^{\KZB} = \sum_{e \in E(\Gamma)} \Omega_e\, d\log(t_e)
+  + \nabla^{\mathrm{smooth}}
+\]
+where $\Omega_e = k \cdot C_e$ is the Casimir at the node~$e$
+and $\nabla^{\mathrm{smooth}}$ extends holomorphically across
+$\{t_e = 0\}$.
+\end{lemma}
 
-\begin{enumerate}
-\item Verify regularity at the genus-$1$ cusp for all~$k$ by
-  explicit analysis of the Bernard connection in the
-  $q$-expansion ($q = e^{2\pi i \tau}$).
-\item At genus~$\ge 2$, use the plumbing-fixture coordinates near
-  each boundary divisor of $\Mbar_{g,n}$.  In these coordinates,
-  the connection form should be expressible as
-  $\Omega\, d\log(t)$ where $t$ is the plumbing parameter,
-  giving logarithmic singularity.
-\item Alternatively: use Etingof's work on KZ connections at
-  complex (non-integer) levels, which establishes analytic
-  continuation of the monodromy representation.
-\item If regularity holds: the regularised parallel transport is
-  well-defined across all boundary strata, and
-  composition associativity follows by the same
-  Riemann--Hilbert argument as the integrable case.
+This is the heart of the paper.  The proof requires:
+\begin{enumerate}[label=(\alph*)]
+\item Fay's trisecant identity for the degeneration of the
+  Szeg\H{o} kernel: as a handle pinches,
+  $\omega_{ij} \to \omega_{ij}^{(0)} + C_e\, d\log(t_e) + O(t_e)$
+  where $\omega^{(0)}$ is the Szeg\H{o} kernel on the
+  normalised curve.
+\item The period matrix degeneration:
+  $\Omega_{\alpha\beta} \to \Omega^{(0)}_{\alpha\beta}
+  + \delta_{\alpha,g}\delta_{\beta,g} \cdot \frac{1}{2\pi i}\log(t_e)
+  + O(1)$ (separating node) or the Fay--Mumford formula
+  (non-separating).
+\item Control of the Eisenstein corrections at genus~$\ge 2$:
+  these involve sums over the lattice $H_1(\Sigma_g, \mathbb{Z})$
+  and must remain bounded as $t_e \to 0$.
 \end{enumerate}
 
-\section{Consequences}
+\subsection*{Step 2: Riemann--Hilbert correspondence}
 
-Closing the Stokes gap would give the \emph{full} modular operad
-$\mathcal{O}^{A_\infty\text{-ch}}$ for all affine Kac--Moody
+With regular singularities established, the Riemann--Hilbert
+correspondence gives a bijection between flat connections with
+regular singularities on $\Mbar_{g,n}$ and monodromy
+representations of $\pi_1(\mathcal{M}_{g,n})$.  The monodromy
+around boundary divisors is $\exp(2\pi i \Omega_e)$.
+
+\subsection*{Step 3: Path-independence of regularised parallel transport}
+
+The regularised parallel transport (Deligne's canonical
+extension) along any path in $\Mbar_{g,n}$ is well-defined
+and depends only on the homotopy class of the path (relative
+to the boundary divisors).  The composition of clutching maps
+corresponds to a composition of paths, and path-independence
+gives associativity.
+
+\subsection*{Step 4: Mac Lane coherence}
+
+The pentagon identity for the KZ/Drinfeld associator
+$\Phi_{\KZB}$ and the hexagon identities generate all
+coherence relations by Mac Lane's coherence theorem.  These
+are already proved in the main manuscript.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Storyboard: from here to the theorem}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{enumerate}
+\item \textbf{Month 1--2.}  Genus-$1$ cusp analysis.
+  The Bernard elliptic KZB in the $q$-expansion
+  ($q = e^{2\pi i \tau}$) as $\tau \to i\infty$.
+  Verify the connection form is $\Omega\, d\log(q) +
+  (\text{holomorphic in }q)$ for all~$k$.
+  This closes the genus-$1$ Stokes gap.
+
+\item \textbf{Month 3--4.}  Genus-$2$ separating degeneration.
+  In plumbing coordinates for the separating node,
+  decompose the genus-$2$ KZB into contributions from the
+  two genus-$1$ components.  The Fay trisecant identity
+  controls the Szeg\H{o} kernel degeneration.
+
+\item \textbf{Month 5--6.}  Genus-$2$ non-separating degeneration
+  and the general inductive step.
+  Use the Fay--Mumford period matrix degeneration formula
+  for non-separating nodes.  Establish the Key Analytic
+  Lemma by induction on the number of nodes.
+
+\item \textbf{Month 7--8.}  Assembly and verification.
+  Combine the analytic lemma with the Riemann--Hilbert
+  correspondence and Mac Lane coherence.  Write the
+  complete proof of Theorem~\ref{thm:target}.
+  Verify against the Heisenberg scalar case (where
+  regularity is automatic) and the $\mathfrak{sl}_2$
+  integrable case (where Kazhdan--Lusztig applies).
+\end{enumerate}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Consequences}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Resolution of the Stokes gap gives the full modular operad
+$\mathcal{O}^{\Ainf\text{-ch}}$ for all affine Kac--Moody
 algebras at all non-critical levels, with all five axioms
-(product decomposition, $\pi_1$ well-definedness, composition,
-equivariance, unitality) proved.  Combined with the scalar
-monodromy result for Heisenberg, this would give a complete
-operadic foundation for the genus tower of the bar-cobar machine.
+proved.  This completes the operadic foundation for the
+genus tower of the bar-cobar machine and establishes the
+$E_3$-topological structure as a theorem of algebra
+(not dependent on case-by-case gauge-theory input at
+each genus).
 
 \end{document}
