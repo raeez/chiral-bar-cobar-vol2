@@ -315,3 +315,28 @@ The twelve frontier directions F1-F12 above. Plus:
 - Genus-5 graph enumeration (3-8 hours, needs optimization)
 - ~35 genuinely untouched Vol II files (AP-swept clean, no violations found)
 - 62 untested compute engines (tech debt, critical ones tested)
+
+---
+
+## Cross-Volume: Vol III 6d hCS Session (2026-04-12/13, ~170 agents)
+
+Key Vol III results affecting Vol II:
+- **E_1-chiral bialgebra** (e1_chiral_algebras.tex §7, ~490 lines): the correct Hopf framework for chiral quantum groups. Uses Vol II's Swiss-cheese operad SC^{ch,top} and ordered bar B^{ord}. The coproduct Δ_z lives on the E_1 (open/topological) side. The E_∞ averaging forgets the Hopf structure: av(r(z)) = κ_ch.
+- **Universal coproduct from Miura**: Δ_z(e_s) = Σ C(N_R-b,k) z^k e_a^L·e_b^R. All spins in closed form. z-degree = s. Extends Vol II's spin-2 Drinfeld coproduct to arbitrary spin.
+- **ZTE failure**: the E_3 3-particle S-operator requires corrections beyond pairwise YBE. These corrections connect to the Vol II shadow tower via the A_∞ coproduct theory.
+- **Holomorphic CS hierarchy**: 3d→5d→6d produces E_1→E_2→E_3. The Vol II E_1 sector IS the boundary algebra of 5d hCS (Costello 2013). The 6d extension gives quantum toroidal algebras.
+- **E_2→E_3 promotion**: the DERIVED center HH*(B,B) (algebraic, E_n→E_{n+1}), NOT iterated Drinfeld center Z(Z(C)). BZFN agreement only at E_1→E_2 level.
+- See ~/calabi-yau-quantum-groups/FRONTIER.md F13-F24 for full details.
+
+## Cross-Volume: Chiral Quantum Group Session (2026-04-12/13, Vol I primary)
+
+Key Vol I results affecting Vol II:
+
+- **E_3 identification PROVED** (thm:e3-identification): Z^{der}_{ch}(V_k(g)) ≅ CFG A^lambda for simple g. Proof via E_3 formality + 1-dim H^3(g). Alternative proof via Dunn (prop:e3-via-dunn) bypasses HDC entirely. The E_n circle CLOSES. Extended to gl_N.
+- **gl_N chiral QG for all N** (thm:glN-chiral-qg): Yang R-matrix R(u) = uI + Psi·P, Drinfeld coproduct as N×N matrix multiplication. Non-trivial RTT for N ≥ 2. Central qdet uses DECREASING column index (FM33).
+- **Antipode does NOT lift** (rem:antipode-ope-analysis): S(T(u))=T(u)^{-1} fails as vertex algebra (anti-)homomorphism. Two obstructions: OPE (quartic pole shift) and Hopf axiom (z·J residual). Source: Miura nonlinearity.
+- **Conformal anomaly = c/2 = kappa**: quantitative obstruction to constant coproduct. At c=0 constant exists; c≠0 forces spectral parameter.
+- **Sign convention harmonized**: nabla = d-A throughout (23 fixes in standalone). Vol II KZB already used d-A.
+- **Critical level center jump** (prop:critical-level-ordered): at k=-h^v, ALL monodromy trivial, Koszulness fails, H^1 doubles, bar H* = Omega*(Op). The SC^{ch,top} structure at critical level is the genuine holomorphic intermediary (no topologization possible).
+- **W_N Stokes = 4N-4**: linear growth with N. W-W channel dominates at pole 2N.
+- See ~/chiral-bar-cobar/FRONTIER.md F25-F36 for full details.

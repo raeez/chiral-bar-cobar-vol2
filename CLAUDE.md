@@ -35,7 +35,7 @@ The R-matrix, the YBE (from Stokes on FM_3(C)), the braided line category, the s
 ### Rung 3: Modular (higher genus, curved) [Part IV continued]
 - **Moduli M_{g,n}** (stratified by stable graphs): Curved bar complex. d^2 = kappa * omega_g. Shadow obstruction tower {F_g}. Discriminant. G/L/C/M classification.
 
-The modular extension: the A_inf structure becomes curved at genus >= 1. The curvature kappa * omega_g is the obstruction to flatness. Curved Dunn additivity (conjectural) would extend E_2 = E_1 x E_1 to the curved setting.
+The modular extension: the A_inf structure becomes curved at genus >= 1. The curvature kappa * omega_g is the obstruction to flatness. Curved Dunn at genus 1: PROVED (prop:genus1-twisted-tensor-product, twisted Künneth). Genus >= 2: OPEN (genuine H² obstruction). Modular operad: composition PROVED (genus 0 all levels, all genera integrable via KZ pentagon + KL regularity); equivariance PROVED (quasi-triangularity + YBE); unitality PROVED (all genera, all shadow classes). Sole remaining gap: composition at generic non-integral level, genus >= 1 (Stokes gap).
 
 ### Rung 4: E_3 — Holomorphic-topological (1 cpx + 1 real = 3 real) [Parts V-VI = CLIMAX]
 - **X x R** (slab, holomorphic on X, topological on R): E_3 = E_2 x E_1 by Dunn. The E_2 is the holomorphic/braided structure on X (Rung 2). The new E_1 is the topological direction R (transverse).
@@ -50,7 +50,7 @@ For E_3: CFG (arXiv:2602.12412) construct a filtered E_3-algebra from BV quantis
 The E_2-to-E_3 step requires:
 1. The modular operad governing A_inf-algebras in E_1-chiral algebras (Definition def:modular-operad-ainf-chiral: genus-0 proved = SC x E_1^tr; clutching via B^{ann} + R-matrix monodromy; genus >= 2 operadic verification open).
 2. The chiral coproduct Delta: A -> A otimes A on the E_1-chiral algebra (not visible in the shadow tower; EXTERNAL comparison points: Gaiotto-Rapcak-Zhou arXiv:2309.16929 (type A only), Jindal-Kaubrys-Latyntsev arXiv:2603.21707 (ADE quivers only); the programme's own chiral coproduct is the Drinfeld coproduct via bar-cobar).
-3. Curved Dunn additivity at genus >= 1 (conjectural).
+3. Curved Dunn additivity: genus 1 PROVED (twisted Künneth); genus >= 2 OPEN (H² obstruction). Modular operad composition/equivariance/unitality: PROVED (KZ pentagon + quasi-triangularity + vacuum axiom). Sole gap: composition at generic level, genus >= 1 (Stokes regularity).
 
 An E_1-chiral quantum group is: E_1-chiral algebra A + chiral coproduct Delta + R-matrix R(z) + quasi-triangularity + antipode, such that Mod_A is braided monoidal (E_2 in Cat). This provides the data for the E_2-to-E_3 step.
 
