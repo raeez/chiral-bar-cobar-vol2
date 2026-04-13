@@ -54,13 +54,23 @@ The SC^{ch,top} package is proved; the E_3-topological upgrade is proved for aff
 
 ## Build
 
-```bash
-# Build Vol II
-make              # full build
-make fast         # quick check (up to 4 passes)
+All compiled output goes to `out/`.
 
-# Build Vol I (dependency)
-cd ~/chiral-bar-cobar && pkill -9 -f pdflatex 2>/dev/null || true; sleep 2; make fast
+```bash
+make fast                    # quick converging build → out/main.pdf
+make                         # full build: manuscript + working notes → out/
+make release                 # full rebuild → out/ + iCloud
+make test                    # compute test suite
+make clean-builds            # remove /tmp/mkd-* isolated build directories
+```
+
+Each build runs in its own `/tmp/mkd-chiral-bar-cobar-vol2-<NS>/`
+directory, so parallel agents never clobber each other. Set
+`MKD_BUILD_NS` for warm rebuilds across invocations:
+
+```bash
+export MKD_BUILD_NS="agent-$$"
+make fast                         # warm on second call
 ```
 
 Requires TeX Live 2024+ with pdflatex (memoir, EB Garamond, newtxmath).
