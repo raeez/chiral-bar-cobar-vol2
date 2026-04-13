@@ -371,6 +371,7 @@ cd ~/chiral-bar-cobar && make test                           # Tests
 - AP-CY25: R-matrix formula R=(id⊗S)∘Δ(1) is WRONG (yields 1⊗1 by counit). Use half-braiding σ_A(z)(a⊗n) = Σ Δ_z(a)_{(2)}·n ⊗ Δ_z(a)_{(1)}.
 - AP-CY26: σ_2 is EVEN under h_i→-h_i. k^!=-k from Shapovalov, not σ_2 negation.
 - AP-CY24: Docstring confabulation — verify ALL ground-truth values against function output.
+- AP-CY27-33: Agent sandbox non-persistence, pole-unsafe test points, wrong-repo writes, factored≠solved (ZTE), spectral z≠worldsheet z, reorganisation≠bypass, chain-level≠rational. See Vol III CLAUDE.md for full descriptions.
 
 **Key results affecting Vol II:**
 - E_1-chiral bialgebra axioms (H1)-(H5) formalized in Vol III e1_chiral_algebras.tex §7.
