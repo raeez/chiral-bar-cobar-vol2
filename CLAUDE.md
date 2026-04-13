@@ -318,6 +318,12 @@ FM64: Khan-Zeng scope underestimation. The manuscript underestimated the scope o
 
 FM65: R=PT meromorphicity ≠ convergence. Level-by-level rationality (each R^{(N)} is rational in h_i) does NOT imply full meromorphicity (the series Σ_N R^{(N)} converges). The gap is λ_min(G_N) bounds on the principal series — Kac determinant growth alone is insufficient (det ≠ smallest eigenvalue for large matrices). Counter: distinguish fixed-level rationality from level-sum convergence.
 
+FM66: Monster orbifold route. V^♮ = V_Leech^+ (Z/2 orbifold). V_Leech IS E_3-topological (abelian CS). The invariant subalgebra V_Leech^+ inherits E_3-topological NOW (finite group invariants preserve E_n). The full V^♮ (with twisted sector) needs orbifold BV quantisation. The anomaly vanishes (modular invariance). rem:monster-orbifold-route documents this.
+
+FM67: Curved Dunn two-complex distinction. There are TWO H² obstruction groups: (a) modular-bootstrap complex (H²=0, PROVED — every Ob_g is exact there), (b) curved-Dunn twisting-cochain complex (OPEN — no proof H²=0). The bridge between (a) and (b) is the precise frontier. If bridged, curved Dunn at all genera follows from the already-proved modular bootstrap exactness.
+
+FM68: Modular operad (iii) proved ≠ abstract D²=0. thm:modular-bar proves D²=0 for abstract bar datum. The CONCRETE axioms (composition, equivariance, unitality) require separate proofs: composition via KZ pentagon + KL regularity (thm:affine-composition-associativity); equivariance via quasi-triangularity + YBE (prop:qt-equivariance); unitality via vacuum axiom (prop:modular-operad-unitality). The sole gap is the Stokes regularity at generic non-integral level.
+
 ## Cross-Volume Bridges
 
 | Bridge | Vol II claim | Vol I anchor | Status |

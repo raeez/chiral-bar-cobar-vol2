@@ -87,12 +87,12 @@ SC^{ch,top} is two-coloured with directionality (no open-to-closed). Dunn additi
 
 SC^{ch,top} is the GENERIC case. E_3-topological is a SPECIAL CASE requiring conformal vector. Most chiral algebras do NOT have conformal vector (critical level KM, E_1-chiral algebras, CY functor outputs). SC^{ch,top} must be understood as a first-class object with five redundant presentations: operadic, Koszul dual, factorization, BV/BRST, convolution.
 
-Status (updated 2026-04-12):
+Status (updated 2026-04-13):
 - thm:E3-topological-km: PROVED for affine KM V_k(g) at non-critical level (Costello-Li + Sugawara antighost).
 - thm:E3-topological-DS: PROVED for ALL W-algebras via principal DS (Costello-Gaiotto + DS-transported antighost).
 - thm:E3-topological-DS-general: PROVED for ALL W-algebras via ANY nilpotent (improvement term is always Cartan).
 - thm:E3-topological-free-PVA: PROVED for ALL conformal VAs with freely-generated PVA associated graded (Khan-Zeng 3d Poisson sigma model + half-space BV).
-- conj:E3-topological-general: CONJECTURAL only for conformal VAs whose associated graded is NOT freely generated (Monster VOA V^natural, certain CY functor outputs).
+- conj:E3-topological-general: CONJECTURAL only for non-free PVAs. Monster VOA V^♮: orbifold route identified (rem:monster-orbifold-route) — V_Leech^+ is E₃-top NOW (Z/2-invariants of E_n preserve E_n); full V^♮ conditional on orbifold BV of abelian CS (bounded, one paper).
 - SC^{ch,top} pentagon: ALL 10/10 edges proved (thm:pentagon-factorization-convolution via direct Koszul duality, bypassing operadic Künneth).
 - Modular operad: genus-0 product decomposition PROVED; π_1(Σ_g) PROVED for all affine KM at all genera (KZB flatness); COMPOSITION ASSOCIATIVITY PROVED at genus 0 all levels + all genera integrable levels (thm:affine-composition-associativity, KZ pentagon + KL regularity); EQUIVARIANCE PROVED (prop:qt-equivariance, quasi-triangularity + YBE); UNITALITY PROVED all genera all shadow classes (prop:modular-operad-unitality, unit vertex simply connected → Mon(R)=id). Full modular operad for Heisenberg: PROVED (prop:heisenberg-full-modular-operad). Sole remaining gap: composition at generic non-integral level, genus ≥ 1 (Stokes gap: KZB regularity at M̄_{g,n} boundary divisors).
 - Global triangle: PROVED for classes G/L/C (boundary-linear families). OPEN for class M (Virasoro, W_N). Gap: DS-Hochschild compatibility (HPL transfer for RHom through DS SDR).

@@ -1,6 +1,6 @@
-# Roadmap: 85% → 100% (updated 2026-04-12)
+# Roadmap: 85% → 100% (updated 2026-04-13)
 
-## Current alignment: ~96%
+## Current alignment: ~97%
 
 ## Dependency graph
 
@@ -160,11 +160,11 @@ New reference: Nafcha (2603.30037) on nodal degeneration gluing.
 
 ## Priority ordering (updated)
 
-0. **A0a** (intrinsic [T,-] null-homotopy: the remaining conceptual question)
-1. **Monster VOA** (orbifold route: tractable, would nearly close conj:E3-topological-general)
-2. **B1-B5 non-abelian** (modular operad composition for sl₂: requires KZ pentagon ↔ clutching)
-3. **D1' chiral-level** (σ-equivariance of JKL vertex coproduct: concrete, bounded computation)
-4. **E class M** (DS-Hochschild chain-level: HPL transfer for RHom)
-5. **C genus ≥ 2** (twisted Künneth: H² exactness at genus 2)
-6. **R=PT convergence** (Shapovalov eigenvalue asymptotics: hard analytic problem)
+0. **Monster VOA orbifold BV** (rem:monster-orbifold-route: V_Leech^+ is E₃-top NOW; full V^♮ needs orbifold BV of abelian CS — bounded, tractable, one paper)
+1. **Stokes gap** (extend KL regularity to generic non-integral k at M̄_{g,n} boundary divisors; closes composition for ALL levels)
+2. **Curved Dunn bridge** (Ob_g exact in modular-bootstrap complex [PROVED]; bridge to curved-Dunn twisting-cochain complex [OPEN]; if bridged, curved Dunn at all genera follows)
+3. **D1' chiral-level σ-equivariance** (JKL vertex coproduct + quiver automorphism naturality; concrete bounded computation)
+4. **E class M chain-level** (DS-Hochschild HPL transfer for RHom; ghost-number bottleneck may force vanishing)
+5. **R=PT convergence** (λ_min(G_N) on principal series; Shapovalov eigenvalue asymptotics needed)
+6. **A0a intrinsic** (purely 2d [T,-] null-homotopy without 3d BV: deep conceptual question)
 7. **A3 chain-level** (class M chain-level E_3: the deepest theoretical issue)
