@@ -76,14 +76,17 @@ thm:E3-topological-free-PVA covers ALL standard families (G, L, C, M).
 | π₁(Σ_g) for all affine KM, all genera | **PROVED** (prop:affine-modular-operad-all-genera, KZB flatness) |
 | Full axioms for Heisenberg, all genera | **PROVED** (prop:heisenberg-full-modular-operad, scalar monodromy) |
 | Abstract D²=0 | **PROVED** (thm:modular-bar) — but this is the abstract bar, NOT concrete clutching |
-| Concrete composition associativity | **OPEN** (FM61: thm:modular-bar proves different statement) |
-| Equivariance under Aut(Γ) | **OPEN** |
-| Unitality at genus ≥ 1 | **OPEN** |
+| Concrete composition associativity | **PROVED** genus 0 all levels + all genera integrable (thm:affine-composition-associativity). **OPEN** at generic non-integral level, genus ≥ 1 (Stokes gap) |
+| Equivariance under Aut(Γ) | **PROVED** (prop:qt-equivariance, quasi-triangularity + YBE) |
+| Unitality | **PROVED** all genera all shadow classes (prop:modular-operad-unitality) |
 | Genus-1 construction | **CONJECTURAL** (constr:genus1-ainf-chiral-operations) |
 
-- **B2.** ~~π₁(Σ_g) for Heisenberg.~~ **DONE** (trivial, scalar monodromy).
-- **B2'.** ~~π₁(Σ_g) for all affine KM.~~ **DONE** (KZB flatness).
-- **B1, B3-B5.** OPEN. For non-abelian g, composition associativity requires the pentagon identity for KZ monodromies. The Drinfeld associator satisfies pentagon, but connecting to clutching maps is open.
+- **B1.** ~~Equivariance.~~ **PROVED** (prop:qt-equivariance). QT + YBE generates all Aut(Γ). S_n from transpositions, each 3-point YBE. Higher Stokes not needed.
+- **B2.** ~~π₁(Σ_g) for all affine KM.~~ **PROVED** (prop:affine-modular-operad-all-genera, KZB flatness).
+- **B2'.** ~~Unitality.~~ **PROVED** (prop:modular-operad-unitality). Unit vertex genus-0 ⟹ Mon(R)=id; B^{ann} degenerates; 1-ary kills m_k≥2.
+- **B3.** ~~Composition at genus 0.~~ **PROVED** (thm:affine-composition-associativity(a)). KZ flat + logarithmic singularities + Mac Lane coherence.
+- **B4.** ~~Composition at integrable level all genera.~~ **PROVED** (thm:affine-composition-associativity(b)). KZB extends with regular singularities by Kazhdan-Lusztig + TUY.
+- **B5.** Composition at generic non-integral level, genus ≥ 1: **OPEN** (the Stokes gap — KZB may have irregular singularities at boundary divisors of M̄_{g,n}).
 
 ---
 
