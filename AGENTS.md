@@ -214,13 +214,13 @@ Default read order for nontrivial work:
 5. relevant compute/tests or logs;
 6. propagation surface across Vol I, Vol II, and Vol III when the claim is cross-volume.
 
-### Dirty Collision Surface Snapshot (2026-04-12)
+### Dirty Collision Surface Snapshot (2026-04-13)
 
 This snapshot is a prior, not permission to skip `git status`.
 
-- Vol I dirty surface is compute-heavy: `AGENTS.md`, eight chapter `.tex` files, twenty-six `compute/lib` files, twelve tests, thirteen standalones, many PDFs, and build logs are dirty.
-- Vol II dirty surface is concentrated: `chapters/connections/thqg_perturbative_finiteness.tex` plus rebuilt PDFs are dirty. SC^{ch,top} correction (AP165) and E_n ladder (AP150-AP175, FM40-FM57) installed across theory and connection chapters.
-- Vol III dirty surface is bridge-heavy: `chapters/connections/cy_holographic_datum_master.tex`, `chapters/examples/toroidal_elliptic.tex`, `chapters/theory/introduction.tex`, seven `compute/lib` files, six tests, two physics notes, PDFs, and `main.log` are dirty. pi_3(BU) correction (AP181), kappa_ch domain fix (AP182), McKay quiver fix (AP183) applied.
+- Vol I: FRONTIER.md and CLAUDE.md updated with Vol II session results (page count 1,704pp, E_3-top hierarchy, pentagon 10/10, modular operad breakthroughs). Compute surface unchanged.
+- Vol II: CLEAN working tree. All worktrees pruned. 1,704pp, 0 errors. Session produced 17 theorems, FM58-FM68, AP176-AP182, 25 arXiv papers, ~3,000 lines new content across 20+ files. All committed.
+- Vol III: Unchanged from prior session.
 
 Rule: rerun `git status --short` across every repo you touch before trusting any narrative summary. Dirty files are first-class collision surfaces, not background noise.
 

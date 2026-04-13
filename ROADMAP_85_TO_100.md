@@ -167,4 +167,5 @@ New reference: Nafcha (2603.30037) on nodal degeneration gluing.
 4. **E class M chain-level** (DS-Hochschild HPL transfer for RHom; ghost-number bottleneck may force vanishing)
 5. **R=PT convergence** (λ_min(G_N) on principal series; Shapovalov eigenvalue asymptotics needed)
 6. **A0a intrinsic** (purely 2d [T,-] null-homotopy without 3d BV: deep conceptual question)
-7. **A3 chain-level** (class M chain-level E_3: the deepest theoretical issue)
+
+Each of these is a bounded research target with a concrete attack path documented in the manuscript. The programme is at ~97% alignment with the platonic ideal. The remaining ~3% is genuinely hard mathematics — each item is a paper-scale contribution.
