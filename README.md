@@ -39,8 +39,8 @@ Every chapter depends on Vol I's five theorems:
 
 | Metric | Value |
 |--------|------:|
-| Pages | ~1,633 |
-| Tagged claims | ~2,604 |
+| Pages | ~1,681 |
+| Tagged claims | ~2,650+ |
 | Source files | 19 theory + 13 examples + 72 connections = 104 chapter .tex + 2 appendices |
 | Compute modules | 53 lib + 64 test |
 | Anti-patterns | V2-AP1 through V2-AP39 + AP150-AP175 + FM24-FM57 |
