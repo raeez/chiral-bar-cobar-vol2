@@ -232,7 +232,6 @@ def ope_to_lambda_bracket_coefficient_check(c):
       T_3 T = c/2 (coefficient of 1/(z-w)^4)
 
     Lambda-bracket: {T_lam T} = sum_{n>=0} (T_n T) * lam^n / n!
-      = dT + 2T*lam + 0 + (c/2)*lam^3/6
       = dT + 2T*lam + (c/12)*lam^3
 
     So the c/12 coefficient comes from c/2 divided by 3! = 6.

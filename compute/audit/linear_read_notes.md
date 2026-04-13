@@ -1,5 +1,45 @@
 # Linear Read Notes
 
+## 2026-04-13 - Vol II AP126 Residual Sweep
+
+- Target: `chapters/examples/examples-worked.tex`, `chapters/connections/ordered_associative_chiral_kd.tex`
+- Status: COMPLETE
+
+### Findings
+
+1. `2026-04-13-008`
+   Severity: `MODERATE`
+   Class: `D/W`
+   Location: `chapters/examples/examples-worked.tex`, `chapters/connections/ordered_associative_chiral_kd.tex`
+   Issue: the Vol II surface still had three AP126 survivors: one active affine collision residue and two superseded split-file affine leading `R`-matrix formulas were still written without the level prefix (`\Omega_\fg/z`, `1+\hbar\,\Omega/z`), contradicting the trace-form convention and the `k=0 \Rightarrow r=0` boundary check.
+   Fix: restored the missing level factor at all three sites (`k\,\Omega_\fg/z`, `1+\hbar\,k\,\Omega/z`) and re-grepped the affected files to confirm no stripped affine/Kac--Moody residue remains there.
+   Status: `FIXED`
+
+### Verification
+
+- Re-grepped the targeted files for stripped affine/Kac--Moody patterns after patching: `\\Omega_\\fg / z`, `1+\\hbar\\,\\Omega/z`.
+- Checked the remaining `\\Omega/z` hits in nearby files and left Yangian or explicit fixed-level specializations untouched.
+
+## 2026-04-13 - Vol II AP126 Affine Level-Prefix Sweep
+
+- Target: `chapters/examples/examples-worked.tex`, `chapters/examples/rosetta_stone.tex`, `chapters/connections/line-operators.tex`, `chapters/connections/ordered_associative_chiral_kd_core.tex`
+- Status: COMPLETE
+
+### Findings
+
+1. `2026-04-13-007`
+   Severity: `MODERATE`
+   Class: `D/W`
+   Location: `chapters/examples/examples-worked.tex`, `chapters/examples/rosetta_stone.tex`, `chapters/connections/line-operators.tex`, `chapters/connections/ordered_associative_chiral_kd_core.tex`
+   Issue: the active Vol II affine/Kac--Moody summary layer still had AP126 survivors: generic collision residues or leading $R$-matrix terms were written with the level stripped (`\Omega/z`, `\exp(\Omega/z)`, `1+\hbar\,\Omega/z`) even though the surrounding text treated the same formulas as level-dependent and elsewhere enforced the `k=0 \Rightarrow r=0` sanity check.
+   Fix: restored the explicit level prefix on every live affine/Kac--Moody survivor in scope (`k\,\Omega/z`, `\exp(k\,\Omega/z)`, `1+\hbar\,k\,\Omega/z`), and added the missing `k=0` collapse sentence to the line-operator evaluation-sector summary.
+   Status: `FIXED`
+
+### Verification
+
+- Grepped the active input surface for stripped affine/Kac--Moody patterns before patching: `r(z)=\Omega/z`, `\Omega_\fg/z`, `R(z)=1+\hbar\,\Omega/z`, and `\exp(\Omega/z)`.
+- Re-grepped the touched files after patching to confirm that the surviving no-`k` formulas are explicit `k=1`/Yangian specializations rather than generic affine statements.
+
 ## 2026-04-13 - Bar-Cobar Review Fortification
 
 - Target: `chapters/connections/bar-cobar-review.tex`
@@ -14337,3 +14377,272 @@ Ran an exact-token scan for the five unfinished-work marker families across the 
    Issue: the frontier-status table had drifted from the live theorem surface. The free-PVA `\Ethree` case was missing; the general `\Ethree` row still read as unrestricted rather than narrowed beyond the free-PVA case; the curved-Dunn row omitted the three-level refinement; the modular-operad row did not make the genus split explicit; the chiral-coproduct row omitted the folding route; and the global-triangle row lagged the active `G/L/C` theorem versus class-`M` gap split.
    Fix: retitled the subsection to a neutral frontier heading, inserted the missing free-PVA row, narrowed the general `\Ethree` row, updated the curved-Dunn/modular-operad/chiral-coproduct/global-triangle statuses to match the active labels, and confirmed that all ten Part VII frontier chapter references listed in `conclusion.tex` resolve to active chapter files in `main.tex`.
    Status: `FIXED`
+
+## 2026-04-13 - Chapter-Wide Slop Removal Audit
+
+### Summary
+
+Ran an exhaustive `V2-AP29` sweep over every `chapters/**/*.tex` file, not just the active `main.tex` inputs. The live issues were limited to a small set of filler connectives/hedges plus comment-line Unicode em dashes. Technical uses such as `essentially surjective` and `essentially self-adjoint` were re-read and intentionally left alone.
+
+### Verification
+
+- Re-ran a chapter-wide grep for the banned prose patterns:
+  `moreover`, `additionally`, `notably`, `crucially`, `remarkably`, `it is worth noting`, `We now`, `can be shown.`, `furthermore`, `interestingly`, `delve`, `leverage`, `tapestry`, `cornerstone`.
+- Re-ran a chapter-wide grep for Unicode em dashes `—`.
+- Re-ran a chapter-wide grep for the exact hedge variants that were repaired:
+  `essentially tautological`, `essentially unique up to homotopy`, `essentially unique:`.
+- Confirmed all three verification greps returned zero hits after the edits.
+
+### Findings
+
+642. `2026-04-13-642`
+   Severity: `MODERATE`
+   Class: `W/P`
+   Location: `chapters/theory/equivalence.tex:68-76`
+   Issue: the proof sketch used the hedge `essentially unique` precisely where the sentence already states the sharper contractible-choice conclusion.
+   Fix: replaced `essentially unique` with `unique up to a contractible space of choices` and rewrote the follow-up sentence to `The uniqueness up to contractible choice`.
+   Status: `FIXED`
+
+643. `2026-04-13-643`
+   Severity: `MODERATE`
+   Class: `W/P`
+   Location: `chapters/theory/raviolo-restriction.tex:392-399`
+   Issue: the sentence `essentially unique up to homotopy` was a redundant hedge over a strictly homotopy-invariant statement.
+   Fix: deleted `essentially` so the sentence now reads `the choice of radial collapse is unique up to homotopy`.
+   Status: `FIXED`
+
+644. `2026-04-13-644`
+   Severity: `MODERATE`
+   Class: `W/P`
+   Location: `chapters/theory/factorization_swiss_cheese.tex:1971-1974`, `chapters/theory/factorization_swiss_cheese.tex:2418-2423`
+   Issue: one sentence used the banned connective `additionally`, and another opened with the banned procedural filler `we now`.
+   Fix: changed `additionally sums` to `sums`, and changed `we now carry out the computation from first principles` to `the computation below carries out the derivation from first principles`.
+   Status: `FIXED`
+
+645. `2026-04-13-645`
+   Severity: `MODERATE`
+   Class: `W/P`
+   Location: `chapters/examples/examples-worked.tex:2821-2823`, `chapters/examples/examples-worked.tex:3983-3988`
+   Issue: both sites opened with the banned filler `We now`, weakening direct statements inside a theorem setup and a proof.
+   Fix: changed `We now assemble all the computed objects...` to `The computed objects assemble...`, and changed `We now verify that...` to `It remains to verify that...`.
+   Status: `FIXED`
+
+646. `2026-04-13-646`
+   Severity: `MODERATE`
+   Class: `W/P`
+   Location: `chapters/connections/ordered_associative_chiral_kd_frontier.tex:6190-6192`
+   Issue: the phrase `essentially tautological` was a slack hedge over a direct claim.
+   Fix: changed `essentially tautological` to `tautological`.
+   Status: `FIXED`
+
+647. `2026-04-13-647`
+   Severity: `MINOR`
+   Class: `W/D`
+   Location: `chapters/connections/relative_feynman_transform.tex:1`, `chapters/connections/thqg_line_operators_extensions.tex:2`, `chapters/connections/thqg_line_operators_extensions.tex:7`, `chapters/connections/thqg_line_operators_extensions.tex:796`, `chapters/connections/thqg_line_operators_extensions.tex:1183`, `chapters/connections/thqg_line_operators_extensions.tex:1575`, `chapters/connections/line-operators.tex:41`, `chapters/connections/line-operators.tex:848`, `chapters/connections/ym_synthesis_core.tex:499`, `chapters/connections/concordance.tex:1`, `chapters/connections/ym_synthesis.tex:542`, `chapters/theory/pva-descent.tex:891`
+   Issue: chapter comment headers still contained Unicode em dashes, which violated the repo's chapter-level slop grep surface even though the prose body was clean.
+   Fix: replaced each comment-line em dash `—` with ASCII `--`.
+   Status: `FIXED`
+
+648. `2026-04-13-648`
+   Severity: `MODERATE`
+   Class: `W/C`
+   Location: `chapters/connections/ordered_associative_chiral_kd_core.tex:1589-1593`, `chapters/connections/ordered_associative_chiral_kd_core.tex:1998-2005`, `chapters/connections/ordered_associative_chiral_kd_core.tex:2347-2350`, `chapters/connections/ordered_associative_chiral_kd_core.tex:2377-2380`, `chapters/connections/ordered_associative_chiral_kd_core.tex:2712-2718`, `chapters/connections/ordered_associative_chiral_kd.tex:1729-1733`, `chapters/connections/ordered_associative_chiral_kd.tex:1893-1900`, `chapters/connections/ordered_associative_chiral_kd.tex:2021-2024`, `chapters/connections/ordered_associative_chiral_kd.tex:2047-2049`
+   Issue: these ordered/unordered comparison passages identified `$E_\infty$` with the pole-free commutative subclass, which contradicts the repo convention that all local vertex algebras remain `$E_\infty$` even when OPE poles are present.
+   Fix: rewrote the affected sentences to distinguish the pole-free BD-commutative subclass from general `$E_\infty$`-chiral vertex algebras with OPE poles, and kept the genuinely `$E_1$` case reserved for independent `$R$`-matrix input.
+   Status: `FIXED`
+
+649. `2026-04-13-649`
+   Severity: `MODERATE`
+   Class: `W/C`
+   Location: `chapters/connections/ordered_associative_chiral_kd_frontier.tex:111-113`, `working_notes.tex:3044-3048`, `working_notes.tex:15913-15919`, `working_notes.tex:15978-15986`
+   Issue: the frontier stratification note and working-notes summaries tied `$E_\infty$` to simple-pole or pole-free behavior, and one tier summary excluded class-`M` local vertex algebras from the `$E_\infty$` regime.
+   Fix: changed the stratification sentence so the first-order pole statement is attributed to the commutator filtration rather than to `$E_\infty$`, rewrote the tier summary so classes `L` and `M` are both local `$E_\infty$` regimes, and rewrote the pole-free clauses in the duality summary to say `pole-free BD-commutative subclass of $E_\infty$-chiral algebras`.
+   Status: `FIXED`
+
+## 2026-04-13 - Vol II Dirty-Surface Consistency Sweep
+
+### Summary
+
+Audited the active Vol II dirty surface for local contradictions introduced by the current status/README/build rewrite pass. The surviving issues were all consistency bugs rather than new theorem content: stale build dependencies in the new isolated-build path, README metric drift, forbidden `E_3`-chiral terminology on the live manuscript surface, stale Theorem~H summary language, and a Heisenberg dimension claim that outran the local evidence in `hochschild.tex`.
+
+### Verification
+
+- Verified README metrics against the live artifact and test surface:
+  `pdfinfo Ainfinity_Chiral_Algebras_and_Chiral_Hochschild_Cohomology.pdf`,
+  `find compute/lib -maxdepth 1 -name '*.py' | wc -l`,
+  `find compute/tests -maxdepth 1 -name 'test_*.py' | wc -l`,
+  `python3 -m pytest compute/tests --collect-only -q`.
+- Scanned the touched manuscript files for forbidden/stale phrases:
+  `E_3$-chiral`, `polynomial Hilbert series`, `at most four`.
+- Ran `make fast` as the narrow build falsifier. Pass 1 succeeded; pass 2 was killed by the environment (`Error 137`), so the build surface remains resource-limited rather than manuscript-clean.
+
+### Findings
+
+650. `2026-04-13-650`
+   Severity: `MODERATE`
+   Class: `B/C`
+   Location: `Makefile:84`, `Makefile:172-176`
+   Issue: after the build refactor, `.build_stamp` no longer depended on `Makefile` or `scripts/build.sh`, so `make` could incorrectly skip rebuilds after build-system changes; `dist` also omitted `scripts/`, producing an archive whose documented build path was incomplete.
+   Fix: added `Makefile` and `$(BUILD_SCRIPT)` to the `.build_stamp` prerequisites and included `scripts/` in the `dist` archive payload.
+   Status: `FIXED`
+
+651. `2026-04-13-651`
+   Severity: `MODERATE`
+   Class: `D/C`
+   Location: `README.md:42-46`, `README.md:59`, `README.md:79`
+   Issue: the README metrics drifted from the live artifact/test surface (`1,736` pages instead of the current `1,738`, `64` test files instead of `63`), and the `make fast` comment still advertised a single-pass check after the Makefile changed it to an up-to-4-pass build.
+   Fix: updated the page count to `1,738`, the test-file count to `63`, and rewrote the `make fast` note as `quick check (up to 4 passes)`.
+   Status: `FIXED`
+
+652. `2026-04-13-652`
+   Severity: `MODERATE`
+   Class: `W/C`
+   Location: `chapters/frame/preface.tex:809-821`
+   Issue: the preface still used the forbidden label `E_3`-chiral even though the repo invariant is that the intermediate structure is `\SCchtop` and the promoted output is only `E_3`-topological.
+   Fix: rewrote the hierarchy paragraph so the intermediate step is the 3d holomorphic-topological bulk / `\SCchtop` datum, and reserved `E_3` solely for the topological upgrade.
+   Status: `FIXED`
+
+653. `2026-04-13-653`
+   Severity: `MODERATE`
+   Class: `W/C`
+   Location: `chapters/examples/examples-worked.tex:4300-4307`
+   Issue: the Bershadsky--Polyakov ladder still claimed an attained `E_3`-chiral stage, contradicting the same invariant.
+   Fix: replaced that bullet with `3d HT bulk / \SCchtop datum: attained`, keeping the Costello--Gaiotto justification while removing the forbidden `E_3`-chiral label.
+   Status: `FIXED`
+
+654. `2026-04-13-654`
+   Severity: `MODERATE`
+   Class: `W/C`
+   Location: `chapters/frame/preface.tex:1512-1515`, `chapters/connections/concordance.tex:707-710`
+   Issue: two live summary surfaces still advertised Theorem~H as a `polynomial Hilbert series`, which contradicted the local theorem repair to a family-dependent finite Hilbert polynomial on the Koszul locus.
+   Fix: rewrote both summaries to say `family-dependent Hilbert polynomial` and retained the Koszul-locus/generic-level scope.
+   Status: `FIXED`
+
+655. `2026-04-13-655`
+   Severity: `MODERATE`
+   Class: `W/C`
+   Location: `chapters/connections/hochschild.tex:3387-3400`
+   Issue: the new Heisenberg reframing hard-coded `total dimension 3` twice even though the neighboring heuristic computation in the same section still only exhibits a two-dimensional centre and explicitly marks the comparison as unresolved.
+   Fix: weakened both sentences to the finite-dimensional Theorem~H amplitude/profile statement, removing the unsupported numeric specialization while preserving the intended consistency check.
+   Status: `FIXED`
+
+656. `2026-04-13-656`
+   Severity: `MODERATE`
+   Class: `X/C`
+   Location: `chapters/frame/preface.tex:572`, `chapters/frame/preface.tex:744`, `chapters/frame/preface.tex:1821-1824`, `chapters/frame/preface.tex:1846-1848`, `chapters/frame/preface.tex:1923-1926`
+   Issue: the preface cited a nonexistent label `thm:e3-identification` five times. Two uses were really referring to the affine Kac--Moody topologization theorem, while the three formal-disk/CFG uses overstated the local comparison as a theorem-level identification.
+   Fix: retargeted the affine Kac--Moody references to `thm:E3-topological-km`, and rewrote the CFG/formal-disk sentences to cite `rem:CFG-comparison` while stating the weaker perturbative-shadow comparison that is actually present on the live surface.
+   Status: `FIXED`
+
+657. `2026-04-13-657`
+   Severity: `MODERATE`
+   Class: `X/C`
+   Location: `chapters/connections/spectral-braiding-core.tex:590-594`
+   Issue: the CFG comparison remark cited a nonexistent `conj:topologization-general`, leaving the generic topologization scope statement dangling.
+   Fix: rewired the reference to the live conjecture label `conj:E3-topological-general`.
+   Status: `FIXED`
+
+## 2026-04-13 - Vol II Dirty-Surface Audit+Fix Pass
+
+- Target: active dirty Vol II surface (`README.md`, `chapters/theory/factorization_swiss_cheese.tex`, `chapters/connections/ordered_associative_chiral_kd.tex`)
+- Status: COMPLETE
+
+### Findings
+
+1. `2026-04-13-658`
+   Severity: `MODERATE`
+   Class: `C/W`
+   Location: `chapters/connections/ordered_associative_chiral_kd.tex:2300`, `:2414`
+   Issue: two malformed inline-math edits left literal `=1$)` fragments in the affine `R`-matrix/Yangian summary, making the standalone surface syntactically wrong and obscuring the intended `\hbar=1/(k+2)` convention.
+   Fix: removed the stray `=1$)` fragments and restored the two sentences to the intended affine formulas (`R(z)=1+\hbar\,k\,\Omega/z+O(z^{-2})`, `\hbar=1/(k+2)`).
+   Status: `FIXED`
+
+2. `2026-04-13-659`
+   Severity: `MODERATE`
+   Class: `W`
+   Location: `chapters/theory/factorization_swiss_cheese.tex:2145-2148`, `:2229-2233`
+   Issue: the factorization chapter still said “the bar complex presents the Swiss-cheese coalgebra,” which drifts into the repo-forbidden SC-on-bar wording. The bar complex is the `E_1` coalgebraic input; the Swiss-cheese structure lives in the factorization/derived-center package, not on `B(A)` itself.
+   Fix: rewrote both sentences so the bar complex now “organizes” the clutching correspondences / is the “universal coalgebraic stage” on which they act, without advertising an SC-coalgebra structure on the bar complex.
+   Status: `FIXED`
+
+3. `2026-04-13-660`
+   Severity: `MODERATE`
+   Class: `D/W`
+   Location: `README.md:24`
+   Issue: the README’s Vol I theorem summary still advertised Theorem D as though the scalar curvature identity `d^2=\kappa\omega_g` were uniformly proved for all `g >= 1`, contradicting the current Vol I rectification carried through the active Vol II manuscript.
+   Fix: rewrote the Theorem D row to the narrower live scope: genus-1 curvature coefficient proved, higher-genus scalar continuation conditional.
+   Status: `FIXED`
+
+4. `2026-04-13-661`
+   Severity: `MODERATE`
+   Class: `D`
+   Location: `README.md:42-47`, `:75-79`
+   Issue: the README metrics and layout counts drifted from the live repo surface: stale page count, theory/connection-file counts, compute-file count, and anti-pattern range.
+   Fix: updated the README to the live counts (`1746` pages, `19` theory files, `75` connection files / `107` chapter `.tex` files total, `61` lib files, anti-pattern range through `AP182` and `FM68`) and synced the layout block to the same counts.
+   Status: `FIXED`
+
+### Verification
+
+- Verified the README counts against the current repo surface:
+  `pdfinfo Ainfinity_Chiral_Algebras_and_Chiral_Hochschild_Cohomology.pdf`,
+  `find chapters/theory -maxdepth 1 -name '*.tex' | wc -l`,
+  `find chapters/examples -maxdepth 1 -name '*.tex' | wc -l`,
+  `find chapters/connections -maxdepth 1 -name '*.tex' | wc -l`,
+  `rg --files compute/lib -g '*.py' | wc -l`,
+  `rg --files compute/tests -g 'test_*.py' | wc -l`,
+  `pytest compute/tests --collect-only -q`.
+- Re-grepped for the repaired failure modes:
+  `bar complex presents the Swiss-cheese`,
+  `\\$=1\\$\\)`.
+- Build verification remains resource-limited: `make fast` completed pass 1 and then died on pass 2 with `Error 137`, so I used a one-pass isolated build as the syntax falsifier after patching.
+
+## 2026-04-13 - Vol II Live-Surface Reference and Scope Repair
+
+- Target: active dirty Vol II front matter and Rosetta/ordered-bar surfaces (`main.tex`, `chapters/frame/preface.tex`, `chapters/frame/preface_trimmed.tex`, `chapters/theory/introduction.tex`, `chapters/examples/rosetta_stone.tex`, `chapters/examples/examples-computing.tex`, `chapters/connections/ordered_associative_chiral_kd_core.tex`)
+- Status: COMPLETE
+
+### Findings
+
+1. `2026-04-13-662`
+   Severity: `MODERATE`
+   Class: `X/C`
+   Location: `chapters/theory/introduction.tex:278,2239-2243,2294-2298,2393`, `chapters/examples/rosetta_stone.tex:677,1094`, `chapters/examples/examples-computing.tex:345`, `chapters/frame/preface_trimmed.tex:418,694`, `chapters/frame/preface.tex:1487`
+   Issue: the live Vol II surface still carried stale Rosetta/YM references after theorem/section renames: dead `thm:rosetta-swiss-cheese`, dead `subsec:rosetta-swiss-cheese`, and frontier-only `sec:ym-platonic-ideal-synthesis` references that do not resolve on the active `main.tex` input graph.
+   Fix: retargeted the Rosetta citations to live anchors (`thm:rosetta-e1-coalgebra`, `prop:rosetta-bar-hochschild`, `thm:rosetta-3d-mc`, `subsec:rosetta-operations`, `sec:rosetta-stone`) and replaced the dead YM section reference with the active chapter range `ch:ym-boundary-theory`--`ch:ym-instanton-screening` plus `app:anomaly-completed-topological-holography`.
+   Status: `FIXED`
+
+2. `2026-04-13-663`
+   Severity: `MODERATE`
+   Class: `W/C`
+   Location: `chapters/frame/preface.tex:226-229,905-907`
+   Issue: the preface still cited a nonexistent `sec:SC-pentagon` label and overstated the Heisenberg Drinfeld-center discussion as a proposition-level theorem, even though the live `hochschild.tex` surface keeps it at heuristic/computation status.
+   Fix: dropped the dead pentagon section reference and rewrote the Heisenberg sentence to cite `comp:drinfeld-center-heisenberg` explicitly as a heuristic base case with the Tamarkin/Theorem~H gap still open.
+   Status: `FIXED`
+
+3. `2026-04-13-664`
+   Severity: `MODERATE`
+   Class: `W/C`
+   Location: `main.tex:1055-1059`, `chapters/frame/preface.tex:299-303,480-484`, `chapters/theory/introduction.tex:1562-1576,2276-2280`
+   Issue: the dirty front-matter/introduction layer still mixed the corrected Vol I scope (`g=1` proved, higher-genus scalar continuation conditional; modular extension open in higher genus) with older all-genus wording.
+   Fix: rewrote these passages so they now state the genus-1 result unconditionally, mark the higher-genus scalar continuation as conditional after the Vol I rectification, and state the modular-operad extension as the higher-genus open problem rather than a completed construction.
+   Status: `FIXED`
+
+4. `2026-04-13-665`
+   Severity: `MINOR`
+   Class: `X/C`
+   Location: `chapters/connections/ordered_associative_chiral_kd_core.tex:2141-2142`
+   Issue: the ordered-bar core cited `Anti-Pattern~\ref*{AP:126}` even though the manuscript has no live `AP:126` label, leaving the note to compile as a dead reference.
+   Fix: replaced the dead cross-reference with the plain textual tag `AP126`, preserving the intended convention reminder without claiming a local label anchor.
+   Status: `FIXED`
+
+### Verification
+
+- Re-grepped the touched files for the dead labels after patching:
+  `thm:rosetta-swiss-cheese`,
+  `subsec:rosetta-swiss-cheese`,
+  `prop:heis-drinfeld-center`,
+  `sec:SC-pentagon`,
+  `sec:ym-platonic-ideal-synthesis`,
+  `AP:126`.
+- Cleared stale LaTeX auxiliaries with `make clean` after a corrupted root `main.aux` triggered a false `Runaway argument` failure on `make fast`.
+- Rebuilt with `make fast`; the previous fatal parse disappeared and the build reached pass 4 before the environment killed `pdflatex` (`Error 137`). The targeted dead-label warnings no longer appear in the resulting `main.log`.

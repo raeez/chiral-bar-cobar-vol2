@@ -1,16 +1,27 @@
 # ============================================================================
-#  Makefile — A-infinity Chiral Algebras and 3D HT QFT (Vol II)
+#  Makefile -- A-infinity Chiral Algebras and 3D HT QFT (Vol II)
 # ============================================================================
 #
 #  Usage:
 #    make            Full build → out/
-#    make fast       Quick build (up to 4 passes) for rapid iteration
+#    make fast       Quick build (up to 4 passes) → out/main.pdf
+#    make release    Full release → out/ + iCloud
 #    make clean      Remove all LaTeX build artifacts (preserves stamp)
-#    make veryclean  Remove artifacts AND compiled PDFs (forces rebuild)
+#    make veryclean  Remove artifacts AND out/ (forces rebuild)
+#    make clean-builds  Remove all /tmp/mkd-* isolated build directories
 #    make check      Halt-on-error validation
 #    make count      Manuscript statistics
 #    make test       Run compute test suite
 #    make help       Show available targets
+#
+#  Build isolation (parallel agents):
+#    Each build runs in its own /tmp directory.  Set MKD_BUILD_NS to reuse
+#    the same directory across invocations (warm .aux files = faster builds):
+#
+#      export MKD_BUILD_NS="agent-$$"   # set once per agent session
+#      make fast                         # cold first time, warm thereafter
+#
+#  All compiled output goes to out/.
 #
 # ============================================================================
 
@@ -19,6 +30,7 @@
 MAIN      := main
 TEX       := pdflatex
 TEXFLAGS  := -interaction=batchmode -file-line-error -synctex=0 -cnf-line='buf_size=1000000' -cnf-line='stack_size=20000'
+BUILD_SCRIPT := ./scripts/build.sh
 LOG_DIR   := .build_logs
 PASSES    := 6
 FAST_PASSES := 4
@@ -34,17 +46,14 @@ SOURCES   := $(wildcard *.tex) \
              $(wildcard chapters/connections/*.tex) \
              $(wildcard appendices/*.tex)
 
-# Output
-PDF       := $(MAIN).pdf
-STAMP     := .build_stamp
+# Output -- everything goes to out/
 OUT_DIR   := out
-OUT_PDF   := $(OUT_DIR)/ainfinity_chiral_algebras.pdf
+PDF       := $(OUT_DIR)/main.pdf
 
 # Working notes
-WN_DIR    := .
-WN_TEX    := $(WN_DIR)/working_notes.tex
-WN_PDF    := $(WN_DIR)/working_notes.pdf
-OUT_WN    := $(OUT_DIR)/working_notes.pdf
+WN_TEX    := working_notes.tex
+
+STAMP     := .build_stamp
 
 # If PDF was externally deleted but stamp remains, force a rebuild.
 ifeq (,$(wildcard $(PDF)))
@@ -56,128 +65,56 @@ AUX_EXTS  := aux log out toc synctex.gz fdb_latexmk fls bbl blg \
              nav snm vrb idx ilg ind lof lot
 
 # ============================================================================
-#  Helper functions
-# ============================================================================
-
-define count_matches
-$(shell grep -aEc '$(1)' $(2) 2>/dev/null || echo 0)
-endef
-
-# ============================================================================
 #  Targets
 # ============================================================================
 
-.PHONY: all fast clean veryclean count check test dist release help publish working-notes icloud
+.PHONY: all fast clean veryclean clean-builds count check test dist release help working-notes icloud
 
 ## icloud: Copy latest PDFs to iCloud Drive
-icloud: main.pdf
+icloud: $(PDF)
 	@mkdir -p "$(ICLOUD_DIR)"
-	@cp -v main.pdf "$(ICLOUD_DIR)/vol2_ainfinity_chiral_algebras.pdf"
-	@[ -f out/ainfinity_chiral_algebras.pdf ] && cp -v out/ainfinity_chiral_algebras.pdf "$(ICLOUD_DIR)/vol2_release.pdf" || true
+	@for pdf in $(OUT_DIR)/*.pdf; do [ -f "$$pdf" ] && cp -v "$$pdf" "$(ICLOUD_DIR)/$$(basename $$pdf)" || true; done
 	@echo "Vol II PDFs copied to iCloud."
 
 ## all: Full build → out/
-##   Idempotent: no-op if no .tex files changed since last successful build.
-all: $(STAMP) working-notes publish
+all: $(STAMP) working-notes
 
-$(STAMP): $(SOURCES)
+$(STAMP): $(SOURCES) Makefile $(BUILD_SCRIPT)
 	@echo "══════════════════════════════════════════════════════════"
 	@echo "  Building: $(MAIN).tex  →  $(PDF)"
-	@echo "  Engine:   $(TEX) (up to $(PASSES) passes)"
 	@echo "══════════════════════════════════════════════════════════"
-	@mkdir -p $(LOG_DIR)
-	@converged=0; \
-	for pass in $$(seq 1 $(PASSES)); do \
-		echo "── Pass $$pass / $(PASSES) ──"; \
-		$(TEX) $(TEXFLAGS) $(MAIN).tex >$(LOG_DIR)/pass$$pass.log 2>&1; \
-		rc=$$?; \
-		pages=$$(grep 'Output written' $(MAIN).log 2>/dev/null | sed 's/.*(\([0-9]*\) pages.*/\1/' | tail -n 1 || echo '?'); \
-		undef_cit=$$(grep -aEc 'Citation.*undefined' $(MAIN).log 2>/dev/null || echo 0); \
-		undef_ref=$$(grep -aEc 'Reference.*undefined' $(MAIN).log 2>/dev/null || echo 0); \
-		overfull=$$(grep -aEc 'Overfull \\hbox' $(MAIN).log 2>/dev/null || echo 0); \
-		underfull=$$(grep -aEc 'Underfull \\hbox|Underfull \\vbox' $(MAIN).log 2>/dev/null || echo 0); \
-		rerun=$$(grep -aEc 'Label\(s\) may have changed|Package rerunfilecheck Warning' $(MAIN).log 2>/dev/null || echo 0); \
-		echo "   $${pages}pp, $$undef_cit undef citations, $$undef_ref undef references, $$rerun rerun requests, $$overfull overfull, $$underfull underfull"; \
-		if [ $$rc -ne 0 ] && { [ ! -f $(PDF) ] || ! grep -aq 'Output written' $(MAIN).log 2>/dev/null; }; then \
-			echo "  ✗  Pass $$pass failed."; \
-			grep -aE '^\! |Emergency stop|Runaway argument|Fatal error|Undefined control sequence|File ended while scanning|No pages of output' $(LOG_DIR)/pass$$pass.log | head -n 10; \
-			exit $$rc; \
-		fi; \
-		if [ "$$pass" -ge 2 ] && [ "$$rerun" = "0" ] && [ "$$undef_cit" = "0" ] && [ "$$undef_ref" = "0" ]; then \
-			echo "✓ Converged after $$pass passes."; \
-			converged=1; \
-			break; \
-		fi; \
-	done; \
-	if [ "$$converged" = "0" ]; then \
-		echo "⚠ Did not fully converge after $(PASSES) passes (Cit=$$undef_cit, Ref=$$undef_ref, Rerun=$$rerun)."; \
-	fi
+	@$(BUILD_SCRIPT) $(PASSES)
 	@if [ ! -f $(PDF) ]; then \
-		echo "  ✗  Build failed — no PDF produced."; exit 1; \
+		echo "  ✗  Build failed -- no PDF produced."; exit 1; \
 	fi
 	@touch $(STAMP)
 	@echo ""
 	@echo "  ✓  $(PDF) built successfully."
-	@echo "     Logs: $(LOG_DIR)/ and $(MAIN).log"
 	@echo ""
 
-## fast: Bounded quick build for rapid iteration.
+## fast: Bounded quick build for rapid iteration → out/main.pdf
 fast:
 	@echo "  ── Fast build (up to $(FAST_PASSES) passes) ──"
-	@mkdir -p $(LOG_DIR)
-	@converged=0; \
-	for pass in $$(seq 1 $(FAST_PASSES)); do \
-		echo "── Pass $$pass / $(FAST_PASSES) ──"; \
-		$(TEX) $(TEXFLAGS) $(MAIN).tex >$(LOG_DIR)/fast-pass$$pass.log 2>&1; \
-		rc=$$?; \
-		pages=$$(grep 'Output written' $(MAIN).log 2>/dev/null | sed 's/.*(\([0-9]*\) pages.*/\1/' | tail -n 1 || echo '?'); \
-		undef_cit=$$(grep -aEc 'Citation.*undefined' $(MAIN).log 2>/dev/null || echo 0); \
-		undef_ref=$$(grep -aEc 'Reference.*undefined' $(MAIN).log 2>/dev/null || echo 0); \
-		rerun=$$(grep -aEc 'Label\(s\) may have changed|Package rerunfilecheck Warning' $(MAIN).log 2>/dev/null || echo 0); \
-		overfull=$$(grep -aEc 'Overfull \\hbox' $(MAIN).log 2>/dev/null || echo 0); \
-		echo "   $${pages}pp, $$undef_cit undef cit, $$undef_ref undef ref, $$rerun rerun, $$overfull overfull"; \
-		if [ $$rc -ne 0 ] && { [ ! -f $(PDF) ] || ! grep -aq 'Output written' $(MAIN).log 2>/dev/null; }; then \
-			echo "  ✗  Pass $$pass failed."; \
-			grep -aE '^\! |Emergency stop|Fatal error|Undefined control sequence' $(LOG_DIR)/fast-pass$$pass.log | head -n 10; \
-			exit $$rc; \
-		fi; \
-		if [ "$$pass" -ge 2 ] && [ "$$rerun" = "0" ] && [ "$$undef_cit" = "0" ] && [ "$$undef_ref" = "0" ]; then \
-			echo "✓ Converged after $$pass passes."; \
-			converged=1; \
-			break; \
-		fi; \
-	done; \
-	if [ "$$converged" = "0" ] && [ $(FAST_PASSES) -gt 1 ]; then \
-		echo "⚠ Did not converge in $(FAST_PASSES) passes (Cit=$$undef_cit, Ref=$$undef_ref, Rerun=$$rerun)."; \
-	fi
-	@echo "     Logs: $(LOG_DIR)/ and $(MAIN).log"
+	@$(BUILD_SCRIPT) $(FAST_PASSES)
 
-## publish: Copy final PDFs to out/ (does not trigger a rebuild).
-publish:
-	@mkdir -p $(OUT_DIR)
-	@if [ -f $(PDF) ]; then cp $(PDF) $(OUT_PDF); echo "  ✓  $(OUT_PDF)"; \
-	else echo "  ⚠  $(PDF) not found — run 'make fast' first."; fi
-	@if [ -f $(WN_PDF) ]; then cp $(WN_PDF) $(OUT_WN); echo "  ✓  $(OUT_WN)"; fi
-
-## working-notes: Build the working notes (standalone document).
-working-notes: $(OUT_WN)
-
-$(OUT_WN): $(WN_TEX)
+## working-notes: Build the working notes → out/working_notes.pdf
+working-notes:
 	@echo "  ── Building working notes ──"
 	@mkdir -p $(OUT_DIR) $(LOG_DIR)
-	@$(TEX) $(TEXFLAGS) working_notes.tex >$(LOG_DIR)/wn-pass1.log 2>&1 || true && \
-		$(TEX) $(TEXFLAGS) working_notes.tex >$(LOG_DIR)/wn-pass2.log 2>&1 || true
-	@if [ -f $(WN_PDF) ]; then \
-		cp $(WN_PDF) $(OUT_WN); \
-		echo "  ✓  $(OUT_WN)"; \
+	@$(TEX) $(TEXFLAGS) $(WN_TEX) >$(LOG_DIR)/wn-pass1.log 2>&1 || true
+	@$(TEX) $(TEXFLAGS) $(WN_TEX) >$(LOG_DIR)/wn-pass2.log 2>&1 || true
+	@if [ -f working_notes.pdf ]; then \
+		mv working_notes.pdf $(OUT_DIR)/working_notes.pdf; \
+		rm -f working_notes.aux working_notes.log working_notes.out working_notes.toc 2>/dev/null; \
+		echo "  ✓  $(OUT_DIR)/working_notes.pdf"; \
 	else \
 		echo "  ✗  Working notes build failed."; \
 		exit 1; \
 	fi
 
-## release: Full rebuild — manuscript + working notes → out/ + root + iCloud
+## release: Full rebuild → out/ + iCloud
 release:
-	@rm -f $(STAMP) $(PDF) $(WN_PDF)
+	@rm -f $(STAMP)
 	@rm -rf $(OUT_DIR)
 	@mkdir -p $(LOG_DIR) $(OUT_DIR)
 	@echo ""
@@ -187,47 +124,41 @@ release:
 	@echo ""
 	@echo "  [1/2] Main manuscript"
 	@$(MAKE) --no-print-directory $(STAMP)
-	@$(MAKE) --no-print-directory publish
-	@if [ -f $(PDF) ]; then \
-		cp $(PDF) Ainfinity_Chiral_Algebras_and_Chiral_Hochschild_Cohomology.pdf; \
-		echo "  ✓  Ainfinity_Chiral_Algebras_and_Chiral_Hochschild_Cohomology.pdf (root)"; \
-	fi
 	@echo ""
 	@echo "  [2/2] Working notes"
 	@$(MAKE) --no-print-directory working-notes
-	@if [ -f $(OUT_WN) ]; then cp $(OUT_WN) working_notes.pdf; echo "  ✓  working_notes.pdf (root)"; fi
 	@echo ""
 	@echo "  ── Copying to iCloud ──"
 	@mkdir -p "$(ICLOUD_DIR)"
-	@if [ -f Ainfinity_Chiral_Algebras_and_Chiral_Hochschild_Cohomology.pdf ]; then \
-		cp Ainfinity_Chiral_Algebras_and_Chiral_Hochschild_Cohomology.pdf "$(ICLOUD_DIR)/"; \
-		echo "    ✓  Ainfinity_Chiral_Algebras_and_Chiral_Hochschild_Cohomology.pdf"; \
-	fi
-	@if [ -f $(OUT_WN) ]; then \
-		cp $(OUT_WN) "$(ICLOUD_DIR)/working_notes_vol2.pdf"; \
-		echo "    ✓  working_notes_vol2.pdf"; \
-	fi
+	@for pdf in $(OUT_DIR)/*.pdf; do \
+		name=$$(basename "$$pdf"); \
+		if [ -f "$$pdf" ]; then \
+			cp "$$pdf" "$(ICLOUD_DIR)/$$name"; \
+			echo "    ✓  $$name"; \
+		fi; \
+	done
 	@echo ""
 	@echo "  ══════════════════════════════════════════"
-	@echo "  Release complete. Output in out/:"
+	@echo "  Release complete. All output in out/:"
 	@ls -1 $(OUT_DIR)/*.pdf 2>/dev/null | sed 's/^/    /'
 	@echo "  ══════════════════════════════════════════"
 
 ## dist: Create Vol2Archive.zip for distribution.
-dist: publish
+dist:
 	@echo "  ── Creating Vol2Archive.zip ──"
 	@rm -f $(OUT_DIR)/Vol2Archive.zip
 	@mkdir -p $(OUT_DIR)
 	@zip -r $(OUT_DIR)/Vol2Archive.zip \
-		main.tex chapters/ appendices/ compute/ \
+		main.tex chapters/ appendices/ compute/ scripts/ \
 		Makefile README.md CLAUDE.md \
-		$(OUT_DIR)/ainfinity_chiral_algebras.pdf \
+		$(PDF) \
+		$(OUT_DIR)/working_notes.pdf \
 		-x '.*' -x '**/.*' -x '**/__pycache__/*' -x '**/*.pyc' \
 		-x 'compute/.venv/*' \
 		>$(LOG_DIR)/dist.log 2>&1
 	@echo "  ✓  $(OUT_DIR)/Vol2Archive.zip ($$(du -h $(OUT_DIR)/Vol2Archive.zip | cut -f1))"
 
-## check: Halt on first error — use for CI or pre-commit validation.
+## check: Halt on first error -- use for CI or pre-commit validation.
 check:
 	@echo "  ── Error check (halt-on-error) ──"
 	@mkdir -p $(LOG_DIR)
@@ -248,27 +179,33 @@ clean:
 	@find chapters appendices -name '*.aux' -delete 2>/dev/null || true
 	@rm -rf $(LOG_DIR)
 	@rm -f texput.log
-	@echo "  ✓  Clean (stamp preserved — make will skip rebuild if sources unchanged)."
+	@echo "  ✓  Clean (stamp preserved -- make will skip rebuild if sources unchanged)."
 
-## veryclean: Remove EVERYTHING including PDF, out/, and build stamp (forces full rebuild).
+## veryclean: Remove EVERYTHING including out/ and build stamp (forces full rebuild).
 veryclean: clean
-	@rm -f $(PDF) $(STAMP)
+	@rm -f $(STAMP)
 	@rm -rf $(OUT_DIR)
-	@echo "  ✓  Stamp, PDF, and out/ removed — next make will rebuild."
+	@echo "  ✓  Stamp and out/ removed -- next make will rebuild."
+
+## clean-builds: Remove ALL /tmp/mkd-* isolated build directories (all volumes).
+clean-builds:
+	@echo "  Cleaning isolated build directories..."
+	@rm -rf /tmp/mkd-chiral-bar-cobar-* /tmp/mkd-chiral-bar-cobar-vol2-* /tmp/mkd-calabi-yau-quantum-groups-*
+	@echo "  ✓  All /tmp/mkd-* build directories removed."
 
 ## count: Manuscript statistics.
 count:
 	@echo ""
 	@echo "  ── Vol II Statistics ──"
 	@echo ""
-	@printf "  Source files:   %s .tex files\n" "$$(find . -name '*.tex' -not -path './.build_logs/*' | wc -l | tr -d ' ')"
-	@printf "  Total lines:   %s\n" "$$(find . -name '*.tex' -not -path './.build_logs/*' -exec cat {} + | wc -l | tr -d ' ')"
+	@printf "  Source files:   %s .tex files\n" "$$(find . -name '*.tex' -not -path './.build_logs/*' -not -path './out/*' | wc -l | tr -d ' ')"
+	@printf "  Total lines:   %s\n" "$$(find . -name '*.tex' -not -path './.build_logs/*' -not -path './out/*' -exec cat {} + | wc -l | tr -d ' ')"
 	@if [ -f $(PDF) ]; then \
-		PAGES=$$(grep 'Output written' $(MAIN).log 2>/dev/null | sed 's/.*(\([0-9]*\) pages.*/\1/' | tail -n 1 || echo '?'); \
+		PAGES=$$(grep -o '([0-9]* pages' $(OUT_DIR)/main.log 2>/dev/null | grep -o '[0-9]*' | tail -n 1 || echo '?'); \
 		printf "  PDF pages:     %s\n" "$$PAGES"; \
 		printf "  PDF size:      %s\n" "$$(du -h $(PDF) | cut -f1)"; \
 	else \
-		echo "  PDF:           (not yet built — run 'make')"; \
+		echo "  PDF:           (not yet built -- run 'make')"; \
 	fi
 	@echo ""
 
@@ -297,22 +234,24 @@ test:
 			exit $$rc; \
 		fi; \
 	else \
-		echo "  (no compute tests found — skipping)"; \
+		echo "  (no compute tests found -- skipping)"; \
 	fi
 
 ## help: Show available targets.
 help:
 	@echo ""
-	@echo "  Vol II — Build System"
+	@echo "  Vol II -- Build System"
 	@echo "  ─────────────────────"
+	@echo "  All compiled output goes to out/"
 	@echo ""
-	@echo "  make            Full build → out/ ($(PASSES) passes, stamp-based)"
-	@echo "  make fast       Quick converging build (up to $(FAST_PASSES) passes)"
-	@echo "  make release    Full rebuild + named release PDF at root"
+	@echo "  make            Full build → out/"
+	@echo "  make fast       Quick converging build → out/main.pdf"
+	@echo "  make release    Full rebuild → out/ + iCloud"
 	@echo "  make dist       Create Vol2Archive.zip in out/"
 	@echo "  make check      Halt-on-error validation"
 	@echo "  make clean      Remove build debris (preserves stamp)"
-	@echo "  make veryclean  Remove everything (forces rebuild)"
+	@echo "  make veryclean  Remove everything including out/"
+	@echo "  make clean-builds  Remove /tmp/mkd-* isolated build directories"
 	@echo "  make count      Manuscript statistics"
 	@echo "  make test       Run compute tests (excludes slow)"
 	@echo "  make help       This message"

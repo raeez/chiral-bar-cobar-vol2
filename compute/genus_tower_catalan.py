@@ -184,22 +184,14 @@ def genus1_m2_correction(lam: float, c: float, eisenstein_order: int = 1):
     The genus-1 collision residue replaces rational poles by Weierstrass:
       r^{(1)}(z;tau) = (c/12)*wp''(z|tau) + 2T*(-wp(z|tau)) + dT*zeta(z|tau)
 
-    Wait -- let me be more careful. The Virasoro lambda-bracket is:
-      {T_lambda T} = dT + 2T*lambda + (c/2)*lambda^3
+    The Virasoro lambda-bracket is:
+      {T_lambda T} = dT + 2T*lambda + (c/12)*lambda^3
 
-    so c_0 = dT, c_1 = 2T, c_2 = 0, c_3 = c/2.
-
-    The genus-0 m_2 in the bar complex is:
-      m_2(T,T; lambda) = dT + 2T*lambda + (c/12)*lambda^3
-                       = c_0 + c_1*lambda + c_3*lambda^3
-    (note c/12 not c/2 due to the 1/n! normalization in the Koszul sign).
-
-    Wait no: from the code m2_num:
-      m_2(T,T; lambda) = dT + 2T*lambda + (c/12)*lambda^3
-
-    This uses c_0 = dT (as d^1 T), c_1 = 2T (as 2*T coefficient of lambda),
-    c_3 = c/12 (coefficient of lambda^3). The 1/6 factor accounts for the
-    d-log kernel absorption plus combinatorial factors.
+    Equivalently, the OPE/n-product data are
+      T_{(0)}T = dT, T_{(1)}T = 2T, T_{(2)}T = 0, T_{(3)}T = c/2,
+    so in divided-power form
+      m_2(T,T; lambda) = sum_n T_{(n)}T * lambda^n / n!
+                       = dT + 2T*lambda + (c/12)*lambda^3.
 
     At genus 1, the Stasheff m_2 picks up corrections from the torus geometry.
     The correction to the collision residue at genus 1 is:
@@ -639,9 +631,9 @@ def genus1_tree_amplitude_symmetric(k: int, c: float = 1.0):
     #
     # But wait: the r-matrix expansion R^{(1)} is in powers of z,
     # where z is the spectral parameter of the bar complex.
-    # The m_2(T,T;lambda) = sum_n c_n * lambda^n is already the
+    # The m_2(T,T;lambda) = sum_n c_n * lambda^n / n! is already the
     # RESIDUE, and the genus-1 correction is:
-    #   delta_m2(T,T;lambda) = sum_n delta(c_n) * lambda^n
+    #   delta_m2(T,T;lambda) = sum_n delta(c_n) * lambda^n / n!
     # where delta(c_n) is the Eisenstein correction to the nth
     # OPE coefficient.
     #

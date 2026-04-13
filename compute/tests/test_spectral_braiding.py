@@ -387,8 +387,8 @@ class TestVirasoroRMatrix:
 
         Virasoro OPE: T(z)T(w) ~ (c/2)/(z-w)^4 + 2T(w)/(z-w)^2 + dT(w)/(z-w)
         n-products: T_0 T = dT, T_1 T = 2T, T_2 T = 0, T_3 T = c/2
-        lambda-bracket: {T_lam T} = dT + 2T*lam + 0 + (c/2)*lam^3/3!
-                                   = dT + 2T*lam + (c/12)*lam^3
+        lambda-bracket: {T_lam T} = dT + 2T*lam + (c/12)*lam^3
+                        because (c/2)/3! = c/12
         r-matrix: r(z) = dT/z + 2T/z^2 + (c/2)/z^4
 
         The roundtrip reproduces the OPE pole structure.

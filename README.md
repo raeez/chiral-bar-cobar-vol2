@@ -22,7 +22,7 @@ Every chapter depends on Vol I's five theorems:
 | **(A)** Bar-cobar adjunction | E_1 bar coalgebra; chiral derived center gives SC^{ch,top} datum |
 | **(B)** Koszul inversion | Lifted to raviolo VA setting and completed towers |
 | **(C)** Complementarity | Bulk-boundary-line triangle inherits (-1)-shifted symplectic structure |
-| **(D)** Modular characteristic | Curvature kappa(A) * omega_g governs curved A_infinity structure at genus >= 1 |
+| **(D)** Modular characteristic | The genus-1 curvature coefficient kappa(A); the higher-genus scalar continuation of d^2 = kappa(A) * omega_g is conditional |
 | **(H)** Hochschild ring | BV-BRST origin; bulk = chiral Hochschild |
 
 ## Seven Parts
@@ -39,23 +39,24 @@ Every chapter depends on Vol I's five theorems:
 
 | Metric | Value |
 |--------|------:|
-| Pages | ~1,704 |
+| Pages | 1,746 |
 | Tagged claims | ~2,650+ |
-| Source files | 19 theory + 13 examples + 72 connections = 104 chapter .tex + 2 appendices |
-| Compute modules | 53 lib + 64 test |
-| Anti-patterns | V2-AP1 through V2-AP39 + AP150-AP175 + FM24-FM57 |
+| Source files | 19 theory + 13 examples + 75 connections = 107 chapter .tex + 2 appendices |
+| Compute files | 61 lib + 63 test files |
+| Collected tests | 3,571 |
+| Anti-patterns | V2-AP1 through V2-AP39 + AP150-AP182 + FM58-FM68 |
 | Seven-faces master | Per-face status tags (F1-F7 with individual scope qualifiers) |
 | Cross-volume bridges | 15 (including 3D gravity climax row) |
 | Standalone papers | 3 (preface_full_survey, bar_chain_models_chiral_quantum_groups, ordered_associative_chiral_kd) |
 
-Zero conjectural algebraic inputs beyond the standing physical axioms, which have been made explicit as derived consequences.
+The SC^{ch,top} package is proved; the E_3-topological upgrade is proved for affine Kac--Moody algebras, all W-algebras, and more generally every non-critical conformal vertex algebra whose Li-graded PVA is freely generated, and remains conjectural only for non-freely-generated conformal VAs.
 
 ## Build
 
 ```bash
 # Build Vol II
 make              # full build
-make fast         # single-pass quick check
+make fast         # quick check (up to 4 passes)
 
 # Build Vol I (dependency)
 cd ~/chiral-bar-cobar && pkill -9 -f pdflatex 2>/dev/null || true; sleep 2; make fast
@@ -71,9 +72,9 @@ chiral-bar-cobar-vol2/
   Makefile                  build system
   chapters/
     frame/                  preface
-    theory/                 Part I (~16 files)
+    theory/                 Part I (~19 files)
     examples/               Parts IV-V (~13 files)
-    connections/            Parts II-III + V-VII (~72 files)
+    connections/            Parts II-III + V-VII (~75 files)
   appendices/               brace signs, orientations, FM proofs
-  compute/                  53 lib + 64 test files
+  compute/                  61 lib + 63 test files
 ```

@@ -19,8 +19,8 @@ SZEGO KERNEL / prime form on Sigma_2. The r-matrix involves:
   f(z,w) = d_z log E(z,w)    (abelian differential of the third kind)
   B(z,w) = d_z d_w log E(z,w) (Bergman kernel)
 
-The genus-2 r-matrix for a chiral algebra A with lambda-bracket
-{a_lambda b} = c_0 + c_1*lambda + c_2*lambda^2 + ... is
+The genus-2 r-matrix for a chiral algebra A with n-products
+a_{(n)}b = c_n, so that {a_lambda b} = sum_{n>=0} c_n*lambda^n/n!, is
 (from spectral-braiding-core.tex, Cor. cor:genus-g-curvature-braiding):
 
   r^{Sigma_2}(z,w) = c_0 * f(z,w) + c_1 * B(z,w)
@@ -630,8 +630,9 @@ def genus2_r_matrix_virasoro(c_val=None) -> Dict[str, Any]:
     r"""Genus-2 r-matrix for the Virasoro algebra Vir_c on Sigma_2.
 
     The Virasoro lambda-bracket:
-      {T_lambda T} = partial(T) + 2*T*lambda + (c/2)*lambda^3
-    so c_0 = partial(T), c_1 = 2T, c_2 = 0, c_3 = c/2.
+      {T_lambda T} = partial(T) + 2*T*lambda + (c/12)*lambda^3
+    equivalently T_{(0)}T = partial(T), T_{(1)}T = 2T,
+    T_{(2)}T = 0, T_{(3)}T = c/2.
 
     The genus-2 r-matrix:
       r^{Sigma_2}(z,w) = partial(T) * f(z,w) + 2T * B(z,w) + (c/4) * d_z^2 B(z,w)
@@ -639,7 +640,7 @@ def genus2_r_matrix_virasoro(c_val=None) -> Dict[str, Any]:
     THREE sectors:
       Sector I (simple pole, from c_0 = partial(T)):   partial(T) * f(z,w)
       Sector II (double pole, from c_1 = 2T):          2T * B(z,w)
-      Sector III (quartic pole, from c_3 = c/2):       (c/4) * d_z^2 B(z,w)
+      Sector III (quartic pole, from T_{(3)}T = c/2):  (c/4) * d_z^2 B(z,w)
 
     KEY: Virasoro has c_0 = partial(T) != 0, so it is in the ENTANGLED regime.
     The B-cycle monodromies are:
@@ -657,9 +658,9 @@ def genus2_r_matrix_virasoro(c_val=None) -> Dict[str, Any]:
     return {
         'algebra': f'Vir_{{{c}}}',
         'kappa': c / 2,
-        'c0': 'partial(T) (derivative of stress tensor)',
-        'c1': '2T (stress tensor)',
-        'c3': 'c/2 (central charge / 2)',
+        'c0': 'T_(0)T = partial(T)',
+        'c1': 'T_(1)T = 2T',
+        'c3': 'T_(3)T = c/2 (quartic OPE mode)',
         'regime': 'ENTANGLED (c_0 = partial(T) != 0)',
 
         'genus_tower': {
