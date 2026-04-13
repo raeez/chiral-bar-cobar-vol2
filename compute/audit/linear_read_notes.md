@@ -1,5 +1,26 @@
 # Linear Read Notes
 
+## 2026-04-13 - V2-AP26 Part Reference Rectification
+
+- Target: `chapters/connections/conclusion.tex`, mirrored `.claude/worktrees/*/chapters/connections/conclusion.tex`
+- Status: COMPLETE
+
+### Findings
+
+1. `2026-04-13-001`
+   Severity: `MODERATE`
+   Class: `D/W`
+   Location: `chapters/connections/conclusion.tex:987-990` and mirrored `.claude/worktrees/*/chapters/connections/conclusion.tex`
+   Issue: the frontier summary still hardcoded `Part~VII` and `Parts~I--VI`, violating `V2-AP26` after the seven-part restructuring.
+   Fix: replaced the hardcoded prose with `Part~\ref{part:frontier}` and `Parts~\ref{part:swiss-cheese}--\ref{part:gravity}` in the live file and in each mirrored worktree copy that still advertised the stale text.
+   Status: `FIXED`
+
+### Verification
+
+- Ran `grep -rn 'Part~[IVXL]' chapters/` before patching to isolate the live violation.
+- Ran `grep -rn 'Parts~[IVXL]' chapters/` to catch the paired plural hardcode in the same sentence.
+- Rechecked the same greps on the live `chapters/` surface and the mirrored worktree copies after patching.
+
 ## 2026-04-10 - Claude/Codex Parity Sweep
 
 - Target: `.claude/*`, `.agents/skills/*`, `.codex/hooks/*`, `AGENTS.md`
@@ -14261,3 +14282,11 @@ Ran an exact-token scan for the five unfinished-work marker families across the 
    Issue: the repo prescribes a zero-tolerance grep for the rectification-debt marker, but these files themselves still contain the literal token. This poisons the enforcement surface: a naive repo-wide grep reports debt even when no unresolved marker remains in the manuscript.
    Fix: either (a) reword these lines to avoid the literal token after resolution and in policy prose, or (b) standardize the enforcement command to scope the grep to the live manuscript/program surface (`chapters`, `compute/lib`, `compute/tests`, `standalone`, `scripts`, `main.tex`) and keep governance/audit files out of the zero-tolerance query.
    Status: `OPEN`
+
+641. `2026-04-13-641`
+   Severity: `MODERATE`
+   Class: `P/C`
+   Location: `chapters/connections/conclusion.tex:1036-1107`
+   Issue: the frontier-status table had drifted from the live theorem surface. The free-PVA `\Ethree` case was missing; the general `\Ethree` row still read as unrestricted rather than narrowed beyond the free-PVA case; the curved-Dunn row omitted the three-level refinement; the modular-operad row did not make the genus split explicit; the chiral-coproduct row omitted the folding route; and the global-triangle row lagged the active `G/L/C` theorem versus class-`M` gap split.
+   Fix: retitled the subsection to a neutral frontier heading, inserted the missing free-PVA row, narrowed the general `\Ethree` row, updated the curved-Dunn/modular-operad/chiral-coproduct/global-triangle statuses to match the active labels, and confirmed that all ten Part VII frontier chapter references listed in `conclusion.tex` resolve to active chapter files in `main.tex`.
+   Status: `FIXED`

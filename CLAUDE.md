@@ -6,7 +6,7 @@
 
 The bar complex B(A) is an E_1-chiral coassociative coalgebra over (ChirAss)^!. The SC^{ch,top} structure emerges on the derived chiral center Z^{der}_{ch}(A) = C^bullet_{ch}(A,A): the pair (C^bullet_{ch}(A,A), A) is the SC datum where bulk acts on boundary. The five Vol I theorems are the modular invariants surviving Sigma_n-coinvariance. Physics IS the homotopy type.
 
-~1,500pp, this repo. Seven parts: I(The Open Primitive) II(The E_1 Core) III(Seven Faces of r(z)) IV(Characteristic Datum and Modularity) V(Standard HT Landscape) VI(Three-Dimensional Quantum Gravity = CLIMAX) VII(Frontier).
+~1,700pp, this repo. Seven parts: I(The Open Primitive) II(The E_1 Core) III(Seven Faces of r(z)) IV(Characteristic Datum and Modularity) V(Standard HT Landscape) VI(Three-Dimensional Quantum Gravity = CLIMAX) VII(Frontier).
 
 ## Preface North Star: The Geometric Ladder (E_1 -> E_2 -> E_3)
 
@@ -298,7 +298,25 @@ FM55: RT invariants = unordered E_1 chiral homology. Claimed RT invariants arise
 
 FM56: "Symmetric monoidal category of chiral algebras." Chiral algebras form a PSEUDO-TENSOR category (BD), NOT a symmetric monoidal category. The correct ambient is: symmetric monoidal dg category of D-modules on X. Counter: NEVER say "monoidal category of chiral algebras" — say "D-modules on X" or "factorisation algebras on X."
 
-FM57: Costello-Gaiotto already provides 3d HT for Virasoro. The manuscript says "quantizing the PV model is hard open work" for Virasoro E_3-chiral. MISLEADING: the Costello-Gaiotto theorem (holomorphic CS with DS boundary conditions) ALREADY provides the 3d HT theory whose boundary is Vir_c. The actual gap is T_DS = [Q_tot, G'] in the DS-modified BV complex, which is much more specific. Counter: cite Costello-Gaiotto for the 3d HT theory; state the gap as the BRST identity, not as "quantize the PV model."
+FM57: Costello-Gaiotto already provides 3d HT for Virasoro. The manuscript says "quantizing the PV model is hard open work" for Virasoro E_3-chiral. UPDATED 2026-04-12: The T_DS = [Q_tot, G'] gap is NOW CLOSED (thm:E3-topological-DS). The improvement term is always Cartan currents, even for non-principal nilpotents (thm:E3-topological-DS-general).
+
+### Session 2026-04-12 Failure Modes (FM58-FM65)
+
+FM58: Cauchy on formal series. Applied Cauchy's theorem to the R-matrix R(z) ∈ End(V⊗V)((z)), which is a FORMAL Laurent series. Cauchy requires CONVERGENT functions. Counter: use FLATNESS of the connection + homotopy invariance of monodromy (algebraic/topological argument, not analytic).
+
+FM59: Non-holomorphic retraction preserves log forms. Claimed ρ_t(z) = (1-t)z + tz/|z| preserves logarithmic forms. WRONG: ρ_t involves |z| = √(zz̄), so ρ_t*(dz) has dz̄ components. Counter: use algebraic de Rham / local system argument, not explicit retraction.
+
+FM60: lem:operadic-kunneth chain-level isomorphism. Claimed B(SC_mix) = B_mod(P_1) ⊗ B(P_2) with d_B = d_cl ⊗ id + id ⊗ d_op. WRONG at chain level: open edge contractions between mixed vertices produce cross-terms d_mix involving μ₁ (combining closed inputs). Correct: decomposition on ASSOCIATED GRADED w.r.t. closed-input-excess filtration. Counter: the pentagon theorem does NOT depend on this lemma (direct Koszul duality suffices).
+
+FM61: Modular operad (iii) proved by abstract D²=0. Cited thm:modular-bar (which proves D²=0 for abstract modular bar datum) as proof that concrete O^{A_∞-ch} clutching maps compose associatively. NON-SEQUITUR: different statement about different object. Counter: concrete operadic associativity of iterated B^{ann} sewing with R-matrix monodromy is OPEN.
+
+FM62: "Stuck at SC^{ch,top}" for Heisenberg/lattice VOAs. Listed Heisenberg H_k and lattice VOAs as unable to reach E_3-topological. WRONG: H_k has Sugawara T = (1/(2k)):JJ: with c=1, and abelian CS provides the 3d HT theory. Same proof as KM applies. Counter: Heisenberg and lattice VOAs reach E_3-topological.
+
+FM63: T_imp sign inconsistency. General formula had minus sign; sl_2 specialization had plus. Standard convention (Feigin-Frenkel, Kac-Roan-Wakimoto) has T_imp positive. Counter: verify sign against sl_2 specialization before committing any T_imp formula.
+
+FM64: Khan-Zeng scope underestimation. The manuscript underestimated the scope of the Khan-Zeng 3d Poisson sigma model: it covers ALL freely-generated PVAs with conformal vector, not just gauge-theoretic families. This means conj:E3-topological-general is open only for non-freely-generated VAs (Monster VOA). Counter: check Khan-Zeng + general half-space BV before claiming E_3-topological is open.
+
+FM65: R=PT meromorphicity ≠ convergence. Level-by-level rationality (each R^{(N)} is rational in h_i) does NOT imply full meromorphicity (the series Σ_N R^{(N)} converges). The gap is λ_min(G_N) bounds on the principal series — Kac determinant growth alone is insufficient (det ≠ smallest eigenvalue for large matrices). Counter: distinguish fixed-level rationality from level-sum convergence.
 
 ## Cross-Volume Bridges
 
@@ -318,7 +336,7 @@ FM57: Costello-Gaiotto already provides 3d HT for Virasoro. The manuscript says 
 | Annular bar-HH | B^ann computes HH^ch | Thm H | Proved |
 | FG-shadow-strat | Commutator filtration spectral sequence | Shadow tower | Proved |
 | Gauge-gravity | m_k=0 (gauge) vs m_k!=0 (gravity) dichotomy | G/L/C/M | Proved |
-| 3D gravity | Part VI: 3d quantum gravity = derived center of boundary chiral algebra; W-algebra Hochschild bulk reconstruction | Thm H + MC5 | Boundary-linear bulk = Hochschild proved; full global triangle (boundary -> bulk -> boundary) conjectural beyond the Koszul locus |
+| 3D gravity | Part VI: 3d quantum gravity = derived center of boundary chiral algebra; W-algebra Hochschild bulk reconstruction | Thm H + MC5 | E_3-topological: PROVED for KM (thm:E3-topological-km), ALL W-algebras (thm:E3-topological-DS-general), ALL freely-generated PVAs (thm:E3-topological-free-PVA). Global triangle: PROVED for classes G/L/C (thm:global-triangle-boundary-linear); OPEN for class M (gap: DS-Hochschild compatibility) |
 
 ## Build
 

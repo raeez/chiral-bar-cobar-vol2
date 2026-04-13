@@ -87,7 +87,16 @@ SC^{ch,top} is two-coloured with directionality (no open-to-closed). Dunn additi
 
 SC^{ch,top} is the GENERIC case. E_3-topological is a SPECIAL CASE requiring conformal vector. Most chiral algebras do NOT have conformal vector (critical level KM, E_1-chiral algebras, CY functor outputs). SC^{ch,top} must be understood as a first-class object with five redundant presentations: operadic, Koszul dual, factorization, BV/BRST, convolution.
 
-Status: thm:topologization PROVED for affine KM V_k(g) at non-critical level k != -h^v. General chiral algebras with conformal vector: CONJECTURAL (conj:topologization-general). Proof is cohomological; class M chain-level open.
+Status (updated 2026-04-12):
+- thm:E3-topological-km: PROVED for affine KM V_k(g) at non-critical level (Costello-Li + Sugawara antighost).
+- thm:E3-topological-DS: PROVED for ALL W-algebras via principal DS (Costello-Gaiotto + DS-transported antighost).
+- thm:E3-topological-DS-general: PROVED for ALL W-algebras via ANY nilpotent (improvement term is always Cartan).
+- thm:E3-topological-free-PVA: PROVED for ALL conformal VAs with freely-generated PVA associated graded (Khan-Zeng 3d Poisson sigma model + half-space BV).
+- conj:E3-topological-general: CONJECTURAL only for conformal VAs whose associated graded is NOT freely generated (Monster VOA V^natural, certain CY functor outputs).
+- SC^{ch,top} pentagon: ALL 10/10 edges proved (thm:pentagon-factorization-convolution via direct Koszul duality, bypassing operadic Künneth).
+- Modular operad: genus-0 product decomposition PROVED; π_1(Σ_g) well-definedness PROVED for all affine KM at all genera (KZB flatness); full operadic axioms (composition, equivariance, unitality) at genus >= 1 OPEN. The genus-1 construction is CONJECTURAL.
+- Global triangle: PROVED for classes G/L/C (boundary-linear families). OPEN for class M (Virasoro, W_N). Gap: DS-Hochschild compatibility (HPL transfer for RHom through DS SDR).
+- R=PT: Route D (Eberhardt shift-equation uniqueness) reduces gap to meromorphicity of bar-cobar R-matrix. Level-by-level rationality PROVED (prop:level-rationality-R-bar).
 
 ### The E_N Definition Ladder: Chiral vs Topological
 
@@ -262,7 +271,17 @@ These APs arose from the SC adversarial audit and deep mathematical audit sessio
 - AP172: A^! is an SC^!-algebra, NOT an SC-algebra. Closed = Lie (Sklyanin bracket), Open = Ass (Yangian product). This is (Lie, Ass)-algebra, not (Com, Ass)-algebra. FORBIDDEN: "A^! is an SC-algebra."
 - AP173: Yangian derived center not computed. Z^{der}_{ch}(Y(g)^{ch}) not computed anywhere. Predicted infinite-dimensional. For E_1 input: only E_2, not E_3 (B^Sigma does not exist).
 - AP174: Chiral QG equivalence scope. Proved abstractly on Koszul locus. Concrete verification: sl_2 Yangian and affine KM only. Elliptic partial; toroidal absent. FORBIDDEN: "equivalence for all four families."
-- AP175: Pentagon of equivalences is a star. Five SC presentations are pairwise equivalent, but all route through the operadic hub. No single pentagon theorem.
+- AP175: Pentagon of equivalences. UPDATED 2026-04-12: all 10/10 pairwise equivalences PROVED (thm:pentagon-factorization-convolution closes the last edge via direct Koszul duality, bypassing operadic Künneth). The star topology through the operadic hub provides independent verification for each pair.
+
+**Session 2026-04-12 Corrections (AP176-AP182):**
+
+- AP176: E₁ fiber integration uses flatness, NOT Cauchy. The quasi-isomorphism B^{D*}(A) → B^{S^1}(A) holds for E₁ algebras by FLATNESS of the shifted KZ connection + homotopy invariance of monodromy (topological argument). Cauchy's theorem does not apply to formal Laurent series. The retraction ρ_t is non-holomorphic and cannot appear in the proof. CORRECT argument: flat connection → holonomy depends only on homotopy class → all circles in C* are homotopic → Mon(R) radius-independent.
+- AP177: lem:operadic-kunneth chain-level decomposition is WRONG at chain level. The bar differential of SC^{ch,top}_mix has cross-terms d_mix from open edge contractions between mixed vertices (the map μ₁ combining closed inputs). The CORRECT statement is: the decomposition holds on the ASSOCIATED GRADED with respect to the closed-input-excess filtration. The pentagon theorem does NOT depend on this lemma (direct Koszul duality suffices).
+- AP178: Modular operad (iii) is NOT proved. thm:modular-bar proves D²=0 for the ABSTRACT modular bar datum. The concrete operadic associativity of O^{A_∞-ch} clutching maps (iterated B^ann sewing with R-matrix monodromy) is OPEN. Even genus-1 clutching (constr:genus1-ainf-chiral-operations) is CONJECTURAL. π₁ well-definedness is PROVED (prop:affine-modular-operad-all-genera) but is necessary, not sufficient.
+- AP179: Khan-Zeng covers ALL freely-generated PVAs. For any conformal VA whose Li-filtration associated graded is a freely-generated PVA, the Khan-Zeng 3d Poisson sigma model provides the 3d HT bulk, and the conformal vector upgrades to fully topological. This covers ALL standard families (G, L, C, M). conj:E3-topological-general is open ONLY for non-freely-generated VAs (Monster VOA).
+- AP180: Eberhardt Route D for R=PT. Eberhardt (arXiv:2309.11540) proves uniqueness of the fusion kernel via difference Galois theory for b² irrational. The bar-cobar R-matrix satisfies the same shift equations (pentagon + degenerate eigenvalues, both proved). Gap reduces to: meromorphicity of bar-cobar R-matrix in external momenta. Level-by-level rationality PROVED (prop:level-rationality-R-bar).
+- AP181: Global triangle sharp boundary. PROVED for classes G/L/C (thm:global-triangle-boundary-linear). OPEN for class M only. The class M gap reduces to DS-Hochschild compatibility: HPL transfer for RHom through the DS SDR (rem:class-M-DS-transport-strategy).
+- AP182: Curved Dunn three-level refinement. Level 1 (genus 0): PROVED. Level 2 (obstruction theory): obstruction in H²(Hom(B(E₁^tr), gr^g(B_mod(SC)))). Level 3 (twisted Künneth): full modular bar = twisted tensor product B_mod(SC) ⊗^{Mon(R)} B(E₁^tr). Genus-1 twisted tensor product PROVED (prop:genus1-twisted-tensor-product). Full genus tower OPEN.
 
 ## Claude-To-Codex Pdegree Map
 
