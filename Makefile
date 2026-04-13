@@ -165,9 +165,8 @@ working-notes: $(OUT_WN)
 $(OUT_WN): $(WN_TEX)
 	@echo "  ── Building working notes ──"
 	@mkdir -p $(OUT_DIR) $(LOG_DIR)
-	@cd $(WN_DIR) && \
-		$(TEX) $(TEXFLAGS) working_notes.tex >../../$(LOG_DIR)/wn-pass1.log 2>&1 || true && \
-		$(TEX) $(TEXFLAGS) working_notes.tex >../../$(LOG_DIR)/wn-pass2.log 2>&1 || true
+	@$(TEX) $(TEXFLAGS) working_notes.tex >$(LOG_DIR)/wn-pass1.log 2>&1 || true && \
+		$(TEX) $(TEXFLAGS) working_notes.tex >$(LOG_DIR)/wn-pass2.log 2>&1 || true
 	@if [ -f $(WN_PDF) ]; then \
 		cp $(WN_PDF) $(OUT_WN); \
 		echo "  ✓  $(OUT_WN)"; \
