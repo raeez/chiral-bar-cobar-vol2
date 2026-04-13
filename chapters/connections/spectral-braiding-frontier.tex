@@ -1652,6 +1652,124 @@ is a rational function of the external momenta with poles on the
 null-vector lattice $\alpha_1 + \alpha_2 - Q + mb + nb^{-1}$
 ($m, n \in \Z_{\ge 0}$).
 
+The following proposition establishes the level-by-level
+rationality, reducing
+Hypothesis~\ref{hyp:bar-cobar-meromorphic} to the convergence
+of the level sum.
+
+\begin{proposition}[Level-by-level rationality of
+$R^{\mathrm{bar}}$; \ClaimStatusProvedHere]
+\label{prop:level-rationality}
+Fix $b^2 \in \C \setminus \Q$ and levels
+$N_1, N_2 \in \Z_{\ge 0}$.  Write
+$V_{h_i} = \bigoplus_{n \ge 0} V_{h_i}[n]$ for the
+level decomposition of the Verma module of highest weight
+$h_i = \alpha_i(Q - \alpha_i)$.  Then the matrix entries
+of the bar-cobar $R$-matrix restricted to the
+$(N_1, N_2)$-level subspace,
+\[
+  R^{(N_1,N_2)}_{\alpha_1,\alpha_2}(z)
+  \;\colon\;
+  V_{h_1}[N_1] \otimes V_{h_2}[N_2]
+  \;\longrightarrow\;
+  V_{h_1}[N_1] \otimes V_{h_2}[N_2],
+\]
+are rational functions of\/
+$h_1, h_2, c$ with poles contained in the Kac
+determinant locus
+\[
+  \bigl\{
+    h_i = h_{r,s}
+    \;:\;
+    1 \le rs \le N_i,\;
+    r,s \ge 1
+  \bigr\},
+  \qquad
+  h_{r,s}
+  = \frac{(rb - sb^{-1})^2 - (b - b^{-1})^2}{4}.
+\]
+\end{proposition}
+
+\begin{proof}
+The bar-cobar $R$-matrix on Verma modules is assembled from
+the $\Ainf$ operations $m_k$ of the Virasoro chiral algebra
+via the path-ordered exponential of the shifted KZ
+connection (Section~\ref{subsubsec:virasoro-quantum-correction}).
+We trace the dependence on $h_i$ through three stages.
+
+\emph{Step~1: $\Ainf$ operations produce polynomials.}
+Each $m_k$ is extracted from iterated residues of the OPE
+on $\FM_k(\C)$.  On a tensor product
+$V_{h_1} \otimes V_{h_2}$ at fixed levels
+$(N_1, N_2)$, the OPE coefficients are polynomial in the
+conformal weights $h_i$ and the central charge~$c$:
+the mode algebra relations
+$[L_m, L_n] = (m-n)L_{m+n} + \frac{c}{12}(m^3-m)\delta_{m+n,0}$
+express every matrix element of $m_k$ between level states
+as a polynomial in $h_i, c$.
+
+\emph{Step~2: Homotopy transfer introduces Gram inverses.}
+The bar-cobar construction requires projecting onto
+cohomology representatives at intermediate levels.  At
+level~$N$, the Virasoro Gram matrix
+$G_N(h,c)_{I,J} = \langle h; I | h; J \rangle$
+(where $I, J$ range over partitions of~$N$) has
+determinant given by the Kac formula
+\[
+  \det G_N(h,c)
+  \;=\;
+  K_N \prod_{\substack{r,s \ge 1 \\ 1 \le rs \le N}}
+  \bigl(h - h_{r,s}\bigr)^{p(N - rs)},
+\]
+where $K_N \in \Q[c] \setminus \{0\}$ and $p(\cdot)$
+is the partition function.
+The homotopy transfer data (contracting homotopy,
+projection, inclusion) involve $G_N^{-1}$, introducing
+rational dependence on~$h_i$ with poles exactly at the
+zeros of $\det G_{N'}$ for $N' \le N_i$.
+
+\emph{Step~3: Finite computation at fixed levels.}
+At levels $(N_1, N_2)$, only finitely many intermediate
+levels $N' \le N_1 + N_2$ contribute to
+$R^{(N_1,N_2)}(z)$: the $\Ainf$ operations $m_k$
+shift levels by a bounded amount determined by the
+pole orders of the OPE, and the path-ordered exponential
+truncates at finite order.
+The matrix entries of $R^{(N_1,N_2)}$ are therefore
+obtained from finitely many polynomial numerators
+(Step~1) composed with finitely many Gram matrix
+inversions (Step~2).  The result is a rational function
+of $h_1, h_2, c$ whose denominator divides a product
+of Kac determinants $\det G_{N'}(h_i, c)$ with
+$N' \le N_i$.
+\end{proof}
+
+\begin{remark}[Holomorphicity on the principal series]
+\label{rem:principal-series-holomorphic}
+On the principal series $\alpha_i = Q/2 + iP_i$ with
+$P_i \in \R_{>0}$, the conformal weights are
+$h_i = Q^2/4 + P_i^2 > Q^2/4 > 0$
+(for $c > 1$).  The Kac table values satisfy
+$h_{r,s} \le 0$ when $b^2 \notin \Q$ and
+$r,s \ge 1$, since
+$h_{r,s} = Q^2/4 - (rb + sb^{-1})^2/4$
+and $(rb + sb^{-1})^2 \ge (b + b^{-1})^2 = Q^2$.
+Equality holds only at $r = s = 1$, giving $h_{1,1} = 0$.
+Since $h_i > Q^2/4 > 0$ on the principal series, the Gram
+determinant $\det G_N(h_i, c)$ is nonvanishing for every
+$N$.  By Proposition~\ref{prop:level-rationality}, each
+level component $R^{(N_1,N_2)}$ is therefore
+\emph{holomorphic} (not merely meromorphic) in $P_i$ on
+the principal series.
+Hypothesis~\ref{hyp:bar-cobar-meromorphic} thus reduces to
+convergence of the level sum
+$R^{\mathrm{bar}} = \sum_{N_1, N_2}
+R^{(N_1, N_2)}$:
+each summand is holomorphic, and the question is whether
+their sum converges to a meromorphic function of the
+$\alpha_i$.
+\end{remark}
+
 \begin{theorem}[Shift-equation identification;
 \ClaimStatusConditional{} (conditional on Hypothesis~\ref{hyp:bar-cobar-meromorphic})]
 \label{thm:shift-equation-identification}

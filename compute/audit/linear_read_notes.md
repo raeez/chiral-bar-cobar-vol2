@@ -14237,3 +14237,27 @@ Ran a hostile first-principles audit of the load-bearing theorem spine rather th
 ### Full Catalogue
 
 - Consolidated audit document: `compute/audit/full_volume_math_catalogue_2026-04-08.md`
+
+## 2026-04-13 - Unfinished Marker Audit
+
+### Summary
+
+Ran an exact-token scan for the five unfinished-work marker families across the live Vol II repo surface, excluding `.git`, mirrored `.claude/worktrees`, and binary/build artifacts. No unresolved unfinished-work markers survived reread. The only actionable issue is verification noise: the repo's own governance and audit files still contain the literal rectification-debt token, so a naive zero-tolerance grep reports false positives even when the manuscript surface is clean.
+
+### Verification
+
+- Scanned `3242` text-like files via `find`/`rg` across the repo, excluding `.git`, `.claude/worktrees`, and binary/build outputs.
+- Re-ran exact standalone-token searches separately for each unfinished-work marker family.
+- Read every live hit in context:
+  `AGENTS.md`, `CLAUDE.md`, `chapters/theory/introduction.tex`, `chapters/examples/w-algebras-w3.tex`, `compute/audit/linear_read_notes.md`, and `archive/source_tex/working_notes.tex`.
+- Confirmed the three spin-chain hits are mathematical terminology, not placeholders; confirmed the lone chapter-level rectification comment is explicitly marked `RESOLVED`.
+
+### Findings
+
+640. `2026-04-13-640`
+   Severity: `MODERATE`
+   Class: `W/D`
+   Location: `AGENTS.md:612`, `AGENTS.md:769`, `CLAUDE.md:215`, `chapters/theory/introduction.tex:1572`, `compute/audit/linear_read_notes.md:99`
+   Issue: the repo prescribes a zero-tolerance grep for the rectification-debt marker, but these files themselves still contain the literal token. This poisons the enforcement surface: a naive repo-wide grep reports debt even when no unresolved marker remains in the manuscript.
+   Fix: either (a) reword these lines to avoid the literal token after resolution and in policy prose, or (b) standardize the enforcement command to scope the grep to the live manuscript/program surface (`chapters`, `compute/lib`, `compute/tests`, `standalone`, `scripts`, `main.tex`) and keep governance/audit files out of the zero-tolerance query.
+   Status: `OPEN`
