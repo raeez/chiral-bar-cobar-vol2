@@ -358,6 +358,23 @@ cd ~/chiral-bar-cobar && make test                           # Tests
 
 **Frame + Appendices**: chapters/frame/preface, chapters/connections/conclusion, appendices/brace-signs.
 
+## Vol III 6d hCS Session Cross-Awareness (2026-04-12/13)
+
+**New anti-patterns applicable to Vol II:**
+- AP-CY23: The E_1-chiral bialgebra uses Vol II's SC^{ch,top} operad. The coproduct Δ_z lives on the OPEN (E_1/topological) colour. The CLOSED (E_2/chiral) colour carries no Hopf data — it is recovered via Drinfeld center.
+- AP-CY25: R-matrix formula R=(id⊗S)∘Δ(1) is WRONG (yields 1⊗1 by counit). Use half-braiding σ_A(z)(a⊗n) = Σ Δ_z(a)_{(2)}·n ⊗ Δ_z(a)_{(1)}.
+- AP-CY26: σ_2 is EVEN under h_i→-h_i. k^!=-k from Shapovalov, not σ_2 negation.
+- AP-CY24: Docstring confabulation — verify ALL ground-truth values against function output.
+
+**Key results affecting Vol II:**
+- E_1-chiral bialgebra axioms (H1)-(H5) formalized in Vol III e1_chiral_algebras.tex §7.
+- Universal coproduct Δ_z(e_s) for all spins — extends Vol II's spin-2 Drinfeld coproduct.
+- ZTE failure proves E_3 is genuinely nontrivial beyond E_2 (Vol II's native level).
+- E_2→E_3: derived center HH*(B,B), NOT iterated Drinfeld center Z(Z(C)).
+- Shadow tower = A_∞ coproduct corrections. Affects Vol II shadow obstruction interpretation.
+
+See ~/calabi-yau-quantum-groups/FRONTIER.md F13-F24 and CLAUDE.md.
+
 ## Git
 
 All commits authored by Raeez Lorgat. NEVER credit an LLM. git stash FORBIDDEN.
