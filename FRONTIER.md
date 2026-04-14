@@ -1,7 +1,7 @@
 # FRONTIER — Twelve Open Research Directions
 
-## Status as of 2026-04-13 (FINAL comprehensive update including documentation wave)
-## Produced by ~230-agent research swarm + Vol III ~170-agent final session + FINAL documentation wave. Programme: ~4,950pp, ~159K tests, ~1,838 engines
+## Status as of 2026-04-14 (DEFINITIVE update)
+## Produced by ~300+ agents across all sessions through ~230-agent comprehensive wave. Programme: ~5,142pp, ~177K tests, ~4,186 engines
 
 ### Session Memorial (2026-04-07/08)
 
@@ -341,9 +341,9 @@ Key Vol I results affecting Vol II:
 - **W_N Stokes = 4N-4**: linear growth with N. W-W channel dominates at pole 2N.
 - See ~/chiral-bar-cobar/FRONTIER.md F25-F36 for full details.
 
-## Cross-Volume: Vol III Final Session (2026-04-13)
+## Cross-Volume: Vol III ~230-Agent Comprehensive Wave (2026-04-14)
 
-Vol III final session + FINAL documentation wave: ~170+ agents, cumulative ~550pp, ~31,000 tests, ~420 engines. CY-A_3 PROVED (inf-cat). Key results affecting Vol II:
+Vol III ~230-agent comprehensive wave: cumulative ~693pp, ~34,000 tests, ~460 engines. 10 proofs at publication standard, clean build. CY-A_3 PROVED (inf-cat). Key results affecting Vol II:
 
 ### E_1-chiral bialgebra verified at all spins
 

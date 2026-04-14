@@ -220,7 +220,7 @@ This snapshot is a prior, not permission to skip `git status`.
 
 - Vol I: FRONTIER.md and CLAUDE.md updated with Vol II session results (page count 1,704pp, E_3-top hierarchy, pentagon 10/10, modular operad breakthroughs). Compute surface unchanged.
 - Vol II: CLEAN working tree. All worktrees pruned. 1,704pp, 0 errors. Session produced 17 theorems, FM58-FM68, AP176-AP182, 25 arXiv papers, ~3,000 lines new content across 20+ files. All committed.
-- Vol III: ~550pp, ~31,000 tests, ~420 engines. CY-A_3 PROVED (inf-cat). K3 abelian Yangian PROVED. ZTE correction EXISTS. AP-CY35-40 added. FINAL wave: P_2(D)=0 BKM Serre exact, CY-B d=3 (131 tests), chiral Satake C^3 (99 tests), chain-level incompatibility, kappa_ch mechanism, CY-D d=3 deep issue, notation appendix + AP catalogue installed.
+- Vol III: ~693pp, ~34,000 tests, ~460 engines. 10 proofs at publication standard. Clean build: 0 undef refs, 0 undef cites. CY-A_3 PROVED (inf-cat). K3 abelian Yangian PROVED. ZTE T COMPUTED (exact rational, 35 tests). Shadow tower through m_8 (160 tests, S_8=4144720/19683). m_5 verified (G_5^{conn}=775/5184). Chiral volume conjecture FORMULATED (Abel-Jacobi period). Mock modular K3: THEOREM at d=2. CY-D dimension-stratified. CY-C abelian: C(g,q)=D(Y^+(g_{K3})). BKM Serre P_2=0 EXACT. E_8xE_8 (24,24) c=24. Root-of-unity N=2: 324 modules. Mathieu: all 25 M_24 classes. Incompatibility strengthened. 7-part structure + reading paths. AP-CY35-40 added.
 
 Rule: rerun `git status --short` across every repo you touch before trusting any narrative summary. Dirty files are first-class collision surfaces, not background noise.
 
@@ -285,7 +285,7 @@ These APs arose from the SC adversarial audit and deep mathematical audit sessio
 
 ## Cross-Volume: Vol III Final Session Impact (2026-04-13, updated with FINAL documentation wave)
 
-Vol III deployed ~170 agents in the final session + FINAL documentation wave (cumulative: ~550pp, ~31,000 tests, ~420 engines). Key Vol II-relevant results:
+Vol III deployed ~230 agents through the comprehensive wave (cumulative: ~693pp, ~34,000 tests, ~460 engines, 10 proofs at publication standard, clean build). Key Vol II-relevant results:
 
 - **E_1-chiral bialgebra verified at all spins for K3 Yangian**: axioms (H1)-(H5) verified with 80+ tests across e1_chiral_bialgebra_engine, chiral_coproduct_spin3_engine, wilson_line_coproduct_engine, sl2_matrix_lax_engine, and k3_nonabelian_coproduct. Universal coproduct from Miura: Delta_z(e_s) = sum C(N_R-b,k) z^k e_a^L*e_b^R. Coassociativity trivial via Miura multiplicativity. Averaging-forgets-Hopf PROVED. Vol II cross-ref: rem:e1-chiral-bialgebra-vol3 (foundations_recast_draft.tex).
 - **Swiss-cheese derived inf-categorical formulation**: the factorization tensor product ⊗_{E_1,z} = colim over ordered configs is NOT symmetric, IS strictly associative (ordered config space contractible). np.kron = E_inf quotient kills Hopf (AP-CY23). This is the concrete E_1 content of the SC^{ch,top} datum.

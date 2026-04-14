@@ -387,7 +387,7 @@ cd ~/chiral-bar-cobar && make test                           # Tests
 - Class M E_3 bar: dim = 6^g (closed form via Kunneth). NOT infinite-dimensional at cohomology. Chain level: P(q)^{6g}.
 - kappa_BKM = c_N(0)/2 is the ONLY correct universal formula (Borcherds weight theorem).
 
-See ~/calabi-yau-quantum-groups/FRONTIER.md F13-F37 and CLAUDE.md. Vol III: ~550pp, ~31,000 tests, ~420 engines. CY-A_3 PROVED (inf-cat). K3 abelian Yangian PROVED. ZTE correction EXISTS. kappa_BKM = c_N(0)/2 universal. Class M E_3 bar = 6^g. Shadow = A_inf coproduct tower. FINAL wave: P_2(D)=0 BKM Serre exact, CY-B d=3, chiral Satake C^3, chain-level incompatibility, kappa_ch mechanism, CY-D d=3 deep issue.
+See ~/calabi-yau-quantum-groups/FRONTIER.md F13-F37 and CLAUDE.md. Vol III: ~693pp, ~34,000 tests, ~460 engines. 10 proofs at publication standard. Clean build: 0 undef refs, 0 undef cites. CY-A_3 PROVED (inf-cat). K3 abelian Yangian PROVED. ZTE T matrix COMPUTED (exact rational, 35 tests). kappa_BKM = c_N(0)/2 universal. Class M E_3 bar = 6^g. Shadow tower through m_8 (160 tests, S_8=4144720/19683). m_5 independently verified (G_5^{conn}=775/5184). Chiral volume conjecture FORMULATED (Abel-Jacobi period). Mock modular K3: THEOREM at d=2 (4-step proof). CY-D dimension-stratified: kappa_ch != chi(O_X) at odd d. CY-C abelian: C(g,q) = D(Y^+(g_{K3})). BKM Serre P_2=0 EXACT. E_8xE_8 structure function (24,24), c=24. Root-of-unity N=2: 324 modules, S-matrix degenerate. Mathieu: frame shape = twined bar Euler (all 25 M_24 classes). Incompatibility: mu_3!=0 forces mu_2=0 on aug. 7-part structure with Part openers + reading paths.
 
 ## Git
 
