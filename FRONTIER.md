@@ -1,7 +1,7 @@
 # FRONTIER — Twelve Open Research Directions
 
-## Status as of 2026-04-13 (final comprehensive update)
-## Produced by ~230-agent research swarm + Vol III ~170-agent final session. Programme: ~4,933pp, ~158K tests, ~1,828 engines
+## Status as of 2026-04-13 (FINAL comprehensive update including documentation wave)
+## Produced by ~230-agent research swarm + Vol III ~170-agent final session + FINAL documentation wave. Programme: ~4,950pp, ~159K tests, ~1,838 engines
 
 ### Session Memorial (2026-04-07/08)
 
@@ -343,7 +343,7 @@ Key Vol I results affecting Vol II:
 
 ## Cross-Volume: Vol III Final Session (2026-04-13)
 
-Vol III final session: ~170 agents, cumulative ~533pp, 30,613 tests, ~410 engines. CY-A_3 PROVED (inf-cat). Key results affecting Vol II:
+Vol III final session + FINAL documentation wave: ~170+ agents, cumulative ~550pp, ~31,000 tests, ~420 engines. CY-A_3 PROVED (inf-cat). Key results affecting Vol II:
 
 ### E_1-chiral bialgebra verified at all spins
 

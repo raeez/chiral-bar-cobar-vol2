@@ -220,7 +220,7 @@ This snapshot is a prior, not permission to skip `git status`.
 
 - Vol I: FRONTIER.md and CLAUDE.md updated with Vol II session results (page count 1,704pp, E_3-top hierarchy, pentagon 10/10, modular operad breakthroughs). Compute surface unchanged.
 - Vol II: CLEAN working tree. All worktrees pruned. 1,704pp, 0 errors. Session produced 17 theorems, FM58-FM68, AP176-AP182, 25 arXiv papers, ~3,000 lines new content across 20+ files. All committed.
-- Vol III: ~533pp, 30,613 tests, ~410 engines. CY-A_3 PROVED (inf-cat). K3 abelian Yangian PROVED. ZTE correction EXISTS. AP-CY35-40 added.
+- Vol III: ~550pp, ~31,000 tests, ~420 engines. CY-A_3 PROVED (inf-cat). K3 abelian Yangian PROVED. ZTE correction EXISTS. AP-CY35-40 added. FINAL wave: P_2(D)=0 BKM Serre exact, CY-B d=3 (131 tests), chiral Satake C^3 (99 tests), chain-level incompatibility, kappa_ch mechanism, CY-D d=3 deep issue, notation appendix + AP catalogue installed.
 
 Rule: rerun `git status --short` across every repo you touch before trusting any narrative summary. Dirty files are first-class collision surfaces, not background noise.
 
@@ -283,9 +283,9 @@ These APs arose from the SC adversarial audit and deep mathematical audit sessio
 - AP181: Global triangle sharp boundary. PROVED for classes G/L/C (thm:global-triangle-boundary-linear). OPEN for class M only. The class M gap reduces to DS-Hochschild compatibility: HPL transfer for RHom through the DS SDR (rem:class-M-DS-transport-strategy).
 - AP182: Curved Dunn three-level refinement. Level 1 (genus 0): PROVED. Level 2 (obstruction theory): obstruction in H²(Hom(B(E₁^tr), gr^g(B_mod(SC)))). Level 3 (twisted Künneth): full modular bar = twisted tensor product B_mod(SC) ⊗^{Mon(R)} B(E₁^tr). Genus-1 twisted tensor product PROVED (prop:genus1-twisted-tensor-product). Full genus tower OPEN.
 
-## Cross-Volume: Vol III Final Session Impact (2026-04-13)
+## Cross-Volume: Vol III Final Session Impact (2026-04-13, updated with FINAL documentation wave)
 
-Vol III deployed ~170 agents in the final session (cumulative: ~533pp, 30,613 tests, ~410 engines). Key Vol II-relevant results:
+Vol III deployed ~170 agents in the final session + FINAL documentation wave (cumulative: ~550pp, ~31,000 tests, ~420 engines). Key Vol II-relevant results:
 
 - **E_1-chiral bialgebra verified at all spins for K3 Yangian**: axioms (H1)-(H5) verified with 80+ tests across e1_chiral_bialgebra_engine, chiral_coproduct_spin3_engine, wilson_line_coproduct_engine, sl2_matrix_lax_engine, and k3_nonabelian_coproduct. Universal coproduct from Miura: Delta_z(e_s) = sum C(N_R-b,k) z^k e_a^L*e_b^R. Coassociativity trivial via Miura multiplicativity. Averaging-forgets-Hopf PROVED. Vol II cross-ref: rem:e1-chiral-bialgebra-vol3 (foundations_recast_draft.tex).
 - **Swiss-cheese derived inf-categorical formulation**: the factorization tensor product ⊗_{E_1,z} = colim over ordered configs is NOT symmetric, IS strictly associative (ordered config space contractible). np.kron = E_inf quotient kills Hopf (AP-CY23). This is the concrete E_1 content of the SC^{ch,top} datum.
@@ -293,6 +293,12 @@ Vol III deployed ~170 agents in the final session (cumulative: ~533pp, 30,613 te
 - **Shadow tower = A_inf coproduct corrections**: S_k = coefficient of delta^{(k)}. Shadow-Feynman dictionary: L-loop = S_{L+1}. Class M Borel summability PROVED.
 - **ZTE failure**: factored S=RRR fails ZTE at O(kappa^2). E_3 corrections exist (rank 35/36). Connects to A_inf coproduct via shadow tower.
 - **E_2 -> E_3 promotion**: derived center HH*(B,B) via higher Deligne, NOT iterated Drinfeld center. 3d->5d->6d = E_1->E_2->E_3.
+
+**FINAL documentation wave additions (Vol II-relevant):**
+- **Chain-level incompatibility theorem**: mu_3 != 0 forces mu_2 = 0 on augmentation. Explains why E_1-chiral bialgebra lives on B^{ord}(A), reinforcing the Vol II SC^{ch,top} architecture (B(A) is E_1 coalgebra, SC emerges on derived center).
+- **CY-B at d=3 (131 tests)**: E_2-chiral Koszul duality extended via inf-cat CY-A_3. The bar-cobar adjunction on CY_3 categories connects to Vol II's abstract SC^{ch,top} bar-cobar framework.
+- **kappa_ch deep mechanism**: Hodge-filtered supertrace str_{F^0}(q^{L_0}). At d=2 coincides with chi(O_X)/2 (Serre duality). At d=3 diverges. Vol II's modular characteristic D is the d=2 case.
+- **CY-D deep issue**: chi(O_{K3xE}) = 0 != 3 = kappa_ch. Target-space anomaly (chi) != worldsheet anomaly (kappa_ch) at d=3. This does NOT affect Vol II (which works at d=2 where they agree).
 
 ## Claude-To-Codex Pdegree Map
 

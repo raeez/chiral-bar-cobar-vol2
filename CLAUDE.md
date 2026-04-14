@@ -387,7 +387,7 @@ cd ~/chiral-bar-cobar && make test                           # Tests
 - Class M E_3 bar: dim = 6^g (closed form via Kunneth). NOT infinite-dimensional at cohomology. Chain level: P(q)^{6g}.
 - kappa_BKM = c_N(0)/2 is the ONLY correct universal formula (Borcherds weight theorem).
 
-See ~/calabi-yau-quantum-groups/FRONTIER.md F13-F37 and CLAUDE.md. Vol III: ~533pp, 30,613 tests, ~410 engines. CY-A_3 PROVED (inf-cat). K3 abelian Yangian PROVED. ZTE correction EXISTS. kappa_BKM = c_N(0)/2 universal. Class M E_3 bar = 6^g. Shadow = A_inf coproduct tower.
+See ~/calabi-yau-quantum-groups/FRONTIER.md F13-F37 and CLAUDE.md. Vol III: ~550pp, ~31,000 tests, ~420 engines. CY-A_3 PROVED (inf-cat). K3 abelian Yangian PROVED. ZTE correction EXISTS. kappa_BKM = c_N(0)/2 universal. Class M E_3 bar = 6^g. Shadow = A_inf coproduct tower. FINAL wave: P_2(D)=0 BKM Serre exact, CY-B d=3, chiral Satake C^3, chain-level incompatibility, kappa_ch mechanism, CY-D d=3 deep issue.
 
 ## Git
 
