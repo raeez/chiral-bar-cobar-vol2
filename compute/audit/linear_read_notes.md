@@ -14646,3 +14646,13 @@ Audited the active Vol II dirty surface for local contradictions introduced by t
   `AP:126`.
 - Cleared stale LaTeX auxiliaries with `make clean` after a corrupted root `main.aux` triggered a false `Runaway argument` failure on `make fast`.
 - Rebuilt with `make fast`; the previous fatal parse disappeared and the build reached pass 4 before the environment killed `pdflatex` (`Error 137`). The targeted dead-label warnings no longer appear in the resulting `main.log`.
+
+### Incremental note
+
+1. `2026-04-13-666`
+   Severity: `HIGH`
+   Class: `W/C`
+   Location: `chapters/connections/3d_gravity.tex:7159-7163`
+   Issue: the architecture remark overstated the topologization mechanism as "unconditional" immediately after the special-family theorem list, violating the manuscript's topologization scope discipline and AP167-style status separation.
+   Fix: rewrote the sentence to remove the unconditional claim and to state the live scope explicitly: theorem for affine Kac--Moody at non-critical level, conjectural for general chiral algebras with conformal vector, using the chapter's live theorem/conjecture labels.
+   Status: `FIXED`
