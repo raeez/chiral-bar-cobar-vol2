@@ -372,15 +372,22 @@ cd ~/chiral-bar-cobar && make test                           # Tests
 - AP-CY26: σ_2 is EVEN under h_i→-h_i. k^!=-k from Shapovalov, not σ_2 negation.
 - AP-CY24: Docstring confabulation — verify ALL ground-truth values against function output.
 - AP-CY27-33: Agent sandbox non-persistence, pole-unsafe test points, wrong-repo writes, factored≠solved (ZTE), spectral z≠worldsheet z, reorganisation≠bypass, chain-level≠rational. See Vol III CLAUDE.md for full descriptions.
+- AP-CY34: Cyclic invariance ≠ bar-level compatibility. Individual {b_k, B^{(2)}} != 0 for non-formal algebras. ONLY the TOTAL {b, B^{(2)}} = 0 via Costello TCFT operadic argument. Cross-arity Stasheff cancellation. Previous proofs (bidegree, Tsygan) RETRACTED. Chain-level failure NOT an obstruction in inf-categorical framework.
 
-**Key results affecting Vol II:**
-- E_1-chiral bialgebra axioms (H1)-(H5) formalized in Vol III e1_chiral_algebras.tex §7.
-- Universal coproduct Δ_z(e_s) for all spins — extends Vol II's spin-2 Drinfeld coproduct.
-- ZTE failure proves E_3 is genuinely nontrivial beyond E_2 (Vol II's native level).
+**Key results affecting Vol II (updated 129-agent session, April 2026):**
+- E_1-chiral bialgebra axioms (H1)-(H5) formalized in Vol III e1_chiral_algebras.tex §7. ALL spins verified (K3 Yangian, universal coproduct formula). Coassociativity trivial via Miura multiplicativity.
+- Universal coproduct Δ_z(e_s) = Σ (-1)^k C(N_R-b,k) z^k e_a^L·e_b^R for ALL spins — extends Vol II's spin-2 Drinfeld coproduct. z-degree at spin s = exactly s.
+- ZTE failure proves E_3 is genuinely nontrivial beyond E_2 (Vol II's native level). ZTE deformation cohomology: correction S^{corr} EXISTS (rank 35/36 in extended complex).
 - E_2→E_3: derived center HH*(B,B), NOT iterated Drinfeld center Z(Z(C)).
-- Shadow tower = A_∞ coproduct corrections. Affects Vol II shadow obstruction interpretation.
+- Shadow tower = A_∞ coproduct corrections: S_k = δ^{(k)} PROVED with explicit computation. Shadow-Feynman dictionary: L-loop = S_{L+1}. Affects Vol II shadow obstruction interpretation.
+- CY-A_3 PROVED in infinity-categorical framework. The chain-level [m_3,B^{(2)}]!=0 is NOT an obstruction (HH^{-2}_{E_1}=0, Goodwillie vanishing, contractible space of liftings).
+- AP-CY34 saga: individual {b_k, B^{(2)}} != 0 but total {b, B^{(2)}} = 0 via Costello TCFT. Obs_Ainf=0 universally. Stasheff cross-arity cancellation.
+- Swiss-cheese operad SC^{ch,top} now has derived infinity-categorical formulation via Vol III's derived framing obstruction analysis (thm:derived-framing-obstruction).
+- Chiral CE complex: B(U^ch(L)) = CE_*(L) PROVED. Connects bar complex to classical Lie algebra homology.
+- Class M E_3 bar: dim = 6^g (closed form via Kunneth). NOT infinite-dimensional at cohomology. Chain level: P(q)^{6g}.
+- kappa_BKM = c_N(0)/2 is the ONLY correct universal formula (Borcherds weight theorem).
 
-See ~/calabi-yau-quantum-groups/FRONTIER.md F13-F24 and CLAUDE.md.
+See ~/calabi-yau-quantum-groups/FRONTIER.md F13-F37 and CLAUDE.md. Vol III: ~533pp, 30,613 tests, ~410 engines. CY-A_3 PROVED (inf-cat). K3 abelian Yangian PROVED. ZTE correction EXISTS. kappa_BKM = c_N(0)/2 universal. Class M E_3 bar = 6^g. Shadow = A_inf coproduct tower.
 
 ## Git
 

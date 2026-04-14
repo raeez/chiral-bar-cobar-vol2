@@ -220,7 +220,7 @@ This snapshot is a prior, not permission to skip `git status`.
 
 - Vol I: FRONTIER.md and CLAUDE.md updated with Vol II session results (page count 1,704pp, E_3-top hierarchy, pentagon 10/10, modular operad breakthroughs). Compute surface unchanged.
 - Vol II: CLEAN working tree. All worktrees pruned. 1,704pp, 0 errors. Session produced 17 theorems, FM58-FM68, AP176-AP182, 25 arXiv papers, ~3,000 lines new content across 20+ files. All committed.
-- Vol III: Unchanged from prior session.
+- Vol III: ~533pp, 30,613 tests, ~410 engines. CY-A_3 PROVED (inf-cat). K3 abelian Yangian PROVED. ZTE correction EXISTS. AP-CY35-40 added.
 
 Rule: rerun `git status --short` across every repo you touch before trusting any narrative summary. Dirty files are first-class collision surfaces, not background noise.
 
@@ -282,6 +282,17 @@ These APs arose from the SC adversarial audit and deep mathematical audit sessio
 - AP180: Eberhardt Route D for R=PT. Eberhardt (arXiv:2309.11540) proves uniqueness of the fusion kernel via difference Galois theory for b² irrational. The bar-cobar R-matrix satisfies the same shift equations (pentagon + degenerate eigenvalues, both proved). Gap reduces to: meromorphicity of bar-cobar R-matrix in external momenta. Level-by-level rationality PROVED (prop:level-rationality-R-bar).
 - AP181: Global triangle sharp boundary. PROVED for classes G/L/C (thm:global-triangle-boundary-linear). OPEN for class M only. The class M gap reduces to DS-Hochschild compatibility: HPL transfer for RHom through the DS SDR (rem:class-M-DS-transport-strategy).
 - AP182: Curved Dunn three-level refinement. Level 1 (genus 0): PROVED. Level 2 (obstruction theory): obstruction in H²(Hom(B(E₁^tr), gr^g(B_mod(SC)))). Level 3 (twisted Künneth): full modular bar = twisted tensor product B_mod(SC) ⊗^{Mon(R)} B(E₁^tr). Genus-1 twisted tensor product PROVED (prop:genus1-twisted-tensor-product). Full genus tower OPEN.
+
+## Cross-Volume: Vol III Final Session Impact (2026-04-13)
+
+Vol III deployed ~170 agents in the final session (cumulative: ~533pp, 30,613 tests, ~410 engines). Key Vol II-relevant results:
+
+- **E_1-chiral bialgebra verified at all spins for K3 Yangian**: axioms (H1)-(H5) verified with 80+ tests across e1_chiral_bialgebra_engine, chiral_coproduct_spin3_engine, wilson_line_coproduct_engine, sl2_matrix_lax_engine, and k3_nonabelian_coproduct. Universal coproduct from Miura: Delta_z(e_s) = sum C(N_R-b,k) z^k e_a^L*e_b^R. Coassociativity trivial via Miura multiplicativity. Averaging-forgets-Hopf PROVED. Vol II cross-ref: rem:e1-chiral-bialgebra-vol3 (foundations_recast_draft.tex).
+- **Swiss-cheese derived inf-categorical formulation**: the factorization tensor product ⊗_{E_1,z} = colim over ordered configs is NOT symmetric, IS strictly associative (ordered config space contractible). np.kron = E_inf quotient kills Hopf (AP-CY23). This is the concrete E_1 content of the SC^{ch,top} datum.
+- **Wilson lines = stratified FH defects**: Wilson line coproduct engine (30 tests) implements Delta_z on Wilson line observables, connecting Vol II's abstract SC^{ch,top} defect language to 5d/6d hCS constructions.
+- **Shadow tower = A_inf coproduct corrections**: S_k = coefficient of delta^{(k)}. Shadow-Feynman dictionary: L-loop = S_{L+1}. Class M Borel summability PROVED.
+- **ZTE failure**: factored S=RRR fails ZTE at O(kappa^2). E_3 corrections exist (rank 35/36). Connects to A_inf coproduct via shadow tower.
+- **E_2 -> E_3 promotion**: derived center HH*(B,B) via higher Deligne, NOT iterated Drinfeld center. 3d->5d->6d = E_1->E_2->E_3.
 
 ## Claude-To-Codex Pdegree Map
 
@@ -852,7 +863,7 @@ Specific to Vol II and the bridges around it:
 - the Koszul dual lives on the boundary, not in the bulk;
 - CoHA is associative, not automatically an `E_1`-chiral algebra;
 - Drinfeld center is not the same construction as derived center;
-- Vol III bridge statements may carry conditionality from unconstructed CY3 objects.
+- Vol III bridge statements: CY-A_3 is now PROVED (inf-cat). CY-C (quantum group realization) remains CONJECTURAL. Bridge statements through CY-A are now unconditional; those through CY-C remain conditional.
 
 ## Codex Local Infrastructure
 

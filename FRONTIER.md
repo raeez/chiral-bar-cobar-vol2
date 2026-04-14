@@ -1,7 +1,7 @@
 # FRONTIER — Twelve Open Research Directions
 
-## Status as of 2026-04-08
-## Produced by a ~230-agent research swarm with 118,823 tests, Beilinson re-audits converged
+## Status as of 2026-04-13 (final comprehensive update)
+## Produced by ~230-agent research swarm + Vol III ~170-agent final session. Programme: ~4,933pp, ~158K tests, ~1,828 engines
 
 ### Session Memorial (2026-04-07/08)
 
@@ -340,3 +340,31 @@ Key Vol I results affecting Vol II:
 - **Critical level center jump** (prop:critical-level-ordered): at k=-h^v, ALL monodromy trivial, Koszulness fails, H^1 doubles, bar H* = Omega*(Op). The SC^{ch,top} structure at critical level is the genuine holomorphic intermediary (no topologization possible).
 - **W_N Stokes = 4N-4**: linear growth with N. W-W channel dominates at pole 2N.
 - See ~/chiral-bar-cobar/FRONTIER.md F25-F36 for full details.
+
+## Cross-Volume: Vol III Final Session (2026-04-13)
+
+Vol III final session: ~170 agents, cumulative ~533pp, 30,613 tests, ~410 engines. CY-A_3 PROVED (inf-cat). Key results affecting Vol II:
+
+### E_1-chiral bialgebra verified at all spins
+
+The E_1-chiral bialgebra axiom system (e1_chiral_algebras.tex section 7, ~490 lines) is now verified with 80+ tests across multiple engines. Axioms (H1)-(H5): E_1-monoidal, E_1-coalgebra via deconcatenation on B^{ord}, bialgebra compatibility, spectral coassociativity, antipode. Key verification: the universal coproduct from Miura factorization gives closed-form Delta_z(e_s) at ALL spins, with z-degree = s. Coassociativity is TRIVIAL via Miura multiplicativity T_0*T_1*T_2. The averaging-forgets-Hopf theorem confirms av: (E_1-chiral bialgebra) -> (E_inf-chiral coalgebra) destroys R-matrix, antipode, and z-dependence. Vol II cross-ref: rem:e1-chiral-bialgebra-vol3 (foundations_recast_draft.tex), formulated on the open SC^{ch,top} colour.
+
+### Swiss-cheese derived formulation
+
+The SC^{ch,top} structure has a derived inf-categorical formulation via the E_1-chiral bialgebra. The factorization tensor product ⊗_{E_1,z} = colim_{z_1<z_2} A(z_1) ⊗ A(z_2) is NOT symmetric (ordering matters), IS strictly associative (ordered config space contractible), and np.kron = E_inf quotient which kills quantum group structure (AP-CY23). This gives the concrete E_1 content of SC^{ch,top} beyond the abstract operadic description.
+
+### Wilson lines = stratified FH defects
+
+Wilson line observables in the 5d/6d holomorphic CS theory are identified with stratified factorization homology defects. The Wilson line coproduct engine (30 tests) implements Delta_z on Wilson line observables, testing (H3) in a geometric setting. This connects Vol II's abstract SC^{ch,top} defect language to the concrete holomorphic CS construction.
+
+### Shadow tower = A_inf coproduct corrections
+
+The shadow tower invariants S_k are the coefficients of A_inf coproduct corrections delta^{(k)}. Class G: exact truncation. Class L: finite depth. Class M: infinite corrections (Gevrey-1, Borel summable). This gives the Vol II shadow obstruction tower a quantum group interpretation.
+
+### E_2 -> E_3 promotion is derived center
+
+The correct E_2 -> E_3 promotion is the DERIVED center HH*(B,B) (higher Deligne conjecture), NOT iterated Drinfeld center Z(Z(C)). BZFN agreement holds only at the E_1 -> E_2 level. The holomorphic CS hierarchy 3d -> 5d -> 6d produces E_1 -> E_2 -> E_3, where the Vol II E_1 sector IS the boundary algebra of 5d hCS (Costello 2013).
+
+### ZTE failure proves E_3 nontrivial
+
+The Zamolodchikov tetrahedron equation (ZTE) FAILS for the factored S=RRR at O(kappa^2). This proves the E_3 structure is genuinely nontrivial: the correct 3-particle S-operator requires corrections beyond pairwise YBE products. The ZTE deformation cohomology shows these corrections EXIST (rank 35/36 in extended complex). These corrections connect to the A_inf coproduct corrections via the shadow tower.
