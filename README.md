@@ -39,13 +39,14 @@ Every chapter depends on Vol I's five theorems:
 
 | Metric | Value |
 |--------|------:|
-| Pages | ~1,736 |
+| Pages | ~1,749 |
 | Preface | 1,998 lines (expanded from 791 in the 2026-04-13 reconstitution) |
 | Tagged claims | ~2,650+ |
 | Source files | 19 theory + 13 examples + 75 connections = 107 chapter .tex + 2 appendices |
 | Compute files | 61 lib + 63 test files |
 | Collected tests | 3,571 |
-| Anti-patterns | V2-AP1 through V2-AP39 + AP150-AP182 + FM58-FM68 |
+| Anti-patterns | V2-AP1 through V2-AP39 + AP150-AP182 + AP158 + FM40-FM68 |
+| First-principles cache | 620 lines, cross-programme enforcement verified clean |
 | Seven-faces master | Per-face status tags (F1-F7 with individual scope qualifiers) |
 | Cross-volume bridges | 15 (including 3D gravity climax row) |
 | Standalone papers | 3 (preface_full_survey, bar_chain_models_chiral_quantum_groups, ordered_associative_chiral_kd) |
