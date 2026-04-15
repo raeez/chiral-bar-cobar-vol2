@@ -296,7 +296,7 @@ Vol III deployed ~230 agents through the comprehensive wave (cumulative: ~693pp,
 
 **FINAL documentation wave additions (Vol II-relevant):**
 - **Chain-level incompatibility theorem**: mu_3 != 0 forces mu_2 = 0 on augmentation. Explains why E_1-chiral bialgebra lives on B^{ord}(A), reinforcing the Vol II SC^{ch,top} architecture (B(A) is E_1 coalgebra, SC emerges on derived center).
-- **CY-B at d=3 (131 tests)**: E_2-chiral Koszul duality extended via inf-cat CY-A_3. The bar-cobar adjunction on CY_3 categories connects to Vol II's abstract SC^{ch,top} bar-cobar framework.
+- **CY-B at d=3 (131 tests)**: E_1-chiral Koszul duality (inducing E_2 on Drinfeld center) extended via inf-cat CY-A_3. At d=3 A is E_1; the E_2 braided equivalence lives on Z(Rep^{E_1}(A)). The bar-cobar adjunction on CY_3 categories connects to Vol II's abstract SC^{ch,top} bar-cobar framework.
 - **kappa_ch deep mechanism**: Hodge-filtered supertrace str_{F^0}(q^{L_0}). At d=2 coincides with chi(O_X)/2 (Serre duality). At d=3 diverges. Vol II's modular characteristic D is the d=2 case.
 - **CY-D deep issue**: chi(O_{K3xE}) = 0 != 3 = kappa_ch. Target-space anomaly (chi) != worldsheet anomaly (kappa_ch) at d=3. This does NOT affect Vol II (which works at d=2 where they agree).
 
@@ -1094,3 +1094,15 @@ The pair (derived center, boundary algebra) is the SC datum.
 The complementarity potential presents the nonlinear modular shadow.
 
 The music matters, but only after the score compiles.
+
+## Failure Modes from 2026-04-14 CG Campaign
+
+FM42: Bulk replace "arity"→"degree" corrupts singularity→singuldegree, complementarity→complementdegree, unitarity→unitdegree, etc. Never bulk-replace short substrings inside common words. Grep `ldegree|ndegree|rdegree|pdegree|tdegree` after any bulk replace.
+
+FM43: Φ outputs E_1 at d≥3, not E_2. Always scope E_n with `(n=2 for d≤2; n=1 for d≥3)`.
+
+FM44: >10 concurrent agents → mass rate limiting. Batch in 3s.
+
+FM45: Subagents lack the full 15K-word skill. Good for bulk scanning; insufficient for deep reconstitution.
+
+FM46: Preface line counts drift as chapters grow. Update after campaigns.

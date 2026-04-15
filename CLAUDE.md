@@ -231,6 +231,7 @@ AP154: Two E_3 structures. Algebraic (HDC, no Sugawara) vs topological (Sugawara
 AP155: "New invariant" overclaiming. Framework recovers Bernard-Felder. Numbers known. Novelty is architectural. Counter: check Bernard/Felder/EV/CEE.
 AP156: Weierstrass p_1 convention. theta_1'/theta_1 (periodic) vs zeta_tau (quasi-periodic both cycles). Always specify.
 AP157: Degeneration-dependent "invariants." Separating degeneration gives zero genuinely genus-2 info. Counter: specify degeneration type.
+AP158: Shallow correction without first-principles investigation (cross-programme, = AP-CY61 in Vol III, AP186 in Vol I). When a mathematical claim is challenged, do NOT just swap labels (e.g. "averaging"->"right adjoint"). ALWAYS investigate the actual mathematical relationship from first principles. Find: (1) what the claim gets RIGHT (the ghost of a true theorem), (2) what it gets WRONG (the precise conflation), (3) the correct mathematical statement connecting the objects. Every wrong claim contains the seed of a correct theorem -- extract it. Examples: "categorified averaging" is wrong but the factorization E_1 ->^Z E_2 ->^{Sym} E_inf is real; "CoHA = bar complex" is wrong but the character coincidence reflects the SV theorem CoHA = Y^+; "Omega-background is the physical face" is true for toric but false for general CY (two independent E_1 mechanisms: operadic vs equivariant). COUNTER: before any correction, write down the first-principles analysis. If you cannot state the correct theorem, you do not understand the error.
 
 ## Opus 4.6 Failure Modes (Vol II-Specific)
 
@@ -388,6 +389,10 @@ cd ~/chiral-bar-cobar && make test                           # Tests
 - kappa_BKM = c_N(0)/2 is the ONLY correct universal formula (Borcherds weight theorem).
 
 See ~/calabi-yau-quantum-groups/FRONTIER.md F13-F37 and CLAUDE.md. Vol III: ~693pp, ~34,000 tests, ~460 engines. 10 proofs at publication standard. Clean build: 0 undef refs, 0 undef cites. CY-A_3 PROVED (inf-cat). K3 abelian Yangian PROVED. ZTE T matrix COMPUTED (exact rational, 35 tests). kappa_BKM = c_N(0)/2 universal. Class M E_3 bar = 6^g. Shadow tower through m_8 (160 tests, S_8=4144720/19683). m_5 independently verified (G_5^{conn}=775/5184). Chiral volume conjecture FORMULATED (Abel-Jacobi period). Mock modular K3: THEOREM at d=2 (4-step proof). CY-D dimension-stratified: kappa_ch != chi(O_X) at odd d. CY-C abelian: C(g,q) = D(Y^+(g_{K3})). BKM Serre P_2=0 EXACT. E_8xE_8 structure function (24,24), c=24. Root-of-unity N=2: 324 modules, S-matrix degenerate. Mathieu: frame shape = twined bar Euler (all 25 M_24 classes). Incompatibility: mu_3!=0 forces mu_2=0 on aug. 7-part structure with Part openers + reading paths.
+
+## Cross-Volume Failure Modes (2026-04-14)
+
+FM42: Bulk substring replace corrupts compound words (singularity→singuldegree). FM43: Φ outputs E_1 at d≥3, not E_2. FM44: >10 concurrent agents → rate limiting. FM45: Subagents lack full skill programme. FM46: Stale line counts in preface. See Vol I CLAUDE.md for full descriptions.
 
 ## Git
 
