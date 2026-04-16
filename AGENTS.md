@@ -113,9 +113,21 @@ E_N-CHIRAL != E_N-TOPOLOGICAL. Chiral depends on complex structure. Topological 
 
 (A) strict ChirAss-algebra, (B) A_inf in End^{ch}_A, (C) EK quantum vertex algebra, (D) A_inf in E_1-chiral, (E) factorization on Ran^{ord}(X). Each has its own derived center. (B)<->(C) via Drinfeld associator on the Koszul locus. NEVER conflate.
 
+**WARNING (AP-CY63):** The chiral endomorphism operad End^{ch}_A in notion (B) is the ALGEBRAIC model (formal Laurent series). The BD chiral operad is the GEOMETRIC model (D-module maps). These are isomorphic after formal-disk restriction + coordinate choice (4-step bridge). Never write "the chiral endomorphism operad" without specifying BD (D-module, coordinate-free) or algebraic (formal Laurent series, coordinate-dependent). The bridge proposition assembling all 4 steps is ABSENT from the manuscript.
+
+**WARNING (AP-CY67):** "Spectral parameters from FM_k(C)" is narration, not construction. End^ch_A has formal algebraic variables lambda_i. Their relationship to FM configuration spaces is mediated by the local-global identification theorem (a comparison, not a definition). Never write "spectral parameters from FM_k(C)"; write "spectral parameters from End^ch_A, identified with FM relative positions via comparison."
+
 ### Three Hochschild Theories
 
 (i) Topological HH: E_1-algebra input -> E_2 output (Deligne). (ii) Chiral HH (ChirHoch): E_inf-chiral input -> concentrated {0,1,2} (Theorem H). (iii) Categorical HH: dg category input -> E_2 with CY shifted Poisson. The geometry determines which Hochschild: curve X -> chiral, R -> topological, CY category -> categorical. NEVER conflate. Bare "Hochschild" MUST carry qualifier (chiral/topological/categorical) in non-historical contexts.
+
+**WARNING (AP-CY62): Geometric vs algebraic ChirHoch model.** Two chain-level models exist for chiral Hochschild cochains: (a) geometric (FM compactification, log forms, 3-component differential), (b) algebraic (End^ch_A, Gerstenhaber bracket differential). Quasi-isomorphic for logarithmic chiral algebras. At genus >= 1, the geometric model carries curve-dependent data the algebraic model lacks. The comparison is only a REMARK (rem:comparison-geometric-hoch), not a named theorem. DANGEROUS CONFLATION SITES: any chain-level E_n claim about ChirHoch that does not specify the model.
+
+**WARNING (AP-CY64): ChirHoch / HH* / H*_GF three-way confusion.** Do NOT claim "ChirHoch is finite while THH is infinite" -- HH*(Weyl) = 1-dimensional, even MORE concentrated. The genuine "fails to concentrate" object is H*_GF (Gel'fand-Fuchs continuous Lie cohomology, unbounded polynomial ring). The three coincide in cohomology for Koszul algebras but differ structurally (E_2 enrichment). At critical level k = -h^v, ChirHoch* becomes infinite (Feigin-Frenkel centre); HH* stays finite. This is the ONLY regime where dimensions genuinely differ. DANGEROUS CONFLATION SITES: hochschild.tex (the comparison theorems), any discussion of Theorem H scope.
+
+**WARNING (AP-CY65): Spectral parameter provenance.** The spectral parameter z in R(z) comes from evaluation modules (representation theory), NOT from the center construction. The claim "topological Drinfeld center has no spectral parameters" is FALSE: the Yangian Y(g) HAS evaluation modules V_u in its (purely topological) Drinfeld center. The correct distinction: chiral bar DIFFERENTIAL is z-dependent; topological bar COPRODUCT is z-independent. DANGEROUS CONFLATION SITES: spectral-braiding-core.tex, ht_bulk_boundary_line_core.tex.
+
+**WARNING (AP-CY66): BZFN ambient category is not tunable.** The two derived centres come from two DIFFERENT ALGEBRAS (A in D-mod, A_mode in Vect), NOT from applying BZFN in different ambient categories to the "same" algebra. S in the BZFN theorem is fixed. DANGEROUS CONFLATION SITES: hochschild.tex (Drinfeld center comparison), foundations_recast_draft.tex (BZFN discussion).
 
 ## The Operating Stack
 
