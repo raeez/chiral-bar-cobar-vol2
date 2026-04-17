@@ -27,12 +27,12 @@ Order follows `main.tex` linear traversal (Part I $\to$ Part VIII $\to$ Conclusi
 - [~] `chapters/connections/line-operators.tex` — 2026-04-17 partial: Gate-1 two typo fixes `\end{remark>` → `\end{remark}` at lines 2208 and 2227 (restored `remark` env balance 30=30). V2-AP40 base leaks healed: `Vol.~I AP47` → `Vol.~I evaluation-generated-core clause` (line 520); `(AP47)` deleted (line 594); `Healed: FM216.` sentence removed (line 625). Chapter is 2227 lines; full linear sweep deferred. AP8/AP25/AP34 hook findings at lines 46, 1498, 1842 are false positives: Vir_{13} IS the c=13 qualifier; section title about bar-cobar adjunction correctly invokes inversion theorem, not bar=bulk.
 - [~] `chapters/connections/ordered_associative_chiral_kd_core.tex` — 2026-04-17 partial: Gate-1 two typo fixes `\end{proposition>` → `\end{proposition}` (line 5127) and `\end{remark>` → `\end{remark}` (line 5180). Post-fix balance clean. V2-AP40 pre-clean (zero prose leaks). 5180-line chapter; full linear sweep deferred.
 - [~] `chapters/connections/dg_shifted_factorization_bridge.tex` — 2026-04-17 partial: Gate-1 typo fix (line 2383 `\end{remark>` → `\end{remark}`) via batch commit 09c62b4. Remark env balance now 20=20. Full linear sweep of 2383-line chapter deferred.
-- [ ] `chapters/connections/thqg_gravitational_yangian.tex`
-- [ ] `chapters/connections/typeA_baxter_rees_theta.tex`
-- [ ] `chapters/connections/shifted_rtt_duality_orthogonal_coideals.tex`
+- [~] `chapters/connections/thqg_gravitational_yangian.tex` — 2026-04-17 partial: Gate-1 typo fix (`\end{xxx>` → `\end{xxx}`) via batch commit 09c62b4. Full linear sweep deferred.
+- [~] `chapters/connections/typeA_baxter_rees_theta.tex` — 2026-04-17 partial: Gate-1 typo fix via batch commit 09c62b4. Full linear sweep deferred.
+- [~] `chapters/connections/shifted_rtt_duality_orthogonal_coideals.tex` — 2026-04-17 partial: Gate-1 typo fix via batch commit 09c62b4. Full linear sweep deferred.
 - [ ] `chapters/connections/casimir_divisor_core_transport.tex`
-- [ ] `chapters/theory/unified_chiral_quantum_group.tex`
-- [ ] `chapters/theory/super_chiral_yangian.tex`
+- [~] `chapters/theory/unified_chiral_quantum_group.tex` — 2026-04-17 partial: Gate-1 typo fix via batch commit 09c62b4. Full linear sweep deferred.
+- [~] `chapters/theory/super_chiral_yangian.tex` — 2026-04-17 partial: Gate-1 typo fix (line 801 `\end{remark>` → `\end{remark}`) via batch commit 09c62b4. Full linear sweep deferred. Noted: author had pre-existing uncommitted prose edits in this file (lines ~735-745 on super-trace vs Berezinian pairings); only the typo fix was taken into the commit.
 
 ## Part III — The Faces of $r(z)$ ($\mathrm{GRT}_1(\Q)$-torsor)
 
@@ -58,7 +58,7 @@ Order follows `main.tex` linear traversal (Part I $\to$ Part VIII $\to$ Conclusi
 - [ ] `chapters/theory/modular_swiss_cheese_operad.tex`
 - [ ] `chapters/theory/curved_dunn_higher_genus.tex`
 - [ ] `chapters/theory/class_m_direct_sum_obstruction_platonic.tex`
-- [ ] `chapters/theory/topologization_class_m_original_complex_platonic.tex`
+- [~] `chapters/theory/topologization_class_m_original_complex_platonic.tex` — 2026-04-17 partial: Gate-1 typo fix via batch commit 09c62b4. Full linear sweep deferred.
 - [ ] `chapters/theory/tempered_stratum_characterization_platonic.tex`
 - [ ] `chapters/theory/wn_tempered_closure_platonic.tex`
 - [ ] `chapters/theory/beta_N_closed_form_all_platonic.tex`
@@ -73,12 +73,12 @@ Order follows `main.tex` linear traversal (Part I $\to$ Part VIII $\to$ Conclusi
 
 - [ ] `chapters/connections/ht_physical_origins.tex`
 - [ ] `chapters/connections/ym_boundary_theory.tex`
-- [ ] `chapters/connections/ym_higher_body_couplings.tex`
+- [~] `chapters/connections/ym_higher_body_couplings.tex` — 2026-04-17 partial: Gate-1 typo fix via batch commit 09c62b4. Full linear sweep deferred.
 - [ ] `chapters/connections/ym_instanton_screening.tex`
 - [ ] `chapters/connections/celestial_holography_core.tex`
 - [ ] `chapters/connections/log_ht_monodromy_core.tex`
-- [ ] `chapters/connections/anomaly_completed_core.tex`
-- [ ] `chapters/connections/thqg_holographic_reconstruction.tex`
+- [~] `chapters/connections/anomaly_completed_core.tex` — 2026-04-17 partial: Gate-1 typo fix via batch commit 09c62b4. Full linear sweep deferred.
+- [~] `chapters/connections/thqg_holographic_reconstruction.tex` — 2026-04-17 partial: Gate-1 typo fix via batch commit 09c62b4. Full linear sweep deferred.
 - [ ] `chapters/connections/thqg_modular_bootstrap.tex`
 - [ ] `chapters/connections/holomorphic_topological.tex`
 - [ ] `chapters/connections/feynman_diagrams.tex`
@@ -94,14 +94,14 @@ Order follows `main.tex` linear traversal (Part I $\to$ Part VIII $\to$ Conclusi
 - [ ] `chapters/connections/w_infty_e_infty_endpoint_platonic.tex`
 - [ ] `chapters/connections/programme_climax_platonic.tex`
 - [ ] `chapters/connections/thqg_3d_gravity_movements_vi_x.tex`
-- [ ] `chapters/connections/thqg_critical_string_dichotomy.tex`
-- [ ] `chapters/connections/thqg_perturbative_finiteness.tex`
+- [~] `chapters/connections/thqg_critical_string_dichotomy.tex` — 2026-04-17 partial: Gate-1 typo fix via batch commit 09c62b4. Full linear sweep deferred.
+- [~] `chapters/connections/thqg_perturbative_finiteness.tex` — 2026-04-17 partial: Gate-1 typo fix via batch commit 09c62b4. Full linear sweep deferred.
 - [ ] `chapters/connections/thqg_soft_graviton_theorems.tex`
 - [ ] `chapters/connections/thqg_symplectic_polarization.tex`
 - [ ] `chapters/theory/chiral_higher_deligne.tex`
 - [ ] `chapters/connections/universal_holography_functor.tex`
 - [ ] `chapters/connections/universal_celestial_holography.tex`
-- [ ] `chapters/connections/celestial_moonshine_bridge.tex`
+- [~] `chapters/connections/celestial_moonshine_bridge.tex` — 2026-04-17 partial: Gate-1 three typo fixes (`\end{remark>` → `\end{remark}` at lines 339, 617, 631) via batch commit 09c62b4. Full linear sweep deferred.
 - [ ] `chapters/connections/soft_graviton_mellin_shadow_bridge_platonic.tex`
 - [ ] `chapters/connections/monster_chain_level_e3_top_platonic.tex`
 - [ ] `chapters/connections/schellekens_71_alpha_classification_platonic.tex`
