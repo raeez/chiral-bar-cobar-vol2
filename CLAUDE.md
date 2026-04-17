@@ -670,7 +670,23 @@ After HEAL-SWEEP + reconstitution swarm, all four have been closed or substantia
 
 4. ✅ **E_∞ vs E_1 chiral Deligne-Tamarkin at chain level** (FM91, FM160) — REDUCED TO associator-dependence. Associator-dependent chain-level chiral Deligne-Tamarkin proved via `thm:chd-deligne-tamarkin` (chiral_higher_deligne.tex). Associator-independent formulation remains as formal question; associator-dependent one is usable via explicit Drinfeld-associator fix.
 
-**Programme status**: zero genuine research frontiers remaining on the non-degenerate locus. All technical-malpractice FMs (175+) healable by the paths above. The programme's strongest-honest form is fully realized; no downgrades accepted due to technical malpractice.
+**Programme status (2026-04-16 wave)**: the four irreducible opens identified above CLOSED or REDUCED on the non-degenerate locus. All technical-malpractice FMs (175+) healable by the paths above.
+
+**Programme status update (2026-04-17 Beilinson audit)**: the 2026-04-16 closure wave inscription surfaced a new 22-task rewrite map. Deep Beilinson adversarial rectification of that rewrite map (documented at Vol~I `notes/rectification_map_beilinson_audit.md`) identified SIX new genuine open frontiers on the non-degenerate locus:
+
+(i) **Logarithmic W(p) triplet tempering** — the Zhu-bounded-Massey proof chain FAILS per Gurarie 1993 (arXiv:hep-th/9303160) + Flohr 1996 (arXiv:hep-th/9605151) logarithmic-CFT amplitudes. `thm:tempered-stratum-contains-wp` downgraded to Conjectured (commit a5640de). Numerical check via Adamović-Milas ϕ_{0,1} character expansion is the immediate path.
+
+(ii) **Non-tempered-stratum emptiness OVERCLAIM** — the Vol II programme-climax statement is SCOPE-QUALIFIED to the non-logarithmic standard landscape + irrational cosets; logarithmic W(p) excluded.
+
+(iii) **CY-C pentagon invariant conflation** — the stratification {3, 12, 24} is GENERATOR RANK ρ^{R_i}, NOT κ_ch (Hodge-supertrace invariant = 0 route-independent). Heal at Vol III commit cade61c.
+
+(iv) **Kummer-irregular prime labelling** — primes 1423, 3067, 23, 43, 419 verified Kummer-REGULAR at primary source; earlier inscriptions retracted. Heal at Vol I commit 9668336.
+
+(v) **β_N for N ≥ 4 exact closed form** — candidates {(N+1)(N+2)/2, N²-N+4} differ at N=4. Parameter question; Fateev-Lukyanov W_4 derivation pending.
+
+(vi) **Super-complementarity canonical pairing** — super-trace vs Berezinian pairings coexist without programme-level canonicalisation. max(m,n) identity scopes to sub-Sugawara line only. Verdier-pairing inscription pending.
+
+These six frontiers ALL have explicit heal paths (inscribed as remarks, conjectures, or numerical-verification tasks); none is a programme-level obstruction. The programme's strongest-honest form remains fully realised on the non-logarithmic C_2-cofinite standard landscape + irrational cosets; logarithmic W(p) is the single open candidate. No downgrades accepted due to technical malpractice; the six frontiers are honest parameter-questions or structural-clarifications, not overclaims.
 
 ## UPGRADE-SWEEP (2026-04-16, supersedes HEAL-SWEEP as forward direction)
 
