@@ -62,7 +62,6 @@ Let $\Omega^\bullet_{\log}(\FM_n(\C))$ denote the complex of differential forms 
 where $\alpha, \beta$ extend smoothly to $\varepsilon_S = 0$.
 \end{definition}
 
-Logarithmic forms encode the pole structures arising from operator collisions in configuration space integrals.
 
 \begin{definition}[Residue Operator]
 \label{def:residue_operator}
@@ -77,7 +76,6 @@ by writing $\omega = d\log\varepsilon_S \wedge \beta + \alpha$ with $\alpha, \be
 This extracts the coefficient of the logarithmic $1$-form $d\log\varepsilon_S = d\varepsilon_S/\varepsilon_S$, not the naive contraction $\iota_{\partial_{\varepsilon_S}}\omega|_{D_S}$ (which diverges for logarithmic forms).
 \end{definition}
 
-The residue operator extracts the singular part of a form as points collide.
 
 \subsubsection{Construction of the Chiral Operad}
 
@@ -118,10 +116,18 @@ integration along the dilation direction~$\R_{>0}$.
 The chiral operad $\cP^{\mathrm{ch}}$ encodes the operadic structure underlying vertex algebras, including configuration space geometry. The completion and spectral parameters implement the formal calculus of $\lambda$-brackets.
 \end{remark}
 
-\subsection{Introducing the 2-colored Swiss--cheese operad and its algebras: Model category and operadic conventions}
+\subsection{The Two-Colored Operad: Ambient Conventions}
 \label{sec:SC-operad-foundations}
 
-We work in a presentable, stable, symmetric monoidal dg-category $(\mathcal C,\otimes,\mathbf 1)$ (e.g.\ $\mathrm{Ch}_k$ for a field $k$ of char $0$), with $\otimes$ exact and preserving colimits in each variable.
+The chiral operad $\cP^{\mathrm{ch}}$ of
+\S\ref{sec:chiral_operad} governs holomorphic collisions alone. To
+couple it to an ordered topological direction we must specify the
+target dg-category in which our operads act, and the
+topological-to-algebraic functor that converts spaces of
+configurations into chain-level operations. Both are standard and
+are fixed once for the remainder of the chapter.
+
+We work in a presentable, stable, symmetric monoidal dg-category $(\mathcal C,\otimes,\mathbf 1)$ (e.g.\ $\mathrm{Ch}_k$ for a field $k$ of characteristic zero), with $\otimes$ exact and preserving colimits in each variable.
 Topological operads $O$ are replaced by dg-operads $C_\ast(O)$ via singular chains (or de Rham forms if convenient); we silently identify these.
 
 \begin{notation}
@@ -129,10 +135,18 @@ Topological operads $O$ are replaced by dg-operads $C_\ast(O)$ via singular chai
 Let $\FM_k(\C)$ denote the Fulton--MacPherson compactification of $\Conf_k(\C)$; let $E_1(m)$ be the little-intervals operad. We set $C_\ast(\FM_k(\C))$ and $C_\ast(E_1(m))$ for their chains.
 \end{notation}
 
-\subsection{Definition of the 2-colored operad $\mathsf{SC}^{\mathrm{ch,top}}$}
+\subsection{The Two-Colored Operad $\mathsf{SC}^{\mathrm{ch,top}}$}
 \label{subsec:sc-def}
 
-The locality theory underlying the operad of Section~\ref{subsec:SC-operad} may be taken as an equivalent primary reference.
+An HT observable lives on a rectangle $D \times I \subset \C \times
+\R$: holomorphic in the $\C$-factor and locally constant in the
+$\R$-factor. Its operations must therefore compose configurations
+in both factors while respecting the directionality of the coupling
+(collision data flows from $\C$ to $\R$, not the reverse). The
+two-colored operad encoding exactly this content is built
+componentwise from $\FM_k(\C)$ and $E_1(m)$, with the
+no-open-to-closed rule imposed by setting the would-be
+ch-producing mixed operations to the empty space.
 
 \begin{definition}[Colors and spaces of operations]
 \label{def:SC}
@@ -174,11 +188,16 @@ satisfying operadic identities. The \emph{homotopy} notion is defined via the Bo
 The $W$–resolution equips trees indexing compositional patterns with edge-length parameters, turning strict equalities into explicit higher homotopies. This is the standard device to encode $A_\infty$/$E_1$ coherence in the operadic setting.
 \end{remark}
 
-\subsection{Comparison with BD chiral operad on the closed color}
+\subsection{Closed-Color Comparison with the BD Chiral Operad}
 \label{subsec:BD-compare}
+
+Beilinson--Drinfeld construct the chiral operad $\mathsf P_{\mathrm{ch}}$ abstractly, via $\ast$-operations on $D$-modules on powers of the curve~\cite[\S3.4]{BD04}. Our construction builds the closed color of $\SCchtop$ concretely, from logarithmic forms on the FM compactification. The two must agree up to quasi-isomorphism; the comparison proceeds through the Ran space.
+
+For the statement, let $\mathscr L_{\log}$ denote the \emph{logarithmic local system} on $\FM_n(\C)$: the $\Z$-graded constructible system whose stalk over a boundary divisor $D_S$ records the $d\log\varepsilon_S$-pole data encoded by the residue operator (Definition~\ref{def:residue_operator}), with monodromy recording the chiral OPE residues.
+
 \begin{theorem}[Closed color comparison; \ClaimStatusProvedHere]
 \label{thm:closed-BD}
-There exists a zigzag of quasi-isomorphisms of operads between the BD chiral operad $\mathsf P_{\mathrm{ch}}$ and the dg-operad $C_\ast(\FM_\bullet(\C);\mathscr L_{\log})$ of chains on $\FM_\bullet(\C)$ with appropriate logarithmic local systems. Hence, restricting $W(\mathsf{SC}^{\mathrm{ch,top}})$ to the closed color recovers $\mathsf P_{\mathrm{ch}}$ up to weak equivalence.
+There exists a zigzag of quasi-isomorphisms of operads between the BD chiral operad $\mathsf P_{\mathrm{ch}}$ and the dg-operad $C_\ast(\FM_\bullet(\C);\mathscr L_{\log})$ of chains on $\FM_\bullet(\C)$ with logarithmic local system $\mathscr L_{\log}$. Hence, restricting $W(\mathsf{SC}^{\mathrm{ch,top}})$ to the closed color recovers $\mathsf P_{\mathrm{ch}}$ up to weak equivalence.
 \end{theorem}
 
 \begin{proof}
@@ -216,15 +235,30 @@ C_\ast(\FM_\bullet(\C);\mathscr{L}_{\log}) \;\simeq\; \mathsf{P}_{\mathrm{ch}}.
 Since restricting $\SCchtop$ to the closed color $\mathsf{ch}$ yields precisely the operad with $n$th component $\FM_n(\C)$ (Definition~\ref{def:SC}), and the Boardman--Vogt resolution $W(-)$ preserves weak equivalences of well-pointed $\Sigma$-cofibrant operads, restricting $W(\SCchtop)$ to the closed color recovers $\mathsf{P}_{\mathrm{ch}}$ up to weak equivalence.
 \end{proof}
 
-\subsection{Equivalence with HT prefactorization algebras}
+\subsection{Recognition: HT Prefactorization $\Leftrightarrow$ $W(\SCchtop)$-Algebra}
 \label{subsec:SC-vs-prefactorization}
+
+The closed-color comparison handles holomorphic data alone. A
+3d HT observable has two colors coupled: holomorphic along
+$\C$, topological along $\R$, with OPE residues flowing from bulk
+to boundary. To get a local-to-global principle that sees both
+colors we work directly with observables on rectangles
+$D \times I \subset \C \times \R$ and show that their algebra of
+decompositions is exactly the operadic algebra structure prescribed
+by $W(\SCchtop)$.
+
 \begin{definition}[HT prefactorization]
 \label{def:prefact}
 A \emph{holomorphic--topological prefactorization algebra} on $\C\times\R$ is a functor $\Obs$ from disjoint unions of open rectangles $D\times I$ to $\mathcal C$, with structure maps $\bigotimes\Obs(U_i)\to \Obs(\bigsqcup U_i)$, satisfying: holomorphic factorization along~$\C$, local constancy along~$\R$, and excision/gluing coherent with shape composition.
 \end{definition}
 
-HT prefactorization algebras on rectangles extend to full operadic
-algebra structures by Weiss cosheaf descent:
+The assignment $U \mapsto \Obs(U)$ is defined only on rectangles.
+To extract the full operadic structure one needs a descent principle
+that propagates the rectangle data to arbitrary opens. Weiss cosheaf
+descent is the correct principle: it is tailored exactly to the
+factorization axiom (cover by opens that see every finite
+configuration), and for product manifolds it factors along each
+factor.
 
 \begin{definition}[Weiss covers and cosheaf descent]
 \label{def:weiss-cover}
@@ -551,14 +585,12 @@ $N$-weighted 't~Hooft sums.
 \end{remark}
 
 \begin{remark}[HT locality and the universal-holography climax]
-\label{rem:locality-wave14-anchor}%
+\label{rem:locality-holography-anchor}%
 \index{HT locality!universal-holography anchor}%
-\index{Wave 14!HT locality anchor}%
 The HT prefactorization recognition theorem
 (Theorem~\ref{thm:recognition-SC}) is the local-to-global engine
 behind the universal-holography master theorem
-\textsf{thm:universal-holography-master} (Volume~II,
-\textsf{programme\_climax\_platonic.tex}). The product Weiss
+(Theorem~\ref{thm:universal-holography-master}). The product Weiss
 descent (Lemma~\ref{lem:product-weiss-descent}) decouples
 holomorphic locality on $\C$ from $\Eone$-topological local
 constancy on $\R$ at the prefactorization-data level; the
@@ -566,25 +598,24 @@ recognition theorem assembles the two factors via the
 Boardman--Vogt resolution of $\SCchtop$, producing a
 $C_*(W(\SCchtop))$-algebra structure on the boundary observables.
 For an algebra $\cA$ with conformal vector at non-critical level,
-the resulting $\SCchtop$-algebra topologizes (via Sugawara
-$T(z) = [Q_{\mathrm{tot}}, G(z)]$, making $\C$-translations
+the resulting $\SCchtop$-algebra topologizes via Sugawara
+$T(z) = [Q_{\mathrm{tot}}, G(z)]$ (making $\C$-translations
 $Q$-exact) to an $E_3$-topological factorization algebra on
 $\C \times \R$; this is the local content of the climax bulk
 identification
 $\Obs^{\mathrm{bulk}}(T_\cA) \simeq \cZ^{\mathrm{der}}_{\mathrm{ch}}(\cA)$.
 At critical level $k = -h^\vee$ the Sugawara construction
 degenerates, topologization fails, and the $\SCchtop$ algebra
-remains in the generic regime: this is the FF stratum of the
-infinite-fingerprint classification
-(\textsf{infinite\_fingerprint\_classification.tex}, $\kappa = 0$).
-The directionality guard $\SCchtop \neq E_3$ (AP163, AP167)
-is enforced throughout: the present recognition theorem produces
-$\SCchtop$ structure, never $E_3$ structure directly; the
-topologization step is a separate theorem with explicit
-hypotheses (conformal vector + non-critical level + chain-level
-$Q$-exactness witness, proved for affine KM at non-critical level
-in \textsf{thm:E3-topological-km}; conjectural for general
-chiral algebras with conformal vector;
-chain-level for class M in the weight-completed category via
-\textsf{thm:programme-climax}).
+remains in the generic regime: the Feigin--Frenkel stratum of the
+infinite-fingerprint classification, $\kappa = 0$.
+The directionality $\SCchtop \neq E_3$ is enforced throughout: the
+present recognition theorem produces $\SCchtop$ structure, never
+$E_3$ structure directly; the topologization step is a separate
+theorem with explicit hypotheses (conformal vector, non-critical
+level, chain-level $Q$-exactness witness), proved for affine
+Kac--Moody at non-critical level in
+Theorem~\ref{thm:E3-topological-km}, conjectural for general
+chiral algebras with conformal vector, and chain-level for class
+M in the weight-completed category via
+Theorem~\ref{thm:programme-climax}.
 \end{remark}
