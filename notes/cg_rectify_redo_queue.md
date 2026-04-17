@@ -23,7 +23,7 @@ Order follows `main.tex` linear traversal (Part I $\to$ Part VIII $\to$ Conclusi
 
 ## Part II — The $E_1$ Core
 
-- [ ] `chapters/connections/bar-cobar-review.tex`
+- [~] `chapters/connections/bar-cobar-review.tex` — 2026-04-17 partial: Gate-1 structural typo `\end{remark>` → `\end{remark}` at line 83 (same pattern as factorization_swiss_cheese, pva-descent). V2-AP40d subsection-title leak `AP128 cross-term universality` at line 4252 retitled `Miura cross-term universality` (+ accompanying `\label{subsec:...ap128...}` → `\label{subsec:...miura...}`, `\label{prop:...ap128...}` → `\label{prop:...miura...}`). Legitimate `\cite{FM94}` bibkey preserved (explicit CLAUDE.md V2-AP40 exception). Post-fix balance now 225=225 with all envs matched. **RESUME-FROM: full Phase-3 linear sweep of 4320-line chapter deferred**. AP24 hook at lines 786, 3922 are false positives (κ+κ'=0 correctly scoped to affine lineage at 3921-3923, contrasted with W-algebras where sum ≠ 0). AP-OC hook at line 1374 is false positive (prose correctly asserts SC^{ch,top} does NOT live on bar(A)).
 - [ ] `chapters/connections/line-operators.tex`
 - [ ] `chapters/connections/ordered_associative_chiral_kd_core.tex`
 - [ ] `chapters/connections/dg_shifted_factorization_bridge.tex`
