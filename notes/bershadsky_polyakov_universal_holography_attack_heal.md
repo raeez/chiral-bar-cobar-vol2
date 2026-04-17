@@ -154,13 +154,15 @@ The sharp statement: Universal Holography Phi_hol extends to BP as
     Phi_hol(BP_k) = (Z^{der}_{ch}(BP_k), BP_k)
 
 as a PAIR (bulk, boundary) in the SC^{ch,top} framework, with
+**RETRACTED 2026-04-17** (η_1 antighost-contact strict-chain-level claims downgraded to cohomological H^•(Q_tot) per rem:frontier-class-L-strict-chain-level at e_infinity_topologization.tex:382-411):
 STRICT chain-level E_3-topological structure on Z^{der}_{ch}(BP_k)
 on the ORIGINAL BRST complex, valid for all k != -3, unconditional.
 
 Mechanism (three independent ingredients):
   1. Degree-2 branched cover pi: X-tilde -> X integralises the
      Kazhdan (1/2)-grading.
-  2. Upstairs V_k(sl_3) is class L; Vol I's class-L strict chain-level
+  2. **RETRACTED 2026-04-17** (η_1 antighost-contact strict-chain-level claims downgraded to cohomological H^•(Q_tot) per rem:frontier-class-L-strict-chain-level at e_infinity_topologization.tex:382-411):
+     Upstairs V_k(sl_3) is class L; Vol I's class-L strict chain-level
      antighost absorption applies verbatim.
   3. Galois Z/2 descent via Maschke-exact invariants preserves
      chain-level identities (not only cohomological).
@@ -178,6 +180,7 @@ exists for BP in the FKR normalisation.
 
 ## 4. Deliverable Verdict
 
+**RETRACTED 2026-04-17** (η_1 antighost-contact strict-chain-level claims downgraded to cohomological H^•(Q_tot) per rem:frontier-class-L-strict-chain-level at e_infinity_topologization.tex:382-411):
 Universal Holography is UNCONDITIONAL at BP (class-L upstairs +
 Maschke descent = strict chain-level E_3-top), provided:
   - the FKR central-charge formula is the one used consistently,
@@ -205,6 +208,7 @@ pass restores consistency).
 
 ## 5. Under-200-word Report
 
+**RETRACTED 2026-04-17** (η_1 antighost-contact strict-chain-level claims downgraded to cohomological H^•(Q_tot) per rem:frontier-class-L-strict-chain-level at e_infinity_topologization.tex:382-411):
 Universal Holography IS unconditional at BP on the ORIGINAL BRST
 complex. Mechanism: degree-2 Kummer cover integralises the Kazhdan
 (1/2)-grading; upstairs V_k(sl_3) is class L; Vol I's class-L antighost
