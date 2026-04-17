@@ -213,12 +213,30 @@ Coverage snapshot (2026-04-16): Vol I 0/2275; Vol II 0/1134; Vol III 2/283. Clos
 - **V2-AP37**: Arakelov form normalisation. Canonical: omega_1 = i/(2 Im(tau)) dz∧dz-bar (integral=1). Arakelov kernel: omega_Ar = -(π/Im(tau)) dz∧dz-bar (integral=-1). **omega_1 = -omega_Ar/(2π)**. Same error fixed THREE times. Verify fundamental-domain integral before writing.
 - **V2-AP38**: Phantom label retirement. After chapter migration, track each phantom with retirement path. 366 phantoms across 2 commits after Vol I → Vol II migration.
 - **V2-AP39**: Macro portability. After migrating chapter Vol I → Vol II: compile, grep for "Undefined control sequence", add `\providecommand` for each. 7 macros needed adding across 2 commits. Never assume Vol I macros available.
-- **V2-AP40**: Session-meta leaks into reader-facing prose. Author-side bookkeeping tokens — AP identifiers (AP25/AP136/AP-CY166/V2-AP33/...), FM identifiers (FM11/FM21/FM34a/...), session codes (C4, B18, C9, HZ-4, RS-9), commit hashes (`commit \texttt{a5640de}`), meta-stamps ("Beilinson-rectified 2026-04-17", ",NEW" tag), working-note labels (`\texttt{thm:theoremC-total-shifted-symplectic}`), "(cached confusion \#15)" — MUST NOT appear in the preface, introduction, or any chapter prose. The error ledger (this file + first_principles_cache.md) is the ledger; .tex prose is mathematics. Mechanical grep after any session that edits prose:
+- **V2-AP40**: **NO ANTIPATTERN TAGS OR METADATA LEAKAGE INTO THE MANUSCRIPT OR STANDALONE PAPERS PROPER.** (Author directive, 2026-04-17.) Author-side bookkeeping tokens MUST NOT appear in any `.tex` file that compiles into the monograph PDF or any standalone paper PDF. This covers, at minimum:
+  - **AP identifiers**: `AP\d+`, `V2-AP\d+`, `AP-CY\d+`, `AP-OC`, `AP-RMATRIX`, `AP-SC-NOT-SELFDUAL`, `AP-SC-BAR`, named APs (`MP1`, `HZ-\d+`, etc.).
+  - **FM identifiers**: `FM\d+` (EXCEPT the bibkey `\cite{FM94}` = Fulton-MacPherson 1994, and the math-object subscript `$\FM_n(\C)$`).
+  - **Session codes**: `C\d+:`, `B\d+:`, `C4`, `B18`, `C9`, `HZ-\d+`, `RS-\d+`, `W\d+`, `WAVE-\d+`, `AAP`.
+  - **Commit hashes**: `commit \texttt{<sha>}`, naked 7-40 hex SHAs in prose.
+  - **Meta-stamps**: `Beilinson-rectified`, `HEAL-SWEEP`, `HEAL-MODE`, `UPGRADE-SWEEP`, `Platonic reconstitution` (as session event, not as a theorem), `PLATONIC ANCHOR BLOCK`, `(cached confusion \#\d+)`, `, NEW` tags on Part/Section headers.
+  - **Working-note labels**: `working note \texttt{...}` references to author-side drafts.
+  - **Session dates in body prose**: `2026-04-\d\d` or similar unless quoting a published paper's year.
+  - **Visible-label leaks**: `\texttt{(thm|prop|lem|def|cor|rem|conj):...}` where `\ref{...}` or `\cref{...}` was intended.
+  - **Error-ledger structures inside the manuscript**: `\begin{remark}[AP###: ...]`, `\label{rem:AP###-...}`, `\index{AP###!...}`, `\hyperref[AP##]{AP##}`, `\section{Anti-pattern register: ...}`, `\begin{convention}[AP###: ...]`, or enumerated `\item \textbf{FM###.}` catalogue pages. Sections, labels, indices, hyperrefs, and conventions must not be named after ledger tokens.
+
+  **Scope**: every `.tex` file under `chapters/`, every standalone in `standalone/`, every frontier/preface/appendix file that is `\input{}`-chained from `main.tex` or is itself a buildable document. Excluded: `.md` files (CLAUDE.md, README, AGENTS.md, `appendices/first_principles_cache.md`, `notes/`), files under `compute/`/`audit/`, and `working_notes.tex` (author-side draft not shipped).
+
+  **The error ledger** (this file, `CLAUDE.md`, and `appendices/first_principles_cache.md`) is where AP/FM tokens live. `.tex` prose is mathematics. A reader of the compiled PDF should never encounter "AP165", "FM81", or `commit \texttt{a5640de}`.
+
+  **Mechanical detection grep** (run against `chapters/` and `standalone/` before every `.tex` commit):
   ```
-  grep -nE 'AP[0-9]+|FM[0-9]+|\(AP-CY[0-9]+|commit \\texttt|cached confusion|Beilinson-rectified|working note|RS-[0-9]|HZ-[0-9]|\bC[0-9]+:|\bB[0-9]+:' chapters/
+  grep -nE 'AP[0-9]+|FM[0-9]+|\(AP-CY[0-9]+|commit \\texttt|cached confusion|Beilinson-rectified|working note|RS-[0-9]|HZ-[0-9]|\bC[0-9]+:|\bB[0-9]+:|AP-RMATRIX|AP-OC|HEAL-(SWEEP|MODE)|UPGRADE-SWEEP|PLATONIC ANCHOR|WAVE-[0-9]+' chapters/ standalone/
   ```
-  Zero tolerance at chunk convergence. Every `\texttt{label:foo}` visible-label reference is either a \ref (use it) or a hook to a non-existent label (delete or create the anchor). 17 chunks of the Vol II preface carried 30+ such leaks (session 2026-04-17); all surgically removed with prose restated declaratively.
-  **Counter at write time**: before committing a chunk, run the grep above against the file; if any match, restate the content as a declarative mathematical sentence that carries the substance of the AP/FM pointer without the pointer itself. "The correct expression is H_N − 1, not H_{N−1}, since H_{N−1} ≠ H_N − 1 in general" beats "(C4: at N=2, H_2−1=1/2 recovers κ=c/2, not H_{N−1}; AP136)". The reader should never need to consult the error ledger to parse a sentence.
+  Also grep for `\\texttt\{(thm|prop|lem|def|cor|rem|conj):` (visible-label leaks) and `2026-0[1-9]-[0-3][0-9]` (session dates in body, excluding `\cite` contexts).
+
+  **Counter at write time**: before committing a chunk, run the greps above. If any match that is not a bib citation (`\cite{FM94}`) or a math-mode subscript (`$\FM_k$`), restate the content as a declarative mathematical sentence carrying the substance of the ledger token without the token itself. "The correct expression is $H_N - 1$, not $H_{N-1}$, since $H_{N-1} \ne H_N - 1$ in general" beats "(C4: at $N=2$, $H_2-1=1/2$ recovers $\kappa=c/2$, not $H_{N-1}$; AP136)". "The curvature is Cartan-current $Q_{\mathrm{CS}}$-exact in the 3d bulk regardless of the nilpotent orbit (\\ref{thm:E3-topological-DS-general})" beats "(FM57; AP143)". The reader should never need to consult the error ledger to parse a sentence.
+
+  **Session evidence**: Vol II preface chunks 41-57 removed 30+ leaks (2026-04-17). Vol II introduction chunk-58 pass removed 17 more. A comprehensive audit 2026-04-17 identified ~530 additional leaks across 58 chapter/connection/standalone files — a systemic registry-leak pattern from earlier error-cataloguing work that embedded AP/FM tokens into theorem decorators, section titles, index entries, and hyperrefs. All require surgical rectification. Until that sweep completes, V2-AP40 remains the single most cross-file-violated invariant in the manuscript proper.
 
 ### Structural/Scope APs (AP150-AP158)
 
