@@ -93,6 +93,10 @@ VOLUME MUST: (1) present SC^{ch,top} concretely (Parts I-IV); (2) prove the pent
 
 Algebraic framework unconditional. (H1)-(H4) no longer axioms: (H1)-(H2) conditions of physics bridge theorem, (H3) theorem of config space geometry, (H4) recognition theorem (proved). Homotopy-Koszulity of SC^{ch,top}: PROVED (Kontsevich formality + transfer).
 
+## Scope of `/chriss-ginzburg-rectify` (author directive, 2026-04-17)
+
+**When the user invokes `/chriss-ginzburg-rectify` on a chapter or standalone, the ENTIRE file must be analysed, chunk by chunk, linearly progressing from start to finish, with SMALL CHUNK SIZE (50-100 lines).** No abbreviation of the pass. The skill's five-phase programme (global diagnostic, Platonic restructuring, linear reconstitution loop with five gates, parallel re-audit, final convergence) applies to every chunk in file order. A V2-AP40 sweep is a necessary subset of Gate 5 but NOT a substitute for Gates 1-4 (mathematical truth, define-before-use, concept motivation, physical realization) and NOT a substitute for the linear chunk sweep across the whole file. Skipping to "the leak sites" or "the obvious chunks" is a shortcut the directive forbids. The loop discipline is the load-bearing element: every chunk passes all five gates before the cursor advances.
+
 ## Independent Verification Protocol (cross-volume, 2026-04-16)
 
 **STANDALONE.** Motivated by the 2026-04-16 Vol III adversarial audit finding `\ClaimStatusProvedHere` theorems backed by tautological tests (engines hardcoded `FRAME_SHAPE_DATA[N] = (weight, c_0, ...)` with verified identity `weight := c_0/2` built into the row; "99-test cross-validation" = `Fraction(10,2)==5` against the same table). Failure propagates: tex paraphrase → hardcoded engine target → arithmetic-identity test → CLAUDE.md paraphrase → next session reads CLAUDE.md not .tex. Rules ("always verify", "never hardcode") proved ineffective. Protocol is a mechanical invariant.
