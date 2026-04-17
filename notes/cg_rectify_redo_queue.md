@@ -30,7 +30,7 @@ Order follows `main.tex` linear traversal (Part I $\to$ Part VIII $\to$ Conclusi
 - [~] `chapters/connections/thqg_gravitational_yangian.tex` — 2026-04-17 partial: Gate-1 typo fix (`\end{xxx>` → `\end{xxx}`) via batch commit 09c62b4. Full linear sweep deferred.
 - [~] `chapters/connections/typeA_baxter_rees_theta.tex` — 2026-04-17 partial: Gate-1 typo fix via batch commit 09c62b4. Full linear sweep deferred.
 - [~] `chapters/connections/shifted_rtt_duality_orthogonal_coideals.tex` — 2026-04-17 partial: Gate-1 typo fix via batch commit 09c62b4. Full linear sweep deferred.
-- [ ] `chapters/connections/casimir_divisor_core_transport.tex`
+- [x] `chapters/connections/casimir_divisor_core_transport.tex` — 2026-04-17: CONVERGED on first look, zero edits. Opens with "The first-principles problem" — the spectral discriminant Δ_A as decategorified shadow, and the cyclic k[t]-module cut out by its reversed polynomial as the correct algebraic transport object. Universal cyclic transport object M(p) = k[t]/(p) with universal property correctly stated and proof-tagged. Balance 99=99, zero V2-AP40 leaks.
 - [~] `chapters/theory/unified_chiral_quantum_group.tex` — 2026-04-17 partial: Gate-1 typo fix via batch commit 09c62b4. Full linear sweep deferred.
 - [~] `chapters/theory/super_chiral_yangian.tex` — 2026-04-17 partial: Gate-1 typo fix (line 801 `\end{remark>` → `\end{remark}`) via batch commit 09c62b4. Full linear sweep deferred. Noted: author had pre-existing uncommitted prose edits in this file (lines ~735-745 on super-trace vs Berezinian pairings); only the typo fix was taken into the commit.
 
