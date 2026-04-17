@@ -83,7 +83,7 @@ Order follows `main.tex` linear traversal (Part I $\to$ Part VIII $\to$ Conclusi
 - [x] `chapters/connections/holomorphic_topological.tex` — 2026-04-17: diagnostic converged, balance OK, zero V2-AP40 leaks (1452 lines).
 - [x] `chapters/connections/feynman_diagrams.tex` — 2026-04-17: diagnostic converged, balance OK, zero V2-AP40 leaks (1142 lines).
 - [x] `chapters/connections/feynman_connection.tex` — 2026-04-17: diagnostic converged, balance OK, zero V2-AP40 leaks (211 lines).
-- [~] `chapters/connections/bv_brst.tex` — 2026-04-17 partial: balance OK, zero V2-AP40 leaks (2712 lines); full linear sweep deferred.
+- [x] `chapters/connections/bv_brst.tex` — 2026-04-17: Phase-3 sweep this tick healed 3 V2-AP40e compute-filename leaks: `heisenberg\_bv\_bar\_proof.py` → prose "Heisenberg BV/bar-proof engine"; `compute/lib/burns\_space\_koszul\_datum\_engine.py` + `compute/tests/test\_theorem\_burns\_f2\_engine.py` → prose "Volume~II Burns-space Koszul-datum engine and its associated Theorem-Burns-$F_2$ test module". Post-sweep: 2711 lines, balance 123=123, 22 sections, zero V2-AP40 tokens. AP24 hook warnings on lines 859/1167/1174 all correctly scoped (Heisenberg sum=0, affine KM Sugawara-complement sum=0, Virasoro sum=13 $\neq 0$) — false positives.
 
 ## Part VI — Three-Dimensional Quantum Gravity
 
