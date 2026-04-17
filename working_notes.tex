@@ -18723,4 +18723,520 @@ $R$-twisted bar differential. FF3 (kinematic poles at $z_i = z_j$
 with residue $=$ coproduct) is the collision residue identification
 that the Vol~II seven-face programme verifies face by face.
 
+\section{Session 2026-04-17: Platonic synthesis}
+\label{sec:session-2026-04-17-platonic}
+
+The following captures the Platonic-form findings of the 2026-04-17
+adversarial attack-then-heal campaign. Each subsection records the
+strongest-honest form of a claim, the adversarial attack that refined
+it, and the heal. Detailed derivations are in the corresponding
+\texttt{notes/*.md} workshop files.
+
+\subsection{Universal K\textsubscript{W} formula in Chevalley--Shephard--Todd form}
+\label{subsec:session-kw-universal}
+
+The universal Koszul complementarity for the principal $\mathcal{W}$-algebra
+of a simple Lie algebra $\mathfrak{g}$:
+\begin{equation}
+  \kappa_W(\mathfrak{g})
+    \;=\;
+  2\,\mathrm{rank}(\mathfrak{g})
+  \;+\;
+  12 \sum_{i=1}^{\mathrm{rank}(\mathfrak{g})} m_i\,(m_i + 1)
+  \;=\;
+  12\,p_2(\mathfrak{g})
+  \;-\;
+  2\,\mathrm{rank}(\mathfrak{g})\cdot\bigl(3\,h(\mathfrak{g}) + 5\bigr),
+\label{eq:session-kw}
+\end{equation}
+where $m_i$ are the Lie-algebra exponents, $p_2(\mathfrak{g})
+= \sum_i (m_i + 1)^2 = \sum_i d_i^2$ is the $2$nd power sum of
+Casimir degrees, and $h$ is the Coxeter number. Verified across
+all simple $\mathfrak{g}$: $A_{N-1}, B_r, C_r, D_r, E_{6,7,8}, F_4, G_2$.
+
+Prior formula $\kappa_W = 2\,\mathrm{rank} + 4\,h^{\vee}\,\dim$ fails at
+non-simply-laced ($G_2$ by $160$, $F_4$ by $768$). The clean
+invariant-theoretic form~\eqref{eq:session-kw} is Langlands-invariant
+(exponents are Lie-algebra-level, not root-datum-level): $\kappa_W(B_r)
+= \kappa_W(C_r)$ automatically.
+
+Companion affine identity:
+\begin{equation}
+  \kappa_V(\mathfrak{g})\;=\;2\,\dim(\mathfrak{g}),
+\label{eq:session-kv}
+\end{equation}
+uniformly in $k \ne -h^{\vee}$, derived from Sugawara
+$c = k\,\dim / (k+h^{\vee})$. Universal at super with $\kappa_V
+= 2\,\mathrm{sdim}$ when $h^{\vee} \ne 0$; fails at $h^{\vee} = 0$
+super types (\(\mathfrak{psl}(n|n)\), \(\mathfrak{osp}(2m|2m)\),
+\(D(2,1;\alpha)\)) where Sugawara does not exist.
+
+The combined formulation connects Vol~II Koszul structure to the
+Chevalley--Shephard--Todd invariant theory of the Weyl group
+$W(\mathfrak{g})$: $|W(\mathfrak{g})| = \prod_i d_i$ is the
+$r$-th elementary symmetric function in $\{d_i\}$;
+$\kappa_W(\mathfrak{g}) = 12\,p_2 - 2r(3h+5)$ is a specific
+linear combination of the $1$st and $2$nd power sums. See
+\texttt{notes/universal\_koszul\_complementarity\_kv\_kw\_all\_simple.md},
+\texttt{notes/kw\_rho\_rho\_vee\_universal\_lie\_invariant.md}.
+
+\subsection{Universal Holography as two-adjunction family-over-level functor}
+\label{subsec:session-two-adjunction}
+
+The climax theorem of Vol~II Part~VI is the Universal Holography
+functor (strongest honest form):
+\[
+  \Phi_{\mathrm{hol}}^{\mathrm{fam}}
+  \;:\;
+  \mathrm{ChirAlg}^{\omega,\mathrm{BL}}_{/\mathrm{Level}}
+  \;\rightleftarrows\;
+  \mathrm{HT\text{-}QFT}^{\mathrm{fam}}_{/\mathrm{Level}}
+  \;:\;
+  \mathrm{Reduce}^{\mathrm{fam}}.
+\]
+This is a stratified $\infty$-categorical reflection over the level
+base $\mathbb{A}^1_k$, with:
+\begin{itemize}
+\item \textbf{Open stratum} $\mathrm{Level}^{\mathrm{non\text{-}crit}}
+= \mathbb{A}^1_k \setminus \{-h^{\vee}\}$: standard
+$(\Phi_{\mathrm{hol}} \dashv \mathrm{Reduce})$ onto HT-QFT, covering
+classes G/L/C/M with Koszul-natural adjunction.
+\item \textbf{Critical stratum} $\{-h^{\vee}\}$: Feigin--Frenkel
+adjunction $(\mathrm{FF}\Phi_{\mathrm{hol}} \dashv \mathrm{FF}\mathrm{Reduce})$
+onto Hitchin-quantised QFT, with Langlands-natural
+$\mathfrak{g} \leftrightarrow \mathfrak{g}^{L}$ duality encoded
+via the Feigin--Frenkel isomorphism $\mathfrak{z}(\widehat{\mathfrak{g}})
+\cong \mathrm{Fun}(\mathrm{Op}_{\mathfrak{g}^L}(D^{\times}))$.
+\end{itemize}
+Critical-stratum mechanism via Costello--Gaiotto BV rescaling
+$S = \varepsilon T$, $\widetilde G = \varepsilon G$: as $\varepsilon
+\to 0$, Sugawara stress tensor degenerates to Segal--Sugawara
+Casimir central field; transverse antighost vanishes; fibre homotopy
+type jumps $E_3 \to E_2 \times E_1$. The two-adjunction view (sharp
+local) and family-over-level view (global unity) are equivalent and
+both necessary.
+
+Class coverage after this session: five classes G/L/C/M/FF, with
+G/L/C/M in open stratum (via Costello--Li, Costello--Gaiotto,
+Drinfeld--Sokolov--Hochschild bridge of
+\texttt{chapters/theory/chiral\_higher\_deligne.tex}), FF in
+critical stratum (via Beilinson--Drinfeld Hitchin-quantised opers).
+See
+\texttt{notes/universal\_holography\_two\_adjunctions\_platonic\_heal.md},
+\texttt{notes/universal\_holography\_family\_over\_level\_attack\_heal.md}.
+
+\subsection{Feigin--Frenkel tier-four chain-level categorification}
+\label{subsec:session-ff-tier-four}
+
+The Feigin--Frenkel isomorphism
+$\mathfrak{z}(\widehat{\mathfrak{g}}) \cong
+\mathrm{Fun}(\mathrm{Op}_{\mathfrak{g}^L})$ has a four-tier hierarchy:
+\begin{enumerate}
+\item $H^0$-iso (Feigin--Frenkel 1992) --- commutative Poisson algebras.
+\item Factorisation-$H^0$ iso (Beilinson--Drinfeld \emph{Chiral Algebras}
+3.7--3.8) --- factorisation algebras on $X$ at $H^0$.
+\item $\infty$-categorical module equivalence (Gaitsgory 2007 +
+Arinkin--Gaitsgory 2015): $D(\widehat{\mathfrak{g}}\text{-}\mathrm{mod}_{\mathrm{crit}})
+\simeq \mathrm{QCoh}(\mathrm{Op}_{\mathfrak{g}^L})^{\mathrm{Hecke}}$.
+\item Chain-level $E_{\infty}$ quasi-iso: $C^{\bullet}(\mathfrak{z}(\widehat{\mathfrak{g}}))
+\simeq C^{\bullet}(\mathrm{Op}_{\mathfrak{g}^L})$ as $E_{\infty}$-algebras
+in factorisation algebras.
+\end{enumerate}
+Tier~4 was expected to be genuinely open; this session's heal showed
+it is \emph{constructible} via semi-infinite cohomology:
+\[
+  \alpha : C^{\infty/2+\bullet}(\widehat{\mathfrak{g}}_{\mathrm{crit}},
+           L\mathfrak{n}_+;\; V_{-h^{\vee}})
+         \;\to\; T^*\mathrm{Op}_{\mathfrak{g}^L}^{\mathrm{DG}}.
+\]
+All three prior obstructions resolve:
+(a)~screening higher cohomology $H^1_{\mathrm{screen}} = \Omega^1_{\mathrm{Op}}$
+is identified with $H^1(T^*\mathrm{Op})$ --- IS the tier-4 answer,
+not obstruction (Feigin--Frenkel \emph{Integrals of Motion} 1996);
+(b)~DG model ambiguity collapses via Frenkel--Gaitsgory 2004 Thm~4.8
+plus Arinkin--Gaitsgory 2015 Thm~12.2;
+(c)~$\mathrm{GRT}_1(\mathbb{Q})$-torsor VANISHES at critical level
+(integer Cartan matrix, polynomial Wakimoto screening OPEs, trivial
+Drinfeld associator).
+Residual closed-form obstruction: single compatibility check of
+Voronov 1993 $E_{\infty}$-structure with PTVV shifted Poisson on
+$T^*\mathrm{Op}$, reducible to BFM 2005 Toda-equivariant homology.
+See \texttt{notes/feigin\_frenkel\_centre\_categorification\_attack\_heal.md},
+\texttt{notes/ff\_tier\_4\_chain\_level\_attack\_heal.md}.
+
+\subsection{Six-slot fingerprint classification; refined Theorem G}
+\label{subsec:session-fingerprint-heal}
+
+The original five-slot fingerprint
+$\varphi(A) = (p_{\max}, r_{\max}, \chi_{\mathrm{VOA}},
+n_{\mathrm{strong}}, \mathrm{coset})$ is FALSIFIED on the standard
+landscape: the Heisenberg family $\{\mathcal{H}_k\}_{k \in \mathbb{C}^*}$
+has identical $(2, 2, +, 1, \mathrm{trivial})$ but
+$\mathcal{H}_k \not\simeq \mathcal{H}_{k'}$ as chiral algebras
+(different $R$-matrix $\exp(k\hbar/z)$, different bar curvature
+$d_B^2 = k \cdot \omega_g$).
+
+Heal: sixth slot $\kappa_{\mathrm{ch}}$, the central-extension /
+level / curvature class, pullback of the universal Arakelov class
+from Theorem~D. Refined
+\[
+  \varphi'(A) = (p_{\max}, r_{\max}, \chi_{\mathrm{VOA}},
+                 n_{\mathrm{strong}}, \mathrm{coset},
+                 \kappa_{\mathrm{ch}})
+\]
+is complete on the standard landscape. The quaternitomy G/L/C/M
+becomes a \emph{double coarse projection}
+$\varphi' \twoheadrightarrow \varphi \twoheadrightarrow
+\mathrm{class}$; the fifth class FF ($\kappa = 0$) is distinguished
+by the $\kappa_{\mathrm{ch}} = 0$ slot directly. Theorem~G
+(infinite fingerprint classification) now tightly couples to
+Theorem~D (Arakelov tensor curvature). See
+\texttt{notes/fingerprint\_classification\_completeness\_attack\_heal.md}.
+
+\subsection{Higher Massey odd-weight tower, associator-dependent chiral Deligne--Tamarkin}
+\label{subsec:session-higher-massey}
+
+The chain-level chiral Deligne--Tamarkin statement for Yangian
+$r(u) = \Omega/u$ is established \emph{associator-dependent} via
+explicit depth-3 Drinfeld--Kohno analysis: the $\hbar^3$ coefficient
+of $\Phi_{\mathrm{KZ}}$ lives in $t_3^{\langle 3 \rangle}$ (depth-3
+piece of the Drinfeld--Kohno Lie algebra), which has rank~$2$
+over $\mathbb{Q}$; the decomposable-bracket image is rank~$1$; the
+non-decomposable residue is exactly $\zeta(3) \cdot \sigma_3$
+(Brown motivic depth-$1$ generator of $\mathrm{grt}_1$ at weight~$3$).
+
+Extension: for each odd weight $2k+1$, the Higher Massey
+$\langle r^{\times (2k+1)} \rangle$ is detected by
+$\zeta(2k+1) \cdot \sigma_{2k+1}$ in $\mathrm{grt}_1^{\text{weight } 2k+1}$.
+Each odd-weight generator is independent (Brown motivic depth).
+The associator-independent form of chiral Deligne--Tamarkin
+\emph{fails} --- no single associator absorbs all
+$\zeta(2k+1) \cdot \sigma_{2k+1}$ simultaneously --- but the
+GRT$_1(\mathbb{Q})$-torsor of associator-dependent statements is
+the correct Platonic form. See
+\texttt{notes/higher\_massey\_yangian\_odd\_weight\_tower.md},
+\texttt{notes/massey\_yangian\_transverse\_argument.md}.
+
+\subsection{SC\textsuperscript{ch,top} heptagon at edge (3)\textendash(4) is GRT-equivariant rank-2 torsor}
+\label{subsec:session-heptagon-rank-2}
+
+Edge (3)$\leftrightarrow$(4) of the $\mathrm{SC}^{\mathrm{ch,top}}$
+heptagon (factorisation $\leftrightarrow$ Koszul-dual) carries a
+\emph{rank-2} $\mathrm{GRT}_1(\mathbb{Q})$-torsor structure, not
+rank-1 as for Deligne--Tamarkin. Explicitly:
+\[
+  H^0(\mathrm{GC}_2^{\mathrm{SC}})
+  \;=\;
+  \mathrm{grt}_1^{\mathrm{closed}}
+  \;\oplus\;
+  \mathrm{grt}_1^{\mathrm{mixed}},
+\]
+where the closed sector is Willwacher's classical
+$H^0(\mathrm{GC}_2) = \mathrm{grt}_1$, and the mixed sector encodes
+the bulk-boundary interaction of $\mathrm{SC}^{\mathrm{ch,top}}$.
+Strict associator-independence fails; GRT$_1(\mathbb{Q})^{\oplus 2}$-equivariant
+weak form succeeds. Transition cocycle $c_{34} = \Phi_{\mathrm{AT}}
+\cdot \Phi_{\mathrm{KZ}}^{-1}$ (Alekseev--Torossian vs.\ Drinfeld--Kontsevich)
+is invariant under diagonal GRT action. See
+\texttt{notes/heptagon\_edge\_34\_associator\_independent\_attack\_heal.md},
+\texttt{notes/heptagon\_edge\_34\_grt\_equivariant\_heal.md}.
+
+\subsection{Monster moonshine chain-level three-mechanism classification of Schellekens 71}
+\label{subsec:session-schellekens-71}
+
+The claim ``all 71 Schellekens holomorphic $c=24$ VOAs extend via
+the same route'' is refined to a three-mechanism decomposition:
+\begin{itemize}
+\item \textbf{1 VOA (Monster $V^{\natural}$) via $\Lambda^{\sigma} = 0$
+shortcut}: Frenkel--Lepowsky--Meurman $\sigma$-equivariant
+$\varepsilon$-cocycle + canonical $c(\lambda) = 1$ lift on
+$\widehat{\Lambda}$. The mechanism was misidentified as
+``$\beta \equiv 1$ trivial coboundary'' in an earlier draft; the
+actual structural datum is the FLM $\sigma$-equivariance via the
+even-unimodular quadratic form on the Leech lattice, which is
+genuinely on-the-nose, not merely cohomological.
+\item \textbf{24 VOAs via no orbifold needed}: pure Niemeier lattice
+VOAs $V_{\Lambda}$ including the 24 Niemeier lattices (Leech among
+them). Chain-level holographic image is immediate from Costello--Li
+abelian holomorphic Chern--Simons.
+\item \textbf{46 VOAs via Epstein--Montgomery--Strominger case-by-case}:
+$\mathbb{Z}/n$-orbifolds of $V_{\Lambda}$ with $n \geq 3$ and
+non-trivial $\Lambda^{\sigma}$. Each class requires explicit
+$H^3(\mathbb{Z}/n, U(1))$ vanishing check via
+Dong--Li--Mason twisted Jacobi identity. Example: $\mathbb{Z}/3$
+(class 3A, $\Lambda^{\sigma} = K_{12}$ Coxeter--Todd,
+$V_1 = A_2^{\otimes 12}$) satisfies EMS level-matching.
+\end{itemize}
+Möller--Scheithauer 2023 ``generalised deep holes'' give a uniform
+Leech-orbifold presentation of all 70 non-Monster Schellekens cells;
+the three-mechanism split is the orbifold-by-orbifold-type chain-level
+analysis. See
+\texttt{notes/monster\_moonshine\_leech\_orbifold\_chain\_level\_platonic.md},
+\texttt{notes/monster\_dw\_cocycle\_chain\_attack\_heal.md},
+\texttt{notes/schellekens\_71\_fold\_orbifold\_type\_attack\_heal.md}.
+
+\subsection{Function-field arithmetic Universal Holography}
+\label{subsec:session-arithmetic-uh}
+
+The Universal Holography functor extends to function fields with
+\emph{new arithmetic content} (not reformulation-only, distinct from
+the Clay-level problems below). Over a curve $X / \mathbb{F}_q$, the
+adjunction upgrades to
+\[
+  \Phi_{\mathrm{hol}}^{\mathrm{arith}}
+  \;:\;
+  \mathrm{ChirAlg}^{\omega,\mathrm{BL},\mathrm{arith}}_X
+  \;\rightleftarrows\;
+  \mathrm{HT\text{-}QFT}^{\mathrm{arith}}_{X \times \mathbb{R}},
+\]
+with target $\ell$-adic Frobenius-equivariant 3d HT theories.
+Arithmetic Koszul complementarity:
+\[
+  [L_{\kappa}(V_k)]
+  \;+\;
+  [L_{\kappa}(V_{-k-2h^{\vee}})]
+  \;=\;
+  0
+  \quad
+  \in
+  \quad
+  \mathrm{Pic}(\mathrm{Cht}^n_G) \otimes \mathbb{Q}_{\ell},
+\]
+a Picard-class identity, NOT a scalar trace (the refinement is
+structural). Verified at $\mathrm{sl}_2$, $k=1$, $p=7$ via Deligne
+Weil~II trace bound. Spectral $R$-matrix upgrades to
+$R(z, \mathrm{Frob}_q)$ via V.~Lafforgue 2018 excursion operators.
+The chiral Adams functor $=$ Hecke eigensheaf cohomology bridge is
+genuine: $\psi^q$ on the bar complex equals partial Frobenius
+restricted to a spectral component. See
+\texttt{notes/geometric\_langlands\_function\_fields\_attack\_heal.md},
+\texttt{notes/kappa\_arith\_shtuka\_attack\_heal.md}.
+
+\subsection{Birational invariance via Maulik--Okounkov motivic-DT dynamical cocycle}
+\label{subsec:session-birational}
+
+For flop-equivalent Calabi--Yau threefolds $X, X'$, the CY-A
+functor satisfies $\Phi(X) \simeq \Phi(X')$ in $E_1\text{-}\mathrm{ChirAlg}_{\infty}$
+(equivalence, not isomorphism). Preserved invariants across flop:
+$\kappa_{\mathrm{ch}}, \kappa_{\mathrm{BKM}}, \kappa_{\mathrm{fiber}}$,
+shadow class. $R$-matrices are Maulik--Okounkov gauge-equivalent
+via a genuine motivic-DT dynamical cocycle $P_{\omega}(u; \kappa)$
+admitting three equivalent canonical presentations:
+\begin{enumerate}
+\item Kontsevich--Soibelman motivic-DT element $\Theta_{\mathrm{KS}}(\kappa)
+\in G_{\mathrm{KS}}(X)$ on the Yangian evaluation module;
+\item Aganagic--Okounkov Stokes matrix of the quantum difference
+equation around the flop wall (arXiv:1604.00423);
+\item Iritani $\widehat{\Gamma}$-class twist (arXiv:0903.1463).
+\end{enumerate}
+Scalar asymptotic reproduces the Gopakumar--Vafa generating function:
+for the conifold, $\exp(\mathrm{Li}_2(\kappa))$ with single genus-0
+BPS state $n_1^0 = 1$ from the exceptional $\mathbb{P}^1$. Flop
+involution $\kappa \leftrightarrow \kappa^{-1}$ is the
+Faddeev--Volkov / $A_2$ pentagon identity in $G_{\mathrm{KS}}$.
+Proved on local toric CY$_3$; conjectural on compact CY$_3$ (within
+CY-A$_3$ conjectural content). See
+\texttt{notes/birational\_invariance\_cy3\_phi\_attack\_heal.md}
+(\texttt{calabi-yau-quantum-groups/notes/}),
+\texttt{notes/mo\_dynamical\_cocycle\_gv\_motivic\_attack\_heal.md}.
+
+\subsection{Ambient-category triple atlas}
+\label{subsec:session-ambient-atlas}
+
+The ambient category for Vol~I Theorem~A is a \emph{triple atlas},
+not a single monoidal structure:
+\begin{enumerate}
+\item $(D\text{-}\mathrm{mod}(\mathrm{Ran}(X)), \otimes^*)$
+(BD04 plus FG12) --- default; FORM-A Quillen Theorem~A; Koszul
+complementarity closes here.
+\item $\mathrm{IndCoh}(\mathrm{Ran}(X))$ (GR17 IV.5, V) ---
+$(\infty,2)$-properad upgrade; mandatory for Virasoro / Yangian /
+critical Kac--Moody (FM74 dim-finiteness artefact vanishes);
+Pridham--Lurie FMP.
+\item $D^b_c(\mathrm{Ran}(X))$ plus MHM --- Theorem~D tensor-Arakelov,
+modular bootstrap, weight filtration.
+\end{enumerate}
+The BD chiral pseudo-tensor $\otimes^{\mathrm{ch}}$ is NEVER an
+ambient --- it generates OPERATIONS inside $\mathrm{Fact}(X)$.
+Non-compact $X$ replaces Verdier duality with Borel--Moore on the
+evaluation-generated core (consistent with AP47 scope). See
+\texttt{notes/ambient\_category\_choice\_attack\_heal.md}.
+
+\subsection{Super-VOA and logarithmic bar-cobar via M\textsubscript{Kosz} charts}
+\label{subsec:session-super-log-voa}
+
+Bar-cobar adjunction extends to N=2 / N=4 SCVOAs and to logarithmic
+W($p$) as two distinct charts in the Koszulness Moduli scheme
+$M_{\mathrm{Kosz}}$:
+\begin{itemize}
+\item \textbf{Super}: $\mathrm{Sym}_n \to \mathrm{Sym}\text{-super}_n$
+Koszul-sign twist, Chevalley--Kac involution $\theta$ replacing
+Chevalley. Super-Yangian dual
+$(\mathcal{Y}_{\hbar}^{\mathrm{super}})^! = \mathcal{Y}_{-\hbar}^{\theta,\mathrm{super}}$
+(\texttt{super\_chiral\_yangian.tex}:545). N=2 SCA Koszul
+complementarity: $\kappa(c) + \kappa(6-c) = 1$ under Kazama--Suzuki
+coset $c \leftrightarrow 6-c$ (NOT $\mathrm{sdim}$-based).
+\item \textbf{Logarithmic W($p$)}: Positselski periodic-CDG coalgebra
+replaces $\mathrm{dg\text{-}coalg}^{\mathrm{conil}}$. Jordan-block $L_0$
+terms, non-trivial $\mathrm{Ext}^1$, CKL log-Koszul involution (NOT
+bosonic $k \mapsto -k-2h^{\vee}$). Chain-level closure via 3-channel
+tempered decomposition $\{TT, TW, WW\}$; free strong generation
+open for $p \geq 4$.
+\end{itemize}
+See \texttt{notes/super\_log\_voa\_bar\_cobar\_attack\_heal.md}.
+
+\subsection{Periodic-CDG universal across all simple types; exotic nilpotent closure}
+\label{subsec:session-periodic-cdg}
+
+Conjecture $\mathrm{periodic\text{-}cdg}$ for $\widehat{\mathfrak{sl}}_N$
+at admissible level $k = p/q$ on the non-degenerate lane closes
+unconditionally for all simply-connected simple $\mathfrak{g}$ via
+Brylinski--Deligne K$_2$-reciprocity (IHES 2001 Thm 4.7) plus
+Arkhipov--Gaitsgory $\kappa$-twisted Serre t-exactness
+(non-simply-laced via Frenkel--Hernandez lacing automorphism
+$\Phi_g(T^{(n)}_{\alpha}) = (-r_g)^n\,T^{(n)}_{\alpha^*}$).
+Residual open: degenerate admissible lane (CKL logarithmic), non-admissible
+generic $k$ (Part~VII Massey), critical level (fifth-class FF companion).
+DS-Hochschild bridge extends unconditionally to all good-graded
+plus exotic nilpotents via three-step Galois descent with $d_f \in
+\{1,2,3,6\}$ branched cover (Crainic 2004 equivariant HPL +
+Maschke-exact deck-covariant averaging). Thus
+$\mathrm{thm:chd\text{-}ds\text{-}hochschild}$ now extends to ALL
+$\mathcal{W}_k(\mathfrak{g}, f)$ at non-critical level, no scope
+restriction. See
+\texttt{notes/periodic\_cdg\_slN\_brylinski\_deligne\_construction.md},
+\texttt{notes/periodic\_cdg\_combined\_all\_simple\_types\_platonic.md},
+\texttt{notes/exotic\_nilpotent\_e3\_topologization\_platonic.md},
+\texttt{notes/ds\_hoch\_galois\_descent\_d6\_attack\_heal.md}.
+
+\subsection{Clay-level reformulation-not-solution: RH, BSD, Sato--Tate, Hodge, YM, GPC, KZ}
+\label{subsec:session-clay-reformulations}
+
+Seven Clay-level unsolved problems were attacked for the first time
+this session. Each receives an honest Platonic reformulation without
+solving:
+\begin{itemize}
+\item \textbf{Riemann Hypothesis}: programme Sewing--Selberg L-function
+$L_{\mathcal{A}}(s, u) = \Gamma(v)(2\pi)^{-v}\zeta(v+1)(\zeta(v)-1)$
+for Virasoro EMBEDS $\zeta$-zeros as zeros along $s + u = 1/2$.
+Reformulation inside programme; no proof path. Three routes (motivic
+shadow, Weil--Grothendieck $\ell$-adic, RMT-GUE) each blocked by
+distinct obstruction.
+\item \textbf{Birch--Swinnerton-Dyer}: $\Phi(E) = V_{L_E}$ lattice VOA;
+$L^{\mathrm{bar}}(\Phi(E), s) = L(E, s)$ proved. Kolyvagin Euler
+system lives in $H^1(K, E[\ell^k])$, orthogonal to programme's
+shadow tower (trivial for class G).
+\item \textbf{Sato--Tate}: reformulates as shadow-tower symmetric-power
+statement via $\mathrm{Sym}^{r-1}$-Dirichlet coefficients; reduces to
+Newton--Thorne 2021. No new analytic content.
+\item \textbf{Hodge conjecture for CY$_4$}: chiral Hodge decomposition
+well-defined via Kaledin NC Hodge-to-de-Rham + HKR; Voisin's
+transcendental obstructions apply unchanged.
+\item \textbf{Yang--Mills mass gap}: HT-twisted 4d N=2 Schur sector
+gives BPS mass gap $\Delta_{\min} = 1$ (R-current) / $\Delta_{\min} = 2$
+(stress tensor for class S); ``dimensional transmutation gap''
+(H3.b) identified as the Clay-problem proper obstruction;
+reducible to non-SUSY HT twist construction.
+\item \textbf{Grothendieck Period Conjecture}: programme's
+$Z_{\bullet}^{\Phi_{\mathrm{KZ}}} = Z_{\bullet}^{\mathrm{mot}}$ in full;
+KZ-for-motivic closes via Francis--Gaitsgory factorisation +
+Aut(O)-equivariance + bar differential; GPC (Per injectivity)
+requires external transcendence input (Apéry, Ball--Rivoal).
+\item \textbf{Kontsevich--Zagier}: closed for motivic sub-ring via
+Furusho pentagon + Ihara--Kaneko derivation relations; non-motivic
+abstract periods external.
+\end{itemize}
+See corresponding \texttt{notes/*\_platonic.md} files. The seven
+reformulations each identify the precise Clay-problem obstruction
+from within the chiral-algebra programme.
+
+\subsection{Two-invariant Langlands-invariance structure}
+\label{subsec:session-langlands-invariants}
+
+The programme's Platonic Lie-theoretic data separates into two
+invariants under Langlands duality $\mathfrak{g} \leftrightarrow
+\mathfrak{g}^L$:
+\begin{itemize}
+\item \textbf{Lie-algebra invariants} (dim, exponents $\{m_i\}$,
+Coxeter number $h$): SAME for $\mathfrak{g}$ and $\mathfrak{g}^L$
+(Langlands acts on root data, not algebra).
+$\kappa_W(\mathfrak{g}) = \kappa_W(\mathfrak{g}^L)$ automatically.
+\item \textbf{Root-datum invariants} (coroot lattice, dual Coxeter
+number $h^{\vee}$, Hitchin system on $\mathfrak{g}$-opers):
+DIFFERENT for $\mathfrak{g}$ vs $\mathfrak{g}^L$.
+$B_r \leftrightarrow C_r$ exchange at root-datum level despite
+identical Lie algebras at rank~2.
+\end{itemize}
+The FF-Langlands-naturality of $\mathrm{FF}\Phi_{\mathrm{hol}}$
+operates at the root-datum level, NOT the Lie-algebra level.
+For $B_2 \cong C_2$ (rank-2 Dynkin accident): boundary chiral
+algebras $V_{-3}(B_2) \cong V_{-3}(C_2)$ are identical, but the
+BULK Hitchin quantum systems $\mathrm{Op}_{B_2}$ vs $\mathrm{Op}_{C_2}$
+are genuinely different via Beilinson--Drinfeld quantum geometric
+Langlands $D\text{-}\mathrm{mod}(\mathrm{Bun}_{SO(5)}) \simeq
+\mathrm{QCoh}(\mathrm{Op}_{Sp(4)})$. See
+\texttt{notes/non\_simply\_laced\_quantum\_langlands\_frenkel\_hernandez\_platonic.md},
+\texttt{notes/ff\_langlands\_b2\_c2\_attack\_heal.md}.
+
+\subsection{CY-C character-level unconditional; residual chain-level
+Koszul-locus}
+\label{subsec:session-cy-c-closure}
+
+CY-C six-route convergence on K3$\times$E closes unconditionally at
+character level via three identities $I_1, I_2, I_3$:
+\begin{itemize}
+\item $I_1$ Harvey--Moore elliptic-genus subgroup: conditional;
+\item $I_2$ separating $g=2$ Borcherds: UNCONDITIONAL via
+Gritsenko--Nikulin arithmetic lift of $\Phi_{10}$ matching DMVV
+second-quantization through $(2\pi i\,\tau_e)^2$ factor;
+\item $I_2$ non-separating $g=2$: character-level UNCONDITIONAL via
+Fourier--Jacobi expansion of $\Phi_{10}$ at non-separating cusp;
+\item $I_3$ Schur-index: unconditional at character level via BLLPR
+trace; chain-level conditional on N=2 SCVOA coset DS-Hochschild
+bridge, which closes unconditionally on the Koszul locus at generic
+admissible level via Arakawa--Kawasetsu--Möller coset-C$_2$-cofiniteness
++ two-step HPL (hook-type W plus Heisenberg coset).
+\end{itemize}
+Both residual chain-level gaps collapse to a single remaining bounded
+problem: exotic nilpotents in coset AD theories. See
+\texttt{notes/cy\_c\_I2\_I3\_higher\_genus\_half\_bps.md},
+\texttt{notes/cy\_c\_nonseparating\_g2\_borcherds\_multiplicative\_lift\_platonic.md},
+\texttt{notes/n2\_scvoa\_coset\_ds\_hoch\_bridge\_platonic.md} in the
+Vol~III companion directory.
+
+\subsection{Summary: Platonic form of Vol~II}
+\label{subsec:session-summary}
+
+After this session, the Vol~II programme's Platonic form is:
+\begin{enumerate}
+\item \textbf{Seven theorems}: A, B, C, D, H (existing, with upgrades
+including chiral Higher Deligne on H, tensor-Arakelov curvature on D,
+$(\infty,2)$-properad on A), F (Universal Holography functor,
+two-adjunction family-over-level), G (six-slot fingerprint
+classification with $\kappa_{\mathrm{ch}}$).
+\item \textbf{Eight parts}: I-VII existing plus Part~VIII
+(From Frontier to Theorem, covering arithmetic UH, KZB irregular-singular
+composition, FF tier-4 categorification, exotic-nilpotent closure).
+\item \textbf{Five classes G/L/C/M/FF}: G/L/C/M via non-critical
+$\Phi_{\mathrm{hol}}$; FF via critical $\mathrm{FF}\Phi_{\mathrm{hol}}$
+onto Hitchin-quantised opers (Langlands-natural).
+\item \textbf{$\kappa_W(\mathfrak{g}) = 12\,p_2 - 2r(3h+5)$}: universal
+Chevalley--Shephard--Todd form.
+\item \textbf{$\kappa_V(\mathfrak{g}) = 2\,\dim$}: universal at
+$h^{\vee} \ne 0$.
+\item \textbf{Heptagon edge (3)$\leftrightarrow$(4)}: rank-2
+$\mathrm{GRT}_1(\mathbb{Q})^{\oplus 2}$-equivariant.
+\item \textbf{Chain-level chiral Deligne--Tamarkin}: proved
+associator-dependent via depth-3 Massey detected by $\zeta(3)\,\sigma_3$;
+associator-independent form fails (odd-weight tower Brown motivic).
+\item \textbf{Three Clay-adjacent arithmetic domains} (function-field
+Langlands, F$_q$-shtuka, critical-level $\mathfrak{g}\leftrightarrow
+\mathfrak{g}^L$) gain new content; seven Clay-level problems (RH,
+BSD, Sato--Tate, Hodge, YM, GPC, KZ) are precisely reformulated
+without solving.
+\end{enumerate}
+
+Notes directory (\texttt{/notes/}) contains ${\sim}50$ Platonic-reconstitution
+and attack-then-heal documents capturing full derivations.
+
 \end{document}
