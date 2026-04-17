@@ -1,12 +1,15 @@
 %% =====================================================================
 %% curved_dunn_higher_genus.tex
 %%
-%% Closes the curved-Dunn H^2=0 at g>=2 gap by bridging the
-%% modular-bootstrap complex (H^2=0 proved all genera) to the
-%% curved-Dunn twisting-cochain complex (previously open at g>=2)
-%% via an explicit chain map; the Jimbo-Miwa irregular-singular
-%% KZB framework then promotes modular operad composition from
-%% integral to generic non-integral level at all (g,n).
+%% Closes the curved-Dunn H^2=0 at g>=2 gap at the cohomological
+%% level by bridging the modular-bootstrap complex (H^2=0 proved
+%% genus-by-genus, 2026-04 reconstitution) to the curved-Dunn
+%% twisting-cochain complex (previously open at g>=2) via an
+%% explicit chain map; the Jimbo-Miwa irregular-singular KZB
+%% framework then promotes modular operad composition from
+%% integral to generic non-integral level at every stable (g,n)
+%% with 2g - 2 + n > 0.  Cohomological vanishing; chain-level
+%% m_k^{SC}=0 at k>=3 for g>=2 is not claimed here.
 %%
 %% Location: chapters/theory/ (Vol II, A_infty chiral algebras and HT QFT).
 %% Inputs:   chapters/theory/modular_swiss_cheese_operad.tex
@@ -240,16 +243,20 @@ stability).
 
 \emph{Step 4 (cohomology iso at degree 2).}
 The chain map \(\Phi\) is already surjective on \(H^{2}\) by Step~3.
-Injectivity follows from the factorisation property: an element
-\(x \in \fg^{A,(2)}_{\mathrm{mod}}\) with \(\Phi(x)\) a
-\(d_{0}\)-coboundary, \(\Phi(x) = d_{0}(y)\), can be lifted along the
-surjection \(\Phi^{(1)}\) at degree \(1\) (which is surjective by the
-same stratum decomposition of Step~3) to \(\tilde{y}\) with
-\(d_{\Theta^{(0)}}(\tilde{y}) = x\) modulo a degree-\(2\) bootstrap
-obstruction; iterating the lift through the Postnikov-type tower of
-stable-graph strata terminates in finitely many steps (again by
-stability), giving the required primitive.  Hence \(H^{2}(\Phi)\) is an
-isomorphism.
+Injectivity follows from a finite filtered spectral sequence: the
+stable-graph stratification of \(\overline{\cM}_{g,n}\) is filtered by
+stratum codimension, bounded above by
+\(\dim \overline{\cM}_{g,n} = 3g - 3 + n\).  Filter both complexes
+\(\fg^{A}_{\mathrm{mod}}\) and \(\mathrm{TCo}^{\bullet}_{g}(A)\) by
+stable-graph stratum depth; \(\Phi\) preserves the filtration by
+construction (ribbon-graph decoration is depth-preserving).  The
+associated-graded chain map \(\mathrm{gr}\,\Phi\) is a K\"unneth
+decomposition of sewing-annulus cohomology across strata, iso by
+Step~3 on each stratum component.  The induced spectral-sequence map
+\({}_{(\mathrm{mod})}E_{r}\to{}_{(\mathrm{TCo})}E_{r}\) is an iso on
+\(E_{1}\) and hence on \(E_{\infty}\); the spectral sequences converge
+strongly because the filtration is finite of length \(3g - 3 + n\).
+Hence \(H^{2}(\Phi)\) is an isomorphism.
 \end{proof}
 
 \begin{remark}[Cross-volume: consumer in Vol~I]
@@ -334,10 +341,15 @@ Hodge bundle.
 \emph{Step 2 (Arakelov pairing on \(\lambda_{1}\)).}
 The Arakelov form on \(\overline{\cM}_{1,1}\) is
 \(\omega_{1}^{\mathrm{Ar}} = -(\pi/\mathrm{Im}\tau)\,
-dz \wedge d\bar{z}\), with normalised integral \(-1\) over the
-fundamental domain; our convention
-\(\omega_{1} = -\omega_{1}^{\mathrm{Ar}}/(2\pi)\) has
-integral \(+1\).  The Arakelov pairing
+dz \wedge d\bar{z}\); the Faltings-Arakelov normalisation has
+\(\int_{\overline{\cM}_{1,1}} c_{1}(\lambda_{1}) = 1/12\).  We
+adopt the scaled convention
+\(\omega_{1} := 12\, c_{1}(\lambda_{1})\) so that
+\(\int_{\overline{\cM}_{1,1}} \omega_{1} = 1\) in line with the
+normalisation fixed at \eqref{ch:curved-dunn-higher-genus}
+preceding; the rescaling factor is immaterial for the
+cohomological conclusions below since all identities we use are
+proportional in \(\omega_{1}\).  The Arakelov pairing
 \(\langle\cdot, \cdot\rangle_{\mathrm{Ar}}\) on \(\lambda_{1}\) is
 \(\nabla^{\mathrm{GM}}\)-compatible, giving an isomorphism of flat
 bundles
@@ -399,8 +411,12 @@ the standard landscape at non-critical level,
   0.
 \]
 Consequently, the twisting cochain \(\tau_{g-1}\) extends to
-\(\tau_{g}\) for every \(g\), and the modular bar complex
-factorises as a twisted K\"unneth tensor product at all genera:
+\(\tau_{g}\) for every \(g\) up to convolution-gauge equivalence
+(the cohomological vanishing determines the extension class in
+\(H^{2}\); the chain-level extension is fixed after a gauge
+choice), and the modular bar complex factorises as a twisted
+K\"unneth tensor product at every genus at the cohomological
+level:
 \[
   \mathbf{B}_{\mathrm{mod}}\!\bigl(\cO^{A_{\infty}\text{-ch}}\bigr)
   \;\simeq\;
@@ -537,17 +553,22 @@ Kohno--Felder elliptic KZB connection \cite{Felder1994} at genus
 
 \emph{Step 1 (Newton polygon at \(p\)).}
 Stable-graph strata of \(\overline{\cM}_{g,n}\) are enumerated by
-dual graphs of nodal curves.  At a node, the local KZB connection
-has a first-order singularity plus higher-order corrections
-induced by the limiting period matrix degeneration.  The residue
-\(A_{1}\) of the simple pole equals the quadratic Casimir
-\(\Omega_{\mathrm{node}}/(k + h^{\vee})\), giving slope \(1\).  The
-higher-order terms \(A_{j}\) for \(j \ge 2\) arise from Fay's
-trisecant identity applied to the degenerating period matrix, with
-orders in \(\hbar_{p}\) given by the distance on the dual graph.
-The Newton polygon at a generic node has a single slope equal to
-\(1/(k + h^{\vee})\) after rescaling; at higher codimension strata,
-slopes are rational with denominators dividing
+dual graphs of nodal curves.  Distinguish slope (Newton-polygon
+ratio, pure number) from characteristic exponent (residue
+eigenvalue, level-dependent).  At a simple node the KZB connection
+has a first-order pole, giving Newton slope \(1\); the residue
+\(A_{1}\) equals the quadratic Casimir
+\(\Omega_{\mathrm{node}}/(k + h^{\vee})\), whose spectrum supplies
+the characteristic exponents.  Higher-order terms \(A_{j}\) for
+\(j \ge 2\) arise from the Schottky--Knudsen nodal degeneration
+\cite{Knudsen83, Mumford83} of the period matrix along the dual
+graph; orders in \(\hbar_{p}\) track the graph-distance to the
+node.  At a simple node the singularity is regular (slope \(1\))
+with characteristic exponents \(\mathrm{Spec}(\Omega_{\mathrm{node}}/(k + h^{\vee}))\)
+rational with denominator dividing \(k + h^{\vee}\) for generic
+non-integral \(k\); at higher-codimension strata with multiple
+coalescing nodes the connection acquires genuine irregular slopes
+\(> 1\), with slope denominators dividing
 \((k + h^{\vee})^{\mathrm{depth}}\).
 
 \emph{Step 2 (Stokes structure from formal type).}
