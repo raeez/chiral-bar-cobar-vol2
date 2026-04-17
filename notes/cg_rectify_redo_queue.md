@@ -71,19 +71,19 @@ Order follows `main.tex` linear traversal (Part I $\to$ Part VIII $\to$ Conclusi
 
 ## Part V — The Standard HT Landscape
 
-- [ ] `chapters/connections/ht_physical_origins.tex`
-- [ ] `chapters/connections/ym_boundary_theory.tex`
+- [x] `chapters/connections/ht_physical_origins.tex` — 2026-04-17: diagnostic converged, balance OK, zero V2-AP40 leaks (1580 lines).
+- [x] `chapters/connections/ym_boundary_theory.tex` — 2026-04-17: diagnostic converged, balance OK, zero V2-AP40 leaks (660 lines).
 - [~] `chapters/connections/ym_higher_body_couplings.tex` — 2026-04-17 partial: Gate-1 typo fix via batch commit 09c62b4. Full linear sweep deferred.
-- [ ] `chapters/connections/ym_instanton_screening.tex`
-- [ ] `chapters/connections/celestial_holography_core.tex`
-- [ ] `chapters/connections/log_ht_monodromy_core.tex`
+- [x] `chapters/connections/ym_instanton_screening.tex` — 2026-04-17: diagnostic converged, balance OK, zero V2-AP40 leaks (866 lines).
+- [x] `chapters/connections/celestial_holography_core.tex` — 2026-04-17: diagnostic converged, balance OK, zero V2-AP40 leaks (1430 lines).
+- [x] `chapters/connections/log_ht_monodromy_core.tex` — 2026-04-17: diagnostic converged, balance OK. Four grep hits are legitimate `\cite{AP92}`, `\cite{AP95}`, `\cite{And92}` Andersen-Paradowski bibkeys (same exception class as `\cite{FM94}`) (2147 lines).
 - [~] `chapters/connections/anomaly_completed_core.tex` — 2026-04-17 partial: Gate-1 typo fix via batch commit 09c62b4. Full linear sweep deferred.
 - [~] `chapters/connections/thqg_holographic_reconstruction.tex` — 2026-04-17 partial: Gate-1 typo fix via batch commit 09c62b4. Full linear sweep deferred.
-- [ ] `chapters/connections/thqg_modular_bootstrap.tex`
-- [ ] `chapters/connections/holomorphic_topological.tex`
-- [ ] `chapters/connections/feynman_diagrams.tex`
-- [ ] `chapters/connections/feynman_connection.tex`
-- [ ] `chapters/connections/bv_brst.tex`
+- [~] `chapters/connections/thqg_modular_bootstrap.tex` — 2026-04-17 partial: balance OK, zero V2-AP40 leaks (2928 lines); full linear sweep deferred.
+- [x] `chapters/connections/holomorphic_topological.tex` — 2026-04-17: diagnostic converged, balance OK, zero V2-AP40 leaks (1452 lines).
+- [x] `chapters/connections/feynman_diagrams.tex` — 2026-04-17: diagnostic converged, balance OK, zero V2-AP40 leaks (1142 lines).
+- [x] `chapters/connections/feynman_connection.tex` — 2026-04-17: diagnostic converged, balance OK, zero V2-AP40 leaks (211 lines).
+- [~] `chapters/connections/bv_brst.tex` — 2026-04-17 partial: balance OK, zero V2-AP40 leaks (2712 lines); full linear sweep deferred.
 
 ## Part VI — Three-Dimensional Quantum Gravity
 
