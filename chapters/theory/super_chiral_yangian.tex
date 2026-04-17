@@ -113,8 +113,8 @@ proof of the unified chiral quantum group theorem: Maurer--Cartan for
 the collision residue, chiral Koszul duality for the rigidification, and
 BRST transport for the super-Drinfeld--Sokolov compatibility. The
 parity bookkeeping is enforced by the Koszul sign rule throughout and
-cross-checked against Volume~III's internal-consistency harness
-\texttt{k3\_super\_yangian.py}.
+cross-checked against Volume~III's internal-consistency harness for
+the K3 super-Yangian.
 
 Section~\ref{sec:super-setup} fixes the super Lie data, the
 super-PBW theorem, and the parity of the collision residue.
@@ -185,8 +185,12 @@ objects at different categorical levels: chiral data lives one level
 up from associative.
 \emph{(c) Correct.} The chiral super-Yangian
 $\Ysuper_{\hbar}(\fg)$ is the graded Yangian-chiral hybrid with three
-pieces of data: (i) graded Hopf bialgebra with parity grading
-(Definition~\ref{def:super-drinfeld-yangian}); (ii) spectral super-$R$-matrix
+pieces of data: (i) graded super-bialgebra with parity grading
+(Definition~\ref{def:super-drinfeld-yangian}); the super-antipode is a
+separate datum on the classical (point-valued) Etingof--Kazhdan
+super-Hopf fibre (Geer 2006), not a chiral property of
+$\Ysuper_{\hbar}(\fg)$ as an $E_1$-chiral algebra on $X$;
+(ii) spectral super-$R$-matrix
 $R(z)$ with Koszul-signed super-permutation $P_s$ satisfying super-QYBE
 (Theorem~\ref{thm:super-yangian-e1-chiral-structure}(iii),
 Theorem~\ref{thm:super-ybe-from-super-cybe}); (iii) super-Drinfeld
@@ -343,7 +347,7 @@ The super-Drinfeld Yangian $\Yhbar(\fg)_{\mathrm{super}}$ of
 Definition~\ref{def:super-drinfeld-yangian} lifts to a
 super-chiral algebra on $X$ in the same way the bosonic Drinfeld Yangian
 lifts to the classical chiral Yangian $Y(\fg)^{\mathrm{ch}}$ of
-\texttt{ordered\_associative\_chiral\_kd\_core.tex}: the generators are
+Chapter~\ref{ch:ordered-associative-chiral-kd}: the generators are
 extended to $D$-module sections on the curve, and the relations are
 imposed through the local-to-global factorisation structure.
 
@@ -520,7 +524,7 @@ Section~\ref{sec:super-vol3-bridge}).
 
 The classical chiral Yangian $Y(\fg)^{\mathrm{ch}}$ has a Koszul self-duality
 theorem (and the bar-cobar correspondence of
-\texttt{ordered\_associative\_chiral\_kd\_core.tex}): under the Chevalley
+Chapter~\ref{ch:ordered-associative-chiral-kd}): under the Chevalley
 involution $\theta$ of $\fg$ combined with the formal flip $\hbar\mapsto
 -\hbar$, the Yangian is sent to itself with opposite $R$-matrix.
 The super version is the natural extension with one subtlety: the
@@ -565,7 +569,8 @@ The chiral Koszul dual of any $E_1$-chiral algebra $\cA$ is the
 conjugate operator algebra $\cA^{!} = \bigl(\cA^i\bigr)^{\vee}$, where
 $\cA^i = H^*(\Bord\cA)$ is the cohomology of the ordered bar and
 $(\cdot)^\vee$ denotes Verdier duality on the curve (Volume~I
-AP25/AP34/AP50 four-functor discipline). For the super-Yangian:
+four-functor discipline distinguishing $\cA$, $B(\cA)$, $\cA^i$, and
+$\cA^!$). For the super-Yangian:
 
 \emph{Step 1.} The super-bar complex $\Bord(\Ysuper_{\hbar}(\fg))$ is
 concentrated in the Koszul locus because super-PBW
@@ -614,95 +619,139 @@ equation proof, with the Koszul-sign factor $(-1)^{\parity{x}\parity{y}}$
 visible on the super side but trivial on the bosonic side.
 \end{remark}
 
-\begin{theorem}[Super-complementarity at the sub-Sugawara line;
+\begin{theorem}[Super-trace complementarity on the sub-Sugawara line;
   \ClaimStatusProvedHere]
-\label{thm:super-complementarity-max-mn}
-Let $\fg = \fsl(m|n)$ with $m\neq n$ (or $\fpsl(2|2)\oplus\bC^{3}$ in
-the degenerate case), and let $A = \Ysuper_{\hbar}(\fg)$ be the
-super-chiral Yangian of
+\label{thm:super-complementarity-supertrace-zero}
+Let $\fg = \fsl(m|n)$ with $m\neq n$, and let $A = \Ysuper_{\hbar}(\fg)$
+be the super-chiral Yangian of
 Theorem~\ref{thm:super-yangian-e1-chiral-structure}, taken at level $k$
 on the \emph{sub-Sugawara line} $k+h^{\vee}_{s}\le m+n$ (where
-$h^{\vee}_{s}$ is the super-dual Coxeter number, equal to $m-n$ for
-$\fsl(m|n)$ and to $0$ for $\fpsl(2|2)$). Let $\kappa^{\mathrm{super}}(A)$
-denote the super-shadow depth of
-Theorem~\ref{thm:super-shadow-well-defined}, and let
-$\kappa^{\mathrm{super}}(A^{!})$ denote the super-shadow depth of the
-Koszul dual of Theorem~\ref{thm:super-yangian-koszul-dual}. Then
+$h^{\vee}_{s}= m-n$ is the super-dual Coxeter number of $\fsl(m|n)$).
+Let $\kappa^{\mathrm{super}}_{\str}(A)$ denote the super-shadow depth
+of Theorem~\ref{thm:super-shadow-well-defined} computed in the
+\emph{super-trace normalisation}
+$\langle X,Y\rangle^{\str}=\str(\pi_{\mathrm{def}}(XY))$, and likewise
+$\kappa^{\mathrm{super}}_{\str}(A^{!})$ for the Koszul dual of
+Theorem~\ref{thm:super-yangian-koszul-dual}. Then
 \begin{equation}
-  \label{eq:super-complementarity}
-  \kappa^{\mathrm{super}}(A) \;+\;
-  \kappa^{\mathrm{super}}(A^{!})
+  \label{eq:super-complementarity-supertrace}
+  \kappa^{\mathrm{super}}_{\str}(A) \;+\;
+  \kappa^{\mathrm{super}}_{\str}(A^{!})
   \;=\;
-  \max(m,n).
+  0.
 \end{equation}
-The identity is the super analogue of the bosonic complementarity
-$\kappa+\kappa^{!} = \dim\fg$ (Vol I C9 census, Sugawara involution),
-sharpened by replacement of $\dim\fg$ by $\max(m,n)$ on the
-$\mathbb{Z}/2$-graded refinement.
+This is the super analogue, \emph{in the super-trace normalisation},
+of the bosonic complementarity on the Koszul locus; the vanishing is
+family-specific to $\fsl(m|n)$ with $m\neq n$, driven by
+$\sdim\fsl(m|n)=m^{2}-n^{2}\neq 0$ and the Feigin--Frenkel-type
+involution $k\mapsto -k-2h^{\vee}_{s}$ inverting the super-Sugawara
+shift sign against Step 1.
 \end{theorem}
 
 \begin{proof}
 \textbf{Step 1 (super-Sugawara on the sub-Sugawara line).} On the
-sub-Sugawara line, the super-Sugawara stress tensor
+sub-Sugawara line the super-Sugawara stress tensor
 $T_{\mathrm{Sug}}^{s}(z) = \frac{1}{2(k+h^{\vee}_{s})}
 \sum_{a,b}\langle\cdot,\cdot\rangle_{s}^{ab}\,
 {:}J^{a}(z) J^{b}(z){:}$ is well-defined and inner; the super-shadow
-depth $\kappa^{\mathrm{super}}(A)$ is the super-trace of
+depth $\kappa^{\mathrm{super}}_{\str}(A)$ is the super-trace of
 $T_{\mathrm{Sug}}^{s}$ on the augmentation ideal of $A$, computed via
 super-PBW (Definition~\ref{def:super-drinfeld-yangian} and Gow--Molev
-2010 Theorem~4.2). For $\fg = \fsl(m|n)$ this gives
-$\kappa^{\mathrm{super}}(A) = (k+h^{\vee}_{s})\sdim(\fg)/(2 h^{\vee}_{s})
-= (k+m-n)(m^{2}-n^{2})/(2(m-n)) = (k+m-n)(m+n)/2$ for $m\neq n$.
+2010 Theorem~4.2). For $\fg = \fsl(m|n)$ with $m\neq n$ this gives
+$\kappa^{\mathrm{super}}_{\str}(A)
+= (k+h^{\vee}_{s})\sdim(\fg)/(2 h^{\vee}_{s})
+= (k+m-n)(m^{2}-n^{2})/(2(m-n)) = (k+m-n)(m+n)/2$.
 
 \textbf{Step 2 (Koszul-dual depth via Theorem~\ref{thm:super-yangian-koszul-dual}).}
 Theorem~\ref{thm:super-yangian-koszul-dual} identifies $A^{!}$ with the
 Chevalley--Kac-involuted super-Yangian
-$\Ysuper_{-\hbar}(\fg)^{\theta}$. The Chevalley--Kac involution $\theta$
-preserves the super-Killing form up to the Koszul sign
-$(-1)^{\parity{x}\parity{y}}$ (Definition~\ref{def:chevalley-kac-involution}
-and Step 4 of the proof of Theorem~\ref{thm:super-yangian-koszul-dual}),
-and the $\hbar\mapsto -\hbar$ flip inverts the level
-$k\mapsto -k - 2h^{\vee}_{s}$ in the super-Sugawara construction
-(super-analogue of the bosonic FF involution
+$\Ysuper_{-\hbar}(\fg)^{\theta}$. The involution $\theta$ preserves the
+super-Killing form up to the Koszul sign
+$(-1)^{\parity{x}\parity{y}}$ and the $\hbar\mapsto -\hbar$ flip
+inverts the level $k\mapsto -k - 2h^{\vee}_{s}$ in the super-Sugawara
+construction (super-analogue of the bosonic FF involution
 $k\mapsto -k - 2h^{\vee}$). Hence
-$\kappa^{\mathrm{super}}(A^{!}) = (-k - h^{\vee}_{s})(m+n)/2$.
+$\kappa^{\mathrm{super}}_{\str}(A^{!}) = (-k - h^{\vee}_{s})(m+n)/2
+= (-k - (m-n))(m+n)/2$.
 
-\textbf{Step 3 (sum and identification with $\max(m,n)$).} Adding
-Steps 1 and 2 \emph{without} the Berezinian correction (super-trace
-pairing only) gives the cancellation
+\textbf{Step 3 (super-trace sum).} Adding Steps 1 and 2 in the
+super-trace pairing,
 \[
   \kappa^{\mathrm{super}}_{\str}(A) +
   \kappa^{\mathrm{super}}_{\str}(A^{!})
   \;=\; \frac{(k+m-n)(m+n)}{2} \;+\; \frac{(-k-(m-n))(m+n)}{2}
-  \;=\; 0
-  \quad \text{(super-trace pairing; family-specific to $\fsl(m|n)$
-  on the sub-Sugawara line, distinct from the Vol I AP24 register
-  on $\dim\fg \neq 0$).}
+  \;=\; 0.
 \]
-The non-trivial $\max(m,n)$ value of the super statement arises from
-the parity correction recorded in
-Remark~\ref{rem:two-pairings-supertrace-berezinian}: the super-Berezinian
-normalisation of
-$\Ysuper_{\hbar}(\fsl(m|n))^{!}$ (Nazarov 1991 quantum Berezinian; Gow
-2006) shifts $\kappa^{\mathrm{super}}(A^{!})$ by $+\max(m,n)$ relative
-to the unshifted Sugawara value, because the Berezinian
-$\sBer(T(u))$ contributes a parity-graded determinantal correction of
-size $\max(m,n)$ to the super-trace formula. The corrected sum is
-$\max(m,n)$. The identity is verified for
-$(m,n) = (2,1), (2,2), (3,2), (4,3), (m,n)$ general at the level of
-quantum Berezinian computations in
-\cite[Theorem~5.1]{Gow06}; for $\fpsl(2|2)$ the identity gives
-$\max(m,n) = 2$ which matches Beisert's central-extension counting
-(\cite[\S3]{Beisert07}).
+The cancellation is exact as a rational identity in $k$; no Berezinian
+correction or parity adjustment enters.
 \end{proof}
+
+\begin{conjecture}[Berezinian complementarity shift on the sub-Sugawara line]
+\label{conj:super-complementarity-berezinian-max-mn}
+\ClaimStatusConjectured
+With $\fg$, $A$, and the sub-Sugawara line as in
+Theorem~\ref{thm:super-complementarity-supertrace-zero}, let
+$\kappa^{\mathrm{super}}_{\sBer}(A)$ denote the super-shadow depth in
+the \emph{Berezinian normalisation}
+$\langle X,Y\rangle^{\sBer}=\sBer(\pi_{\mathrm{def}}(XY))$ of
+Remark~\ref{rem:two-pairings-supertrace-berezinian}. Then
+\begin{equation}
+  \label{eq:super-complementarity-berezinian}
+  \kappa^{\mathrm{super}}_{\sBer}(A) \;+\;
+  \kappa^{\mathrm{super}}_{\sBer}(A^{!})
+  \;=\;
+  \max(m,n),
+\end{equation}
+equivalently $\kappa^{\mathrm{super}}_{\sBer} -
+\kappa^{\mathrm{super}}_{\str} = \tfrac{1}{2}\max(m,n)$ on each of
+$A$ and $A^{!}$.
+\end{conjecture}
+
+\begin{remark}[Status of the Berezinian-shift magnitude]
+\label{rem:berezinian-shift-open}
+Nazarov's theorem (\cite[Thm~1]{Nazarov91QuantumBerezinian};
+\cite[Ch.~3.9, Thm~3.9.1]{molev-yangians}) establishes that the
+coefficients of $\sBer(T(u))$ are central in
+$Y_{\hbar}(\mathfrak{gl}(m|n))$, and \cite[Thm~5.1]{Gow06} expresses
+the $u=0$ leading term as a graded determinantal polynomial. Neither
+source states a shadow-depth shift of magnitude $\max(m,n)$: such a
+statement requires an independent computation of the super-Sugawara
+contraction of the Berezinian generator against the Casimir element,
+which has not been performed in closed form in the programme. The
+value $\max(m,n)$ is consistent with the small-rank numerical table
+$(m,n)\in\{(2,1),(3,2),(4,3)\}$, and at $\fpsl(2|2)$ matches the
+centre-rank $2$ of Beisert's central extension
+\cite[\S3]{Beisert07}; these pattern-matches are evidence, not a
+derivation. Closing the shift-magnitude question is a separate
+computational target, recorded as Open Frontier F4$'$
+(super-complementarity canonical pairing).
+\end{remark}
+
+\begin{remark}[$\fpsl(2|2)$ scope]
+\label{rem:psl-2-2-shadow-depth}
+At $\fg=\fpsl(2|2)$ the super-dual Coxeter number $h^{\vee}_{s}$
+vanishes, the Step~1 formula
+$(k+h^{\vee}_{s})\sdim(\fg)/(2 h^{\vee}_{s})$ is singular, and
+super-Sugawara is critical-level at every~$k$. The shadow-depth
+computation in this case is structurally distinct from the
+$m\neq n$ family covered by
+Theorem~\ref{thm:super-complementarity-supertrace-zero}; the Beisert
+2007 three-fold central extension $(P,K,C)$ of
+$\fpsl(2|2)\oplus\bC^{3}$ supplies a rank-$2$ Cartan centre in the
+extended algebra, and the coincidence of that rank with $\max(2,2)=2$
+is suggestive but not within the scope of either the super-trace
+theorem or the Berezinian conjecture above.
+\end{remark}
 
 \begin{remark}[Two pairings: super-trace vs.\ Berezinian]
 \label{rem:two-pairings-supertrace-berezinian}
 Two distinct super-invariant pairings on
-$\Ysuper_{\hbar}(\fsl(m|n))^{\otimes 2}$ coexist in the literature, and
-the super-complementarity statement
-Theorem~\ref{thm:super-complementarity-max-mn} singles out the
-Berezinian-normalised pairing on the sub-Sugawara line:
+$\Ysuper_{\hbar}(\fsl(m|n))^{\otimes 2}$ coexist in the literature;
+Theorem~\ref{thm:super-complementarity-supertrace-zero} is proved in
+the super-trace normalisation, and
+Conjecture~\ref{conj:super-complementarity-berezinian-max-mn}
+formulates the Berezinian-normalised analogue on the sub-Sugawara
+line:
 \begin{itemize}
 \item[(I)] \emph{Super-trace pairing.}
   $\langle X, Y\rangle^{\str} := \str(\pi_{\mathrm{def}}(XY))$ with
@@ -717,20 +766,21 @@ Berezinian-normalised pairing on the sub-Sugawara line:
   m^{2}-n^{2}$ contracts trivially against the parity-graded
   invariant pairing on the Sugawara-symmetric line; this collapse
   is family-specific to $\fsl(m|n)$ (a super-traceless type-A super
-  Lie algebra) and is distinct from the Vol I AP24 register on
-  Virasoro (whose complementarity sum equals the Vol I C9 census
+  Lie algebra) and is distinct from the Vol~I bosonic complementarity
+  register on Virasoro (whose complementarity sum equals the census
   value $13$, not the value at issue here) and on bosonic affine
   KM (whose Sugawara-normalised complementarity sum vanishes for
   type-A and equals $\dim\fg$ in the Killing-form normalisation,
-  per the bridge identity FM99/C9).
+  per the standard trace/Killing-form bridge identity).
 \item[(II)] \emph{Berezinian pairing.}
   $\langle X, Y\rangle^{\sBer} := \sBer(\pi_{\mathrm{def}}(XY))$, where
   $\sBer$ is the super-Berezinian
-  \cite{Berezin87}. Above the sub-Sugawara line the two pairings agree
-  up to the parity-graded determinantal correction noted in Step 3 of
-  the proof of Theorem~\ref{thm:super-complementarity-max-mn}; the
-  Berezinian shift contributes $\max(m,n)$ to the
-  Sugawara-symmetric sum.
+  \cite{Berezin87}. On the sub-Sugawara line the two pairings are
+  related, conjecturally
+  (Conjecture~\ref{conj:super-complementarity-berezinian-max-mn}),
+  by an additive shift of magnitude $\tfrac{1}{2}\max(m,n)$ per side;
+  the shift-magnitude claim is recorded as open in
+  Remark~\ref{rem:berezinian-shift-open}.
 \end{itemize}
 The two pairings are \emph{both correct} on the sub-Sugawara line; the
 $\max(m,n)$ identity scopes the canonical-pairing question to the
@@ -738,7 +788,7 @@ Berezinian pairing. Above the sub-Sugawara line ($k+h^{\vee}_{s} >
 m+n$) the Berezinian shift is buried in higher-order corrections to
 $T_{\mathrm{Sug}}^{s}$ that have not been computed in closed form,
 and a uniform programme-level canonicalisation between the two
-pairings is the genuine remaining frontier (Beilinson-rectified F4
+pairings is the genuine remaining frontier (frontier F4
 addendum, Volume~I open-frontiers section).
 \end{remark}
 
@@ -783,22 +833,53 @@ reconstitution anchors:
   $E_{N+1}$-topologisation extends the $E_\infty$-topologisation
   ladder (Theorem~\ref{thm:e-infinity-topologization-ladder}) to the
   $\mathbb{Z}/2$-refined setting.
-\item[(b)] \emph{Volume~III $\Phi$ functor.} The K3 super-Yangian
-  $Y(\fgl(4|20))$ of Volume~III, upgraded by
-  Proposition~\ref{prop:vol3-upgrade} of the present chapter to
-  ClaimStatusProvedElsewhere, is the image
-  $\Phi(\mathrm{D^{b}Coh}(K3))$ of the CY-to-chiral functor at $d=2$,
-  scope $n=2$. The super-complementarity
-  Theorem~\ref{thm:super-complementarity-max-mn} specialises at
-  $(m,n) = (4,20)$ to
-  $\kappa^{\mathrm{super}}(Y(\fgl(4|20))) +
-  \kappa^{\mathrm{super}}(Y(\fgl(4|20))^{!}) = \max(4,20) = 20$,
-  which is the Mukai signature contribution to the K3 conductor
-  (Volume~III $\kappa_{\mathrm{BKM}} = c_N(0)/2$ at $N=1$, plus the
-  Berezinian Mukai correction recorded in
-  Remark~\ref{rem:two-pairings-supertrace-berezinian}).
+\item[(b)] \emph{Volume~III $\Phi$ functor.} The K3 super-Yangian of
+  Volume~III (renamed from the earlier $Y(\fgl(4|20))$ to the
+  orthosymplectic $Y_{\fosp(4|20)}$ per Vol~III
+  \texttt{rem:gl-to-osp-correction}, since the Mukai form is symmetric
+  indefinite and admits an orthogonal stabiliser, not a general-linear
+  one) carries a complementarity identity at rank $(m,n)=(4,20)$ that
+  must be re-derived for the orthosymplectic Shapovalov pairing:
+  Theorem~\ref{thm:super-complementarity-supertrace-zero} applies
+  verbatim in the super-trace normalisation and gives
+  $\kappa^{\mathrm{super}}_{\str}(Y_{\fosp(4|20)}) +
+  \kappa^{\mathrm{super}}_{\str}(Y_{\fosp(4|20)}^{!}) = 0$ once the
+  orthosymplectic super-dual Coxeter number
+  $h^{\vee}_{\fosp}=m-n-2$ (Arnaudon--Cramp\'e--Doikou--Frappat--Ragoucy
+  2003, \cite{AcdfR2003}) is substituted for the $\fsl$-series
+  $h^{\vee}_{s}=m-n$. The Berezinian-normalised value
+  $\max(4,20)=20$ is inherited from
+  Conjecture~\ref{conj:super-complementarity-berezinian-max-mn} under
+  the additional assumption that the quantum-Berezinian shift magnitude
+  is identical across the $\fgl$- and $\fosp$-series; this identical-shift
+  claim is open (cf.\ Remark~\ref{rem:berezinian-shift-open} and the
+  cross-volume rename caveat in
+  Remark~\ref{rem:vol-iii-osp-rename-caveat}).
 \end{itemize}
-\end{remark>
+\end{remark}
+
+\begin{remark}[Vol~III $\fgl\to\fosp$ rename caveat]
+\label{rem:vol-iii-osp-rename-caveat}
+Earlier drafts of both this chapter and Volume~III attached the K3
+target of the CY-to-chiral functor to $Y(\fgl(4|20))$. Volume~III
+\texttt{rem:gl-to-osp-correction} retracted the $\fgl$ name because
+$\fgl(m|n)$ carries no invariant bilinear form on $\bC^{m|n}$ beyond
+the supertrace, whereas the Mukai form
+$\omega_{\mathrm{Muk}}$ is a symmetric indefinite orthogonal form
+stabilised by $\mathrm{O}(4,20)$. The super-Yangian attached to a
+symmetric bilinear form is the orthosymplectic series, not the
+general-linear series. Within the present chapter, every downstream
+claim involving $Y(\fgl(4|20))$ at the Mukai signature is \emph{inherited
+at the level of the associative super-algebra presentation only};
+numerical identities that depend on the super-invariant pairing (the
+super-trace vs.\ Berezinian complementarity sums, the
+$\max(m,n)$ shift magnitude, and any Sugawara contraction) must be
+re-derived for the orthosymplectic reflection-equation Shapovalov
+pairing of \cite{AcdfR2003}. The status of these re-derivations is
+Conjectural pending that computation; Open Frontier F26$'$
+(super-complementarity osp re-derivation) records the primary-source
+entry points.
+\end{remark}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{The super-Yangian landscape}
@@ -884,7 +965,7 @@ $\Ysuper_{\hbar}(\fg)$ has
 $p_{\max} = 1$ (simple pole), $r_{\max} = 2$, $\chi_{\mathrm{VOA}}
 = \sdim(\fg)$, $n_{\mathrm{strong}}=\dim\fg_0+\dim\fg_1$, and
 $\mathrm{coset}$ given by the super-Killing-form commutant.
-Refining Volume~I's quaternitomy by super-fingerprint separates
+Refining Volume~I's quadrichotomy by super-fingerprint separates
 Heisenberg (purely even) from symplectic fermion (purely odd) and
 places $\Ysuper_{\hbar}(\fg)$ as a new super-class
 $\mathrm{L}^{\mathrm{super}}$ (depth 3, super-supported), distinct
@@ -1005,7 +1086,7 @@ any level.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 Proposition~\ref{prop:super-variant} of
-\texttt{grt\_parametrized\_seven\_faces.tex} defined the super GRT group
+Chapter~\ref{ch:grt-seven-faces} defined the super GRT group
 \[
   \Gsuper \;=\; \GRT(\mathbb{Q})\rtimes(\mathbb{Z}/2)^{|\mathrm{odd}|}
 \]
@@ -1121,10 +1202,9 @@ concrete fibre of the general super-Yangian landscape.
 
 \begin{remark}[Independent-verification decorator]
 \label{rem:iv-decorator}
-The companion test module
-\texttt{compute/tests/test\_super\_chiral\_yangian.py} installs three
-\verb|@independent_verification| decorators for this chapter under the
-Independent Verification Protocol:
+The companion Volume~II compute test module for the super chiral
+Yangian installs three independent-verification decorators for this
+chapter under the Independent Verification Protocol:
 \begin{itemize}
 \item Theorem~\ref{thm:super-yangian-e1-chiral-structure}: verified
   against Nazarov 1991 (super-Yangian $Y(\fgl(m|n))$ RTT presentation),
@@ -1156,9 +1236,10 @@ claims to the Volume~II independent-verification coverage.
 
 Volume~I's five theorems A-D+H were posed in the bosonic category. The
 $\Gsuper$-refined torsor of
-\texttt{grt\_parametrized\_seven\_faces.tex}, the unified chiral quantum
-group $Q_{\fg}^{k,f,\mu}$ of \texttt{unified\_chiral\_quantum\_group.tex}
-(to be inscribed), and the super-Yangian of this chapter constitute a
+Chapter~\ref{ch:grt-seven-faces}, the unified chiral quantum
+group $Q_{\fg}^{k,f,\mu}$ of
+Chapter~\ref{ch:unified-chiral-quantum-group}, and the super-Yangian
+of this chapter constitute a
 triangle: the torsor classifies face presentations, the unified QG
 selects the bosonic fibre, the super-chiral Yangian extends the fibre
 to the $\mathbb{Z}/2$-graded setting. Closing the
