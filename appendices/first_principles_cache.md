@@ -3053,3 +3053,67 @@ All 17 commits build clean. Author: Raeez Lorgat.
 
 **S17-D. Generalisation beyond preface.**
 The same grep run against `chapters/` top-level identifies further session-meta leaks in chapter prose; rectifying them is a separate follow-up sweep. Preface hygiene is a necessary first pass because the preface is the reader's single-pass entry; chapter-level leaks are typically encountered only by readers already inside the programme's technical material, but the same register standard applies. Type: procedural (pattern generalises; apply V2-AP40 grep before every commit touching `.tex` prose anywhere).
+
+## Session 2026-04-17 (evening, continued): Introduction linear sweep and V2-AP40 subclause discoveries
+
+**S17-E. Introduction linear sweep leak inventory.**
+The 2026-04-17 evening session extended the V2-AP40 sweep from `chapters/frame/preface.tex` (chunks 41-57, 30+ leaks) to `chapters/theory/introduction.tex` (chunks 58 through 80, 19 additional leaks in a single commit, plus 4 small residual cleanups). Introduction leak locations (pre-sweep):
+
+| # | Line (pre-sweep) | Token | Restatement |
+|---|---|---|---|
+| 1 | 54 | `commit \texttt{a5640de}` on W(p) retraction | Gurarie 1993 + Flohr 1996 unbounded-Massey scope |
+| 2 | 161 | `(AP165)` on $\SCchtop$-on-pair | parenthetical: "lives on pair, not on $\cA$" |
+| 3 | 219 | `(AP25/AP34/AP50)` on three-functors non-conflation | "the three must never be conflated" |
+| 4 | 318 | `FM11` on Sugawara shift | "the second summand is the Sugawara shift" |
+| 5 | 420 | `(AP165)` on brace action | deleted (context sufficient) |
+| 6 | 602 | `AP-RMATRIX` on collision-vs-Laplace gap | "one pole lower, by $d\log$ absorption" |
+| 7 | 612 | `AP31` on $\cH_k^! \ne \cH_{-k}$ | "despite sharing $\kappa_{\mathrm{ch}}$" |
+| 8 | 861 | `AP24` inside display equation | "$13$, family-specific" |
+| 9 | 1068 | `AP133` Catalan parenthetical | "$k-1$ internal vertices and $k$ leaves" |
+| 10 | 1393 | `(AP172/AP-CY166)` on SC not self-dual | declarative two-sentence restatement |
+| 11 | 1453 | `AP178/FM31a` on $2/c^2$ asymptotic | "whose large-$c$ asymptotic is $2/c^2$ (not $2/(5c^2)$)" |
+| 12 | 1642 | `(FM57; AP143)` on $T_{\mathrm{DS}}$ improvement | "improvement $G'_f$ involves only Cartan currents" |
+| 13 | 1652 | `(FM64: ...)` on Khan-Zeng scope | "covers every freely-generated PVA with a conformal vector" |
+| 14 | 1658 | `(FM62)` on abelian Sugawara | deleted (abelian Chern-Simons sufficient) |
+| 15 | 1953 | `AP-RMATRIX` on affine KM r-matrix | "trace-form convention" |
+| 16 | 1961 | `FM11` on Sugawara shift | "from the Sugawara shift, not zero" |
+| 17 | 1971 | `AP177` on divided-power coefficient | "divided-power coefficient is convention-dependent, while the shadow invariant is not" |
+| 18 | 1987 | `AP-RMATRIX` on bar-theoretic collision residue | "the standard collision-vs-Laplace gap" |
+| 19 | 1992 | `AP8` on Vir self-duality at $c=13$ | "at the Virasoro-specific value $c = 13$, not at the matter-ghost critical value $c = 26$" |
+| 20 | 2261 | `(Beilinson-rectified)` + commit hash on F1 | declarative F1 scope sentence |
+
+Chunk-18 Gate-1 math fix (not a V2-AP40 leak but surfaced during the gate pass): climax theorem $\beta_{W_N} = (N+1)(N+2)/2 \to 12(H_N-1)$ — see S17-F below.
+
+Chunk-19 residual V2-AP40 cleanup: `(cached confusion \#15)` at line 1886 + shouty `FAILS`; caps-`NOT` in three-volume junction at line 1904.
+
+Chunk-22/24 residual cleanup: caps-`NOT` on Feigin-Frenkel dual level (line 2191), visible-label `\texttt{thm:monster-chain-level-e3-top}` (line 2468), `(NEW)` tag on Part VIII header (line 2489).
+
+Post-sweep introduction.tex state: zero V2-AP40 meta-leaks; zero visible-label leaks; the only remaining match of the grep pattern is the legitimate bibliography citation `\cite{FM94}` (Fulton-MacPherson 1994) at line 946.
+
+**S17-F. Internal theorem-statement-vs-proof formula inconsistency (the chunk-18 Gate-1 finding).**
+ - (a) RIGHT: the Programme Climax theorem's four-case split for the Arnold coupling $\beta_{\cA}$ (`\mathrm{Vir}_c$: 6, $W_{N,c}$: Fateev-Lukyanov or closed form, $W(p)$: $4p-3$, $\mathrm{Com}(B,C)$: $6 \cdot |c_K|$) is structurally correct; the Vir / $W(p)$ / coset cases are correctly stated.
+ - (b) WRONG: the $W_N$ case cited the naive Fateev-Lukyanov asymptotic $(N+1)(N+2)/2$. This formula agrees with the proved closed form $\beta_N = 12(H_N - 1)$ at $N = 2$ (both 6) and $N = 3$ (both 10), but diverges at $N \ge 4$: $(5)(6)/2 = 15$ vs $12(H_4 - 1) = 12 \cdot 13/12 = 13$. Using the incorrect value widens the Banach radius $\rho_* = |c|/\beta_{\cA}$ by a factor of $15/13 \approx 1.154$ at $N = 4$, forgiving spurious convergence.
+ - (c) CORRECT: the proved closed form is $\beta_N = 12(H_N - 1)$ for all $N \ge 2$ (`thm:beta-N-closed-form-proved-all-N`), consistent with preface Section XIV's statement. Specialisations: $\beta_{W_2} = \beta_{\mathrm{Vir}} = 6$, $\beta_{W_3} = 10$, $\beta_{W_4} = 13$. The Fateev-Lukyanov candidate $(N+1)(N+2)/2$ is a secondary remark: it agrees through $N = 3$ but overestimates at $N \ge 4$. The pattern to watch: whenever a main theorem's case split cites a formula for which a closed form is established elsewhere in the same chapter, check agreement at the first boundary case ($N = 4$ for $W_N$ asymptotics; $d = 3$ for CY dimension; $g = 2$ for curved Dunn; $r = 4$ for class M shadow tower). Type: internal-consistency / formula-divergence at boundary cases.
+
+**S17-G. V2-AP40 subclause discoveries.**
+The 2026-04-17 audit agent's report across 58 files surfaced four distinct subclasses of V2-AP40 beyond in-prose parentheticals, now registered in CLAUDE.md as V2-AP40a-d:
+
+ - **V2-AP40a**: bibkey-named-after-ledger-token. Witness: `\cite{Vol2-FM81-platonic}` at 10+ call sites in `bp_chain_level_strict_platonic.tex`. The bib entry's key is itself `FM81`, so the compiled bibliography surfaces the ledger token to the reader via every in-text citation. Counter: atomic rename across `.tex` + `.bib`.
+ - **V2-AP40b**: label-named-after-ledger-token. Witnesses: `\label{rem:AP172-A-koszul-SC-not-SC}` (unified_chiral_quantum_group.tex:470), `\label{cor:FM134-healed}` (y_algebras.tex:253), `\label{rem:chapter-retracted-2026-04-17}` (topologization_class_m_original_complex_platonic.tex:133). The label propagates through the PDF's link graph and through every `\ref{...}`. Counter: atomic rename of label + all refs in one commit.
+ - **V2-AP40c**: index-entry / hyperref anchor named after ledger-token. Witnesses: `\index{FM47!healed}`, `\index{FM48!healed}`, `\index{FM81!healed}` (e_infinity_topologization.tex); `\hyperref[AP67]{AP67}`, `\hyperref[FM106]{FM106}`, `\hyperref[FM110]{FM110}` (examples-complete-proved.tex L1012-1095, six instances). This is the worst class: reader clicks and lands on the AP/FM anchor target inside the manuscript. Counter: delete the index/hyperref outright; rephrase surrounding prose.
+ - **V2-AP40d**: theorem-environment or section title built on ledger-token. Witnesses: `\begin{remark}[AP172: ...]`, `\begin{convention}[AP159: ...]`, `\section{Anti-pattern register: AP171, AP172, AP174, slab-bimodule}` (grt_parametrized_seven_faces.tex:831, dnp_identification_master.tex:758). The compiled TOC and every theorem-environment header surfaces the token. Counter: retitle by content.
+
+ Session evidence: ~530 leaks across 58 files, with ~20 in V2-AP40d category, ~25 in V2-AP40b/c, ~10 in V2-AP40a, ~400 as V2-AP40-base in-prose parentheticals, and ~80 visible-label leaks (`\texttt{thm:...}` where `\ref{...}` was intended — a borderline form classifiable either as V2-AP40-base or as its own sub-pattern).
+
+ Frontier of rectification: priority-ordered target list by leak-count density is `unified_chiral_quantum_group.tex` (56), `super_chiral_yangian.tex` (39), `chiral_higher_deligne.tex` (24), `universal_holography_functor.tex` (24), `sc_chtop_heptagon.tex` (21), `modular_swiss_cheese_operad.tex` (21), `dnp_identification_master.tex` (20), `shifted_rtt_duality_orthogonal_coideals.tex` (19), `line-operators.tex` (18), `bp_chain_level_strict_platonic.tex` (18, concentrated bibkey rename). Next session should walk this list in chunk-batched commits; estimated effort ~20-30 commits covering the top-10 files.
+
+**S17-H. Commit-SHA leak cluster.**
+Four distinct locations in the manuscript carry bare commit-SHA references in compiled prose (reader sees a `\texttt{<7-hex>}` that means nothing to them):
+ - `chapters/theory/foundations.tex:3777`: "Conjectured at commit `\texttt{a5640de}`".
+ - `chapters/theory/irrational_cosets_tempered_platonic.tex:134`: "closed independently in Vol~II commit `\texttt{549f881}`".
+ - `chapters/theory/topologization_class_m_original_complex_platonic.tex:170`: "(`\texttt{programme\_climax\_platonic.tex}`, commit `\texttt{d1a4e7c}`)".
+ - `chapters/connections/programme_climax_platonic.tex:904`: "Conjectured on this basis (commit `\texttt{a5640de}`)".
+
+All four must be excised; the mathematical content they surround is fine, but the commit-hash reference belongs in CLAUDE.md or in the git log, never in the compiled manuscript. Counter: replace each with a neutral reference to the conjectural status + in-manuscript `\ref{...}` to the relevant statement.
+
+**Session evidence summary**: Author directive 2026-04-17 — "NO ANTIPATTERN TAGS OR METADATA LEAKAGE INTO THE MANUSCRIPT OR STANDALONE PAPERS PROPER" — is now registered as V2-AP40 + subclauses a-d in CLAUDE.md and anchored here in S17 with line-by-line evidence. Strongest-form compliance: run the detection grep before every `.tex` commit; restate any match as declarative mathematics. The error ledger (CLAUDE.md + this file) is the only place AP/FM/session-code/commit-hash/meta-stamp tokens live.
