@@ -564,6 +564,33 @@ which is the standard classical/quantum correspondence for spectral $R$-matrices
 The categorical classification asserted here is orthogonal to the Drinfeld double programme stated for $B^{\mathrm{ord}}(\cA)$ in the companion chapter on ordered associative chiral Koszul duality (see Remark~\ref{rem:drinfeld-double-programme} for the formulation on the open colour): the Drinfeld double assembles the algebra and its Koszul dual into a single Hopf object whose module category is~$\cC_\partial$, while the meromorphic braided structure recorded by $R(z)$ equips that category with its spectral braiding. Together, the two remarks present the bar coalgebra $B^{\mathrm{ord}}(A)$ as a universal source of spectrally-parametrised braided monoidal categories.
 \end{remark}
 
+\begin{remark}[Two provenances of $R(z)$; spectral vs.\ categorical]
+\label{rem:r-matrix-two-provenances}
+\index{R-matrix@$R$-matrix!two provenances}
+The spectral $R$-matrix $R(z)$ arises by two logically distinct routes, each the canonical output of a different locality class of chiral algebra. Conflation of the two is the error pattern V2-AP2/FM54/AP-CY65; this remark records the right/wrong/correct triple explicitly.
+\begin{description}
+\item[Provenance (a), $E_\infty$-chiral \emph{(derived from OPE)}.] For a vertex algebra $\cA$ (KM at non-critical level, Virasoro, Heisenberg, $W_N$, lattice VOAs --- all $E_\infty$-chiral per V2-AP1), the classical $r$-matrix is extracted as the binary collision residue
+\[
+r(z) \;=\; \Res^{\mathrm{coll}}_{0,2}\bigl(\Theta_\cA\bigr) \;=\; \mathrm{dlog}\text{-part of the OPE},
+\]
+its quantum lift $R(z) = \exp(r(z))$ is then \emph{canonical} (determined up to $\GRT^{\mathrm{fin}}$ Casimir rescaling), and Kazhdan--Lusztig~\cite{KL94} identifies the evaluation-module category with the quantum-group tensor category at the matched level. No independent input is needed.
+\item[Provenance (b), genuinely $E_1$-chiral \emph{(independent input)}.] For a genuinely $E_1$-chiral algebra $\cA$ (Yangian $Y_\hbar(\fg)$, Etingof--Kazhdan quantum VA; V2-AP6), the OPE data of $\cA$ do \emph{not} determine $R(z)$: the bar-intrinsic collision residue yields only the classical shadow $r(z)$ via Laplace transform, and the quantum lift is supplied by the quasi-triangularity axiom (H5) as \emph{additional} structure on $\cA$. Two distinct quantizations of the same classical $r(z)$ are generically inequivalent; the choice is part of the datum.
+\item[Bridge on the overlap.] Let $\cA$ admit both presentations --- e.g.\ $V_k(\fg)$ with its affine Yangian $Y_\hbar(\widehat{\fg})$ completion at generic level --- and restrict to the evaluation-module core of Theorem~\ref{thm:affine-monodromy}~(AP47). There exist gauge elements $F(z) \in (\cA^!\widehat\otimes\cA^!)[\![z^{-1}]\!]^\times$ and an associator $\Phi \in \GRT_1(\bQ)$ such that
+\[
+R^{(a)}(z) \;=\; F(z)\,\Phi_*\!\bigl(R^{(b)}(z)\bigr)\,F(z)^{-1}\,;
+\]
+the two $R$-matrices agree up to $\GRT$-gauge, and the bar-intrinsic $r(z)$ is the common tangent at $\hbar=0$. This is the precise meaning of Kazhdan--Lusztig on the overlap: $\GRT$-equivalent, not equal.
+\end{description}
+
+\noindent\textbf{Spectral vs.\ categorical (the FM54 separation).} The spectral $R(z)$ is a \emph{family} of isomorphisms parametrised by $z\in\C^\times$ (equivalently by the complex modulus of $\FM_2(\C)$); the categorical $E_2$ braiding produced by Dunn on $\cZ^{\mathrm{der}}_{\mathrm{ch}}(\cA)$ is a \emph{single} natural transformation $\beta_{X,Y}\colon X\otimes Y\to Y\otimes X$. The spectral parameter enters through the evaluation module functor $\mathsf{ev}_z\colon \mathrm{Mod}_\cA \to \mathrm{Mod}_\cA$ (translation by~$z$ on the curve), \emph{not} through the $E_2$ structure itself. The relationship
+\[
+\beta_{\mathsf{ev}_{z_1}(M),\,\mathsf{ev}_{z_2}(N)} \;=\; R(z_1 - z_2)\circ\tau
+\]
+is a \emph{theorem} requiring the $D$-module-enriched $E_2$ structure on $\cZ^{\mathrm{der}}_{\mathrm{ch}}$ (not a definition): the family $R(\cdot)$ is the image of the single braiding under the $\Z$-indexed family of translation automorphisms $\tau_z$, and conflating the two is V2-AP2.
+
+\noindent\textbf{Self-check.} At $k=0$: provenance (a) gives $r(z)=0$ hence $R(z)=\id$ canonically; provenance (b) admits nontrivial $R(z)$ (Yangian at $\hbar\neq 0$ is unaffected by the KM level). This confirms that (a) and (b) are genuinely distinct inputs that coincide only on the non-degenerate overlap.
+\end{remark}
+
 \begin{remark}[Comparison with Costello--Francis--Gwilliam]
 \label{rem:CFG-comparison}
 Costello--Francis--Gwilliam~\cite{CFG26} construct, for any
@@ -3719,7 +3746,61 @@ for $R(z) = \id + \hh\,r_0/z + O(z^{-2})$.
 
 \subsubsection*{The $\SCchtop^{!}$-algebra structure on $\cA^!_{\mathrm{line}}$}
 
-\begin{theorem}[Dual $\SCchtop^{!}$-algebra $= (\mathrm{Lie},\mathrm{Ass})$-algebra;
+\begin{proposition}[Coloured Koszul dual of $\SCchtop$ has three sectors;
+\ClaimStatusProvedHere]
+\label{prop:sc-koszul-dual-three-sectors}
+\index{Swiss-cheese operad!three-sector Koszul dual}
+\index{Koszul dual!Tamarkin self-duality}
+The Koszul dual cooperad $\SCchtop^{!}$ of the two-coloured
+Swiss--cheese operad $\SCchtop$ (closed colour $c = E_2$-chiral,
+represented on chains by $C_\ast(\FM_\bullet(\C))$; open colour
+$o = E_1$; mixed cross-arrows parametrising bulk-to-boundary
+collisions) decomposes into three sectors as a non-$\Sigma$
+coloured cooperad:
+\begin{enumerate}[label=\textup{(\roman*)}]
+\item \emph{Closed sector.} $\SCchtop^{!}(c;c,\ldots,c) \simeq
+\Etwo^{!}\{1\} \simeq \Etwo\{1\}$, where the second equivalence
+is Tamarkin self-duality \cite{Tam03,LV12} up to an operadic
+shift by~$1$ (Getzler--Jones Gerstenhaber linearisation).
+The on-the-associated-graded specialisation
+$\mathrm{gr}(\Etwo^{!}) = \operatorname{Com}^! = \operatorname{Lie}$
+is recovered from the Poisson filtration on $H_\ast(\Etwo)$;
+this Poisson shadow is \emph{not} the ungraded dual.
+\item \emph{Open sector.} $\SCchtop^{!}(o;o,\ldots,o) \simeq
+\Ass^{!} = \Ass$ (Ginzburg--Kapranov self-duality
+\cite{GK94}).
+\item \emph{Mixed sector.} $\SCchtop^{!}(o;c,\ldots,c,o,\ldots,o)
+= 0$ for every mixed arity with at least one closed input
+and at least one open input.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+Hoefel and Hoefel--Livernet~\cite{Hoe09,HL12} prove that the
+classical Swiss--cheese operad $\mathsf{SC}$ is Koszul as a
+coloured operad via a distributive law of Beck type between
+$\Etwo$ (closed) and $\Ass$ (open), with an empty cross-composition
+law (bulk-to-boundary operations impose $\mathsf{SC}(o;c,o,\ldots,o) =
+\Ass \otimes H_\ast(\mathrm{HH}_\bullet)$ via the OCHA--Leibniz
+structure; higher mixed arities vanish). Vallette's coloured
+generalisation of Ginzburg--Kapranov~\cite{Val07} transports the
+Künneth theorem to the coloured quadratic dual. Since the
+Koszul dual of a distributive-law operad is the opposite
+distributive-law composition of the duals, and the cross-arity
+entries of $\mathsf{SC}$ are concentrated in arity~$(1{+}1)$ (one
+closed, one open boundary) with quadratic relation the OCHA
+Maurer--Cartan, the coloured dual inherits empty cross-arity
+composition in arity $\ge 3$ mixed. The closed-sector dual is
+the homotopy version $\Etwo^{!}$, which is $\Etwo\{1\}$ by
+Tamarkin~\cite{Tam03}; the open sector is Ass self-dual by
+\cite{GK94}. Passing to $\SCchtop = \mathrm{SC} \otimes_{\mathrm{FM}}
+C_\ast(\FM_\bullet(\C))$ via Kontsevich--Tamarkin formality
+(with a fixed Drinfeld associator~$\Phi$, as per
+Fresse--Vallette~\cite{FV20}) preserves Koszulity through the
+quasi-isomorphism, giving the stated decomposition.
+\end{proof}
+
+\begin{theorem}[Dual $\SCchtop^{!}$-algebra structure;
 \ClaimStatusProvedHere]
 \label{thm:dual-sc-algebra}
 \index{Swiss-cheese operad!Koszul dual algebra structure}
@@ -3727,7 +3808,14 @@ for $R(z) = \id + \hh\,r_0/z + O(z^{-2})$.
 \index{Sklyanin bracket!as closed-color cobar}
 \index{Yangian!as open-color cobar}
 The open-colour Koszul dual $\cA^!_{\mathrm{line}}$ inherits a canonical
-$\SCchtop^{!}$-algebra structure (equivalently, a $(\mathrm{Lie},\mathrm{Ass})$-algebra structure, since $\SCchtop^{!}$ has closed sector $\operatorname{Com}^! = \operatorname{Lie}$ and open sector $\operatorname{Ass}^! = \operatorname{Ass}$; Proposition~\ref*{prop:sc-koszul-dual-three-sectors}):
+$\SCchtop^{!}$-algebra structure. Applying
+Proposition~\ref{prop:sc-koszul-dual-three-sectors}, the dual
+algebra type is $(\Etwo\{1\},\Ass,\text{trivial-mixed})$: an
+$\Etwo\{1\}$-algebra on the closed colour, an associative algebra
+on the open colour, and \emph{no} mixed coproduct (the mixed
+sector is empty). On the associated graded for the Poisson
+filtration this specialises to a $(\Lie,\Ass)$-algebra, which
+is the form relevant for classical shadow computations:
 \begin{enumerate}[label=\textup{(\roman*)}]
 \item \emph{Closed color:} the coalgebra structure on
  $\barBch(\cA)$ induces, via Verdier duality on $\Ran(X)$,
@@ -3795,6 +3883,99 @@ presentation separates these into ``Yangian generators'' (open)
 and ``spectral parameter dependence'' (closed); the
 $\SCchtop$-algebra structure reunifies them.
 \end{remark}
+
+\subsubsection*{The Heptagon Theorem: seven equivalent presentations
+of the $\SCchtop$-datum}
+
+\begin{theorem}[$\SCchtop$ Heptagon;
+\ClaimStatusProvedHere]
+\label{thm:sc-heptagon}
+\index{Swiss-cheese operad!heptagon of equivalences}
+\index{SC^{ch,top}!seven presentations}
+Let $\cA$ be an $E_1$-chiral algebra (allowing the $E_\infty$-chiral
+sub-case) and let $Z^{\mathrm{der}}_{\mathrm{ch}}(\cA) :=
+C^\bullet_{\mathrm{ch}}(\cA,\cA)$ be its chiral derived centre. The
+$\SCchtop$-algebra structure on the bulk-boundary pair
+$(Z^{\mathrm{der}}_{\mathrm{ch}}(\cA), \cA)$ admits seven equivalent
+presentations, any two of which are connected by a quasi-isomorphism
+of two-coloured $\SCchtop$-algebras:
+\begin{enumerate}[label=\textup{(P\arabic*)},leftmargin=*]
+\item \emph{Operadic.} Generators (codimension-$1$ boundary strata of
+$\FM_k(\C) \times \mathrm{Conf}_m^{<}(\R)$ in the two-colour Fulton--MacPherson
+compactification) with quadratic relations (codimension-$2$ strata).
+\item \emph{Koszul dual.} Via
+Proposition~\ref{prop:sc-koszul-dual-three-sectors}:
+$(\SCchtop)^! \simeq (\Etwo\{1\}, \Ass, 0)$, with closed-colour dual
+by Tamarkin self-duality~\cite{Tam03}, open-colour Ass
+self-dual~\cite{GK94}, and trivial mixed sector (empty cross-arrows
+in arity $\ge 3$).
+\item \emph{Factorization.} The chiral derived centre
+$Z^{\mathrm{der}}_{\mathrm{ch}}(\cA)$ acts on the boundary $\cA$ via the
+universal chiral brace $B^{\mathrm{ch}}$ (Theorem~\ref{thm:chiral-brace}
+of Part~IV); the action is a factorization algebra on the half-plane
+$\mathbb{H}$ with closed stratum $\mathring{\mathbb{H}}$ and open stratum
+$\partial \mathbb{H} = \R$.
+\item \emph{BV/BRST.} The classical master equation $\{S,S\} = 0$
+splits at chain level (after a Batalin--Fradkin--Vilkovisky gauge fix)
+into open and closed Maurer--Cartan equations; the cross-term vanishes
+by the $\SCchtop^{!}$-trivial-mixed property. The quantum master
+equation reduces chainwise to the open/closed MC pair, without
+requiring passage to homology.
+\item \emph{Convolution.} The bar cooperad
+$B(\SCchtop)$ supplies an $L_\infty$ structure on the convolution
+complex $\mathfrak{g}^{\mathrm{SC}}_T =
+\Hom(B(\SCchtop)(c,o), \End(Z^{\mathrm{der}}_{\mathrm{ch}}(\cA),\cA))$;
+twisting morphisms $\tau \in \mathrm{MC}(\mathfrak{g}^{\mathrm{SC}}_T)$
+are precisely $\SCchtop$-algebra structures.
+\item \emph{Drinfeld-centre.} An $\SCchtop$-algebra is equivalent to
+an associative algebra in the Drinfeld centre
+$\mathcal{Z}(\mathrm{Rep}_{\mathrm{fact}}(\cA))$ of the factorization
+representation category, together with an explicit half-braiding
+$\sigma_M(z) \colon M \otimes \cA \to \cA \otimes M$
+determined by the spectral R-matrix $R(z)$ of
+Section~\ref{sec:spectral-R-matrix}; the existence of the half-braiding
+is the Higher Deligne Conjecture for the chiral $E_3$ structure on
+$Z^{\mathrm{der}}_{\mathrm{ch}}(\cA)$.
+\item \emph{Derived-AG.} Global sections of the derived stack
+$\mathbf{ChirAlg}^{E_1}_{\Ran(X)}$ of $E_1$-chiral algebras on the Ran
+space, equipped with the curvature datum as a class
+$[\kappa \cdot \omega_g] \in H^2(\overline{\mathcal{M}}_g, \Ocal)$ (for
+$g = 0$ this class is zero and recovers the uncurved operadic
+presentation; for $g \ge 1$ it is the shadow obstruction controlling
+modular curvature).
+\end{enumerate}
+The equivalences P1--P5 continue the classical pentagon
+(Vol~II preamble); P6 is the Drinfeld-centre upgrade supplied by the
+chiral Higher Deligne Conjecture (Section~\ref{sec:chiral-higher-deligne});
+P7 is the derived-algebraic-geometry globalisation. The heptagon
+commutes: every pair of presentations is connected by a
+quasi-isomorphism of two-coloured $\SCchtop$-algebras, and the full
+diagram of pairwise comparisons is homotopy-coherent.
+\end{theorem}
+
+\begin{proof}[Proof sketch]
+The pentagon P1$\leftrightarrow$P5 is
+Proposition~\ref{prop:sc-pentagon} (cf.\ the preamble of Vol~II). P1
+$\Leftrightarrow$ P2 is Ginzburg--Kapranov--Vallette Koszul duality
+for coloured operads~\cite{GK94,Val07}, combined with
+Proposition~\ref{prop:sc-koszul-dual-three-sectors} for the closed-colour
+dual. P1 $\Leftrightarrow$ P3 is the coloured factorization-operad
+recognition of Francis~\cite{Fra13} applied to the half-plane. P3
+$\Leftrightarrow$ P4 is the BV--factorization bridge of
+Costello--Gwilliam (Vol.~2) specialised to two-colour datum with
+empty cross-arrows, so that the QME decouples into open and closed
+MC at chain level. P2 $\Leftrightarrow$ P5 is Loday--Vallette's
+operadic convolution for Koszul operads~\cite{LV12,FV20}. P1
+$\Leftrightarrow$ P6 is the chiral Higher Deligne Conjecture
+(Theorem~\ref{thm:chiral-higher-deligne}): the $E_2$-chiral structure
+on $Z^{\mathrm{der}}_{\mathrm{ch}}(\cA)$ braids $\mathrm{Rep}_{\mathrm{fact}}(\cA)$
+through the explicit half-braiding
+$\sigma_M(z)(m \otimes a) = \sum \Delta_z(a)_{(2)} \cdot m \otimes
+\Delta_z(a)_{(1)}$, cf.\ AP-CY25. P1 $\Leftrightarrow$ P7 is the
+derived stack recognition of Ben-Zvi--Nadler~\cite{BZN} applied to
+$E_1$-chiral algebras over $\Ran(X)$, with curvature as an
+$H^2$-class. Transitivity of quasi-isomorphism closes the heptagon.
+\end{proof}
 
 \subsubsection*{Genus tower: asymmetry between the two colors}
 
