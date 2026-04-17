@@ -108,26 +108,26 @@ Order follows `main.tex` linear traversal (Part I $\to$ Part VIII $\to$ Conclusi
 
 ## Part VII — The Frontier
 
-- [ ] `chapters/connections/spectral-braiding-frontier.tex`
-- [ ] `chapters/connections/ht_bulk_boundary_line_frontier.tex`
-- [ ] `chapters/connections/celestial_boundary_transfer_frontier.tex`
-- [ ] `chapters/examples/examples-complete-conditional.tex`
-- [ ] `chapters/examples/w-algebras-frontier.tex`
-- [ ] `chapters/connections/modular_pva_quantization_frontier.tex`
-- [ ] `chapters/connections/ordered_associative_chiral_kd_frontier.tex`
-- [ ] `chapters/connections/celestial_holography_frontier.tex`
-- [ ] `chapters/connections/log_ht_monodromy_frontier.tex`
-- [ ] `chapters/connections/anomaly_completed_frontier.tex`
+- [~] `chapters/connections/spectral-braiding-frontier.tex` — 2026-04-17 partial: balance OK, zero V2-AP40 leaks (3050 lines); full linear sweep deferred.
+- [~] `chapters/connections/ht_bulk_boundary_line_frontier.tex` — 2026-04-17 partial: balance OK, zero V2-AP40 leaks (2954 lines); full linear sweep deferred.
+- [x] `chapters/connections/celestial_boundary_transfer_frontier.tex` — 2026-04-17: diagnostic converged, balance OK, zero V2-AP40 leaks (156 lines).
+- [x] `chapters/examples/examples-complete-conditional.tex` — 2026-04-17: diagnostic converged, balance OK, zero V2-AP40 leaks (389 lines).
+- [x] `chapters/examples/w-algebras-frontier.tex` — 2026-04-17: V2-AP40 sweep (1 leak `AP203-healed` → `healed`). Balance OK (1267 lines).
+- [~] `chapters/connections/modular_pva_quantization_frontier.tex` — 2026-04-17 partial: balance OK, zero V2-AP40 leaks (1824 lines); full linear sweep deferred.
+- [~] `chapters/connections/ordered_associative_chiral_kd_frontier.tex` — 2026-04-17 partial: balance OK, zero V2-AP40 leaks (6341 lines — second-largest chapter in Vol II); full linear sweep deferred.
+- [x] `chapters/connections/celestial_holography_frontier.tex` — 2026-04-17: diagnostic converged, balance OK, zero V2-AP40 leaks (1391 lines).
+- [x] `chapters/connections/log_ht_monodromy_frontier.tex` — 2026-04-17: V2-AP40 sweep (1 leak `cf.~Vol~III AP-CY7` rewritten as `cf.~Vol~III discussion of CoHA vs chiral-algebra distinction`). Balance OK (1067 lines).
+- [~] `chapters/connections/anomaly_completed_frontier.tex` — 2026-04-17 partial: balance OK, zero V2-AP40 leaks (1883 lines); full linear sweep deferred.
 
 ## Part VIII — From Frontier to Theorem
 
-- [ ] `chapters/frame/part_viii_synthesis.tex`
-- [ ] `chapters/theory/koszulness_moduli_M_kosz.tex`
-- [ ] `chapters/theory/infinite_fingerprint_classification.tex`
+- [x] `chapters/frame/part_viii_synthesis.tex` — 2026-04-17: V2-AP40 sweep (5 FM/AP-CY ledger-token clusters in the Part VIII synthesis prose rewritten as declarative mathematics: FM67 → curved-Dunn-H^2-vanishing framework; FM125/126/127/128/185/186/187/188/214 cluster → class-M chain-level compatibility + universal-holography + UV finiteness + Monster orbifold + symplectic polarisation; FM186 → raw direct-sum; FM256 → Vol II adversarial catalogue). Balance OK (483 lines).
+- [x] `chapters/theory/koszulness_moduli_M_kosz.tex` — 2026-04-17: diagnostic converged, balance OK, zero V2-AP40 leaks (214 lines).
+- [x] `chapters/theory/infinite_fingerprint_classification.tex` — 2026-04-17: V2-AP40 sweep (2 AP-CY tokens rewritten: AP-CY34/AP-CY44 → kappa_ch vs chi(O_X) distinction at odd CY-d; AP-CY37 → universal-weight-formula question for kappa_BKM). Balance OK (213 lines).
 
 ## Conclusion
 
-- [ ] `chapters/connections/conclusion.tex`
+- [x] `chapters/connections/conclusion.tex` — 2026-04-17: diagnostic converged, balance OK, zero V2-AP40 leaks (2172 lines).
 
 ## Completion log
 
