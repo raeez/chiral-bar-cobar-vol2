@@ -101,7 +101,7 @@ Order follows `main.tex` linear traversal (Part I $\to$ Part VIII $\to$ Conclusi
 - [x] `chapters/theory/chiral_higher_deligne.tex` — 2026-04-17: diagnostic converged, balance OK, zero V2-AP40 leaks (884 lines).
 - [x] `chapters/connections/universal_holography_functor.tex` — 2026-04-17: diagnostic converged, balance OK, zero V2-AP40 leaks (1138 lines).
 - [x] `chapters/connections/universal_celestial_holography.tex` — 2026-04-17: diagnostic converged, balance OK, zero V2-AP40 leaks (1026 lines).
-- [~] `chapters/connections/celestial_moonshine_bridge.tex` — 2026-04-17 partial: Gate-1 three typo fixes (`\end{remark>` → `\end{remark}` at lines 339, 617, 631) via batch commit 09c62b4. Full linear sweep deferred.
+- [x] `chapters/connections/celestial_moonshine_bridge.tex` — 2026-04-17: Prior Gate-1 three typo fixes + Phase-1 re-audit this tick confirmed CONVERGED. Re-audit: 780 lines, balance 30=30, 8 sections, zero V2-AP40 tokens, zero malformed close-tags, zero monospace filename/label refs.
 - [x] `chapters/connections/soft_graviton_mellin_shadow_bridge_platonic.tex` — 2026-04-17: diagnostic converged, balance OK, zero V2-AP40 leaks (813 lines).
 - [x] `chapters/connections/monster_chain_level_e3_top_platonic.tex` — 2026-04-17: diagnostic converged, balance OK, zero V2-AP40 leaks (388 lines).
 - [x] `chapters/connections/schellekens_71_alpha_classification_platonic.tex` — 2026-04-17: diagnostic converged, balance OK, zero V2-AP40 leaks (671 lines).
