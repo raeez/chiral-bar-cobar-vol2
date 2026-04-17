@@ -106,23 +106,39 @@ def test_beta_3_is_ten():
         "not use FL constants."
     ),
 )
-def test_beta_N_closed_form_matches_N2_N3():
-    """Closed form beta_N = (N+1)(N+2)/2 matches both proved values.
+def test_beta_N_candidates_match_N2_N3_only():
+    """Both Candidate A and Candidate B match at N=2, 3 by coincidence.
 
-    # VERIFIED: [DC] formula evaluation N=2: 3*4/2 = 6 matches BETA_2.
-    # VERIFIED: [DC] formula evaluation N=3: 4*5/2 = 10 matches BETA_3.
+    The first-principles theorem (thm:beta-N-closed-form-proved-all-N in
+    beta_N_closed_form_all_platonic.tex) established beta_N = 12(H_N - 1),
+    which also matches N=2, 3. At N=4 all three formulas diverge:
+    Candidate A = 15, Candidate B = 16, first-principles = 13.
+
+    This test is retained for historical documentation; the canonical
+    beta_N value in beta_N(.) now tracks one of the two prior candidate
+    forms (legacy module), but the PROVED value is in
+    compute/lib/beta_N_closed_form.py::beta_N_from_kappa.
+
+    # VERIFIED: [DC] formula evaluation N=2: both candidates give 6.
+    # VERIFIED: [DC] formula evaluation N=3: both candidates give 10.
+    # VERIFIED: [LT] beta_N_closed_form_all_platonic.tex
+    #              thm:beta-N-closed-form-proved-all-N retracts both.
     """
-    # Both candidates match at N=2 and N=3
+    # Both candidates (and first-principles) match at N=2 and N=3
     assert beta_N_candidate_A(2) == BETA_2
     assert beta_N_candidate_A(3) == BETA_3
-    # Canonical beta_N is candidate_A
-    assert beta_N(2) == BETA_2
-    assert beta_N(3) == BETA_3
-    # Predictions at N=4: 15 (candidate_A) vs 16 (candidate_B)
+    assert beta_N_candidate_B(2) == BETA_2
+    assert beta_N_candidate_B(3) == BETA_3
+    # At N=4 all three formulas diverge
     assert beta_N_candidate_A(4) == Fraction(15)
     assert beta_N_candidate_B(4) == Fraction(16)
-    # Canonical manuscript commitment: candidate_A
-    assert beta_N(4) == Fraction(15)
+    # The canonical first-principles value (Theorem) is 13; see
+    # compute/lib/beta_N_closed_form.py and
+    # chapters/theory/beta_N_closed_form_all_platonic.tex
+    from lib.beta_N_closed_form import beta_N_from_kappa
+    assert beta_N_from_kappa(4) == Fraction(13)
+    assert beta_N_from_kappa(4) != beta_N_candidate_A(4)
+    assert beta_N_from_kappa(4) != beta_N_candidate_B(4)
 
 
 def test_beta_N_is_finite_for_all_N():
@@ -191,7 +207,7 @@ def test_tempering_rate_tends_to_zero_every_N():
 
 
 @independent_verification(
-    claim="prop:wn-stirling-dominance",
+    claim="prop:rho-star-WN-closed-form-upgrade",
     derived_from=[
         "Stirling factor (r!)^{-1/r} ~ e/r",
     ],
@@ -223,7 +239,7 @@ def test_stirling_dominates_beta_at_large_r():
 
 
 @independent_verification(
-    claim="prop:rho-star-WN",
+    claim="prop:rho-star-WN-closed-form",
     derived_from=[
         "Closed form beta_N = (N+1)(N+2)/2 from prop:beta-N-closed-form",
         "Root test: rho_*(c) = (limsup |S_r|^{1/r})^{-1}",

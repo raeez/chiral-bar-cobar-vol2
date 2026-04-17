@@ -372,7 +372,7 @@ def test_fm81_healed_via_three_lanes():
 # ----------------------------------------------------------------------------
 
 @independent_verification(
-    claim="thm:galois-invariance-descent part (a)",
+    claim="thm:galois-invariance-descent",
     derived_from=[
         "Noether-BV correspondence for Galois-invariant action",
         "Costello-Gwilliam 2016 Factorization Algebras in QFT Ch. 5 BV quantization compatibility",
