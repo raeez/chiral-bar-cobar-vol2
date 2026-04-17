@@ -36,7 +36,7 @@ Order follows `main.tex` linear traversal (Part I $\to$ Part VIII $\to$ Conclusi
 
 ## Part III — The Faces of $r(z)$ ($\mathrm{GRT}_1(\Q)$-torsor)
 
-- [ ] `chapters/connections/dnp_identification_master.tex`
+- [x] `chapters/connections/dnp_identification_master.tex` — 2026-04-17: V2-AP40 sweep (4 escaped-token leaks healed). Four AP/FM tokens split across `\textup{}` (evading standard regex): `AP\textup{19}` → dlog-absorption prose; `AP\textup{126}` × 2 → level-stripped-r-matrix prose naming the constraint by content; `AP\textup{107}` → "odd-generator extension" content-named. Balance 32=32. Chapter's seven-face content (Swiss-cheese bar-cobar, line-operator A!-modules, boundary PVA, sigma-model Hamiltonians, dg-shifted Yangian, Sklyanin, Gaudin) all preserved.
 - [ ] `chapters/theory/grt_parametrized_seven_faces.tex`
 - [ ] `chapters/connections/spectral-braiding-core.tex`
 - [ ] `chapters/connections/ht_bulk_boundary_line_core.tex`
