@@ -131,3 +131,90 @@ Every `\ClaimStatusProvedHere` theorem should be paired with a `compute/tests/te
 **Recent structural inscriptions.** `prop:R-twisted-sigma-n-descent` (`factorization_swiss_cheese.tex`) supplies the precise operadic statement that the symmetric bar is the R-twisted Σ_n-descent of the ordered bar — the bridge between Vol I's bar-cobar machinery and Vol II's holographic boundary formalism. The two-theorem native count (Theorem F Universal Holography + Theorem G Infinite Fingerprint Classification) is now canonical in the preface. Extension protocol: install 5-10 decorators per session, prioritising climax theorems first.
 
 See `notes/INDEPENDENT_VERIFICATION.md` for the three-healing rubric (find disjoint source / restrict scope / downgrade status) and `compute/lib/independent_verification.py` for the decorator implementation.
+
+## Recent Inscriptions and Audit (2026-04-17 wave)
+
+The 2026-04-17 reconstitution wave inscribed Vol II's contribution to the
+universal-trace-identity bridge and propagated the wave-14 anchor
+cross-references throughout. Items added or healed since the last README
+revision:
+
+- **Programme Climax master refinement** (`chapters/connections/programme_climax_platonic.tex`).
+  The Universal Holography functor `Φ_hol : ChirAlg^{ω,BL}_X → HT-QFT_{X×R}` is
+  now the explicit master theorem (`thm:universal-holography-master`,
+  ProvedHere on the non-logarithmic C_2-cofinite standard landscape).
+  Five rung corollaries (`cor:rung-{heisenberg, affine-km, virasoro, w-N, w-infty}`)
+  present 3d quantum gravity as the Virasoro-rung first instance and W_∞ as the
+  E_∞-topological operadic horizon. The Universal Trace Identity bridge to Vol I
+  (`K = -c_ghost(BRST)`) and Vol III (`κ_BKM = c_N(0)/2`, K3-fibered Class A only)
+  is inscribed as `conj:universal-trace-identity-volii-bridge` with explicit
+  Class B exclusion (Class B uses `κ_BCOV = χ(X)/24` instead). Five honest
+  open frontiers F1-F5 stated as named conjectures with explicit heal paths.
+
+- **Chriss-Ginzburg rectification of preface + introduction** (chunks 1-80,
+  late-April 2026 sessions). Chunk-by-chunk elite-prose rectification of the
+  ~2,500-line preface and ~2,800-line introduction under the Russian-school +
+  mathematical-physicist standard. The most recent passes (chunks 18-24)
+  surfaced the V2-AP41 first-principles finding documented in CLAUDE.md:
+  the Programme Climax theorem stated `β_{W_N} = (N+1)(N+2)/2` (Fateev-Lukyanov
+  asymptotic) where the proved closed form is `β_N = 12(H_N - 1)`. The two
+  expressions agree at N = 2, 3 by coincidence and diverge at N ≥ 4
+  (15 vs 13). The asymptotic would have widened the Banach radius
+  `ρ_* = |c|/β_A` and forgiven spurious convergence in the W_N tempered-stratum
+  proof. Healed in the introduction Gate-1 fix.
+
+- **V2-AP40 subclause taxonomy** (`CLAUDE.md` extension). The principal
+  V2-AP40 (anti-pattern register leakage into the manuscript) gained four
+  subclauses cataloguing the variant leakage paths into the compiled PDF:
+  (a) bibkey-named-after-ledger-token (e.g. `\cite{Vol2-FM81-platonic}`);
+  (b) label-named-after-ledger-token (e.g. `\label{rem:AP172-A-koszul-SC-not-SC}`);
+  (c) index-entry or hyperref anchor named after ledger-token
+  (worst class — reader clicks the link and lands on the AP/FM target);
+  (d) theorem-environment title named after ledger-token (e.g.
+  `\begin{remark}[AP172: Koszul dual is an SCchtop^! -algebra]`). The
+  2026-04-17 audit identified ~530 additional leaks across 58 files in this
+  combined taxonomy; the introduction sweep removed 19 in the introduction
+  alone.
+
+- **V2-AP41 theorem-statement-vs-proof formula consistency** (`CLAUDE.md`).
+  Crystallised by the chunk-18 Programme-Climax `β_N` finding above. Pattern:
+  a main theorem cites a structural constant via one expression in its
+  case-split table, while the immediate proof-detail paragraph cites a
+  different expression that admits a closed form elsewhere in the chapter.
+  The two expressions coincide on the small-N regime where they were first
+  matched and separate at the first boundary case (N = 4, d = 3, g = 2,
+  etc.). Counter at write time: when a theorem's case-split cites a formula
+  that admits a closed form elsewhere, either use the closed form uniformly
+  or scope-split honestly. Forward-looking estimate: 5-15 additional V2-AP41
+  hits expected across Vol II, mostly in the W-algebra and BP chapters.
+
+- **Beilinson adversarial swarm audit**
+  (`notes/beilinson_swarm_audit_vol2_2026_04_17.md`). 100 chapters audited
+  across the full B1-B7 swarm bundles plus Vol I/III cross-volume references.
+  Wave-14 reconstitution material survives Beilinson adversarial audit at
+  criterion-level granularity. 12 surgical fixes across 11 files: 3 F1
+  Theorem→Conjecture wrappers for W(p) tempering (`thm:tempered-stratum-contains-wp`
+  was retracted to Conjectured per the Gurarie 1993 + Flohr 1996
+  unbounded-Massey logarithmic-CFT counterexamples; ref-site wrappers
+  brought into alignment); 4 mis-rooted `chap:climax-platonic` retargeted
+  to Vol II's `ch:programme-climax-platonic`; 2 `\cref` corrections;
+  2 duplicate-label collapses (`thm:bordered-annular`,
+  `prop:yangian-associator-order-3-explicit`). Universal Trace Identity
+  scope verified K3-fibered Class A only.
+
+- **Chriss-Ginzburg rectification harness**
+  (`.agents/skills/chriss-ginzburg-rectify/`, `.claude/commands/chriss-ginzburg-rectify*.md`).
+  1,524 lines of harness configuration. The skill manifest + canonical
+  slash-command body + v1 retention + Vol I-targeted variant together form
+  the operational vehicle for the chunk-by-chunk rectification protocol.
+  Repo-local: each volume keeps its own copy with volume-specific anchor
+  lists.
+
+Forward direction. Two systemic debts surviving the wave: (a) the V2-AP40
+sweep of the remaining ~530 ledger-token leaks across the 58 chapter,
+connection, and standalone files (mechanically detected by the grep
+heuristic in CLAUDE.md V2-AP40); confidence interval on completion
+4-8 sessions. (b) The line-by-line elite-prose rectification programme
+queued by the Vol I `notes/elite_prose_rectification_swarm_kickstart.md`,
+of which Vol II owns bundles E6-E8 (frame matter + Part I; Parts II-IV;
+Parts V-VIII); confidence interval on completion 6-10 sessions.
