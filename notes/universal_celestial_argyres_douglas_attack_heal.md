@@ -1,5 +1,22 @@
 # Universal Celestial Holography at Argyres-Douglas: Attack-Then-Heal
 
+> **HISTORICAL — AP288 session-ledger retraction banner (2026-04-18, Wave 7).**
+> The prose at L47, L179, L194, L230 claims that `thm:uch-main` clauses (ii)-(iii)
+> and `thm:uch-gravity-chain-level` class-M chain-level extension apply
+> *unconditionally* to Argyres-Douglas / class-M inputs once the chiral
+> algebra chi(T_4) is named. Wave-1 Beilinson audit + subsequent topologization
+> wave refine this: `thm:uch-gravity-chain-level` is inscribed
+> `ClaimStatusProvedHere` at `universal_celestial_holography.tex:511` via
+> half-BRST chain-level splitting, BUT chain-level class M on the *original
+> complex in Ch(Vect)* remains a frontier item; the chain-level is established
+> on the weight-completed / pro-object / J-adic ambients, not the direct-sum
+> ambient in Ch(Vect) (see Vol I `thm:mc5-class-m-chain-level-pro-ambient`,
+> CLAUDE.md Topologization row "Honest frontier inventory" items (I)-(III)).
+> Canonical post-heal scope: UCH-gravity chain-level extension applies in the
+> weight-completed ambient for class-M inputs (Vir, W_N, M(2,5), W(p) regular
+> sector); direct-sum ambient in Ch(Vect) at g ≥ 1 remains open. Use Vol I
+> CLAUDE.md theorem-status table + Vol II FRONTIER.md as authoritative.
+
 ## Target
 
 `thm:uch-main` at `chapters/connections/universal_celestial_holography.tex:213`,

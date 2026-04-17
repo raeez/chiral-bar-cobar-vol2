@@ -1,5 +1,47 @@
 # 2026-04-17 Master Synthesis — Vol II Frontier Closures
 
+> **HISTORICAL — AP288 session-ledger retraction banner (2026-04-18, Wave 7).**
+> This master synthesis was written at the over-confident closure moment of
+> the 2026-04-17 session. Subsequent waves (Wave-1 Beilinson audit + Wave-5
+> class-L agent + Wave-6 MC4^0 agent + Wave-7 ledger-sweep) have retracted
+> or rescoped several of the "UNCONDITIONAL" headline claims below. The
+> canonical post-heal status lives in Vol II `FRONTIER.md` and Vol I
+> `CLAUDE.md` theorem-status table. Specifically:
+>
+> - **L7-L11 "programme climax UNCONDITIONAL at generic parameter"** and
+>   **L142 "PROGRAMME CLIMAX (UNCONDITIONAL)"** and **L158 "UNCONDITIONAL
+>   across the entire standard landscape plus the irrational cosets"**:
+>   RESCOPED. Original-complex chain-level E_3-topological for class M
+>   holds on the *weight-completed* / *pro-object* / *J-adic* ambients of
+>   the original bar complex (see Vol I `thm:mc5-class-m-chain-level-pro-
+>   ambient`, `mc5_class_m_chain_level_platonic.tex:229-437`); the
+>   direct-sum ambient in `Ch(Vect)` is an ambient-choice artefact and
+>   *genuinely false*, NOT a gap. Logarithmic W(p) is excluded from the
+>   non-logarithmic tempered conclusion (Wave-1 F4, B91 split).
+> - **L48-L51 "W_∞ E_∞-topologization endpoint UNCONDITIONAL"**: RESCOPED.
+>   UNCONDITIONAL at depth N ≤ 3 (Vir, W_3) and at generic parameter modulo
+>   axiom (T5) (antighost BRST-commutativity [G^{(n)},G^{(m)}]=Q-exact at
+>   spin n,m ≥ 4). W_∞ → E_∞-top is `conj:e-infinity-specialisation-Winfty`
+>   (`e_infinity_topologization.tex:679`, ClaimStatusConjectured) in the
+>   canonical inscription. See CLAUDE.md `E_∞-Topologization` row.
+> - **L20-L30 "tempered stratum UNCONDITIONALLY for all N ≥ 2"**: scope is
+>   non-logarithmic standard landscape. Logarithmic W(p) two-Massey split
+>   (B91, Wave-1 F4) means shadow-tower Massey vs correlation-function
+>   Massey are distinct; correlation Massey is unbounded (Gurarie 1993 +
+>   Flohr 1996); shadow-tower Massey bound on W(p) remains OPEN.
+> - **L47-L51 "`thm:uch-gravity-chain-level` chain-level DS-Hochschild
+>   class M"**: the theorem is inscribed at `universal_celestial_holography.
+>   tex:511` as `ClaimStatusProvedHere` via half-BRST chain-level splitting;
+>   chain-level class M on the *original complex in Ch(Vect)* remains a
+>   frontier item (see Topologization row of CLAUDE.md theorem-status
+>   table, "Honest frontier inventory" items (I)-(III)).
+> - **L222-L230 "W_∞ universal structure constants proved unconditionally
+>   at generic λ"**: see W_∞ rescope above.
+>
+> A naive reader treating this synthesis as ground truth would inherit the
+> retracted closure narrative. Use Vol I CLAUDE.md theorem-status table +
+> Vol II FRONTIER.md as authoritative; this file is HISTORICAL.
+
 Canonical synthesis of the 2026-04-17 Chriss-Ginzburg + Beilinson-Drinfeld +
 Russian-school campaign on Vol II (A-infinity Chiral Algebras and 3D HT QFT).
 All results are PROVED and inscribed into the manuscript.
