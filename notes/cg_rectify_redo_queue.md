@@ -47,27 +47,27 @@ Order follows `main.tex` linear traversal (Part I $\to$ Part VIII $\to$ Conclusi
 
 ## Part IV — The Characteristic Datum and Modularity
 
-- [ ] `chapters/examples/rosetta_stone.tex`
-- [ ] `chapters/examples/examples-computing.tex`
-- [ ] `chapters/examples/examples-complete-proved.tex`
-- [ ] `chapters/examples/examples-worked.tex`
-- [ ] `chapters/examples/w-algebras-virasoro.tex`
-- [ ] `chapters/examples/w-algebras-w3.tex`
-- [ ] `chapters/connections/hochschild.tex`
-- [ ] `chapters/connections/brace.tex`
-- [ ] `chapters/theory/modular_swiss_cheese_operad.tex`
-- [ ] `chapters/theory/curved_dunn_higher_genus.tex`
-- [ ] `chapters/theory/class_m_direct_sum_obstruction_platonic.tex`
+- [x] `chapters/examples/rosetta_stone.tex` — 2026-04-17: V2-AP40 sweep committed b338123. One `pitfall~APxx resolution` restated as "Vol II non-tautological-test resolution". Balance OK.
+- [x] `chapters/examples/examples-computing.tex` — 2026-04-17: diagnostic converged, balance OK, zero V2-AP40 leaks (499 lines).
+- [x] `chapters/examples/examples-complete-proved.tex` — 2026-04-17: V2-AP40 sweep (8 `\hyperref[APxx]{APxx}` removed via commit b338123). Balance OK.
+- [x] `chapters/examples/examples-worked.tex` — 2026-04-17: V2-AP40 sweep (14 leaks healed via commit b338123, including V2-AP24 remark-title rename). Balance OK.
+- [x] `chapters/examples/w-algebras-virasoro.tex` — 2026-04-17: diagnostic converged, balance OK, zero V2-AP40 leaks (654 lines).
+- [x] `chapters/examples/w-algebras-w3.tex` — 2026-04-17: diagnostic converged, balance OK, zero V2-AP40 leaks (2524 lines).
+- [~] `chapters/connections/hochschild.tex` — 2026-04-17 partial: balance OK, zero V2-AP40 leaks (5082 lines); full linear sweep deferred.
+- [x] `chapters/connections/brace.tex` — 2026-04-17: diagnostic converged, balance OK, zero V2-AP40 leaks (783 lines).
+- [~] `chapters/theory/modular_swiss_cheese_operad.tex` — 2026-04-17 partial: balance OK, zero V2-AP40 prose leaks (3937 lines); full linear sweep deferred.
+- [x] `chapters/theory/curved_dunn_higher_genus.tex` — 2026-04-17: diagnostic converged, balance OK, zero V2-AP40 leaks (850 lines).
+- [x] `chapters/theory/class_m_direct_sum_obstruction_platonic.tex` — 2026-04-17: diagnostic converged, balance OK, zero V2-AP40 leaks (485 lines).
 - [~] `chapters/theory/topologization_class_m_original_complex_platonic.tex` — 2026-04-17 partial: Gate-1 typo fix via batch commit 09c62b4. Full linear sweep deferred.
-- [ ] `chapters/theory/tempered_stratum_characterization_platonic.tex`
-- [ ] `chapters/theory/wn_tempered_closure_platonic.tex`
-- [ ] `chapters/theory/beta_N_closed_form_all_platonic.tex`
-- [ ] `chapters/theory/logarithmic_wp_tempered_analysis_platonic.tex`
-- [ ] `chapters/theory/irrational_cosets_tempered_platonic.tex`
-- [ ] `chapters/theory/bp_chain_level_strict_platonic.tex`
-- [ ] `chapters/connections/fm81_fractional_ghost_platonic.tex`
-- [ ] `chapters/connections/relative_feynman_transform.tex`
-- [ ] `chapters/connections/modular_pva_quantization_core.tex`
+- [x] `chapters/theory/tempered_stratum_characterization_platonic.tex` — 2026-04-17: diagnostic converged, balance OK, zero V2-AP40 leaks (1178 lines).
+- [x] `chapters/theory/wn_tempered_closure_platonic.tex` — 2026-04-17: diagnostic converged, balance OK, zero V2-AP40 leaks (564 lines).
+- [x] `chapters/theory/beta_N_closed_form_all_platonic.tex` — 2026-04-17: diagnostic converged, balance OK, zero V2-AP40 leaks (718 lines).
+- [x] `chapters/theory/logarithmic_wp_tempered_analysis_platonic.tex` — 2026-04-17: V2-AP40 sweep (9 prose leaks healed via commit b338123). Balance OK.
+- [x] `chapters/theory/irrational_cosets_tempered_platonic.tex` — 2026-04-17: V2-AP40 sweep (1 leak healed via commit b338123). Balance OK.
+- [x] `chapters/theory/bp_chain_level_strict_platonic.tex` — 2026-04-17: V2-AP40 sweep (18 leaks healed via commit b338123, including Vol2-FM81-platonic bibkey rename to Vol2-fractional-ghost-platonic across 11 call sites). Balance OK.
+- [x] `chapters/connections/fractional_ghost_chain_level_platonic.tex` — 2026-04-17: V2-AP40a/e atomic filename rename from `fm81_fractional_ghost_platonic.tex` via git mv (commit b338123). 9 in-file FM81 leaks healed (labels, index, prose). All cross-references updated in main.tex and bp_chain_level_strict_platonic.tex.
+- [~] `chapters/connections/relative_feynman_transform.tex` — 2026-04-17 partial: balance OK, zero V2-AP40 leaks (3374 lines); full linear sweep deferred.
+- [~] `chapters/connections/modular_pva_quantization_core.tex` — 2026-04-17 partial: balance OK, zero V2-AP40 leaks (2729 lines); full linear sweep deferred.
 
 ## Part V — The Standard HT Landscape
 
