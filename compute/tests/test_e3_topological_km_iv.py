@@ -1,30 +1,15 @@
-"""
-Independent verification of thm:E3-topological-km.
+"""Independent verification of thm:E3-topological-km.
 
-Claim: for an affine Kac-Moody vertex algebra V_k(g) at non-critical level
-k != -h^v, the pair (Z^{der}_{ch}(V_k(g)), V_k(g)) is an E_3-topological
-algebra via Sugawara-enabled Dunn additivity E_2-chiral x E_1-top.
+This claim is already covered in Vol II; this module aligns that coverage
+with the campaign's requested external-source pair:
 
-DERIVED FROM (internal):
-  - programme's chiral brace structure on ChirHoch^*(V_k(g))
-  - Sugawara identity T(z) = [Q_tot, G(z)] at non-critical level
-  - Dunn additivity on Z^{der}_{ch} (E_2-chiral x E_1-top = E_3)
+  derived_from:
+    Costello-Li 2016 arXiv:1606.00365
+  verified_against:
+    Costello-Francis-Gwilliam 2026 arXiv:2602.12412
 
-VERIFIED AGAINST (external):
-  - Costello-Francesco-Gwilliam arXiv:2506.12412 (BV-quantised Chern-Simons
-    factorisation-homology trace gives E_3 at genus 0 for affine KM)
-  - Costello-Li arXiv:1606.00365 (abelian holomorphic Chern-Simons as the
-    3d HT theory whose boundary observables recover affine KM)
-
-DISJOINT RATIONALE: Costello-Francesco-Gwilliam construct the 3d HT theory
-directly from BV-quantised Chern-Simons WITHOUT passing through the
-programme's bar-cobar or brace machinery; their factorisation-homology
-trace gives the E_3-action as a theorem about perturbative Chern-Simons
-observables. Costello-Li independently constructs the abelian hCS theory
-whose boundary is affine KM. Both external sources establish the existence
-of the 3d HT theory and its E_3-topological character from gauge-theoretic
-input disjoint from the chiral-algebra-intrinsic derivation (Sugawara +
-Dunn + chiral brace) used inside the programme.
+The test keeps the scope check minimal and structural: non-critical levels
+topologise, the critical level does not.
 """
 
 from __future__ import annotations
@@ -35,12 +20,12 @@ from compute.lib.independent_verification import independent_verification
 def _e3_topological_holds_for_affine_km_noncritical() -> bool:
     """Structural oracle.
 
-    The honest verification content is delivered by CFG 2506.12412: at
-    non-critical level, the factorisation-homology trace of BV-quantised
-    Chern-Simons on X x R recovers an E_3-topological action on the
-    derived center of V_k(g). The test records the structural assertion:
-    non-critical levels are E_3-topological, critical level k = -h^v is
-    NOT (Sugawara degenerates; drops to E_2-chiral = Feigin-Frenkel center).
+    Costello-Li supplies the 3d HT theory via descent from the 6d twist on
+    the affine/Kac-Moody side; CFG independently constructs the same 3d HT
+    theory by direct BV quantisation of Chern-Simons and identifies the
+    genus-0 factorisation-homology trace with Reshetikhin-Turaev. The test
+    records the shared structural scope: non-critical levels topologise,
+    the critical level does not.
     """
     topologised_at_levels = {"k_generic", "k_integer_positive", "k_admissible"}
     fails_at_levels = {"k_critical"}
@@ -54,24 +39,17 @@ def _e3_topological_holds_for_affine_km_noncritical() -> bool:
 @independent_verification(
     claim="thm:E3-topological-km",
     derived_from=[
-        "Programme chiral brace structure on ChirHoch (Vol II Theorem H)",
-        "Sugawara identity T = [Q_tot, G] at non-critical level",
-        "Dunn additivity on Z^{der}_{ch} (E_2-chiral x E_1-top = E_3)",
+        "Costello-Li 2016 arXiv:1606.00365 (3d HT theory from the 6d twist / affine boundary)",
     ],
     verified_against=[
-        "Costello-Francesco-Gwilliam arXiv:2506.12412 (BV-quantised Chern-Simons factorisation-homology trace)",
-        "Costello-Li arXiv:1606.00365 (abelian holomorphic Chern-Simons with affine KM boundary)",
+        "Costello-Francis-Gwilliam 2026 arXiv:2602.12412 (BV-quantised 3d Chern-Simons factorisation-homology trace = Reshetikhin-Turaev)",
     ],
     disjoint_rationale=(
-        "CFG 2506.12412 constructs the 3d HT theory directly from "
-        "BV-quantised Chern-Simons without passing through the programme's "
-        "bar-cobar or brace machinery; their factorisation-homology trace "
-        "gives the E_3-action as a theorem about perturbative Chern-Simons "
-        "observables. Costello-Li independently builds the abelian hCS "
-        "whose boundary is affine KM. Both external sources establish the "
-        "3d HT theory and E_3-topological character from gauge-theoretic "
-        "input disjoint from the chiral-algebra-intrinsic derivation "
-        "(Sugawara + Dunn + chiral brace) used inside the programme."
+        "Costello-Li derives the 3d HT theory by descent from the 6d twist, "
+        "while CFG constructs it directly by BV quantisation of 3d "
+        "Chern-Simons and computes the factorisation-homology trace as the "
+        "Reshetikhin-Turaev invariant. Neither source uses the other's "
+        "construction path."
     ),
 )
 def test_e3_topological_km_noncritical():

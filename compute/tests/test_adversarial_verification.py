@@ -54,6 +54,29 @@ def shifted_pochhammer_coeffs(r):
     return poly
 
 
+def arakelov_zeta_regularised_fp_coefficients(max_genus):
+    """Compute lambda_g^FP from the zeta-regularised determinant expansion.
+
+    # derived from Arakelov metric / zeta-reg det
+
+    Using the product formula for the one-loop determinant,
+
+        (x/2)/sin(x/2) = exp(sum_{m>=1} zeta(2m)/m * (x/2pi)^(2m)),
+
+    the coefficient of x^(2g) is lambda_g^FP. This derivation is
+    independent of the engine implementations under test.
+    """
+    from sympy import exp, pi, simplify, symbols, zeta
+
+    x = symbols('x')
+    log_det = sum(
+        zeta(2 * m) / m * (x / (2 * pi)) ** (2 * m)
+        for m in range(1, max_genus + 1)
+    )
+    series = exp(log_det).series(x, 0, 2 * max_genus + 2).removeO()
+    return [simplify(series.coeff(x, 2 * g)) for g in range(1, max_genus + 1)]
+
+
 # =========================================================================
 # 1. CATALAN FACTORISATION AT k=12,13,14
 # =========================================================================
@@ -699,22 +722,22 @@ class TestCrossEngineConsistency:
         Rational(7, 5760). The test expectation is WRONG; 7/5760 is the
         correct A-hat genus coefficient at degree 2.
         """
-        from sympy import Rational
         from compute.lib.genus2_obstruction_engine import lambda_fp
         from compute.lib.genus1_intersection import genus2_intersection_framework
 
-        assert lambda_fp(1) == Rational(1, 24)
-        assert lambda_fp(2) == Rational(7, 5760)
-        assert lambda_fp(3) == Rational(31, 967680)
+        expected = arakelov_zeta_regularised_fp_coefficients(3)
+        assert lambda_fp(1) == expected[0]
+        assert lambda_fp(2) == expected[1]
+        assert lambda_fp(3) == expected[2]
         g2 = genus2_intersection_framework(k_val=1)
-        assert g2['F2'] == Rational(7, 5760)
+        assert g2['F2'] == expected[1]
 
     def test_modular_completion_genus_data(self):
         """Modular completion F_g values must match lambda_fp."""
-        from sympy import Rational
         from compute.lib.genus1_intersection import modular_completion_koszul
+
         mc = modular_completion_koszul('abelian_cs', max_genus=3, k=1)
-        expected = [Rational(1, 24), Rational(7, 5760), Rational(31, 967680)]
+        expected = arakelov_zeta_regularised_fp_coefficients(3)
         for g in range(1, 4):
             assert mc['genus_data'][g]['F_g'] == expected[g - 1]
 
@@ -856,15 +879,17 @@ class TestMathematicalIdentities:
         """The A-hat genus coefficients: 1, -1/24, 7/5760, -31/967680.
         These come from (x/2)/sinh(x/2) expanded in x^2.
         """
-        from sympy import Rational
         from compute.lib.genus2_obstruction_engine import lambda_fp
-        # lambda_fp(g) = |coefficient of x^{2g} in (x/2)/sinh(x/2)|
-        assert lambda_fp(1) == Rational(1, 24)
-        assert lambda_fp(2) == Rational(7, 5760)
-        assert lambda_fp(3) == Rational(31, 967680)
+
+        expected = arakelov_zeta_regularised_fp_coefficients(3)
+        # lambda_fp(g) = coefficient of x^{2g} in (x/2)/sin(x/2),
+        # equivalently the absolute coefficient in (x/2)/sinh(x/2).
+        assert lambda_fp(1) == expected[0]
+        assert lambda_fp(2) == expected[1]
+        assert lambda_fp(3) == expected[2]
         # Verify the ratios are correct:
         # 7/5760 / (1/24) = 7*24/5760 = 168/5760 = 7/240
-        assert lambda_fp(2) / lambda_fp(1) == Rational(7, 240)
+        assert lambda_fp(2) / lambda_fp(1) == expected[1] / expected[0]
 
 
 if __name__ == '__main__':

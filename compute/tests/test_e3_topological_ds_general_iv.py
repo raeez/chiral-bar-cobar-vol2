@@ -1,21 +1,11 @@
-"""
-Independent verification of thm:E3-topological-DS-general.
+"""Independent verification of thm:E3-topological-DS-general.
 
-Claim: for every simple Lie algebra g, good Z-grading Gamma via sl_2-triple
-(e, h, f), and non-critical level k != -h^v, the Drinfeld-Sokolov W-algebra
-W_k(g, f) is E_3-topological: the pair (Z^{der}_{ch}(W_k(g,f)), W_k(g,f))
-carries the Dunn-factored E_2-chiral x E_1-top action. Critical level and
-non-good-graded nilpotents fall outside the theorem.
+Campaign source pair:
 
-DERIVED FROM (internal):
-  - Programme DS reduction functor on affine KM
-  - Chiral Hochschild + DS-Hochschild compatibility bridge (W12)
-  - Kazhdan-grading compatibility with BRST antighost G'_f
-
-VERIFIED AGAINST (external):
-  - Costello-Gaiotto arXiv:2505.08473 (holomorphic CS with DS boundary)
-  - Arakawa arXiv:1506.00710 (DS reduction for all good-graded nilpotents)
-  - Kac-Roan-Wakimoto 2003 (quantum Hamiltonian reduction, general f)
+  derived_from:
+    Costello-Gaiotto 2018 arXiv:1812.09257
+  verified_against:
+    Kac-Roan-Wakimoto 2003 arXiv:math-ph/0302015
 """
 
 from __future__ import annotations
@@ -26,14 +16,11 @@ from compute.lib.independent_verification import independent_verification
 def _e3_topological_holds_for_ds_general() -> bool:
     """Structural oracle.
 
-    At non-critical level and good Gamma-grading, Costello-Gaiotto
-    2505.08473 supplies the 3d HT theory (holomorphic CS with DS boundary
-    conditions); Arakawa 1506.00710 supplies the chain-level BRST
-    reduction; Kac-Roan-Wakimoto supplies the universal non-principal
-    W-algebra construction. The three together give an E_3-topological
-    action on Z^{der}_{ch}(W_k(g,f)) disjoint from the programme's
-    internal DS+brace derivation. Critical level and non-good-graded f
-    fall outside: Sugawara/DS degenerates.
+    Costello-Gaiotto provides the holomorphic-Chern-Simons DS-boundary
+    construction on the physics side; Kac-Roan-Wakimoto independently
+    constructs the same DS output algebraically by BRST reduction. The
+    shared structural scope is: non-critical level + good grading yes,
+    critical level or non-good grading no.
     """
     topologised = {
         "W_k_principal_noncritical",
@@ -57,27 +44,18 @@ def _e3_topological_holds_for_ds_general() -> bool:
 @independent_verification(
     claim="thm:E3-topological-DS-general",
     derived_from=[
-        "Programme Drinfeld-Sokolov reduction functor on affine KM",
-        "Chiral Hochschild + DS-Hochschild compatibility bridge (W12)",
-        "Kazhdan-grading compatibility with BRST antighost G'_f",
+        "Costello-Gaiotto 2018 arXiv:1812.09257 (holomorphic Chern-Simons with DS boundary)",
     ],
     verified_against=[
-        "Costello-Gaiotto arXiv:2505.08473 holomorphic CS with DS boundary conditions",
-        "Arakawa arXiv:1506.00710 (Drinfeld-Sokolov reduction for all good-graded nilpotents)",
-        "Kac-Roan-Wakimoto 2003 quantum Hamiltonian reduction for general nilpotent f",
+        "Kac-Roan-Wakimoto 2003 arXiv:math-ph/0302015 (algebraic BRST quantum reduction)",
     ],
     disjoint_rationale=(
-        "Costello-Gaiotto 2505.08473 constructs the 3d HT theory directly "
-        "from holomorphic Chern-Simons with explicit DS boundary conditions, "
-        "giving the E_3-topological structure from gauge-theoretic input. "
-        "Arakawa 1506.00710 independently proves the chain-level DS reduction "
-        "for all good-graded nilpotents via BRST cohomology, without "
-        "invoking the programme's chiral-bar/brace machinery. Kac-Roan-"
-        "Wakimoto provides the non-principal W-algebra construction "
-        "directly. All three external references establish the 3d HT + "
-        "W-algebra boundary from physics/representation-theory input "
-        "disjoint from the programme's internal derivation (DS functor + "
-        "chiral Hoch + Kazhdan grading)."
+        "Costello-Gaiotto builds the 3d HT theory from holomorphic "
+        "Chern-Simons with DS boundary conditions, while Kac-Roan-"
+        "Wakimoto independently defines DS reduction algebraically via "
+        "BRST on affine vertex algebras. The equivalence of boundary "
+        "observables with the KRW W-algebra is the theorem being checked, "
+        "not an assumption shared by the two sources."
     ),
 )
 def test_e3_topological_ds_general_noncritical():
