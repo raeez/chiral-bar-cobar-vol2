@@ -3,7 +3,7 @@
 The chapter resolves the logarithmic W(p) triplet frontier on the
 analytic-tempering axis for the class M* locus:
 
-  Theorem thm:tempered-stratum-contains-wp (ProvedHere):
+  Conjecture conj:tempered-stratum-contains-wp (Conjectured):
     For every integer p >= 2,
         limsup_r (|S_r(W(p))| / r!)^{1/r} = 0,
     i.e. every logarithmic triplet algebra W(p) is analytically
@@ -50,7 +50,7 @@ Coverage (decorator-tagged tests):
       Adamovic-Milas / Nagatomo-Tsuchiya.
 
   - test_wp_tempering_universal
-      Theorem thm:tempered-stratum-contains-wp: for p = 2..5,
+      Conjecture conj:tempered-stratum-contains-wp: for p = 2..5,
       (|S_r^TT|/r!)^{1/r} at r = 8 is well below 1/e and strictly
       decreasing from r = 6 onwards.
 
@@ -371,7 +371,7 @@ def test_wp_zhu_dimension():
 
 
 @independent_verification(
-    claim="thm:tempered-stratum-contains-wp",
+    claim="conj:tempered-stratum-contains-wp",
     derived_from=[
         "Proposition prop:wp-channel-upper-bounds (three-channel tempering)",
         "Lemma lem:wp-zhu-bounded-masseys (Zhu-bounded Massey products)",
@@ -457,7 +457,7 @@ def test_wp_p2_symplectic_fermion_truncation():
     derived_from=[
         "Theorem thm:tempered-stratum-contains-virasoro",
         "Theorem thm:tempered-stratum-contains-w3",
-        "Theorem thm:tempered-stratum-contains-wp (present chapter)",
+        "Conjecture conj:tempered-stratum-contains-wp (present chapter)",
     ],
     verified_against=[
         "Enumeration of C_2-cofinite landscape (Arakawa 2012 Theorem 4.1): each family has tempering verified",
@@ -478,7 +478,7 @@ def test_wp_c2_cofinite_dichotomy_healed():
     c2_cofinite_families = {
         "generic_virasoro": {"tempered": True, "source": "thm:tempered-stratum-contains-virasoro"},
         "principal_W3": {"tempered": True, "source": "thm:tempered-stratum-contains-w3"},
-        "triplet_Wp": {"tempered": True, "source": "thm:tempered-stratum-contains-wp"},
+        "triplet_Wp": {"tempered": True, "source": "conj:tempered-stratum-contains-wp"},
         "singlet_Mp": {"tempered": True, "source": "cor:wp-dichotomy-healed (Vir-only subchannel)"},
         "lattice_VOA": {"tempered": True, "source": "class G shadow truncation"},
         "affine_Vk": {"tempered": True, "source": "class L shadow truncation at r_max=3"},

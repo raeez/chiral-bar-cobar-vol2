@@ -1,14 +1,25 @@
-# Roadmap: 85% → 100% (updated 2026-04-13)
+# Roadmap: 85% → 100% (updated 2026-04-13; reconciled 2026-04-17 against CLAUDE.md HEAL §661 + .tex)
 
-## Current alignment: ~97%
+## Current alignment: ~99% (post HEAL-SWEEP + PLATONIC RECONSTITUTION)
 
-## Dependency graph
+## Reconciliation note (2026-04-17, T5.3)
+
+Lines below in this file were written before the 2026-04-16 HEAL-SWEEP + PLATONIC RECONSTITUTION closed the four irreducible opens. Current .tex ground truth (verified 2026-04-17):
+- Monster V^♮: `thm:monster-chain-level-e3-top` PROVED unconditional (commit 549f881, closes FM128); not CONJECTURAL.
+- Curved Dunn at all genera: `thm:curved-dunn-H2-vanishing-all-genera` \ClaimStatusProvedHere (curved_dunn_higher_genus.tex:375-377) — closes genus ≥ 2.
+- Class M global triangle: `thm:chd-ds-hochschild` \ClaimStatusProvedHere (chiral_higher_deligne.tex:652-654) closes FM126/FM185/FM186/FM214.
+- Modular operad composition at generic non-integral level, genus ≥ 1: CLOSED via irregular-singular KZB framework + curved-Dunn H²=0 bridge.
+
+The legacy status lines below are preserved for historical context; read them against CLAUDE.md §"The four irreducible opens (after heal) — status 2026-04-16 (ALL CLOSED OR REDUCED)".
+
+## Dependency graph (legacy, pre-2026-04-16; see reconciliation above)
 
 ```
 [A0] MASTER THEOREM ◄──────────────────────────────────┐
      conformal vector → E_3-top                         │
      PROVED for free PVAs (Khan-Zeng)                   │
-     OPEN only for non-free (Monster)                   │
+     [RECONCILED] Monster also PROVED (thm:monster-     │
+      chain-level-e3-top; see reconciliation)           │
          │                                              │
          ├─── [A] T_DS = [Q_tot, G'] ─── PROVED ──────┤
          │         (ALL nilpotents)                     │
@@ -18,10 +29,13 @@
          │                                              ▼
 [B] Genus ≥ 1 ─────────────────────────────► [E] Global triangle
     modular operad                               PROVED for G/L/C
-    Heisenberg: PROVED                           OPEN for class M
-    Non-abelian: OPEN
+    Heisenberg: PROVED              [RECONCILED] CLASS M CLOSED
+    Non-abelian: [RECONCILED CLOSED]             via thm:chd-ds-
+     via irregular-singular KZB +                  hochschild
+     curved-Dunn H²=0 bridge
 
-[C] Curved Dunn ──── genus 1 PROVED; genus ≥ 2 OPEN
+[C] Curved Dunn ──── genus 1 PROVED; [RECONCILED] genus ≥ 2 CLOSED
+                     via thm:curved-dunn-H2-vanishing-all-genera
 
 [D] Chiral coproduct BCFG ──── Yangian level DONE; chiral OPEN
 
