@@ -1,5 +1,50 @@
 # Part VI (Three-Dimensional Quantum Gravity = CLIMAX): Platonic Reconstitution
 
+> **HISTORICAL — AP288 session-ledger retraction banner (2026-04-18).**
+> This ledger was written under a pre-heal narrative that has since been
+> scope-qualified by the 2026-04-17 Beilinson-rectified open-frontiers
+> audit and the 2026-04-18 class-M original-complex heal wave. The
+> following claims below are RETRACTED or RESCOPED; the canonical
+> current statement is
+> `chapters/connections/programme_climax_platonic.tex`
+> (`thm:universal-holography-master` + `thm:programme-climax`), and
+> `FRONTIER.md` F1-F5 (in particular F1 $\mathcal{W}(p)$ tempering, F3
+> original-complex class M).
+>
+> - **L7-L11 UCT master statement.** RESCOPED: the master statement
+>   covers the *non-logarithmic* $C_2$-cofinite standard landscape
+>   plus the VSKR+BGG-tempered irrational cosets; the logarithmic
+>   triplet $\mathcal{W}(p)$ is EXCLUDED pending the
+>   Adamović-Milas character-amplitude bound (F1).
+> - **L10 (ii) "$E_3$-topological factorisation algebras ... at chain
+>   level"** RESCOPED: chain-level ambient is *original complex* on
+>   classes G, L; *weight-completed* on class M (Vir, $W_N$,
+>   $W_\infty[\lambda]$). Original-complex M is OPEN as F3.
+> - **L13 parse "ProvedHere W12-W13".** RESCOPED: the parse decomposition
+>   is correct, but chain-level M via `thm:uch-gravity-chain-level` is
+>   delivered in the weight-completed category for the bulk
+>   identification, not on the raw bar; the gravity-lane promotion in
+>   `universal_celestial_holography.tex:578-596` explicitly lifts
+>   weight-completed to original complex only through Feigin-Frenkel +
+>   modular-bootstrap $H^2=0$ + DS preservation, and this lift is
+>   specific to the gravity incarnation. The generic class-M
+>   original-complex lift remains F3.
+> - **L15 "The theorem covers every chiral algebra in the standard
+>   landscape".** RETRACTED: logarithmic $\mathcal{W}(p)$ is not
+>   currently covered (F1). The qualifier "every" must read
+>   "every *non-logarithmic* chiral algebra in the standard landscape
+>   plus VSKR+BGG-tempered irrational cosets".
+> - **L43 "FM127 perturbative finiteness CLOSED chain-level E_3 at
+>   class M"** and **L45 "FM185 chain-level ProvedHere via DS-Hoch"**.
+>   RESCOPED: closed in the weight-completed category for class M;
+>   original-complex class-M closure is F3.
+> - **L50 "proved class M via chain-level DS-Hoch".** RESCOPED:
+>   weight-completed class M via DS-Hoch; original-complex M open.
+>
+> Read the sections below as PLATONIC DRAFT ALONGSIDE the canonical
+> inscription; any discrepancy is resolved in favour of the inscribed
+> `.tex` source (Beilinson epistemic hierarchy).
+
 *Volume II's terminal movement. Style: Witten + Gaiotto + Kapranov + Beilinson-Drinfeld + Costello. No downgrades; strongest honest form only.*
 
 ## Section 1. The Climax Theorem
