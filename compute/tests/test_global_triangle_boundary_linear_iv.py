@@ -1,27 +1,11 @@
-"""
-Independent verification of thm:global-triangle-boundary-linear.
+"""Independent verification of thm:global-triangle-boundary-linear.
 
-Claim: for a chiral algebra A in class G/L/C with conformal vector at
-non-critical level, the bulk of the canonical 3d HT gauge theory T_A is the
-derived chiral center of A; equivalently, Obs^{bulk}(T_A) ≃ Z^{der}_{ch}(A).
+Campaign source pair:
 
-DERIVED FROM (internal):
-  - programme's Theorem H (chiral Hochschild concentration in {0,1,2})
-  - DS-Hochschild compatibility bridge (thm:chd-ds-hochschild)
-  - Arakawa C_2-cofiniteness of W-algebra simple quotients
-
-VERIFIED AGAINST (external):
-  - Lurie, Higher Algebra 5.3.1.30 (classical BZFN identification
-    Z(LMod_A(S)) ≃ LMod_{HH^*(A,A)}(S))
-  - Ben-Zvi, Francis, Nadler arXiv:0805.0157 (geometric identification of
-    the derived center with Hochschild cochains)
-
-DISJOINT RATIONALE: HA 5.3.1.30 proves the classical BZFN identification
-universally; our bridge specializes chirally via DS-Hoch compatibility. The
-external Lurie reference establishes the existence and universal property
-of the derived center independently of any chiral-algebra-specific
-construction, giving a disjoint source for the global triangle
-identification.
+  derived_from:
+    Lurie, Higher Algebra 5.3.1.30
+  verified_against:
+    Ben-Zvi-Francis-Nadler arXiv:0805.0157
 """
 
 from __future__ import annotations
@@ -52,21 +36,16 @@ def _global_triangle_holds_on_GLC() -> bool:
 @independent_verification(
     claim="thm:global-triangle-boundary-linear",
     derived_from=[
-        "Programme Theorem H (chiral Hochschild concentration)",
-        "DS-Hochschild compatibility bridge (thm:chd-ds-hochschild)",
-        "Arakawa C_2-cofiniteness of simple W-algebra quotients",
+        "Lurie, Higher Algebra 5.3.1.30 (Z(LMod_A) = LMod_{HH^*(A,A)})",
     ],
     verified_against=[
-        "Lurie, Higher Algebra 5.3.1.30 (BZFN derived-center theorem)",
-        "Ben-Zvi-Francis-Nadler arXiv:0805.0157 derived-center = Hochschild cochains",
+        "Ben-Zvi-Francis-Nadler arXiv:0805.0157 (integral transforms and Drinfeld centers on perfect stacks)",
     ],
     disjoint_rationale=(
-        "HA 5.3.1.30 proves the classical BZFN identification universally; "
-        "our bridge specializes chirally via DS-Hoch compatibility. The "
-        "external Lurie reference establishes the existence and universal "
-        "property of the derived center independently of any "
-        "chiral-algebra-specific construction, giving a disjoint source "
-        "for the global triangle identification."
+        "Lurie proves the center-equals-Hochschild statement via "
+        "infinity-categorical universal properties, while BZFN derives the "
+        "same identification geometrically using integral-transform kernels "
+        "on perfect stacks. The frameworks are disjoint."
     ),
 )
 def test_global_triangle_boundary_linear_on_GLC():

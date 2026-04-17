@@ -42,6 +42,16 @@ from lib.affine_half_space_bv_engine import dual_coxeter_number
 from lib.dg_shifted_factorization_engine import _lie_dimension
 
 
+# Kac, Infinite-Dimensional Lie Algebras, Ch. 13: finite-type exponents.
+KAC_EXCEPTIONAL_EXPONENTS = {
+    "E6": [1, 4, 5, 7, 8, 11],
+    "E7": [1, 5, 7, 9, 11, 13, 17],
+    "E8": [1, 7, 11, 13, 17, 19, 23, 29],
+    "F4": [1, 5, 7, 11],
+    "G2": [1, 5],
+}
+
+
 # =========================================================================
 # PART 1: LIE ALGEBRA DATA CONSISTENCY
 # =========================================================================
@@ -81,15 +91,11 @@ class TestExceptionalLieData:
         data = _EXCEPTIONAL_E_DATA[name]
         assert data['rank'] == expected_rank
 
-    @pytest.mark.parametrize("name,expected_exps", [
-        ("E6", [1, 4, 5, 7, 8, 11]),
-        ("E7", [1, 5, 7, 9, 11, 13, 17]),
-        ("E8", [1, 7, 11, 13, 17, 19, 23, 29]),
-    ])
-    def test_exponents(self, name, expected_exps):
-        """Verify exponents match Bourbaki Plates V-VII."""
+    @pytest.mark.parametrize("name", ["E6", "E7", "E8"])
+    def test_exponents(self, name):
+        """Verify exponents match Kac's finite-type classification table."""
         data = _EXCEPTIONAL_E_DATA[name]
-        assert data['exponents'] == expected_exps
+        assert data['exponents'] == KAC_EXCEPTIONAL_EXPONENTS[name]
 
     @pytest.mark.parametrize("name", ["E6", "E7", "E8"])
     def test_dim_equals_rank_plus_2_positive_roots(self, name):
@@ -444,10 +450,11 @@ class TestDSReduction:
 
     @pytest.mark.parametrize("name", ["E6", "E7", "E8"])
     def test_generator_weights_from_exponents(self, name):
-        """Generator weights = exponents + 1."""
+        """Generator weights = exponents + 1 from Kac's exponent table."""
         result = ds_reduction(name)
-        data = _EXCEPTIONAL_E_DATA[name]
-        expected = [e + 1 for e in data['exponents']]
+        expected_exponents = KAC_EXCEPTIONAL_EXPONENTS[name]
+        assert _EXCEPTIONAL_E_DATA[name]['exponents'] == expected_exponents
+        expected = [e + 1 for e in expected_exponents]
         assert result['generator_weights'] == expected
 
     def test_E8_deepest_gap(self):
