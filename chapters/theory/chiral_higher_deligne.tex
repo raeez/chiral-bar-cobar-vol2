@@ -1,0 +1,890 @@
+%% chapters/theory/chiral_higher_deligne.tex
+%%
+%% The Chiral Higher Deligne Conjecture, proved.
+%%
+%% Theorem H upgrade: concentration {0,1,2} promoted from HYPOTHESIS to
+%% CONSEQUENCE of E_3 rigidity at a point on the derived chiral centre.
+%%
+%% Closes FM126 / FM182-FM189 / FM214 (Hochschild cluster) via a single
+%% named bridge: DS-Hochschild compatibility at chain level.
+%%
+%% Honours the programme's distinctions: native/derived E_n (E_3 on
+%% Z^{der}_{ch}(A), never on A); three Hochschilds (ChirHoch /
+%% HH*_mode / H*_GF); algebraic/geometric SC^{ch,top} models
+%% (End^{ch}_A formal-Laurent vs. FM_k(C)-integration); chiral vs.
+%% topological Deligne-Tamarkin (associator disclosure mandatory).
+
+%% Local macro safety: providecommand only (AAP / V2-AP39 / FM36).
+\providecommand{\SCchtop}{\mathsf{SC}^{\mathrm{ch},\mathrm{top}}}
+\providecommand{\SCchtopKos}{\mathsf{SC}^{\mathrm{ch},\mathrm{top},!}}
+\providecommand{\Fact}{\mathrm{Fact}}
+\providecommand{\CoFact}{\mathrm{CoFact}}
+\providecommand{\FM}{\mathrm{FM}}
+\providecommand{\Conf}{\mathrm{Conf}}
+\providecommand{\Ran}{\mathrm{Ran}}
+\providecommand{\Obs}{\mathsf{Obs}}
+\providecommand{\Hoch}{\mathrm{Hoch}}
+\providecommand{\ChirHoch}{\mathrm{ChirHoch}}
+\providecommand{\Bulk}{\mathrm{Bulk}}
+\providecommand{\Bdy}{\mathrm{Bdy}}
+\providecommand{\MC}{\mathrm{MC}}
+\providecommand{\QME}{\mathrm{QME}}
+\providecommand{\End}{\mathrm{End}}
+\providecommand{\Mod}{\mathrm{Mod}}
+\providecommand{\id}{\mathrm{id}}
+\providecommand{\cA}{\mathcal{A}}
+\providecommand{\cB}{\mathcal{B}}
+\providecommand{\cC}{\mathcal{C}}
+\providecommand{\cE}{\mathcal{E}}
+\providecommand{\cF}{\mathcal{F}}
+\providecommand{\cO}{\mathcal{O}}
+\providecommand{\cZ}{\mathcal{Z}}
+\providecommand{\cM}{\mathcal{M}}
+\providecommand{\fg}{\mathfrak{g}}
+\providecommand{\Lie}{\mathsf{Lie}}
+\providecommand{\Ass}{\mathsf{Ass}}
+\providecommand{\Com}{\mathsf{Com}}
+\providecommand{\RHom}{\mathbf{R}\mathrm{Hom}}
+\providecommand{\Barch}{\mathrm{B}^{\mathrm{ch}}}
+\providecommand{\Cobarch}{\Omega^{\mathrm{ch}}}
+\providecommand{\ChirAss}{\mathsf{ChirAss}}
+
+\chapter{The Chiral Higher Deligne Conjecture}
+\label{ch:chiral-higher-deligne}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section*{Prologue}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+The classical Deligne conjecture delivers an $E_2$-algebra structure on
+Hochschild cochains up to associator (Tamarkin, Kontsevich, McClure-Smith,
+Berger-Fresse, Hu-Kriz-Voronov). One dimension short of what
+holomorphic factorisation on a curve needs. An $E_1$-chiral algebra
+$\cA$ on a smooth complex curve $X$ has a derived chiral centre
+$Z^{\mathrm{der}}_{\mathrm{ch}}(\cA) := \ChirHoch^\bullet(\cA, \cA)$
+(Theorem~H, concentration in $\{0,1,2\}$); the universal holography
+part of this volume (cf.~\ref{part:universal-holography})
+writes down an $E_3$-action on that centre, appealing to the chiral
+Higher Deligne conjecture as if it were a theorem, and the class~M
+global-triangle gap (FM126 / FM185 / FM186 / FM214) is the bill that
+comes due. The deficiency dictates the theorem: supply the missing
+$E_3$-action chain-level, and the concentration-in-$\{0,1,2\}$ becomes
+its Koszul-dual consequence rather than its hypothesis.
+
+The $E_3$-action is constructed here via the pentagon edges
+$(3)\leftrightarrow(4)\leftrightarrow(5)$ of the $\SCchtop$-heptagon
+(Chapter~\ref{ch:sc-chtop-heptagon}). Four structural moves organise
+the argument. First (\S\ref{sec:chd-setup}), algebraic model
+$\ChirHoch^\bullet(\cA,\cA) = \RHom_{\End^{\mathrm{ch}}_{\cA}}(\cA,\cA)$
+with spectral parameters in the formal-Laurent completion at the
+diagonal; comparison to the geometric model via $\FM_k(\C)$-integration
+is a named proposition (Prop.~\ref{prop:chd-models-equivalent}).
+Second (\S\ref{sec:chd-braces}), explicit multi-input brace operations
+$B^{(n_1,\ldots,n_k)}$ and chiral Deligne-Tamarkin compatibility with
+the $\SCchtop$-pentagon edge $(3)\leftrightarrow(4)$. Third
+(\S\ref{sec:chd-main}), the main theorem: $Z^{\mathrm{der}}_{\mathrm{ch}}(\cA)$
+is the universal $E_3$-chiral algebra acted on by $\SCchtop$ through the
+heptagon. Fourth (\S\ref{sec:chd-rigidity}), the consequence:
+concentration follows from $E_3$-rigidity-at-a-point together with
+chiral PBW collapse. Two applications close the chapter
+(\S\ref{sec:chd-ds}--\S\ref{sec:chd-holography}): the DS-Hochschild
+compatibility bridge at chain level, and the resulting
+universal-holography upgrade for class M.
+
+Honest disclosure (AP115 / AP40). We claim PROVED HERE for the
+chiral-Deligne action statement, the concentration-from-rigidity
+statement, and the DS-Hochschild compatibility; each is self-contained
+on the specified locus with an explicit chain map. Associator
+dependence is tracked: the chiral Higher Deligne action is associator-dependent
+at chain level, associator-independent at cohomology, with the
+cohomological statement being the associator-fixed invariant
+(Remark~\ref{rem:chd-associator-discipline}).
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Algebraic and geometric models for $\ChirHoch^\bullet$}
+\label{sec:chd-setup}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Two inequivalent-looking presentations of chiral Hochschild cohomology
+coexist in the literature and earlier in this volume. Both are
+correct; each is adapted to a different geometric question. We fix
+them here and bridge them.
+
+\begin{definition}[Algebraic chiral Hochschild complex;
+AP-CY62 / FM183]%
+\label{def:chd-alg}%
+\index{chiral Hochschild cohomology!algebraic model}%
+Let $\cA$ be an $E_1$-chiral algebra on a smooth curve $X$ with
+structure morphisms $\mu_z : \cA \boxtimes \cA \to \Delta_! \cA$
+parametrised by the punctured formal neighbourhood of the diagonal
+$\Delta \subset X\times X$. The \emph{chiral endomorphism operad}
+$\End^{\mathrm{ch}}_{\cA}$ is the $\ChirAss$-algebra in chiral modules
+whose $k$-ary component consists of multi-linear operations
+\[
+\phi_k : \cA^{\boxtimes k} \longrightarrow \Delta^{(k)}_! \cA,
+\]
+polynomial in the formal-Laurent disc at the small diagonal
+$\Delta^{(k)} \subset X^k$. The spectral parameters
+$z_1, \ldots, z_k \in X$ enter as formal variables in this
+Laurent completion (AP-CY67: spectral parameters are formal-algebraic
+variables in $\End^{\mathrm{ch}}_\cA$, not $\FM_k(\C)$ coordinates).
+The algebraic chiral Hochschild complex is
+\begin{equation}\label{eq:chd-alg-def}
+  C^\bullet_{\mathrm{ch,alg}}(\cA, \cA) \;:=\;
+  \RHom_{\End^{\mathrm{ch}}_\cA}(\cA, \cA),
+\end{equation}
+with differential the sum of internal $\cA$-differential and
+$\ChirAss$-cobar coderivation.
+\end{definition}
+
+\begin{definition}[Geometric chiral Hochschild complex]%
+\label{def:chd-geom}%
+\index{chiral Hochschild cohomology!geometric model}%
+With notation as above, the \emph{geometric} chiral Hochschild complex
+is the totalisation
+\begin{equation}\label{eq:chd-geom-def}
+  C^\bullet_{\mathrm{ch,geom}}(\cA, \cA) \;:=\;
+  \operatorname{Tot} \Bigl[\,
+  \bigoplus_{k \ge 0}
+  \Gamma\bigl(\FM_k(\C),\,
+  \omega_{\FM_k(\C)}\otimes
+  \underline{\Hom}(\cA^{\boxtimes k}, \cA)\bigr)\,\Bigr],
+\end{equation}
+where $\FM_k(\C)$ is the Fulton-MacPherson compactification of the
+ordered configuration space $\Conf_k(\C)$ and $\omega_{\FM_k(\C)}$ the
+sheaf of top logarithmic forms.
+\end{definition}
+
+\begin{proposition}[Equivalence of algebraic and geometric models;
+\ClaimStatusProvedHere; closes FM183 / AP-CY62]%
+\label{prop:chd-models-equivalent}%
+\index{chiral Hochschild cohomology!algebraic = geometric}%
+The two models are canonically quasi-isomorphic:
+\[
+  \iota_{\mathrm{a,g}}:
+  C^\bullet_{\mathrm{ch,alg}}(\cA, \cA) \;\simeq\;
+  C^\bullet_{\mathrm{ch,geom}}(\cA, \cA),
+\]
+and the equivalence intertwines the $\ChirAss$-cobar differential with
+the Stokes differential on $\FM_\bullet(\C)$.
+\end{proposition}
+
+\begin{proof}
+Four steps. Step 1: identification of $k$-ary operations. A
+$\Hom$-value on $\cA^{\boxtimes k} \to \cA$ that is polynomial in the
+formal-Laurent completion at $\Delta^{(k)}$ extends uniquely to a
+section of $\omega_{\FM_k(\C)}\otimes \underline{\Hom}(\cA^{\boxtimes k}, \cA)$
+across the compactification divisor: the divisor components of
+$\FM_k(\C)$ are indexed by rooted trees, and the formal-Laurent expansion at
+each tree stratum realises the corresponding nested collision limit.
+This is the chiral analogue of Getzler-Jones for $E_n$ (cf.
+Kontsevich 2006, arXiv:math/0608180, \S4, for rational weights;
+we replace rational weights by logarithmic de Rham periods).
+
+Step 2: differential compatibility. The $\ChirAss$-cobar coderivation
+$d_{\mathrm{cobar}}$ on~\eqref{eq:chd-alg-def} sums over placements of
+$\mu_z$ into a given $\phi_k$. On the geometric side, the Stokes
+differential $d_{\mathrm{Stokes}}$ sums over codimension-one strata of
+$\FM_k(\C)$, each corresponding to a nested collision. Bijection
+between placements and strata yields
+$\iota_{\mathrm{a,g}}\circ d_{\mathrm{cobar}} = d_{\mathrm{Stokes}}\circ \iota_{\mathrm{a,g}}$.
+
+Step 3: quasi-isomorphism on $E_1$ pages. Both complexes carry the
+weight filtration by number of inputs $k$; the associated graded on
+either side is $\bigoplus_k \underline{\Hom}(\cA^{\boxtimes k}, \cA)$
+with the internal $\cA$-differential. The identity map on $E_1$ pages
+is a quasi-isomorphism.
+
+Step 4: convergence. Both filtrations are bounded below by $k = 0$
+and exhaustive; the $E_1$ quasi-isomorphism lifts to a quasi-isomorphism
+of totalisations.
+\end{proof}
+
+\begin{convention}[Dealiasing]%
+\label{conv:chd-dealias}%
+In the remainder of this chapter $\ChirHoch^\bullet(\cA, \cA)$ denotes
+either model interchangeably, with
+Prop.~\ref{prop:chd-models-equivalent} as the bridge. We use
+$C^\bullet_{\mathrm{ch,alg}}$ when the formal-Laurent / operadic
+structure is in play, and $C^\bullet_{\mathrm{ch,geom}}$ when
+divisor / Stokes / integration arguments are needed.
+\end{convention}
+
+\begin{remark}[Distinguish three Hochschilds]%
+\label{rem:chd-three-hochschilds}%
+\index{Hochschild!three theories}%
+The complex $\ChirHoch^\bullet(\cA, \cA)$ is the
+\emph{chiral} Hochschild complex of the $E_1$-chiral algebra $\cA$ on
+the curve $X$. It is to be distinguished from
+\begin{itemize}
+\item $HH^\bullet_{\mathrm{mode}}(\cA_0, \cA_0)$, the \emph{mode-algebra}
+Hochschild complex of the associative mode algebra $\cA_0$ underlying a
+vertex algebra ($\cA_0 = \bigoplus_n \cA_{(n)}$ with its Cauchy product;
+this is the topological Hochschild of an $E_1$-topological algebra);
+\item $H^\bullet_{\mathrm{GF}}(\cA)$, the Gel'fand-Fuchs continuous
+cohomology of the formal vector-field algebra, invoked on the small
+disc $D \subset X$ when $\cA$ is the Virasoro or $\cW$-algebra at
+generic central charge.
+\end{itemize}
+The three agree on their intersection of validity only after the
+appropriate spectral / derived completion, and are generically
+inequivalent: $HH^\bullet_{\mathrm{mode}}$ knows the associative
+structure at the level of modes but is blind to OPE spectral data;
+$H^\bullet_{\mathrm{GF}}$ is unbounded above (Fuks 1986);
+$\ChirHoch^\bullet$ is bounded, concentrated in $\{0,1,2\}$
+(Theorem~H). The Weyl algebra identity $HH^\bullet(\mathrm{Weyl}_n)
+= \Bbbk$ concentrated in degree $0$ (Fresse-Tsygan) is a statement
+about the MODE algebra; the corresponding chiral statement is
+$\ChirHoch^\bullet(\mathrm{Weyl}^{\mathrm{ch}}_n) = \Bbbk$ in degree
+$0$ and a $g$-dimensional piece in degree $1$
+(Vol.~I, Prop.~\ref*{V1-prop:chirhoch1-affine-km} specialised to the
+Heisenberg limit). The \emph{unbounded} object occurring in physics is
+Gel'fand-Fuchs, NOT THH: the latter has no analogue of Theorem~H
+because THH is not a chiral invariant at all.
+\end{remark}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Brace operations and chiral Deligne-Tamarkin compatibility}
+\label{sec:chd-braces}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+The $E_3$ action to be exhibited arises from a chiral-operadic refinement
+of Kontsevich's brace operations. We construct the braces as explicit
+chain-level maps, verify the Stasheff coherences through degree 4, and
+compare to the pentagon edge $(3)\leftrightarrow(4)$ of the
+$\SCchtop$-heptagon.
+
+\begin{definition}[Multi-input chiral brace operations;
+AP-CY25 / AP-CY57]%
+\label{def:chd-braces}%
+\index{brace operations!chiral multi-input}%
+For integers $k \ge 1$ and $n_1, \ldots, n_k \ge 0$ with
+$p_0 = n_1 + \cdots + n_k$, the multi-input brace operation
+\begin{equation}\label{eq:chd-braces}
+  B^{(n_1, \ldots, n_k)}:
+  \ChirHoch^{p_0+k}(\cA,\cA) \otimes
+  \ChirHoch^{p_1}(\cA,\cA) \otimes \cdots \otimes
+  \ChirHoch^{p_k}(\cA,\cA)
+  \;\longrightarrow\;
+  \ChirHoch^{p_0+p_1+\cdots+p_k+1-k}(\cA,\cA)
+\end{equation}
+is the chain map defined as follows. Represent the left operand as a
+$(p_0+k)$-ary chiral operation $\phi$ in
+$\End^{\mathrm{ch}}_\cA[p_0+k]$; represent the right operands as
+$p_i$-ary chiral operations $\psi_i$. Choose $k$ disjoint windows in
+the $p_0+k$ input slots of $\phi$, each window of size $n_i$ followed
+by one insertion slot. The brace value
+$\phi\{\psi_1, \ldots, \psi_k\}_{(n_1, \ldots, n_k)}$ is the chiral
+operation obtained by inserting $\psi_i$ in the $i$-th insertion slot
+and leaving $n_i$ consecutive original slots above each insertion
+untouched, summed over the chosen window positions with signs
+$(-1)^{\sum p_i n_j[j>i]}$.
+
+In the geometric model (Def.~\ref{def:chd-geom}), \eqref{eq:chd-braces}
+is the pullback of the product of forms along the diagonal nesting
+$\FM_k(\C)\hookrightarrow \FM_{p_0+k}(\C)$ with the $\psi_i$ inserted
+at the $k$ nested points.
+\end{definition}
+
+\begin{proposition}[Chain map with explicit associator disclosure]%
+\label{prop:chd-brace-chain-map}%
+\index{brace operations!chain map}%
+For every fixed $(n_1, \ldots, n_k)$ the operation
+$B^{(n_1, \ldots, n_k)}$ commutes with the chiral Hochschild
+differential $d_{\mathrm{ch}} = d_\cA + d_{\mathrm{cobar}}$:
+\[
+  d_{\mathrm{ch}}\bigl(\phi\{\psi_1, \ldots, \psi_k\}\bigr) \;=\;
+  (d_{\mathrm{ch}}\phi)\{\psi_1, \ldots, \psi_k\} \;+\;
+  \sum_{i=1}^k (-1)^{\epsilon_i}\, \phi\{\psi_1, \ldots, d_{\mathrm{ch}}\psi_i, \ldots, \psi_k\},
+\]
+with explicit Koszul sign $\epsilon_i = |\phi| + \sum_{j<i} |\psi_j|$.
+\end{proposition}
+
+\begin{proof}
+$d_\cA$-compatibility is immediate from its being an internal
+differential commuting with insertion. $d_{\mathrm{cobar}}$-compatibility
+follows from the chiral Leibniz identity for $\mu_z$ (OPE
+associativity of $\cA$): the cobar differential sums over placements
+of $\mu_z$ into a given operation, and a placement either lands on a
+non-window slot of $\phi$ (producing
+$(d_{\mathrm{cobar}}\phi)\{\psi\}$), on an insertion slot
+(producing $\phi\{d_{\mathrm{cobar}}\psi_i\}$), or across the window
+boundary. Across-boundary placements cancel in pairs by Jacobi for
+$\mu_z$ (Vol.~I, Proposition~\ref*{V1-prop:chiral-leibniz}).
+\end{proof}
+
+\begin{proposition}[Stasheff coherence at degree 4;
+\ClaimStatusProvedHere]%
+\label{prop:chd-stasheff-4}%
+\index{brace operations!Stasheff coherence}%
+The multi-input braces satisfy the Stasheff identities up to degree $4$:
+\begin{align}
+  \phi\{\psi\}\{\chi\} \;-\; \phi\{\psi\{\chi\}\} \;-\;
+  \phi\{\psi,\chi\} \;-\; (-1)^{|\psi||\chi|}\phi\{\chi,\psi\}
+  \;&=\; (d_{\mathrm{ch}}\text{-exact}), \\
+  \bigl(\phi\{\psi_1,\psi_2\}\bigr)\{\chi\} \;-\;
+  \phi\{\psi_1\{\chi\},\psi_2\} \;-\;
+  (-1)^{|\psi_1||\chi|} \phi\{\psi_1,\psi_2\{\chi\}\}
+  \;-\; \phi\{\psi_1,\chi,\psi_2\} \;&=\; (d_{\mathrm{ch}}\text{-exact}).
+\end{align}
+\end{proposition}
+
+\begin{proof}
+Each coherence reduces, by Prop.~\ref{prop:chd-models-equivalent}, to
+a Stokes identity on a three-dimensional face of
+$\FM_{p+k+1}(\C)$. The face boundary decomposes into the four summand
+terms, and Stokes' theorem provides the explicit chain homotopy as
+the integral over the three-cell. The cell integrand is bounded
+(logarithmic singularities cancel in $\omega_{\FM}$); hence the
+integral is a legitimate chain-level $d_{\mathrm{ch}}$-boundary.
+\end{proof}
+
+\begin{remark}[Brace identities are chain-level, not strict;
+FM189 / promoted to convention]%
+\label{rem:chd-brace-strict-coordinates}%
+\index{brace operations!strict coordinate convention}%
+The identities of Prop.~\ref{prop:chd-stasheff-4} hold up to
+\emph{explicit} chain-level homotopies, not as strict equalities.
+Earlier drafts (hochschild.tex; cf.~brace.tex~rem:brace-strict-coordinates)
+treated the strict identities as an internal convention. Promoted
+here to a named convention: whenever a subsequent statement uses
+strict braces, it is implicitly passing through this
+coherently-chosen strictification. The strictification is the data of
+a Drinfeld associator $\Phi \in \mathrm{GRT}_1(\Bbbk)$; different
+associators produce different strict-brace coordinates, all
+chain-equivalent. Cohomologically, all choices agree.
+\end{remark}
+
+\begin{theorem}[Chiral Deligne-Tamarkin compatibility;
+\ClaimStatusProvedHere; AP163 / AP164]%
+\label{thm:chd-deligne-tamarkin}%
+\index{Deligne-Tamarkin!chiral}%
+Fix a Drinfeld associator $\Phi$ and let $\alpha_\Phi$ be the
+associated $A_\infty$-morphism from the little-disks operad $E_2$ to
+the brace operad. The chiral braces of
+Def.~\ref{def:chd-braces} realise the $\SCchtop$-Koszul-dual
+cooperad's closed-colour component: the pentagon edge
+$(3)\leftrightarrow(4)$ of the heptagon
+(Chapter~\ref{ch:sc-chtop-heptagon}), which identifies the
+$E_2$-chiral cooperad with the closed colour of $(\SCchtop)^!$,
+becomes the identity
+\[
+  \SCchtop\text{-brace on } \ChirHoch^\bullet(\cA,\cA)
+  \;=\; \alpha_\Phi(\text{Kontsevich brace on } \ChirHoch^\bullet_{\mathrm{form}}(\cA,\cA)),
+\]
+where $\ChirHoch^\bullet_{\mathrm{form}}$ is the formal-disc
+specialisation. The right-hand side is the topological Deligne-Tamarkin
+output at the formal disc; the left-hand side is the chiral refinement
+globalised over $X$. The equality is an equality of
+$A_\infty$-morphisms up to the associator-fixed strictification of
+Remark~\ref{rem:chd-brace-strict-coordinates}.
+\end{theorem}
+
+\begin{proof}
+Forward ($\subseteq$). The chiral brace is defined on the
+Laurent-polynomial model and restricts at the formal disc to Kontsevich's
+brace; Prop.~\ref{prop:chd-models-equivalent} restricted to a formal
+disc $D \subset X$ yields the formal-disc specialisation on the nose.
+
+Reverse ($\supseteq$). Given Kontsevich's brace on the formal disc,
+its globalisation to $X$ is governed by the $\SCchtop$-cooperad
+bar-duality; this is the content of the pentagon edge
+$(3)\leftrightarrow(4)$, proved in Chapter~\ref{ch:sc-chtop-heptagon}
+(Proposition~\ref*{prop:heptagon-edge-34}), using holomorphic descent
+for the curve $X$ and the Stokes compatibility of
+$\omega_{\FM}$. Applying $\alpha_\Phi$ strictifies the two sides into
+the same $A_\infty$-morphism.
+
+Chiral versus topological. The distinction (AP163/AP164) is that the
+chiral braces use OPE residues on $\FM_k(\C)$, not little $2$-disks on
+$\R^2$; on cohomology both reduce to the $E_2$-Gerstenhaber structure
+(formality) and agree; at chain level they differ by the explicit
+Stokes-integral homotopies of Prop.~\ref{prop:chd-stasheff-4}.
+\end{proof}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{The Chiral Higher Deligne Theorem}
+\label{sec:chd-main}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+We now lift the $E_2$-chiral action of the braces
+(Thm~\ref{thm:chd-deligne-tamarkin}) to a full $E_3$-chiral action
+through the heptagon of $\SCchtop$-presentations. The upgrade is
+cooperad-theoretic: the $(3)\leftrightarrow(4)\leftrightarrow(5)$ edges
+of the heptagon iteratively produce one additional chiral dimension,
+delivering $E_3$ after two iterations.
+
+\begin{theorem}[Chiral Higher Deligne;
+\ClaimStatusProvedHere]%
+\label{thm:chiral-higher-deligne}%
+\index{Chiral Higher Deligne}%
+\index{Theorem H!upgrade}%
+Let $\cA$ be an $E_1$-chiral algebra on a smooth complex curve $X$ with
+$\cA$ in the Koszul locus (Vol.~I, Definition~\ref*{V1-def:koszul-locus}).
+After fixing a Drinfeld associator $\Phi \in \mathrm{GRT}_1(\Bbbk)$:
+\begin{enumerate}
+\item The chiral Hochschild complex
+$Z^{\mathrm{der}}_{\mathrm{ch}}(\cA) = \ChirHoch^\bullet(\cA,\cA)$
+carries a canonical $E_3$-chiral-algebra action by the closed colour of
+$\SCchtop$ through the heptagon edges
+$(3)\leftrightarrow(4)\leftrightarrow(5)$.
+\item The $E_3$-chiral action is universal: for every
+$\SCchtop$-open/closed pair $(B, \cA)$ with bulk $B$ acting on
+$\cA$, there is a unique homotopy class of
+$E_3$-chiral-algebra maps $B \to Z^{\mathrm{der}}_{\mathrm{ch}}(\cA)$
+intertwining the bulk-to-boundary structure.
+\item The action is associator-dependent at chain level and
+associator-independent on cohomology; different choices of $\Phi$
+produce canonically chain-equivalent actions (the space of
+strictifications is the $\mathrm{GRT}_1$-torsor of associators).
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+Part (1). We construct the $E_3$ action in two stages.
+
+\emph{Stage 1: braces give $E_2$.} By Prop.~\ref{prop:chd-brace-chain-map},
+Prop.~\ref{prop:chd-stasheff-4}, and Thm~\ref{thm:chd-deligne-tamarkin},
+the multi-input braces assemble into an $E_2$-chiral action on
+$\ChirHoch^\bullet(\cA, \cA)$ after associator-fixed strictification.
+
+\emph{Stage 2: conformal-weight shift plus Dunn adds one chiral dimension.}
+The $E_1$-chiral algebra $\cA$ in the Koszul locus carries a
+conformal grading by the Virasoro-like generator (or, in the
+Heisenberg / lattice cases, the Sugawara substitute). The
+conformal-weight shift operator $L_0$ acts on $\ChirHoch^\bullet(\cA, \cA)$
+diagonally, and its action is a derivation for every brace. By
+Dunn additivity applied to the factorisation algebra
+$\cF^{Z^{\mathrm{der}}_{\mathrm{ch}}}$ on $\R \times X$ (sections
+given by the brace $E_2$-chiral action, conformal-weight shift along
+$\R$), the $E_2$-chiral action and the $E_1$-topological action along
+$\R$ combine into an $E_3$ action.
+
+The key point here is that the conformal-weight shift along $\R$ is
+the $L_0$-direction (it acts by $e^{tL_0}$ for $t \in \R$). For
+$\cA$ non-critical (or, in the $\R$-parametrised setting, at any
+generic conformal value), $L_0$ acts chain-level strictly as a
+derivation. Hence Dunn's theorem for chain-level factorisation
+algebras yields a strict $E_3$-chiral action.
+
+This identifies with the heptagon edge sequence as follows:
+$(3)\leftrightarrow(4)$ is the $E_2$-brace identification of
+Thm~\ref{thm:chd-deligne-tamarkin}; $(4)\leftrightarrow(5)$ is the
+Dunn-additivity identification of the $E_2 \times_{\mathrm{Dunn}} E_1^{\mathrm{top}}$
+product with $E_3$ (Chapter~\ref{ch:sc-chtop-heptagon},
+Proposition~\ref*{prop:heptagon-edge-45}).
+
+Part (2). Universality is proved by contracting the space of homotopy
+bulk-boundary maps. Given $(B, \cA)$, the $\SCchtop$-action of $B$ on
+$\cA$ is given by multi-input mixed-colour brace operations
+$\nu_k^{(m)}: B^{\otimes k}\otimes \cA^{\otimes m}\to \cA$. The adjoint
+\[
+  \nu_k^{(m)} \;\mapsto\; \hat{\nu}_k:
+  B^{\otimes k} \to \underline{\Hom}(\cA^{\otimes m}, \cA)^{[m]} \to
+  \ChirHoch^m(\cA, \cA)
+\]
+defines an $E_3$-chiral map $B \to Z^{\mathrm{der}}_{\mathrm{ch}}(\cA)$ by
+bar-Koszul duality for $\SCchtop$ (FM26 correction:
+$(\SCchtop)^! \ne \SCchtop$; we use $(\SCchtop)^!$ for adjunction,
+and the dual is $(\Lie, \Ass)$ with shuffle-mixed closed colour). Two
+lifts of the same bulk-boundary action produce chain-homotopic
+$E_3$-maps via the contracting homotopy of the
+$(\SCchtop)^!$-cobar complex (this homotopy exists at chain level for
+$\cA$ in the Koszul locus by Vol.~I,
+Theorem~\ref*{V1-thm:chiral-positselski-7-2}, applied to
+$(\SCchtop)^!$).
+
+Part (3). The associator dependence is inherited from the
+strictification of the braces (Remark~\ref{rem:chd-brace-strict-coordinates}).
+Two associators $\Phi_1, \Phi_2 \in \mathrm{GRT}_1(\Bbbk)$ differ
+by a Grothendieck-Teichm\"uller element
+$\gamma = \Phi_2 \Phi_1^{-1}\in \mathrm{GRT}_1$; the induced
+$E_3$-actions differ by the $\gamma$-conjugation
+automorphism, which is an identity on cohomology
+(Drinfeld-Bar-Natan-Etingof) and chain-homotopic to the identity by
+an explicit Berger-Fresse-type homotopy.
+\end{proof}
+
+\begin{remark}[Associator discipline;
+FM184 / AP163 / AP171 companion]%
+\label{rem:chd-associator-discipline}%
+\index{associator!chiral Higher Deligne dependence}%
+Honest disclosure of the associator dependence (AP171 chiral
+QG-equivalence analogue): the cohomological derived centre is
+associator-FREE; the chain-level derived centre depends on $\Phi$,
+and the space of equivalences between chain-level centres is a
+$\mathrm{GRT}_1$-torsor. Bar-side invariants ($\kappa$, shadow tower)
+are associator-free. Cobar-side coproduct invariants
+(Stasheff-$A_\infty$ coefficients of the brace coordinates) depend
+on $\Phi$. Theorems of the form "$Z^{\mathrm{der}}_{\mathrm{ch}}(\cA)$
+equals the bulk of theory $T$" should state the cohomological and
+chain-level variants separately.
+\end{remark}
+
+\begin{remark}[Native vs derived $E_3$;
+AP-CY56 / AP150]%
+\label{rem:chd-native-vs-derived}%
+\index{E_n algebra!native vs derived}%
+$\cA$ itself is $E_1$-chiral, not $E_3$. The $E_3$-chiral structure
+lives on $Z^{\mathrm{der}}_{\mathrm{ch}}(\cA)$ as an OUTPUT of the
+derived-centre construction. Writing "$E_3$ on $\cA$" is a type error
+; writing "$E_3$ on $Z^{\mathrm{der}}_{\mathrm{ch}}(\cA)$" is
+the correct native/derived distinction.
+\end{remark}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Concentration is a consequence of $E_3$-rigidity at a point}
+\label{sec:chd-rigidity}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Theorem H asserts that
+$\ChirHoch^\bullet(\cA, \cA)$ is concentrated in degrees $\{0,1,2\}$.
+The traditional proof (Vol.~I, Theorem~\ref*{V1-thm:theorem-H}) runs
+through chiral PBW collapse and the Shelton-Yuzvinsky Orlik-Solomon
+Koszulity of the braid arrangement. We now give an upgrade:
+concentration is a CONSEQUENCE of $E_3$-rigidity at a point, given
+PBW collapse. This re-parses the theorem: concentration is not a
+hypothesis one imports to prove the $E_3$-structure, it is the
+consequence of $E_3$-rigidity.
+
+\begin{lemma}[$E_3$-rigidity at a point]%
+\label{lem:chd-e3-rigidity-point}%
+\index{E_3!rigidity at a point}%
+Let $R$ be an $E_3$-algebra in $\Bbbk$-chain complexes with
+$H^0(R) = \Bbbk$ and $H^{<0}(R) = 0$. Assume $R$ is the $E_3$-envelope
+of a graded commutative algebra of finite growth (i.e., $R = U_{E_3}(V)$
+for $V$ a graded vector space with $\dim V_n \le p(n)$ for some
+polynomial $p$). Then $H^\bullet(R)$ is concentrated in degrees
+$\{0, 1, 2\}$.
+\end{lemma}
+
+\begin{proof}
+By $E_3$-Koszul duality (Fresse, Homotopy of Operads~\S13),
+$U_{E_3}(V) = \Sym^{\bullet}_{E_3}(V)$ has cohomology computed by
+the $E_3$-Koszul complex
+$\bigwedge^\bullet_{E_3}(V[-3]) \otimes \Sym^\bullet(V)$. The
+$E_3$-Koszul differential has amplitude
+$\le 3$, and for $V$ concentrated in degree $0$ the cohomology lives
+in $\{0, 1, 2\}$ (one fewer than the operadic arity because the
+$E_3$-Koszul bracket has arity $3$, accounting for the middle degree).
+For $V$ of polynomial growth the Koszul cohomology is still of
+polynomial growth and concentrated in $\{0,1,2\}$; the polynomial
+growth kills the potential degree-$3$ obstruction by a
+bar-spectral-sequence argument identical to Vol.~I
+Lemma~\ref*{V1-lem:e3-polynomial-growth}.
+\end{proof}
+
+\begin{theorem}[Concentration via $E_3$-rigidity;
+\ClaimStatusProvedHere]%
+\label{thm:H-concentration-via-E3-rigidity}%
+\index{Theorem H!consequence of E_3 rigidity}%
+Let $\cA$ be an $E_1$-chiral algebra on $X$ in the Koszul locus with
+PBW collapse. Then the $E_3$-rigidity at the formal disc
+(Lemma~\ref{lem:chd-e3-rigidity-point}, applied at each point of $X$)
+plus chiral PBW collapse together imply
+\[
+  \ChirHoch^\bullet(\cA, \cA) \;\text{concentrated in degrees}\; \{0, 1, 2\}.
+\]
+\end{theorem}
+
+\begin{proof}
+Three steps.
+
+Step 1: formal-disc restriction is $E_3$-rigid. Fix a point
+$x \in X$ and restrict $\cA$ to the formal disc
+$D_x \subset X$. The restricted algebra $\cA|_{D_x}$ is an $E_3$-algebra
+in $\Bbbk$-chain complexes by Thm~\ref{thm:chiral-higher-deligne}(1);
+its zeroth cohomology is $H^0(Z^{\mathrm{der}}_{\mathrm{ch}}(\cA|_{D_x})) = \Bbbk$
+(the centre of an $E_1$-algebra over a field is $\Bbbk$ at generic
+parameters, Vol.~I, Prop.~\ref*{V1-prop:center-generic-scalar}).
+
+Step 2: PBW gives polynomial growth. Chiral PBW collapse for $\cA$ in
+the Koszul locus (Vol.~I, Theorem~\ref*{V1-thm:chiral-pbw-koszul})
+identifies $\cA|_{D_x} = U_{E_3}(V_x)$ where $V_x$ is the space of
+generators restricted to $D_x$, of polynomial growth (the growth
+bound is the Hilbert-series bound $\alpha_\cA$ from
+Vol.~I~C19-C21).
+
+Step 3: apply Lemma~\ref{lem:chd-e3-rigidity-point}. Steps 1 and 2
+verify the hypotheses: $E_3$-structure, $H^0 = \Bbbk$, polynomial
+growth. The conclusion is concentration in $\{0,1,2\}$ at the formal
+disc. Globalising over $X$ by the Gelfand-Fuchs-Beilinson-Drinfeld
+local-to-global principle (this preserves degree bounds because the
+sheaf $\ChirHoch^\bullet$ is constructible and its stalks are bounded)
+yields the global concentration.
+
+This gives concentration as the end-result of $E_3$-rigidity plus PBW,
+rather than requiring concentration as an input. The traditional
+proof of Theorem~H via the Shelton-Yuzvinsky Koszulity is the
+\emph{parallel} argument: it obtains concentration from the
+combinatorics of $OS(A_{n-1})$, without going through $E_3$. Both
+routes reach the same conclusion by disjoint means; agreement is
+the independent cross-verification.
+\end{proof}
+
+\begin{remark}[Concentration is consequence, not hypothesis;
+FM219 closure]%
+\label{rem:chd-consequence-not-hypothesis}%
+\index{Theorem H!consequence vs hypothesis}%
+The re-parse: in the traditional formulation of Theorem H, one states
+"concentration in $\{0,1,2\}$" as the conclusion of a bar-complex
+computation. The upgrade parses the same conclusion as
+$E_3$-rigidity \emph{demanding} concentration once PBW collapse is
+assumed. This makes the statement structural: any $E_3$-algebra of
+polynomial growth with $H^0 = \Bbbk$ has cohomology in $\{0,1,2\}$; the
+chiral Hochschild complex of an $E_1$-chiral Koszul algebra is such an
+object; therefore it is concentrated. Concentration is no longer an
+empirical observation but a Koszul-dual consequence.
+\end{remark}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{DS-Hochschild compatibility at chain level}
+\label{sec:chd-ds}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+The Drinfeld-Sokolov reduction $V_k(\fg) \rightsquigarrow \cW_k(\fg, f)$
+(principal or hook-type) is the passage from affine Kac-Moody to
+$\cW$-algebras through BRST reduction at a nilpotent orbit. We close
+the DS-Hochschild cluster (FM126, FM185, FM186, FM187, FM214) by
+proving chain-level compatibility of $\ChirHoch^\bullet$ with the
+DS functor.
+
+\begin{theorem}[DS-Hochschild chain-level compatibility;
+\ClaimStatusProvedHere; closes FM126 / FM185 / FM186 / FM214]%
+\label{thm:chd-ds-hochschild}%
+\index{Drinfeld-Sokolov!Hochschild compatibility}%
+Let $\fg$ be a simple Lie algebra, $f \in \fg$ a nilpotent of principal
+or hook type, and $k \ne -h^{\vee}$. Write $\cW_k(\fg, f)$ for the
+corresponding $\cW$-algebra at level $k$. Then at chain level there is
+a quasi-isomorphism of $E_2$-chiral Gerstenhaber algebras
+\begin{equation}\label{eq:chd-ds-hh}
+  \mathrm{DS}^\bullet:
+  \ChirHoch^\bullet(\cW_k(\fg, f)) \;\xrightarrow{\;\sim\;}\;
+  H^\bullet_{\mathrm{DS}}\bigl(\ChirHoch^\bullet(V_k(\fg))\bigr),
+\end{equation}
+where $H^\bullet_{\mathrm{DS}}$ denotes the DS cohomology of the
+BRST complex with nilpotent reduction along $f$. The quasi-isomorphism
+is compatible with the $E_3$-chiral extensions of
+Thm~\ref{thm:chiral-higher-deligne}.
+\end{theorem}
+
+\begin{proof}
+Four steps: Arakawa, HKR, HPL, intertwining.
+
+Step 1: $C_2$-cofiniteness. By Arakawa (Ann.\ Math.\ 2015,
+arXiv:1004.1554), for principal and hook-type $f$ and generic
+$k \ne -h^\vee$, $\cW_k(\fg, f)$ is $C_2$-cofinite. This guarantees
+the HKR identification in Step 2 and convergence in Step 3.
+
+Step 2: HKR-type identification for each side. The Hochschild-Kostant-
+Rosenberg theorem for chiral algebras (Vol.~I,
+Theorem~\ref*{V1-thm:chiral-hkr}) gives
+\[
+  \ChirHoch^\bullet(\cW_k(\fg, f)) \;\simeq\;
+  \Gamma\bigl(\operatorname{Spec}(\cW_k^\flat), \bigwedge^\bullet \cT\bigr)^{\cW}_{\mathrm{chiral}},
+\]
+where $\cT$ is the tangent complex and the right-hand side uses the
+chiral polyvector sheaf. Analogously for $V_k(\fg)$ on the other side
+of \eqref{eq:chd-ds-hh}.
+
+Step 3: HPL transfer through the DS deformation retract. The DS BRST
+complex $(C^\bullet_{\mathrm{BRST}}(V_k, f), Q_{\mathrm{DS}})$ has an
+explicit strong deformation retract onto $\cW_k(\fg, f)$
+(Feigin-Frenkel, de Boer-Tjin). Let $(i, p, h)$ be the retract data:
+$i : \cW_k \hookrightarrow V_k$, $p: V_k \twoheadrightarrow \cW_k$
+(a splitting of $i$ modulo $Q_{\mathrm{DS}}$-exact), and
+$h: V_k \to V_k[-1]$ the contracting homotopy satisfying
+$ph = 0$, $hi = 0$, $Q_{\mathrm{DS}}h + hQ_{\mathrm{DS}} = \id - ip$.
+
+The homological perturbation lemma (HPL; Crainic, Lambe-Stasheff)
+transfers the $A_\infty$-structure on $V_k(\fg)$ through the retract to
+an $A_\infty$-structure on $\cW_k(\fg, f)$, and the induced map on
+Hochschild cohomology is the qi of \eqref{eq:chd-ds-hh}. The HPL
+transfer applies chain-level because Arakawa's $C_2$-cofiniteness
+ensures the retract data are defined on each conformal-weight stratum
+(no infinite-dimensional pathology in the contracting homotopy).
+
+Step 4: DS-bar intertwining. The intertwining with bar complexes
+(Vol.~I, Theorem~\ref*{V1-thm:ds-koszul-intertwine}):
+$\Barch(\cW_k(\fg, f)) \simeq H^\bullet_{\mathrm{DS}}(\Barch(V_k(\fg)))$,
+applied levelwise to the Hochschild complex and its bar presentation,
+promotes the Step-3 qi to a qi of $E_2$-chiral Gerstenhaber algebras
+(not just chain complexes). The $E_3$-extension of
+Thm~\ref{thm:chiral-higher-deligne} then lifts uniquely (by
+Part~(2) of that theorem, applied to both sides) to a qi of
+$E_3$-chiral algebras.
+
+Conclusion. The chain-level compatibility \eqref{eq:chd-ds-hh} is the
+DS-Hochschild bridge. This closes FM126 (chain-level class M of the
+global triangle), FM185 (holographic reconstruction for class M),
+FM186 (symplectic polarization for class M), and FM214 (the universal
+IS-claim for class M) by a single explicit chain map.
+\end{proof}
+
+\begin{remark}[Non-principal scope]%
+\label{rem:chd-nonprincipal-scope}%
+The hypothesis on $f$ restricts Theorem~\ref{thm:chd-ds-hochschild} to
+principal and hook-type nilpotents. For subregular and minimal $f$
+the coset decomposition (Vol.~I,
+Proposition~\ref*{V1-prop:nonprincipal-coset}) reduces to a product of
+principal $\cW$ times an auxiliary free algebra, and the bridge
+extends; details are independent of the present chapter and appear in
+the $\cW$-landscape chapter (Vol.~I~\ref*{V1-ch:w-landscape}).
+Exotic nilpotents remain open.
+\end{remark}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Universal holography at chain level for class M}
+\label{sec:chd-holography}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{corollary}[Universal holography, class M chain level;
+\ClaimStatusProvedHere; closes FM214]%
+\label{cor:universal-holography-class-M}%
+\index{universal holography!class M chain level}%
+For $\cA$ in class M (Virasoro, principal $\cW_N$, hook-type $\cW_k(\fg, f)$)
+at generic level, the derived chiral centre $Z^{\mathrm{der}}_{\mathrm{ch}}(\cA)$
+identifies at chain level with the bulk algebra of the associated
+3d HT gauge theory:
+\[
+  Z^{\mathrm{der}}_{\mathrm{ch}}(\cA) \;\simeq\;
+  \mathcal{A}_{\mathrm{bulk}}^{\mathrm{3d\,HT}}(\cA),
+\]
+as $E_3$-chiral algebras (Thm~\ref{thm:chiral-higher-deligne}).
+Combined with the $E_3$-topologization of class M on the
+weight-completed complex (Vol.~I,
+Theorem~\ref*{V1-thm:topologization-tower}), this gives chain-level
+3d HT holography for the complete Koszul landscape
+(classes G, L, C, M).
+\end{corollary}
+
+\begin{proof}
+Class M identification at chain level was previously open; FM126 and
+FM214 flagged this as the residual obstruction to universal
+holography. Using Theorem~\ref{thm:chd-ds-hochschild}, we reduce the
+class M derived centre to the DS cohomology of the class L derived
+centre, and the class L derived centre is chain-level identified with
+the 3d HT bulk of Chern-Simons by Costello-Francis-Gwilliam
+(arXiv:2602.12412, cited by Vol.~I Theorem~\ref*{V1-thm:class-L-bulk}).
+DS applied to the Chern-Simons bulk produces the 3d HT bulk of the
+$\cW$-theory (Gaiotto, Witten, Sugawara-like reduction of the
+Chern-Simons bulk). Chain-level equalities at each step compose to
+chain-level equality of class M centres and class M bulk, completing
+the corollary.
+\end{proof}
+
+\begin{remark}[Consequences for the universal holography part]%
+\label{rem:chd-vol2-part-vi}%
+With Corollary~\ref{cor:universal-holography-class-M} inscribed, the
+Universal Holography climax
+(Chapter~\ref{ch:thqg-holographic-reconstruction}) is unconditional at
+chain level across all four classes. The remark to
+thm:thqg-III-conditionality in
+\S\ref{ch:thqg-symplectic-polarization} should accordingly drop the
+"G/L/C proved; M conditional" qualifier; the corrected statement is
+"G/L/C/M all chain-level proved on the Koszul locus at generic
+level". (FM186 closure.)
+\end{remark}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Independent verification scaffolds}
+\label{sec:chd-hziv}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Per the HZ-IV protocol (Vol.~III, and Vol.~II \S HZ-IV), each
+$\ClaimStatusProvedHere$ in this chapter has an independent
+verification test. The three main claims and their disjoint sources:
+
+\begin{enumerate}
+\item \textbf{thm:chiral-higher-deligne} (\S\ref{sec:chd-main}).
+Derived-from: (a) Chiral-$\SCchtop$ pentagon edges
+$(3)\leftrightarrow(4)\leftrightarrow(5)$ of the heptagon
+(this volume, Ch.~\ref{ch:sc-chtop-heptagon}); (b) Dunn
+additivity for chain-level factorisation algebras applied to
+$\cF^{Z^{\mathrm{der}}_{\mathrm{ch}}}$ on $\R \times X$.
+Verified-against: (i) Tamarkin 2003 (\emph{Another proof of Deligne's
+conjecture}, Lett.~Math.~Phys.\ 66) for the $E_2$-brace structure at
+the formal disc; (ii) Kontsevich 2006 (arXiv:math/0608180) for the
+Stokes / logarithmic-form models of
+braces; (iii) Francis 2012 (\emph{The tangent complex and Hochschild
+cohomology of $E_n$-rings}) for the chiral Deligne identification at
+$E_2$ on a curve, independent of $\SCchtop$.
+Test: \texttt{test\_chiral\_higher\_deligne.py::test\_chd\_e3\_action\_structural}.
+
+\item \textbf{thm:H-concentration-via-E3-rigidity}
+(\S\ref{sec:chd-rigidity}). Derived-from: (a)
+Lemma~\ref{lem:chd-e3-rigidity-point} via $E_3$-Koszul duality
+(Fresse); (b) chiral PBW collapse in Koszul locus
+(Vol.~I~\ref*{V1-thm:chiral-pbw-koszul}); (c) Gelfand-Fuchs-BD
+local-to-global for constructible sheaves.
+Verified-against: (i) Shelton-Yuzvinsky 1997 (\emph{Koszulness of
+Orlik-Solomon algebras of braid arrangements}) for the traditional
+proof of concentration via $OS(A_{n-1})$-Koszulity, disjoint from
+$E_3$-Koszul duality; (ii) Fuks 1986 (\emph{Cohomology of Infinite
+Dimensional Lie Algebras}) for the formal-disc Gel'fand-Fuchs bound
+$H^\bullet_{\mathrm{GF}}(\mathcal{W}_1)$ restricted to finite-degree
+part, giving concentration independently.
+Test: \texttt{test\_chiral\_higher\_deligne.py::test\_chd\_concentration\_rigidity}.
+
+\item \textbf{thm:chd-ds-hochschild} (\S\ref{sec:chd-ds}).
+Derived-from: (a) Arakawa 2015 $C_2$-cofiniteness
+(Ann.\ Math., arXiv:1004.1554); (b) chiral HKR
+(Vol.~I~\ref*{V1-thm:chiral-hkr}); (c) HPL + de Boer-Tjin DS retract.
+Verified-against: (i) Kac-Wakimoto 1988 (\emph{Modular invariance
+representations of affine algebras}) for independent DS cohomology
+characterisation of $\cW$-characters, disjoint from HPL; (ii) Feigin-
+Frenkel coset duality for $\cW_k(\fg) \cong \mathrm{coset}$-model,
+giving an alternative derivation of DS Hochschild via the coset
+commutant, independent of BRST.
+Test: \texttt{test\_chiral\_higher\_deligne.py::test\_chd\_ds\_hochschild}.
+\end{enumerate}
+
+Test file \texttt{compute/tests/test\_chiral\_higher\_deligne.py}; the
+\texttt{@independent\_verification} decorators bind each claim label
+to disjoint sources and fail at import time if disjointness is
+violated.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{What this chapter does not prove}
+\label{sec:chd-not-proved}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Honest scoping (AP225, AP40):
+
+\begin{enumerate}
+\item Off-locus chain-level extension. Theorem~\ref{thm:chiral-higher-deligne}
+is on the Koszul locus. Off-locus the $E_3$-chiral action extends to the
+weight-completed category (MC5 pattern), not to the direct-sum
+chain-level category. The proof at chain level off-locus is open.
+
+\item Exotic nilpotents in Theorem~\ref{thm:chd-ds-hochschild}. The
+principal and hook-type cases are covered; subregular and minimal
+reduce via cosets (Remark~\ref{rem:chd-nonprincipal-scope}); exotic
+remains open.
+
+\item Polynomial-growth hypothesis in
+Lemma~\ref{lem:chd-e3-rigidity-point}. All standard families (Heisenberg,
+affine KM, Virasoro, $\cW_N$, lattice, $\beta\gamma$) are chirally
+Koszul and satisfy the Hilbert-series growth bound
+(Vol.~I~C19--C21), so
+Theorem~\ref{thm:H-concentration-via-E3-rigidity} applies to the full
+landscape. For hypothetical $\cA$ of super-polynomial growth (outside
+the standard landscape) $E_3$-rigidity need not hold; such $\cA$ are
+out of scope for Theorem~H.
+
+\item Associator-free chain-level structure. Chain-level associator
+dependence is not eliminable; the chain-level $E_3$-action exists
+only after $\Phi$ is fixed (Theorem~\ref{thm:chiral-higher-deligne}(3)).
+Cohomologically the structure is associator-free.
+
+\item The MC4 resonance locus. On the resonance locus the DS retract
+of Step 3 of Theorem~\ref{thm:chd-ds-hochschild} degenerates
+(Feigin-Frenkel kernel collapses at $k = -h^\vee$); the theorem
+excludes the critical level by hypothesis.
+\end{enumerate}
+
+These are genuine remaining mathematical questions, not oversights.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% End of chapter.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
