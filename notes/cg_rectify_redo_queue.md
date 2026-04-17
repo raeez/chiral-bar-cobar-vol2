@@ -88,7 +88,7 @@ Order follows `main.tex` linear traversal (Part I $\to$ Part VIII $\to$ Conclusi
 ## Part VI — Three-Dimensional Quantum Gravity
 
 - [x] `chapters/connections/part_vi_platonic_introduction.tex` — 2026-04-17: diagnostic converged, balance OK, zero V2-AP40 leaks (586 lines).
-- [~] `chapters/connections/thqg_gravitational_complexity.tex` — 2026-04-17 partial: balance OK, zero V2-AP40 leaks (2689 lines); full linear sweep deferred.
+- [x] `chapters/connections/thqg_gravitational_complexity.tex` — 2026-04-17: Phase-3 sweep this tick fixed 1 V2-AP40e compute-filename leak: `compute/lib/virasoro\_shadow\_tower.py` → prose "Volume~II Virasoro shadow-tower engine". Post-sweep: 2688 lines, balance 179=179, 35 sections, zero V2-AP40 tokens.
 - [~] `chapters/connections/3d_gravity.tex` — 2026-04-17 partial: balance OK, zero V2-AP40 leaks (10721 lines — largest chapter in Vol II); full linear sweep deferred.
 - [x] `chapters/connections/e_infinity_topologization.tex` — 2026-04-17: diagnostic converged, balance OK, zero V2-AP40 leaks (1246 lines).
 - [x] `chapters/connections/w_infty_e_infty_endpoint_platonic.tex` — 2026-04-17: diagnostic converged, balance OK, zero V2-AP40 leaks (726 lines).
