@@ -38,7 +38,7 @@ Order follows `main.tex` linear traversal (Part I $\to$ Part VIII $\to$ Conclusi
 
 - [x] `chapters/connections/dnp_identification_master.tex` — 2026-04-17: V2-AP40 sweep (4 escaped-token leaks healed). Four AP/FM tokens split across `\textup{}` (evading standard regex): `AP\textup{19}` → dlog-absorption prose; `AP\textup{126}` × 2 → level-stripped-r-matrix prose naming the constraint by content; `AP\textup{107}` → "odd-generator extension" content-named. Balance 32=32. Chapter's seven-face content (Swiss-cheese bar-cobar, line-operator A!-modules, boundary PVA, sigma-model Hamiltonians, dg-shifted Yangian, Sklyanin, Gaudin) all preserved.
 - [x] `chapters/theory/grt_parametrized_seven_faces.tex` — 2026-04-17: CONVERGED on first look, zero edits. Opens with an exceptional "Prologue": the seven-to-GRT-torsor promotion of r(z) = Res^coll_{0,2}(Θ_A), with Q-rational orbit representatives + Brown motivic F_8 + Willwacher operadic F_9 as canonical completions. Balance 48=48, zero V2-AP40 leaks.
-- [ ] `chapters/connections/spectral-braiding-core.tex`
+- [~] `chapters/connections/spectral-braiding-core.tex` — 2026-04-17 partial: grep-surface diagnostic only. Balance 258=258, zero V2-AP40 prose leaks, zero AP\textup{} escaped tokens. Single FM2 match is an equation label (`eq:omega-FM2`, reader-invisible). 5131-line chapter; full linear sweep deferred to next cron tick.
 - [ ] `chapters/connections/ht_bulk_boundary_line_core.tex`
 - [ ] `chapters/connections/celestial_boundary_transfer_core.tex`
 - [ ] `chapters/connections/affine_half_space_bv.tex`
