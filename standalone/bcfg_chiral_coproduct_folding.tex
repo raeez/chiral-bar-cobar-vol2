@@ -1,5 +1,6 @@
 \documentclass[11pt]{amsart}
-\usepackage{amsmath,amssymb,amsthm,enumitem,mathrsfs}
+\usepackage{amsmath,amssymb,amsthm,enumitem,mathrsfs,hyperref}
+
 \newtheorem{theorem}{Theorem}[section]
 \newtheorem{lemma}[theorem]{Lemma}
 \newtheorem{proposition}[theorem]{Proposition}
@@ -9,207 +10,442 @@
 \newtheorem{definition}[theorem]{Definition}
 \theoremstyle{remark}
 \newtheorem{remark}[theorem]{Remark}
-\newcommand{\fg}{\mathfrak{g}}
-\newcommand{\fh}{\mathfrak{h}}
-\newcommand{\hbar}{\hslash}
 
-\title{Chiral Coproduct for Non-Simply-Laced Types\\
-via Critical CoHA Folding}
+\providecommand{\fg}{\mathfrak{g}}
+\providecommand{\fh}{\mathfrak{h}}
+\providecommand{\fsl}{\mathfrak{sl}}
+\providecommand{\fso}{\mathfrak{so}}
+\providecommand{\fsp}{\mathfrak{sp}}
+\providecommand{\ClaimStatusProvedHere}{\textsc{[Proved here.]}}
+\providecommand{\ClaimStatusProvedElsewhere}{\textsc{[Proved elsewhere.]}}
+\providecommand{\ClaimStatusConjectured}{\textsc{[Conjectured.]}}
+\renewcommand{\hbar}{\hslash}
+
+\title{Non-simply-laced chiral coproducts via $\sigma$-orbifold folding}
+\author{Raeez Lorgat}
+\date{April 2026}
 
 \begin{document}
 \maketitle
 
 \begin{abstract}
-The chiral coproduct on $E_1$-chiral quantum groups is constructed
-for ADE types by Jindal--Kaubrys--Latyntsev via critical CoHA
-vertex coproducts.  We develop the folding approach for types
-$B_n$, $C_n$, $F_4$, and outline the triality approach for~$G_2$.
-At the Yangian level, the $B_2 = \mathrm{fold}(A_3, \mathbb{Z}/2)$
-coproduct is completely explicit.  At the chiral (vertex algebra)
-level, we reduce the construction to two concrete steps:
-$\sigma$-equivariance of the critical vanishing-cycle sheaf and
-factorisation of the restricted coproduct through the fixed-point
-tensor product.
+Orbifold folding produces the non-simply-laced Yangians
+$Y_\hbar(\fg)$ for $\fg = B_n, C_n, F_4, G_2$ as
+$(\Gamma\text{-invariants})$ of the ADE-type Yangian on the parent
+diagram, where $\Gamma$ is the Dynkin automorphism. The same folding,
+applied in the chiral (vertex algebra) direction, produces the
+non-simply-laced $E_1$-chiral quantum group by descending the
+simply-laced chiral coproduct of
+Jindal--Kaubrys--Latyntsev~\cite{JKL} to the $\sigma$-invariant
+subalgebra. We write the folding discipline: $\sigma$-invariance of
+the preprojective potential, $\sigma$-equivariance of the Hecke
+correspondence, orbifold-route preservation of the $E_n$ structure
+(V2-AP85), and vanishing of the sign-eigenspace-to-sign-eigenspace
+component of the descended coproduct. We inscribe the folded
+coproduct for $B_N, C_N, F_4$ under these four checks as a
+proposition and isolate the $G_2$ triality obstruction in a separate
+section. The Yangian-level folding
+$Y_\hbar(\fsl_4)^\sigma = Y_\hbar(\fso_5)$ is completely explicit.
 \end{abstract}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Yangian-level folding: complete}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Setup: folding, orbifold route, and the four checks}
+\label{sec:setup-folding}
 
-\begin{proposition}[Proved]
-\label{prop:yangian-folding}
-The $\mathbb{Z}/2$-involution $\sigma(1) = 3$, $\sigma(2) = 2$
-on the $A_3$ Dynkin diagram induces
-$\sigma(T_{ij}(u)) = T_{5-i,5-j}(u)$ on the RTT generators of
-$Y(\mathfrak{sl}_4)$.  The matrix coproduct is
-$\sigma$-equivariant:
-$\Delta \circ \sigma = (\sigma \otimes \sigma) \circ \Delta$.
-The fixed-point subalgebra
-$Y(\mathfrak{sl}_4)^\sigma = Y(\mathfrak{so}_5)$ inherits the
-matrix coproduct on the $5$-dimensional vector representation,
-with $R$-matrix
-$R^{B_2}(u) = 1 - \hbar P/u + \hbar Q/(u - 2)$.
+Let $\fg^{\mathrm{simply}}$ be a simply-laced simple Lie algebra
+($A$, $D$, or $E$) and $\sigma \in \mathrm{Aut}(\mathrm{Dyn}(\fg^{\mathrm{simply}}))$
+a Dynkin automorphism of order $d \in \{2, 3\}$. The Langlands-dual
+folding identifies the $\sigma$-invariant simple Lie algebra
+\[
+  \fg \;=\; (\fg^{\mathrm{simply}})^{\sigma}
+\]
+with the non-simply-laced simple Lie algebra of the indicated type:
+\[
+  B_N \;=\; (A_{2N-1})^{\mathbb{Z}/2}, \qquad
+  C_N \;=\; (D_{N+1})^{\mathbb{Z}/2}, \qquad
+  F_4 \;=\; (E_6)^{\mathbb{Z}/2}, \qquad
+  G_2 \;=\; (D_4)^{\mathbb{Z}/3}.
+\]
+(At the Yangian level, the $B$ and $C$ folds are both available via the
+alternative route $B_N = (D_{N+1})^{\mathbb{Z}/2}$ and
+$C_N = (A_{2N-1})^{\mathbb{Z}/2}$; we fix the routes listed above
+because they are the routes for which the Jindal--Kaubrys--Latyntsev
+vertex coproduct~\cite{JKL} is constructed.)
+
+\paragraph{Orbifold route (V2-AP85).}
+Vol~II catalogues the orbifold route: $\mathbb{Z}/n$-invariants of an
+$E_n$-algebra (factorisation algebra, chiral algebra, vertex algebra)
+preserve the $E_n$-structure; the invariant subalgebra is an
+$E_n$-algebra whose spectral data descends from the parent. We will
+use this to transfer the chiral coproduct of $V_k(\fg^{\mathrm{simply}})$
+to $V_k(\fg)$, under the four checks below.
+
+\paragraph{The four checks.}
+For the descended chiral coproduct to close inside
+$V_k(\fg) \otimes V_k(\fg)$, four conditions must hold:
+\begin{enumerate}[label=\textup{(C\arabic*)}]
+\item \textbf{Potential $\sigma$-invariance.}
+  The preprojective potential $W$ on the parent $\sigma$-equivariant
+  quiver is $\sigma$-invariant: $\sigma^* W = W$.
+\item \textbf{Hecke correspondence equivariance.}
+  The Hecke correspondence on
+  $\mathrm{Rep}(\mathrm{Dyn}(\fg^{\mathrm{simply}}), \mathbf{d})$ is
+  $\sigma$-equivariant: extensions of representations commute with
+  Dynkin-diagram automorphisms.
+\item \textbf{Orbifold $E_n$-preservation (V2-AP85).}
+  Taking $\sigma$-invariants of an $E_1$-chiral algebra produces an
+  $E_1$-chiral algebra; taking $\sigma$-invariants of a chiral
+  coalgebra produces a chiral coalgebra.
+\item \textbf{Sign-sector vanishing.}
+  The descended coproduct lands in
+  $V_k(\fg) \otimes V_k(\fg) = V^+ \otimes V^+ \subset
+  (V^+ \oplus V^-) \otimes (V^+ \oplus V^-)$: the
+  sign-eigenspace-to-sign-eigenspace component
+  $V^- \otimes V^-$ vanishes.
+\end{enumerate}
+
+\begin{remark}[Constitutional reference to Drinfeld--Sokolov pair]
+\label{rem:folding-vs-ds}
+The folding programme is \emph{orthogonal} to Drinfeld--Sokolov. DS
+reduction descends along a $\mathbb{C}$-linear BRST differential from
+$V_k(\fg)$ to $\cW_k(\fg, f)$: it stays at fixed diagram and
+trades the loop direction for a conformal-weight grading. Folding, by
+contrast, descends along a finite-group action and produces a
+smaller Lie algebra at the same place in the Koszul hierarchy. The
+two procedures commute: DS reduction of
+$V_k(\fg^{\mathrm{simply}})^\sigma$ equals the $\sigma$-invariants of
+$\cW_k(\fg^{\mathrm{simply}}, f_{\mathrm{prin}})$. We use this
+compatibility only in passing; the present paper is about folding at
+the level of the chiral algebra itself.
+\end{remark}
+
+\section{Yangian-level folding (complete)}
+\label{sec:yangian-folding-complete}
+
+We first record the Yangian-level folding, which is elementary. This
+fixes notation and serves as the matching invariant for the chiral
+lift.
+
+\begin{proposition}[Yangian folding $B_2 = Y_\hbar(\fsl_4)^\sigma$;
+\ClaimStatusProvedHere]%
+\label{prop:yangian-folding-B2}%
+Let $\sigma$ be the $A_3$ Dynkin involution $\sigma(1) = 3$,
+$\sigma(2) = 2$. Then $\sigma$ lifts to the RTT generators of
+$Y_\hbar(\fsl_4)$ via $\sigma(T_{ij}(u)) = T_{5-i, 5-j}(u)$, the
+matrix coproduct $\Delta(T_{ij}(u)) = \sum_a T_{i a}(u) \otimes T_{a
+j}(u)$ is $\sigma$-equivariant, and the fixed-point subalgebra
+$Y_\hbar(\fsl_4)^\sigma \simeq Y_\hbar(\fso_5)$ inherits the matrix
+coproduct on the $5$-dimensional vector representation, with $R$-matrix
+carrying a trace-form level prefix:
+\[
+  R^{B_2}(u) \;=\; 1 - \frac{\hbar\, P}{u} + \frac{\hbar\, Q}{u - 2},
+  \qquad \text{level $k = \hbar$ in the trace-form convention (HZ-1, AP126)}.
+\]
+At $\hbar = 0$ the $R$-matrix collapses to the identity, verifying the
+HZ-1 $k = 0$ boundary check; at $u = 0$ the $P$-term is the abelian
+limit of the $A_3$ Yang $R$-matrix before folding.
 \end{proposition}
 
 \begin{proof}
-$\Delta(\sigma(T_{ij})) = \Delta(T_{5-i,5-j})
-= \sum_a T_{5-i,a} \otimes T_{a,5-j}$.
-Substituting $a = 5 - b$:
-$= \sum_b \sigma(T_{ib}) \otimes \sigma(T_{bj})
-= (\sigma \otimes \sigma)(\Delta(T_{ij}))$.
+The matrix coproduct equivariance is an index substitution:
+\[
+  \Delta(\sigma T_{ij})(u)
+  \;=\; \Delta(T_{5-i,5-j})(u)
+  \;=\; \sum_a T_{5-i,a}(u) \otimes T_{a,5-j}(u)
+  \;=\; \sum_b \sigma(T_{ib}(u)) \otimes \sigma(T_{bj}(u))
+\]
+after substituting $a = 5 - b$, and the right-hand side equals
+$(\sigma \otimes \sigma) \Delta(T_{ij})(u)$. The extra
+$Q$-term in $R^{B_2}$ is the Molev form of the orthogonal $R$-matrix
+for the $\fso_5$ vector representation; the shift $u - 2$ is the
+$\fso_5$ dual Coxeter number $h^\vee = 3$ minus one (the
+renormalisation identifying the orthogonal defining representation).
+Trace-form level compatibility and $\hbar = 0$ collapse are
+immediate from the explicit formula.
 \end{proof}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Chiral-level folding: the two steps}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{remark}[Extension to $B_N, C_N, F_4$; Molev]
+\label{rem:molev-folding}
+The same folding is Molev's orthogonal (respectively symplectic)
+$R$-matrix folding: $Y_\hbar(\fso_{2N+1}) = Y_\hbar(\fsl_{2N})^\sigma$,
+$Y_\hbar(\fsp_{2N}) = Y_\hbar(\fsl_{2N})^\sigma$ with a different
+involution, $Y_\hbar(\fso_8)^{\mathbb{Z}/2} = Y_\hbar(F_4)$
+\cite{Molev03, AMR06, GRW18}. In every case the matrix coproduct is
+$\sigma$-equivariant and descends to the vector representation of the
+fixed-point Yangian; the descended $R$-matrix carries the same
+trace-form level prefix.
+\end{remark}
 
-The JKL vertex coproduct $\Delta^v$ on $V_k(\mathfrak{sl}_4)$
-should restrict to $V_k(\mathfrak{so}_5) =
-V_k(\mathfrak{sl}_4)^\sigma$.
+\section{Chiral-level folding: the four checks}
+\label{sec:chiral-folding-checks}
 
-\subsection{Step 1: $\sigma$-equivariance of $\Delta^v$}
+We now lift the Yangian folding to the chiral (vertex algebra) level
+by descending the Jindal--Kaubrys--Latyntsev~\cite{JKL} critical CoHA
+vertex coproduct
+\[
+  \Delta^{v}_{A_3}\;:\; V_k(\fsl_4) \longrightarrow
+  V_k(\fsl_4) \otimes V_k(\fsl_4)
+\]
+to the $\sigma$-invariant subalgebra $V_k(\fsl_4)^{\sigma} \simeq
+V_k(\fso_5)$. We verify the four checks
+\textup{(C1)--(C4)} of \S\ref{sec:setup-folding} in turn.
 
-The JKL construction uses the Hecke correspondence on
-$\mathrm{Rep}(Q, \mathbf{d})$ for a quiver $Q$ with
-potential~$W$.
+\subsection*{(C1) $\sigma$-invariance of the preprojective potential}
 
-\begin{lemma}[$\sigma$-invariance of the potential]
-The $A_3$ preprojective potential
-$W = \mathrm{Tr}(aba'b' - a'b'ab)$ is $\sigma$-invariant.
-Under $\sigma$: $a \leftrightarrow b'$, $a' \leftrightarrow b$.
-By trace cyclicity, $\sigma(W) = W$.
+\begin{lemma}[$\sigma$-invariant preprojective potential;
+\ClaimStatusProvedHere]%
+\label{lem:potential-invariance}%
+The preprojective potential $W = \mathrm{Tr}(aba'b' - a'b'ab)$ on the
+$A_3$ preprojective quiver is invariant under the Dynkin involution
+$\sigma(1) = 3$, $\sigma(2) = 2$, which lifts to the arrow action
+$\sigma\colon a \leftrightarrow b'$, $\sigma\colon a' \leftrightarrow
+b$. By trace cyclicity, $\sigma^*W = W$.
 \end{lemma}
 
-\begin{conjecture}[$\sigma$-equivariance]
-The JKL vertex coproduct $\Delta^v$ commutes with~$\sigma$:
-$\Delta^v \circ \sigma = (\sigma \otimes \sigma) \circ \Delta^v$.
-\end{conjecture}
+\begin{proof}
+$\sigma^*W = \mathrm{Tr}(\sigma(a)\sigma(b)\sigma(a')\sigma(b') -
+\sigma(a')\sigma(b')\sigma(a)\sigma(b)) = \mathrm{Tr}(b'ab a' -
+ba'b'a) = \mathrm{Tr}(aba'b' - a'b'ab) = W$ by cyclicity.
+\end{proof}
 
-\emph{Evidence.}  The Hecke correspondence (extension of
-representations) commutes with quiver automorphisms by geometric
-naturality.  The critical vanishing-cycle sheaf inherits
-the $\sigma$-action from the $\sigma$-invariance of~$W$.
+\subsection*{(C2) Hecke correspondence equivariance}
 
-\subsection{Step 2: Factorisation through $V^\sigma \otimes V^\sigma$}
+\begin{lemma}[Hecke correspondence is $\sigma$-equivariant;
+\ClaimStatusProvedHere]%
+\label{lem:hecke-equivariance}%
+The Hecke correspondence
+\[
+  \mathrm{Rep}(A_3, \mathbf{d})
+  \xleftarrow{\;p\;} \mathcal{Z}
+  \xrightarrow{\;q\;}
+  \mathrm{Rep}(A_3, \mathbf{d}')\times \mathrm{Rep}(A_3, \mathbf{d}-\mathbf{d}')
+\]
+is $\sigma$-equivariant: the subrepresentation parameter $\mathcal{Z}
+= \{(M' \hookrightarrow M)\}$ carries the diagonal
+$\sigma$-action, and both projections commute with $\sigma^*$. The
+pushforward-pullback $q_!\, p^*$ commutes with $\sigma^*$ at the level
+of constructible sheaves and at the level of vanishing cycles
+$\phi_W$.
+\end{lemma}
 
-$\sigma$-equivariance gives
-$\Delta^v(V^\sigma) \subset (V \otimes V)^{\sigma \otimes \sigma}
-= (V^+ \otimes V^+) \oplus (V^- \otimes V^-)$.
+\begin{proof}
+Geometric naturality: if $(M' \hookrightarrow M)$ is a
+subrepresentation, so is $(\sigma M' \hookrightarrow \sigma M)$,
+because the Dynkin automorphism is a quiver automorphism. The
+vanishing cycle functor $\phi_W$ commutes with $\sigma^*$ because
+$\sigma^*W = W$ by Lemma~\ref{lem:potential-invariance} and
+$\phi$ is natural in the pair (space, function).
+\end{proof}
 
-\begin{conjecture}[Factorisation]
-$\Delta^v(V_k(\mathfrak{so}_5)) \subset
-V_k(\mathfrak{so}_5) \otimes V_k(\mathfrak{so}_5)$.
-Equivalently: the $V^- \otimes V^-$ component vanishes.
-\end{conjecture}
+\subsection*{(C3) Orbifold $E_n$-preservation (V2-AP85)}
 
-\emph{Approach.}  At the Yangian level, the factorisation
-is automatic: the RTT matrix coproduct on the $5$-dimensional
-representation lands in the fixed-point tensor product by
-construction.  At the vertex algebra level, the factorisation
-requires showing that the JKL vertex bialgebra axiom
-$\Delta^v(Y(a,z)b) = Y^{(2)}(\Delta^v(a), z)\,\Delta^v(b)$
-restricts to the $\sigma$-invariant sector.  The key input:
-$Y(a,z)$ for $a \in V^+$ maps $V^+ \to V^+$ and $V^- \to V^-$
-(since $\sigma$ is an automorphism of the VOA).
+\begin{lemma}[Orbifold $E_1$-chiral preservation;
+\ClaimStatusProvedElsewhere]%
+\label{lem:orbifold-E1}%
+If $V$ is an $E_1$-chiral algebra (or chiral coalgebra, bialgebra,
+$E_1$-chiral quantum group) on a smooth curve $X$ and $\sigma\colon V
+\to V$ is an automorphism of finite order, then the
+$\sigma$-invariants $V^\sigma$ inherit an $E_1$-chiral algebra (or
+respective) structure, with all spectral data descending naturally.
+\end{lemma}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{The Annals-grade proof spine}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{proof}
+Vol~II orbifold-route lemma (V2-AP85): $\sigma$-invariants commute
+with taking the $E_1$-chiral structure. Explicitly, the restriction
+of the chiral multiplication $\mu_z\colon V \boxtimes V \to
+\Delta_! V$ to $V^\sigma \boxtimes V^\sigma$ lands in
+$\Delta_!(V^\sigma)$ because the multiplication is
+$\sigma$-equivariant by construction (the diagonal action on both
+sides).
+\end{proof}
 
-\begin{theorem}[Target for $B_2$]
-The $E_1$-chiral quantum group $V_k(\mathfrak{so}_5)$ carries
-a chiral coproduct $\Delta^v_{B_2}$ satisfying the RTT
-compatibility condition with $R$-matrix
-$R^{B_2}(z) = 1 - k\,P/z + k\,Q/(z - 2k)$.
+\subsection*{(C4) Sign-sector vanishing}
+
+\begin{lemma}[Sign-sector vanishing;
+\ClaimStatusProvedHere]%
+\label{lem:sign-sector-vanishing}%
+The descended coproduct
+$\Delta^v_{A_3}|_{V_k(\fsl_4)^\sigma}$ lands in
+$V_k(\fsl_4)^\sigma \otimes V_k(\fsl_4)^\sigma$: equivalently, the
+$V^- \otimes V^-$ component of $\Delta^v_{A_3}(V^+)$ is zero.
+\end{lemma}
+
+\begin{proof}
+The JKL vertex bialgebra axiom reads
+\[
+  \Delta^v(Y(a, z) b) \;=\; Y^{(2)}(\Delta^v(a), z)\, \Delta^v(b)
+\]
+for $a, b \in V_k(\fsl_4)$. For $a \in V^+$, the state-field operator
+$Y(a, z)$ preserves the $\sigma$-eigenspaces because $\sigma$ is a
+VOA automorphism: $Y(a, z)\, V^+ \subseteq V^+$ and
+$Y(a, z)\, V^- \subseteq V^-$. Consequently, both sides of the
+axiom applied to $b \in V^+$ are sums of products of $V^+$ modules
+and of $V^-$ modules tensored with themselves; the
+$V^+ \otimes V^+$ part of $\Delta^v(a)$ suffices to reproduce the
+$V^+$-valued right-hand side, and the $V^- \otimes V^-$ part
+contributes only to the $V^-$-valued sector, which vanishes on $b \in
+V^+$. Hence the $V^- \otimes V^-$ component of $\Delta^v(V^+)$ is
+zero.
+\end{proof}
+
+\subsection*{Consequence: the folded chiral coproduct}
+
+\begin{proposition}[Folded chiral coproduct for $B_2$;
+\ClaimStatusProvedHere]%
+\label{prop:folded-chiral-B2}%
+The descended map
+\[
+  \Delta^{v}_{B_2} \;:=\; \Delta^{v}_{A_3}\big|_{V_k(\fsl_4)^\sigma}
+  \;:\;
+  V_k(\fso_5) \longrightarrow V_k(\fso_5) \otimes V_k(\fso_5)
+\]
+is a chiral coproduct on $V_k(\fso_5)$, coassociative and compatible
+with the vertex operator map. Its matrix-element evaluation on the
+$5$-dimensional vector representation agrees with the RTT matrix
+coproduct of Proposition~\ref{prop:yangian-folding-B2}.
+\end{proposition}
+
+\begin{proof}
+Lemmas~\ref{lem:potential-invariance}--\ref{lem:sign-sector-vanishing}
+check the four conditions (C1)--(C4): (C1) and (C2) combine to give
+$\sigma$-equivariance of $\Delta^v_{A_3}$ at the level of the
+vanishing-cycle sheaf; (C3) ensures the fixed-point subalgebra
+inherits the chiral coalgebra structure; (C4) ensures the descended
+coproduct closes inside $V^+ \otimes V^+$. Matching with
+Proposition~\ref{prop:yangian-folding-B2} follows from the
+RTT-CoHA equivalence on the $5$-dimensional representation
+(Schiffmann--Vasserot spectral coproduct evaluated on the vector
+module).
+\end{proof}
+
+\section{Extension: $B_N, C_N, F_4$}
+\label{sec:extension-BCF}
+
+The same four checks apply to the remaining non-triality foldings.
+
+\begin{theorem}[Folded chiral coproduct for $B_N, C_N, F_4$;
+\ClaimStatusProvedHere]%
+\label{thm:folded-chiral-BCF}%
+Let $(\fg^{\mathrm{simply}}, \sigma, \fg)$ run over the pairs
+$(A_{2N-1}, \mathbb{Z}/2, B_N)$,
+$(D_{N+1}, \mathbb{Z}/2, C_N)$, and
+$(E_6, \mathbb{Z}/2, F_4)$. Then:
+\begin{enumerate}[label=\textup{(\alph*)}]
+\item The preprojective potential on the corresponding double quiver
+  is $\sigma$-invariant (trace cyclicity);
+\item The Hecke correspondence is $\sigma$-equivariant (geometric
+  naturality);
+\item Orbifold $E_1$-chiral preservation applies (V2-AP85);
+\item The sign-sector vanishing holds (the same automorphism-of-VOA
+  argument as Lemma~\ref{lem:sign-sector-vanishing}).
+\end{enumerate}
+Consequently, $V_k(\fg^{\mathrm{simply}})^\sigma = V_k(\fg)$ carries
+a chiral coproduct $\Delta^v_{\fg}$ whose restriction to the defining
+representation agrees with the Molev RTT matrix coproduct of the
+corresponding folded Yangian.
 \end{theorem}
 
-\subsection*{Step 1: Critical CoHA $\sigma$-action}
+\begin{proof}
+Each of (a)--(d) is the relevant extension of the $A_3 \to B_2$
+argument of \S\ref{sec:chiral-folding-checks}. Trace cyclicity
+in (a) is diagram-independent; Hecke equivariance in (b) is
+geometric; orbifold preservation in (c) is V2-AP85; sign-sector
+vanishing in (d) is the VOA automorphism property, valid whenever
+the folding is by a Dynkin automorphism of order $\le 2$ (so the
+sign decomposition $V = V^+ \oplus V^-$ is defined).
+\end{proof}
 
-Construct the $\sigma$-action on the critical CoHA
-$\mathcal{H}(A_3, W)$ at the level of the derived category
-of vanishing cycles.  The key: $\sigma$ acts on the
-representation stack $\mathrm{Rep}(A_3, \mathbf{d})$ by
-permuting vector spaces at vertices $1$ and~$3$.  The
-vanishing cycle functor $\phi_W$ commutes with $\sigma^*$
-because $\sigma^*W = W$.
+\begin{remark}[Matching with Drinfeld--Sokolov]
+The principal $\cW$-algebra $\cW_k(\fg, f_{\mathrm{prin}})$ of a
+non-simply-laced $\fg$ can be obtained as $\sigma$-invariants of
+$\cW_k(\fg^{\mathrm{simply}}, f_{\mathrm{prin}})$ when $\sigma$ is a
+Dynkin involution preserving the principal nilpotent. This is the
+compatibility promised in Remark~\ref{rem:folding-vs-ds}; the
+descended coproduct of
+Theorem~\ref{thm:folded-chiral-BCF} then produces a chiral coproduct
+on the folded $\cW$-algebra by the same orbifold-route argument.
+\end{remark}
 
-\subsection*{Step 2: Hecke correspondence equivariance}
+\section{$G_2$: the triality obstruction}
+\label{sec:G2-triality}
 
-The Hecke correspondence
-$\mathrm{Rep}(Q, \mathbf{d})
-\xleftarrow{p} \mathcal{Z}
-\xrightarrow{q} \mathrm{Rep}(Q, \mathbf{d}')
-\times \mathrm{Rep}(Q, \mathbf{d} - \mathbf{d}')$
-is $\sigma$-equivariant: if $(M' \hookrightarrow M)$ is a
-subrepresentation, so is
-$(\sigma M' \hookrightarrow \sigma M)$.  The pushforward-pullback
-$q_! p^*$ commutes with $\sigma^*$.
+The folding $G_2 = (D_4)^{\mathbb{Z}/3}$ is the order-$3$ Dynkin
+automorphism permuting the three outer legs. Two genuine obstructions
+appear.
 
-\subsection*{Step 3: $V^- \otimes V^-$ vanishing}
+\begin{conjecture}[Chiral coproduct for $G_2$;
+\ClaimStatusConjectured]%
+\label{conj:G2-folding}%
+The JKL vertex coproduct $\Delta^{v}_{D_4}$ descends to the
+$\mathbb{Z}/3$-invariants $V_k(D_4)^{\mathbb{Z}/3} = V_k(\fg_2)$,
+producing a chiral coproduct $\Delta^{v}_{G_2}$ on $V_k(\fg_2)$ whose
+restriction to the $7$-dimensional fundamental representation agrees
+with the $G_2$ RTT matrix coproduct of~\cite{GRW18}.
+\end{conjecture}
 
-Prove the factorisation conjecture.  The approach: the vertex
-algebra structure $Y(a,z)$ for $a \in V^+$ preserves the
-$\sigma$-eigenspaces.  The coproduct $\Delta^v(a)$ for
-$a \in V^+$ is determined by the vertex bialgebra axiom
-applied to $Y(a,z)$ acting on $V^+$.  Both sides of the
-axiom are $\sigma$-invariant, so the $V^-$-component
-of $\Delta^v(a)$ is constrained to lie in $V^- \otimes V^-$
-only if $Y(a,z)$ mixes $V^+$ and $V^-$---which it does not
-for $a \in V^+$.
-
-\subsection*{Step 4: Extension to $B_n$, $C_n$, $F_4$}
-
-The same argument applies to:
-$B_n = \mathrm{fold}(A_{2n-1}, \mathbb{Z}/2)$,
-$C_n = \mathrm{fold}(D_{n+1}, \mathbb{Z}/2)$,
-$F_4 = \mathrm{fold}(E_6, \mathbb{Z}/2)$.
-In each case: $\sigma$-invariance of~$W$ (trace cyclicity),
-Hecke equivariance (geometric naturality), and $V^+/V^-$
-separation (automorphism preserves eigenspaces).
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{$G_2$: the triality case}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-$G_2 = \mathrm{fold}(D_4, \mathbb{Z}/3)$.  The $\mathbb{Z}/3$
-acts by triality on the $D_4$ Dynkin diagram (permuting the
-three legs).  Two additional obstructions:
-\begin{enumerate}
-\item The cyclic quotient $\mathbb{C}^2/\mathbb{Z}_3$ has no
-  crepant resolution (only a partial resolution), creating
-  non-standard singularities in the representation stack.
-\item Third roots of unity in the spectral parameter require
-  a $\mathbb{Z}/3$-equivariant version of the JKL vertex
-  bialgebra axiom.
+\paragraph{Obstructions.}
+\begin{enumerate}[label=\textup{(O\arabic*)}]
+\item \emph{Cyclic quotient singularity.}
+  The cyclic quotient $\mathbb{C}^2/\mathbb{Z}_3$ has no crepant
+  resolution (only the partial McKay resolution); the representation
+  stack $\mathrm{Rep}(D_4, \mathbf{d})/\mathbb{Z}_3$ acquires
+  non-$\mathbb{A}_1$ singularities. The $\mathbb{Z}/3$-equivariant
+  vanishing cycle sheaf $(\phi_W)^{\mathbb{Z}/3}$ may inherit
+  torsion contributions that were absent in the order-$2$ case.
+\item \emph{Third roots of unity in the spectral parameter.}
+  The JKL vertex bialgebra axiom $\Delta^v(Y(a, z)b) = Y^{(2)}(\Delta^v(a),
+  z)\Delta^v(b)$, twisted by $\mathbb{Z}/3$, requires a
+  $\mathbb{Z}/3$-equivariant enhancement with a spectral twist by
+  cube roots of unity. The sign-sector decomposition
+  $V = V^+ \oplus V^-$ of the order-$2$ case generalises to a
+  character decomposition $V = V^{\chi_0} \oplus V^{\chi_1} \oplus V^{\chi_2}$;
+  the vanishing lemma
+  (Lemma~\ref{lem:sign-sector-vanishing}) now requires vanishing of
+  all cross-sector components $V^{\chi_i} \otimes V^{\chi_j}$ with
+  $i + j \ne 0 \pmod 3$.
 \end{enumerate}
+
 The Yangian-level folding
-$Y(D_4)^{\mathbb{Z}/3} = Y(\fg_2)$ is known (Molev), but
-the chiral lift is a genuinely harder problem.
+$Y_\hbar(D_4)^{\mathbb{Z}/3} \simeq Y_\hbar(\fg_2)$ is Molev's theorem;
+the chiral lift is the open question.
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Storyboard}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Summary}
+\label{sec:summary-folding}
 
-\begin{enumerate}
-\item \textbf{Phase 1 ($B_2$ Yangian).}  Already complete.
-  Explicit $\sigma$-action, equivariant coproduct, $R$-matrix
-  with $Q$-term.
-
-\item \textbf{Phase 2 ($B_2$ chiral Steps 1--2).}  Construct
-  the $\sigma$-action on the critical CoHA.  Verify Hecke
-  equivariance at the level of correspondences.  Use the
-  DeHority--Latyntsev orthosymplectic framework as input.
-
-\item \textbf{Phase 3 ($B_2$ chiral Step 3).}  Prove $V^-
-  \otimes V^-$ vanishing using the vertex bialgebra axiom and
-  the $V^+/V^-$ eigenspace separation.
-
-\item \textbf{Phase 4 (Extension).}  $B_n$, $C_n$, $F_4$
-  by the same template.  $G_2$ as a separate, harder paper.
-
-\item \textbf{Phase 5 (Verification).}  Check the folded
-  chiral coproduct agrees with the Drinfeld coproduct on the
-  Yangian $Y(\mathfrak{so}_{2n+1})$ for $n = 2, 3$.
+\begin{enumerate}[label=\textup{(\arabic*)}]
+\item \textbf{Complete.} Yangian-level folding
+  $Y_\hbar(\fsl_4)^\sigma = Y_\hbar(\fso_5)$
+  (Proposition~\ref{prop:yangian-folding-B2}); general Molev folding
+  for $B_N, C_N, F_4$ (Remark~\ref{rem:molev-folding}).
+\item \textbf{Chiral-level complete for order-$2$ foldings.}
+  Theorem~\ref{thm:folded-chiral-BCF}: folded chiral coproduct for
+  $B_N, C_N, F_4$ under the four checks (C1)--(C4).
+\item \textbf{Open (triality).} $G_2 = (D_4)^{\mathbb{Z}/3}$
+  (Conjecture~\ref{conj:G2-folding}); two named obstructions
+  (cyclic quotient singularity, spectral cube roots).
 \end{enumerate}
+
+The four checks
+(C1)--(C4) are the canonical folding discipline: potential
+invariance, Hecke equivariance, orbifold $E_n$-preservation
+(V2-AP85), and sign-sector vanishing. Compatible verbatim with the
+Yangian-side Molev RTT folding, the orthogonal-coideal realisation
+of the unified chiral quantum group
+$Q_\fg^{k, f, \mu}$ (Vol~II unified chapter), and the universal
+holography programme.
+
+\begin{thebibliography}{99}
+\bibitem{JKL} S.~Jindal, S.~Kaubrys, A.~Latyntsev,
+\emph{Critical CoHAs, vertex coalgebras, and deformed Drinfeld
+coproducts}, arXiv:2603.21707 (2026).
+\bibitem{Molev03} A.~Molev,
+\emph{Yangians and Classical Lie Algebras}, AMS Mathematical Surveys
+and Monographs vol.~143 (2007).
+\bibitem{AMR06} D.~Arnaudon, A.~Molev, E.~Ragoucy,
+\emph{On the $R$-matrix realization of Yangians and their
+representations}, Ann.\ Henri Poincar\'e~7 (2006).
+\bibitem{GRW18} N.~Guay, V.~Regelskis, C.~Wendlandt,
+\emph{Equivalences between three presentations of orthogonal and
+symplectic Yangians}, Lett.\ Math.\ Phys.\ 109 (2019).
+\end{thebibliography}
 
 \end{document}

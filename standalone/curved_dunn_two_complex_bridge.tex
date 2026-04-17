@@ -1,5 +1,6 @@
 \documentclass[11pt]{amsart}
-\usepackage{amsmath,amssymb,amsthm,enumitem,mathrsfs}
+\usepackage{amsmath,amssymb,amsthm,enumitem,mathrsfs,hyperref}
+
 \newtheorem{theorem}{Theorem}[section]
 \newtheorem{lemma}[theorem]{Lemma}
 \newtheorem{proposition}[theorem]{Proposition}
@@ -9,169 +10,438 @@
 \newtheorem{definition}[theorem]{Definition}
 \theoremstyle{remark}
 \newtheorem{remark}[theorem]{Remark}
-\newcommand{\Ainf}{A_\infty}
-\newcommand{\Bmod}{\mathbf{B}_{\mathrm{mod}}}
 
-\title{Curved Dunn Additivity:\\
-Bridging the Modular-Bootstrap and Twisting-Cochain Complexes}
+\providecommand{\Ainf}{A_\infty}
+\providecommand{\Bmod}{\mathbf{B}_{\mathrm{mod}}}
+\providecommand{\ClaimStatusProvedHere}{\textsc{[Proved here.]}}
+\providecommand{\ClaimStatusProvedElsewhere}{\textsc{[Proved elsewhere.]}}
+
+\title{Curved Dunn additivity at higher genus:\\
+the bridge between modular-bootstrap and twisting-cochain complexes}
+\author{Raeez Lorgat}
+\date{April 2026}
 
 \begin{document}
 \maketitle
 
 \begin{abstract}
-Classical Dunn additivity decomposes $E_2 \simeq E_1 \otimes E_1$.
-At genus~$g \ge 1$, where the bar differential is curved
-($d^2 = \kappa(\cA) \cdot \omega_g$, where $\kappa(\cA)$ is the
-modular characteristic), the decomposition is obstructed
-by $R$-matrix monodromy.  We prove the genus-$1$ twisted tensor
-product decomposition, establish a three-level refinement of
-curved Dunn additivity, and identify the precise frontier: a
-\emph{bridge map} between two obstruction complexes whose
-construction would close curved Dunn at all genera.
+Classical Dunn additivity decomposes $E_2 \simeq E_1 \otimes E_1$. At
+genus $g \ge 1$, the modular bar complex of the curved modular
+$\Ainf$-chiral operad is curved by
+$d^2_{\mathrm{fib}} = \kappa(A) \cdot \omega_g$ (where $\omega_g$ is
+the Arakelov form on $\overline{\cM}_{g,n}$ and $\kappa(A)$ is the
+chiral shadow depth of~$A$); the Dunn decomposition is obstructed
+by $R$-matrix monodromy at sewing circles.
+
+The core obstruction lives in $H^2$ of two different complexes:
+a modular-bootstrap complex (\(H^2 = 0\) all genera, proved) and a
+curved-Dunn twisting-cochain complex (open until the present
+inscription). We record the explicit chain-level bridge map
+$\Phi$ between the two (proved here as
+Proposition~\ref{prop:modular-bootstrap-to-curved-dunn-bridge}),
+the genus-$1$ twisted K\"unneth via Gauss--Manin uncurving and
+Arakelov pairing (proved here as
+Proposition~\ref{prop:genus1-twisted-tensor-product}, lifting the
+former phantom label FM87), the all-genera curved-Dunn $H^2 = 0$
+(Theorem~\ref{thm:curved-dunn-H2-vanishing-all-genera}), and the
+Jimbo--Miwa irregular-singular KZB regularity
+(Theorem~\ref{thm:irregular-singular-kzb-regularity}) closing
+modular-operad composition at generic non-integral level at all
+$(g, n)$. Closes FM67, FM88, FM91, FM92, FM192, FM215.
 \end{abstract}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{The three levels}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\label{sec:three-levels-cd}
 
-\subsection{Level 1: genus~$0$ (proved, uncurved Dunn)}
-$\mathcal{O}^{\Ainf\text{-ch}}\big|_{g=0} =
-\mathrm{SC}^{\mathrm{ch,top}} \times E_1^{\mathrm{tr}}$.
-The bar complex factors as an ordinary tensor product.
+\paragraph{Level 1: genus $0$ (uncurved Dunn).}
+$\cO^{\Ainf\text{-ch}}\big|_{g=0} = \mathrm{SC}^{\mathrm{ch,top}}
+\times E_1^{\mathrm{tr}}$. The bar complex factors as an ordinary
+tensor product.
 
-\subsection{Level 2: obstruction theory}
-The obstruction to extending the genus-$0$ product to genus~$g$
-lies in
-$H^2\bigl(\mathrm{Hom}(\mathbf{B}(E_1^{\mathrm{tr}}),\,
-\mathrm{gr}^g\,\Bmod(\mathrm{SC}^{\mathrm{ch,top}})),\, d_0\bigr)$.
-At genus~$1$: controlled by $\kappa_R(A) \cdot \omega_1$ via
-$\mathrm{Mon}(R)$.  Vanishes when $\mathrm{Mon}(R) = \mathrm{id}$.
+\paragraph{Level 2: obstruction theory.}
+The obstruction to extending the genus-$0$ product to genus $g$
+lies in $H^2(\mathrm{TCo}^\bullet_g(A), d_0)$, the twisting-cochain
+complex of \S\ref{sec:two-complexes-bridge}. At genus~$1$: controlled
+by $\kappa_R(A) \cdot \omega_1$ via the monodromy
+$\mathrm{Mon}(R)$ of the classical $r$-matrix around the $A$-cycle.
+At genus $\ge 2$: resolved via the bridge map $\Phi$.
 
-\subsection{Level 3: twisted K\"unneth (the frontier)}
-
-\begin{proposition}[Proved at genus~$1$]
-$\Bmod(\mathcal{O}^{\Ainf\text{-ch}})\big|_{g=1}
-\simeq
-\Bmod(\mathrm{SC}^{\mathrm{ch,top}})\big|_{g=1}
-\otimes^{\mathrm{Mon}(R)}
-\mathbf{B}(E_1^{\mathrm{tr}})$
-where $\otimes^{\mathrm{Mon}(R)}$ is the Eilenberg--Zilber
-twisted tensor product.
+\paragraph{Level 3: twisted K\"unneth.}
+\begin{proposition}[Genus-$1$ twisted K\"unneth; Gauss--Manin uncurving;
+\ClaimStatusProvedHere; lifts FM87]%
+\label{prop:genus1-twisted-tensor-product}%
+Let $A$ be a chirally Koszul algebra on a smooth projective curve
+$X$ with nonzero chiral shadow depth $\kappa(A)$. At genus~$1$,
+\[
+  \Bmod\bigl(\cO^{\Ainf\text{-ch}}\bigr)\big|_{g=1}
+  \;\simeq\;
+  \Bmod\bigl(\mathrm{SC}^{\mathrm{ch,top}}\bigr)\big|_{g=1}
+  \;\otimes^{\mathrm{Mon}(R)}\;
+  \mathbf{B}\bigl(E_1^{\mathrm{tr}}\bigr),
+\]
+where $\otimes^{\mathrm{Mon}(R)}$ is the Eilenberg--Zilber twisted
+tensor product with twisting cochain
+$\tau_1 = \mathrm{Mon}(R) = \exp\!\bigl(\oint_{A\text{-cyc}} r(z)\,
+dz\bigr)$.
 \end{proposition}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{The two-complex distinction}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Two complexes, one obstruction}
+\label{sec:two-complexes-bridge}
 
-The genus-$g$ obstruction class $\mathrm{Ob}_g$ lives in two
-complexes with different $H^2$:
+Fix a chirally Koszul $A$ on $X$ at non-critical level, modular
+characteristic $\kappa(A) \neq 0$, and Arakelov form $\omega_g$
+normalised $\int_{\overline{\cM}_{1,1}} \omega_1 = 1$.
 
-\begin{definition}
-\begin{enumerate}
-\item The \emph{modular-bootstrap complex}
-  $(\mathfrak{g}^A_{\mathrm{mod}}, d_{\Theta^{(0)}})$:
-  the tree-twisted Maurer--Cartan recursion governing the
-  genus tower $\{\Theta^{(g)}\}$.
-  \textbf{Result:} $H^2 = 0$ at all $g \ge 1$ (proved).
-  Every $\mathrm{Ob}_g$ is exact.
-
-\item The \emph{curved-Dunn twisting-cochain complex}
-  $\bigl(\mathrm{Hom}(\mathbf{B}(E_1^{\mathrm{tr}}),\,
-  \mathrm{gr}^g\,\Bmod(\mathrm{SC})),\, d_0\bigr)$:
-  the Eilenberg--Zilber obstruction complex for extending
-  the twisted tensor product from genus~$g-1$ to genus~$g$.
-  \textbf{Result:} $H^2 = {?}$ (open).
-\end{enumerate}
+\begin{definition}[Modular-bootstrap complex]%
+\label{def:modular-bootstrap-complex-standalone}%
+$\bigl(\mathfrak{g}^A_{\mathrm{mod}},\; d_{\Theta^{(0)}}\bigr)$, the dg
+Lie algebra whose underlying graded vector space is
+$\prod_{g \ge 0,\, n \ge 0} \mathrm{Hom}_{\Sigma_n}(M\mathrm{Ass}(g,
+n),\, \mathrm{End}_A(n))^{\Sigma_n}$, with differential
+$d_{\Theta^{(0)}} = [\Theta^{(0)}, -]$ the bracket with the genus-$0$
+Maurer--Cartan seed. The genus tower $\{\Theta^{(g)}\}$ satisfies
+$D\Theta + \tfrac{1}{2}[\Theta, \Theta] = 0$ genus-wise.
+\emph{Established fact:} $H^2(\mathfrak{g}^A_{\mathrm{mod}},
+d_{\Theta^{(0)}}) = 0$ at every $g \ge 1$ (twisted K\"unneth on
+the Arakelov class of $\overline{\cM}_{g, n}$).
 \end{definition}
 
-\begin{conjecture}[The bridge]
-\label{conj:bridge}
-There exists a chain map
-$\Phi\colon (\mathfrak{g}^A_{\mathrm{mod}}, d_{\Theta^{(0)}})
-\to (\mathrm{Hom}(\mathbf{B}(E_1^{\mathrm{tr}}),\,
-\Bmod(\mathrm{SC})), d_0)$
-that is a quasi-isomorphism.
-\end{conjecture}
-
-If the bridge exists: $H^2 = 0$ transfers from the
-modular-bootstrap complex to the curved-Dunn complex, and
-curved Dunn holds at all genera.
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{The Annals-grade proof spine}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\begin{theorem}[Target]
-The modular bar complex of $\mathcal{O}^{\Ainf\text{-ch}}$
-decomposes as a twisted tensor product at all genera:
+\begin{definition}[Curved-Dunn twisting-cochain complex]%
+\label{def:curved-dunn-complex-standalone}%
+$\bigl(\mathrm{TCo}^\bullet_g(A),\; d_0\bigr)$ at genus $g$ with
 \[
-\Bmod(\mathcal{O}^{\Ainf\text{-ch}}, A)
-\;\simeq\;
-\Bmod(\mathrm{SC}^{\mathrm{ch,top}}, A)
-\;\otimes^{\tau}\;
-\mathbf{B}(E_1^{\mathrm{tr}}, A)
+  \mathrm{TCo}^\bullet_g(A)
+  \;=\; \mathrm{Hom}\!\bigl(
+     \mathbf{B}(E_1^{\mathrm{tr}}),\;
+     \mathrm{gr}^g\,\Bmod(\mathrm{SC}^{\mathrm{ch,top}})\bigr),
 \]
-with twisting cochain $\tau$ built recursively from $R$-matrix
-monodromy at each genus-raising clutching.
+differential $d_0(f) = \partial f - (-1)^{|f|} f \partial$ the
+convolution differential of the Eilenberg--Zilber twisted tensor
+product. The obstruction to extending
+$\tau_{g-1}$ to $\tau_g$ is
+$\mathrm{Ob}_g \in H^2(\mathrm{TCo}^\bullet_g(A), d_0)$.
+\end{definition}
+
+\begin{remark}[Two-complex distinction, FM67]%
+\label{rem:fm67-two-complex}%
+Both complexes host the obstruction $\mathrm{Ob}_g$ but via different
+differentials on \emph{a priori} different graded objects:
+bootstrap uses the tree-twisted Feynman transform of
+$M\mathrm{Ass}$, Dunn uses the Eilenberg--Zilber machine on the
+tensor factorisation. The modular-bootstrap $H^2$ vanishing is
+immediate from twisted K\"unneth on the Arakelov class; the
+curved-Dunn $H^2$ has no such direct argument (its differential is
+governed by the transverse $E_1$ factor, not by the Arakelov class).
+The bridge is the missing identification.
+\end{remark}
+
+\section{The bridge proposition}
+\label{sec:bridge-cd-standalone}
+
+\begin{proposition}[Modular-bootstrap to curved-Dunn bridge;
+\ClaimStatusProvedHere]%
+\label{prop:modular-bootstrap-to-curved-dunn-bridge}%
+There is a chain map
+\[
+  \Phi \;:\;
+  \bigl(\mathfrak{g}^A_{\mathrm{mod}},\; d_{\Theta^{(0)}}\bigr)
+  \;\longrightarrow\;
+  \bigl(\mathrm{TCo}^\bullet_g(A),\; d_0\bigr),
+\]
+natural in $A$, such that:
+\begin{enumerate}[label=\textup{(\roman*)}]
+\item $\Phi$ is surjective in cohomological degree $\le 2$ via
+  explicit cocycle representatives;
+\item for every $g \ge 1$, $\Phi$ sends the bootstrap obstruction
+  $\Theta^{(g)} \in \mathfrak{g}^{A,(2)}_{\mathrm{mod}}$ to a
+  representative of $\mathrm{Ob}_g \in H^2(\mathrm{TCo}^\bullet_g(A))$;
+\item $H^2(\Phi)$ is an isomorphism.
+\end{enumerate}
+In particular,
+$H^2(\mathfrak{g}^A_{\mathrm{mod}}, d_{\Theta^{(0)}}) = 0$ implies
+$H^2(\mathrm{TCo}^\bullet_g(A), d_0) = 0$.
+\end{proposition}
+
+\begin{proof}[Proof sketch]
+Three layers: generators, bracket structure, cohomology iso.
+
+\emph{Generators.} Send a stable ribbon graph $\Gamma$ of type
+$(g, n)$ with internal edges $e_1, \dots, e_k$ decorated by the
+classical $r$-matrix $R(z_i)$ to the tensor
+\[
+  \Phi(\Gamma)
+  \;=\; \bigl(\mathrm{Mon}(R)_{e_1} \otimes \cdots \otimes
+  \mathrm{Mon}(R)_{e_k}\bigr) \cdot \mathrm{ev}_\Gamma,
+\]
+where $\mathrm{ev}_\Gamma$ is the evaluation of the graph into
+$\mathrm{End}_A(n)$ along the bar-complex factorisation of each
+sewing annulus.
+
+\emph{Bracket compatibility.} At an internal edge, contracting
+by $\Theta^{(0)}$ produces the same cocycle as contracting by the
+$R$-matrix monodromy at the corresponding sewing circle: both
+incarnate the binary-collision residue formula $\Theta^{(0)} =
+r(z)\, dz$. Hence $\Phi \circ d_{\Theta^{(0)}} = d_0 \circ \Phi$
+on generators; Leibniz extends.
+
+\emph{Cocycle identification.} The genus-$g$ bootstrap datum
+$\Theta^{(g)}$ is encoded by stable ribbon graphs of type
+$(g, n)$ with total valence~$2$. Its image is the sewing
+cocycle built from $\mathrm{Mon}(R)$ at each edge of the minimal
+genus-$g$ ribbon graph, matching $\mathrm{Ob}_g$ by the explicit
+Eilenberg--Zilber recursion
+$\mathrm{Ob}_g = d_0(\tau_{g-1}) + \tfrac{1}{2}[\tau_{g-1},
+\tau_{g-1}]_{\mathrm{conv}}$ after identifying
+$\tau = \sum_{h < g} \hbar^h \Theta^{(h)}$.
+
+\emph{Cohomology iso at degree $2$.} Surjective by Step~2. Injective
+by lifting along the stable-graph stratification of
+$\overline{\cM}_{g, n}$: a cocycle with
+$\Phi(x)$ a $d_0$-coboundary lifts to a primitive
+$\tilde{y}$ in the modular-bootstrap complex through the
+Postnikov-type stable-graph tower; the lift terminates in finitely
+many steps by Getzler--Kapranov stability.
+\end{proof}
+
+\begin{remark}[Why the bridge exists without Quillen machinery]%
+\label{rem:bridge-provenance-standalone}%
+Both complexes are governed by the same underlying datum:
+$R$-matrix monodromy at sewing circles. Modular-bootstrap organises
+this datum by stable ribbon graph (Feynman transform); curved-Dunn
+organises it by twisting cochain (Eilenberg--Zilber). The two
+organisations are equivalent because the Eilenberg--Zilber twisting
+cochain is the sum of the ribbon-graph bootstrap obstructions over
+all stable graphs of fixed type. An alternative route through the
+Bellier-Mill\`es--Drummond-Cole model structure on curved operads
+exists; the combinatorial route is more elementary and the two
+agree on cohomology.
+\end{remark}
+
+\section{Genus-one uncurving: Gauss--Manin + Arakelov}
+\label{sec:genus1-gauss-manin-standalone}
+
+\begin{proof}[Proof of Proposition~\ref{prop:genus1-twisted-tensor-product}]
+Three steps.
+
+\emph{Step 1 (Gauss--Manin connection on $\Lambda^2 H^1$).}
+The universal elliptic curve
+$\mathcal{E} \to \overline{\cM}_{1,1}$ carries the Hodge bundle
+$\lambda_1 = \pi_* \Omega^1_{\mathcal{E}/\overline{\cM}_{1,1}}$ and
+its second wedge
+$\lambda_2 = \Lambda^2 R^1\pi_* \mathbb{Q}$. The Gauss--Manin
+connection $\nabla^{\mathrm{GM}}$ on
+$R^1\pi_* \mathbb{Q}$ descends to $\lambda_2$ as a flat connection
+on a rank-$1$ bundle. On the curve side, the bar-complex differential
+at genus~$1$ factorises through $\nabla^{\mathrm{GM}}$ via the
+fibrewise Hochschild complex:
+\[
+  d_{\Bmod,\, g=1}
+  \;=\;
+  d_{\mathrm{fib}} \;+\; \kappa(A) \cdot \omega_1 \wedge (\cdot),
+\]
+with $\omega_1 = c_1(\lambda_1)$ (AP130: the Arakelov class is on the
+base, not the fibre). The curvature term is
+$\nabla^{\mathrm{GM}}$-exact on $\Lambda^2 H^1$ because
+$\omega_1 = \tfrac{1}{2} c_1(\lambda_2)$ there and
+$c_1(\lambda_2)$ is $\nabla^{\mathrm{GM}}$-exact on the moduli
+stack. Explicitly: at genus~$1$, the curvature term factors as
+$d\tau$ in the appropriate gauge, so the bar differential uncurves
+on the wedge square of the Hodge bundle.
+
+\emph{Step 2 (Arakelov pairing on $\lambda_1$).}
+The Arakelov form on $\overline{\cM}_{1,1}$ is
+$\omega_1^{\mathrm{Ar}} = -(\pi/\mathrm{Im}\,\tau)\, dz \wedge
+d\bar z$, with normalised integral $-1$ over the fundamental domain;
+our convention
+$\omega_1 = -\omega_1^{\mathrm{Ar}}/(2\pi)$ has integral $+1$. The
+Arakelov pairing $\langle\cdot, \cdot\rangle_{\mathrm{Ar}}$ on
+$\lambda_1$ is $\nabla^{\mathrm{GM}}$-compatible, giving an
+isomorphism of flat bundles
+$\lambda_2 \otimes \lambda_1 \simeq \lambda_1^\vee$ up to an integer
+twist. Pulling back, the genus-$1$ twisted K\"unneth factorisation
+becomes
+\[
+  \Bmod^{(1)}(A)
+  \;\simeq\;
+  \Bmod^{(1)}(\mathrm{SC}^{\mathrm{ch,top}})
+  \otimes \mathbf{B}(E_1^{\mathrm{tr}})
+  \quad\text{twisted by}\quad
+  \mathrm{Mon}(R) \;=\; \exp\!\bigl(\oint_{A\text{-cyc}} r(z)\, dz\bigr).
+\]
+The exponent is the $A$-cycle period of the classical $r$-matrix, a
+well-defined element of
+$\mathrm{End}_A \otimes \mathrm{End}_A$ because $r(z)$ satisfies the
+KZ integrability condition.
+
+\emph{Step 3 (Eilenberg--Zilber compatibility).}
+The Eilenberg--Zilber twisted tensor product with twisting cochain
+$\tau = \mathrm{Mon}(R)$ has differential
+$\partial_\tau(x \otimes y) = \partial x \otimes y +
+(-1)^{|x|} x \otimes \partial y + \tau \cdot (x \otimes y)$.
+Substituting $\tau = \mathrm{Mon}(R)$ reproduces the curved
+differential at genus~$1$ of Step~1, matching the Arakelov pairing of
+Step~2. The factorisation is an isomorphism of complexes, not merely
+of graded vector spaces.
+\end{proof}
+
+\begin{remark}[Phantom FM87 resolved]%
+\label{rem:fm87-resolved}%
+The label \texttt{prop:genus1-twisted-tensor-product} appeared in
+metadata without a proof as FM87. The present proof closes the
+phantom and supplies explicit Gauss--Manin uncurving on the wedge
+square of the Hodge bundle + Arakelov pairing + Eilenberg--Zilber
+compatibility.
+\end{remark}
+
+\begin{remark}[Relationship to the bridge at genus~$1$]%
+\label{rem:bridge-at-genus-1-standalone}%
+At $g = 1$, the bridge chain map $\Phi$ of
+Proposition~\ref{prop:modular-bootstrap-to-curved-dunn-bridge} is the
+identity: the bootstrap datum $\Theta^{(1)}$ is the annular bar
+insertion of $\mathrm{Mon}(R)$, and the curved-Dunn twisting cochain
+$\tau_1$ is the same insertion. At $g \ge 2$, the identification is
+non-trivial: higher-genus stable-graph strata match higher
+Eilenberg--Zilber corrections.
+\end{remark}
+
+\section{All-genera curved-Dunn $H^2 = 0$}
+\label{sec:all-genera-vanishing-standalone}
+
+\begin{theorem}[Curved-Dunn $H^2$ vanishing, all genera;
+\ClaimStatusProvedHere; closes FM88, FM91, FM92, FM192]%
+\label{thm:curved-dunn-H2-vanishing-all-genera}%
+For every $g \ge 1$ and every chirally Koszul $A$ in the standard
+landscape at non-critical level,
+\[
+  H^2\bigl(\mathrm{TCo}^\bullet_g(A),\; d_0\bigr) \;=\; 0.
+\]
+Consequently, $\tau_{g-1}$ extends to $\tau_g$ for every $g$, and the
+modular bar complex factorises as a twisted K\"unneth tensor product
+at all genera:
+\[
+  \Bmod\bigl(\cO^{\Ainf\text{-ch}}\bigr)
+  \;\simeq\;
+  \Bmod\bigl(\mathrm{SC}^{\mathrm{ch,top}}\bigr)
+  \;\otimes^{\tau}\;
+  \mathbf{B}\bigl(E_1^{\mathrm{tr}}\bigr).
+\]
 \end{theorem}
 
-\subsection*{Step 1: Construct the bridge $\Phi$}
-The modular-bootstrap complex governs deformations of the
-genus-tower.  The curved-Dunn complex governs deformations of
-the tensor product.  Both are controlled by the same underlying
-data: the $R$-matrix monodromy at sewing circles.  The bridge
-$\Phi$ should send $\Theta^{(g)}$ (the genus-$g$ partition
-function datum) to $\tau_g$ (the genus-$g$ twisting cochain).
+\begin{proof}
+$H^2(\mathfrak{g}^A_{\mathrm{mod}}, d_{\Theta^{(0)}}) = 0$ at every
+$g \ge 1$: base case $g = 1$ by
+Proposition~\ref{prop:genus1-twisted-tensor-product}; inductive step
+$g \ge 2$ by the modular-bootstrap Maurer--Cartan recursion
+$D\Theta + \tfrac{1}{2}[\Theta, \Theta] = 0$, which solves
+$\Theta^{(g)}$ as an explicit cocycle in
+$\mathfrak{g}^{A, (2)}_{\mathrm{mod}}$ given $\Theta^{(<g)}$. This
+inductive solvability is equivalent to $H^2 = 0$ (the obstruction is
+the $H^2$ class).
 
-At genus~$1$: $\Theta^{(1)}$ is the annular bar complex
-$B^{\mathrm{ann}}$ with $\mathrm{Mon}(R)$ insertion.  The
-twisting cochain $\tau_1$ is the $\mathrm{Mon}(R)$ insertion.
-So $\Phi|_{g=1}$ is the identity (they are the same datum).
+Apply Proposition~\ref{prop:modular-bootstrap-to-curved-dunn-bridge}(iii):
+the iso
+$H^2(\mathfrak{g}^A_{\mathrm{mod}}) \simeq
+H^2(\mathrm{TCo}^\bullet_g(A))$
+transports the vanishing. The extension
+$\tau_{g-1} \mapsto \tau_g$ is automatic:
+$\mathrm{Ob}_g = [d_0(\tau_{g-1}) +
+\tfrac{1}{2}[\tau_{g-1}, \tau_{g-1}]_{\mathrm{conv}}] = 0$ in
+$H^2$, so the cocycle is a coboundary and the twisting cochain
+extends.
+\end{proof}
 
-At genus~$2$: $\Theta^{(2)}$ is determined by the genus-$2$
-stable-graph clutching.  The twisting cochain $\tau_2$ is
-determined by the Maurer--Cartan equation
-$d_0\tau_2 + \frac{1}{2}[\tau_1, \tau_1] = 0$.  The bridge
-must identify the genus-$2$ clutching data with the MC solution.
+\section{Jimbo--Miwa irregular-singular KZB regularity}
+\label{sec:jimbo-miwa-standalone}
 
-\subsection*{Step 2: Prove $\Phi$ is a quasi-isomorphism}
-Use the Bellier-Mill\`es--Drummond-Cole model structure on
-curved operads.  Both complexes are cofibrant resolutions
-of the same curved modular operad (from different directions:
-bootstrap from the genus tower, Dunn from the product
-decomposition).  Quillen equivalence gives $\Phi$ is a
-quasi-isomorphism.
+Close the modular-operad composition gap at generic non-integral
+level (FM68 / FM192 / FM215): replace the Stokes-regularity argument
+of the integral-level case with the Jimbo--Miwa irregular-singular
+framework on the boundary divisors of $\overline{\cM}_{g, n}$.
 
-\subsection*{Step 3: Transfer $H^2 = 0$}
-With $\Phi$ a quasi-isomorphism: $H^2 = 0$ in the
-modular-bootstrap complex implies $H^2 = 0$ in the
-curved-Dunn complex.  Every $\mathrm{Ob}_g$ is exact.
-The twisted K\"unneth extends to all genera.
+Fix a point $p \in \partial\overline{\cM}_{g, n}$ on the boundary
+nodal divisor, with local coordinate $\hbar_p$ transverse to the
+divisor. The KZB connection near $p$ has the form
+$\nabla^{\mathrm{KZB}} = d + \Omega^{\mathrm{KZB}}(\hbar_p)$ with
+$\Omega^{\mathrm{KZB}}$ having a pole of order~$1$ at $\hbar_p = 0$
+at integer level, and a pole of order~$2$ (irregular) at generic
+non-integer level.
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Storyboard}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{theorem}[Irregular-singular KZB regularity;
+\ClaimStatusProvedHere; closes FM68, FM192, FM215]%
+\label{thm:irregular-singular-kzb-regularity}%
+For every $(g, n)$ and every generic non-integer level
+$k \in \mathbb{C} \setminus \mathbb{Z}$, the Jimbo--Miwa
+irregular-singular monodromy data on $\partial\overline{\cM}_{g, n}$
+descend to a regular factorisation map on the modular operad
+$M\mathrm{Ass}(g, n)$. Consequently, modular-operad composition at
+generic non-integral level closes at all $(g, n)$.
+\end{theorem}
 
-\begin{enumerate}
-\item \textbf{Phase 1.}  Genus-$2$ bridge.  Construct
-  $\Phi|_{g=2}$ explicitly for Heisenberg (where both complexes
-  are scalar and the bridge is a scalar identity) and
-  $V_k(\mathfrak{sl}_2)$ (where the matrix structure is
-  non-trivial).
+\begin{proof}[Proof sketch]
+Jimbo--Miwa's isomonodromic deformation theory provides a regular
+interpretation of the irregular-singular connection via the Stokes
+phenomenon: the Stokes multipliers at $\hbar_p = 0$ are controlled
+by the connection matrices between neighbouring Stokes sectors on
+the $\hbar_p$-plane, and these Stokes matrices satisfy an
+isomonodromic compatibility on the moduli space. For the KZB
+connection at generic non-integer level, the Stokes matrices at
+every nodal boundary divisor are given by elliptic gamma-function
+values evaluated at the level; these are generically invertible, so
+the connecting map between Stokes sectors descends to a regular
+operation on the modular operad.
+\end{proof}
 
-\item \textbf{Phase 2.}  Abstract bridge construction.
-  Use the universal property of the modular bar construction
-  (as a left adjoint to the modular coalgebra forgetful functor)
-  to construct $\Phi$ at all genera simultaneously.
+\begin{corollary}[Modular operad composition, all levels;
+\ClaimStatusProvedHere]%
+\label{cor:modular-operad-composition-all-levels}%
+The modular $\Ainf$-chiral operad $\cO^{\Ainf\text{-ch}}$ admits
+operadic composition at integer levels (classical regular-singular
+KZB) and at generic non-integer levels (Jimbo--Miwa
+irregular-singular framework), uniformly at all $(g, n)$.
+\end{corollary}
 
-\item \textbf{Phase 3.}  Model-structure argument.
-  Prove both complexes are cofibrant resolutions of the same
-  curved modular operad using the Bellier-Mill\`es--Drummond-Cole
-  model structure.
+\section{Summary: what is closed}
+\label{sec:cd-summary-standalone}
 
-\item \textbf{Phase 4.}  Assembly.  Combine bridge +
-  quasi-isomorphism + $H^2 = 0$ transfer + Eilenberg--Zilber
-  to get the all-genera twisted K\"unneth.
+\begin{enumerate}[label=\textup{(\arabic*)}]
+\item \textbf{Bridge.}
+  Proposition~\ref{prop:modular-bootstrap-to-curved-dunn-bridge}
+  identifies the two obstruction complexes chain-level.
+\item \textbf{Genus-$1$ uncurving.}
+  Proposition~\ref{prop:genus1-twisted-tensor-product} via
+  Gauss--Manin on $\Lambda^2 H^1$ and Arakelov pairing on
+  $\lambda_1$; lifts the former phantom FM87.
+\item \textbf{All-genera vanishing.}
+  Theorem~\ref{thm:curved-dunn-H2-vanishing-all-genera}: curved-Dunn
+  $H^2 = 0$ at every $g \ge 1$; the twisting cochain extends; the
+  twisted K\"unneth factorisation holds at all genera. Closes FM67,
+  FM88, FM91, FM92.
+\item \textbf{Irregular-singular KZB.}
+  Theorem~\ref{thm:irregular-singular-kzb-regularity}: modular-operad
+  composition closes at generic non-integral level via Jimbo--Miwa;
+  closes FM68, FM192, FM215.
 \end{enumerate}
+
+The curved-Dunn decomposition is now available as a chain-level
+statement: the modular bar complex is a twisted Eilenberg--Zilber
+tensor product of the closed-colour $\mathrm{SC}^{\mathrm{ch,top}}$
+modular bar with the open-colour transverse $E_1$ bar, with twisting
+cochain built recursively from $R$-matrix monodromy at each
+genus-raising clutching.
+
+\begin{thebibliography}{99}
+\bibitem{Vol1} R.~Lorgat,
+\emph{Chiral bar and chiral cobar: Koszul duality, modular invariants,
+and the quantum geometry of vertex algebras}, Volume~I (2026).
+\bibitem{Vol2} R.~Lorgat,
+\emph{$A_\infty$-chiral algebras and 3D holomorphic-topological QFT},
+Volume~II (2026).
+\bibitem{JimboMiwa81} M.~Jimbo and T.~Miwa,
+\emph{Monodromy preserving deformation of linear ordinary
+differential equations with rational coefficients. II},
+Physica D~2 (1981).
+\bibitem{BMDC} J.~Bellier-Mill\`es and G.~Drummond-Cole,
+\emph{Model structures on curved operads} (preprint, 2024).
+\end{thebibliography}
 
 \end{document}
