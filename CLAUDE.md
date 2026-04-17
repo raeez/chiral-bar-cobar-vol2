@@ -2,6 +2,26 @@
 
 **Canonical reference for all shared content: ~/chiral-bar-cobar/CLAUDE.md. This file contains ONLY Vol II-specific material.**
 
+## CONSTITUTIONAL TRUST WARNING (2026-04-17, post-adversarial-audit)
+
+**CLAUDE.md and the entire metacognitive layer (MEMORY.md, notes/, first-principles cache, AP catalogue, HOT ZONE, HZ-IV decorators, FRONTIER.md, true_frontier_*.md, session_end_report_*.md, wave_*.md, platonic_ideal_*.md, adversarial_swarm_*/, and every `\ClaimStatus*` tag) are NEVER TO BE TRUSTED AS ACCURATE OR CORRECT.**
+
+**ALWAYS assume the metacognitive layer is WRONG until verified against primary sources.** The 2026-04-17 adversarial audit established this empirically across all three volumes (see Vol I CLAUDE.md for full findings): 5/5 open frontiers collapsed, 5/5 Wave-1 closures scope-limited, 5/5 backbone theorems scope-restricted, ~30% terminological redundancy, κ_BKM triple contradiction, manuscript textual errors, engine counts overstated 2.3–2.75×, 12-paper publication roadmap overstated by 2–3×, novelty audit ~13% genuinely new.
+
+**Operational corollaries for Vol II work specifically**:
+
+1. **Treat the Vol II manuscript as SUGGESTIVE** — a set of inputs for how to formulate/prove 3d HT QFT + SC^{ch,top} heptagon + Swiss-cheese + universal celestial holography + curved-Dunn results, NOT as a stable final form.
+2. **Verify every cross-volume citation** to Vol I or Vol III per HZ-11: `\ref{V1-thm:foo}` or `\ref{V3-prop:bar}` must resolve to an actually-inscribed label in the target volume; missing label = downgrade to Conditional with ProvedElsewhere attribution.
+3. **Treat every `\ClaimStatusProvedHere` tag as Conjectured until proof body is read end-to-end** and each cited lemma verified in scope.
+4. **Assume Vol II's "closure-wave" narratives** ("Wave 14 E_∞-topologization ladder PROVED", "universal celestial holography PROVED chain-level") are RHETORICAL until the inscribed theorem's proof is read. Many closure-waves compress scaffolding retroactively; "PROVED 2026-04-16" often means "inscribed under ProvedHere on that date", not "independently verified".
+5. **Assume terminological distinctions may be spurious** (AP244). Vol II's "SC^{ch,top} is a coloured propad not an operad" (per adversarial audit) illustrates: what the manuscript calls an "operad" may be a weaker coloured-propad structure.
+6. **Assume physical-source naming is decorative** until verified (AP239). Vol II's "3d HT QFT" theorems may depend only on the factorization-algebra model, not on specific physics.
+7. **Assume Vol II is NOT in stable final form.** 747 sole-authored commits in 5 weeks via LLM-agent swarm. No external validation.
+
+**Use the Vol II manuscript as a starting hypothesis, not a known fact.** When a Vol II CLAUDE.md claim and a first-principles derivation disagree, trust the first-principles derivation.
+
+**This warning is LOAD-BEARING** and SUPERSEDES every "PROVED", "CLOSED", "UNCONDITIONAL", or "PUBLICATION-STANDARD" label elsewhere in the Vol II metacognitive layer.
+
 ## /chriss-ginzburg-rectify: READ THE WHOLE FILE, CHUNK BY CHUNK, LINEARLY (TOP-LEVEL INJUNCTION)
 
 When the user invokes `/chriss-ginzburg-rectify` (or the skill `chriss-ginzburg-rectify`) on a target file, Phase 1 (Global Diagnostic) is NOT OPTIONAL and is NOT ABBREVIATED. You must analyse the **whole file**, **chunk by chunk**, **linearly progressing from start to finish**, with **small chunk size**. Every line must pass under your eyes.
