@@ -1,7 +1,63 @@
-# FRONTIER — Twelve Open Research Directions
+# FRONTIER — Vol II Open Research Directions
 
-## Status as of 2026-04-14 (DEFINITIVE update)
-## Produced by ~300+ agents across all sessions through ~230-agent comprehensive wave. Programme: ~5,142pp, ~177K tests, ~4,186 engines
+## DEFINITIVE STATUS AS OF 2026-04-17 (Beilinson-rectified, Wave-1 adversarial-audit-refined)
+
+This supersedes every prior status line in this document. The 2026-04-16 programme-wide closure wave closed almost every surviving Vol II frontier; the 2026-04-17 Beilinson audit (Vol II `notes/beilinson_swarm_audit_vol2_2026_04_17.md`) surfaced scope-qualifiers and one retraction; Wave 1 of the adversarial attack (12 items across three volumes) discovered one Vol II closure (F9) that was previously mislabeled open.
+
+### 1. Closures since 2026-04-14
+
+- **Universal celestial holography (VII.new-1).** `thm:uch-main` in `chapters/connections/universal_celestial_holography.tex`. SC^{ch,top}-structure on (A^cel, Z^{der}_ch(A^cel)) + celestial OPE = chiral factorization homology on P^1_cel + shadow-tower coefficients = soft-factor hierarchy. Coverage: self-dual gauge (KM), gauge+matter (DS), gravity (Virasoro + w_{1+∞}), YM (Beem-Rastelli χ-functor). Chain-level class M at g ≥ 1 retained as `conj:uch-gravity-chain-level`.
+- **SC^{ch,top} heptagon, 7 edges.** Five classical faces + face (6) Drinfeld-centre `Z(Rep_fact(A)) ≃ Rep_fact(Z^{der}_ch(A))^{E_2}` via categorified bar-cobar + half-braiding + face (7) derived-AG via PTVV on Map(X × R_≥0, B SC-Alg). SC^{ch,top} is the GENERIC case; topologization to E_3^top at affine KM non-critical proved on the original complex.
+- **Chiral Higher Deligne.** `thm:chiral-higher-deligne` in `chapters/theory/chiral_higher_deligne.tex`. Z^{der}_ch(A) is universal E_3-chiral acted on by SC^{ch,top} via heptagon edges (3)↔(4)↔(5). Theorem H concentration = consequence of E_3-rigidity + PBW collapse. `thm:chd-ds-hochschild`: ChirHoch^•(W_k(g)) ≃ H^•_DS(ChirHoch^•(V_k(g))) chain-level E_2-chiral Gerstenhaber. Cor closes class-M chain-level 3d HT holography.
+- **Curved-Dunn H² = 0 at g ≥ 2.** `thm:curved-dunn-H2-vanishing-all-genera` in `chapters/theory/curved_dunn_higher_genus.tex`. Phantom FM87 resolved. `thm:irregular-singular-kzb-regularity` (Jimbo-Miwa) replaces KZ Stokes, closes modular operad composition at generic non-integral level.
+- **E_∞-topologization ladder.** `thm:iterated-sugawara-construction`: higher-spin Casimir tower {T^{(n)}}_{2 ≤ n ≤ N+1} each inner, BRST primitive G^{(n)} with T^{(n)} = [Q_tot, G^{(n)}]. `thm:e-infinity-topologization-ladder`: k inner stress tensors ⟹ E_{k+2}^top via Dunn. Specializations: Virasoro (N=2) → E_3^top; W_N → E_{N+1}^top; W_∞ → E_∞^top (Platonic endpoint). `thm:operadic-spiral`: infinite bidirectional spiral. Climax restatement: 3d quantum gravity Part VI is N=2 shadow of a 3d+∞ topological theory.
+- **Unified Q_g^{k,f,μ} chiral quantum group.** `chapters/theory/unified_chiral_quantum_group.tex` (ported name from 2026-04-16 inscription) — nine specialization fibres cover the non-gauge-theoretic landscape, closing the "chiral coproduct for non-gauge-theoretic families" frontier.
+- **β_N exact closed form.** `thm:beta-N-closed-form-proved-all-N` in `chapters/theory/beta_N_closed_form_all_platonic.tex`: β_N = 12(H_N − 1) = Σ_{s=2}^{N} 12/s (per-spin-s lane). Both prior candidates (N+1)(N+2)/2 and N²−N+4 ruled out at N=4. Closed form rational (not integer) for N ≥ 5; β_5 = 77/5, β_6 = 87/5. No longer a frontier item.
+- **MC5 chain-level class M weight-completed (Vol II inheritance from Vol I).** `prop:bv-bar-class-m-weight-completed`. Direct-sum chain-level class M is genuinely FALSE in `Ch(Vect)` (S_4(Vir_c) nonzero); weight-completed proved via Milnor/Mittag-Leffler. Vol I `thm:mc5-class-m-chain-level-pro-ambient` shows the same result on pro-object and J-adic ambients of the original complex.
+- **F1 g ≥ 2 coderived class M (now implicit in 2026-04-16 wave).** The MC5 weight-completed pattern + half-BRST iteration + chiral Higher Deligne together give the g ≥ 2 coderived class M identification in the weight-completed D^{co}. The F1 sub-question "conceptual understanding of WHY D^{co}" answered by `thm:chiral-higher-deligne` + heptagon face (6): Z^{der}_ch carries the E_3-topological structure through cohomology, not chain level, so D^{co} is the home where curvature is absorbed by the coderived differential.
+- **F9 E_1 Verdier on ordered configurations. MISLABELED.** `thm:two-color-master` in `chapters/connections/spectral-braiding-core.tex:3432-3441` gives the open-colour Quillen equivalence via LINEAR duality (not Verdier), which IS the correct E_1 analogue at the chiral-algebraic level. Opposite-duality `B^ord(A^op) = B^ord(A)^{cop}` (Vol I `chapters/theory/e1_modular_koszul.tex:775-830`) proves the intertwining. The literal `D_{Conf^<}` six-functor package is a notational/foundational wishlist with no additional chiral-algebraic content. **Downgrade: notational wishlist, not frontier.**
+
+### 2. Newly-Open Frontiers from 2026-04-17 Beilinson audit
+
+- **V2-NF1. W(p) triplet tempering — RETRACTED to Conjectured.** Vol II commit `a5640de` inscription `thm:tempered-stratum-contains-wp` is downgraded. Zhu-bounded-Massey proof chain fails: Gurarie 1993 (arXiv:hep-th/9303160) and Flohr 1996 (arXiv:hep-th/9605151) construct logarithmic-CFT amplitudes with UNBOUNDED Massey despite finite-dim Zhu. **Wave-1 refinement**: p=2 is closed trivially (symplectic-fermion r_max=4); TT sub-channel PROVED tempered unconditionally for all p ≥ 2 via Virasoro generic-c at c(p) = 1 − 6(p−1)²/p. Only TW/WW sub-channels at p ≥ 3 are genuinely open; Gurarie-Flohr (log z)^n does NOT produce factorial shadow growth. Heal path: direct numerical bound |S_r(W(3))| for r ≤ 8 via Adamović-Milas φ_{0,1}. Files: `chapters/theory/logarithmic_wp_tempered_analysis_platonic.tex:472-600`.
+
+- **V2-NF2. Non-tempered stratum emptiness — SCOPE-QUALIFIED.** "Non-tempered stratum EMPTY on the C_2-cofinite standard landscape" is scope-qualified to NON-LOGARITHMIC subset (Virasoro, W_N, all Schellekens, Monster, irrational cosets). Logarithmic W(p) remains open. Programme-climax statement must carry this scope tag; standalone papers citing climax must be re-audited.
+
+- **V2-NF3. BP chain-level FL convention retention.** Vol II `chapters/theory/bp_chain_level_strict_platonic.tex` uses Fateev-Lukyanov convention c^{FL}(k) = −(2k+3)(3k+1)/(k+3); K^{FL}_BP(k) = −12(k+3) − 48/(k+3) is MEROMORPHIC with pole at k=-3. Vol I standalone uses Arakawa convention where K_BP ≡ 196 is polynomial. Both parametrize the same algebra; the polynomial identity is Arakawa-specific. Cross-volume convention caveat.
+
+- **V2-NF4. Super-Yangian complementarity max(m, n).** κ(Y(sl(m|n))) + κ(Y(sl(n|m))^!) = max(m, n) at Sugawara-shifted dual level (symbolic small-rank verification), NOT 0 as the prior Virasoro-analogue claim. Canonical pairing scopes to sub-Sugawara line; super-trace vs Berezinian pairings coexist without programme-level canonicalization. Verdier pairing inscription pending.
+
+### 3. Genuine Open Vol II Frontiers (after Wave 1)
+
+**V2-F1. BV/BRST = bar chain-level for class M at g ≥ 2.** Resolved weight-completed via MC5 pattern; chain-level ORIGINAL direct-sum form is the same open direction as Vol I OF1-was — now CLOSED via pro-ambient / J-adic ambient (Vol I `mc5_class_m_chain_level_platonic.tex`). **This F1 is DOWNGRADED from open to weight-completed-closed + chain-level-closed-via-pro-ambient.** Remaining: chain-level explicit A_∞ coherence at g ≥ 2 for non-formal class M (the "why D^{co} is the right home" question — answered at cohomology via chiral Higher Deligne, open at chain level for class M direct-sum g ≥ 2).
+
+**V2-F2. (3,2) nilpotent of sl_5 — Gateway to non-principal DS-KD.** See Vol I OF8. (3,2) is NEITHER hook NOR subregular NOR minimal; CL11 reduction does NOT apply. BRST engine + orbit-data engine exist. Conjectural at `conj:ds-kd-arbitrary-nilpotent`.
+
+**V2-F3/F10/F11. Genus-5 δF_5(W_3), cross-channel generating function, resurgence A_cross.** See Vol I OF4/OF5. Coupled: three-data-point extrapolation gives A_cross/A_scalar ∈ [1.7, 3.1]; fourth data point at g=5 fixes Gevrey shift b. No closed-form A-hat-type generating function for δF_g^cross (bivariate in (c,ℏ) and non-separable).
+
+**V2-F4. Admissible sl_3 Koszulness. LOW-HANGING FRUIT via periodic-CDG.** Universal V_k(sl_3) sharp transition at q=2 proved; simple quotient L_k(sl_3) rank ≥ 2 genuinely open. Attack via `chapters/theory/periodic_cdg_admissible.tex` (Vol I, 2026-04-16 inscription — finite-length filtration tooling) + Arakawa 2015 C_2-cofiniteness of minimal W. Heal path inscribed-adjacent but theorem not yet written.
+
+**V2-F5. DK-4 beyond eval core = OF10a: Full-DK compact-completion (type A Mittag-Leffler / non-type-A Lemma L).** NOT subsumed by five-family MC3.
+
+**V2-F6. DK-5 = OF10b: Bridge B1 + B4 (Ext concentration on non-eval Vermas/L^- + Latyntsev spectral-QG comparison).** Orthogonal to V2-F5.
+
+**V2-F7. Grand Completion — VERY HARD, NOT subsumed.** See Vol I OF13. Zero hits for cumulant/pronilpotent/jet/resonance-graded/Quillen-equivalence across 2026-04-16 inscriptions. Modular-graph completion closure is the missing piece.
+
+**V2-F8. Analytic realization three-layer gap.** See Vol I OF14. Layer 1 (interacting sewing envelope sl_2 at k=1): `level1_bridge.tex` is algebraic FKS only; vertex operators not HS on single Fock; requires ~3 functional-analytic theorems. Layer 2 (metric independence on conformally flat 2-disk): closed ONLY for Heisenberg via Moriwaki 2026b. Layer 3 downstream.
+
+**V2-F9. DOWNGRADED — notational wishlist (see §1).**
+
+**V2-F12. Scalar saturation Layer 1 — SCOPE-REFINED.** See Vol I OF15. Non-GKO cosets essentially closed via ACL19; 4D N=2 anemic; admissible L_k(sl_3) low-hanging fruit via periodic-CDG + Arakawa.
+
+### 4. Reading guide
+
+Top of document (§1–§3) is the DEFINITIVE state as of 2026-04-17. Sections F1–F12 and "Session Memorial" below are HISTORICAL RECORD preserved for provenance. Where they conflict with §1–§3, §1–§3 wins.
+
+---
+
+## Prior status as of 2026-04-14 (HISTORICAL; superseded by §1–§3 above)
+
+Produced by ~300+ agents across all sessions through ~230-agent comprehensive wave. Programme: ~5,142pp, ~177K tests, ~4,186 engines
 
 ### Session Memorial (2026-04-07/08)
 
