@@ -213,6 +213,12 @@ Coverage snapshot (2026-04-16): Vol I 0/2275; Vol II 0/1134; Vol III 2/283. Clos
 - **V2-AP37**: Arakelov form normalisation. Canonical: omega_1 = i/(2 Im(tau)) dz∧dz-bar (integral=1). Arakelov kernel: omega_Ar = -(π/Im(tau)) dz∧dz-bar (integral=-1). **omega_1 = -omega_Ar/(2π)**. Same error fixed THREE times. Verify fundamental-domain integral before writing.
 - **V2-AP38**: Phantom label retirement. After chapter migration, track each phantom with retirement path. 366 phantoms across 2 commits after Vol I → Vol II migration.
 - **V2-AP39**: Macro portability. After migrating chapter Vol I → Vol II: compile, grep for "Undefined control sequence", add `\providecommand` for each. 7 macros needed adding across 2 commits. Never assume Vol I macros available.
+- **V2-AP40**: Session-meta leaks into reader-facing prose. Author-side bookkeeping tokens — AP identifiers (AP25/AP136/AP-CY166/V2-AP33/...), FM identifiers (FM11/FM21/FM34a/...), session codes (C4, B18, C9, HZ-4, RS-9), commit hashes (`commit \texttt{a5640de}`), meta-stamps ("Beilinson-rectified 2026-04-17", ",NEW" tag), working-note labels (`\texttt{thm:theoremC-total-shifted-symplectic}`), "(cached confusion \#15)" — MUST NOT appear in the preface, introduction, or any chapter prose. The error ledger (this file + first_principles_cache.md) is the ledger; .tex prose is mathematics. Mechanical grep after any session that edits prose:
+  ```
+  grep -nE 'AP[0-9]+|FM[0-9]+|\(AP-CY[0-9]+|commit \\texttt|cached confusion|Beilinson-rectified|working note|RS-[0-9]|HZ-[0-9]|\bC[0-9]+:|\bB[0-9]+:' chapters/
+  ```
+  Zero tolerance at chunk convergence. Every `\texttt{label:foo}` visible-label reference is either a \ref (use it) or a hook to a non-existent label (delete or create the anchor). 17 chunks of the Vol II preface carried 30+ such leaks (session 2026-04-17); all surgically removed with prose restated declaratively.
+  **Counter at write time**: before committing a chunk, run the grep above against the file; if any match, restate the content as a declarative mathematical sentence that carries the substance of the AP/FM pointer without the pointer itself. "The correct expression is H_N − 1, not H_{N−1}, since H_{N−1} ≠ H_N − 1 in general" beats "(C4: at N=2, H_2−1=1/2 recovers κ=c/2, not H_{N−1}; AP136)". The reader should never need to consult the error ledger to parse a sentence.
 
 ### Structural/Scope APs (AP150-AP158)
 
@@ -935,6 +941,17 @@ The Platonic form of the programme is now specified in nine master theorems. Tec
 - ✅ **SC^{ch,top} heptagon** — sc_chtop_heptagon.tex (1141 lines) with all 7 edge theorems + W13 prop:heptagon-edge-34/45 (compositional qiso + Dunn assembly)
 - ✅ **Universal Celestial Holography** — `thm:uch-main` at universal_celestial_holography.tex:213, ProvedHere; class-M chain-level via DS-Hoch bridge
 
+### Platonic theorem upgrades inscribed (2026-04-17 session)
+
+Individual theorem-level UPGRADE-SWEEP inscriptions now anchored in `.tex`:
+
+- ✅ **Theorem A^{∞,2}** R-twisted $\Sigma_n$-descent — `prop:R-twisted-sigma-n-descent` at `chapters/theory/factorization_swiss_cheese.tex` (end of properad section); four-step proof (local system, YBE braid coherence, involutivity, descent via GR17 IV.5.4) plus `rem:ordered-symmetric-bar-primacy` closing FM69 critique.
+- ✅ **Theorem C total shifted-symplectic** — `thm:theoremC-total-shifted-symplectic` at `working_notes.tex:~19475` (session-synthesis `subsec:theoremC-total-shifted-symplectic`); three-part statement (PTVV $-(3g{-}3{+}n)$-shifted symplectic on characteristic bundle, Lagrangian section via genus-wise complementarity, clutching compatibility across boundary strata); Heisenberg example; FM-attack heal noting the correct target is $\cQ(\cA) \oplus \cQ(\cA^!)$, not $\overline{\mathcal{M}}_{g,n}$ itself.
+- ✅ **Theorem D tensor-Arakelov** — `thm:theoremD-tensor-arakelov` at `working_notes.tex:~19633` (session-synthesis `subsec:theoremD-tensor-arakelov`); tensor-valued $K \in \operatorname{Sym}^2(\cF^\vee) \otimes \Omega^2(\overline{\mathcal{M}}_{g,n})$; diagonal (UNIFORM-WEIGHT) = weight-$w$ Arakelov scalar, off-diagonal = cross-channel $\delta F_g^{\mathrm{cross}}$; tensor chiral Mumford formula; Virasoro example recovering scalar Theorem~D.
+- ✅ **Theorem H chiral Higher Deligne** — `thm:theoremH-chiral-higher-deligne` at `working_notes.tex:~19800` (session-synthesis `subsec:theoremH-chiral-higher-deligne`); four-part statement (degree-$\le 2$ = classical chiral Deligne $E_2$ brace, degree-$\ge 3$ via heptagon edges 3$\leftrightarrow$4, concentration as $E_3$-rigidity consequence, $E_3$-topological via iterated Sugawara); class M chain-level via DS-Hoch bridge remark.
+- ✅ **Part VIII shell** — `\part{From Frontier to Theorem}` at `main.tex:~1609` with intro referencing the four closed frontiers and inputting `chapters/theory/koszulness_moduli_M_kosz.tex` + `chapters/theory/infinite_fingerprint_classification.tex` (both newly created; not previously inputted into the main architecture).
+- ✅ **Preface architectural upgrades** — six surgical edits at `chapters/frame/preface.tex`: seven parts $\to$ eight parts (Section~XI), $E_\infty$-topological ladder remark (Section~XI$''$), nine-face GRT$_1(\Q)$-torsor (Part~III description), G/L/C/M/FF five-class quaternitomy (Leap~2), two-theorems-native-to-Vol~II paragraph (Section~II). Pentagon$\to$heptagon was already in place at line~238.
+
 ## Cross-Volume Bridges
 
 | Bridge | Vol II claim | Vol I anchor | Status |
@@ -953,7 +970,7 @@ The Platonic form of the programme is now specified in nine master theorems. Tec
 | Annular bar-HH | B^ann computes HH^ch | Thm H | Proved |
 | FG-shadow-strat | Commutator filtration spectral sequence | Shadow tower | Proved |
 | Gauge-gravity | m_k=0 (gauge) vs m_k≠0 (gravity) dichotomy | G/L/C/M | Proved |
-| 3D gravity | Part VI: 3d QG = derived center of boundary chiral algebra; W-algebra Hochschild bulk reconstruction | Thm H + MC5 | E_3-top PROVED for KM (thm:E3-topological-km), ALL W-algebras (thm:E3-topological-DS-general), ALL freely-generated PVAs (thm:E3-topological-free-PVA). Global triangle: PROVED G/L/C (thm:global-triangle-boundary-linear); OPEN class M (gap: DS-Hochschild compatibility) |
+| 3D gravity | Part VI: 3d QG = derived center of boundary chiral algebra; W-algebra Hochschild bulk reconstruction | Thm H + MC5 | E_3-top PROVED for KM (thm:E3-topological-km), ALL W-algebras (thm:E3-topological-DS-general), ALL freely-generated PVAs (thm:E3-topological-free-PVA). Global triangle: PROVED G/L/C (thm:global-triangle-boundary-linear); CLASS M CLOSED chain-level via DS-Hochschild compatibility bridge (thm:chd-ds-hochschild + cor:universal-holography-class-M, 2026-04-16 reconstitution). E_∞-topological ladder (Virasoro rung 1, W_N rung N-1, W_∞ rung ∞) stated as climax extension, Platonic form; chain-level rungs k≥3 conditional on higher-spin antighost construction. |
 
 ## Build
 
