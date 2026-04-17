@@ -1,8 +1,10 @@
 %% Super-Yangian Chiral Algebras.
 %%
-%% Heals Vol I FM230 (Heisenberg-vs-symplectic-fermion as Z/2-factor on
-%% collision residues) together with the AP105/AP107/AP138 parity cluster,
-%% and upgrades the K3 super-Yangian of Vol III from Conjectured to
+%% Resolves the Heisenberg-vs-symplectic-fermion Z/2-factor on
+%% collision residues together with the parity-cluster failure modes
+%% (simple-pole existence, collision-vs-Laplace sign, graded Jacobi
+%% degenerating at even parity), and upgrades the K3 super-Yangian of
+%% Vol III from Conjectured to
 %% ProvedElsewhere. The chapter extends the unified chiral quantum group
 %% Q_g^{k,f,mu} to the Z/2-graded setting by constructing an explicit
 %% super-chiral Yangian Y_hbar(g)^{ch,super} on a super Lie g = g_0 ⊕ g_1,
@@ -13,11 +15,10 @@
 %% Depends on:
 %%   - chapters/theory/grt_parametrized_seven_faces.tex  (super GRT torsor)
 %%   - chapters/connections/ordered_associative_chiral_kd_core.tex  (E_1 core)
-%%   - chapters/connections/spectral-braiding-core.tex  (AP-CY25 half-braiding)
-%%   - Volume~I FM230, AP105, AP107, AP138
+%%   - chapters/connections/spectral-braiding-core.tex  (half-braiding)
 %%   - Volume~III compute/lib/k3_super_yangian.py (internal-consistency harness)
 %%
-%% AAP V2-AP39: every control sequence used here is guarded by
+%% Macro safety: every control sequence used here is guarded by
 %% \providecommand; no \newcommand.
 
 \providecommand{\SCchtop}{\mathsf{SC}^{\mathrm{ch},\mathrm{top}}}
@@ -72,20 +73,19 @@ $Q_{\fg}^{k,f,\mu}$ of Volume~II collects nine specialisation fibres into
 one theorem, but each fibre is purely bosonic: every generator carries
 parity~$\bar 0$, and the parity bookkeeping of the
 ordered bar $\Bord(\cA)$ is trivial. The programme has three independent
-places where this is inadequate. First, Volume~I FM230 diagnoses the
+places where this is inadequate. First, the
+Heisenberg-vs-symplectic-fermion residue diagnostic identifies the
 Heisenberg--versus--symplectic-fermion asymmetry as a
 $\mathbb{Z}/2$-factor on collision residues, absorbed into the super
 torsor $\Gsuper = \GRT(\mathbb{Q})\rtimes(\mathbb{Z}/2)^{|\mathrm{odd}|}$
 of Section~\ref{sec:super} in
-\texttt{grt\_parametrized\_seven\_faces.tex}. Second, Volume~I
-anti-patterns AP105, AP107, and AP138 pin down three specific
+the GRT-parametrized seven-faces chapter. Second, three specific
 misbehaviours under parity (simple-pole existence, collision-vs-Laplace
-sign, graded Jacobi degenerating at even parity) whose strongest form is
-a theorem, not an amber warning. Third, Volume~III
-\texttt{subsec:k3-super-yangian} needs a genus-zero super-Yangian to
-which its $Y(\fgl(4|20))$ can attach, promoting
-\texttt{conj:k3-super-yangian} to a cross-volume
-\texttt{ProvedElsewhere}.
+sign, graded Jacobi degenerating at even parity) require theorem-level
+treatment rather than amber warnings. Third, the Volume~III K3
+super-Yangian needs a genus-zero super-Yangian to which its
+$Y(\fgl(4|20))$ can attach, promoting the K3 super-Yangian conjecture
+to a cross-volume ProvedElsewhere.
 
 This chapter supplies the super object. Let $\fg = \fg_0\oplus\fg_1$ be
 a finite-dimensional simple super Lie algebra with even invariant super
@@ -126,7 +126,8 @@ the Chevalley--Kac involution with the $\hbar\to-\hbar$ flip.
 Section~\ref{sec:super-landscape} inventories $\fgl(m|n)$,
 $\fosp(m|2n)$, and $\fpsl(2|2)$. Section~\ref{sec:super-grt-torsor}
 assembles the parity sign factors into the $\Gsuper$-orbit action,
-closing FM230. Section~\ref{sec:super-vol3-bridge} establishes the
+resolving the residue diagnostic.
+Section~\ref{sec:super-vol3-bridge} establishes the
 cross-volume bridge to $Y(\fgl(4|20))$, upgrading Volume~III.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -155,13 +156,15 @@ and the graded Jacobi identity
   \;+\;(-1)^{\parity{z}\,\parity{y}}[z,[x,y]_s]_s \;=\; 0.
 \end{equation}
 
-\begin{remark}[Super-Yangian existence: scope of W13 \texttt{thm:super-shadow-well-defined}]
+\begin{remark}[Super-Yangian existence: scope of the
+super-shadow-well-defined theorem]
 \label{rem:super-yangian-existence-scope}
-CLAUDE.md Vol III AP-CY10 and the "Top 15 \#10" frontier ledger flag the
-super-Yangian as \emph{conjectural}. W13 then installs
-\texttt{thm:super-shadow-well-defined} (\S\ref{sec:super-landscape})
-using the super-Yangian operationally. This remark adjudicates the
-apparent tension via the a/b/c first-principles protocol.
+The Volume~III frontier ledger flags the super-Yangian as
+\emph{conjectural}. The present chapter installs
+Theorem~\ref{thm:super-shadow-well-defined}
+(\S\ref{sec:super-landscape}) using the super-Yangian operationally.
+This remark adjudicates the apparent tension by separating right,
+wrong, and correct readings.
 \emph{(a) Right.} The \emph{classical} super-Yangian $Y(\fgl(m|n))$
 exists and is rigorously constructed: Nazarov 1991 (RTT presentation
 with quantum Berezinian as central generator), Gow 2006 and Molev 2007
@@ -178,8 +181,8 @@ $E_1$-chiral algebra on the curve $X$ with ordered super-bar,
 super-Drinfeld spectral coproduct, spectral super-$R(z)$, and a
 super-Koszul self-duality. Identifying them without specifying the
 spectral lift, the ordered-bar, and the Koszul-dual fibre conflates two
-objects at different categorical levels (AP-CY23/AP-CY54 register:
-chiral data lives one level up from associative).
+objects at different categorical levels: chiral data lives one level
+up from associative.
 \emph{(c) Correct.} The chiral super-Yangian
 $\Ysuper_{\hbar}(\fg)$ is the graded Yangian-chiral hybrid with three
 pieces of data: (i) graded Hopf bialgebra with parity grading
@@ -198,8 +201,8 @@ of this chapter requires the chiral super-Yangian, not merely the
 classical one, because the super-shadow coefficient
 $S_r^{\mathrm{super}}$ is computed on the Koszul-signed ordered bar
 $\Bord$, whose existence depends on
-Theorem~\ref{thm:super-yangian-e1-chiral-structure}(i). The Vol III
-\texttt{conj:k3-super-yangian} attachment
+Theorem~\ref{thm:super-yangian-e1-chiral-structure}(i). The Vol~III
+K3 super-Yangian attachment
 (Section~\ref{sec:super-vol3-bridge}) uses the chiral object, not
 Nazarov's classical one, which is why a bridge theorem is needed and
 supplied.
@@ -217,13 +220,13 @@ are genuine frontier opens, NOT the basic classical types covered above.
 
 \begin{remark}[Degenerate graded Jacobi identity]
 \label{rem:ap138-absorbed}
-AP138 observes that the graded-Jacobi-derived identity
+A degenerate-parity observation: the graded-Jacobi-derived identity
 $[m,[m,f]]=\tfrac12[[m,m],f]$ is tautological at even
 $\parity{m}=0$ and becomes nontrivial only at odd $\parity{m}=1$.
 Equation~\eqref{eq:graded-jacobi} shows the correct graded Jacobi is
 odd-parity-sensitive through the sign
 $(-1)^{\parity{x}\,\parity{z}}$; at $\parity{m}=1$ with $x=y=m$ the
-cyclic sum reduces to $2[m,[m,f]]_s=[[m,m]_s,f]_s$, matching AP138's
+cyclic sum reduces to $2[m,[m,f]]_s=[[m,m]_s,f]_s$, matching the
 non-tautological form. All super-MC identities below are applied at the
 odd parity where they are substantive.
 \end{remark}
@@ -259,7 +262,7 @@ super algebras (super-PBW for $\Yhbar$; Gow--Molev 2010 Theorem~4.2 for
 classical super types).
 \end{definition}
 
-\paragraph{Collision residue, parity, and the AP105/AP107 sign.}
+\paragraph{Collision residue, parity, and the residue/Laplace sign.}
 
 Let $\cA$ be a super-chiral algebra (an $E_1$-chiral algebra in the
 super-symmetric monoidal category of $D$-modules on $X$; the parity on
@@ -311,12 +314,13 @@ When the integrand is graded, the swap $v\otimes w\mapsto w\otimes v$
 in the Laplace kernel picks up a Koszul sign $(-1)^{\parity{v}\parity{w}}$.
 Collecting this with the graded $\stensor$ in~\eqref{eq:super-coll-residue}
 gives~\eqref{eq:ap107-sign}. On odd-odd pairs the sign is $-1$, matching
-the AP107 observation that collision-residue and Laplace-$r$ disagree.
+the observation that collision-residue and Laplace-$r$ disagree under
+parity.
 \end{proof}
 
 \begin{remark}[Heisenberg vs.\ symplectic-fermion pole structure]
 \label{rem:ap105-absorbed}
-AP105 observes that Heisenberg ($\parity{\alpha}=0$, pole order $p=2$)
+Heisenberg ($\parity{\alpha}=0$, pole order $p=2$)
 and the symplectic fermion ($\parity{\psi}=1$, pole order $p=1$) exhibit
 opposite pole behaviour: the simple-pole channel exists in the symplectic
 fermion because the odd-odd OPE
@@ -326,7 +330,7 @@ whereas the even-even OPE $\alpha(z)\alpha(w)$ is graded-symmetric and
 suppresses the simple pole. Equation~\eqref{eq:super-coll-residue}
 makes this explicit: the simple-pole residue $C^{ab,1}$ can be non-zero
 only when the corresponding $\fg\stensor\fg$ slot has parity compatible
-with the odd-odd graded symmetry. AP105's assertion that simple-pole
+with the odd-odd graded symmetry. The assertion that simple-pole
 existence requires an odd generator is a direct consequence.
 \end{remark}
 
@@ -515,7 +519,7 @@ Section~\ref{sec:super-vol3-bridge}).
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 The classical chiral Yangian $Y(\fg)^{\mathrm{ch}}$ has a Koszul self-duality
-theorem (Volume~II FM163, FM167, and the bar-cobar correspondence of
+theorem (and the bar-cobar correspondence of
 \texttt{ordered\_associative\_chiral\_kd\_core.tex}): under the Chevalley
 involution $\theta$ of $\fg$ combined with the formal flip $\hbar\mapsto
 -\hbar$, the Yangian is sent to itself with opposite $R$-matrix.
@@ -550,7 +554,7 @@ The chiral Koszul dual of $\Ysuper_{\hbar}(\fg)$ is
   \bigl(\Ysuper_{\hbar}(\fg)\bigr)^{!} \;\simeq\; \Ysuper_{-\hbar}(\fg)^{\theta},
 \end{equation}
 where the superscript $\theta$ denotes the Chevalley--Kac-involuted
-super-Yangian. In particular, the FM163 identification
+super-Yangian. In particular, the bosonic identification
 $Y_\hbar^! = Y_{-\hbar}^{\mathrm{Chevalley}}$ of Volume~II extends to
 the super case with the involution replaced by the Chevalley--Kac
 involution.
@@ -568,7 +572,7 @@ concentrated in the Koszul locus because super-PBW
 (Definition~\ref{def:super-drinfeld-yangian}) implies
 $\gr^\hbar\Ysuper_{\hbar}(\fg) \cong U(\fg[t])$ is a super-quadratic-Koszul
 algebra (Gow--Molev 2010 Theorem~4.2; Positselski--Polishchuk 2005 super
-extension, cf.\ FM161 heal). Hence
+extension). Hence
 $\cA^i = H^0(\Bord) \oplus H^1(\Bord)$, with
 $H^1 = \fg[t]^*$ on generators.
 
@@ -584,16 +588,17 @@ and $\mathbf{Q}_{\Phi^{-1}}$ are related by $\hbar\mapsto-\hbar$; the
 Verdier dual inverts the associator, hence flips $\hbar$. Combining
 Steps 2 and 3 gives~\eqref{eq:super-koszul-dual}.
 
-\emph{Step 4 (FM163 heal at all orders).} Volume~II FM163 observes that
-the bosonic identification $Y^! = Y^{\hbar\to-\hbar}$ is a purely
-quadratic statement and asks for higher-order verification. In the
-super case, the all-orders identification follows from the
+\emph{Step 4 (all-orders verification).} The bosonic identification
+$Y^! = Y^{\hbar\to-\hbar}$ is a purely quadratic statement and asks
+for higher-order verification. In the super case, the all-orders
+identification follows from the
 $R$-matrix functional equation $R^{-1}_s(u) = R_s(-u-\hbar h^\vee_s)$
 (the super-unitarity relation, Gow--Molev 2010 Proposition~2.5) combined
 with the trace-pairing compatibility under $\theta$: under the
 Shapovalov pairing $(x,y)_s = \str(\pi(xy))$ on evaluation modules,
 $(\theta(x), \theta(y))_s = (-1)^{\parity{x}\parity{y}}(x,y)_s$, and this
-Koszul-sign factor exactly absorbs the sign discrepancy that makes FM163
+Koszul-sign factor exactly absorbs the sign discrepancy that makes the
+bosonic identification
 nontrivial.
 \end{proof}
 
@@ -602,8 +607,9 @@ nontrivial.
 On the purely even sector $\fg_1=0$, the Chevalley--Kac involution
 reduces to the Chevalley involution, and
 equation~\eqref{eq:super-koszul-dual} reduces to
-FM163's $Y_\hbar^! = Y_{-\hbar}^{\mathrm{Chevalley}}$. The all-orders
-proof sharpens FM163's quadratic argument into an $R$-matrix functional
+the bosonic $Y_\hbar^! = Y_{-\hbar}^{\mathrm{Chevalley}}$. The
+all-orders proof sharpens the quadratic argument into an $R$-matrix
+functional
 equation proof, with the Koszul-sign factor $(-1)^{\parity{x}\parity{y}}$
 visible on the super side but trivial on the bosonic side.
 \end{remark}
@@ -733,16 +739,14 @@ m+n$) the Berezinian shift is buried in higher-order corrections to
 $T_{\mathrm{Sug}}^{s}$ that have not been computed in closed form,
 and a uniform programme-level canonicalisation between the two
 pairings is the genuine remaining frontier (Beilinson-rectified F4
-addendum, Vol I CLAUDE.md, Open Frontiers section).
+addendum, Volume~I open-frontiers section).
 \end{remark}
 
-\begin{remark}[AP172: super-Koszul dual is a $\SCchtop^{\,!}$-algebra,
+\begin{remark}[Super-Koszul dual is a $\SCchtop^{\,!}$-algebra,
 \emph{not} an $\SCchtop$-algebra]
-\label{rem:AP172-super-koszul-SC-not-SC}
-By the same logic as the bosonic AP172 (Vol I; recorded in the unified
-chapter as
-Remark~\ref{rem:AP172-A-koszul-SC-not-SC} of
-\texttt{unified\_chiral\_quantum\_group.tex}), the super Koszul dual
+\label{rem:super-koszul-SC-not-SC}
+By the same logic as the bosonic case (recorded in the unified
+chapter as Remark~\ref{rem:A-koszul-SC-not-SC}), the super Koszul dual
 $(\Ysuper_{\hbar}(\fg))^{!}$ is an algebra over the \emph{super}
 $(\SCchtop)^{!}$ operad, with closed colour $\Lie^{\mathrm{super}}$
 (super-Lie shuffle-mixed) and open colour $\Ass^{\mathrm{super}}$ (the
@@ -756,44 +760,41 @@ super-symmetric monoidal category, $(\SCchtop^{\mathrm{super}})^{!}
 \not\simeq \SCchtop^{\mathrm{super}}$ because the super-permutation
 $P_{s}$ exchanges parity classes on the closed-open mixed sector,
 breaking the dim$(n-1)!$ vs.\ dim$1$ self-duality criterion. The
-super-version of B57 is therefore stronger than its bosonic
+super-version of this assertion is therefore stronger than its bosonic
 counterpart.
 \end{remark}
 
-\begin{remark}[Wave-14 anchor cross-references for the super sector]
-\label{rem:super-wave14-anchors}
-The super-Yangian sector of the programme connects to two Wave-14
+\begin{remark}[Cross-references to the climax for the super sector]
+\label{rem:super-climax-anchors}
+The super-Yangian sector of the programme connects to two
 reconstitution anchors:
 \begin{itemize}
 \item[(a)] \emph{Universal holography master.}
-  $\Ysuper_{\hbar}(\fsl(m|n))$ at non-degenerate $(m,n)$ enters
-  \texttt{thm:universal-holography-master} as the boundary chiral
-  algebra of a 3d super-HT gauge theory $T^{\mathrm{super}}_{m,n}$
-  whose bulk is the super derived chiral centre
-  $\cZ^{\mathrm{der}}_{\mathrm{ch}}(\Ysuper_{\hbar}(\fsl(m|n)))$. The
-  rung corollaries of the bosonic universal-holography ladder
-  (\texttt{cor:rung-affine-km}, \texttt{cor:rung-virasoro},
-  \texttt{cor:rung-w-N}) admit super refinements
-  \texttt{cor:rung-affine-km-super},
-  \texttt{cor:rung-virasoro-super},
-  \texttt{cor:rung-w-N-super} obtained by applying the present
-  chapter's super-extension to each bosonic rung; the super
-  $E_{N+1}$-topologisation
-  \texttt{cor:rung-w-infty-super} extends the
-  \texttt{e\_infinity\_topologization.tex} ladder to the
+  $\Ysuper_{\hbar}(\fsl(m|n))$ at non-degenerate $(m,n)$ enters the
+  Universal Holography Theorem
+  (Theorem~\ref{thm:universal-holography-master}) as the boundary
+  chiral algebra of a 3d super-HT gauge theory
+  $T^{\mathrm{super}}_{m,n}$ whose bulk is the super derived chiral
+  centre $\cZ^{\mathrm{der}}_{\mathrm{ch}}(\Ysuper_{\hbar}(\fsl(m|n)))$.
+  The rung corollaries of the bosonic universal-holography ladder
+  (Corollaries~\ref{cor:rung-affine-km}, \ref{cor:rung-virasoro},
+  \ref{cor:rung-w-N}) admit super refinements obtained by applying the
+  present chapter's super-extension to each bosonic rung; the super
+  $E_{N+1}$-topologisation extends the $E_\infty$-topologisation
+  ladder (Theorem~\ref{thm:e-infinity-topologization-ladder}) to the
   $\mathbb{Z}/2$-refined setting.
-\item[(b)] \emph{Vol III $\Phi$ functor.} The K3 super-Yangian
-  $Y(\fgl(4|20))$ of Vol III \texttt{subsec:k3-super-yangian}, upgraded
-  by Proposition~\ref{prop:vol3-upgrade} of the present chapter to
-  \texttt{ClaimStatusProvedElsewhere}, is the image
-  $\Phi(\mathrm{D^{b}Coh}(K3))$ of the CY-to-chiral functor at $d=2$
-  (FM43 scope $n=2$). The super-complementarity
+\item[(b)] \emph{Volume~III $\Phi$ functor.} The K3 super-Yangian
+  $Y(\fgl(4|20))$ of Volume~III, upgraded by
+  Proposition~\ref{prop:vol3-upgrade} of the present chapter to
+  ClaimStatusProvedElsewhere, is the image
+  $\Phi(\mathrm{D^{b}Coh}(K3))$ of the CY-to-chiral functor at $d=2$,
+  scope $n=2$. The super-complementarity
   Theorem~\ref{thm:super-complementarity-max-mn} specialises at
   $(m,n) = (4,20)$ to
   $\kappa^{\mathrm{super}}(Y(\fgl(4|20))) +
   \kappa^{\mathrm{super}}(Y(\fgl(4|20))^{!}) = \max(4,20) = 20$,
   which is the Mukai signature contribution to the K3 conductor
-  (Vol III \texttt{kappa\_BKM = c_{N}(0)/2}, $N=1$ case, plus the
+  (Volume~III $\kappa_{\mathrm{BKM}} = c_N(0)/2$ at $N=1$, plus the
   Berezinian Mukai correction recorded in
   Remark~\ref{rem:two-pairings-supertrace-berezinian}).
 \end{itemize}
@@ -990,7 +991,8 @@ content of the super-shadow tower. Two worked cases:
 The general principle is that class assignment for super-VOAs follows
 G/L/C/M stratification of the even subalgebra, with an explicit
 Koszul-signed super-correction to each $S_r$ coefficient controlled by
-the parity-grading datum. AP107 is not a defect of the shadow tower
+the parity-grading datum. The collision-vs-Laplace sign is not a
+defect of the shadow tower
 but a specification of the Koszul-sign branch at odd--odd sectors;
 the super-shadow tower is complete in the sense that no further
 datum beyond the parity involution $\varepsilon_{\cA}$ is required at
@@ -1009,7 +1011,8 @@ Proposition~\ref{prop:super-variant} of
 \]
 and proved that the face space $\Fsuper(\cA)$ of a super-chiral algebra
 is a torsor over $\Gsuper$. The super-Yangian exhibits a
-canonical representative of a full $\Gsuper$-orbit, closing FM230 at
+canonical representative of a full $\Gsuper$-orbit, resolving the
+residue-diagnostic ambiguity at
 the level of construction.
 
 \begin{proposition}[Super-Yangian as $\Gsuper$-orbit representative;
@@ -1046,18 +1049,18 @@ super-Kontsevich--Tamarkin transfer
 
 \begin{remark}[Heisenberg--symplectic-fermion as $\mathbb{Z}/2$-factor in the super-GRT orbit]
 \label{rem:fm230-closed}
-Volume~I FM230 observes that the Heisenberg-vs-symplectic-fermion
+The Heisenberg-vs-symplectic-fermion
 asymmetry is a $\mathbb{Z}/2$-factor on collision residues that was
 absorbed into $\Gsuper$ without a construction exhibiting both algebras
 as $\Gsuper$-orbit representatives. Proposition~\ref{prop:super-yangian-grt-orbit}
 supplies the construction: Heisenberg is the $|\mathrm{odd}|=0$ orbit
 (purely even $\GRT$ orbit) and symplectic fermion is the $|\mathrm{odd}|=1$
 orbit, both realised inside a super-Yangian framework. The missing
-bridge of FM230 is the map
+bridge is the map
 $\cA \mapsto \Ysuper_{\hbar}(\fg_\cA)$ from a super-chiral algebra to a
 canonical super-Yangian orbit, which is supplied by the
 Etingof--Kazhdan super-quantisation applied to the Lie super-bialgebra
-of currents of $\cA$. FM230 is closed.
+of currents of $\cA$.
 \end{remark}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1065,26 +1068,27 @@ of currents of $\cA$. FM230 is closed.
 \label{sec:super-vol3-bridge}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-Volume~III \texttt{conj:k3-super-yangian} proposes that the
+The Volume~III K3 super-Yangian conjecture proposes that the
 non-abelian K3 Yangian at ADE enhancement points is a super-Yangian
 $Y(\fgl(4|20))$, where the $\mathbb{Z}/2$-grading is induced by the
 Mukai signature. The present chapter provides the genus-zero super
 framework into which the K3 construction embeds.
 
-\begin{proposition}[Upgrade of Volume~III \texttt{conj:k3-super-yangian};
+\begin{proposition}[Upgrade of the Volume~III K3 super-Yangian
+conjecture;
   \ClaimStatusProvedElsewhere{Volume~II
   Theorems~\ref{thm:super-yangian-e1-chiral-structure},
   \ref{thm:super-ybe-from-super-cybe},
   \ref{thm:super-yangian-koszul-dual},
   \ref{thm:super-yangian-landscape}}]
 \label{prop:vol3-upgrade}
-The K3 super-Yangian $Y(\fgl(4|20))$ of Volume~III
-\texttt{subsec:k3-super-yangian} is the specialisation of
-$\Ysuper_{\hbar}(\fgl(m|n))$ at $(m,n)=(4,20)$ with spectral parameter
-tuned so that the super-Yang $R$-matrix $R_s(u) = u\cdot\id + \hbar P_s$
-produces, via the $\Omega^{1/2}$ gauge transformation of
-Volume~III \texttt{k3\_super\_yangian.py}, the Mukai-twisted
-$R$-matrix $R_\omega$. The super-YBE, super-unitarity, and quantum
+The K3 super-Yangian $Y(\fgl(4|20))$ of Volume~III is the
+specialisation of $\Ysuper_{\hbar}(\fgl(m|n))$ at $(m,n)=(4,20)$ with
+spectral parameter tuned so that the super-Yang $R$-matrix
+$R_s(u) = u\cdot\id + \hbar P_s$ produces, via the $\Omega^{1/2}$
+gauge transformation of the Volume~III K3 super-Yangian library, the
+Mukai-twisted $R$-matrix $R_\omega$. The super-YBE, super-unitarity,
+and quantum
 Berezinian are consequences of
 Theorems~\ref{thm:super-ybe-from-super-cybe}
 and~\ref{thm:super-yangian-landscape}(i); the
@@ -1105,8 +1109,8 @@ $R$-matrix $R_\omega$ of Volume~III is related to the super-Yang
 $R$-matrix by the $\Omega^{1/2}$ gauge
 $R_\omega = \Omega^{1/2} R_s \Omega^{-1/2}$, where
 $\Omega = \mathrm{diag}(\mathrm{sgn}(\langle e_i, e_i\rangle_s))$;
-this is the computation in
-Volume~III \texttt{k3\_super\_yangian.py} \S2. The Koszul
+this is the computation in the Volume~III K3 super-Yangian library
+(\S2). The Koszul
 sign rule built into our super-permutation $P_s$ coincides with
 $(-1)^{\parity{i}\parity{j}}$, and $\Omega^{1/2}$ absorbs the
 sign discrepancy on odd-odd pairs described in that file (lines 46--58
@@ -1119,34 +1123,31 @@ concrete fibre of the general super-Yangian landscape.
 \label{rem:iv-decorator}
 The companion test module
 \texttt{compute/tests/test\_super\_chiral\_yangian.py} installs three
-\verb|@independent_verification| decorators for this chapter (see
-HZ-IV in Volume~I CLAUDE.md and Volume~II
-Independent Verification Protocol):
+\verb|@independent_verification| decorators for this chapter under the
+Independent Verification Protocol:
 \begin{itemize}
-\item \texttt{thm:super-yangian-e1-chiral-structure}: verified against
-  Nazarov 1991 (super-Yangian $Y(\fgl(m|n))$ RTT presentation), with
-  derivation in this chapter via the Etingof--Kazhdan super-quantisation;
-  the sources are disjoint because Nazarov's RTT is a generator-and-relation
-  presentation that does not refer to the EK functor.
-\item \texttt{thm:super-ybe-from-super-cybe}: verified against
+\item Theorem~\ref{thm:super-yangian-e1-chiral-structure}: verified
+  against Nazarov 1991 (super-Yangian $Y(\fgl(m|n))$ RTT presentation),
+  with derivation in this chapter via the Etingof--Kazhdan
+  super-quantisation; the sources are disjoint because Nazarov's RTT is
+  a generator-and-relation presentation that does not refer to the EK
+  functor.
+\item Theorem~\ref{thm:super-ybe-from-super-cybe}: verified against
   Etingof--Kazhdan super-quantisation (Geer 2006), with derivation in
   this chapter via the collision-residue argument of
-  Section~\ref{sec:super-ybe}; the sources are disjoint because
-  the collision-residue argument works at the classical level (OPE) and
+  Section~\ref{sec:super-ybe}; the sources are disjoint because the
+  collision-residue argument works at the classical level (OPE) and
   the EK functor supplies the quantum level independently.
-\item \texttt{thm:super-yangian-landscape}: verified against Gow--Molev
-  2010 quantum Berezinian computation of the centre of
+\item Theorem~\ref{thm:super-yangian-landscape}: verified against
+  Gow--Molev 2010 quantum Berezinian computation of the centre of
   $Y(\fgl(m|n))$, with derivation in this chapter via the general
-  super-PBW and super-Koszul framework; the sources are disjoint because
-  the quantum Berezinian computation is a $T(u)$-matrix-element
+  super-PBW and super-Koszul framework; the sources are disjoint
+  because the quantum Berezinian computation is a $T(u)$-matrix-element
   computation, while the Koszul-duality derivation is a
   bar-complex-level invariant computation.
 \end{itemize}
-With these three decorators, the chapter contributes three
-\texttt{ProvedHere} claims to the Volume~II
-\texttt{make verify-independence} coverage, moving the snapshot from
-$0/1134$ towards $3/1134$ (subject to the full Independent Verification
-campaign).
+With these three decorators, the chapter contributes three ProvedHere
+claims to the Volume~II independent-verification coverage.
 \end{remark}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1160,8 +1161,9 @@ group $Q_{\fg}^{k,f,\mu}$ of \texttt{unified\_chiral\_quantum\_group.tex}
 (to be inscribed), and the super-Yangian of this chapter constitute a
 triangle: the torsor classifies face presentations, the unified QG
 selects the bosonic fibre, the super-chiral Yangian extends the fibre
-to the $\mathbb{Z}/2$-graded setting. Closing FM230 and the
-AP105/AP107/AP138 cluster is not a bookkeeping correction; it is
+to the $\mathbb{Z}/2$-graded setting. Closing the
+residue-diagnostic and parity-cluster failure modes is not a
+bookkeeping correction; it is
 the $\mathbb{Z}/2$-refinement of the $E_1$ primitive layer of the
 programme, running parallel to (and compatible with) the
 $\mathbb{Z}_{\ge 0}$-refinement by shadow depth. Every super-chiral
