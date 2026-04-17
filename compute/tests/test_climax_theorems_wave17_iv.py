@@ -20,6 +20,13 @@ from the programme-internal construction.
 
 from __future__ import annotations
 
+# HZ-IV-W8-B FLAG (Wave-10 scan, 2026-04-17): despite the "structural boolean
+# oracle (not a numerical tautology)" docstring self-description above, every
+# test body here is `assert True`; the @independent_verification decorator is
+# bibliographic scaffolding, not numerical cross-verification. Do NOT count
+# these toward HZ-IV coverage. See
+# adversarial_swarm_20260417/wave10_hz_iv_w8b_primitive_tautology_scan.md.
+
 from compute.lib.independent_verification import independent_verification
 
 

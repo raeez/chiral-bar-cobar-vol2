@@ -58,19 +58,28 @@ class M is coarse; the refined slot is the G^+- sector's class-L
 embedding inside the M envelope. BP's kappa ratio rho = 1/2 (T is
 Sugawara of residual sl_2), distinct from principal W_N (rho = H_N - 1).
 
-(R4) **Chain-level E_3-topological for BP already inscribed.** The
-chapter bp_chain_level_strict_platonic.tex (thm:bp-chain-level-
-e3-topological, proved) establishes strict chain-level E_3-topological
-structure for BP on the ORIGINAL BRST complex on X — not merely in
-the weight-completed envelope — via the branched-cover route:
+(R4) **RETRACTED 2026-04-17: Chain-level E_3-topological for BP
+inscribed at cohomological level only.** The chapter
+bp_chain_level_strict_platonic.tex (thm:bp-chain-level-
+e3-topological, proved) establishes E_3-topological structure
+for BP at the level of H^•(Q_tot) on the ORIGINAL BRST complex on X
+(cohomological H^•(Q_tot) only; strict chain-level on original
+complex retracted as frontier per rem:frontier-class-L-strict-chain-
+level at e_infinity_topologization.tex:382-411) — via the
+branched-cover route:
   (i) pull back to X-tilde along pi: X-tilde -> X of degree 2,
   (ii) upstairs the pulled-back V_k(sl_3) is class L with integer
        Kazhdan weight; run Vol I's class-L antighost absorption
-       (eta_1^(i) + eta_1^(ii)) to get [Q_tot, G_tilde_1] = T_Sug,
+       (eta_1^(i) + eta_1^(ii)) to get [Q_tot, G_tilde_1] = T_Sug
+       in H^•(Q_tot) (cohomological H^•(Q_tot) only; strict chain-
+       level on original complex retracted as frontier per
+       rem:frontier-class-L-strict-chain-level at
+       e_infinity_topologization.tex:382-411),
   (iii) descend via Deck(pi) = Z/2 invariants; Maschke exactness in
-        characteristic 0 preserves CHAIN-LEVEL (not only cohomological)
-        identities. This strictly strengthens the generic class-M
-        weight-completed entry for BP.
+        characteristic 0 preserves COHOMOLOGICAL identities (strict
+        chain-level preservation retracted along with the upstairs
+        claim). This matches the generic class-M weight-completed
+        entry for BP at cohomological level; no strict strengthening.
 
 (R5) **DS-Hoch bridge (non-principal version).** Vol II
 fm81_fractional_ghost_platonic.tex thm:E3-topological-DS-general-

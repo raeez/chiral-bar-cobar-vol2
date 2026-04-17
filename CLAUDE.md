@@ -964,7 +964,7 @@ Status of the six reconstitution swarm tasks:
 - ✅ Unified Chiral Quantum Group Q_g^{k,f,μ} — master document ready
 - ✅ SC^{ch,top} heptagon — sc_chtop_heptagon.tex (1141 lines) with all 7 edge theorems + W13 prop:heptagon-edge-34/45 (compositional qiso + Dunn assembly)
 - ✅ Seven Faces GRT-parametrized infinite family — written (see GRT-Parametrized Seven Faces Theorem above)
-- ✅ Universal celestial holography — `thm:uch-main` at universal_celestial_holography.tex:213, ProvedHere; class-M chain-level via DS-Hoch bridge
+- ✅ Universal celestial holography — `thm:uch-main` at universal_celestial_holography.tex:213, ProvedHere at g=0; class-M chain-level via DS-Hoch bridge on the weight-completed ambient only, with g ≥ 1 conjectural per `conj:uch-gravity-chain-level`
 
 The Platonic form of the programme is now specified in nine master theorems. Technical malpractice healing + coordinate rebindings remain; the mathematics' inner poetry, inner music, and inner motion are realized.
 
@@ -1010,7 +1010,7 @@ The Platonic form of the programme is now specified in nine master theorems. Tec
 - ✅ **Unified Chiral Quantum Group** (Q_g^{k,f,μ}, all simple types, all gradings, all shifts)
 - ✅ **GRT-Parametrized Seven Faces** (torsor over GRT_1, F8 + F9 canonical)
 - ✅ **SC^{ch,top} heptagon** — sc_chtop_heptagon.tex (1141 lines) with all 7 edge theorems + W13 prop:heptagon-edge-34/45 (compositional qiso + Dunn assembly)
-- ✅ **Universal Celestial Holography** — `thm:uch-main` at universal_celestial_holography.tex:213, ProvedHere; class-M chain-level via DS-Hoch bridge
+- ✅ **Universal Celestial Holography** — `thm:uch-main` at universal_celestial_holography.tex:213, ProvedHere at g=0; class-M chain-level via DS-Hoch bridge on the weight-completed ambient only, with g ≥ 1 conjectural per `conj:uch-gravity-chain-level`
 
 ### Platonic theorem upgrades inscribed (2026-04-17 session)
 
@@ -1298,7 +1298,7 @@ Wrong reasoning chains using these as premises:
 | AP-CY42 | phi_{0,1} normalization. c(-1)=1 (Gritsenko-Nikulin std) vs c(-1)=2 (K3 elliptic genus = 2·phi_{0,1}). Factor = kappa_ch(K3) | Vol III |
 | AP-CY43 | Shadow-Feynman tautology at L≥4. Feynman engine calls shadow recursion. For L≥4, independent path (e.g. k-pt conformal blocks) | Vol III |
 | AP-CY45 | N=2 root-of-unity gives TRIVIAL double braiding. q²=1 at N=2. Non-abelian MTC needs N≥3 where q²≠1 | Vol III |
-| AP-CY46 | No native CY_4 Yangian. π_4(BU)=Z obstructs E_4. Correct: p_1-twisted double current algebra. Cascade max = E_3 for ALL d≥3 | Vol III |
+| AP-CY46 | PROVED NEGATIVE: no native CY_4 Yangian (π_4(BU)=Z Pontryagin BLOCK-obstruction to E_4). CONSTRUCTED: p_1-twisted double current algebra as chain-level P^1-family model (Vol III `constr:phi-4-p1-family`). CONJECTURED: associator coherence verified at sextic order only (`conj:cy4-p1-family-associator-sextic`). Cascade max = E_3 at d=4 via this construction; "ALL d≥3" unqualified claim is SCOPE-RESTRICTED to d=4 constructed case + cases where analogous p_1-twist is verified. d≥5 open | Vol III |
 | AP-CY47 | Structure function degree from Mukai rank, NOT Lie dim. E_8×E_8: (24,24) from 24 Mukai directions, NOT (500,500) | Vol III |
 | AP-CY48 | 3d→6d lift rate 24%. Algebraic lifts 100%, topological 0%. 6d NOT a dim upgrade of 3d | Vol III |
 | AP-CY53 | π_1(Conf_2) ordered vs unordered. π_1(Conf_2(R^d))=0 for d≥3 (ORDERED); π_1(UConf_2(R^d))=Z/2 (UNORDERED) | Vol III |

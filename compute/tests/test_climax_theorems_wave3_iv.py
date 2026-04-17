@@ -17,6 +17,17 @@ classical sources.
 
 from __future__ import annotations
 
+# HZ-IV-W8-B FLAG (Wave-10 scan, 2026-04-17): every test in this module is a
+# structural boolean predicate _pred(bool, ...) -> bool whose output is
+# determined by the hypothesis arguments alone. The @independent_verification
+# decorator records genuinely disjoint external sources, but the Python-level
+# test does NOT cross-check a numerical observable. These decorations are
+# bibliographic scaffolding; treat as UN-VERIFIED for coverage accounting
+# until a numerical engine is substituted for each _pred. Heal: import an
+# engine from compute/lib/ producing a non-predetermined observable, then
+# assert engine_output == value predicted by an external source.
+# Scan doc: adversarial_swarm_20260417/wave10_hz_iv_w8b_primitive_tautology_scan.md
+
 from compute.lib.independent_verification import independent_verification
 
 
