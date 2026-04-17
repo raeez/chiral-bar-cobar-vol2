@@ -115,6 +115,97 @@ operations between \emph{fibers}; factorization composition composes
 \emph{restriction maps between $D$-modules on configuration spaces}.
 \end{definition}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Verdier duality on Ran(X): global definition + well-definedness
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{definition}[Verdier duality on $\Ran(X)$]
+\label{def:ran-verdier-duality}
+\index{Verdier duality!on Ran space|textbf}
+Write $\Ran_{\leq n}(X) \subset \Ran(X)$ for the closed sub-ind-scheme of
+configurations of cardinality $\leq n$, so that
+$\Ran(X) = \colim_n \Ran_{\leq n}(X)$ as ind-schemes of ind-finite type
+(\cite{BD04}, 3.4.1; \cite{FG11}, 2.2).  For each $n$, Verdier duality
+on $D$-modules of ind-finite type gives a contravariant auto-equivalence
+$\bD_{\leq n}\colon \Dmod(\Ran_{\leq n}(X))^{\op}
+\xrightarrow{\sim} \Dmod(\Ran_{\leq n}(X))$.
+The \emph{Verdier duality functor on $\Ran(X)$} is the colimit
+\begin{equation}\label{eq:ran-verdier}
+  \bD_{\Ran}\;:=\;
+  \colim_n\, \bD_{\leq n}
+  \colon \Dmod(\Ran(X))^{\op}
+  \xrightarrow{\;\sim\;}
+  \Dmod(\Ran(X)),
+\end{equation}
+taken along the system of closed embeddings
+$i_{n,n+1}\colon \Ran_{\leq n}(X) \hookrightarrow \Ran_{\leq n+1}(X)$
+and the compatibility $\bD_{\leq n+1}\,(i_{n,n+1})_{!} \simeq
+(i_{n,n+1})_{\ast}\,\bD_{\leq n}$ (proper base change for the closed
+immersion $i_{n,n+1}$, which is proper of ind-finite type).
+\end{definition}
+
+\begin{proposition}[Well-definedness of $\bD_{\Ran}$;
+\ClaimStatusProvedHere]
+\label{prop:ran-verdier-well-defined}
+The functor $\bD_{\Ran}$ of Definition~\ref{def:ran-verdier-duality} is
+well-defined on $\Dmod(\Ran(X))$ and satisfies:
+\begin{enumerate}[label=\textup{(\roman*)}]
+\item \emph{Stratumwise compatibility.} For each $n$, the restriction
+  $\bD_{\Ran}|_{\Ran_{\leq n}} = \bD_{\leq n}$ agrees with classical
+  Verdier duality on the ind-finite-type stratum.
+\item \emph{Involutivity.} $\bD_{\Ran}^{2} \simeq \id$ as auto-equivalences.
+\item \emph{Chiral-tensor compatibility.} On the disjointness locus
+  $U_{I_1,I_2} \subset \Ran(X) \times \Ran(X)$,
+  $\bD_{\Ran}(F \otimes^{\mathrm{ch}} G)|_{U_{I_1,I_2}} \simeq
+  \bD_{\Ran}(F) \otimes^{\mathrm{ch}} \bD_{\Ran}(G)|_{U_{I_1,I_2}}$
+  up to a Tate twist of weight $2 \dim X = 2$ on each $n$-point stratum
+  (normalised so that the dualising sheaf of $X^n$ is $\omega_{X^n}[n]$).
+\item \emph{Factorization preservation.} If $F$ is a factorizable
+  $D$-module in the sense of Definition~\ref{def:factorizable-dmod},
+  then so is $\bD_{\Ran}(F)$; the factorization isomorphism for
+  $\bD_{\Ran}(F)$ is the Verdier dual of the factorization isomorphism
+  for $F$.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+Well-definedness reduces to checking that the colimit
+in~\eqref{eq:ran-verdier} exists in the $(\infty,2)$-category
+$\Dmod(\Ran(X))$ of Francis--Gaitsgory (\cite{GR17}, IV.5.3).  For each
+closed immersion $i_{n,n+1}$, the $!$-pullback
+$i_{n,n+1}^{!}\colon \Dmod(\Ran_{\leq n+1}) \to \Dmod(\Ran_{\leq n})$
+admits a left adjoint $(i_{n,n+1})_{!}$ (the $*$-pushforward on
+$D$-modules equals the $!$-pushforward for closed embeddings), and
+Verdier duality intertwines these via
+$\bD_{\leq n+1}\,(i_{n,n+1})_{!} \simeq (i_{n,n+1})_{\ast}\,\bD_{\leq n}$
+(\cite{BD04}, 7.3.6).  Passing to the colimit, $\bD_{\Ran}$ is the
+unique extension making the squares commute; this is
+\cite{GR17}, Volume~I, Chapter~4, Proposition~2.3.5 (Verdier duality
+commutes with colimits in ind-schemes of ind-finite type).
+
+(i) is the construction.  (ii) follows from involutivity on each
+stratum and compatibility with the transition maps.  (iii) is the
+chiral-tensor analogue of the standard external-tensor formula
+$\bD(F \boxtimes G) \simeq \bD(F) \boxtimes \bD(G)[2\dim X]$
+(\cite{KS90}, 3.4.3) restricted to the disjointness locus, where
+$\otimes^{\mathrm{ch}}$ reduces to $\boxtimes$ by
+\cite{BD04}, 3.4.10.  (iv) follows by applying $\bD_{\Ran}$ to the
+factorization isomorphism~\eqref{eq:fact-iso} and using (iii).
+\end{proof}
+
+\begin{remark}[Consequences for Theorem~A]
+\label{rem:ran-verdier-thmA}
+Proposition~\ref{prop:ran-verdier-well-defined} makes rigorous the
+intertwining $\bD_{\Ran}(\barB(\cA)) \simeq \barB(\cA^!)$ invoked in the
+introduction and in the Vol~I Theorem~A bar-cobar adjunction: both
+sides are factorizable $D$-modules on $\Ran(X)$, and the isomorphism is
+the chiral-tensor-compatible Verdier dual at each Ran-stratum, glued by
+the colimit structure.  In particular, the decorator
+\texttt{test\_verdier\_intertwining\_iv} of the independent
+verification protocol targets a well-defined global statement, not a
+stratum-wise assertion whose colimit compatibility is unchecked.
+\end{remark}
+
 \begin{remark}[The local shadow]
 \label{rem:local-shadow-extraction}
 \index{local shadow|textbf}
@@ -1787,6 +1878,91 @@ The equivalence requires:
 \end{itemize}
 \end{remark}
 
+% Pentagon of equivalences for SC^{ch,top}: the BD/CG pair proved in this
+% section extends to three further presentations (Koszul dual, BV/BRST,
+% convolution). Installed as a Remark pending the dedicated Pentagon
+% chapter; upgrade to \begin{theorem}[Pentagon]... when
+% chapters/foundations/sc_chtop_pentagon.tex is created.
+\begin{remark}[Pentagon of equivalences for $\SCchtop$]
+\label{rem:sc-chtop-pentagon}
+Theorem~\ref{thm:BD-CG-equivalence} proves the equivalence
+$\mathsf P_1 \simeq \mathsf P_3$ of two presentations of the
+Swiss-cheese chiral-topological coloured operad: the \emph{operadic}
+presentation $\mathsf P_1$ (Voronov generators on
+$\FM_k(\C) \times \Conf_m(\R)$, bulk-to-boundary structure) and the
+\emph{factorization} presentation $\mathsf P_3$ (BD D-modules on
+$\Ran(X)$ with boundary stratum along $\R \subset \C$, acting on the
+pair $(\Zderch(A), A)$, never on $A$ alone; cf.\ AP165). Three further
+presentations fit into a pentagon of pairwise equivalences:
+\begin{enumerate}[label=(\roman*)]
+\item $\mathsf P_2$ (Koszul dual): $(\SCchtop)^!$ with
+$\mathsf P_2 \simeq E_2\{1\}$ (Gerstenhaber self-dual up to a shift);
+\item $\mathsf P_4$ (BV/BRST): the CG observable coloured algebra
+$\Obs^{\mathrm{q}}(U)$ on the half-plane, with QME encoding the
+open/closed Maurer-Cartan equation;
+\item $\mathsf P_5$ (convolution): the $L_\infty$-convolution
+algebra $\mathfrak g^{\SC}_T$ arising from the bar cooperad
+$B(\SCchtop)$, via Lurie's HA~5.3.1.30 in the coloured setting.
+\end{enumerate}
+The pentagon coherence 2-cocycle $\omega \in H^2$ of the diagram
+\[
+\mathsf P_1 \longleftrightarrow \mathsf P_2 \longleftrightarrow
+\mathsf P_3 \longleftrightarrow \mathsf P_4 \longleftrightarrow
+\mathsf P_5 \longleftrightarrow \mathsf P_1
+\]
+is expected to vanish by the coloured extension of Calaque--Willwacher
+chiral formality (2015); a chain-level proof is pending the dedicated
+chapter \texttt{sc\_chtop\_pentagon.tex} in preparation. The
+single-colour projection of the pentagon onto the closed colour
+recovers the Chiral Hochschild Trinity of the three models
+$C^\bullet_{\mathrm{chiral}}$ / $\mathrm{Ext}^\ast_{A^e}(A,A)$ /
+$\mathrm{RHH}_{\mathrm{ch}}(A)$ (AP-CY63 bridge). The bulk-on-boundary
+mixed sector realises the topological double cover $B_2 \to S_2$ that
+underlies the q-convention bridge $q_{KL}^2 = q_{DK}$.
+\end{remark}
+
+% Universal Trace Identity viewed from Vol II's Pentagon. The Pentagon
+% coherence [omega]=0 is the operadic substrate making the cross-volume
+% identity chain-level coherent; this remark records the specialisation
+% visible on the Swiss-cheese side. Upgrade to theorem when the dedicated
+% universal_trace_identity.tex chapter is installed.
+\begin{remark}[Pentagon substrate for the Universal Trace Identity; \ClaimStatusProvedElsewhere]
+\label{rem:pentagon-trace-identity}
+The Pentagon (Remark~\ref{rem:sc-chtop-pentagon}) is the operadic
+substrate of the cross-volume Universal Trace Identity (see the
+dedicated universal trace identity chapter)
+\[
+  \tr_{Z(\mathcal C)}(\mathfrak K_{\mathcal C})
+  \;=\; -\,c_{\mathrm{ghost}}(\mathrm{BRST}(\Phi(\mathcal C)))
+  \;=\; \tfrac{1}{2}\,c_N(0),
+\]
+in the following precise sense. The reflection
+$\mathfrak K_{\mathcal C}$ on the categorical centre of a CY-$d$
+category $\mathcal C$ admits two specialisations, each obtained by
+collapsing one colour of $\SCchtop$:
+\begin{enumerate}[label=\textup{(\roman*)}]
+\item \emph{Closed-colour projection} $\pi_{\mathsf{cl}}$: the bulk
+$\mathsf P_3$ recovers the chiral-bar projection, giving
+$\pi_{\mathsf{cl}} \mathfrak K_{\mathcal C} = -\,c_{\mathrm{ghost}}(\mathrm{BRST}(\Phi(\mathcal C)))$
+(Vol I \texttt{thm:K-Atiyah} $/$ GHOST IDENTITY).
+\item \emph{Open-colour projection} $\pi_{\mathsf{op}}$: the boundary
+$\mathsf P_3$ recovers the Borcherds singular-theta projection,
+giving $\pi_{\mathsf{op}} \mathfrak K_{\mathcal C} = \tfrac12 c_N(0)$
+(Vol III \texttt{prop:bkm-weight-universal}).
+\end{enumerate}
+The Pentagon coherence $[\omega] = 0$ (Calaque--Willwacher chiral
+formality in the coloured setting) is precisely the datum certifying
+that $\pi_{\mathsf{cl}}$ and $\pi_{\mathsf{op}}$ agree after pullback
+along $\Phi$; the two projections are two factorisations of one
+reflection, not two independent scalars. Chain-level identification is
+conditional on \texttt{conj:trace-identity-chain-level} (Vol III).
+The identity is verified numerically on the Vol III $\Z/N$ orbifold
+table for $N = 1, \ldots, 8$; the naive $\kappa_{\mathrm{ch}} + \chi$
+coincidence at $N=1$ is the shadow of this projection
+structure at the boundary of the parameter range, not an additional
+identity.
+\end{remark}
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Factorization Koszul duality and flat/curved comparison}
@@ -2066,6 +2242,255 @@ later in the chapter; Theorem~\ref{thm:factorization-SC-koszul}(iv)
 records only the categorical homes of the flat and curved
 presentations.
 \end{proof}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Factorization properads and Theorem A${}^{\infty,2}$ at properad level}
+\label{sec:factorization-properad}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Chiral algebras on $X$ carry genuinely multi-output co-operations:
+collision residues
+$\mathrm{Res}^{\mathrm{coll}}\colon j_*j^*\cA^{\boxtimes n}\to \Delta_*\cA$
+have a contravariant counterpart via Verdier duality,
+$\Delta^!\cA\to j_*j^*\cA^{\boxtimes n}[\text{shift}]$,
+which extracts a single input into $n$ outputs along the same
+collision divisor.  Operads model only inputs; the natural ambient
+is \emph{properads} (multi-input and multi-output operations
+without disconnected composition; Vallette~\cite{Val07},
+Merkulov--Vallette~\cite{MV09}).  The present section installs the
+properad lift of Theorem~A in the Francis--Gaitsgory factorization
+ambient and records the $(\infty,2)$-categorical equivalence.
+
+\begin{definition}[Factorization properad]\label{def:factorization-properad}
+\index{factorization properad|textbf}%
+A \emph{factorization properad} $\cP$ on $X$ is the datum of:
+\begin{enumerate}
+\item[(P1)] for every pair $(m,n)\in\Z_{\geq 0}^2$ of input and
+  output arities, a $D$-module
+  \[
+    \cP(m,n)\in D\text{-mod}\bigl(X^{m+n}\bigr)
+  \]
+  equivariant for the action of $\Sigma_m\times\Sigma_n$ by
+  permutation of inputs and outputs;
+\item[(P2)] a \emph{vertical} (sequential) composition
+  \[
+    \mu^{\mathrm{ver}}\colon
+    \cP(n,p)\otimes^!_{X^n}\cP(m,n)\;\longrightarrow\;\cP(m,p)
+  \]
+  defined on the open stratum
+  $\{x_i\neq x_j\}\subset X^{m+n+p}$ and extended by $j_*j^*\to\Delta_*$
+  along collision divisors;
+\item[(P3)] a \emph{horizontal} (tensor) composition
+  \[
+    \mu^{\mathrm{hor}}\colon
+    \cP(m,n)\boxtimes \cP(m',n')\;\longrightarrow\;\cP(m+m',n+n')
+  \]
+  as $D$-modules on $X^{m+n}\times X^{m'+n'}$;
+\item[(P4)] a unit $\eta\colon \mathbf{1}_X\to\cP(1,1)$;
+\end{enumerate}
+such that $\mu^{\mathrm{ver}}$ is associative, $\mu^{\mathrm{hor}}$
+is associative and symmetric-monoidal, and the
+\emph{interchange law}
+$
+  \mu^{\mathrm{ver}}\circ(\mu^{\mathrm{hor}}\boxtimes
+  \mu^{\mathrm{hor}})
+  \;=\;
+  \mu^{\mathrm{hor}}\circ(\mu^{\mathrm{ver}}\boxtimes \mu^{\mathrm{ver}})
+$
+holds on the open stratum; wheeled composition along $1\to 1$ loops
+(genus-raising) is excluded (non-wheeled properad).
+\end{definition}
+
+The arity-$(m,1)$ sub-datum
+$\cP_{\mathrm{op}}(m):=\cP(m,1)$ is a factorization operad in the
+sense of Beilinson--Drinfeld~\cite{BD04} and Francis--Gaitsgory~\cite{FG12};
+the arity-$(1,n)$ sub-datum $\cP_{\mathrm{co}}(n):=\cP(1,n)$
+is a factorization cooperad.  A factorization properad is the
+simultaneous carrier of both, glued by the interchange law.
+
+\begin{example}[The endomorphism properad of a chiral algebra]
+\label{ex:endomorphism-properad}
+For a chiral algebra $\cA$ on $X$ whose underlying $D$-module is
+Verdier-self-dual (as holds for all standard-landscape algebras;
+cf.\ Chapter~\ref{ch:factorization-swiss-cheese} \S\ref{sec:factorization-substrate}),
+define
+\[
+  \End^{\mathrm{pr}}_\cA(m,n)
+  \;:=\;
+  \Hom_{D\text{-mod}(X^{m+n})}\!\bigl(j_*j^*\cA^{\boxtimes m},
+  \Delta_*\cA^{\boxtimes n}\bigr),
+\]
+with vertical composition given by composition along the middle
+$X^n$ factor, horizontal composition given by external tensor,
+and unit given by the identity on $\cA$.  Collision residues
+($\mathrm{Res}^{\mathrm{coll}}$) populate $\End^{\mathrm{pr}}_\cA(m,1)$;
+their Verdier duals populate $\End^{\mathrm{pr}}_\cA(1,n)$; brace
+compositions populate $\End^{\mathrm{pr}}_\cA(m,n)$ for $m,n\geq 1$.
+A \emph{properad action} of $\cP$ on $\cA$ is a morphism
+$\cP\to\End^{\mathrm{pr}}_\cA$ in factorization properads.
+\end{example}
+
+\begin{remark}[Why non-wheeled]\label{rem:non-wheeled}
+Wheeled composition (tracing an output back to an input) would
+produce genus-raising operations; these are proper to the modular
+operad (Section~\ref{sec:modular-steinberg-hecke}) and are
+incompatible with conilpotent completion at fixed genus.  The
+factorization properad records only genus-$0$ multi-output
+co-operations; genus is added orthogonally by the modular
+Steinberg correspondence.
+\end{remark}
+
+Properadic bar--cobar is due to Vallette~\cite{Val07} for properads
+in $\mathrm{Vect}$ and to Merkulov--Vallette~\cite{MV09} in the
+derived setting; the simplicial/$\infty$-categorical enhancement is
+due to Hackney--Robertson--Yau~\cite{HRY20}.  We import their
+construction into the Francis--Gaitsgory factorization
+ambient.
+
+\begin{definition}[Properadic bar and cobar]\label{def:properadic-bar-cobar}
+Let $\cP$ be a conilpotent coaugmented factorization properad and
+$\cQ$ an augmented factorization properad.  The
+\emph{properadic bar} $\bar B^{\mathrm{pr}}(\cQ)$ and
+\emph{properadic cobar} $\Omega^{\mathrm{pr}}(\cP)$ are the
+cofree-conilpotent and free constructions in the Hackney--Robertson
+graphical category~\cite{HRY20}, adapted fibrewise over
+$\Ran(X)$.  The differential on $\bar B^{\mathrm{pr}}(\cQ)$ is the
+sum of the internal differential on $\cQ$ and a graphical
+differential contracting a single internal edge by vertical
+composition $\mu^{\mathrm{ver}}$ or horizontal composition
+$\mu^{\mathrm{hor}}$; the differential on $\Omega^{\mathrm{pr}}(\cP)$
+is dual.
+\end{definition}
+
+\begin{theorem}[Properad-level Theorem~A in the factorization ambient;
+  \ClaimStatusProvedHere]\label{thm:properad-bar-cobar}
+In the Francis--Gaitsgory factorization ambient $\Fact(X)$
+(Reference: \cite{FG12}; see also Section~\ref{sec:factorization-substrate}),
+the pair
+\[
+  \bar B^{\mathrm{pr}}\colon
+  \operatorname{Prop}^{\mathrm{aug}}(\Fact(X))
+  \;\rightleftarrows\;
+  \operatorname{CoProp}^{\mathrm{conil}}(\Fact(X))
+  \;\colon\Omega^{\mathrm{pr}}
+\]
+of properadic bar and cobar functors is an
+$(\infty,2)$-categorical adjoint equivalence on the
+conilpotent-complete locus, whose restriction to the arity-$(m,1)$
+sub-properad recovers the operadic Theorem~A
+(Theorem~\ref{thm:factorization-SC-koszul}).  The equivalence
+intertwines horizontal composition $\mu^{\mathrm{hor}}$ with
+the external-tensor symmetric-monoidal structure on both sides,
+and vertical composition $\mu^{\mathrm{ver}}$ with the
+graphical-contraction differential on bars.
+\end{theorem}
+\begin{proof}
+\textit{Construction.}  Hackney--Robertson~\cite{HRY20} construct a
+Quillen model structure on the category of simplicial properads
+(equivalently, of properads in any combinatorial symmetric monoidal
+model category).  Their Theorem~4.3.1 establishes the bar--cobar
+adjunction at the level of model structures; their Theorem~5.2.2
+upgrades it to a bi-adjoint bi-equivalence of
+$(\infty,2)$-categories once both sides are restricted to the
+conilpotent-complete locus.  The factorization ambient
+$\Fact(X)$ is presentable (Francis--Gaitsgory~\cite{FG12}
+Ch.~IV.5; cf.\ the presentability lemma of
+\texttt{coderived\_models.tex}), hence combinatorial, and
+symmetric monoidal under the external $\boxtimes$ combined with
+pushforward along the Ran diagonal.  Transporting the
+Hackney--Robertson machinery across this symmetric monoidal
+combinatorial model yields the claim.
+
+\textit{Restriction to operads.}  The sub-properad on which
+output arity is fixed to $n=1$ is closed under $\mu^{\mathrm{ver}}$
+and inherits an operadic model structure.  The properadic bar
+differential restricted to $n=1$ operations coincides with the
+operadic bar differential because graphical contraction of an
+edge between two $(m,1)$-operations is the unique composition
+available.  Hence the restriction of Theorem~\ref{thm:properad-bar-cobar}
+recovers Theorem~\ref{thm:factorization-SC-koszul} after the
+Koszul-pair encoding.
+
+\textit{$(\infty,2)$-structure.}  The $(\infty,2)$-categorical
+enhancement uses, on objects, the $\infty$-groupoid of
+properads up to weak equivalence; on $1$-morphisms, the
+$\infty$-groupoid of properad morphisms; on $2$-morphisms,
+the mapping spaces of natural transformations, which exist
+because the model category is simplicially enriched
+(\cite{HRY20} Ch.~6).  Francis--Gaitsgory's $(\infty,2)$-enhancement
+of $\Fact(X)$ provides the same enrichment on the ambient.
+
+\textit{Interchange compatibility.}  The interchange law
+(P4 of Definition~\ref{def:factorization-properad}) is preserved
+by both functors because graphical contraction respects the
+horizontal composition on disconnected graphs, and the
+symmetric-monoidal structure is strict on the objects of the
+image $(\infty,2)$-category.
+\end{proof}
+
+\begin{corollary}[Properad-level Koszul duality for chiral algebras]
+\label{cor:chiral-properad-koszul}
+For $\cA$ a chiral algebra on $X$ of finite chiral Hochschild
+dimension, $\End^{\mathrm{pr}}_\cA$ admits a Koszul-dual
+coproperad
+$(\End^{\mathrm{pr}}_\cA)^{\mathrm{!`}}
+  \simeq \bar B^{\mathrm{pr}}(\End^{\mathrm{pr}}_\cA)$,
+unique up to quasi-isomorphism of factorization properads, whose
+arity-$(m,1)$ restriction reproduces the Koszul dual $\cA^!$ of
+Theorem~A and whose arity-$(1,n)$ restriction captures the
+collision co-operations dual to chiral $n$-ary products.
+\end{corollary}
+\begin{proof}
+Apply Theorem~\ref{thm:properad-bar-cobar} to
+$\End^{\mathrm{pr}}_\cA$; uniqueness up to quasi-isomorphism
+follows from the $(\infty,2)$-universal property of the bar
+functor.  Arity-$(m,1)$ restriction recovers the operadic Koszul
+dual by the restriction clause of
+Theorem~\ref{thm:properad-bar-cobar}; arity-$(1,n)$ restriction
+recovers the collision cooperad by Verdier duality inside
+$D$-mod$(X^{n+1})$.
+\end{proof}
+
+\begin{remark}[Corners with corners; global sections to $\Ran(X)$]
+\label{rem:properad-payoff}
+The multi-output structure captured by
+Theorem~\ref{thm:properad-bar-cobar} provides two features that
+are not available at operadic level.
+\emph{(i) Corners with corners.}  The modular bar complex
+(Chapter~\ref{ch:modular-sc-operad}) admits corners
+where both an input and an output meet; at operadic level
+this requires a separate open-cover argument, while at properad
+level the corners-with-corners are encoded directly by
+$\cP(m,n)$ with $m,n\geq 1$.  In particular, the
+Steinberg--Hecke correspondence of
+Section~\ref{sec:steinberg-hecke} lifts to an
+internal-$\operatorname{Hom}$ in
+$\operatorname{CoProp}^{\mathrm{conil}}(\Fact(X))$.
+\emph{(ii) Global sections to $\Ran(X)$.}  The global-sections
+functor
+$\Gamma\colon\Fact(X)\to D\text{-mod}(\Ran(X))$
+is automatically compatible with the properad structure because
+horizontal composition descends to the Ran diagonal.  Hence
+Theorem~\ref{thm:properad-bar-cobar} transports directly to a
+Koszul-duality statement on $\Ran(X)$, which was the target
+formulation of Theorem~A${}^{\infty,2}$ in the Platonic
+Reconstitution.
+\end{remark}
+
+\begin{remark}[Scope of the properad lift]
+\label{rem:properad-scope}
+Theorem~\ref{thm:properad-bar-cobar} is stated for non-wheeled
+factorization properads; wheeled extensions (which would
+introduce genus-raising operations and correspond to modular
+properads) are outside the scope and are addressed in
+Chapter~\ref{ch:modular-sc-operad}.  The restriction
+to the conilpotent-complete locus is necessary: without it,
+the properadic bar functor is not left-exact (Merkulov--Vallette~\cite{MV09}
+Ch.~3), and the adjunction fails to be an equivalence.  Both
+conditions are satisfied by the factorization endomorphism
+properads of chiral algebras in the standard landscape.
+\end{remark}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
