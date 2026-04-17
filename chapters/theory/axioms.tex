@@ -28,6 +28,16 @@ coordinate expression of it.
 
 \subsection{Underlying data and parameters}
 \label{subsec:underlying-data}
+
+The minimal data a vertex algebraist needs to specify an $\Ainf$
+chiral algebra concretely is: a cochain complex $(A, Q)$, a
+holomorphic translation operator $\partial$, a vacuum unit
+$\mathbf{1}$, and the collection $\{m_k\}$ of multilinear
+operations valued in iterated Laurent series in spectral
+parameters~$\lambda_i$. Sesquilinearity, $A_\infty$ relations, and
+unitality are imposed separately in the following subsections; the
+present subsection fixes only the underlying data.
+
 \begin{definition}[$A_\infty$ chiral algebra]
 \label{def:ainfty_chiral}
 Fix a ground field $k$ of characteristic $0$. Let $(A,Q)$ be a cochain complex (cohomological grading), with $Q$ of degree $+1$.
@@ -437,7 +447,16 @@ where $m_2^{\mathrm{reg}}(a,b)\in A[\![\lambda]\!]$ and $m_2^{\mathrm{sing}}(a,b
 \label{subsec:product-bracket}
 \label{def:product}
 \label{def:lambda-bracket}
-As in Section~\ref{sec:Ainfty-to-PVA}, define for $[a],[b]\in H^\bullet(A,Q)$:
+
+The regular and singular parts of $m_2$ carry distinct algebraic
+content: the regular part descends to a graded-commutative
+associative product on cohomology, while the singular part
+descends to a $(-1)$-shifted Lie bracket, the $\lambda$-bracket
+of vertex-algebra theory. The following formulas make the two
+descents explicit and are verified in
+Theorem~\textup{\ref{thm:cohomology_PVA}}.
+
+Define for $[a],[b]\in H^\bullet(A,Q)$:
 \begin{align}
 \label{eq:prod-def}
 [a]\cdot[b] &:= \Bigl[\, \frac12\bigl(m_2^{\mathrm{reg}}(a,b) + (-1)^{|a||b|}m_2^{\mathrm{reg}}(b,a)\bigr)\,\Bigr],\\
@@ -692,8 +711,23 @@ vertex-wise factor $(P_{\mathrm{ch}}\rtimes E_1)$. Vertex decorations are determ
 colour: closed vertices carry $\FM(\C)$-data; open vertices carry $\FM(\C)\times \Conf(\R)$-data. The
 boundary identifications implement coherent sequential/simultaneous compositions.
 \end{remark}
+\end{construction}
 
 \subsection{Sesquilinearity: Complete Proof}
+
+The sesquilinearity identities
+\eqref{eq:sesqui-left}--\eqref{eq:sesqui-right} were recorded
+above as axioms; the following lemma derives them from a single
+principle, the $\C$-translation equivariance of the operadic
+structure maps. The proof tracks how a shift of one insertion
+point propagates through the spectral parameters~$\lambda_i$ and
+concludes that $m_k(\ldots,\partial a_i,\ldots)$ must be the
+multiplication by the corresponding spectral parameter. A
+convention-reconciliation paragraph at the end bridges the
+independent-parameter form
+\eqref{eq:sesqui-left}--\eqref{eq:sesqui-right} and the
+consecutive-difference form
+\eqref{eq:sesqui_explicit_1}--\eqref{eq:sesqui_explicit_k}.
 
 \begin{lemma}[Sesquilinearity from Translation Equivariance;
 \ClaimStatusProvedHere]
@@ -1576,7 +1610,22 @@ graphs, cf.~Thm.~\ref{thm:curved-dunn-H2-vanishing-all-genera}).
 
 \subsubsection{Compatibility with the PVA construction}
 \label{subsec:compat-PVA}
-The proof of the PVA structure on cohomology in Section~\ref{sec:axioms-Ainfty-chiral} can be interpreted operadically as the statement that the associated graded (holomorphic filtration) of $W(\mathsf{SC}^{\mathrm{ch,top}})$ is the free product of BD chiral and $E_1$, so the cohomological operations descend from the closed color; the bracket is the classical limit (residue) of the operadic composites, and associativity is the regular part of the $m_2$ identity.
+
+The axiomatic and operadic incarnations of an $\Ainf$ chiral
+algebra having been shown equivalent, it remains to verify that
+the PVA structure produced on cohomology
+(Theorem~\ref{thm:cohomology_PVA}) agrees with the one read
+directly off the associated graded of the operad. This is a
+consistency check, not a new construction.
+
+The proof of the PVA structure on cohomology in
+Section~\ref{sec:axioms-Ainfty-chiral} can be interpreted
+operadically as the statement that the associated graded
+(holomorphic filtration) of $W(\mathsf{SC}^{\mathrm{ch,top}})$ is
+the free product of BD chiral and $E_1$, so the cohomological
+operations descend from the closed color; the bracket is the
+classical limit (residue) of the operadic composites, and
+associativity is the regular part of the $m_2$ identity.
 
 \begin{remark}[Good Z-grading scope for DS reduction]\label{rem:ds-good-grading-scope}
 Quantum Drinfeld--Sokolov reduction $\mathcal{W}_k(\mathfrak{g}, f)$ requires a \emph{good} $\mathbb{Z}$-grading on $\mathfrak{g}$ with $f \in \mathfrak{g}_{-2}$: $\operatorname{ad} f \colon \mathfrak{g}_0 \to \mathfrak{g}_{-2}$ surjective, Kazhdan pairing on $\mathfrak{g}_{1/2}$ non-degenerate, $f$ in a unique nilpotent orbit meeting $\mathfrak{g}_{-2}$. The principal nilpotent always admits a good grading. Classical types $A_n, B_n, C_n, D_n$: every nilpotent orbit admits a good grading (Kac--Roan--Wakimoto). Exceptional types $E_{6,7,8}, F_4, G_2$: most orbits do, with the exceptions classified by Ding. DS reduction statements for ``all nilpotents'' carry this scope: unconditional on classical types; on principal and good orbits in exceptional types.
