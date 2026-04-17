@@ -9,7 +9,7 @@ Order follows `main.tex` linear traversal (Part I $\to$ Part VIII $\to$ Conclusi
 - [ ] `chapters/theory/foundations.tex`
 - [x] `chapters/theory/locality.tex` — 2026-04-17: Gate-2 forward-ref qualifier on $\cP^{\mathrm{ch}}$ + orphan-notation cleanup (opener); Gate-3 forcing-sentence paragraphs before each of §1.1.1/1.1.2/1.1.3 cold subsubsection openers. No formula/scope/status changes. V2-AP40 pre-clean. Balance 34=34. Audit converged.
 - [x] `chapters/theory/axioms.tex` — 2026-04-17: Gate-3 forcing paragraphs before cold openers of §1.1 (underlying data), §1.6 (product+bracket), §1.10 (sesqui proof), §1.13 (compat PVA). Gate-1 structural: restored missing `\end{construction}` for `const:coend-formula-mk` (pre-existing 74=73 imbalance → 74=74). No formulas/scope/status touched. κ values verified (Heis k, KM dim(g)(k+h^v)/(2h^v), Vir c/2, W_N c(H_N-1), W_2 boundary=c/2). Audit converged. AP43 hook false positive on pre-existing line.
-- [ ] `chapters/theory/equivalence.tex`
+- [x] `chapters/theory/equivalence.tex` — 2026-04-17: CONVERGED on first look, zero edits. Bridge chapter linking operad ↔ axioms. V2-AP40 clean; balance 2=2; all four subsections have forcing sentences; Gate-4 scope on E_3-algebraic vs E_3-topological correctly qualified (affine KM non-critical proved, general conjectural, class M weight-completed). Reconstituted state already at Chriss-Ginzburg standard.
 - [ ] `chapters/theory/bv-construction.tex`
 - [ ] `chapters/theory/factorization_swiss_cheese.tex`
 - [ ] `chapters/theory/sc_chtop_heptagon.tex`
