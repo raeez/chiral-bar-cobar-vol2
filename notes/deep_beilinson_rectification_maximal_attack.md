@@ -219,7 +219,7 @@ rests on uncovered ProvedHere claims. **FM-DBR-10**.
 
 ---
 
-## Cross-volume FM additions to `appendices/first_principles_cache.md`
+## Cross-volume FM additions to `notes/first_principles_cache_comprehensive.md`
 
 - **FM240 (= W1)** Theorem A^{∞,2} properad lift via HR19: 17-line prose-sketch in
   `theorem_A_infinity_2.tex:354–370`. Three concrete gaps. Counter: cite explicit

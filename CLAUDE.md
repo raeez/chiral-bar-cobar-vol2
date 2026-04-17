@@ -224,9 +224,9 @@ Coverage snapshot (2026-04-16): Vol I 0/2275; Vol II 0/1134; Vol III 2/283. Clos
   - **Visible-label leaks**: `\texttt{(thm|prop|lem|def|cor|rem|conj):...}` where `\ref{...}` or `\cref{...}` was intended.
   - **Error-ledger structures inside the manuscript**: `\begin{remark}[AP###: ...]`, `\label{rem:AP###-...}`, `\index{AP###!...}`, `\hyperref[AP##]{AP##}`, `\section{Anti-pattern register: ...}`, `\begin{convention}[AP###: ...]`, or enumerated `\item \textbf{FM###.}` catalogue pages. Sections, labels, indices, hyperrefs, and conventions must not be named after ledger tokens.
 
-  **Scope**: every `.tex` file under `chapters/`, every standalone in `standalone/`, every frontier/preface/appendix file that is `\input{}`-chained from `main.tex` or is itself a buildable document. Excluded: `.md` files (CLAUDE.md, README, AGENTS.md, `appendices/first_principles_cache.md`, `notes/`), files under `compute/`/`audit/`, and `working_notes.tex` (author-side draft not shipped).
+  **Scope**: every `.tex` file under `chapters/`, every standalone in `standalone/`, every frontier/preface/appendix file that is `\input{}`-chained from `main.tex` or is itself a buildable document. Excluded: `.md` files (CLAUDE.md, README, AGENTS.md, `notes/first_principles_cache_comprehensive.md`, `notes/`), files under `compute/`/`audit/`, and `working_notes.tex` (author-side draft not shipped).
 
-  **The error ledger** (this file, `CLAUDE.md`, and `appendices/first_principles_cache.md`) is where AP/FM tokens live. `.tex` prose is mathematics. A reader of the compiled PDF should never encounter "AP165", "FM81", or `commit \texttt{a5640de}`.
+  **The error ledger** (this file, `CLAUDE.md`, and `notes/first_principles_cache_comprehensive.md`) is where AP/FM tokens live. `.tex` prose is mathematics. A reader of the compiled PDF should never encounter "AP165", "FM81", or `commit \texttt{a5640de}`.
 
   **Mechanical detection grep** (run against `chapters/` and `standalone/` before every `.tex` commit):
   ```
@@ -312,7 +312,7 @@ Merged table (FM40-FM57 ↔ AP150-AP157, Vol II pitfalls on coproduct conflation
 
 ### Session 2026-04-16 Adversarial Campaign — Waves 1-6 (FM69-FM118)
 
-Six-wave ~18-agent attack surface scan. Findings categorized: ambient/foundations (FM69-74), quantification/scope (FM75-83), modular/genus (FM84-90), operadic (FM91-96), physics bridges (FM97-104), classification (FM105-110), metadata (FM111-118). All with file:line anchors in `appendices/first_principles_cache.md` entries 166-239.
+Six-wave ~18-agent attack surface scan. Findings categorized: ambient/foundations (FM69-74), quantification/scope (FM75-83), modular/genus (FM84-90), operadic (FM91-96), physics bridges (FM97-104), classification (FM105-110), metadata (FM111-118). All with file:line anchors in `notes/first_principles_cache_comprehensive.md` entries 166-239.
 
 **Ambient & foundations:**
 - **FM69**: chiral_koszul_pairs.tex:5818-5824 claims (D-mod(X), ⊗^{ch}) is symmetric monoidal via BD 3.4.10. BD 3.4.10 defines chiral OPERATIONS (pseudo-tensor); no bifunctor, no unit object. LV12 Thm 11.4.1 mis-applied. Counter: split Thm A into FORM-A (Σ-coinvariant factorization bar via FG12+GR17 IV.5, valid) and FORM-B (ordered E_1 bar, needs independent proof).
