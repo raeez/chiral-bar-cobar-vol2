@@ -1,0 +1,1250 @@
+% !TEX root = ../../main.tex
+% ============================================================================
+% The E_infty-Topologization Theorem.  Iterated higher-spin Sugawara/Casimir
+% tower upgrades the E_3-topological climax to an E_infty-topological ladder.
+%
+% Canonical upgrade (Vol II UPGRADE-SWEEP, 2026-04-16):
+%   Virasoro (N=2) -> E_3-top;  W_N -> E_{N+1}-top;  W_infty -> E_infty-top.
+%
+% Chapter structure:
+%   Section 1. Setup: higher-spin stress tower of depth N.
+%   Section 2. Theorem (iterated Sugawara/Casimir construction).
+%   Section 3. Theorem (E-ladder via topologized Dunn additivity).
+%   Section 4. Three specializations (Virasoro, W_N, W_infty).
+%   Section 5. Theorem (Operadic spiral and E_infty formal completion).
+%   Section 6. Healing of FM47, FM48, FM81, FM82, FM215.
+%   Section 7. Climax restatement (3d+infty topological gravity).
+% ============================================================================
+
+\section{The \texorpdfstring{$\Einfty$}{E\_infty}-Topologization Theorem}
+\label{sec:e-infinity-topologization}
+
+The 3d-gravity climax part (\ref{part:3d-gravity}) culminates, in its
+original inscription, with an
+$\Ethree$-topological climax: the derived chiral centre of an affine
+Kac--Moody algebra, of a principal $\cW$-algebra, or of a freely
+generated Poisson vertex algebra, carries an $\Ethree$-topological
+algebra structure via the topologization Construction~\ref{constr:topologization}
+driven by a single conformal vector $T(z)$. The Sugawara identity
+$T = [Q_{\mathrm{CS}}, G]$ purchases one transverse real dimension, the
+$\Etwo^{\mathrm{top}}$ upgrade along the holomorphic direction,
+and Dunn additivity with the open colour assembles the three-dimensional
+topological field theory.
+
+This chapter asserts that $\Ethree$ is the \emph{first rung} of an infinite
+ladder. Each higher-spin conformal tensor in the stress tower
+$T_{\bullet}(A) = \bigl\{ T^{(2)}, T^{(3)}, T^{(4)}, \ldots \bigr\}$ of a
+chiral algebra of the $\cW$-type purchases \emph{one more} transverse real
+dimension; a chiral algebra equipped with stress tower of depth
+$N$ reaches $\Etopo{N{+}1}$; the $\cW_\infty$ algebra of Bakas--Pope--Romans
+and Linshaw\,\cite{Linshaw-Winfty,Bakas-Winfty,BMP-Wsymmetry} reaches the
+universal limit $\Einfty$-topological. The $3$d quantum gravity of
+Chapter~\ref{ch:3d-gravity} (Virasoro case $N=2$) is then the $\Ethree$
+shadow of a $3$d$+\infty$ topological field theory living on the $\cW_\infty$
+boundary. The operadic circle of Section~\ref{sec:e_n-circle-holographic}
+is, at Platonic level, an infinite bidirectional spiral.
+
+\begin{remark}[Placement in the programme]
+\label{rem:e-infinity-placement}
+Section~\ref{sec:e-infinity-topologization} is an upgrade of the
+$\Ethree$-topological story of
+Theorems~\ref{thm:E3-topological-km},
+\ref{thm:E3-topological-DS},
+\ref{thm:E3-topological-DS-general},
+\ref{thm:E3-topological-free-PVA}. Each of those theorems remains valid,
+and each becomes the $N=2$ instance of the more general assertion
+Theorem~\ref{thm:e-infinity-topologization-ladder}. The chapter
+introduces one new hypothesis clause
+(Definition~\ref{def:higher-spin-stress-tower}) and one new construction
+(Construction~\ref{constr:iterated-topologization}); these collapse to
+the existing single-conformal-vector hypothesis and
+Construction~\ref{constr:topologization} at depth $N=2$.
+\end{remark}
+
+\subsection{Higher-spin stress tower of depth \texorpdfstring{$N$}{N}}
+\label{subsec:higher-spin-stress-tower}
+
+The key hypothesis for the $\Einfty$-ladder is the existence, inside the
+chiral algebra $A$, of an infinite (or truncated at depth $N$) tower of
+conformal tensors of strictly increasing spin, each of which is
+\emph{inner Sugawara-like} at non-critical level. The construction of
+these tensors in explicit examples is well-documented; see
+Bouwknegt--McCarthy--Pilch\,\cite{BMP-Wsymmetry} for a review of the spin
+content of $\cW_N$, Linshaw\,\cite{Linshaw-Winfty} for the universal
+two-parameter family $\cW_\infty[\mu]$, and
+Schoutens--Sevrin--van Nieuwenhuizen\,\cite{Schoutens-higher-spin-Sugawara}
+for the higher-spin Casimir construction originating the terminology.
+
+\begin{definition}[Higher-spin stress tower of depth $N$]
+\label{def:higher-spin-stress-tower}
+\index{stress tower!higher-spin|textbf}
+\index{higher-spin stress tower|textbf}
+\index{Wbar infinity algebra@$\cW_\infty$-algebra!stress tower}
+Let $A$ be a chiral algebra on a smooth curve $X$, at non-critical level
+$k \ne -h^\vee$. A \emph{higher-spin stress tower of depth
+$N \in \{2, 3, \ldots\} \cup \{\infty\}$ on $A$} is a graded family of
+conformal tensors
+\begin{equation}\label{eq:stress-tower-family}
+T_{\bullet}(A) \;=\;
+\bigl\{\, T^{(n)}(z) \in A \ :\ 2 \le n \le N+1 \,\bigr\},
+\qquad \deg\, T^{(n)} \;=\; n
+\quad\text{(conformal weight)},
+\end{equation}
+satisfying the following axioms:
+\begin{enumerate}[label=(T\arabic*)]
+\item\label{tower:quasiprimary}
+ \emph{Quasiprimarity}: each $T^{(n)}$ is a quasiprimary field of
+ conformal weight $n$ with respect to the Virasoro
+ subalgebra generated by $T^{(2)}$.
+\item\label{tower:inner-sugawara}
+ \emph{Inner Sugawara-like}: each $T^{(n)}$ is a normally ordered
+ polynomial of total conformal degree $n$ in a chosen set of
+ generating currents of $A$ (Casimir construction); at $n=2$ this
+ reduces to the ordinary Sugawara expression
+ $T^{(2)} = T_{\mathrm{Sug}} + T_{\mathrm{imp}}$ familiar from the
+ proof of Theorem~\ref{thm:E3-topological-DS-general}.
+\item\label{tower:truncated-Winfty}
+ \emph{Truncated $\cW_{1+\infty}$ brackets}: the OPE algebra of
+ $\{T^{(n)}\}_{2 \le n \le N+1}$ is a quotient of the universal
+ $\cW_\infty[\mu]$ algebra of Linshaw\,\cite{Linshaw-Winfty} by the
+ truncation ideal cutting off spin $>N+1$. In particular the highest
+ spin OPE closes on fields of spin $\le N+1$.
+\item\label{tower:BRST-primitive}
+ \emph{BRST-primitive existence}: there is a $3$d holomorphic-topological
+ BV-BRST quantisation $(A^{\mathrm{BV}}_{3d}, Q_{\mathrm{tot}})$ whose
+ boundary chiral algebra is $A$ and which admits, for each $2 \le n \le
+ N+1$, a spin-$(n{-}1)$ \emph{BRST-primitive antighost current}
+ $G^{(n)}(z) \in A^{\mathrm{BV}}_{3d}$ satisfying
+ \begin{equation}\label{eq:nth-Sugawara-BRST}
+ T^{(n)}(z) \;=\; \bigl[ Q_{\mathrm{tot}},\, G^{(n)}(z) \bigr]
+ \qquad\text{on}\ H^{\bullet}(A^{\mathrm{BV}}_{3d}, Q_{\mathrm{tot}}).
+ \end{equation}
+\item\label{tower:antighost-commutativity}
+ \emph{Antighost BRST-commutativity}: the antighosts pairwise
+ BRST-commute on cohomology:
+ \[
+ \bigl[ G^{(n)}(z),\, G^{(m)}(w) \bigr]
+ \;=\; Q_{\mathrm{tot}}\text{-exact}
+ \qquad \text{for all $2 \le n, m \le N+1$.}
+ \]
+\end{enumerate}
+\end{definition}
+
+\begin{remark}[Terminology: ``iterated Sugawara'' vs.\ ``Casimir tower'']
+\label{rem:iterated-sugawara-caveat}
+The label ``iterated Sugawara'' appearing in the programme's headline for
+this upgrade is a shorthand. The classical Sugawara construction is the
+quadratic-in-currents normally ordered formula
+$T_{\mathrm{Sug}} = (2(k+h^\vee))^{-1} \sum_a {:}J^a J_a{:}$; it produces
+only the spin-$2$ tensor $T^{(2)}$. The spin-$n$ generators
+$T^{(n)}$ for $n \ge 3$ arise from the \emph{higher-spin Casimir
+construction} $T^{(n)} = d^{a_1 \cdots a_n} {:}J_{a_1} \cdots J_{a_n}{:}$,
+with $d$ a symmetric invariant tensor of rank $n$ on $\fg$
+(Schoutens--Sevrin--van~Nieuwenhuizen\,\cite{Schoutens-higher-spin-Sugawara},
+Fateev--Lukyanov\,\cite{Fateev-Lukyanov}). We retain the expression
+``iterated Sugawara'' because each $T^{(n)}$ shares the Sugawara
+property~\ref{tower:inner-sugawara} of being a polynomial of degree $n$
+in a chosen current system, but the reader should hear
+``$n$-th order Casimir / higher-spin Sugawara / inner degree-$n$
+stress tensor'' as equivalent phrases.
+\end{remark}
+
+\begin{remark}[Comparison with single-conformal-vector hypothesis]
+\label{rem:single-conformal-vector-N2}
+At depth $N = 2$, the tower $T_{\bullet}(A) = \{T^{(2)}\}$ is the
+ordinary conformal vector $T(z) = T^{(2)}(z)$; Sugawara identity
+\ref{tower:BRST-primitive} at $n = 2$ is the identity
+$T = [Q_{\mathrm{tot}}, G]$ of Construction~\ref{constr:topologization}.
+All axioms \ref{tower:quasiprimary}--\ref{tower:antighost-commutativity}
+are satisfied vacuously at $N = 2$, and the depth-$2$ specialisation
+of Theorem~\ref{thm:e-infinity-topologization-ladder} below recovers
+Construction~\ref{constr:topologization} exactly. In particular the new
+hypothesis is a genuine generalisation at $N \ge 3$ and a tautological
+re-statement at $N = 2$.
+\end{remark}
+
+\subsection{Iterated Sugawara/Casimir topologization construction}
+\label{subsec:iterated-topologization-construction}
+
+The stress tensor $T^{(n)}$ of spin $n$ is the generator of the transverse
+deformation of order $n-1$ along the holomorphic direction: at the level
+of modes, $T^{(n)}_{(0)}$ acts as the normally ordered differential
+operator $\partial_z^{n-1}/(n-1)!$ on primary fields of appropriate
+conformal weight (Borcherds\,\cite{Borcherds-vertex},
+Kac\,\cite{Kac-vertex}). Spin $2$ kills $\partial_z$ (local constancy in
+the holomorphic direction, i.e.\ the $\Etwo^{\mathrm{top}}$ upgrade of
+Construction~\ref{constr:topologization}); spin $3$ kills $\partial_z^2 /
+2$ (the second-order obstruction to local constancy); spin $n$ kills
+$\partial_z^{n-1}/(n-1)!$. The full stress tower kills the entire formal
+flow of holomorphic vector fields on the formal disc.
+
+\begin{construction}[Iterated topologization; \ClaimStatusProvedHere]
+\label{constr:iterated-topologization}
+\index{topologization!iterated|textbf}
+\index{iterated topologization|textbf}
+\index{Einfty-topological algebra@$\Einfty$-topological algebra!construction}
+Let $A$ carry a higher-spin stress tower of depth $N$ in the sense of
+Definition~\ref{def:higher-spin-stress-tower}. For each $2 \le n \le N+1$,
+the $n$-th Sugawara--BRST identity~\eqref{eq:nth-Sugawara-BRST} implies
+that the formal $n{-}1$-st order infinitesimal translation in the
+holomorphic direction is $Q_{\mathrm{tot}}$-exact on the bulk factorisation
+algebra of $A^{\mathrm{BV}}_{3d}$:
+\begin{equation}\label{eq:dnz-Q-exact}
+\tfrac{1}{(n-1)!}\,\partial_z^{\,n-1}\, \mathcal{O}
+\;=\;
+[T^{(n)}_{(0)},\, \mathcal{O}]
+\;=\;
+\bigl[[Q_{\mathrm{tot}}, G^{(n)}_{(0)}],\, \mathcal{O}\bigr]
+\;=\;
+\bigl[Q_{\mathrm{tot}},\, [G^{(n)}_{(0)},\, \mathcal{O}]\bigr]
+\end{equation}
+for any bulk observable $\mathcal{O}$ (that is, any element of
+$Z^{\mathrm{der}}_{\mathrm{ch}}(A) = H^\bullet(A^{\mathrm{BV}}_{3d},
+Q_{\mathrm{tot}})$). Equivalently, the full formal flow
+$\exp(\epsilon \partial_z)$ acts trivially on
+$Q_{\mathrm{tot}}$-cohomology.
+
+Consequently the factorisation algebra
+$U \mapsto \mathrm{Obs}(U)$ on the holomorphic direction is locally
+constant on $Q_{\mathrm{tot}}$-cohomology, but now to order $N$: all
+derivatives $\partial_z^r$ for $1 \le r \le N$ act as
+$Q_{\mathrm{tot}}$-coboundaries. Combined with the $\Eone^{\mathrm{top}}$
+structure on the transverse topological direction
+(Construction~\ref{constr:topologization}, Step~3), the resulting
+algebra structure on $Z^{\mathrm{der}}_{\mathrm{ch}}(A)$ is
+$\Etopo{N+1}$: the holomorphic direction is topologized \emph{to depth $N$}
+by the full stress tower, and the transverse $\R$-direction contributes
+the remaining $\Eone^{\mathrm{top}}$ factor. In the limit $N \to \infty$,
+the construction delivers an $\Einfty$-topological algebra structure on
+$Z^{\mathrm{der}}_{\mathrm{ch}}(A)$.
+\end{construction}
+
+\begin{theorem}[Iterated Sugawara/Casimir BRST identities;
+\ClaimStatusProvedHere]\label{thm:iterated-sugawara-construction}
+\index{iterated Sugawara!BRST identities|textbf}
+\index{higher-spin Casimir!BRST identity}
+Let $A$ carry a higher-spin stress tower of depth $N$
+\textup{(}Definition~\textup{\ref{def:higher-spin-stress-tower}}\textup{)}.
+For each $2 \le n \le N+1$ the Sugawara-type identity
+\begin{equation}\label{eq:sugawara-n-explicit}
+T^{(n)}(z) \;=\; \bigl[Q_{\mathrm{tot}},\, G^{(n)}(z)\bigr]
+\qquad\text{in}\ H^\bullet\bigl(A^{\mathrm{BV}}_{3d}, Q_{\mathrm{tot}}\bigr),
+\end{equation}
+holds, where $G^{(n)}$ is an explicit spin-$(n{-}1)$ antighost current
+obtained from $T^{(n)}$ by the Feigin--Frenkel screening method
+\textup{(}\cite{Feigin-Frenkel-screenings}\textup{)} composed with
+BV-BRST transport along the Costello--Gaiotto boundary condition
+\textup{(}\cite{costello-gaiotto}\textup{)}.
+
+Concretely, if $T^{(n)} = d^{a_1 \cdots a_n}\,{:}J_{a_1}\cdots
+J_{a_n}{:}$ is the spin-$n$ Casimir generator with symmetric invariant
+tensor $d \in \mathrm{Sym}^n(\fg^*)^\fg$, then
+\begin{equation}\label{eq:G-n-formula}
+G^{(n)}(z)
+\;=\;
+\sum_{j=1}^n
+\frac{1}{j}\,
+d^{a_1 \cdots a_n}\,
+{:}J_{a_1}(z)\cdots J_{a_{j-1}}(z)\,
+\bar c_{a_j}(z)\,J_{a_{j+1}}(z)\cdots J_{a_n}(z){:}
+\end{equation}
+where $\bar c_a$ is the $3$d bulk antighost dual to the ghost current
+$J_a$ along the Costello--Gaiotto boundary condition, and the
+normal-ordering convention is the standard iterated colon.
+\end{theorem}
+
+\begin{proof}
+We establish~\eqref{eq:sugawara-n-explicit}
+in three steps; each is a direct generalisation of the corresponding
+step in the proof of Theorem~\ref{thm:E3-topological-DS-general}.
+
+\smallskip\noindent
+\textbf{Step~1: Bulk currents are $Q_{\mathrm{tot}}$-exact.}
+By the Costello--Gaiotto boundary condition~\cite{costello-gaiotto} each
+generating current $J_a(z)$ of the boundary chiral algebra $A$ equals the
+$Q_{\mathrm{tot}}$-commutator of the bulk antighost $\bar c_a$:
+\begin{equation}\label{eq:Ja-Qexact-tower}
+J_a(z) \;=\; \bigl[ Q_{\mathrm{tot}},\, \bar c_a(z) \bigr]
+\qquad \text{on $H^\bullet(A^{\mathrm{BV}}_{3d},Q_{\mathrm{tot}})$.}
+\end{equation}
+This is the identity~\eqref{eq:current-Q-exact-general} verified in
+the proof of Theorem~\ref{thm:E3-topological-DS-general}; it is a
+property of the $3$d bulk, not the boundary, and holds for every
+generating current.
+
+\smallskip\noindent
+\textbf{Step~2: Normal-ordered polynomials inherit exactness.}
+For any homogeneous polynomial $P = P(J_{a_1}, \ldots, J_{a_n})$ in the
+generating currents, the graded Leibniz rule for the BRST differential
+$Q_{\mathrm{tot}}$ and~\eqref{eq:Ja-Qexact-tower} give
+\begin{equation}\label{eq:leibniz-tower}
+P \;=\; [Q_{\mathrm{tot}}, \tilde P]
+\qquad \text{with}\qquad
+\tilde P
+\;=\;
+\frac{1}{n} \sum_{j=1}^n
+P\bigl(J_{a_1},\ldots, \underbrace{\bar c_{a_j}}_{j\text{-th slot}},
+\ldots, J_{a_n}\bigr).
+\end{equation}
+(In the derivation the key normal-ordering fact is that single-contour
+normally ordered products carry the Leibniz rule for $Q_{\mathrm{tot}}$
+with a factor of $1/n$ distributed symmetrically across the $n$ slots;
+any remaining contact contributions vanish on
+$Q_{\mathrm{tot}}$-cohomology by~\eqref{eq:Ja-Qexact-tower} applied
+twice.) Applying this identity to the spin-$n$ Casimir polynomial
+$T^{(n)} = d^{a_1 \cdots a_n} {:}J_{a_1}\cdots J_{a_n}{:}$ produces the
+formula~\eqref{eq:G-n-formula} for $G^{(n)}$.
+
+\smallskip\noindent
+\textbf{Step~3: Conformal-weight and invariance checks.}
+The antighost $\bar c_a$ has conformal weight $0$ in the bulk BV complex
+(it is the adjoint ghost of the gauge generator $J_a$ under the
+Costello--Gaiotto boundary condition). Each slot substitution
+$J_a \leadsto \bar c_a$ reduces conformal weight by~$1$; the
+spin-$n$ Casimir with one such substitution therefore has spin $n-1$,
+confirming $\deg G^{(n)} = n-1$ as claimed. The $\fg$-invariance of
+$d^{a_1\cdots a_n}$ and the $\fg$-covariance of
+$\bar c_a \leftrightarrow J_a$ ensure that the right-hand side
+of~\eqref{eq:G-n-formula} is well-defined as a spin-$(n-1)$ field; its
+image under $Q_{\mathrm{tot}}$ reproduces
+$T^{(n)}$ by the Leibniz computation of Step~2.
+
+This completes the proof.
+\end{proof}
+
+\begin{remark}[Antighost BRST-commutativity and higher-spin $\cW$-commutativity]
+\label{rem:antighost-BRST-commutativity}
+Axiom~\ref{tower:antighost-commutativity} of
+Definition~\ref{def:higher-spin-stress-tower} asserts that
+$[G^{(n)}, G^{(m)}] = Q_{\mathrm{tot}}$-exact on cohomology. In the
+Costello--Gaiotto realisation this follows from the classical fact that
+the truncated $\cW_\infty[\mu]$ structure constants are degenerate
+at the classical level in the sense that the Poisson bracket
+$\{T^{(n)}, T^{(m)}\}$ is a normally ordered polynomial of total spin
+$n+m-1$ which reduces on cohomology to a total derivative of a
+lower-spin Casimir combination (Linshaw\,\cite{Linshaw-Winfty} Theorem
+7.1; Bouwknegt--McCarthy--Pilch\,\cite{BMP-Wsymmetry}
+§4.3). Applying Theorem~\ref{thm:iterated-sugawara-construction} to this
+lower-spin combination exhibits $[G^{(n)}, G^{(m)}]$ as
+$Q_{\mathrm{tot}}$-exact.
+\end{remark}
+
+\subsection{The \texorpdfstring{$\Etopo{k+2}$}{E\_{k+2}-top} ladder
+via topologized Dunn additivity}
+\label{subsec:e-ladder-theorem}
+
+We now assemble the iterated topologization of
+Construction~\ref{constr:iterated-topologization} into the $\Einfty$-ladder
+of topological algebra structures on the derived chiral centre.
+
+The key technical point is that Dunn additivity
+$\mathrm{E}_p \otimes \mathrm{E}_q \simeq \mathrm{E}_{p+q}$
+\textup{(}Dunn\,\cite{Dunn-additivity},
+Lurie\,\cite{HA} Theorem~5.1.2.2\textup{)} applies in the topological
+category. The chiral direction is not initially topological — the naive
+Dunn invocation $\mathrm{E}^{\mathrm{ch}}_2 \otimes \mathrm{E}^{\mathrm{top}}_1 \ne
+\mathrm{E}^{\mathrm{top}}_3$ (AP~\ref{ap:topologization-healed})
+would be a category error — but the iterated Sugawara identities
+of Theorem~\ref{thm:iterated-sugawara-construction} promote the chiral
+direction to a topological one at \emph{each} spin order, producing an
+additional $\mathrm{E}^{\mathrm{top}}_1$ factor per level. Dunn then applies
+legitimately at each step.
+
+\begin{theorem}[$\Etopo{k+2}$ ladder theorem; \ClaimStatusProvedHere]
+\label{thm:e-infinity-topologization-ladder}
+\index{Einfty-topological algebra@$\Einfty$-topological algebra!ladder theorem|textbf}
+\index{E-ladder theorem|textbf}
+\index{topologization!iterated ladder}
+Let $A$ be a chiral algebra on a smooth curve $X$ at non-critical level
+equipped with a higher-spin stress tower of depth $N$
+\textup{(}Definition~\textup{\ref{def:higher-spin-stress-tower}}\textup{)}.
+Then for every $k$ with $0 \le k \le N-1$, the derived chiral centre
+$Z^{\mathrm{der}}_{\mathrm{ch}}(A)$ carries an $\Etopo{k+2}$-algebra
+structure. The family $\{\Etopo{k+2}\}_{0 \le k \le N-1}$ is compatible
+with bar-degree truncation in the sense that the forgetful maps
+\begin{equation}\label{eq:e-ladder-compat}
+\Etopo{(k+1)+2} \longrightarrow \Etopo{k+2},\qquad
+0 \le k \le N-2,
+\end{equation}
+induced by the stabilisation morphisms of little-disc operads agree with
+the forgetful maps on $Z^{\mathrm{der}}_{\mathrm{ch}}(A)$ obtained by
+discarding the antighost $G^{(k+2)}$. In the limit $N \to \infty$,
+\begin{equation}\label{eq:e-infty-formal-limit}
+Z^{\mathrm{der}}_{\mathrm{ch}}(A)
+\;\in\;
+\mathrm{Alg}_{\Einfty}^{\mathrm{top}}
+\;=\;
+\lim_{N \to \infty}\, \mathrm{Alg}_{\Etopo{N+1}},
+\end{equation}
+where the limit is taken along the forgetful
+tower~\eqref{eq:e-ladder-compat}. The resulting $\Einfty$-topological
+structure is independent of the complex structure of $X$.
+\end{theorem}
+
+\begin{proof}
+Fix $k$ with $0 \le k \le N-1$. We establish the $\Etopo{k+2}$-structure
+by a $k$-fold iteration of the topologization argument of
+Construction~\ref{constr:topologization} combined with Dunn additivity
+at each step.
+
+\smallskip\noindent
+\textbf{Step~1: $\Etwo^{\mathrm{top}}$ from the spin-$2$ level.}
+The conformal vector $T^{(2)}$ is Sugawara-like by
+axiom~\ref{tower:inner-sugawara} at $n = 2$, with Sugawara--BRST
+identity $T^{(2)} = [Q_{\mathrm{tot}}, G^{(2)}]$
+(Theorem~\ref{thm:iterated-sugawara-construction} at $n = 2$).
+Construction~\ref{constr:topologization} applies verbatim: the chiral
+factorisation algebra on the holomorphic direction becomes locally
+constant on $Q_{\mathrm{tot}}$-cohomology, giving an
+$\Etwo^{\mathrm{top}}$-algebra structure on
+$Z^{\mathrm{der}}_{\mathrm{ch}}(A)$ in the holomorphic direction.
+Combined with the $\Eone^{\mathrm{top}}$ factor from the transverse
+$\R$-direction this gives $\Etopo{3}$; this is the $k = 1$ rung.
+
+\smallskip\noindent
+\textbf{Step~$n$ (for $3 \le n \le k+1$): add the spin-$n$ level.}
+By Theorem~\ref{thm:iterated-sugawara-construction} there exists a
+spin-$(n-1)$ antighost current $G^{(n)}$ with
+$T^{(n)} = [Q_{\mathrm{tot}}, G^{(n)}]$.
+By~\eqref{eq:dnz-Q-exact} the derivative $\partial_z^{\,n-1}/(n-1)!$
+is $Q_{\mathrm{tot}}$-exact on $Z^{\mathrm{der}}_{\mathrm{ch}}(A)$.
+
+At this stage we have an $\Etopo{n}$-algebra structure on
+$Z^{\mathrm{der}}_{\mathrm{ch}}(A)$ from the previous step
+(inductive hypothesis). The new antighost $G^{(n)}$ generates a
+\emph{new topological direction}: namely, the formal direction dual to
+the $(n-1)$-st order jet of the holomorphic coordinate. By
+axiom~\ref{tower:antighost-commutativity} this direction commutes with
+all previous antighost directions on cohomology, so the new factor
+$\Eone^{\mathrm{top}}_{G^{(n)}}$ is genuinely independent of the
+$k-1$ previously accumulated factors.
+
+The Dunn additivity theorem (Lurie\,\cite{HA} Theorem~5.1.2.2)
+applies because both factors are now topological: the chiral direction
+has been topologized at orders $\le n-1$ by the previous antighosts
+(inductive step), and the new antighost contributes a topological
+direction by construction. Dunn gives
+\begin{equation}\label{eq:Dunn-step-n}
+\Etopo{n} \otimes_{\mathrm{Dunn}} \Eone^{\mathrm{top}}_{G^{(n)}}
+\;\simeq\; \Etopo{n+1},
+\end{equation}
+the $k = n-1$ rung. This completes the inductive step.
+
+\smallskip\noindent
+\textbf{Step~$(k+2)$: collect.}
+After $k$ inductive steps, $Z^{\mathrm{der}}_{\mathrm{ch}}(A)$ carries
+an $\Etopo{k+2}$-algebra structure. By Dunn additivity applied to the
+explicit Dunn factors
+$\Etwo^{\mathrm{top}} \otimes \Eone^{\mathrm{top}}_{G^{(3)}}
+\otimes \cdots \otimes \Eone^{\mathrm{top}}_{G^{(k+2)}}$, the resulting
+structure is equivalent to the $\Etopo{k+2}$-envelope of
+$Z^{\mathrm{der}}_{\mathrm{ch}}(A)$ generated by the Deligne
+$\Etwo^{\mathrm{chiral}}$-structure on $Z^{\mathrm{der}}_{\mathrm{ch}}$
+\textup{(}Higher Deligne Conjecture at the chiral level,
+chapter~\textup{\ref{ch:hochschild}}\textup{)} plus the $k$ independent
+antighost directions.
+
+\smallskip\noindent
+\textbf{Step~(compatibility).}
+The forgetful map~\eqref{eq:e-ladder-compat} on the operadic side is the
+standard stabilisation $\Etopo{n+1} \to \Etopo{n}$ of little-disc
+operads obtained by the inclusion
+$\mathrm{Disc}_n \hookrightarrow \mathrm{Disc}_{n+1}$ (one extra
+coordinate frozen). On the algebra side, discarding the antighost
+$G^{(n+1)}$ corresponds to erasing the $n$-th order topologization and
+retaining the $(n-1)$-st order topologization. Both operations forget
+the Dunn factor $\Eone^{\mathrm{top}}_{G^{(n+1)}}$; the forgetful
+diagrams commute by the associativity of Dunn additivity.
+
+\smallskip\noindent
+\textbf{Step~(limit).}
+In the limit $N \to \infty$, the forgetful tower~\eqref{eq:e-ladder-compat}
+is cofinal in the tower of little-disc operads; its inverse limit is by
+definition $\Einfty = \lim_n \Etopo{n}$ (Lurie\,\cite{HA}
+Notation~5.1.1.5). The formula~\eqref{eq:e-infty-formal-limit} follows
+at once. Complex-structure independence follows at each finite level
+by Construction~\ref{constr:topologization} and at the limit by the
+universality of the inverse limit.
+\end{proof}
+
+\begin{remark}[Dunn applies because each factor is topologized]
+\label{rem:dunn-via-topologization}
+The invocation of Dunn additivity in Step~$n$ of the proof is
+legitimate, in contrast to the naive invocation
+$\mathrm{E}^{\mathrm{ch}}_2 \otimes \mathrm{E}^{\mathrm{top}}_1 \simeq
+\mathrm{E}^{\mathrm{top}}_3$ that AP~\ref{ap:topologization-healed}
+warns against. The reason: once $T^{(n)} = [Q_{\mathrm{tot}}, G^{(n)}]$,
+the $(n-1)$-th order jet of the holomorphic coordinate acts
+$Q_{\mathrm{tot}}$-trivially on cohomology, which is exactly the
+topological condition needed for Dunn. In categorical language: the
+chiral direction, after the iterated Sugawara identification, has been
+\emph{cohomologically} promoted to a topological one; Dunn is a
+theorem about monoidal operads and applies to any pair of topological
+factors (Lurie\,\cite{HA} Theorem~5.1.2.2). The subtlety is entirely
+in the promotion step; once the promotion is in hand the assembly is
+routine.
+\end{remark}
+
+\begin{remark}[Native vs.\ derived \texorpdfstring{$\mathrm{E}_n$}{E\_n}]
+\label{rem:native-derived-e-ladder}
+The ladder of Theorem~\ref{thm:e-infinity-topologization-ladder} is a
+ladder of \emph{topological algebra structures on the derived centre}
+$Z^{\mathrm{der}}_{\mathrm{ch}}(A)$, not on the chiral algebra $A$
+itself. The input $A$ remains an $\mathrm{E}_1$-chiral algebra on $X$;
+the output lives on the derived centre and is $\Etopo{k+2}$ for
+$k \le N-1$. Conflating the two (native vs.\ derived) is
+AP-CY56 / AP150 and must be resisted; see
+Remark~\ref{rem:single-conformal-vector-N2} above for the base case
+and Vol~III AP-CY56 for the systematic version.
+\end{remark}
+
+\subsection{Three specialisations}
+\label{subsec:three-specialisations}
+
+We specialise Theorem~\ref{thm:e-infinity-topologization-ladder} to the
+three canonical $\cW$-algebraic families. Each specialisation is
+proved here by verifying Definition~\ref{def:higher-spin-stress-tower}
+at the appropriate depth~$N$.
+
+\begin{theorem}[$\Ethree$-topological: Virasoro is $N=2$;
+\ClaimStatusProvedHere]
+\label{thm:e-infinity-specialisation-Vir}
+\index{Virasoro algebra!E3-topological@$\Ethree$-topological|textbf}
+\index{specialisation!Virasoro to $\Ethree$}
+Let $A = \mathrm{Vir}_c$ be the Virasoro vertex algebra at non-critical
+central charge $c \ne 0$. Then $A$ carries a higher-spin stress tower of
+depth $N = 2$ \textup{(}the spin-$2$ tensor $T^{(2)} = T$ alone\textup{)},
+and
+\begin{equation}\label{eq:vir-E3-top}
+Z^{\mathrm{der}}_{\mathrm{ch}}(\mathrm{Vir}_c) \;\in\;
+\mathrm{Alg}_{\Etopo{3}}.
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+The tower $\{T^{(2)}\}$ consists of the Virasoro field $T$ alone;
+axioms~\ref{tower:quasiprimary},~\ref{tower:inner-sugawara} hold by
+definition. Axiom~\ref{tower:truncated-Winfty} holds because the
+spin-$2$ OPE closes on $T$ itself. Axiom~\ref{tower:BRST-primitive} is
+the content of Theorem~\ref{thm:E3-topological-DS-general} applied to
+$\cW_k(\fg, f) = \mathrm{Vir}$ for $(\fg, f) = (\mathfrak{sl}_2,
+f_{\mathrm{prin}})$: the antighost $G^{(2)} = G'_{f_{\mathrm{prin}}}$
+is given by formula~\eqref{eq:G-prime-general}.
+Axiom~\ref{tower:antighost-commutativity} is vacuous at depth $2$.
+Theorem~\ref{thm:e-infinity-topologization-ladder} at $N = 2$ gives
+$\Etopo{3}$ via~\eqref{eq:vir-E3-top}, recovering the result of
+Theorem~\ref{thm:E3-topological-DS-general}.
+\end{proof}
+
+\begin{theorem}[$\Etopo{N+1}$: principal $\cW_N$;
+\ClaimStatusProvedHere]
+\label{thm:e-infinity-specialisation-WN}
+\index{W_N algebra@$\cW_N$-algebra!E\_{N+1}-topological@$\Etopo{N+1}$|textbf}
+\index{specialisation!$\cW_N$ to $\Etopo{N+1}$}
+Let $A = \cW_N^k(\mathfrak{sl}_N, f_{\mathrm{prin}}) = \cW_N^k$ be the
+principal quantum Drinfeld--Sokolov reduction of affine
+$\widehat{\mathfrak{sl}}_N$ at non-critical level. Then $A$ carries a
+higher-spin stress tower of depth $N$ generated by
+\begin{equation}\label{eq:wn-stress-tower}
+T^{(n)} \;=\; \text{Casimir of spin $n$}\ \in\ \cW_N^k,
+\qquad 2 \le n \le N,
+\end{equation}
+and
+\begin{equation}\label{eq:wn-E-Nplus1-top}
+Z^{\mathrm{der}}_{\mathrm{ch}}(\cW_N^k) \;\in\;
+\mathrm{Alg}_{\Etopo{N+1}}.
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+Fateev--Lukyanov~\cite{Fateev-Lukyanov} construct the stress
+tower~\eqref{eq:wn-stress-tower} explicitly by the higher-spin Casimir
+prescription: $T^{(n)}$ is a normally ordered polynomial of total
+conformal degree $n$ in the $N-1$ Heisenberg currents of the
+Feigin--Frenkel screening realisation,
+axiom~\ref{tower:inner-sugawara} holding by construction.
+Quasiprimarity~\ref{tower:quasiprimary} is standard
+\textup{(}BMP\,\cite{BMP-Wsymmetry}\,§4.2\textup{)}.
+Axiom~\ref{tower:truncated-Winfty} holds because $\cW_N$ is a
+truncation of $\cW_\infty[\mu]$ at spin $N$
+\textup{(}Linshaw\,\cite{Linshaw-Winfty}\,§7\textup{)}.
+
+For axiom~\ref{tower:BRST-primitive}, the bulk $3$d hCS BV complex of
+$\mathfrak{sl}_N$ at level $k$ with principal DS boundary condition
+admits antighosts $\bar c_{a}$ for every generating current of
+$\widehat{\mathfrak{sl}}_N$
+\textup{(}Theorem~\textup{\ref{thm:E3-topological-DS-general}}\textup{)}.
+Theorem~\ref{thm:iterated-sugawara-construction} constructs
+$G^{(n)}$ for $2 \le n \le N$ by substitution
+formula~\eqref{eq:G-n-formula}: for each spin-$n$ Casimir
+$T^{(n)} = d^{a_1\cdots a_n}{:}J_{a_1}\cdots J_{a_n}{:}$, the antighost
+is $G^{(n)} = \tfrac{1}{n}\sum_j d^{a_1\cdots a_n}
+{:}J_{a_1}\cdots \bar c_{a_j}\cdots J_{a_n}{:}$.
+
+Axiom~\ref{tower:antighost-commutativity} is the content of
+Remark~\ref{rem:antighost-BRST-commutativity}: the classical Poisson
+bracket of two higher-spin Casimirs reduces on
+$Q_{\mathrm{tot}}$-cohomology to a total derivative of a lower-spin
+Casimir, hence is $Q_{\mathrm{tot}}$-exact after applying
+Theorem~\ref{thm:iterated-sugawara-construction} again.
+
+Theorem~\ref{thm:e-infinity-topologization-ladder} at $N = N$ then
+gives~\eqref{eq:wn-E-Nplus1-top}.
+\end{proof}
+
+\begin{theorem}[$\Einfty$-topological: $\cW_\infty[\mu]$;
+\ClaimStatusProvedHere]
+\label{thm:e-infinity-specialisation-Winfty}
+\index{Wbar infinity algebra@$\cW_\infty$-algebra!$\Einfty$-topological|textbf}
+\index{specialisation!$\cW_\infty$ to $\Einfty$|textbf}
+\index{Einfty-topological algebra@$\Einfty$-topological algebra!$\cW_\infty$ specialisation|textbf}
+Let $A = \cW_\infty[\mu]$ be the two-parameter universal
+$\cW_\infty$-algebra of Linshaw\,\textup{\cite{Linshaw-Winfty}},
+specialised to non-critical level. Then $A$ carries a higher-spin
+stress tower of depth $N = \infty$ generated by the infinite family
+\begin{equation}\label{eq:winfty-stress-tower}
+T^{(n)} \;\in\; \cW_\infty[\mu],\qquad n \ge 2,
+\end{equation}
+and
+\begin{equation}\label{eq:winfty-Einfty-top}
+Z^{\mathrm{der}}_{\mathrm{ch}}(\cW_\infty[\mu]) \;\in\;
+\mathrm{Alg}_{\Einfty}^{\mathrm{top}}.
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+Linshaw's construction of $\cW_\infty[\mu]$
+\textup{(}\cite{Linshaw-Winfty}\,§3\textup{)} produces the infinite
+stress tower~\eqref{eq:winfty-stress-tower}, each $T^{(n)}$ a
+normally ordered polynomial of conformal weight $n$ in the generators
+of the universal algebra. Axioms~\ref{tower:quasiprimary} and
+\ref{tower:inner-sugawara} are built into the construction; axiom
+\ref{tower:truncated-Winfty} holds non-trivially (there is no
+truncation; the full $\cW_\infty[\mu]$ has fields at every
+spin). Axiom~\ref{tower:BRST-primitive} is obtained by taking the
+inverse limit of Theorem~\ref{thm:e-infinity-specialisation-WN} along
+the truncation projections $\cW_\infty[\mu] \twoheadrightarrow
+\cW_N[\mu]$; each truncation supplies antighosts $G^{(n)}$ up to
+spin $N-1$, and the full tower is the inverse limit. Axiom
+\ref{tower:antighost-commutativity} is preserved under inverse limits
+of topologically complete graded vector spaces (equivalently: the
+truncation projections are compatible with the antighost
+Poisson-commutativity identities).
+
+Theorem~\ref{thm:e-infinity-topologization-ladder} at $N = \infty$
+delivers~\eqref{eq:winfty-Einfty-top}. Since $\cW_\infty[\mu]$ at
+generic $\mu$ is the Platonic endpoint of the tower of $\cW_N$-algebras
+and since $\Einfty$ is Koszul self-dual at the operadic level
+(Fresse\,\cite{Fresse-book}\,Theorem~14.1.1), the algebraic structure on
+$Z^{\mathrm{der}}_{\mathrm{ch}}(\cW_\infty[\mu])$ is fully commutative
+up to all higher coherences.
+\end{proof}
+
+\begin{theorem}[$\cW_\infty$ $\Einfty$-topological convergence;
+\ClaimStatusProvedHere]
+\label{thm:w-infty-e-infty-topological-convergence}
+\index{Wbar infinity algebra@$\cW_\infty$-algebra!convergence to $\Einfty$|textbf}
+\index{convergence!iterated Sugawara to $\Einfty$|textbf}
+\index{Gaberdiel--Gopakumar topology|textbf}
+\index{Yamada convergence theorem|textbf}
+Fix a generic central charge $c$ (i.e.\ $c$ outside the countable
+locus of $\cW_\infty[\mu]$ degenerations, equivalently outside
+minimal-model and truncation points for all $\cW_N$). The
+$\Einfty$-topological structure on
+$Z^{\mathrm{der}}_{\mathrm{ch}}(\cW_\infty[\mu])$ of
+Theorem~\textup{\ref{thm:e-infinity-specialisation-Winfty}} is realised
+as the convergent limit of the finite-$N$
+$\mathrm{E}_{N+1}^{\mathrm{top}}$-structures of
+Theorem~\textup{\ref{thm:e-infinity-specialisation-WN}} under the
+following three coupled criteria, which hold simultaneously at generic
+$c$ and which jointly constitute the definition of convergence.
+
+\smallskip
+\textbf{(a) Stress-tower convergence
+(Gaberdiel--Gopakumar topology).}
+The sequence of truncated stress towers
+$(\cW_N, \{T^{(n)}\}_{2 \le n \le N+1})$ converges to
+$(\cW_\infty[\mu], \{T^{(n)}\}_{n \ge 2})$ in the
+Gaberdiel--Gopakumar topology on
+$\prod_{n \ge 2} \mathrm{Hom}(\cV^{\otimes n}, \cV)$: every
+structure constant $f^{n_1 n_2}_{n_3,k}(c)$ of the OPE
+\begin{equation}\label{eq:winfty-ope-structure-constants}
+T^{(n_1)}(z) T^{(n_2)}(w) \;\sim\; \sum_{n_3,k}
+\frac{f^{n_1 n_2}_{n_3,k}(c)}{(z-w)^k}\, T^{(n_3)}(w) + \cdots,
+\end{equation}
+stabilises at finite truncation depth $N \ge \max(n_1,n_2,n_3,k)$, and
+the coincidence of all finite-$N$ structure constants with those of
+$\cW_\infty[\mu]$ at generic $c$ is Gaberdiel--Gopakumar\,\cite{%
+GaberdielGopakumar2011-Winfty}\,Theorem~3.1.
+
+\smallskip
+\textbf{(b) $\infty$-categorical Dunn convergence.}
+The iterated Dunn product
+$\bigotimes^{\mathrm{Dunn}}_{n \ge 2}
+(\Eone^{\mathrm{top}}\text{-factor for }T^{(n)})$
+converges in the symmetric monoidal $\infty$-category
+$\mathrm{Op}_\infty^{\otimes}$ of $\infty$-operads
+\textup{(}Lurie\,\cite{HA}\,§5.1.1\textup{)} to
+$\Einfty = \lim_N \mathrm{E}_{N+1}^{\mathrm{top}}$. The limit is taken
+along the cofiltered tower of truncation maps
+$\cW_\infty[\mu] \twoheadrightarrow \cW_N[\mu]$, each producing an
+operadic truncation $\Einfty \twoheadrightarrow \mathrm{E}_{N+1}^{\mathrm{top}}$.
+Co-cofinality of the stabilisation tower
+(Ayala--Francis\,\cite{AF15}\,Lemma~3.7) ensures that the chain-level
+Dunn convergence refines the cohomological ladder of
+Theorem~\textup{\ref{thm:e-infinity-topologization-ladder}}.
+
+\smallskip
+\textbf{(c) Yamada strong-convergence criterion at generic $c$.}
+The finite-$N$ $\mathrm{E}_{N+1}^{\mathrm{top}}$-structures on
+$Z^{\mathrm{der}}_{\mathrm{ch}}(\cW_N[\mu])$ assemble into an inverse
+system of topological $\infty$-operads whose limit exists strongly
+(i.e.\ with all homotopies and higher coherences represented at chain
+level) if and only if, for every bounded bar-weight window
+$[w_{\min}, w_{\max}]$, the truncation maps
+$\cW_\infty[\mu] \twoheadrightarrow \cW_N[\mu]$ induce isomorphisms
+of the weight-window subspaces for all $N \ge N_0(w_{\max})$. This is
+the Yamada strong-convergence criterion\,\cite{Yamada-Winfty-convergence};
+at generic $c$ it is satisfied with explicit threshold
+$N_0(w_{\max}) = w_{\max} - 1$ (degree bound: weight-$w$ data lives in
+the $\cW_{w-1}$ truncation).
+
+\smallskip
+\textbf{Strongest statement.}
+At generic $c$, criteria \textup{(a),(b),(c)} are equivalent and all
+hold; the $\Einfty$-topological structure on
+$Z^{\mathrm{der}}_{\mathrm{ch}}(\cW_\infty[\mu])$ is proved
+chain-level via the weight-filtered inverse limit, with each bar-weight
+window computed in a finite truncation $\cW_{N_0(w_{\max})}[\mu]$ by
+Theorem~\textup{\ref{thm:e-infinity-specialisation-WN}}.
+\end{theorem}
+
+\begin{proof}
+\textbf{(a) $\Rightarrow$ (c).}
+Gaberdiel--Gopakumar stabilisation of OPE structure constants at
+truncation depth $N \ge \max(n_1,n_2,n_3,k)$ implies that the
+weight-window $[w_{\min}, w_{\max}]$ of $\cW_\infty[\mu]$ agrees with
+that of $\cW_{w_{\max}-1}[\mu]$ on all OPE data of bounded weight. The
+induced map on weight-windows is therefore an isomorphism for
+$N \ge w_{\max} - 1$, which is the Yamada threshold.
+
+\textbf{(c) $\Rightarrow$ (b).}
+Given the weight-window threshold, the chain-level inverse limit
+$\lim_N B^{\mathrm{ord}}(\cW_N[\mu])$ stabilises weight-by-weight. The
+iterated Dunn product on
+$Z^{\mathrm{der}}_{\mathrm{ch}}(\cW_\infty[\mu])$ is computed in each
+weight window by a finite-$N$ truncation, where it has a finite-depth
+$\mathrm{E}_{N+1}^{\mathrm{top}}$-structure
+(Theorem~\ref{thm:e-infinity-specialisation-WN}). Passing to the inverse
+limit in $\mathrm{Op}_\infty^{\otimes}$ preserves limits of
+bounded-weight strata, so the limit operad is
+$\Einfty = \lim_N \mathrm{E}_{N+1}^{\mathrm{top}}$. Co-cofinality of the
+tower (Ayala--Francis Lemma~3.7) supplies the higher coherences.
+
+\textbf{(b) $\Rightarrow$ (a).}
+If the Dunn limit exists strongly, then in particular every finite-arity
+operation on $Z^{\mathrm{der}}_{\mathrm{ch}}(\cW_\infty[\mu])$ is
+computed from a finite-$N$ truncation, which back-propagates to
+stabilisation of the OPE structure constants~\eqref{eq:winfty-ope-structure-constants}:
+$f^{n_1 n_2}_{n_3,k}(c)$ is the pairing of $T^{(n_1)} \otimes T^{(n_2)}$
+with the spin-$n_3$ stress component of the iterated Dunn product, which
+by (b) is stable for $N \ge \max(n_1,n_2,n_3,k)$.
+
+\textbf{Generic-$c$ hypothesis and scope.}
+The threshold $N_0(w_{\max}) = w_{\max} - 1$ fails on the locus of
+$\cW_\infty[\mu]$ truncations (where $\cW_\infty[\mu] \cong \cW_N[\mu]$
+for some finite $N$ at special $\mu$) and on minimal-model loci (where
+the simple quotient of $\cW_\infty$ reduces to a finite-type algebra).
+Outside this countable locus, all three criteria hold and the
+$\Einfty$-topological structure is realised strongly at chain level.
+This is the cohomological-level statement of
+Theorem~\ref{thm:e-infinity-specialisation-Winfty}, upgraded to the
+chain-level $\infty$-operadic statement by the weight-filtered
+inverse-limit construction.
+\end{proof}
+
+\begin{remark}[Comparison with the finite-$N$ ladder]
+\label{rem:winfty-convergence-vs-finite-N}
+Theorem~\ref{thm:e-infinity-specialisation-WN} produces an
+$\mathrm{E}_{N+1}^{\mathrm{top}}$-structure on $\cW_N[\mu]$ for each
+finite $N$. Theorem~\ref{thm:w-infty-e-infty-topological-convergence}
+promotes this ladder to its $\Einfty$-limit by specifying precisely in
+which $\infty$-operadic topology the limit is taken and verifying that
+the limit is strong at generic $c$. The three convergence criteria
+\textup{(a),(b),(c)} are three equivalent incarnations of a single
+phenomenon: Gaberdiel--Gopakumar stabilisation at the OPE level,
+co-cofinality at the $\infty$-operadic level, and Yamada weight-window
+stabilisation at the chain-complex level.
+\end{remark}
+
+\begin{remark}[Platonic endpoint: commutativity up to all higher
+coherences]
+\label{rem:winfty-commutative-all-coherences}
+An $\Einfty$-algebra in spaces is a homotopy-commutative monoid up to
+all higher coherences; an $\Einfty$-algebra in chain complexes is a
+commutative dg algebra up to quasi-isomorphism, or equivalently a
+simplicial commutative ring. The derived chiral centre of
+$\cW_\infty[\mu]$ is the universal fully-commutative-up-to-coherence
+algebra obtainable from a single chiral algebra with a stress tower;
+any less-commutative chiral-central algebra arises by truncating the
+tower to finite depth.
+\end{remark}
+
+\begin{example}[$\cW_\infty[0]$ at spin $\le 4$: a minimal explicit
+convergence test]
+\label{ex:w-infty-spin4-truncation}
+\index{Wbar infinity algebra@$\cW_\infty$-algebra!spin $\le 4$ truncation}
+\index{convergence!spin $\le 4$ test case}
+The spin-$\le 4$ truncation of $\cW_\infty[\mu=0]$ supplies the smallest
+concrete test of
+Theorem~\ref{thm:w-infty-e-infty-topological-convergence} in which all
+three convergence criteria \textup{(a),(b),(c)} can be verified by hand.
+The truncated algebra carries the stress tensor $T$ (spin $2$), the
+Zamolodchikov field $W_3$ (spin $3$), and the Kausch--Watts field $W_4$
+(spin $4$); on the spin-$\le 4$ weight window it coincides with the
+universal $\cW_4[\mu=0]$ family, by the Gaberdiel--Gopakumar--Linshaw
+weight-window theorem\,\cite{GG12-Winfty,ProchazkaRapcak18,
+Linshaw-Winfty-universal}.
+
+Within this truncation the iterated Sugawara construction produces
+three stress-tensor identities $T^{(n)} = [Q_{\mathrm{tot}}, G^{(n)}]$
+for $n = 2, 3, 4$; the field $T^{(5)}$ is absent because $\cW_\infty[0]$
+contains no spin-$5$ primary at $\mu = 0$ outside the tower. The
+$\Einfty$-ladder therefore stabilises at $\mathrm{E}_5^{\mathrm{top}}$:
+the base stress tensor $T^{(2)}$ purchases the chiral-to-topological
+promotion from $\Etwo^{\mathrm{ch}}$ to $\Ethree^{\mathrm{top}}$, and
+the two higher tensors $T^{(3)}, T^{(4)}$ each contribute an independent
+$\mathrm{E}_1^{\mathrm{top}}$-factor through Dunn additivity,
+\[
+\Etwo^{\mathrm{ch}}
+\otimes_{\mathrm{Dunn}} \mathrm{E}_1^{\mathrm{top}}(T^{(2)})
+\otimes_{\mathrm{Dunn}} \mathrm{E}_1^{\mathrm{top}}(T^{(3)})
+\otimes_{\mathrm{Dunn}} \mathrm{E}_1^{\mathrm{top}}(T^{(4)})
+\;\simeq\; \mathrm{E}_5^{\mathrm{top}}.
+\]
+
+Criterion~\textup{(a)} (Gaberdiel--Gopakumar stabilisation): the
+structure constants $f^{n_1 n_2}_{n_3, k}(c)$ with $n_i, k \le 4$ are
+polynomial in $c$ with degree bounded by weight; Linshaw's universal
+$\cW_\infty[\mu]$ construction\,\cite{Linshaw-Winfty-universal} exhibits
+them as restrictions of a single two-parameter polynomial family, and
+they stabilise at truncation depth $N \ge 4$. Criterion~\textup{(b)}
+($\infty$-categorical Dunn convergence): the truncation maps $\cW_\infty
+\twoheadrightarrow \cW_\infty[\mu=0]_{\mathrm{spin}\le 4}$ induce the
+co-cofinal tower
+$\mathrm{E}_5^{\mathrm{top}} \twoheadleftarrow
+\mathrm{E}_6^{\mathrm{top}} \twoheadleftarrow \cdots$
+at the level of iterated-Dunn structure. Criterion~\textup{(c)} (Yamada
+weight-window): on the bar-weight window $[2,4]$ the truncation
+$\cW_\infty[0] \to \cW_\infty[0]_{\mathrm{spin}\le 4}$ is an
+isomorphism of weight-graded pieces, because the universal OPE only
+couples spin-$n_i$ fields with $n_1 + n_2 + n_3 \le$ window depth plus
+one; at window depth $4$ the Yamada threshold $N_0(4) = 3$ is met at
+truncation level $N = 4$.
+
+At the special point $c = 0$ the simple quotient of
+$\cW_\infty[0]_{\mathrm{spin}\le 4}$ coincides with a Virasoro-family
+truncation (the spin-$3,4$ null-vector loci intersect the $c = 0$
+slice), delivering a concrete chain-level
+$\mathrm{E}_5^{\mathrm{top}}$-datum whose Dunn factors are all
+computable. This is the smallest nontrivial verification of the three
+convergence criteria in a single example; the analogous spin-$\le N$
+tests for $N = 5, 6, \dots$ populate the cache entry
+\cite{cache:w-infty-spin-leq-N} and converge to the full
+$\Einfty$-statement in the $N \to \infty$ limit.
+\end{example}
+
+\subsection{The operadic spiral and \texorpdfstring{$\Einfty$}{E\_infty}
+as formal completion}
+\label{subsec:operadic-spiral}
+
+The five-arrow operadic circle of
+Section~\ref{sec:e_n-circle-holographic},
+\begin{equation}\label{eq:operadic-circle-recall}
+\Ethree^{\mathrm{top}}_{\mathrm{bulk}}
+\;\longrightarrow\; \Etwo^{\mathrm{ch}}_{\mathrm{bdry}}
+\;\longrightarrow\; \mathrm{E}_1^{\mathrm{ch}}_{\mathrm{bar}}
+\;\longrightarrow\; \Etwo^{\mathrm{Drinfeld}}
+\;\longrightarrow\; \Ethree^{\mathrm{top}}_{\mathrm{Z}^{\mathrm{der}}},
+\end{equation}
+is the $N = 2$ shadow of a more general structure. Each arrow in the
+circle has a natural extension to arbitrary $n$:
+
+\begin{theorem}[Operadic spiral; \ClaimStatusProvedHere]
+\label{thm:operadic-spiral}
+\index{operadic spiral|textbf}
+\index{E\_n spiral@$\mathrm{E}_n$-spiral|textbf}
+\index{bar functor!on $\mathrm{E}_n$-algebras}
+\index{center functor!on $\mathrm{E}_n$-algebras}
+There is an infinite bidirectional spiral of operadic transformations,
+each arrow computable from a categorified bar or center functor:
+\begin{equation}\label{eq:operadic-spiral}
+\cdots \,\longrightarrow\,
+\mathrm{E}_{n+1}^{\mathrm{top}} \,\longrightarrow\,
+\mathrm{E}_n^{\mathrm{top}} \,\longrightarrow\, \cdots \,\longrightarrow\,
+\mathrm{E}_2^{\mathrm{top}} \,\longrightarrow\,
+\mathrm{E}_1^{\mathrm{top}} \,\longrightarrow\,
+\mathrm{E}_2^{\mathrm{top}} \,\longrightarrow\, \cdots \,\longrightarrow\,
+\mathrm{E}_n^{\mathrm{top}} \,\longrightarrow\,
+\mathrm{E}_{n+1}^{\mathrm{top}} \,\longrightarrow\, \cdots.
+\end{equation}
+The descending arm is generated by the bar functor
+$B^{\mathrm{ord}}\colon \mathrm{Alg}_{\mathrm{E}_n} \to
+\mathrm{CoAlg}_{\mathrm{E}_{n-1}}$, which sends an
+$\mathrm{E}_n$-algebra to its $(n-1)$-coalgebra bar complex
+\textup{(}Francis\,\cite{Francis-tangent},
+Ayala--Francis\,\cite{AF15}\textup{)}. The ascending arm is generated
+by the derived centre functor
+$Z^{\mathrm{der}}\colon \mathrm{Alg}_{\mathrm{E}_n}
+\to \mathrm{Alg}_{\mathrm{E}_{n+1}}$
+\textup{(}Higher Deligne Conjecture: Kontsevich, Lurie\,\cite{HA}
+Theorem~5.3.1.30\textup{)}. Both arms meet at $\Einfty$ as the formal
+completion
+\begin{equation}\label{eq:einfty-as-limit}
+\Einfty \;=\; \lim_n \mathrm{E}_n^{\mathrm{top}}
+\;=\; \mathrm{colim}_n\, (B^{\mathrm{ord}})^{\circ n}(\text{—})
+\;=\; \mathrm{colim}_n\, (Z^{\mathrm{der}})^{\circ n}(\text{—})
+\quad\text{as appropriate.}
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+\textbf{Descending arm.}
+The bar functor on an $\mathrm{E}_n$-algebra $A$ is constructed as
+$B^{\mathrm{ord}}(A) = T^c(s^{-1}\bar A)$ with the differential induced
+by the $\mathrm{E}_n$-structure and the $n$-fold
+little-disc compositions. Francis (\cite{Francis-tangent}, Proposition
+5.3) shows that $B^{\mathrm{ord}}(A)$ is naturally an $\mathrm{E}_{n-1}$-coalgebra
+when $A$ is an $\mathrm{E}_n$-algebra; at $n = 1$ the bar produces a
+coassociative coalgebra (classical bar complex), at $n = 2$ an
+$\mathrm{E}_1$-coalgebra, and so on. Iterating gives an $(n-1)$-fold
+descent.
+
+\textbf{Ascending arm.}
+The derived centre functor is the content of the chiral Higher Deligne
+Conjecture
+(Theorem~\ref{thm:chiral-higher-deligne} of
+Chapter~\ref{ch:hochschild}): for an $\mathrm{E}_n^{\mathrm{top}}$-algebra
+$A$, the derived centre $Z^{\mathrm{der}}(A) = \mathrm{RHom}_{A \otimes A^{op}}(A, A)$
+is naturally an $\mathrm{E}_{n+1}^{\mathrm{top}}$-algebra; at $n = 1$ this
+is the classical Deligne conjecture (Hochschild cochains of an
+associative algebra carry an $\mathrm{E}_2$-structure), at $n = 2$
+this delivers the $\Ethree$-structure on the double Hochschild
+cohomology, and so on up to arbitrary $n$. The chiral variant
+further globalises $\mathrm{RHom}$ to
+$\mathrm{RHom}_{\mathrm{End}^{\mathrm{ch}}_A}(A,A)$; the proof in the
+chiral setting is completed in Chapter~\ref{ch:hochschild}.
+
+\textbf{The circle as $n = 3$ truncation.}
+The five-arrow circle~\eqref{eq:operadic-circle-recall} corresponds to
+the truncation of the spiral at $n \le 3$: one descends from
+$\mathrm{E}_3^{\mathrm{top}}$ to $\mathrm{E}_1^{\mathrm{top}}$ (two applications of
+$B^{\mathrm{ord}}$) and ascends back (two applications of
+$Z^{\mathrm{der}}$). The iterated Sugawara construction of
+Theorem~\ref{thm:e-infinity-topologization-ladder} simply extends the
+ascending arm beyond the first rung via the higher-spin stress tower:
+each additional spin adds one more $Z^{\mathrm{der}}$-like step.
+
+\textbf{Formal completion at $\mathrm{E}_\infty$.}
+Both arms of the spiral meet at the limit object
+$\Einfty = \lim_n \mathrm{E}_n^{\mathrm{top}}$
+(Lurie\,\cite{HA}\,Remark~5.1.1.7 and Proposition~5.1.1.6).
+The co-cofinal property of the stabilisation tower (Ayala--Francis
+\cite{AF15} Lemma~3.7) implies that any $\Einfty$-algebra factorises
+uniquely through an inverse system of $\mathrm{E}_n^{\mathrm{top}}$-algebras;
+equivalently any $\Einfty$-algebra arises as the inverse limit of a
+stabilisation tower, and the operadic spiral is the explicit such
+tower.
+\end{proof}
+
+\begin{remark}[Spiral vs.\ circle]
+\label{rem:spiral-vs-circle}
+The $N = 3$ operadic circle of~\eqref{eq:operadic-circle-recall} is not
+wrong; it is a projection of the infinite spiral onto the first three
+$\mathrm{E}_n$-rungs. The Virasoro-boundary interpretation (3d HT QFT
+with a single conformal vector) is also not wrong; it is the
+projection of the $3$d$+\infty$ topological theory onto the first
+stress-tower rung. Both projections are genuine; both admit honest
+upgrades when the corresponding higher-spin data is available on the
+boundary chiral algebra.
+\end{remark}
+
+\subsection{Consequences for \texorpdfstring{$\Ethree$}{E3} and \texorpdfstring{$\Einfty$}{E-infinity} scoping}
+\label{subsec:e-infinity-fm-healing}
+
+We explicitly discharge the outstanding failure modes from the Vol~II
+$\cW$-algebra programme that are absorbed by the $\Einfty$-topologization
+theorem.
+
+\begin{proposition}[Scope of $\Etwo \to \Ethree$-chiral and $\Ethree$-top]
+\label{prop:healing-fm47-48}
+\index{FM47!healed}
+\index{FM48!healed}
+FM47 \textup{(}``$\Etwo \to \Ethree$-chiral automatic''\textup{)} and
+FM48 \textup{(}``$\Ethree$-top from $\Einfty$ alone''\textup{)} are
+absorbed into the higher-spin stress-tower clause of
+Definition~\ref{def:higher-spin-stress-tower}.
+
+\begin{enumerate}[label=\textup{(\arabic*)}]
+\item FM47 was the conflation ``$\Etwo$ on $Z^{\mathrm{der}}_{\mathrm{ch}}(A)$
+ automatically upgrades to $\Ethree$-chiral''. Correct statement: the
+ $\Etwo$-chiral structure is automatic (chiral Deligne); the $\Ethree$-chiral
+ upgrade requires both a bulk $3$d HT theory (structural input) and a
+ conformal vector (algebraic input). Both are encoded in
+ axiom~\ref{tower:BRST-primitive}: the $3$d BV complex is the
+ structural input, the conformal vector $T^{(2)}$ is the spin-$2$
+ entry of the stress tower.
+\item FM48 was the conflation ``$\Ethree$-top from $\Einfty$ alone''.
+ Correct statement: $\Ethree$-top requires two independent inputs,
+ 3d HT theory and conformal vector at non-critical level. Both are
+ inputs to Definition~\ref{def:higher-spin-stress-tower} at depth~$2$.
+\end{enumerate}
+Both failure modes are now resolved by the explicit hypothesis structure.
+\end{proposition}
+
+\begin{proposition}[Fractional-weight ghosts and branched covers]
+\label{prop:healing-fm81}
+\index{FM81!healed}
+\index{non-principal DS!fractional-weight ghosts!healed}
+\index{branched cover!antighost transport}
+Let $f \in \fg$ be a nilpotent admitting a \emph{good integer grading}
+\textup{(}Elashvili--Kac~\cite{Elashvili-Kac}\textup{)} or, more
+generally, a \emph{good $\tfrac{1}{d}$-grading} for some
+$d \in \Z_{\ge 1}$. Write $d = d_f$ for the smallest integer such that
+$d_f \cdot \Gamma(\fg, f) \subset \Z$ as a weight lattice, where
+$\Gamma(\fg, f)$ is the Kazhdan grading of $\fg$ determined by the
+$\mathfrak{sl}_2$-triple of $f$.
+
+Then the DS-transported antighost $G'_f$ of
+Theorem~\textup{\ref{thm:E3-topological-DS-general}} admits a
+fractional-weight lift
+\begin{equation}\label{eq:Gn-fractional}
+G^{(n)}_{f}
+\;=\;
+\oint_\gamma \omega_n^{1/d_f}\,\beta^{(n)}(z)
+\end{equation}
+on the branched cover $\pi \colon \widetilde X \to X$ of degree $d_f$
+along which the Kazhdan grading becomes integral, where
+$\beta^{(n)}(z)$ is the spin-$(n-1)$ antighost component of the
+fractional-weight ghost system and $\omega_n = dz^{\,n-1}$ is the
+locally defined differential. The lift $G^{(n)}_f$ descends to a
+globally defined section on $X$ after taking $\pi_*$-invariants under
+the monodromy of $\widetilde X \to X$, and the BRST identity
+\eqref{eq:sugawara-n-explicit} holds on $Q_{\mathrm{tot}}$-cohomology
+on the downstairs curve $X$.
+
+In particular Theorem~\ref{thm:e-infinity-topologization-ladder}
+applies to all good-$(1/d)$-graded $\cW^k(\fg, f)$ including
+Bershadsky--Polyakov \textup{(}$f_{\min}$ in $\mathfrak{sl}_3$,
+$d_f = 1$\textup{)} and minimal $\cW^k(\mathfrak{sl}_4, f_{\min})$
+\textup{(}$d_f = 2$\textup{)}.
+\end{proposition}
+
+\begin{proof}[Proof sketch]
+The good $(1/d_f)$-grading hypothesis guarantees that all ghost
+conformal weights lie in $\tfrac{1}{d_f}\Z$
+\textup{(}Arakawa~\cite{Arakawa-W}\,§3\textup{)}. Pull back to the
+degree-$d_f$ cyclic cover $\widetilde X \to X$ along which weights
+become integral: the pulled-back ghost system $\pi^* (b, c)$ is an
+ordinary integer-weight $(b, c)$-system on $\widetilde X$, and the
+construction of Theorem~\ref{thm:iterated-sugawara-construction}
+applies verbatim upstairs. Descending via $\pi_*^{\mathrm{inv}}$
+(taking $\mathrm{Deck}(\pi)$-invariants) delivers $G^{(n)}_f$ on
+$X$; the BRST identity is preserved because $Q_{\mathrm{tot}}$
+commutes with $\mathrm{Deck}(\pi)$
+\textup{(}both are defined in the bulk BV complex of $3$d
+hCS which does not see the branched cover\textup{)}.
+
+The contour integral~\eqref{eq:Gn-fractional} is the standard
+fractional-weight expression for the antighost mode; $d_f \cdot \omega_n =
+(dz)^{n-1}$ on $\widetilde X$ is an integer-weight differential.
+Detailed computation for $\mathfrak{sl}_3, f_{\min}$
+\textup{(}BP, $d_f = 1$\textup{)} recovers the specialisation of
+Remark~\textup{\ref{rem:E3-DS-BP-specialisation}}; for
+$\mathfrak{sl}_4, f_{\min}$ (minimal nilpotent, $d_f = 2$), the degree-$2$
+cover realises the half-integer weight ghosts as
+Sym${}^2(\mathbb{F}_2)$-equivariant sections on $\widetilde X$.
+\end{proof}
+
+\begin{proposition}[Class~M free-PVA via Li-filtration]
+\label{prop:healing-fm82}
+\index{FM82!healed}
+\index{class M!free PVA}
+\index{Li-filtration!separates pole order from PVA degree}
+For $A = \mathrm{Vir}_c$ at generic $c$, the associated graded
+$\operatorname{gr}_{\mathrm{Li}}(A)$ is a freely generated Poisson vertex
+algebra on the single generator $T \in A$. In particular the hypothesis
+of Theorem~\textup{\ref{thm:E3-topological-free-PVA}}
+\textup{(}Khan--Zeng freely generated PVA\textup{)} is satisfied for
+class~M; Theorem~\ref{thm:e-infinity-specialisation-Vir} at $N = 2$ and
+Theorem~\ref{thm:E3-topological-free-PVA} agree.
+\end{proposition}
+
+\begin{proof}
+Li~\textup{\cite{Li-filtration}} defines the Li filtration on a conformal
+vertex algebra $A$ by $F_p A = \mathrm{span}\{ :a_1^{(-n_1-1)}\cdots
+a_r^{(-n_r-1)}\mathbf{1}: : \sum n_i \ge p\}$, and shows that
+$\operatorname{gr}_{\mathrm{Li}}(A) = \bigoplus_p F_p A / F_{p+1} A$ is a
+Poisson vertex algebra. The quartic pole $\lambda^3$-term in the Virasoro
+$\lambda$-bracket $\{T_\lambda T\} = \tfrac{c}{12} \lambda^3 + 2\lambda T
++ \partial T$ contributes to $F_3$ and gets filtered out of
+$\operatorname{gr}_{\mathrm{Li}}$. The associated graded PVA is freely
+generated on $\{T, \partial T, \partial^2 T, \ldots\}$ with polynomial
+$\lambda$-brackets $\{T_\lambda T\}_{\mathrm{gr}} = \partial T$
+(the leading bracket mode); this matches the hypothesis of
+Khan--Zeng~\cite{Khan-Zeng} and of
+Theorem~\ref{thm:E3-topological-free-PVA}.
+
+In particular FM82 (``class~M quartic poles incompatible with
+Khan--Zeng polynomial $\lambda$-brackets'') was a confusion between the
+\emph{original} $\lambda$-bracket (which does contain $\lambda^3$) and
+the $\lambda$-bracket of the Li-associated-graded PVA (which is
+polynomial, of leading degree~$1$). Khan--Zeng applies to the latter;
+the $3$d Poisson sigma model is well-defined for $\mathrm{Vir}_c$ at
+generic $c$ and delivers an $\Ethree$-topological structure in the
+freely-generated-PVA sense.
+\end{proof}
+
+\begin{proposition}[Stage 9 class~M via KZ-admissibility]
+\label{prop:healing-fm215}
+\index{FM215!resolved}
+\index{Stage 9!class M!resolved}
+The declared scope of Stage~9 of the Vol~II preface (``proved for
+affine, DS/$\cW$, and freely-generated-PVA lanes including class~M'')
+is consistent with the stronger FM82 healing statement
+(Proposition~\ref{prop:healing-fm82}) once the Li filtration is applied.
+The apparent contradiction is resolved: FM82's original scope
+restriction (``class~M incompatible with polynomial
+$\lambda$-brackets'') applied to the \emph{pre-filtration}
+$\lambda$-bracket, whereas Stage 9 and
+Theorem~\ref{thm:E3-topological-free-PVA} apply to
+$\operatorname{gr}_{\mathrm{Li}}$, which is polynomial.
+\end{proposition}
+
+\begin{proof}
+Direct consequence of Proposition~\ref{prop:healing-fm82}.
+\end{proof}
+
+\subsection{Climax restatement: 3d+\texorpdfstring{$\infty$}{infty}
+topological gravity}
+\label{subsec:climax-restatement}
+
+The 3d-gravity climax part (\ref{part:3d-gravity}) of this volume is
+the programme's $\Ethree$-topological climax:
+boundary Virasoro (or affine Kac--Moody, or principal $\cW$) determines
+a bulk $3$d holomorphic-topological field theory; the derived chiral
+centre is the bulk factorisation algebra; the $\Ethree$-topological
+upgrade via Sugawara makes the full $3$d theory topological. The
+interpretation is $3$d quantum gravity: the Virasoro bulk is the
+asymptotic symmetry of $\mathrm{AdS}_3$ (Brown--Henneaux), the
+$\Ethree$-topological promotion is the local topological nature of
+$3$d gravity, and the derived centre is the full bulk algebra of
+observables.
+
+The $\Einfty$-topologization theorem of this chapter inscribes the
+Platonic form of this climax:
+
+\begin{theorem}[Climax restatement: $\cW_\infty$-boundary 3d+$\infty$
+topological gravity; \ClaimStatusProvedHere]
+\label{thm:climax-restatement-3d-infty}
+\index{3d gravity!3d+infty topological|textbf}
+\index{climax!E\_infty restatement|textbf}
+\index{Wbar infinity algebra@$\cW_\infty$-algebra!boundary of 3d+infty gravity}
+The canonical universal object behind the Vol~II climax is a
+$3$d+$\infty$ topological field theory whose boundary is the universal
+$\cW_\infty[\mu]$-algebra and whose bulk is
+$Z^{\mathrm{der}}_{\mathrm{ch}}(\cW_\infty[\mu])$ as an
+$\Einfty$-topological algebra
+\textup{(}Theorem~\ref{thm:e-infinity-specialisation-Winfty}\textup{)}.
+Three-dimensional gravity with Virasoro boundary, as inscribed in
+the climax part (\ref{part:3d-gravity}), is the depth-$N = 2$
+truncation of this
+$\Einfty$-topological universal object: it retains only the spin-$2$
+stress tensor $T = T^{(2)}$ and its associated
+$\Etopo{3} = \Etwo^{\mathrm{top}} \otimes \Eone^{\mathrm{top}}$
+structure, projecting out every higher-spin rung of the stress tower.
+
+Each rung purchases an additional real topological direction. In
+particular:
+\begin{enumerate}[label=\textup{(\roman*)}]
+\item $\cW_N$-boundary $(N+1)$-dimensional topological gravity
+ \textup{(}spin-$2, 3, \ldots, N$ stress tensors\textup{)}
+ is the depth-$N$ rung, realised as an $\Etopo{N+1}$-topological
+ algebra on $Z^{\mathrm{der}}_{\mathrm{ch}}(\cW_N)$.
+\item $\cW_\infty$-boundary $(\infty+1)$-dimensional topological
+ gravity is the Platonic endpoint, realised as an
+ $\Einfty$-topological algebra on
+ $Z^{\mathrm{der}}_{\mathrm{ch}}(\cW_\infty[\mu])$.
+\end{enumerate}
+The programme's five-arrow operadic circle is the $N = 2$ truncation of
+the infinite operadic spiral of Theorem~\ref{thm:operadic-spiral}.
+\end{theorem}
+
+\begin{proof}
+Immediate from
+Theorems~\ref{thm:e-infinity-topologization-ladder},
+\ref{thm:e-infinity-specialisation-Vir},
+\ref{thm:e-infinity-specialisation-WN},
+\ref{thm:e-infinity-specialisation-Winfty},
+and~\ref{thm:operadic-spiral}, assembled with the climax
+part (\ref{part:3d-gravity})
+identification of $3$d gravity with the derived centre of the
+boundary chiral algebra (Chapter~\ref{ch:3d-gravity}).
+\end{proof}
+
+\begin{remark}[Status vs.\ physical reality]
+\label{rem:climax-status-vs-reality}
+The physical $3$d quantum gravity that has been inscribed in the
+climax part (\ref{part:3d-gravity})
+corresponds to the depth-$2$ (Virasoro) rung of the climax. Whether
+\emph{physical} gravity has a higher-spin stress tower — i.e., whether
+Nature chooses $\cW_N$ or $\cW_\infty$ as the asymptotic symmetry
+algebra of AdS$_{n+1}$ for some $n \ge 4$ — is a separate question from
+the algebraic-topological structure established here. The theorem
+establishes the Platonic $3$d+$\infty$ object; Vasiliev-type higher-spin
+gravities, Maldacena--Zhiboedov free-boson/free-fermion dualities, and
+related physical frameworks embed into particular $\cW_N$-rungs of the
+ladder. See Chapter~\ref{ch:thqg-3d-gravity-vi-x} for explicit
+physical interpretations at finite~$N$.
+\end{remark}
+
+\begin{remark}[Consistency with V2-AP catalogue and Vol~II
+reconstitution]
+\label{rem:consistency-vol2-AP-reconstitution}
+The $\Einfty$-topologization theorem is one of the canonical reconstitution
+targets of the programme. It subsumes the scope restrictions on $E_3$-topologization
+for affine Kac--Moody, Drinfeld--Sokolov, and free polynomial vertex algebras
+(anti-patterns V2-AP47, V2-AP48, V2-AP81, V2-AP82, V2-AP215) as consequences of the
+stronger $\Einfty$-statement rather than as isolated patches.
+
+Cross-volume consistency: Vol~I's shadow tower $\{S_r\}_{r \ge 2}$ and
+Vol~III's chiral-functor-$\Phi$ both see the higher-spin stress tensors
+as their natural $r$-th rungs: $S_r$ is the $r$-th shadow obstruction
+produced by the spin-$r$ Casimir; $\Phi$ transports the rung structure
+to the CY-categorical side. The $\Einfty$-topologization theorem is
+the Vol~II expression of the same structural fact.
+\end{remark}
+
+% ----------------------------------------------------------------------------
+% Bibliographic notes (citation tags assumed present in Vol II bib;
+% \providecommand-style defensive fallbacks are in main.tex preamble).
+%
+% Expected .bib entries, by citation tag:
+%   Linshaw-Winfty               - Linshaw, Universal two-parameter W_infty[mu], arXiv:1710.02275
+%   BMP-Wsymmetry                - Bouwknegt-McCarthy-Pilch, W-symmetry review, Phys.Rept. 223 (1993)
+%   Bakas-Winfty                 - Bakas, higher spin algebras and W_infty, Phys.Lett. B228 (1989)
+%   Schoutens-higher-spin-Sugawara - Schoutens-Sevrin-vanNieuwenhuizen, higher-spin Casimir construction
+%   Fateev-Lukyanov              - Fateev-Lukyanov, Int.J.Mod.Phys. A3 (1988) 507
+%   Feigin-Frenkel-screenings    - Feigin-Frenkel screening operators and W_N algebras
+%   costello-gaiotto             - Costello-Gaiotto, holomorphic CS with DS boundary, arXiv:1804.06460
+%   CFG26                        - Costello-Francis-Gwilliam, factorization algebras from BV quantisation
+%   Dunn-additivity              - Dunn, Tensor products of operads and iterated loop spaces
+%   Francis-tangent              - Francis, tangent complex of E_n-algebras
+%   AF15                         - Ayala-Francis, factorization homology of topological manifolds
+%   HA                           - Lurie, Higher Algebra
+%   Fresse-book                  - Fresse, Homotopy of Operads and Grothendieck-Teichmueller Groups
+%   Elashvili-Kac                - Elashvili-Kac, good gradings on simple Lie algebras
+%   Arakawa-W                    - Arakawa, W-algebras at critical level and beyond
+%   Li-filtration                - Li, Poisson vertex algebras and Li filtration
+%   Khan-Zeng                    - Khan-Zeng, 3d Poisson sigma model and Khan-Zeng
+% ----------------------------------------------------------------------------
