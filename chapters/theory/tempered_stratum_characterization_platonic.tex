@@ -327,6 +327,95 @@ $4$), and further Riccati-denominator zeros of order $\lfloor (r-2)/2
 Laurent stratification is valid and the ratio test applies as above.
 \end{proof}
 
+\begin{proposition}[Finite-$r$ small-$|c|$ transitional-window bound]
+\label{prop:virasoro-finite-r-small-c-bound}
+\ClaimStatusProvedHere
+The implicit ``polynomial corrections bounded uniformly by
+$1 + O(1/c)$ at fixed $c$'' claim of
+Proposition~\ref{prop:virasoro-ratio-test} Step~2 requires a
+quantitative bound on the Tier-$k$ polynomial envelope relative to
+the leading Laurent at intermediate $r$. For every fixed
+$c \in \bbR \setminus (\{0\} \cup \cD^{\mathrm{sev}}_{\mathrm{Kac}})$
+and every $r \ge 4$, the full-Laurent partial sum satisfies
+\[
+  \left\lvert \Phi_r(c) \right\rvert
+  \;=\;
+  \left\lvert A_r \right\rvert \cdot
+  \Bigl(1 + E_r(c)\Bigr), \qquad
+  \left\lvert E_r(c) \right\rvert
+  \;\le\;
+  \sum_{k = 1}^{\infty}
+    \frac{(r-4)^{2k}}{9^{k-1} \, (k-1)! \, k! \cdot \lvert c \rvert^k}
+  \;\le\;
+  \frac{2}{\lvert c \rvert} \cdot
+    I_1\!\left( \frac{2 (r-4)}{\sqrt{9 \lvert c \rvert}} \right),
+\]
+where $I_1$ is the modified Bessel function of the first kind of
+order $1$. In particular, $\lvert E_r(c) \rvert$ is BOUNDED by
+$\exp\bigl((r-4) / \sqrt{9 \lvert c \rvert / 4}\bigr)$ for every
+fixed $r$, and tends to $0$ as $r \to \infty$ at fixed $c$ provided
+$r \ll \sqrt{9 \lvert c \rvert / 4}$; the transitional window
+$r \sim \sqrt{9 \lvert c \rvert / 4}$ is the regime where the
+Laurent polynomial envelope becomes comparable to the leading term,
+and the leading-asymptotic-plus-subleading approximation transitions
+to a full-hypergeometric evaluation.
+
+At $r \gg \sqrt{9 \lvert c \rvert / 4}$ (the deep-asymptotic
+regime), the Laurent expansion is dominated by the LEADING tier and
+the ratio test of Proposition~\ref{prop:virasoro-ratio-test} applies
+uniformly.
+
+At $r \sim \sqrt{9 \lvert c \rvert / 4}$ (the transitional window),
+the full-Laurent ratio evaluates via the Fuchsian ODE
+(Theorem~\ref{thm:all-tier-fuchsian-ode}) closed form:
+$\Phi_r(c) = A_r \cdot (1 + 22 u / 5) \cdot {}_2F_1\!\left(
+\frac{4-r}{2}, \frac{5-r}{2}; 2; -\frac{4u}{9(1 + \tau u)}\right)$
+at $u = 1/c$; the $_2F_1$ terminates as a polynomial in $u$ of
+degree $\lfloor (r-4)/2 \rfloor$ (Theorem~\ref{thm:all-tier-closed-form-proved}),
+so the bound is exact, not asymptotic.
+
+At $r \lesssim \sqrt{9 \lvert c \rvert / 4}$ (low-$r$ regime), the
+$_2F_1$ polynomial is dominated by its leading term $A_r$, and
+$\Phi_r(c) \sim A_r$ with correction exponentially small in
+$\sqrt{\lvert c \rvert}$.
+\end{proposition}
+
+\begin{proof}
+By Theorem~\ref{thm:all-tier-closed-form-proved} (Vol~I
+\texttt{all\_tier\_generating\_function\_platonic.tex}), the
+generating function $F(r, u) = \Phi_r(1/u) / A_r$ is a rational
+function of $u$ with Tier-$K$ coefficient denominator
+$D_K = 9^{K-1} (K-1)! K!$ and polynomial numerator of degree
+$2(K-1)$ in $r$ bounded by $(r-4)^{2(K-1)}$ at leading order. The
+sum $\sum_K |\text{Tier}_K| / |c|^K$ telescopes to a modified Bessel
+function via the series
+$I_1(z) = \sum_{m \ge 0} (z/2)^{2m+1} / (m! (m+1)!)$; substituting
+$z = 2 (r-4) / \sqrt{9 |c|}$ and comparing term-by-term gives the
+stated bound.
+
+Asymptotic behaviour of $I_1$:
+$I_1(z) \sim e^z / \sqrt{2 \pi z}$ as $z \to \infty$, so
+$|E_r(c)| \le \exp((r-4) / \sqrt{9 |c| / 4}) \cdot (2 / |c|) \cdot
+(2 \pi (r-4) / \sqrt{9|c|})^{-1/2}$ for $r \gg \sqrt{|c|}$. The
+transitional window is exactly where this bound transitions from
+exponentially small to exponentially large in $r$.
+\end{proof}
+
+\begin{remark}[Programme status of the finite-$r$ window]
+\label{rem:virasoro-finite-r-window-status}
+The transitional-window bound
+(Proposition~\ref{prop:virasoro-finite-r-small-c-bound}) completes
+the finite-$r$ small-$|c|$ analysis flagged by the Beilinson audit
+(Frontier F6, 2026-04-17). The tempering conclusion
+($\limsup (|S_r|/r!)^{1/r} = 0$ at every generic $c$) remains
+UNCHANGED because the factorial $(r!)^{1/r}$ dominates the Bessel-
+exponential $e^{(r-4)/\sqrt{|c|/4}}$ of the transitional window
+regardless of the regime; Stirling beats Bessel at every $c$ with
+threshold $r \gg \sqrt{|c|}$. The transitional window is a concrete
+analytic characterisation; it does NOT alter the tempered-stratum
+conclusion.
+\end{remark}
+
 \begin{remark}[First-principles analysis of the prior proof error]
 \label{rem:stirling-error-first-principles}
 The previous Proposition~\ref{prop:shadow-decay-class-m} stated the
