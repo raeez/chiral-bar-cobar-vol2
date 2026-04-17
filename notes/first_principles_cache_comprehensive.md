@@ -1358,7 +1358,7 @@ Strongest honest form (Wave 5): every finding UPGRADES Thm A. Nothing is downgra
 **W6-A3. "ChirHoch is finite, THH is infinite" (FM80, AP-CY64).**
  - (a) RIGHT: at critical level, $\mathrm{ChirHoch}^0$ is infinite (Feigin–Frenkel centre).
  - (b) WRONG: "Theorem H has no classical analogue"; in fact $\HH^*(\mathrm{Weyl})$ is \emph{more} concentrated than ChirHoch. The object that genuinely fails to concentrate is Gel'fand–Fuchs $H^*_{\mathrm{GF}}(\mathrm{Lie}(\cA))$, which is neither.
- - (c) CORRECT: new theorem `thm:three-hochschild-unification` with three natural transformations $\eta_{\mathrm{mode}}$, $\eta_{\mathrm{GF}}$, $\zeta$. Each comparison is made precise with its scope (degree, level, stability type). Remark `rem:three-hochschild-ap-cy64` guards future usage. Type: conflation + scope error.
+ - (c) CORRECT: new theorem `thm:three-hochschild-unification` with three natural transformations $\eta_{\mathrm{mode}}$, $\eta_{\mathrm{GF}}$, $\zeta$. Each comparison is made precise with its scope (degree, level, stability type). Remark `rem:three-hochschild-invariants` guards future usage. Type: conflation + scope error.
 
 **W6-A4. Geometric vs algebraic Hochschild chain model (AP-CY62, FM183).**
  - (a) RIGHT: the two models compute the same cohomology.
