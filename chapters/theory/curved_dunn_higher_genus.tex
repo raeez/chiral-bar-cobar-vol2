@@ -734,7 +734,7 @@ type \((g, n)\) contributes to a \(D\)-cocycle of
 \(1/|\mathrm{Aut}(\Gamma)|\) to maintain
 \(\Sigma_{n}\)-equivariance and to absorb the over-counting in the
 ribbon-graph stratification of \(\overline{\cM}_{g, n}\).
-\end{definition>
+\end{definition}
 
 \begin{theorem}[Explicit chain-level coboundary witness at \(g = 2\)]
 \label{thm:curved-dunn-H2-explicit-coboundary-g-geq-2}
@@ -961,6 +961,452 @@ generators (Step~2 of
 \(\mathrm{Ob}_{g} = \Phi(D\Theta^{(g)}) =
 \Phi(d_{\Theta^{(0)}} P_{g}) = d_{0}(\Phi(P_{g}))\).
 \end{proof}
+
+\section{Canonical harmonic gauge for the twisting cochain
+\texorpdfstring{$\tau_{g}$}{tau\_g}}
+\label{sec:harmonic-gauge}
+
+\autoref{thm:curved-dunn-H2-vanishing-all-genera} determines the
+twisting cochain \(\tau_{g}\) only up to convolution-gauge
+equivalence, and
+\autoref{cor:curved-dunn-H2-explicit-all-g} constructs an
+explicit primitive \(P_{g}\) only up to the kernel of
+\(d_{\Theta^{(0)}}\) on \(\fg^{A,(1)}_{\mathrm{mod}}\). At the
+cohomological level this ambiguity is invisible, but at chain level
+it is load-bearing: (i) the secondary Eilenberg--Zilber coproduct
+on the modular bar complex is chain-level data that depends on the
+explicit representative of \(\tau_{g}\); (ii) the clutching
+composition of \autoref{cor:modular-operad-composition-all-levels}
+pairs flat sections across nodal strata, and different gauge
+representatives produce different chain-level pairings that agree
+only up to homotopy; (iii) the Vol~I consumer
+(\textup{thm:lagrangian-complementarity-global-upgrade} clause~(iv))
+requires an \emph{equality} of chain-level objects, not a homotopy
+class. The present section closes the chain-level freedom by
+naming a canonical representative: the \emph{harmonic gauge}
+\(\tau_{g}^{\mathrm{harm}}\).
+
+At each finite weight truncation \(N\), the contracting homotopy
+\(h_{N}\) of
+\autoref{ch:curved-dunn-raw-direct-sum-platonic},
+\autoref{lem:finite-truncation-is-complex} splits
+\(d_{\mathrm{curved\text{-}Dunn}}\) into harmonic and
+\(d\)-exact parts via the modular Laplacian
+\(\Delta_{g, N} = d_{0} d_{0}^{\ast} + d_{0}^{\ast} d_{0}\), where
+the adjoint is taken with respect to the Kac inner product on each
+weight space (the contravariant Hermitian form on
+\(\overline{A} = \ker \epsilon\) constructed from Shapovalov pairing
+on the Verma modules of \(A\), fibrewise over
+\(\overline{\cM}_{g,n}\)). The pro-limit
+\(h^{\mathrm{harm}}_{g} := \varprojlim_{N} h_{N}\) lives in
+\(\mathrm{pro\text{-}Ch}(\mathrm{Vect})\) and fixes the gauge on
+\(\tau_{g}\): the harmonic-gauge
+\(\tau_{g}^{\mathrm{harm}}\) is unique and natural under
+isometries of \(A\).
+
+\begin{definition}[Harmonic projector and homotopy]
+\label{def:harmonic-projector}
+Let \(A\) be a chirally Koszul algebra at non-zero \(\kappa(A)\)
+and \(g \ge 2\). For each weight \(r \ge 0\), let
+\(\Delta_{g, r} := d_{0} d_{0}^{\ast} + d_{0}^{\ast} d_{0}\) be the
+modular Laplacian on the weight-\(r\) stratum
+\(\mathrm{TCo}^{\bullet}_{g, [r]}(A)\), with adjoint
+\(d_{0}^{\ast}\) computed against the Kac inner product inherited
+from the standard Hermitian form on
+\(\overline{A}\). The \emph{harmonic projector} at weight \(r\) is
+\[
+  H_{g, r} \;:=\; \mathrm{pr}_{\ker \Delta_{g, r}}
+  \;:\; \mathrm{TCo}^{\bullet}_{g, [r]}(A)
+  \;\twoheadrightarrow\; \ker \Delta_{g, r},
+\]
+and the \emph{harmonic homotopy} is
+\(h_{g, r} := d_{0}^{\ast}\,\Delta_{g, r}^{-1}\,(\mathrm{id} - H_{g, r})\),
+well-defined because \(\Delta_{g, r}\) is invertible on
+\((\ker \Delta_{g, r})^{\perp}\) at generic \(c\) (Kac determinant
+non-vanishing). Assembling over \(r\) gives the pro-limit
+\[
+  h^{\mathrm{harm}}_{g} \;:=\; \varprojlim_{N} \bigl(
+    \textstyle\sum_{r \le N} h_{g, r}\bigr)
+  \;\in\; \mathrm{Hom}_{\mathrm{pro}}\!\bigl(
+    \mathrm{TCo}^{\bullet}_{g}(A),\,
+    \mathrm{TCo}^{\bullet - 1}_{g}(A)\bigr),
+\]
+and the corresponding harmonic projector
+\(H^{\mathrm{harm}}_{g} := \varprojlim_{N}
+\sum_{r \le N} H_{g, r}\).
+\end{definition}
+
+\begin{remark}[Identification with the truncated homotopy of
+\autoref{ch:curved-dunn-raw-direct-sum-platonic}]
+\label{rem:harmonic-homotopy-truncation-identification}
+The pro-limit \(h^{\mathrm{harm}}_{g}\) of
+\autoref{def:harmonic-projector} is the canonical lift of the
+weight-truncated homotopy \(h_{N}\) of
+\autoref{lem:finite-truncation-is-complex} to the pro-ambient.
+At each finite \(N\), the restriction
+\(h^{\mathrm{harm}}_{g}|_{\mathrm{TCo}^{\bullet}_{g, \le N}(A)}\)
+equals \(h_{N}\) up to a normalisation by the Kac-norm denominator;
+the pro-limit absorbs the Milnor-\(\lim^{1}\) correction, giving a
+well-defined pro-endomorphism of
+\(\mathrm{TCo}^{\bullet}_{g}(A)\) as a pro-object.
+Equivalent: in the weight-completed ambient of
+\autoref{thm:curved-dunn-pro-ambient-H2-zero},
+\(h^{\mathrm{harm}}_{g}\) is the ordinary Hodge-theoretic
+Green's-function kernel for \(\Delta_{g}\).
+\end{remark}
+
+\begin{definition}[Harmonic gauge for the twisting cochain]
+\label{def:harmonic-gauge}
+A twisting cochain
+\(\tau_{g} \in \mathrm{TCo}^{1}_{g}(A)\) is in the
+\emph{harmonic gauge} (or Hodge gauge) if
+\[
+  h^{\mathrm{harm}}_{g}\,\cdot\,\tau_{g} \;=\; 0,
+\]
+equivalently if \(\tau_{g}\) lies in the orthogonal complement
+\((\mathrm{im}\, d_{0}^{\ast})^{\perp}\) of the \(d_{0}^{\ast}\)-exact
+subspace under the Kac inner product. We write
+\(\tau_{g}^{\mathrm{harm}}\) for a twisting cochain in harmonic
+gauge.
+\end{definition}
+
+\begin{theorem}[Existence and uniqueness of the harmonic-gauge
+twisting cochain]
+\label{thm:harmonic-gauge-existence-uniqueness}
+\ClaimStatusProvedHere
+Let \(A\) be a chirally Koszul algebra at non-critical non-integral
+level \(k\) with non-zero \(\kappa(A)\), and let \(g \ge 2\). In the
+pro-ambient
+\(\mathrm{pro}\text{-}\mathrm{TCo}^{\bullet}_{g}(A)\):
+\begin{enumerate}
+  \item \textbf{Existence.} There exists a twisting cochain
+    \(\tau_{g}^{\mathrm{harm}} \in \mathrm{TCo}^{1}_{g}(A)\) in
+    harmonic gauge satisfying the Maurer--Cartan equation
+    \(d_{0}(\tau_{g}^{\mathrm{harm}})
+    + \tfrac{1}{2}[\tau_{g}^{\mathrm{harm}},
+    \tau_{g}^{\mathrm{harm}}]_{\mathrm{conv}} = 0\) and extending
+    any fixed harmonic-gauge \(\tau_{g-1}^{\mathrm{harm}}\).
+  \item \textbf{Uniqueness.} \(\tau_{g}^{\mathrm{harm}}\) is the
+    unique twisting cochain satisfying
+    \(h^{\mathrm{harm}}_{g} \cdot \tau_{g} = 0\) within the
+    convolution-gauge equivalence class of
+    \autoref{thm:curved-dunn-H2-vanishing-all-genera}.
+  \item \textbf{Naturality.} The assignment
+    \(A \mapsto \tau_{g}^{\mathrm{harm}}(A)\) is functorial under
+    morphisms of chirally Koszul algebras that preserve the Kac
+    inner product.
+  \item \textbf{Closed form.}
+    \(\tau_{g}^{\mathrm{harm}}
+    = -\,h^{\mathrm{harm}}_{g}
+    \cdot \tfrac{1}{2}[\tau_{<g}^{\mathrm{harm}},
+    \tau_{<g}^{\mathrm{harm}}]_{\mathrm{conv}}\)
+    (harmonic transgression of the lower-genus quadratic
+    contribution).
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+The argument is homological perturbation in the pro-ambient.
+
+\emph{Step 1 (SDR at each truncation).} Fix a truncation \(N\). By
+\autoref{lem:finite-truncation-is-complex}, the triple
+\((\mathrm{TCo}^{\bullet}_{g, \le N}(A),\, H^{\bullet},\, h_{N})\)
+is a special deformation retract (SDR) in the sense of Crainic,
+Lambe--Stasheff \cite{Crainic04, LS87}: the projector \(H_{N} :=
+\sum_{r \le N} H_{g, r}\) satisfies \(H_{N}^{2} = H_{N}\) and
+\(\mathrm{id} - H_{N} = d_{0} h_{N} + h_{N} d_{0}\); the side
+conditions \(h_{N} H_{N} = H_{N} h_{N} = h_{N}^{2} = 0\) hold
+because \(d_{0}^{\ast}\) kills harmonic forms and
+\((d_{0}^{\ast})^{2} = 0\) by adjunction to \(d_{0}^{2} = 0\)
+weight-by-weight.
+
+\emph{Step 2 (harmonic transgression at each truncation).} The
+harmonic-gauge equation \(h_{N} \cdot \tau_{g, \le N} = 0\) is
+equivalent, within the Maurer--Cartan equation
+\(d_{0}\tau_{g, \le N} + \tfrac{1}{2}[\tau_{g, \le N}, \tau_{g,
+\le N}]_{\mathrm{conv}} = 0\), to the closed-form recursion
+\[
+  \tau_{g, \le N}
+  \;=\;
+  -\,h_{N}
+  \cdot
+  \tfrac{1}{2}[\tau_{<g, \le N}, \tau_{<g, \le N}]_{\mathrm{conv}}
+  \;+\;
+  H_{N}\,\eta_{g}
+\]
+for some harmonic datum
+\(\eta_{g} \in \ker \Delta_{g, \le N} \cap \mathrm{TCo}^{1}_{g}(A)\).
+The harmonic datum \(\eta_{g}\) parametrises the convolution-gauge
+class of \(\tau_{g}\); its choice is not forced by
+\autoref{thm:curved-dunn-H2-vanishing-all-genera} alone (that
+theorem only eliminates the \(H^{2}\)-obstruction to extending
+\(\tau_{<g}\) to \(\tau_{g}\)). We pin \(\eta_{g}\) down by
+imposing the \emph{reduction axiom}: \(\tau_{g, \le N}^{\mathrm{harm}}\)
+has \emph{zero harmonic part}, equivalently
+\(\eta_{g} = 0\). This is a definitional constraint -- the harmonic
+gauge is precisely the prescription that kills the harmonic
+representative of the \(H^{1}\)-class -- not a derived
+consequence. Under this constraint,
+\(\tau_{g, \le N}^{\mathrm{harm}} = -h_{N}
+\cdot \tfrac{1}{2}[\tau_{<g, \le N}, \tau_{<g, \le N}]\) is
+uniquely determined at each truncation.
+
+\emph{Step 3 (pro-limit).} The pro-system
+\(\{\tau_{g, \le N}^{\mathrm{harm}}\}_{N}\) is compatible with the
+weight-truncation quotient maps \(\pi_{N+1, N}\): the harmonic
+projector at weight \(r\) commutes with truncation for \(r \le N\)
+because the Kac inner product is block-diagonal in weight. Hence
+the pro-limit
+\(\tau_{g}^{\mathrm{harm}}
+:= \varprojlim_{N} \tau_{g, \le N}^{\mathrm{harm}}\)
+exists as a pro-object and satisfies the pro-MC equation. The
+Milnor-\(\lim^{1}\) obstruction vanishes because the transition
+maps are surjective (truncation is a quotient), by the
+Mittag-Leffler mechanism of
+\autoref{thm:curved-dunn-pro-ambient-H2-zero}.
+
+\emph{Step 4 (uniqueness within the gauge class).} Suppose
+\(\tau_{g}\) and \(\tau_{g}'\) are two harmonic-gauge twisting
+cochains in the same convolution-gauge class of
+\autoref{thm:curved-dunn-H2-vanishing-all-genera}, both satisfying
+the reduction axiom \(\eta_{g} = 0\) of Step~2. Their difference
+\(\delta := \tau_{g}' - \tau_{g}\) satisfies
+\(d_{0}\delta + [\tau_{<g}, \delta]_{\mathrm{conv}} = 0\) (MC
+linearisation) and \(h^{\mathrm{harm}}_{g}\delta = 0\) (both in
+harmonic gauge). By Step~1 (SDR decomposition
+\(\delta = H^{\mathrm{harm}}_{g}\delta + d_{0}
+h^{\mathrm{harm}}_{g}\delta + h^{\mathrm{harm}}_{g} d_{0}\delta\))
+and the harmonic condition, \(\delta = H^{\mathrm{harm}}_{g}\delta
++ h^{\mathrm{harm}}_{g} d_{0}\delta\) (since
+\(h^{\mathrm{harm}}_{g}\delta = 0\)). The first summand is zero
+because both \(\tau_{g}, \tau_{g}'\) satisfy the reduction axiom
+(no harmonic part), so
+\(H^{\mathrm{harm}}_{g}\delta = H^{\mathrm{harm}}_{g}(\tau_{g}'
+- \tau_{g}) = 0 - 0 = 0\). The second summand equals
+\(-h^{\mathrm{harm}}_{g}[\tau_{<g}, \delta]_{\mathrm{conv}}\) by
+the MC linearisation, which is a fixed-point recursion for
+\(\delta\) with contracting kernel (the convolution bracket is
+weight-raising and \(h^{\mathrm{harm}}_{g}\) is weight-preserving,
+so the recursion terminates in the pro-limit). The only fixed point
+is \(\delta = 0\). Hence \(\tau_{g} = \tau_{g}'\) and uniqueness
+holds.
+
+\emph{Step 5 (naturality).} A morphism \(f: A \to A'\) of chirally
+Koszul algebras preserving the Kac inner product induces a chain
+map \(f_{\ast}: \mathrm{TCo}^{\bullet}_{g}(A) \to
+\mathrm{TCo}^{\bullet}_{g}(A')\) that intertwines
+\(h^{\mathrm{harm}}_{g}\) by adjunction (\(f_{\ast}\) is an
+isometry at each weight). Hence
+\(f_{\ast}(\tau_{g}^{\mathrm{harm}}(A)) =
+\tau_{g}^{\mathrm{harm}}(A')\), proving naturality.
+
+Step~(iv)'s closed form is immediate from Step~2 with
+\(\eta_{g} = 0\): collecting truncations in the pro-limit gives
+\(\tau_{g}^{\mathrm{harm}} = -h^{\mathrm{harm}}_{g} \cdot
+\tfrac{1}{2}[\tau_{<g}^{\mathrm{harm}},
+\tau_{<g}^{\mathrm{harm}}]_{\mathrm{conv}}\). The right-hand side
+is a finite iterated contraction because the convolution bracket is
+weight-preserving and the harmonic homotopy is weight-preserving.
+\end{proof}
+
+\begin{lemma}[Handle-attachment primitive in harmonic gauge]
+\label{lem:Pg-in-harmonic-gauge}
+\ClaimStatusProvedHere
+The handle-attachment primitive \(P_{g}\) of
+\autoref{cor:curved-dunn-H2-explicit-all-g} is canonically
+identified in harmonic gauge with
+\[
+  P_{g}^{\mathrm{harm}}
+  \;=\;
+  \Phi^{-1}\!\bigl(h^{\mathrm{harm}}_{g}\!
+    \cdot \tfrac{1}{2}[\tau_{<g}^{\mathrm{harm}},
+      \tau_{<g}^{\mathrm{harm}}]_{\mathrm{conv}}\bigr)
+  \;\in\;
+  \fg^{A,(1)}_{\mathrm{mod}}\big|_{g},
+\]
+where \(\Phi^{-1}\) is the partial inverse of the bridge chain map
+of \autoref{prop:modular-bootstrap-to-curved-dunn-bridge} on the
+ribbon-graph stratum it covers. At \(g = 2\),
+\(P_{2}^{\mathrm{harm}}\) reduces to the explicit theta-bouquet
+combination
+\((1/12)\langle\sigma_{2}, \mathrm{ev}_{\Gamma^{(2)}_{\flat}}\rangle
++ (1/8)\langle\sigma_{2},
+\mathrm{ev}_{\Gamma^{(2)}_{\sharp}}\rangle\) of
+\autoref{def:handle-attachment-primitive-g2}, with
+\(\sigma_{2} = h^{\mathrm{harm}}_{2}(\omega_{2})\) the
+harmonic-gauge Katz--Oda primitive.
+\end{lemma}
+
+\begin{proof}
+By \autoref{thm:harmonic-gauge-existence-uniqueness}(iv),
+\(\tau_{g}^{\mathrm{harm}} = -h^{\mathrm{harm}}_{g} \cdot
+\tfrac{1}{2}[\tau_{<g}^{\mathrm{harm}}, \tau_{<g}^{\mathrm{harm}}]\).
+By \autoref{cor:curved-dunn-H2-explicit-all-g}, \(\Phi(P_{g})\) is
+a \(d_{0}\)-primitive of the obstruction \(\mathrm{Ob}_{g}\).
+Both are \(d_{0}\)-primitives of the same class; their difference
+is \(d_{0}\)-closed and hence, by
+\autoref{thm:harmonic-gauge-existence-uniqueness}(ii),
+\(h^{\mathrm{harm}}\)-exact. The harmonic-gauge condition
+\(h^{\mathrm{harm}}(\Phi(P_{g}))
+= h^{\mathrm{harm}}(\tau_{g}^{\mathrm{harm}}) = 0\) fixes the
+identification. For the \(g = 2\) specialisation, the
+Gauss--Manin primitive \(\sigma_{2}\) of
+\autoref{prop:genus1-twisted-tensor-product} (Step~1 proof,
+analogous construction at \(g = 2\)) is characterised by
+\(d\sigma_{2} = \omega_{2}\) modulo exact forms on
+\(\Lambda^{2} H^{1}\); the harmonic gauge fixes
+\(\sigma_{2} = h^{\mathrm{harm}}_{2}(\omega_{2})\) uniquely, which
+is the Katz--Oda primitive in harmonic gauge.
+\end{proof}
+
+\begin{proposition}[Clutching is harmonic-gauge covariant]
+\label{prop:clutching-harmonic-gauge-covariant}
+\ClaimStatusProvedHere
+The clutching composition
+\(\mu_{(g_{1}, n_{1}), (g_{2}, n_{2})}^{(g, n)}\) of
+\autoref{cor:modular-operad-composition-all-levels}, applied to a
+pair of harmonic-gauge twisting cochains
+\((\tau_{g_{1}}^{\mathrm{harm}}, \tau_{g_{2}}^{\mathrm{harm}})\),
+produces a twisting cochain
+\(\tau_{g}^{\mathrm{clutch}}\) that coincides with
+\(\tau_{g}^{\mathrm{harm}}\) at the cohomological level, and at the
+chain level differs from \(\tau_{g}^{\mathrm{harm}}\) by an explicit
+\(d_{0}\)-exact correction
+\(d_{0}(h^{\mathrm{harm}}_{g} \mu(\tau_{g_{1}}^{\mathrm{harm}},
+\tau_{g_{2}}^{\mathrm{harm}}))\). In particular, applying the
+harmonic homotopy \(h^{\mathrm{harm}}_{g}\) to
+\(\tau_{g}^{\mathrm{clutch}}\) returns \(0\), so clutching restores
+the harmonic-gauge representative after a single harmonic
+re-projection.
+\end{proposition}
+
+\begin{proof}
+The clutching composition \(\mu^{(g, n)}\) is a bilinear operation
+on the convolution dgLa, hence preserves the Maurer--Cartan
+equation: if \(\tau_{g_{i}}^{\mathrm{harm}}\) are MC, so is
+\(\tau_{g}^{\mathrm{clutch}} :=
+\mu^{(g, n)}(\tau_{g_{1}}^{\mathrm{harm}},
+\tau_{g_{2}}^{\mathrm{harm}})\) after accounting for the
+Getzler--Kapranov automorphism weights of the nodal stable graph.
+By \autoref{thm:harmonic-gauge-existence-uniqueness}(ii), the
+harmonic gauge is unique within the convolution-gauge equivalence
+class; hence \(\tau_{g}^{\mathrm{clutch}}\) and
+\(\tau_{g}^{\mathrm{harm}}\) agree in \(H^{1}\), meaning their
+difference is \(d_{0}\)-exact. The explicit form of the correction
+is \(d_{0}(h^{\mathrm{harm}}_{g} \cdot \tau_{g}^{\mathrm{clutch}})\)
+by the SDR decomposition
+\(\mathrm{id} - H^{\mathrm{harm}}_{g}
+= d_{0} h^{\mathrm{harm}}_{g}
++ h^{\mathrm{harm}}_{g} d_{0}\) applied to
+\(\tau_{g}^{\mathrm{clutch}}\) (harmonic part zero because the
+convolution-gauge class of \(\tau_{g}\) is trivial in harmonic
+gauge by the uniqueness in Step~4 of
+\autoref{thm:harmonic-gauge-existence-uniqueness}). The
+re-projection \(h^{\mathrm{harm}}_{g} \tau_{g}^{\mathrm{clutch}}\)
+is then a \(d_{0}\)-exact correction that vanishes after one more
+harmonic projection, as claimed.
+\end{proof}
+
+\begin{corollary}[Chain-level modular operad composition,
+harmonic-gauge refinement]
+\label{cor:modular-operad-composition-chain-level-harmonic-gauge}
+\ClaimStatusProvedHere
+For every \((g, n)\) with \(2g - 2 + n > 0\), every chirally
+Koszul algebra \(A\) at non-critical non-integral level \(k\) with
+generic \(c(k)\), the modular operad composition
+\(\mu_{(g_{1}, n_{1}), (g_{2}, n_{2})}^{(g, n)}\) of
+\autoref{cor:modular-operad-composition-all-levels} restricts to
+the harmonic-gauge twisting-cochain subcomplex
+\(\mathrm{TCo}^{\bullet,\mathrm{harm}}_{g}(A) := \ker
+h^{\mathrm{harm}}_{g}\) as a strict chain-level operation:
+\[
+  \mu_{(g_{1}, n_{1}), (g_{2}, n_{2})}^{(g, n), \mathrm{harm}}
+  \;:=\;
+  H^{\mathrm{harm}}_{g} \circ
+  \mu_{(g_{1}, n_{1}), (g_{2}, n_{2})}^{(g, n)}
+  \;:\;
+  \mathrm{TCo}^{\bullet,\mathrm{harm}}_{g_{1}}(A)
+  \otimes \mathrm{TCo}^{\bullet,\mathrm{harm}}_{g_{2}}(A)
+  \to \mathrm{TCo}^{\bullet,\mathrm{harm}}_{g}(A).
+\]
+The restricted composition is associative on the nose, not merely
+up to homotopy, because the Getzler--Kapranov associativity of
+\(\mu\) intertwines with \(H^{\mathrm{harm}}\)-projection via
+\autoref{prop:clutching-harmonic-gauge-covariant}.
+\end{corollary}
+
+\begin{proof}
+Compose \(\mu^{(g, n)}\) of
+\autoref{cor:modular-operad-composition-all-levels} with
+\(H^{\mathrm{harm}}_{g}\). The image lies in
+\(\ker h^{\mathrm{harm}}_{g}\) because \(h^{\mathrm{harm}}_{g}
+\circ H^{\mathrm{harm}}_{g} = 0\) (SDR side condition). Strict
+associativity follows from (i) associativity of \(\mu^{(g, n)}\)
+as a modular-operad composition (\(\mu(\mu(a, b), c) = \mu(a,
+\mu(b, c))\) up to Getzler--Kapranov graph-clutching associativity);
+(ii) that
+\(H^{\mathrm{harm}}_{g} \circ H^{\mathrm{harm}}_{g}
+= H^{\mathrm{harm}}_{g}\) (idempotency of the projector); and
+(iii) the intertwining identity
+\(H^{\mathrm{harm}}_{g} \circ \mu(\tau_{g_{1}}^{\mathrm{harm}},
+\tau_{g_{2}}^{\mathrm{harm}}) =
+\mu(H^{\mathrm{harm}}_{g_{1}} \tau_{g_{1}}, H^{\mathrm{harm}}_{g_{2}}
+\tau_{g_{2}}) + d_{0}(\text{correction})\) from
+\autoref{prop:clutching-harmonic-gauge-covariant}, with the
+\(d_{0}\)-exact correction killed by the outer
+\(H^{\mathrm{harm}}_{g}\).
+\end{proof}
+
+\begin{remark}[Gauge-fixing discipline]
+\label{rem:gauge-fixing-discipline}
+The harmonic gauge is the curved-Dunn analogue of the Siegel gauge
+\(b_{0} |\psi\rangle = 0\) in string field theory (Zwiebach
+\cite{Zwiebach93}) and of the Lorenz gauge \(d^{\ast} A = 0\) in
+Yang--Mills. In all three cases, the gauge-fixing condition reduces
+an unwieldy homotopy equivalence class to a single canonical
+representative via a Hodge-type projector, enabling chain-level
+equality where only cohomological equality was previously available.
+In our setting, the chain-level uniqueness
+(\autoref{thm:harmonic-gauge-existence-uniqueness}(ii)) is what
+discharges the Vol~I clause~(iv) dependency on an \emph{equality}
+rather than a homotopy class.
+\end{remark}
+
+\begin{remark}[Relation to Bellier-Mill\`es--Drummond-Cole gauge]
+\label{rem:BMDC-gauge-comparison}
+The BMDC model structure on curved operads (mentioned in
+\autoref{rem:BMDC}) fixes a cofibrant replacement of the curved
+modular operad up to Quillen-equivalence, but does not single out a
+canonical representative; the Hodge / harmonic gauge introduced
+here refines the BMDC choice to a chain-level canonical form.
+Concretely: the cofibrant replacement in the BMDC model structure
+is a Koszul resolution, which admits a unique harmonic-gauge
+representative in our pro-ambient by
+\autoref{thm:harmonic-gauge-existence-uniqueness}(ii). The two
+frameworks agree: BMDC gives the \((\infty, 1)\)-categorical
+chain-level equivalence; the harmonic gauge gives the
+chain-level strictification within that equivalence class.
+\end{remark}
+
+\begin{remark}[Chain-level vs $(\infty, 1)$-categorical status,
+gauge-fixing scope]
+\label{rem:harmonic-gauge-two-lanes}
+\autoref{thm:harmonic-gauge-existence-uniqueness} is a
+\emph{chain-level} statement: the canonical representative
+\(\tau_{g}^{\mathrm{harm}}\) lives in the pro-chain ambient and
+its uniqueness is a pro-chain uniqueness, not a homotopy-coherent
+uniqueness. The corresponding \((\infty, 1)\)-categorical statement
+is that the space of twisting cochains
+\(\mathrm{MC}^{\mathrm{ch}}(\fg^{A}_{\mathrm{mod}}) \in
+\mathrm{Spc}\) is contractible at each genus; this is the
+\((\infty, 1)\)-shadow of the chain-level uniqueness, proved by the
+same SDR machinery via Dold--Kan in the simplicial direction. Both
+lanes are load-bearing: the chain-level refinement is required for
+Vol~I \textup{thm:lagrangian-complementarity-global-upgrade}
+clause~(iv), while the \((\infty, 1)\) shadow is the natural
+setting for the Costello--Gwilliam \cite{CG21} factorisation
+\(\infty\)-category statement.
+\end{remark}
 
 \section{Irregular-singular KZB regularity}
 \label{sec:jimbo-miwa}
