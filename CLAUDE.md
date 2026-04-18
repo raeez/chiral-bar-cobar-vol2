@@ -132,6 +132,51 @@ $Z^{\mathrm{der}}_{\mathrm{ch}}(A)$ (derived centre = bulk).
 $\Omega(B(A)) = A$ is **inversion**, not Koszul duality. $A^!$ via
 **Verdier**. Bulk via **Hochschild** cochains.
 
+## Chain-level and $(\infty,1)$-categorical: equal status
+
+Both **chain-level** mathematics (explicit complexes, named
+differentials, witnessed homotopies, $L_\infty$-formalism, Mittag–Leffler
+towers, ambient-qualified statements like the chain-level
+$\mathsf{SC}^{\mathrm{ch,top}}$ bar-differential) and
+**$(\infty,1)$-categorical** mathematics (factorisation
+$\infty$-categories, Lurie $\mathrm{HA}.5.5$ topological factorisation,
+$E_n$-operadic constructions a la Costello–Gwilliam, Francis–Gaitsgory)
+are **equally load-bearing** in this volume. Neither is "the better
+lane"; neither "replaces" or "subsumes" the other.
+
+Vol II in particular owes its content to *both* lanes simultaneously:
+
+- The chain-level $\mathsf{SC}^{\mathrm{ch,top}}$ bar-differential (as
+  the holomorphic factorisation map at coincident points) is what lets
+  you compute the OPE pole orders, the explicit Wick contractions, the
+  $\beta\gamma$ Heisenberg pairing, and the topologisation chain
+  homotopy from a non-critical-level conformal vector.
+- The $(\infty,1)$-categorical formulation (factorisation
+  $\infty$-categories, the topological-factorisation coproduct as a
+  Lurie $\mathrm{HA}.5.5$ structure, $E_n$ promotion via Dunn
+  additivity restated as an $\infty$-operadic equivalence) is what
+  lets you state the seven-faces-of-$r(z)$ as an
+  $\mathrm{GRT}$-torsor, the 3D HT QFT culmination as a
+  fully-extended TFT, and the bar–coproduct duality as an inversion
+  in an $\infty$-stable category.
+
+**Operating rule**: state every theorem in the lane in which its proof
+actually works. If chain-level: name the chain homotopy, the explicit
+Mittag–Leffler witness, the explicit MC element, the explicit OPE pole.
+If $(\infty,1)$-categorical: name the $(\infty,1)$-functor /
+adjunction / colimit / fibre sequence. If both lanes are needed:
+state both, label which lane each status applies to (Pattern 236
+ambient-qualifier discipline). **Never** write "this is just the
+chain-level / $(\infty,1)$-categorical shadow of the real theorem":
+both shadows are real, both are the theorem, viewed through different
+lenses.
+
+Pattern 277 ($\mathsf{SC}^{\mathrm{ch,top}}$ vs $E_3$ conflation) is
+a *scope declaration*, not a hierarchy: the chain-level bicoloured
+operad and the $(\infty,1)$-categorical $E_3$-promotion under
+topologisation are **two different theorems** about two different
+mathematical objects, both proved, both load-bearing.
+
 ## Where the bookkeeping lives
 
 - **`notes/claude_md_legacy_20260418.md`** — full prior CLAUDE.md,

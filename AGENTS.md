@@ -120,6 +120,30 @@ violations. Builds at session end on user opt-in.
 $Z^{\mathrm{der}}_{\mathrm{ch}}(A)$. $\Omega(B(A))=A$ is inversion;
 $A^!$ via Verdier; bulk via Hochschild.
 
+## Chain-level and $(\infty,1)$-categorical: equal status
+
+Both **chain-level** (explicit complexes, named differentials,
+witnessed homotopies, ambient-qualified $\mathsf{SC}^{\mathrm{ch,top}}$
+bar-differential, explicit OPE pole-orders) and
+**$(\infty,1)$-categorical** (factorisation $\infty$-categories, Lurie
+$\mathrm{HA}.5.5$ topological factorisation, $E_n$-operadic
+constructions a la Costello–Gwilliam) mathematics are **equally
+load-bearing** in this volume. Neither is "the better lane"; neither
+"replaces" or "subsumes" the other.
+
+State each Vol II theorem in the lane in which its proof actually
+works. Chain-level: name the chain homotopy / explicit OPE pole /
+explicit Wick contraction / explicit topologisation map from a
+non-critical-level conformal vector. $(\infty,1)$-categorical: name
+the $(\infty,1)$-functor / factorisation algebra / $E_n$ operadic
+equivalence / GRT-torsor structure. If both lanes are needed: state
+both, ambient-qualified (Pattern 236).
+
+Pattern 277 ($\mathsf{SC}^{\mathrm{ch,top}}$ bicoloured vs
+$E_3$ single-coloured) is a *scope declaration*, not a hierarchy.
+**Never** write "this is just the chain-level / $(\infty,1)$-shadow
+of the real theorem".
+
 ## Build (session-end only)
 
 ```bash
