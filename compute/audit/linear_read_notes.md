@@ -14656,3 +14656,109 @@ Audited the active Vol II dirty surface for local contradictions introduced by t
    Issue: the architecture remark overstated the topologization mechanism as "unconditional" immediately after the special-family theorem list, violating the manuscript's topologization scope discipline and AP167-style status separation.
    Fix: rewrote the sentence to remove the unconditional claim and to state the live scope explicitly: theorem for affine Kac--Moody at non-critical level, conjectural for general chiral algebras with conformal vector, using the chapter's live theorem/conjecture labels.
    Status: `FIXED`
+
+## 2026-04-18 - Vol I Theorem A^{infty,2} Properad Attack-Heal (blocked direct inscription)
+
+- Target: `/Users/raeez/chiral-bar-cobar/chapters/theory/theorem_A_infinity_2.tex`
+- Status: `BLOCKED FOR DIRECT PATCHING` (`test -w` on the sibling Vol I file returned `not_writable` in this session)
+
+### Findings
+
+1. `2026-04-18-ainf2-001`
+   Severity: `HIGH`
+   Class: `AP269 / Pattern 269`
+   Location: `theorem_A_infinity_2.tex:732-817`, `:840-899`, `:1164-1185`, `:1792-1797`
+   Issue: `thm:A-infinity-2` is stated only as an `(\infty,2)`-categorical adjoint equivalence, but its proof begins with the strict chain-level twisting-morphism adjunction and the HZ-IV remark advertises an independent `(\infty,1)`-categorical verification path. The chapter therefore uses all three lanes without naming the chain-level lane as a theorem/proposition.
+   Fix: insert a new proposition before `thm:A-infinity-2` stating the strict chain-level adjunction `\Omegach_X \dashv \Bbarch_X` via twisting morphisms, with explicit unit/counit witnesses and proof; then rewrite the theorem opening so the `(\infty,2)` statement is the ambient upgrade of that chain-level proposition.
+   Status: `PROPOSED PATCH PREPARED`
+
+2. `2026-04-18-ainf2-002`
+   Severity: `HIGH`
+   Class: `AP269 / adjunction-direction discipline`
+   Location: `theorem_A_infinity_2.tex:192-195`, `:252`, `:758-762`
+   Issue: the proof cites the classical natural bijection `\Hom(\cC,B(A)) \simeq \Tw(\cC,A) \simeq \Hom(\Omega(\cC),A)`, i.e. the strict chain-level orientation `\Omega \dashv B`, while the theorem statement and downstream corollaries write `\Bbarch_X \dashv \Omegach_X` without explaining that this is the ambidextrous orientation of an ambient equivalence rather than the strict dg adjunction.
+   Fix: the same new proposition should reserve `\Omegach_X \dashv \Bbarch_X` for the strict chain-level adjunction and the theorem should explicitly say that after localisation to the conilpotent-complete locus the same pair is biadjoint at the `(\infty,2)` level; only then choose one displayed orientation.
+   Status: `PROPOSED PATCH PREPARED`
+
+3. `2026-04-18-ainf2-003`
+   Severity: `HIGH`
+   Class: `AP25 / Verdier lane missing from theorem statement`
+   Location: `theorem_A_infinity_2.tex:732-817`, `:1166-1185`, `:1373-1377`
+   Issue: the theorem statement carries no Verdier clause at all; the file has zero `\cA^!_\infty` hits and zero `\mathbb D_{\operatorname{Ran}}` hits, while `cor:classical-A-from-A-infinity-2` and downstream item `D4` already use Verdier intertwining language. The corollary proof currently appeals to unstated "Verdier-biequivariance".
+   Fix: add a new theorem clause citing the canonical chapter-level Verdier theorem `thm:bar-cobar-verdier` with notation `\mathbb D_{\operatorname{Ran}(X)}\Bbarch_X(\cA)\simeq \cA^!_\infty`; then rewrite `cor:classical-A-from-A-infinity-2` so the Verdier descent cites that theorem clause rather than an unstated ambient slogan.
+   Status: `PROPOSED PATCH PREPARED`
+
+4. `2026-04-18-ainf2-004`
+   Severity: `MODERATE`
+   Class: `AP25 / three-functor non-conflation`
+   Location: `theorem_A_infinity_2.tex:47-50`
+   Issue: the setup slogan "`the chiral bar is its own Koszul dual`" collapses bar-cobar inversion, Verdier duality, and graded linear duality. This contradicts the programme's canonical three-way distinction already inscribed in `chapters/frame/preface.tex:573-601` and `chapters/theory/introduction.tex:2865-2868`.
+   Fix: replace the slogan with an inversion statement and add a short remark displaying the three outputs
+   `\Omega^{\mathrm{ch}}_X\Bbarch_X(\cA)\simeq\cA`,
+   `\mathbb D_{\operatorname{Ran}(X)}\Bbarch_X(\cA)\simeq\cA^!_\infty`,
+   `(H^*(\Bbarch_X(\cA)))^\vee=\cA^!`.
+   Status: `PROPOSED PATCH PREPARED`
+
+5. `2026-04-18-ainf2-005`
+   Severity: `MODERATE`
+   Class: `AP270 / scope sharpening`
+   Location: `theorem_A_infinity_2.tex:92-94`, `:1746-1748`
+   Issue: the chapter speaks of the "finitely-generated standard landscape" and "standard landscape" but never names the actual hypothesis class or excludes non-standard/logarithmic families. The scope phrase is therefore too coarse for hostile reuse.
+   Fix: add a scope remark spelling out the intended class as finitely strongly generated Koszul `\Eone`-chiral algebras on a smooth curve with conformal vector and finite-dimensional conformal-weight pieces, and explicitly exclude parafermion `Z_k`, general cosets, non-unimodular or indefinite lattices, triplet/symplectic-fermion logarithmic theories, etc. unless named separately.
+   Status: `PROPOSED PATCH PREPARED`
+
+6. `2026-04-18-ainf2-006`
+   Severity: `MODERATE`
+   Class: `AP278 / explicit operadic map discipline`
+   Location: `theorem_A_infinity_2.tex:795-808` vs `:1217-1249`
+   Issue: theorem item `A2-iii` names `L_R` only as the local system "determined by `R(z)`", while the explicit elementary-transposition monodromy `R(z_i-z_{i+1})\tau_{i,i+1}` appears only later in the lemma proof.
+   Fix: strengthen the theorem statement by importing the explicit monodromy sentence from `lem:R-twisted-descent`.
+   Status: `PROPOSED PATCH PREPARED`
+
+## 2026-04-19 - Vol I AP290 integer-decomposition attack-heal (blocked direct inscription)
+
+- Target: `/Users/raeez/chiral-bar-cobar/chapters/theory/infinite_fingerprint_classification.tex`
+- Target: `/Users/raeez/chiral-bar-cobar/notes/first_principles_cache_comprehensive.md`
+- Status: `BLOCKED FOR DIRECT PATCHING` (`test -w` returned `not_writable` for both Vol I targets in this session)
+
+### Findings
+
+1. `2026-04-19-ap290-001`
+   Severity: `HIGH`
+   Class: `ambient-scope / classification-vs-slot`
+   Location: `infinite_fingerprint_classification.tex:733-747`, `:785-785`, `:854-859`
+   Issue: the AP290 heal upgraded the counting equation into a structured-subset theorem, but the theorem ambient still overstates the literature surface as "the 71 strongly rational holomorphic VOAs of central charge 24." The cited modern classification sources support a theorem about the 71 Schellekens rows / weight-one Lie algebra types, with uniqueness for the 70 nonzero `V_1` cases and a distinguished `V_1=0` row represented by `V^\natural`; they do not license an unconditional "71 isomorphism classes of VOAs" slogan at the theorem surface.
+   Fix: restate the ambient as the 71 Schellekens rows at `c=24`, change the middle summand from the singleton `{V^\natural}` to the distinguished `V_1=0` row, and explicitly say that `V^\natural` is the FLM representative used when a concrete representative is needed.
+   Status: `PROPOSED PATCH PREPARED`
+
+2. `2026-04-19-ap290-002`
+   Severity: `HIGH`
+   Class: `row-0 uniqueness drift`
+   Location: `infinite_fingerprint_classification.tex:854-859`
+   Issue: Step 3 says "FLM identify that row with the Moonshine module `V^\natural`" and concludes the singleton summand `{V^\natural}`. That collapses the Schellekens `V_1=0` row into a uniqueness statement not supplied by the cited sources. FLM construct the Moonshine module in the row; they do not close the general `V_1=0` uniqueness problem.
+   Fix: rewrite Step 3 as a representative statement: Schellekens isolates the `V_1=0` row, FLM construct `V^\natural` in that row, and the AP290 theorem is a theorem about the row decomposition, not a moonshine-uniqueness theorem.
+   Status: `PROPOSED PATCH PREPARED`
+
+3. `2026-04-19-ap290-003`
+   Severity: `MODERATE`
+   Class: `compute-surface drift`
+   Location: `infinite_fingerprint_classification.tex:1047-1078`, `compute/tests/test_infinite_fingerprint.py`, `compute/tests/test_exceptional_shadow_engine.py:471-497`
+   Issue: the chapter advertises `compute/tests/test_infinite_fingerprint.py` as the compute-side harness for the strengthening theorems, but that file currently has no AP290 coverage. The only live Schellekens tests are counting-level checks such as `schellekens_count()==71` and `schellekens_niemeier_count()==24`, precisely the surface AP290 was meant to subordinate to structured-subset derivation.
+   Fix: soften the manuscript sentence so it no longer claims existing AP290 harness coverage, and add a dedicated test surface for the explicit row partition, the `24` Niemeier-row count, and the weight-two threshold.
+   Status: `PROPOSED PATCH PREPARED`
+
+4. `2026-04-19-ap290-004`
+   Severity: `MODERATE`
+   Class: `cache-staleness / cross-volume drift`
+   Location: `first_principles_cache_comprehensive.md:4766-4770`
+   Issue: the AP290 cache entry now has the right row format, but its cross-family state is stale in three ways: it says the cited Vol II files are "outside the writable root" even though this session is inside `/Users/raeez/chiral-bar-cobar-vol2`; it undercounts the live Vol II drifts (main/preface/introduction/programme-climax all still advertise bare classification language); and its Vol III line anchors are stale enough that one cited surface no longer carries the claimed AP290 risk.
+   Fix: replace the cross-family block with a re-attacked state summary that distinguishes (i) Vol I row-vs-VOA scope drift, (ii) live Vol II bare-formula advertisements, and (iii) the remaining honest Vol III transport statement `24 = rank datum`, not a new `71` theorem.
+   Status: `PROPOSED PATCH PREPARED`
+
+5. `2026-04-19-ap290-005`
+   Severity: `MODERATE`
+   Class: `cross-volume propagation`
+   Location: `chapters/examples/landscape_census.tex:327-340`
+   Issue: the landscape master table has healed the counting-vs-classification defect, but its ambient sentence still says "The Schellekens 71 holomorphic VOAs at c=24," which inherits the same row-vs-isomorphism overstatement as the theorem surface.
+   Fix: retitle that ambient sentence as the `71` Schellekens rows / weight-one types at `c=24`, and make `V^\natural` a representative of the `V_1=0` row rather than the row itself.
+   Status: `PROPOSED PATCH PREPARED`
