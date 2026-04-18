@@ -1346,7 +1346,7 @@ Wrong reasoning chains using these as premises:
 | AP-CY37 | **kappa_BKM = c_N(0)/2 is universal** (Borcherds weight theorem). kappa_BKM = kappa_ch + kappa_cat is coincidence for N=1. Fails 7/8 diagonal Siegel orbifolds | Vol III |
 | AP-CY39 | **Incompatibility Theorem.** Single-object cyclic A_∞ CY_3: μ_3≠0 forces μ_2=0 on aug ideal. Cross-arity cancellation IMPOSSIBLE at naive level. TCFT B^{(2)} differs from naive pairwise contraction | Vol III |
 | AP-CY40 | ProvedHere MUST have \begin{proof} block within 50 lines | Vol III |
-| AP-CY42 | phi_{0,1} normalization. c(-1)=1 (Gritsenko-Nikulin std) vs c(-1)=2 (K3 elliptic genus = 2·phi_{0,1}). Factor = kappa_ch(K3) | Vol III |
+| AP-CY42 | phi_{0,1} normalization. c(-1)=1 (Gritsenko-Nikulin std) vs c(-1)=2 (K3 elliptic genus = 2·phi_{0,1}). Factor = kappa_ch(K3)=2 (Route A Hodge supertrace; coincides with Route B at K3 since h^{1,0}=0). See AP-CY69 + cy_d_kappa_stratification.tex:428-431 | Vol III |
 | AP-CY43 | Shadow-Feynman tautology at L≥4. Feynman engine calls shadow recursion. For L≥4, independent path (e.g. k-pt conformal blocks) | Vol III |
 | AP-CY45 | N=2 root-of-unity gives TRIVIAL double braiding. q²=1 at N=2. Non-abelian MTC needs N≥3 where q²≠1 | Vol III |
 | AP-CY46 | PROVED NEGATIVE: no native CY_4 Yangian (π_4(BU)=Z Pontryagin BLOCK-obstruction to E_4). CONSTRUCTED: p_1-twisted double current algebra as chain-level P^1-family model (Vol III `constr:phi-4-p1-family`). CONJECTURED: associator coherence verified at sextic order only (`conj:cy4-p1-family-associator-sextic`). Cascade max = E_3 at d=4 via this construction; "ALL d≥3" unqualified claim is SCOPE-RESTRICTED to d=4 constructed case + cases where analogous p_1-twist is verified. d≥5 open | Vol III |
