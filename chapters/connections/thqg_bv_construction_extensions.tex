@@ -605,46 +605,119 @@ via the residue-to-composition identification of
 Section~\ref{sec:FM_calculus}.
 \end{proof}
 
-\begin{corollary}[Bar differential $=$ C-direction
-factorization; \ClaimStatusProvedHere]
+\begin{corollary}[Bar differential $=$ \emph{operadic}
+C-direction factorization on $\FM_k(\bC) \times \Conf_k(\bR)$;
+\ClaimStatusProvedHere]
 % label removed: cor:thqg-bv-ext-bar-c-direction
-The bar differential $b$ encodes factorization in the holomorphic
-($\bC$) direction:
+\emph{Scope.}  The identification stated here is \emph{operadic}:
+it holds on the local little-discs / Fulton--MacPherson
+configuration spaces $\FM_k(\bC) \times \Conf_k(\bR)$ underlying
+the Swiss-cheese operad $\SCchtop$.  The global promotion to a
+Beilinson--Drinfeld factorization coalgebra on $\Ran(X)$ for a
+curve $X$ is a separate statement, proved in
+Construction~\ref{constr:bar-fact-coalgebra} and
+Theorem~\ref{thm:BD-CG-equivalence} of
+\texttt{theory/factorization\_swiss\_cheese.tex}
+under the hypotheses recorded there
+\textup{(}holomorphic translation invariance,
+pro-ambient / weight-completed conilpotency for class-M
+algebras, genus-$0$ flat vs.\ genus-$g \geq 1$ curved
+Feynman-transform reconstruction\textup{)}.  The present
+corollary does \emph{not} import those hypotheses; it is a
+statement about the FM-operadic boundary stratification.
+
+\emph{Assertion.}  The bar differential $b$ encodes operadic
+factorization along the holomorphic ($\bC$) boundary
+stratification of $\FM_k(\bC)$:
 \[
 b\bigl[(sa_1) \otimes \cdots \otimes (sa_k)\bigr]
 = \sum_{S \text{ consec.}} \epsilon_{D_S}\,
 \Res_{D_S}\bigl[\text{FM integral of }
-(sa_1) \otimes \cdots \otimes (sa_k)\bigr].
+(sa_1) \otimes \cdots \otimes (sa_k)\bigr],
 \]
-The bar coproduct $\Delta$ (the coassociative coproduct on $B(A)$)
-similarly encodes factorization in the topological ($\bR$)
-direction: splitting the ordered sequence
-$(sa_1, \ldots, sa_k)$ into two subsequences corresponds to
-separating the $\bR$-coordinates into two disjoint intervals.
-Together, $b$ and $\Delta$ constitute a Swiss-cheese algebra
-structure on $\FM_k(\bC) \times \Conf_k(\bR)$.
+with the sum over consecutive sub-blocks indexing the codimension-$1$
+boundary divisors $D_S \subset \FM_k(\bC)$.  Dually, the
+deconcatenation coproduct $\Delta$ on $B(A) = T^c(s^{-1}\bar A)$
+encodes the topological ($\bR$) boundary stratification of
+$\Conf_k(\bR)$: a split of the ordered sequence
+$(sa_1, \ldots, sa_k)$ at position $p$ corresponds to a wall
+$\{t_p = t_{p+1}\}$ in $\Conf_k(\bR)$.  Together,
+$(b, \Delta)$ realize the two-coloured
+$\SCchtop$-operadic boundary calculus on
+$\FM_k(\bC) \times \Conf_k(\bR)$.
 \end{corollary}
 
 \begin{proof}
-The identification of $b$ with $\bC$-factorization is
-Theorem~\ref{thm:thqg-bv-ext-trees-bar}(ii).
-The identification of $\Delta$ with $\bR$-factorization is the
-deconcatenation coproduct on the tensor coalgebra: for
-$(sa_1) \otimes \cdots \otimes (sa_k)$,
+Part~(i) (identification of $b$ with $\bC$-boundary contraction)
+is Theorem~\ref{thm:thqg-bv-ext-trees-bar}(ii): the codimension-$1$
+boundary of $\FM_k(\bC)$ at the divisor $D_S$ (colliding a
+consecutive block $S$) contributes precisely $m_\ell$ on that
+block, and the alternating sum over $S$ is $b$.
+
+Part~(ii) (identification of $\Delta$ with $\bR$-deconcatenation)
+is definitional: $B(A) = T^c(s^{-1}\bar A)$ is the tensor
+coalgebra, whose coassociative coproduct is deconcatenation,
 \[
 \Delta\bigl[(sa_1) \otimes \cdots \otimes (sa_k)\bigr]
 = \sum_{p=0}^{k}
 \bigl[(sa_1) \otimes \cdots \otimes (sa_p)\bigr]
 \otimes
-\bigl[(sa_{p+1}) \otimes \cdots \otimes (sa_k)\bigr],
+\bigl[(sa_{p+1}) \otimes \cdots \otimes (sa_k)\bigr].
 \]
-corresponding to the partition of $\bR$ into
-$(-\infty, t_p) \cup (t_p, +\infty)$. The compatibility
-$b \circ \Delta = \Delta \circ b$ (the coderivation property)
-follows from the factored form of the total differential
-$D = d_{\FM_k(\bC)} + d_{\Conf_k(\bR)} + Q$ on the product
-space.
+The geometric interpretation is the partition of
+$\Conf_k(\bR) = \{t_1 > \cdots > t_k\}$ by a cut at $t_p$ into
+a left interval $\{t_1 > \cdots > t_p\}$ and a right interval
+$\{t_{p+1} > \cdots > t_k\}$.
+
+Part~(iii) (compatibility $\Delta \circ b =
+(b \otimes \id + \id \otimes b) \circ \Delta$).  This is the
+\emph{defining} coderivation property: $b$ extends the collection
+$\{m_\ell\}_{\ell \geq 1}$ uniquely to a coderivation of the
+tensor coalgebra $T^c(s^{-1}\bar A)$ with respect to
+deconcatenation \textup{(}standard fact; see e.g.\
+Loday--Vallette \cite{LV12}, Proposition~1.2.3 on the
+universal property of the cofree coalgebra\textup{)}.
+The geometric content is that the FM boundary $D_S$
+(a $\bC$-collision) is disjoint from any deconcatenation
+cut in $\Conf_k(\bR)$ (a $\bR$-collision): the two strata
+intersect transversally in
+$\FM_k(\bC) \times \Conf_k(\bR)$, and Fubini on the product
+integral factors the total $D = d_{\FM_k(\bC)}
++ d_{\Conf_k(\bR)} + Q$ into commuting summands.
 \end{proof}
+
+\begin{remark}[What this corollary does \emph{not} claim;
+Pattern~236 / Pattern~237 guard]
+% label removed: rem:thqg-bv-ext-c-direction-scope
+The phrase \emph{holomorphic factorization} is reserved in the
+literature \textup{(}Beilinson--Drinfeld \cite{BD04};
+Francis--Gaitsgory \cite{FG12}; Costello--Gwilliam
+\cite{CG16,CG21}\textup{)} for a $\cD$-module structure on
+the Ran space $\Ran(X)$ of a curve $X$, or equivalently a
+prefactorization algebra on the topological space $X$.  The
+corollary above is \emph{not} a statement about
+$\Ran(X)$: it is a statement about the local FM operad
+$\FM_k(\bC)$ at a single formal disc.  The two are bridged,
+but \emph{only under} the hypotheses of
+Construction~\ref{constr:bar-fact-coalgebra}:
+\begin{enumerate}[label=\textup{(\alph*)}]
+\item the chiral OPE on $A$ makes
+$j_* j^* A^{\boxtimes n} \to \Delta_* A$ into a
+$\cD_{X^n}$-module structure compatible with the bar
+differential;
+\item the cooperadic structure on $\SCchtop^\vee$ is
+homotopy-Koszul self-dual \textup{(}Theorem~\ref{thm:homotopy-Koszul}
+of \texttt{theory/factorization\_swiss\_cheese.tex}\textup{)};
+\item the ambient is the pro-object /
+weight-completed bar complex \textup{(}conilpotency fails for
+class-M algebras in the raw direct sum; the BD-factorization
+structure requires the limit ambient, cf.\ the $L_0$-weight
+completion of Vol~I\textup{)}.
+\end{enumerate}
+Absent (a)--(c), the corollary is an identification of the
+bar differential with FM-boundary contraction, \emph{not} with
+factorization cohomology on a curve.
+\end{remark}
 
 
 %% ====================================================================
