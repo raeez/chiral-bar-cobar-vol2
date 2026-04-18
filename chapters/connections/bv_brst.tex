@@ -492,63 +492,189 @@ under the identification of Theorem~\ref{thm:bv-bar-geometric}.
 
 \subsection{Coupling to topological gravity}
 
-\begin{theorem}[Ghost transformation law for log forms;
-\ClaimStatusProvedHere]
+\begin{theorem}[Transformation law for configuration log forms on
+an affine chart; \ClaimStatusProvedHere]
 \label{thm:log-form-ghost-law}
 \index{ghost!transformation law}
 \index{logarithmic form!ghost transformation}
-The logarithmic forms $\eta_{ij} = d\log(z_i - z_j)$
-on the configuration space $C_n(X)$ transform under
-coordinate changes $z \to w(z)$ exactly as BRST ghosts
-for diffeomorphisms:
-\[
+\index{Arnold relations!configuration space}
+Let $U \subset X$ be an affine chart with coordinate~$z$ and let
+$w : U \to \C$ be a holomorphic change of coordinate with
+$w'(z) \neq 0$ on~$U$. On the configuration space
+$C_n(U) = \{(z_1,\dots,z_n) \in U^n : z_i \neq z_j\}$ the logarithmic
+forms $\eta_{ij} = d\log(z_i - z_j) \in \Omega^{1}_{\log}(C_n(U))$
+transform as
+\begin{equation}\label{eq:eta-transformation}
 \eta_{ij} \;\mapsto\; \eta_{ij}
-+ d\log\!\left(\frac{w(z_i) - w(z_j)}{z_i - z_j}\right).
-\]
-Near the diagonal $z_i \to z_j$, the correction term
-approaches $d\log w'(z_i)$, which is the standard ghost
-cocycle for $\mathrm{Diff}(X)$. The Arnold
-relations
-$\eta_{ij} \wedge \eta_{jk} + \eta_{jk} \wedge \eta_{ki}
-+ \eta_{ki} \wedge \eta_{ij} = 0$
-in the Orlik--Solomon algebra provide the quadratic
-structure shared by the BRST ghost algebra
-($Q_{\mathrm{BRST}}(c) = c\,\partial c$).
++ d\log\!\left(\frac{w(z_i) - w(z_j)}{z_i - z_j}\right),
+\end{equation}
+where the equality is as logarithmic $1$-forms on $C_n(U)$
+under the pullback along the $n$-fold self-map
+$w^{(n)} : C_n(U) \to C_n(\C)$,
+$(z_1,\dots,z_n) \mapsto (w(z_1),\dots,w(z_n))$,
+which is well-defined because $w'$ does not vanish on~$U$, so
+$w^{(n)}$ preserves the no-collision locus.
+\begin{enumerate}[label=\textup{(\roman*)}]
+\item \emph{Diagonal limit (fixing the typo).} The ratio
+$(w(z_i) - w(z_j))/(z_i - z_j)$ admits the analytic continuation
+$\int_0^1 w'(z_j + t(z_i - z_j))\,dt$ to the diagonal; along the
+thick diagonal $z_i \to z_j$ this limit equals $w'(z_j)$
+(equivalently $w'(z_i)$ when evaluated on the diagonal, since
+$z_i = z_j$ there).
+\item \emph{Infinitesimal formula.} For an infinitesimal
+diffeomorphism $w(z) = z + \epsilon v(z) + O(\epsilon^2)$ generated
+by $v \in \mathrm{Vect}(U)$,
+\begin{equation}\label{eq:delta-v-eta}
+\delta_v \eta_{ij}
+= d\!\left(\frac{v(z_i) - v(z_j)}{z_i - z_j}\right).
+\end{equation}
+This is a Vect$(U)$ $1$-cocycle valued in $\Omega^{1}(C_n(U))$,
+with support on the coincidence divisor~$D_{ij}$.
+\item \emph{Arnold--Orlik--Solomon quadratic relations.} The forms
+$\eta_{ij}$ satisfy
+\begin{equation}\label{eq:arnold-3term}
+\eta_{ij} \wedge \eta_{jk} + \eta_{jk} \wedge \eta_{ki}
++ \eta_{ki} \wedge \eta_{ij} = 0
+\qquad (i,j,k \text{ distinct})
+\end{equation}
+by the Arnold identity~\cite{Arnold69} on
+$C_n(\C)$, equivalently by the Orlik--Solomon
+relation~\cite{OrlSol80} of the braid
+arrangement~$\cA_n$.
+\end{enumerate}
 \end{theorem}
 
 \begin{proof}
-Direct computation: $\eta_{ij} = d\log(z_i - z_j)$
-maps to $d\log(w(z_i) - w(z_j))$ under $z \to w(z)$.
-Factoring:
-\[
-d\log(w(z_i) - w(z_j)) = d\log(z_i - z_j)
-+ d\log\!\left(\frac{w(z_i) - w(z_j)}{z_i - z_j}\right)
-\]
-and near the diagonal, L'H\^opital gives
-$(w(z_i) - w(z_j))/(z_i - z_j) \to w'(z_i)$, so
-the correction approaches $d\log w'(z_i)$. This is
-the BRST ghost 1-cocycle for the Lie algebra
-$\mathrm{Vect}(X)$: if $c(z)$ is the ghost field for
-$v(z)\partial_z \in \mathrm{Vect}(X)$, then the
-infinitesimal version
-$\delta_v \eta_{ij} = d(v'(z_i)/(z_i - z_j))$ matches
-the BRST variation $\delta c = c\,\partial c$ at leading
-order. The Arnold relations are verified in
-Theorem~\ref{thm:arnold-relations}.
+\emph{Equation \eqref{eq:eta-transformation}.} Factor
+$w(z_i) - w(z_j) = (z_i - z_j) \cdot q(z_i, z_j)$ where
+$q(z_i, z_j) = \int_0^1 w'(z_j + t(z_i - z_j))\,dt$ is holomorphic on
+$U \times U$ with $q|_{\Delta} = w'$; then
+$d\log(w(z_i) - w(z_j)) = d\log(z_i - z_j) + d\log q(z_i, z_j)$,
+giving \eqref{eq:eta-transformation}.
+
+\emph{Diagonal limit (i).} By the mean-value formula above,
+$\lim_{z_i \to z_j} q(z_i,z_j) = w'(z_j)$. The symmetric phrasing
+$w'(z_i) = w'(z_j)$ on the diagonal $z_i = z_j$ eliminates the
+asymmetry ambiguity.
+
+\emph{Infinitesimal formula (ii).} Set $w(z) = z + \epsilon v(z)$;
+then $w(z_i) - w(z_j) = (z_i - z_j) + \epsilon(v(z_i) - v(z_j))$, so
+$(w(z_i) - w(z_j))/(z_i - z_j) = 1 + \epsilon\,(v(z_i) - v(z_j))/(z_i - z_j)$.
+Taking $d\log$ and linearising in~$\epsilon$ yields
+\eqref{eq:delta-v-eta}. This corrects the expression
+$d(v'(z_i)/(z_i - z_j))$ that appeared in earlier drafts: the
+infinitesimal variation is a \emph{two-point} divided difference,
+not a single-point derivative.
+
+\emph{Arnold relation (iii).} The identity~\eqref{eq:arnold-3term}
+is Arnold's original cohomology identity~\cite{Arnold69}
+for the braid arrangement; it is equivalent to the Orlik--Solomon
+presentation of~$H^{*}(C_n(\C),\C)$~\cite{OrlSol80}.
+On a general affine chart $U$ the identity holds because it is
+local at each triple $(z_i, z_j, z_k)$ and each $\eta_{ij}$ is a
+pullback of the analogous form on~$\C^2$.
 \end{proof}
+
+\begin{remark}[Scope: which \textup{BRST ghost} this
+transformation law is, and which it is \emph{not}]
+\label{rem:log-form-ghost-scope}
+\index{BRST ghost!scope}
+Equation~\eqref{eq:delta-v-eta} is the two-point transgression of
+a Vect$(U)$ $1$-cocycle; it is \emph{not} the Lie-derivative
+transformation of a weight-$(-1)$ BRST ghost field $c(z)$. The
+two are related but distinct:
+\begin{enumerate}[label=\textup{(\alph*)}]
+\item \emph{Lie-derivative of ghost.} Under $v \in \mathrm{Vect}(U)$
+a weight-$(-1)$ ghost field $c$ transforms as
+$\delta_v c(z) = (\mathcal{L}_v c)(z) = v(z)\,\partial c(z) -
+(\partial v)(z)\,c(z)$ (single point). The Chevalley differential
+on $C^{*}(\mathrm{Vect}(U))$ is
+$d_{\mathrm{Ch}} c = \tfrac{1}{2}[c, c] = c\,\partial c$, expressing
+the Jacobi identity of Vect$(U)$ (nilpotence of Chevalley $d^{2} = 0$).
+\item \emph{Two-point transgression.} The formula
+\eqref{eq:delta-v-eta} lives on $C_n(U) \supset \Delta$ and is
+supported on the coincidence divisor; it is the transgression of
+Arnold's Vect-cocycle along the pair of points $(z_i, z_j)$, not
+the variation of a ghost at a single point.
+\end{enumerate}
+These are different constructions and should not be conflated.
+The equality "$\delta c = c\,\partial c$" is the Chevalley
+$2$-cocycle condition on $\mathrm{Vect}(U)$, not a transformation
+law for $c$ under a Vect$(U)$-action.
+\end{remark}
+
+\begin{lemma}[Kohno--Drinfeld identification;
+\ClaimStatusProvedElsewhere{} \cite{Kohno87,Drinfeld90}]
+\label{lem:kohno-drinfeld-log}
+\index{Kohno--Drinfeld}
+\index{pure braid!Malcev algebra}
+The algebra generated over $\Q$ by symbols $t_{ij}$ ($1 \leq i < j \leq n$)
+modulo the infinitesimal pure-braid (Arnold) relations
+\[
+[t_{ij}, t_{kl}] = 0 \quad (\{i,j\} \cap \{k,l\} = \emptyset),
+\qquad
+[t_{ij}, t_{ik} + t_{jk}] = 0 \quad (i,j,k \text{ distinct})
+\]
+is isomorphic to the Malcev Lie algebra $\mathfrak{t}_n$ of the
+pure braid group $P_n$. Under the Kohno--Drinfeld
+isomorphism~\cite{Kohno87,Drinfeld90}, the
+cohomology class $[\eta_{ij}] \in H^{1}(C_n(\C),\C)$ is dual to
+$t_{ij}$. The resulting Drinfeld--Kohno connection
+$\nabla_{\KZ} = d - \sum_{i<j} t_{ij}\,\eta_{ij}$ is flat iff the
+Arnold relations \eqref{eq:arnold-3term} hold. This is the
+algebraic object to which the forms $\eta_{ij}$ belong; it is
+\emph{not} the Chevalley complex of Vect$(U)$.
+\end{lemma}
+
+\begin{remark}[Earlier draft errors corrected]
+\label{rem:log-form-ghost-corrections}
+The earlier draft of
+Theorem~\ref{thm:log-form-ghost-law} contained four specific errors,
+each listed here for the record and resolved in the statement above:
+\begin{enumerate}[label=(E\arabic*)]
+\item The diagonal limit was asserted to be $w'(z_i)$, which is
+asymmetric in $(i,j)$. The symmetric statement is $w'(z_j)$ (or
+equivalently $w'(z_i)$ on the diagonal $z_i = z_j$); see
+\eqref{eq:eta-transformation}(i).
+\item The infinitesimal formula was written
+$\delta_v \eta_{ij} = d(v'(z_i)/(z_i - z_j))$, conflating the
+derivative $v'$ with the two-point divided difference
+$(v(z_i) - v(z_j))/(z_i - z_j)$; the correct formula is
+\eqref{eq:delta-v-eta}.
+\item The analogy "exactly as BRST ghosts for diffeomorphisms"
+conflated the two-point transgression of a Vect$(U)$-cocycle (which
+\eqref{eq:delta-v-eta} is) with the single-point Lie-derivative
+transformation of a weight-$(-1)$ ghost field $c(z)$ (which it is
+not); see Remark~\ref{rem:log-form-ghost-scope}.
+\item The quadratic relation was named "the BRST ghost algebra
+($Q_{\mathrm{BRST}}(c) = c\,\partial c$)", confusing Chevalley
+nilpotence of a scalar ghost with the Arnold
+$3$-term cyclic relation on $C_n(\C)$; these are different
+quadratic relations on different complexes. The Arnold relation
+\eqref{eq:arnold-3term} is what governs $\eta_{ij}$; the correct
+algebraic home is the Malcev algebra $\mathfrak{t}_n$ of
+Lemma~\ref{lem:kohno-drinfeld-log}.
+\end{enumerate}
+\end{remark}
 
 \begin{conjecture}[Bar complex \texorpdfstring{$=$}{=} topological BRST;
 \ClaimStatusConjectured]
 \label{conj:bar-topological-brst}
-The ghost transformation law
-(Theorem~\ref{thm:log-form-ghost-law}) extends to a dg
-algebra isomorphism:
+The transformation law
+(Theorem~\ref{thm:log-form-ghost-law}) and the Kohno--Drinfeld
+identification (Lemma~\ref{lem:kohno-drinfeld-log}) extend to a
+dg algebra quasi-isomorphism
 \[
-\bar{B}^{\mathrm{ch}}(\mathcal{A}) \cong
+\bar{B}^{\mathrm{ch}}(\mathcal{A}) \;\simeq\;
 C^*_{\mathrm{top}\text{-}\mathrm{BRST}}(\mathcal{A}
-\otimes \mathrm{Diff}(X)).
+\otimes U(\mathfrak{t}_\infty))
 \]
-\end{conjecture}
+on an affine chart~$U$, where $\mathfrak{t}_\infty = \varinjlim \mathfrak{t}_n$
+is the colimit Malcev algebra of the tower of pure-braid groups and
+the right-hand side is the reduced Chevalley complex of
+$\mathcal{A} \otimes U(\mathfrak{t}_\infty)$, not of
+$\mathrm{Diff}(U)$.
+\end{conjecture>
 
 \section{The genus-\texorpdfstring{$0$}{0} BRST-bar chain map}
 \label{sec:brst-bar-chain-map}
