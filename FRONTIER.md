@@ -1,8 +1,35 @@
 # FRONTIER — Vol II Open Research Directions
 
-## DEFINITIVE STATUS AS OF 2026-04-17 (Beilinson-rectified, Wave-1 adversarial-audit-refined)
+## DEFINITIVE STATUS AS OF 2026-04-19 (Beilinson-rectified, Wave-1 plus Wave-13 adversarial-audit-refined)
 
-This supersedes every prior status line in this document. The 2026-04-16 programme-wide closure wave closed almost every surviving Vol II frontier; the 2026-04-17 Beilinson audit (Vol II `notes/beilinson_swarm_audit_vol2_2026_04_17.md`) surfaced scope-qualifiers and one retraction; Wave 1 of the adversarial attack (12 items across three volumes) discovered one Vol II closure (F9) that was previously mislabeled open.
+This supersedes every prior status line in this document. The 2026-04-16 programme-wide closure wave closed almost every surviving Vol II frontier; the 2026-04-17 Beilinson audit (Vol II `notes/beilinson_swarm_audit_vol2_2026_04_17.md`) surfaced scope-qualifiers and one retraction; Wave 1 of the adversarial attack (12 items across three volumes) discovered one Vol II closure (F9) that was previously mislabeled open. Wave 13 now propagates the Vol III K3 / $\Delta_5$ architecture into the Vol II roadmap: the BKM-side target is the Hall–Drinfeld double, not a plain Yangian.
+
+## Wave 13 platonic-ideal crown
+
+The architectural source is `../calabi-yau-quantum-groups/chapters/examples/k3_chiral_bialgebra_platonic.tex`, together with `../calabi-yau-quantum-groups/notes/k3_nonabelian_yangian_swarm_wave13_20260419/SYNTHESIS_WAVE13.md`.
+
+- **R1. Classification invariant.** The Vol II quantum-group lane now targets an object classified by $H^2(\mathfrak{g}_{\Delta_5})^{\mathbb{Z}/2,\,K(1)} \cong \mathbb{C}\cdot\Delta_5$.
+- **R2. Presentation.** The BKM-side presentation is the Hall–Drinfeld double of $\mathrm{CoHA}_{K3\times E}$ with the Siegel–Borcherds associator and the dynamical $R$-matrix. Plain BKM-side "K3 Yangian" is retracted by Wave 13, see `SYNTHESIS_WAVE13.md` §C.5.
+- **R3. Hosted base.** The factorization architecture is bi-based: smooth Ran on the discriminant curve, nearby-cycles at the nodes, and the parameter-side factorization category on $\overline{\mathcal{A}_2}$ linked by averaging. Direct nodal BD-chirality is retracted by Wave 13, see `SYNTHESIS_WAVE13.md` §C.7.
+- **R4. Koszul shift.** The Vol II E_1 / bar-cobar language now reads the K3 lane with CY-2 $[2]$ shift and the $\widetilde{M}_{24}$ Schur cocycle. CY-3 $[3]$ claims are retracted by Wave 13, see `SYNTHESIS_WAVE13.md` §C.8.
+- **R5. 4d parent.** The physical parent is class-$\mathcal{S}$ $A_1$ on $\Sigma_{0,24}$; the Schur relation is the composite arrow to $\phi_{0,1}^{K3}$ and then to $\Delta_5$, not a direct equality. Direct Schur $=1/\Delta_5$ is retracted by Wave 13, see `SYNTHESIS_WAVE13.md` §C.10.
+- **R6. 1-loop origin.** $\Delta_5$ is the 1-loop-forced output of the 11D / heterotic / IIA / IIB duality web, not a chosen input. The old input-side reading is retracted by Wave 13, see `SYNTHESIS_WAVE13.md` §C.9.
+- **R7. Abelian-at-Lie discipline.** The Lie/Hopf level is abelian up to the 24 Heisenberg / Miki copies; BKM non-abelianity appears only under vertex-operator closure. This is the Vol II language discipline for the K3 quantum-group lane.
+- **Vol II conductor import.** The cross-volume conductor face is now fixed as $K^{\kappa_{\mathrm{ch}}}=8=\mathrm{ord}(H_1)$ on the $\mathcal{B}$-family, with $\hbar^2 \cdot K^{\kappa_{\mathrm{ch}}}=-1$.
+- **Wave 13 cache.** 59 AP-CY-W13-* anti-patterns now constrain the K3 / BKM side of the Vol II frontier vocabulary.
+
+## Wave 14 handoff queue
+
+1. Adjudicate the $c_{2d}$ bridge between stalk-level and global class-$\mathcal{S}$ central charges.
+2. Compute the first 10 Schur coefficients of $\mathcal{T}[A_1,\Sigma_{0,24}]$ and verify the composite arrow to $\Delta_5$.
+3. Reframe the K3 BKM chapter so the ambient theory sits on the left and $\Delta_5$ appears as 1-loop output.
+4. Verify the Beem–Rastelli flavour-level convention against the published tables.
+5. Compute explicit $A_\infty$ quasi-Hopf structure constants at the Humbert walls.
+6. Inscribe the Arthur packet $\psi_{\Delta_{10}}$ with explicit Hecke eigenvalues.
+7. Prioritise the Wave 13 compute modules for the Gritsenko lift, twisted 11D 1-loop output, class-$\mathcal{S}$ parent, bi-based Ran datum, and Hall–Drinfeld double.
+8. Enlarge Vol I Theorem C so the $\mathcal{B}$-family slot records $K^{\kappa_{\mathrm{ch}}}=2c_+=8$ as the Humbert-$H_1$ monodromy identity.
+9. Append the 59 AP-CY-W13-* anti-patterns to the first-principles cache and concordance.
+10. Complete the nomenclature sweep from plain "K3 Yangian" to the Hall–Drinfeld vocabulary on the BKM-side lane.
 
 ### 1. Closures since 2026-04-14
 
@@ -13,6 +40,7 @@ This supersedes every prior status line in this document. The 2026-04-16 program
 - **E_∞-topologization ladder.** `thm:iterated-sugawara-construction`: higher-spin Casimir tower {T^{(n)}}_{2 ≤ n ≤ N+1} each inner, admitting BRST primitive G^{(n)} with T^{(n)} = [Q_tot, G^{(n)}] in H^•(Q_tot) (cohomological, not strict chain-level; see CLAUDE.md "Topologization" row and post-Wave-1 audit 2026-04-17 retraction of the prior "strict chain-level" label for class L; antighost BRST-commutativity [G^{(n)},G^{(m)}] = Q-exact at n,m ≥ 3 postulated as axiom (T5) of def:higher-spin-stress-tower, not yet derived). `thm:e-infinity-topologization-ladder`: k inner stress tensors ⟹ E_{k+2}^top via Dunn, on Q-cohomology. Specializations: Virasoro (N=2) → E_3^top; W_N → E_{N+1}^top; W_∞ → E_∞^top (Platonic endpoint, conditional on the antighost-commutativity axiom for the W_∞ convergence theorem). `thm:operadic-spiral`: infinite bidirectional spiral. Climax restatement: 3d quantum gravity Part VI is N=2 shadow of a 3d+∞ topological theory, at cohomological level.
 - **Unified Q_g^{k,f,μ} chiral quantum group.** `chapters/theory/unified_chiral_quantum_group.tex` (ported name from 2026-04-16 inscription) — nine specialization fibres cover the non-gauge-theoretic landscape, closing the "chiral coproduct for non-gauge-theoretic families" frontier.
 - **β_N exact closed form.** `thm:beta-N-closed-form-proved-all-N` in `chapters/theory/beta_N_closed_form_all_platonic.tex`: β_N = 12(H_N − 1) = Σ_{s=2}^{N} 12/s (per-spin-s lane). Both prior candidates (N+1)(N+2)/2 and N²−N+4 ruled out at N=4. Closed form rational (not integer) for N ≥ 5; β_5 = 77/5, β_6 = 87/5. No longer a frontier item.
+- **Wave 13 K3 / BKM import from Vol III.** The Vol II E_1-chiral quantum-group lane now targets the Hall–Drinfeld double $\mathbf{H}_{\Delta_5}$ on the bi-based Ran / $\overline{\mathcal{A}_2}$ datum with CY-2 $[2]$ shift, class-$\mathcal{S}$ parent $\mathcal{T}[A_1,\Sigma_{0,24}]$, and $\Delta_5$ treated as the 1-loop-forced output. Plain BKM-side "K3 Yangian" is retracted by Wave 13, see `SYNTHESIS_WAVE13.md` §C.5; the conductor face imported into Vol II is $K^{\kappa_{\mathrm{ch}}}=8=\mathrm{ord}(H_1)$ with $\hbar^2 \cdot K^{\kappa_{\mathrm{ch}}}=-1`.
 - **MC5 chain-level class M weight-completed (Vol II inheritance from Vol I).** `prop:bv-bar-class-m-weight-completed`. Direct-sum chain-level class M is genuinely FALSE in `Ch(Vect)` (S_4(Vir_c) nonzero); weight-completed proved via Milnor/Mittag-Leffler. Vol I `thm:mc5-class-m-chain-level-pro-ambient` shows the same result on pro-object and J-adic ambients of the original complex.
 - **F1 g ≥ 2 coderived class M (now implicit in 2026-04-16 wave).** The MC5 weight-completed pattern + half-BRST iteration + chiral Higher Deligne together give the g ≥ 2 coderived class M identification in the weight-completed D^{co}. The F1 sub-question "conceptual understanding of WHY D^{co}" answered by `thm:chiral-higher-deligne` + heptagon face (6): Z^{der}_ch carries the E_3-topological structure through cohomology, not chain level, so D^{co} is the home where curvature is absorbed by the coderived differential.
 - **F9 E_1 Verdier on ordered configurations. MISLABELED.** `thm:two-color-master` in `chapters/connections/spectral-braiding-core.tex:3432-3441` gives the open-colour Quillen equivalence via LINEAR duality (not Verdier), which IS the correct E_1 analogue at the chiral-algebraic level. Opposite-duality `B^ord(A^op) = B^ord(A)^{cop}` (Vol I `chapters/theory/e1_modular_koszul.tex:775-830`) proves the intertwining. The literal `D_{Conf^<}` six-functor package is a notational/foundational wishlist with no additional chiral-algebraic content. **Downgrade: notational wishlist, not frontier.**
@@ -55,11 +83,11 @@ This supersedes every prior status line in this document. The 2026-04-16 program
 
 ### 4. Reading guide
 
-Top of document (§1–§3) is the DEFINITIVE state as of 2026-04-17. Sections F1–F12 and "Session Memorial" below are HISTORICAL RECORD preserved for provenance. Where they conflict with §1–§3, §1–§3 wins.
+Top of document through "Programme totals", including the Wave 13 platonic-ideal crown and Wave 14 handoff queue, is the definitive state as of 2026-04-19. Sections F1–F12 and "Session Memorial" below are HISTORICAL RECORD preserved for provenance. Every historical K3 / BKM reference there must be read with the Wave 13 retractions applied: plain BKM-side "K3 Yangian" retracted by `SYNTHESIS_WAVE13.md` §C.5, direct nodal BD-chirality by §C.7, CY-3 $[3]$ shift by §C.8, input-side $\Delta_5$ narration by §C.9, and direct Schur $=1/\Delta_5$ by §C.10. Where the historical record conflicts with the crown or the closures above, the crown and closures win.
 
 ---
 
-## Prior status as of 2026-04-14 (HISTORICAL; superseded by §1–§3 above)
+## Prior status as of 2026-04-14 (HISTORICAL; superseded by the 2026-04-19 crown, queue, and definitive closures above)
 
 Produced by ~300+ agents across all sessions through ~230-agent comprehensive wave. Programme: ~5,142pp, ~177K tests, ~4,186 engines
 
