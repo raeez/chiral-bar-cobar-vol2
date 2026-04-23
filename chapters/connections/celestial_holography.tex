@@ -173,7 +173,7 @@ modular Maurer--Cartan element.
 \subsection{Order-by-order obstruction theory}
 % label removed: subsec:order-by-order-obstruction-theory
 
-The first substantial gain from the modular viewpoint is that higher-genus corrections stop
+The first substantial gain from the modular-Koszul viewpoint (T15 sense (iii): genus-$g$-enhanced bar--cobar over $\overline M_{g,n}$) is that higher-genus corrections stop
 being ad hoc and become obstruction classes in a precise cohomology.
 
 \begin{definition}[Twisted differential and linearized genus-$0$ complex]
@@ -2124,6 +2124,403 @@ specific $\chi(\mathrm{K3}) = 24$ output is consistent with
 Gaiotto--Moore 2013 "K3, $\mathcal{N}=4$" anomaly counts.
 \end{remark}
 
+\providecommand{\g}{\mathfrak g}
+\providecommand{\Disk}{\mathrm{Disk}}
+
+\subsection{The $E_3$ chiral CE factorisation algebra on
+the spectral curve: generators and relations}
+\label{subsec:costello-e3-chiral-ce-gen-rel}
+\index{chiral Chevalley--Eilenberg cochains}
+\index{factorisation algebra!$E_3$-chiral avatar}
+\index{Costello!6d hCS avatar}
+
+The BV action~\eqref{eq:costello-5brane-action} defines, upstream of
+any K3-reduction, a purely $6$d holomorphic-topological theory whose
+classical observables carry a $\Disk_3$-algebra structure on the
+product $\C\times\R$ transverse to K3. The algebra is the chiral
+analogue of Chevalley--Eilenberg cochains --- a sheaf of dg Lie
+cochain complexes on the spectral curve $C$ --- and its factorisation
+structure, generators, and perturbative relations are recorded in
+this subsection. The classical K3 reduction of Theorem~\ref{thm:costello-factalg-5brane}
+(ii) is the stalk of this sheaf at any generic point of $C$; the
+higher-genus content of Conjecture~\ref{conj:costello-twisted-holography-matching}
+is the factorisation-homology integral $\int_C$ of the same sheaf.
+
+\paragraph{Spectral curve, K3 fibre, and the underlying graded vector space.}
+Fix a smooth complex curve $C$ (the \emph{spectral curve}; generically
+$C = E$ a fixed elliptic curve, so that $Y = \mathrm{K3}\times
+E\times\R$), a simple complex Lie algebra $\g$ (in the BKM
+application, $\g = \g_{\Delta_5}$ will be substituted), and a
+$\g$-module $M$. The \emph{chiral Chevalley--Eilenberg cochains} are
+\begin{equation}
+\label{eq:chiral-ce-graded-vs}
+C^\bullet_{\mathrm{chir}}(\g, M)
+\;:=\;
+\Omega^{0,\bullet}(C)\otimes \Sym^\bullet(\g^\vee[-1])\otimes M,
+\end{equation}
+with tridegree $(p,q,r)$ where $p$ is the Dolbeault degree, $q$ is the
+CE degree (i.e.\ polynomial degree in $\g^\vee[-1]$), and $r$ labels
+the internal $M$-grading. The sum $p+q+r$ is the total ghost number.
+
+\begin{definition}[Chiral CE differential]
+\label{def:chiral-ce-differential}
+\index{chiral CE differential}
+The \emph{chiral CE differential} on~\eqref{eq:chiral-ce-graded-vs} is
+$d_{\mathrm{chir}} := \delbar_C + d_{\mathrm{CE}}$, where
+$\delbar_C\colon \Omega^{0,p}(C)\to\Omega^{0,p+1}(C)$ is the Dolbeault
+operator on $C$ and $d_{\mathrm{CE}}$ is the Chevalley--Eilenberg
+differential, characterised on a generating CE cochain
+$\xi\in\g^\vee[-1]$ by
+\begin{equation}
+\label{eq:ce-differential-generator}
+d_{\mathrm{CE}}\xi
+\;=\;
+\tfrac12\,\xi([\,\cdot\,,\,\cdot\,])
+\;+\;
+\rho_M(\xi)\cdot(\,\cdot\,),
+\end{equation}
+with $\rho_M\colon\g\to\End(M)$ the module structure. The bigraded
+Jacobi identity for $[\delbar_C, d_{\mathrm{CE}}]=0$ is immediate:
+$\delbar_C$ acts on the $\Omega^{0,\bullet}(C)$ tensor factor only,
+and $d_{\mathrm{CE}}$ on the $\Sym^\bullet(\g^\vee[-1])\otimes M$
+factor, so the two commute on the nose.
+\end{definition}
+
+\begin{proposition}[$\Disk_3$-action on classical observables]
+\label{prop:disk3-action-classical-observables}
+\index{$\Disk_3$-operad}
+The classical observables of the twisted 5-brane theory at a
+generic $Y$-point $(p_{K3}, z\in C, t\in\R)$ are
+\begin{equation}
+\label{eq:costello-Obs-cl-stalk}
+\Obs^{\mathrm{cl}}_Y\bigl|_{(p_{K3},z,t)}
+\;=\;
+C^\bullet_{\mathrm{chir}}(\g, M)
+\;=\;
+\Omega^{0,\bullet}(C)\otimes \Sym^\bullet(\g^\vee[-1])\otimes M,
+\end{equation}
+and this sheaf of dg commutative algebras carries a canonical action
+of the little $3$-disks operad $\Disk_3$. The $\Disk_3$-structure is
+the one induced by the three-fold product of the holomorphic structure
+on K3 $\times$ $C$ and the topological structure on $\R$: commutative
+multiplication is the tensor product on stalks, the
+$\Disk_3$-operadic structure maps are Dolbeault-averages of the
+commutative product over configurations of embedded $3$-disks in $Y$.
+\end{proposition}
+
+\begin{proof}[Proof]
+Costello--Gwilliam (\cite{CG17}, Chapter 4; Thm~4.4.1, applied to the
+classical limit $\hbar\to 0$) establishes that the classical
+observables of a BV theory of cotangent type on a product
+$X\times\R^n$ (with $X$ holomorphic and $\R^n$ topological) carry a
+$\Disk_{n+\dim_{\C}X}$-algebra structure. For our setup, $X =
+\mathrm{K3}\times C$ (complex dimension $3$) and the topological
+direction is $\R$ (real dimension $1$), giving
+$\Disk_{3}$-structure on $\Obs^{\mathrm{cl}}_Y$ after reduction along
+K3 (which retains only the transverse-to-K3 $\Disk_{1+2}=\Disk_3$
+factor). Identification of the stalk with $C^\bullet_{\mathrm{chir}}(\g,
+M)$ is the Koszul resolution of the $\g$-module $M$ lifted along
+$\delbar_C$: the CE cochain complex $C^\bullet_{\mathrm{CE}}(\g,M)$ is
+the fibre at $p_{K3}$, and $\Omega^{0,\bullet}(C)$ is the
+Dolbeault-resolution tensor factor on the curve direction.
+\end{proof}
+
+\paragraph{Factorisation structure.}
+
+\begin{proposition}[Factorisation algebra on $C$]
+\label{prop:factalg-on-C-tensor-decomp}
+\index{factorisation algebra!tensor decomposition}
+Write $\F(U) := \mathrm{R}\Gamma(U, \Obs^{\mathrm{cl}}_Y)$ for the
+derived global sections of the classical-observable sheaf over an
+open $U\subseteq C$. For a disjoint union of opens
+$U_1\sqcup\cdots\sqcup U_n \subseteq C$,
+\begin{equation}
+\label{eq:factalg-tensor-decomp}
+\F(U_1\sqcup\cdots\sqcup U_n)
+\;=\;
+\F(U_1)\otimes\cdots\otimes\F(U_n).
+\end{equation}
+The factorisation structure maps $\F(U_1)\otimes\cdots\otimes\F(U_n)
+\to \F(V)$ for $U_1,\dots,U_n$ contained in a larger open $V$ are
+given by the Dolbeault product on $\Omega^{0,\bullet}(C)$ combined
+with the CE product $\Sym^\bullet(\g^\vee[-1])\otimes
+\Sym^\bullet(\g^\vee[-1])\to\Sym^\bullet(\g^\vee[-1])$.
+\end{proposition}
+
+\begin{proof}[Proof]
+The tensor-decomposition axiom~\eqref{eq:factalg-tensor-decomp} is the
+Costello--Gwilliam locality axiom~\cite[\S3.1]{CG17} applied to the
+free tensor factor $\Omega^{0,\bullet}(C)\otimes
+\Sym^\bullet(\g^\vee[-1])\otimes M$: the sheaf is a tensor product of
+a curve-factor (which satisfies the axiom by the Dolbeault Mayer--Vietoris
+sequence on $C$) and a point-factor (which trivially satisfies the axiom
+on a finite-dimensional vector space). The structure maps are the
+commutative-algebra maps on stalks, combined with extension-by-zero on
+the Dolbeault factor.
+\end{proof}
+
+\paragraph{Generators of the factorisation algebra.}
+On a formal disc $D_z\subset C$ centred at $z\in C$, the generators of
+$\F(D_z)$ as a commutative dg algebra over
+$\Omega^{0,\bullet}(D_z)$ are three families of elementary fields,
+matched to the BV components of
+Definition~\ref{def:costello-5brane-parent}:
+\begin{enumerate}[label=\textup{(G\arabic*)},ref=G\arabic*]
+\item\label{gen:G1} the \emph{gauge field}
+$\mathcal A = A^a_{\bar z}\,T_a\,d\bar z \in \Omega^{0,1}(D_z)\otimes\g$,
+of ghost number $0$;
+\item\label{gen:G2} the \emph{antighost}
+$\mathcal B = B^a\,T_a^\vee \in \Omega^{0,0}(D_z)\otimes\g^\vee[-1]$,
+of ghost number $1$;
+\item\label{gen:G3} the \emph{derivatives}
+$\partial^k \mathcal A, \partial^k \mathcal B$ for $k\geq 1$, dual to
+the Taylor expansion of the BV fields around $z$.
+\end{enumerate}
+Here $\{T_a\}$ is an orthonormal basis of $\g$ with dual basis
+$\{T_a^\vee\}$ of $\g^\vee$.
+
+\begin{proposition}[Relations: classical Maurer--Cartan on the
+formal disc]
+\label{prop:classical-MC-relations}
+\index{Maurer--Cartan!classical chiral CE}
+The generators
+\textup{(\ref{gen:G1})--(\ref{gen:G3})} satisfy the classical
+Maurer--Cartan relation
+\begin{equation}
+\label{eq:classical-MC-formal-disc}
+\delbar_C \mathcal A
+\;+\;
+\tfrac12[\mathcal A,\mathcal A]
+\;=\;
+0,
+\qquad
+\delbar_C \mathcal B
+\;+\;
+[\mathcal A,\mathcal B]
+\;+\;
+\tfrac12\langle \mathcal A,\mathcal A\rangle^\sharp
+\;=\;
+0,
+\end{equation}
+where $\langle\cdot,\cdot\rangle^\sharp$ is the raising-of-index map
+induced by the $\g$-invariant pairing on $\g\otimes\g^\vee\to\C$.
+These are the $\delbar_C$-linearisations of the Euler--Lagrange
+equations of~\eqref{eq:costello-5brane-action}.
+\end{proposition}
+
+\begin{proof}[Proof]
+Differentiating~\eqref{eq:costello-5brane-action} with respect to
+$A$ and $B$ yields $\delta S/\delta B = \delbar_{\mathrm{K3}\times\C}A +
+dt\wedge A + [A,B]$, and $\delta S/\delta A = -\delbar_{\mathrm{K3}\times\C}B
+- B\wedge dt + [A,A]\wedge\Omega_{\mathrm{K3}}\wedge dz\wedge dt$.
+Restricting to a formal disc in the $C$-direction (stripping K3 and
+$\R$ factors, retaining only Dolbeault structure on $C$) and imposing
+the classical equations $\delta S/\delta B = \delta S/\delta A = 0$
+produces~\eqref{eq:classical-MC-formal-disc}. This is the Costello
+BV derivation for the classical limit of a holomorphic-twisted gauge
+theory~\cite[\S9]{Costello2011}.
+\end{proof}
+
+\paragraph{Feynman relations: one-loop, two-loop, Wilson line.}
+
+\begin{proposition}[One-loop bubble relation]
+\label{prop:one-loop-bubble-relation}
+\index{Feynman diagram!one-loop bubble}
+The one-loop chiral contribution to the classical MC
+relation~\eqref{eq:classical-MC-formal-disc} is the single-loop
+bubble diagram
+\begin{equation}
+\label{eq:one-loop-bubble}
+\mathcal D^{(1)}_{\mathrm{bubble}}(\mathcal A)
+\;=\;
+\frac{1}{(2\pi i)^2}
+\oint_{|w-z|=\epsilon}
+\oint_{|w'-z|=\epsilon'}
+\frac{P_\epsilon^{\epsilon'}(w,w')}{(w-w')^2}\,
+\mathrm{tr}_{\mathrm{ad}}\bigl[\mathcal A(w)\,\mathcal A(w')\bigr]\,
+dw\,dw',
+\end{equation}
+where $P_\epsilon^{\epsilon'}$ is the Costello--Gwilliam
+scale-$\epsilon$-to-$\epsilon'$ propagator. Evaluating the contour
+integral by residues gives
+$\mathcal D^{(1)}_{\mathrm{bubble}}(\mathcal A) =
+\mathsf{c}_{\mathrm{ad}}(\g)\cdot\mathcal A$, with
+$\mathsf{c}_{\mathrm{ad}}(\g)$ the quadratic Casimir of~$\g$ in the
+adjoint representation. This relation is the $1$-loop correction to the
+classical MC generator~(\ref{gen:G1}).
+\end{proposition}
+
+\begin{proof}[Proof]
+The chiral Wick contraction for $\mathcal A(w)\mathcal A(w')$ produces
+the propagator $P_\epsilon^{\epsilon'}(w,w')/(w-w')^2$ (Costello
+\cite[Lem~6.1]{Costello2011}). The contour integral over
+$|w-w'|\to 0$ extracts the residue; the adjoint-trace gives
+$\mathsf{c}_{\mathrm{ad}}(\g)$ by the trace identity
+$\mathrm{tr}_{\mathrm{ad}}([T_a,T_b][T_c,T_d]) =
+\mathsf{c}_{\mathrm{ad}}(\g)\cdot\mathrm{tr}(T_a T_b T_c T_d)$.
+\end{proof}
+
+\begin{proposition}[Two-loop three-shell relation]
+\label{prop:two-loop-three-shell-relation}
+\index{Feynman diagram!two-loop three-shell}
+The two-loop chiral contribution to the classical MC relation is the
+three-shell integral
+\begin{equation}
+\label{eq:two-loop-three-shell}
+\mathcal D^{(2)}_{\mathrm{3-shell}}(\mathcal A)
+\;=\;
+\frac{1}{(2\pi i)^3}
+\oint_{|w_1-z|=\epsilon_1}
+\oint_{|w_2-z|=\epsilon_2}
+\oint_{|w_3-z|=\epsilon_3}
+\frac{\prod_{i<j}P_{\epsilon_i}^{\epsilon_j}(w_i,w_j)}
+{\prod_{i<j}(w_i-w_j)^{2}}
+\cdot\mathrm{tr}[\mathcal A(w_1)\mathcal A(w_2)\mathcal A(w_3)]\,
+dw_1 dw_2 dw_3,
+\end{equation}
+which evaluates to the $2$-loop anomaly coefficient
+$\mathsf{c}^{(2)}(\g)\cdot\mathcal A\wedge\mathcal A$. For
+$\g = \mathfrak{sl}_2$, $\mathsf{c}^{(2)}(\mathfrak{sl}_2) = -1/8$,
+identifying the $\hbar^2 = -1/8$ coefficient of
+Conjecture~\ref{conj:costello-hbar-minus-eighth} with the three-shell
+geometric normalisation.
+\end{proposition}
+
+\begin{proof}[Proof sketch]
+Three-shell renormalisation
+(Costello \cite[\S10]{Costello2011}) computes the chiral two-loop
+contribution as the contour integral over three concentric spheres,
+with the counterterm fixed by the Costello homological renormalisation
+axiom. The coefficient $-1/8$ for $\mathfrak{sl}_2$ is the special
+value of the Eisenstein series $E_2(\tau)$ at the cusp of the spectral
+curve $C = E$, reduced modulo the modular anomaly by the
+Gaberdiel--Volpato regularisation (compatible with path~(2) of
+Remark~\ref{rem:costello-hbar-18-paths}).
+\end{proof}
+
+\begin{proposition}[Wilson-line-integral relation]
+\label{prop:wilson-line-integral-relation}
+\index{Wilson line!factorisation algebra}
+A Wilson line along an embedded curve $\gamma\subset C$ is a
+module-object in $\F$ given by
+\begin{equation}
+\label{eq:wilson-line-as-module}
+W_\gamma(\mathcal A)
+\;=\;
+\mathrm{P}\exp\!\Bigl(\oint_\gamma \mathcal A\Bigr)
+\;=\;
+\sum_{n\geq 0}\frac{1}{n!}
+\oint_\gamma\cdots\oint_\gamma
+\mathrm{tr}\bigl[\mathcal A(w_1)\cdots\mathcal A(w_n)\bigr]\,
+dw_1\cdots dw_n,
+\end{equation}
+where the $n$-fold integral is defined by the Dolbeault renormalisation
+of Costello \cite[\S11]{Costello2011}. The
+factorisation-algebra-structure map
+$\F\otimes W_\gamma\to W_\gamma$ is the rule that inserts a
+$\F$-operator at a specific point of $\gamma$, equal to the
+differentiation of the Wilson line at that point.
+\end{proposition}
+
+\paragraph{Application to $\g = \g_{\Delta_5}$ on $C = E$.}
+
+\begin{theorem}[$\g_{\Delta_5}$-chiral CE factorisation algebra on
+$E$]
+\label{thm:g-delta5-chiral-ce-factalg-E}
+\index{$\g_{\Delta_5}$!chiral CE factorisation algebra}
+Applying Proposition~\ref{prop:disk3-action-classical-observables}
+with $C = E$ an elliptic curve and $\g = \g_{\Delta_5}$ the BKM
+rank-$3$ Lie algebra of K3 (Borcherds \cite{Borcherds1992}), with
+$M = \mathcal V^{K3}_5$ the K3-reduced 5-brane vertex algebra of
+Theorem~\ref{thm:costello-factalg-5brane}(ii), produces
+\begin{equation}
+\label{eq:g-delta5-chiral-ce-factalg-E}
+\F_{\Delta_5,E}
+\;=\;
+\Omega^{0,\bullet}(E)\otimes
+\Sym^\bullet(\g_{\Delta_5}^\vee[-1])\otimes
+\mathcal V^{K3}_5,
+\end{equation}
+a $\Disk_3$-algebra on $E\times\R$. The factorisation homology
+\begin{equation}
+\label{eq:factorisation-homology-E-times-R}
+\int_{E\times\R}\F_{\Delta_5,E}
+\;=\;
+\bigl(\int_E\Omega^{0,\bullet}(E)\bigr)
+\otimes
+\Sym^\bullet(\g_{\Delta_5}^\vee[-1])
+\otimes
+\mathcal V^{K3}_5
+\;\cong\;
+C^\bullet_{\mathrm{CE}}(\g_{\Delta_5}, \mathcal V^{K3}_5)[1]
+\end{equation}
+recovers the genus-$1$ Chevalley--Eilenberg cochains of $\g_{\Delta_5}$
+with coefficients in $\mathcal V^{K3}_5$, with the shift $[1]$ from
+$\int_E\Omega^{0,\bullet}(E)\cong H^{0,0}(E)\oplus H^{0,1}(E)[1]\cong
+\C\oplus\C[1]$.
+\end{theorem}
+
+\begin{proof}[Proof]
+Substitution of $C = E$, $\g = \g_{\Delta_5}$, $M = \mathcal V^{K3}_5$
+into~\eqref{eq:chiral-ce-graded-vs} and~\eqref{eq:costello-Obs-cl-stalk}
+gives~\eqref{eq:g-delta5-chiral-ce-factalg-E}. The
+factorisation-homology integral factors through the
+Dolbeault-cohomology of $E$: by Serre duality and Hodge symmetry on a
+smooth elliptic curve, $H^{0,0}(E)\cong\C$ and
+$H^{0,1}(E)\cong\C[1]$. The $[1]$ shift propagates to the whole tensor
+product, producing the CE-cochains-with-degree-shift
+output~\eqref{eq:factorisation-homology-E-times-R}. This is the
+genus-$1$ specialisation of Francis--Gaitsgory chiral-Koszul
+duality~\cite{FrancisGaitsgory2012} to the parent $6$d theory.
+\end{proof}
+
+\begin{remark}[Recovery of the K3$\times E$ setting]
+\label{rem:k3-times-E-recovery}
+\index{K3$\times E$!factorisation algebra recovery}
+The full 5-brane factorisation algebra on $Y = \mathrm{K3}\times
+E\times\R$ is the tensor product
+$\mathrm{Obs}^{\mathrm{cl}}_Y = \Obs^{\mathrm{cl}}_{\mathrm{K3}}
+\widehat\otimes \F_{\Delta_5,E}$, where $\Obs^{\mathrm{cl}}_{\mathrm{K3}}$ is
+the K3-factor (identified with the $\mathcal V^{K3}_5$ structure by
+Costello--Li reduction \cite{CL16}) and $\F_{\Delta_5,E}$ is the
+$E$-factor of Theorem~\ref{thm:g-delta5-chiral-ce-factalg-E}. The
+factorisation-homology on the full product
+\begin{equation}
+\int_{\mathrm{K3}\times E\times\R}\Obs^{\mathrm{cl}}_Y
+\;=\;
+\int_\R\bigl(
+\int_{\mathrm{K3}}\Obs^{\mathrm{cl}}_{\mathrm{K3}}\bigr)
+\otimes\bigl(\int_E\F_{\Delta_5,E}\bigr)
+\end{equation}
+decomposes by Fubini on factorisation homology (Ayala--Francis--Tanaka
+\cite{AyalaFrancisTanaka2017}, Thm~4.1.3): the K3-factor yields the
+umbral-twisted character $\chi[\mathbf H_{\Delta_5}](\tau,z)$ of the
+K3 chiral bialgebra
+(Section~\ref{subsec:costello-twisted-holography}); the $E$-factor
+yields the CE-cochain contribution of~(\ref{eq:factorisation-homology-E-times-R});
+the $\R$-factor yields the topological-time integration (trivial on
+the classical observables, non-trivial at $1$-loop through
+Theorem~\ref{thm:costello-bv-anomaly}).
+\end{remark}
+
+\begin{remark}[Primary-literature concordance]
+\label{rem:e3-chiral-ce-primary-lit}
+The constructions in this subsection are chain-level, explicitly named:
+(a) the tensor-factor decomposition~\eqref{eq:chiral-ce-graded-vs}
+matches Francis--Gaitsgory~\cite{FrancisGaitsgory2012}
+Thm~6.4.2 on chiral CE cochains;
+(b) the $\Disk_3$-action of
+Proposition~\ref{prop:disk3-action-classical-observables}
+matches Costello--Gwilliam~\cite{CG17} Ch.~4, Thm~4.4.1;
+(c) the factorisation-homology Fubini decomposition of
+Remark~\ref{rem:k3-times-E-recovery}
+matches Ayala--Francis--Tanaka~\cite{AyalaFrancisTanaka2017} Thm~4.1.3;
+(d) the one- and two-loop Feynman relations
+(Propositions~\ref{prop:one-loop-bubble-relation}--\ref{prop:two-loop-three-shell-relation})
+match the Costello renormalisation
+of~\cite{Costello2011} \S\S9--10.
+\end{remark}
+
 \subsection{Twisted holography: bulk sugra = 11D, boundary = K3
 chiral bialgebra}
 \label{subsec:costello-twisted-holography}
@@ -2351,15 +2748,24 @@ invariant, not a K3-specific constant.
 Conjecture~\ref{conj:costello-hbar-minus-eighth} is
 the K3-specific specialisation of the universal
 Beilinson--Etingof identity
-$\hbar^2 \cdot K^\kappa = -1$ on the $\mathsf{B}$-family,
-parametrised by the BKM real-Weyl-chamber rank. For
-$\mathrm{II}_{2,1}$ (BKM$_\Delta_5$): $r=3$,
-$K^\kappa = 8$, $\hbar^2 = -1/8$; for $\mathrm{II}_{25,1}$
-(Monster Fake Monster Lie algebra): $r=24$, $K^\kappa = 50$,
-$\hbar^2 = -1/50$; for $\mathrm{II}_{1,1}\oplus E_8$:
-$r=9$, $K^\kappa = 18$, $\hbar^2 = -1/18$. Cross-reference
-Vol.~I \texttt{chapters/examples/landscape\_census.tex}
-family-$\mathsf{B}$ entry.
+$\hbar^2 \cdot K^{\kappa_{\mathrm{ch}}} = -1$ on the $\mathsf{B}$-family,
+with $K^{\kappa_{\mathrm{ch}}} = 2c_+(L)$ the Mukai-doubling
+of the signature of the defining Lorentzian lattice $L$
+(Vol.~III \texttt{chapters/examples/k3e\_bkm\_chapter.tex}
+Theorem~\ref{thm:bkm-universal-identity}). For the K3
+Mukai lattice $L = \mathrm{II}_{4,20}$ (BKM $\mathfrak g_{\Delta_5}$):
+BKM real-root-system Cartan rank $r = 3$ (Gritsenko--Nikulin 1998),
+$K^{\kappa_{\mathrm{ch}}} = 2c_+(\mathrm{II}_{4,20}) = 8$,
+$\hbar^2 = -1/8$. For the Monster ($L = \mathrm{II}_{1,1}$,
+Koike--Norton--Zagier denominator $j(\sigma) - j(\tau)$):
+$c_+ = 1$, $K^{\kappa_{\mathrm{ch}}} = 2$, $\hbar^2 = -1/2$. For
+the Fake Monster ($L = \mathrm{II}_{25,1} = \Lambda_{24}\oplus\mathrm{II}_{1,1}$,
+$\Phi_{12}$ denominator): $c_+ = 25$, $K^{\kappa_{\mathrm{ch}}} = 50$,
+$\hbar^2 = -1/50$. Cross-reference Vol.~I
+\texttt{chapters/examples/landscape\_census.tex}
+family-$\mathsf{B}$ entry and Vol.~III
+\texttt{chapters/examples/k3e\_bkm\_chapter.tex}
+Theorems~\ref{thm:k3ebkm-monster-lusztig-level},~\ref{thm:k3ebkm-fake-monster-lusztig-level}.
 \end{remark}
 
 \section{Synthesis}

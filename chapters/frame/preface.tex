@@ -13,6 +13,14 @@
 \providecommand{\mc}{\operatorname{MC}}
 \providecommand{\Res}{\operatorname{Res}}
 \providecommand{\RHom}{\operatorname{RHom}}
+% Vol III two-stage factorisation (cross-volume macros)
+\providecommand{\PhiFA}{\Phi^{\mathrm{FA}}}
+\providecommand{\SpCh}{\mathrm{Sp}_{\mathrm{Ch}}}
+\providecommand{\HolFA}{\mathrm{HolFA}}
+\providecommand{\EdHolFA}{E_d\text{-}\HolFA}
+\providecommand{\EnHolFA}{E_n\text{-}\HolFA}
+\providecommand{\intSigma}{\textstyle\int_{\Sigma}}
+\providecommand{\hCS}{\mathrm{hCS}}
 
 \chapter*{Preface}
 \addcontentsline{toc}{chapter}{Preface}
@@ -383,6 +391,23 @@ architectural count to seven.
   Proposition~\ref{prop:R-twisted-sigma-n-descent}
   (Part~\ref{part:swiss-cheese}); ordered bar primary,
   symmetric bar is $R$-twisted $\Sigma_n$-coinvariant image.
+  The $(\infty,2)$-adjunction $\Omega^{\mathrm{ch}} \dashv
+  B^{\mathrm{ch}}$ lifts the 1-categorical Vol~I statement: at
+  the 2-cell level, compatibility 2-morphisms assemble into an
+  Auslander--Reiten triangulated structure, which is the
+  2-categorical $\SCchtop$ coloured shuffle --- the closed-colour
+  FM collisions and the open-colour $\Eone$ orderings compose at
+  2-morphism level exactly as the AR translate composes
+  irreducible morphisms in a triangulated category. On
+  $\overline{\cA_2}$ away from the Humbert discriminant the
+  bar-cobar octachotomy at codimension~$3$ (eight ambients
+  distinguished by the stratification of
+  $\overline{\cA_2}\setminus\bigcup_n H_n$) acquires a direct
+  holomorphic-topological reading: each of the eight ambients is
+  a specific Swiss-cheese colouring datum on the $\SCchtop$
+  bar-differential, with the closed $\FM_k(\C)$ colour recording
+  the Kodaira fibre type and the open $\Eone$ colour recording
+  the Humbert intersection pattern.
 \item \textbf{B} (Koszul-locus inversion) ---
   Theorem~\ref{thm:filtered-koszul} (Part~\ref{part:e1-core});
   conilpotent-complete $E_1$-chiral coalgebras are reflective
@@ -409,15 +434,25 @@ architectural count to seven.
   $\cZ^{\mathrm{der}}_{\mathrm{ch}}(\cA)$:
   Theorem~\ref{thm:chiral-higher-deligne} in
   Chapter~\ref{ch:chiral-higher-deligne}
-  (Part~\ref{part:gravity}). Theorem~H concentration is proved
+  (Part~\ref{part:gravity}). The sharp vanishing
+  $\ChirHoch^k(\cA) = 0$ for $k \ge d+1$ on CY-$d$ input
+  enlarges the concentration window from the ambient-curve
+  $\{0,1,2\}$ to the CY-$d$-enlarged $\{0,1,\ldots,d\}$ on the
+  Vol~III functor $\Phi_d = \SpCh_{\Sigma_{d-1},C}\circ\PhiFA_d$
+  (two-stage: stage~1 canonical $E_d$-holomorphic factorisation;
+  stage~2 curve-specialisation via factorisation-homology
+  pushforward), so that chiral Hochschild is the
+  hinge between Vol~II's holomorphic-topological structure and
+  Vol~III's CY input: $\Phi_3(\text{CY-}3)$ concentrates in
+  $\{0,1,2,3\}$, $\Phi_4(\text{CY-}4)$ in $\{0,1,2,3,4\}$, and
+  the Vol~II ambient-curve restriction is the $d = 2$
+  specialisation. Theorem~H concentration is proved
   unconditionally in Vol.~I via the chiral-PBW plus
   Orlik--Solomon route; the programme-level conjecture that
   concentration is also a \emph{consequence} of
   $E_3$-rigidity-at-a-point plus chiral-$E_3$-PBW on the
   derived centre is recorded as
-  Conjecture~\ref{conj:H-concentration-via-E3-rigidity}
-  (retracted from theorem-status 2026-04-18 per
-  Remark~\ref{rem:H-concentration-via-E3-rigidity-type-error-retraction}).
+  Conjecture~\ref{conj:H-concentration-via-E3-rigidity}.
 \item \textbf{F} (Universal Holography functor)
   $\Phi_{\mathrm{hol}}\colon \mathrm{ChirAlg}^{\omega,\mathrm{BL}}_X
   \to \mathrm{HT\text{-}QFT}_{X \times \R}$ ---
@@ -461,6 +496,12 @@ spectral Drinfeld strictification
 (Theorem~\ref{thm:complete-strictification}) holds for every
 simple Lie type via root-multiplicity-one rigidity); and
 \emph{the bulk-boundary-line triangle}
+(throughout Vol II, ``bulk'' denotes T18(iii), the 3d HT bulk on
+$\C\times\R_+$, whose local operators $\Abulk$ coincide with T18(i),
+the chiral derived centre $Z^{\mathrm{der}}_{\mathrm{ch}}(\Bbound)$
+on the chirally Koszul locus; T18(ii) RT topological bulk is a
+distinct construction and appears only where explicitly invoked)
+\smallskip
 ($\Abulk \simeq \chi^\bullet_{\mathrm{ch}}(\Bbound)$
 unconditionally for classes~$\mathbf{G}$, $\mathbf{L}$,
 $\mathbf{C}$ and at genus~$0$ on class~$\mathbf{M}$
@@ -483,9 +524,10 @@ reconstruction beyond that locus is open (frontier F4).
 \section*{III.\quad Four conceptual leaps}
 
 \noindent
-The volume is organised by four leaps away from classical Koszul
-duality. The bar complex indexes the first three; the fourth
-(derived centres produce physics) is what this volume proves.
+Four leaps away from classical Koszul duality organise the
+mathematics. The bar complex indexes the first three; the fourth
+(derived centres produce physics) is the content of
+Theorem~\ref{thm:universal-holography-master}.
 
 \paragraph{(1) Commutative to $E_1/\Ainf$.}
 Classical Koszul duality works for commutative and associative
@@ -551,13 +593,14 @@ $\kappa_{\mathrm{ch}}(\widehat{\fg}_k) = \dim\fg\,(k+h^\vee)/(2h^\vee)$
 (at $k = 0$, $\kappa_{\mathrm{ch}} = \dim\fg/2$ from the
 Sugawara shift, not zero); $\kappa_{\mathrm{ch}}(\cW_N) =
 c\cdot(H_N - 1)$ with $H_N = \sum_{j=1}^N 1/j$ (at $N = 2$,
-$H_2 - 1 = 1/2$ recovers $\kappa = c/2$; the correct expression
+$H_2 - 1 = 1/2$ recovers $\kappa_{\mathrm{ch}} = c/2$; the correct expression
 is $H_N - 1$, not the harmonic number $H_{N-1}$, since
 $H_{N-1} \ne H_N - 1$ in general). The scalar genus tower
 \textup{(\textsc{uniform-weight})} satisfies
-$\sum_{g \ge 1} F_g \cdot \hbar^{2g-2} = \log\hat{A}(\kappa_{\mathrm{ch}}\,\hbar)$
+$\sum_{g \ge 1} F_g \cdot \hbar^{2g}
+= \kappa_{\mathrm{ch}}(\cA)\cdot\bigl(\hat{A}(i\hbar) - 1\bigr)$
 with $F_1 = \kappa_{\mathrm{ch}}/24$,
-$F_2 = 7\kappa_{\mathrm{ch}}^2/5760$.
+$F_2 = 7\kappa_{\mathrm{ch}}/5760$ (linear in $\kappa_{\mathrm{ch}}$).
 
 \paragraph{(3) Local to nonlocal.}
 All standard vertex algebras (including those with OPE poles)
@@ -646,8 +689,8 @@ three must never be conflated. Three Hochschild theories coexist:
 \end{array}
 \]
 The derived centre is the first. Identifying any two collapses
-the architecture. Every chapter of this volume is a projection
-of the single coalgebra through one of the three.
+the architecture: each chapter below projects the single
+coalgebra through one of the three.
 
 The parallel with the Chriss--Ginzburg theory is precise:
 \begin{center}
@@ -831,6 +874,37 @@ classical pentagon spans the first five faces. The seven-fold
 identification of the collision residue $r(z)$ on the affine
 lineage (Section~XI) is a parallel heptagon on a different
 object.
+
+\paragraph{Chiral Kontsevich formality on the Koszul locus.}
+On the admissible locus
+$U^{\mathrm{adm}} = \overline{\cA_2}\setminus\bigcup_n H_n$
+(the parameter stratum excised of every Humbert divisor where
+the Igusa cusp form $\Phi_{10}$ is regular) the chiral polyvector
+sheaf is formality-equivalent to chiral Hochschild on the K3 chiral
+bialgebra $\mathbf{H}_{\Delta_5}$ (the Schiffmann--Vasserot paramodular
+BKM master object associated to the Gritsenko cusp form
+$\Delta_5 = \mathrm{Grit}(\eta^9\vartheta_1)$ of weight~$5$, with
+Siegel character $1/\Phi_{10} = 1/\Delta_5^2$):
+\[
+ T^{\mathrm{poly}}_{\mathrm{ch}}(\overline{\cA_2})\big|_{U^{\mathrm{adm}}}
+ \;\xrightarrow{\sim}\;
+ \ChirHoch^\bullet(\mathbf{H}_{\Delta_5})\big|_{U^{\mathrm{adm}}}.
+\]
+The obstruction to extending the quasi-isomorphism across the
+boundary $H_n$ is the Malcev-ladder cocycle at level $n$: the
+$n$th rung of the Malcev tower on
+$\pi_1(\overline{\cA_2}\setminus H_n)$ supplies a
+length-$n$ iterated commutator whose class in
+$H^2(\mathfrak{m}_n)$ is exactly the $\phi^{(n)}$ coherence of
+the class-$\mathbf{M}$ $\Ainf$-tower. Across $H_1\cup H_4$ the
+cocycles $\phi^{(1)}$ and $\phi^{(4)}$ are non-zero; across
+$H_2, H_3$ and every $H_n$ with $n \geq 5$ they vanish by the
+three-loop Arnold cancellation. Kontsevich's flat
+quasi-isomorphism (Costello--Gwilliam factorisation formality)
+is the chain-level witness inside $\SCchtop$; passing to the
+$(\infty,1)$-lane, the statement is that the Tamarkin zigzag
+lifts to an $(\infty,1)$-equivalence of factorisation
+$\infty$-categories over $U^{\mathrm{adm}}$.
 
 \paragraph{Critical-level failure.}
 At $k = -h^\vee$ the Sugawara construction is undefined; for
@@ -1140,7 +1214,7 @@ $F_1 = -k\log\eta(\tau)$ (so $Z_1 = \eta(\tau)^{-k}$, integrated
 free energy $\kappa_{\mathrm{ch}}/24 = k/24$). Scalar tower
 \textup{(\textsc{uniform-weight})}:
 $F_g(\cH_k) = k\cdot\lambda_g^{\mathrm{FP}}$;
-$F_2 = 7k^2/5760$.
+$F_2(\cH_k) = 7k/5760$ (linear in $k$).
 
 \paragraph{Kac--Moody} (class~$\mathbf{L}$, Lie-transverse).
 Generators $J^a$, OPE
@@ -1164,7 +1238,7 @@ $\cC_{\mathrm{line}}^{\mathrm{red}}|_{\mathrm{eval}} \simeq
 \operatorname{Rep}_q(\fg)$.
 Line dual $\cA^!_{\mathrm{line}} = \Ydg(\fg)$ (dg-shifted
 Yangian); spectral Drinfeld strictification
-(Theorem~\ref{thm:complete-strictification}) is inscribed in
+(Theorem~\ref{thm:complete-strictification}) is proved in
 simply-laced type~$A$ (abelian $\widehat{\fh}$ and $\widehat{\fsl}_2$
 concretely; $\widehat{\fsl}_N$ via the $\gl_N$ chiral quantum-group
 construction), with Dynkin coefficient $1/n$ rigidity controlling the
@@ -1219,13 +1293,16 @@ Modular characteristic
 $\kappa_{\mathrm{ch}}(\cW_3) = c\cdot(H_3 - 1) = 5c/6$
 (harmonic number $H_3 = 11/6$); $\kappa_{\mathrm{ch}}(\cW_2) =
 c\cdot(H_2 - 1) = c/2$ recovers Virasoro at $N = 2$.
-Central-charge sum $c(\cW_3) + c(\cW_3^!) = 250/3$
-(non-zero: nontrivial $\cW_N$ complementarity for $N \ge 3$,
-in contrast to the affine $\widehat{\fg}_k$ where
-$\kappa_{\mathrm{ch}}$-conductor vanishes); the
-$\kappa_{\mathrm{ch}}$-conductor is correspondingly
-$\kappa_{\mathrm{ch}}(\cW_3) + \kappa_{\mathrm{ch}}(\cW_3^!) =
-5(c + c^!)/6 = 625/9$.
+Fateev--Lukyanov duality gives the central-charge sum
+$c(\cW_3) + c(\cW_3^!) = 100$, so the
+$\kappa_{\mathrm{ch}}$-conductor
+$\kappa_{\mathrm{ch}}(\cW_3) + \kappa_{\mathrm{ch}}(\cW_3^!)
+= (5/6)\cdot 100 = 250/3$
+is nonzero (nontrivial $\cW_N$ complementarity for $N \ge 3$,
+in contrast to affine $\widehat{\fg}_k$ where the
+$\kappa_{\mathrm{ch}}$-conductor vanishes), and sits in the
+Vol~I five-archetype bucket $\{0, 8, 13, 250/3, 98/3\}$
+as the $\cW_3$ sub-landmark on class~$\mathbf{M}$.
 
 \paragraph{Multi-weight cross-channel correction.}
 At $g \ge 2$, multi-weight algebras activate
@@ -1274,13 +1351,14 @@ is the Feynman transform of the modular operad
 \textup{(\textsc{uniform-weight})} is controlled by the
 $\hat{A}$-genus:
 \[
-\sum_{g \ge 1} F_g \cdot \hbar^{2g-2}
+\sum_{g \ge 1} F_g(\cA) \cdot \hbar^{2g}
 \;=\;
-\log \hat{A}(\kappa_{\mathrm{ch}}\,\hbar),
+\kappa_{\mathrm{ch}}(\cA)\cdot\bigl(\hat{A}(i\hbar) - 1\bigr),
 \]
 with $F_1 = \kappa_{\mathrm{ch}}/24$ (Weinberg soft graviton at
-tree level), $F_2 = 7\kappa_{\mathrm{ch}}^2/5760$ (one-loop soft
-factor), and higher $F_g$ determined by Bernoulli numbers.
+tree level), $F_2 = 7\kappa_{\mathrm{ch}}/5760$ (one-loop soft
+factor, linear in $\kappa_{\mathrm{ch}}$), and higher $F_g$
+determined by Bernoulli numbers.
 The generating function is algebraic of degree~$2$: the quadratic
 $Q_L(t)$ from Volume~I satisfies $H(t)^2 = t^4\,Q_L(t)$, and
 $\Delta = 8\kappa_{\mathrm{ch}} S_4$ classifies nonlinear
@@ -1289,15 +1367,17 @@ $2\pi$, Borel entire).
 
 The Borel singularity of the gravitational tower at
 $g \sim 1/\kappa_{\mathrm{ch}}$ produces a Stokes phenomenon: the
-Page curve. Page time $t_P = 3 S_{\mathrm{BH}}/13$ is $c$-independent because
-$\kappa_{\mathrm{ch}}(\mathrm{Vir}_c) +
+Page curve. The Page time
+$t_P = 3 S_{\mathrm{BH}}/13$
+(Proposition~\ref{prop:gravity-page-curve}) is $c$-independent
+because $\kappa_{\mathrm{ch}}(\mathrm{Vir}_c) +
 \kappa_{\mathrm{ch}}(\mathrm{Vir}_{26-c}) = 13$, the
 Virasoro-specific Koszul complementarity established in
-Volume~I (the sum is family-specific, not universal). Analytic
-continuation
-$\kappa_{\mathrm{ch}} \to -|\kappa_{\mathrm{ch}}|$ replaces the
-convergent tower with the de~Sitter entropy
-$S_{\mathrm{dS}} = \pi\ell^2/G$ as the leading saddle.
+Volume~I (the sum is family-specific, not universal).
+Heuristically, Borel resummation in the $\kappa_{\mathrm{ch}} < 0$
+sector with Stokes jump at the Gibbons--Hawking saddle recovers
+the de~Sitter entropy
+$S_{\mathrm{dS}} = \pi\ell^2/G$.
 
 \paragraph{Transgression algebra.}
 $B_\Theta$ absorbs the curvature by adjoining a degree-one
@@ -1476,9 +1556,10 @@ family-specific value); the critical bosonic string sits at
 $c = 26$.
 At $c = 13$ the ordered bar complex carries a gravitational
 Yangian symmetry whose conserved charges are the shadow
-obstructions $S_r$. Analytic continuation
-$\kappa_{\mathrm{ch}} \to -|\kappa_{\mathrm{ch}}|$ recovers
-$S_{\mathrm{dS}} = \pi\ell^2/G$.
+obstructions $S_r$. Heuristically, Borel resummation in the
+$\kappa_{\mathrm{ch}} < 0$ sector recovers
+$S_{\mathrm{dS}} = \pi\ell^2/G$ as the leading Gibbons--Hawking
+Stokes saddle.
 
 The part also contains: chiral higher Deligne
 (Chapter~\ref{ch:chiral-higher-deligne}); universal holography
@@ -1601,8 +1682,8 @@ entropy $S_{\mathrm{Cardy}} = 2\pi\sqrt{ch/6} +
 
 \noindent
 Volume~I constructs $E_n$-chiral algebras as algebraic-geometric
-objects on configuration spaces; this volume identifies their
-physical content.
+objects on configuration spaces. The physical content of those
+objects is the subject of the stages below.
 
 \paragraph{$E_1$: ordered bar complex is the boundary algebra.}
 $B^{\mathrm{ord}}(\cA) = T^c(s^{-1}\bar\cA)$ with differential
@@ -1748,7 +1829,7 @@ factorisation algebras, on the original complex in the
 pro / $J$-adic / weight-completed ambient fixed by the MC5
 ambient discipline, at the level of chain maps. The logarithmic
 $W(p)$ triplet is \emph{excluded} from this unconditional climax
-and inscribed as conjectural
+and remains conjectural
 (Conjecture~\ref{conj:tempered-stratum-contains-wp}): the
 correlation-function Massey product is unbounded
 (Gurarie 1993, Flohr 1996), while the shadow-tower Massey bound
@@ -1791,9 +1872,9 @@ yet tempered shadow growth
 correct criterion is VSKR + BGG
 (Corollary~\ref{cor:tempered-criterion-refined}), strictly weaker
 than $C_2$-cofiniteness: tempering depends on pole-order growth,
-not on algebraic finiteness. The converse of the
-tempered-unbounded-Zhu conjecture is refuted
-(Remark~\ref{rem:conjecture-tempered-unbounded-zhu-retracted}).
+not on algebraic finiteness. The converse fails:
+unbounded Zhu does not imply untempered growth
+(Proposition~\ref{prop:zhu-unbounded-tempered-nontrivial}).
 
 \paragraph{Gauge-theoretic (Costello--Gwilliam + Dijkgraaf--Witten
 vanishing).}
@@ -1896,20 +1977,224 @@ three-way agreement is structural, not coincidental.
 The Volume~I universal conductor
 $K(A) = -c_{\mathrm{ghost}}(\mathrm{BRST}(A))$ and the
 Volume~III Borcherds weight
-$\kappa_{\mathrm{BKM}}(X) = c_N(0)/2$ are two evaluations of a
+$\kappa_{\mathrm{BKM}}(\Phi_N) = c_N(0)/2$
+(the Fourier zero-coefficient of the Gritsenko--Cl\'ery Borcherds
+lift $\Phi_N$, $N \in \{1, 2, 3, 4, 6\}$) are two evaluations of a
 single trace formula mediated by $\Phi_{\mathrm{hol}}$ and the
 Volume~III functor $\Phi$
 (Conjecture~\ref{conj:universal-trace-identity-volii-bridge},
 \S\ref{sec:universal-trace-identity}). Scope: K3-fibered
-Class~A only ($N = 1, \dots, 6$; the eight diagonal orbifolds and
-the STU model;
-Proposition~\ref{prop:bkm-weight-universal} in Volume~III).
+Class~A (the eight diagonal orbifolds and the STU model;
+Proposition~\ref{prop:bkm-weight-universal} in Volume~III);
 Class~B ($\kappa_{\mathrm{BCOV}} = \chi(X)/24$ with shadow depth)
-is undefined for Borcherds and lies outside the identity. The
-decomposition $\kappa_{\mathrm{BKM}} = \kappa_{\mathrm{ch}} +
-\chi(\mathcal{O}_{\mathrm{fiber}})$ is a numerical coincidence at
-$N = 1$ (K3$\times$E) and fails for $N \ge 2$. The identity is
-conjectural at programme level.
+carries no Borcherds input and lies outside the identity's scope.
+The Borcherds lift is multiplicative on the Gritsenko--Cl\'ery
+spread, so $\kappa_{\mathrm{BKM}}$ does not decompose as
+$\kappa_{\mathrm{ch}} + \chi(\mathcal{O}_{\mathrm{fiber}})$:
+the equality fails at every $N \in \{1, 2, 3, 4, 6\}$.
+The identity is conjectural at programme level.
+
+\paragraph{Universal ratio-of-levels law.}
+On the Fricke-reflective signature-$(2,n)$ rows
+$\{\mathrm{II}_{2,2}, \mathrm{II}_{10,2}, \mathrm{II}_{18,2},
+\mathrm{II}_{26,2}\}$ and the $24A_1$ Niemeier, for any two
+chiral algebras $\cA_X, \cA_Y$ with Fricke involutions on
+their Mukai lattices $L_X, L_Y$ the Lusztig-level ratio
+equals the ratio of positive signatures:
+\[
+ \frac{\ell_X}{\ell_Y}
+ \;=\;
+ \frac{c_+(L_X)}{c_+(L_Y)},
+\]
+where $\ell_X$ is the Lusztig quantisation level of the
+$\SCchtop$ datum on $\cA_X$ and $c_+(L_X)$ is the positive
+eigenvalue multiplicity of $L_X$. The canonical $\Psi$-sibling
+values $(c_+, \ell)$ are Monster $(1,2)$, Enriques $(2,4)$,
+K3 $(4,8)$, Fake-Monster $(25,50)$; positive-definite rows
+(Leech and Conway $V^{s\natural}$ on $\Lambda_{24}$) admit no
+Fricke involution and the ratio is undefined there. The law
+ties Vol~II's Lusztig-level quantisation---controlling the
+periodic-CDG normalisation at admissible levels---to the
+Mukai-signature data that Vol~III extracts from Kuga--Satake
+embedding.
+
+\paragraph{Six verification paths for $\chi_3$.}
+The chiral-Hochschild concentration invariant
+$\chi_3 = \dim\ChirHoch^3(\mathbf{H}_{\Delta_5})$ at the K3
+base point is computable along six genuinely independent paths.
+Three of the six are Vol~II-native: Path~B is Costello--Gwilliam
+factorisation formality, which exhibits $\chi_3$ as the third
+cohomology of the chiral Kontsevich formality zigzag on
+$U^{\mathrm{adm}}$; Path~E is Francis--Gaitsgory cyclic chiral
+homology $\HH^{S^1}_{\mathrm{ch}}$, which extracts $\chi_3$ from
+the $S^1$-equivariant factorisation structure over
+$\mathrm{Ran}(E_{24}^{\mathrm{nod,sm}})$; and the
+Costello--Gaiotto 11D supergravity 1-loop anomaly reads $\chi_3$
+directly off the Quillen-norm anomaly of the twisted
+supergravity theory. The remaining three paths (Borcherds
+singular-theta, Yoshikawa analytic torsion, Bruinier--K\"uhn
+arithmetic) are Vol~III-native; all six agree numerically,
+$\chi_3 = 5 = \mathrm{wt}(\Delta_5)$.
+
+\paragraph{Quillen norm as BV one-loop determinant.}
+The $\SCchtop$ bar-differential $D_{\mathbf{H}_{\Delta_5}}$ on
+$\mathbf{H}_{\Delta_5}$-observables produces a factorisation-algebraic
+partition function $Z^{(1)}$ on $\mathrm{Ran}(E^{\mathrm{nod,sm}}_{24})$
+whose Quillen norm is the 1-loop BV determinant of the twisted 11D
+supergravity theory on $K3\times T^2$:
+\[
+\log Z^{(1)}(\mathbf{H}_{\Delta_5})
+\;=\;
+-\log\|\Delta_5\|_Q^2
+\;=\;
+-\log\Delta_5
+\;-\;
+24\,L'(0,\Delta_5,\mathrm{std}).
+\]
+The identification proceeds through Bismut--Gillet--Soulé 1988
+Quillen-norm immersion applied to the Kuga--Satake embedding
+$\overline{\mathcal{A}_2}\hookrightarrow\overline{\mathcal{A}_{21}}$:
+Yoshikawa 2004 equates the analytic torsion with a period of
+$\Delta_5$; Bruinier--Kühn 2003 equates the boundary Borcherds-lift
+contribution along $H_4$ with $24\,L'(0,\Delta_5,\mathrm{std})$. The
+coefficient $24$ is simultaneously the second Chern class of the
+rank-$21$ K3 transcendental lattice variation and the count of
+M5-brane sources at Kodaira $I_1$ fibres. The Quillen norm
+$\|\Delta_5\|^2$ is the sole modular-invariant scalar surviving the
+averaging map $\mathrm{av}$ on $\mathbf{H}_{\Delta_5}$; it is the K3
+analogue of the Heisenberg reading
+$\kappa_{\mathrm{ch}}(\cH_k) = k$ at one loop.
+
+\paragraph{Class-$\mathcal{S}$ $\mathcal{T}[A_1,\Sigma_{0,24}]$ Schur-index cross-check.}
+Gluing $22$ $A_1$-trinions along $21$ tubes on the $24$-punctured
+sphere $\Sigma_{0,24}$ constructs the class-$\mathcal{S}$ theory
+$\mathcal{T}[A_1,\Sigma_{0,24}]$ whose chiral algebra $\chi_{2d}$ is
+fixed by the 4D/2D correspondence of Beem--Lemos--Liendo--Peelaers--Rastelli--van Rees
+2013. The Chacaltana--Distler 2010 tinkertoy assembly together with
+Shapere--Tachikawa 2008 vector/hypermultiplet counting yields
+$(n_v, n_h) = (63, 88)$, so that
+\[
+c_{4d}
+\;=\;
+(2n_v + n_h)/12
+\;=\;
+(126+88)/12
+\;=\;
+107/6,
+\qquad
+c_{2d}
+\;=\;
+-12\,c_{4d}
+\;=\;
+-214
+\;=\;
+-2\cdot 107.
+\]
+The $\chi_{2d}$ chiral algebra at $c = -214$ is not
+$\mathbf{H}_{\Delta_5}$: the numerical coincidence of the integer
+``$24$'' between $24$ regular punctures of $\Sigma_{0,24}$ and $24$
+Kodaira $I_1$ fibres on elliptic K3 reflects a shared rank-$22$
+automorphism pattern, but the two chiral algebras decouple as
+$\SCchtop$-data. The averaging images
+$\mathrm{av}(\chi_{2d}[\mathcal{T}[A_1,\Sigma_{0,24}]])$ and
+$\mathrm{av}(\mathbf{H}_{\Delta_5})$ differ in their second invariants:
+the first has $\kappa_{\mathrm{ch}} = c_{2d}/2 = -107$, the second has
+$\kappa_{\mathrm{BKM}} = c_{\Lambda^{3,2}}(0)/2 = 5$. The decoupling
+is a theorem about the distinct roles played by the rank-$22$ lattice
+inside each construction.
+
+\paragraph{Three-loop Arnold cancellation on $\mathrm{Conf}_4(E)$.}
+The four-point function $\phi^{(4)}$ on $\mathrm{Conf}_4(E_{\tau})$
+sums $10$ Belokurov--Shavgulidze topologies, including the ladder
+splitting $T_5$ and the theta-graph $T_6$ with its two distinguishable
+wheel orientations. Every term cancels pairwise under the Arnold--Cohen
+flip $H_1\leftrightarrow H_4$ via the Arnold three-term relation
+\[
+\eta_{ij}\wedge\eta_{jk}
+\;+\;
+\eta_{jk}\wedge\eta_{ki}
+\;+\;
+\eta_{ki}\wedge\eta_{ij}
+\;=\;
+0,
+\qquad
+\eta_{ij} = d\log\vartheta_1(z_i - z_j,\tau).
+\]
+Hence $\phi^{(4)} = 0$ on $\mathrm{Conf}_4(E_{\tau})$ for every
+$\tau$. Cross-verification via Humbert non-admissibility: at the
+generic point of $H_4$ the period degenerates to a pair of elliptic
+periods and the admissible $E_8$-weight condition fails with
+half-integer excess $\widetilde{D}_4 = 1/2$ forcing
+$\phi^{(4)}$ to vanish on the admissible lattice.
+
+\paragraph{Humbert equals Argyres--Douglas.}
+At a point $E_{\tau_1}\times E_{\tau_2}$ on the Humbert divisor the
+Seiberg--Witten curve of the $\mathcal{T}[A_1,\Sigma_{0,24}]$-adjacent
+Coulomb branch degenerates to a pair of elliptic curves glued at a
+nodal point. Gaiotto--Moore--Neitzke 2009, Example~8.3, identifies
+this degeneration with an $(A_1, A_{2N-1})$-type Argyres--Douglas
+point: the regular-singular moduli direction collapses onto the
+irregular-singular direction of an Argyres--Douglas singularity. The
+four-fold sibling stratification
+$\{\Psi,\Psi^{\deg},\Psi^{\mathrm{tor}},\Psi^{\mathrm{metap}}\}$ of
+the K3 Hall--Drinfeld object coincides with the class-$\mathcal{S}$
+join
+\[
+\{\Psi,\Psi^{\deg},\Psi^{\mathrm{tor}},\Psi^{\mathrm{metap}}\}
+\;=\;
+\mathrm{CDT}\cup\mathrm{AD}
+\;=\;
+\{\text{regular},\text{irregular},\text{Argyres--Douglas},\text{twisted}\}.
+\]
+Three decompositions coincide on the single object
+$\mathbf{H}_{\Delta_5}$: the Hall--Drinfeld one (the $\SCchtop$
+bar-differential), the K3-lattice one (Kuga--Satake
+$K3\hookrightarrow\operatorname{Sh}(\mathrm{SO}(2,19))$), and the
+class-$\mathcal{S}$ one (Seiberg--Witten curve degeneration). The
+Humbert divisor $H_4$ is the Argyres--Douglas wall.
+
+\paragraph{$W_\infty[c=-214]$ chiral-Hochschild cocycles.}
+The topologisation ladder from the critical level on the class-$\mathbf{M}$
+Virasoro branch reaches $W_\infty^{\mathrm{top}}$ at an endpoint on
+which primary operators align with Pope--Romans--Shen 1990
+$W_\infty$-primaries. At the class-$\mathcal{S}$ value $c = -214$ from
+$\mathcal{T}[A_1,\Sigma_{0,24}]$, the chiral-Hochschild generators
+$e_3, e_4, e_5, e_6 \in \ChirHoch^2(\mathrm{Vir}_{-214})$ align
+explicitly with $W_\infty$ primaries:
+\[
+e_5
+\;=\;
+W_5,
+\qquad
+e_4
+\;=\;
+W_4 \;-\; \frac{107}{11}\,\Lambda_Z,
+\]
+with $W_5$ the weight-$5$ primary of Wang 1998 Proposition~4.2 and
+$\Lambda_Z = {:}TT{:} - (3/10)\partial^2 T$ the Zamolodchikov composite.
+The coefficient $107/11$ fixes the admixture so that $e_4$ is primary
+under Virasoro at $c = -214$; primarity is an open condition on a
+one-parameter family, and the Pope--Romans--Shen identification fixes
+the single admissible value.
+
+\paragraph{Conway $V^{s\natural}$ as metaplectic $\Psi^s$-image.}
+The Conway module $V^{s\natural}$ of Duncan 2007 (Duke 139) is the
+$\mathbb Z/2$-orbifold of the $24$-fermion superalgebra
+$A(\Lambda_{24})$ on the Leech lattice $\Lambda_{24}$: the $N = 1$
+supersymmetric VOA of central charge $c = 12$. It is distinct from
+the Monster $V^\natural$ (central charge $c = 24$) precisely by the
+factor of two in central charge arising from the super-bosonisation.
+The metaplectic extension to $c = 12$ fits $V^{s\natural}$ into the
+class-$\mathbf{M}$ topologisation ladder at a super-Borcherds half-level:
+Scheithauer 2008 (Invent.\ Math.\ 172) constructs this super-Borcherds
+extension; it is the $\Psi^s$ image of the Leech lattice under the
+fermionic vertex superalgebra functor, distinct from the Monster
+$\Psi$ image which produces $V^\natural$ from the $24$-boson
+construction. The $W_\infty[c = -214]$ cocycle identification and
+the Conway $V^{s\natural}$ construction together populate the
+class-$\mathbf{M}$ landscape with two objects outside the
+$C_2$-cofinite standard landscape census, adding to the Schellekens
+$71 = 24+1+46$ triage a metaplectic companion in the super-sector.
 
 \paragraph{The K3 bulk-boundary pair.}
 The K3 crown is the first place where the chiral Hochschild trinity
@@ -1964,8 +2249,9 @@ morphism
 \;=\;
 \mathrm{Torelli}_{K3}\circ\mathrm{KugaSatake}\circ j_{\mathrm{Kodaira}}
 \]
-is the boundary-to-bulk map that makes the two bases commute. Volume~III
-the K3 synthesis sharpens the holomorphic-twist normal form to twisted
+is the boundary-to-bulk map that makes the two bases commute.
+On the K3 fibre, Volume~III
+sharpens the holomorphic-twist normal form to twisted
 $11$D supergravity on $K3\times T^2$ in the Omega-background: the
 boundary object is $\mathbf{H}_{\Delta_5}$, the bulk object is the
 paramodular $\Delta_5$-line on $\overline{\mathcal{A}_2}$, and the
@@ -1973,17 +2259,11 @@ Koszul shift is the intrinsic CY-$2$ $[2]$-shift of the K3 input, not
 an ambient CY-$3$ shift. On the Costello--Gaiotto side this is the
 Omega-deformed twisted-$11$D configuration with $24$ M5-branes
 wrapping the Kodaira $I_1$ fibres; the one-loop partition function is
-paramodular, and the anomaly-cancellation equation is the weight
-identity
-\[
-5
-\;=\;
-\chi(\mathcal{O}_{K3})
-\;+\;
-\sum_{24}\operatorname{Res}(\mathrm{Kodaira}\,I_1)
-\;=\;
-2+3.
-\]
+paramodular with Borcherds weight $\kappa_{\mathrm{BKM}}(\Delta_5)
+= c_{\phi_{0,1}^{K3}}(0)/2 = 5 = \mathrm{wt}(\Delta_5)$ (the Gritsenko
+programme family at $N=1$; the Borcherds lift is multiplicative, not
+additive, so $\kappa_{\mathrm{BKM}}$ admits no decomposition as
+$\kappa_{\mathrm{ch}} + \chi(\cO_{\mathrm{fiber}})$).
 Harvey--Moore's heterotic frame, the Dijkgraaf--Verlinde--Verlinde IIB
 frame, the Dijkgraaf--Moore--Verlinde--Verlinde IIA frame, and
 Witten's M-theory frame on $K3\times T^3$ all land on the same
@@ -2001,6 +2281,33 @@ H^2(\mathfrak{g}_{\Delta_5})^{\mathbb{Z}/2,\,K(1)}
 so the Igusa cusp form is not decoration on the bulk side; it is the
 classification invariant itself.
 
+\paragraph{CY-4 HK-restricted $\Phi_4$ via twistor-$S^1$ reduction.}
+The Vol~III functor $\Phi$ extends from CY-$3$ to the hyperK\"ahler
+CY-$4$ restriction via a Vol~II-native twistor reduction:
+twistor-$S^1$ quotient of the hyperK\"ahler CY-$4$ produces a
+3d $\mathcal N = 4$ theory whose Costello--Gaiotto 11D re-lift
+lands precisely on the holomorphic-topological $T_\cA$ of
+$\Phi_{\mathrm{hol}}$. The composite
+\[
+ \Phi_4^{\mathrm{HK}}\colon
+ \mathrm{CY}_4^{\mathrm{HK}}
+ \;\xrightarrow{/S^1_{\mathrm{tw}}}\;
+ 3d\,\mathcal N{=}4
+ \;\xrightarrow{\text{CG 11D re-lift}}\;
+ \mathrm{HT\text{-}QFT}_{X\times\R}
+\]
+supplies a Vol~II-native extension framework: Theorem~H sharp
+vanishing gives $\ChirHoch^k = 0$ for $k \ge 5$ on the CY-$4$
+input, matching the Coulomb-branch chiral algebra's
+concentration window. The proved negative
+\emph{no native $CY_4$ Yangian exists} (from the Pontryagin
+$\pi_4(BU) = \mathbb Z$ block-obstruction) is consistent: the
+obstruction detects a framing anomaly, which the twistor-$S^1$
+reduction cancels by passing to the $3d$ theory's Coulomb
+branch. The $\Phi_4^{\mathrm{HK}}$ conjecture is the
+Vol~II$\leftrightarrow$Vol~III bridge for the
+hyperK\"ahler stratum.
+
 \paragraph{The three-volume junction.}
 The three volumes meet at $\cZ^{\mathrm{der}}_{\mathrm{ch}}(\cA)$.
 Volume~I asks what the logarithm does and isolates the
@@ -2012,15 +2319,32 @@ programme and Borcherds singular-theta. The K3 chiral bialgebra
 $\mathbf{H}_{\Delta_5}$ is the crown where the three questions
 coincide: its Theorem-C B-family profile is the Volume~I lens, its
 $\SCchtop$ bulk-boundary pair is the Volume~II presentation, and its
-classification by $\Delta_5$ is the Volume~III output.
+classification by $\Delta_5$ is the Volume~III output. The
+$\SCchtop$ bulk-boundary pair and the two-stage factorisation
+$\Phi_d = \SpCh_{\Sigma_{d-1},C}\circ\PhiFA_d$ are the same
+structure viewed through two lenses: the closed and open colours of
+$\SCchtop$ at $d = 2, 3$ are stage~1 (canonical $E_d$-holomorphic
+factorisation on the CY target) and stage~2 (curve-specialisation
+to the reference curve) respectively, with the mixed operations
+recording the factorisation-homology pushforward
+(Remark~\ref{rem:pentagon-two-stage},
+Remark~\ref{rem:heptagon-two-stage-CY-to-chiral}).
 Volume~I describes it algebraically: bar-cobar, four-tier Laurent
 stratification with Fuchsian ODE characterisation, arithmetic
 duality locating Kummer-irregular primes by Laurent depth.
-Volume~II describes it physically (the present volume): tempered
-stratum, Schellekens 71, Monster, irrational cosets, the
-$W_\infty$ endpoint. Volume~III describes it categorically: the
-CY-to-chiral functor $\Phi$ with $E_n$-level dimension
-dependence; the six-routes pentagon stratified by generator rank
+Volume~II describes it physically: tempered stratum,
+Schellekens 71, Monster, irrational cosets, the $W_\infty$
+endpoint. Volume~III describes it categorically: the
+two-stage CY-to-chiral functor
+$\Phi_d = \SpCh_{\Sigma_{d-1},C}\circ\PhiFA_d$ with
+$E_n$-level dimension dependence on the stage-2 shadow
+(stage~1 produces a canonical $E_d$-holomorphic factorisation
+algebra by Kontsevich--Tamarkin plus Costello--Gwilliam--Li;
+stage~2 specialises via factorisation-homology pushforward
+$\int_{\Sigma_{d-1}}$ to a reference curve $C$, yielding the
+$E_1$-chiral shadow; a CY-$d$ category admits a family of
+such shadows parametrised by $(\Sigma_{d-1}, C)$); the
+six-routes pentagon stratified by generator rank
 $\rho^{R_i}$, which is distinct from $\kappa_{\mathrm{ch}}$
 (route-independent and zero by Hodge supertrace); the
 super-Riccati shadow tower with $\max(m, n)$ complementarity
@@ -2125,101 +2449,109 @@ conformal vector at non-critical level is available; the
 iterated-Sugawara tower climbs from $E_3$ ($\cA = \mathrm{Vir}$,
 3d quantum gravity) through $E_{N+1}$ ($\cA = W_N$) to the
 operadic horizon $E_\infty^{\mathrm{top}}$
-($\cA = W_\infty[\lambda]$). Every chapter of this volume is a
-specialisation of the master theorem at a specific input.
+($\cA = W_\infty[\lambda]$). Each chapter below specialises the
+master theorem at a particular input.
 
 \section{Synthesis}
 \label{sec:v2-preface-supplement}
 
-\begin{remark}[Vol~II preface at the topological-holography entry]
+\begin{remark}[Topological holography at the K3 base point]
 \label{rem:v2-preface-1}
-The Vol~II preface's topological-holography framing ($3$D HT QFT) enters
-at the K3 synthesis base via class-$\mathcal S$ $A_1$ on
-$\Sigma_{0,24}$: the topological holography's $4d$/$2d$ open-closed
-structure has $4d$ side $c_{4d} = 107/6$ and $2d$ side $c_{2d} = -214$
-(canonical Shapere--Tachikawa first-principles values;
-intermediate $(26, -312)$ retracted per Vol~I
-Chapter~\ref{ch:thqg-open-closed-realization} line~1932)
-matching the class-$\mathcal S$ Schiffmann-Vasserot chiral algebra
-$\mathbf H_{\Delta_5}$. The preface's $\mathsf{SC}^{\mathrm{ch,top}}$
-symbol at the K3 synthesis base point denotes the bi-based factorisation category
-over $(\mathrm{Ran}(E^{\mathrm{nod,sm}}_{24}),\bar{\mathcal A}_2)$
+Topological holography enters at the K3 base point via
+class-$\mathcal S$ $A_1$ on $\Sigma_{0,24}$: the $4d$/$2d$
+open-closed structure carries
+$(c_{4d}, c_{2d}) = (107/6, -214)$ via Shapere--Tachikawa
+2008 and Beem--Lemos--Liendo--Peelaers--Rastelli--van~Rees
+2013, matching the Schiffmann--Vasserot chiral algebra
+$\mathbf H_{\Delta_5}$. At this base the $\SCchtop$ symbol
+denotes the bi-based factorisation category over
+$(\mathrm{Ran}(E^{\mathrm{nod,sm}}_{24}),\bar{\mathcal A}_2)$
 \cite{Gaiotto2009,BeemRastelli2015}. Cross-ref Vol.~III
 Chapter~\ref{ch:k3-chiral-bialgebra-platonic}.
 \end{remark}
 
-\begin{remark}[Vol~II preface and the universal identity]
+\begin{remark}[Universal identity at the three-volume junction]
 \label{rem:v2-preface-2}
-The Vol~II preface's framing "topological holography = $\mathsf{SC}^{\mathrm{ch,top}}$"
-meets Vol~I's "bar-cobar Koszul" and Vol~III's "CY-to-chiral functor $\Phi$"
-at the universal identity $\hbar^2\cdot K^{\kappa_{\mathrm{ch}}} = -1$
-at $\hbar^2 = -1/8, K = 8$. The preface's assertion that $3$D HT QFT
-is the "natural bulk" of the chiral side becomes, at the K3 synthesis, the
-assertion that $\mathbf H_{\Delta_5}$ is the natural chiral image of
-class-$\mathcal S$ $A_1$ on $\Sigma_{0,24}$ \cite{EtingofKazhdan2007PartV,Lusztig1990}.
-Cross-ref Chapter~\ref{ch:k3-chiral-bialgebra-platonic}.
+Topological holography equal to $\SCchtop$ meets Vol~I bar-cobar
+Koszul and Vol~III CY-to-chiral functor $\Phi$ at the universal
+identity
+$\hbar^2 K = -1$ (Bruinier--Heegner reciprocity $K = 2c_+(L)$)
+on each row of the $\Psi$-sibling landscape: at the K3 base
+$\hbar^2 = -1/8$, $K = 8$, with $\kappa_{\mathrm{ch}} = 3$ the
+separate Stage-$2$ Cartan-rank invariant. $3$D HT QFT is the
+natural bulk of
+the chiral side; at the K3 base this specialises to the
+identification of $\mathbf H_{\Delta_5}$ as the chiral image
+of class-$\mathcal S$ $A_1$ on $\Sigma_{0,24}$
+\cite{EtingofKazhdan2007PartV,Lusztig1990}. Cross-ref
+Chapter~\ref{ch:k3-chiral-bialgebra-platonic}.
 \end{remark}
 
 \section{Further synthesis}
 \label{sec:v2-preface-supplement-ii}
 
-\begin{remark}[Arthur-Hecke verification at $p \le 37$ enters Vol~II via the topologisation ladder]
+\begin{remark}[Arthur--Hecke verification at $p \le 37$ through the topologisation ladder]
 \label{rem:v2-preface-arthur-hecke}
-Wave $15$ verifies, via first-principles computation from
-$f_{16} = E_4 \cdot \Delta$ in $S_{16}(\mathrm{SL}_2(\mathbb Z))$, the
-Saito--Kurokawa eigenvalues $\lambda_p(\Delta_{10}) = a_p(\Delta_{E_6})
-+ p^8 + p^9$ for all $p \le 37$, passing the Deligne--Weissauer
-bound $|\lambda_p - p^8 - p^9| \le 2p^{15/2}$ with maximal saturation
-ratio $0.895$ at $p = 37$. This data feeds Vol~II's topologisation
+First-principles computation from
+$f_{16} = E_4 \cdot \Delta$ in $S_{16}(\mathrm{SL}_2(\mathbb Z))$
+verifies the Saito--Kurokawa eigenvalues
+$\lambda_p(\Delta_{10}) = a_p(\Delta_{E_6}) + p^8 + p^9$ for all
+$p \le 37$, passing the Deligne--Weissauer bound
+$|\lambda_p - p^8 - p^9| \le 2p^{15/2}$ with maximal saturation
+ratio $0.895$ at $p = 37$. The data feeds the topologisation
 ladder at the K3 base point: the $M_{24}$-projected Miki algebra
 $U_{q, \kappa}(\widehat{\widehat{\mathfrak{gl}}}_1)$ at
 $q = e^{2\pi i / 8}$, summed over the Niemeier orbit, has
 $q$-characters whose $p$-adic spectrum reconstructs the
-Frenkel--Reshetikhin class function $\chi^{(p)}_{\mathrm{FR}}$ at the
-primitive eighth root; the latter matches the local Langlands
-parameter of $\Delta_{10}$ at $p$ via the Ikeda / Andrianov spinor
-Euler factor \cite{FrenkelReshetikhin1998qchar,Andrianov1974,Ikeda2001}.
-Cross-ref Vol.~I Proposition~\ref{prop:cclimax-SK-spinor};
-the topologisation ladder at the K3 base point is
+Frenkel--Reshetikhin class function $\chi^{(p)}_{\mathrm{FR}}$ at
+the primitive eighth root; the latter matches the local Langlands
+parameter of $\Delta_{10}$ at $p$ via the Ikeda / Andrianov
+spinor Euler factor
+\cite{FrenkelReshetikhin1998qchar,Andrianov1974,Ikeda2001}.
+Cross-ref Vol.~I Proposition~\ref{prop:cclimax-SK-spinor}. The
+topologisation ladder at the K3 base point is
 $E_3^{\mathrm{top}}\text{-of-}\mathrm{Sp}_4$, not
-$E_3^{\mathrm{top}}\text{-of-}\mathrm{SL}_2$ as generic Virasoro would
-give.
+$E_3^{\mathrm{top}}\text{-of-}\mathrm{SL}_2$ as generic Virasoro
+would give.
 \end{remark}
 
-\begin{remark}[Two-$\hbar$ bridge: Vol~II preface closure of AP$151$]
+\begin{remark}[Two-$\hbar$ bridge at the K3 base point]
 \label{rem:v2-preface-two-hbar}
-The Vol~II preface's deformation parameter $\hbar$, written without
-qualifier in the master theorem statement of $\Phi_{\mathrm{hol}}$, is
-the $(\infty,1)$-quantisation parameter (Drinfeld). The Vol~II body
-text, particularly the $3$D gravity chapter and the Costello--Gwilliam
-BV lectures cross-reference, uses $\hbar^{\mathrm{BV}}$ in the loop
-counting. The Wave $15$ bridge
+The deformation parameter $\hbar$ of the master theorem
+statement for $\Phi_{\mathrm{hol}}$ is the
+$(\infty,1)$-quantisation parameter (Drinfeld). The body text of
+the $3$D gravity chapter and the Costello--Gwilliam BV
+cross-references use $\hbar^{\mathrm{BV}}$ in the loop counting.
+The bridge
 (cf.~Remark~\ref{rem:dgsfb-two-hbar-bridge} in
-\cref{ch:dg-shifted-factorization-bridge}) identifies them at the K3
-base point $\hbar^2 = -1/8$ via the Mukai doubling
-$K^{\kappa_{\mathrm{ch}}} = 8$ and Bruinier reciprocity on the Heegner
-divisor $H_4 \subset \overline{\mathcal A_2}$. AP$151$ is hereby
-closed on the Wave $13$ Koszul locus. Cross-ref
+\cref{chap:dg-shifted-factorization}) identifies them at
+the K3 base point $\hbar^2 = -1/8$ via Bruinier--Heegner
+reciprocity $K = 2c_+(\mathrm{Muk}(K3)) = 8$ on the divisor
+$H_4 \subset \overline{\mathcal A_2}$.
+Cross-ref
 Proposition~\ref{prop:dgsfb-kappa-bruinier-reciprocity}.
 \end{remark}
 
-\begin{remark}[Koszul locus sharpened in preface]
+\begin{remark}[Koszul locus on $\overline{\mathcal A_2}$]
 \label{rem:v2-preface-koszul-locus}
-Wave $15$ sharpens the preface's implicit Koszul-locus declaration.
-The universal holography functor $\Phi_{\mathrm{hol}}$ is defined on
-$\mathrm{ChirAlg}^{\omega, \mathrm{BL}}_X$ with $X$ a smooth algebraic
-curve; at the K3 base point with $X = \overline{\mathcal A_2}$
-parameter base, the functor is defined on the open locus
+The universal holography functor $\Phi_{\mathrm{hol}}$ is defined
+on $\mathrm{ChirAlg}^{\omega, \mathrm{BL}}_X$ with $X$ a smooth
+algebraic curve; at the K3 base point with
+$X = \overline{\mathcal A_2}$ parameter base, $\Phi_{\mathrm{hol}}$
+is defined on the open locus
 \[
  \mathcal U_{\mathrm{Kosz}}^{\mathrm{K3}}
  \;=\; \overline{\mathcal A_2} \setminus (H_1 \cup H_4),
 \]
-removing \emph{both} the reducible Humbert divisor $H_1$ and the
-discriminant-$4$ Humbert divisor $H_4$. Across these divisors the
-chiral algebra $\mathbf H_{\Delta_5}$ acquires log-singularities in
-its Siegel character $1/\Phi_{10}(Z)$, and $\Phi_{\mathrm{hol}}$
-extends only as a functor into $\mathrm{HT\text{-}QFT}$ with
-defect-line corrections at the Humbert walls
-(Polyakov voice, Wave $13$). Cross-ref
+excising the reducible Humbert divisor $H_1$ and the
+discriminant-$4$ Humbert divisor $H_4$. Across these divisors
+the chiral algebra $\mathbf H_{\Delta_5}$ acquires
+log-singularities in its Siegel character $1/\Phi_{10}(Z)$, and
+$\Phi_{\mathrm{hol}}$ extends only as a functor into
+$\mathrm{HT\text{-}QFT}$ with defect-line corrections at the
+Humbert walls. This is the Koszul locus
+$\mathcal U^{\mathrm{adm}}$ on which chiral Kontsevich formality
+holds; the Malcev-ladder cocycles at $H_1, H_4$ are the
+obstructions that prevent extension. Cross-ref
 Remark~\ref{rem:cclimax-koszul-locus}.
 \end{remark}

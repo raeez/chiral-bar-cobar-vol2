@@ -3,6 +3,22 @@
 This file caches every first-principles investigation from the programme's git history.
 For each wrong claim: what it gets RIGHT, what it gets WRONG, the correct relationship, and the confusion type.
 
+## AP5 dual-indexing header (Gate 0, pending landscape-census lock, 2026-04-21)
+
+Several entries below assert $\kappa_{\mathrm{BKM}}(\mathbf H_{\Delta_5})$ 
+numerical values. Per the canonical preamble of
+`notes/antipatterns_catalogue.md` ("$\kappa_{\mathrm{BKM}}(\mathbf H_{\Delta_5})$
+cross-volume value") and AP-CY49, BOTH values $5$ (paramodular
+$\Phi_{10} = \Delta_5^2$ convention) and $12$ (Fake-Monster $\Phi_{12}$
+convention) occur legitimately under different $N$-index conventions.
+**Every standalone assertion of only one value without naming the input
+denominator is a latent AP5 violation.** Historical entries that state
+$\kappa_{\mathrm{BKM}} = 12$ (e.g., the B-row witnesses at the
+five-archetype landscape inscription) must be read against this header;
+dual-indexing caveats have been added inline for the critical
+occurrences. Landscape-census lock via
+`compute/lib/landscape_census` pending.
+
 ## Wave 5 (2026-04-16): GRT-Parametrized Seven Faces Reconstitution
 
 **Files:** standalone/seven_faces.tex, connections/holographic_datum_master.tex, standalone/virasoro_r_matrix.tex, standalone/gaudin_from_collision.tex, examples/landscape_census.tex, vol2/dnp_identification_master.tex.
@@ -412,7 +428,7 @@ chi(O_{K3xE}) = sum_q (-1)^q h^{0,q}(K3 x E). Kunneth: h^{0,q}(K3 x E) = sum_{a+
 - **AP24 (kappa+kappa'=0)**: L829 correctly scoped to "free-field/CY sigma models"; L1356 correctly scoped to "free fields".
 - **All theorems**: The 5 \begin{theorem} environments all carry \ClaimStatusProvedElsewhere or \ClaimStatusProvedHere. All conjectures use \begin{conjecture} with \ClaimStatusConjectured.
 - **Convention**: phi_{0,1} normalization at L466-477 explicitly uses Eichler-Zagier convention with Z_{K3} = 2*phi_{0,1} and phi_{0,1}(tau,0) = 12, and the factor of 2 = kappa_ch(K3) is identified at L551-579 (AP-CY42 compliant).
-- **BKM universal formula**: kappa_BKM = c_0(0)/2 = 10/2 = 5 correctly stated at L1816-1821 and L3119-3120 via Borcherds weight theorem, with explicit citation of prop:bkm-weight-universal.
+- **BKM universal formula**: kappa_BKM = c_N(0)/2 via Borcherds weight theorem, with explicit citation of prop:bkm-weight-universal at L1816-1821 and L3119-3120. **Scope caveat (Gate-0 AP5 pending)**: the numerical value kappa_BKM(H_{Delta_5}) depends on the N-index convention — N=10 (paramodular Phi_{10}=Delta_5^2) gives 5; N=12 (Fake-Monster Phi_{12}) gives 12. Per antipatterns_catalogue.md row "kappa_BKM(H_{Delta_5}) cross-volume value" / AP-CY49, every site must name the input denominator. A standalone "kappa_BKM = 5" is a latent AP5 violation.
 
 ## XVIII. toroidal_elliptic.tex Deep Pass (2026-04-15)
 
@@ -3117,3 +3133,381 @@ Four distinct locations in the manuscript carry bare commit-SHA references in co
 All four must be excised; the mathematical content they surround is fine, but the commit-hash reference belongs in CLAUDE.md or in the git log, never in the compiled manuscript. Counter: replace each with a neutral reference to the conjectural status + in-manuscript `\ref{...}` to the relevant statement.
 
 **Session evidence summary**: Author directive 2026-04-17 — "NO ANTIPATTERN TAGS OR METADATA LEAKAGE INTO THE MANUSCRIPT OR STANDALONE PAPERS PROPER" — is now registered as V2-AP40 + subclauses a-d in CLAUDE.md and anchored here in S17 with line-by-line evidence. Strongest-form compliance: run the detection grep before every `.tex` commit; restate any match as declarative mathematics. The error ledger (CLAUDE.md + this file) is the only place AP/FM/session-code/commit-hash/meta-stamp tokens live.
+
+## Waves 20-24: Vol II-relevant findings (compiled 2026-04-20)
+
+Source: `../chiral-bar-cobar/notes/GRAND_SYNTHESIS_WAVES_20_22.md`. Entries 76-102 appended to the tip-table summary; below, the Vol-II-relevant structural content is expanded in prose, organised by the mathematical object each finding constrains.
+
+### W20-24-A. SC^{ch,top} pentagon and the octachotomy of bar-cobar ambients (entries 76, 77, 79)
+
+ - (a) RIGHT: the bar-cobar adjunction Omega^{ch} dashv B^{ch} at codim 3 on Abar_2 admits multiple compatible ambients; eight of them are now named, each corresponding to a specific SC^{ch,top} colouring stratum.
+ - (b) WRONG: Waves 14-19 closed this as a heptachotomy (seven ambients); Wave 22.2 falsified Igusa transversality at admissible Heegner triples. The first non-empty admissible triple (3, 4, 7) is realised by [E_{sqrt(-3)} x E_{sqrt(-7)}] carrying tri-commuting sl_2^{+3}-triples; this forces a tri-unipotent Malcev ambient distinct from the bi-unipotent one. Heptachotomy upgraded to octachotomy.
+ - (c) CORRECT: eight-colouring octachotomy at codim 3: (1) fibrewise generic, (2) single-monodromy-refined, (3) bi-unipotent Malcev (on walls-of-walls H_i cap H_j), (4) tri-unipotent Malcev (on triple intersections), (5) weight-completed coderived, (6) A_infty-corrected, (7) (inf,1)-categorical Perf(Abar_2), (8) chiral-Kontsevich-formal on Koszul locus. Each ambient IS a specific SC^{ch,top} colouring datum; octachotomy THEREFORE reads as eight Swiss-cheese colouring data. Universal k-tower closure: k_max(g) = g(g+1)/2 (triangular, not linear) controls the maximal arity at which Swiss-cheese coloured coherences are non-trivially constrained per genus. The (inf,1)-adjunction of Theorem A ascends to an (inf,2)-adjunction: compatibility data on 2-morphisms carries Auslander-Reiten triangular structure; the AR structure IS the Swiss-cheese coloured shuffle at 2-cell level. Type: scope upgrade; cardinality upgrade; categorical-level undercounting.
+
+### W20-24-B. Compatibility-data infty-groupoid (entry 78)
+
+ - (a) RIGHT: chain-level ambient and (inf,1)-categorical ambient are both load-bearing. Each has its own witness set.
+ - (b) WRONG: treating the ambient choice as "by hand" misses the intrinsic groupoid structure of compatibility data.
+ - (c) CORRECT: Data(A) ~ BAut^h_{L_infty}(g^{(inf,1)}_A) (W22.1); the ambient-chain is canonical up to the homotopy automorphism group of the (inf,1)-L_infty model. For K3 BKM H_{Delta_5} this specialises to widehat(grt)_1 / ob^{GN}, locating Grothendieck-Teichmuller rationality and the obstruction class ob^{GN} in a single quotient. Ambient choice is PARAMETRISED, not arbitrary. Type: chosen-vs-canonical.
+
+### W20-24-C. Chiral Kontsevich formality (entries 80, 81)
+
+ - (a) RIGHT: Kontsevich formality for chiral algebras gives an L_infty quasi-iso from chiral polyvectors to chiral Hochschild cochains, following the classical model.
+ - (b) WRONG: unconditional formality is false on all of Abar_2; the obstruction lives exactly on admissible Heegner divisors H_n.
+ - (c) CORRECT: on the Koszul locus U^{adm} = Abar_2 setminus bigcup_{n adm} H_n, the L_infty quasi-iso T^{poly}_{ch}|_{U^{adm}} --simeq--> ChirHoch^bullet(H_{Delta_5})|_{U^{adm}} is unconditional; on each admissible H_n the obstruction is the Malcev-ladder cocycle ob^{Kont}_n in H^3(H_n, Sym^2 T^{poly}_{ch}|_{H_n}) with Bruinier torsion order c_n in {8, 2, 3, 14, 16, 22, 30, ...}. The factorisation-level analogue requires BOTH Francis-Gaitsgory infty-operadic lift AND Tamarkin operadic formality; either alone is insufficient (FG without Tamarkin misses the associator; Tamarkin without FG misses the factorisation structure). Type: scope: unconditional vs Koszul-locus; incomplete toolset.
+
+### W20-24-D. BD factorisation compatibility (entry 82)
+
+ - (a) RIGHT: bi-unipotent pro-ambient carries a BD factorisation D-module structure, compatible with Beilinson-Drinfeld's original framework and with Costello-Gwilliam's 1-loop-quantised factorisation algebras.
+ - (b) WRONG: treating it as a mere "bounded-derived pro-object" loses the BD structure and the quantitative 1-loop anomaly match.
+ - (c) CORRECT: bi-unipotent pro-ambient IS a BD factorisation D-module. Costello-Gwilliam 1-loop counterterm matches Bruinier Chern class int_{H_1} c_1(ct) = 8 -- quantitative cross-verification between (Vol II, 1-loop analytic torsion) and (Vol III, Bruinier Heegner-Chern reciprocity). The match locks Vol II's BD framework to Vol III's arithmetic datum. Type: framework downgrade.
+
+### W20-24-E. Theorem H hinge, Vol II to Vol III (entry 83)
+
+ - (a) RIGHT: Theorem H concentration is a named invariant controlled by the functor Phi_d: CY-d -> chiral algebras; Phi_3 is the K3 hinge.
+ - (b) WRONG: universal {0, 1, 2} concentration misses d-dependence. Chiral Hochschild on CY-d-enlarged ambient has extended concentration range.
+ - (c) CORRECT: on the ambient curve (d=1, Vol II native), Theorem H gives {0, 1, 2}; on the CY-d-enlarged ambient, {0, 1, 2, d} with SHARP vanishing at k >= d+1. For d = 3 (K3 x E, Vol III): ChirHoch^{>= 4}(H_{Delta_5}) = 0 via Phi_3. The Phi_d functor is the load-bearing HINGE between Vol II's curve-ambient statement and Vol III's CY-d-ambient statement. Type: d-parametrised concentration.
+
+### W20-24-F. chi_3 verification path catalogue, Vol II-native paths (entries 84, 85, 86, 92, 101)
+
+ - (a) RIGHT: chi_3 = {:T partial T:} - (1/4) partial^3 T + hbar . qt(J^{(3)}) is the degree-3 cocycle; four disjoint verification paths against e_3^{K3 x E} were named in W21.4/W22.6: CoHA Casimir (Schiffmann-Vasserot), Igusa Phi_10^{-1} (Oberdieck reduced DT), elliptic-volume rigidity (Kontsevich formality degeneration), Kuznetsov relative HPD over E.
+ - (b) WRONG: earlier treatments (i) omitted the Vol-II-native cyclic Feigin-Tsygan path, (ii) left the Getzler-Jones contraction abstract, (iii) missed the 11d SUGRA 1-loop arithmetic content, (iv) single-path Mukai-Hochschild framing, (v) took absolute Kuznetsov HPD on K3 x E as unobstructed.
+ - (c) CORRECT: six paths total for the Vol II hinge:
+   - (A) CoHA Casimir (Schiffmann-Vasserot): Vol III-native.
+   - (B) Igusa Phi_10^{-1} (Oberdieck reduced DT): Vol III-native.
+   - (C) elliptic-volume rigidity (Kontsevich formality degeneration): bridges Vol II and Vol III via W22.3.
+   - (D) Kuznetsov RELATIVE HPD over E (Kuznetsov-Markushevich 2009; Addington-Thomas 2014): absolute HPD on K3 x E is BLOCKED by Fano obstruction (omega_Y simeq O_Y trivial; no Lefschetz twist). Only the relative version gives genuine verification.
+   - (E) Vol II-native cyclic Feigin-Tsygan via Francis-Gaitsgory factorisation cyclic homology and Connes B-operator: [partial^{ch}, B^{ch}] = 0 on U^{adm}.
+   - (K-B) Costello-Gwilliam factorisation-level Getzler-Jones chain-level contraction h^{ch} on bar(H_{Delta_5}): [d^{ch}, h^{ch}] = id - p_harm kills d_r for r >= 2 on Koszul locus. Explicit operator, explicit killing-range.
+ - Quantitative value: <[chi_3], [e_3^{K3 x E}]>_{Phi_3} = 2 Vol(E) (2 pi i)^3 = chi(O_{K3}) . Res_{s=1/2} E_5^{(2)}(Z, s)|_{K(1)}. Mukai-Hochschild pairing: <[chi_3], [chi_3^vee]>^{ch}_{Muk} = 2 Vol(E) (2 pi i)^3 via (i) Kaledin Cor 5.5 Serre duality on ChirHoch, (ii) BV Serre-dual cup product (Costello-Gwilliam), (iii) Siegel-Eisenstein period cross-check. 11d SUGRA 1-loop reading: -log ||Delta_5||^2_Quillen = -log Delta_5 - kappa_BGS L'(0, Delta_5, std) + log C with kappa_BGS = chi_top(K3) = 24. Type: path-catalogue completion; multi-path = three+ independent paths per Beilinson.
+
+### W20-24-G. Universal ratio-of-levels across Psi-image BKMs (entry 87)
+
+ - (a) RIGHT: every Psi-image BKM carries a Lusztig quantisation level ell and a Mukai signature c_+ on the underlying lattice L.
+ - (b) WRONG: treating these quantum-group levels as row-independent misses the universal ratio structure.
+ - (c) CORRECT: ell_X / ell_Y = c_+(L_X) / c_+(L_Y) across Psi-image BKMs. Numerical values: (c_+, ell) = (1, 2) for Monster, (2, 4) for Enriques, (4, 8) for K3, (25, 50) for Fake-Monster. Leech-Conway row BREAKS the pattern (no Fricke involution), leaving five Psi-image rows with one exceptional. The ratio ties Vol II (Lusztig-level quantisation) to Vol III (Mukai-signature); on the BKM crown row B, (K, hbar^2) = (8, -1/8) with K = 2 c_+ = 8, unifying three-volume data. Type: cross-volume ratio-bridge.
+
+### W20-24-H. CY-4 HK-restricted Phi_4 conjecture (entries 88, 89, 90)
+
+ - (a) RIGHT: Theorem H admits a conjectural CY-d extension for each d with chi(O) non-vanishing; d = 4 is the next open frontier.
+ - (b) WRONG: (i) unconditional CY-4 extension ignores the Kapustin-Rozansky-Saulina 3d/4d dichotomy blocking Phi_4 at framework level; (ii) "HK restriction is closed off" is false -- twistor-S^1 reduction opens it; (iii) K3 x K3 having vanishing chi(O) is false (chi = 4).
+ - (c) CORRECT: conj:chirhoch-CY4-conditional. Under existence of Phi_4, ChirHoch^k(Phi_4(X_4)) = 0 for k >= 5, non-zero at k = 4 when chi(O_{X_4}) non-zero. Phi_4 generically blocked by KRS 3d/4d dichotomy. HK-restricted Phi_4|_HK exists via twistor-S^1 reduction -> 3d N=4 with Coulomb branch -> Costello-Gaiotto 11d re-lift. Test case K3 x K3: chi(O_{K3 x K3}) = chi(O_{K3})^2 = 4 non-zero; pairing <[chi_4], [e_4]> = 4 . Vol(K3_1) Vol(K3_2) (2 pi i)^4 via three paths: (i) Cao-Kool-Monavari DT-4 MacMahon M(q)^4; (ii) Nekrasov 8d prepotential F_0; (iii) DMVV second-quantised elliptic-genus product phi_{0,1}^2. Type: scope: conditional vs unconditional; incorrect-closed-off; Kunneth chi arithmetic.
+
+### W20-24-I. NC Hodge Mukai-Hochschild degeneration (entry 91)
+
+ - (a) RIGHT: chiral Kaledin degeneration transports via Francis-Gaitsgory smoothness + chiral Serre S_C dualising; Deligne-Illusie Cartier lift through factorisation-flat base change gives the NC Hodge degeneration.
+ - (b) WRONG: global degeneration over Abar_2 FAILS at admissible Heegner divisors -- exactly the Kontsevich-formality obstruction.
+ - (c) CORRECT: chiral Kaledin degeneration (W24.5) holds on the Koszul locus U^{adm}; obstructed at each admissible H_n by ob^{Kont}_n with Bruinier torsion order c_n. The global statement is CONDITIONAL; the Koszul-locus statement is UNCONDITIONAL. Type: scope: global vs Koszul-locus.
+
+### W20-24-J. Five-archetype landscape G/L/C/M/B (entry 93)
+
+ - (a) RIGHT: Volume I named four archetypes G/L/C/M with kappa + kappa^! in {0, 13, 250/3, 98/3} and r_max in {2, 3, 4, infty}.
+ - (b) WRONG: four-archetype landscape is incomplete; the BKM crown row B (Borcherds-Kac-Moody) is a genuine fifth archetype.
+ - (c) CORRECT: five archetypes:
+   - G (Heisenberg H_k): kappa + kappa^! = 0, r_max = 2.
+   - L (affine KM V_k(g)): kappa + kappa^! = 0, r_max = 3.
+   - C (beta gamma): kappa + kappa^! = 0, r_max = 4.
+   - M (Virasoro Vir_c): kappa + kappa^! = 13, r_max = infty.
+   - B (BKM crown H_{Delta_5}): kappa + kappa^! = 8, r_max = infty, kappa_BKM = 12 **(Fake-Monster Phi_{12} convention; Phi_{10} paramodular convention gives 5; AP5 dual-indexing — pending landscape-census lock per antipatterns_catalogue.md row "kappa_BKM(H_{Delta_5}) cross-volume value").**
+ - kappa + kappa^! in {0, 8, 13, 250/3, 98/3} across all five. W-extensions at {250/3, 98/3} sit on the M-row. The B-row is new in Waves 20-24 and ties Vol II one-loop anomaly (Quillen norm via chi_top(K3) = 24) to Vol III Borcherds product Phi_10. Type: landscape-cardinality undercount.
+
+### W20-24-K. Three-faces universal identity (entry 94)
+
+ - (a) RIGHT: Vol I conductor K, Vol II Quillen one-loop exponent, Vol III Borcherds weight kappa_BKM are all numerical invariants of the BKM crown datum.
+ - (b) WRONG: treating them as three independent numbers misses the universal identity hbar^2 . K^{kappa_ch} = -1 at (K, hbar^2) = (8, -1/8).
+ - (c) CORRECT: hbar^2 . K^{kappa_ch} = -1 on the B-row at (K, hbar^2) = (8, -1/8), kappa_BKM = 12 **(Fake-Monster Phi_{12} convention; AP5 dual-indexing — Phi_{10} paramodular convention gives 5; pending landscape-census lock per antipatterns_catalogue.md "kappa_BKM(H_{Delta_5}) cross-volume value")**. K = 2 c_+ = 8 = ord(mon|_{H_1}) = ell_Lusztig. Four numerical quantities (conductor K, Mukai signature doubled 2c_+, monodromy order at first Heegner divisor, Lusztig level) are equal -- a universal identity pinning Vol I x Vol II x Vol III at a single numeric point on the BKM crown. Type: cross-volume unification.
+
+### W20-24-L. Chain-level vs cohomological class-M E_3 bar (entry 95)
+
+ - (a) RIGHT: class M (Virasoro) admits an E_3-bar invariant whose count is finite at each genus, computable via the Hochschild-Deligne machinery.
+ - (b) WRONG: chain-level count yields apparent infinity; this is a lane confusion.
+ - (c) CORRECT: cohomologically, class M E_3-bar = 6^g at genus g. Chain-level counts diverge (expected for Gevrey-1 perturbation theory of Virasoro); the physically meaningful count is cohomological. Reporting must specify lane: "class M E_3-bar = 6^g (cohomological)", never "class M E_3-bar = infinity" without qualification. Type: chain vs cohomological.
+
+### W20-24-M. Plancherel Hilbert-scheme super-quasi-Hopf (entries 96, 97, 98, 99)
+
+ - (a) RIGHT: the algebra is K3 BKM super-quasi-Hopf A_infty H_{Delta_5} at specific parameters (hbar^2, zeta) = (-1/8, zeta_8); the measure is Plancherel on projective covers; the convergence mode is Mittag-Leffler pro-stabilisation; the master identity recovers 1/Phi_10(Z).
+ - (b) WRONG: (i) generic "standard datum" framing hides the non-standard parameter choice; (ii) weak-* convergence (inherited from semisimple case) FAILS for non-semisimple Kerler-Lyubashenko; (iii) "purely algebraic integral" hides the MO-DMVV bridge; (iv) MO-extension uniqueness is not a choice but a theorem.
+ - (c) CORRECT: W20.7 Plancherel Hilbert-scheme super-quasi-Hopf:
+   - Algebra: H_{Delta_5} at (hbar^2, zeta) = (-1/8, zeta_8). Non-standard; these parameters are fixed by the three-faces universal identity (W20-24-K).
+   - Measure: d mu^infty_Plan(lambda) = lim_N dim_qu(P_lambda^{<= N}) on projective covers P_lambda (NOT simples; non-semisimple Kerler-Lyubashenko category forbids simples).
+   - Convergence mode: Mittag-Leffler pro-stabilisation in Pro(Mod_H). NOT norm (would require self-dual MTC), NOT weak-* (would require locally compact parametrising space), NOT strong (would require finite-dimensional cover).
+   - Master identity: int_{H_hat_infty} dim_qu(P_lambda) ch(P_lambda)(q_rho) ch(P_lambda^vee)(q_tau) d mu^infty = 1/Phi_10(Z). Integral against Plancherel measure on projective covers yields reciprocal Igusa cusp form = DMVV second-quantisation of K3 elliptic genus.
+   - MO-extension to super-quasi-Hopf: Etingof-Kazhdan dynamical twist delta = partial_Z log Phi_10; unique H^2-rigidity class. Uniqueness is a THEOREM (EK rigidity), not a convention.
+ - Type: algebraic-datum specificity; convergence-mode specificity; MO-DMVV bridge; EK-twist uniqueness.
+
+### W20-24-N. Bruinier torsion orders as Vol II data (entry 100)
+
+ - (a) RIGHT: Bruinier torsion orders c_n index admissible Heegner divisors via arithmetic of Siegel-Eisenstein coefficients; they are central to Vol III's arithmetic Heegner structure.
+ - (b) WRONG: treating c_n as Vol-III-only data misses their Vol II role as Kontsevich-formality obstruction torsion.
+ - (c) CORRECT: Bruinier torsion orders c_n in {8, 2, 3, 14, 16, 22, 30, ...} are Vol II structural data: ord(ob^{Kont}_n) = c_n in H^3(H_n, Sym^2 T^{poly}_{ch}|_{H_n}). c_1 = 8 matches K = 2 c_+ = 8 on the B row, unifying with the three-faces identity. Each c_n controls at which "finite cover" the Kontsevich L_infty quasi-iso extends across H_n. Type: Vol II vs Vol III data attribution.
+
+### W20-24-O. V^{s natural} row-assignment (entry 102)
+
+ - (a) RIGHT: V^{s natural} = A(Lambda_24)^+ oplus A(Lambda_24)^{tw,+} (Duncan 2007) is a super vertex operator algebra on the Leech lattice.
+ - (b) WRONG: earlier counts treated V^{s natural} as a fifth independent Psi-image row, giving six total (G/L/C/M/B + V^{s natural}).
+ - (c) CORRECT: V^{s natural} is NOT a fifth independent Psi-image. The commutative orbifolding diamond {V_{Lambda_24}, V^natural, V_{Lambda_24}^s, V^{s natural}} locates V^{s natural} as the Z/2-super-twin of V^natural on the Monster row. Inherits (K, hbar^2) = (2, -1/2), not independent. Five-archetype landscape G/L/C/M/B is complete; V^{s natural} sits on the Monster row. Type: row-independence miscount.
+
+### W27-A. Chenevier determinant, not Taylor-Wiles pseudo-character (entry 135 / AP-V2-23)
+
+ - (a) RIGHT: the Taylor-Wiles pseudo-character S^{ps} : T^{par}_1 -> O_E with axioms (symmetry / multiplicativity / dimension) is a real object from Taylor 1991 Duke 63 Thm 2.1 (also Rouquier 1996). The Hecke-algebra 4-tuple (S_1, S_2, S_3, S_4) computed from the Saito-Kurokawa lift Satake parameters of Delta_{10} is correct data. The bridge from pseudo-character to a 4-dimensional Galois representation rho_{Delta_{10}} : Gal(Q-bar / Q) -> GSp_4(O_E) works on reduced rings via Chenevier 2014 Thm 2.12 (pseudo-characters and determinants coincide on reduced rings).
+ - (b) WRONG: on NON-REDUCED rings — exactly the deformation rings felt by Vol II's one-loop Quillen norm and BV 3d HT-QFT partition function — the older Taylor 1991 pseudo-character framing is strictly weaker than the correct invariant. Conflates the Taylor-Wiles pseudo-character (older, weaker, multilinear symmetric trace functions) with the Chenevier 2014 determinant (newer, stronger, single homogeneous polynomial law with multiplicativity, unitality, Cayley-Hamilton as a single axiom). The determinant captures nilpotent Cayley-Hamilton witnesses (mod-ell^n Cayley-Hamilton identities for reducible rho with non-trivial nilpotent deformations) that the pseudo-character silently drops.
+ - (c) CORRECT: the arithmetic anchor for H_{Delta_5}'s Galois-side invariants is the Chenevier determinant D^{Chen} : T^{par}_1 -> O_E tensor Z_ell — a 4-dimensional homogeneous polynomial law. Its graded components (Sigma_1, Sigma_2, Sigma_3, Sigma_4) at Hecke generators T_p recover the Saito-Kurokawa Satake data (a_p(f_{16}) + p^8 + p^9, ..., p^{32}) via the reciprocal spinor L-factor expansion prod_{i=1}^4 (1 - alpha_i x) = 1 - Sigma_1 x + Sigma_2 x^2 - Sigma_3 x^3 + Sigma_4 x^4. Verified at 46 primes p <= 199. Vol II framing: the one-loop Quillen norm and BV 3d HT-QFT partition function tie to Galois-side L-function data via D^{Chen}; the Taylor-Wiles pseudo-character was a reduced-ring proxy sufficient for W20.4's trace identities but insufficient for Vol II's scheme-valued path-integral refinements (deformation rings around the Saito-Kurokawa lift are non-reduced, and the BV anomaly precisely measures the nilpotent Cayley-Hamilton witnesses that S^{ps} cannot detect). The universal three-faces identity on the B-row reads off from D^{Chen}, not from S^{ps}. Primary: Chenevier 2014 arXiv:1301.0635 Sec 1.2 Def/Prop 1.9, Thm 2.12 (the determinant = pseudo-character equivalence on reduced rings and strict inequality on non-reduced); Taylor 1991 Duke 63 Thm 2.1 (pseudo-character original); Ikeda 2001 Ann Math 154 Cor 16.2 (Saito-Kurokawa lift); Weissauer 2005 LNM 1868 (spinor Galois representation construction); Laumon 2005 Publ IHES 102 (geometric Satake on GSp_4). Cross-ref: Vol I AP902 / Remark rem:dl-w25-determinant-not-pseudocharacter in chapters/theory/derived_langlands.tex (cache entry 422); Vol III cache entry at appendices/first_principles_cache.md row 8 (tagged); Vol III ADJUDICATION_LEDGER Section III.C. DISTINCT from Pattern 295 (Creutzig-Ridout / Lyubashenko coend pseudo-traces on non-semisimple modular tensor categories): coend pseudo-traces satisfy a Kerler-Lyubashenko modified-trace axiom set on MTCs, not a polynomial-law axiom set on Hecke algebras; the two "pseudo-" objects are categorically unrelated and must not be conflated. Type: pseudo-character / determinant scope (older-weaker / newer-stronger on non-reduced rings).
+
+### W28-A. Single-valued MZV scope of chiral-Hochschild periods (entry 136 / V2-AP126)
+
+ - (a) RIGHT: the full motivic MZV framework of Deligne-Goncharov 2005 *Ann Sci ENS* 38 gives the mixed-Tate Galois $\mathrm{grt}_1^{\mathrm{mot}}$ acting on the motivic MZV ring $\mathrm{MZV}^{\mathrm{mot}}$. Periods arising from Arnold-form iterated integrals $\int \eta_{i_1 j_1} \wedge \cdots \wedge \eta_{i_n j_n}$ on $\mathrm{Conf}_n(X)$ admit genuine motivic lifts through Brown 2012 *Ann Math* 175 motivic basis (weight-$w$ dimension = Padovan $d_w$ for $w \le 12$). The chiral-Hochschild period $\chi_3 = 2\mathrm{Vol}(E)(2\pi i)^3$ is a genuine weight-3 period with a natural motivic home. The Vol II one-loop Quillen exponent (Path E) and the Costello-Gwilliam factorisation-cyclic-homology $\chi_3$ pairing on $\mathsf{SC}^{\mathrm{ch,top}}$-algebras $a\text{-}priori$ expand in $\mathrm{MZV}^{\mathrm{mot}}$.
+
+ - (b) WRONG: asserting that the chiral-Hochschild period identity $\chi_3 = 2\mathrm{Vol}(E)(2\pi i)^3$ lies in the full motivic ring $\mathrm{MZV}^{\mathrm{mot}}$ with $\mathrm{grt}_1^{\mathrm{mot}}$-stable coefficients is a scope inflation. The Arnold forms $\eta_{ij} = d\log|z_{ij}|^2$ that witness the chain-level $\chi_3$ cocycle are single-valued real (they equal $\tfrac{1}{2}(d\log(z_{ij}) + d\log(\bar z_{ij}))$ and carry no monodromy); the period pairing factors through Brown 2013 *Ann Math* 175 projection $\mathrm{proj}: \mathrm{MZV}^{\mathrm{mot}} \to \mathrm{MZV}^{\mathrm{sv}}$. Conflating the two rings overcounts admissible periods: the $\zeta(2)$-weighted chain contribution formally lives in $\mathrm{MZV}^{\mathrm{mot}}_2$ but projects to $\zeta^{\mathrm{sv}}(2) = 0$, so does not survive into the observable Quillen exponent. The conflation is the precise mechanism that makes Theorem H concentration $\mathrm{ChirHoch}^\bullet \in \{0, 1, 2\}$ look imposed rather than derived.
+
+ - (c) CORRECT: chiral-Hochschild periods live in $\zeta^{\mathrm{sv}}$ (Brown 2013 single-valued MZVs), NOT in $\mathrm{grt}_1^{\mathrm{mot}}$-stable full motivic MZVs. Three distinct sites: **chain-level** ($\eta_{ij}$-integrals on $\mathrm{Conf}_n(X)$, rational-coefficient); **motivic** ($\mathrm{MZV}^{\mathrm{mot}}$ target of the period map); **single-valued** ($\zeta^{\mathrm{sv}}$ image under Brown's projection). Canonical identifications: $\zeta^{\mathrm{sv}}(2) = 0$; $\zeta^{\mathrm{sv}}(3) = 2\zeta(3)$; $\zeta^{\mathrm{sv}}(2k+1) = 2\zeta(2k+1)$ at odd weight; at depth $\ge 2$, $\zeta^{\mathrm{sv}}$ is a PROPER subring of $\mathrm{MZV}^{\mathrm{mot}}$ (Schnetz 2014 *Commun Num Theor Phys* 8; Panzer 2015 *Commun Num Theor Phys* 9).
+   **Vol II reading (specific to this volume's one-loop / cyclic reading of $\chi_3$)**: single-valued scope constrains Vol II's one-loop Quillen exponent / Costello-Gwilliam factorisation-cyclic-homology reading of the $\chi_3$ pairing. The Vol II cyclic chiral homology (Path E) lives in $\zeta^{\mathrm{sv}}$ via the Francis-Gaitsgory cyclic-factorisation trace $\mathrm{tr}^{\mathrm{cyc}}_{\mathrm{FG}}$ composed with the Brown single-valued projection $\mathrm{proj}$; the composite $\mathrm{proj} \circ \mathrm{tr}^{\mathrm{cyc}}_{\mathrm{FG}}$ is the canonical chiral-Hochschild period map. The Costello-Gwilliam one-loop Quillen exponent of $\mathsf{SC}^{\mathrm{ch,top}}$ on $\mathrm{K3}\times E$ is a weight-3 single-valued period, numerically $2\mathrm{Vol}(E)(2\pi i)^3$ with $(2\pi i)^3$-factor decomposed as $(2\pi i)(2\pi i)^2 = (2\pi i) \cdot \zeta^{\mathrm{sv}}$-admissible weight-2 structure $\mathbb Q(2\pi i)^2$ (Tate twist, NOT $\zeta(2) \cdot \mathbb Q$ which would vanish under $\mathrm{proj}$). The Theorem H amplitude bound $\mathrm{ChirHoch}^\bullet \in \{0, 1, 2\}$ is recovered as a **single-valued consequence** of $\zeta^{\mathrm{sv}}(2) = 0$, not imposed as a separate concentration axiom.
+   **Three verification paths** for the single-valued landing: (i) direct computation — the Arnold form $\eta_{ij} = d\log|z_{ij}|^2$ factors through the single-valued real-analytic structure of $\mathbb P^1 \setminus \{0, 1, \infty\}$ at punctures (Brown 2013 *Ann Sci ENS* 46 Thm 2.1); (ii) alternative formula — the Francis-Gaitsgory cyclic-factorisation trace is the double-shuffle single-valued completion of the motivic Hochschild trace (Schnetz 2014 regularised zeta lift); (iii) limiting case — at $\mathrm{ChirHoch}^2$, the single-valued projection predicts $\zeta^{\mathrm{sv}}(2) \cdot \mathrm{coeff} = 0$, matching the manifest $\{0, 1, 2\}$ amplitude bound and ruling out the naive $\mathrm{MZV}^{\mathrm{mot}}_2 \ne 0$ prediction.
+   **Primary citations**: Brown 2013 "Mixed Tate motives over $\mathbb Z$" *Ann Math* 175 (motivic MZV basis); Brown 2013 *Ann Sci ENS* 46 (single-valued multiple polylogarithms); Schnetz 2014 *Commun Num Theor Phys* 8 (single-valued zeta); Deligne-Goncharov 2005 *Ann Sci ENS* 38 (mixed-Tate motivic framework); Panzer 2015 *Commun Num Theor Phys* 9 (single-valued algorithms).
+   **Cross-ref**: Vol I AP901 / Theorem `thm:sv-scope-restriction-chiralhoch` in `/Users/raeez/chiral-bar-cobar/chapters/theory/motivic_shadow_tower.tex` (reference inscription with five attack/heal cycles); AP888 (shadow-ChirHoch bridge); seven-path $\chi_3$ comparison theorem (Paths A-G); Vol III cache W28-A (parallel single-valued entry for CoHA Casimir + Kuznetsov HPD readings).
+   Type: full-motivic / single-valued scope (Deligne-Goncharov vs Brown 2013 projection on chiral-Hochschild periods).
+
+---
+
+These entries (76 through 102 in the tip-table summary) are the Vol-II-relevant structural findings from Waves 20-24; W27-A was added in Wave 27 for the Chenevier determinant gap-fill; W28-A is added in Wave 28 for the single-valued MZV scope gap-fill. Primary source: `../chiral-bar-cobar/notes/GRAND_SYNTHESIS_WAVES_20_22.md` plus Vol I's `chapters/theory/derived_langlands.tex` remark `rem:dl-w25-determinant-not-pseudocharacter` and `chapters/theory/motivic_shadow_tower.tex` Theorem `thm:sv-scope-restriction-chiralhoch`. Three-path verification status per entry is documented in the source synthesis; cross-reference to CLAUDE.md (Vol II) and the AP/FM registers lives in-prose above.
+
+### W29-A. Humbert--Heegner admissibility filter $n\equiv 3,5\pmod 8$ on the pentagon coboundary tower $\phi^{(n)}$ (entry 137 / V2-AP127)
+
+ - (a) RIGHT: the pentagon coboundary tower $\{\phi^{(n)}\}_{n\ge 3}$ of Definition `def:phi-n-pent-EK` (Vol I `chapters/theory/shadow_tower_higher_coefficients.tex`) has a well-defined three-filter admissibility structure on the K3 $A_\infty$-Humbert regime of $\mathbf H_{\Delta_5}$. Eichler-Zagier 1985 polar-support cutoff $\Delta\ge -1$ on the paramodular index-$1$ K3 elliptic genus is a real theorem (Eichler-Zagier *Prog Math* 55 Thm 9.3). Brown 2012 Padovan recurrence $d_n = d_{n-2}+d_{n-3}$ counts the motivic-MZV basis at weight $n$ (Brown *Ann Math* 175 Thm 1).
+
+ - (b) WRONG: bare Padovan-dimension $d_n$ count without the Humbert--Heegner admissibility filter overcounts. Most Padovan-admissible $n$ (all $n\ge 3$ except $n=4$) are Humbert--Heegner-FORBIDDEN: the paramodular lattice sum $\sum_{4NM-\ell^2=-D_n} c_{\Phi_{10}/\eta^{24}}(N,\ell,M)$ with $D_n=(n-3)/2$ is non-empty iff $D_n\bmod 4\in\{0,1\}$, equivalently $n\equiv 3,5\pmod 8$. Asserting a non-zero $\phi^{(n)}$ on the K3--Humbert regime on the sole basis of $d_n>0$ (e.g., at $n=7, 9, 12, 24, 26, \ldots$) silently conflates the MZV-transcendence count with the paramodular Humbert--Heegner signature.
+
+ - (c) CORRECT: $\phi^{(n)}\big|_{\mathrm{K3\text{-}Humbert}}\ne 0$ iff (i) $n\equiv 3,5\pmod 8$ AND (ii) the $d_n$-dimensional Brown canonical basis is non-empty AND (iii) $D_n\le 1$ (Eichler--Zagier polar cutoff). First non-vanishing: $\phi^{(3)}$ (Drinfeld pentagon cocycle, $D_3=0$, $C(0)=20\ne 0$); $\phi^{(5)} = -2\cdot[\mathrm{gen}]^{\otimes 5}$ with Gritsenko--Nikulin 1998 sign on $\Phi_{10}/\eta^{24}$ ($D_5=1$, $C(-1)=2\ne 0$). HH-admissible $n$ in $[3,36]$: $\{3,5,11,13,19,21,27,29,35\}$. Non-admissible Padovan-positive $n$ (e.g., $4,6,7,8,9,10,12,14,15,16,17,18,20,22,23,24,25,26,28,30,31,32,33,34,36$) all give $\phi^{(n)}\big|_{\mathrm{K3\text{-}Humbert}}=0$. HH-admissible $n\ge 11$: $\phi^{(n)}=0$ by Eichler--Zagier polar support ($D_n\ge 4>1$).
+
+   **Condensed reference table** $(n, d_n, D_n, \mathrm{HH}, \phi^{(n)}\text{-K3})$: $(3,1,0,Y,\text{non-zero})$, $(4,0,1/2,-,0)$, $(5,1,1,Y,-2[\mathrm{gen}]^{\otimes 5})$, $(6,1,3/2,-,0)$, $(7,1,2,N,0)$, $(8,2,5/2,-,0)$, $(9,2,3,N,0)$, $(10,2,7/2,-,0)$, $(11,3,4,Y,0\,\text{polar})$, $(12,4,9/2,-,0)$, $(13,5,5,Y,0\,\text{polar})$, $(19,17,8,Y,0\,\text{polar})$, $(21,28,9,Y,0\,\text{polar})$, $(27,90,12,Y,0\,\text{polar})$, $(29,149,13,Y,0\,\text{polar})$, $(35,504,16,Y,0\,\text{polar})$.
+
+   **Vol II framing** (specific to this volume's Swiss-cheese coloured-bar reading): the Humbert--Heegner admissibility filter is the Humbert-stratification refinement of the $\mathsf{SC}^{\mathrm{ch,top}}$ coloured bar differential on $\overline{\mathcal A_2}$. Each coloured face of the $\mathsf{SC}^{\mathrm{ch,top}}$ operadic resolution at weight $n$ couples to the paramodular K3 elliptic genus polar slice $\Delta\ge -1$; a face colouring is admissible iff the discriminant $D_n = (n-3)/2$ lies in $\{0, 1\}\bmod 4$. Non-admissible coloured faces carry the Heegner--Bruinier obstruction class in $H^2(H_n, \mathrm{Sym}^2 T^{\mathrm{poly}}_{\mathrm{ch}}|_{H_n})$ of order $c_n$ (Bruinier torsion orders). Every Vol II $\phi^{(n)}$ reference on the Swiss-cheese coloured bar differential carries the HH admissibility scope or a pointer to Theorem~\ref{thm:phi-n-humbert-heegner-admissibility}.
+
+   **Three verification paths** for the filter: (i) discriminant-form signature — the index-$1$ paramodular form $4NM-\ell^2\equiv -\ell^2\pmod 4$ takes values in $\{0,-1\}\pmod 4$, so $-D_n$ is representable iff $D_n\in\{0,1\}\pmod 4$, forcing $n\equiv 3,5\pmod 8$ by odd-$n$ integrality; (ii) Eichler--Zagier 1985 weak Jacobi form polar-support cutoff ($C(\Delta)=0$ for $\Delta<-m^2=-1$); (iii) Gritsenko--Nikulin 1998 paramodular lift of the K3 elliptic genus with explicit $c_{\Phi_{10}/\eta^{24}}$ Fourier table.
+
+   **Primary citations**: Eichler-Zagier 1985 *Prog Math* 55 Thm 9.3 (polar-support cutoff); Gritsenko-Nikulin 1998 *J Reine Angew Math* 507 (Humbert-Heegner structure, paramodular $\Phi_{10}/\eta^{24}$ sign convention); Bruinier 2002 LNM 1780 (Chern class on Heegner divisors; torsion orders $c_n$); Brown 2012 *Ann Math* 175 Thm 1 (Padovan motivic MZV dimension).
+
+   **Cross-ref**: Vol I Theorem `thm:phi-n-humbert-heegner-admissibility` in `/Users/raeez/chiral-bar-cobar/chapters/theory/shadow_tower_higher_coefficients.tex` (lines 4364-4433); Vol I cache row 304 (AP890) + Pattern 299 (comprehensive); Vol I `notes/antipatterns_catalogue.md` AP903-HH; Vol III `AP-CY142` + tip-cache row V16; cross-reference also Vol II cache row 113 (AP-V2-1, eight Swiss-cheese bar-cobar ambients) and row 114 (AP-V2-6, chiral Kontsevich formality on Humbert strata) — the HH filter locks which coloured-bar ambient is admissible at each weight $n$.
+
+   Type: necessary/sufficient (Padovan sufficient misread; HH is the orthogonal necessary filter on K3-Humbert).
+
+## Session antipatterns — manuscript hygiene (2026-04-22)
+
+**Scope.** 55 bookkeeping / meta-narration / version-history patterns caught across all three volumes. Each entry pairs (i) a regex trigger signature, (ii) a 5-step rectification protocol (DETECT / LOCALISE / MATH-CHECK / REPAIR / VERIFY). Conservative carve-out: `cascade`, `homological retraction`, `deformation retract`, `retracts onto` are legitimate mathematical usages and must NOT trigger these detectors. `Borcherds programme` is legitimate (proper noun). Forbidden forms targeted: `Platonic Theorem~A`, `our programme`, `programme-canonical`, `platonic chapter`, `\begin{warning}`, `\ClaimStatusRetracted`, drafting-dated remarks, `History of the claim`, retraction indices.
+
+**Protocol template.**
+ - **DETECT**: grep regex over chapters/ + frame/ + appendices/ + connections/ + theory/ + examples/.
+ - **LOCALISE**: identify whether the match is in (a) manuscript prose (forbidden), (b) `notes/` / commit message / `memory/` (permitted), (c) `FRONTIER.md` (permitted).
+ - **MATH-CHECK**: read ±30 lines; determine whether the adjacent mathematical content stands on its own; identify the ghost theorem behind the bookkeeping/meta wrapper (every meta-narration wraps a claim that either IS a theorem or SHOULD BE a theorem).
+ - **REPAIR**: delete the wrapper; if the ghost theorem is live, inscribe it directly; if the content is already stated elsewhere, delete with no replacement.
+ - **VERIFY**: re-grep the regex; run `make fast`; check `\ref` still resolves; confirm no new `Warnings` in the PDF build.
+
+### CGCLEAN-1 — `Wave $N$` in manuscript prose
+ - (a) RIGHT: session labels are genuine bookkeeping in `notes/` and commit history.
+ - (b) WRONG: `Wave 15 Gaiotto computation gives...` in a reader-facing `.tex` file conflates the drafting timeline with the timeless mathematical content.
+ - (c) CORRECT: delete the label; state the computation with primary citation. Type: bookkeeping leak.
+ - Regex: `[Ww]ave[ ~-]?[0-9]+` (in `.tex` under `chapters/`, `frame/`, `examples/`, `theory/`, `connections/`, `appendices/`, not in `notes/` / `memory/` / `FRONTIER.md`).
+ - DETECT: `grep -n '[Ww]ave[ ~-]\?[0-9]\+' chapters/**/*.tex`. LOCALISE: scope = manuscript. MATH-CHECK: find the real theorem the Wave-label sits on. REPAIR: delete "Wave N" and cite the theorem / primary source. VERIFY: regex returns empty on manuscript scope.
+
+### CGCLEAN-2 — `AP-CY$n$` / `AP$n$` / `AP-CAT-$N$` in manuscript prose
+ - (a) RIGHT: antipattern indices are canonical in `notes/antipatterns_catalogue.md`.
+ - (b) WRONG: `(cf. AP-CY42)` inline in a reader-facing `.tex` file makes `notes/` a hard dependency of the manuscript.
+ - (c) CORRECT: delete the code; if the hazard it flags is load-bearing, inscribe a Remark stating the hazard as mathematics. Type: bookkeeping leak.
+ - Regex: `AP-?CY[0-9]+|AP-?CAT-?[0-9]+|AP[0-9]+` (in manuscript scope, excluding bibliography cite keys).
+ - 5-step as template; REPAIR: inscribe the hazard as a Remark with the precise conflation stated.
+
+### CGCLEAN-3 — `FM$n$` formula-mechanical marker
+ - (a) RIGHT: FM codes live in hook output + cache entries.
+ - (b) WRONG: `(FM67 bridge)` inline in manuscript.
+ - (c) CORRECT: state the bridge mathematically or delete. Type: hook-index leak.
+ - Regex: `\bFM[0-9]+\b` (excluding `FM_n(C)` compactification notation — use word-boundary + digit check).
+
+### CGCLEAN-4 — `HZ-$N$` / `HZ-IV` / `HZ discipline`
+ - (a) RIGHT: HZ hierarchy is an internal epistemic ordering.
+ - (b) WRONG: `(per HZ-IV disjoint verification)` in manuscript.
+ - (c) CORRECT: state the verification paths directly. Type: hierarchy-label leak.
+ - Regex: `HZ-?[IVX0-9]+` or `HZ discipline`.
+
+### CGCLEAN-5 — `DNA strand S$x$` / `S-strand`
+ - (a) RIGHT: swarm-workflow terminology is in `notes/`.
+ - (b) WRONG: `Following DNA strand S3...` in manuscript.
+ - (c) CORRECT: inscribe the content without the workflow layer. Type: swarm-metaphor leak.
+ - Regex: `DNA strand|S-?strand|strand\s+S[0-9]+`.
+
+### CGCLEAN-6 — `CG-rectify pass $k$`
+ - Regex: `CG-?rectify pass [0-9]+|rectification pass [0-9]+`.
+ - Protocol: DETECT, LOCALISE, delete; the current text is the result of whatever passes happened.
+
+### CGCLEAN-7 — `cache entry $n$` / `Cached Confusion` / `Cache anchor` / `Cache append`
+ - Regex: `[Cc]ache entry [0-9]+|Cached Confusion|Cache anchor|Cache append`.
+ - REPAIR: cite primary source; `cache/` has no reader role.
+
+### CGCLEAN-8 — `Wave $N$ spec/verdict/witnessing`
+ - Regex: `[Ww]ave[ ~-]?[0-9]+\s*(spec|verdict|witness)`.
+ - REPAIR: delete the adjudication frame; keep the verdict as the mathematical statement.
+
+### CGCLEAN-9 — `programme-canonical` / `programme canonical value`
+ - Regex: `programme[ -]canonical|programme canonical value`.
+ - REPAIR: "canonical" suffices; the value stands on its own.
+
+### CGCLEAN-10 — `type-error registry entry T$n$`
+ - Regex: `type-?error (registry )?T[0-9]+|T[0-9]+ registry`.
+ - REPAIR: state the type mismatch as a mathematical observation (e.g., `CoHA` is $E_1$-associative; the bar complex is a coalgebra).
+
+### CGCLEAN-11 — `narrative counterpart` / `narrative arc`
+ - Regex: `narrative (counterpart|arc)`.
+ - REPAIR: state the construction directly.
+
+### CGCLEAN-12 — `story` / `saga` / `odyssey` / `journey` (nouns)
+ - Regex: `\b(story|saga|odyssey|journey)\b` (as nouns; check for determiner `the`/`this`/`a` preceding).
+ - Conservative: "the story of...", "this saga...". Legitimate usage in math prose: rare; almost always narration.
+
+### CGCLEAN-13 — `Platonic ideal` / `platonic chapter` / `platonic architecture` / `Platonic ensemble` / `platonic synthesis`
+ - Regex: `[Pp]latonic (ideal|form|chapter|architecture|ensemble|synthesis)`.
+ - CAREFUL: `Platonic solid` (mathematics) is legitimate; exclude via negative lookahead.
+
+### CGCLEAN-14 — `Platonic Theorem~A` / `Platonic Theorem~B`
+ - Regex: `[Pp]latonic Theorem[ ~][A-Z]`.
+ - REPAIR: "Theorem A" with its canonical `\ref{thm:...}`.
+
+### CGCLEAN-15 — `This chapter's function is to...` / `The function of this section is...`
+ - Regex: `[Tt]his chapter.?s function is to|[Tt]he function of this (chapter|section) is`.
+
+### CGCLEAN-16 — signpost phrases (`we now turn to`, `having established`, `let us now`, `this brings us to`, `with this in hand`)
+ - Regex: `we now turn to|having established|let us now|this brings us to|with this in hand`.
+ - Already covered by existing hook PROSE signposts; CGCLEAN-16 reinforces and extends.
+
+### CGCLEAN-17 — `in the present work` / `the author` / `our programme` / `we have argued` / `it is worth noting`
+ - Regex: `in the present work|the author\b|our programme|we have argued|it is worth noting`.
+ - CAREFUL: `the authors of [CiteKey]` (citing literature) is legitimate; exclude via lookahead for cite context.
+ - `Borcherds programme` is legitimate (specific historical mathematical project); exclude.
+
+### CGCLEAN-18 — `This chapter closes the ...`
+ - Regex: `[Tt]his (chapter|section) closes`.
+
+### CGCLEAN-19 — `the opening paragraphs of this preface` / `as noted in the preface`
+ - Regex: `opening paragraphs? of (this|the) preface|as noted in the preface`.
+ - REPAIR: `\ref` to theorem / section label.
+
+### CGCLEAN-20 — `Earlier in the volume` / `Later in the volume`
+ - Regex: `Earlier in (the|this) volume|Later in (the|this) volume`.
+
+### CGCLEAN-21 — `retracted` / `retraction` / `the retracted` in manuscript
+ - Regex: `\b[Rr]etract(ed|ion|s)\b`.
+ - CAREFUL: `deformation retraction`, `homological retraction`, `retracts onto` are legitimate mathematical usages. Exclude via negative lookahead for `deformation|homological|onto`.
+ - REPAIR: delete the retracted claim and its retraction marker; only the current claim stands.
+
+### CGCLEAN-22 — `superseded` / `supersedes`
+ - Regex: `\bsupersede[ds]?\b`.
+ - REPAIR: only the correct current statement appears.
+
+### CGCLEAN-23 — `earlier draft` / `previous version` / `intermediate ansatz` / `prior derivation`
+ - Regex: `earlier draft|previous version|intermediate ansatz|prior derivation`.
+
+### CGCLEAN-24 — `previously conjectural` / `previously open` / `previously unresolved` / `previously obstructing`
+ - Regex: `previously (conjectural|open|unresolved|obstructing)`.
+
+### CGCLEAN-25 — `now resolved` / `now proved` / `now known`
+ - Regex: `now (resolved|proved|known)`.
+
+### CGCLEAN-26 — `double-retraction` / `triple-retraction`
+ - Regex: `double-?retraction|triple-?retraction`.
+
+### CGCLEAN-27 — `Three successive evaluations appear in the drafting record` / `History of the claim`
+ - Regex: `Three successive evaluations|History of the claim`.
+ - REPAIR: if the trajectory is informative mathematically, inscribe the failed arguments as Gap/Flaw lemmas with precise obstructions, not as "evaluation $k$".
+
+### CGCLEAN-28 — `drafting record` / `drafting trajectory` / `drafting history`
+ - Regex: `drafting (record|trajectory|history)`.
+
+### CGCLEAN-29 — `\ClaimStatusRetracted` tag
+ - Regex: `\\ClaimStatusRetracted`.
+ - REPAIR: delete the claim entirely; if the failure is load-bearing, inscribe as Gap/Flaw lemma.
+
+### CGCLEAN-30 — Dated remarks (`2026-04-17`, etc.) in manuscript prose
+ - Regex: `\b20[12][0-9]-[01][0-9]-[0-3][0-9]\b` (YYYY-MM-DD) in manuscript files.
+ - CAREFUL: arXiv date stamps in bibliography are legitimate; exclude via file scope (only chapters/ + frame/ + appendices/ theorem environments, not `.bib`).
+
+### CGCLEAN-31 — `\index{retraction!...}` entries
+ - Regex: `\\index\{retraction!`.
+ - REPAIR: remove; manuscript indexing is mathematical.
+
+### CGCLEAN-32 — `\texttt{notes/...}` as reader-facing reference
+ - Regex: `\\texttt\{notes/`.
+ - REPAIR: either promote content into manuscript or delete reference.
+
+### CGCLEAN-33 — Absolute paths `/Users/raeez/...` in manuscript
+ - Regex: `/Users/raeez`.
+
+### CGCLEAN-34 — `% TODO: librarian verification` author-note comments
+ - Regex: `%[^\n]*TODO[^\n]*librarian|%[^\n]*librarian verification`.
+
+### CGCLEAN-35 — `% ALIAS` / `% LEGACY ALIAS`
+ - Regex: `%\s*(LEGACY\s+)?ALIAS`.
+
+### CGCLEAN-36 — `% Source: NEW CHAPTER` / `% Source: Wave N`
+ - Regex: `%\s*Source:\s*(NEW CHAPTER|Wave[ ~-]?[0-9]+)`.
+
+### CGCLEAN-37 — compute-engine filenames `*_waveN_*.py` cited in manuscript
+ - Regex: `_wave[0-9]+_[^\s}]*\.py`.
+
+### CGCLEAN-38 — function names `waveN_foo` cited in manuscript
+ - Regex: `\bwave[0-9]+_[a-zA-Z_]+\b`.
+
+### CGCLEAN-39 — `\begin{warning} ... \end{warning}`
+ - Regex: `\\begin\{warning\}`.
+ - REPAIR: replace with `\begin{remark}` stating the scope cleanly, or delete if already covered by theorem hypotheses.
+
+### CGCLEAN-40 — `do not confuse` / `don't be fooled` / `beware` / `be careful`
+ - Regex: `do not confuse|don'?t be fooled|\bbeware\b|be careful`.
+
+### CGCLEAN-41 — `we must be careful`
+ - Regex: `we must be careful`.
+
+### CGCLEAN-42 — gratuitous `scope-restricted` / `scope-bounded` as adjectives
+ - Regex: `scope-?(restricted|bounded)`.
+ - REPAIR: state actual scope (on the Koszul locus, for affine $A$, etc.).
+
+### CGCLEAN-43 — `verdict` as meta-label
+ - Regex: `\b[Vv]erdict\b` (when used as a mathematical label rather than narration).
+
+### CGCLEAN-44 — filename `*_platonic.tex`
+ - DETECT: `ls chapters/**/*_platonic.tex`.
+ - REPAIR: rename file; update `\input`.
+
+### CGCLEAN-45 — label `ch:*-platonic`
+ - Regex: `\\label\{ch:[^}]*platonic\}`.
+
+### CGCLEAN-46 — label `sec:*-platonic`
+ - Regex: `\\label\{sec:[^}]*platonic\}`.
+
+### CGCLEAN-47 — theorem label `thm:*-waveN-*`
+ - Regex: `\\label\{thm:[^}]*-wave[0-9]+-[^}]*\}`.
+
+### CGCLEAN-48 — `\index{compute module!...}`
+ - Regex: `\\index\{compute module!`.
+
+### CGCLEAN-49 — `\index{cache!...}`
+ - Regex: `\\index\{cache!`.
+
+### CGCLEAN-50 — `\index{retraction!...}` (duplicate hit of CGCLEAN-31 for hook completeness)
+ - Regex: `\\index\{retraction!`.
+
+### CGCLEAN-51 — `Five attack-heal calibrations`
+ - Regex: `[Ff]ive attack-?heal calibrations`.
+ - REPAIR: list the five theorems/checks directly.
+
+### CGCLEAN-52 — `Reconstitution if the cancellation fails`
+ - Regex: `[Rr]econstitution if the cancellation fails`.
+
+### CGCLEAN-53 — `Inversion of the programme perspective`
+ - Regex: `[Ii]nversion of the programme perspective`.
+
+### CGCLEAN-54 — `Gold-standard HZ-IV disjoint verification`
+ - Regex: `[Gg]old-?standard HZ-?IV disjoint verification`.
+
+### CGCLEAN-55 — `Three successive evaluations appear in the drafting record` (verbatim)
+ - Regex: `Three successive evaluations appear in the drafting record`.
+
+---
+
+**Cross-ref**. Mirrored in Vol I `notes/antipatterns_catalogue.md` (2026-04-22 session) and Vol III `notes/antipatterns_catalogue.md` (2026-04-22 session) under the same CGCLEAN-1..55 codes. Hook signatures in `.claude/hooks/beilinson-gate.sh` under block `# === Session 2026-04-22: manuscript hygiene (CGCLEAN-*) ===`. Reader-oriented summary in `notes/first_principles_cache.md` as tabular row set.

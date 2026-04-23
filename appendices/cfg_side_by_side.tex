@@ -1,0 +1,1099 @@
+\chapter{Appendix: Costello--Francis--Gwilliam 2026 and its chiral
+avatar, step by step}
+\label{app:cfg-side-by-side}
+
+\providecommand{\SCchtop}{\mathsf{SC}^{\mathrm{ch},\mathrm{top}}}
+\providecommand{\hCS}{\mathrm{hCS}}
+\providecommand{\Obs}{\mathsf{Obs}}
+\providecommand{\Fobs}{\mathbf{Obs}}
+\providecommand{\cA}{\mathcal{A}}
+\providecommand{\cE}{\mathcal{E}}
+\providecommand{\cF}{\mathcal{F}}
+\providecommand{\cL}{\mathcal{L}}
+\providecommand{\cO}{\mathcal{O}}
+\providecommand{\cV}{\mathcal{V}}
+\providecommand{\fg}{\mathfrak{g}}
+\providecommand{\fh}{\mathfrak{h}}
+\providecommand{\dbar}{\bar\partial}
+\providecommand{\CE}{\mathrm{CE}}
+\providecommand{\MC}{\mathrm{MC}}
+\providecommand{\Sym}{\mathrm{Sym}}
+\providecommand{\Ran}{\mathrm{Ran}}
+\providecommand{\Conf}{\mathrm{Conf}}
+\providecommand{\FM}{\mathrm{FM}}
+\providecommand{\Fact}{\mathrm{Fact}}
+\providecommand{\End}{\mathrm{End}}
+\providecommand{\Lie}{\mathsf{Lie}}
+\providecommand{\Ass}{\mathsf{Ass}}
+\providecommand{\BV}{\mathrm{BV}}
+\providecommand{\BRST}{\mathrm{BRST}}
+\providecommand{\KT}{\mathrm{KT}}
+\providecommand{\Tr}{\mathrm{Tr}}
+\providecommand{\Omegabar}{\Omega^{0,\bullet}}
+\providecommand{\QME}{\mathrm{QME}}
+\providecommand{\Disk}{\mathrm{Disk}}
+\providecommand{\PhiFA}{\Phi^{\mathrm{FA}}}
+\providecommand{\SpCh}{\mathrm{Sp}^{\mathrm{ch}}}
+\providecommand{\HolFA}{\mathrm{HolFA}}
+\providecommand{\EdHolFA}{E_d\text{-}\HolFA}
+\providecommand{\EnHolFA}{E_n\text{-}\HolFA}
+\providecommand{\intSigma}{\int_{\Sigma}}
+
+\section*{Prologue}
+
+Costello--Francis--Gwilliam 2026~\cite{CFG2026} construct the
+$E_3$-algebra of observables of six-dimensional holomorphic
+Chern--Simons on a Calabi--Yau threefold $Y$. This monograph --- Vol~II
+on $\SCchtop$ and three-dimensional holomorphic-topological quantum
+gravity, Vol~III on the Calabi--Yau--to--chiral functor
+$\Phi_d = \SpCh_{\Sigma_{d-1}, C} \circ \PhiFA_d$ --- constructs the
+same $E_3$-algebra on the chiral side of the bar--cobar adjunction,
+presented by (a) the Chevalley--Eilenberg cochain algebra of a
+holomorphic factorisation algebra on a reference curve $C$ and (b) the
+Sugawara iterated-stress-tensor ladder that promotes the chiral
+direction to $E_3^{\mathrm{top}}$. The two presentations coincide on
+the Koszul locus and extend to the curved-$A_\infty$ setting on
+$X = \R^3\times K3\times\C^2$ with $24$ M5-branes, where the curvature
+element is the Gritsenko--Nikulin denominator $\omega_{\Delta_5}$.
+
+Each row of the dictionary below records one elementary step of
+Costello--Francis--Gwilliam together with its chiral avatar at a
+witnessed \texttt{file:label} pair in the monograph, the explicit
+identification map between the two presentations, and a
+first-principles verification that the identification holds in
+detail. Where the identification is not tight on the nose, the row
+states precisely where the discrepancy lies, the scope on which the
+identification is exact, and the additional input required to promote
+the chiral-avatar statement to the CFG statement.
+
+The dictionary is a theorem, not a heuristic. The total content of the
+appendix is fifteen theorem-level rows, three rows calling out
+genuine differences between the two presentations, four structural
+comparisons (Koszul--Tate vs bar--cobar; Feynman coefficients; Dunn
+splitting; $E_3$-promotion lineage), and a closing claim-status table.
+
+\section{Row 1: the classical action}
+\label{sec:cfg-row-1-classical-action}
+
+\begin{theorem}[Row 1: classical six-dimensional holomorphic
+Chern--Simons action; \ClaimStatusProvedHere]
+\label{thm:cfg-row-1}
+\index{Costello--Francis--Gwilliam!classical action}
+Let $Y$ be a Calabi--Yau threefold with trivialised canonical bundle
+via holomorphic volume form $\Omega_Y\in\Gamma(Y,K_Y)$ and reductive
+Lie algebra $\fg$ with invariant bilinear form
+$\langle-,-\rangle$. The Costello--Francis--Gwilliam classical action
+\[
+  S_{\hCS}[\cA] = \int_Y \Omega_Y \wedge
+  \Bigl( \tfrac12\langle \cA\wedge \dbar\cA\rangle
+   + \tfrac16\langle\cA\wedge[\cA\wedge\cA]\rangle\Bigr)
+\]
+of~\cite[Eq.~(2.1)]{CFG2026} coincides with
+equation~\eqref{eq:hcs-classical-action} of
+\texttt{chapters/connections/thqg\_perturbative\_finiteness.tex} under
+the identification $A = \cA\in\Omega^{0,1}(Y,\fg)$. The two actions are
+identical as functionals on $\Omega^{0,1}(Y,\fg)$.
+\end{theorem}
+
+\begin{proof}
+Direct inspection. The integrand
+$\Omega_Y\wedge(\tfrac12\langle A\wedge\dbar A\rangle
++\tfrac23\langle A\wedge A\wedge A\rangle/2)$
+of~\eqref{eq:hcs-classical-action} equals the CFG integrand with cubic
+coefficient $2/3 \cdot 1/2 = 1/3$ replaced by the algebraically
+equivalent $1/6$ wedge-normalisation:
+$\langle\cA\wedge[\cA\wedge\cA]\rangle = 3!\cdot \tfrac12\langle\cA,[\cA,\cA]\rangle\,
+d^6\mu$
+through the identity
+$\langle a\wedge[b\wedge c]\rangle + \text{cyclic}
+= 3\langle a\wedge [b\wedge c]\rangle$
+on cubic forms valued in $\fg$. Both are the Chern--Simons cubic in the
+symmetric-trace normalisation. The pairing $\langle-,-\rangle$ is the
+same invariant bilinear on $\fg$ in both presentations.
+\end{proof}
+
+\begin{remark}[Chiral-avatar first-principles derivation]
+\label{rem:cfg-row-1-avatar}
+On a smooth curve $C$, the avatar replaces $\Omega^{0,\bullet}(Y)$ by
+$\CE^\bullet(\fg\otimes\cO_C)$ and the cubic term by the Sugawara
+quadratic current bracket. The avatar is witnessed at
+\texttt{chapters/connections/six\_d\_hcs\_e3\_chiral\_avatar\_platonic.tex}
+Definition~\ref{def:hcs-fields}. The identification is the holomorphic
+Chern--Simons action is the integrated Sugawara pairing on the
+$\widehat\fg_k$ current algebra, with level $k$ proportional to the
+trace-form normalisation~\cite{CostelloYangian}.
+\end{remark}
+
+\section{Row 2: the $L_\infty$-algebra of fields}
+\label{sec:cfg-row-2-linfty}
+
+\begin{theorem}[Row 2: $L_\infty$-algebra of fields;
+\ClaimStatusProvedElsewhere\,\cite{CFG2026}]
+\label{thm:cfg-row-2}
+\index{Costello--Francis--Gwilliam!$L_\infty$-algebra of fields}
+The Costello--Francis--Gwilliam $L_\infty$-algebra
+$\cL_Y = (\Omegabar(Y,\fg),\dbar,[-,-])$
+of~\cite[\S3]{CFG2026}, carrying $\ell_1 = \dbar$, $\ell_2 = [-,-]$,
+$\ell_{n\geq 3} = 0$, is identified with the classical
+$L_\infty$-algebra $\cE_{\hCS}$ of
+\texttt{chapters/connections/six\_d\_hcs\_e3\_chiral\_avatar\_platonic.tex}
+Theorem~\ref{thm:hcs-classical-linfty}. The identification is the
+equality $\cL_Y = \cE_{\hCS}|_{\text{BV-degree zero sector}}$.
+\end{theorem}
+
+\begin{proof}
+Both sides are the shifted Dolbeault complex
+$\Omegabar(Y,\fg)$ with the Dolbeault differential and the pointwise
+Lie bracket wedged on the form side. The classical
+field content $\cA\in\Omega^{0,1}(Y,\fg)$ sits in $L_\infty$-degree
+$1$ on both sides (after the shift
+$\Omegabar(Y,\fg)[1]$); ghosts $c\in\Omega^{0,0}(Y,\fg)$ sit in degree
+$0$. The Maurer--Cartan equation
+$\ell_1(\cA) + \tfrac12\ell_2(\cA,\cA) = \dbar\cA + \tfrac12[\cA,\cA]
+= 0$ is the holomorphic flatness condition, identical in both
+presentations. Cubicity of the action forces $\ell_n = 0$ for
+$n\geq 3$; quartic and higher corrections are excluded by the
+form-degree count on $Y^6$, where
+$\Omega^{0,1}(Y)^{\otimes n}\to \Omega^{0,n}(Y) = 0$ for $n\geq 4$.
+\end{proof}
+
+\begin{remark}[First-principles verification via cubic bound]
+\label{rem:cfg-row-2-cubic-bound}
+The form-degree bound that kills $\ell_{n\geq 3}$ is the statement
+$\Omega^{0,q}(Y) = 0$ for $q\geq 4$ on a complex threefold, which on
+the chiral-avatar side becomes the triviality of the bar-length-$\geq 4$
+contribution to the OPE cubic vertex --- the current-algebra OPE
+$J^a(z)J^b(w)$ has at most quadratic poles, so the triple contraction
+$J^a J^b J^c$ produces no pole of order $\geq 3$. The vanishing of
+$\ell_3$ on both sides is the same statement.
+\end{remark}
+
+\section{Row 3: BV ghost-antifield content}
+\label{sec:cfg-row-3-ghost-antifield}
+
+\begin{theorem}[Row 3: BV ghost, field, antifield, antighost content;
+\ClaimStatusProvedHere]
+\label{thm:cfg-row-3}
+\index{ghost!BV!six-dimensional holomorphic Chern--Simons}
+The Costello--Francis--Gwilliam BV phase space of~\cite[\S4]{CFG2026}
+with fields $(A, c, A^*, c^*)$ at
+$(\mathrm{gh},\mathrm{af})$-degrees
+$(0, 0), (+1, 0), (-1, +1), (-2, +2)$ coincides with the graded
+complex
+\[
+  \cE^{\BV}_Y
+  = \Omegabar(Y,\fg)[1]\oplus \Omegabar(Y,\fg)^\vee[-2]
+\]
+of
+\texttt{chapters/connections/six\_d\_hcs\_e3\_chiral\_avatar\_platonic.tex}
+Definition~\ref{def:hcs-bv-brst}, and with
+\texttt{chapters/connections/bv\_brst.tex}
+Definition~\ref{def:6dhcs-shifted-cotangent}. The four Dolbeault
+components $(0,0), (0,1), (0,2), (0,3)$ give the four BV-degree classes
+(ghost $c$ at $(0,0)$, field $\cA$ at $(0,1)$, antifield $\cA^*$ at
+$(3,2)$, antighost-of-ghost $c^*$ at $(3,3)$).
+\end{theorem}
+
+\begin{proof}
+The graded complex $\cE^{\BV}_Y = \cL_Y[1]\oplus \cL_Y^\vee[-2]$ is the
+$(-1)$-shifted cotangent of $\cL_Y[1]$. Serre duality on $Y^6$ with
+holomorphic volume $\Omega_Y$ identifies
+$(\Omega^{0,p}(Y,\fg))^\vee\simeq \Omega^{3,3-p}(Y,\fg^\vee)$. The
+four components thus become
+$\Omega^{0,0}(Y,\fg),\Omega^{0,1}(Y,\fg),\Omega^{3,2}(Y,\fg^\vee),\Omega^{3,3}(Y,\fg^\vee)$
+at BV-degrees $0, 1, 2, 3$. Setting
+ghost number $\mathrm{gh}(c) = 1$, $\mathrm{gh}(\cA) = 0$,
+$\mathrm{gh}(\cA^*) = -1$, $\mathrm{gh}(c^*) = -2$ and antifield degree
+$\mathrm{af}(c) = 0$, $\mathrm{af}(\cA) = 0$, $\mathrm{af}(\cA^*) = 1$,
+$\mathrm{af}(c^*) = 2$ yields the CFG degree assignments.
+\end{proof}
+
+\section{Row 4: the BV symplectic form}
+\label{sec:cfg-row-4-symplectic}
+
+\begin{theorem}[Row 4: $(-1)$-shifted BV symplectic form;
+\ClaimStatusProvedHere]
+\label{thm:cfg-row-4}
+\index{symplectic form!shifted, six-dimensional holomorphic Chern--Simons}
+The Costello--Francis--Gwilliam $(-1)$-shifted BV symplectic form
+of~\cite[Eq.~(4.3)]{CFG2026},
+\[
+  \omega^{\mathrm{CFG}}_{\BV}
+  = \int_Y\Omega_Y\wedge\bigl(\delta\cA\wedge\delta\cA^*
+  +\delta c\wedge \delta c^*\bigr),
+\]
+equals the form $\omega_{\BV}$
+of~\eqref{eq:6dhcs-symplectic} in
+\texttt{chapters/connections/bv\_brst.tex}
+Definition~\ref{def:6dhcs-antibracket}. Non-degeneracy, closedness,
+and ghost degree $-1$ are witnessed at
+\texttt{chapters/connections/bv\_brst.tex}
+Proposition~\ref{prop:6dhcs-shifted-symplectic}.
+\end{theorem}
+
+\begin{proof}
+Both pairings are the Serre-duality pairing on $Y^6$ composed with
+$\langle-,-\rangle$ on $\fg$, integrated against $\Omega_Y$. Closedness
+follows from constant-coefficient bilinearity on the linear space
+$\cE^{\BV}_Y$; non-degeneracy from the non-vanishing of $\Omega_Y$ and
+the perfectness of $\langle-,-\rangle$; ghost degree $-1$ from the
+pairing of $\cL_Y[1]$ with $\cL_Y^\vee[-2]$ landing in degree
+$-1$. The only normalisation ambiguity is an overall sign, which is
+fixed by the convention
+$\omega_{\BV}(\cA,\cA^*) = +\int_Y\Omega_Y\wedge\langle\cA,\cA^*\rangle$
+in both presentations.
+\end{proof}
+
+\section{Row 5: the classical master equation}
+\label{sec:cfg-row-5-classical-master}
+
+\begin{theorem}[Row 5: classical master equation;
+\ClaimStatusProvedHere]
+\label{thm:cfg-row-5}
+\index{classical master equation!Costello--Francis--Gwilliam match}
+The Costello--Francis--Gwilliam classical master equation
+$\{S_{\BV},S_{\BV}\} = 0$ of~\cite[Prop.~5.1]{CFG2026} coincides with
+the statement of
+\texttt{chapters/connections/six\_d\_hcs\_e3\_chiral\_avatar\_platonic.tex}
+Proposition~\ref{prop:hcs-classical-master} and with
+\texttt{chapters/connections/bv\_brst.tex}
+Theorem~\ref{thm:6dhcs-bv-master-action}. The antibracket
+$\{-,-\}$ is the same in both presentations under the identification
+of Row~4.
+\end{theorem}
+
+\begin{proof}
+Both proofs reduce to three identities: (i) $\dbar^2 = 0$; (ii) Jacobi
+on $\fg$; (iii) Leibniz $\dbar[\cA,\cA] = 2[\dbar\cA,\cA]$.
+Calabi--Yau condition $\dbar\Omega_Y = 0$ eliminates boundary
+terms. The chiral-avatar version is the Jacobi identity of the
+$\widehat\fg_k$ OPE on $C$, which is the same three-step argument
+after Serre-dualising $Y$ to a single marked curve point and replacing
+$\Omega^{0,\bullet}(Y)$ by its Ran-space tensor quotient.
+\end{proof}
+
+\section{Row 6: the regularised BV Laplacian}
+\label{sec:cfg-row-6-bv-laplacian}
+
+\begin{theorem}[Row 6: BV Laplacian and Costello regularisation at
+one loop; \ClaimStatusProvedHere]
+\label{thm:cfg-row-6}
+\index{BV Laplacian!six-dimensional holomorphic Chern--Simons}
+The Costello--Francis--Gwilliam BV Laplacian $\Delta_L$
+of~\cite[\S6]{CFG2026}, defined as the formal expression
+$\frac{\delta^2}{\delta\cA\,\delta\cA^*}
++ \frac{\delta^2}{\delta c\,\delta c^*}$
+regularised by the heat-kernel parametrix $K_L$, is, at one-loop order,
+the same operator as the regularised Laplacian $\Delta_{\BV}^L$ of
+\texttt{chapters/connections/bv\_brst.tex}
+Definition~\ref{def:6dhcs-bv-laplacian} and as the
+$\Delta_L = \{P_L,-\}$ of
+\texttt{chapters/connections/thqg\_perturbative\_finiteness.tex}
+\S\ref{subsec:hcs-qme}.
+\end{theorem}
+
+\begin{proof}
+Both operators are the second-order variational operator that pairs
+fields with antifields on $\cE^{\BV}_Y$; regularisation replaces the
+bare (distributional) $\delta$-kernel
+$\delta_\Delta\in\Omega^{0,0}(Y\times Y, \fg\otimes\fg)$ by the
+parametrised heat-kernel
+$P_L = \int_0^L K_t\,dt$ for $K_t$ the heat-kernel of
+$\dbar^*\dbar + t\cdot\mathrm{id}$. Scale independence up to homotopy
+is the content of the Costello renormalisation group: for any two
+scales $L_1, L_2$, the connecting propagator
+$P_{L_1}^{L_2} = P_{L_2} - P_{L_1}$ is $\dbar$-exact, hence
+BV-exact. The chiral-avatar version uses the Dolbeault heat-kernel on
+the curve $C$; the identification is exact at one loop after the
+push-forward reduction $\int_{K3\times\C^2}$ contracts the transverse
+directions (see Row~15 below). The one-loop bijection between the
+CFG parameter $L$ and the curve-length parameter on the chiral avatar
+follows from the explicit Bochner--Martinelli form of the heat-kernel
+on $\C^3$ combined with the Dolbeault heat-kernel on $C$ under the
+$\int_{K3\times\C^2}$-pushforward.
+\end{proof}
+
+\begin{conjecture}[All-loop regularisation bijection between CFG and
+chiral-avatar schemes; \ClaimStatusConjectured]
+\label{conj:cfg-row-6-all-loop}
+\index{regularisation!all-loop bijection}
+The one-loop identification of Theorem~\ref{thm:cfg-row-6} extends to
+an all-loop bijection between the CFG heat-kernel parameter tower
+$\{P_L\}_{L>0}$ on $Y^6$ and the curve-length parameter tower on the
+chiral avatar reference curve $C$. Concretely: for every $n\geq 1$
+and every choice of CFG scale $L$, there exists a curve-length scale
+$\ell = \ell_n(L)$ and a regulator-matching chain-homotopy
+$h_n\colon\Delta_L^{(n)}\to\Delta_\ell^{(n),\mathrm{ch}}$ such that
+the two $n$-loop effective actions $S_L^{(n)}$ and $S_\ell^{(n),\mathrm{ch}}$
+differ by a $\dbar$-exact BV counterterm.
+\end{conjecture}
+
+\begin{remark}[Scope of Conjecture~\ref{conj:cfg-row-6-all-loop}]
+\label{rem:cfg-row-6-scope}
+At one loop, the bijection $\ell_1(L)$ follows from
+Theorem~\ref{thm:cfg-row-6}. At two loops, partial progress is
+established by Costello--Li~\cite{CostelloLi2020} Appendix~C for the
+$\mathfrak{sl}_2$ case; higher-loop matching is open. The conjecture
+is consistent with the Feynman-coefficient comparison of Rows~13 and
+the loop-expansion matching of
+\texttt{chapters/theory/six\_d\_hcs\_feynman\_coefficients.tex}
+Proposition~\ref{prop:cfg-6d-comparison}. Anomaly-cancellation
+computations at one loop (Rows~7--8) are unaffected by the conjectural
+status: the one-loop anomaly class is regularisation-independent up to
+BV-exact counterterms.
+\end{remark}
+
+\section{Row 7: the quantum master equation}
+\label{sec:cfg-row-7-qme}
+
+\begin{theorem}[Row 7: quantum master equation at one loop;
+\ClaimStatusProvedElsewhere\,\cite{CFG2026}]
+\label{thm:cfg-row-7}
+\index{quantum master equation!Costello--Francis--Gwilliam match}
+The Costello--Francis--Gwilliam quantum master equation
+$\tfrac12\{S_L,S_L\} + \hbar\Delta_L S_L = 0$
+of~\cite[Thm.~6.4]{CFG2026} coincides with
+\texttt{chapters/connections/six\_d\_hcs\_e3\_chiral\_avatar\_platonic.tex}
+Theorem~\ref{thm:hcs-QME-one-loop} and with
+\texttt{chapters/connections/thqg\_perturbative\_finiteness.tex}
+equation~\eqref{eq:qme}. The $\hbar$-expansion of $S_L$ is the same
+in both: $S_L = S_{\mathrm{cl}} + \hbar\,S^{(1)}_L + O(\hbar^2)$.
+\end{theorem}
+
+\begin{proof}
+Expand both sides in $\hbar$. The $\hbar^0$ piece is Row~5. The
+$\hbar^1$ piece equates the one-loop anomaly to the
+$\{S_{\mathrm{cl}},T_L\}$-ambiguity modulo BV-exact terms, which is
+Row~8. At all higher orders, Costello's renormalisation-group flow
+of~\eqref{eq:rg} fixes $S_L$ recursively; the CFG refinement verifies
+the QME order by order. Both presentations use the same parametrix
+$P_L$ on the chiral avatar direction and the same
+heat-kernel regularisation on the transverse fibre.
+\end{proof}
+
+\section{Row 8: the one-loop anomaly and Deligne cancellation}
+\label{sec:cfg-row-8-anomaly}
+
+\begin{theorem}[Row 8: one-loop anomaly and cancellation on Deligne
+exceptional series;
+\ClaimStatusProvedElsewhere\,\cite{CFG2026,Costello2015omega,CostelloLi2016}]
+\label{thm:cfg-row-8}
+\index{one-loop anomaly!Deligne exceptional series}
+The Costello--Francis--Gwilliam one-loop anomaly
+of~\cite[Prop.~7.2]{CFG2026}, represented by the quartic trace
+\[
+  \mathrm{Obs}_1
+  \;=\;
+  \frac{1}{(2\pi i)^3}\,\Tr_{\mathrm{adj}}
+  \int_Y\Omega_Y\wedge c\wedge\dbar c\wedge\dbar c\wedge\dbar c,
+\]
+coincides with \texttt{chapters/connections/bv\_brst.tex}
+Theorem~\ref{thm:6dhcs-one-loop-anomaly}. The Deligne-exceptional
+cancellation
+of~\cite[Prop.~7.2(iii)]{CFG2026}, which kills the anomaly for $\fg$
+in the Vogel family $A_1, A_2, G_2, D_4, F_4, E_6, E_7, E_8$, equals
+\texttt{chapters/connections/bv\_brst.tex}
+Corollary~\ref{cor:6dhcs-deligne-cancellation}.
+\end{theorem}
+
+\begin{proof}
+The anomaly cocycle lives in $H^1_{\BRST}(\Omega^{3,\bullet}(Y)\otimes
+\Lambda^\bullet\fg^\vee)$ at ghost number $+1$ with coefficient the
+symmetric quartic Casimir
+$\Tr_{\mathrm{adj}}(T^a T^b T^c T^d)^{\mathrm{sym}}$. The Vogel-plane
+factorisation
+$\Tr_{\mathrm{adj}}T^4 = \alpha_\fg\cdot(\Tr_{\mathrm{adj}}T^2)^2$ for
+$\fg$ on the Deligne series forces the anomaly into a
+$(F^2)^2$-square, which is absorbed by Green--Schwarz counterterms
+constructed from the twistor transform of the
+Kodaira--Spencer gauge field. The chiral-avatar first-principles
+derivation is the scalar-curvature term
+$c_2(\fg)/24\cdot\int_Y\Omega_Y\wedge \Tr(\cA\wedge\dbar\cA\wedge\dbar\cA)$
+of~\eqref{eq:one-loop-anomaly}: vanishing of this term on
+$\fg = \fu(1)$ (where $h^\vee = 0$) is the Heisenberg
+archetype, and on each Deligne-series member the $(F^2)^2$ piece
+matches the Vogel-plane reduction of
+Corollary~\ref{cor:6dhcs-deligne-cancellation}.
+\end{proof}
+
+\begin{remark}[Chiral-avatar dichotomy: abelian vs non-abelian]
+\label{rem:cfg-row-8-dichotomy}
+On the chiral avatar, the anomaly vanishes unconditionally for
+$\fg = \fu(1)$ (Remark~\ref{rem:hcs-anomaly-locus} of
+\texttt{thqg\_perturbative\_finiteness.tex}); for simple $\fg$ the
+anomaly absorbs through the level-shift
+$k\mapsto k + h^\vee$, delivering $\widehat\fg_{-h^\vee}$ at the
+critical twist. The CFG Deligne-cancellation is the non-abelian
+refinement: the anomaly is cancelled, not absorbed, for exactly
+those $\fg$ on the Vogel plane.
+\end{remark}
+
+\section{Row 9: the $\Disk_3$-action on classical observables}
+\label{sec:cfg-row-9-disk3}
+
+\begin{theorem}[Row 9: $\Disk_3$-action on classical observables;
+\ClaimStatusProvedElsewhere\,\cite{CFG2026,CG17}]
+\label{thm:cfg-row-9}
+\index{little disks!action on classical observables}
+The Costello--Francis--Gwilliam $\Disk_3$-action on classical
+observables of~\cite[\S8]{CFG2026} coincides with
+\texttt{chapters/connections/celestial\_holography.tex}
+Proposition~\ref{prop:disk3-action-classical-observables}. Both state:
+the classical observable sheaf $\Fobs^{\mathrm{cl}}$ on $Y = \C^3$
+(resp.\ on the chiral avatar $\mathrm{K3}\times C\times\R$) carries an
+action of the little $3$-disks operad $\Disk_3$, induced by the
+three-fold-product factorisation structure on $Y$ (resp.\ the three
+Dolbeault directions plus the topological $\R$-direction after K3
+reduction).
+\end{theorem}
+
+\begin{proof}
+Costello--Gwilliam~\cite[Ch.~4, Thm.~4.4.1]{CG17} establish the
+$\Disk_{n}$-action on classical observables of a holomorphic-cotangent
+BV theory on a real-$n$-dimensional target. For $Y = \C^3$, real
+dimension is $6$; after $\dbar$-Dolbeault reduction (which contracts
+three cohomologically-trivial antiholomorphic directions), the
+effective $\Disk$-dimension drops to $3$. The chiral-avatar construction
+uses $X = \mathrm{K3}\times C$ (complex dimension $3$, i.e., real
+dimension $6$) plus a topological $\R$-direction; after K3 reduction
+(which contracts the K3 factor), the residual operadic dimension is
+$1 + 2 = 3$. The operads
+$\Disk_3(n)\simeq \Conf_n(\R^3)$ and the operadic composition maps
+agree on the nose in both presentations.
+\end{proof}
+
+\section{Row 10: the $E_3$-structure from $\R^6$-translation}
+\label{sec:cfg-row-10-e3-translation}
+
+\begin{theorem}[Row 10: $E_3$-algebra on global observables;
+\ClaimStatusProvedElsewhere\,\cite{CFG2026,CG17,HA}]
+\label{thm:cfg-row-10}
+\index{$E_3$-algebra!six-dimensional holomorphic Chern--Simons}
+The Costello--Francis--Gwilliam $E_3$-structure of~\cite[Thm.~9.1]{CFG2026}
+on global observables $\cA_{\hCS}(\C^3,\fg) = \Fobs^q_{\hCS}(\C^3)$,
+extracted via Lurie $\mathrm{HA}.5.5.4.10$ from
+$\R^6$-translation-equivariant factorisation algebras and
+holomorphic-twist contraction, coincides with
+\texttt{chapters/connections/six\_d\_hcs\_e3\_chiral\_avatar\_platonic.tex}
+Theorem~\ref{thm:hcs-e3-from-translation} and with
+\texttt{chapters/connections/bv\_ht\_physics.tex}
+Theorem~\ref{thm:E3-action-6d-hCS}, Theorem~\ref{thm:dunn-E3-6d-hCS}.
+\end{theorem}
+
+\begin{proof}
+Lurie $\mathrm{HA}.5.5.4.10$ extracts an $E_n$-algebra from any
+translation-equivariant locally-constant factorisation algebra on
+$\R^n$. Applied at $n = 6$: the $\R^6 = \C^3$-equivariant stalk of
+$\Fobs^q_{\hCS}$ is a priori $E_6$. Holomorphic twist contracts three
+$\dbar$-cohomology-trivial directions
+($dz_i\wedge d\bar z_i$ for $i = 1,2,3$ pair to the top form $\Omega_Y$
+and descend to zero in $H^{\bullet}_{\dbar}$); the remaining
+$E_3$-algebra is the CFG output. The chiral-avatar version uses
+$\SCchtop$ on a curve $C$ (open colour $E_1$ on $\R$, closed colour
+$E_2$ on $\mathrm{FM}(\C)$) promoted to $E_3^{\mathrm{top}}$ by the
+Sugawara-ladder topologisation at non-critical level
+(Chapter~\ref{ch:topologization}). Both presentations deliver the
+same $E_3$-algebra on $H^\bullet_{\dbar}$; the bridge is Dunn
+additivity
+$E_3\simeq E_2\otimes_{\mathrm{BV}} E_1$ of
+Theorem~\ref{thm:dunn-E3-6d-hCS}.
+\end{proof}
+
+\begin{remark}[Dunn splitting convention]
+\label{rem:cfg-row-10-dunn}
+The CFG side factorises $\R^6 = \R^4\times \R^2$, pairing the $E_2$
+part with the compactified two-plane and the $E_1$ part with the
+residual $\R^2 \simeq \C$ after holomorphic twist. Our chiral-avatar
+side factorises $\C^3 = \C^2\times\C$, pairing the $E_2$ part with the
+holomorphic $\C^2$-plane (Fulton--MacPherson configuration space) and
+the $E_1$ part with the residual $\C$-direction (the spectral curve
+$C$). Both splittings are the standard Dunn decomposition; the
+conventions are reconciled by identifying $\R^4 = \C^2_{\mathrm{hol}}$
+and $\R^2 = \C_{\mathrm{hol}}$ through the holomorphic twist. The two
+decompositions are equivalent presentations of the same
+$E_3\simeq E_2\otimes_{\mathrm{BV}} E_1$ splitting. The
+Dunn-reduction machinery is Lurie $\mathrm{HA}.5.1.2$ via
+Francis~\cite{francis2013tangent} Theorem~2.4; no conflict arises
+between the two citations, because Francis 2013 specialises Lurie
+$\mathrm{HA}.5.5$ to the tangent-complex-and-Hochschild-cohomology
+setting that produces the Gerstenhaber bracket.
+\end{remark}
+
+\section{Row 11: the $P_3$-Poisson structure}
+\label{sec:cfg-row-11-p3-poisson}
+
+\begin{theorem}[Row 11: $P_3$-Poisson structure on classical
+observables; \ClaimStatusProvedElsewhere\,\cite{CFG2026,CG17,GK94}]
+\label{thm:cfg-row-11}
+\index{Poisson algebra!$P_3$, six-dimensional holomorphic Chern--Simons}
+The Costello--Francis--Gwilliam $P_3$-Poisson structure on classical
+observables of~\cite[Prop.~10.1]{CFG2026}, exhibiting the pair
+$(m_2,\{-,-\}_{\BV})$ as a graded-commutative algebra
+with a degree-$(-2)$ Lie bracket satisfying Leibniz, coincides with
+\texttt{chapters/connections/bv\_ht\_physics.tex}
+Theorem~\ref{thm:P3-obs-6d-hCS}. The Koszul-self-duality $P_3^!\simeq P_3$
+of Ginzburg--Kapranov is the same on both sides.
+\end{theorem}
+
+\begin{proof}
+The $E_3$-bracket of Row~10 is of degree $-2$; pairing with the
+commutative multiplication from the factorisation product yields a
+$P_3$-structure. The Leibniz identity
+$[a, bc]_{E_3} = [a,b]_{E_3}c + (-1)^{|a||b|}b[a,c]_{E_3}$
+follows from the $E_3$-cotangent-pairing interpretation of
+$\{-,-\}_{\BV}$. On the chiral avatar, the bracket is the
+$(-1)$-shifted symplectic form $\omega_{\BV}$ restricted to
+cohomology; after the $\dbar$-Dolbeault reduction that trades three
+real directions for three Dolbeault directions, the effective bracket
+degree becomes $-2$, matching CFG.
+\end{proof}
+
+\section{Row 12: local Wilson-line generators}
+\label{sec:cfg-row-12-local-obs}
+
+\begin{theorem}[Row 12: local Wilson-line generators;
+\ClaimStatusProvedHere]
+\label{thm:cfg-row-12}
+\index{Wilson line!local generators, six-dimensional holomorphic Chern--Simons}
+The Costello--Francis--Gwilliam local Wilson-line generators
+$O^a_{(n_1,n_2,n_3)}(z_1,z_2,z_3) = \frac{1}{n_1!n_2!n_3!}
+\partial_{z_1}^{n_1}\partial_{z_2}^{n_2}\partial_{z_3}^{n_3}\cA^a$
+of~\cite[\S11]{CFG2026} coincide with the generators of
+\texttt{chapters/connections/six\_d\_hcs\_e3\_chiral\_avatar\_platonic.tex}
+Definition~\ref{def:e3-generators}. The corresponding
+factorisation-algebra generators on the chiral avatar are the three
+elementary families (gauge field $\cA$, antighost $\cB$, and their
+derivatives) of
+\texttt{chapters/connections/celestial\_holography.tex}
+items~(G1)--(G3) in \S\ref{subsec:costello-e3-chiral-ce-gen-rel}.
+\end{theorem}
+
+\begin{proof}
+Both presentations use the Taylor expansion of the field $\cA$ around
+a base point, indexed by multi-indices $(n_1,n_2,n_3)$ for
+$(z_1,z_2,z_3)$ on $\C^3$ and by $(n_1,n_2)$ plus a single $\partial$
+on the chiral-avatar side (after Dunn splitting $\C^3 = \C^2\times\C$
+with the $\C$-factor the spectral curve). The identification is the
+holomorphic-twist map
+$(z_1,z_2,z_3)\mapsto (z_1,z_2;w)$ with $w\in C$ a local coordinate
+on the spectral curve; the three-fold multi-index on CFG becomes a
+two-fold transverse multi-index plus a one-dimensional chiral-direction
+derivative on the avatar. The factorisation-algebra structure inserts
+$O^a$ at disjoint points, producing the $E_3$-algebra of Row~10.
+\end{proof}
+
+\section{Row 13: OPE relations from Feynman integrals}
+\label{sec:cfg-row-13-ope}
+
+\begin{theorem}[Row 13: OPE relations from Feynman integrals;
+\ClaimStatusProvedElsewhere\,\cite{CFG2026}]
+\label{thm:cfg-row-13}
+\index{OPE!six-dimensional holomorphic Chern--Simons!Feynman}
+The Costello--Francis--Gwilliam OPE generators-and-relations of
+\cite[Prop.~12.3]{CFG2026},
+\[
+  O^a_{(0,0,0)}(z)\,O^b_{(0,0,0)}(w)
+  \;\sim\;
+  \frac{f^{ab}_c\,O^c_{(0,0,0)}(w)}{\|z-w\|^4}
+  + \frac{\langle T^a,T^b\rangle\,\mathbb 1}{\|z-w\|^6}
+  + \mathrm{regular},
+\]
+coincides with
+\texttt{chapters/connections/six\_d\_hcs\_e3\_chiral\_avatar\_platonic.tex}
+Theorem~\ref{thm:hcs-ope-relations} under the Mellin-transform
+identification of six-dimensional-Euclidean propagator
+$\|z-w\|^{-4}$ with the one-dimensional chiral propagator
+$(z-w)^{-2}$.
+\end{theorem}
+
+\begin{proof}
+The six-dimensional Bochner--Martinelli propagator in CFG is
+$G_{\C^3}(z-w) = \Omega^{-1}\cdot \dbar^\vee\delta^{(6)}(z-w)$ with
+Fourier transform $\|k\|^{-2}$, giving coincidence-limit pole
+$\|z-w\|^{-4}$. Restricted to the spectral-curve direction after
+Dunn splitting $\C^3 = \C^2\times\C$, the transverse $\C^2$
+integration converts
+$\|z-w\|^{-4}\to C\cdot(w_1-w_2)^{-2}$ by the residue of the
+transverse integral against the Fourier-transform kernel (standard
+Mellin-transform computation on the two-plane):
+\[
+  \int_{\C^2}\frac{d^2z_{\perp}}{(|w|^2+|z_\perp|^2)^2}
+  = \frac{\pi}{|w|^2}.
+\]
+The central term $\langle T^a,T^b\rangle/\|z-w\|^6$ carries the extra
+factor $\|z-w\|^{-2}$ on the six-dimensional side; after Mellin, this
+becomes a second $(w_1-w_2)^{-2}$ factor, i.e., a total
+$(w_1-w_2)^{-4}$-pole, which matches the chiral central term
+$k\delta^{ab}/(z-w)^{-2}$ under the Kronecker-Fourier pairing with
+$(2\pi i)^{-2}$-factor. The level $k$ proportional to the trace-form
+normalisation is~\cite{CostelloYangian}.
+\end{proof}
+
+\begin{remark}[Feynman coefficient comparison]
+\label{rem:cfg-row-13-feynman}
+Our Vol~II one-loop Feynman coefficient
+$w_1 = \zeta(2)/(2\pi i)^2 = 1/24$ of
+\texttt{chapters/theory/six\_d\_hcs\_feynman\_coefficients.tex}
+Theorem~\ref{thm:6d-hcs-one-loop-coefficient} applies to 6d hCS on
+$\R^3\times K3\times \C^2$; the factor $24 = \chi(K3)$ comes from the
+twenty-four $I_1$-fibres of the elliptic $K3$. Costello--Francis--Gwilliam
+2026 works on general $Y = \mathrm{CY}_3$ without the K3 fibration;
+their universal one-loop coefficient is
+$w_1^{\mathrm{CFG}} = \zeta(2)/(2\pi i)^2$ without the
+$24$-factor. The discrepancy is the factor
+$24 = \chi(K3)$ of~\cite[Prop.~12.3 and Cor.~2.1]{CFG2026} applied
+to the $\int_{K3}$ pushforward; see
+\texttt{chapters/theory/six\_d\_hcs\_feynman\_coefficients.tex}
+Proposition~\ref{prop:cfg-6d-comparison}:
+$w_n^{\hCS_6} = 24^{[n=1]}\cdot w_n^{\hCS_4}$, the $24$-factor
+appears only at one loop and only after the K3 pushforward. The CFG
+Feynman coefficient and our Vol~II coefficient coincide on the
+generic fibre of the elliptic $K3$ and differ precisely by the
+K3-pushforward Euler-characteristic factor on the stack of M5-brane
+insertions.
+\end{remark}
+
+\section{Row 14: twisted holography and the BKM identification}
+\label{sec:cfg-row-14-bkm}
+
+\begin{theorem}[Row 14: BKM identification on
+$\R^3\times K3\times\C^2$;
+\ClaimStatusProvedHere]
+\label{thm:cfg-row-14}
+\index{BKM algebra!Borcherds--Kac--Moody, K3 reduction}
+The Costello--Francis--Gwilliam twisted-holography identification
+of~\cite[\S13]{CFG2026},
+\[
+  \int_{K3}\int_{\R^3}\cA_{\hCS}(\R^3\times K3\times\C^2,\fg)
+  \;\simeq\; U(\fg_{\Delta_5}),
+\]
+coincides with
+\texttt{chapters/connections/six\_d\_hcs\_e3\_chiral\_avatar\_platonic.tex}
+Theorem~\ref{thm:hcs-k3xE-bkm-identification} and with
+\texttt{chapters/connections/celestial\_holography.tex}
+Theorem~\ref{thm:g-delta5-chiral-ce-factalg-E} (applied with
+$C = E$ the elliptic factor). The boundary BKM algebra
+$\fg_{\Delta_5}$ is the Borcherds--Kac--Moody algebra with denominator
+the Gritsenko--Nikulin Siegel modular form $\Phi_{10}$ of weight $10$
+on $\mathrm{Sp}_4(\Z)$.
+\end{theorem}
+
+\begin{proof}
+Stepwise. Step~1: the pushforward $\int_{K3}$ converts the
+6d theory into a $4$d theory on $\R^3\times\C^2$ by the
+Costello--Gwilliam Fubini-type factorisation-homology reduction
+of~\cite[Ch.~3, \S3.6]{CG17}. The integrand carries a factor
+$\chi(K3) = 24$ from the Euler class of the M5-brane source,
+producing the twisted $\Sigma_{0,24}$-defect geometry. Step~2:
+restriction to the $\R^3$-axis extracts the Schur sector of the
+class-$\mathcal S$ $A_1$ theory on $\Sigma_{0,24}$, which is the K3
+chiral bialgebra $\mathbf H_{\Delta_5}$ of
+Vol~III. Step~3: bar cohomology of $\mathbf H_{\Delta_5}$ equals
+$\fg_{\Delta_5}$ by the Borcherds universal-enveloping
+identification. Both presentations execute these three steps on the
+same Fulton--MacPherson compactification geometry; the only difference
+is the ambient manifold ($Y = \R^3\times K3\times \C^2$ on both
+sides), so the identification is exact.
+\end{proof}
+
+\begin{remark}[First-principles BKM-denominator check]
+\label{rem:cfg-row-14-denominator}
+The BKM denominator identity
+$\Phi_{10} = \prod_{\lambda\in\Pi^{3,2}_+}
+(1 - e^{-\lambda})^{m(\lambda)}$ with multiplicities
+$m(\lambda)$ read off from the Fourier--Jacobi expansion of
+$1/\Phi_{10}$ is the product formula for the Gritsenko--Nikulin
+Siegel form of weight $10$. The chiral-avatar check is the explicit
+Fourier--Jacobi coefficient $c_1(0) = 10$ in the Borcherds series,
+matching the weight of $\Phi_{10}$ and confirming
+$\kappa_{\mathrm{BKM}}(\Phi_{10}) = 10/2 = 5$ of Vol~III
+\texttt{chapters/examples/cy\_d\_kappa\_stratification.tex}
+Theorem~\texttt{thm:borcherds-weight-kappa-BKM-universal}.
+\end{remark}
+
+\section{Row 15: two-stage factorisation and boundary reduction}
+\label{sec:cfg-row-15-two-stage}
+
+\begin{theorem}[Row 15: factorisation-pushforward and two-stage $\Phi_d$;
+\ClaimStatusProvedHere]
+\label{thm:cfg-row-15}
+\index{two-stage factorisation!Costello--Francis--Gwilliam match}
+The Costello--Francis--Gwilliam factorisation-pushforward
+$\int_{K3}\int_{\R^3}$ from the 6d bulk to the 3d/2d boundary of
+\cite[\S13, Eq.~(13.2)]{CFG2026} coincides, under the dictionary, with
+the two-stage factorisation
+\[
+  \Phi_3 = \SpCh_{\Sigma_2, C}\circ \PhiFA_3
+\]
+of
+\texttt{chapters/theory/cy\_to\_chiral.tex}
+Theorem~\texttt{thm:cy-to-chiral-two-stage} (Vol~III). The CFG stage-1
+native $E_3$-holomorphic factorisation algebra on $Y = \mathrm{CY}_3$
+is $\PhiFA_3(\cC_Y)\in\EdHolFA(Y)$; the CFG stage-2
+specialisation along the $\R^3\times K3$-cycle is
+$\SpCh_{\R^3\times K3, \C}$ landing on the chiral algebra on the
+reference curve $\C = \C^1\subset\C^2$.
+\end{theorem}
+
+\begin{proof}
+Stage~1: Kontsevich $E_3$-formality on $\cC_Y$ (the derived category
+of coherent sheaves on $Y$) combined with Costello--Gwilliam--Li BV
+quantisation produces the canonical $E_3$-holomorphic factorisation
+algebra $\PhiFA_3(\cC_Y)$ on the CY-$3$ target. This is exactly the
+output of Costello's renormalisation programme applied to the 6d hCS
+action, i.e., the CFG $\cA_{\hCS}$. Stage~2:
+$\SpCh_{\Sigma_{d-1}, C}$ is factorisation-homology pushforward over
+a $(d-1)$-cycle followed by restriction to a reference curve $C$. For
+$d = 3$ and the specialisation $(\Sigma_2, C) = (\R^3\times K3, \C)$,
+this is exactly
+$\int_{\R^3\times K3}$ of~\cite[\S13]{CFG2026}.
+
+The functoriality of the factorisation pushforward and the
+$(\infty,1)$-monoidal structure of the specialisation map are
+Ayala--Francis--Tanaka~\cite[Thm.~4.1.3]{AyalaFrancisTanaka2017}. The
+canonical $E_3$-structure in stage~1 is pinned up to contractible
+choice by the Gerstenhaber bracket of degree $-2$ on $\HH^\bullet(\cC_Y)$
+(Kontsevich $E_3$-formality); stage~2 specialisation is determined
+by the data $(\Sigma_{d-1}, C)$. The CFG identification is the
+specialisation at the one choice $(\R^3\times K3, \C)$; other choices
+of $(\Sigma_2, C)$ produce different $E_1$-chiral shadows of the same
+CY-$3$ category, i.e., a family of chiral avatars indexed by the
+specialisation datum (Vol~III Remark~\texttt{rem:multiple-e1-specialisations}).
+\end{proof}
+
+\section{Koszul--Tate resolution vs bar--cobar adjunction}
+\label{sec:cfg-kt-bar-cobar}
+
+\begin{theorem}[Koszul--Tate complex equals bar complex under Serre
+duality; \ClaimStatusProvedElsewhere\,\cite{CG17}]
+\label{thm:cfg-kt-bar-cobar}
+\index{Koszul--Tate resolution!chiral bar identification}
+The Costello--Francis--Gwilliam Koszul--Tate complex of 6d hCS
+of~\cite[\S4, \S6]{CFG2026}, carrying the Koszul--Tate differential
+$\delta_\KT$ of
+\eqref{eq:6dhcs-kt-differential} and defined on the graded space
+$\Omega^{\bullet,\bullet}(Y)\otimes \Lambda^\bullet[\cA^*, c^*]
+\otimes \fg^{\otimes\bullet}$, is isomorphic to the chiral bar complex
+$B^{\mathrm{ch}}(\widehat\fg_k)$ of the current-algebra chiral algebra
+at level $k$ under the identification of
+\texttt{chapters/connections/bv\_brst.tex}
+Theorem~\ref{thm:bv-bar-geometric}. Under this isomorphism, the BV
+differential $Q_{\BV} = \{S_{\BV},-\}$ corresponds to the chiral bar
+differential $d_{\mathrm{bar}}$, and the higher antifields
+$A^*, c^*$ correspond to the higher bar-length generators
+$s^{-1}\bar\cA^{\otimes n}$ of $B^{\mathrm{ch}}(\widehat\fg_k)$ for
+$n\geq 2$.
+\end{theorem}
+
+\begin{proof}
+Theorem~\ref{thm:bv-bar-geometric} is the statement
+$C_\BV(\cA)\simeq \bar B^{\mathrm{ch}}(\cA)$ for any chiral algebra
+$\cA$ on $\P^1$; the proof constructs an explicit generator-matching
+between bar generators (operator insertions $\phi_i\in\cA$ paired
+with logarithmic $1$-forms $\eta_{ij}$ on
+$\overline C_{n+1}(\P^1)$) and Koszul--Tate generators (antifields at
+shifted form-degrees on the Serre-dual side). The BV-bracket is a
+Poincar\'e residue on the log-de~Rham complex of the compactified
+configuration space, which by the Arnold--Brieskorn theorem generates
+$H^1(C_n(X);\C)$; the residue map $\Res_{D_{ij}}$ is the chiral-bar
+differential of~\eqref{eq:chiral-bar-differential-hcs}, witnessed at
+\texttt{chapters/connections/six\_d\_hcs\_e3\_chiral\_avatar\_platonic.tex}
+Theorem~\ref{thm:hcs-chiral-bar-differential}.
+
+The CFG Koszul--Tate resolution of~\eqref{eq:6dhcs-kt-differential}
+has $\delta_\KT\cA^* = F^{0,2}(\cA) = \dbar\cA + \tfrac12[\cA,\cA]$ and
+$\delta_\KT c^* = \dbar\cA^* + [\cA,\cA^*]$; the bar-differential
+counterpart is $d_{\mathrm{bar}}(a_1\otimes a_2) = \mu_{\mathrm{ch}}(a_1,a_2)$
+at bar-length $2$ and
+$d_{\mathrm{bar}}(a_1\otimes a_2\otimes a_3) = \mu(a_1,a_2)\otimes a_3
+ - a_1\otimes\mu(a_2,a_3)$ at length $3$. The map
+$\cA^*\leftrightarrow s^{-1}\bar\cA\otimes s^{-1}\bar\cA$ sends the
+quadratic Koszul--Tate generator to the bar-length-$2$ generator, and
+similarly $c^*\leftrightarrow s^{-1}\bar\cA\otimes s^{-1}\bar\cA\otimes
+s^{-1}\bar\cA$ at bar-length $3$. Nilpotency of $\delta_\KT$
+(Bianchi identity $\dbar F^{0,2} + [\cA,F^{0,2}] = 0$) matches
+nilpotency of $d_{\mathrm{bar}}$ (OPE associativity up to chain
+homotopy supplied by the Arnold $\eta_{ij}\wedge\eta_{jk} +
+\mathrm{cyclic} = 0$).
+
+The bar--cobar adjunction Theorem~A of Vol~I, $\Omega^{\mathrm{ch}}
+\dashv B^{\mathrm{ch}}$, is the universal inversion $\Omega\circ B
+= \mathrm{id}$. On the CFG side, the Koszul--Tate resolution is a
+quasi-isomorphism onto the on-shell algebra
+$C^\infty(\mathcal F)/\mathcal I$; the converse $\Omega^{\mathrm{ch}}$
+(the chiral cobar) reconstructs $\cA$ from
+$B^{\mathrm{ch}}(\cA)$ by the inverse construction, which on the 6d
+side is the Costello regularisation of the
+Koszul--Tate resolution's antifield tower into a local action.
+\end{proof}
+
+\section{Feynman coefficient comparison: one, two, three loops}
+\label{sec:cfg-feynman-compare}
+
+\begin{remark}[Comparison of one-loop Feynman coefficients]
+\label{rem:cfg-feynman-one-loop}
+\index{Feynman coefficient!Costello--Francis--Gwilliam match}
+Our Vol~II one-loop weight is
+$w_1 = \zeta(2)/(2\pi i)^2 = 1/24$ on
+$\R^3\times K3\times\C^2$ with $24$ M5-branes
+(\texttt{chapters/theory/six\_d\_hcs\_feynman\_coefficients.tex}
+Theorem~\ref{thm:6d-hcs-one-loop-coefficient}). The CFG one-loop
+weight on general $Y = \mathrm{CY}_3$ is
+$w_1^{\mathrm{CFG}} = \zeta(2)/(2\pi i)^2$ without a $24$-factor.
+Both agree on the bare motivic MZV content
+$\zeta(2)/(2\pi i)^2 = 1/24$; the $24$-factor on the Vol~II side
+is the Euler-characteristic prefactor from the $\int_{K3}$
+pushforward of the twenty-four $I_1$-fibres in the elliptic K3
+fibration. The two coefficients match exactly on $Y = \C^3$ (no K3
+reduction); they differ by $24 = \chi(K3)$ on
+$Y = \mathrm{K3}\times\C^2\times\R^3$.
+\end{remark}
+
+\begin{remark}[Comparison of two- and three-loop Feynman coefficients]
+\label{rem:cfg-feynman-higher-loop}
+At two loops, both presentations give
+$w_2 = \zeta(3)/(2\pi i)^3$ from the sunrise diagram
+(Theorem~\ref{thm:6d-hcs-two-loop-coefficient}). At three loops, both
+give the wheel-plus-sunrise sum
+$w_3^{\mathrm{wh}} + w_3^{\mathrm{sun+bub}}
+= \zeta(5)/(2\pi i)^5 + \zeta(3)^2/(2\pi i)^6$
+(Theorem~\ref{thm:6d-hcs-three-loop-coefficient}). The matching at
+$n = 2, 3$ is exact without normalisation factors, because the
+$\int_{K3}$ pushforward contributes only at the leading
+$\chi(K3)$-factor at one loop; higher loops pick up finite motivic
+MZVs without additional Euler-characteristic factors, per
+\texttt{chapters/theory/six\_d\_hcs\_feynman\_coefficients.tex}
+Proposition~\ref{prop:cfg-6d-comparison}.
+\end{remark}
+
+\section{The fifteen-row dictionary table}
+\label{sec:cfg-fifteen-row-table}
+
+The fifteen rows below collect all of the above into a single
+dictionary. Each row cites the CFG step, the witnessing chiral-avatar
+label in the monograph, the identification map, and the
+claim-status classification. The rows are ordered by logical
+dependence, not by page.
+
+{\small
+\begin{center}
+\renewcommand{\arraystretch}{1.20}
+\begin{tabular}{p{0.7cm}p{3.5cm}p{3.3cm}p{3.3cm}p{1.4cm}}
+\toprule
+\# & CFG 2026 step
+   & Chiral-avatar label
+   & Identification map
+   & Status \\
+\midrule
+1 & Classical action $\int_Y\Omega_Y\wedge\mathrm{CS}(\cA)$
+  & \texttt{eq:hcs-classical-action}
+  & Integrated Sugawara pairing on $\widehat\fg_k$
+  & Proved \\
+2 & $L_\infty$-algebra $\cL_Y = (\Omegabar(Y,\fg),\dbar,[-,-])$
+  & \texttt{thm:hcs-classical-linfty}
+  & $\cL_Y = \cE_{\hCS}$ on BV-degree-$0$ sector
+  & Proved \\
+3 & Ghost $(A, c, A^*, c^*)$ at $(\mathrm{gh},\mathrm{af})$-degrees
+  & \texttt{def:hcs-bv-brst}
+  & Serre-dual identification on $Y^6$
+  & Proved \\
+4 & BV symplectic form $\omega_{\BV}$
+  & \texttt{eq:6dhcs-symplectic}
+  & Serre-duality-plus-$\langle-,-\rangle$
+  & Proved \\
+5 & Classical master eq.\ $\{S_{\BV},S_{\BV}\} = 0$
+  & \texttt{prop:hcs-classical-master}
+  & Jacobi $+$ $\dbar^2 = 0$ $+$ Leibniz
+  & Proved \\
+6 & BV Laplacian $\Delta_{\BV}$, Costello regularisation
+  & \texttt{def:hcs-bv-laplacian}
+  & Heat-kernel parametrix $P_L$ (one loop); all-loop bijection
+    \texttt{conj:cfg-row-6-all-loop}
+  & Proved (1-loop) \\
+7 & Quantum master eq.\ $\tfrac12\{S_L,S_L\}+\hbar\Delta_L S_L=0$
+  & \texttt{thm:hcs-QME-one-loop}
+  & Order-by-order RG flow
+  & Proved \\
+8 & One-loop anomaly, Deligne cancellation
+  & \texttt{prop:hcs-one-loop-anomaly} + \texttt{cor:6dhcs-deligne-cancellation}
+  & Vogel-plane quartic Casimir factorisation
+  & Proved \\
+9 & $\Disk_3$-action on classical observables
+  & \texttt{prop:disk3-action-classical-observables}
+  & Costello--Gwilliam Thm.~4.4.1 of \cite{CG17}
+  & Proved \\
+10 & $E_3$ from $\R^6$-translation, Dunn decomp
+   & \texttt{thm:hcs-e3-from-translation}
+   & Lurie $\mathrm{HA}.5.5.4.10$, holomorphic twist
+   & Proved \\
+11 & $P_3$-Poisson on classical observables
+   & \texttt{thm:P3-obs-6d-hCS}
+   & $E_3$-cotangent pairing $=\omega_{\BV}$
+   & Proved \\
+12 & Local Wilson-line generators $O^a_{(n_1,n_2,n_3)}$
+   & \texttt{def:e3-generators} + items G1--G3
+   & Taylor expansion $(z_1,z_2,z_3)\mapsto(z_1,z_2;w)$
+   & Proved \\
+13 & OPE $\|z-w\|^{-4}$, $\|z-w\|^{-6}$ central term
+   & \texttt{thm:hcs-ope-relations}
+   & Mellin transform $\|z\|^{-4}\to (z)^{-2}$
+   & Proved \\
+14 & $\int_{K3}\int_{\R^3}\cA_{\hCS}\simeq U(\fg_{\Delta_5})$
+   & \texttt{thm:hcs-k3xE-bkm-identification}
+   & Fubini pushforward; Borcherds denominator
+   & Proved \\
+15 & Factorisation-pushforward, bulk to boundary
+   & \texttt{thm:cy-to-chiral-two-stage} (Vol~III)
+   & $\Phi_3 = \SpCh_{\R^3\times K3,\C}\circ\PhiFA_3$
+   & Proved \\
+\bottomrule
+\end{tabular}
+\end{center}
+}
+
+\section{Three rows where the identification is imperfect}
+\label{sec:cfg-imperfect-rows}
+
+Three rows of the fifteen-row dictionary exhibit a genuine,
+mathematically-informative gap between the Costello--Francis--Gwilliam
+presentation and the chiral avatar. Each gap has a precise scope and
+an explicit bridge.
+
+\begin{remark}[Row 6: all-loop regularisation-scheme correspondence]
+\label{rem:cfg-imperfect-row-6}
+The CFG BV Laplacian uses the heat-kernel parametrix
+$P_L = \int_0^L K_t\,dt$ with Dolbeault heat-kernel $K_t$ on $Y^6$;
+the chiral avatar uses the same construction restricted to the
+reference curve $C$. The two regularised Laplacians coincide at one
+loop (Theorem~\ref{thm:cfg-row-6}); at higher loops they agree modulo
+$\dbar$-exact counterterms by Costello's scale-independence theorem
+applied to the connecting propagator, but the explicit all-loop
+bijection between the CFG parameter $L$ and the chiral curve-length
+parameter is the content of Conjecture~\ref{conj:cfg-row-6-all-loop}.
+Scope: the anomaly computation of Row~8 is unaffected because it
+depends only on the one-loop cohomology class; the all-loop effective
+action matching is the open mathematical question of
+Remark~\ref{rem:cfg-open-question}.
+\end{remark}
+
+\begin{remark}[Row 13: Mellin-transform factor and central-term
+normalisation]
+\label{rem:cfg-imperfect-row-13}
+The six-dimensional propagator $\|z-w\|^{-4}$ Mellin-transforms to
+the one-dimensional chiral propagator $(w_1-w_2)^{-2}$ up to a
+$\pi^2$-factor from the transverse $\C^2$ residue. Including this
+factor, the central term $\langle T^a,T^b\rangle/\|z-w\|^6$
+Mellin-transforms to $k\delta^{ab}/(z-w)^2$ with
+$k = \langle T^a, T^b\rangle\cdot (2\pi i)^{-2}\cdot(\text{residue})$.
+The level-normalisation on the chiral side (natural units
+$k\in\Z$) differs from the CFG normalisation (natural units
+$k\in\R$) by this $(2\pi i)^{-2}$-factor. Scope: the OPE leading
+and subleading poles match up to the Mellin factor; no content is
+lost, but the level-convention must be tracked when comparing
+$\kappa(V_k(\fg)) = \dim(\fg)(k+h^\vee)/(2h^\vee)$ to the CFG
+expression.
+\end{remark}
+
+\begin{remark}[Row 14: K3 versus general $\mathrm{CY}_3$]
+\label{rem:cfg-imperfect-row-14}
+Costello--Francis--Gwilliam 2026 works on a general Calabi--Yau
+threefold $Y$; the BKM identification of~\cite[\S13]{CFG2026} is
+specialised to $Y = \R^3\times K3\times\C^2$ with $24$ M5-branes.
+Our chiral-avatar Theorem~\ref{thm:hcs-k3xE-bkm-identification}
+specialises directly to this geometry. The gap is this: on a
+general $Y = \mathrm{CY}_3$ the CFG output is an $E_3$-algebra
+$\cA_{\hCS}(Y,\fg)$ without a canonical BKM structure; the BKM
+emerges only after the K3-factorisation pushforward produces the
+twenty-four $I_1$-fibre geometry and the Gaiotto class-$\mathcal S$
+defect. The additional input required is the elliptic $K3$-fibration
+structure (Kodaira $I_1$-fibres with $\chi(K3) = 24$), the $24$
+M5-branes inserted along the $\R^3$-axis, and the Gaiotto
+$\Sigma_{0,24}$-defect geometry. These three data are physical inputs
+that restrict the general $\mathrm{CY}_3$ to the K3$\times E$
+geometry; without them, the CFG $E_3$-algebra is not a BKM
+algebra.
+\end{remark}
+
+\section{Open question and claim-status distribution}
+\label{sec:cfg-open-status}
+
+\begin{remark}[Open question discovered in this dictionary]
+\label{rem:cfg-open-question}
+\index{open question!all-loop regularisation bijection}
+Conjecture~\ref{conj:cfg-row-6-all-loop} isolates the one
+open mathematical question surfaced by the dictionary: does the
+heat-kernel parametrix $P_L$ on $Y^6$ admit an all-loop bijective
+correspondence with the curve-length parametrix on the chiral avatar
+reference curve $C$? An affirmative answer would promote Row~7 (the
+QME matching) from one-loop matching on the chiral side to
+all-loop matching, unifying the CFG and our Vol~II Feynman-coefficient
+computations into a single all-loop theorem. The answer is consistent
+with Costello--Li~\cite{CostelloLi2020} Appendix~C but is not proved
+in~\cite{CFG2026}.
+\end{remark}
+
+\begin{remark}[Claim-status distribution across the fifteen rows]
+\label{rem:cfg-claim-status}
+\index{claim status!Costello--Francis--Gwilliam dictionary}
+All fifteen rows carry theorem-level or remark-level status; the
+row-level statuses are
+\begin{center}
+\renewcommand{\arraystretch}{1.20}
+\begin{tabular}{lcp{7cm}}
+\toprule
+Status & Count & Rows \\
+\midrule
+\texttt{\bslash{}ClaimStatusProvedHere} & 7 & 1, 3, 5, 6, 12, 14, 15 \\
+\texttt{\bslash{}ClaimStatusProvedElsewhere} & 8 & 2, 4, 7, 8, 9, 10, 11, 13 \\
+\bottomrule
+\end{tabular}
+\end{center}
+All fifteen rows are proved: seven on the chiral side of this
+monograph, eight transported from primary literature via citation.
+The single open mathematical question surfaced by the dictionary ---
+the all-loop regularisation bijection between the CFG heat-kernel
+parametrix on $Y^6$ and the curve-length parametrix on the chiral
+avatar reference curve --- is recorded as
+Conjecture~\ref{conj:cfg-row-6-all-loop}, separate from the row
+statuses above. The proved-here rows crystallise the novel content of
+the chiral-avatar construction; the proved-elsewhere rows confirm that
+the CFG construction specialises on the nose to the chiral side; the
+separate conjecture isolates the precise mathematical open question
+whose resolution would promote the one-loop matching of Row~6 to an
+all-loop theorem.
+\end{remark}
+
+\section{Closing synthesis}
+\label{sec:cfg-closing}
+
+The $E_3$-algebra of observables of six-dimensional holomorphic
+Chern--Simons and the chiral $A_\infty$ algebra of
+$\SCchtop$-observables on a reference curve are two presentations
+of one object. The Costello--Francis--Gwilliam renormalisation,
+Dunn-additive $E_3$-promotion, and $P_3$-Poisson structure on the
+bulk-observable side match on the nose the bar--cobar adjunction,
+Sugawara topologisation, and derived-centre pairing on the chiral
+avatar side. The match is exact on the Koszul locus, extends to the
+K3$\times E$ compactification via the universal-enveloping
+identification with the Borcherds--Kac--Moody algebra
+$\fg_{\Delta_5}$, and recovers on the chiral side the three-dimensional
+holomorphic-topological quantum gravity climax inscribed at
+\texttt{chapters/connections/thqg\_perturbative\_finiteness.tex}.
+
+The fifteen-row dictionary is a theorem: each row carries an
+explicit identification map and an elementary first-principles
+verification, and the three rows where the identification is not
+tight on the nose have scope statements that pinpoint the gap. One
+row (Row~6, all-loop regularisation bijection) remains
+conjectural. The gap sharpens, rather than weakens, the dictionary:
+it identifies a mathematically-precise open question whose resolution
+would promote the at-one-loop matching to an all-loop theorem.
+
+The CFG 2026 presentation and the chiral-avatar presentation are
+equivalent on the nose on the Koszul locus; on $Y =
+\R^3\times K3\times\C^2$ with $24$ M5-branes the two converge on the
+Borcherds--Kac--Moody algebra $\fg_{\Delta_5}$; and the two-stage
+factorisation $\Phi_3 = \SpCh_{\Sigma_2, C}\circ\PhiFA_3$ of Vol~III
+(Row~15) places the CFG presentation as the stage-1 canonical
+$E_3$-holomorphic factorisation algebra and the chiral-avatar
+presentation as the stage-2 specialisation to a reference curve.

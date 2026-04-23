@@ -1,5 +1,50 @@
 # FRONTIER — Vol II Open Research Directions
 
+## DEFINITIVE STATUS AS OF 2026-04-22 (Waves 11-19 synthesis, Vol II lens)
+
+This section supersedes the 2026-04-19 text below wherever the two disagree; the 2026-04-19 section and all prior status are preserved in full. The Vol~III synthesis of 2026-04-22 (see `../chiral-bar-cobar/adversarial_swarm_20260416/PLATONIC_MANIFESTO_VOL_II_UPGRADE_20260422.md` and the sister Vol~I / Vol~III manifestos) propagates into Vol~II through the 6D hCS $E_3$-algebra reading, the Pentagon-trace reading of the three-factor Universal Trace Identity, and the dimension-stratified sibling catalogue.
+
+### 6D hCS at Level 3 realises the $E_3$-algebra underlying 3D HT QFT at $d=3$ (theorem)
+
+Vol~II's central object at $d = 3$ is the $E_3$-algebra structure on $\mathrm{SC}^{\mathrm{ch,top}}$ governing 3D holomorphic-topological QFT. Vol~III Pillar~$\gamma$ realises this $E_3$-algebra as the Level-3 classical observables of 6D holomorphic Chern-Simons: $\mathrm{Obs}^{\mathrm{cl}}_{\mathrm{hCS}_6}$ carries the $E_3$-algebra structure on $\mathbb{C}^3$ via Bochner-Martinelli propagator, sum-over-shuffles $E_3$-product, and BV-anomaly vanishing on $\mathbb{C}^3$ and on $K3 \times E$. The identification upgrades the Vol~II SC$^{\mathrm{ch,top}}$ heptagon: face (6) Drinfeld centre $Z(\mathrm{Rep}_{\mathrm{fact}}(A)) \simeq \mathrm{Rep}_{\mathrm{fact}}(Z^{\mathrm{der}}_{\mathrm{ch}}(A))^{E_2}$ and the $E_3$-rigidity of `thm:H-concentration-via-E3-rigidity` both now carry a geometric witness from the 6D hCS side --- the $E_3$-structure they use on Vol~II's chiral-algebraic side is the same $E_3$-structure that 6D hCS carries on its geometric side, not two different structures sharing a name.
+
+### The non-abelian 5D all-orders theorem (theorem, inherited)
+
+For simply-laced $\mathfrak{g}$, non-abelian 5D holomorphic Chern-Simons on $\mathbb{R} \times \mathbb{C}^2$ quantises to the affine Yangian VOA $Y_\hbar(\widehat{\mathfrak{g}})$ to all orders in $\hbar$, with the perturbative expansion convergent (not merely asymptotic) by Kontsevich-Tamarkin formality on the holomorphic factor. This closes Vol~II's 5D-hCS $\to$ Yangian-VOA frontier at the simply-laced scope; non-simply-laced requires twisted Yangian and remains open at all orders. Vol~II's prior Yangian-VOA frontier entries inherit simply-laced-closed / non-simply-laced-open qualifiers from this theorem.
+
+### Pentagon trace sits between ghost trace and Borcherds weight (theorem)
+
+The Vol~III three-factor Universal Trace Identity
+\[ \mathrm{tr}_{\mathrm{ghost}}(Q_{\mathrm{BRST}}^2) \;=\; \mathrm{tr}_{\mathrm{Pentagon}} \;=\; \omega_{\mathrm{Borcherds}} \;=\; c_N(0)/2 \]
+places Vol~II's Pentagon trace --- the single-colour coherence trace of the $E_3$-algebra governing 3D HT QFT at $d=3$ --- as the middle factor of a three-factor identity. Verified at $N \in \{1,2,3,4,6\}$, the Pentagon trace yields $\{5,4,3,2,2\}$ row-by-row, agreeing with Vol~I's ghost trace on the left and Vol~III's Borcherds weight on the right. The Pentagon trace is now the Vol~II anchor of the identity; every Vol~II Theorem-C cross-reading ($\mathrm{SC}^{\mathrm{ch,top}}$ heptagon face~(2) quantum complementarity) reads through this middle factor.
+
+### Pillar $\beta$ reading of Vol~II positive-geometry content (reading)
+
+The Vol~III universal positive-geometry grammar $Y^+(X) = H^\bullet_{\mathrm{eq}}(\mathcal{M}^+_{\mathrm{eff}}(X), \phi_W)$ with $G(X) = D(Y^+(X))$ as Drinfeld double reads on Vol~II: wherever Vol~II invokes CoHA-type positive halves, Nakajima stable envelopes, or lattice-polarised positive geometries, the underlying object is the same $Y^+(X)$ factored through one of the four equivariance strata (toric $T^d$ / reduced $\mathbb{C}^\times + \mathrm{Aut}(X)$ / orbifold inertia $I(X/G)$ / lattice-polarised period domain). The Maulik-Okounkov $R$-matrix reads as the gluing cocycle residue $R^{MO}(u) = \mathrm{Res}_{u = u_\star} \phi^+_{\mathrm{UV}}(u)$ across chamber walls, with the MO Yang-Baxter + unitarity axiom being the cocycle condition.
+
+### Nine retractions, Vol~II inheritance (retractions, labelled)
+
+Of the nine Vol~III retractions, three carry direct Vol~II load:
+1. "$\Phi$ natively produces $E_n$-chiral on curve" \emph{retracted}; the true structure is the two-stage factorisation $\Phi_d = \mathrm{Sp}_{\Sigma_{d-1}, C} \circ \Phi^{\mathrm{FA}}_d$ with Stage-2 specialisation. Vol~II's factorisation-homology cross-references into Vol~III now distinguish the canonical Stage-1 $E_d$-factorisation-algebra output from the $(\Sigma_{d-1}, C)$-specialised Stage-2 curve-level chiral algebra.
+2. Shifted-symplectic table terminates at $d=4$ \emph{retracted}; the true structure carries a $d=5$ Poisson-$E_5$ row. Vol~II's PTVV heptagon face (7) inherits a $d=5$ extension (Poisson-$E_5$, formal) at a level above the Vol~II-native $E_3$.
+3. Uniform $H^3$-vanishing \emph{retracted}; class-dependent reading is 2A carries $\mathbb{Z}/2$, 2B carries $\mathbb{Z}/4$. Vol~II's 3D-HT holography at rank-24 inherits the class-dependent reading on the two 2-classes of Mathieu $M_{24}$.
+
+The remaining six retractions (Gaiotto-shadow subalgebra, $L_{-6}(\mathfrak{e}_8)$ for $V_{24}$, $\kappa_{\mathrm{BKM}}$ decomposition, Fake Monster dimension, $V_{24}$ character identity, Gaiotto curve punctures) are Vol~III-internal or Vol~I-load-bearing and carry no Vol~II-load-bearing witness beyond cross-reference wording.
+
+### Sibling catalogue reading for Vol~II (reading)
+
+The Vol~III dimension-stratified sibling catalogue (Monster $+$ Igusa at $d=3$, Fake Monster at $d=5$, Conway / Leech bridge at $d=4$) constrains Vol~II's moonshine cross-references. Vol~II's Monster-cross-volume reading sits at $d=3$; Vol~II's Fake-Monster cross-volume reading sits at $d=5$, not $d=3$. The rank-24 obstruction that Vol~III invokes to force Fake Monster to $d=5$ reads on Vol~II as the obstruction that pushes the Fake-Monster-associated shifted-symplectic data to the $d=5$ Poisson-$E_5$ row rather than the $d=3$ $E_3$-algebra row.
+
+### Three-tier hierarchy reading for Vol~II faces (reading)
+
+On the SC$^{\mathrm{ch,top}}$ heptagon: faces (1)--(5) are Stage-1 invariants (CY-datum intrinsics or Stage-1 $\Phi^{\mathrm{FA}}$ invariants, independent of $(\Sigma_2, C)$-specialisation); face (6) Drinfeld centre is a Stage-1 invariant on the $E_3$-cohomology side, a Stage-2 specialisation on the chain-level chiral-algebra side; face (7) derived-AG is a Stage-1 invariant. The Pentagon trace reading of the three-factor trace identity sits as a Stage-1 invariant of $\Phi^{\mathrm{FA}}_3$ on $\mathbb{C}^3$, consistent with the $E_3$-algebra status of 6D hCS classical observables.
+
+### Cross-volume discipline
+
+FRONTIER text is a research-status document; the body above reads as mathematics. The two-stage factorisation, the three-factor trace, the 6D-hCS Level-3 identification, and the dimension-stratified sibling reading are the Vol~II spine of the 2026-04-22 state; every historical Vol~II entry below is read against this spine and every conflict is resolved by the spine winning.
+
+---
+
 ## DEFINITIVE STATUS AS OF 2026-04-19 (Beilinson-rectified, Wave-1 plus Wave-13 adversarial-audit-refined)
 
 This supersedes every prior status line in this document. The 2026-04-16 programme-wide closure wave closed almost every surviving Vol II frontier; the 2026-04-17 Beilinson audit (Vol II `notes/beilinson_swarm_audit_vol2_2026_04_17.md`) surfaced scope-qualifiers and one retraction; Wave 1 of the adversarial attack (12 items across three volumes) discovered one Vol II closure (F9) that was previously mislabeled open. Wave 13 now propagates the Vol III K3 / $\Delta_5$ architecture into the Vol II roadmap: the BKM-side target is the Hall–Drinfeld double, not a plain Yangian.

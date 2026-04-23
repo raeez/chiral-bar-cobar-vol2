@@ -1,4 +1,9 @@
-# CLAUDE.md (Vol II)
+# CLAUDE.md
+
+This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+
+This is Vol II. A mathematician's working manifesto, not a configuration
+manual. The mathematics follows.
 
 ## What this repository is for
 
@@ -46,8 +51,20 @@ $E_\infty^{\mathrm{top}}$ — the Platonic endpoint.
 | VII | Frontier |
 
 **Five theorems** crystallise across the trilogy (shared with Vol I):
-A (bar–cobar), B (chiral Positselski), C (derived-centre complementarity),
+A (bar–cobar), B (chiral Positselski), C (derived-centre complementarity
+$\kappa + \kappa^! \in \{0, 8, 13, 250/3, 98/3\}$ on the canonical
+five-archetype $\mathsf{G}/\mathsf{L}/\mathsf{C}/\mathsf{M}/\mathsf{B}$
+landmark ceiling; the classical four-element subset
+$\{0, 13, 250/3, 98/3\}$ restricts to $\mathsf{G}/\mathsf{L}/\mathsf{C}/\mathsf{M}$;
+the $\mathsf{B}$-row ceiling $K^\kappa = 8$ is the Vol III Mukai-enhanced
+K3 Heisenberg witness via Bruinier Heegner Chern-class reciprocity),
 D (obstruction-tower universality), H (Hochschild concentration).
+On CY$_d$-categories arising from Calabi–Yau $d$-folds, Theorem A's
+bar–cobar adjunction is the $E_1$-chiral shadow on the reference
+curve $C$ after Stage-2 specialisation of the Vol III two-stage
+factorisation $\Phi_d = \mathrm{Sp}^{\mathrm{ch}}_{\Sigma_{d-1},C}
+\circ \Phi^{\mathrm{FA}}_d$ (see ``Two-stage factorisation: Vol III
+alignment'' below).
 
 Everything in this repository is a concentric ring around those
 theorems, with Vol II-specific contributions: the topologisation tower,
@@ -85,10 +102,35 @@ claim should have 3+ independent verification paths.
 1. Direct computation.
 2. `.tex` source ±100 lines.
 3. Build system / tests.
-4. Published literature (primary).
-5. `chapters/connections/concordance.tex` (Vol II) or shared references.
-6. This file.
-7. Memory.
+4. `compute/tests/test_*_iv.py` independent-verification decorators
+   (executed disjoint-source witnesses for `\ClaimStatusProvedHere`).
+5. Published literature (primary).
+6. `chapters/connections/concordance.tex` (Vol II) or shared references.
+7. This file.
+8. Memory.
+
+## The manuscript is self-complete, self-coherent, self-consistent
+
+The current version stands for itself and only itself. All LaTeX
+mathematical writing is standalone, up-to-date, consistent, coherent.
+The manuscript does not reference its own previous versions. There is
+no place in this research programme for references to previous
+versions, intermediate ansätze, earlier drafts, retracted values,
+superseded formulas, or any other drafting-history commentary. If a
+formula used to be $X$ and now it is $Y$, the manuscript says $Y$;
+it does not say "$Y$ (previously $X$, now retracted)", does not say
+"$Y$ supersedes the earlier $X$", does not explain how the author
+arrived at $Y$.  The mathematical argument proves $Y$; the drafting
+trajectory is not part of the mathematics.
+
+When a mathematical retraction is genuinely informative --- a proof
+that was attempted and failed, whose failure illuminates why the
+successful proof is forced --- state the failed argument and its
+flaw as mathematics: "the identity $[m_k, B^{(2)}] = 0$ fails
+per-$k$ because cyclic invariance controls adjacent contractions
+but not non-adjacent terms (Proposition~X)". Do not frame it as
+"the author initially attempted $X$ but retracted in favour of $Y$".
+The mathematics is the Gap/Flaw, not the drafting record.
 
 ## Writing standard: Chriss–Ginzburg north star
 
@@ -174,12 +216,32 @@ signatures and cached confusion patterns. Address what it flags;
 return to the mathematics.
 
 **Builds at session end only, by user opt-in**. No `make` after every
-edit. The hook does not nag about builds.
+edit. The hook does not nag about builds. See `## Build, test, audit`
+below for the Makefile surface.
+
+## Build, test, audit
+
+All compiled output goes to `out/`. Each build runs in an isolated
+`/tmp/mkd-chiral-bar-cobar-vol2-<NS>/` directory, so parallel agents
+never clobber each other.
 
 ```bash
-# Session end only
-cd ~/chiral-bar-cobar-vol2 && make
+make fast                    # 4-pass build → out/main.pdf (rapid iteration)
+make                         # full 6-pass build + working notes → out/
+make release                 # full rebuild + copy PDFs to iCloud
+make check                   # halt-on-error validation (pre-commit gate)
+make test                    # compute/tests/ pytest suite, -m "not slow"
+make verify-independence     # audit ProvedHere vs @independent_verification
+make clean-builds            # purge /tmp/mkd-* from all volumes
+make count                   # manuscript statistics
 ```
+
+Single test: `compute/.venv/bin/python -m pytest compute/tests/test_<name>.py -q -ra`.
+Warm rebuilds across invocations: `export MKD_BUILD_NS="agent-$$"` once per
+agent session (cold first, warm thereafter).
+
+Requires TeX Live 2024+ with `pdflatex` (memoir, EB Garamond, newtxmath)
+and Python 3.10+ for the compute suite.
 
 ## Essential constants (Vol II-relevant)
 
@@ -197,6 +259,41 @@ coalgebra) — $A^i = H^\star B(A)$ — $A^! = ((A^i)^\vee)$ —
 $Z^{\mathrm{der}}_{\mathrm{ch}}(A)$ (derived centre = bulk).
 $\Omega(B(A)) = A$ is **inversion**, not Koszul duality. $A^!$ via
 **Verdier**. Bulk via **Hochschild** cochains.
+
+## Repository layout
+
+- `main.tex` — entry point; preamble holds all macros. Chapters mirror
+  them with `\providecommand` stubs (never `\newcommand`).
+- `chapters/frame/` — preface, part introductions.
+- `chapters/theory/` — Parts I–IV core: foundations, SC heptagon,
+  factorisation Swiss-cheese, curved-Dunn $g \geq 2$, chiral higher
+  Deligne, topologisation ladder, infinite fingerprint, unified
+  chiral QG, $\mathcal{W}_N$ / $\mathcal{W}_\infty$ tempered closure.
+- `chapters/examples/` — worked landscape examples, W-algebra tables,
+  rosetta stone.
+- `chapters/connections/` — Parts II–III + V–VII: line operators,
+  celestial holography, HT bulk–boundary, 3D gravity climax,
+  universal holography functor, $w_{1+\infty}$ endpoint, Vol I/III
+  bridges, THQG extensions.
+- `appendices/` — brace signs, orientations, FM proofs, q-conventions.
+- `compute/lib/` — ~60 Python engines (chiral computations, R-matrices,
+  $\kappa$ verification, celestial OPE, BV construction,
+  `independent_verification.py` decorator).
+- `compute/tests/` — pytest suite; `test_*_iv.py` modules are the
+  independent-verification witnesses for `\ClaimStatusProvedHere`
+  theorems.
+- `compute/scripts/audit_independent_verification.py` — audit driver
+  behind `make verify-independence`.
+- `scripts/build.sh` — Makefile build runner (parallel-safe via
+  `/tmp/mkd-*`).
+- `scripts/hooks/beilinson-gate.sh` — version-controlled PostToolUse
+  hook; install via `cp scripts/hooks/beilinson-gate.sh .claude/hooks/`.
+- `notes/` — workshop floor: antipatterns catalogue, first-principles
+  cache, attack–heal dossiers, Platonic reconstitutions, swarm audits.
+  Never reader-facing.
+- `FRONTIER.md`, `ROADMAP_85_TO_100.md` — live research queues.
+- `standalone/` — self-contained papers extracted from the manuscript.
+- `out/` — build output (PDFs, archives); regenerable.
 
 ## Chain-level and $(\infty,1)$-categorical: equal status
 
@@ -243,11 +340,64 @@ operad and the $(\infty,1)$-categorical $E_3$-promotion under
 topologisation are **two different theorems** about two different
 mathematical objects, both proved, both load-bearing.
 
+## Two-stage factorisation: Vol III alignment
+
+Vol III has adopted a two-stage factorisation of its CY-to-chiral
+functor:
+$\Phi_d = \mathrm{Sp}_{\mathrm{Ch},\Sigma_{d-1},C}\circ\Phi^{\mathrm{FA}}_d$.
+Stage~1 produces a canonical $E_d$-homotopy factorisation algebra on
+the CY-$d$ target by Kontsevich--Tamarkin formality plus
+Costello--Gwilliam--Li factorisation-homology BV quantisation; stage~2
+specialises via factorisation-homology pushforward
+$\int_{\Sigma_{d-1}}$ to a reference curve $C$, yielding the
+$E_1$-chiral shadow. A CY-$d$ category admits a *family* of
+$E_1$-chiral shadows parametrised by $(\Sigma_{d-1}, C)$.
+
+**Structural identification at $d = 2, 3$.** The two colours of
+$\mathsf{SC}^{\mathrm{ch,top}}$ are the two stages of $\Phi_d$:
+- **Closed colour** (holomorphic/braided, $E_2$ on $\mathrm{FM}_k(\C)$):
+  stage~1 $\Phi^{\mathrm{FA}}_d$ restricted to local observables of
+  an $E_d$-holomorphic factorisation algebra on a formal disc in
+  the CY target.
+- **Open colour** (topological/ordered, $E_1$ on $\R$,
+  Ayala--Francis): stage~2 $\mathrm{Sp}_{\mathrm{Ch},\Sigma_{d-1},C}$
+  landing on the reference curve $C$.
+- **Mixed operations** (closed acting on open, directional
+  restriction $\mathsf{SC}^{\mathrm{ch,top}}(\ldots,\mathsf{top},\ldots;
+  \mathsf{cl})=\varnothing$): the factorisation-homology
+  pushforward $\int_{\Sigma_{d-1}}$, with the directional asymmetry
+  expressing that stage~2 is a specialisation of stage~1, never an
+  inversion.
+
+Inscribed as
+`chapters/theory/sc_chtop_heptagon.tex`
+Remark~\ref{rem:heptagon-two-stage-CY-to-chiral} and
+`chapters/theory/factorization_swiss_cheese.tex`
+Remark~\ref{rem:pentagon-two-stage}. The shadow arrow is from CY
+(stage~1) to chiral (stage~2), never back. Cross-volume macros
+(`\PhiFA`, `\SpCh`, `\HolFA`, `\EdHolFA`, `\EnHolFA`, `\intSigma`,
+`\hCS`) are declared in `main.tex` preamble and mirrored as
+`\providecommand` stubs in the chapters that reference them.
+
+**Cross-volume antipatterns and cache entries.** The five
+2026-04-22 antipatterns enforcing this alignment live at
+`notes/antipatterns_catalogue.md` entries AP-V2-25 / V2-AP128
+(Swiss-cheese colours $=$ stage-1 / stage-2), AP-V2-26 / V2-AP129
+(single-stage $\Phi_d$ framing), AP-V2-27 / V2-AP130 (3D HT QFT
+anchor), AP-V2-28 / V2-AP131 (Vol III manifesto conflations), and
+AP-V2-29 / V2-AP132 (reader-facing voice discipline). The matching
+cache rows are `notes/first_principles_cache.md` rows 143--147.
+
 ## Where the bookkeeping lives
 
+- **`notes/antipatterns_catalogue.md`** — the live Vol II AP catalogue
+  (V2-AP* register plus Wave-23-26 additions V2-AP42--V2-AP55). Every
+  `/chriss-ginzburg-rectify` invocation consults this at Gate 0
+  alongside the cache. Append new V2-APs here.
 - **`notes/claude_md_legacy_20260418.md`** — full prior CLAUDE.md,
-  1369 lines, lossless. Contains the Vol II AP catalogue (V2-AP*),
-  the detailed theorem status table, Vol II-specific cross-volume
+  1369 lines, lossless. Historical snapshot; the V2-AP catalogue has
+  moved to `notes/antipatterns_catalogue.md`. Still contains the
+  detailed theorem status table, Vol II-specific cross-volume
   awareness, prior reconstitution drafts. Grep by index when needed.
 - **`notes/agents_md_legacy_20260418.md`** — full prior AGENTS.md,
   lossless.
@@ -302,6 +452,66 @@ bookkeeping — default `\ClaimStatusConjectured` when uncertain.
 7. Read `notes/claude_md_legacy_20260418.md` whole — grep by index.
 8. Confuse this file with a configuration manual. This is a
    mathematician's working manifesto. Shrink if it grows.
+
+## 2026-04-22 cross-volume sharpenings
+
+Four load-bearing markers from the Vol III programme now anchor Vol II
+material. The single-colour MC5 Pentagon trace, the 3D HT QFT
+boundary-bulk output, and the modular PVA quantisation chapters each
+refactor through them.
+
+**Eight-form spread.** The single-colour MC5 Pentagon takes values on
+a universal eight-form Gritsenko--Cl\'ery spread: weights
+$w(N) \in \{5, 2, 1, 1, 1/2, 1, 1/4, 0\}$, Fourier zero-coefficients
+$c_N(0) \in \{10, 4, 2, 2, 1, 2, 1/2, 0\}$. The Pentagon trace equals
+$c_N(0)/2 \in \{5, 2, 1, 1, 1/2, 1, 1/4, 0\}$ at the corresponding
+$N \in \{1, 2, 3, 4, 6\}$ and the half-integer / quarter-integer
+continuations. Cover assignment carries through: integer weight rides
+$\mathrm{Sp}_4(\Z)$, half-integer weight rides $\mathrm{Mp}_4$,
+quarter-integer weight rides $\widetilde{\mathrm{Mp}}_4$, weight-zero
+is the degenerate terminal fibre.
+
+**Universal Borcherds weight identity.** The modular PVA quantisation
+chapters use $\kappa_{\mathrm{BKM}}(\Phi_N) = c_N(0)/2$ as the
+canonical form with the cover assignment above. Primary sources:
+Borcherds 1995, Gritsenko 1999. The additive split
+$\kappa_{\mathrm{BKM}} = \kappa_{\mathrm{ch}} +
+\chi(\mathcal{O}_{\mathrm{fiber}})$ is false at every
+$N \in \{1, 2, 3, 4, 6\}$ and must not appear in any Vol II chapter.
+
+**Three-factor Universal Trace Identity.** On the Koszul-self-dual
+subcategory whose objects admit a BRST resolution and a Calabi--Yau
+target supporting a Borcherds product,
+$$
+\mathrm{tr}_{\mathrm{ghost}}(Q_{\mathrm{BRST}}^2)
+= \mathrm{tr}_{\mathrm{Pentagon}}
+= \omega_{\mathrm{Borcherds}}
+= c_N(0)/2.
+$$
+Vol II supplies the Pentagon-scope reading: the trace is the
+pentagon-face evaluation of the single-colour closed
+$\mathsf{SC}^{\mathrm{ch,top}}$ substructure, identified via MC5
+sewing with the curve-side face of the two-stage factorisation. The
+ghost-scope reading (Vol I) and the Borcherds-weight reading (Vol III)
+agree with the Pentagon reading on the common subcategory. Convergence
+at $N = 1$ gives the coincidence $\{5, 5, 5\}$: ghost trace, Pentagon
+trace, Borcherds weight all equal $5$ on the K3 Heisenberg witness.
+
+**Universal positive-geometry grammar.** The 3D HT QFT output on a
+boundary compact Calabi--Yau $X$ lives in
+$Y^+(X) = H^\bullet_{\mathrm{eq}}(\mathcal{M}^+_{\mathrm{eff}}(X), \phi_W)$
+via the $E_3$-realisation: the holomorphic-topological action pulls
+back the potential $\phi_W$ to the boundary factorisation algebra,
+and the equivariant cohomology assembles from the four equivariance
+strata (toric $T^d$, reduced $\C^\times + \mathrm{Aut}$, orbifold
+inertia, lattice-polarised period domain). The MC5 sewing theorem is
+the curve-side (Stage-2) face of the Vol III two-stage factorisation
+$\Phi_d = \mathrm{Sp}^{\mathrm{ch}}_{\Sigma_{d-1}, C} \circ
+\Phi^{\mathrm{FA}}_d$: Stage-1 produces the $E_d$-holomorphic
+factorisation algebra on $X$; MC5 specialises it along $\Sigma_{d-1}$
+to the $E_1$-chiral shadow on $C$. The Drinfeld double
+$G(X) = D(Y^+(X))$ is the derived-centre output on which the Pentagon
+trace acts.
 
 ## Branch and worktree reconciliation -- DEEP SEMANTIC MERGES ONLY
 

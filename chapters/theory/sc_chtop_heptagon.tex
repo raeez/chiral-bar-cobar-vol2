@@ -39,6 +39,14 @@
 \providecommand{\bMap}{\mathbf{Map}}
 \providecommand{\HTQFT}{\mathsf{HT\text{-}QFT}}
 \providecommand{\fsl}{\mathfrak{sl}}
+% Vol III two-stage factorisation (cross-volume macros)
+\providecommand{\PhiFA}{\Phi^{\mathrm{FA}}}
+\providecommand{\SpCh}{\mathrm{Sp}_{\mathrm{Ch}}}
+\providecommand{\HolFA}{\mathrm{HolFA}}
+\providecommand{\EdHolFA}{E_d\text{-}\HolFA}
+\providecommand{\EnHolFA}{E_n\text{-}\HolFA}
+\providecommand{\intSigma}{\textstyle\int_{\Sigma}}
+\providecommand{\hCS}{\mathrm{hCS}}
 
 \chapter{The Heptagon of Presentations of \texorpdfstring{$\SCchtop$}{SC}}
 \label{ch:sc-chtop-heptagon}
@@ -118,6 +126,77 @@ the Koszul dual to be non-self, forces the factorization face to act
 through module categories rather than algebras, and forces the
 Drinfeld-centre face to be a \emph{right adjoint} (centre), not an
 averaging.
+\end{remark}
+
+\begin{remark}[The two colours of $\SCchtop$ as the two stages
+of the CY-to-chiral functor at $d = 2, 3$;
+\ClaimStatusProvedElsewhere]
+\label{rem:heptagon-two-stage-CY-to-chiral}
+\index{Swiss-cheese chiral-topological operad!closed/open as stage-1/stage-2}%
+\index{CY-to-chiral functor!two-stage factorisation}%
+The CY-to-chiral functor of Volume~III factorises
+\[
+ \Phi_d \;=\; \SpCh_{\Sigma_{d-1},\,C}\circ\PhiFA_d,
+\]
+with stage~1 ($\PhiFA_d$) producing a canonical $E_d$-homotopy
+factorisation algebra on the CY-$d$ target by
+Kontsevich--Tamarkin formality combined with
+Costello--Gwilliam--Li factorisation-homology BV quantisation, and
+stage~2 ($\SpCh_{\Sigma_{d-1},C}$) specialising to a reference
+curve $C$ via factorisation-homology pushforward
+$\int_{\Sigma_{d-1}}$ along an auxiliary $(d-1)$-manifold.
+At $d = 2, 3$, the two colours of the coloured operad $\SCchtop$
+structurally \emph{are} the two stages:
+\begin{enumerate}[label=\textup{(\roman*)}]
+\item The \emph{closed colour} — the holomorphic/braided sector
+with arity components $\FM_k(\C)$, homotopy $E_2$ at the chain
+level — is the restriction of stage~1 to local observables of a
+$E_d$-holomorphic factorisation algebra on a formal disc in the
+CY target. At $d = 2$ this is $\PhiFA_2(\cC)$ evaluated on
+$\mathrm{Spf}\,\C[\![z]\!]$; at $d = 3$ it is the restriction of
+$\PhiFA_3(\cC)$ to a transverse disc after the holomorphic
+reduction on the $\C^2$-factor of the stage-1 factorisation
+algebra (Costello--Gwilliam Vol.~I~Theorem~3.4.9).
+\item The \emph{open colour} — the topological/ordered sector
+with arity components $\Conf_m(\R)$, $E_1$ on $\R$ by
+Ayala--Francis~\cite{AF15} — is the stage-2 shadow
+$\SpCh_{\Sigma_{d-1},C}\circ\PhiFA_d(\cC)$ landing on the
+reference curve $C$. It is $E_1$-chiral, not $E_d$, because
+factorisation-homology pushforward along $\Sigma_{d-1}$
+collapses $d - 1$ topological directions, leaving a
+single holomorphic direction along $C$ and a single
+topological direction along $\R\subset C\times\R$.
+\item The \emph{mixed operations} — the closed colour acting on
+the open colour via the codimension-one stratum
+$\FM_k(\C)\times\Conf_m(\R)$ — record the factorisation-homology
+pushforward $\int_{\Sigma_{d-1}}$ as a bulk-to-boundary map. The
+directional restriction $\SCchtop(\ldots,\mathsf{top},\ldots;
+\mathsf{cl})=\varnothing$ (no open-to-closed) is the precise
+operadic expression of the fact that stage~2 is a specialisation of
+stage~1, not an inversion: the $E_d$-structure on the CY target
+determines the $E_1$-structure on $C$, while the converse map
+from a single $E_1$-chiral algebra to an $E_d$-factorisation
+algebra does not exist canonically (a CY-$d$ category admits a
+\emph{family} of $E_1$-chiral shadows parametrised by the choice
+of $\Sigma_{d-1}$ and $C$).
+\end{enumerate}
+At $d = 2$ the two stages coincide with the two colours of the
+coloured operad on the nose: $\Sigma_{d-1} = \Sigma_1 = \R$ and
+the stage-2 pushforward $\int_\R$ is the topological factorisation
+on the boundary. At $d = 3$ the auxiliary manifold is
+$\Sigma_2$ and the stage-2 reference curve is a transverse holomorphic
+curve in the CY-$3$, making the open colour the ordered $E_1$-chiral
+algebra on that reference curve (see
+Theorem~\ref{thm:BD-CG-equivalence} for the three-layer comparison
+and Remark~\ref{rem:sc-chtop-pentagon} for the pentagon extension).
+The heptagon faces are thus seven presentations of the
+\emph{composite} $\Phi_d$; the pentagon-trace-identity
+(Remark~\ref{rem:pentagon-trace-identity}) realises the closed/open
+projection as the Volume~I ghost-identity / Volume~III BKM-weight
+decomposition of the two stages. Vol.~III,
+\texttt{cy\_to\_chiral.tex} fixes the scope and proves the functoriality
+of the factorisation; the present heptagon is its coloured
+bar-cobar-Koszul completion.
 \end{remark}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -749,7 +828,13 @@ the nose: such a promotion requires the topologisation hypothesis
 (conformal vector at non-critical level) of
 Theorem~\ref{thm:universal-holography-functor}\,(ii), which is the
 content of the Sugawara primitive transport
-(Vol~I~\ref*{V1-thm:topologization-tower}) or the iterated-Sugawara
+(Vol~I \texttt{chapters/theory/en\_koszul\_duality.tex}, the
+cohomological topologisation theorem for affine Kac--Moody at
+non-critical level, covering class $\mathsf L$; class $\mathsf M$
+is the weight-completed chain-level MC5 strengthening of Vol~I
+\texttt{chapters/theory/mc5\_class\_m\_chain\_level\_platonic.tex},
+scoped to the pro-ambient / $J$-adic / weight-completed ambients,
+not the raw-direct-sum ambient) or the iterated-Sugawara
 ladder (Theorem~\ref{thm:e-infinity-topologization-ladder}). The
 bulk-to-boundary OPE consistency is logically prior to
 topologisation: it holds for every $E_1$-chiral $\cA$ on the curve
@@ -770,7 +855,10 @@ chiral homology $\fg^{\mathrm{mod}}_\cA$ that is read off the
 bulk chiral Hochschild-cochain factorisation $\cH(\cA) =
 \cF_{\ChirHoch^\bullet(\cA,\cA)}$ via the
 Vol~I---Vol~II ladder of identifications
-(Pattern~242 averaging-vs-derived-centre disentanglement). The
+(the averaging-vs-derived-centre disentanglement: the averaging
+map $\mathrm{av}$ and the chiral derived centre $Z^{\mathrm{der}}_{\mathrm{ch}}$
+are distinct functors with distinct outputs, and conflating them
+collapses the Vol I / Vol II ladder). The
 two routes from $\cF_\cA$ to the modular invariant agree
 chain-level on the four-class $\{G, L, C, M\}$
 fingerprint, with class-$M$ closure supplied by the
@@ -2102,7 +2190,9 @@ so $h_\omega:=[G,-]$ satisfies
 $[Q_{\mathrm{tot}},h_\omega]=\partial_z$ on
 $\Obs^q_\bulk$. This is exactly the chain-level witness the
 $(\infty,1)$-categorical topologisation statement requires
-(Pattern~299). Hence the closed-colour factorisation algebra on
+(the chain-level and $(\infty,1)$-categorical lanes are distinct
+theorems, both load-bearing, informing each other through this
+explicit homotopy). Hence the closed-colour factorisation algebra on
 $\mathbb{C}$ is locally constant on $Q_{\mathrm{tot}}$-cohomology,
 promoting $E_2^{\mathrm{hol}}\to E_2^{\mathrm{top}}$
 (Lurie~\cite{HA}\,Theorem~5.4.5.9;
@@ -2148,8 +2238,9 @@ Costello--Gwilliam~\cite{CG21}\,Vol.~I~Theorem~3.4.9 +
 Ayala--Francis~\cite{AF15}\,Theorem~2.24 product-factorisation
 step; Dunn is then applied to the genuinely single-colour operad
 $E_2^{\mathrm{top}}\otimes_{\mathrm{Op}_\infty} E_1^{\mathrm{top}}$.
-Pattern~277 is respected: Dunn is \emph{not} invoked on the
-bicoloured $\SCchtop$.
+The $\mathsf{SC}^{\mathrm{ch,top}}$-vs-$E_3$ scope declaration is
+respected: Dunn is \emph{not} invoked on the bicoloured
+$\SCchtop$.
 
 \medskip\noindent\textbf{Heptagon closure.}
 Each heptagon face inherits the topologisation via its edge to
@@ -2161,7 +2252,9 @@ Ginzburg--Kapranov~1994). The chain-level witness in Step~(i) and
 the operad-level Dunn tensor in Step~(ii) are independent
 ingredients; conflating them (e.g.\ writing
 ``Dunn $E_2^{\mathrm{hol}}\otimes E_1^{\mathrm{top}}$'' in a single
-step) is the Pattern~277/299 anti-pattern.
+step) silently equates the bicoloured $\mathsf{SC}^{\mathrm{ch,top}}$
+operad with $E_3$, which fails (see
+Remark~\ref{rem:bulk-bdry-pattern-277-scope}).
 \end{proof}
 
 \begin{remark}[Why the homotopy $h_\omega$ is named separately from
