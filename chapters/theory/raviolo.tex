@@ -45,22 +45,20 @@ its classical projection; both are shadows of the universal bulk
 $\SCchtop$-algebra.
 \end{remark}
 
-\begin{remark}[Recognition: which $\SCchtop$-algebras yield raviolo VAs]
+\begin{remark}[Recognition scope for raviolo restriction]
 \label{rem:raviolo-recognition-bridge}
-The recognition theorem (Theorem~\ref{thm:recognition-SC}) identifies the class
-of $\SCchtop$-algebras admitting a raviolo restriction: precisely those
-arising from logarithmic $\SCchtop$-algebras (Definition~\ref{def:log-SC-algebra})
-satisfying the bridge hypotheses (a)--(c) of Theorem~\ref{thm:physics-bridge}
-(BV data, one-loop finiteness, polynomial interactions). The raviolo
-restriction $\mathsf V_{\mathrm{rav}}$ of Definition~\ref{def:raviolo-restriction}
-is precisely the vertex-algebraic detection invariant: two $\SCchtop$-algebras
-$A, A'$ produce isomorphic raviolo VAs iff they agree up to the
-spectral data forgotten by collapsing the $E_1$ direction. The PVA descent
-of Theorem~\ref{thm:raviolo-PVA} is a further forgetful step: it discards the
-$\hbar$-deformation data of the vertex algebra and retains only the
-classical $\lambda$-bracket and commutative product. The raviolo VA / PVA
-pair forms the chain-level / cohomology-level pair of detection invariants
-for the recognition theorem.
+The local-shadow theorem (Theorem~\ref{thm:recognition-SC}) applies to
+product-formal logarithmic $\SCchtop$ data. For physical realizations,
+this means the bridge hypotheses (a)--(d) of
+Theorem~\ref{thm:physics-bridge}: BV data, a factorized HT
+parametrix, one-loop finiteness, and product-polynomial
+interactions. The raviolo restriction
+$\mathsf V_{\mathrm{rav}}$ of Definition~\ref{def:raviolo-restriction}
+is a vertex-algebraic shadow of that local datum after the $E_1$
+direction is collapsed. It is not a complete invariant of arbitrary
+global HT factorization algebras; the PVA descent of
+Theorem~\ref{thm:raviolo-PVA} is a further forgetful step that
+retains only the classical $\lambda$-bracket and commutative product.
 \end{remark}
 
 \subsection{Restriction to time–slices}
@@ -445,15 +443,41 @@ Each assertion is a theorem of configuration space geometry, independent of any 
 \end{itemize}
 \end{proof}
 
-\begin{theorem}[Bridge from physics to algebra; \ClaimStatusProvedHere]
+\begin{theorem}[Bridge from physics to algebra; \ClaimStatusConditional]
 \label{thm:physics-bridge}
 Let $\mathcal{T}$ be a 3d holomorphic--topological quantum field theory on $\R_t \times \C_z$ with:
 \begin{enumerate}[label=(\alph*)]
-\item \textbf{BV data and HT gauge fixing}: A $(-1)$-symplectic graded field space $\mathcal{F}$ with local action $S \in \mathcal{O}(\mathcal{F})$ satisfying $\{S,S\}_{\mathrm{BV}} = 0$, gauge-fixed in HT gauge with $Q_{\mathrm{BRST}}^2 = 0$.
+\item \textbf{BV data and product HT gauge fixing}: A
+$(-1)$-symplectic graded field space $\mathcal{F}$ with local action
+$S \in \mathcal{O}(\mathcal{F})$ satisfying
+$\{S,S\}_{\mathrm{BV}} = 0$, gauge-fixed in HT gauge with
+$Q_{\mathrm{BRST}}^2 = 0$, and with the kinetic complex presented
+locally as a product-formal holomorphic--topological complex on
+$\C_z\times\R_t$.
 
-\item \textbf{One-loop finiteness}: In the holomorphic--topological gauge, one-loop Feynman integrals converge without UV divergences (the Gwilliam--Rabinovich--Williams mechanism~\cite{GRW21} for $d' = 1$).
+\item \textbf{Factorized parametrix}: The chosen gauge-fixing
+homotopy has a distributional kernel
+\[
+ G(z,t)=\sum_{\alpha=1}^{N} K_\alpha^{\mathrm{hol}}(z)
+ \boxtimes H_\alpha^{\mathrm{top}}(t)
+\]
+with $QG=\delta_{\C}\boxtimes\delta_{\R}$ modulo a smooth
+$Q$-exact kernel; each $K_\alpha^{\mathrm{hol}}$ is logarithmic on
+the Fulton--MacPherson compactification of the holomorphic
+configuration space, and each $H_\alpha^{\mathrm{top}}$ is a locally
+constant or exponentially decaying distribution on ordered
+configuration spaces in~$\R$.
 
-\item \textbf{Polynomial interactions}: The interaction vertices are polynomial in the fields.
+\item \textbf{One-loop finiteness}: In the holomorphic--topological
+gauge, one-loop Feynman integrals converge without UV divergences
+(the Gwilliam--Rabinovich--Williams mechanism~\cite{GRW21} for
+$d' = 1$).
+
+\item \textbf{Product-polynomial interactions}: The interaction
+vertices are polynomial in the fields and, in the product-formal HT
+presentation of item~\textup{(a)}, their coefficient tensors are
+finite sums of external holomorphic factors tensored with
+topological factors.
 \end{enumerate}
 Then the BV--BRST complex $\Obs_{\mathrm{bulk}}$ of $\mathcal{T}$, equipped with configuration-space $A_\infty$ operations, is a logarithmic $\SCchtop$-algebra in the sense of Definition~\ref{def:log-SC-algebra}.
 \end{theorem}
@@ -462,31 +486,34 @@ Then the BV--BRST complex $\Obs_{\mathrm{bulk}}$ of $\mathcal{T}$, equipped with
 We must show that the BV--BRST complex $\Obs_{\mathrm{bulk}}$, equipped with configuration-space $A_\infty$ operations $\{m_k\}_{k \ge 1}$, satisfies Definition~\ref{def:log-SC-algebra}: the weight forms factor as $\omega_k = \omega_k^{\mathrm{hol}} \otimes \omega_k^{\mathrm{top}}$ with $\omega_k^{\mathrm{hol}} \in \Omega^\bullet_{\log}(\FM_k(\C))$ and $\omega_k^{\mathrm{top}} \in C_\bullet(\Conf_k(\R))$. The proof proceeds in four steps.
 
 \medskip
-\emph{Step (i): Propagator factorisation.}
-The gauge-fixed BRST operator on $\C_z \times \R_t$ is $Q = \dbar_z + d_t$, where $\dbar_z$ acts on $\Omega^{0,\bullet}(\C)$ and $d_t = \partial_t\,dt$ acts on $\Omega^\bullet(\R)$. The operator $Q$ contains \emph{no mixed term}: no operator couples the $\C$- and $\R$-directions. The Green's function is the distributional section $G$ satisfying $Q G = \delta_\C \otimes \delta_\R$, where $\delta_\C$ is the Dirac $(1,1)$-current on $\C$ and $\delta_\R$ is the Dirac $0$-current on $\R$.
+\emph{Step (i): Factorized parametrix.}
+The gauge-fixed BRST operator is locally represented by a product
+HT complex. This alone does \emph{not} imply that a Green kernel for
+the total operator is the pure tensor of a holomorphic Green kernel
+and a topological Green kernel: applying
+$\dbar_z+d_t$ to $K_\C\boxtimes\delta_\R$ produces the extra
+distributional term $K_\C\boxtimes d_t\delta_\R$. The factorization
+used below is therefore exactly item~\textup{(b)}.
 
-\emph{Claim}: $G = K_\C \otimes H_\R$, where $K_\C(z) = \frac{1}{2\pi z}$ and $H_\R(t) = \Theta(t)$ (or $\delta(t)$, depending on the bi-degree component).
-
-\emph{Proof of claim.}
-Since $Q = \dbar_z \otimes \mathrm{id}_\R + \mathrm{id}_\C \otimes d_t$ acts on sections of the external tensor product $\mathcal{E}_\C \boxtimes \mathcal{E}_\R$, and since $Q$ has no mixed $(\C,\R)$-term, the equation $QG = \delta_\C \otimes \delta_\R$ on $\C \times \R$ decomposes by graded components. In the bi-degree where the $\R$-component is concentrated at $t = 0$ (i.e., where $H_\R = \delta_\R$), one verifies directly:
+By the factorized-parametrix hypothesis, the chosen gauge-fixing
+homotopy has kernel
 \[
- Q(K_\C \otimes \delta_\R)
- = (\dbar_z K_\C) \otimes \delta_\R + K_\C \otimes (d_t \delta_\R)
- = \delta_\C \otimes \delta_\R + K_\C \otimes \delta'_\R.
-\]
-The second term vanishes upon restriction to the relevant bi-degree (or is absorbed into the gauge-fixing data), leaving $Q(K_\C \otimes \delta_\R) = \delta_\C \otimes \delta_\R$. In the bi-degree where $H_\R = \Theta(t)$, the Heaviside function satisfies $d_t \Theta = \delta_\R$, and one similarly obtains $Q(K_\C \otimes \Theta) = \delta_\C \otimes \delta_\R$ in that component.
-
-Uniqueness follows from the standard theory of tempered fundamental solutions: $\dbar_z$ on $\C$ admits a unique tempered fundamental solution $K_\C(z) = 1/(2\pi z)$ (the Cauchy kernel), and $d_t$ on $\R$ admits $H_\R(t) = \Theta(t)$ as its unique causal (supported on $t \ge 0$) fundamental solution. On $\C$, $\dbar_z$ is elliptic modulo holomorphic functions: the Cauchy kernel $1/(2\pi z)$ is the unique translation-invariant tempered fundamental solution of $\dbar$. On $\R$, $d_t$ admits a unique causal fundamental solution. The tensor product $K_\C \otimes H_\R$ is therefore the unique tempered fundamental solution of $Q$ on $\C \times \R$ with the prescribed causal support. We have
-\[
- G(z_{ij},\, t_{ij}) = K_\C(z_{ij}) \otimes H_\R(t_{ij}),
+ G(z,t)=\sum_{\alpha=1}^{N}
+ K_\alpha^{\mathrm{hol}}(z)\boxtimes H_\alpha^{\mathrm{top}}(t),
  \qquad
- K_\C(z) = \frac{1}{2\pi z}, \quad H_\R(t) = \Theta(t) \text{ or } \delta(t),
+ QG=\delta_{\C}\boxtimes\delta_{\R}+QH_{\mathrm{sm}},
 \]
-where $z_{ij} = z_i - z_j$, $t_{ij} = t_i - t_j$. The kernel $K_\C$ is meromorphic with a simple pole at $z = 0$; $H_\R$ is a distribution on $\R$. Each propagator is a pure tensor of a $\C$-factor and an $\R$-factor. \hfill$\diamond$
+where $H_{\mathrm{sm}}$ is smooth. The smooth $Q$-exact correction
+changes the transferred operations by a $Q_{\mathrm{BRST}}$-homotopy,
+so the cohomological logarithmic $\SCchtop$ structure is represented
+by the displayed finite sum of external tensor kernels. The
+holomorphic factors are logarithmic on $\FM_\bullet(\C)$ and the
+topological factors are chains or distributions on ordered
+configuration spaces in~$\R$. \hfill$\diamond$
 
 \medskip
 \emph{Step (ii): Vertex factorisation.}
-Let $V(\Phi) = \sum_{|\beta| \le N} c_\beta \prod_{i=1}^{r_\beta} (\partial_z^{a_i} \partial_t^{b_i} \Phi)(z_v, t_v)$ be an interaction vertex, where the sum is finite by item~(c). On the product manifold $\C \times \R$, the jet bundle splits:
+Let $V(\Phi) = \sum_{|\beta| \le N} c_\beta \prod_{i=1}^{r_\beta} (\partial_z^{a_i} \partial_t^{b_i} \Phi)(z_v, t_v)$ be an interaction vertex, where the sum is finite by item~(d). On the product manifold $\C \times \R$, the jet bundle splits:
 \[
  J^\infty(\mathcal{E})\big|_{(z_v, t_v)}
  \;\cong\;
@@ -520,7 +547,7 @@ The Feynman weight form for a graph $\Gamma$ with edge set $E(\Gamma)$ and inter
  \qquad
  d\mu = d\mu_\C \otimes d\mu_\R,
 \]
-where $d\mu_\C = \prod_{v} d^2 z_v$ and $d\mu_\R = \prod_{v} dt_v$. By Step~(i), each propagator $G_e = K_\C^{(e)} \otimes H_\R^{(e)}$ is a pure tensor. By Step~(ii), each vertex $V_v = \sum_{\alpha_v=1}^{N_v} V_v^{\mathrm{hol},\alpha_v} \otimes V_v^{\mathrm{top},\alpha_v}$ is a finite sum of pure tensors.
+where $d\mu_\C = \prod_{v} d^2 z_v$ and $d\mu_\R = \prod_{v} dt_v$. By Step~(i), each propagator $G_e$ is a finite sum of pure tensors $K_{\alpha,e}^{\mathrm{hol}}\otimes H_{\alpha,e}^{\mathrm{top}}$. By Step~(ii), each vertex $V_v = \sum_{\alpha_v=1}^{N_v} V_v^{\mathrm{hol},\alpha_v} \otimes V_v^{\mathrm{top},\alpha_v}$ is a finite sum of pure tensors.
 
 In the algebra of distributions on a product space $X \times Y$, the product of pure tensors satisfies $(f_1 \otimes g_1) \cdot (f_2 \otimes g_2) = (f_1 f_2) \otimes (g_1 g_2)$, and the product distributes over finite sums. Applying this inductively over the $|E(\Gamma)|$ propagator factors and $|V_{\mathrm{int}}(\Gamma)|$ vertex factors (each contributing at most $N_v$ terms), the full integrand is a finite sum of at most $\prod_v N_v$ pure tensors:
 \[
@@ -538,7 +565,7 @@ The $A_\infty$ operation $m_k$ is obtained by integrating $\omega_\Gamma$ over i
 
 \emph{Absolute convergence.} Item~(b) asserts one-loop finiteness: all one-loop Feynman integrals converge in the HT gauge. For theories with $d' = 1$ topological direction, the power-counting of~\cite{GRW21} shows that this implies finiteness at \emph{all} loop orders: the superficial degree of divergence of an $L$-loop graph is $\delta = (1 - d')L = 0$ for $L = 0$ and $\delta < 0$ for $L \ge 2$, so the only potential divergences are at one loop, and these are finite by hypothesis. This power-counting bound applies to theories with propagator of type $(0,1)$ in the holomorphic direction and distributional in the topological direction. For such theories, the loop superficial degree of divergence is $\delta = (1-d')L$ where $d' = \dim_\C$ of the holomorphic factor; at $d' = 1$ this gives $\delta = 0$ for all $L$, so only logarithmic divergences can appear and these are removed by the one-loop renormalization hypothesis. See \cite[Chapter~9]{CG17} and \cite[Theorem~3.1]{GRW21} for the precise class of theories. After FM compactification of the holomorphic factor, the integrand acquires at worst logarithmic singularities along boundary divisors. Concretely:
 \begin{itemize}
-\item On $\FM_n(\C)$, the propagator $K_\C(z) = 1/(2\pi z)$ contributes simple poles. The forms $dz_{ij}/z_{ij} = d\log z_{ij}$ are logarithmic, hence locally $L^1$ with respect to the area measure $d^2 z$ (since $|z|^{-1}$ is locally integrable in two real dimensions).
+\item On $\FM_n(\C)$, each holomorphic kernel $K_{\alpha}^{\mathrm{hol}}$ contributes logarithmic simple-pole terms; in the standard Cauchy normalization this is modeled by $dz_{ij}/z_{ij}=d\log z_{ij}$. Such forms are locally $L^1$ with respect to the area measure $d^2 z$.
 \item On $\R^{|V_{\mathrm{int}}|}$, the Heaviside function $\Theta(t)$ is bounded, and the causal support condition confines integration to bounded time-ordered regions (given fixed external times), ensuring integrability in the $\R$-directions.
 \end{itemize}
 Therefore $\int |\omega_{\Gamma,\alpha}^{\mathrm{hol}}| \cdot |\omega_{\Gamma,\alpha}^{\mathrm{top}}| < \infty$ for each summand $\alpha$ and each graph $\Gamma$.
@@ -566,9 +593,17 @@ Summing over the finite index set $\{\alpha\}$ (by linearity) and over graphs $\
 
 \emph{Form identification.} It remains to verify that the integrated factors have the correct form type:
 \begin{itemize}
-\item \emph{Holomorphic factor.} The integrated holomorphic weight is a meromorphic form of the external coordinates $z_1, \ldots, z_k$, with at-worst-simple poles along each collision divisor $\{z_i = z_j\}$ (inherited from the simple pole of $K_\C$). On $\FM_k(\C)$, the differential $dz_{ij}/z_{ij} = d\log(z_{ij})$ extends to a section of $\Omega^1_{\log}(\FM_k(\C))$ at the boundary divisor $D_{\{i,j\}}$. Products and residues of such forms remain logarithmic (the algebra $\Omega^\bullet_{\log}$ is closed under wedge product). Hence the integrated weight is $\omega_k^{\mathrm{hol}} \in \Omega^\bullet_{\log}(\FM_k(\C))$.
+\item \emph{Holomorphic factor.} The integrated holomorphic weight is a meromorphic form of the external coordinates $z_1, \ldots, z_k$, with at-worst-simple logarithmic poles along each collision divisor $\{z_i = z_j\}$, inherited from the holomorphic kernels in the factorized parametrix. On $\FM_k(\C)$, the standard local model $dz_{ij}/z_{ij} = d\log(z_{ij})$ extends to a section of $\Omega^1_{\log}(\FM_k(\C))$ at the boundary divisor $D_{\{i,j\}}$. Products and residues of such forms remain logarithmic (the algebra $\Omega^\bullet_{\log}$ is closed under wedge product). Hence the integrated weight is $\omega_k^{\mathrm{hol}} \in \Omega^\bullet_{\log}(\FM_k(\C))$.
 
-\item \emph{Topological factor.} The Heaviside functions $\Theta(t_{ij})$ from the topological propagators impose time-ordering $t_1 > t_2 > \cdots > t_k$ on external insertions. The integrated topological weights are therefore chains $\omega_k^{\mathrm{top}} \in C_\bullet(\Conf_k(\R))$ supported on the ordered simplices $\{t_{\sigma(1)} > \cdots > t_{\sigma(k)}\}$, which are precisely the $E_1$-operad strata of $\Conf_k(\R)$.
+\item \emph{Topological factor.} The topological kernels
+$H_{\alpha}^{\mathrm{top}}(t_{ij})$ are locally constant or
+exponentially decaying distributions on ordered configuration
+spaces. In the standard causal normalization they are represented by
+Heaviside kernels imposing time-ordering. The integrated topological
+weights are therefore chains
+$\omega_k^{\mathrm{top}} \in C_\bullet(\Conf_k(\R))$ supported on
+ordered strata, which are precisely the $E_1$-operad strata of
+$\Conf_k(\R)$.
 \end{itemize}
 The resulting weight form is
 \[
@@ -582,12 +617,32 @@ as required by Definition~\ref{def:log-SC-algebra}. \hfill$\diamond$
 \noindent\textbf{Summary of hypotheses.}
 Each item of the theorem statement enters exactly once:
 \begin{enumerate}[label=(\alph*)]
-\item \emph{BV data and HT gauge fixing} provides the BRST operator $Q = \dbar_z + d_t$ with no mixed term, so that the propagator factors (Step~(i)). The condition $Q^2 = 0$ ensures $m_1^2 = 0$.
-\item \emph{One-loop finiteness} provides absolute convergence of the Feynman integrals after FM compactification, which is the analytic hypothesis of Fubini's theorem (Step~(iv)). Without it, the integrals may diverge, and the factorisation of integrated weight forms would be formal rather than analytic.
-\item \emph{Polynomial interactions} ensure each vertex factor is a \emph{finite} sum of pure tensors (Step~(ii)). A non-polynomial interaction could produce an infinite series whose convergence entangles the $\C$- and $\R$-variables, obstructing the tensor-product decomposition at the integrand level.
+\item \emph{BV data and product HT gauge fixing} provides the
+BRST complex and the product-formal kinetic presentation. The
+condition $Q^2=0$ ensures $m_1^2=0$.
+\item \emph{Factorized parametrix} provides the finite tensor
+decomposition of the singular propagator used in Step~(i). This
+factorization is a hypothesis, not a consequence of merely writing
+$Q=\dbar_z+d_t$.
+\item \emph{One-loop finiteness} provides absolute convergence of
+the Feynman integrals after FM compactification, which is the
+analytic hypothesis of Fubini's theorem (Step~(iv)). Without it, the
+integrals may diverge, and the factorisation of integrated weight
+forms would be formal rather than analytic.
+\item \emph{Product-polynomial interactions} ensure each vertex
+factor is a \emph{finite} sum of pure tensors (Step~(ii)). A
+non-polynomial interaction could produce an infinite series whose
+convergence entangles the $\C$- and $\R$-variables, obstructing the
+tensor-product decomposition at the integrand level.
 \end{enumerate}
 
-\textbf{$\SCchtop$ structure.} By the recognition theorem (Theorem~\ref{thm:recognition-SC}), any holomorphic--topological prefactorisation algebra on $\C \times \R$ whose weight forms factor as above is a $C_\ast(W(\SCchtop))$-algebra. The factorisation established in Steps~(i)--(iv) therefore identifies $\Obs_{\mathrm{bulk}}$ as a logarithmic $\SCchtop$-algebra in the sense of Definition~\ref{def:log-SC-algebra}.
+\textbf{$\SCchtop$ structure.} By the local-shadow theorem
+(Theorem~\ref{thm:recognition-SC}), the product-formal
+prefactorisation algebra on $\C \times \R$ whose weight forms factor
+as above has a local $C_\ast(W(\SCchtop))$-algebra shadow. The
+factorisation established in Steps~(i)--(iv) therefore identifies
+$\Obs_{\mathrm{bulk}}$ as a logarithmic $\SCchtop$-algebra in the
+sense of Definition~\ref{def:log-SC-algebra}.
 \end{proof}
 
 \begin{example}[Free Chiral Multiplet Propagator]
@@ -596,12 +651,22 @@ For the free chiral multiplet $\Phi$ with action
 \[
 S_{\mathrm{free}} = \int_{\R \times \C} \bar{\Phi} \wedge (\partial_t + \bar{\partial}) \Phi,
 \]
-the propagator $K = \delta(t_1 - t_2) / (2\pi(z_1 - z_2))$ solves $(\partial_t + \bar{\partial}) K = \delta^{(3)}$. This exhibits the product decomposition: meromorphic in $z$ with a simple pole, distributional $\delta(t)$ in the topological direction, and translation-invariant.
+the singular parametrix is modeled by
+$K_{\mathrm{sing}} = \delta(t_1 - t_2)/(2\pi(z_1-z_2))$, with the
+smooth $Q$-exact correction understood as in
+Theorem~\ref{thm:physics-bridge}. This exhibits the product
+decomposition of the singular part: meromorphic in $z$ with a simple
+pole, distributional in the topological direction, and
+translation-invariant.
 \end{example}
 
 \begin{remark}[Physical realisations]
 \label{rem:physical-realisations}
-Theorem~\ref{thm:physics-bridge} is verified by holomorphic twists of 3d $\mathcal{N}=2$ theories~\cite{CDG20} and by HT theories with $d'=1$~\cite{GRW21, GKW25}. The worked examples of Part~\textup{IV} are explicit verifications.
+Theorem~\ref{thm:physics-bridge} applies to holomorphic twists of
+3d $\mathcal{N}=2$ theories~\cite{CDG20} and to HT theories with
+$d'=1$~\cite{GRW21, GKW25} after the factorized logarithmic
+parametrix required in item~\textup{(b)} has been supplied. The worked
+examples of Part~\textup{IV} record these gauge choices explicitly.
 \end{remark}
 
 \subsubsection*{II. Chain-level structure (Section \ref{sec:BV_construction})}

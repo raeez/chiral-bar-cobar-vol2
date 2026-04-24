@@ -49,9 +49,15 @@
 
 The Maurer--Cartan equation $D\Theta^{\mathrm{oc}} + \tfrac{1}{2}[\Theta^{\mathrm{oc}}, \Theta^{\mathrm{oc}}] = 0$ is the MC equation for the relative Feynman transform of the modular Swiss-cheese operad~$\SCmod$. The bicomplex structure $D_0^2 = 0$, $D_1^2 = 0$, $D_0 D_1 + D_1 D_0 = 0$ on the modular bar complex~$\Bmod(C)$, together with the genus spectral sequence, are formal consequences of the algebra-over-relative-Feynman-transform structure.
 
-All results apply to logarithmic $\SCchtop$-algebras (Definition~\ref{def:log-SC-algebra}). Beyond the affine and $\cW$-algebra lineages, the question of which chiral algebras admit a logarithmic $\SCchtop$-algebra structure remains open.
+The formal skeleton results apply to logarithmic $\SCchtop$-algebras
+(Definition~\ref{def:log-SC-algebra}) after a modular bar datum has
+been fixed.  Curved factorization comparisons require the stated
+Arakelov, bounded-filtered, and Positselski hypotheses. Beyond the
+affine and $\cW$-algebra lineages, the question of which chiral
+algebras admit a logarithmic $\SCchtop$-algebra structure remains
+open.
 
-The factorization approach (Chapter~\ref{ch:factorization-swiss-cheese}) constructs the Swiss-cheese structure from factorizable D-modules on $\Ran(\Sigma_g) \times \Ran(\R)$ over $\overline{\cM}_g$; the operadic approach (Chapter~\ref{ch:modular-sc-operad}) extracts $\SCchtop$ by formal completion at collision points. The relative Feynman transform is the algebraic skeleton shared by both: the factorization route maps to it by forgetting D-module data, the operadic route by formal completion. On the proved surface, this is the shared skeleton, not a statement of essential surjectivity for either route beyond genus~$0$.
+The factorization approach (Chapter~\ref{ch:factorization-swiss-cheese}) constructs the Swiss-cheese structure from factorizable D-modules on the mixed open--closed holomorphic--topological Ran geometry $\Ran^{\mathrm{oc}}_{\mathrm{HT}}(\Sigma_g,I)$ over $\overline{\cM}_g$; the operadic approach (Chapter~\ref{ch:modular-sc-operad}) extracts $\SCchtop$ by formal completion at collision points. The relative Feynman transform is the algebraic skeleton shared by both: the factorization route maps to it by forgetting D-module data, the operadic route by formal completion. On the proved surface, this is the shared skeleton, not a statement of essential surjectivity for either route beyond genus~$0$.
 
 \section{Worked examples}
 \label{sec:rft-worked-examples}
@@ -968,75 +974,57 @@ quasi-isomorphism if and only if~$\cP$ is Koszul.
 
 \subsection{The relative Feynman transform}
 
-\begin{definition}[Relative Feynman transform]
+\begin{definition}[Relative Feynman skeleton]
 \label{def:relative-feynman-transform}
-\index{Feynman transform!relative|textbf}
-\index{relative Feynman transform|textbf}
-Let $(\cM\!od, \cP)$ be a relative modular extension
-(Definition~\ref{def:relative-modular-extension}). For a
-$(\cM\!od, \cP)$-algebra $A$, the \emph{relative Feynman
-transform}
+\index{Feynman transform!relative skeleton|textbf}
+\index{relative Feynman skeleton|textbf}
+Let $C$ be a modular bar datum in the sense of
+Definition~\ref{def:modular-bar-datum}. The \emph{relative
+Feynman skeleton} attached to $C$ is the complete
+genus-filtered stable-graph coalgebra
 \[
-\FT_{\cM\!od / \cP}(A)
+\FT_{\mathrm{rel}}(C)
+\;:=\;
+\prod_{[\Gamma] \in \StGraph^{\mathrm{conn}}}
+\bigl(\orline(\Gamma) \otimes
+\bigotimes_{v \in V(\Gamma)}
+s\,C(\mathrm{Fl}(v))\bigr)_{\Aut(\Gamma)}
 \]
-is the complete modular bar object $\Bmod(A)$
-(Definition~\ref{def:complete-modular-bar}) equipped with:
-\begin{enumerate}[label=\textup{(\roman*)}]
-\item a $\cP^{!}$-coalgebra structure on the
- open color, determined by the projection of $D_{\mathrm{sep}}$
- to tree-level (genus-$0$) stable graphs: separating one-edge
- expansions on trees produce exactly the cocomposition maps of
- $B(\cP) \simeq \cP^{!}$ (the bar
- construction of~$\cP$, which is quasi-isomorphic to the Koszul
- dual cooperad when $\cP$ is Koszul);
-\item a modular coalgebra structure on the closed color,
- determined by $D_{\mathrm{nsep}}$: each nonseparating one-edge
- expansion produces a self-sewing operation, and the collection
- of all such operations constitutes the Feynman transform
- $\FT_{\cM\!od}$ in the sense of Getzler--Kapranov~\cite{GK98};
-\item a total differential $D = D_\cP + D_{\cM\!od}$ where:
- \begin{itemize}
- \item $D_\cP := D_{\mathrm{int}} + D_{\mathrm{sep}}$
- (Definition~\ref{def:three-differentials}(i)--(ii))
- encodes the $\cP$-coalgebra structure (genus-preserving), and
- \item $D_{\cM\!od} := D_{\mathrm{nsep}}$
- (Definition~\ref{def:three-differentials}(iii)) encodes the
- $\cM\!od$-modular structure (genus-raising by~$1$).
- \end{itemize}
-\end{enumerate}
-The bicomplex condition
+equipped with the two degree-one operators
 \[
-D_\cP^2 = 0, \qquad
-D_{\cM\!od}^2 = 0, \qquad
-D_\cP\, D_{\cM\!od} + D_{\cM\!od}\, D_\cP = 0
+D_0 := D_{\mathrm{int}} + D_{\mathrm{sep}},
+\qquad
+D_1 := D_{\mathrm{nsep}}.
 \]
-holds, as proved in
-Proposition~\ref{prop:rft-differential-identification} below.
+Here $D_0$ records the genus-preserving local
+$\SCchtop$ bar operations, while $D_1$ records the
+nonseparating modular self-sewing supplied by the closed modular
+extension. The notation
+$\FT_{\Com_{\mathrm{mod}} / \SCchtop}$ denotes this
+stable-graph skeleton; it is not, by itself, a recovery theorem
+for the global factorization $D$-module, its monodromy, or its
+curved Arakelov representative.
 \end{definition}
 
 \begin{remark}[Self-contained characterisation]
 \label{rem:rft-self-contained}
 \index{relative Feynman transform!characterisation}
-The relative Feynman transform
-$\FT_{\cM\!od / \cP}(A)$ is, up to quasi-isomorphism, the
-unique bicomplex $(D_\cP, D_{\cM\!od})$ on the completed
-product over isomorphism classes of stable graphs
+The relative Feynman skeleton is the bicomplex
+$(\Bmod(C),D_0,D_1)$ on the completed product over
+isomorphism classes of stable graphs
 \[
 \Bmod(A) \;=\;
 \prod_{[\Gamma] \in \StGraph^{\mathrm{conn}}}
 \bigl(\orline(\Gamma) \otimes \bigotimes_{v \in V(\Gamma)}
 s\,A(\mathrm{Fl}(v))\bigr)_{\Aut(\Gamma)}
 \]
-satisfying: (a)~$D_\cP$ restricts on the genus-$0$ summand to
-the bar differential of~$\cP$, (b)~$D_{\cM\!od}$ raises
-genus by exactly~$1$ and encodes the modular self-sewing, and
-(c)~the total complex $(D_\cP + D_{\cM\!od})^2 = 0$ reproduces
-$D^2 = 0$ on~$\Bmod(A)$. Uniqueness follows because
-conditions~(a)--(c) determine the differentials on each
-genus-graded piece inductively (genus~$0$ is fixed by~(a); the
-genus-$g$ piece is then determined by the anticommutation
-$D_\cP D_{\cM\!od} + D_{\cM\!od} D_\cP = 0$ at genus~$g-1$,
-together with the codimension-two cancellation axiom).
+where $D_0$ restricts on the genus-$0$ summand to the bar
+differential of the local operadic structure, $D_1$ raises
+genus by exactly~$1$ and encodes modular self-sewing, and
+$(D_0+D_1)^2=0$ is the codimension-two cancellation identity.
+This is a formal skeleton carried by a chosen modular bar datum;
+it forgets any global period, connection, and monodromy data not
+encoded by the pair $(D_0,D_1)$.
 \end{remark}
 
 \begin{remark}[Notational convention]
@@ -1058,15 +1046,16 @@ color, which is bar-constructed but not Feynman-transformed.
 \label{prop:rft-differential-identification}
 For the standard relative modular extension
 $(\Com_{\mathrm{mod}}, \SCchtop)$, the differentials of the
-relative Feynman transform $\FT_{\mathrm{rel}}(A)$ coincide with
-the differentials of Proposition~\textup{\ref{prop:D0D1}}:
+relative Feynman skeleton $\FT_{\mathrm{rel}}(C)$ attached to a
+modular bar datum~$C$ coincide with the differentials of
+Proposition~\textup{\ref{prop:D0D1}}:
 \[
 D_\cP = D_0 = D_{\mathrm{int}} + D_{\mathrm{sep}},
 \qquad
 D_{\cM\!od} = D_1 = D_{\mathrm{nsep}}.
 \]
 The bicomplex structure $D_0^2 = 0$, $D_1^2 = 0$,
-$D_0 D_1 + D_1 D_0 = 0$ is the relative Feynman transform
+$D_0 D_1 + D_1 D_0 = 0$ is the relative Feynman skeleton
 bicomplex.
 \end{proposition}
 
@@ -1178,9 +1167,10 @@ the non-separating expansion first), with opposite signs.
 
 The modular bar coalgebra, already constructed and studied in
 \S\ref{sec:modular-bar-coalgebra}, is an algebra over the
-relative Feynman transform. The recognition theorem below characterises
-$\FT_{\mathrm{rel}}$-algebras by a universal property and then
-shows that $\Bmod(C)$ satisfies that property.
+relative Feynman skeleton. The recognition theorem below is a
+formal identification of that skeleton with the already constructed
+stable-graph bicomplex. It is not a positive-genus reconstruction
+theorem for global factorization data.
 
 \begin{definition}[$\FT_{\mathrm{rel}}$-algebra]
 \label{def:ft-rel-algebra}
@@ -1221,139 +1211,70 @@ such that:
 \end{enumerate}
 \end{definition}
 
-\begin{theorem}[Recognition theorem; \ClaimStatusProvedHere]
+\begin{theorem}[Recognition of the relative Feynman skeleton;
+\ClaimStatusProvedHere]
 \label{thm:recognition-relative-ft}
 \index{recognition theorem!relative Feynman transform|textbf}
 \index{relative Feynman transform!recognition theorem|textbf}
-Let $\cA$ be a logarithmic $\SCchtop$-algebra with modular
-bar datum~$C$. Then:
-\begin{enumerate}[label=\textup{(\Roman*)}]
-\item \textbf{Universal property.}
- The relative Feynman transform
- $\FT_{\mathrm{rel}} = \FT_{\Com_{\mathrm{mod}} / \SCchtop}$
- represents the functor
- \[
- A \;\longmapsto\;
- \bigl\{\text{$\FT_{\mathrm{rel}}$-algebra structures
- on $\Bmod(A)$}\bigr\}
- \]
- in the sense that the data of an
- $\FT_{\mathrm{rel}}$-algebra structure on~$\Bmod(A)$ is
- equivalent to the data of a $(\Com_{\mathrm{mod}},
- \SCchtop)$-algebra structure on~$A$, naturally in~$A$.
+Let $\cA$ be a logarithmic $\SCchtop$-algebra for which a
+modular bar datum~$C$ has been fixed. Then the complete modular
+bar object
+\[
+\Bmod(C)
+\]
+is canonically the relative Feynman skeleton
+\[
+\FT_{\mathrm{rel}}(C)
+\]
+of Definition~\ref{def:relative-feynman-transform}. Under this
+identification
+\[
+D_\cP=D_0=D_{\mathrm{int}}+D_{\mathrm{sep}},
+\qquad
+D_{\cM\!od}=D_1=D_{\mathrm{nsep}},
+\]
+and the genus-filtration spectral sequence is the spectral
+sequence of the bicomplex $(\Bmod(C),D_0,D_1)$.
 
-\item \textbf{Identification.}
- $\Bmod(C)$ is naturally an $\FT_{\mathrm{rel}}$-algebra.
- Concretely:
- \begin{enumerate}[label=\textup{(\roman*)}]
- \item The complete modular bar object $\Bmod(C)$ of
- Theorem~\textup{\ref{thm:modular-bar}} is the underlying
- complete genus-filtered graded object.
- \item The bicomplex $(D_0, D_1)$ of
- Proposition~\textup{\ref{prop:D0D1}} is the relative
- Feynman transform bicomplex.
- \item The genus spectral sequence of
- Theorem~\textup{\ref{thm:genus-completion}} is the spectral
- sequence of the $\FT_{\mathrm{rel}}$-filtration: $D_0$
- governs the $E_0$-page, and $D_1$ induces the
- $d_1$-differential.
- \item The obstruction class $\Ob_g(\Theta_{<g})$ of
- Theorem~\textup{\ref{thm:genus-completion}(iii)} is the
- $d_1$-obstruction of $\FT_{\mathrm{rel}}$, and
- equals $\kappa(\cA) \cdot \omega_g$ by the universality
- theorem~\textup{(}Volume~I,
- Theorem~D\textsubscript{scal}\textup{)}.
- \end{enumerate}
-\end{enumerate}
+This recognition theorem is formal. It identifies the algebraic
+skeleton carried by a chosen modular bar datum; it does not assert
+that the skeleton determines the underlying factorization
+$D$-module, its monodromy, or the curved Arakelov representative
+at positive genus.
 \end{theorem}
 
 \begin{proof}
-\emph{Part~(I): the universal property.}
-The correspondence goes as follows. Given a
-$(\Com_{\mathrm{mod}}, \SCchtop)$-algebra structure on~$A$, the
-bar construction produces $\Bmod(A)$ with total differential
-$D = D_0 + D_1$ satisfying $D^2 = 0$
-(Theorem~\ref{thm:modular-bar}(i)). By
-Proposition~\ref{prop:rft-differential-identification},
-$(D_0, D_1)$ is the $\FT_{\mathrm{rel}}$-bicomplex.
-The genus filtration $F^g$ satisfies conditions~(i)--(iii) of
-Definition~\ref{def:ft-rel-algebra}
-(Theorem~\ref{thm:genus-completion}(iv)), and the open-color and
-closed-color structures~(a)--(b) are produced by the two colors
-of the relative modular extension
-(Proposition~\ref{prop:standard-relative-extension}).
-
-Conversely, given an $\FT_{\mathrm{rel}}$-algebra structure
-$(V, D_0, D_1)$ on $\Bmod(A)$, the open-color structure~(a)
-determines $A$ as an $\SCchtop$-algebra via the bar-cobar
-adjunction (Theorem~\ref{thm:bar-cobar-adjunction}):
-the cobar construction $\Omega(V|_{\gr^0})$ recovers~$A$.
-The closed-color structure~(b) determines the modular
-extension data (self-sewing at each genus). The
-compatibility condition~(c) ensures that the two structures
-assemble into a $(\Com_{\mathrm{mod}}, \SCchtop)$-algebra.
-The two constructions are mutually inverse because the
-bar-cobar adjunction is an equivalence on the Koszul locus
-(Theorem~\ref{thm:homotopy-Koszul}), and the genus-$g$
-modular data are determined inductively by the
-$D_1$-differential and the codimension-two cancellation.
-
-\smallskip
-\emph{Part~(II): the identification.}
-We verify each condition of
-Definition~\ref{def:ft-rel-algebra}.
-
-\smallskip\noindent
-\emph{Step 1: the bicomplex.}
 Theorem~\ref{thm:modular-bar} constructs $\Bmod(C)$ as a
 complete conilpotent modular dg coalgebra with $D^2 = 0$.
 Proposition~\ref{prop:D0D1} decomposes $D = D_0 + D_1$ with
 $D_0$ genus-preserving and $D_1$ genus-raising, and shows
 $D_0^2 = 0$, $D_1^2 = 0$, $D_0 D_1 + D_1 D_0 = 0$. By
 Proposition~\ref{prop:rft-differential-identification}, this is
-exactly the bicomplex of $\FT_{\Com_{\mathrm{mod}} / \SCchtop}$.
-Conditions~(i)--(iii) of Definition~\ref{def:ft-rel-algebra}
-are satisfied.
+exactly the stable-graph bicomplex of
+$\FT_{\Com_{\mathrm{mod}} / \SCchtop}(C)$.
 
-\smallskip\noindent
-\emph{Step 2: the open-color structure.}
 At genus~$0$, $\gr_F^0 \Bmod(C) = \Bch(C)$
 (Theorem~\ref{thm:genus-completion}(i)), which is the tree-level
 bar coalgebra of~$\SCchtop$. The differential $D_0|_{\gr^0}$
 is the tree-level bar differential, making $\Bch(C)$ a
-conilpotent dg coalgebra over $B(\SCchtop)$. Since $\SCchtop$
-is homotopy-Koszul (Theorem~\ref{thm:homotopy-Koszul}), the
-inclusion ${\SCchtop}^{!} \hookrightarrow
-B(\SCchtop)$ is a quasi-isomorphism, and condition~(a) holds.
+conilpotent dg coalgebra over $B(\SCchtop)$ on the local
+operadic shadow. The genus-raising differential $D_1$ is the
+nonseparating one-edge expansion, hence the self-sewing operator
+of the closed modular extension.
 
-\smallskip\noindent
-\emph{Step 3: the closed-color structure.}
 Theorem~\ref{thm:genus-completion}(iv) shows that the genus
 filtration $F^g \Bmod(C)$ satisfies
 $[F^p, F^q] \subset F^{p+q}$, $D_0(F^p) \subset F^p$,
 $D_1(F^p) \subset F^{p+1}$, and the inverse limit recovers
-$\Bmod$. The genus-raising differential $D_1$ encodes
-the nonseparating one-edge expansions, which are precisely the
-self-sewing operations of $\Com_{\mathrm{mod}}$
-(Proposition~\ref{prop:rft-differential-identification},
-Step~2). This makes $\Bmod(C)$ a modular coalgebra over
-$\FT_{\Com_{\mathrm{mod}}}$. Condition~(b) holds.
-
-\smallskip\noindent
-\emph{Step 4: the compatibility and spectral sequence.}
-The anticommutation $D_0 D_1 + D_1 D_0 = 0$ is the
-compatibility condition~(c)
-(Proposition~\ref{prop:rft-differential-identification}).
+$\Bmod$. The anticommutation $D_0D_1+D_1D_0=0$ is the mixed
+codimension-two cancellation.
 Theorem~\ref{thm:genus-completion}(v) shows the spectral
 sequence has $E_1^{p,q} = H^{p+q}(\gr_F^p)$ with
-$d_1 = D_1$. This is the standard spectral sequence of an
-$\FT_{\mathrm{rel}}$-algebra: the $E_0$-page is governed by the
-$\cP$-differential $D_0$, and the $d_1$-page is governed by
-the $\cM\!od$-differential~$D_1$.
-
-The obstruction identification in~(II)(iv) follows from
-Theorem~\ref{thm:genus-completion}(iii) and the universality
-theorem of Volume~I.
+$d_1=[D_1]$. These are precisely the data specified in
+Definition~\ref{def:relative-feynman-transform}. No converse
+claim is made: two positive-genus factorization objects may have
+the same stable-graph bicomplex and different global period or
+monodromy data.
 \end{proof}
 
 \begin{remark}[Local and global incarnations]
@@ -1370,7 +1291,7 @@ The relative Feynman transform has two incarnations:
  Chapter~\ref{ch:modular-sc-operad}.
 \item \textbf{Global (factorization).} Extracted from the
  factorization Swiss-cheese algebra on
- $\Ran(\Sigma_g) \times \Ran(\R)$ over
+ $\Ran^{\mathrm{oc}}_{\mathrm{HT}}(\Sigma_g,I)$ over
  $\overline{\cM}_g$. This produces all three models,
  including the curved geometric model $(\dfib^{\,2} =
  \kappa \cdot \omega_g)$ which lives in the coderived
@@ -1391,10 +1312,12 @@ single-valued but curved projection to $\Sigma_g$ itself.
 \section{The modular Steinberg variety}
 \label{sec:modular-steinberg}
 
-The clutching correspondences of the modular operad provide a
-geometric realisation of the convolution algebra
-$L_{\mathrm{mod}}$ through the same correspondence formalism that presents the
-Hecke algebra from the Steinberg variety.
+The clutching correspondences of the modular operad provide a formal
+correspondence model for the convolution algebra $L_{\mathrm{mod}}$,
+parallel to the Steinberg correspondence model for Hecke algebras. A
+theorem-level push-pull presentation would require the orientation,
+properness, and associativity hypotheses stated below; those hypotheses
+are not used to identify global factorization data.
 
 \begin{construction}[The modular Steinberg variety]
 \label{constr:modular-steinberg}
@@ -1434,9 +1357,11 @@ p^\ast\!
 \bigl(\alpha \boxtimes \beta\bigr),
 \]
 contracted by the invariant pairing on the gluing edge.
-This is the Lie bracket on $L_{\mathrm{mod}}$, as stated
-in Remark~\textup{\ref{rem:convolution-as-correspondence}}
-of the modular PVA quantization chapter.
+When the push-forward, orientation, and properness hypotheses for these
+correspondences hold, this is the correspondence model for the Lie
+bracket on $L_{\mathrm{mod}}$ stated in
+Remark~\textup{\ref{rem:convolution-as-correspondence}} of the modular
+PVA quantization chapter.
 \end{construction}
 
 \begin{remark}[The Hecke parallel]
@@ -1461,11 +1386,11 @@ realises the Hecke relations, with the $q$-parameter arising
 from the equivariant $\mathbb{G}_m$-action on the cotangent
 fibers.
 
-The modular Steinberg variety
+Under the same correspondence hypotheses, the modular Steinberg variety
 $\mathfrak{St}_{\mathrm{mod}} = Z_{\mathrm{sep}}
 \times_{\overline{\cM}_{g,n}} Z_{\mathrm{sep}}$
-presents the modular convolution algebra $L_{\mathrm{mod}}$ in
-the same way, via equivariant homology:
+models the modular convolution algebra $L_{\mathrm{mod}}$ in the same
+formal way, via equivariant homology:
 \begin{enumerate}[label=\textup{(\roman*)}]
 \item The convolution product is the correspondence product
  through $\mathfrak{St}_{\mathrm{mod}}$, exactly as the Hecke
@@ -1514,9 +1439,11 @@ tower nontrivial and distinguishes modular operads from ordinary
 operads. In the relative Feynman transform, it is $D_1$ that
 cannot be seen by any genus-$0$ structure (operadic, local); it is
 visible only to the full modular extension (factorization, global)
-and its algebraic skeleton (the relative Feynman transform). The curvature $\kappa(\cA) \cdot \omega_g$ arises
-precisely from this primitive, as the $d_1$-differential on
-the genus spectral sequence (Theorem~\ref{thm:recognition-relative-ft}(II)(iv)).
+and its algebraic skeleton (the relative Feynman transform). The
+curvature $\kappa(\cA) \cdot \omega_g$ is the factorization-side
+lift of the same genus-raising primitive; the skeleton sees the
+operator $d_1=[D_1]$ in the genus spectral sequence
+(Theorem~\ref{thm:recognition-relative-ft}).
 \end{remark}
 
 
@@ -1536,147 +1463,62 @@ is a quasi-isomorphism for every $(\cM\!od, \cP)$-algebra~$A$
 in the homotopy category.
 \end{definition}
 
-\begin{theorem}[Homotopy-involutivity of
-$\FT_{\Com_{\mathrm{mod}} / \SCchtop}$;
-\ClaimStatusProvedHere]
+\begin{theorem}[Flat involutivity of the relative skeleton under
+Koszul--convergence hypotheses; \ClaimStatusProvedHere]
 \label{thm:relative-ft-involutive}
 \index{relative Feynman transform!homotopy-involutivity|textbf}
-The relative Feynman transform
-$\FT_{\Com_{\mathrm{mod}} / \SCchtop}$ is homotopy-involutive.
+Let $\cA$ be a logarithmic $\SCchtop$-algebra with modular bar
+datum~$C$. Assume:
+\begin{enumerate}[label=\textup{(\roman*)}]
+\item the relevant partially modular two-coloured extension is
+ homotopy-Koszul, including the mixed operations;
+\item the completed genus filtration on $\Bmod(C)$ is separated,
+ complete, and satisfies the Mittag--Leffler condition on
+ cohomology, equivalently
+ $\varprojlim^{1} H^\ast(\Bmod(C)/F^g)=0$;
+\item the second transform is interpreted through the completed
+ cobar/Feynman dual of the conilpotent coalgebra $\Bmod(C)$.
+\end{enumerate}
+Then the flat completed object satisfies
+\[
+\FT_{\mathrm{rel}}^{\,2}(\cA)\simeq \cA
+\]
+in the derived category of complete genus-filtered flat objects.
+This statement concerns the flat skeleton
+$(\Bmod(C),D_0+D_1)$ only. It does not recover the curved
+fiberwise model $(\barB^{(g)}(\cA),\dfib)$.
 \end{theorem}
 
 \begin{proof}
-The proof has three steps: involutivity for each color, then
-compatibility via spectral sequence convergence.
+Under hypothesis~(i), the genus-zero local component is governed
+by the usual bar-cobar equivalence for the homotopy-Koszul
+two-coloured operadic shadow, and the closed modular component is
+governed by the Getzler--Kapranov Feynman involution. The mixed
+operations are not discarded: they enter through the assumed
+homotopy-Koszulity of the partially modular two-coloured extension.
 
-\smallskip\noindent
-\textbf{Step 1: Open-color involutivity at genus $0$.}
-At genus $0$, the relative Feynman transform restricts to the
-bar-cobar adjunction for $\SCchtop$-algebras. By
-Theorem~\ref{thm:homotopy-Koszul}, the operad $\SCchtop$ is
-homotopy-Koszul, so the bar-cobar adjunction is a Quillen
-equivalence (Theorem~\ref{thm:bar-cobar-adjunction}). In
-particular, the unit $A \to \Omega\mathbf{B}(A)$ is a
-quasi-isomorphism for every $\SCchtop$-algebra~$A$. This gives
-involutivity of the $\cP$-component of the relative Feynman
-transform.
+Hypothesis~(iii) supplies the missing typing datum for the second
+application of the transform: the first skeleton is a completed
+conilpotent coalgebra, so the second step must pass through its
+completed cobar/Feynman dual rather than through the original
+algebra category without qualification. On the associated graded
+of the genus filtration, the resulting comparison map is the
+product of the genus-zero bar-cobar counit and the
+Getzler--Kapranov involution on each modular graph piece, hence is
+a quasi-isomorphism.
 
-\smallskip\noindent
-\textbf{Step 2: Closed-color involutivity.}
-On the closed color, the relative Feynman transform restricts
-to the Feynman transform
-$\FT_{\Com_{\mathrm{mod}}}$ of the commutative modular operad.
-By the Getzler--Kapranov theorem
-(Volume~I, Theorem~\ref*{V1-thm:feynman-involution}), the
-Feynman transform is a homotopy involution:
-$\FT_{\Com_{\mathrm{mod}}}^2 \simeq \id$ on the homotopy
-category. This uses Poincar\'e duality for
-$\overline{\cM}_{g,n}$ in each degree.
-
-\smallskip\noindent
-\textbf{Step 3: Assembly via spectral sequence convergence.}
-The genus filtration on $\Bmod(C)$
-(Theorem~\ref{thm:genus-completion}) induces a complete
-descending filtration $F^\bullet$ on the double relative Feynman
-transform $\FT_{\mathrm{rel}}(\FT_{\mathrm{rel}}(A))$. We
-must show the natural map
-\[
-\varphi \colon
-\FT_{\mathrm{rel}}(\FT_{\mathrm{rel}}(A))
-\;\longrightarrow\; A
-\]
-is a quasi-isomorphism. The argument has four sub-steps.
-
-\smallskip\noindent
-\emph{Step 3a: quasi-isomorphism on associated graded.}
-On each piece of the associated graded:
-\begin{itemize}
-\item At genus $0$, the double transform restricts to the
- double bar-cobar
- $\Omega\mathbf{B}(\Omega\mathbf{B}(A))$, and the map
- $\varphi|_{\gr^0}$ is the composition of the two bar-cobar
- counit maps. By Step~1, each counit is a
- quasi-isomorphism, so $\varphi|_{\gr^0}$ is a
- quasi-isomorphism.
-\item At each genus~$g \ge 1$, the $\gr_F^g$-piece of the
- double transform is controlled by the closed-color Feynman
- involution of Step~2, applied to the genus-$g$ component of
- $\Com_{\mathrm{mod}}$. By the Getzler--Kapranov involutivity
- theorem (Volume~I, Theorem~\ref*{V1-thm:feynman-involution}),
- $\varphi|_{\gr^g}$ is a quasi-isomorphism.
-\end{itemize}
-Hence $\gr_F^\bullet(\varphi)$ is a quasi-isomorphism in every
-filtration degree.
-
-\smallskip\noindent
-\emph{Step 3b: the Mittag-Leffler condition.}
-We verify that the inverse system
-$\{H^n(\Bmod/F^g)\}_{g \ge 0}$ satisfies the Mittag-Leffler
-condition. For each $g$, the quotient $\Bmod/F^g$ has a finite
-filtration of length~$g$ (by the images of $F^0 \supset F^1
-\supset \cdots \supset F^{g-1} \supset 0$). The transition maps
-$\pi_g \colon \Bmod/F^{g+1} \twoheadrightarrow \Bmod/F^g$ are
-surjections with kernel $F^g/F^{g+1} = \gr_F^g$. In
-particular, the image of
-\[
-H^n(\Bmod/F^{g+r})
-\;\xrightarrow{\;\pi_{g,g+r}\;}
-H^n(\Bmod/F^g)
-\]
-stabilises for $r \ge 1$: the long exact sequence
-\[
-\cdots \to H^n(\gr_F^g) \to H^n(\Bmod/F^{g+1})
-\xrightarrow{\;\pi_g\;} H^n(\Bmod/F^g) \to \cdots
-\]
-shows that $\operatorname{im}(\pi_{g,g+r})$ is determined by
-$H^n(\gr_F^g)$ for all $r \ge 1$, since the further quotients
-$F^{g+1}/F^{g+r}$ contribute only to higher filtration degrees.
-The Mittag-Leffler condition is thus satisfied.
-
-\smallskip\noindent
-\emph{Step 3c: convergence of the spectral sequence.}
-The genus filtration $F^\bullet$ is complete
-(Theorem~\ref{thm:modular-bar}(iii):
-$\Bmod = \varprojlim_g \Bmod/F^g$), exhaustive ($F^0 = \Bmod$),
-and the positive-genus ideal $F^1$ is pronilpotent
-(the bracket $[F^p, F^q] \subset F^{p+q}$ ensures that iterated
-brackets in $F^1$ land in $F^g$ for arbitrarily large~$g$).
-The spectral sequence of the complete filtered complex
-$(\Bmod, D_0 + D_1, F^\bullet)$ has
-$E_1^{p,q} = H^{p+q}(\gr_F^p)$ with $d_1 = D_1$
-(Theorem~\ref{thm:genus-completion}(v)).
-
-By the Eilenberg--Moore convergence theorem for complete filtered
-complexes (\cite{Wei94}, Theorem~5.5.10): if $F^\bullet$ is
-complete, exhaustive, and Mittag-Leffler on cohomology, then the
-spectral sequence converges strongly to $H^\ast(\Bmod)$. We have
-verified all three conditions (completeness and exhaustiveness
-from Theorem~\ref{thm:modular-bar}(iii), Mittag-Leffler from
-Step~3b).
-
-\smallskip\noindent
-\emph{Step 3d: the two-out-of-three argument.}
-Consider the diagram of natural maps between the double relative
-Feynman transforms and the original algebra:
+Finally, hypothesis~(ii) is exactly the convergence input needed
+to pass from associated graded to the completed object. The
+comparison theorem for complete filtered complexes gives the
+quasi-isomorphism
 \[
 \FT_{\mathrm{rel}}(\FT_{\mathrm{rel}}(A))
-\;\xrightarrow{\;\varphi\;}\;
-A
-\;\xleftarrow{\;\varepsilon\;}\;
-\Omega\Bmod(A),
+\;\xrightarrow{\;\sim\;}\; A
 \]
-where $\varepsilon$ is the bar-cobar counit. All three objects
-carry compatible genus filtrations. The map
-$\gr_F^\bullet(\varphi)$ is a quasi-isomorphism (Step~3a), and
-the induced map $\gr_F^\bullet(\varepsilon)$ is a
-quasi-isomorphism at genus~$0$ by Step~1 and at each genus
-$g \ge 1$ by the Feynman involutivity of Step~2. By the
-convergence established in Step~3c, a map between complete
-filtered complexes that induces a quasi-isomorphism on each
-associated graded is itself a quasi-isomorphism on the completed
-objects. (This is \cite{Wei94}, Theorem~5.5.11: the
-comparison theorem for spectral sequences of complete filtered
-complexes.) Therefore $\varphi$ is a quasi-isomorphism.
+in the flat derived category. No statement about the curved
+fiberwise model follows from this argument, since the curvature
+term belongs to the factorization and chiral Riemann--Hilbert
+comparison data, not to the flat stable-graph skeleton alone.
 \end{proof}
 
 \begin{remark}[What involutivity achieves, and what it does not]
@@ -1714,143 +1556,54 @@ The three chain-level models of the genus-$g$ bar complex
 Feynman transform. The following theorem states their
 derived/coderived comparison.
 
-\begin{theorem}[Derived--coderived comparison: full statement;
-\ClaimStatusProvedHere]
+\begin{theorem}[Flat-derived / curved-coderived comparison under
+Positselski hypotheses; \ClaimStatusProvedHere]
 \label{thm:derived-coderived-full}
 \index{derived--coderived comparison|textbf}
-For a logarithmic $\SCchtop$-algebra $\cA$ with modular bar
-datum~$C$, the following three results jointly establish the
-comparison between the flat and curved models:
-\begin{enumerate}[label=\textup{(\roman*)}]
-\item \textbf{Relative homotopy-involutivity}
- \textup{(}Theorem~\textup{\ref{thm:relative-ft-involutive}}\textup{)}:
- the flat modular bar coalgebra $\Bmod(C)$ with $D^2 = 0$
- recovers~$\cA$ under the double relative Feynman transform.
-\item \textbf{Factorization Koszul duality}
- \textup{(}Chapter~\textup{\ref{ch:factorization-swiss-cheese}},
- Theorem~\textup{\ref{thm:factorization-SC-koszul}}\textup{)}:
- the factorization coalgebra on
- $\Ran(\Sigma_g) \times \Ran(\R)$ is Koszul dual to the
- factorization algebra, and the curved model arises as the
- coderived shadow of this duality.
-\item \textbf{Chiral Riemann--Hilbert correspondence}
- \textup{(}Volume~I\textup{)}: the passage from the flat model
- \textup{(}holomorphic propagator $\partial_z \log E(z,w)$
- on the universal cover\textup{)} to the curved model
- \textup{(}Arakelov propagator $\eta^{(g)}$ on
- $\Sigma_g$\textup{)} is the chiral exponential map, whose
- residual curvature term is $\dfib^{\,2} = \kappa \cdot
- \omega_g$. In genus~$1$, the later monodromy analysis
- identifies this with the $B$-cycle correction.
-\end{enumerate}
-The conjunction of~\textup{(i)--(iii)} gives: for every
-logarithmic $\SCchtop$-algebra $\cA$ and every $g \ge 0$, the
-flat model $(\gr_F^g \Bmod(C),\, D_0)$ and the curved model
-$(\barB^{(g)}(\cA),\, \dfib)$ are related by the chiral
-exponential map as a coderived comparison. The flat model
-retains the ordinary derived invariants; the curved model is its
-coderived avatar.
+Let $\cA$ be a logarithmic $\SCchtop$-algebra with modular bar
+datum~$C$. Suppose that the factorization model over the mixed
+holomorphic-topological Ran geometry is a filtered curved
+factorization model in the sense of the coderived framework of
+Volume~I, and suppose that the chiral exponential map $\Phi_g$
+has been constructed as a filtered morphism whose associated
+graded map is the identity. If the Positselski bounded-filtered
+criterion applies to its cone, then
+\[
+\Phi_g\colon
+(\gr_F^g\Bmod(C),D_0)
+\longrightarrow
+(\barB^{(g)}(\cA),\dfib)
+\]
+is an isomorphism in the coderived category. The source carries
+the ordinary flat-derived invariant package; the target is its
+curved coderived representative.
+
+At genus~$1$ this is the explicit Arakelov/Legendre computation.
+For $g>1$ the statement depends on the higher-genus chiral
+Riemann--Hilbert comparison and the bounded-filtered Positselski
+hypotheses. The relative Feynman skeleton supplies the flat
+bicomplex; it does not by itself supply the curved comparison.
 \end{theorem}
 
 \begin{proof}
-The proof combines three results.
+The flat skeleton supplies only the bicomplex
+$(\Bmod(C),D_0,D_1)$ and its genus spectral sequence. The
+curved complex $(\barB^{(g)}(\cA),\dfib)$ is additional
+factorization data: the Arakelov representative of the
+propagator has a curvature component
+$\dfib^{\,2}=\kappa(\cA)\cdot\omega_g$, so the target belongs
+to the coderived rather than ordinary derived category.
 
-\smallskip\noindent
-\textbf{Statement~(i): flat-model involutivity.}
-By Theorem~\ref{thm:relative-ft-involutive}, the flat modular
-bar coalgebra $(\Bmod(C),\, D_0 + D_1)$ with $D^2 = 0$
-satisfies:
-\begin{equation}\label{eq:flat-involutivity}
-\FT_{\mathrm{rel}}(\FT_{\mathrm{rel}}(A))
-\;\xrightarrow{\;\sim\;}\; A
-\end{equation}
-in the derived category of complete genus-filtered dg modules.
-This is a quasi-isomorphism of the \emph{flat} model: both
-$D_0$ and $D_1$ are strict differentials ($D_0^2 = D_1^2 = 0$),
-and the underlying complex lives in the ordinary derived
-category $\mathcal{D}(\mathbb{k})$.
-
-\smallskip\noindent
-\textbf{Statement~(ii): curved model from factorization.}
-The factorization coalgebra on
-$\Ran(\Sigma_g) \times \Ran(\R)$ is Koszul dual to the
-factorization algebra (chiral algebra) via the factorization
-Koszul duality of
-Chapter~\ref{ch:factorization-swiss-cheese},
-Theorem~\ref{thm:factorization-SC-koszul}
-(using the Ayala--Francis / Lurie framework~\cite{AF15,HA}).
-The curved differential $\dfib$ on the genus-$g$ bar complex
-arises from the single-valued Arakelov representative of the
-propagator on $\Sigma_g$, whose non-holomorphicity produces
-the curvature
-\begin{equation}\label{eq:curved-curvature}
-\dfib^{\,2} = \kappa(\cA) \cdot \omega_g.
-\end{equation}
-Since $\dfib^{\,2} \neq 0$ for $g \ge 1$ and $\kappa \neq 0$,
-the curved complex $(\barB^{(g)}(\cA), \dfib)$ does not live
-in the derived category; it lives in the \emph{coderived}
-category $\mathcal{D}^{\mathrm{co}}(\mathbb{k})$ of curved
-dg modules (the category of dg comodules over a curved
-coalgebra, localised at coacyclic objects).
-
-\smallskip\noindent
-\textbf{Statement~(iii): the chiral exponential map connects
-flat to curved.}
-On the universal cover $\widetilde{\Sigma}_g$, the holomorphic
-propagator $\partial_z \log E(z,w)$ (prime form) defines a
-flat connection on the bar complex:
-\[
-D^{\mathrm{hol}} \;=\; D_0 + D_1^{\mathrm{hol}},
-\qquad
-(D^{\mathrm{hol}})^2 = 0.
-\]
-The passage to $\Sigma_g$ via the period matrix $\Omega_{ij}$
-introduces the non-holomorphic Arakelov correction
-$2\pi i\, \omega_{\mathrm{Ar}}$ (Volume~I, three-propagator
-comparison), defining the \emph{chiral exponential map}
-\begin{equation}\label{eq:chiral-exp}
-\Phi_g \colon
-(\gr_F^g \Bmod(C),\, D_0)
-\;\longrightarrow\;
-(\barB^{(g)}(\cA),\, \dfib).
-\end{equation}
-The map $\Phi_g$ is the gauge transformation from the
-flat to the curved representative, and its monodromy around
-$B$-cycles is governed by the curvature term~\eqref{eq:curved-curvature};
-the explicit monodromy identification is proved later only in genus~$1$.
-
-\smallskip\noindent
-\textbf{Derivation of the comparison.}
-The logical chain is:
-\begin{enumerate}[label=\textup{(\alph*)}]
-\item Statement~(i) gives: the flat model
- $(\Bmod(C), D_0 + D_1)$ computes the correct derived
- invariants of~$\cA$ (the double relative Feynman transform
- recovers~$\cA$).
-\item Statement~(ii) gives: the curved model
- $(\barB^{(g)}(\cA), \dfib)$ exists as an object in the
- coderived category, constructed from the factorization
- coalgebra on $\Ran(\Sigma_g)$.
-\item Statement~(iii) gives: the chiral exponential map
- $\Phi_g$~\eqref{eq:chiral-exp} is a quasi-isomorphism in
- the coderived category. This uses two facts: (1)~$\Phi_g$
- is a filtered map (it preserves the pole-order filtration on
- the bar complex), and (2)~on the associated graded of the
- pole-order filtration, $\Phi_g$ reduces to the identity
- (the Arakelov correction is sub-leading in pole order).
- The spectral sequence comparison theorem then gives the
- quasi-isomorphism.
-\end{enumerate}
-Therefore: the flat model carries the ordinary derived
-invariants, while the curved model carries the corresponding
-coderived package, and $\Phi_g$ compares them in the coderived
-sense. The theorem does \emph{not} assign ordinary cohomology
-groups directly to the curved model when $\dfib^{\,2}\neq 0$.
-The spectral sequence of the genus filtration converges
-(Theorem~\ref{thm:genus-completion}(v),
-Theorem~\ref{thm:relative-ft-involutive}, Step~3c), and
-the $d_1$-differentials encode precisely the curvature
-obstructions $\kappa(\cA) \cdot \omega_g$.
+By hypothesis, $\Phi_g$ is a filtered morphism from the flat
+associated-graded model to the curved factorization model and
+its associated graded is the identity. The cone of $\Phi_g$ is
+therefore filtered with acyclic associated graded. When the
+bounded-filtered Positselski criterion applies, that cone is
+coacyclic. Hence $\Phi_g$ becomes an isomorphism in the
+coderived category. The genus-one statement is the case in which
+the Legendre relation supplies the required monodromy calculation
+directly; the higher-genus statement remains conditional on the
+named comparison and boundedness hypotheses.
 \end{proof}
 
 \section{Global and local approaches unified}
@@ -1867,7 +1620,7 @@ Feynman transform):
  \textup{(}Chapter~\textup{\ref{ch:factorization-swiss-cheese}}\textup{)}.
  Constructs the Swiss-cheese structure from
  families of factorizable D-modules on
- $\Ran(\Sigma_g) \times \Ran(\R)$ over
+ $\Ran^{\mathrm{oc}}_{\mathrm{HT}}(\Sigma_g,I)$ over
  $\overline{\cM}_g$. Produces all three models
  (flat associated graded, corrected holomorphic, curved
  geometric) and the derived--coderived comparison. The
@@ -1890,12 +1643,13 @@ Feynman transform):
 The relative Feynman transform
 ($\FT_{\Com_{\mathrm{mod}} / \SCchtop}$, this chapter)
 is the algebraic skeleton shared by both approaches. It names
-the structure that both the factorization and operadic
-constructions produce, proves homotopy-involutivity, and
-identifies the modular bar coalgebra as an algebra over the
-relative Feynman transform. It does not determine flat vs.\
-curved: that distinction requires the additional input of
-factorization (global) or formal completion (local).
+the stable-graph bicomplex that both the factorization and
+operadic constructions map to, and identifies the modular bar
+coalgebra with that skeleton. Its involutivity is a conditional
+flat statement under the hypotheses of
+Theorem~\ref{thm:relative-ft-involutive}. It does not determine
+flat vs.\ curved: that distinction requires the additional input
+of factorization (global) or formal completion (local).
 
 \noindent
 The relationship is:
@@ -1909,9 +1663,10 @@ The relationship is:
 The factorization structure maps to the relative Feynman
 transform by forgetting D-module data. The operadic structure
 maps to it by formal completion. What is proved is that the
-relative Feynman transform captures the bicomplex, the genus
-spectral sequence, and the involutivity, but not the distinction
-between flat and curved models or the full global/local data.
+relative Feynman transform captures the bicomplex and the genus
+spectral sequence. The flat involutivity and curved comparison
+require the additional hypotheses stated above; the skeleton does
+not contain the full global/local data.
 These arrows should not be read as essential surjectivity or a
 fully faithful embedding beyond the genus-$0$ comparison.
 
@@ -1926,159 +1681,54 @@ Feynman transform as the mediating algebraic skeleton.}
 
 \providecommand{\Loc}{\operatorname{Loc}}
 
-\begin{proposition}[Functorial relationships; \ClaimStatusProvedHere]
+\begin{proposition}[Comparison maps to the relative skeleton;
+\ClaimStatusProvedHere]
 \label{prop:functorial-triangle}
 \index{global--local comparison!functorial triangle|textbf}
 \index{functorial triangle!Fact--Op--RelFT|textbf}
 Let $\mathbf{Fact}$ denote the category of factorization
-Swiss-cheese algebras on
-$\Ran(\Sigma_g) \times \Ran(\R)$ over
-$\overline{\cM}_g$, let $\mathbf{Op}$ denote the category
-of $\SCchtop_{\mathrm{mod}}$-coalgebras, and let
-$\mathbf{RelFT}$ denote the category of
-$\FT_{\mathrm{rel}}$-algebras
-\textup{(}Definition~\textup{\ref{def:ft-rel-algebra}}\textup{)}.
-The following functors form a comparison triangle, which
-commutes at genus~$0$:
-\begin{enumerate}[label=\textup{(\roman*)}]
-\item $\Phi \colon \mathbf{Fact} \to \mathbf{RelFT}$:
- the forgetful functor from factorization Swiss-cheese algebras
- to $\FT_{\mathrm{rel}}$-algebras, obtained by forgetting the
- D-module structure and retaining only the bicomplex
- $(D_0, D_1)$. This functor is faithful at all genera and
- full at genus~$0$.
-\item $\Psi \colon \mathbf{Op} \to \mathbf{RelFT}$:
- the localisation-based functor from
- $\SCchtop_{\mathrm{mod}}$-coalgebras to
- $\FT_{\mathrm{rel}}$-algebras, obtained by the localisation
- functor \textup{(}formal completion at collision
- points\textup{)}. This functor is faithful at all genera
- and an equivalence at genus~$0$.
-\item $\Loc := \Psi^{-1} \circ \Phi\big|_{g=0}
- \colon \mathbf{Fact}\big|_{g=0} \to
- \mathbf{Op}\big|_{g=0}$:
- the localisation functor. At genus~$0$, this is an
- equivalence \textup{(}the triangle commutes\textup{)}.
- At genus $g \ge 1$, $\Phi$ and $\Psi$ have different images
- in $\mathbf{RelFT}$. The scalar curvature term
- $\kappa(\cA) \cdot \omega_g$ is the visible bicomplex-level
- obstruction, but the full discrepancy also includes additional
- global period/monodromy data.
-\end{enumerate}
+Swiss-cheese algebras over the mixed holomorphic-topological
+Ran geometry, let $\mathbf{Op}$ denote the category of
+$\SCchtop_{\mathrm{mod}}$-coalgebras, and let $\mathbf{RelFT}$
+denote the category of relative Feynman skeletons
+\textup{(}Definition~\textup{\ref{def:relative-feynman-transform}}\textup{)}.
+There are natural assignments
+\[
+\mathbf{Fact}\longrightarrow \mathbf{RelFT},
+\qquad
+\mathbf{Op}\longrightarrow \mathbf{RelFT},
+\]
+defined by forgetting, respectively, the global factorization
+$D$-module data and the higher local operadic presentation while
+retaining the completed stable-graph bicomplex $(D_0,D_1)$.
+At genus~$0$ these assignments agree with the usual localization
+comparison between factorization on $\Ran(\C)$ and formal-disc
+operadic data. At genus $g\ge 1$ they are comparison maps, not
+equivalences in general: the factorization side contains monodromy
+and period data invisible to the skeleton, while the operadic side
+contains local coherence data not recorded by the pair $(D_0,D_1)$
+unless a cofibrant rigid presentation has been fixed.
 \end{proposition}
 
 \begin{proof}
-\emph{Step 1: construction of $\Phi$.}
-A factorization Swiss-cheese algebra $\cA$ on
-$\Ran(\Sigma_g) \times \Ran(\R)$ produces the modular bar
-coalgebra $\Bmod(\cA)$ with total differential $D = D_0 + D_1$
-satisfying $D^2 = 0$
-(Theorem~\ref{thm:modular-bar}). By the recognition theorem
-(Theorem~\ref{thm:recognition-relative-ft}), this is an
-$\FT_{\mathrm{rel}}$-algebra. The functor $\Phi$ sends
-$\cA \mapsto (\Bmod(\cA), D_0, D_1)$ and forgets the
-D-module structure (flat connection, monodromy data).
+A factorization Swiss-cheese algebra produces a modular bar
+datum and hence, by Theorem~\ref{thm:recognition-relative-ft},
+the completed stable-graph bicomplex $(\Bmod(C),D_0,D_1)$.
+Forgetting the connection, period, and monodromy data defines
+the first assignment. An $\SCchtop_{\mathrm{mod}}$-coalgebra
+has local cocomposition and self-sewing operations; taking the
+completed stable-graph complex and retaining only the two
+operators $D_0$ and $D_1$ defines the second assignment.
 
-\emph{Faithfulness at all genera:} a morphism
-$f \colon \cA \to \cA'$ of factorization algebras that
-induces the identity on $\Bmod(\cA) \to \Bmod(\cA')$ must
-be the identity on all OPE data (encoded in $D_0$) and all
-self-sewing data (encoded in $D_1$), hence $f$ is determined
-by $\Phi(f)$.
-
-\emph{Fullness at genus $0$:} at genus~$0$, the factorization
-algebra restricts to $\Ran(\C) \times \Ran(\R)$, where the
-D-module structure is trivial (the connection is holomorphic
-and globally defined on $\C$). Every morphism of
-$\FT_{\mathrm{rel}}$-algebras at genus~$0$ preserves the
-$D_0$-differential, which encodes the full operadic data of
-$\SCchtop$. The factorization structure on $\C$ is uniquely
-determined by this operadic data (factorization on
-$\Ran(\C)$ is equivalent to the operad structure at the formal
-disc, since $\C$ is simply connected), so every morphism of
-$\FT_{\mathrm{rel}}$-algebras at genus~$0$ lifts to a
-factorization morphism.
-
-\emph{Non-fullness at genus $g \ge 1$:} at genus $g \ge 1$,
-the factorization structure on $\Ran(\Sigma_g)$ carries
-additional global period/monodromy data that is invisible to
-the bicomplex $(D_0, D_1)$. The explicit genus-$1$ $B$-cycle
-monodromy is the proved model case.
-Concretely, two factorization algebras $\cA, \cA'$ may have
-the same bicomplex (the same OPE residues and the same
-invariant form) but different monodromies. The Arakelov
-propagator $\eta^{(g)}$ on $\Sigma_g$ is the single-valued
-projection of the holomorphic propagator
-$\partial_z \log E(z,w)$ on the universal cover, and different
-choices of Arakelov representative (related by gauge
-transformations with nontrivial monodromy) give different
-curved models with the same flat bicomplex.
-
-\smallskip
-\emph{Step 2: construction of $\Psi$.}
-An $\SCchtop_{\mathrm{mod}}$-coalgebra $C$ has, at each genus~$g$
-and degree~$n$, a vector space $C(g,n)$ with operadic
-cocomposition maps and modular self-sewing maps. The
-localisation functor takes formal completions at collision
-points, producing the bicomplex $(D_0, D_1)$ on the completed
-product over stable graphs. The result is an
-$\FT_{\mathrm{rel}}$-algebra by
-Proposition~\ref{prop:rft-differential-identification}.
-
-\emph{Faithfulness:} the localisation functor is faithful
-because a morphism of $\SCchtop_{\mathrm{mod}}$-coalgebras is
-determined by its values on generating operations, which are
-detected by the bicomplex.
-
-\emph{Equivalence at genus $0$:} at genus~$0$, the modular
-operad restricts to the cyclic operad, and the
-$\SCchtop_{\mathrm{mod}}$-coalgebra structure is determined by
-the tree-level bar coalgebra $\Bch(C)$ with differential~$D_0$.
-This is exactly the data of an $\FT_{\mathrm{rel}}$-algebra at
-genus~$0$ (Definition~\ref{def:ft-rel-algebra}(a)). Hence
-$\Psi|_{g=0}$ is an equivalence.
-
-\smallskip
-\emph{Step 3: divergence at genus $g \ge 1$.}
-At genus $g \ge 1$, the images of $\Phi$ and $\Psi$ in
-$\mathbf{RelFT}$ differ. The operadic approach (Route~A)
-produces the flat models: $\Psi(C)$ has $D_0^2 = 0$ and
-$D_1^2 = 0$ with the genus spectral sequence computing
-flat cohomology. The factorization approach (Route~B) produces
-$\Phi(\cA)$ with the same bicomplex, and also
-determines the curved model $(\barB^{(g)}(\cA), \dfib)$ with
-$\dfib^{\,2} = \kappa(\cA) \cdot \omega_g$.
-
-One visible part of the discrepancy is the curvature term: the
-$d_1$-differential on the genus spectral sequence
-(Theorem~\ref{thm:recognition-relative-ft}(II)(iv)) acts as
-\[
-d_1 \colon E_1^{g-1,\ast} \;\longrightarrow\; E_1^{g,\ast},
-\qquad
-d_1 = \kappa(\cA) \cdot \omega_g.
-\]
-This $d_1$ is visible to both $\Phi(\cA)$ and $\Psi(C)$ (it is
-part of the $\FT_{\mathrm{rel}}$-algebra structure). The
-additional information in $\Phi(\cA)$ is the \emph{lift} of this
-$d_1$ to a curved differential $\dfib$ on the fiberwise bar
-complex, the lift that $\Psi$ cannot produce because it
-requires global (D-module) data. Thus the curvature term records
-the first obstruction seen by the shared genus spectral sequence,
-but it does not exhaust the full positive-genus discrepancy between
-the factorization and operadic routes.
-
-\smallskip
-\emph{Step 4: commutativity at genus $0$.}
-At genus $0$: $\Phi|_{g=0}$ forgets D-module data (which is
-trivial on $\C$), giving an $\FT_{\mathrm{rel}}$-algebra at
-genus~$0$. $\Psi|_{g=0}$ localises the
-$\SCchtop$-coalgebra, also giving an
-$\FT_{\mathrm{rel}}$-algebra at genus~$0$. These agree:
-$\Phi|_{g=0} = \Psi|_{g=0} \circ \Loc$, since on $\C$
-the factorization data and the operadic data are equivalent
-(factorization on $\Ran(\C)$ is determined by the local
-operadic structure, because $\C$ is contractible). Hence the
-triangle commutes at genus~$0$.
+At genus~$0$, the mixed holomorphic-topological factorization
+geometry is formal at the disc, so both assignments reduce to
+the same tree-level bar coalgebra for $\SCchtop$. This is the
+usual localization comparison. At positive genus, the first
+assignment has forgotten global $D$-module data and the second
+has forgotten any higher local coherence not represented by the
+chosen strict stable-graph differential. Thus no fullness,
+faithfulness, or essential-surjectivity assertion is made without
+additional rigidification hypotheses.
 \end{proof}
 
 
@@ -2135,11 +1785,15 @@ $\delta_\cA = D - D^{(0)}$
 (Theorem~\ref{thm:coderivation-MC-synthesis}), and the three models
 emerge from three choices of gauge representative.
 
-\begin{theorem}[Three models as gauge orbits; \ClaimStatusProvedHere]
+\begin{theorem}[Three models as gauge orbits under Arakelov comparison
+hypotheses; \ClaimStatusConditional]
 \label{thm:three-models-gauge-orbit}
 \index{gauge orbit!three models theorem|textbf}
 Let $\cA$ be a logarithmic $\SCchtop$-algebra on a genus-$g$ surface
-$\Sigma_g$ with $g \ge 1$. Let
+$\Sigma_g$ with $g \ge 1$, equipped with a fixed modular bar datum, a
+holomorphic prime-form representative, and an Arakelov representative
+whose chiral exponential map satisfies the bounded-filtered Positselski
+hypotheses of Theorem~\ref{thm:derived-coderived-full}. Let
 $\delta_\cA = D - D^{(0)} \in
 \mc\bigl(\mathfrak{g}^{\mathrm{mod}}_{\mathrm{cod}}(\cA)\bigr)$
 be the canonical coderivation MC element
@@ -2177,24 +1831,25 @@ presentations of $\delta_\cA$:
  chiral exponential map of
  Construction~\textup{\ref{constr:chiral-exponential}},
  with $\iotaalpha$ defined by the Arakelov propagator.
- The conjugation formula
- \textup{(}Proposition~\textup{\ref{prop:chiral-exponential-properties}(ii))}
+ The curvature-transport formula
+ \textup{(}Proposition~\textup{\ref{prop:chiral-exponential-properties}}\textup{)}
  gives:
  \[
- \Phig^{-1} \circ \dfib \circ \Phig
- = D_0 + D_1 + \kappa(\cA) \cdot \omega_g.
+ \bigl(\Phig^{-1} \circ \dfib \circ \Phig\bigr)^2
+ = \kappa(\cA) \cdot \omega_g.
  \]
  The residual curvature $\kappa(\cA) \cdot \omega_g$ is the
- obstruction to strict intertwining. In genus~$1$, the later
+ square of the transported curved differential, not an additive
+ summand of a degree-one differential. In genus~$1$, the later
  monodromy analysis identifies this obstruction with the
  $B$-cycle monodromy correction; a comparable higher-genus
  monodromy identification is not proved here.
 \end{enumerate}
-In particular, all three models carry the same gauge-orbit
-content: the two flat representatives are ordinary chain complexes
-with the same derived package, while the curved representative is
-the corresponding coderived avatar linked to them by the chiral
-exponential map. The theorem does \emph{not} assign ordinary
+In particular, under these comparison hypotheses all three models carry
+the same gauge-orbit content: the two flat representatives are ordinary
+chain complexes with the same derived package, while the curved
+representative is the corresponding coderived avatar linked to them by
+the chiral exponential map. The theorem does \emph{not} assign ordinary
 modular bar cohomology to the curved representative when
 $\dfib^{\,2}\neq 0$.
 \end{theorem}
@@ -2225,9 +1880,9 @@ preserves the MC property: if $\delta_\cA$ is MC, so is
 $\Ad_{\Phi_{\mathrm{hol}}}(\delta_\cA)$.
 
 \emph{Part~(iii)} is the chiral exponential map of
-Construction~\ref{constr:chiral-exponential}, and the conjugation
-formula is
-Proposition~\ref{prop:chiral-exponential-properties}(ii).
+Construction~\ref{constr:chiral-exponential}, and the transported
+curvature formula is
+Proposition~\ref{prop:chiral-exponential-properties}.
 The curvature $\kappa(\cA) \cdot \omega_g$ arises because the
 Arakelov propagator $K^{(g)}_{\mathrm{Ar}}$ differs from $K^{(g)}$
 by a smooth correction $R^{(g)}$ satisfying
@@ -2238,12 +1893,10 @@ of the correction introduces the curvature.
 \emph{Comparison of invariant packages:} Parts~(i)--(ii) give isomorphic
 chain complexes (both flat, related by an invertible gauge
 transformation). Part~(iii) gives a curved complex related to the
-flat complex by $\Phig$, which is a quasi-isomorphism in the
-coderived category
-(Proposition~\ref{prop:chiral-exponential-properties}(i)).
-By the derived--coderived comparison
-(Theorem~\ref{thm:derived-coderived-full}), all three compute the
-same flat-derived / curved-coderived package.
+flat complex by $\Phig$. Under the bounded-filtered Positselski
+hypotheses of Theorem~\ref{thm:derived-coderived-full}, this is
+the corresponding curved-coderived representative of the same
+flat-derived package.
 \end{proof}
 
 \begin{theorem}[Gauge transport on the Arakelov-representative locus; \ClaimStatusProvedHere]
@@ -2280,9 +1933,8 @@ Two Arakelov propagators differ by a harmonic $(1,0)$-form:
 $K'_{\mathrm{Ar}} - K_{\mathrm{Ar}} = h_\alpha \cdot \omega_\alpha$
 for some $h_\alpha \in \C$. The induced gauge transformation
 $e^{\sum_\alpha h_\alpha \iota_\alpha}$ conjugates $\dfib$ to $\dfib'$
-by the same
-Baker--Campbell--Hausdorff computation as in
-Proposition~\ref{prop:chiral-exponential-properties}(ii).
+by the same filtered-gauge computation used in
+Proposition~\ref{prop:chiral-exponential-properties}.
 Since $\bar\partial(K'_{\mathrm{Ar}}) = \bar\partial(K_{\mathrm{Ar}})
 = +\omega_{\mathrm{Ar}}$ (both are Arakelov-normalised),
 the curvature is unchanged.
@@ -2372,11 +2024,9 @@ the affine specialisation.
 
 \smallskip\noindent
 \emph{$(i) \Leftrightarrow (ii)$:} This is the genus-$1$ content of
-Theorem~D (Volume~I), together with its proved scalar
-higher-genus continuation: the curvature of the genus-$g$ bar complex
-is $\dfib^{\,2} = \kappa(\cA) \cdot \omega_g$ on that lane, where
-$\omega_g$ is the fundamental class of the Hodge bundle on $\Mbar_g$. At
-$g = 1$, $\omega_1 \in H^0(\Mbar_{1,1})$ is the fundamental class
+Theorem~D (Volume~I). At $g = 1$ the curvature of the bar complex is
+$\dfib^{\,2} = \kappa(\cA) \cdot \omega_1$, where
+$\omega_1 \in H^0(\Mbar_{1,1})$ is the fundamental class
 (nonzero), so $\dfib^{\,2} = 0$ if and only if
 $\kappa(\cA) = 0$.
 
@@ -2455,11 +2105,11 @@ $k=-2$.
 \label{sec:chiral-exponential-map}
 
 
-The chiral exponential map $\Phig$ was referenced in
-Theorem~\ref{thm:derived-coderived-full}(iii) as the gauge
-transformation connecting the flat model to the curved model.
-The following gives its definition and compute it explicitly at genus~$1$
-for the Heisenberg algebra.
+Theorem~\ref{thm:derived-coderived-full} uses the chiral
+exponential map $\Phig$ as the filtered comparison from the flat
+bar model to the curved factorization representative. The
+following gives its definition and computes it explicitly at
+genus~$1$ for the Heisenberg algebra.
 
 \begin{construction}[The chiral exponential map]
 \label{constr:chiral-exponential}
@@ -2542,33 +2192,32 @@ degree by~$2$ and increases the ``period order'' by~$1$.
 \ClaimStatusProvedHere]
 \label{prop:chiral-exponential-properties}
 \index{chiral exponential map!properties|textbf}
-The chiral exponential map $\Phig$ of
-Construction~\textup{\ref{constr:chiral-exponential}} satisfies:
+Assume the chiral exponential map $\Phig$ of
+Construction~\textup{\ref{constr:chiral-exponential}} is defined
+on the completed filtered bar complex and preserves the pole-order
+filtration. Then:
 \begin{enumerate}[label=\textup{(\roman*)}]
-\item \textbf{Quasi-isomorphism.} $\Phig$ is a
- quasi-isomorphism between the flat model $(\Bmod(\cA), D)$ and
- the curved model $(\barB^{(g)}(\cA), \dfib)$ in the coderived
- category.
-\item \textbf{Conjugation formula.} The curved differential is
- the $\Phig$-conjugate of the flat differential:
+\item $\Phig$ is invertible as a filtered formal operator, with
+ associated graded equal to the identity.
+\item If the cone of $\Phig$ satisfies the bounded-filtered
+ Positselski criterion, then $\Phig$ is an isomorphism in the
+ coderived category.
+\item The curvature comparison is a statement about squares:
  \begin{equation}\label{eq:conjugation-formula}
- \Phig^{-1} \circ \dfib \circ \Phig
+ \bigl(\Phig^{-1} \circ \dfib \circ \Phig\bigr)^2
  \;=\;
- D_0 + D_1 + \kappa(\cA) \cdot \omega_g.
+ \kappa(\cA) \cdot \omega_g
  \end{equation}
- The failure of $\Phig$ to intertwine the differentials
- \emph{strictly} is measured exactly by the curvature.
-\item \textbf{Filtered map.} $\Phig$ preserves the pole-order
- filtration on the bar complex: the leading term in
- \eqref{eq:chiral-exp-expansion} is the identity, and the
- correction terms are sub-leading (they reduce bar degree).
- On the associated graded of the pole-order filtration,
- $\Phig$ reduces to the identity.
+ as the curvature component of the transported curved
+ differential. At genus~$1$ the Legendre relation gives the
+ explicit $B$-cycle monodromy calculation. For $g>1$ the
+ corresponding identification requires the higher-genus chiral
+ Riemann--Hilbert comparison.
 \end{enumerate}
 \end{proposition}
 
 \begin{proof}
-\emph{Part~(i):} The exponential
+\emph{Filtered invertibility.} The exponential
 $\Phig = \exp(\sum_\alpha \talpha \cdot \iotaalpha)$
 is a formal power series in the period integrals $\talpha$ with
 coefficients in the endomorphisms of the bar complex.
@@ -2582,53 +2231,8 @@ exponential converges in the $F$-adic topology.
 
 The map $\Phig$ is invertible: $\Phig^{-1} =
 \exp(-\sum_\alpha \talpha \cdot \iotaalpha)$, which converges
-by the same argument. To show that $\Phig$ is a
-quasi-isomorphism in the coderived category, we use the spectral
-sequence comparison: $\Phig$ induces the identity on the
-associated graded of the pole-order filtration (Part~(iii)),
-so the induced map on $E_0$-pages is the identity, hence a
-quasi-isomorphism. By the comparison theorem for complete
-filtered complexes (\cite{Wei94}, Theorem~5.5.11), $\Phig$ is
-a quasi-isomorphism on the completed objects.
+by the same argument.
 
-\smallskip
-\emph{Part~(ii):}
-The conjugation formula is the computation:
-\begin{align*}
-\Phig^{-1} \circ \dfib \circ \Phig
-&\;=\;
-e^{-\sum \talpha \iotaalpha} \circ
-\dfib \circ
-e^{\sum \talpha \iotaalpha}
-\\
-&\;=\;
-\dfib
-+ \sum_\alpha \talpha\,
-[\dfib, \iotaalpha]
-+ \frac{1}{2}\sum_{\alpha,\beta}
-\talpha \, t_\beta\,
-[[\dfib, \iotaalpha], \iota_\beta]
-+ \cdots
-\end{align*}
-(the Baker--Campbell--Hausdorff expansion). The identity
-$[\dfib, \iotaalpha] = D_1^{(\alpha)}$ says that commuting the
-fibre differential with the $A_\alpha$-contraction produces the
-$\alpha$-component of the genus-raising differential (this is
-the infinitesimal form of the Stokes theorem applied to the
-propagator integrated over $A_\alpha$). The higher commutators
-$[[\dfib, \iotaalpha], \iota_\beta]$ produce the global period
-corrections, and the total sum
-reorganises as $D_0 + D_1 + \kappa \cdot \omega_g$
-by the Legendre relation
-$\eta_1 \tau - \eta_\tau = 2\pi i$ (at $g = 1$) and its
-higher-genus generalisation (the Riemann bilinear relations for
-periods of the prime form). This proves the conjugation
-formula. A separate theorem identifying these corrections with a
-general higher-genus D-module monodromy formula is not established
-here.
-
-\smallskip
-\emph{Part~(iii):}
 The pole-order filtration on the bar complex assigns to
 a bar element $[s^{-1}a_1 | \cdots | s^{-1}a_n]$ the
 total pole order $n$ (each desuspended element contributes one
@@ -2638,6 +2242,31 @@ them by a scalar (the period integral), reducing the pole
 order by~$2$. Therefore $\Phig = \id + (\text{terms of lower
 pole order})$, and on the associated graded,
 $\gr^n(\Phig) = \id|_{\gr^n}$.
+
+\smallskip
+\emph{Coderived comparison.}
+If the cone satisfies the bounded-filtered Positselski criterion,
+then the associated-graded identity implies that the cone is
+coacyclic. Thus $\Phig$ is an isomorphism in the coderived
+category. Without this criterion, filtered invertibility of the
+operator alone is not a proof of coderived equivalence.
+
+\smallskip
+\emph{Curvature.}
+Conjugating a curved differential transports its curvature by
+the same gauge operator:
+\[
+\bigl(\Phig^{-1}\dfib\Phig\bigr)^2
+=
+\Phig^{-1}\dfib^{\,2}\Phig.
+\]
+For the Arakelov representative, the curvature component is
+$\kappa(\cA)\cdot\omega_g$. This is a curvature-square
+statement, not an additive degree-one differential formula. At
+genus~$1$, the Legendre relation identifies the corresponding
+$B$-cycle correction explicitly; the higher-genus monodromy
+identification is conditional on the chiral Riemann--Hilbert
+comparison.
 \end{proof}
 
 \subsection{Explicit computation: the Heisenberg algebra
@@ -2853,13 +2482,15 @@ $\dalg(\cA) \ge 2$ if independent higher operations exist
 beyond~$m_3$.
 \end{definition}
 
-\begin{theorem}[Classification by shadow depth; \ClaimStatusProvedHere]
+\begin{theorem}[Classification by finite shadow depth on the Koszul locus;
+\ClaimStatusProvedHere]
 \label{thm:classification-shadow-depth}
 \index{classification!by shadow depth|textbf}
 \index{shadow depth!classification theorem|textbf}
-Let\/ $\cA$ be a logarithmic\/ $\SCchtop$-algebra. The shadow
-depth\/ $\dalg(\cA)$ classifies\/ $\cA$ into two proved types and
-one open case:
+Let\/ $\cA$ be a chirally Koszul logarithmic\/ $\SCchtop$-algebra
+whose bar spectral sequence has finite shadow depth
+$\dalg(\cA)$. Then\/ $\dalg(\cA)$ classifies\/ $\cA$ into two proved
+finite-depth types and one open case:
 \begin{enumerate}[label=\textup{(\roman*)}]
 \item \textbf{Type~F} \textup{(}formal\textup{):}
  $\dalg(\cA) = 0$, equivalently $m_k = 0$ for all $k \ge 3$.
@@ -2877,10 +2508,11 @@ one open case:
  known among logarithmic $\SCchtop$-algebras
  \textup{(}Conjecture~\textup{\ref{conj:type-H-existence})}.
  Theorem~\textup{\ref{thm:type-H-curvature-resolution}(iii)}
- shows that the question is purely genus-$0$: the genus tower is
- always governed by a single scalar $\kappa(\cA)$ regardless of
- shadow depth, so $\dalg \ge 2$ would require independent $\Ainf$
- operations $m_k$ for $k \ge 4$ not determined by $m_2$ and $m_3$.
+ shows that the question is purely genus-$0$ on the scalar lane:
+ the scalar genus tower is governed by the single characteristic
+ $\kappa(\cA)$ regardless of shadow depth, so $\dalg \ge 2$ would
+ require independent $\Ainf$ operations $m_k$ for $k \ge 4$ not
+ determined by $m_2$ and $m_3$.
  OPE poles of order $\ge 3$ with non-central residues are
  necessary candidates, but their existence is unresolved.
 \end{enumerate}
@@ -2986,10 +2618,11 @@ lattice algebras, free fields, or their Drinfeld--Sokolov
 reductions) has $\dalg \geq 2$
 (Conjecture~\ref{conj:type-H-existence}).
 By Theorem~\ref{thm:type-H-curvature-resolution}\textup{(iii)},
-the question is purely genus-$0$: the genus tower is always
-governed by the single scalar $\kappa(\cA)$ regardless of shadow
-depth, so the open frontier concerns the $\Ainf$ operations
-themselves, not the modular structure.
+the question is purely genus-$0$ on the proved scalar lane: the
+scalar genus tower is governed by the single characteristic
+$\kappa(\cA)$ regardless of shadow depth, so the open frontier
+concerns the $\Ainf$ operations themselves and any non-scalar
+positive-genus structure not captured by that scalar lane.
 \end{remark}
 
 \begin{remark}[The affine lineage is uniformly Type~F]
@@ -3025,18 +2658,19 @@ which produces a genuine $m_3$. The Virasoro algebra is
 reduction, which changes the $\Ainf$ structure).
 \end{remark}
 
-\begin{theorem}[Resolution of the Type~H curvature question; \ClaimStatusProvedHere]
+\begin{theorem}[Scalar Type~H curvature obstruction; \ClaimStatusProvedHere]
 \label{thm:type-H-curvature-resolution}
 \index{Type~H algebra!curvature resolution|textbf}
 \index{secondary curvature!non-existence|textbf}
 \index{uncurved algebra!three regimes|textbf}
-The genus tower of any logarithmic $\SCchtop$-algebra is governed
-by a \emph{single scalar} $\kappa(\cA)$ on the proved scalar lane,
-with genus~$1$ unconditional:
+The scalar genus tower of any logarithmic $\SCchtop$-algebra with a
+fixed modular bar datum is governed by a \emph{single scalar}
+$\kappa(\cA)$ on the proved scalar lane, with genus~$1$
+unconditional:
 \begin{enumerate}[label=\textup{(\roman*)}]
 \item \textbf{No secondary curvature exists.}
  The curvature of the genus-$1$ bar complex is
- $\dfib^{\,2} = \kappa(\cA) \cdot \omega_1$, and on the proved
+ $\dfib^{\,2} = \kappa(\cA) \cdot \omega_1$, and on the conditional
  scalar higher-genus lane one has
  $\dfib^{\,2} = \kappa(\cA) \cdot \omega_g$ for all $g \geq 2$,
  with $\kappa(\cA) \in \mathbb{k}$ the modular characteristic and
@@ -3046,8 +2680,9 @@ with genus~$1$ unconditional:
  genus~$2$: on that scalar lane, the same $\kappa$ governs every genus.
  ``Type~H'' in the na\"ive sense of $\kappa = 0$ with
  $\kappa_2 \neq 0$ is therefore vacuous.
-\item \textbf{Three regimes of uncurved algebras.}
- The algebras with $\kappa(\cA) = 0$ fall into three regimes:
+\item \textbf{Three standard regimes of scalar-uncurved algebras.}
+ The zeroes of $\kappa(\cA)$ visible in the standard landscape treated
+ in this manuscript fall into three regimes:
  \begin{enumerate}[label=\textup{(\alph*)}]
  \item \emph{Trivially uncurved}: $\kappa = 0$ from triviality
  ($\cH_0$, rank-$0$ lattice, zero fermions).
@@ -3077,7 +2712,7 @@ with genus~$1$ unconditional:
  non-scalar shadow obstruction tower may be nontrivial.
  Shadow depth $\dalg \geq 1$ \textup{(}Type~V or higher\textup{)}.
  \end{enumerate}
-\item \textbf{Shadow depth is independent of curvature.}
+\item \textbf{Shadow depth is independent of scalar curvature.}
  The genus-$0$ question ($\dalg \geq 2$?) and the genus-tower
  question ($\kappa = 0$?) are logically independent.
  Conjecture~\ref{conj:type-H-existence}, the existence of
@@ -3096,8 +2731,8 @@ independent genus-$2$ scalar arises.
 
 Part~(ii): the curvature formulas for the standard landscape
 (Theorem~\ref{thm:classification-uncurved} and worked examples
-of \S\ref{sec:rft-worked-examples}) identify the complete
-$\kappa = 0$ locus. The critical-level identification
+of \S\ref{sec:rft-worked-examples}) identify the displayed
+standard sources of $\kappa = 0$. The critical-level identification
 uses the Feigin--Frenkel theorem: the center
 $Z(V_{-\hvee}(\fg)) \cong \mathrm{Fun}\,\mathrm{Op}_{\fg^\vee}
 (\mathbb{D})$ provides the nontrivial coefficients for the
@@ -3252,14 +2887,15 @@ Theorems~\ref{thm:classification-shadow-depth}
 and~\ref{thm:classification-affine-monodromy} give two different
 layers of invariant data on the current claim surface.
 
-Universally, every logarithmic $\SCchtop$-algebra $\cA$ carries the
+For every finite-depth logarithmic $\SCchtop$-algebra $\cA$ with a
+fixed modular bar datum, the current claim surface carries the
 pair
 \[
 \bigl(\kappa(\cA),\;\; \dalg(\cA)\bigr)
 \;\in\;
 \mathbb{k} \times \Z_{\ge 0},
 \]
-where the first component governs the genus tower
+where the first component governs the scalar genus tower
 \textup{(}Theorem~D, Volume~I\textup{)} and the second records the
 genus-$0$ $\Ainf$-complexity.
 
@@ -3289,19 +2925,32 @@ $\SCchtop$-algebras is not extracted here.
 
 \providecommand{\FTrel}{\mathrm{FT}_{\Com_{\mathrm{mod}} / \SCchtop}}
 
-\begin{theorem}[Comparison of global and local bar-complex models; \ClaimStatusProvedHere]
+\begin{theorem}[Comparison of global and local bar-complex models under
+the curved comparison hypotheses; \ClaimStatusProvedHere]
 \label{thm:three-routes-equivalence}
-Let\/ $\cA$ be a logarithmic\/ $\SCchtop$-algebra with modular characteristic~$\kappa(\cA)$. The global/factorization and local/operadic constructions produce bar-complex models that are connected by the relative Feynman transform; the local flat model carries ordinary derived invariants, and the global curved model is its coderived counterpart at every genus~$g \ge 0$:
+Let\/ $\cA$ be a logarithmic\/ $\SCchtop$-algebra with modular
+bar datum~$C$ and modular characteristic~$\kappa(\cA)$. The
+global/factorization and local/operadic constructions map to the
+same relative Feynman skeleton. Under the hypotheses of
+Theorem~\ref{thm:derived-coderived-full}, the local flat model
+carries ordinary derived invariants and the global curved model is
+its coderived representative:
 \begin{enumerate}[label=\textup{(\roman*)}]
-\item \textbf{Global} \textup{(}Factorization, Chapter~\textup{\ref{ch:factorization-swiss-cheese})}: the factorization coalgebra $\barB_{\mathrm{fact}}(\cA)$ on $\operatorname{Ran}(\Sigma_g) \times \operatorname{Ran}(\R)$, with fiberwise differential~$\dfib$ satisfying $\dfib^{\,2} = \kappa(\cA) \cdot \omega_g$.
+\item \textbf{Global} \textup{(}Factorization, Chapter~\textup{\ref{ch:factorization-swiss-cheese})}: the factorization coalgebra $\barB_{\mathrm{fact}}(\cA)$ on $\Ran^{\mathrm{oc}}_{\mathrm{HT}}(\Sigma_g,I)$, with fiberwise differential~$\dfib$ satisfying $\dfib^{\,2} = \kappa(\cA) \cdot \omega_g$.
 \item \textbf{Local} \textup{(}Operadic, Chapter~\textup{\ref{ch:modular-sc-operad})}: the modular bar coalgebra $\barB_{\mathrm{op}}(\cA) = \Bmod(\cA)$ with flat bicomplex $(D_0, D_1)$ and $D^2 = 0$.
 \end{enumerate}
-The relative Feynman transform $\FTrel$ \textup{(}this chapter\textup{)} provides the algebraic skeleton that mediates between them: $\barB_{\mathrm{op}}(\cA) \cong \FTrel(\cA)$ as bigraded complexes.
+The relative Feynman transform $\FTrel$ \textup{(}this chapter\textup{)}
+provides the algebraic skeleton that mediates between them:
+$\barB_{\mathrm{op}}(\cA) \cong \FTrel(C)$ as bigraded complexes.
 
 These are related by:
 \begin{enumerate}[label=\textup{(\alph*)}]
-\item $\barB_{\mathrm{op}}(\cA) \cong \FTrel(\cA)$ as bigraded complexes \textup{(}Recognition Theorem~\textup{\ref{thm:recognition-relative-ft})}.
-\item $\barB_{\mathrm{fact}}(\cA) \simeq \barB_{\mathrm{op}}(\cA)$ via the chiral exponential map~$\Phi_g$ \textup{(}Construction~\textup{\ref{constr:chiral-exponential})}, which is a quasi-isomorphism in the coderived category at each genus~$g$.
+\item $\barB_{\mathrm{op}}(\cA) \cong \FTrel(C)$ as bigraded complexes \textup{(}Recognition Theorem~\textup{\ref{thm:recognition-relative-ft})}.
+\item If the chiral exponential map~$\Phi_g$
+ \textup{(}Construction~\textup{\ref{constr:chiral-exponential})}
+ satisfies the bounded-filtered Positselski hypothesis, then
+ $\barB_{\mathrm{fact}}(\cA)$ and $\barB_{\mathrm{op}}(\cA)$
+ are compared in the coderived category.
 \item On the conilpotent finite-type flat locus where the
  Positselski comparison applies, the coderived and derived
  categories agree on the flat model. For the curved
@@ -3313,9 +2962,9 @@ These are related by:
 \end{theorem}
 
 \begin{proof}
-Part~(a) is Theorem~\ref{thm:recognition-relative-ft}: the recognition theorem identifies $\Bmod(\cA)$ with $\FTrel(\cA)$ as an isomorphism of bigraded complexes with bicomplex structure $(D_0, D_1)$.
+Part~(a) is Theorem~\ref{thm:recognition-relative-ft}: the recognition theorem identifies $\Bmod(C)$ with $\FTrel(C)$ as an isomorphism of bigraded complexes with bicomplex structure $(D_0, D_1)$.
 
-Part~(b): the chiral exponential map $\Phi_g$ of Construction~\ref{constr:chiral-exponential} is a gauge transformation from the flat model $(\Bmod, D_0 + D_1)$ to the curved model $(\barB^{(g)}, \dfib)$. By Proposition~\ref{prop:chiral-exponential-properties}(i), $\Phi_g$ is a quasi-isomorphism in the coderived category.
+Part~(b): the chiral exponential map $\Phi_g$ of Construction~\ref{constr:chiral-exponential} is a filtered map from the flat model $(\Bmod, D_0 + D_1)$ to the curved model $(\barB^{(g)}, \dfib)$. Proposition~\ref{prop:chiral-exponential-properties} identifies the curvature transport and records the extra bounded-filtered Positselski hypothesis required for a coderived isomorphism.
 
 Part~(c): the manuscript-internal Positselski comparison is available
 on the conilpotent finite-type flat locus singled out in Volume~I's
@@ -3339,11 +2988,12 @@ positive genus: Proposition~\ref{prop:functorial-triangle}
 already shows that the factorization model carries additional
 global period/monodromy data invisible to the bicomplex.
 What is proved here is narrower and honest. Both approaches map
-to the same relative-Feynman-transform skeleton, and the resulting
-flat and curved bar-complex models are related by the chiral
-exponential map in the coderived sense. Thus the shared object on
-the proved surface is the bar-complex package together with its
-flat-derived / curved-coderived invariant package, not a theorem
+to the same relative-Feynman-transform skeleton. When the
+bounded-filtered hypotheses hold, the flat and curved bar-complex
+models are related by the chiral exponential map in the coderived
+sense. Thus the shared object on the proved surface is the
+stable-graph bar skeleton; the flat-derived / curved-coderived
+package is conditional on the comparison hypotheses, not a theorem
 that the global and local presentations determine each other in
 full.
 \end{remark}
@@ -3354,13 +3004,14 @@ algebraic skeleton of the universal-conductor master]%
 %
 %
 \index{universal conductor!algebraic skeleton}%
-The relative Feynman transform $\FTrel(\cA)$ above is the
-algebraic skeleton on which the wave-14 universal-holography master
+The relative Feynman transform $\FTrel(C)$ above is the
+algebraic skeleton on which the universal-holography master
 theorem (\textsf{thm:universal-holography-master} in
 \textsf{chap:universal-conductor}; \textsf{chap:climax-platonic}) is
-read. The bicomplex structure $(D_0, D_1)$ + chiral exponential map
-$\Phi_g$ + derived/coderived comparison provides the
-\emph{shared bar-complex package} of the climax: every rung of the
+read. The bicomplex structure $(D_0, D_1)$ provides the
+\emph{shared stable-graph skeleton} of the climax; the chiral
+exponential map and derived/coderived comparison enter only under
+their stated filtered comparison hypotheses. Every rung of the
 $E_n$-topological ladder
 \textsf{cor:rung-virasoro}, \textsf{cor:rung-w-N},
 \textsf{cor:rung-w-infty} reads its chain-level avatar through the
@@ -3368,7 +3019,7 @@ relative Feynman transform of its boundary chiral algebra. The
 Maurer--Cartan equation
 $D \Theta^{\mathrm{oc}} + \tfrac12 [\Theta^{\mathrm{oc}},
  \Theta^{\mathrm{oc}}] = 0$
-attached to $\FTrel(\cA)$ is the algebraic codification of the
+attached to $\FTrel(C)$ is the algebraic codification of the
 ``open/closed master equation'' that the climax theorem reads as
 universal holography.
 \end{remark}

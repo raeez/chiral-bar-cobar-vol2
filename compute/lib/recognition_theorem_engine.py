@@ -1,10 +1,10 @@
-r"""Recognition theorem engine: Weiss cosheaf descent for SC^{ch,top}-algebras.
+r"""Recognition/local-shadow engine for SC^{ch,top}-algebras.
 
-The recognition theorem (thm:recognition-SC, lem:product-weiss-descent) states:
-  Every SC^{ch,top}-algebra satisfying hypotheses (H1)-(H4) IS a chiral algebra
-  (C-direction) + topological algebra (R-direction) + compatible coupling (mixed).
-
-This is proved via Weiss cosheaf descent on product manifolds C x R.
+The live theorem surface treats thm:recognition-SC as a product-formal
+local-shadow statement. It checks that rectangle data with holomorphic,
+topological, and mixed product-formal structure produces the local
+W(SC^{ch,top}) shadow; it does not assert recovery of arbitrary global
+Ran-space factorization data from the local operad.
 
 The computational pillars:
 
@@ -13,17 +13,17 @@ The computational pillars:
        A(U_1 union U_2) = A(U_1) tensor_{A(U_1 cap U_2)} A(U_2)
      - Verified at chain level for Heisenberg on standard covers of C
 
-  2. **Hypothesis verification (H1)-(H4)**:
+  2. **Legacy local-shadow checks (H1)-(H4)**:
      - (H1): Locally constant along R (topological direction)
      - (H2): Holomorphic along C (chiral direction)
      - (H3): Filtration bounded below
      - (H4): Vacuum axiom
      - Check each for all 7 Vol II example algebras
 
-  3. **Reconstruction**: From (H1)-(H4), reconstruct:
+  3. **Local-shadow extraction**: From these checks, extract:
      - Chiral part = sections along C (from holomorphicity)
      - Topological part = sections along R (from local constancy)
-     - Coupling = mixed OPE at boundary
+     - Coupling = product-formal mixed OPE at boundary
 
 References:
   Vol II: thm:recognition-SC, lem:product-weiss-descent, foundations.tex, locality.tex
@@ -601,22 +601,22 @@ def check_all_hypotheses(family: str) -> HTHypothesisCheck:
 
 
 # =========================================================================
-# 5. RECONSTRUCTION FROM (H1)-(H4)
+# 5. PRODUCT-FORMAL LOCAL-SHADOW EXTRACTION
 # =========================================================================
 
 @dataclass
 class ReconstructedAlgebra:
-    """The reconstructed chiral + topological + coupling structure.
+    """The extracted local chiral + topological + coupling structure.
 
-    From the recognition theorem, any HT prefactorization algebra
-    satisfying (H1)-(H4) decomposes as:
+    In the product-formal local-shadow regime, an HT prefactorization
+    algebra satisfying the local checks decomposes as:
       - A^{ch}: chiral algebra on C (from holomorphicity (H2))
       - A^{top}: E_1-algebra on R (from local constancy (H1))
       - mu^{mix}: coupling A^{ch} x A^{top} -> A^{top} (from SC structure)
 
-    The chiral part is the restriction to C x {point}.
-    The topological part is the restriction to {point} x R.
-    The coupling comes from the mixed SC composition.
+    The chiral and topological parts are local stalk/costalk
+    extractions, not literal values on non-open slices. The coupling
+    comes from the product-formal mixed SC composition.
     """
     family: str
     chiral_generators: List[str]
@@ -634,9 +634,8 @@ def reconstruct_from_hypotheses(family: str) -> ReconstructedAlgebra:
     Step 2: Extract the topological part (R-direction sections).
     Step 3: Identify the coupling (mixed OPE at boundary).
 
-    This implements the factorwise recognition (Steps 1-2 of the
-    recognition theorem proof in foundations.tex) and the Weiss
-    descent for mixed operations (Step 4).
+    This implements the factorwise local-shadow extraction and the
+    product-cover descent check for mixed operations.
     """
     info = VOL2_EXAMPLES.get(family)
     if info is None:
@@ -800,18 +799,19 @@ def product_weiss_descent_dimensions(cover_C: List[Tuple], cover_R: List[Tuple],
 
 
 # =========================================================================
-# 7. RECOGNITION THEOREM SUMMARY
+# 7. LOCAL-SHADOW THEOREM SUMMARY
 # =========================================================================
 
 def recognition_theorem_check(family: str) -> Dict[str, Any]:
-    """Full recognition theorem check for a given algebra family.
+    """Product-formal local-shadow check for a given algebra family.
 
     Verifies:
       1. All hypotheses (H1)-(H4) are satisfied
       2. Reconstruction yields consistent chiral + topological + coupling
       3. The reconstructed kappa matches the known value
 
-    This is the computational summary of thm:recognition-SC.
+    This is the computational summary of the local-shadow surface of
+    thm:recognition-SC.
     """
     # Step 1: Check hypotheses
     hyp = check_all_hypotheses(family)
@@ -1051,18 +1051,18 @@ def extract_mixed_coupling(family: str):
 
 
 # =========================================================================
-# 11. FULL RECOGNITION PIPELINE
+# 11. FULL LOCAL-SHADOW PIPELINE
 # =========================================================================
 
 def full_recognition_pipeline(family: str, verbose: bool = False) -> Dict[str, Any]:
-    """Run the complete recognition theorem pipeline for a given family.
+    """Run the complete local-shadow pipeline for a given family.
 
     1. Check (H1)-(H4)
     2. If all pass: reconstruct chiral + topological + coupling
     3. Verify consistency with known data
     4. Return structured summary
 
-    This is the main entry point for testing the recognition theorem.
+    This is the main entry point for testing the local-shadow theorem.
     """
     # Step 1: Hypotheses
     hyp = check_all_hypotheses(family)

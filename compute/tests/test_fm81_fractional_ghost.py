@@ -9,7 +9,7 @@ Target theorems:
     thm:E3-topological-DS-general-explicit-BP
     thm:E3-topological-DS-general-minimal-sl4
     thm:E3-topological-DS-general-all-good-graded
-    cor:fm81-healed-non-principal
+    cor:fractional-ghost-healed-non-principal
 
 The branched-cover + Galois-descent construction extends the principal
 DS proof of E_3-topologization to all good-(1/d_f)-graded nilpotents,
@@ -27,8 +27,6 @@ Three disjoint sources for independent verification:
     direct screened-free-field construction of BP, predating
     Costello-Gaiotto by two decades; central charge and conformal
     vector obtained without any 3d hCS appeal.
-
-Raeez Lorgat 2026-04-16. No AI attribution.
 """
 
 from __future__ import annotations
@@ -196,11 +194,11 @@ def test_galois_invariance_sugawara():
 
 
 # ----------------------------------------------------------------------------
-# (c) Three-lane central-charge concordance (prop:three-lane-fm81)
+# (c) Three-lane central-charge concordance (prop:three-lane-fractional-ghost)
 # ----------------------------------------------------------------------------
 
 @independent_verification(
-    claim="prop:three-lane-fm81",
+    claim="prop:three-lane-fractional-ghost",
     derived_from=[
         "DS branched-cover construction thm:E3-topological-DS-general-explicit-BP",
         "Khan-Zeng arXiv:2308.12552 freely-generated PVA 3d Poisson sigma model",
@@ -336,10 +334,10 @@ def test_sugawara_identity_on_descended_complex():
 # ----------------------------------------------------------------------------
 
 @independent_verification(
-    claim="cor:fm81-healed-non-principal",
+    claim="cor:fractional-ghost-healed-non-principal",
     derived_from=[
         "thm:E3-topological-DS-general-all-good-graded via branched-cover integralization",
-        "three-lane concordance prop:three-lane-fm81",
+        "three-lane concordance prop:three-lane-fractional-ghost",
     ],
     verified_against=[
         "Khan-Zeng arXiv:2308.12552 freely-generated PVA 3d Poisson sigma model (lane 2)",
@@ -366,7 +364,7 @@ def test_fm81_healed_via_three_lanes():
     (for type-A minimal nilpotents) a de Boer-Tjin screened-free-field
     construction.
     """
-    # Covered cases from cor:fm81-healed-non-principal.
+    # Covered cases from cor:fractional-ghost-healed-non-principal.
     covered = [
         ("sl_3", "f_prin", 1),
         ("sl_3", "f_min", 2),    # BP
@@ -478,8 +476,3 @@ def test_explicit_bp_sugawara_improvement():
     num_cartan_directions_bp = 1  # only h_1
     num_cartan_directions_principal = 2  # h_1 and h_2
     assert num_cartan_directions_bp < num_cartan_directions_principal
-
-
-# ----------------------------------------------------------------------------
-# Attribution: Raeez Lorgat. No AI attribution.
-# ----------------------------------------------------------------------------

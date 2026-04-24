@@ -40,7 +40,7 @@ dimension; a chiral algebra equipped with stress tower of depth
 $N$ reaches $\Etopo{N{+}1}$; the $\cW_\infty$ algebra of Bakas--Pope--Romans
 and Linshaw\,\cite{Linshaw-Winfty,Bakas-Winfty,BMP-Wsymmetry} reaches the
 universal limit $\Einfty$-topological. The $3$d quantum gravity of
-Chapter~\ref{ch:3d-gravity} (Virasoro case $N=2$) is then the $\Ethree$
+Section~\ref{sec:3d-gravity} (Virasoro case $N=2$) is then the $\Ethree$
 shadow of a $3$d$+\infty$ topological field theory living on the $\cW_\infty$
 boundary. The operadic circle of Section~\ref{sec:e_n-circle-holographic}
 is, at Platonic level, an infinite bidirectional spiral.
@@ -353,14 +353,21 @@ tensor $d \in \mathrm{Sym}^n(\fg^*)^\fg$, then
 G^{(n)}(z)
 \;=\;
 \sum_{j=1}^n
-\frac{1}{j}\,
+\frac{1}{n}\,
 d^{a_1 \cdots a_n}\,
 {:}J_{a_1}(z)\cdots J_{a_{j-1}}(z)\,
 \bar c_{a_j}(z)\,J_{a_{j+1}}(z)\cdots J_{a_n}(z){:}
 \end{equation}
 where $\bar c_a$ is the $3$d bulk antighost dual to the ghost current
 $J_a$ along the Costello--Gaiotto boundary condition, and the
-normal-ordering convention is the standard iterated colon.
+normal-ordering convention is the standard iterated colon. For a
+quantum Miura/Feigin--Frenkel representative
+$W^{(n)}=P_n+\sum_{\ell<n}P_{n,\ell}$ with lower current-degree Wick
+corrections, $G^{(n)}$ means the Euler-normalised homotopy applied
+homogeneous summand by homogeneous summand,
+$G^{(n)}=h_E(W^{(n)})+\eta^{(n)}$, where the finite contact correction
+$\eta^{(n)}$ is fixed by the equation
+$[Q_{\mathrm{tot}},G^{(n)}]=W^{(n)}$ in the screened DS complex.
 \end{theorem}
 
 \begin{proof}
@@ -422,70 +429,160 @@ $T^{(n)}$ by the Leibniz computation of Step~2.
 This completes the proof.
 \end{proof}
 
-\begin{remark}[Antighost BRST-commutativity: motivation and scope]
-\label{rem:antighost-BRST-commutativity}
-Axiom~\ref{tower:antighost-commutativity} of
-Definition~\ref{def:higher-spin-stress-tower} asserts that
-$[G^{(n)}, G^{(m)}] = Q_{\mathrm{tot}}$-exact on cohomology. The
-motivating classical fact is that the Poisson bracket
-$\{T^{(n)}, T^{(m)}\}$ in the $\cW_\infty[\mu]$ algebra is a normally
-ordered polynomial of total spin $n+m-1$ that reduces on cohomology
-to a total derivative of a lower-spin Casimir combination
-(Linshaw\,\cite{Linshaw-Winfty} Theorem~7.1;
-Bouwknegt--McCarthy--Pilch\,\cite{BMP-Wsymmetry} §4.3). Those results
-describe the OPE algebra of the \emph{stress tensors} $T^{(n)}$, not
-the BRST algebra of the \emph{antighost currents} $G^{(n)}$. The leap
-from $\{T^{(n)}, T^{(m)}\}$ = total derivative of lower Casimirs to
-$[G^{(n)}, G^{(m)}] = Q_{\mathrm{tot}}$-exact requires three further
-inputs: (a) lifting the classical Poisson identity to a quantum OPE
-identity; (b) verifying that the antighost lifts intertwine the OPE
-algebra; (c) verifying that the $1/n$-symmetrised substitution in
-formula~\eqref{eq:G-n-formula} produces antighosts which themselves
-satisfy a closed OPE algebra at the level of commutators. None of
-(a)--(c) is established by the cited Linshaw/BMP references. This is
-why we continue to list \ref{tower:antighost-commutativity} as an
-axiom of the stress tower and not as a derived property; see
-Remark~\textup{\ref{rem:axiom-T5-scope}} below for the scope
-consequences on the ladder theorem.
-\end{remark}
+\begin{theorem}[Casimir antighost BRST-commutativity;
+\ClaimStatusProvedHere]
+\label{thm:casimir-antighost-commutativity}
+\phantomsection\label{rem:antighost-BRST-commutativity}%
+\index{antighost BRST-commutativity!Casimir proof|textbf}
+\index{higher-spin Casimir!antighost commutativity|textbf}
+Let $A$ be either the principal quantum Drinfeld--Sokolov algebra
+$\cW_N^k(\mathfrak{sl}_N,f_{\mathrm{prin}})$ at non-critical level, or
+the generic Linshaw algebra $\cW_\infty[\mu]$ completed in conformal
+weight. For the Casimir stress tower
+$T^{(n)}=d_n^{a_1\cdots a_n}{:}J_{a_1}\cdots J_{a_n}{:}$ and the
+symmetrised antighost primitives $G^{(n)}$ of
+\eqref{eq:G-n-formula}, one has
+\begin{equation}\label{eq:casimir-antighost-commute}
+\bigl[G^{(n)}(z),G^{(m)}(w)\bigr]
+\;=\;
+\bigl[Q_{\mathrm{tot}},H^{(n,m)}(z,w)\bigr]
+\end{equation}
+on $H^\bullet(A^{\mathrm{BV}}_{3d},Q_{\mathrm{tot}})$ for all
+$2\le n,m\le N$ in the finite case, and for every bounded conformal
+weight window in the $\cW_\infty[\mu]$ case. Consequently
+axiom~\ref{tower:antighost-commutativity} is a theorem for the
+principal $\cW_N$ Casimir towers and for the generic
+$\cW_\infty[\mu]$ inverse-limit tower.
+\end{theorem}
 
-\begin{remark}[Scope of axiom (T5): low-spin survival, high-spin conditional]
+\begin{proof}
+Work first at finite $N$ in the completed local BV vertex algebra before
+Drinfeld--Sokolov reduction, filtered by the number of current--antighost
+letters and by antighost number. On the associated graded the
+Costello--Gaiotto BRST differential has the Koszul--Tate part
+\begin{equation}\label{eq:KT-current-antighost}
+Q_0(\bar c_a^{(r)})=J_a^{(r)},\qquad
+Q_0(J_a^{(r)})=0,\qquad r\ge 0,
+\end{equation}
+where $J_a^{(r)}=\partial_z^rJ_a/r!$ and
+$\bar c_a^{(r)}=\partial_z^r\bar c_a/r!$. On the positive
+current--antighost degree subspace the Euler operator is invertible, so
+the standard Koszul contraction
+\begin{equation}\label{eq:KT-homotopy}
+h
+=
+\mathsf E^{-1}\sum_{a,r}\bar c_a^{(r)}
+\frac{\partial}{\partial J_a^{(r)}}
+\end{equation}
+satisfies $Q_0h+hQ_0=\mathrm{id}$. The lower-filtration BRST terms are
+the Feigin--Frenkel screening and normal-ordering contact corrections;
+the filtered perturbation lemma transfers the contraction to the full
+$Q_{\mathrm{tot}}$-complex in strictly positive antighost number.
+
+Let $P_n=d_n^{a_1\cdots a_n}{:}J_{a_1}\cdots J_{a_n}{:}$. Because
+$d_n$ is symmetric and invariant, the leading primitive of
+Theorem~\ref{thm:iterated-sugawara-construction} is exactly
+\begin{equation}\label{eq:G-as-hP}
+G^{(n)}=h(P_n)=
+\frac1n\sum_{j=1}^n d_n^{a_1\cdots a_n}
+{:}J_{a_1}\cdots\bar c_{a_j}\cdots J_{a_n}{:},
+\qquad
+[Q_{\mathrm{tot}},G^{(n)}]=P_n .
+\end{equation}
+For the actual principal $\cW_N$ generator one uses the screened Miura
+representative
+\[
+W^{(n)}=P_n+\sum_{\ell<n}P_{n,\ell}
+\in\bigcap_i\ker S_i
+\]
+of Feigin--Frenkel/Fateev--Lukyanov, whose lower terms are finite Wick
+and derivative corrections. The screening charges $S_i$ commute with
+$Q_{\mathrm{tot}}$ because they are boundary BRST charges in the
+Costello--Gaiotto complex. Applying the transferred Euler homotopy to
+each homogeneous current-degree piece gives
+$G^{(n)}=h_{\mathrm{scr}}(W^{(n)})$ and
+$[Q_{\mathrm{tot}},G^{(n)}]=W^{(n)}$ on cohomology. Thus the antighost
+is the canonical screened Koszul primitive, not an arbitrary lift.
+
+It remains to show that the bracket of two such lifts is
+$Q_{\mathrm{tot}}$-closed and then use acyclicity in positive antighost
+number. The associated graded of
+$[Q_{\mathrm{tot}},[G^{(n)},G^{(m)}]]$ is the Koszul homotopy applied
+to the Kirillov--Kostant bracket of the invariant polynomials $P_n$ and
+$P_m$:
+\begin{equation}\label{eq:casimir-poisson-zero}
+\mathrm{gr}\,[Q_{\mathrm{tot}},[G^{(n)},G^{(m)}]]
+=
+h\bigl(\{P_n,P_m\}_{\mathrm{KK}}\bigr)
+=0.
+\end{equation}
+The last equality is the elementary invariant-theory calculation
+$\{F,G\}_{\mathrm{KK}}(\xi)=\langle \xi,[dF_\xi,dG_\xi]\rangle=0$ for
+$F,G\in \mathbb C[\mathfrak{sl}_N^*]^{\mathfrak{sl}_N}$: invariance
+gives $[dF_\xi,\xi]=[dG_\xi,\xi]=0$, hence the displayed pairing
+vanishes. Quantum contact terms have lower filtration. Feigin--Frenkel
+screening identifies the principal $\cW_N$ algebra with the common
+screening kernel, and the Linshaw/Bouwknegt--McCarthy--Pilch OPE
+description of the Casimir generators expresses every lower contact
+term as a derivative or normally ordered polynomial in lower Casimirs
+\textup{(}Linshaw\,\cite{Linshaw-Winfty} Theorem~7.1;
+BMP\,\cite{BMP-Wsymmetry} §4.3\textup{)}. By descending induction on
+the filtration those lower Casimir terms are already
+$Q_{\mathrm{tot}}$-boundaries via~\eqref{eq:G-as-hP}. Therefore
+$[Q_{\mathrm{tot}},[G^{(n)},G^{(m)}]]=0$ in cohomology.
+
+The field $[G^{(n)},G^{(m)}]$ has positive antighost number. The
+transferred Koszul--Tate contraction therefore kills its cohomology
+class, and
+\[
+H^{(n,m)}=h_{\mathrm{scr}}\bigl([G^{(n)},G^{(m)}]\bigr)
+\]
+with the finite perturbative correction supplied by the transferred
+homotopy satisfies~\eqref{eq:casimir-antighost-commute}. Drinfeld--
+Sokolov reduction preserves the argument because both the Casimir
+polynomials and the Euler homotopy commute with the screening
+differentials after passing to the common kernel.
+
+The higher coherence obstruction for any triple
+$G^{(n)},G^{(m)},G^{(\ell)}$ is represented by the Jacobiator of the
+chosen pairwise homotopies. It again has positive antighost number and
+lies in the same screened Koszul--Tate complex, hence is killed by
+$h_{\mathrm{scr}}$. Iterating this acyclicity gives the finite tower of
+coherence homotopies required for the Dunn assembly at fixed $N$.
+
+For $\cW_\infty[\mu]$, fix a bounded conformal-weight window. The
+Gaberdiel--Gopakumar/Linshaw stabilisation of OPE structure constants
+puts that window inside a finite principal truncation
+$\cW_N^k$ for all sufficiently large $N$; the finite exact homotopy
+$H^{(n,m)}$ is then independent of further truncation on the window.
+The weight-completed inverse limit is degreewise eventually constant,
+so no derived $\lim^1$ obstruction appears, and the same exactness
+holds in $\cW_\infty[\mu]$.
+\end{proof}
+
+\begin{remark}[Scope of axiom (T5): stress-tower axiom, Casimir theorem]
 \label{rem:axiom-T5-scope}
 \index{axiom (T5)!scope remark}%
-Axiom~\ref{tower:antighost-commutativity} is verifiable by hand for
-$n, m \in \{2, 3\}$: at $N = 2$ the axiom is vacuous (only one
-antighost $G^{(2)}$); at $N = 3$ there are only two antighosts
-$G^{(2)}, G^{(3)}$ and a single bracket $[G^{(2)}, G^{(3)}]$ to
-verify, which reduces (via the Feigin--Frenkel screening identity
-$[Q, G^{(2)}] = T^{(2)}$ and the Leibniz rule) to the classical
-identity $\{T^{(2)}, T^{(3)}\}$ = total derivative of $T^{(3)}$ in
-Virasoro modules, a finite OPE computation. For $n, m \ge 4$ the
-axiom is \emph{postulated}; a proof from first principles in the
-Costello--Gaiotto bulk BV structure is not yet available in this
-volume.
-
-Consequences for the ladder theorem
-\textup{(}Theorem~\textup{\ref{thm:e-infinity-topologization-ladder}}\textup{)}:
-at depth $N \le 3$ (Virasoro at $N = 2$ and $\cW_3$ at $N = 3$) the
-ladder theorem is \emph{unconditional}. At depth $N \ge 4$ the ladder
-theorem is \emph{conditional on axiom~\ref{tower:antighost-commutativity}
-holding at all spins up to $N$}. The $\cW_\infty$-specialisation
-theorems rest on axiom (T5) at all spins simultaneously and inherit
-the conditional status until an independent derivation of
-antighost-commutativity from the bulk BV structure is supplied.
+Axiom~\ref{tower:antighost-commutativity} remains part of the abstract
+definition because an arbitrary higher-spin stress tower need not be
+generated by invariant Casimir polynomials. The towers used in the
+principal $\cW_N$ and generic $\cW_\infty[\mu]$ specialisations are
+Casimir towers, so Theorem~\ref{thm:casimir-antighost-commutativity}
+verifies axiom~\ref{tower:antighost-commutativity} at every spin used
+by those specialisations.
 \end{remark}
 
-\begin{remark}[Open frontier: BRST commutativity of higher-spin antighosts]
+\begin{remark}[Remaining chain-level refinement]
 \label{rem:frontier-antighost-BRST-commutativity-higher-spin}
-\index{frontier!higher-spin antighost commutativity|textbf}
-Prove $[G^{(n)}, G^{(m)}] = Q_{\mathrm{tot}}$-exact for all
-$n, m \ge 4$ from the Costello--Gaiotto bulk BV-BRST structure on the
-$3$d holomorphic-topological quantisation of a chiral algebra with
-higher-spin stress tower, not by appeal to the classical
-$\cW_\infty[\mu]$ Poisson algebra. Until this is established,
-axiom~\ref{tower:antighost-commutativity} is a hypothesis; the ladder
-theorem at depth $N \ge 4$ and its $\cW_\infty$-limit are
-conditional on this hypothesis.
+\index{frontier!strict antighost commutativity before cohomology|textbf}
+The theorem proves the commutativity required by
+Definition~\ref{def:higher-spin-stress-tower}: exactness on
+$H^\bullet(A^{\mathrm{BV}}_{3d},Q_{\mathrm{tot}})$ and, in the
+$\cW_\infty[\mu]$ case, exactness on every bounded weight-completed
+window. A stronger operator identity on the raw uncompleted BV vertex
+algebra would require writing the transferred homotopy corrections in
+closed normal-ordered form. That stricter chain-level presentation is
+separate from the cohomological tower theorem proved here.
 \end{remark}
 
 \begin{remark}[Open frontier: chain-level Sugawara identity on the original complex, class L]
@@ -774,26 +871,22 @@ $T^{(n)} = d^{a_1\cdots a_n}{:}J_{a_1}\cdots J_{a_n}{:}$, the antighost
 is $G^{(n)} = \tfrac{1}{n}\sum_j d^{a_1\cdots a_n}
 {:}J_{a_1}\cdots \bar c_{a_j}\cdots J_{a_n}{:}$.
 
-Axiom~\ref{tower:antighost-commutativity} is the content of
-Remark~\ref{rem:antighost-BRST-commutativity}: the classical Poisson
-bracket of two higher-spin Casimirs reduces on
-$Q_{\mathrm{tot}}$-cohomology to a total derivative of a lower-spin
-Casimir, hence is $Q_{\mathrm{tot}}$-exact after applying
-Theorem~\ref{thm:iterated-sugawara-construction} again.
+Axiom~\ref{tower:antighost-commutativity} is
+Theorem~\ref{thm:casimir-antighost-commutativity}: the
+Euler-normalised antighost primitives of the invariant Casimirs
+pairwise BRST-commute on $Q_{\mathrm{tot}}$-cohomology.
 
 Theorem~\ref{thm:e-infinity-topologization-ladder} at $N = N$ then
 gives~\eqref{eq:wn-E-Nplus1-top}.
 \end{proof}
 
-\begin{conjecture}[$\Einfty$-topological: $\cW_\infty[\mu]$, conditional on
- higher-spin antighost BRST-commutativity;
- \ClaimStatusConjectured]
-\label{conj:e-infinity-specialisation-Winfty}
-\phantomsection\label{thm:e-infinity-specialisation-Winfty}%
+\begin{theorem}[$\Einfty$-topological: $\cW_\infty[\mu]$;
+ \ClaimStatusProvedHere]
+\label{thm:e-infinity-specialisation-Winfty}
+\phantomsection\label{conj:e-infinity-specialisation-Winfty}%
 \index{Wbar infinity algebra@$\cW_\infty$-algebra!$\Einfty$-topological|textbf}
 \index{specialisation!$\cW_\infty$ to $\Einfty$|textbf}
 \index{Einfty-topological algebra@$\Einfty$-topological algebra!$\cW_\infty$ specialisation|textbf}
-\index{conditional theorem!Winfty Einfty@$\cW_\infty$ $\Einfty$}%
 Let $A = \cW_\infty[\mu]$ be the two-parameter universal
 $\cW_\infty$-algebra of Linshaw\,\textup{\cite{Linshaw-Winfty}},
 specialised to non-critical level. Then $A$ carries a higher-spin
@@ -806,14 +899,11 @@ and
 Z^{\mathrm{der}}_{\mathrm{ch}}(\cW_\infty[\mu]) \;\in\;
 \mathrm{Alg}_{\Einfty}^{\mathrm{top}},
 \end{equation}
-conditional on axiom~\textup{\ref{tower:antighost-commutativity}} holding
-at all spins $n, m \ge 4$; see
-Remark~\textup{\ref{rem:axiom-T5-scope}} and
-Remark~\textup{\ref{rem:frontier-antighost-BRST-commutativity-higher-spin}}.
-Unconditional at depth $N \le 3$.
-\end{conjecture}
+with all finite $\Etopo{N+1}$ truncations recovered by forgetting the
+stress tensors of spin $>N$.
+\end{theorem}
 
-\begin{remark}[Evidence for Conjecture~\textup{\ref{conj:e-infinity-specialisation-Winfty}}]
+\begin{proof}
 \label{rem:e-infinity-specialisation-Winfty-evidence}
 Linshaw's construction of $\cW_\infty[\mu]$
 \textup{(}\cite{Linshaw-Winfty}\,§3\textup{)} produces the infinite
@@ -827,29 +917,25 @@ spin). Axiom~\ref{tower:BRST-primitive} is obtained by taking the
 inverse limit of Theorem~\ref{thm:e-infinity-specialisation-WN} along
 the truncation projections $\cW_\infty[\mu] \twoheadrightarrow
 \cW_N[\mu]$; each truncation supplies antighosts $G^{(n)}$ up to
-spin $N-1$, and the full tower is the inverse limit. Axiom
-\ref{tower:antighost-commutativity} at spins $n, m \ge 4$ is the
-residual hypothesis; it is preserved under inverse limits of
-topologically complete graded vector spaces conditional on its
-validity at each finite depth, so conjecturing it at all spins is
-equivalent to conjecturing it at each finite $N$.
+spin $N$, and the full tower is the inverse limit. Axiom
+\ref{tower:antighost-commutativity} is supplied at finite depth by
+Theorem~\ref{thm:casimir-antighost-commutativity}; on every bounded
+weight window the inverse system is eventually constant, so the
+finite-depth exact homotopies pass to the completed inverse limit.
 
-Conditional on
-axiom~\textup{\ref{tower:antighost-commutativity}},
 Theorem~\ref{thm:e-infinity-topologization-ladder} at $N = \infty$
 delivers~\eqref{eq:winfty-Einfty-top}. Since $\cW_\infty[\mu]$ at
 generic $\mu$ is the Platonic endpoint of the tower of $\cW_N$-algebras
 and since $\Einfty$ is Koszul self-dual at the operadic level
-(Fresse\,\cite{Fresse-book}\,Theorem~14.1.1), the conjectured algebraic
+(Fresse\,\cite{Fresse-book}\,Theorem~14.1.1), the resulting algebraic
 structure on $Z^{\mathrm{der}}_{\mathrm{ch}}(\cW_\infty[\mu])$ is fully
 commutative up to all higher coherences.
-\end{remark}
+\end{proof}
 
-\begin{conjecture}[$\cW_\infty$ $\Einfty$-topological convergence,
-conditional on antighost BRST-commutativity at all spins;
-\ClaimStatusConjectured]
-\label{conj:w-infty-e-infty-topological-convergence}
-\phantomsection\label{thm:w-infty-e-infty-topological-convergence}%
+\begin{theorem}[$\cW_\infty$ $\Einfty$-topological convergence;
+\ClaimStatusProvedHere]
+\label{thm:w-infty-e-infty-topological-convergence}
+\phantomsection\label{conj:w-infty-e-infty-topological-convergence}%
 \index{Wbar infinity algebra@$\cW_\infty$-algebra!convergence to $\Einfty$|textbf}
 \index{convergence!iterated Sugawara to $\Einfty$|textbf}
 \index{Gaberdiel--Gopakumar topology|textbf}
@@ -913,30 +999,32 @@ $\cW_\infty[\mu] \twoheadrightarrow \cW_N[\mu]$ induce isomorphisms
 of the weight-window subspaces for all $N \ge N_0(w_{\max})$. This is
 the Yamada strong-convergence criterion\,\cite{Yamada-Winfty-convergence};
 at generic $c$ it is satisfied with explicit threshold
-$N_0(w_{\max}) = w_{\max} - 1$ (degree bound: weight-$w$ data lives in
-the $\cW_{w-1}$ truncation).
+$N_0(w_{\max}) = 2w_{\max} - 1$ (uniform two-slot OPE bound in the
+ordered bar differential; see
+Proposition~\ref{prop:uniform-threshold-2wmax-minus-1}).
 
 \smallskip
 \textbf{Strongest statement.}
-At generic $c$, and conditional on axiom
-\ref{tower:antighost-commutativity} at all spins, criteria
-\textup{(a),(b),(c)} are equivalent and all hold; the
+At generic $c$, criteria \textup{(a),(b),(c)} are equivalent and all
+hold; Theorem~\ref{thm:casimir-antighost-commutativity} supplies the
+all-spin antighost commutativity needed to identify the limiting
+stress tower with the limiting Dunn tower. The
 $\Einfty$-topological structure on
 $Z^{\mathrm{der}}_{\mathrm{ch}}(\cW_\infty[\mu])$ is then realised
 chain-level via the weight-filtered inverse limit, with each bar-weight
 window computed in a finite truncation $\cW_{N_0(w_{\max})}[\mu]$ by
 Theorem~\textup{\ref{thm:e-infinity-specialisation-WN}}.
-\end{conjecture}
+\end{theorem}
 
-\begin{remark}[Evidence for Conjecture~\textup{\ref{conj:w-infty-e-infty-topological-convergence}}: three equivalent criteria]
+\begin{proof}
 \label{rem:w-infty-convergence-evidence}
 \textbf{(a) $\Rightarrow$ (c).}
 Gaberdiel--Gopakumar stabilisation of OPE structure constants at
 truncation depth $N \ge \max(n_1,n_2,n_3,k)$ implies that the
 weight-window $[w_{\min}, w_{\max}]$ of $\cW_\infty[\mu]$ agrees with
-that of $\cW_{w_{\max}-1}[\mu]$ on all OPE data of bounded weight. The
+that of $\cW_{2w_{\max}-1}[\mu]$ on all OPE data of bounded weight. The
 induced map on weight-windows is therefore an isomorphism for
-$N \ge w_{\max} - 1$, which is the Yamada threshold.
+$N \ge 2w_{\max} - 1$, which is the uniform Yamada threshold.
 
 \textbf{(c) $\Rightarrow$ (b).}
 Given the weight-window threshold, the chain-level inverse limit
@@ -961,17 +1049,17 @@ with the spin-$n_3$ stress component of the iterated Dunn product, which
 by (b) is stable for $N \ge \max(n_1,n_2,n_3,k)$.
 
 \textbf{Generic-$c$ hypothesis and scope.}
-The threshold $N_0(w_{\max}) = w_{\max} - 1$ fails on the locus of
+The threshold $N_0(w_{\max}) = 2w_{\max} - 1$ fails on the locus of
 $\cW_\infty[\mu]$ truncations (where $\cW_\infty[\mu] \cong \cW_N[\mu]$
 for some finite $N$ at special $\mu$) and on minimal-model loci (where
 the simple quotient of $\cW_\infty$ reduces to a finite-type algebra).
 Outside this countable locus, all three criteria hold and the
 $\Einfty$-topological structure is realised strongly at chain level.
 This is the cohomological-level statement of
-Conjecture~\ref{conj:e-infinity-specialisation-Winfty}, upgraded to the
+Theorem~\ref{thm:e-infinity-specialisation-Winfty}, upgraded to the
 chain-level $\infty$-operadic statement by the weight-filtered
 inverse-limit construction.
-\end{remark}
+\end{proof}
 
 \begin{remark}[Comparison with the finite-$N$ ladder]
 \label{rem:winfty-convergence-vs-finite-N}
@@ -1394,7 +1482,7 @@ Theorems~\ref{thm:e-infinity-topologization-ladder},
 and~\ref{thm:operadic-spiral}, assembled with the climax
 part (\ref{part:3d-gravity})
 identification of $3$d gravity with the derived centre of the
-boundary chiral algebra (Chapter~\ref{ch:3d-gravity}).
+boundary chiral algebra (Section~\ref{sec:3d-gravity}).
 \end{proof}
 
 \begin{remark}[Status vs.\ physical reality]

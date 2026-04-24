@@ -537,12 +537,15 @@ class TestW3QuantizationData:
         assert simplify(data['complementarity_sum'] - Rational(500, 6)) == 0
 
     def test_w3_beta_squared(self):
-        """W_3: beta^2 = 16/(22 + 5c)."""
+        """W_3 nonlinear coefficients."""
         from lib.modular_pva_quantization import w3_quantization_data
         c = Symbol('c')
         data = w3_quantization_data(c)
-        expected = 16 / (22 + 5 * c)
-        assert simplify(data['beta_squared'] - expected) == 0
+        expected_lambda = 32 / (22 + 5 * c)
+        expected_partial = 16 / (22 + 5 * c)
+        assert simplify(data['beta_squared'] - expected_lambda) == 0
+        assert simplify(data['beta_Lambda'] - expected_lambda) == 0
+        assert simplify(data['beta_partial_Lambda'] - expected_partial) == 0
 
     def test_w3_resonant_at_minus22over5(self):
         """W_3: resonant at c = -22/5."""

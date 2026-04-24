@@ -140,7 +140,8 @@ def test_rectification_axioms_to_operad():
 
 # ---------------------------------------------------------------------------
 # 4. thm:physics-bridge  (raviolo.tex:408)
-#    3d HT QFT BV observables form a logarithmic SC^{ch,top}-algebra.
+#    3d HT QFT BV observables form a logarithmic SC^{ch,top}-algebra
+#    after a factorized logarithmic HT parametrix is chosen.
 # ---------------------------------------------------------------------------
 
 @independent_verification(
@@ -148,6 +149,7 @@ def test_rectification_axioms_to_operad():
     derived_from=[
         "Programme logarithmic SC^{ch,top}-algebra definition",
         "Configuration-space A_infinity operations on Obs_bulk",
+        "Factorized logarithmic HT parametrix",
     ],
     verified_against=[
         "Gwilliam-Rabinovich-Williams arXiv:2001.05379 (GRW21 HT one-loop finiteness)",
@@ -157,7 +159,9 @@ def test_rectification_axioms_to_operad():
     disjoint_rationale=(
         "Gwilliam-Rabinovich-Williams establish one-loop finiteness of HT "
         "theories via Feynman-integrand UV estimates independent of the "
-        "programme's log-SC axioms. Costello-Li construct BV quantized "
+        "programme's log-SC axioms. The factorized-parametrix condition is "
+        "the extra gauge-fixing input needed before the log-SC conclusion. "
+        "Costello-Li construct BV quantized "
         "holomorphic CS by renormalization theory. Costello-Gwilliam supply "
         "the general BV-to-prefactorization dictionary from BV data alone. "
         "Neither derives the log-SC structure; each supplies independent "
@@ -165,10 +169,21 @@ def test_rectification_axioms_to_operad():
     ),
 )
 def test_physics_bridge_conditions():
-    def bridge_applies(bv_data: bool, one_loop_finite: bool, polynomial_int: bool) -> bool:
-        return bv_data and one_loop_finite and polynomial_int
-    assert bridge_applies(True, True, True)
-    assert not bridge_applies(True, False, True)
+    def bridge_applies(
+        bv_data: bool,
+        factorized_parametrix: bool,
+        one_loop_finite: bool,
+        product_polynomial_int: bool,
+    ) -> bool:
+        return (
+            bv_data
+            and factorized_parametrix
+            and one_loop_finite
+            and product_polynomial_int
+        )
+    assert bridge_applies(True, True, True, True)
+    assert not bridge_applies(True, False, True, True)
+    assert not bridge_applies(True, True, False, True)
 
 
 # ---------------------------------------------------------------------------

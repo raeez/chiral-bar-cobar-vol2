@@ -6,7 +6,7 @@ Seven ProvedHere claims across six chapters:
     thm:irregular-kzb-composition-generic-level
                                          (modular_swiss_cheese_operad.tex)
     thm:monster-orbifold-e3              (3d_gravity.tex)
-    thm:universal-holography             (thqg_holographic_reconstruction.tex)
+    thm:universal-holography-functor     (universal_holography_functor.tex)
     thm:uhf-monster-orbifold-bv-anomaly-vanishes
                                          (universal_holography_functor.tex)
     thm:uch-gravity-chain-level          (universal_celestial_holography.tex)
@@ -282,12 +282,12 @@ def test_monster_dw_anomaly_vanishes_structurally():
 
 
 # ---------------------------------------------------------------------------
-# thm:universal-holography (thqg_holographic_reconstruction.tex)
+# thm:universal-holography-functor (universal_holography_functor.tex)
 # ---------------------------------------------------------------------------
 
 
 @independent_verification(
-    claim="thm:universal-holography",
+    claim="thm:universal-holography-functor",
     derived_from=[
         "Costello-Dimofte-Gaiotto 2018 holomorphic Chern-Simons "
         "with Drinfeld-Sokolov boundary condition "
@@ -507,14 +507,15 @@ def test_ds_hochschild_bridge_commutativity_structural():
 
 
 def test_ds_hochschild_bridge_class_m_global_triangle():
-    """The DS-Hochschild bridge closes the class-M chain-level
-    global triangle (boundary-linear bulk-boundary). Structural:
-    class-M algebras (Vir, W_N) carry chain-level E_3.
+    """The DS-Hochschild bridge closes the class-M global triangle in
+    the weight-completed ambient. Structural: class-M algebras
+    (Vir, W_N) carry the underlying chain-level HT/E_2 datum, while
+    the strict E_3 chain lift is conditional.
     """
     # Class-M representatives: Vir_c and W_N.
     class_m_algebras = ["Vir_c", "W_N"]
     for alg in class_m_algebras:
-        # Each has chain-level E_3 via the bridge.
+        # Each has the weight-completed chain-level datum via the bridge.
         assert alg in class_m_algebras
 
 

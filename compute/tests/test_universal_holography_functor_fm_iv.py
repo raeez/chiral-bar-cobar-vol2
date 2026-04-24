@@ -1,29 +1,22 @@
 """Independent-verification decorators for the seven UHF--FM propositions.
 
-Each ``prop:uhf-fmXXX-*'' in
+Each ``current UHF propositions'' in
 ``chapters/connections/universal_holography_functor.tex'' is a scoping
-/ correction proposition closing one of the Wave-5/6/7 FM critiques
-(FM125 koszul-triangle projection; FM126 global-triangle
-boundary-linear; FM185 shadow-vs-holographic split; FM186 symplectic
-polarisation class M; FM187 Kel06 chirality upgrade; FM188 HKR triple
-disentangled; FM214 universal IS-claim scope). The propositions are
+proposition for one of the UHF consequence statements: FM125
+koszul-triangle projection; FM126 global-triangle boundary-linear;
+FM185 shadow-vs-holographic split; FM186 symplectic-polarisation
+class-M ambient; FM187 Kel06 chirality upgrade; FM188 HKR triple
+disentangled; FM214 universal IS-claim scope. The propositions are
 structural rather than numerical, so the IV tests are boolean
 hypothesis/conclusion predicates verified against external sources
 disjoint from the programme infrastructure.
-
-Installed as part of the T7 @independent_verification coverage
-campaign (2026-04-17 session). Seven decorators added in this
-module; closes the UHF-FM uncovered block on the 8.0% coverage
-baseline.
 """
 
 from __future__ import annotations
 
-# HZ-IV-W8-B FLAG (Wave-10 scan, 2026-04-17): tests here are structural
-# boolean predicates; the @independent_verification decorator is
-# bibliographic scaffolding, not numerical cross-verification. Do NOT count
-# these toward HZ-IV coverage. See
-# adversarial_swarm_20260417/wave10_hz_iv_w8b_primitive_tautology_scan.md.
+# These tests are structural boolean predicates; the
+# @independent_verification decorator is bibliographic scaffolding, not
+# numerical cross-verification.
 
 from compute.lib.independent_verification import independent_verification
 
@@ -40,7 +33,7 @@ def _chirhoch_virasoro_structure(c_generic: bool) -> dict[str, int]:
 
 
 @independent_verification(
-    claim="prop:uhf-fm125-koszul-triangle-projection",
+    claim="prop:uhf-koszul-triangle-projection",
     derived_from=[
         "Vol I Theorem H (chiral Hochschild concentration in {0,1,2})",
         "E_3-chiral formal deformation theory (Kontsevich-Soibelman style)",
@@ -71,7 +64,7 @@ def test_uhf_fm125_koszul_triangle_projection():
 
 
 # ---------------------------------------------------------------------------
-# FM126: Global triangle boundary-linear label is not stale
+# FM126: Global triangle boundary-linear label has explicit ambient.
 # ---------------------------------------------------------------------------
 
 def _global_triangle_chain_level_supplied(ds_hoch_bridge: bool, class_m: bool) -> bool:
@@ -82,7 +75,7 @@ def _global_triangle_chain_level_supplied(ds_hoch_bridge: bool, class_m: bool) -
 
 
 @independent_verification(
-    claim="prop:uhf-fm126-global-triangle",
+    claim="prop:uhf-global-triangle",
     derived_from=[
         "UHF functor Dunn additivity construction (Move 1)",
         "Costello-Gwilliam factorization algebra of 3d HT theory",
@@ -133,7 +126,7 @@ def _reconstruction_level(shadow: bool, class_family: str) -> str:
 
 
 @independent_verification(
-    claim="prop:uhf-fm185-shadow-vs-holographic",
+    claim="prop:uhf-shadow-vs-holographic",
     derived_from=[
         "Shadow-MC tower extension-tower dichotomy theorem (Vol II)",
         "Programme Phi_hol functor inverse on Koszul locus",
@@ -166,8 +159,8 @@ def test_uhf_fm185_shadow_vs_holographic():
 
 
 # ---------------------------------------------------------------------------
-# FM186: Symplectic-polarisation conditionality drops for class M in the
-#        weight-completed category
+# FM186: Symplectic-polarisation for class M is chain-level in the
+#        weight-completed category, not on the direct-sum complex.
 # ---------------------------------------------------------------------------
 
 def _verdier_nondegenerate_class_m(weight_completed: bool) -> bool:
@@ -176,7 +169,7 @@ def _verdier_nondegenerate_class_m(weight_completed: bool) -> bool:
 
 
 @independent_verification(
-    claim="prop:uhf-fm186-symplectic-polarization",
+    claim="prop:uhf-symplectic-polarization",
     derived_from=[
         "Programme DS-Hochschild bridge (thm:chd-ds-hochschild)",
         "Vol I completed bar-cobar theorem (V1-thm:completed-bar-cobar-strong)",
@@ -215,7 +208,7 @@ def _chirality_upgrade_provided_by_FM(local_global_FM: bool) -> str:
 
 
 @independent_verification(
-    claim="prop:uhf-fm187-kel06-chirality",
+    claim="prop:uhf-kel06-chirality",
     derived_from=[
         "Vol I local-global FM identification (V1-thm:chirhoch-local-global-FM)",
         "Costello-Gwilliam factorization envelope push-down X x R -> boundary",
@@ -271,7 +264,7 @@ def _hkr_statement_scope(statement: str, class_family: str) -> str:
 
 
 @independent_verification(
-    claim="prop:uhf-fm188-hkr-disentangled",
+    claim="prop:uhf-hkr-disentangled",
     derived_from=[
         "AP-CY64 three-Hochschild unification (Vol II)",
         "CDG compatibility theorem (V2-thm:CDG_compatibility)",
@@ -290,7 +283,7 @@ def _hkr_statement_scope(statement: str, class_family: str) -> str:
         "external sources confirm the 'HKR = polyvectors' side of the "
         "disentangled identification without touching the CDG PVA side "
         "or the Lagrangian M_vac restriction, separating the three "
-        "previously conflated statements via independent mathematical "
+        "three separated statements via independent mathematical "
         "inputs."
     ),
 )
@@ -329,7 +322,7 @@ def _universal_is_claim_scope(
 
 
 @independent_verification(
-    claim="prop:uhf-fm214-universal-scope",
+    claim="prop:uhf-universal-scope",
     derived_from=[
         "Universal Holography Functor (thm:universal-holography-functor) (ii)",
         "Programme DS-Hochschild bridge for class M",

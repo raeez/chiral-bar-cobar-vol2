@@ -3,7 +3,7 @@
 Target chapter:
   Vol II chapters/connections/schellekens_71_alpha_classification_platonic.tex.
 
-Closes the non-Leech case-by-case extension of thm:monster-chain-level-e3-top
+Records the non-Leech case-by-case extension separated from thm:monster-chain-level-e3-top
 (chapter ch:monster-chain-level-e3-top-platonic, rem:schellekens-71-honest).
 
 Main classification theorem: every one of the 71 Schellekens holomorphic
@@ -12,15 +12,15 @@ stratifies as:
   - Type A (24): pure Niemeier VOA, trivial orbifold, alpha = 0 vacuously.
   - Type B (1): V^natural = Leech Z/2 orbifold at sigma = -1, Lambda^sigma = 0.
   - Type C (46): Leech Z/n orbifold with Lambda^sigma != 0, vanishing
-    by the van Ekeren-Moeller-Scheithauer level-matching theorem.
+    by cyclic-orbifold level matching.
 
 DERIVATION (chapter route):
-  (a) van Ekeren-Moeller-Scheithauer 2020 uniform construction theorem:
+  (a) van Ekeren-Moeller-Scheithauer cyclic-orbifold construction theorem:
       every Schellekens VOA arises from V_Leech via a Z/n-orbifold.
   (b) Moeller-Scheithauer 2023 bijection {generalised deep holes} <-> {70 V_1 ne 0}.
   (c) Kapustin-Saulina 2011 DW cocycle formula
       alpha_DW(sigma) = sign(det(1 - sigma|Lambda)) * [epsilon|_{Lambda^sigma}]_{H^3}.
-  (d) VE-MS 2020 level-matching theorem: twisted vacuum weight in (1/n) Z
+  (d) cyclic-orbifold level matching: twisted vacuum weight in (1/n) Z
       <=> alpha_orb = 0.
   (e) Costello-Gwilliam orbifold BV chain-level mechanism.
 
@@ -33,7 +33,7 @@ VERIFICATION (disjoint sources per-claim):
         and fixed-sublattice invariants; cited through Curtis-Wilson
         (pure finite-group theory; no orbifold content).
   (iv)  Conway-Sloane 1988 lattice invariants (Coxeter-Todd K_12: rank,
-        determinant, minimal norm, A_2^6 root system; independent of
+        determinant 3^6, minimum norm 4, no norm-2 roots; independent of
         any VOA construction).
   (v)   Miyamoto 2004 framed-VOA alternative construction; same
         classification from a disjoint construction (Virasoro tensor
@@ -42,11 +42,11 @@ VERIFICATION (disjoint sources per-claim):
         representation-theoretic SL_2(Z)-action path.
 
 Disjoint rationale per claim: derivations live in factorization-algebra
-+ lattice-cohomological machinery (VE-MS + Kapustin-Saulina +
++ lattice-cohomological machinery (cyclic orbifolds + Kapustin-Saulina +
 Costello-Gwilliam), while verifications live in pre-existing lattice
 classification (Niemeier 1973, Conway-Sloane 1988) and abstract
 SL_2(Z)-invariance (DLM 2000), each of which predates or is orthogonal
-to the VE-MS construction chain.
+to the cyclic-orbifold construction chain.
 """
 
 from __future__ import annotations
@@ -66,7 +66,7 @@ from compute.lib.independent_verification import independent_verification
 @independent_verification(
     claim="thm:schellekens-71-all-alpha-zero",
     derived_from=[
-        "van Ekeren-Moeller-Scheithauer 2020 uniform orbifold construction theorem",
+        "van Ekeren-Moeller-Scheithauer cyclic-orbifold construction theorem",
         "Moeller-Scheithauer 2023 generalised deep hole bijection",
         "Kapustin-Saulina 2011 DW cocycle formula",
         "Costello-Gwilliam 2021 orbifold BV chain-level mechanism",
@@ -78,7 +78,7 @@ from compute.lib.independent_verification import independent_verification
         "Miyamoto 2004 framed-VOA alternative construction cross-check",
     ],
     disjoint_rationale=(
-        "Derivation uses VE-MS uniform orbifold construction + Kapustin-"
+        "Derivation uses cyclic-orbifold construction + Kapustin-"
         "Saulina cocycle formula + Costello-Gwilliam BV mechanism. "
         "Verification uses Schellekens's 1993 pre-anomaly V_1 classification "
         "(Lie-algebraic constraints only), Niemeier's 1973 pure lattice "
@@ -128,7 +128,7 @@ def test_schellekens_71_total_count_and_stratification():
     # representative classes.
     alpha_typeA = 0  # Vacuous (trivial orbifold).
     alpha_typeB = 0  # Lambda^sigma = 0 shortcut (Proposition B).
-    alpha_typeC = 0  # VE-MS level-matching (Corollary C).
+    alpha_typeC = 0  # cyclic-orbifold level matching (Corollary C).
 
     assert alpha_typeA == alpha_typeB == alpha_typeC == 0
 
@@ -166,8 +166,9 @@ def test_typeA_24_niemeier_lattices():
 
     The 24 Niemeier lattices have root systems enumerated in Niemeier's
     1973 classification. Each produces a pure lattice VOA V_Lambda on
-    the Schellekens list with V_1 determined by the root system. No
-    orbifold is performed, so alpha_DW is vacuous (lives in H^3(1)=0).
+    the Schellekens list. Its V_1 contains the rank-24 Heisenberg
+    summand plus root vectors from norm-2 lattice elements. No orbifold
+    is performed, so alpha_DW is vacuous (lives in H^3(1)=0).
 
     Independent verification: even-unimodularity and rank-24 are the
     two arithmetic conditions on a positive-definite Z-lattice that
@@ -180,34 +181,32 @@ def test_typeA_24_niemeier_lattices():
     # Convention: the Leech lattice has rank-0 root system.
     niemeier_root_systems = [
         ("Leech", 0),  # No roots. The unique rank-0 entry.
-        ("24 A_1", 24),  # 24 copies of A_1.
-        ("12 A_2", 24),  # 12 copies of A_2.
-        ("8 A_3", 24),
-        ("6 A_4", 24),
-        ("4 A_5 D_4", 24),  # Four copies of A_5 + D_4.
-        ("4 A_6", 24),
-        ("3 A_8", 24),
-        ("2 A_9 D_6", 24),
-        ("2 A_12", 24),
+        ("A_1^24", 24),
+        ("A_2^12", 24),
+        ("A_3^8", 24),
+        ("A_4^6", 24),
+        ("A_5^4 D_4", 24),
+        ("A_6^4", 24),
+        ("A_7^2 D_5^2", 24),
+        ("A_8^3", 24),
+        ("A_9^2 D_6", 24),
+        ("A_11 D_7 E_6", 24),
+        ("A_12^2", 24),
         ("A_15 D_9", 24),
         ("A_17 E_7", 24),
         ("A_24", 24),
-        ("4 D_6", 24),
-        ("3 D_8", 24),
-        ("2 D_12", 24),
+        ("D_4^6", 24),
+        ("D_6^4", 24),
+        ("D_8^3", 24),
+        ("D_10 E_7^2", 24),
+        ("D_12^2", 24),
         ("D_16 E_8", 24),
         ("D_24", 24),
-        ("3 E_8", 24),
-        ("A_11 D_7 E_6", 24),
         ("E_6^4", 24),
-        ("A_5 E_7^2", 24),
-        ("2 A_7 D_5^2", 24),
-        ("4 A_5^? mixed", 24),  # The final two entries to reach 24.
+        ("E_8^3", 24),
     ]
 
     # Total count: 24 lattices.
-    # (The specific labelling of the final two is illustrative; the
-    # pure count 24 is the Niemeier theorem.)
     assert len(niemeier_root_systems) == 24, (
         "Niemeier 1973 classifies exactly 24 even unimodular rank-24 "
         "lattices."
@@ -222,6 +221,12 @@ def test_typeA_24_niemeier_lattices():
         # Each Niemeier lattice has rank 24; the root system spans
         # part of this rank.
         assert root_rank <= total_rank, f"{name}: root-system rank fits in 24."
+
+    # The pure Leech lattice VOA is not the Moonshine module:
+    # V_Lambda has the 24-dimensional Heisenberg V_1, while V^natural has V_1=0.
+    pure_leech_v1_dimension = 24
+    monster_v1_dimension = 0
+    assert pure_leech_v1_dimension != monster_v1_dimension
 
     # Type A DW cocycle is vacuous (g = id, trivial orbifold).
     # Convention: alpha_DW(id) = 0 in H^3(1; U(1)) = 0.
@@ -304,7 +309,7 @@ def test_typeB_leech_z2_lambda_sigma_zero():
 @independent_verification(
     claim="cor:schellekens-typeC-alpha-zero",
     derived_from=[
-        "van Ekeren-Moeller-Scheithauer 2020 level-matching theorem (Thm 2.1)",
+        "cyclic-orbifold level-matching theorem",
         "Dong-Li-Mason 2000 modular-invariance of trace functions",
         "Dong-Lepowsky-Mason 1996 simple-current theory for Z/n",
     ],
@@ -314,7 +319,7 @@ def test_typeB_leech_z2_lambda_sigma_zero():
         "Miyamoto 2004 framed-VOA cross-check on same 71 entries",
     ],
     disjoint_rationale=(
-        "Derivation uses VE-MS level-matching (vertex-operator-algebraic "
+        "Derivation uses cyclic-orbifold level matching (vertex-operator-algebraic "
         "twisted-sector conformal weight constraint) + DLM modular "
         "invariance. Verification uses Moeller-Scheithauer's 2023 count "
         "of deep holes (pure lattice classification, number-theoretic), "
@@ -340,7 +345,7 @@ def test_typeC_46_leech_zn_orbifolds():
         5 cases total (individual)
     Total: 46.
 
-    Every case has alpha_orb = 0 by the VE-MS level-matching theorem.
+    Every case has alpha_orb = 0 by cyclic-orbifold level matching.
     """
     typeC_by_order = {
         2: 15,
@@ -360,10 +365,10 @@ def test_typeC_46_leech_zn_orbifolds():
         f"Type C total {total_typeC} must equal 46 = Moeller-Scheithauer 2023"
     )
 
-    # Every case has alpha = 0 by VE-MS level-matching.
+    # Every case has alpha = 0 by cyclic-orbifold level matching.
     for order, count in typeC_by_order.items():
         for _ in range(count):
-            alpha = 0  # VE-MS level-matching => alpha = 0 in H^3(BZ/n; U(1)).
+            alpha = 0  # level matching => alpha = 0 in H^3(BZ/n; U(1)).
             assert alpha == 0
 
 
@@ -377,7 +382,7 @@ def test_typeC_46_leech_zn_orbifolds():
     derived_from=[
         "Conway 1969 Co_0 conjugacy class 3A Frame shape 1^{-3} 3^9",
         "Coxeter-Todd K_12 identification via Frame-shape fixed-sublattice",
-        "VE-MS 2020 Table 5 twisted-vacuum conformal weights",
+        "cyclic-orbifold table of twisted-vacuum conformal weights",
     ],
     verified_against=[
         "Conway-Sloane 1988 Splag Ch. 4.9 Coxeter-Todd lattice invariants",
@@ -387,7 +392,7 @@ def test_typeC_46_leech_zn_orbifolds():
     disjoint_rationale=(
         "Derivation traces Frame shape 1^{-3} 3^9 to the fixed-sublattice "
         "Coxeter-Todd lattice, via Conway's 1969 Co_0 conjugacy tables + "
-        "VE-MS 2020 twisted-sector weight computation. Verification uses "
+        "cyclic-orbifold twisted-sector weight computation. Verification uses "
         "Conway-Sloane 1988 Splag lattice invariants (a pure lattice "
         "reference, no VOA content), Kac-Peterson-Wakimoto 1988 twisted "
         "character formulae (representation theory of affine algebras, "
@@ -399,7 +404,7 @@ def test_z3_coxeter_todd_exemplar():
     """Explicit Z/3 Coxeter-Todd (3A class) exemplar.
 
     sigma = g of order 3, Frame shape 1^{-3} 3^9, Lambda^sigma = K_12
-    (Coxeter-Todd, rank 12, det 729, minimal norm 4, A_2^6 roots).
+    (Coxeter-Todd, rank 12, det 729, minimal norm 4, no norm-2 roots).
 
     Independent verifications:
       (i)  Coxeter-Todd K_12 rank = 12 (Conway-Sloane 1988, Splag Ch. 4.9).
@@ -408,18 +413,18 @@ def test_z3_coxeter_todd_exemplar():
       (iv) sign factor = +1 because non-trivial eigenvalues come as
            (zeta, zeta-bar) pairs contributing |1-zeta|^2 = 3 per pair.
       (v)  Twisted vacuum conformal weight h_tw = 2 is in (1/3) Z
-           (VE-MS 2020 Table 5; verified by Kac-Peterson-Wakimoto).
+           (cyclic-orbifold table; verified by Kac-Peterson-Wakimoto).
     """
     # Coxeter-Todd lattice invariants (Conway-Sloane 1988).
     K12_rank = 12
     K12_determinant = 729  # = 3^6
     K12_minimal_norm = 4
-    K12_root_system = "A_2^6"  # Six copies of A_2.
+    K12_has_norm_2_roots = False
 
     assert K12_rank == 12
     assert K12_determinant == 3 ** 6
     assert K12_minimal_norm == 4
-    assert K12_root_system == "A_2^6"
+    assert not K12_has_norm_2_roots
 
     # Frame shape 1^{-3} 3^9: characteristic polynomial
     # (t - 1)^{-3}(t^3 - 1)^9 on Lambda tensor R, meaning 12 fixed
@@ -435,11 +440,11 @@ def test_z3_coxeter_todd_exemplar():
     assert det_one_minus_sigma_perp == 3 ** 6  # = 729
     assert det_one_minus_sigma_perp > 0  # sign factor = +1
 
-    # Twisted vacuum conformal weight (VE-MS 2020 Table 5).
+    # Twisted vacuum conformal weight (cyclic-orbifold table).
     # For class 3A on Leech, h_tw = 2.
     h_tw = Fraction(2, 1)  # An integer = 6/3, in (1/3) Z.
 
-    # VE-MS level-matching condition: h_tw in (1/n) Z.
+    # Level-matching condition: h_tw in (1/n) Z.
     n = 3
     level_matching_satisfied = (Fraction(h_tw * n, 1).denominator == 1)
     assert level_matching_satisfied, (
@@ -453,7 +458,7 @@ def test_z3_coxeter_todd_exemplar():
 
 
 # =========================================================================
-# CLAIM 6: cor:schellekens-71-uhf-image (UHF closes on 71)
+# CLAIM 6: cor:schellekens-71-uhf-image (UHF defined on 71)
 # =========================================================================
 
 
@@ -483,22 +488,21 @@ def test_z3_coxeter_todd_exemplar():
         "disjoint anchors."
     ),
 )
-def test_uhf_closes_on_schellekens_71():
-    """Universal Holography functor closes on all 71 Schellekens VOAs."""
+def test_uhf_defined_on_schellekens_71():
+    """Universal Holography functor is defined on all 71 Schellekens VOAs."""
     schellekens_71_total = 71
     typeA_e3_topological = 24  # Via Costello-Li abelian CS.
     typeB_e3_topological = 1  # Via Monster chapter.
-    typeC_e3_topological = 46  # Via VE-MS level-matching + CG orbifold BV.
+    typeC_e3_topological = 46  # Via level matching + CG orbifold BV.
 
     uhf_image_count = (
         typeA_e3_topological + typeB_e3_topological + typeC_e3_topological
     )
     assert uhf_image_count == schellekens_71_total
 
-    # At c = 24, the level is non-critical for any physical Sugawara
-    # construction; the Schellekens VOAs all carry the Sugawara
-    # conformal vector from their affine Kac-Moody component
-    # (or the Virasoro stress tensor from the framed-VOA construction).
+    # At c = 24, the conformal vector exists stratumwise: lattice VOA
+    # for Type A, FLM Moonshine vector for Type B, and cyclic-orbifold
+    # preserved vector for Type C.
     c = 24
     assert c != 0
     assert c % 26 != 0  # Not at the bosonic-string critical level either.

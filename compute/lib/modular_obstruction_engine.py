@@ -164,7 +164,8 @@ def w3_ope_data():
     Lambda = Symbol('Lambda')
     dLambda = Symbol('dLambda')
 
-    beta_sq = Rational(16, 1) / (22 + 5 * c)
+    beta_lambda = Rational(32, 1) / (22 + 5 * c)
+    beta_partial_lambda = Rational(16, 1) / (22 + 5 * c)
 
     return {
         ('T', 'T'): {3: c / 2, 1: 2 * T, 0: dT},
@@ -174,8 +175,8 @@ def w3_ope_data():
             5: c / 3,
             3: 2 * T,
             2: dT,
-            1: Rational(3, 10) * d2T + beta_sq * Lambda,
-            0: Rational(1, 15) * d3T + (beta_sq / 2) * dLambda,
+            1: Rational(3, 10) * d2T + beta_lambda * Lambda,
+            0: Rational(1, 15) * d3T + beta_partial_lambda * dLambda,
         },
     }
 
@@ -224,7 +225,8 @@ def classical_mc_element(family, **params):
 
     elif family == 'w3':
         c_val = params.get('c', c)
-        beta_sq = Rational(16, 1) / (22 + 5 * c_val)
+        beta_lambda = Rational(32, 1) / (22 + 5 * c_val)
+        beta_partial_lambda = Rational(16, 1) / (22 + 5 * c_val)
         return {
             'family': 'w3',
             'mc_element': w3_ope_data(),
@@ -232,7 +234,9 @@ def classical_mc_element(family, **params):
             'conformal_weights': {'T': 2, 'W': 3},
             'kappa': 5 * c_val / 6,
             'central_charge': c_val,
-            'beta_squared': beta_sq,
+            'beta_Lambda': beta_lambda,
+            'beta_partial_Lambda': beta_partial_lambda,
+            'beta_squared': beta_lambda,
             'description': (
                 'W_3 PVA: {T_lam T} = Virasoro, {T_lam W} = primary weight 3, '
                 '{W_lam W} = non-linear with composite Lambda'
@@ -550,7 +554,7 @@ def w_normal_form_transformation(family, **params):
 
     elif family == 'w3':
         c_val = params.get('c', c)
-        beta_sq = Rational(16, 1) / (22 + 5 * c_val)
+        beta_sq = Rational(32, 1) / (22 + 5 * c_val)
 
         # The W-normal form transformation for W_3
         # Diagonalizes the MC element by conformal weight
@@ -610,6 +614,8 @@ def w_normal_form_transformation(family, **params):
             'kappa_total': simplify(kappa_total),
             'kappa_total_expected': 5 * c_val / 6,
             'kappa_sum_check': simplify(kappa_total - 5 * c_val / 6) == 0,
+            'beta_Lambda': beta_sq,
+            'beta_partial_Lambda': beta_sq / 2,
             'beta_squared': beta_sq,
             'ob1_normal_form': kappa_total,
             'ob1_vanishes_in_nf': True,
@@ -941,7 +947,7 @@ def w3_ob1_normal_form_vanishing(c_val=None):
         dict with detailed normal form verification
     """
     c = Symbol('c') if c_val is None else S(c_val)
-    beta_sq = Rational(16, 1) / (22 + 5 * c)
+    beta_sq = Rational(32, 1) / (22 + 5 * c)
 
     # Curvature contributions
     kappa_T = c / 2          # from T_{(1)} T = 2T
@@ -982,6 +988,8 @@ def w3_ob1_normal_form_vanishing(c_val=None):
         'kappa_W': kappa_W,
         'kappa_total': simplify(kappa_total),
         'kappa_check_5c_over_6': kappa_check == 0,
+        'beta_Lambda': beta_sq,
+        'beta_partial_Lambda': beta_sq / 2,
         'beta_squared': beta_sq,
         'ob1_normal_form': ob1_nf,
         'ob1_class_vanishes': True,
@@ -1535,7 +1543,7 @@ def w3_D1_chain_level(c_val=None):
     Lambda = Symbol('Lambda')
     dLambda = Symbol('dLambda')
 
-    beta_sq = Rational(16, 1) / (22 + 5 * c)
+    beta_sq = Rational(32, 1) / (22 + 5 * c)
 
     # Invariant pairing
     pairing_TT = c / 2
@@ -1625,6 +1633,8 @@ def w3_D1_chain_level(c_val=None):
         'kappa_total': simplify(kappa_total),
         'kappa_check_5c_6': nf_kappa == 0,
         'cross_sector': cross_contribution,
+        'beta_Lambda': beta_sq,
+        'beta_partial_Lambda': beta_sq / 2,
         'beta_squared': beta_sq,
         'xi_1': simplify(xi_1),
         'xi_1_expected_5c_144': simplify(xi_1 - 5 * c / 144) == 0,

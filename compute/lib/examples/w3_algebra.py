@@ -7,22 +7,24 @@ Lambda = :TT: - (3/10)d^2 T (quasi-primary of weight 4).
 The OPE (Bouwknegt-Schoutens, hep-th/9210010):
 
   W(z)W(w) = (c/3)/(z-w)^6 + 2T(w)/(z-w)^4 + dT(w)/(z-w)^3
-             + [beta^2 Lambda(w) + (3/10)d^2 T(w)]/(z-w)^2
-             + [(beta^2/2)dLambda(w) + (1/15)d^3 T(w)]/(z-w)
+             + [beta_Lambda Lambda(w) + (3/10)d^2 T(w)]/(z-w)^2
+             + [beta_partial_Lambda dLambda(w) + (1/15)d^3 T(w)]/(z-w)
 
-where beta^2 = 16/(22+5c) and Lambda = :TT: - (3/10)d^2 T.
+where beta_Lambda = 32/(22+5c),
+beta_partial_Lambda = 16/(22+5c), and
+Lambda = :TT: - (3/10)d^2 T.
 
 The n-products (a_{(n)} b = Res_{z->w} (z-w)^n a(z)b(w)):
 
   W_{(5)}W = c/3, W_{(3)}W = 2T, W_{(2)}W = dT,
-  W_{(1)}W = (3/10)d^2 T + beta^2 Lambda,
-  W_{(0)}W = (1/15)d^3 T + (beta^2/2) dLambda
+  W_{(1)}W = (3/10)d^2 T + beta_Lambda Lambda,
+  W_{(0)}W = (1/15)d^3 T + beta_partial_Lambda dLambda
 
 The lambda-bracket ({a_lam b} = sum_{n>=0} (a_{(n)} b) lam^n / n!):
 
   {W_lam W} = (c/360)lam^5 + (T/3)lam^3 + (dT/2)lam^2
-              + [beta^2 Lambda + (3/10)d^2 T]lam
-              + (beta^2/2)dLambda + (1/15)d^3 T
+              + [beta_Lambda Lambda + (3/10)d^2 T]lam
+              + beta_partial_Lambda dLambda + (1/15)d^3 T
 
 Cross-reference: Vol I w3_bar.py (comp:w3-nthproducts).
 
@@ -63,9 +65,15 @@ d2Lambda = Symbol('d2Lambda')
 # Central charge
 c = Symbol('c')
 
-# Structural constant beta^2 = 16/(22 + 5c)
+# Standard W_3 nonlinear coefficients.  The Lambda coefficient is
+# 32/(22+5c); the derivative coefficient is half of it.
 # SINGULAR at c = -22/5.
-beta_sq = Rational(16, 1) / (22 + 5 * c)
+beta_Lambda = Rational(32, 1) / (22 + 5 * c)
+beta_partial_Lambda = Rational(16, 1) / (22 + 5 * c)
+
+# Backward-compatible name used by older tests and scripts.  It now denotes
+# the undifferentiated Lambda coefficient.
+beta_sq = beta_Lambda
 
 
 # ---------------------------------------------------------------------------
@@ -112,7 +120,7 @@ def w3_nth_products():
 
     Ground truth: Bouwknegt-Schoutens (1993), Vol I comp:w3-nthproducts.
     """
-    alpha = beta_sq  # 16/(22+5c)
+    alpha = beta_sq  # undifferentiated Lambda coefficient 32/(22+5c)
     return {
         # T x T (quartic pole, Virasoro subalgebra)
         ('T', 'T'): {
@@ -136,7 +144,7 @@ def w3_nth_products():
             3: 2 * T,
             2: dT,
             1: Rational(3, 10) * d2T + alpha * Lambda,
-            0: Rational(1, 15) * d3T + (alpha / 2) * dLambda,
+            0: Rational(1, 15) * d3T + beta_partial_Lambda * dLambda,
         },
     }
 
@@ -185,8 +193,8 @@ def _bracket_WW(lam):
     From n-products via {a_lam b} = sum_{n>=0} (a_{(n)} b) lam^n / n!:
 
     {W_lam W} = (c/360)lam^5 + (T/3)lam^3 + (dT/2)lam^2
-                + [beta^2 Lambda + (3/10)d^2T]lam
-                + (beta^2/2)dLambda + (1/15)d^3T
+                + [beta_Lambda Lambda + (3/10)d^2T]lam
+                + beta_partial_Lambda dLambda + (1/15)d^3T
 
     The factorials: 5!/5!=1 (n=5 -> lam^5/120 * c/3 = c/360*lam^5),
     3!/3!=1 (n=3 -> lam^3/6 * 2T = T/3*lam^3),
@@ -198,7 +206,7 @@ def _bracket_WW(lam):
             + Rational(1, 3) * T * lam**3
             + Rational(1, 2) * dT * lam**2
             + (alpha * Lambda + Rational(3, 10) * d2T) * lam
-            + alpha / 2 * dLambda + Rational(1, 15) * d3T)
+            + beta_partial_Lambda * dLambda + Rational(1, 15) * d3T)
 
 
 def w3_lambda_bracket(a, b, lam):
@@ -635,9 +643,10 @@ def verify_jacobi_WWW_numerical(c_val):
     # the maximum lambda-degree in {W_lam W} is 5 (from c/360*lam^5).
     # Jacobi at this leading order is automatic (central extension terms).
 
-    # The TRUE constraint from (W,W,W) Jacobi is that beta^2 = 16/(22+5c).
-    # Verify: if we perturb beta^2, Jacobi fails.
-    correct_alpha = Rational(16, 1) / (22 + 5 * c_val)
+    # The TRUE constraint from (W,W,W) Jacobi is that the undifferentiated
+    # Lambda coefficient is 32/(22+5c).
+    # Verify: if we perturb this coefficient, Jacobi fails.
+    correct_alpha = Rational(32, 1) / (22 + 5 * c_val)
 
     # Compute with correct alpha: should work
     # Compute with wrong alpha: should fail
@@ -645,7 +654,7 @@ def verify_jacobi_WWW_numerical(c_val):
 
     # Check a specific identity from (W,W,W) Jacobi at the T-coefficient level.
     # From the Jacobi identity, the coefficient of T in the lam^3 mu^3 term
-    # of LHS should equal the RHS. This constrains beta^2.
+    # of LHS should equal the RHS. This constrains beta_Lambda.
 
     # The relevant computation:
     # {W_lam {W_mu W}} restricted to the T-coefficient at order lam^3:
@@ -653,11 +662,11 @@ def verify_jacobi_WWW_numerical(c_val):
     # is complicated. Instead, verify the CONSTRAINT on alpha.
 
     # Zamolodchikov's constraint: the OPE W(z)W(w) closes on {1, T, Lambda}
-    # iff the coefficient of the composite is beta^2 = 16/(22+5c).
+    # iff the coefficient of the composite is beta_Lambda = 32/(22+5c).
     # This is equivalent to the (W,W,W) Jacobi identity.
 
-    # Verify the constraint holds: beta^2 * (22 + 5*c) = 16
-    constraint = correct_alpha * (22 + 5 * c_val) - 16
+    # Verify the constraint holds: beta_Lambda * (22 + 5*c) = 32
+    constraint = correct_alpha * (22 + 5 * c_val) - 32
     is_consistent = (simplify(constraint) == 0)
 
     return constraint, is_consistent
@@ -676,7 +685,8 @@ def w3_shadow_data():
       archetype: 'M' (Mixed)
       shadow_depth: infinity (self-referential non-linear OPE)
       generators: ['T', 'W'] with conformal weights [2, 3]
-      beta_squared: 16/(22+5c)
+      beta_Lambda: 32/(22+5c)
+      beta_partial_Lambda: 16/(22+5c)
       composite: Lambda = :TT: - (3/10)d^2T
       complementarity_sum: c + c' = 100 where c' = c(-k-6)
 
@@ -697,6 +707,8 @@ def w3_shadow_data():
         'archetype': 'M',
         'shadow_depth': float('inf'),
         'shadow_depth_class': 'M (Mixed)',
+        'beta_Lambda': beta_sq,
+        'beta_partial_Lambda': beta_partial_Lambda,
         'beta_squared': beta_sq,
         'composite_Lambda': 'TT - (3/10)d^2T',
         'complementarity_sum': 100,

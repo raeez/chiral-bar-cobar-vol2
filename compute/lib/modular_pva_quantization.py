@@ -188,16 +188,23 @@ def genus0_classical_data(family, **params):
         }
     elif family == 'w3':
         c = params.get('c', Symbol('c'))
+        beta_lambda = Rational(32, 1) / (22 + 5 * c)
+        beta_partial_lambda = Rational(16, 1) / (22 + 5 * c)
         return {
             'family': 'w3',
-            'bracket_type': '{W_lam W} = (c/360)*lam^5 + ... + beta^2*Lambda*lam + ...',
+            'bracket_type': (
+                '{W_lam W} = (c/360)*lam^5 + ... '
+                '+ beta_Lambda*Lambda*lam + beta_partial_Lambda*dLambda + ...'
+            ),
             'central_charge': c,
             'kappa': 5 * c / 6,
             'shadow_depth': oo,
             'shadow_archetype': 'M',
             'r_matrix_pole': 6,
             'bar_differential_squared': S.Zero,
-            'beta_squared': Rational(16, 1) / (22 + 5 * c),
+            'beta_Lambda': beta_lambda,
+            'beta_partial_Lambda': beta_partial_lambda,
+            'beta_squared': beta_lambda,
             'resonance_divisor': Rational(-22, 5),
             'description': 'Mixed: non-linear W-algebra, composite field Lambda',
         }
@@ -310,7 +317,7 @@ def genus1_obstruction(family, **params):
         }
     elif family == 'w3':
         c = params.get('c', Symbol('c'))
-        # Resonance at c = -22/5 where beta^2 diverges
+        # Resonance at c = -22/5 where the W_3 nonlinear coefficients diverge.
         resonance = Rational(-22, 5)
         is_resonance = simplify(S(c) - resonance) == 0
         is_zero_c = simplify(S(c)) == 0
@@ -321,7 +328,7 @@ def genus1_obstruction(family, **params):
                 'vanishes': False,
                 'obstruction_locus': {0, resonance},
                 'reason': (
-                    f'c = {resonance}: beta^2 = 16/(22+5c) diverges, '
+                    f'c = {resonance}: beta_Lambda = 32/(22+5c) diverges, '
                     f'composite Lambda not defined'
                 ),
             }
@@ -806,10 +813,12 @@ def w3_quantization_data(c):
 
     W_3 is the simplest non-linear W-algebra (Zamolodchikov 1985).
     Generators: T (weight 2), W (weight 3).
-    Structural constant: beta^2 = 16/(22 + 5c).
+    Nonlinear coefficients:
+      beta_Lambda = 32/(22 + 5c),
+      beta_partial_Lambda = 16/(22 + 5c).
 
     Key features:
-      - SINGULAR at c = -22/5 (resonance divisor: beta^2 diverges)
+      - SINGULAR at c = -22/5 (resonance divisor: nonlinear coefficients diverge)
       - DS source: sl_3 affine, c = 2 - 24(k+2)^2/(k+3)
       - Complementarity: c + c' = 100 (where c' = c(-k-6))
       - kappa = 5c/6
@@ -822,9 +831,10 @@ def w3_quantization_data(c):
     theta_1 = kappa * Rational(1, 24)
     resonance = Rational(-22, 5)
 
-    # beta^2
+    # W_3 nonlinear coefficients
     denom_beta = 22 + 5 * c_sym
-    beta_sq = S(16) / denom_beta if simplify(denom_beta) != 0 else zoo
+    beta_lambda = S(32) / denom_beta if simplify(denom_beta) != 0 else zoo
+    beta_partial_lambda = S(16) / denom_beta if simplify(denom_beta) != 0 else zoo
 
     # Obstruction
     ob = genus1_obstruction('w3', c=c)
@@ -842,7 +852,9 @@ def w3_quantization_data(c):
         'complementarity_sum': comp_sum,
         'complementarity_constant': 100,
         'theta_1': theta_1,
-        'beta_squared': beta_sq,
+        'beta_Lambda': beta_lambda,
+        'beta_partial_Lambda': beta_partial_lambda,
+        'beta_squared': beta_lambda,
         'resonance_divisor': resonance,
         'is_resonant': simplify(c_sym - resonance) == 0,
         'obstruction_vanishes': ob['vanishes'],
@@ -853,7 +865,7 @@ def w3_quantization_data(c):
         'generators': [('T', 2), ('W', 3)],
         'description': (
             'W_3: non-linear W-algebra. The (W,W,W) Jacobi identity '
-            'constrains beta^2 = 16/(22+5c) (Zamolodchikov). '
+            'constrains beta_Lambda = 32/(22+5c) (Zamolodchikov). '
             'Genus-1 lift direction is the central-parameter direction '
             'partial_c P_c (modular_pva_quantization.tex).'
         ),

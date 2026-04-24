@@ -6,6 +6,9 @@ Target chapter: chapters/connections/universal_holography_functor.tex.
 ClaimStatusProvedHere: Phi_hol: ChirAlg^{omega, BL}_X -> HTQFT_{X x R}
 exists as a canonical functor with four properties (boundary restriction,
 bulk identification as Z^der_ch, DS-functoriality, class coverage G/L/C/M).
+G/L/C are chain-level on the ordinary complex; class M is chain-level in
+the weight-completed/pro ambient, and the strict class-M E_3 chain lift
+inherits the conditionality of chiral Higher Deligne.
 
 HZ-IV protocol: every ProvedHere theorem carries an
 @independent_verification decorator. derived_from and verified_against
@@ -35,8 +38,8 @@ from compute.lib.independent_verification import independent_verification
 #       topological into an HTQFT;
 #   (c) Sugawara topologization tower (Vol I thm:topologization-tower)
 #       promoting SC^{ch,top} to E_3-top cohomologically;
-#   (d) DS-Hochschild bridge (thm:chd-ds-hochschild) closing class-M
-#       chain-level bulk identification.
+#   (d) DS-Hochschild bridge (thm:chd-ds-hochschild) giving the class-M
+#       weight-completed chain-level bulk identification.
 #
 # Verification (disjoint):
 #   (i)  Costello-Gaiotto 2018 arXiv:1804.06460 holomorphic Chern-Simons
@@ -76,7 +79,7 @@ from compute.lib.independent_verification import independent_verification
     derived_from=[
         "Costello-Gwilliam Vol II Thm 3.6.1 factorisation envelope of vertex algebras on X",
         "Sugawara topologization tower (Vol I thm:topologization-tower)",
-        "DS-Hochschild bridge (Vol II thm:chd-ds-hochschild) for class-M chain-level closure",
+        "DS-Hochschild bridge (Vol II thm:chd-ds-hochschild) for class-M weight-completed chain-level closure",
     ],
     verified_against=[
         "Costello-Gaiotto 2018 arXiv:1804.06460 holomorphic Chern-Simons realisation of bulk 3d HT theory",
@@ -87,7 +90,8 @@ from compute.lib.independent_verification import independent_verification
         "The chapter builds the functor by combining Costello-Gwilliam "
         "factorisation envelope (engineers the bulk) with the Sugawara "
         "topologization tower (promotes SC^{ch,top} to E_3-top) and "
-        "the DS-Hochschild bridge (closes chain-level class M). None "
+        "the DS-Hochschild bridge (closes class M in the weight-completed "
+        "ambient, with strict E_3 chain lift conditional). None "
         "of the three verification sources uses any of those ingredients: "
         "Costello-Gaiotto construct the 3d HT theory as a physical gauge "
         "theory and extract the boundary chiral algebra (opposite direction "
@@ -108,9 +112,11 @@ def test_uhf_functor_structural_invariants():
 
       (i)   boundary restriction: Obs^partial(F_A) = A as E_1-chiral;
       (ii)  bulk identification: Obs^bulk(F_A) = Z^der_ch(A) as
-            E_3-topological factorisation algebra on X x R;
+            an HT factorisation algebra on X x R, E_3-topological after
+            Sugawara with the class-M ambient qualifier;
       (iii) DS-functoriality: the square with DS_f and Phi_hol commutes;
-      (iv)  class coverage: G, L, C, M all receive chain-level functors.
+      (iv)  class coverage: G, L, C receive ordinary-chain functors and
+            M receives a weight-completed/pro functor.
     """
     # Invariants that every proof route produces
     chapter = {
@@ -119,6 +125,8 @@ def test_uhf_functor_structural_invariants():
         "bulk_E_n_top": 3,        # E_3-topological after Sugawara
         "base_dim": 3,            # X x R has real dim 3 (dim_C X = 1)
         "class_coverage": {"G", "L", "C", "M"},
+        "class_m_ambient": "weight-completed",
+        "strict_class_m_E3_chain": "conditional",
     }
     # Costello-Gaiotto reproduces the same invariants for classes G/L/M
     # (their paper covers KM explicitly and W-algebras via DS-boundary).
@@ -156,10 +164,13 @@ def test_uhf_functor_structural_invariants():
     assert chapter["bulk_E_n_hol"] == kontsevich["bulk_E_n_hol"]
     assert chapter["bulk_E_n_hol"] == linshaw["bulk_E_n_hol"]
 
-    # E_3-top: Costello-Gaiotto and Linshaw agree with chapter; Kontsevich
-    # stays at E_2 by design (no Sugawara in Kontsevich). The agreement
-    # pattern matches the scope description.
+    # E_3-top: Costello-Gaiotto and Linshaw agree with the chapter on the
+    # ambient-qualified / cohomological E_3 output; Kontsevich stays at E_2
+    # by design (no Sugawara in Kontsevich). The strict class-M chain lift is
+    # tracked separately.
     assert chapter["bulk_E_n_top"] == costello_gaiotto["bulk_E_n_top"] == linshaw["bulk_E_n_top"] == 3
+    assert chapter["class_m_ambient"] == "weight-completed"
+    assert chapter["strict_class_m_E3_chain"] == "conditional"
 
     # Class coverage: chapter is the union of the three verification
     # scopes plus class C (via FMS bosonisation reducing to G).

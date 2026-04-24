@@ -128,7 +128,7 @@ class TestW3Brackets:
         assert simplify(coeff_lam2 - Rational(1, 2) * dT) == 0
 
     def test_WW_linear_term(self):
-        """Coefficient of lam in {W_lam W} is beta^2*Lambda + (3/10)*d2T.
+        """Coefficient of lam in {W_lam W} is beta_Lambda*Lambda + (3/10)*d2T.
 
         From W_{(1)}W = (3/10)d^2T + alpha*Lambda.
         """
@@ -142,28 +142,30 @@ class TestW3Brackets:
         assert simplify(expand(coeff_lam1 - expected)) == 0
 
     def test_WW_constant_term(self):
-        """Constant term in {W_lam W} is (beta^2/2)*dLambda + (1/15)*d3T.
+        """Constant term in {W_lam W} is beta_partial_Lambda*dLambda + (1/15)*d3T.
 
         From W_{(0)}W = (1/15)d^3T + (alpha/2)*dLambda.
         """
         from lib.examples.w3_algebra import (
-            w3_lambda_bracket, dLambda, d3T, beta_sq
+            w3_lambda_bracket, dLambda, d3T, beta_partial_Lambda
         )
         lam = Symbol('lambda')
         bracket = w3_lambda_bracket('W', 'W', lam)
         coeff_lam0 = expand(bracket).coeff(lam, 0)
-        expected = beta_sq / 2 * dLambda + Rational(1, 15) * d3T
+        expected = beta_partial_Lambda * dLambda + Rational(1, 15) * d3T
         assert simplify(expand(coeff_lam0 - expected)) == 0
 
     def test_beta_squared_formula(self):
-        """Verify beta^2 = 16/(22+5c).
+        """Verify the standard W_3 nonlinear coefficients.
 
-        This is the structural constant of the W_3 algebra, determined
-        by associativity (Jacobi) of the OPE.
+        The undifferentiated Lambda coefficient is 32/(22+5c);
+        the partial-Lambda coefficient is 16/(22+5c).
         """
-        from lib.examples.w3_algebra import beta_sq, c
-        expected = Rational(16, 1) / (22 + 5 * c)
-        assert simplify(beta_sq - expected) == 0
+        from lib.examples.w3_algebra import beta_sq, beta_partial_Lambda, c
+        expected_lambda = Rational(32, 1) / (22 + 5 * c)
+        expected_partial = Rational(16, 1) / (22 + 5 * c)
+        assert simplify(beta_sq - expected_lambda) == 0
+        assert simplify(beta_partial_Lambda - expected_partial) == 0
 
     def test_composite_Lambda_definition(self):
         """Lambda = :TT: - (3/10)*d^2T is quasi-primary of weight 4.
@@ -371,7 +373,8 @@ class TestW3Jacobi:
     def test_jacobi_WWW_c1(self):
         """Jacobi (W,W,W) at c=1: structural constant constraint.
 
-        The (W,W,W) Jacobi identity is equivalent to beta^2 = 16/(22+5c).
+        The (W,W,W) Jacobi identity is equivalent to the
+        undifferentiated Lambda coefficient 32/(22+5c).
         Verify the constraint holds at c=1.
         """
         from lib.examples.w3_algebra import verify_jacobi_WWW_numerical
@@ -385,25 +388,26 @@ class TestW3Jacobi:
         assert is_consistent
 
     def test_jacobi_WWW_degenerate(self):
-        """At c = -22/5, beta^2 diverges — verify constraint form.
+        """At c = -22/5, the W_3 nonlinear coefficient diverges.
 
-        The W_3 algebra degenerates at c = -22/5 (the denominator of beta^2
-        vanishes). The Jacobi constraint 16/(22+5c) * (22+5c) = 16 is
-        trivially satisfied as 16 = 16, but the ALGEBRA itself is singular.
+        The W_3 algebra degenerates at c = -22/5 (the denominator of the
+        nonlinear coefficient vanishes). The Jacobi constraint
+        32/(22+5c) * (22+5c) = 32 is
+        trivially satisfied as 32 = 32, but the ALGEBRA itself is singular.
         The constraint equation is a removable singularity.
         """
         from lib.examples.w3_algebra import verify_jacobi_WWW_numerical
         c_val = Rational(-22, 5)
-        # At c = -22/5, alpha = 16/0 which is undefined.
-        # The Jacobi constraint alpha*(22+5c) = 16 becomes 16*1/0 * 0 = 16,
-        # which as a limit is 16 = 16. Check the constraint structure.
-        # verify_jacobi_WWW_numerical computes alpha*(22+5c) - 16.
-        # At c=-22/5: 16/(22-22) * (22-22) - 16 -> 0/0 form.
+        # At c = -22/5, alpha = 32/0 which is undefined.
+        # The Jacobi constraint alpha*(22+5c) = 32 becomes 32*1/0 * 0 = 32,
+        # which as a limit is 32 = 32. Check the constraint structure.
+        # verify_jacobi_WWW_numerical computes alpha*(22+5c) - 32.
+        # At c=-22/5: 32/(22-22) * (22-22) - 32 -> 0/0 form.
         # Use symbolic limit instead.
         from lib.examples.w3_algebra import beta_sq, c
         product = expand(beta_sq * (22 + 5 * c))
-        # beta_sq = 16/(22+5c), so product = 16 identically
-        assert simplify(product - 16) == 0
+        # beta_sq = 32/(22+5c), so product = 32 identically
+        assert simplify(product - 32) == 0
 
 
 # ===================================================================
@@ -569,16 +573,16 @@ class TestW3SpecialValues:
     """Test W_3 at special values of the central charge."""
 
     def test_beta_squared_at_c2(self):
-        """beta^2 at c=2: 16/(22+10) = 16/32 = 1/2."""
+        """Lambda coefficient at c=2: 32/(22+10) = 1."""
         from lib.examples.w3_algebra import beta_sq, c
         val = beta_sq.subs(c, 2)
-        assert simplify(val - Rational(1, 2)) == 0
+        assert simplify(val - 1) == 0
 
     def test_beta_squared_at_c100(self):
-        """beta^2 at c=100: 16/(22+500) = 16/522 = 8/261."""
+        """Lambda coefficient at c=100: 32/(22+500) = 16/261."""
         from lib.examples.w3_algebra import beta_sq, c
         val = beta_sq.subs(c, 100)
-        assert simplify(val - Rational(8, 261)) == 0
+        assert simplify(val - Rational(16, 261)) == 0
 
     def test_kappa_at_c_equals_2(self):
         """kappa(W_3) at c=2: 5*2/6 = 5/3."""
@@ -602,7 +606,7 @@ class TestW3SpecialValues:
         assert simplify(kappa_c + kappa_dual - Rational(250, 3)) == 0
 
     def test_degenerate_c_minus_22_over_5(self):
-        """At c = -22/5, beta^2 has a pole (denominator 22+5c = 0).
+        """At c = -22/5, the nonlinear coefficient has a pole.
 
         The W_3 algebra degenerates: the composite Lambda decouples
         in a singular way. This is a GENUINE singularity, not removable
@@ -667,11 +671,11 @@ class TestW3CrossVolume:
 
         Vol I (comp:w3-nthproducts):
           W_{(5)}W = c/3, W_{(3)}W = 2T, W_{(2)}W = dT,
-          W_{(1)}W = (3/10)d^2T + alpha*Lambda,
-          W_{(0)}W = (1/15)d^3T + (alpha/2)*dLambda
+          W_{(1)}W = (3/10)d^2T + beta_Lambda*Lambda,
+          W_{(0)}W = (1/15)d^3T + beta_partial_Lambda*dLambda
         """
         from lib.examples.w3_algebra import w3_nth_product, c, T, dT, d2T, d3T
-        from lib.examples.w3_algebra import Lambda, dLambda, beta_sq
+        from lib.examples.w3_algebra import Lambda, dLambda, beta_sq, beta_partial_Lambda
 
         assert simplify(w3_nth_product('W', 'W', 5) - c / 3) == 0
         assert simplify(w3_nth_product('W', 'W', 3) - 2 * T) == 0
@@ -680,7 +684,7 @@ class TestW3CrossVolume:
         expected_1 = Rational(3, 10) * d2T + beta_sq * Lambda
         assert simplify(expand(w3_nth_product('W', 'W', 1) - expected_1)) == 0
 
-        expected_0 = Rational(1, 15) * d3T + beta_sq / 2 * dLambda
+        expected_0 = Rational(1, 15) * d3T + beta_partial_Lambda * dLambda
         assert simplify(expand(w3_nth_product('W', 'W', 0) - expected_0)) == 0
 
     def test_WT_asymmetry(self):

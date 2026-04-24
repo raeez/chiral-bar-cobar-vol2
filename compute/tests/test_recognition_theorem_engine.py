@@ -1,13 +1,13 @@
-r"""Tests for the recognition theorem engine.
+r"""Tests for the recognition/local-shadow engine.
 
-Verifies the full recognition theorem pipeline:
+Verifies the product-formal local-shadow pipeline:
   1. Weiss cosheaf descent for product covers
-  2. Hypothesis verification (H1)-(H4) for all 7 Vol II examples
-  3. Reconstruction of chiral + topological + coupling
+  2. Local hypothesis checks for all 7 Vol II examples
+  3. Extraction of chiral + topological + coupling local data
   4. R-direction isotopy (local constancy)
   5. C-direction factorization
   6. Mixed coupling extraction
-  7. Full pipeline consistency
+  7. Pipeline consistency
 
 References:
   Vol II: thm:recognition-SC, lem:product-weiss-descent, foundations.tex
@@ -163,7 +163,7 @@ class TestCechDescent:
 
 
 # ===================================================================
-# 5. HYPOTHESIS (H1)-(H4) VERIFICATION
+# 5. LEGACY LOCAL-SHADOW CHECK VERIFICATION
 # ===================================================================
 
 class TestHypotheses:
@@ -250,7 +250,7 @@ class TestHypotheses:
 # ===================================================================
 
 class TestReconstruction:
-    """Test reconstruction from (H1)-(H4)."""
+    """Test product-formal local-shadow extraction."""
 
     def test_heisenberg_reconstruction(self):
         """Heisenberg reconstruction gives correct chiral part."""

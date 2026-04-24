@@ -14303,7 +14303,7 @@ Five parallel agents audited the entire live `\input` surface (56 files) for eac
 
 - Target: `chapters/theory/locality.tex`, `chapters/theory/raviolo.tex`, `chapters/connections/hochschild.tex`, `main.tex`, `chapters/connections/concordance.tex`
 - Iteration: `foundation-pass-1`
-- Status: `BLOCKED: the recognition theorem and the physics-bridge theorem still advertise proof strength beyond the checked local argument surface`
+- Status: `RESOLVED_BY_2026-04-24_SCOPE_DOWNGRADE: the recognition theorem is now local-shadow/product-formal, and the physics bridge now requires a factorized logarithmic parametrix`
 
 ### Summary
 
@@ -14331,16 +14331,16 @@ Ran a hostile first-principles audit of the load-bearing theorem spine rather th
    Class: `P/S`
    Location: `chapters/theory/locality.tex:378-492`
    Issue: the proof of `thm:recognition-SC` is not mathematically closed as written. In Step `3a`, the argument starts from a `C_\ast(W(\SCchtop))`-algebra and immediately speaks of “evaluating the prefactorization algebra” before such an object has been constructed. In Step `3b`, one-color recognition theorems are applied factor-by-factor and the mixed-color assembly is then asserted via K\"unneth and Boardman--Vogt product language, but no fully specified two-color comparison functor or universal-property argument is supplied. On hostile reread this is a blueprint, not a finished equivalence proof.
-   Fix: none in this pass. A truthful repair likely requires either downgrading theorem status and downstream advertisements, or replacing the proof with a fully functorial two-color recognition argument.
-   Status: `OPEN`
+   Fix: downgraded the theorem surface to a product-formal local-shadow/envelope statement; product-cover descent is separated from arbitrary rectangle Weiss descent, and downstream status ledgers no longer advertise full SC--HT equivalence.
+   Status: `FIXED_BY_SCOPE_DOWNGRADE`
 
 639. `2026-04-08-639`
    Severity: `SERIOUS`
    Class: `P/C`
    Location: `chapters/theory/raviolo.tex:405-449`
    Issue: Step `(i)` of `thm:physics-bridge` does not justify the claimed propagator factorization. The displayed computation gives `Q(K_\C \otimes \delta_\R) = \delta_\C \otimes \delta_\R + K_\C \otimes \delta'_\R`, and the extra term is then discarded by fiat. More fundamentally, the proof never establishes that the Green's kernel of `Q = \dbar_z + d_t` is the tensor product of separate Green's kernels merely because the operator splits additively. The theorem therefore proves less than it claims under hypotheses `(a)`--`(c)`.
-   Fix: none in this pass. A truthful repair likely requires either adding explicit factorized-propagator hypotheses or replacing Step `(i)` with a genuine parametrix/Schwinger-kernel argument that proves the separation.
-   Status: `OPEN`
+   Fix: added the explicit factorized logarithmic HT parametrix hypothesis, deleted the claimed derivation from the split operator, and propagated the conditional bridge status to dependent examples and compute checks.
+   Status: `FIXED_BY_FACTORIZED_PARAMETRIX_HYPOTHESIS`
 
 ### Full Catalogue
 
@@ -14762,3 +14762,301 @@ Audited the active Vol II dirty surface for local contradictions introduced by t
    Issue: the landscape master table has healed the counting-vs-classification defect, but its ambient sentence still says "The Schellekens 71 holomorphic VOAs at c=24," which inherits the same row-vs-isomorphism overstatement as the theorem surface.
    Fix: retitle that ambient sentence as the `71` Schellekens rows / weight-one types at `c=24`, and make `V^\natural` a representative of the `V_1=0` row rather than the row itself.
    Status: `PROPOSED PATCH PREPARED`
+
+## 2026-04-24 - Vol II concordance CG rectification
+
+- Target: `chapters/connections/concordance.tex`
+- Status: `CONVERGED`
+
+### Findings
+
+1. `2026-04-24-concordance-001`
+   Severity: `SERIOUS`
+   Class: `standalone-manuscript / drafting-history contamination`
+   Location: `chapters/connections/concordance.tex:9-15`, `:665-769`
+   Issue: the active normative status ledger still frames the manuscript as a "first pass" and records "April 2026 session", "new results", "prior formulations", and "retracted" language. This violates the standalone manuscript doctrine and weakens the ledger's mathematical role: claim status should be stated as theorem, condition, conjecture, or open problem, not as drafting history.
+   Fix: replace the first-pass remark by a status-vocabulary remark; rewrite the closing research-signal/session block as direct mathematical scoping and cross-volume theorem/conjecture statements; remove version-history language without changing claim statuses.
+   Status: `CONVERGED`
+
+2. `2026-04-24-part-viii-001`
+   Severity: `SERIOUS`
+   Class: `standalone-manuscript / synthesis-surface architecture`
+   Location: `chapters/frame/part_viii_synthesis.tex:29-58`, `:62-94`, `:204-231`, `:237-280`, `:615-704`
+   Issue: the active Part VIII synthesis is organized around closure history ("HEAL+UPGRADE sweep", "earlier drafts", "retired", "adversarial catalogue", "declared by the sweep") rather than around the theorem atlas it is meant to expose. This is a CG structural defect: the unique survivor is the atlas of theorem anchors, not the process that produced it.
+   Fix: rewrite the overview and affected transitions so each paragraph states the obstruction, the theorem that resolves it, and the residual scope; remove drafting-history vocabulary without changing theorem anchors or statuses.
+   Status: `CONVERGED`
+
+3. `2026-04-24-dgsfb-001`
+   Severity: `MODERATE`
+   Class: `standalone-manuscript / bookkeeping vocabulary in technical bridge`
+   Location: `chapters/connections/dg_shifted_factorization_bridge.tex:2431-2521`
+   Issue: the K3 two-$\hbar$ bridge carries visible Wave, AP, and Pattern vocabulary inside reader-facing mathematical prose. The formulas can stand without the session markers; the unique survivor is the scalar bridge between Drinfeld and BV deformation parameters on the K3 Koszul locus.
+   Fix: rewrite the bridge paragraphs and titles to name the K3 Koszul locus, Mukai doubling, Bruinier reciprocity, and lane distinction directly; remove Wave/AP/Pattern vocabulary without altering formulas.
+   Status: `CONVERGED`
+
+4. `2026-04-24-htpo-001`
+   Severity: `MODERATE`
+   Class: `standalone-manuscript / cross-volume construction-arrow prose`
+   Location: `chapters/connections/ht_physical_origins.tex:1817-1884`
+   Issue: the CoHA-to-chiral construction-arrow block correctly distinguishes CoHA from chiral output, but reader-facing prose still uses Wave markers and cache-pattern vocabulary. The mathematical content is the typed functorial statement through $\Phi$, not the inscription history.
+   Fix: rewrite the K3 CoHA-to-chiral and two-loop BV remarks so $\Phi$, Vol III, Bruinier/Costello inputs, and $\hbar^2$ cancellation are stated directly; remove Wave/cache/DNA vocabulary without changing formulas.
+   Status: `CONVERGED`
+
+## 2026-04-24 - Universal holography functor CG rectification
+
+- Target: `chapters/connections/universal_holography_functor.tex`
+- Status: `CONVERGED`
+
+### Findings
+
+1. `2026-04-24-uhf-001`
+   Severity: `HIGH`
+   Class: `theorem-scope / class-M ambient mismatch`
+   Location: `chapters/connections/universal_holography_functor.tex:257-414`, `:588-646`, `:772-791`, `:934-989`; cross-check `chapters/theory/chiral_higher_deligne.tex:829-913`, `:934-987`
+   Issue: the universal-holography chapter states an unconditional chain-level $E_3$-topological class-M closure, but the cited DS-Hochschild theorem proves the $E_2$-chiral quasi-isomorphism and marks the $E_3$-chiral lift conditional at chain level. The same dependency chapter also says class M is chain-level only in the weight-completed/pro ambient, while the current UHF prose says the symplectic-polarization conditionality "drops."
+   Fix: restate the UHF theorem as ambient-qualified: G/L/C on the original chain complex, class M on the weight-completed/pro ambient; the underlying $E_2$-chiral / $\mathsf{SC}^{\mathrm{ch,top}}$ identification is proved, the class-M strict $E_3$ chain lift inherits the conditional status of the chiral Higher Deligne lift, and the direct-sum failure remains structural.
+   Status: `CONVERGED`
+
+2. `2026-04-24-uhf-002`
+   Severity: `SERIOUS`
+   Class: `standalone-manuscript / chapter-opening architecture`
+   Location: `chapters/connections/universal_holography_functor.tex:3-123`, `:899-972`, `:1122-1132`
+   Issue: the prologue, gravity corollary, climax remark, and epilogue frame the theorem through "climax," "strongest honest form," "previously outstanding," and verification-decoration language. This is drafting-history architecture rather than the deficiency-unique-survivor-theorem architecture required by the CG rectification standard.
+   Fix: rewrite the opening and closing surfaces around the forced functor $\Phi_{\mathrm{hol}}$, the boundary/bulk deficiency it resolves, the Virasoro specialization, and the residual scope restrictions; remove climax and process vocabulary.
+   Status: `CONVERGED`
+
+3. `2026-04-24-uhf-003`
+   Severity: `MODERATE`
+   Class: `standalone-manuscript / draft-history contamination`
+   Location: `chapters/connections/universal_holography_functor.tex:387-395`, `:470-477`, `:488-570`, `:580-656`, `:659-864`
+   Issue: proof and consequence sections repeatedly use "previously open," "earlier drafts," "previously bounded," "previously conjectural," "previously stated," and "previously conflated." The mathematical content is the DS-Hochschild reduction, the Leech-orbifold anomaly calculation, the algebraic/physical finiteness split, and the seven UHF consequences; none depends on draft chronology.
+   Fix: rewrite those passages as direct theorem/proof statements and retitle the affected remarks/sections/propositions without altering formulas or labels.
+   Status: `CONVERGED`
+
+4. `2026-04-24-uhf-004`
+   Severity: `MODERATE`
+   Class: `compute-propagation / stale hardcoded scope prose`
+   Location: `compute/tests/test_universal_holography_functor.py:1-125`, `compute/tests/test_universal_holography_functor_fm_iv.py:1-205`, `compute/tests/test_climax_theorems_iv.py:510-517`, `chapters/connections/part_vi_platonic_introduction.tex:340-357`
+   Issue: the compute and synthesis surfaces repeat the stale phrase that the DS-Hochschild bridge closes class-M chain-level $E_3$ without the weight-completed ambient and conditional $E_3$ lift qualifiers.
+   Fix: propagate the ambient-qualified statement into test docstrings/comments and the Part VI theorem proof while preserving the boolean checks that already distinguish direct-sum failure from weight-completed success.
+   Status: `CONVERGED`
+
+### Verification
+
+- Targeted stale-scope greps over the UHF chapter, Part VI synthesis, chiral Higher Deligne, and touched compute tests returned no surviving old-form claims.
+- `git diff --check` passed.
+- `python3 -m pytest compute/tests/test_universal_holography_functor.py compute/tests/test_universal_holography_functor_fm_iv.py compute/tests/test_climax_theorems_iv.py -q` passed (`22 passed`).
+
+## 2026-04-24 - Monster chain-level E3-top rectification
+
+- Target: `chapters/connections/monster_chain_level_e3_top_platonic.tex`
+- Status: `CONVERGED`
+
+### Findings
+
+1. `2026-04-24-monster-e3-001`
+   Severity: `HIGH`
+   Class: `theorem-scope / special-orbifold exception versus generic class-M`
+   Location: `chapters/connections/monster_chain_level_e3_top_platonic.tex:18-78`, `:144-182`; cross-check `chapters/connections/universal_holography_functor.tex:255-330`, `chapters/theory/chiral_higher_deligne.tex:933-999`
+   Issue: the Monster chapter states a chain-level $E_3$ theorem as if it completed a generic class-M chain-level frontier, while the live universal-holography and chiral Higher Deligne chapters now say generic class M is weight-completed/pro-ambient and strict $E_3$ chain-level is conditional. The Monster proof can be true only as a special Leech finite-orbifold descent from a class-G lattice model, not as a generic class-M upgrade.
+   Fix: restate the theorem and proof so $V^\natural$ is an original-complex strict $E_3$ example because $V_\Lambda$ is class G and the $\mathbb Z/2$ orbifold BV anomaly vanishes; add an explicit non-propagation clause for generic class M and keep class-M weight-completed statements intact.
+   Status: `CONVERGED`
+
+2. `2026-04-24-monster-e3-002`
+   Severity: `SERIOUS`
+   Class: `build-facing labels / dangling theorem anchors`
+   Location: `chapters/connections/monster_chain_level_e3_top_platonic.tex:144-151`, `:182`; `standalone/monster_voa_orbifold_e3.tex:93`, `:134`, `:211-213`
+   Issue: the chapter and standalone cite `thm:uhf-leech-class-M-chain-level` and `thm:uhf-main`, neither of which is defined in the live tree. The correct active anchors are `thm:E3-topological-km`, `thm:universal-holography-functor`, and `thm:uhf-monster-orbifold-bv-anomaly-vanishes`.
+   Fix: replace the phantom references with the active theorem labels and rewrite the surrounding prose so the Leech input is the abelian/lattice case of `thm:E3-topological-km`, not a non-existent class-M theorem.
+   Status: `CONVERGED`
+
+3. `2026-04-24-monster-e3-003`
+   Severity: `MODERATE`
+   Class: `formula/status precision / DW anomaly witness`
+   Location: `chapters/connections/monster_chain_level_e3_top_platonic.tex:50-64`, `:91-119`, `:219-235`
+   Issue: the DW-class computation is directionally correct but phrased with brittle slogans ("on the nose", "NOT omega", "ATTACK phase") and with a too-literal multiplication formula between determinant sign and a restricted cocycle class. The robust claim is that the fixed lattice of $-1$ is zero, the FLM cocycle restricts to the unique trivial datum, the determinant sign is positive in rank 24, and therefore the generator of $H^3(B\mathbb Z/2;U(1))$ is not activated.
+   Fix: express the computation as a convention-locked triple-sign calculation, retaining the explicit value $\alpha_{\mathrm{orb}}(\sigma,\sigma,\sigma)=+1$ and deleting process vocabulary.
+   Status: `CONVERGED`
+
+4. `2026-04-24-monster-e3-004`
+   Severity: `MODERATE`
+   Class: `standalone-manuscript / draft-history and closure vocabulary`
+   Location: `chapters/connections/monster_chain_level_e3_top_platonic.tex:18-27`, `:74-78`, `:185-205`, `:308-388`; `compute/tests/test_monster_chain_level_e3_top.py:1-125`, `:240-244`
+   Issue: the chapter and test file contain reader-facing or audit-facing process vocabulary: "previously", "strongest honest form", "Platonic Reconstitution", "What this closes", "ATTACK phase", "CLOSED", and wave/FM markers. The mathematical content is independent of this history.
+   Fix: rewrite the orientation, closure remark, Schellekens relation, summary, and test docstrings/comments as direct mathematical statements.
+   Status: `CONVERGED`
+
+5. `2026-04-24-monster-e3-005`
+   Severity: `MODERATE`
+   Class: `local contradiction / Schellekens relation`
+   Location: `chapters/connections/monster_chain_level_e3_top_platonic.tex:312-388`; cross-check `chapters/connections/schellekens_71_alpha_classification_platonic.tex:130-160`, `:490-524`
+   Issue: the Monster chapter says the Schellekens 71 extension is closed in one remark and then says the extension to the remaining Schellekens VOAs is open in the summary. The live Schellekens chapter states a separate stratified theorem. The Monster chapter should neither reprove it nor contradict it.
+   Fix: state that Monster supplies Type B only; Type A/C are handled by the separate Schellekens classification theorem. Replace the summary's "open" sentence by a pointer to that separate theorem.
+   Status: `CONVERGED`
+
+6. `2026-04-24-monster-e3-006`
+   Severity: `HIGH`
+   Class: `cross-chapter propagation / adjacent theorem-scope drift`
+   Location: `chapters/connections/3d_gravity.tex`, `chapters/frame/preface.tex`, `chapters/connections/universal_holography_functor.tex`, `standalone/monster_voa_orbifold_e3.tex`
+   Issue: adjacent surfaces still repeated the pre-rectification reading: the Monster appeared as a generic class-M original-complex upgrade, the UHF anomaly used additive notation for a multiplicative cocycle, and the standalone widened the output to a bulk theory directly attached to `V^\natural`.
+   Fix: propagate the special finite-orbifold descent formulation: the Leech class-G parent carries the chain-level structure, the orbifold descent has multiplicative triple sign `+1` and additive class `0`, and the boundary chiral algebra is `V^\natural` without upgrading generic class M.
+   Status: `CONVERGED`
+
+7. `2026-04-24-monster-e3-007`
+   Severity: `HIGH`
+   Class: `Schellekens arithmetic and attribution`
+   Location: `chapters/connections/schellekens_71_alpha_classification_platonic.tex`, `compute/tests/test_schellekens_71_alpha_classification.py`
+   Issue: the Schellekens surface mixed the vEMS construction theorem, the vELMS Schellekens-list theorem, and the Möller--Scheithauer deep-hole enumeration; it also gave incompatible Coxeter--Todd data and treated the pure Leech lattice VOA as if its weight-one space vanished.
+   Fix: separate the three source roles, correct the Niemeier and Coxeter--Todd data, record that `V_\Lambda` has a 24-dimensional abelian weight-one space while the Moonshine orbifold has weight-one zero, and make Type C use cyclic-orbifold level matching rather than the Monster fixed-lattice argument.
+   Status: `CONVERGED`
+
+8. `2026-04-24-monster-e3-008`
+   Severity: `MODERATE`
+   Class: `metadata / stale generated labels`
+   Location: `metadata/claims.jsonl`, `metadata/census.json`, `metadata/dependency_graph.dot`, `metadata/label_index.json`, `metadata/theorem_registry.md`
+   Issue: generated metadata still indexed the old closure labels and the old Monster theorem title after the theorem and remarks were renamed.
+   Fix: regenerate the metadata surface with `scripts/generate_metadata.py`; the generated index now contains `rem:monster-orbifold-scope`, `rem:schellekens-stratified-scope`, `rem:uhf-monster-functor-value`, and the new Monster theorem title.
+   Status: `CONVERGED`
+
+### Verification
+
+- Targeted stale-language greps over the Monster, Schellekens, UHF, standalone, preface, gravity, and compute-test surfaces found no surviving vEMS/vELMS conflations, invalid `det(0)` anomaly notation, phantom UHF anchors, or old closure labels outside this audit entry.
+- `python3 -m pytest compute/tests/test_monster_chain_level_e3_top.py compute/tests/test_schellekens_71_alpha_classification.py compute/tests/test_universal_holography_functor.py compute/tests/test_universal_holography_functor_fm_iv.py compute/tests/test_climax_theorems_iv.py compute/tests/test_part_vi_platonic_introduction.py -q` passed (`42 passed`).
+- `python3 scripts/generate_metadata.py` regenerated 2971 claims and 8136 labels.
+
+## 2026-04-24 - Working notes attack-heal reconstitution
+
+- Target: `working_notes.tex`
+- Archive: `notes/working_notes_quarantine_20260424.tex`
+- Status: `CONVERGED_WITH_BUILD_WARNINGS`
+
+### Findings
+
+1. `2026-04-24-working-notes-001`
+   Severity: `HIGH`
+   Class: `operadic scope / bar complex versus SC datum`
+   Location: `working_notes.tex`
+   Issue: the notes treated the bar complex itself as a Swiss-cheese coalgebra and promoted local recognition, homotopy-Koszulity, and bar-cobar consequences without model or locality hypotheses.
+   Fix: restated the bar complex as the Koszul-resolution surface for the two-colour bulk-boundary pair, scoped recognition to product-Weiss rectangles and a cofibrant `W(SC^{ch,top})` model, and made homotopy-Koszul consequences model/admissibility dependent.
+   Status: `CONVERGED`
+
+2. `2026-04-24-working-notes-002`
+   Severity: `HIGH`
+   Class: `formula correction / arithmetic and W3 constants`
+   Location: `working_notes.tex`
+   Issue: W3 quartic constants, the c=25 field-ratio, denominator-prime locality, universal 5-adic numerator claims, Verlinde PF growth, and rational-square discriminant language were either incorrect or over-universal.
+   Fix: updated the W3 quartic block to the local `Q`-normalization, fixed the c=25 reciprocal square, changed prime-locality and 5-adic statements to finite verifications with specialization caveats, corrected Verlinde growth to the PF eigenvalue of the total fusion matrix, and restricted quadratic-field irrationality away from the rational-square locus.
+   Status: `CONVERGED`
+
+3. `2026-04-24-working-notes-003`
+   Severity: `HIGH`
+   Class: `physics scope / Cardy-BTZ and soft hierarchy`
+   Location: `working_notes.tex`; propagated formula fix to `chapters/connections/3d_gravity.tex:4274-4291`
+   Issue: Cardy/BTZ, paired Cardy maximality, soft-graviton hierarchy, and gravitational Yangian RTT/scattering claims were stated as unconditional bar-complex theorems.
+   Fix: downgraded Cardy/BTZ to Brown-Henneaux/Cardy conditional statements, corrected the rotating BTZ radius convention, restricted paired Cardy to `0 <= c <= 26` at fixed weight, recast soft claims as conditional celestial Ward shadows, and made gravitational Yangian RTT/structure bialgebra-scoped rather than standard FRT/Hopf/scattering claims.
+   Status: `CONVERGED`
+
+4. `2026-04-24-working-notes-004`
+   Severity: `SERIOUS`
+   Class: `standalone compile and provenance hygiene`
+   Location: `working_notes.tex`
+   Issue: the reconstituted standalone surface retained missing local macros, booktabs usage without `booktabs`, absent W4 compute-oracle citations, process/worktree/AP markers, duplicate rectification labels, and several theorem-status inflations.
+   Fix: added local macro guards and `booktabs`, removed absent compute-suite support, converted process/provenance language to stable mathematical summaries, renamed rectification labels, and retagged W3 duality/DS all-arities/trefoil claims as conditional or structural where appropriate.
+   Status: `CONVERGED`
+
+## 2026-04-24 - Foundational spine recognition/physics bridge rectification
+
+- Target: `chapters/theory/locality.tex`, `chapters/theory/foundations.tex`, `chapters/theory/raviolo.tex`, with propagation to `concordance`, `main`, `hochschild`, examples, and compute tests.
+- Status: `CONVERGED`
+
+### Findings
+
+1. `2026-04-24-foundation-spine-001`
+   Severity: `CRITICAL`
+   Class: `two-colour recognition / local shadow versus global factorization`
+   Location: `chapters/theory/locality.tex:450-600`, `chapters/theory/foundations.tex:2460-2655`
+   Issue: the recognition theorem advertised an equivalence between `C_*(W(SC^{ch,top}))`-algebras and arbitrary HT prefactorization algebras. The proof used non-open slices, factorwise one-colour recognition, an invalid grid mixed-arity model, and an unproved passage from product covers to arbitrary rectangle Weiss covers.
+   Fix: restate the theorem as a product-formal local-shadow/envelope adjunction. The unit and counit are equivalences only on rectangle prefactorization algebras generated by their two local stalk colors; global Ran-space monodromy and higher-genus curvature remain outside the local operad.
+   Status: `CONVERGED`
+
+2. `2026-04-24-foundation-spine-002`
+   Severity: `HIGH`
+   Class: `Weiss descent / cofinality overclaim`
+   Location: `chapters/theory/locality.tex:339-435`
+   Issue: product projections of an arbitrary rectangle Weiss cover need not give a product cover refining the original cover. The old proof silently used this false cofinality step.
+   Fix: narrow the lemma to product-cover Weiss descent only: if the cover is explicitly `{D_beta x I_gamma}`, descent factors through the holomorphic and topological cover nerves.
+   Status: `CONVERGED`
+
+3. `2026-04-24-foundation-spine-003`
+   Severity: `CRITICAL`
+   Class: `physics bridge / Green kernel factorization`
+   Location: `chapters/theory/raviolo.tex:448-620`
+   Issue: Step (i) derived a tensor-product propagator from the split operator `Q = dbar_z + d_t`, but applying `Q` to `K_C tensor delta_R` produces the extra term `K_C tensor d_t delta_R`. No projection or homotopy killing that term was supplied.
+   Fix: add an explicit factorized logarithmic HT parametrix hypothesis; rewrite Step (i) so the factorization is an assumption on the chosen gauge-fixing homotopy, with smooth `Q`-exact corrections allowed.
+   Status: `CONVERGED`
+
+4. `2026-04-24-foundation-spine-004`
+   Severity: `SERIOUS`
+   Class: `downstream status drift / H1-H4 ledger`
+   Location: `main.tex`, `chapters/connections/concordance.tex`, `chapters/connections/hochschild.tex`, `chapters/connections/affine_half_space_bv.tex`, `chapters/examples/examples-worked.tex`, `chapters/examples/examples-computing.tex`
+   Issue: downstream surfaces said the recognition theorem was proved without physical hypotheses, the old H1--H4 package had been eliminated, and the bulk/Hochschild comparison held for arbitrary logarithmic `SC^{ch,top}` algebras.
+   Fix: change the ledger to conditional product-formal local-shadow recognition, add the factorized-parametrix input to the physics bridge, and scope Hochschild/bulk claims to chosen HT prefactorization realizations or the boundary-linear exact sector.
+   Status: `CONVERGED`
+
+5. `2026-04-24-foundation-spine-005`
+   Severity: `MODERATE`
+   Class: `compute oracle drift`
+   Location: `compute/tests/test_climax_theorems_wave17_iv.py`, `compute/lib/recognition_theorem_engine.py`, `compute/tests/test_recognition_theorem_engine.py`, `compute/lib/swiss_cheese_virasoro_wheels.py`
+   Issue: compute docstrings and boolean checks still encoded the older three-input physics bridge and full recognition-equivalence story.
+   Fix: add the factorized-parametrix boolean to the physics-bridge test and rewrite recognition/propagator docstrings as local-shadow/singular-parametrix checks.
+   Status: `CONVERGED`
+
+### Verification
+
+- `python3 -m pytest compute/tests/test_recognition_theorem_engine.py compute/tests/test_climax_theorems_wave17_iv.py compute/tests/test_swiss_cheese_virasoro_wheels.py::TestPropagator -q` passed (`74 passed`).
+- Targeted stale-scope greps over the recognition, physics bridge, Hochschild, affine half-space, example, and compute surfaces found no surviving claims that the full SC--HT equivalence is proved, that H1--H4 were eliminated, or that the split operator alone gives a unique tensor-product Green kernel. The only `unique Green kernel` hits are negated caveats.
+- `python3 scripts/generate_metadata.py` regenerated the claim index; `thm:recognition-SC`, `thm:recognition-foundations`, `thm:physics-bridge`, `cor:clean-replacement`, `prop:affine-is-log-SC`, `cor:affine-full-programme`, and `thm:bulk-boundary-line-factorization` now index as `Conditional`.
+- `git diff --check` passed.
+
+## 2026-04-24 - Working notes second attack-heal swarm
+
+- Target: `working_notes.tex`, with required propagation to `chapters/connections/3d_gravity.tex`, `chapters/examples/w-algebras-stable.tex`, and the W3 compute oracle.
+- Status: `CONVERGED`
+
+### Findings
+
+1. `2026-04-24-working-notes-swarm2-001`
+   Severity: `CRITICAL`
+   Class: `operadic lane conflation`
+   Location: `working_notes.tex`
+   Issue: ordered/chiral bar complexes were repeatedly promoted to literal `SC^{ch,top}` coalgebras, and raw bicoloured `SC^{ch,top}` was implicitly sent to `E_3` by a Dunn-style passage.
+   Fix: separated ordered/chiral bar resolutions from the derived-centre Swiss-cheese pair, replaced ordered-to-unordered descent by an `R`-twisted pushforward along the ordered cover, and scoped `E_3^{top}` to topologised cohomology under inner-stress hypotheses.
+   Status: `CONVERGED`
+
+2. `2026-04-24-working-notes-swarm2-002`
+   Severity: `HIGH`
+   Class: `Cardy/BTZ and physical theorem status`
+   Location: `working_notes.tex`; `chapters/connections/3d_gravity.tex`
+   Issue: BTZ weights used unshifted `h=(M ell +/- J)/2`, the high-temperature Cardy exponent was inverted in the active chapter, and algebraic soft shadows were presented as physical soft theorems.
+   Fix: replaced BTZ inputs by shifted energies `Delta_\pm=L_0^\pm-c/24=(M ell +/- J)/2`, corrected the high-temperature exponent to use `Im(-1/tau)`, fixed the `kappa` Cardy rewrite, and retagged higher-soft claims as conditional celestial shadows.
+   Status: `CONVERGED`
+
+3. `2026-04-24-working-notes-swarm2-003`
+   Severity: `HIGH`
+   Class: `formula normalization`
+   Location: `working_notes.tex`; `compute/lib/examples/w3_algebra.py`; `chapters/examples/w-algebras-stable.tex`
+   Issue: the real contact square-class `40/(5c+22)` was called the polynomial discriminant, W3 used a half-normalized `Lambda` coefficient in compute, the W_N pole order was off by one, and the Lee-Yang Verlinde row used the wrong fusion rule.
+   Fix: distinguished contact square-class from polynomial discriminant and branch field, set W3 coefficients to `Lambda: 32/(5c+22)` and `partial Lambda: 16/(5c+22)`, corrected `lambda`-degree versus OPE pole order, and replaced `phi^2=1` by `phi^2=1+phi` with PF eigenvalue `(3+sqrt(5))/2`.
+   Status: `CONVERGED`
+
+4. `2026-04-24-working-notes-swarm2-004`
+   Severity: `SERIOUS`
+   Class: `arithmetic/status overreach`
+   Location: `working_notes.tex`
+   Issue: denominator-prime locality, universal 5-adic numerator claims, IC positivity, beta-gamma curvature, and Type-H classification were overstated.
+   Fix: downgraded p-adic claims to finite verified patterns with specialization caveats, changed IC positivity to a conditional polarised-pairing statement, parameterised beta-gamma curvature by spin, and retagged the Type-H resolution as conditional.
+   Status: `CONVERGED`
+
+### Verification
+
+- `PYTHONPATH=compute pytest -q compute/tests/test_w3_pva.py` passed (`58 passed`).

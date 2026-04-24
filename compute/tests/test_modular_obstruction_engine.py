@@ -77,12 +77,15 @@ class TestClassicalMCElement:
         assert simplify(mc['kappa'] - 5 * c / 6) == 0
 
     def test_w3_beta_squared(self):
-        """W_3 beta^2 = 16/(22+5c)."""
+        """W_3 nonlinear coefficients."""
         from lib.modular_obstruction_engine import classical_mc_element
         c = Symbol('c')
         mc = classical_mc_element('w3', c=c)
-        expected = Rational(16, 1) / (22 + 5 * c)
-        assert simplify(mc['beta_squared'] - expected) == 0
+        expected_lambda = Rational(32, 1) / (22 + 5 * c)
+        expected_partial = Rational(16, 1) / (22 + 5 * c)
+        assert simplify(mc['beta_squared'] - expected_lambda) == 0
+        assert simplify(mc['beta_Lambda'] - expected_lambda) == 0
+        assert simplify(mc['beta_partial_Lambda'] - expected_partial) == 0
 
     def test_heisenberg_mc_kappa(self):
         """Heisenberg kappa = k."""

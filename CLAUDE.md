@@ -83,9 +83,10 @@ $Q_g^{k, f, \mu}$ chiral quantum group.
   proof body verifiable against primary literature.
 - A new example: compute the derived centre, SC heptagon faces, or
   topologisation ladder for an algebra not yet tabulated.
-- A falsified claim: demonstrating an asserted identity fails at a
-  specific parameter point.
-- A sharpened scope: narrowest hypothesis on which a proof holds.
+- A falsified claim repaired by a corrected statement, construction, or
+  proof obligation.
+- A healed statement: the natural hypothesis and proof on which the
+  intended theorem actually holds.
 - A first-principles computation replacing a citation-only black box.
 
 **Progress is *not*** updating a status-table row, renaming a label,
@@ -435,7 +436,9 @@ Macros in `main.tex` preamble. Inside chapters, `\providecommand`, not
 `\newcommand`. Memoir + EB Garamond.
 
 Claim-status tags (`\ClaimStatusProvedHere`, etc.) are reader-facing
-bookkeeping — default `\ClaimStatusConjectured` when uncertain.
+bookkeeping, not repairs. When uncertain, name the exact proof obligation
+and heal the proof, statement, or construction; do not downgrade the
+manuscript to close.
 
 ## Ambient hooks
 
@@ -443,6 +446,33 @@ bookkeeping — default `\ClaimStatusConjectured` when uncertain.
 - **`PreToolUse(Bash, git commit)`** → no AI attribution reminder.
 - **`PostToolUse(Edit|Write)`** → `beilinson-gate.sh` AP + cache sweep.
 - **`Stop`** → session-end summary (if installed).
+
+## Long-form proof harness
+
+For Claude Code, Codex CLI, and any GPT-5.5 / GPT-5-Codex-class agent,
+frontier mathematics runs in maximum-effort mode. Use the deepest
+host-exposed model and reasoning budget. If the host offers a
+GPT-5.5 Pro / Heavy or `xhigh` setting, use it for theorem repair,
+cross-volume synthesis, adversarial review, and primary-source
+reconstruction. The private ChatGPT Pro harness is not public; this is
+the open local analogue.
+
+Long runs are normal. A 30-60 minute agent run is acceptable when a
+proof obligation requires it. The agent first loads the relevant
+context (`CLAUDE.md`, `AGENTS.md`, target chapter, dependencies,
+bibliography, compute files, cross-volume anchors), builds an internal
+outline, then works through independent proof routes: worked example,
+formal argument, primary source, computation, and cross-volume
+consistency. Private scratch stays private; the deliverable is the
+checked proof trace and the exact remaining obstruction.
+
+After every proposed repair, run an attack-heal loop: strongest
+counterexample, sign/convention check, ambient-category check, missing
+hypothesis, false functoriality, unproved equivalence, numerical
+constant. Heal and attack again until the theorem closes or the exact
+obstruction is named for the next repair cycle. Do not downgrade the
+manuscript to close the loop. Subagents provide evidence, not authority;
+the main thread integrates by deep semantic merge.
 
 ## Do not
 

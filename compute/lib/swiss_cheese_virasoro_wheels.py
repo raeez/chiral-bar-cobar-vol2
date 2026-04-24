@@ -1156,16 +1156,20 @@ def verify_edge_formula(k: int, n2: int = 0) -> Dict[str, bool]:
 # =========================================================================
 
 def propagator_properties():
-    """Properties of the Swiss-cheese propagator K(z, t).
+    """Properties of the Swiss-cheese singular parametrix K(z, t).
 
     K(z, t) = Theta(t) / (2 pi z)
 
-    where Theta is the Heaviside step function.
+    where Theta is the Heaviside step function. This is the
+    factorized singular part used by the HT bridge; it is not asserted
+    to be the unique Green kernel of d_t + dbar_z without the smooth
+    Q-exact correction allowed in the manuscript theorem.
 
     Properties:
     1. K is holomorphic in z (for z != 0) and distributional in t.
-    2. K satisfies (d_tbar + dbar_z) K = delta(z) delta(t)
-       (the defining equation of the propagator).
+    2. K supplies the logarithmic singular part of a parametrix whose
+       full kernel satisfies the Green equation up to a smooth Q-exact
+       correction.
     3. In Fourier space: K~(z, lambda) = 1 / (2pi z (lambda + i0+))
 
     The key observation: K(z,t) provides one holomorphic 1-form dz/z
@@ -1177,7 +1181,7 @@ def propagator_properties():
         'formula': 'K(z,t) = Theta(t) / (2*pi*z)',
         'holomorphic_in_z': True,
         'distributional_in_t': True,
-        'equation': '(d_t + dbar_z) K = delta(z) delta(t)',
+        'equation': 'singular part of QG = delta(z)delta(t) modulo smooth Q-exact correction',
         'fourier': 'K~(z, lambda) = 1 / (2*pi*z*(lambda + i*0+))',
         'form_degree_per_edge': 1,
         'total_form_degree_wheel_k': lambda k: k,

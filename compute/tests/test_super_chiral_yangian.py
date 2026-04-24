@@ -22,8 +22,6 @@ rank-1 super-Casimir, (c) the Chevalley-Kac involution squared, and
 (d) the sign that appears in the odd-odd collision residue
 (Lemma ap107-sign in the chapter). Each assertion is derived from
 first principles; no engine output is ingested.
-
-All commits by Raeez Lorgat. No AI attribution.
 """
 
 from __future__ import annotations

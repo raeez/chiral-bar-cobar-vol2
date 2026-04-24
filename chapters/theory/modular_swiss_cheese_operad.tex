@@ -1045,16 +1045,22 @@ partially modular two-coloured operad with:
 \end{enumerate}
 \end{definition}
 
-\begin{proposition}[Product decomposition of mixed operations]
+\begin{proposition}[Associated graded of mixed operations]
 \label{prop:mixed-product-decomposition}
-\index{Swiss-cheese operad!mixed operations!product decomposition}
-For each $g \ge 0$, $k \ge 0$, $m \ge 1$, there is a
-homotopy equivalence of chain complexes
+\index{Swiss-cheese operad!mixed operations!associated graded}
+Filter $\FM_{k|m}(\Sigma_g,\partial)$ by mixed-bubbling
+depth. The depth-zero associated graded piece satisfies
 \begin{equation}\label{eq:mixed-product}
- C_\ast(\FM_{k|m}(\Sigma_g, \partial))
- \simeq
+ \gr^0_{\mathrm{mix}} C_\ast(\FM_{k|m}(\Sigma_g, \partial))
+ \cong
  C_\ast(\FM_k(\Sigma_g)) \otimes C_\ast(\Eone(m)).
 \end{equation}
+The full mixed complex also contains positive-depth Type~III
+mixed bubbling faces; their boundary contribution is the mixed
+differential $d_{\mathrm{mix}}$. Thus
+\eqref{eq:mixed-product} is an associated-graded product, not a
+homotopy equivalence from the full open--closed compactification
+to a product.
 \end{proposition}
 
 \begin{proof}
@@ -1062,8 +1068,8 @@ The space $\FM_{k|m}(\Sigma_g, \partial)$ parametrizes
 configurations of $k$~points in the interior of~$\Sigma_g$
 and $m$~ordered points on a boundary segment
 $I \cong [0,1] \hookrightarrow \partial\Sigma_g$.
-We construct the homotopy equivalence by exhibiting a fibre
-bundle with contractible fibre.
+We identify the depth-zero associated graded by forgetting the
+positive-depth mixed faces.
 
 \medskip\noindent
 \emph{Step~1: The projection.}
@@ -1087,76 +1093,44 @@ nested screens. Interior collision screens are parametrized by
 $\FM$-data on~$\Sigma_g$; boundary collision screens are
 parametrized by $\FM$-data on~$I \cong \R$
 (i.e., Stasheff associahedra).
-A mixed screen (in which both interior and boundary points
-participate in the same collision) would require the
-colliding points to approach the same limit in~$\Sigma_g$.
-But interior points converge to interior limits and boundary
-points converge to boundary limits, and these limits are
-separated by the collar neighbourhood of~$\partial\Sigma_g$.
-Therefore no mixed screens arise: the boundary strata of
-$\FM_{k|m}(\Sigma_g, \partial)$ are products of boundary
-strata of $\FM_k(\Sigma_g)$ and boundary strata
-of~$\Eone(m)$.
+A mixed screen, in which interior and boundary points meet at a
+boundary collision face, is a genuine open--closed boundary face.
+These faces are precisely the positive-depth part of the
+mixed-bubbling filtration. After passing to depth zero, only the
+pure interior and pure boundary screens remain, and their face
+poset is the product of the face posets of $\FM_k(\Sigma_g)$ and
+$\Eone(m)$.
 
 \medskip\noindent
-\emph{Step~3: The homotopy equivalence.}
-Since the stratifications are compatible products, the map
-$(\pi, \rho)$ is a stratified fibre bundle whose fibre over
-each stratum is the space of configurations of the separated
-collar data, which is contractible (the collar
-$\partial\Sigma_g \times [0,\epsilon)$ deformation-retracts
-to~$\partial\Sigma_g$). In more detail: for a fixed interior
-configuration $(z_1, \ldots, z_k) \in \FM_k(\Sigma_g)$ and
-a fixed boundary configuration $(t_1 < \cdots < t_m)
-\in \Eone(m)$, the fibre of $(\pi, \rho)$ parametrizes
-the relative positions of the boundary points with respect to
-the interior points, which is controlled by the collar width.
-This fibre is contractible. By the Vietoris--Begle theorem,
-$(\pi, \rho)$ is a homology equivalence over the rationals.
-Since all spaces have the homotopy type of finite CW~complexes
-and we work in characteristic zero, this gives the claimed
-homotopy equivalence~\eqref{eq:mixed-product}.
+\emph{Step~3: The associated-graded product.}
+The cellular chain complex of the depth-zero stratum is therefore
+the tensor product of the pure interior and pure boundary chain
+complexes, giving \eqref{eq:mixed-product}. The full differential
+has one additional component: the boundary of a positive-depth
+mixed face. We denote this component by $d_{\mathrm{mix}}$. It is
+not killed by a collar contraction; it is the local
+bulk-to-boundary operation of the Swiss-cheese structure.
 
 \medskip\noindent
 \emph{Step~4: Compatibility with operad structure.}
-The homotopy equivalence~\eqref{eq:mixed-product} is compatible
-with all composition maps of Definition~\ref{def:partially-modular}:
-closed--closed composition acts on the
+The associated-graded product~\eqref{eq:mixed-product} is
+compatible with the depth-zero parts of the composition maps of
+Definition~\ref{def:partially-modular}: closed--closed composition acts on the
 $C_\ast(\FM_k(\Sigma_g))$ factor (via the FM composition maps),
 open--open composition acts on the $C_\ast(\Eone(m))$ factor
 (via the associahedron composition maps), and the mixed
-compositions respect the product by the separation of screens
-established in Step~2.
+compositions are the perturbations recorded by $d_{\mathrm{mix}}$.
 \end{proof}
 
-\begin{remark}[Strictness at genus~$0$ versus homotopy at genus~$g \ge 1$]
+\begin{remark}[Product shadow versus mixed faces]
 \label{rem:product-strictness}
-At genus~$0$, $\Sigma_0 \setminus \{\mathrm{pt}\} \cong \C$ is
-contractible, and the product decomposition of
-Proposition~\ref{prop:mixed-product-decomposition} is a strict
-isomorphism $\FM_{k|m}(\C, \partial) \cong \FM_k(\C) \times \Eone(m)$;
-this is the content of Definition~\ref{def:SC-operations}(ii).
-At genus $g \ge 1$, the collar between interior and boundary introduces
-a contractible but non-trivial fibre, so the decomposition is only a
-homotopy equivalence. Since all subsequent constructions (bar-cobar,
-Feynman transform) are homotopy-invariant, this suffices.
-
-Concretely, the failure of strict splitting at $g \ge 1$ arises because
-a boundary point on $I \subset \partial\Sigma_g$ has a well-defined
-distance to the nearest interior point only \emph{after} fixing a
-collar identification $\partial\Sigma_g \times [0,\epsilon)
-\hookrightarrow \Sigma_g$. Different collar choices produce homotopic
-but not identical projection maps $\pi \colon \FM_{k|m} \to \FM_k$.
-On chain complexes (in characteristic zero), the homotopy equivalence
-$(\pi,\rho)_\ast$ induces a quasi-isomorphism
-$C_\ast(\FM_{k|m}) \xrightarrow{\simeq}
-C_\ast(\FM_k) \otimes C_\ast(\Eone(m))$
-that is \emph{not} a chain map from a strict product differential:
-the cross-terms $\partial_{\mathrm{collar}}$ arising from collar
-variation contribute homotopically trivial corrections. The strict
-product structure used in Computation~\ref{comp:heis-genus-filtration}
-(where we wrote $E_1^{1,\ast} = E_1^{0,\ast}$) implicitly passes
-through this quasi-isomorphism. At genus~$0$ no such passage is needed.
+The product in Proposition~\ref{prop:mixed-product-decomposition}
+is the depth-zero shadow. It is useful for first approximations,
+including the lowest-page genus-filtration computations, but it is
+not the full mixed Swiss-cheese compactification. The full object
+contains mixed faces, and any bar-cobar or Feynman-transform
+argument using the product shadow must either work on associated
+graded or explicitly control the $d_{\mathrm{mix}}$ perturbation.
 \end{remark}
 
 \begin{remark}[FM compactification for manifolds with boundary]
@@ -1196,54 +1170,43 @@ strata:
 \end{itemize}
 
 \medskip\noindent
-\emph{(b) Separation of collision types for
+\emph{(b) Collision types for
 $M = \Sigma_g \times [0,1]$.}
 For $M = \Sigma_g \times [0,1]$, a manifold with boundary
 $\partial M = \Sigma_g \times \{0\} \sqcup \Sigma_g \times \{1\}$,
-the two types of collisions are \emph{geometrically separated}.
+pure interior and pure boundary collisions are geometrically
+separated, but there are also mixed boundary faces.
 A point in the interior has the form $(z, t)$ with
 $z \in \Sigma_g$, $t \in (0,1)$; a point on the boundary has
 $t = 0$ or $t = 1$. The collar neighbourhood
 $\Sigma_g \times [0, \epsilon)$ provides a buffer of width
 $\epsilon > 0$ between boundary points (at $t = 0$) and any
 interior point (at $t \ge \epsilon$). As two interior points
-approach a common limit, they can only collide in the interior;
-as two boundary points approach a common limit, they can only
-collide on the boundary. A \emph{mixed collision} (in which
-an interior point and a boundary point approach the same limit)
-would require the interior point to approach the boundary,
-but in the FM blow-up, the relative position data (the ``screen''
-or ``infinitesimal configuration'') records the direction of
-approach, and the collar forces this direction to be normal to
-$\partial M$. The normal direction is the $[0,1]$ factor,
-which is $1$-dimensional and thus contributes only a point
-(not a moduli space) to the screen data.
+approach a common limit, they collide in the interior; as two
+boundary points approach a common limit, they collide on the
+boundary. A mixed open--closed bubbling face records the limiting
+normal approach of an interior point to a boundary collision
+configuration together with the tangential boundary configuration.
+These Type~III faces are the geometric source of the mixed
+differential $d_{\mathrm{mix}}$.
 
 \medskip\noindent
-\emph{(c) The product decomposition.}
-The separation of collision types forces the factorisation
+\emph{(c) The associated-graded product.}
+Removing the positive-depth mixed faces leaves the product
+stratum
 \[
- \FM_{k|m}(\Sigma_g, \partial)
- \;\simeq\;
+ \gr^0_{\mathrm{mix}}\FM_{k|m}(\Sigma_g, \partial)
+ \;\cong\;
  \FM_k(\Sigma_g) \times \FM_m([0,1]),
 \]
 where $\FM_k(\Sigma_g)$ compactifies the interior collisions
 and $\FM_m([0,1])$ compactifies the boundary collisions.
 The space $\FM_m([0,1])$ is the Stasheff associahedron $K_m$,
 which is the cell model for the $\Eone$-operad:
-$\FM_m([0,1]) = K_m = \Eone(m)$. The product structure
-holds because the boundary strata of $\FM_{k|m}$ are products
-of boundary strata of the two factors (no mixed strata),
-which is a direct consequence of the collar separation
-established in~(b).
-
-This geometric input (that interior and boundary
-collisions decouple in the presence of a collar) is the
-foundation of the Swiss-cheese product structure. At genus~$0$
-the decoupling is strict (an isomorphism); at genus $g \ge 1$
-it is a homotopy equivalence because the contractible fibre
-over the collar introduces a homotopy but not a homological
-ambiguity (Remark~\ref{rem:product-strictness}).
+$\FM_m([0,1]) = K_m = \Eone(m)$. The full compactification is
+the product shadow plus the mixed faces. Those faces are
+load-bearing: they are the local bulk-to-boundary operations of
+the Swiss-cheese structure.
 \end{remark}
 
 \begin{remark}[Why ``partially modular'']
@@ -1264,8 +1227,9 @@ $\Sigma_g \times \R$ has genus only in the holomorphic direction.
 \label{con:extraction-functor}
 \index{factorization algebra!extraction of local operad|textbf}
 \index{Loc functor@$\mathrm{Loc}$ functor|textbf}
-Let $\cF$ be a BD factorization Swiss-cheese algebra on
-$\Ran(\Sigma_g) \times \Ran(\R)$
+Let $\cF$ be a BD factorization Swiss-cheese algebra on the mixed
+open--closed holomorphic--topological Ran geometry
+$\Ran^{\mathrm{oc}}_{\mathrm{HT}}(\Sigma_g,I)$
 (Chapter~\ref{ch:factorization-swiss-cheese}). We construct an
 $\SCmod$-coalgebra $\mathrm{Loc}(\cF)$ as follows.
 
@@ -1336,8 +1300,8 @@ unchanged.
 \emph{Assembly.} The closed-colour data from Step~2 and
 the open-colour data from Step~3, together with the mixed
 operations (formal completion applied to both bulk and
-boundary insertions simultaneously, using the product
-decomposition of
+boundary insertions simultaneously, using the associated-graded
+product and the mixed differential of
 Proposition~\ref{prop:mixed-product-decomposition}),
 assemble into an $\SCmod$-coalgebra $\mathrm{Loc}(\cF)$.
 The coalgebra structure on the closed colour is the bar-dual
@@ -1347,28 +1311,26 @@ differential is the OPE residue on the
 $C_\ast(\FM_k(\C))$ factor.
 \end{construction}
 
-\begin{proposition}[Properties of the extraction functor;
+\begin{proposition}[Formal-collision extraction;
 \ClaimStatusProvedHere]
 \label{prop:extraction-functor}
 \index{Loc functor@$\mathrm{Loc}$ functor!properties}
-The extraction $\mathrm{Loc}$ is a functor
+The extraction $\mathrm{Loc}$ is a formal-collision assignment
 \[
  \mathrm{Loc} \colon
- \mathrm{FactAlg}_{\mathrm{SC}}(\Ran(\Sigma_g) \times \Ran(\R))
+ \mathrm{FactAlg}_{\mathrm{SC}}(\Ran^{\mathrm{oc}}_{\mathrm{HT}}(\Sigma_g,I))
  \longrightarrow {\SCmod}\text{-}\mathrm{CoAlg}.
 \]
-\begin{enumerate}[label=\textup{(\roman*)}]
-\item \textup{(Genus~$0$ equivalence.)}
- At genus~$0$ on $\mathbb{P}^1$, the functor $\mathrm{Loc}$ is
- an equivalence of categories.
-\item \textup{(Faithfulness at higher genus.)}
- At genus $g \ge 1$, the functor $\mathrm{Loc}$ is faithful but
- \textbf{not} full. The element
- $\kappa(\cA) \cdot \omega_g \in H^2(\overline{\cM}_g)$ lies
- in the kernel of the right adjoint: it is a global section
- of the Hodge line bundle on~$\overline{\cM}_g$ that is invisible
- to any formal-disc datum.
-\end{enumerate}
+It records formal OPE residues, the locally constant open
+$\Eone$ data, and the associated mixed collision maps. At
+genus~$0$, on translation-invariant vacuum-generated data on the
+formal disc, this is an equivalence onto its essential image. No
+full faithfulness or essential-surjectivity statement is asserted
+for factorization algebras on $\mathbb{P}^1$ or on
+$\Sigma_g$ as global curves. At $g\ge 1$, periods, monodromy,
+Arakelov corrections, and the curvature class
+$\kappa(\cA)\cdot\omega_g$ are outside the formal-collision
+skeleton.
 \end{proposition}
 
 \begin{proof}
@@ -1384,30 +1346,17 @@ $\mathrm{Loc}(\phi) \colon \mathrm{Loc}(\cF)
 is a well-defined morphism of $\SCmod$-coalgebras.
 
 \medskip\noindent
-\emph{(i) Genus~$0$.}
-On $\mathbb{P}^1$, remove a point to obtain
-$\mathbb{P}^1 \setminus \{\infty\} \cong \C$.
-The $\cD$-module on $\C$ has no monodromy (the fundamental
-group is trivial), so the formal completion at any point
-$x \in \C$ carries \emph{all} the factorization data:
-the formal neighbourhood $\hat{D}_x$ is isomorphic
-to $\C$ itself via the coordinate chart. Hence
-$\mathrm{Loc}$ is essentially surjective (every
-$\SCmod\big|_{g=0}$-coalgebra arises from a unique
-factorization algebra on $\Ran(\C) \times \Ran(\R)$)
-and fully faithful.
+\emph{Genus~$0$ local essential image.}
+On the formal disc, translation-invariant vacuum-generated
+factorization data is determined by its OPE residues. The
+FM-to-Ran comparison identifies those residues with the local
+$\SCchtop$ operations, so $\mathrm{Loc}$ is an equivalence onto
+this formal-disc essential image. This does not reconstruct
+arbitrary factorization $D$-modules on the global curve
+$\mathbb{P}^1$.
 
 \medskip\noindent
-\emph{(ii) Genus $g \ge 1$: faithfulness.}
-Faithfulness is immediate: $\mathrm{Loc}$ restricts to
-formal discs, and if two morphisms of factorization algebras
-agree on all formal discs they agree globally (because
-factorization algebras are determined by their values on a
-Weiss cover, and formal discs form a cofinal system in any
-Weiss cover).
-
-\medskip\noindent
-\emph{(ii) Genus $g \ge 1$: failure of fullness.}
+\emph{Positive genus.}
 The Arakelov Green's function $G_{\mathrm{Ar}}(z,w)$ on
 $\Sigma_g$ (the propagator of the curved geometric model)
 has the local expansion
@@ -1439,9 +1388,12 @@ applying $\dbar_z \dbar_w$ to the global correction gives
 where $\mu_{\mathrm{Ar}} = \frac{i}{2}
 \sum_{j=1}^g \omega_j \wedge \bar{\omega}_j / \int_{\Sigma_g}
 \omega_j \wedge \bar{\omega}_j$ is the Arakelov $(1,1)$-form.
-Integrating this over the surface produces the curvature
-class $\kappa(\cA) \cdot \omega_g \in H^2(\overline{\cM}_g)$
-that the formal-disc functor cannot detect.
+Integrating this over the surface produces the curvature class
+$\kappa(\cA) \cdot \omega_g \in H^2(\overline{\cM}_g)$.
+Formal completion detects the singular OPE part but not this
+global smooth correction. Thus the construction gives a local
+shadow functor; it is not claimed to be faithful, full, or
+essentially surjective on positive-genus factorization data.
 \end{proof}
 
 
@@ -1464,7 +1416,8 @@ homotopy-Koszul} if the canonical counit
 is a quasi-isomorphism of partially modular dg operads, where the bar
 and cobar constructions are taken in the category of partially modular
 operads (closed colour uses stable-graph bar; open colour uses
-tree-level bar; mixed operations use the product decomposition).
+tree-level bar; mixed operations use the associated-graded product
+together with the mixed-face perturbation).
 Equivalently: the Feynman transform of the closed colour is homotopy
 involutive ($\FTmod^2 \simeq \id$ on closed-colour algebras), the
 open-colour bar-cobar is a Quillen equivalence, and the mixed bar-cobar
@@ -1475,13 +1428,21 @@ is compatible with both.
 \subsection{The theorem}
 \label{subsec:mod-hkoszul-thm}
 
-\begin{theorem}[Modular homotopy-Koszulity of $\SCmod$;
-\ClaimStatusProvedHere]
+\begin{theorem}[Modular homotopy-Koszulity of $\SCmod$ under
+formality and mixed-face convergence; \ClaimStatusProvedHere]
 \label{thm:modular-hkoszul-SC}
 \index{Swiss-cheese operad!modular homotopy-Koszulity|textbf}
-The modular chiral Swiss-cheese operad $\SCmod$
-\textup{(}Definition~\textup{\ref{def:SC-mod})} is modular
-homotopy-Koszul. That is, the counit
+The genus-$0$ formal-collision specialization of $\SCmod$ is
+homotopy-Koszul by Theorem~\ref{thm:homotopy-Koszul}. The
+all-genus modular statement for $\SCmod$ is conditional on:
+\begin{enumerate}[label=\textup{(\roman*)}]
+\item global genus-$g$ operadic formality for the closed-colour
+ operation spaces, compatible with stable-graph clutching;
+\item control of the mixed-face perturbation $d_{\mathrm{mix}}$
+ in the two-coloured bar-cobar construction;
+\item convergence of the completed modular genus filtration.
+\end{enumerate}
+Under these hypotheses, the counit
 \[
  \epsilon \colon
  \Omega\mathbf{B}(\SCmod) \xrightarrow{\;\sim\;} \SCmod
@@ -1490,8 +1451,9 @@ is a quasi-isomorphism of partially modular two-coloured dg operads.
 \end{theorem}
 
 \begin{proof}
-The proof proceeds in four steps, from genus~$0$ through the
-full modular structure.
+The proof below verifies the genus-$0$ and local-screen inputs,
+then records the additional positive-genus hypotheses under which
+the standard modular bar-cobar argument applies.
 
 \medskip\noindent
 \textbf{Step~1: Genus-$0$ homotopy-Koszulity (established).}
@@ -1904,33 +1866,31 @@ over any field of characteristic zero.
 \providecommand{\vol}{\mathrm{vol}}
 \providecommand{\PP}{\mathbb{P}}
 
-\begin{theorem}[Operadic formality of $C_\ast(\FMg{k})$;
-\ClaimStatusProvedHere]
+\begin{theorem}[Local screen formality and global genus-$g$ formality
+under the KZB comparison; \ClaimStatusProvedHere]
 \label{thm:genus-g-formality}
 \index{formality!genus g@genus~$g$|textbf}
 \index{configuration space integrals!genus g convergence@genus~$g$ convergence}
-For any smooth projective curve $\Sigma_g$ of genus $g \ge 0$
-over~$\C$, the dg operad $\{C_\ast(\FMg{k})\}_{k \ge 0}$ is formal:
-there exists an $\Linf$-quasi-isomorphism of operads
+For every collision screen in $\FMg{k}$, the leading local model is
+the genus-$0$ Fulton--MacPherson screen and the local formality
+map is Kontsevich's genus-$0$ formality map. A global operadic
+formality quasi-isomorphism
 \[
  \cU_g \colon H_\ast(\FMg{k})
  \longrightarrow C_\ast(\FMg{k})
 \]
-given by configuration space integrals with the holomorphic
-propagator $\omhol_{ij} = (2\pi i)^{-1}\, d_z \log E(z_i, z_j)$,
-where $E$ is the prime form on~$\Sigma_g$.
-At genus~$0$, this recovers Kontsevich's formality
-theorem~\cite{Kon03}. The extension to $g \ge 1$ is new;
-the key mechanism is that the screen integrals at each
-boundary stratum of\/ $\FMg{k}$ are genus-$0$ integrals,
-so the Kontsevich vanishing lemma applies without modification.
+given by prime-form configuration space integrals is conditional
+on the positive-genus analytic comparison: the KZB/prime-form
+propagator must produce an operadic $\Linf$ morphism compatible
+with stable-graph clutching, mixed faces, and the period
+correction data. At genus~$0$ this recovers Kontsevich's
+formality theorem~\cite{Kon03}.
 \end{theorem}
 
 \begin{proof}
-The proof extends Kontsevich's formality theorem~\cite{Kon03}
-from $\C$ to~$\Sigma_g$. We follow the five-step structure of
-the original proof, providing the complete analytical content
-at each step.
+The proof below establishes the local-screen part. The final
+global operadic formality statement uses the positive-genus
+comparison hypotheses stated in the theorem.
 
 \bigskip\noindent
 \textbf{Step~I: The propagator.}
@@ -3089,15 +3049,14 @@ modular infrastructure:
  twisting-cochain $H^2$ complex are two distinct obstruction
  theories. A chain map between them is constructed.
 \item The genus-1 twisted-tensor-product proposition
- (Proposition~\ref{prop:genus1-twisted-tensor-product}), previously
- cited as a phantom label, is written here with Gauss--Manin
- uncurving explicit.
-\item The cross-genus Maurer--Cartan equation, previously argued by
- a Kan horn-filling non-sequitur, is replaced by a
- KZB-regularized propagator argument.
+ (Proposition~\ref{prop:genus1-twisted-tensor-product}) is written
+ with Gauss--Manin uncurving explicit.
+\item The cross-genus Maurer--Cartan equation is proved by a
+ KZB-regularized propagator argument; Kan horn-filling alone does not
+ control analytic Stokes data.
 \end{itemize}
 
-The upgrade is the irregular-singular KZB framework of
+The required analytic input is the irregular-singular KZB framework of
 Jimbo--Miwa--Ueno~\cite{JMU81}, which supplies a
 Stokes-regularized propagator at generic non-integral level and
 eliminates the final gap of
@@ -3337,9 +3296,9 @@ proved at all three level regimes:
  the $\mathfrak{z}(\hat{\mathfrak{g}})$-invariant subspace
  (Frenkel~\cite{FrenkelLanglands} \S 4.3).
 \end{enumerate}
-Together (a)--(c) exhaust all levels. The previously isolated gap
-at composition at generic non-integral level, genus $\ge 1$
-(Stokes regularity), is resolved unconditionally modulo the
+Together (a)--(c) exhaust all levels. The composition obstruction
+at generic non-integral level and genus $\ge 1$ is Stokes regularity;
+it is resolved unconditionally modulo the
 $r(\Gamma) \le 1$ scope of Remark~\ref{rem:poincare-rank-scope},
 which is automatic for $\Mbar_{g,n}$ boundary combinatorics.
 \end{corollary}
@@ -4240,13 +4199,11 @@ statement that replaces the overreach:
  integer level are classical; the generic-$k$ gap closes via the
  Jimbo--Miwa--Ueno Stokes data
  (Theorem~\ref{thm:irregular-kzb-composition}).
-\item[\textbf{(Genus-$1$ twisted Künneth.)}] Previously phantom,
- the genus-1 twisted-tensor-product claim is now an
- explicit proof
+\item[\textbf{(Genus-$1$ twisted Künneth.)}] The genus-1
+ twisted-tensor-product claim is an explicit proof
  (Proposition~\ref{prop:genus1-twisted-tensor-product}) using
  Arakelov pairing and curvature.
-\item[\textbf{(Cross-genus Maurer--Cartan.)}] Solvability, previously
- asserted without explicit recursion, is supplied by
+\item[\textbf{(Cross-genus Maurer--Cartan.)}] Solvability is supplied by
  Theorem~\ref{thm:cross-genus-mc} with $H^2 = 0$ input.
 \item[\textbf{(Cross-genus coherence.)}] Kan horn-filling is
  insufficient; the replacement is KZB-regularized composition
