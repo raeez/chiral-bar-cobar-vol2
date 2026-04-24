@@ -14846,6 +14846,115 @@ Audited the active Vol II dirty surface for local contradictions introduced by t
 - Targeted stale-scope greps over the UHF chapter, Part VI synthesis, chiral Higher Deligne, and touched compute tests returned no surviving old-form claims.
 - `git diff --check` passed.
 
+## 2026-04-24 - KZ all-loop BV swarm convergence
+
+- Target: `chapters/connections/affine_half_space_bv.tex`,
+  downstream E3/gravity/Hochschild/conclusion surfaces, active
+  `W`-algebra examples, and retained split files that could reinfect the
+  live manuscript.
+- Status: `CONVERGED` on the active Vol II surface and the urgent
+  Vol I proxy surfaces named by the cross-volume audit.
+
+### Findings
+
+1. `2026-04-24-kz-bv-001`
+   Severity: `CRITICAL`
+   Class: `conditional all-loop QME advertised as proved`
+   Issue: the finite-quotient HPL recursion killed anomalies only after
+   harmonic obstruction vanishing. Finite nilpotence alone did not prove
+   the all-loop QME.
+   Fix: made the KZ analytic SDR package explicit and changed the
+   finite-quotient QME recursion and general half-space BV theorem to
+   conditional statements under that package.
+   Status: `CONVERGED`
+
+2. `2026-04-24-kz-bv-002`
+   Severity: `CRITICAL`
+   Class: `half-space fixed locus collapsed to ordinary doubled FM`
+   Issue: the reflected weight identity treated half-space boundary
+   faces as literal sigma-fixed ordinary doubled collision strata.
+   Fix: replaced the ordinary fixed-locus proof by image-choice
+   expansion, plus-diagonal/self-image faces, field-parity signs, and
+   orientation-compatible residue pushforward.
+   Status: `CONVERGED`
+
+3. `2026-04-24-kz-bv-003`
+   Severity: `SERIOUS`
+   Class: `W-depth all-arity nonvanishing overclaim`
+   Issue: Virasoro and principal `W_N` all-degree nonvanishing was
+   cited as unconditional and through a phantom `prop:vir-all-mk`.
+   Fix: routed all active claims through
+   `prop:vir-truncation`/`thm:wn-class-M` with KZ analytic SDR,
+   wheel-residue survival, and split DS projection hypotheses; removed
+   the phantom label.
+   Status: `CONVERGED`
+
+4. `2026-04-24-kz-bv-004`
+   Severity: `SERIOUS`
+   Class: `downstream theorem-status drift`
+   Issue: introduction, gravity, Hochschild, conclusion, preface, and
+   modular-PVA surfaces treated the nonlinear free-PVA KZ lane as
+   proved.
+   Fix: split affine/DS/orbifold proved lanes from nonlinear KZ
+   conditional lanes and added the quantized topological lift
+   `T=[Q_{\mathrm{tot}},G]` where E3-topological conclusions depend on
+   it.
+   Status: `CONVERGED`
+
+## 2026-04-24 - Khan--Zeng all-loop BV rectification
+
+- Target: `chapters/connections/affine_half_space_bv.tex`,
+  `chapters/examples/w-algebras-virasoro.tex`,
+  `chapters/examples/w-algebras-stable.tex`, and
+  `chapters/connections/3d_gravity.tex`.
+- Status: `SUPERSEDED BY ADVERSARIAL REAUDIT` in isolated worktree
+  `/Users/raeez/chiral-bar-cobar-vol2-kz-bv-20260424`.
+
+### Finding
+
+1. `2026-04-24-kz-bv-001`
+   Severity: `CRITICAL`
+   Class: `constructed BV package treated as external hypothesis`
+   Issue: the general Khan--Zeng half-space theorem was written as
+   conditional on a renormalized Costello package, all-order anomaly
+   vanishing, and a QME solution, even though the Vol II doubled
+   logarithmic `SC^{ch,top}` calculus, QME=convolution-MC theorem, and
+   relative-Feynman/harmonic homotopy provide a constructive chain-level
+   recursion for the polynomial/logarithmic KZ class.
+   Fix: replaced the external-hypothesis theorem by an explicit
+   construction: KZ shifted-cotangent BV fields, CME=PVA Jacobi,
+   reflected FM graph weights, and all-loop counterterms
+   `I_l=-h Ob_l` on finite jet/weight quotients with pro-limit.
+   Status: `FALSIFIED BY REAUDIT`
+
+2. `2026-04-24-kz-bv-002`
+   Severity: `CRITICAL`
+   Class: `finite-type PVA hypotheses used as all-loop anomaly vanishing`
+   Issue: the non-affine all-loop theorem was upgraded to
+   `ProvedHere`, but the proof did not construct the field-parity
+   reflected propagator, self-image renormalization, image-choice
+   FM/raviolo compactification, orientation-compatible Stokes
+   pushforward, quotient-compatible SDR, or harmonic obstruction
+   vanishing for arbitrary finite-type polynomial KZ PVAs.
+   Fix: preserved the proved classical KZ BV action and
+   CME=PVA-Jacobi lemma; replaced the nonlinear all-loop theorem by a
+   conditional theorem under `assum:kz-analytic-sdr-package`; rewrote
+   the all-loop recursion as a finite-quotient HPL theorem under that
+   assumption; restored downstream W-algebra, modular-PVA, and
+   `E_3`-topologization fences.
+   Status: `CONVERGED`
+
+### Verification
+
+- `python3 scripts/generate_metadata.py` regenerated metadata in the
+  isolated worktree: `PH=2401`, `CD=115`, `H=44`, total `3058`.
+- `PYTHONDONTWRITEBYTECODE=1 PYTEST_DISABLE_PLUGIN_AUTOLOAD=1 /Users/raeez/chiral-bar-cobar-vol2/compute/.venv/bin/python -m pytest -q -p no:cacheprovider compute/tests/test_kz_all_loop_bv_constructive.py compute/tests/test_e3_topological_free_pva.py compute/tests/test_e3_topological_free_pva_iv.py compute/tests/test_e_infinity_topologization.py`
+  passed (`13 passed`).
+- Subsequent adversarial audit found the unconditional nonlinear
+  conclusion false on the present proof. The surviving result is the
+  classical KZ BV/CME theorem plus conditional finite-quotient QME
+  recursion under the named analytic SDR package.
+
 ## 2026-04-24 - T5 proof closure, propagation, and dirty-surface cleanup
 
 - Target: `chapters/connections/e_infinity_topologization.tex`,

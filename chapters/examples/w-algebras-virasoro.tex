@@ -1,7 +1,17 @@
 \section{W-Algebras as $A_\infty$ Chiral Algebras: Virasoro and $W_3$}
 \label{sec:W-algebras}
 
-W-algebras have shadow depth $r_{\max} = \infty$, so the $\Ainf$ tower $\{m_k\}_{k \ge 3}$ is genuinely infinite and the Swiss-cheese structure is non-formal (Theorem~\ref{thm:ds-koszul-obstruction}). The Khan--Zeng 3D holomorphic-topological Poisson sigma model~\cite{KZ25} provides the classical computational framework for freely generated Poisson vertex algebras; the quantum Feynman calculus used below is conditional on the bridge hypotheses stated in Remark~\ref{rem:W-hypotheses}. The Virasoro and $W_3$ algebras are the two simplest instances where the resulting conditional tower can be tested to high degree.
+W-algebras have conditional shadow depth $r_{\max} = \infty$ after the
+KZ analytic SDR, wheel-residue, and split-projection hypotheses are
+imposed; the unconditional input is the Drinfeld--Sokolov manufacture
+of higher operations from the affine Koszul model
+(Theorem~\ref{thm:ds-koszul-obstruction}). The Khan--Zeng 3D
+holomorphic-topological Poisson sigma model~\cite{KZ25} provides the
+classical Hamiltonian bidifferential for freely generated Poisson
+vertex algebras; Theorem~\ref{thm:general-half-space-bv} supplies the
+all-loop BV quantization only after the KZ analytic SDR package is
+imposed. The Virasoro and $W_3$ algebras are the two simplest instances
+where the resulting tower can be tested to high degree.
 
 \subsection{General Framework: PVA to 3D HT Gauge Theory}
 \label{subsec:PVA-to-3DHT}
@@ -42,9 +52,19 @@ When $\mathcal{V}$ is a W-algebra, the classical gauge symmetry contains the hig
 
 \subsubsection{BV Quantization and $A_\infty$ Operations}
 
-\begin{remark}[Analytic hypotheses for W-algebra examples]
+\begin{remark}[Constructive BV input for W-algebra examples]
 \label{rem:W-hypotheses}
-All quantum and higher-operation statements in this section are conditional on the Khan--Zeng holomorphic--topological realization lying in the scope of Theorem~\ref{thm:physics-bridge}. Concretely, one must specify the BV extension, an HT gauge fixing, a factorized logarithmic parametrix for $d_t+\bar\partial$, one-loop finiteness, product-polynomial vertices, and a vanishing anomaly class for the renormalized QME. The classical input is the freely generated PVA and its tree-level boundary bracket; the boundary vertex algebra and all-loop $A_\infty$ operations are not consequences of the classical Khan--Zeng construction alone. Once the bridge hypotheses are verified, the resulting observables form a logarithmic $\SCchtop$-algebra, and Theorem~\ref{thm:FM-calculus} supplies the logarithmic-form, residue, and boundary-factorization properties used in the calculations below.
+For finite-jet polynomial freely generated PVA input, the classical BV
+fields and master action are constructed in
+Construction~\ref{cons:kz-bv-fields-action}, and
+Lemma~\ref{lem:kz-cme-pva-jacobi} identifies the classical master
+equation with PVA Jacobi. The all-loop BV package used by the quantum
+examples is Theorem~\ref{thm:general-half-space-bv}, conditional on the
+KZ analytic SDR package of Assumption~\ref{assum:kz-analytic-sdr-package}.
+Individual computations in this section retain their own claim-status
+tags where a numerical constant, DS transfer identity, wheel-residue
+nonvanishing, or Hochschild comparison is narrower than that analytic
+package.
 \end{remark}
 
 In the BV formalism, we introduce antifields $(\Phi^i)^* \sim \eta_i$ and ghosts $c^i \sim \epsilon_i$. The master action
@@ -167,17 +187,22 @@ Setting $\lambda = z_1 - z_2$ and extracting singular terms gives \eqref{eq:vir-
 
 For the Virasoro algebra, the structure is special: the interaction term is \emph{quadratic} in $\mu$, so:
 
-\begin{proposition}[Structure of Virasoro $A_\infty$ Operations; \ClaimStatusConditional]
+\begin{proposition}[Virasoro wheel sector; \ClaimStatusConditional]
 \label{prop:vir-truncation}
-Assume the Khan--Zeng Virasoro realization satisfies
-Theorem~\ref{thm:physics-bridge}, and assume the wheel-residue
-non-vanishing lemma for the cyclic Virasoro graph $C_k$ on
-$\FM_k(\C)\times\Conf_k^{<}(\R)$.
+Assume that the Khan--Zeng Virasoro realization satisfies the KZ
+analytic SDR package of
+Assumption~\textup{\ref{assum:kz-analytic-sdr-package}}, and assume
+that the cyclic wheel residue class on
+$\FM_k(\C)\times\Conf_k^{<}(\R)$ survives projection to the boundary
+Virasoro complex.
 For the Virasoro $A_\infty$ chiral algebra:
 \begin{enumerate}
-\item $m_3(T, T, T)$ arises from a single one-loop diagram (a triangle with three cubic vertices $V_3 = T\mu\partial\mu$ arranged in a cycle);
-\item For each $k \ge 3$, every connected Feynman diagram contributing to $m_k(T,\ldots,T)$ has exactly $1$ loop;
-\item The $A_\infty$ structure is genuinely infinite: $m_k \ne 0$ for all $k \ge 3$.
+\item $m_3(T, T, T)$ receives its pure $T$-sector wheel term from the
+triangle of three cubic vertices $V_3=T\mu\partial\mu$;
+\item for each $k \ge 3$, the connected pure $T$-sector wheel
+contributing to $m_k(T,\ldots,T)$ has loop number~$1$;
+\item under the stated residue-survival hypothesis, this sector gives
+$m_k(T,\ldots,T)\ne0$ for all $k \ge 3$.
 \end{enumerate}
 \end{proposition}
 
@@ -188,51 +213,43 @@ The Virasoro action has the form $S_{\mathrm{Vir}} = \int \mu(\partial_t + \bar\
 \item \emph{Quadratic ghost vertex} $V_2 = \tfrac{c}{24}\mu\partial^3\mu$: consumes 2 fields $\mu$ (no $T$).
 \end{itemize}
 
-Consider a connected Feynman diagram contributing to $m_k(T,\ldots,T)$ with $k$ external $T$-legs. Let $n_3$ be the number of cubic vertices $V_3$ and $n_2$ the number of quadratic ghost vertices $V_2$. Each external $T$-leg must attach to a cubic vertex, so
+The analytic SDR package and the wheel-residue hypothesis select, for
+each $k\ge3$, the cyclic graph $C_k$ with $k$ cubic vertices
+$V_3^{(1)},\ldots,V_3^{(k)}$ and one cyclic chain of $k$ internal
+propagator edges. The graph-theoretic loop number is therefore
 \[
-n_3 = k.
+b_1(C_k)=|E(C_k)|-|V(C_k)|+1=k-k+1=1.
 \]
-The total number of $\mu$-legs produced by vertices is $2n_3 + 2n_2 = 2k + 2n_2$. Each internal propagator (either $\langle T\mu\rangle$ or $\langle\mu\mu\rangle$) absorbs exactly 2 field legs. The number of internal propagators $E$ satisfies:
-\[
-2E = (\text{total legs from vertices}) - (\text{external legs}) = (3n_3 + 2n_2) - k = (3k + 2n_2) - k = 2k + 2n_2.
-\]
-Hence $E = k + n_2$.
-
-\emph{Loop counting.} The loop number is
-$L = E - V + 1 = (k + n_2) - (k + n_2) + 1 = 1$,
-where $V = n_3 + n_2 = k + n_2$ is the total vertex count.
-Hence every connected diagram contributing to $m_k$ has exactly one loop.
-
-\emph{Graph structure.} Each cubic vertex $V_3$ has exactly 2 $\mu$-slots. In the $\mu$-edge graph (ignoring the external $T$-legs), every vertex therefore has degree exactly~$2$. A connected graph on $k$ vertices in which every vertex has degree~$2$ is a Hamiltonian cycle $C_k$, which exists for all $k \ge 3$. Concretely, the unique 1-loop diagram at degree $k$ (with $n_2 = 0$) is the wheel: $k$ cubic vertices $V_3^{(1)}, \ldots, V_3^{(k)}$ arranged in a cycle, with each vertex emitting one external $T$-leg and its two $\mu$-slots connected to adjacent vertices via internal propagators.
+For $k=3$ this graph is the triangle giving the pure $T$-sector
+contribution to $m_3(T,T,T)$. The quadratic central vertex can alter
+the coefficient of the resulting residue, but its contribution to
+nonvanishing is not inferred from graph counting.
 
 \emph{Non-vanishing.} The wheel integral at degree $k$ is
 \[
 m_k(T, \ldots, T) \;\sim\; \int_{\FM_k(\C) \times \Conf_k^{<}(\R)}
  \prod_{i=1}^k K(z_i - z_{i+1},\, t_i - t_{i+1})\; \partial_{z_i}\cdots,
 \]
-where indices are cyclic. The graph-existence and loop-count arguments
-above identify the only wheel contribution. By the wheel-residue
-non-vanishing hypothesis in the statement, this cyclic residue has
-nonzero projection to the transferred Virasoro cohomology.
-
-Therefore, under the stated hypotheses, $m_k \ne 0$ for all
-$k \ge 3$: the $A_\infty$ structure is genuinely infinite, with every
-operation computed by a single wheel diagram (up to ghost-vertex
-insertions with $n_2 > 0$).
+where indices are cyclic. The propagator $K(z,t) = \Theta(t)/(2\pi z)$
+contributes one holomorphic kernel per edge; the
+$\partial_z$ derivatives from $V_3 = T\mu\partial\mu$ produce the
+polynomial residue in the spectral parameters
+$\lambda_i = z_i - z_{i+1}$. This identifies the candidate class. Its
+survival after compactified integration, boundary renormalization, and
+projection to the Virasoro complex is precisely the wheel-residue
+hypothesis in the statement. Under that hypothesis,
+$m_k(T,\ldots,T)\ne0$ for all $k\ge3$.
 \end{proof}
 
-\begin{remark}[Infinite depth at tree+one-loop level]
+\begin{remark}[Conditional infinite depth at tree+one-loop level]
 \label{rem:truncation-vs-depth}
 Unlike Landau--Ginzburg models, where the $A_\infty$ structure
 truncates at finite degree by dimension counting on $\FM_k(\C)$,
-the Virasoro algebra has $m_k \ne 0$ for all $k \ge 3$ already
-at the perturbative (tree+one-loop) level. The mechanism is
-the wheel graph $C_k$: each cubic vertex $V_3 = T\mu\partial\mu$
-has exactly $2$ $\mu$-slots, so the unique connected graph at
-degree~$k$ is a Hamiltonian cycle, which exists for all $k$. No
-graph-theoretic obstruction arises because the $\mu$-degree is
-constant ($= 2$), in contrast to theories with higher-valent
-vertices where combinatorial constraints can force truncation.
+the Virasoro wheel sector has no graph-theoretic truncation: the
+cycle $C_k$ exists for every $k\ge3$. Proposition~\ref{prop:vir-truncation}
+turns this graph class into the nonvanishing statement
+$m_k\ne0$ only after the analytic SDR and wheel-residue hypotheses are
+imposed.
 
 At genus~$g \ge 1$, the curved bar structure
 $d^2_{\mathrm{fib}} = \kappa(\mathrm{Vir}_c) \cdot \omega_g$
@@ -242,15 +259,18 @@ encodes higher-graviton vertex corrections. The shadow-tower
 obstructions $o_k$ (Vol~I) are homotopy invariants of the full
 $A_\infty$ structure; the non-termination $o_5 \ne 0$ of
 Section~\ref{subsec:gravity-shadow-tower} is consistent with the
-infinite perturbative depth established above.
+conditional infinite perturbative depth above.
 \end{remark}
 
 \medskip
 \noindent\emph{The ternary operation $m_3$.}
-The ternary operation arises from the one-loop triangle Feynman
-diagram (Proposition~\ref{prop:vir-truncation}): three cubic vertices
+The algebraic ternary formula is the ordered singular-bracket
+associator below. Its identification with the transferred BV operation
+uses the conditional wheel sector of
+Proposition~\ref{prop:vir-truncation}: three cubic vertices
 $V_3 = T\mu\partial\mu$ arranged in a cycle, connected by three
-internal $\mu$-propagators, with three external $T$ insertions:
+internal propagator edges in the conditional wheel sector, with three
+external $T$ insertions:
 \begin{center}
 \begin{tikzpicture}[scale=1.5]
 \node[draw,circle,fill,inner sep=1.5pt] (v1) at (90:0.7) {};
@@ -332,9 +352,9 @@ The transferred ternary operation on cohomology is
 $m_3^H = -\pi\bigl[m_2(h \circ m_2(\iota{\otimes}\iota),\,\iota)
 + m_2(\iota,\, h \circ m_2(\iota{\otimes}\iota))\bigr]$,
 where $h$ is the BV-BRST contracting homotopy and $\iota, \pi$ the
-inclusion/projection. The one-loop triangle integral
-(three $V_3 = T\mu\partial\mu$ vertices, three $\mu$-propagators)
-evaluates to:
+inclusion/projection. Under the KZ analytic SDR and wheel-residue
+hypotheses, the one-loop triangle integral in the pure Virasoro sector
+has the same cohomology class as the ordered associator and gives:
 \begin{equation}
 \label{eq:vir-m3}
 \boxed{%
@@ -355,7 +375,9 @@ is automatically satisfied (the PVA Jacobi identity).
 The transferred $m_3^H$ is a genuinely higher operation
 determined by the BV-BRST homotopy data;
 it appears non-trivially in the degree-$\ge 4$ Stasheff relations.
-The one-loop triangle Feynman integral with the Virasoro action~\eqref{eq:virasoro-action} independently confirms~\eqref{eq:vir-m3}
+Under the KZ analytic SDR and wheel-residue hypotheses, the one-loop
+triangle Feynman integral with the Virasoro action~\eqref{eq:virasoro-action}
+confirms~\eqref{eq:vir-m3} in the transferred BV complex
 (Example~\ref{ex:vir-m3-feynman}).
 \end{remark}
 
@@ -410,8 +432,9 @@ Define the generating series
 
 \begin{theorem}[Recursive Structure of Virasoro $A_\infty$ Operations; \ClaimStatusConditional]
 \label{thm:vir-recursive}
-Assume the Khan--Zeng Virasoro realization satisfies
-Theorem~\ref{thm:physics-bridge}.
+Assume that the Khan--Zeng Virasoro realization satisfies the KZ
+analytic SDR package of
+Assumption~\textup{\ref{assum:kz-analytic-sdr-package}}.
 The generating function $\mathcal{M}_{\text{Vir}}$ satisfies a functional equation:
 \begin{equation}
 \mathcal{M}_{\text{Vir}} = Q_{\text{class}} \mathcal{M}_{\text{Vir}} + \frac{1}{2} \{\mathcal{M}_{\text{Vir}}, \mathcal{M}_{\text{Vir}}\}_\lambda + \mathcal{O}(\hbar),
@@ -420,7 +443,15 @@ where $Q_{\text{class}}$ is the classical BRST operator and the curly bracket is
 \end{theorem}
 
 \begin{proof}
-The BV master equation $\tfrac{1}{2}\{S_{\mathrm{BV}}, S_{\mathrm{BV}}\}_{\mathrm{BV}} + \hbar\Delta S_{\mathrm{BV}} = 0$ governs the effective action $S_{\mathrm{eff}} = \sum_k \frac{1}{k!} S_k$, where $S_k$ encodes the $k$-point operation $m_k$. Identifying $\mathcal{M}_{\mathrm{Vir}} = S_{\mathrm{eff}}|_{T\text{-sector}}$, the master equation at degree $n$ reads:
+Under Assumption~\ref{assum:kz-analytic-sdr-package}, the finite-jet
+BV quotients satisfy the quantum master equation
+$\tfrac{1}{2}\{S_{\mathrm{BV}}, S_{\mathrm{BV}}\}_{\mathrm{BV}}
++ \hbar\Delta S_{\mathrm{BV}} = 0$ and are compatible under
+truncation. The effective action
+$S_{\mathrm{eff}} = \sum_k \frac{1}{k!} S_k$ encodes the operations
+$m_k$. Identifying
+$\mathcal{M}_{\mathrm{Vir}} = S_{\mathrm{eff}}|_{T\text{-sector}}$,
+the master equation at degree $n$ reads:
 \[
 Q_{\mathrm{class}}\, m_n + \sum_{\substack{i+j=n+1\\i,j\ge 2}} \sum_{s} (-1)^{\epsilon(s,j)} m_i(\ldots, m_j(\ldots), \ldots) + \hbar\,(\text{1-loop contribution to } m_n) = 0.
 \]
