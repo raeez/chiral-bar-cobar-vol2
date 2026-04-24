@@ -6,6 +6,7 @@
 #    make            Full build → out/
 #    make fast       Quick build (up to 4 passes) → out/main.pdf
 #    make release    Full release → out/ + iCloud
+#    make standalone Build standalone documents → out/
 #    make clean      Remove all LaTeX build artifacts (preserves stamp)
 #    make veryclean  Remove artifacts AND out/ (forces rebuild)
 #    make clean-builds  Remove all /tmp/mkd-* isolated build directories
@@ -53,6 +54,10 @@ PDF       := $(OUT_DIR)/main.pdf
 # Working notes
 WN_TEX    := working_notes.tex
 
+# Standalone documents
+STANDALONE_TEX := $(wildcard standalone/*.tex)
+STANDALONE_PASSES := 3
+
 STAMP     := .build_stamp
 
 # If PDF was externally deleted but stamp remains, force a rebuild.
@@ -68,10 +73,12 @@ AUX_EXTS  := aux log out toc synctex.gz fdb_latexmk fls bbl blg \
 #  Targets
 # ============================================================================
 
-.PHONY: all fast clean veryclean clean-builds count check test dist release help working-notes icloud verify-independence verify-independence-verbose
+.DEFAULT_GOAL := all
+
+.PHONY: all fast clean veryclean clean-builds count check test dist release help working-notes standalone icloud verify-independence verify-independence-verbose
 
 ## icloud: Copy latest PDFs to iCloud Drive (subject-organised)
-icloud: $(PDF)
+icloud: $(STAMP) standalone
 	@echo "  ── Copying Vol II to iCloud (subject-organised) ──"
 	@mkdir -p "$(ICLOUD_DIR)/volumes"
 	@mkdir -p "$(ICLOUD_DIR)/vol2_3d_ht_physics"
@@ -122,7 +129,7 @@ working-notes:
 		exit 1; \
 	fi
 
-## release: Full rebuild → out/ + iCloud
+## release: Full rebuild → out/ + standalones + iCloud
 release:
 	@rm -f $(STAMP)
 	@rm -rf $(OUT_DIR)
@@ -132,18 +139,56 @@ release:
 	@echo "  ── RELEASE BUILD (Vol II) ──"
 	@echo "  ══════════════════════════════════════════"
 	@echo ""
-	@echo "  [1/2] Main manuscript"
+	@echo "  [1/3] Main manuscript"
 	@$(MAKE) --no-print-directory $(STAMP)
 	@echo ""
-	@echo "  [2/2] Working notes"
+	@echo "  [2/3] Working notes"
 	@$(MAKE) --no-print-directory working-notes
 	@echo ""
+	@echo "  [3/3] Standalone documents and iCloud"
 	@$(MAKE) --no-print-directory icloud
 	@echo ""
 	@echo "  ══════════════════════════════════════════"
 	@echo "  Release complete. All output in out/:"
 	@ls -1 $(OUT_DIR)/*.pdf 2>/dev/null | sed 's/^/    /'
 	@echo "  ══════════════════════════════════════════"
+
+## standalone: Build standalone documents → out/
+standalone:
+	@echo "  ── Building standalone documents ──"
+	@mkdir -p $(OUT_DIR) $(LOG_DIR)
+	@if [ -z "$(strip $(STANDALONE_TEX))" ]; then \
+		echo "  (no standalone documents found)"; \
+	else \
+		failures=0; \
+		for tex in $(STANDALONE_TEX); do \
+			if [ ! -f "$$tex" ]; then continue; fi; \
+			base=$$(basename "$$tex" .tex); \
+			tmpdir=$$(mktemp -d "/tmp/mkd-$$(basename "$$(pwd)")-standalone-$$base.XXXXXX"); \
+			echo "  [standalone] $$tex → $(OUT_DIR)/$$base.pdf"; \
+			for pass in $$(seq 1 $(STANDALONE_PASSES)); do \
+				TEXINPUTS="$$tmpdir:$$(pwd):$$(pwd)/standalone:" $(TEX) $(TEXFLAGS) -output-directory="$$tmpdir" "$$tex" >"$(LOG_DIR)/standalone-$$base-pass$$pass.log" 2>&1; rc=$$?; \
+				if [ -f "$$tmpdir/$$base.idx" ]; then makeindex -q "$$tmpdir/$$base.idx" >/dev/null 2>&1 || true; fi; \
+				if [ $$rc -ne 0 ]; then \
+					echo "  ✗  $$tex failed on pass $$pass. See $(LOG_DIR)/standalone-$$base-pass$$pass.log"; \
+					tail -n 40 "$(LOG_DIR)/standalone-$$base-pass$$pass.log"; \
+					failures=$$((failures + 1)); \
+					break; \
+				fi; \
+			done; \
+			if [ -f "$$tmpdir/$$base.pdf" ]; then \
+				cp "$$tmpdir/$$base.pdf" "$(OUT_DIR)/$$base.pdf"; \
+				echo "  ✓  $(OUT_DIR)/$$base.pdf"; \
+			elif [ $$failures -eq 0 ]; then \
+				echo "  ✗  No PDF produced for $$tex"; \
+				failures=$$((failures + 1)); \
+			fi; \
+		done; \
+		if [ $$failures -ne 0 ]; then \
+			echo "  ✗  $$failures standalone document(s) failed."; \
+			exit 1; \
+		fi; \
+	fi
 
 ## dist: Create Vol2Archive.zip for distribution.
 dist:
@@ -257,7 +302,8 @@ help:
 	@echo ""
 	@echo "  make            Full build → out/"
 	@echo "  make fast       Quick converging build → out/main.pdf"
-	@echo "  make release    Full rebuild → out/ + iCloud"
+	@echo "  make release    Full rebuild → out/ + standalones + iCloud"
+	@echo "  make standalone Build standalone documents → out/"
 	@echo "  make dist       Create Vol2Archive.zip in out/"
 	@echo "  make check      Halt-on-error validation"
 	@echo "  make clean      Remove build debris (preserves stamp)"
