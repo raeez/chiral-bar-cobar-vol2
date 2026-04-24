@@ -1,4 +1,4 @@
-"""Independent checks for the Khan--Zeng BV core and all-loop recursion."""
+"""Independent checks for the Khan--Zeng BV core and conditional recursion."""
 
 from __future__ import annotations
 
@@ -125,8 +125,9 @@ def test_reflected_kernel_keeps_signed_image_summand():
     ],
     disjoint_rationale=(
         "The manuscript proof constructs the finite-quotient recursion in "
-        "the half-space BV algebra. This test checks the algebraic heart of "
-        "the recursion in an independent finite-dimensional SDR."
+        "the half-space BV algebra under the KZ analytic SDR package. This "
+        "test checks the algebraic heart of the conditional recursion in an "
+        "independent finite-dimensional SDR."
     ),
 )
 def test_counterterm_recursion_solves_finite_qme_obstruction():
@@ -157,18 +158,18 @@ def test_counterterm_recursion_solves_finite_qme_obstruction():
 
 
 @independent_verification(
-    claim="prop:kz-analytic-sdr-package",
+    claim="assum:kz-analytic-sdr-package",
     derived_from=[
-        "Vol II finite-quotient analytic SDR package with side conditions",
+        "Vol II KZ analytic SDR package with side conditions",
     ],
     verified_against=[
         "A three-dimensional special deformation retract with one harmonic class and one acyclic pair",
     ],
     disjoint_rationale=(
-        "The manuscript constructs the SDR from SC homotopy-Koszulity and "
-        "the harmonic projector. This test checks the algebraic side "
-        "conditions and the requirement that the obstruction lie in the "
-        "zero-harmonic sector."
+        "The manuscript isolates the analytic SDR package as a named "
+        "hypothesis for the nonlinear finite-jet PVA lane. This test checks "
+        "the algebraic side conditions and the requirement that the "
+        "obstruction lie in the zero-harmonic sector."
     ),
 )
 def test_sdr_package_side_conditions_with_harmonic_projection():
@@ -221,8 +222,8 @@ def test_sdr_package_side_conditions_with_harmonic_projection():
         "complex to the sigma-invariant sector by the averaging projector",
     ],
     disjoint_rationale=(
-        "The theorem is proved geometrically by reflected logarithmic "
-        "weights plus the QME recursion. This test checks the independent "
+        "The conditional theorem uses reflected logarithmic weights plus "
+        "the finite-quotient QME recursion. This test checks the independent "
         "homological algebra behind the doubling comparison: the averaging "
         "projector onto sigma-invariants is idempotent and commutes with a "
         "sigma-equivariant BV differential, so the half-space complex is a "

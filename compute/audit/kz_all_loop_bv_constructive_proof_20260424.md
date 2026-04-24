@@ -1,14 +1,14 @@
-# Khan--Zeng All-Loop BV Quantization: Constructive Resolution
+# Khan--Zeng BV Quantization: Surviving Core and Conditional All-Loop Package
 
 Date: 2026-04-24
 
 The live theorem repair is in `chapters/connections/affine_half_space_bv.tex`.
-The residual conditional downgrade is not imported. The analytic
-package named by the residual audit is closed as the proved proposition
-`prop:kz-analytic-sdr-package`, which supplies the image-choice
-half-space compactification, field-parity reflected propagator,
-self-image renormalization, finite jet--weight SDR, and harmonic
-obstruction vanishing used by `thm:general-half-space-bv`.
+The proved core is the shifted-cotangent KZ BV action and the
+identification of its classical master equation with the Poisson-vertex
+Hamiltonian condition. The nonlinear all-loop theorem is not proved
+from finite type and finite jet order alone. Its all-loop extension is a
+finite-quotient homological-perturbation recursion conditional on the
+analytic SDR package named by `assum:kz-analytic-sdr-package`.
 
 For a finite-type freely generated PVA
 
@@ -71,8 +71,10 @@ Dirichlet or odd reflected fields enter through
 logarithmic compactification/subtraction scheme, not by evaluating the
 naive kernel at zero holomorphic separation.
 
-The all-loop quantum interaction is constructed on finite jet--weight
-quotients:
+The all-loop recursion is valid on finite jet--weight quotients once
+the renormalized half-space BV algebra, reflected image-choice Stokes
+theorem, quotient-compatible SDR, and harmonic obstruction-vanishing
+data are supplied:
 
 ```tex
 Ob_{\ell,N,w}
@@ -83,21 +85,33 @@ Ob_{\ell,N,w}
 I_{\ell,V,N,w}=-h_{V,N,w} Ob_{\ell,N,w}.
 ```
 
-The obstruction is closed by the lower-order QME. Its harmonic
-projection vanishes by the three Vol II mechanisms: CME/PVA Jacobi
-for the tree part, image-choice reflected Stokes for half-space
-boundary strata, and the relative-Feynman/curved-Dunn `H^2` vanishing
-mechanism for loop/handle sectors. Finite jet order and polynomiality
-make the finite quotient recursion convergent; Mittag--Leffler kills
-the pro-limit obstruction.
+The algebraic proof then uses
+
+```tex
+Q^2=0,\quad [Q,\Delta]=0,\quad
+\Delta\{F,G\}=\{\Delta F,G\}\pm\{F,\Delta G\},
+\quad
+\mathrm{id}-H=dh+hd,
+\quad
+H(Ob_{\ell,N,w})=0.
+```
+
+The proof obligation is precisely the analytic package which supplies
+the reflected image-choice Stokes theorem, quotient-compatible SDR,
+self-image renormalization, and harmonic obstruction vanishing.
 
 Resolution map:
 
-1. `thm:doubling-rwi`: remains `ProvedHere`; proof strengthened from
-   literal fixed-locus language to image-choice Stokes pushforward.
-2. `prop:kz-analytic-sdr-package`: new `ProvedHere` closure of the
-   residual analytic SDR package.
-3. `prop:kz-all-loop-counterterm-recursion`: remains `ProvedHere`;
-   recursion is now finite-quotient and cites the SDR package.
-4. `thm:general-half-space-bv`: remains `ProvedHere`; no conditional
-   downgrade is imported.
+1. `lem:kz-cme-pva-jacobi`: `ProvedHere`; the classical KZ BV action
+   satisfies CME exactly when the PVA Hamiltonian operator satisfies
+   skew-symmetry and Jacobi.
+2. `thm:doubling-rwi`: conditional on the image-choice half-space
+   compactification, field-parity signs, self-image renormalization,
+   and orientation-compatible Stokes pushforward.
+3. `prop:kz-all-loop-counterterm-recursion`: conditional finite-quotient
+   HPL recursion under `assum:kz-analytic-sdr-package`.
+4. `thm:general-half-space-bv`: conditional under the same KZ analytic
+   SDR package.
+5. The affine lane remains `ProvedHere` by the mixed BF/Chern--Simons
+   one-loop-exact calculation; the nonlinear finite-jet PVA lane stays
+   fenced until the analytic SDR package is proved.

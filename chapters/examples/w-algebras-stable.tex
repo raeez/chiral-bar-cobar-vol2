@@ -1,7 +1,7 @@
 \section{W-Algebras as $A_\infty$ Chiral Algebras: Virasoro and $W_3$}
 % label removed: sec:W-algebras
 
-W-algebras are the decisive test cases for the $A_\infty$ chiral framework in the $d' = 1$ regime. The reason is structural: the pre-reduction affine vertex algebra $V_k(\mathfrak{g})$ is Koszul (Theorem~\ref{thm:one-loop-koszul}), so the transferred $A_\infty$ operations on bar cohomology vanish ($m_k = 0$ for $k \ge 3$), though the Swiss-cheese operations on $V_k(\mathfrak{g})$ itself have $m_3^{\mathrm{SC}} \neq 0$ (class~$\mathbf{L}$, depth~$3$). Drinfeld--Sokolov reduction changes this. The BRST functor manufactures the higher operations $m_k$ for $k \ge 3$ that break Swiss-cheese formality (Theorem~\ref{thm:ds-koszul-obstruction}): the quartic OPE pole of the Virasoro generator, the quintic pole of $W_3$, and the higher poles of $W_N$ are all artefacts of the reduction, absent in the affine input. The resulting $\mathcal{W}$-algebra remains chirally Koszul (the bar complex is well-behaved), but the $A_\infty$ structure is genuinely infinite. The Khan--Zeng 3D holomorphic-topological Poisson sigma model~\cite{KZ25} supplies the classical Hamiltonian bidifferential for freely generated PVAs; Theorem~\ref{thm:general-half-space-bv} supplies the all-loop BV quantization for the finite-jet polynomial logarithmic class.
+W-algebras are the decisive test cases for the $A_\infty$ chiral framework in the $d' = 1$ regime. The reason is structural: the pre-reduction affine vertex algebra $V_k(\mathfrak{g})$ is Koszul (Theorem~\ref{thm:one-loop-koszul}), so the transferred $A_\infty$ operations on bar cohomology vanish ($m_k = 0$ for $k \ge 3$), though the Swiss-cheese operations on $V_k(\mathfrak{g})$ itself have $m_3^{\mathrm{SC}} \neq 0$ (class~$\mathbf{L}$, depth~$3$). Drinfeld--Sokolov reduction changes this. The BRST functor manufactures the higher operations $m_k$ for $k \ge 3$ that break Swiss-cheese formality (Theorem~\ref{thm:ds-koszul-obstruction}): the quartic OPE pole of the Virasoro generator, the quintic pole of $W_3$, and the higher poles of $W_N$ are all artefacts of the reduction, absent in the affine input. The resulting $\mathcal{W}$-algebra remains chirally Koszul (the bar complex is well-behaved); its infinite transferred tower is the conditional wheel-residue theorem below. The Khan--Zeng 3D holomorphic-topological Poisson sigma model~\cite{KZ25} supplies the classical Hamiltonian bidifferential for freely generated PVAs; Theorem~\ref{thm:general-half-space-bv} supplies the all-loop BV quantization only after the KZ analytic SDR package is imposed.
 
 \subsection{General Framework: PVA to 3D HT Gauge Theory}
 % label removed: subsec:PVA-to-3DHT
@@ -41,16 +41,19 @@ When $\mathcal{V}$ is a W-algebra, the classical gauge symmetry contains the hig
 
 \subsubsection{BV Quantization and $A_\infty$ Operations}
 
-\begin{remark}[Analytic hypotheses for W-algebra examples]
+\begin{remark}[Constructive BV input for W-algebra examples]
 % label removed: rem:W-hypotheses
-All results in this section hold for any logarithmic $\SCchtop$-algebra (Definition~\ref{def:log-SC-algebra}). For physical realisations, the bridge theorem (Theorem~\ref{thm:physics-bridge}) applies; verification proceeds as follows.
-\emph{(H1)}: The BV data for the Khan--Zeng 3D HT Poisson sigma model is constructed explicitly; one-loop finiteness follows from the holomorphic structure by the arguments of \cite{GRW21,GGW21}.
-\emph{(H2)}: The singular parametrix has leading kernel
-$K(t,z)=\Theta(t)/(2\pi z)$, modulo the smooth $Q$-exact correction
-chosen by the HT gauge; its topological factor has causal
-step-function support in $t$.
-\emph{(H3)}: The interaction vertices are polynomial in fields and derivatives, so the configuration-space integrals defining $m_k$ converge on $\FM_k(\C) \times \Conf_k(\R)$ by standard estimates; the AOS relations hold on logarithmic forms.
-\emph{(H4)}: Factorization compatibility follows from the general construction of \cite{CDG20,GKW25} for HT gauge theories with polynomial interactions.
+For finite-jet polynomial freely generated PVA input, the classical BV
+fields and master action are constructed in
+Construction~\ref{cons:kz-bv-fields-action}, and
+Lemma~\ref{lem:kz-cme-pva-jacobi} identifies the classical master
+equation with PVA Jacobi. The all-loop BV package used by the quantum
+examples is Theorem~\ref{thm:general-half-space-bv}, conditional on the
+KZ analytic SDR package of Assumption~\ref{assum:kz-analytic-sdr-package}.
+Individual computations in this section retain their own claim-status
+tags where a numerical constant, DS transfer identity, wheel-residue
+nonvanishing, or Hochschild comparison is narrower than that analytic
+package.
 \end{remark}
 
 In the BV formalism, we introduce antifields $(\Phi^i)^* \sim \eta_i$ and ghosts $c^i \sim \epsilon_i$. The master action
@@ -131,10 +134,10 @@ The free propagator for the pair $(T, \mu)$ is determined by inverting the kinet
 \langle T(z_1) \mu(z_2) \rangle = \frac{\Theta(t_1 - t_2)}{2\pi(z_1 - z_2)}.
 \end{equation}
 
-\begin{proposition}[Virasoro $\lambda$-bracket from Propagator; \ClaimStatusProvedHere]
+\begin{proposition}[Virasoro $\lambda$-bracket from Propagator; \ClaimStatusConditional]
 % label removed: prop:vir-m2
-Let\/ $\cA$ be a logarithmic\/ $\SCchtop$-algebra
-\textup{(}Definition~\textup{\ref{def:log-SC-algebra})}.
+Assume the Virasoro KZ realization satisfies the analytic SDR package
+of Assumption~\textup{\ref{assum:kz-analytic-sdr-package}}.
 The $\lambda$-bracket $m_2$ computed from \eqref{eq:vir-propagator} reproduces \eqref{eq:vir-lambda-bracket}:
 \begin{equation}
 m_2(T, T)_\text{sing} = \{T_\lambda T\} = a_1 + a_2 \lambda + a_3 \lambda^3,
@@ -170,15 +173,22 @@ Setting $\lambda = z_1 - z_2$ and extracting singular terms gives \eqref{eq:vir-
 
 For the Virasoro algebra, the structure is special: the interaction term is \emph{quadratic} in $\mu$, so:
 
-\begin{proposition}[Structure of Virasoro $A_\infty$ Operations; \ClaimStatusProvedHere]
+\begin{proposition}[Virasoro wheel sector; \ClaimStatusConditional]
 % label removed: prop:vir-truncation
-Let\/ $\cA$ be a logarithmic\/ $\SCchtop$-algebra
-\textup{(}Definition~\textup{\ref{def:log-SC-algebra})}.
+Assume that the Khan--Zeng Virasoro realization satisfies the KZ
+analytic SDR package of
+Assumption~\textup{\ref{assum:kz-analytic-sdr-package}}, and assume
+that the cyclic wheel residue class on
+$\FM_k(\C)\times\Conf_k^{<}(\R)$ survives projection to the boundary
+Virasoro complex.
 For the Virasoro $A_\infty$ chiral algebra:
 \begin{enumerate}
-\item $m_3(T, T, T)$ arises from the single tree-level diagram with three external $T$ insertions meeting at a cubic vertex from $\int T \mu \partial \mu$;
-\item For each $k \ge 3$, every connected Feynman diagram contributing to $m_k(T,\ldots,T)$ has exactly $1$ loop;
-\item The $A_\infty$ structure is genuinely infinite: $m_k \ne 0$ for all $k \ge 3$.
+\item $m_3(T, T, T)$ receives its pure $T$-sector wheel term from the
+triangle of three cubic vertices $V_3=T\mu\partial\mu$;
+\item for each $k \ge 3$, the connected pure $T$-sector wheel
+contributing to $m_k(T,\ldots,T)$ has loop number~$1$;
+\item under the stated residue-survival hypothesis, this sector gives
+$m_k(T,\ldots,T)\ne0$ for all $k \ge 3$.
 \end{enumerate}
 \end{proposition}
 
@@ -189,37 +199,39 @@ The Virasoro action has the form $S_{\mathrm{Vir}} = \int \mu(\partial_t + \bar\
 \item \emph{Quadratic ghost vertex} $V_2 = \tfrac{c}{24}\mu\partial^3\mu$: consumes 2 fields $\mu$ (no $T$).
 \end{itemize}
 
-Consider a connected Feynman diagram contributing to $m_k(T,\ldots,T)$ with $k$ external $T$-legs. Let $n_3$ be the number of cubic vertices $V_3$ and $n_2$ the number of quadratic ghost vertices $V_2$. Each external $T$-leg must attach to a cubic vertex, so
+The analytic SDR package and the wheel-residue hypothesis select, for
+each $k\ge3$, the cyclic graph $C_k$ with $k$ cubic vertices
+$V_3^{(1)},\ldots,V_3^{(k)}$ and one cyclic chain of $k$ internal
+propagator edges. The graph-theoretic loop number is therefore
 \[
-n_3 = k.
+b_1(C_k)=|E(C_k)|-|V(C_k)|+1=k-k+1=1.
 \]
-The total number of $\mu$-legs produced by vertices is $2n_3 + 2n_2 = 2k + 2n_2$. Each internal propagator (either $\langle T\mu\rangle$ or $\langle\mu\mu\rangle$) absorbs exactly 2 field legs. The number of internal propagators $E$ satisfies:
-\[
-2E = (\text{total legs from vertices}) - (\text{external legs}) = (3n_3 + 2n_2) - k = (3k + 2n_2) - k = 2k + 2n_2.
-\]
-Hence $E = k + n_2$.
-
-\emph{Loop counting.} The loop number is
-$L = E - V + 1 = (k + n_2) - (k + n_2) + 1 = 1$,
-where $V = n_3 + n_2 = k + n_2$ is the total vertex count.
-Hence every connected diagram contributing to $m_k$ has exactly one loop.
-
-\emph{Graph structure.} Each cubic vertex $V_3$ has exactly 2 $\mu$-slots. In the $\mu$-edge graph (ignoring the external $T$-legs), every vertex therefore has degree exactly~$2$. A connected graph on $k$ vertices in which every vertex has degree~$2$ is a Hamiltonian cycle $C_k$, which exists for all $k \ge 3$. Concretely, the unique 1-loop diagram at degree $k$ (with $n_2 = 0$) is the wheel: $k$ cubic vertices $V_3^{(1)}, \ldots, V_3^{(k)}$ arranged in a cycle, with each vertex emitting one external $T$-leg and its two $\mu$-slots connected to adjacent vertices via internal propagators.
+For $k=3$ this graph is the triangle giving the pure $T$-sector
+contribution to $m_3(T,T,T)$. The quadratic central vertex can alter
+the coefficient of the resulting residue, but its contribution to
+nonvanishing is not inferred from graph counting.
 
 \emph{Non-vanishing.} The wheel integral at degree $k$ is
 \[
 m_k(T, \ldots, T) \;\sim\; \int_{\FM_k(\C) \times \Conf_k^{<}(\R)}
  \prod_{i=1}^k K(z_i - z_{i+1},\, t_i - t_{i+1})\; \partial_{z_i}\cdots,
 \]
-where indices are cyclic. The propagator $K(z,t) = \Theta(t)/(2\pi z)$ contributes one holomorphic 1-form per edge, giving total form degree $k$ on $\FM_k(\C)$ (real dimension $2(k-1)$), which matches the dimension for a non-degenerate integral at each~$k$. The $\partial_z$ derivatives from the $V_3 = T\mu\partial\mu$ vertex structure produce polynomial dependence on the spectral parameters $\lambda_i = z_i - z_{i+1}$, ensuring non-trivial contributions at every degree.
-
-Therefore $m_k \ne 0$ for all $k \ge 3$: the $A_\infty$ structure is genuinely infinite, with every operation computed by a single wheel diagram (up to ghost-vertex insertions with $n_2 > 0$).
+where indices are cyclic. The propagator $K(z,t) = \Theta(t)/(2\pi z)$
+contributes one holomorphic kernel per edge; the
+$\partial_z$ derivatives from $V_3 = T\mu\partial\mu$ produce the
+polynomial residue in the spectral parameters
+$\lambda_i = z_i - z_{i+1}$. This identifies the candidate class. Its
+survival after compactified integration, boundary renormalization, and
+projection to the Virasoro complex is precisely the wheel-residue
+hypothesis in the statement. Under that hypothesis,
+$m_k(T,\ldots,T)\ne0$ for all $k\ge3$.
 \end{proof}
 
 \begin{remark}[Wheel diagrams as resolvent tree evaluations]
 % label removed: rem:wheel-as-resolvent-evaluation
-The wheel diagrams above are not \emph{ad hoc} Feynman
-computations but evaluations of the resolvent tree formula
+Under the hypotheses of Proposition~\ref{prop:vir-truncation}, the
+wheel diagrams above are not \emph{ad hoc} Feynman computations but
+evaluations of the resolvent tree formula
 (Theorem~\ref{thm:resolvent-principle},
 equation~\eqref{eq:resolvent-tree-formula}). The resolvent
 principle expresses each $m_k^W$ as a sum over $C_{k-1}$
@@ -239,11 +251,12 @@ algebra $\widehat{\fg}_k$ (Koszul by
 Theorem~\ref{thm:one-loop-koszul}), the transferred operations $m_k^H$
 vanish for $k \geq 3$
 (Corollary~\ref{cor:koszul-resolvent}), and no wheel diagrams
-arise. Drinfeld--Sokolov reduction breaks Swiss-cheese formality
+arise. Under the wheel-survival hypothesis, Drinfeld--Sokolov
+reduction breaks Swiss-cheese formality
 (Theorem~\ref{thm:ds-koszul-obstruction}) by manufacturing
 the fourth-order Virasoro pole from the affine simple pole,
 producing the excess Tor classes that the resolvent trees
-evaluate to non-trivial wheels; the $\cW$-algebra remains
+evaluate to wheel classes; the $\cW$-algebra remains
 chirally Koszul (bar cohomology concentrated).
 \end{remark}
 
@@ -255,14 +268,16 @@ In the Lagrangian self-intersection picture, this pole
 creates \emph{excess intersection dimension}: the derived
 intersection
 $\cL \times_{\cM}^h \cL$ carries higher Tor in degrees that
-a clean intersection would not have. Each higher Tor degree
-seeds a Swiss-cheese $\Ainf$ operation: the wheel diagrams
-$m_k$ on $\FM_k(\C) \times \Conf_k^{<}(\R)$ computed above.
-The fourth-order pole prevents transversality, the excess
-strata proliferate, and the Swiss-cheese structure is
-genuinely non-formal: $m_k \ne 0$ for all $k \ge 3$.
+a clean intersection would not have. Under the KZ analytic SDR and
+wheel-residue hypotheses, these higher Tor degrees seed the
+Swiss-cheese $\Ainf$ operations represented by the wheel diagrams
+$m_k$ on $\FM_k(\C) \times \Conf_k^{<}(\R)$. The fourth-order pole
+prevents transversality; the assertion that the resulting
+Swiss-cheese structure is genuinely non-formal is exactly the
+conditional nonvanishing statement $m_k \ne 0$ for all $k \ge 3$.
 
-This is class~$\mathbf{M}$ in the depth classification
+Under that nonvanishing hypothesis this is class~$\mathbf{M}$ in the
+depth classification
 (Definition~\ref{def:shadow-depth-intersection}): infinite
 excess, infinite shadow depth. By contrast, the Heisenberg
 (double pole only, \'etale self-intersection,
@@ -275,7 +290,7 @@ chirally Koszul: the PBW spectral sequence concentrates
 and bar cohomology is concentrated, with $m_k = 0$ for
 $k \ge 3$ on cohomology
 (by the Koszul equivalence theorem of Volume~I).
-Class~$\mathbf{M}$ (Virasoro, $\cW_N$) \emph{is}
+The conditional class~$\mathbf{M}$ sector (Virasoro, $\cW_N$) \emph{is}
 chirally Koszul (by PBW universality) but is \emph{not}
 collision-pure: the fourth-order pole causes purity
 failure, and the weight spectral sequence does not
@@ -287,24 +302,21 @@ Shadow depth measures the \emph{complexity} of the
 Lagrangian self-intersection within the standard
 families; for classes~$\mathbf{G}$/$\mathbf{L}$/$\mathbf{C}$
 this complexity lives within the chirally Koszul world,
-while for class~$\mathbf{M}$ it reflects the additional
+while for conditional class~$\mathbf{M}$ it reflects the additional
 structure of nonvanishing transferred $\Ainf$ operations
 (non-formal Swiss-cheese structure, not failure of chiral
 Koszulness).
 \end{remark}
 
-\begin{remark}[Infinite depth at tree+one-loop level]
+\begin{remark}[Conditional infinite depth at tree+one-loop level]
 % label removed: rem:truncation-vs-depth
 Unlike Landau--Ginzburg models, where the $A_\infty$ structure
 truncates at finite degree by dimension counting on $\FM_k(\C)$,
-the Virasoro algebra has $m_k \ne 0$ for all $k \ge 3$ already
-at the perturbative (tree+one-loop) level. The mechanism is
-the wheel graph $C_k$: each cubic vertex $V_3 = T\mu\partial\mu$
-has exactly $2$ $\mu$-slots, so the unique connected graph at
-degree~$k$ is a Hamiltonian cycle, which exists for all $k$. No
-graph-theoretic obstruction arises because the $\mu$-degree is
-constant ($= 2$), in contrast to theories with higher-valent
-vertices where combinatorial constraints can force truncation.
+the Virasoro wheel sector has no graph-theoretic truncation: the
+cycle $C_k$ exists for every $k\ge3$. Proposition~\ref{prop:vir-truncation}
+turns this graph class into the nonvanishing statement
+$m_k\ne0$ only after the analytic SDR and wheel-residue hypotheses are
+imposed.
 
 At genus~$g \ge 1$, the curved bar structure
 $d^2_{\mathrm{fib}} = \kappa(\mathrm{Vir}_c) \cdot \omega_g$
@@ -314,21 +326,25 @@ encodes higher-graviton vertex corrections. The shadow-tower
 obstructions $o_k$ (Vol~I) are homotopy invariants of the full
 $A_\infty$ structure; the non-termination $o_5 \ne 0$ of
 Section~\ref{subsec:gravity-shadow-tower} is consistent with the
-infinite perturbative depth established above.
-These non-vanishing higher operations $m_k$ ($k \ge 3$) are instances of the BRST homological transfer from Drinfeld--Sokolov reduction: the pre-reduction affine algebra $\hat{\mathfrak{g}}_k$ is Koszul, but DS reduction introduces the higher operations via Theorem~\ref{thm:ds-koszul-obstruction}.
+conditional infinite perturbative depth above.
+Under the same hypotheses, these non-vanishing higher operations
+$m_k$ ($k \ge 3$) are instances of the BRST homological transfer from
+Drinfeld--Sokolov reduction: the pre-reduction affine algebra
+$\hat{\mathfrak{g}}_k$ is Koszul, but DS reduction introduces the
+higher operations via Theorem~\ref{thm:ds-koszul-obstruction}.
 \end{remark}
 
 \begin{remark}[DS preserves Koszulness, destroys formality]%
 \label{rem:ds-koszul-formality-scissors}%
 \index{Drinfeld--Sokolov reduction!Koszulness vs.\ formality}%
 Principal DS reduction is a functor that preserves chiral
-Koszulness but destroys Swiss-cheese formality for all
-rank~$\ge 2$.
+Koszulness. Under the wheel-residue and split-projection hypotheses,
+it destroys Swiss-cheese formality for rank~$\ge 2$.
 The pre-reduction affine algebra $V_k(\fg)$ has
 $m_k^{\mathrm{SC}} = 0$ for $k \ge 4$ (class~$\mathbf{L}$, depth~$3$; $m_3^{\mathrm{SC}} \neq 0$).
-The post-reduction $\cW$-algebra has $m_k \neq 0$ for all
-$k \ge 3$ (class~$\mathbf{M}$, non-formal): the resolvent
-tree formula generates the infinite $\Ainf$ tower from the
+Under the same hypotheses, the post-reduction $\cW$-algebra has
+$m_k \neq 0$ for all $k \ge 3$ (class~$\mathbf{M}$, non-formal): the
+resolvent tree formula generates the infinite $\Ainf$ tower from the
 formal input via the DS contracting homotopy. Both algebras
 are chirally Koszul (Theorem~\ref{thm:ds-koszul-obstruction}),
 but formality is lost. At the Yangian level: the affine
@@ -473,10 +489,11 @@ Define the generating series
 \mathcal{M}_{\text{Vir}}(T; \lambda_1, \ldots, \lambda_{k-1}) = \sum_{k=1}^\infty \frac{1}{k!} m_k(T^{\otimes k})(\lambda_1, \ldots, \lambda_{k-1}).
 \end{equation}
 
-\begin{theorem}[Recursive Structure of Virasoro $A_\infty$ Operations; \ClaimStatusProvedHere]
+\begin{theorem}[Recursive Structure of Virasoro $A_\infty$ Operations; \ClaimStatusConditional]
 % label removed: thm:vir-recursive
-Let\/ $\cA$ be a logarithmic\/ $\SCchtop$-algebra
-\textup{(}Definition~\textup{\ref{def:log-SC-algebra})}.
+Assume that the Khan--Zeng Virasoro realization satisfies the KZ
+analytic SDR package of
+Assumption~\textup{\ref{assum:kz-analytic-sdr-package}}.
 The generating function $\mathcal{M}_{\text{Vir}}$ satisfies a functional equation:
 \begin{equation}
 \mathcal{M}_{\text{Vir}} = Q_{\text{class}} \mathcal{M}_{\text{Vir}} + \frac{1}{2} \{\mathcal{M}_{\text{Vir}}, \mathcal{M}_{\text{Vir}}\}_\lambda + \mathcal{O}(\hbar),
@@ -485,7 +502,15 @@ where $Q_{\text{class}}$ is the classical BRST operator and the curly bracket is
 \end{theorem}
 
 \begin{proof}
-The BV master equation $\tfrac{1}{2}\{S_{\mathrm{BV}}, S_{\mathrm{BV}}\}_{\mathrm{BV}} + \hbar\Delta S_{\mathrm{BV}} = 0$ governs the effective action $S_{\mathrm{eff}} = \sum_k \frac{1}{k!} S_k$, where $S_k$ encodes the $k$-point operation $m_k$. Identifying $\mathcal{M}_{\mathrm{Vir}} = S_{\mathrm{eff}}|_{T\text{-sector}}$, the master equation at degree $n$ reads:
+Under Assumption~\ref{assum:kz-analytic-sdr-package}, the finite-jet
+BV quotients satisfy the quantum master equation
+$\tfrac{1}{2}\{S_{\mathrm{BV}}, S_{\mathrm{BV}}\}_{\mathrm{BV}}
++ \hbar\Delta S_{\mathrm{BV}} = 0$ and are compatible under
+truncation. The effective action
+$S_{\mathrm{eff}} = \sum_k \frac{1}{k!} S_k$ encodes the operations
+$m_k$. Identifying
+$\mathcal{M}_{\mathrm{Vir}} = S_{\mathrm{eff}}|_{T\text{-sector}}$,
+the master equation at degree $n$ reads:
 \[
 Q_{\mathrm{class}}\, m_n + \sum_{\substack{i+j=n+1\\i,j\ge 2}} \sum_{s} (-1)^{\epsilon(s,j)} m_i(\ldots, m_j(\ldots), \ldots) + \hbar\,(\text{1-loop contribution to } m_n) = 0.
 \]
@@ -1023,16 +1048,16 @@ c_{334}^2=\frac{42c^2(5c+22)}{(c+24)(7c+68)(3c+46)}.
 %% Shadow depth classification for all principal W_N
 %% ------------------------------------------------------------------
 
-\subsection{Shadow depth classification: all principal
-\texorpdfstring{$\mathcal{W}_N$}{W\_N} are Class~\texorpdfstring{$\mathbf{M}$}{M}}
+\subsection{Conditional shadow depth classification for principal
+\texorpdfstring{$\mathcal{W}_N$}{W\_N}}
 \label{subsec:wn-class-M}
 
-The Virasoro wheel argument
-(Proposition~\ref{prop:vir-truncation}) generalises to every principal
-$\mathcal{W}_N$ algebra ($N \ge 2$), establishing infinite shadow depth
-across the entire family. The proof uses only one structural feature:
-the stress tensor~$T$ sits inside every $\mathcal{W}_N$, and its
-cubic vertex $V_3 = T\mu\partial\mu$ generates wheel diagrams at every
+Under the analytic SDR and wheel-residue hypotheses of
+Proposition~\ref{prop:vir-truncation}, the Virasoro wheel sector
+projects into every principal $\mathcal{W}_N$ algebra ($N \ge 2$).
+The structural reason is minimal: the stress tensor~$T$ sits inside
+every $\mathcal{W}_N$, and its cubic vertex
+$V_3 = T\mu\partial\mu$ generates candidate wheel diagrams at every
 degree.
 
 \begin{theorem}[Conditional class-$\mathbf{M}$ criterion for principal
@@ -1043,10 +1068,12 @@ $\mathcal{W}_N$;
 \index{W-algebra!shadow depth}%
 \index{shadow depth!principal W-algebras}%
 Assume that the Khan--Zeng/DS realization of the principal
-$\mathcal{W}_N$ algebra satisfies the physics-bridge hypotheses, that
-the Virasoro wheel-residue lemma of Proposition~\ref{prop:vir-truncation}
-holds, and that the projection to the $T$-sector is split by the
-chosen DS comparison. Then the projected transferred operations
+$\mathcal{W}_N$ algebra satisfies the KZ analytic SDR package of
+Assumption~\textup{\ref{assum:kz-analytic-sdr-package}}, that the
+Virasoro wheel-residue hypothesis of
+Proposition~\textup{\ref{prop:vir-truncation}} holds, and that the
+projection to the $T$-sector is split by the chosen DS comparison.
+Then the projected transferred operations
 \[
   \pi_T\,m_k^{\mathcal W_N}(T,\ldots,T)
 \]
@@ -1105,21 +1132,20 @@ m_k^{\mathcal{W}_N}(T, \ldots, T)
 
 \medskip
 \emph{Step~3: Projected wheel non-vanishing.}
-By Proposition~\ref{prop:vir-truncation}, the Virasoro wheel integral
+By Proposition~\ref{prop:vir-truncation}, the Virasoro wheel class
 \[
 m_k^{\mathrm{Vir}}(T, \ldots, T)
 \;\sim\; \int_{\FM_k(\C) \times \Conf_k^{<}(\R)}
  \prod_{i=1}^k K(z_i - z_{i+1},\, t_i - t_{i+1})\;
  \partial_{z_i}\cdots
 \]
-is nonzero for all $k \ge 3$. The mechanism is purely
-combinatorial: each cubic vertex $V_3$ has exactly $2$
-$\mu$-slots, so the unique connected one-loop graph at degree~$k$
-is the Hamiltonian cycle $C_k$, which exists for all $k \ge 3$.
-The integral is non-degenerate because the $k$ holomorphic
-1-forms from the propagator fill the form degree
-$k = \dim_{\R}\FM_k(\C) - (k-2)$ required for a
-non-vanishing top-stratum contribution.
+is nonzero for all $k \ge 3$ under the wheel-residue survival
+hypothesis. The graph mechanism is purely combinatorial: each cubic
+vertex $V_3$ has exactly $2$ $\mu$-slots, so the connected one-loop
+graph at degree~$k$ is the Hamiltonian cycle $C_k$, which exists for
+all $k \ge 3$. The compactified integral and its boundary
+renormalization are exactly the analytic content supplied by the KZ SDR
+package.
 
 By~\eqref{eq:wn-sector-decoupling}, this one-loop wheel integral
 contributes to the projected $T$-sector operation. Higher-loop
@@ -1151,7 +1177,7 @@ $W_s \chi_{s'} \partial^{a} \chi_{s''}$ whenever the OPE
 $\{W_{s\,\lambda} W_{s'}\}$ is nontrivial, providing
 valence-2 $\chi$-slots analogous to the $\mu$-slots
 in the Virasoro case. These yield additional Hamiltonian
-cycles in the $\chi$-edge graph.
+candidate cycles in the $\chi$-edge graph.
 
 For $\mathcal{W}_N$ with $N-1$ generators, the maximum
 loop order at degree~$k$ grows with $N$: the Virasoro
@@ -1164,9 +1190,9 @@ $W_s$-self-OPE (after the $d\log$ bar kernel absorbs one pole order).
 \begin{remark}[Koszulness vs.\ non-formality for $\mathcal{W}_N$]
 \label{rem:wn-koszul-nonformality}
 \index{W-algebra!Koszulness vs.\ non-formality}%
-Theorem~\ref{thm:wn-class-M-stable} establishes that every
-$\mathcal{W}_N$ has \emph{non-formal} Swiss-cheese structure:
-the transferred $\Ainf$ operations $m_k$ do not vanish on
+Under the hypotheses of Theorem~\ref{thm:wn-class-M-stable}, the
+principal $\mathcal{W}_N$ has \emph{non-formal} Swiss-cheese
+structure: the transferred $\Ainf$ operations $m_k$ do not vanish on
 cohomology. This is \emph{not} a failure of chiral Koszulness.
 Every principal $\mathcal{W}_N$ is chirally Koszul
 \textup{(}by the one-loop exactness criterion,
@@ -1330,11 +1356,11 @@ Let $\cA = \mathcal{W}_{N,c}$.
 \begin{remark}[Shadow depth atlas for $\mathcal{W}_N$]
 \label{rem:wn-shadow-atlas}
 \index{shadow depth!W-algebra atlas}%
-Theorem~\ref{thm:wn-class-M-stable} and
+Under the hypotheses of Theorem~\ref{thm:wn-class-M-stable},
 Proposition~\ref{prop:wn-complementarity}
-extend the shadow obstruction tower atlas
+extends the shadow obstruction tower atlas
 (Computation~\ref{comp:shadow-tower-atlas}) by
-an infinite column:
+a conditional infinite column:
 
 \begin{center}
 \small
@@ -1361,11 +1387,12 @@ $\mathcal{W}_{N,c}$ & $\mathbf{M}$
 \end{center}
 
 \noindent
-All entries in this column are chirally Koszul with non-formal
-Swiss-cheese structure. The infinite depth arises from the
+All class-$\mathbf M$ entries in this column are read under
+Theorem~\ref{thm:wn-class-M-stable}. They are chirally Koszul with
+non-formal Swiss-cheese structure. The infinite depth arises from the
 Virasoro sub-sector, which contributes a one-loop wheel diagram
 at every degree $k \ge 3$. The higher-spin sectors contribute
-additional non-vanishing operations at higher loop orders,
+additional candidate operations at higher loop orders,
 but the depth is already $\infty$ from the stress tensor alone.
 
 \emph{Two depths.}\enspace The ``Depth~$= \infty$'' column
@@ -1576,11 +1603,13 @@ residue, reflecting the weight-$1$ lacuna.
 \mathcal{W}_N$: universal formulas}
 \label{subsubsec:ds-slN-wN-universal}
 
-\begin{theorem}[Universal DS transport for principal
-$\mathcal{W}_N$; \ClaimStatusProvedHere]
+\begin{theorem}[Universal DS transport with conditional depth clause for principal
+$\mathcal{W}_N$; \ClaimStatusConditional]
 \label{thm:universal-ds-transport}
 \index{Drinfeld--Sokolov reduction!universal transport!%
 principal slN@principal $\mathfrak{sl}_N$}%
+Assume the KZ/DS realization satisfies the analytic SDR and
+wheel-residue hypotheses of Theorem~\textup{\ref{thm:wn-class-M-stable}}.
 For every $N \ge 2$ and non-critical level $k \ne -N$,
 the principal DS reduction $V_k(\mathfrak{sl}_N) \to
 \mathcal{W}_{N,c(k)}$ satisfies:
@@ -1635,10 +1664,11 @@ the principal DS reduction $V_k(\mathfrak{sl}_N) \to
  \textup{(}double pole, $d_{\max} = 1$\textup{)}
  $\;\xrightarrow{\;\mathrm{DS}\;}\;$
  $\mathcal{W}_{N,c(k)} \in \mathrm{Class}\;\mathbf{M}$
- \textup{(}$2N$-fold pole, $d_{\max} = \infty$\textup{)}.
+ \textup{(}$2N$-fold pole, conditional $d_{\max} = \infty$\textup{)}.
  Chiral Koszulness is preserved
  \textup{(}Theorem~\textup{\ref{thm:ds-koszul-obstruction})};
- formality is destroyed for all $N \ge 2$.
+ formality is destroyed for all $N \ge 2$ under the stated
+ wheel-survival hypothesis.
 \item \textbf{Gap migration.}
  At degree~$n$, the depth gap in the binding
  $(W_N, \ldots, W_N)$ sector is:
@@ -1661,12 +1691,11 @@ contraction. The vacuum selection rule
 (Remark~\ref{rem:weight-1-vacuum-selection}) eliminates the
 $\lambda^{2N-2}$ coefficient.
 
-Part~(v) is Theorem~\ref{thm:wn-class-M-stable} combined with the
-pole-order characterisation of the depth classes: the affine
-double pole places $V_k(\fg)$ in class~$\mathbf{L}$, while the
-$2N$-fold pole of $\mathcal{W}_N$ forces
-$d(\mathcal{W}_N) = \infty$ (class~$\mathbf{M}$) by the wheel
-argument.
+Part~(v) is conditional on Theorem~\ref{thm:wn-class-M-stable}
+combined with the pole-order characterisation of the depth classes:
+the affine double pole places $V_k(\fg)$ in class~$\mathbf{L}$, while
+the $2N$-fold pole of $\mathcal{W}_N$ gives class~$\mathbf{M}$ once the
+wheel-survival hypothesis supplies $d(\mathcal{W}_N)=\infty$.
 
 Part~(vi): the gap migrates by one unit per additional input.
 At degree~$2$, the binding sector $(W_N, W_N)$ has maximum depth
@@ -1886,10 +1915,14 @@ is universal.
 \label{subsubsec:universal-complexity}
 
 \begin{proposition}[Universal DS complexity transport;
-\ClaimStatusProvedHere]
+\ClaimStatusConditional]
 \label{prop:universal-ds-complexity}
 \index{Drinfeld--Sokolov reduction!universal complexity transport|textbf}%
-For every simple Lie algebra $\fg$ and every non-critical level~$k$,
+Assume the principal KZ/DS realization satisfies the analytic SDR,
+wheel-residue, and split-projection hypotheses of
+Theorem~\textup{\ref{thm:wn-class-M-stable}} for
+$\mathcal W_k(\fg)$. For every simple Lie algebra $\fg$ and every
+non-critical level~$k$,
 principal DS reduction effects the following transport:
 \begin{align}
 \label{eq:universal-transport}
@@ -1900,7 +1933,7 @@ V_k(\fg) \;\in\; \text{Class}\;\mathbf{L}
 &\text{Output:}\quad
 \mathcal{W}_k(\fg) \;\in\; \text{Class}\;\mathbf{M}
  \qquad(\text{$2s_r$-fold pole},\;
- d_{\max} = \infty,\;
+ \text{conditional }d_{\max} = \infty,\;
  r_{\max} = \infty), \notag
 \end{align}
 where $s_r = e_r + 1$ is the highest spin. The transport preserves:
@@ -1913,7 +1946,8 @@ where $s_r = e_r + 1$ is the highest spin. The transport preserves:
 \item Gravitational coproduct primitivity at all degrees
  \textup{(}Theorem~\textup{\ref{thm:gravitational-primitivity})}.
 \end{enumerate}
-The transport destroys formality for all $\fg$ with rank $\ge 1$.
+The transport destroys formality for all $\fg$ with rank $\ge 1$ under
+the stated survival hypotheses.
 \end{proposition}
 
 \begin{proof}
@@ -1924,9 +1958,11 @@ OPE has at most double poles;
 degree-$s_i$ polynomials in the affine currents, so the
 $W_{s_r}$-self-OPE has pole order $2s_r > 2$ for all $\fg$
 with rank $\ge 1$;
-(3)~Theorem~\ref{thm:wn-class-M-stable} (whose proof uses only the
-Virasoro sub-sector $T = W_2 \subset \cW(\fg)$) applies to all
-$\fg$ since every $\cW(\fg)$ contains the Virasoro algebra.
+(3)~the conditional Virasoro-sector input of
+Theorem~\ref{thm:wn-class-M-stable} applies once the stated SDR,
+wheel-residue, and split-projection hypotheses hold for
+$\cW(\fg)$, since every principal $\cW(\fg)$ contains the stress
+tensor $T = W_2$.
 Coproduct primitivity is
 Theorem~\ref{thm:gravitational-primitivity}, which holds for
 all principal DS reductions.

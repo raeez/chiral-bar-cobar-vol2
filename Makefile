@@ -50,12 +50,13 @@ SOURCES   := $(wildcard *.tex) \
 # Output -- everything goes to out/
 OUT_DIR   := out
 PDF       := $(OUT_DIR)/main.pdf
+ICLOUD_MAIN_PREREQ := $(if $(wildcard $(PDF)),,$(PDF))
 
 # Working notes
 WN_TEX    := working_notes.tex
 
 # Standalone documents
-STANDALONE_TEX := $(wildcard standalone/*.tex)
+STANDALONE_TEX := $(filter-out standalone/preface_full_survey.tex,$(wildcard standalone/*.tex))
 STANDALONE_PASSES := 3
 
 STAMP     := .build_stamp
@@ -78,7 +79,7 @@ AUX_EXTS  := aux log out toc synctex.gz fdb_latexmk fls bbl blg \
 .PHONY: all fast clean veryclean clean-builds count check test dist release help working-notes standalone icloud verify-independence verify-independence-verbose
 
 ## icloud: Copy latest PDFs to iCloud Drive (subject-organised)
-icloud: $(STAMP) standalone
+icloud: $(ICLOUD_MAIN_PREREQ) standalone
 	@echo "  ── Copying Vol II to iCloud (subject-organised) ──"
 	@mkdir -p "$(ICLOUD_DIR)/volumes"
 	@mkdir -p "$(ICLOUD_DIR)/vol2_3d_ht_physics"
@@ -108,6 +109,9 @@ $(STAMP): $(SOURCES) Makefile $(BUILD_SCRIPT)
 	@echo ""
 	@echo "  ✓  $(PDF) built successfully."
 	@echo ""
+
+$(PDF): $(STAMP)
+	@true
 
 ## fast: Bounded quick build for rapid iteration → out/main.pdf
 fast:
@@ -164,6 +168,10 @@ standalone:
 		for tex in $(STANDALONE_TEX); do \
 			if [ ! -f "$$tex" ]; then continue; fi; \
 			base=$$(basename "$$tex" .tex); \
+			if [ -f "$(OUT_DIR)/$$base.pdf" ] && [ "$(OUT_DIR)/$$base.pdf" -nt "$$tex" ]; then \
+				echo "  ✓  $(OUT_DIR)/$$base.pdf (up to date)"; \
+				continue; \
+			fi; \
 			tmpdir=$$(mktemp -d "/tmp/mkd-$$(basename "$$(pwd)")-standalone-$$base.XXXXXX"); \
 			echo "  [standalone] $$tex → $(OUT_DIR)/$$base.pdf"; \
 			for pass in $$(seq 1 $(STANDALONE_PASSES)); do \
