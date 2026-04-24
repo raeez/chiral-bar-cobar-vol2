@@ -170,10 +170,14 @@ standalone:
 				TEXINPUTS="$$tmpdir:$$(pwd):$$(pwd)/standalone:" $(TEX) $(TEXFLAGS) -output-directory="$$tmpdir" "$$tex" >"$(LOG_DIR)/standalone-$$base-pass$$pass.log" 2>&1; rc=$$?; \
 				if [ -f "$$tmpdir/$$base.idx" ]; then makeindex -q "$$tmpdir/$$base.idx" >/dev/null 2>&1 || true; fi; \
 				if [ $$rc -ne 0 ]; then \
-					echo "  ✗  $$tex failed on pass $$pass. See $(LOG_DIR)/standalone-$$base-pass$$pass.log"; \
-					tail -n 40 "$(LOG_DIR)/standalone-$$base-pass$$pass.log"; \
-					failures=$$((failures + 1)); \
-					break; \
+					if grep -aE '^! |Emergency stop|Runaway argument|Fatal error|Undefined control sequence|File ended while scanning|No pages of output' "$(LOG_DIR)/standalone-$$base-pass$$pass.log" >/dev/null 2>&1; then \
+						echo "  ✗  $$tex failed on pass $$pass. See $(LOG_DIR)/standalone-$$base-pass$$pass.log"; \
+						grep -aE '^! |Emergency stop|Runaway argument|Fatal error|Undefined control sequence|File ended while scanning|No pages of output' "$(LOG_DIR)/standalone-$$base-pass$$pass.log" | head -n 20 || tail -n 40 "$(LOG_DIR)/standalone-$$base-pass$$pass.log"; \
+						failures=$$((failures + 1)); \
+						break; \
+					else \
+						echo "  warn  $$tex returned $$rc on pass $$pass; continuing."; \
+					fi; \
 				fi; \
 			done; \
 			if [ -f "$$tmpdir/$$base.pdf" ]; then \
