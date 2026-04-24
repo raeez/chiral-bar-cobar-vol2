@@ -902,3 +902,12 @@ This session added 11 cross-volume AP sibling entries to Vol II's antipattern ca
 **Stab-dim + pentagon-canonical-FK.** AP-V2-87 connects to Vol II's KS wall-crossing on 3D HT targets: $\dim_\C \mathrm{Stab}(\cC) = \mathrm{rk}\,K_0^{\mathrm{num}}(\cC)$ INDEPENDENT of the CY dimension $d$ (Bridgeland arXiv:math/0212237 Thm 7.1); on conifold $\mathrm{rk} = 2$ not $d = 3$. Pentagon in canonical Faddeev-Kashaev form $\Psi(x_0) \Psi(x_1) = \Psi(x_1) \Psi(q^{-1/2} x_0 x_1) \Psi(x_0)$ with middle factor = bound-state $[S_0] + [S_1]$ quantum cocycle $q^{-\langle S_0, S_1 \rangle_{\mathrm{skew}} / 2} = q^{-1/2}$. The skew-Euler form is $\langle \gamma, \gamma' \rangle = 2 \chi(\gamma, \gamma')$ on CY$_3$ with $\chi$ ANTISYMMETRIC (Serre $(-1)^3 = -1$) — diagonal Poincaré dimension $P = 2$ on conifold simples is NOT $\chi$.
 
 *Raeez Lorgat, 2026-04-23.*
+
+
+## Inscription queue (Vol II targets)
+
+| # | Target (file:line) | Correction to inscribe |
+|---|---|---|
+| Q10 | `chapters/theory/sc_chtop_heptagon.tex:388-399` | Rephrase concluding clause of Theorem `thm:bar-diff-eq-holfact`: the bar complex is the Koszul-dual chain model of the derived-centre pair $(C^\bullet_{\mathrm{ch}}(A,A),A)$ which carries the $\mathsf{SC}^{\mathrm{ch,top}}$-structure (Reading B, AP165-compliant); the prior wording "coloured dg $\mathsf{SC}^{\mathrm{ch,top}}$-coalgebra structure on $B^{\mathrm{ch}}(A)$" risks suggesting bar IS SC-coalgebra |
+| — | Native sequencing in preface + Part openers | $W_N\to E_{N+1}^{\mathrm{top}}$ scope: $N\le 3$ unconditional (Fateev–Lukyanov + Linshaw Thm 7.1 antighost commutativity at spin $\le 3$); $N\ge 4$ conjectural on antighost axiom C4; $W_\infty\to E_\infty^{\mathrm{top}}$ conditional on C4 at all spins |
+| — | Three-tier topologisation scope across $\mathsf{SC}^{\mathrm{ch,top}}$ chapters | Tier I cohomological unconditional; Tier II qi-model transferred unconditional; Tier III strict chain-level ORIGINAL complex: $\mathsf G/\mathsf L/\mathsf C$ closed, class $\mathsf M$ OPEN (= F3 frontier) |
