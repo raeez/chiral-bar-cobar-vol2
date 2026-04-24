@@ -15060,3 +15060,127 @@ Audited the active Vol II dirty surface for local contradictions introduced by t
 ### Verification
 
 - `PYTHONPATH=compute pytest -q compute/tests/test_w3_pva.py` passed (`58 passed`).
+
+## 2026-04-24 - FM, spectral, and bulk-boundary scope rectification
+
+- Target: `chapters/theory/fm-calculus.tex`,
+  `chapters/connections/relative_feynman_transform.tex`,
+  `chapters/theory/foundations.tex`,
+  `chapters/connections/spectral-braiding-core.tex`,
+  `chapters/connections/log_ht_monodromy_frontier.tex`,
+  `chapters/connections/ht_bulk_boundary_line.tex`,
+  `chapters/connections/universal_holography_functor.tex`,
+  `chapters/connections/dnp_identification_master.tex`, and
+  `chapters/connections/conclusion.tex`.
+- Status: `CONVERGED`
+
+### Findings
+
+1. `2026-04-24-fm-spectral-bulk-001`
+   Severity: `CRITICAL`
+   Class: `local FM calculus promoted to arbitrary global algebra`
+   Issue: cluster factorization, explicit `m_2/m_3` formulas, K3/FM
+   discriminant identifications, and shifted-Poincare interpretations were
+   marked as proved for arbitrary logarithmic `SC^{ch,top}` algebras.
+   Fix: restrict FM theorems to product-formal local FM-log weight-form
+   presentations, make physical formulas proved implications under
+   factorized-parametrix hypotheses, and separate K3/FM and
+   shifted-symplectic bridges as explicit hypothesis-bound statements.
+   Status: `CONVERGED`
+
+2. `2026-04-24-fm-spectral-bulk-002`
+   Severity: `CRITICAL`
+   Class: `classical r-kernel promoted to global quantum R/factorization quantum group`
+   Issue: spectral-braiding statements treated local OPE data as producing a
+   canonical quantum `R(z)`, a global factorization quantum group, and a
+   universal dg-shifted Yangian recognition theorem.
+   Fix: separate classical collision kernel from quantum `R`, require chosen
+   quantization/associator or affine evaluation comparison data, and scope
+   factorization quantum groups to local shadows unless the full Ran-cosheaf
+   comparison is supplied.
+   Status: `CONVERGED`
+
+3. `2026-04-24-fm-spectral-bulk-003`
+   Severity: `HIGH`
+   Class: `global bulk-boundary triangle overreach`
+   Issue: chapter openings and synthesis statements still presented the
+   corrected bulk-boundary-line triangle and universal holography functor as
+   proved for arbitrary logarithmic `SC^{ch,top}` algebras.
+   Fix: scope bulk/Hochschild and holography claims as proved implications
+   on chosen HT
+   prefactorization realizations, compact-generation/exact-sector hypotheses,
+   factorized parametrices, and boundary-linear comparison surfaces; the
+   unrestricted all-theory global triangle is separated as a frontier problem.
+   Status: `CONVERGED`
+
+### Verification
+
+- `python3 scripts/generate_metadata.py` regenerated the theorem registry;
+  the current dirty-tree census is `PH=2356`, `CD=106`, `H=42`
+  across 2996 tagged claims.
+- `python3 -m pytest compute/tests/test_bar_differential_squared_iv.py compute/tests/test_climax_theorems_wave5_iv.py -q`
+  passed (`8 passed`).
+- `git diff --check` passed.
+
+## 2026-04-24 - Continued architecture swarm integration
+
+- Target: `chapters/theory/factorization_swiss_cheese.tex`,
+  `chapters/connections/relative_feynman_transform.tex`,
+  `chapters/theory/modular_swiss_cheese_operad.tex`,
+  `chapters/connections/e_infinity_topologization.tex`,
+  `chapters/theory/topologization_class_m_original_complex_platonic.tex`,
+  `.claude/specs/route-c-relative-ft.md`,
+  `compute/lib/factorization_modular_engine.py`,
+  `compute/tests/test_factorization_modular_engine.py`, and
+  `compute/tests/test_modular_sc_mixed_filtration_iv.py`.
+- Status: `CONVERGED` on the integrated Route A/B/C and ladder-scope
+  repairs; residual topologisation propagation remains open.
+
+### Findings
+
+1. `2026-04-24-architecture-swarm3-001`
+   Severity: `CRITICAL`
+   Class: `curved differential treated as additive flat differential`
+   Issue: the Route C Heisenberg example and the factorization
+   Riemann--Hilbert proof used strict intertwining or an additive
+   `D_0 + D_1 + kappa omega` formula despite the curved square
+   `d_fib^2 = kappa omega`.
+   Fix: replaced the additive formula by curvature transport, typed
+   `Phi_g` as a curved coderived morphism with Positselski cone
+   criterion, and added a regression test rejecting the additive formula.
+   Status: `CONVERGED`
+
+2. `2026-04-24-architecture-swarm3-002`
+   Severity: `CRITICAL`
+   Class: `mixed open-closed geometry collapsed to product geometry`
+   Issue: the mixed HT Ran geometry and compute engine still carried
+   strict product/surjection/injection language.
+   Fix: defined the geometry through Vol I bordered FM compactifications
+   with Type III mixed bubbling, changed product statements to
+   depth-zero associated-graded statements, and changed Route A/B maps to
+   comparison maps into a shared skeleton.
+   Status: `CONVERGED`
+
+3. `2026-04-24-architecture-swarm3-003`
+   Severity: `CRITICAL`
+   Class: `topologisation ladder counted W-symmetries as translations`
+   Issue: the ladder identified higher-spin currents with independent
+   topological directions.
+   Fix: restated the ladder as a criterion requiring independent
+   commuting topological translation operators, antighost homotopies, and
+   coherent higher homotopies. The raw `1/e` original-complex obstruction
+   was removed from the active resolution and replaced by the
+   Stirling/finite-propagation criterion.
+   Status: `PARTIAL`: further propagation is still needed through the
+   WN/beta_N and weight-completed files named by the swarm report.
+
+### Verification
+
+- `compute/.venv/bin/python -m pytest compute/tests/test_factorization_modular_engine.py compute/tests/test_modular_sc_mixed_filtration_iv.py compute/tests/test_e_infinity_topologization.py -q`
+  passed (`74 passed`).
+- `compute/.venv/bin/python compute/scripts/audit_independent_verification.py --tex-root . --tests-dir compute/tests --show-orphans`
+  passed: no tautologies and no orphan registry entries; coverage gap
+  remains.
+- `python3 scripts/generate_metadata.py` regenerated metadata:
+  `PH=2392`, `CD=119`, `H=44`, total `3053`.
+- `git diff --check` passed.

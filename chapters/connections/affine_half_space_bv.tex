@@ -6,7 +6,7 @@
 \label{chap:affine-half-space-bv}
 
 \begin{remark}[Position in the theorem graph]
-Half-space BV quantization of the Khan--Zeng Poisson sigma model on $\C \times \R_{\ge 0}$ produces the affine Kac--Moody boundary VOA; the genus-0 projection of $\Theta^{\mathrm{oc}}$ is one-loop exact. The general case (Theorem~\ref{thm:general-half-space-bv}) reduces to whole-space Kontsevich machinery via the doubling construction (Theorem~\ref{thm:doubling-rwi}). The affine Poisson--vertex sigma model on $\C \times \R_{\ge 0}$ is mixed BF/Chern--Simons theory, solved to all loop orders by the Gwilliam--Williams half-space BV theorem.
+Half-space BV quantization of the affine Khan--Zeng Poisson sigma model on $\C \times \R_{\ge 0}$ produces the affine Kac--Moody boundary VOA; the genus-0 projection of $\Theta^{\mathrm{oc}}$ is one-loop exact. The doubling theorem proves the reflected weight identity. It does not construct the renormalized BV package. The general half-space quantization statement (Theorem~\ref{thm:general-half-space-bv}) is conditional on the Costello BV data, anomaly vanishing, and a QME solution. The affine Poisson--vertex sigma model on $\C \times \R_{\ge 0}$ is mixed BF/Chern--Simons theory, solved to all loop orders by the Gwilliam--Williams half-space BV theorem.
 \end{remark}
 
 For a semisimple Lie algebra $\mathfrak g$, the affine Poisson--vertex sigma model of
@@ -604,12 +604,17 @@ single affine formal parameter. All genuine analytic work concentrates in the af
 
 \section{The general half-space programme}
 
-\begin{theorem}[General half-space BV theorem for Poisson vertex sigma models; preview]\label{thm:general-half-space-bv-preview}
-\ClaimStatusProvedHere{} (Theorem~\ref{thm:general-half-space-bv}).
+\begin{theorem}[Conditional half-space BV theorem for Poisson vertex sigma models; preview]\label{thm:general-half-space-bv-preview}
+\ClaimStatusConditional{} (Theorem~\ref{thm:general-half-space-bv}).
 Let $V$ be a freely generated Poisson vertex algebra on which the holomorphic translation operator is inner,
 so that the corresponding three-dimensional Poisson--vertex sigma model is fully topological.
-Then the Neumann half-space theory on $\mathbb C\times\mathbb R_{\ge 0}$ admits a renormalized perturbative BV
-quantization whose boundary factorization algebra is a vertex algebra deforming the original Poisson vertex algebra.
+Assume in addition a Costello-renormalized half-space BV package:
+a product HT gauge fixing, a factorized logarithmic reflected
+parametrix, local counterterms solving the QME to all orders, and
+vanishing anomaly class. Then the Neumann half-space theory on
+$\mathbb C\times\mathbb R_{\ge 0}$ has a boundary factorization
+algebra which is a vertex algebra deforming the original Poisson
+vertex algebra.
 \end{theorem}
 
 \begin{construction}[The colored half-space configuration-space operad]\label{cons:half-space-colored-operad}
@@ -780,11 +785,11 @@ The reflected propagator is defined by the method of images:
 \[
 K^{\mathrm{refl}}(z,t;\,z',t')
 \;=\;
-K(z,t;\,z',t') \;+\; K(z,t;\,\bar z',-t'),
+K(z,t;\,z',t') \;+\; K(z,t;\,z',-t'),
 \]
 where $K(z,t;\,z',t')$ is the bulk propagator of the holomorphic-topological
 theory (meromorphic in $z-z'$, exponentially decaying in $|t-t'|$). The
-image term $K(z,t;\,\bar z',-t')$ enforces the Neumann condition
+image term $K(z,t;\,z',-t')$ enforces the Neumann condition
 $(\partial_t + \bar\partial_z)\big|_{t=0} = 0$ and is the source of all
 reflection-stratum contributions.
 \end{construction}
@@ -792,13 +797,14 @@ reflection-stratum contributions.
 \begin{theorem}[Reduction to the reflected weight identity]%
 \label{thm:half-space-reduction}
 \ClaimStatusProvedHere.
-The following are equivalent:
+Assume that the graph weights come from a renormalized logarithmic
+half-space BV theory. Then the boundary factorization identities are
+equivalent to the reflected weight identity:
 \begin{enumerate}
-\item The Poisson--vertex sigma
-model on $\mathbb C\times\mathbb R_{\ge 0}$ with Neumann boundary condition
-admits a renormalized BV quantization to all orders in $\hbar$, and the
-boundary factorization algebra is a vertex algebra
-(Theorem~\ref{thm:general-half-space-bv}).
+\item The renormalized boundary operations of the Poisson--vertex
+sigma model on $\mathbb C\times\mathbb R_{\ge 0}$ with Neumann
+boundary condition satisfy the boundary factorization identities and
+assemble to a vertex algebra.
 
 \item \textbf{Reflected weight identity.} For every admissible graph $\Gamma$
 and every codimension-one stratum $S$ of
@@ -814,10 +820,11 @@ propagator $K^{\mathrm{refl}}$ satisfies
 where the sum runs over all codimension-one boundary strata and
 $\operatorname{Res}_S$ denotes the Poincar\'e residue along $S$.
 \end{enumerate}
-The implication $(2)\Rightarrow(1)$ is unconditional: once the reflected weight
-identity holds, the operadic Stokes theorem on the compactified configuration
-space automatically assembles the boundary factorization algebra into a vertex
-algebra.
+The implication $(2)\Rightarrow(1)$ is algebraic after the
+renormalized BV data have been constructed: the reflected weight
+identity is the Stokes identity which verifies the boundary operations.
+It does not by itself construct the Costello effective action, the
+counterterm scheme, or the all-loop QME.
 \end{theorem}
 
 \begin{proof}[Proof of $(2)\Rightarrow(1)$]
@@ -860,10 +867,10 @@ exists as a formal associative algebra with $\mathbb C^*$-action.
 The half-space BV theory is the \emph{geometric realization} of this
 equivariant quantization. The bulk theory on $\mathbb C\times\mathbb R$ is the
 non-equivariant Kontsevich quantization. Imposing the Neumann boundary
-condition at $t=0$ forces the propagator to satisfy reflection symmetry,
-which is precisely the geometric encoding of $\mathbb C^*$-equivariance:
-the reflection $(z,t)\mapsto(\bar z,-t)$ intertwines the $\mathbb C^*$-action
-with complex conjugation. Thus the reflected propagator calculus of
+condition at $t=0$ forces the propagator to satisfy topological-time
+reflection symmetry. The reflection is
+$(z,t)\mapsto(z,-t)$: it fixes the boundary $\C\times\{0\}$ and does
+not conjugate the holomorphic coordinate. Thus the reflected propagator calculus of
 Construction~\ref{cons:equivariant-kontsevich-integral} is Dolgushev formality
 made manifest in the half-space geometry.
 
@@ -1076,16 +1083,17 @@ contractions.
 
 \begin{corollary}[Quadratic reflected weight identity]
 \label{cor:quadratic-rwi}
-\ClaimStatusProvedHere{} (by Theorem~\ref{thm:general-half-space-bv}).
+\ClaimStatusProvedHere{} (by Theorem~\ref{thm:doubling-rwi}; independent of the conditional BV quantization theorem).
 For every freely generated PVA~$V$ of jet order $\le 2$, the
 correction $\delta_2(V)$ vanishes:
 $\operatorname{RWI}(J^{\le 2}V)=0$.
 \end{corollary}
 
 \begin{proof}
-Immediate from Theorem~\ref{thm:general-half-space-bv}, which proves
-the reflected weight identity at all jet orders via the doubling
-construction (Theorem~\ref{thm:doubling-rwi}).
+Immediate from Theorem~\ref{thm:doubling-rwi}, which proves the
+reflected weight identity at all jet orders via the doubling
+construction. No renormalized BV quantization is used in this
+corollary.
 \end{proof}
 
 \begin{remark}[Three independent perspectives on the quadratic case]
@@ -1120,7 +1128,7 @@ connects a bulk vertex to its image:
 \delta_3(V)\big|_{\Gamma_3^{(1)}}
 =
 \int_{t>0}
-\operatorname{Res}_{z=\bar z}
+\operatorname{Res}_{t=0}
 \Bigl(
 c^{ij}_{k,\ell mn}\,K(z,t;z,-t)\,K^{\mathrm{refl}}(z,t;z'_2,t'_2)
 \Bigr)
@@ -1133,7 +1141,7 @@ the convergence of this integral.
 
 \begin{corollary}[Cubic reflected weight identity]
 \label{cor:cubic-rwi}
-\ClaimStatusProvedHere{} (by Theorem~\ref{thm:general-half-space-bv}).
+\ClaimStatusProvedHere{} (by Theorem~\ref{thm:doubling-rwi}; independent of the conditional BV quantization theorem).
 The jet-order-$3$ correction $\delta_3(V)$ vanishes for every
 freely generated PVA~$V$ satisfying the Jacobi identity. The
 mechanism, revealed by the Jacobi-reflection decomposition below
@@ -1216,7 +1224,7 @@ boundary observables), controlled by the module axioms.
 
 \emph{Reflection strata.}
 An interior vertex at $(z,t)$ collides with its image
-$(\bar z,-t)$. These strata have no algebraic counterpart: they
+$(z,-t)$. These strata have no algebraic counterpart: they
 arise purely from the half-space geometry and the method of images.
 Their contributions are computed by the self-image propagator
 $K(z,t;\,z,-t)$ and its derivatives.
@@ -1286,7 +1294,7 @@ the boundary strata of the whole-space configuration space
 $\overline{\operatorname{Conf}}(\C\times\R)$ (i.e., the standard FM
 boundary structure without reflection). The residues along these
 strata involve only the unreflected propagator $K$, since the
-image-charge term $K(z,t;\,\bar z',-t')$ contributes exclusively to
+image-charge term $K(z,t;\,z',-t')$ contributes exclusively to
 reflection strata. The jet-order-$N$ contribution from these
 unreflected graphs, with one degree-$N$ insertion in an otherwise
 affine background, is completely determined by the $A_\infty$
@@ -1339,8 +1347,8 @@ where the standard Kontsevich--FM machinery applies.
 Let $X=\C\times\R_{\ge 0}$ be the half-space and
 $X_{\mathrm{dbl}}=\C\times\R$ the doubled space. The reflection
 $\sigma\colon X_{\mathrm{dbl}}\to X_{\mathrm{dbl}}$,
-$\sigma(z,t)=(\bar z,-t)$, has $X$ as a fundamental domain and
-fixed-point locus $\R\times\{0\}\subset X_{\mathrm{dbl}}$.
+$\sigma(z,t)=(z,-t)$, has $X$ as a fundamental domain and
+fixed-point locus $\C\times\{0\}\subset X_{\mathrm{dbl}}$.
 
 The \emph{method-of-images embedding}
 \[
@@ -1351,7 +1359,7 @@ The \emph{method-of-images embedding}
 sends a configuration $(p_1,\ldots,p_n)$ with $p_i=(z_i,t_i)\in X$ to
 the $\sigma$-invariant configuration
 $(p_1,\ldots,p_n,\sigma(p_1),\ldots,\sigma(p_n))$. Each original
-point is paired with its image $\sigma(p_i)=(\bar z_i,-t_i)$.
+point is paired with its image $\sigma(p_i)=(z_i,-t_i)$.
 \end{construction}
 
 \begin{proposition}[Reflected propagator as pullback; \ClaimStatusProvedHere]
@@ -1372,11 +1380,11 @@ original point $p_i$ and the image point $\sigma(p_j)$.
 \begin{proof}
 By definition,
 $K^{\mathrm{refl}}(z_i,t_i;\,z_j,t_j)
-=K(z_i,t_i;\,z_j,t_j)+K(z_i,t_i;\,\bar z_j,-t_j)$.
+=K(z_i,t_i;\,z_j,t_j)+K(z_i,t_i;\,z_j,-t_j)$.
 The first term is $K(p_i,p_j)$; the second is $K(p_i,\sigma(p_j))$.
 The corresponding $1$-forms on the configuration space are
 $\omega_{ij}$ and $\omega_{i,\sigma(j)}$, and $\iota$ identifies
-$\sigma(p_j)$ with the image point $(\bar z_j,-t_j)$ in the doubled
+$\sigma(p_j)$ with the image point $(z_j,-t_j)$ in the doubled
 space.
 \end{proof}
 
@@ -1481,22 +1489,25 @@ identity~\eqref{eq:stokes-restricted} is exactly the reflected
 weight identity~\eqref{eq:reflected-weight-identity}.
 \end{proof}
 
-\begin{theorem}[General half-space BV quantization; \ClaimStatusProvedHere]
+\begin{theorem}[General half-space BV quantization; \ClaimStatusConditional]
 \label{thm:general-half-space-bv}
 Let $V$ be a freely generated Poisson vertex algebra with inner
 holomorphic translation, and let the half-space theory arise from
 a logarithmic $\SCchtop$-algebra (Definition~\ref{def:log-SC-algebra}).
-The Poisson--vertex sigma model on $\C\times\R_{\ge 0}$ with Neumann
-boundary condition admits a renormalized perturbative BV quantization.
+Assume that the Poisson--vertex sigma model on
+$\C\times\R_{\ge 0}$ with Neumann boundary condition admits a
+renormalized Costello BV package whose reflected propagator realizes
+the logarithmic weights and whose anomaly class vanishes to all orders.
 The boundary factorization algebra is a vertex algebra deforming~$V$.
 \end{theorem}
 
 \begin{proof}
 By Theorem~\ref{thm:doubling-rwi}, the reflected weight identity holds
-for any logarithmic $\SCchtop$-algebra. By
-Theorem~\ref{thm:half-space-reduction} (implication
-$(2)\Rightarrow(1)$), the boundary factorization algebra is a vertex
-algebra.
+for any logarithmic $\SCchtop$-algebra. Under the stated BV package,
+the graph weights define the renormalized boundary operations. By
+Theorem~\ref{thm:half-space-reduction}, the reflected weight identity
+is exactly the Stokes term in the boundary $A_\infty$/factorization
+relations, hence these operations assemble into a vertex algebra.
 \end{proof}
 
 \begin{remark}[What the doubling proves]
@@ -1538,12 +1549,12 @@ restricted by symmetry.
 \section{Verification of the bridge-theorem inputs}
 \label{sec:verification-physics-bridge}
 
-The abstract theorems of this chapter
-(Theorems~\ref{thm:doubling-rwi}~and~\ref{thm:general-half-space-bv})
-hold for any logarithmic $\SCchtop$-algebra. Verification: that the
-standard examples satisfy the four inputs of the physics bridge theorem
-(Theorem~\ref{thm:physics-bridge}), closing the logical chain from the
-abstract framework to the named families.
+The doubling theorem holds for any logarithmic $\SCchtop$-algebra. The
+general BV quantization theorem is conditional on the renormalized BV
+package, anomaly vanishing, and a QME solution. Verification means that
+the standard examples satisfy the four inputs of the physics bridge
+theorem (Theorem~\ref{thm:physics-bridge}), closing the logical chain
+from the abstract framework to the named families.
 
 \begin{proposition}[The affine PV sigma model is a logarithmic $\SCchtop$-algebra]%
 \label{prop:affine-is-log-SC}

@@ -14,91 +14,39 @@
 %% =====================================================================
 %%
 %% Frontier resolution: chain-level E_3-topological structure on
-%% Z^{der}_ch(A) for class M at generic c on the ORIGINAL complex
-%% (NOT weight-completed, NOT weight-by-weight finite).
+%% Z^{der}_ch(A) for class M, distinguishing the Banach-completed model
+%% from the raw finite-weight direct sum.
 %%
-%% Status of the question before this chapter:
-%%   * Weight-completed class M: PROVED unconditional
-%%     (prop:bv-bar-class-m-weight-completed, bv_brst.tex:2285).
-%%   * Direct-sum class M: GENUINELY FALSE
-%%     (thm:curved-dunn-class-M-raw-direct-sum-fails,
-%%      curved_dunn_raw_direct_sum_platonic.tex, and
-%%      prop:zamolodchikov-cocycle-direct-sum-witness,
-%%      class_m_direct_sum_obstruction_platonic.tex): the Zamolodchikov
-%%      quasi-primary Lambda exhibits an explicit chain-level cocycle
-%%      at weight 4, g=2 with d^2_fib(xi_Lambda) = S_4(Vir_c) * omega_2^2
-%%      non-zero at generic c.
-%%   * The gap between these is the ORIGINAL-COMPLEX regime: an
-%%     intermediate chain model on the raw direct sum augmented by a
-%%     single chain-level homotopy data, convergent in a precise
-%%     analytic norm.
-%%
-%% First-principles analysis of the question:
-%%   (ghost, correct): the weight-completed proof uses finite weight
-%%     cutoffs + Milnor/Mittag-Leffler; the pro-ambient construction
-%%     uses the same finite cutoffs + inverse limit. Both replace the
-%%     original complex by a projective system. The question asks for
-%%     a construction STILL on the original direct sum that assembles
-%%     all weights into a single chain complex without projective limit.
-%%   (wrong claim): "a convergent geometric series works naively".
-%%     The Kac-Shapovalov determinant det(G_N)(c) at generic c grows
-%%     factorially (det(G_N) ~ (N!)^{const}) but the SMALLEST
-%%     EIGENVALUE lambda_min(G_N) does NOT grow: it equals a product
-%%     of PROXIMATE factors (h - h_{r,s}(c)) each of size c_0, hence
-%%     lambda_min(G_N) is essentially a positive constant (depending
-%%     on c) uniformly in N at generic c. This kills the naive
-%%     geometric-series convergence argument.
-%%   (correct statement): the shadow coefficients S_r(Vir_c) decay
-%%     only polynomially in r at generic c (not exponentially), so
-%%     the obstruction series sum_r S_r * omega_g^m does NOT converge
-%%     in any Kac-Shapovalov-norm on the raw direct sum. The ORIGINAL
-%%     complex does not carry a natural convergent chain-level E_3;
-%%     instead, the chain-level E_3 on the original complex is
-%%     CONDITIONAL on a precise analytic hypothesis (shadow-decay
-%%     improvement S_r(Vir_c) = O(1/r!) at some specific locus, which
-%%     does NOT hold for generic class M algebras).
-%%
-%% Resolution (CONDITIONAL YES with precise hypothesis):
-%%   We construct the Kac-Shapovalov norm |||.|||_{KS,rho} on the
-%%   original raw direct-sum complex, parametrised by rho > 0, and
-%%   prove:
-%%     (i) At rho = 0: |||xi|||_{KS,0} is the uncompleted weight
-%%         filtration norm; the raw d^2 != 0 obstruction persists.
-%%     (ii) At rho > 0: |||xi|||_{KS,rho} adds a geometric weight
-%%          rho^r per weight-r component. Convergence of
-%%          sum_r S_r(A) * rho^r requires S_r(A) = O(r!^{-alpha})
-%%          for some alpha > 0 at generic c.
-%%     (iii) For class M, S_r(Vir_c) = O(r^{-1/c}) at large r and
-%%           generic c (from the BPZ decomposition), so the series
-%%           does NOT converge for rho > 0.
-%%     (iv) Therefore the chain-level E_3 on the original complex is
-%%          CONDITIONAL on the analytic hypothesis (H_S): the shadow
-%%          coefficients of A decay super-polynomially in r.
-%%     (v) For algebras satisfying (H_S) -- the "analytically tempered"
-%%          class M subfamily, including the completed Virasoro
-%%          algebra Vir_c^{~} with explicit taming factor -- the
-%%          chain-level E_3 is constructed on the ORIGINAL complex.
-%%     (vi) The OBSTRUCTION at generic class M is the explicit
-%%           cocycle class
-%%             kappa^{(infty)} := lim sup_{r} (S_r(A) / r!)^{1/r}
-%%           which is positive at generic Vir_c (obstruction to (H_S)).
+%% Corrected first-principles analysis:
+%%   * Weight-completed class M remains PROVED unconditionally
+%%     (prop:bv-bar-class-m-weight-completed, bv_brst.tex).
+%%   * Analytic tempering gives a Banach chain model on which the
+%%     curved-Dunn discrepancy series converges.
+%%   * Density of the raw direct sum in that Banach model does not by
+%%     itself restrict the E_3 operations to the raw direct sum. Descent
+%%     to the original complex is exactly a finite-propagation assertion
+%%     for the differential, the BRST primitive G^(2), and the E_3
+%%     structure operations.
+%%   * The former value kappa_orig^(infty)(Vir_c)=1/e was a Stirling
+%%     arithmetic error. For every exponential-polynomial shadow
+%%     envelope |S_r| <= C alpha^r r^M one has
+%%       (|S_r|/r!)^(1/r) <= C^(1/r) alpha r^(M/r) e/r -> 0.
+%%     Generic Virasoro is therefore tempered by the ratio-test theorem
+%%     of the companion tempered-stratum chapter.
 %%
 %% Labels defined:
-%%   def:kac-shapovalov-norm (norm on original complex)
-%%   prop:kac-shapovalov-eigenvalue-asymptotic (lambda_min bounded by
-%%       a c-dependent constant, does NOT grow)
-%%   prop:shadow-decay-class-m (S_r(Vir_c) = O(r^{-1/c}) at generic c)
+%%   def:kac-shapovalov-norm (KS-rho Banach norm)
+%%   prop:kac-shapovalov-eigenvalue-asymptotic (determinant data alone
+%%       does not prove a uniform spectral gap)
+%%   prop:shadow-decay-class-m (Stirling-normalised obstruction vanishes
+%%       under the Virasoro exponential-polynomial shadow envelope)
 %%   thm:chain-level-e3-original-complex-conditional
-%%       (CONDITIONAL YES: chain-level E_3-topological on original
-%%       complex for analytically tempered class M)
+%%       (finite-propagation descent from the Banach model to the raw
+%%       original complex)
 %%   thm:chain-level-e3-original-complex-obstruction-generic-class-m
-%%       (NO for generic class M: explicit obstruction kappa^{(infty)}
-%%       > 0, precise cocycle blocking the chain-level lift)
-%%   cor:class-m-original-complex-dichotomy (the dichotomy
-%%       analytically tempered vs generic class M)
-%%   rem:relation-to-weight-completion (the weight-completed and
-%%       conditional original-complex constructions are quasi-isomorphic
-%%       under (H_S); they differ precisely when (H_S) fails)
+%%       (healed Virasoro obstruction class: zero, not 1/e)
+%%   cor:class-m-original-complex-dichotomy (healed tempered/finite-
+%%       propagation partition)
 %%
 %% Location: chapters/theory/.
 %% Inputs:
@@ -202,53 +150,40 @@ a structure that is neither weight-completed nor merely
 weight-by-weight finite. We answer with a precise dichotomy.
 
 \begin{center}\begin{minipage}{0.85\linewidth}
-\textbf{Resolution (CONDITIONAL).} The chain-level
-$E_3$-topological structure on the original complex exists if and
-only if the shadow tower $\{S_r(\cA)\}_{r \ge 2}$ satisfies the
-analytic tempering hypothesis
+\textbf{Resolution.} The Banach or weight-completed model carries the
+$E_3^{\mathrm{top}}$ structure under the analytic tempering hypothesis
+$(\mathrm{H}_S)$. Descent to the raw direct sum is a separate finite
+propagation assertion: the curved-Dunn differential, the BRST primitive
+$G^{(2)}$, and the $E_3$ operadic structure maps must preserve finite
+conformal-weight support. Under that finite-support hypothesis the
+completed operations restrict to the original complex
+$\bigoplus_{r\ge0}\mathrm{TCo}^{\bullet}_{g,r}(\cA)$. Without it,
+density of the direct sum inside a completion is not enough, since
+continuous operations on a completion need not preserve a dense
+subspace.
+
+The earlier value $1/e$ is not an obstruction. If
+$|S_r|\le C\alpha^r r^M$, then Stirling gives
 \[
-  \tag{$\mathrm{H}_S$}
-  \limsup_{r \to \infty}
-    \bigl( \lvert S_r(\cA) \rvert / r! \bigr)^{1/r}
-  \;=\; 0.
+  \left(|S_r|/r!\right)^{1/r}
+  \le C^{1/r}\alpha r^{M/r}\frac{e}{r}
+  \longrightarrow 0 .
 \]
-For generic class~$\mathsf{M}$ algebras $(\mathrm{H}_S)$ FAILS:
-$\mathrm{Vir}_c$ at generic $c$ satisfies
-$\lvert S_r(\mathrm{Vir}_c) \rvert = \Omega(r^{-1/c})$ in the large-$r$
-regime, so $(\lvert S_r \rvert / r!)^{1/r} \to 1/e$ (not zero). The
-chain-level $E_3$ on the original complex is therefore \textbf{not
-available} for generic class~$\mathsf{M}$ algebras, with the explicit
-obstruction cocycle
-\[
-  \kappa^{(\infty)}_{\mathrm{orig}}(\cA)
-  \;:=\;
-  \limsup_{r \to \infty}\,
-    \bigl(\lvert S_r(\cA)\rvert / r!\bigr)^{1/r}
-  \;>\; 0.
-\]
-For the \emph{analytically tempered} class~$\mathsf{M}$ subfamily
-(those $\cA$ satisfying $(\mathrm{H}_S)$, including the Feigin--Fuchs
-tempered Virasoro algebra $\mathrm{Vir}_c^{\sim}$ introduced below),
-the chain-level $E_3$-topological structure is constructed on the
-original complex; the construction is quasi-isomorphic to the
-weight-completed structure of
-Proposition~\ref{prop:bv-bar-class-m-weight-completed}.
+Thus no polynomial upper or lower bound for $|S_r|$ can produce the
+claimed obstruction value.
 \end{minipage}\end{center}
 
 The resolution is \textbf{lossless with respect to scope}: the
 weight-completed result of
 Proposition~\ref{prop:bv-bar-class-m-weight-completed} remains
-unconditional. The original-complex construction is strictly a new
-statement, adding chain-level $E_3$-topological structure on a
-precisely identified subfamily, with an explicit obstruction class
-distinguishing the subfamily from the generic class~$\mathsf{M}$
-locus. The dichotomy theorem below completes the non-degenerate
-frontier of the programme: no honest chain-level $E_3$ on the
-original complex exists for generic class~$\mathsf{M}$, with the
-obstruction witnessed by a specific chain-level cocycle; an honest
-chain-level $E_3$ DOES exist on the precisely identified tempered
-subfamily, recovering the weight-completed result on the same
-complex without completion.
+unconditional, and the Banach tempered result gives the analytic model
+on every algebra satisfying~$(\mathrm{H}_S)$. The additional original
+direct-sum theorem is the finite-propagation descent theorem: it holds
+exactly when the completed differential, the BRST primitive, and the
+$E_3$ structure operations preserve finite conformal-weight support.
+For generic Virasoro the Stirling-normalised obstruction vanishes; any
+remaining obstruction to a raw-direct-sum $E_3$ structure is therefore
+not the number $1/e$ but the finite-propagation condition itself.
 
 \section{The Kac--Shapovalov norm on the original complex}
 \label{sec:kac-shapovalov-norm}

@@ -8,12 +8,12 @@ Implements computationally testable claims from three foundational chapters:
 
   2. modular_swiss_cheese_operad.tex — Partially modular two-coloured operad
      SC^{ch,top}_mod, modular homotopy-Koszulity (bar-cobar Quillen equivalence,
-     FT_mod^2 ~ id on closed colour), product decomposition FM_k(C) x Conf_m(R).
+     FT_mod^2 ~ id on closed colour), associated-graded mixed decomposition.
 
   3. relative_feynman_transform.tex — Relative Feynman transform
      FT_{Com_mod / SC^{ch,top}}, bicomplex (D_P, D_Mod), homotopy-involutivity,
-     genus spectral sequence, three routes (factorization surjects, operadic
-     injects, algebraic skeleton shared).
+     genus spectral sequence, three routes mapping to a shared algebraic
+     skeleton.
 
 Key mathematical objects:
 
@@ -22,9 +22,9 @@ Key mathematical objects:
    Arakelov K^(g)_Ar (single-valued, curved). Arnold defect at genus g
    produces curvature d_fib^2 = kappa * omega_g.
 
-2. **Product decomposition**: Mixed operations factor through
-   FM_k(Sigma_g) x E_1(m). At genus 0: FM_k(C) x Conf_m(R).
-   dim_R FM_k(C) = 2k-2 for k >= 2. E_1(m) contractible for m >= 2.
+2. **Associated-graded mixed decomposition**: The depth-zero mixed stratum
+   has FM_k(Sigma_g) x E_1(m) dimension bookkeeping. Type III mixed faces
+   belong to the full mixed geometry and are not captured by this shortcut.
 
 3. **Modular homotopy-Koszulity**: Bar-cobar is Quillen equivalence,
    FT_mod^2 ~ id on closed-colour algebras.
@@ -36,9 +36,10 @@ Key mathematical objects:
    (genus-preserving). d_1 differential is D_1 = D_nsep (genus-raising).
    Obstruction class Ob_g = kappa * omega_g.
 
-6. **Three routes**: factorization (global) surjects onto algebraic skeleton;
-   operadic (local) injects into algebraic skeleton; algebraic skeleton
-   (relative FT) captures bicomplex + involutivity but NOT flat vs curved.
+6. **Three routes**: factorization (global) and operadic (local) data map
+   to the algebraic skeleton; this is not a fullness, faithfulness, or
+   essential-surjectivity claim. The relative FT captures bicomplex +
+   involutivity but NOT flat vs curved.
 
 References:
   Vol II: factorization_swiss_cheese.tex (Ch factorization-swiss-cheese)
@@ -349,12 +350,13 @@ def e1_dimension(m):
 def mixed_operation_dim(k, m, g=0):
     r"""Dimension of the mixed operation space FM_{k|m}(Sigma_g, boundary).
 
-    For the product decomposition (factorization_swiss_cheese.tex,
-    Definition def:BD-SC, equation eq:mixed-sector):
+    For the separated associated-graded stratum of the mixed
+    holomorphic-topological Ran geometry (factorization_swiss_cheese.tex,
+    Definition def:mixed-ht-ran-geometry):
 
-      F_mix(k,m) in D-mod(Ran_k(Sigma_g)) tensor Fact_m(R)
+      F_mix(k,m) over Ran^{oc}_{HT}(Sigma_g,I)
 
-    The real dimension of the configuration part decomposes as:
+    On this associated-graded stratum the real dimension decomposes as:
       dim_R = dim_R(FM_k(Sigma_g)) + dim_R(E_1(m))
 
     At genus 0 (Sigma_0 = P^1 ~ C):
@@ -383,7 +385,8 @@ def mixed_operation_dim(k, m, g=0):
         'total_dim': total real dimension of the configuration part
         'closed_dim': dimension from FM_k(Sigma_g)
         'open_dim': dimension from E_1(m)
-        'product_decomposition': True (the operation space factors)
+        'associated_graded_decomposition': True on the depth-zero stratum
+        'type_iii_mixed_faces_retained': False for this dimension shortcut
     """
     if k < 0 or m < 0 or g < 0:
         raise ValueError("All parameters must be non-negative")
@@ -406,8 +409,10 @@ def mixed_operation_dim(k, m, g=0):
         # (formal disc), where dim = 2k - 2 always, since locally the
         # curve looks like C. The global correction is in the D-module
         # structure, not the topological dimension.
-        # We return the LOCAL dimension 2k - 2 since the product
-        # decomposition is a local statement.
+        # We return the LOCAL dimension 2k - 2 since this helper models
+        # only the depth-zero associated graded; Type III mixed faces are
+        # tracked by the poset/filtration IV tests, not by this dimension
+        # shortcut.
         closed_dim = 2 * k - 2
 
     # E_1(m) dimension
@@ -417,7 +422,8 @@ def mixed_operation_dim(k, m, g=0):
         'total_dim': closed_dim + open_dim,
         'closed_dim': closed_dim,
         'open_dim': open_dim,
-        'product_decomposition': True,
+        'associated_graded_decomposition': True,
+        'type_iii_mixed_faces_retained': False,
         'k': k,
         'm': m,
         'g': g,
@@ -609,11 +615,12 @@ def verify_bicomplex(D_P_sq, D_Mod_sq, anticomm):
 
 
 def relative_ft_involutivity():
-    r"""Verify homotopy-involutivity of the relative Feynman transform.
+    r"""Return the hypotheses for relative FT homotopy-involutivity.
 
     From Theorem thm:relative-ft-involutive (relative_feynman_transform.tex):
 
-    FT_{Com_mod / SC^{ch,top}} is homotopy-involutive:
+    Under the listed hypotheses, FT_{Com_mod / SC^{ch,top}} is
+    homotopy-involutive:
       FT_rel(FT_rel(A)) ~ A
 
     The proof has three steps:
@@ -623,9 +630,22 @@ def relative_ft_involutivity():
 
     Returns
     -------
-    bool : True (the relative FT is homotopy-involutive)
+    dict : hypotheses and conclusion
     """
-    return True
+    hypotheses = {
+        'mixed_homotopy_koszulity': True,
+        'completed_conilpotent_coalgebra': True,
+        'finite_type_each_genus': True,
+        'milnor_lim1_vanishes': True,
+        'completed_second_transform': True,
+        'graded_counit_bar_cobar_gk': True,
+    }
+    return {
+        'hypotheses': hypotheses,
+        'all_hypotheses_present': all(hypotheses.values()),
+        'conclusion': 'filtered quasi-isomorphism of flat completed objects',
+        'curved_model_recovered': False,
+    }
 
 
 # =========================================================================
@@ -742,11 +762,12 @@ def d1_obstruction_class(g, kappa):
 def three_routes():
     r"""Return the three-routes relationship from Remark rem:three-routes-unified.
 
-    Route B (factorization, global) ->> Route C (algebraic, skeleton) <<- Route A (operadic, local)
+    Route B (factorization, global) -> Route C (algebraic, skeleton) <- Route A (operadic, local)
 
-    Factorization surjects: forgets D-module data.
-    Operadic injects: formal completion at collision points.
-    Algebraic is the categorical image.
+    Factorization maps to Route C by forgetting D-module data.
+    Operadic data maps to Route C by formal completion / principal-part
+    extraction at collision points. These are comparison maps to a shared
+    skeleton, not fullness, faithfulness, or essential-surjectivity claims.
 
     Route C (the relative FT) captures:
       - The bicomplex structure (D_P, D_Mod)
@@ -765,7 +786,7 @@ def three_routes():
         'route_A': {
             'name': 'operadic (local)',
             'chapter': 'modular_swiss_cheese_operad',
-            'relationship_to_C': 'injects',  # formal completion
+            'relationship_to_C': 'maps_to_skeleton',
             'sees_flat_models': True,
             'sees_curved_model': False,
             'sees_curvature': False,
@@ -773,7 +794,7 @@ def three_routes():
         'route_B': {
             'name': 'factorization (global)',
             'chapter': 'factorization_swiss_cheese',
-            'relationship_to_C': 'surjects',  # forgets D-module data
+            'relationship_to_C': 'maps_to_skeleton',
             'sees_flat_models': True,
             'sees_curved_model': True,
             'sees_curvature': True,
@@ -789,13 +810,14 @@ def three_routes():
     }
 
 
-def factorization_surjects_onto_ft():
-    r"""Check that factorization (Route B) surjects onto the relative FT (Route C).
+def factorization_maps_to_ft_skeleton():
+    r"""Check that factorization maps to the relative FT skeleton.
 
-    The factorization structure on Ran(Sigma_g) x Ran(R) projects onto the
-    relative Feynman transform by forgetting D-module data (connection,
-    monodromy). The bicomplex, genus spectral sequence, and involutivity
-    survive; the flat vs curved distinction does not.
+    The factorization structure on the mixed open-closed HT Ran geometry
+    maps to the relative Feynman skeleton by forgetting global D-module
+    data (connection, monodromy, Arakelov corrections). The bicomplex,
+    genus spectral sequence, and stable-graph involutivity survive; the
+    flat vs curved distinction does not.
 
     Returns
     -------
@@ -804,14 +826,13 @@ def factorization_surjects_onto_ft():
     return True
 
 
-def operadic_injects_into_ft():
-    r"""Check that the operadic structure (Route A) injects into the relative FT (Route C).
+def operadic_maps_to_ft_skeleton():
+    r"""Check that Route A maps to the relative FT skeleton.
 
     The local operad SC^{ch,top}_mod is extracted by formal completion at
-    collision points. This injects into the relative Feynman transform:
-    every local operadic datum determines a bicomplex datum, but not every
-    bicomplex datum comes from a local operadic one (the global data from
-    D-module monodromy around B-cycles cannot be captured locally).
+    collision points and principal OPE residues. This gives a comparison
+    map to the relative Feynman skeleton; it is not a fullness or
+    faithfulness statement.
 
     Returns
     -------

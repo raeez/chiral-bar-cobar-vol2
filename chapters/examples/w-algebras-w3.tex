@@ -95,7 +95,13 @@ For $W_3$:
 \item $m_3$ receives contributions from diagrams in the $TTT$, $TTW$, $TWT$, $TWW$, $WTW$, and $WWW$ sectors. In the pure $TTT$ sector, $m_3$ is one-loop (the triangle wheel, matching Proposition~\ref{prop:vir-truncation}); the mixed $TWT$ and $WWW$ sectors may have different diagram topologies owing to the additional $\chi$-propagator;
 \item $m_4, m_5, m_6$ receive both one-loop and higher-loop contributions;
 \item $m_7$ is the first operation with potential 2-loop contributions;
-\item In the $T$-sector, $m_k \neq 0$ for all $k \geq 3$ by the same wheel-diagram argument as Proposition~\ref{prop:vir-all-mk} (since the $T$-sector of $W_3$ coincides with Virasoro at the one-loop level). The $W$-sector contributes additional diagrams at each degree; in particular, the $A_\infty$ structure has infinite depth.
+\item In the $T$-sector, the Virasoro wheel gives a nonzero
+projected contribution for all $k \geq 3$ under the hypotheses of
+Proposition~\ref{prop:vir-truncation} and a split projection to the
+Virasoro summand. The $W$-sector contributes additional candidate
+diagrams at each degree; non-cancellation in the full unprojected
+$W_3$ operation is part of the conditional class-$\mathbf M$ statement
+below.
 \end{enumerate}
 \end{proposition}
 
@@ -1025,22 +1031,30 @@ The explicit computation of $m_k$ for $k \geq 5$ requires computer algebra syste
 \label{subsec:wn-class-M}
 
 The Virasoro wheel argument
-(Proposition~\ref{prop:vir-all-mk}) generalises to every principal
+(Proposition~\ref{prop:vir-truncation}) generalises to every principal
 $\mathcal{W}_N$ algebra ($N \ge 2$), establishing infinite shadow depth
 across the entire family. The proof uses only one structural feature:
 the stress tensor~$T$ sits inside every $\mathcal{W}_N$, and its
 cubic vertex $V_3 = T\mu\partial\mu$ generates wheel diagrams at every
 degree.
 
-\begin{theorem}[All principal $\mathcal{W}_N$ are Class~$\mathbf{M}$;
-\ClaimStatusProvedHere]
+\begin{theorem}[Conditional class-$\mathbf{M}$ criterion for principal
+$\mathcal{W}_N$;
+\ClaimStatusConditional]
 \label{thm:wn-class-M}
 \index{W-algebra!shadow depth}%
 \index{shadow depth!principal W-algebras}%
-For every $N \ge 2$, the principal $\mathcal{W}_N$ algebra satisfies
-$d(\mathcal{W}_N) = \infty$\textup{:} the transferred $\Ainf$
-operations $m_k$ on the PVA cohomology
-$H^\bullet(\mathcal{W}_N, Q)$ are nonzero for all $k \ge 3$.
+Assume that the Khan--Zeng/DS realization of the principal
+$\mathcal{W}_N$ algebra satisfies the physics-bridge hypotheses, that
+the Virasoro wheel-residue lemma of Proposition~\ref{prop:vir-truncation}
+holds, and that the projection to the $T$-sector is split by the
+chosen DS comparison. Then the projected transferred operations
+\[
+  \pi_T\,m_k^{\mathcal W_N}(T,\ldots,T)
+\]
+are nonzero for all $k\ge 3$. Consequently the strict
+$\mathcal W_N$ object has class~$\mathbf M$ whenever this projected
+nonzero class survives the unprojected DS transfer.
 \end{theorem}
 
 \begin{proof}
@@ -1092,8 +1106,8 @@ m_k^{\mathcal{W}_N}(T, \ldots, T)
 \end{equation}
 
 \medskip
-\emph{Step~3: Wheel non-vanishing.}
-By Proposition~\ref{prop:vir-all-mk}, the Virasoro wheel integral
+\emph{Step~3: Projected wheel non-vanishing.}
+By Proposition~\ref{prop:vir-truncation}, the Virasoro wheel integral
 \[
 m_k^{\mathrm{Vir}}(T, \ldots, T)
 \;\sim\; \int_{\FM_k(\C) \times \Conf_k^{<}(\R)}
@@ -1110,25 +1124,27 @@ $k = \dim_{\R}\FM_k(\C) - (k-2)$ required for a
 non-vanishing top-stratum contribution.
 
 By~\eqref{eq:wn-sector-decoupling}, this one-loop wheel integral
-contributes to $m_k^{\mathcal{W}_N}(T, \ldots, T)$, and
-higher-loop diagrams (from $W_s$-sectors) can only add
-further nonzero contributions. In particular:
+contributes to the projected $T$-sector operation. Higher-loop
+diagrams from the $W_s$-sectors may add further terms, but a proof of
+the full unprojected statement must also exclude cancellation against
+the projected class. Under the split-projection hypothesis this gives
 \[
-m_k^{\mathcal{W}_N}(T, \ldots, T) \ne 0
+\pi_T\,m_k^{\mathcal{W}_N}(T, \ldots, T) \ne 0
 \quad\text{for all } k \ge 3.
 \]
-Since $m_k \ne 0$ on the $T$-sector of cohomology for every $k$,
-the shadow depth satisfies
-$d(\mathcal{W}_N) = \infty$, placing $\mathcal{W}_N$ in
-class~$\mathbf{M}$.
+Thus the projected $T$-sector operation is nonzero. If this projected
+class survives the unprojected DS transfer, then
+$m_k^{\mathcal W_N}\ne0$ for all $k\ge3$, and the strict
+$\mathcal W_N$ object has class~$\mathbf M$. Without that survival
+hypothesis the proof establishes projected class-$\mathbf M$ evidence.
 \end{proof}
 
 \begin{remark}[Additional non-vanishing from higher-spin sectors]
 \label{rem:wn-additional-diagrams}
 \index{W-algebra!higher-spin wheel diagrams}%
-The proof uses only the $T$-sector. The higher-spin
+The criterion uses only the projected $T$-sector. The higher-spin
 generators $W_s$ ($s \ge 3$) contribute additional
-non-vanishing operations: for instance, the mixed operations
+candidate operations: for instance, the mixed operations
 $m_k(W_{s_1}, \ldots, W_{s_k})$ receive contributions
 from wheel diagrams built on higher-spin vertices, plus
 additional tree and multi-loop graphs. The $\mathcal{W}_N$
@@ -1137,7 +1153,9 @@ $W_s \chi_{s'} \partial^{a} \chi_{s''}$ whenever the OPE
 $\{W_{s\,\lambda} W_{s'}\}$ is nontrivial, providing
 valence-2 $\chi$-slots analogous to the $\mu$-slots
 in the Virasoro case. These yield additional Hamiltonian
-cycles in the $\chi$-edge graph.
+cycles in the $\chi$-edge graph. Their non-cancellation in the full
+operation is a separate residue computation, not a consequence of the
+projected Virasoro wheel alone.
 
 For $\mathcal{W}_N$ with $N-1$ generators, the maximum
 loop order at degree~$k$ grows with $N$: the Virasoro
@@ -1385,7 +1403,7 @@ $W_N$ & $W_2, \ldots, W_N$ & $2(N\!-\!1)(2N^2\!+\!2N\!+\!1)$ & $\alpha_N/2$ & $\
 \hline
 Algebra & Nonzero $m_k$ & Dominant Loop Order & $\dim H^1$ \\
 \hline
-Virasoro & all $k \geq 3$ (Prop.~\ref{prop:vir-all-mk}) & Tree + 1-loop & $1$ \\
+Virasoro & all $k \geq 3$ (Prop.~\ref{prop:vir-truncation}) & Tree + 1-loop & $1$ \\
 $W_3$ & all $k \geq 3$ (Thm.~\ref{thm:wn-class-M}) & Tree + up to 2-loop & $2$ \\
 $W_4$ & all $k \geq 3$ (Thm.~\ref{thm:wn-class-M}) & Tree + up to 3-loop & $3$ \\
 $W_5$ & all $k \geq 3$ (Thm.~\ref{thm:wn-class-M}) & Tree + up to 4-loop & $4$ \\
@@ -2573,7 +2591,7 @@ Chapter~\ref{ch:k3-chiral-bialgebra-platonic},
 
 \begin{remark}[$W_{1+\infty}$ coproduct via Schiffmann--Vasserot]
 \label{rem:w-algebras-w3-3}
-The the K3 synthesis coproduct structure on $\mathbf H_{\Delta_5}$ is the
+The K3 synthesis coproduct structure on $\mathbf H_{\Delta_5}$ is the
 K3-specialisation of the Schiffmann--Vasserot 2012--13 CoHA vertex
 coproduct on $\mathrm{CoHA}_{K3\times E}$, extended through the
 Gritsenko additive lift of $\Phi_{10}$ to the

@@ -756,22 +756,29 @@ boundary interval, and directed bulk-to-boundary mixed faces.
 
 \begin{definition}[Mixed HT Ran geometry]
 \label{def:mixed-ht-ran-geometry}
-Let $\Sigma_g$ be the holomorphic curve and let $I\subset\R$ be
-the topological boundary interval. The mixed
+Let $(X,D,\tau)$ be a tangential log curve, with
+$D=p_1+\cdots+p_r$ and with $\tau$ choosing a boundary interval
+$I_{p_j}$ at each marked point. The mixed
 holomorphic-topological Ran geometry
-$\Ran^{\mathrm{oc}}_{\HT}(\Sigma_g,I)$ is the coloured
-Ran/configuration prestack whose $(k,m)$-stratum is
-\[
-\Conf_k(\Sigma_g\setminus D)\times \Conf_m^{\mathrm{ord}}(I),
-\]
-with the evident multi-interval variants. Closed collisions are
-governed by the Beilinson--Drinfeld Ran/factorization
-$D$-module structure on $\Sigma_g$; open collisions are governed
-by the locally constant factorization structure on $I$; mixed
-boundary collisions are the module strata. The notation
-$\Ran(\Sigma_g)\times\Ran(\R)$ is only a mnemonic for the
-separate closed/open variables after the coloured incidence data
-has been specified, not the global parameter space.
+$\Ran^{\mathrm{oc}}_{\HT}(X,D,\tau)$ is the system of
+open--closed configuration strata
+$\Conf^{\mathrm{oc}}_{k,\vec m}(X,D,\tau)$ and their bordered
+Fulton--MacPherson compactifications
+$\overline C^{\,\mathrm{oc}}_{k,\vec m}(X,D,\tau)$ of
+Volume~I, Construction~\ref*{V1-constr:bordered-fm}. Its
+codimension-one faces are Type~I interior collision, Type~II
+consecutive boundary collision, Type~III mixed bubbling, and
+Type~IV nodal clutching. Closed collisions are governed by the
+Beilinson--Drinfeld Ran/factorization $D$-module structure on
+$X\setminus D$; open collisions are governed by the locally
+constant factorization structure on the ordered intervals
+$I_{p_j}$; mixed boundary collisions are Type~III bulk-to-boundary
+module strata. The separated product
+$\Ran(X\setminus D)\times\prod_j\Ran^{\mathrm{ord}}(I_{p_j})$
+is only the depth-zero associated graded after the Type~III
+incidence faces have been forgotten, not the global parameter
+space.  When the tangential divisor and interval data are fixed we
+write this geometry as $\Ran^{\mathrm{oc}}_{\HT}(\Sigma_g,I)$.
 \end{definition}
 
 \begin{definition}[BD factorization Swiss-cheese algebra]
@@ -862,22 +869,13 @@ consists of the following data:
   \end{enumerate}
 
 \item \textbf{Directionality.}  Bulk-to-boundary maps exist:
-  $F_{\mathsf{cl}}$ acts on $F_{\mathsf{op}}$ via the mixed
-  sector.  The reverse direction is \emph{empty}: there are no
-  open-to-closed operations
+  $F_{\mathsf{cl}}$ acts on $F_{\mathsf{op}}$ via the Type~III
+  mixed strata.  The reverse direction is \emph{empty}: there are
+  no open-to-closed output strata
   ($F_{\mathsf{mix}}(\ldots,\mathsf{top},\ldots;\,\mathsf{cl})
-  = 0$).  Categorically: the restriction functor
-  $\iota^!\colon \Dmod(\Ran(\Sigma_g \times \R))
-  \to \Dmod(\Ran(\Sigma_g \times \{0\}))$ has a left adjoint
-  $\iota_!$ (extension by zero from the boundary), but the
-  factorization structure forces
-  $\iota_!(F_{\mathsf{op}}) \otimes^{!}
-  F_{\mathsf{cl}} = 0$: the $!$-tensor product of an extended
-  boundary $D$-module with a bulk $D$-module vanishes by
-  support considerations (the boundary $\Sigma_g \times \{0\}$
-  has codimension~$1$ in $\Sigma_g \times \R$, and the
-  $!$-extension carries no sections transverse to the boundary).
-  This is the factorization expression of the
+  = 0$).  This is an axiom of the coloured open--closed stratum
+  category, not a support-vanishing theorem on a literal real
+  product Ran space. It is the factorization expression of the
   Swiss-cheese directionality
   $\SCchtop(\ldots,\mathsf{top},\ldots;\,\mathsf{ch}) =
   \varnothing$ (cf.\ Definition~\ref{def:SC-operations}).
@@ -1174,7 +1172,8 @@ factorizable $D$-module $F_\cA$ on $\Ran(X)$ is constructed as follows.
   part of the chiral algebra data; the external tensor product
   $\cA^{\boxtimes I}$ inherits the product connection.
 
-\item \textbf{Flat connection.}  The connection on $F_\cA^I$ is
+\item \textbf{Fixed-curve flat connection and family anomaly.}
+  The fixed-curve connection on $F_\cA^I$ is
   \begin{equation}\label{eq:fact-connection}
     \nabla_\cA
     \;=\;
@@ -1187,9 +1186,11 @@ factorizable $D$-module $F_\cA$ on $\Ran(X)$ is constructed as follows.
   and $\partial_\alpha$ is the period-correction operator from the
   Gauss--Manin connection on the family of $D$-modules over~$\Mbar_g$
   (Volume~I, Convention~3.1).  At genus~$0$, the sum is empty and
-  $\nabla_\cA = d$ is flat.  At genus~$g \geq 1$, the curvature is
+  $\nabla_\cA = d$ is flat.  For every fixed curve this is a flat
+  $D$-module connection.  At genus~$g \geq 1$, the family bar tower
+  carries the projective anomaly
   \begin{equation}\label{eq:connection-curvature}
-    \nabla_\cA^2
+    \dfib^{\,2}
     \;=\;
     \kappa(\cA) \cdot \omega_g,
   \end{equation}
@@ -1197,7 +1198,9 @@ factorizable $D$-module $F_\cA$ on $\Ran(X)$ is constructed as follows.
   (\operatorname{Im}\tau)^{-1}_{\alpha\beta}\,
   \omega_\alpha \wedge \bar\omega_\beta$ is the Arakelov
   $(1,1)$-form on~$\Sigma_g$ and $\kappa(\cA)$ is the modular
-  characteristic.  This curvature arises because the
+  characteristic.  This class is not the curvature of the fixed
+  BD $D$-module connection; it is the scalar family anomaly of the
+  curved bar differential.  It arises because the
   period-correction terms $\partial_\alpha$ do not commute:
   their commutator is determined by the self-contraction of the
   OPE (the tadpole), which computes~$\kappa(\cA)$.
@@ -2263,13 +2266,19 @@ For the general sign computation at arbitrary arity, see the
 orientations appendix (Appendix~\ref{app:orientations}).
 \end{remark}
 
-The recovery $\mathrm{FT}(\Bmod) \simeq F$ holds by the
-\emph{involutivity} of the Feynman transform:
-$\mathrm{FT}^2 \simeq \id$ on the closed colour
-(Volume~I, Theorem~\ref*{V1-thm:feynman-involution}).
-This involutivity is the all-genus generalisation of the
-genus-$0$ bar-cobar quasi-isomorphism
-$\Omegach(\barB(F)) \simeq F$: at genus~$0$, the
+At $g\geq 1$, closed-colour Getzler--Kapranov involutivity supplies
+only the closed modular input
+$\mathrm{FT}^2\simeq\id$ on the closed colour
+(Volume~I, Theorem~\ref*{V1-thm:feynman-involution}). Full mixed
+curved recovery follows only under the named hypotheses of
+Theorem~\ref{thm:factorization-SC-koszul}: mixed all-genus
+factorization Koszul duality on
+$\Ran^{\mathrm{oc}}_{\HT}(X,D,\tau)$, bounded-filtered
+Positselski convergence, and the chiral Riemann--Hilbert comparison
+identifying the flat prime-form model with the curved Arakelov
+representative. Under these hypotheses the factorization bar
+construction and its mixed cobar are inverse in the coderived
+category. At genus~$0$, the
 Feynman transform reduces to the cobar functor $\Omegach$,
 and $\mathrm{FT}^2 \simeq \id$ specialises to
 Part~(ii).  At genus~$g \geq 1$, the Feynman transform
@@ -3675,50 +3684,35 @@ complex (it does not create new poles at collision boundaries of
 $\FM_n(\Sigma_g)$).
 
 \smallskip\noindent
-\textbf{Step~1: $\Phi_g$ intertwines the differentials.}
-We verify $\Phi_g \circ \Dg{g} = \dfib \circ \Phi_g$.  Both
-$\Dg{g}$ and $\dfib$ are coderivations of the tensor coalgebra,
-determined by their cogenerator projections.  The cogenerator
-projection of $\Dg{g}$ uses $K^{(g)}$ at each binary operation;
-the cogenerator projection of $\dfib$ uses $K^{(g)}_{\mathrm{Ar}}$.
-The map $\Phi_g$ replaces every propagator insertion by the Arakelov
-version.  Since the Arakelov and holomorphic propagators have the
-\emph{same} singular part (the pole $1/(z-w)$ is unchanged; the
-correction $R^{(g)}$ is smooth), the combinatorial structure of the
-coderivation is identical.  The intertwining
-$\Phi_g \circ \Dg{g} = \dfib \circ \Phi_g$ then follows because
-the structure maps (OPE residues) are unchanged by the
-smooth gauge transformation; only the propagators on internal
-edges change.
+\textbf{Step~1: curvature transport, not strict intertwining.}
+When $\dfib^{\,2}=\kappa(\cA)\omega_g\ne0$, the comparison
+$\Phi_g$ is not a chain map from the flat holomorphic dg coalgebra
+to the curved Arakelov coalgebra.  The strict identity
+$\Phi_g\Dg{g}=\dfib\Phi_g$ is therefore not the proved statement.
+The proved statement is curvature transport:
+\[
+  \bigl(\Phi_g^{-1}\dfib\Phi_g\bigr)^2
+  =
+  \Phi_g^{-1}\dfib^{\,2}\Phi_g
+  =
+  \kappa(\cA)\omega_g .
+\]
+The equality uses only that $\Phi_g$ is a filtered coalgebra
+automorphism with associated graded identity and that the curvature
+class is central.  Strict intertwining is recovered only on the
+uncurved locus $\kappa(\cA)\omega_g=0$.
 
 \smallskip\noindent
-\textbf{Step~2: $\Phi_g$ is a quasi-isomorphism.}
-We construct a homotopy inverse.  Define $\Psi_g$ by the same
-formula as~$\Phi_g$ but with $K^{(g)}_{\mathrm{Ar}}$ replaced by
-$K^{(g)}$ (the reverse gauge transformation).  Then
-$\Psi_g \circ \Phi_g = \id + [\dfib, h]$, where the homotopy $h$
-involves integration of the correction $R^{(g)}$ over one fewer
-edge.  Explicitly:
-\begin{equation}\label{eq:homotopy}
-  (\Psi_g \circ \Phi_g - \id)
-  \bigl([s^{-1}a_1|\cdots|s^{-1}a_n]\bigr)
-  \;=\;
-  \sum_{\Gamma \text{ with } \geq 1 \text{ edge}}
-  \int_{\FM_n(\Sigma_g)}
-  \Bigl(\prod_{e \in E(\Gamma)} R^{(g)}_{e}\Bigr)
-  \cdot
-  \prod_v c_v,
-\end{equation}
-which vanishes at arity~$1$ (no edges on one vertex) and is
-$\bar\partial$-exact at higher arities by \eqref{eq:correction-dbar}:
-each factor $R^{(g)}(z_i,z_j)$ satisfies
-$\bar\partial_{z_i} R^{(g)} = -\omega_{\mathrm{Ar}}$, and by
-Stokes' theorem on $\FM_n(\Sigma_g)$ the integral of the
-$\bar\partial$-exact form is a boundary term.  The boundary
-contributions are the lower-arity operations, precisely the
-homotopy $[\dfib, h]$.  Therefore $\Psi_g \circ \Phi_g$ is
-chain-homotopic to the identity.  By symmetry, $\Phi_g \circ \Psi_g$
-is likewise chain-homotopic to the identity.
+\textbf{Step~2: coderived invertibility.}
+The reverse filtered operator $\Psi_g$ is defined by replacing the
+Arakelov representative with the prime-form representative.  This
+operator gives a filtered inverse on associated graded.  To pass from
+filtered invertibility to an equivalence of the curved objects one
+uses the bounded-filtered Positselski criterion: the cone of the
+filtered comparison is required to be coacyclic in the curved
+coderived category.  Under that hypothesis $\Phi_g$ is an isomorphism
+in the coderived category.  Without that cone criterion, smoothness of
+the propagator correction alone is not a proof of equivalence.
 
 \smallskip\noindent
 \textbf{Step~3: Category interpretation.}

@@ -207,11 +207,12 @@ class TestProductDecomposition:
         assert result['closed_dim'] == 4
         assert result['open_dim'] == 0
 
-    def test_product_decomposition_flag(self):
-        """The operation space always factors as product."""
+    def test_associated_graded_decomposition_flag(self):
+        """The depth-zero associated graded factors; mixed faces are separate."""
         from lib.factorization_modular_engine import mixed_operation_dim
         result = mixed_operation_dim(2, 3, g=0)
-        assert result['product_decomposition'] is True
+        assert result['associated_graded_decomposition'] is True
+        assert result['type_iii_mixed_faces_retained'] is False
 
     def test_fm_dimension_formula_general(self):
         """dim FM_k(C) = 2k-2 for k = 2..10."""
@@ -340,9 +341,12 @@ class TestInvolutivity:
     """Verify homotopy-involutivity of the relative Feynman transform."""
 
     def test_ft_rel_involutive(self):
-        """FT_rel(FT_rel(A)) ~ A (homotopy-involutive)."""
+        """FT_rel(FT_rel(A)) ~ A under the completed flat hypotheses."""
         from lib.factorization_modular_engine import relative_ft_involutivity
-        assert relative_ft_involutivity() is True
+        result = relative_ft_involutivity()
+        assert result['all_hypotheses_present'] is True
+        assert result['curved_model_recovered'] is False
+        assert result['conclusion'] == 'filtered quasi-isomorphism of flat completed objects'
 
 
 # ===================================================================
@@ -399,15 +403,15 @@ class TestGenusSpectralSequence:
 class TestThreeRoutes:
     """Verify the three-routes relationship."""
 
-    def test_factorization_surjects(self):
-        """Factorization (Route B) surjects onto algebraic skeleton (Route C)."""
-        from lib.factorization_modular_engine import factorization_surjects_onto_ft
-        assert factorization_surjects_onto_ft() is True
+    def test_factorization_maps_to_skeleton(self):
+        """Factorization (Route B) maps to the algebraic skeleton."""
+        from lib.factorization_modular_engine import factorization_maps_to_ft_skeleton
+        assert factorization_maps_to_ft_skeleton() is True
 
-    def test_operadic_injects(self):
-        """Operadic (Route A) injects into algebraic skeleton (Route C)."""
-        from lib.factorization_modular_engine import operadic_injects_into_ft
-        assert operadic_injects_into_ft() is True
+    def test_operadic_maps_to_skeleton(self):
+        """Operadic (Route A) maps to the algebraic skeleton."""
+        from lib.factorization_modular_engine import operadic_maps_to_ft_skeleton
+        assert operadic_maps_to_ft_skeleton() is True
 
     def test_ft_does_not_see_curvature(self):
         """Relative FT does NOT distinguish flat from curved models."""

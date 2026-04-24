@@ -79,10 +79,10 @@ Proof by three steps:
 This is the single structural principle: the three chain-level models (Remark rem:three-models) are three views of the relative Feynman transform, seen through the local (operadic), global (factorization), and mediating (algebraic) lenses.
 
 **Remark (The three routes unified).**
-- Route B (factorization) provides the global truth: factorization on Ran(Sigma_g) x Ran(R) over M-bar_g
+- Route B (factorization) provides the global truth: factorization on the mixed open-closed HT Ran geometry over M-bar_g
 - Route A (operadic) provides the local approximation: SC^{ch,top}_mod at formal completions
 - Route C (this chapter) provides the algebraic skeleton: FT_{Com_mod / SC^{ch,top}} as the common abstraction
-The factorization structure projects to the relative Feynman transform by forgetting D-module data; the operadic structure injects into the relative Feynman transform by formal completion. The relative Feynman transform is the categorical image.
+The factorization structure maps to the relative Feynman transform by forgetting D-module data; the operadic structure maps to the relative Feynman transform by formal completion and principal-part extraction. The relative Feynman transform is the shared algebraic skeleton, not the categorical image of a fullness or essential-surjectivity statement.
 
 ## Part 2: Rewrites of Existing Files
 

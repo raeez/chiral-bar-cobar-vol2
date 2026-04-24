@@ -1,146 +1,10 @@
 \documentclass[11pt]{memoir}
-\setcounter{secnumdepth}{3}
-\setcounter{tocdepth}{2}
+\usepackage{raeez-math-template}
 
-% ==========================================
-% FONTS: EB Garamond (matching Volume I)
-% ==========================================
-
-\usepackage[T1]{fontenc}
-\usepackage[utf8]{inputenc}
-\usepackage{lmodern}
-\frenchspacing
-
-\usepackage[
- cmintegrals,
- cmbraces,
- noamssymbols
-]{newtxmath}
-\usepackage{ebgaramond}
-
-\usepackage[
- activate={true,nocompatibility},
- final,
- tracking=true,
- kerning=true,
- spacing=true,
- factor=1100,
- stretch=10,
- shrink=10
-]{microtype}
-
-\SetExtraKerning[unit=space]
- {encoding={*}, family={*}, series={*}, size={footnotesize,small,normalsize}}
- {\textemdash={400,400},
- "28={,150},
- "29={150,},
- \textquotedblleft={,150},
- \textquotedblright={150,}}
-
-% ==========================================
-% PACKAGES
-% ==========================================
-
-\usepackage{mleftright}
-\mleftright
-\let\Bbbk\undefined
-\let\openbox\undefined
-\usepackage{amsmath,amssymb,amsthm}
-\usepackage{mathtools}
-\mathtoolsset{showonlyrefs,showmanualtags}
-\usepackage{tikz-cd}
-\usetikzlibrary{positioning,arrows.meta,calc,decorations.markings}
-\makeatletter
-\def\hyper@nopatch@caption{}
-\makeatother
-\usepackage[unicode,pdfencoding=auto,psdextra]{hyperref}
-% Cross-volume label import from Vol I (V1- prefix on all cross-refs)
-% Uses flat export: run python3 scripts/export_vol1_xrefs.py in Vol I
-% to regenerate ../chiral-bar-cobar/vol1-xrefs.aux after each Vol I build.
+% Cross-volume label import from Vol I (V1- prefix on all cross-refs).
+% Regenerate ../chiral-bar-cobar/vol1-xrefs.aux in Vol I after each Vol I build.
 \usepackage{xr-hyper}
 \externaldocument[V1-]{../chiral-bar-cobar/vol1-xrefs}
-\usepackage{geometry}
-\geometry{top=1.2in, bottom=1.2in, left=1.25in, right=1.25in, footskip=0.5in}
-\setlength{\headheight}{28pt}
-\setlength{\emergencystretch}{3em}
-\setlength{\hfuzz}{1pt}
-\hbadness=3000
-\raggedbottom
-\usepackage{enumitem}
-\usepackage{longtable}
-\usepackage{multicol}
-\usepackage{mathrsfs}
-\usepackage{bm}
-
-% ==========================================
-% THEOREM ENVIRONMENTS (Garamond style, matching Vol I)
-% ==========================================
-
-\usepackage{thmtools}
-
-\declaretheoremstyle[
- spaceabove=\topsep,
- spacebelow=\topsep,
- headfont=\normalfont\scshape,
- notefont=\normalfont\itshape,
- bodyfont=\normalfont,
- postheadspace=0.5em,
- headpunct={.}
-]{garamondthm}
-
-\declaretheoremstyle[
- spaceabove=\topsep,
- spacebelow=\topsep,
- headfont=\normalfont\itshape,
- notefont=\normalfont\itshape,
- bodyfont=\normalfont,
- postheadspace=0.5em,
- headpunct={.}
-]{garamonddef}
-
-% Claim provenance tags (matching Vol I)
-\newcommand{\ClaimStatusProvedHere}{\textnormal{[proved here]}}
-\newcommand{\ClaimStatusProvedElsewhere}{\textnormal{[proved elsewhere]}}
-\newcommand{\ClaimStatusOpen}{\textnormal{[open]}}
-\newcommand{\ClaimStatusConjectured}{\textnormal{[conjectured]}}
-\newcommand{\ClaimStatusHeuristic}{\textnormal{[physical heuristic]}}
-
-% Plain-style environments
-\declaretheorem[style=garamondthm, name=Theorem, numberwithin=section]{theorem}
-\declaretheorem[style=garamondthm, name=Lemma, sibling=theorem]{lemma}
-\declaretheorem[style=garamondthm, name=Proposition, sibling=theorem]{proposition}
-\declaretheorem[style=garamondthm, name=Corollary, sibling=theorem]{corollary}
-\declaretheorem[style=garamondthm, name=Verification, sibling=theorem]{verification}
-\declaretheorem[style=garamondthm, name=Computation, sibling=theorem]{computation}
-\declaretheorem[style=garamondthm, name=Main Theorem, sibling=theorem]{maintheorem}
-
-% Definition-style environments
-\declaretheorem[style=garamonddef, name=Definition, sibling=theorem]{definition}
-\declaretheorem[style=garamonddef, name=Example, sibling=theorem]{example}
-\declaretheorem[style=garamonddef, name=Remark, sibling=theorem]{remark}
-\declaretheorem[style=garamonddef, name=Conjecture, sibling=theorem]{conjecture}
-\declaretheorem[style=garamonddef, name=Notation, sibling=theorem]{notation}
-\declaretheorem[style=garamonddef, name=Convention, sibling=theorem]{convention}
-\declaretheorem[style=garamonddef, name=Construction, sibling=theorem]{construction}
-\declaretheorem[style=garamonddef, name=Warning, sibling=theorem]{warning}
-\declaretheorem[style=garamonddef, name=Hypothesis, sibling=theorem]{hypothesis}
-\declaretheorem[style=garamonddef, name=Assumption, sibling=theorem]{assumption}
-\declaretheorem[style=garamonddef, name=Technique, sibling=theorem]{technique}
-\declaretheorem[style=garamonddef, name=Interpretation, sibling=theorem]{interpretation}
-\declaretheorem[style=garamonddef, name=Evidence, sibling=theorem]{evidence}
-\declaretheorem[style=garamonddef, name=Principle, sibling=theorem]{principle}
-\declaretheorem[style=garamonddef, name=Question, sibling=theorem]{question}
-\declaretheorem[style=garamonddef, name=Summary, sibling=theorem]{summary}
-\declaretheorem[style=garamonddef, name=Problem, sibling=theorem]{problem}
-\declaretheorem[style=garamonddef, name=Setup, sibling=theorem]{setup}
-\declaretheorem[style=garamonddef, name=Strategy, sibling=theorem]{strategy}
-\declaretheorem[style=garamonddef, name=Open Problem, sibling=theorem]{openproblem}
-\declaretheorem[style=garamonddef, name=Observation, sibling=theorem]{observation}
-
-% Hyperref anchors for theorem counters
-\makeatletter
-\@ifundefined{theHtheorem}{\newcommand{\theHtheorem}{\thesection.\arabic{theorem}}}{}
-\makeatother
 
 % ==========================================
 % MATHEMATICAL NOTATION
@@ -213,8 +77,8 @@
 \newcommand{\barBch}{\bar{B}^{\mathrm{ch}}}
 \newcommand{\Vect}{\cat{Vect}}
 \newcommand{\Mod}{\mathrm{Mod}}
-\newcommand{\ClaimStatusConditional}{\textnormal{[conditional]}}
-\newcommand{\ClaimStatusNeedsVerification}{\textnormal{[needs verification]}}
+\providecommand{\ClaimStatusConditional}{\textnormal{[conditional]}}
+\providecommand{\ClaimStatusNeedsVerification}{\textnormal{[needs verification]}}
 
 % Calligraphic and blackboard
 \newcommand{\A}{\mathcal{A}}
@@ -382,29 +246,6 @@
 % ==========================================
 % FRONT MATTER
 % ==========================================
-% MODULAR GRAPH VISUAL CALCULUS (matching Vol I)
-% ==========================================
-\tikzset{
- gv/.style={circle, draw, thick, inner sep=1pt, minimum size=13pt,
- font=\footnotesize},
- gv0/.style={circle, fill, inner sep=0pt, minimum size=3.5pt},
- wv/.style={circle, draw, thick, inner sep=1.5pt, minimum size=15pt,
- font=\footnotesize},
- iedge/.style={thick},
- pedge/.style={thick,
- decoration={markings,
- mark=at position 0.5 with {\node[circle,fill,inner sep=0.8pt]{};}},
- postaction={decorate}},
- sloop/.style={thick},
- leg/.style={thick},
- shG/.style={fill=white, draw=black!40, rounded corners=2pt},
- shL/.style={fill=black!6, draw=black!40, rounded corners=2pt},
- shC/.style={fill=black!14, draw=black!40, rounded corners=2pt},
- shM/.style={fill=black!28, draw=black!40, rounded corners=2pt},
- codim bg/.style={draw=black!20, fill=black!3, rounded corners=3pt},
- maparrow/.style={-{Stealth[length=5pt]}, thick},
-}
-
 \title{\textit{Modular Homotopy Theory for Algebraic Factorization Algebras on Algebraic Curves}\\[0.5em]
 \large Volume~2: Mixed Modular Operads and 3d HT Quantum Field Theory}
 
@@ -412,6 +253,11 @@
 
 \date{Draft, \today}
 
+\ifdefined\mainpreambleonly
+% Allow standalone companions to reuse the manuscript preamble without
+% executing the monograph body.
+\expandafter\endinput
+\fi
 \begin{document}
 
 % ============================================
