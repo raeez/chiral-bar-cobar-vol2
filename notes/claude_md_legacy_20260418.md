@@ -6,6 +6,16 @@
 > Do not add new APs to this legacy file. Append them to
 > `notes/antipatterns_catalogue.md` instead.
 
+> **T5 supersession note (2026-04-24).** Any line below describing
+> higher-spin antighost BRST-commutativity (T5) for principal
+> $\mathcal W_N$ or generic $\mathcal W_\infty[\mu]$ as merely
+> conditional is historical. The live Vol II theorem
+> `thm:casimir-antighost-commutativity` proves T5 for the principal
+> Casimir towers, and
+> `prop:closed-normal-ordered-antighost-homotopies` gives the raw
+> finite normal-ordered homotopies. The abstract T5 axiom remains only
+> for arbitrary non-Casimir stress towers.
+
 # CLAUDE.md -- Volume II: A-infinity Chiral Algebras and 3D Holomorphic-Topological QFT
 
 **Canonical reference for all shared content: ~/chiral-bar-cobar/CLAUDE.md. This file contains ONLY Vol II-specific material.**

@@ -1,5 +1,15 @@
 # AGENTS.md - Volume II: A_infinity Chiral Algebras and 3D Holomorphic-Topological QFT
 
+> **T5 supersession note (2026-04-24).** Any historical line in this
+> legacy file saying the $\mathcal W_N$ or
+> $\mathcal W_\infty[\mu]$ topologisation ladder is conditional on an
+> unproved higher-spin antighost axiom is superseded. The live
+> manuscript proves T5 for principal Casimir towers in
+> `thm:casimir-antighost-commutativity` and records the finite raw
+> normal-ordered homotopies in
+> `prop:closed-normal-ordered-antighost-homotopies`. T5 remains an
+> abstract axiom only for non-Casimir stress towers.
+
 ## Purpose
 
 This file is the Codex runtime constitution for Volume II. `CLAUDE.md` may contain a larger anti-pattern atlas, historical archaeology, and Claude-oriented orchestration, but `AGENTS.md` must stand on its own as the always-on operating system for Codex/GPT-5.4 in this repo.

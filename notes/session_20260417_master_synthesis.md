@@ -1,5 +1,14 @@
 # 2026-04-17 Master Synthesis — Vol II Frontier Closures
 
+> **T5 supersession (2026-04-24).** The banner below is historical for
+> the 2026-04-18 audit state. Its statement that the
+> $\mathcal W_\infty$ endpoint is conditional on an unproved T5 axiom is
+> no longer the live status. Vol II now proves principal-Casimir T5 in
+> `thm:casimir-antighost-commutativity`, with closed raw
+> normal-ordered homotopies in
+> `prop:closed-normal-ordered-antighost-homotopies`; only arbitrary
+> non-Casimir stress towers retain T5 as an abstract axiom.
+
 > **HISTORICAL — AP288 session-ledger retraction banner (2026-04-18, Wave 7).**
 > This master synthesis was written at the over-confident closure moment of
 > the 2026-04-17 session. Subsequent waves (Wave-1 Beilinson audit + Wave-5

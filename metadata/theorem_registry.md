@@ -6,8 +6,8 @@ Auto-generated 2026-04-24.
 
 | Metric | Value |
 |---|---:|
-| ProvedHere claims | 2392 |
-| Total tagged claims | 3053 |
+| ProvedHere claims | 2395 |
+| Total tagged claims | 3056 |
 | Active files in `main.tex` | 106 |
 | Total `.tex` files scanned | 157 |
 
@@ -15,10 +15,10 @@ Auto-generated 2026-04-24.
 
 | Status | Count |
 |---|---:|
-| `ProvedHere` | 2392 |
+| `ProvedHere` | 2395 |
 | `ProvedElsewhere` | 276 |
-| `Conjectured` | 221 |
-| `Conditional` | 119 |
+| `Conjectured` | 220 |
+| `Conditional` | 120 |
 | `Heuristic` | 44 |
 | `Open` | 1 |
 
@@ -26,11 +26,11 @@ Auto-generated 2026-04-24.
 
 | Environment | Count |
 |---|---:|
-| `theorem` | 962 |
-| `proposition` | 705 |
-| `corollary` | 328 |
+| `theorem` | 964 |
+| `proposition` | 706 |
+| `corollary` | 327 |
 | `computation` | 241 |
-| `lemma` | 102 |
+| `lemma` | 103 |
 | `remark` | 42 |
 | `maintheorem` | 12 |
 
@@ -39,7 +39,7 @@ Auto-generated 2026-04-24.
 | Part | Count |
 |---|---:|
 | Frame | 0 |
-| Theory | 285 |
+| Theory | 288 |
 | Examples | 172 |
 | Connections | 1904 |
 | Standalones | 14 |

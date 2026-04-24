@@ -14845,6 +14845,61 @@ Audited the active Vol II dirty surface for local contradictions introduced by t
 
 - Targeted stale-scope greps over the UHF chapter, Part VI synthesis, chiral Higher Deligne, and touched compute tests returned no surviving old-form claims.
 - `git diff --check` passed.
+
+## 2026-04-24 - T5 proof closure, propagation, and dirty-surface cleanup
+
+- Target: `chapters/connections/e_infinity_topologization.tex`,
+  `chapters/frame/preface.tex`, T5-related notes, generated metadata,
+  and unrelated dirty worktree residue.
+- Status: `CONVERGED` for the principal Casimir T5 proof surface.
+
+### Findings
+
+1. `2026-04-24-t5-001`
+   Severity: `HIGH`
+   Class: `existence homotopy without closed normal form`
+   Issue: the Casimir T5 theorem used the transferred screened
+   Koszul--Tate homotopy but still recorded the closed raw
+   normal-ordered formula as a remaining refinement.
+   Fix: inscribed
+   `prop:closed-normal-ordered-antighost-homotopies`, with
+   `h_0 = E^{-1} sum cbar d/dJ`, the monomial formula, and the finite
+   locally nilpotent series
+   `h_scr(X)=sum_{s=0}^{D(X)} (-1)^s h_0 (delta h_0)^s X`.
+   Status: `CONVERGED`
+
+2. `2026-04-24-t5-002`
+   Severity: `HIGH`
+   Class: `stale active-summary conditional`
+   Issue: the preface still said the `W_N`, `N >= 4`, and `W_infty`
+   endpoint were conditional on unproved T5.
+   Fix: replaced the active summary with the principal-Casimir theorem
+   status: T5 is proved for principal `W_N` and generic `W_infty[mu]`;
+   the axiom remains only for arbitrary non-Casimir stress towers.
+   Status: `CONVERGED`
+
+3. `2026-04-24-t5-003`
+   Severity: `MEDIUM`
+   Class: `archival propagation drift`
+   Issue: legacy notes and audit reports still carried the old T5
+   conditional state.
+   Fix: added supersession banners to legacy Vol II/Vol I notes and a
+   local `SUPERSESSION_20260424_T5.md` in the architecture audit folder.
+   Status: `CONVERGED`
+
+4. `2026-04-24-t5-004`
+   Severity: `MEDIUM`
+   Class: `concurrent dirty-surface writer`
+   Issue: unrelated downgrade-like edits were repeatedly reintroduced
+   into active chapter files after reversal, including gravity,
+   modular Swiss-cheese, class-M topologisation, and WN-tempering
+   surfaces.
+   Fix: preserved each reversal patch outside the repository under
+   `/Users/raeez/chiral-bar-cobar-vol2-quarantine-20260424/` and
+   reversed every stable non-T5 sweep that had settled. A concurrent
+   writer continued to touch unrelated files, so complete worktree
+   cleanliness is blocked until that writer stops.
+   Status: `BLOCKED-BY-CONCURRENT-WRITER`
 - `python3 -m pytest compute/tests/test_universal_holography_functor.py compute/tests/test_universal_holography_functor_fm_iv.py compute/tests/test_climax_theorems_iv.py -q` passed (`22 passed`).
 
 ## 2026-04-24 - Monster chain-level E3-top rectification
