@@ -1,5 +1,9 @@
 # CLAUDE.md
 
+> **Inherits `~/ecosystem/INVARIANTS.md`.** That file holds the canonical ecosystem rules: destructive-git forbidden-command list, multi-agent worktree concurrency, standalone-documents discipline, Russian-school voice, every-file-into-the-repo rule, commits-carry-no-LLM-attribution, deep-semantic-merges, intelligence propagation. Read it first. Repo-local rules follow.
+
+---
+
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
 This is Vol II. A mathematician's working manifesto, not a configuration
@@ -442,8 +446,9 @@ bookkeeping — default `\ClaimStatusConjectured` when uncertain.
 
 ## Do not
 
-1. Spawn 30 parallel Codex agents for an audit (serialised + silently
-   budget-cut; throughput ~1 deliverable per session window).
+1. Do not block large user-authorized swarms. Partition work by
+   disjoint files or mathematical axes, require short verifiable
+   reports, and merge by deep semantic review across Vol I/II/III.
 2. Propagate status-label wording when mathematics is waiting.
 3. Invent formulas from memory.
 4. Run `make` after every edit.
