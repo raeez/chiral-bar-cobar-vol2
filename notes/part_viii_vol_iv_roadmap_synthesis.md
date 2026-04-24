@@ -116,7 +116,7 @@ Volume IV is "Realization": the writing of the programme's strongest-honest targ
 
 **R12. Schellekens 71-fold classification (continued).** Mostly closed via thm:monster-chain-level-e3-top plus Kapustin-Saulina formula; 46 remaining Niemeier + orbifold cases need EMS 2018-2020 lattice-cohomology application case-by-case (in-flight).
 
-**R13. beta_N closed form for N >= 4.** Open (in-flight). Current result: beta-independent Stirling dominance proves W_N tempered for all N. Closed-form beta_N conjectured (N+1)(N+2)/2; proved N = 2, 3.
+**R13. beta_N closed form for N >= 4.** Closed. Beta-independent Stirling dominance proves W_N tempered for all N, and the exact closed form is beta_N = 12(H_N - 1) = sum_{s=2}^{N} 12/s. Values: beta_2 = 6, beta_3 = 10, beta_4 = 13, beta_5 = 77/5. The earlier triangular and quadratic extrapolations are ruled out at N = 4.
 
 ---
 

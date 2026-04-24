@@ -1,12 +1,12 @@
-r"""Tests for beta_N closed form: first-principles derivation.
+r"""Evidence tests for the beta_N harmonic closed-form conjecture.
 
-Tests the three independent verification paths:
+Tests the three computational evidence paths:
 
   (A) Fateev-Lukyanov structure constants (via kappa-ratio scaling law).
-  (B) Direct Laurent expansion of S_r(W_N) master equation.
+  (B) Laurent arithmetic under the kappa-scaling ansatz.
   (C) Riccati-analog recurrence: A_r/A_{r-1} = -beta_N (r-1)/r.
 
-Theorem inscribed:
+Conjecture inscribed:
   beta_N = 12 * (H_N - 1)
 where H_N = sum_{j=1}^{N} 1/j is the N-th harmonic number.
 
@@ -14,10 +14,10 @@ Known data (from tempered_stratum_characterization_platonic.tex):
   beta_2 = 6    (Virasoro)
   beta_3 = 10   (W_3)
 
-First-principles prediction at N=4:
+Harmonic prediction at N=4:
   beta_4 = 13   (Candidate C)
 
-Prior candidates ruled out:
+Prior candidates conditionally ruled out:
   Candidate A (triangular):   beta_4^A = 15
   Candidate B (quadratic):    beta_4^B = 16
 """
@@ -44,6 +44,10 @@ from lib.beta_N_closed_form import (  # noqa: E402
     verify_ratio_identity,
 )
 from lib.independent_verification import independent_verification  # noqa: E402
+from compute.lib.w4_beta_direct import (  # noqa: E402
+    direct_w4_attack_report,
+    w4_riccati_bridge_requirement,
+)
 
 
 # -----------------------------------------------------------------------------
@@ -71,7 +75,7 @@ def test_kappa_WN_ratio_small():
     # kappa(W_N)/kappa(Vir) = 2(H_N - 1)
     assert kappa_WN_ratio(2) == Fraction(1)          # W_2 = Vir
     assert kappa_WN_ratio(3) == Fraction(5, 3)       # W_3
-    assert kappa_WN_ratio(4) == Fraction(13, 6)      # W_4 (FIRST NEW PREDICTION)
+    assert kappa_WN_ratio(4) == Fraction(13, 6)      # W_4 harmonic prediction
     assert kappa_WN_ratio(5) == Fraction(77, 30)
 
 
@@ -103,7 +107,7 @@ def test_kappa_WN_ratio_small():
 def test_beta_N_matches_known_data_via_kappa_scaling():
     """Path (A): beta_2 = 6 and beta_3 = 10 from kappa-ratio scaling.
 
-    Path (A) computes beta_N via 12*(H_N - 1) and checks against the two proved
+    Path (A) computes the harmonic beta_N candidate and checks against the two proved
     values. The derivation uses A_r(W_N) = (kappa_ratio)^{r-3} * A_r(Vir) and
     gets A_r/A_{r-1} = -12(H_N-1) * (r-1)/r.
     """
@@ -120,10 +124,11 @@ def test_kappa_ratio_absorbs_to_Vir_at_N2():
         assert A_r_WN(2, r) == A_r_Vir(r), f"W_2 != Vir at r={r}"
 
 
-def test_beta_4_first_principles_prediction():
-    """Path (A) prediction at N=4: beta_4 = 13.
+def test_beta_4_harmonic_prediction():
+    """Path (A) harmonic prediction at N=4: beta_4 = 13.
 
-    This is the KEY DISCRIMINATOR against candidates A (15) and B (16).
+    This is the discriminator against candidates A (15) and B (16),
+    conditional on the kappa-ratio scaling law.
     """
     b4 = beta_N_from_kappa(4)
     assert b4 == Fraction(13), f"beta_4 = {b4}, expected 13"
@@ -136,7 +141,7 @@ def test_beta_4_first_principles_prediction():
 
 
 # -----------------------------------------------------------------------------
-# Path (B): Direct Laurent expansion of S_r(W_N) leading coefficient
+# Path (B): Laurent arithmetic under the kappa-scaling ansatz
 # -----------------------------------------------------------------------------
 
 
@@ -147,7 +152,7 @@ def test_beta_4_first_principles_prediction():
         "Vol I universal-asymptotic-factor: A_r(Vir) = 8(-6)^{r-4}/r on T-line",
     ],
     verified_against=[
-        "Direct evaluation of A_r(W_N) = (kappa(W_N)/kappa(Vir))^{r-3} . A_r(Vir) from first principles",
+        "Direct arithmetic evaluation of A_r(W_N) = (kappa(W_N)/kappa(Vir))^{r-3} . A_r(Vir) under the scaling ansatz",
         "Vol II prop:w3-shadow-leading-asymptotic(3) A_4^{W_3} = 10/3 closed form",
     ],
     disjoint_rationale=(
@@ -200,8 +205,8 @@ def test_laurent_expansion_A5_W3():
     assert A_5_W3 / A_4_W3 == expected_ratio
 
 
-def test_laurent_expansion_A5_W4_predicts_beta4():
-    """CRITICAL PREDICTION: A_5^{W_4} from scaling law determines beta_4.
+def test_laurent_expansion_A5_W4_under_scaling_ansatz_predicts_beta4():
+    """Conditional prediction: A_5^{W_4} from scaling law determines beta_4.
 
     Under the kappa-ratio scaling law:
       A_4(W_4) = (13/6) * 2 = 13/3
@@ -221,6 +226,21 @@ def test_laurent_expansion_A5_W4_predicts_beta4():
     beta_from_ratio = -ratio * Fraction(5, 4)
     assert beta_from_ratio == Fraction(13)
     assert beta_from_ratio == beta_N_from_kappa(4)
+
+
+def test_direct_w4_attack_supports_but_does_not_prove_beta4():
+    """Direct W4 spin-lane data selects 13 but leaves the Riccati bridge open."""
+    report = direct_w4_attack_report()
+    bridge = w4_riccati_bridge_requirement()
+    assert report.lane_sum == Fraction(13)
+    assert report.triangular_candidate == Fraction(15)
+    assert report.quadratic_candidate == Fraction(16)
+    assert bridge.required_ratio == Fraction(-52, 5)
+    assert bridge.required_A5 == Fraction(-676, 15)
+    assert bridge.observed_full_miura_A5 is None
+    assert bridge.bridge_verified is False
+    assert report.proves_beta4 is False
+    assert "A_5(W4)" in report.missing_bridge
 
 
 # -----------------------------------------------------------------------------
@@ -258,7 +278,7 @@ def test_riccati_ratio_identity_all_N_all_r():
 
 
 def test_riccati_ratio_identity_matches_beta4_exactly():
-    """At N=4, r=5: ratio must equal -13*4/5 = -52/5. Not -15*4/5 = -12 or -16*4/5 = -64/5."""
+    """Under the scaling ansatz, the N=4, r=5 ratio is -13*4/5 = -52/5."""
     A_4 = A_r_WN(4, 4)
     A_5 = A_r_WN(4, 5)
     ratio = A_5 / A_4
@@ -268,8 +288,8 @@ def test_riccati_ratio_identity_matches_beta4_exactly():
     r_cand_B = -beta_N_candidate_B(4) * Fraction(4, 5)
     r_cand_C = -beta_N_from_kappa(4) * Fraction(4, 5)
 
-    assert ratio != r_cand_A, f"Candidate A not ruled out: {ratio} == {r_cand_A}"
-    assert ratio != r_cand_B, f"Candidate B not ruled out: {ratio} == {r_cand_B}"
+    assert ratio != r_cand_A, f"Candidate A not separated under ansatz: {ratio} == {r_cand_A}"
+    assert ratio != r_cand_B, f"Candidate B not separated under ansatz: {ratio} == {r_cand_B}"
     assert ratio == r_cand_C, f"Candidate C mismatch: {ratio} != {r_cand_C}"
 
 
@@ -295,7 +315,7 @@ def test_candidate_B_coincidence_at_N2_N3():
 
 
 def test_candidates_diverge_at_N4():
-    """All three candidates diverge at N=4. First-principles wins."""
+    """All three candidate formulas diverge at N=4 under the harmonic ansatz."""
     assert beta_N_candidate_A(4) == Fraction(15)
     assert beta_N_candidate_B(4) == Fraction(16)
     assert beta_N_from_kappa(4) == Fraction(13)
@@ -317,7 +337,7 @@ def test_beta_N_rational_not_integer_at_N5():
     # Candidates A and B predict integers
     assert beta_N_candidate_A(5) == Fraction(21)
     assert beta_N_candidate_B(5) == Fraction(24)
-    # But first-principles gives 77/5
+    # The harmonic candidate gives 77/5
     assert b5 != Fraction(21)
     assert b5 != Fraction(24)
     assert b5.denominator == 5, "beta_5 not rational (p/5)"

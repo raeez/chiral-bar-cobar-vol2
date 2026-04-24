@@ -20,12 +20,12 @@
 > - **L7-L11 "programme climax UNCONDITIONAL at generic parameter"** and
 >   **L142 "PROGRAMME CLIMAX (UNCONDITIONAL)"** and **L158 "UNCONDITIONAL
 >   across the entire standard landscape plus the irrational cosets"**:
->   RESCOPED. Original-complex chain-level E_3-topological for class M
->   holds on the *weight-completed* / *pro-object* / *J-adic* ambients of
->   the original bar complex (see Vol I `thm:mc5-class-m-chain-level-pro-
+>   RESCOPED. Chain-level E_3-topological for class M holds on the
+>   canonical *weight-completed* / *pro-object* / *J-adic* ambients of
+>   the filtered bar complex (see Vol I `thm:mc5-class-m-chain-level-pro-
 >   ambient`, `mc5_class_m_chain_level_platonic.tex:229-437`); the
->   direct-sum ambient in `Ch(Vect)` is an ambient-choice artefact and
->   *genuinely false*, NOT a gap. Logarithmic W(p) is excluded from the
+>   discrete direct-sum ambient in `Ch(Vect)` is a genuinely obstructed
+>   raw surface, NOT a gap. Logarithmic W(p) is excluded from the
 >   non-logarithmic tempered conclusion (Wave-1 F4, B91 split).
 > - **L48-L51 "W_∞ E_∞-topologization endpoint UNCONDITIONAL"**: RESCOPED.
 >   UNCONDITIONAL at depth N ≤ 3 (Vir, W_3) and at generic parameter modulo
@@ -57,9 +57,11 @@ All results are PROVED and inscribed into the manuscript.
 
 ## The programme climax: UNCONDITIONAL at generic parameter
 
-At session start: original-complex chain-level E_3-topological for class M
-was the sole remaining open frontier. At session end: RESOLVED UNCONDITIONAL
-at generic parameter across the entire C_2-cofinite standard landscape.
+At session start: chain-level E_3-topological for class M was the sole
+remaining open frontier. At session end: RESOLVED UNCONDITIONAL on the
+canonical completed/pro/J-adic ambients at generic parameter across the
+entire C_2-cofinite standard landscape. The discrete raw direct-sum
+surface remains genuinely obstructed.
 
 ## Theorem layer (all ProvedHere, chapter anchors)
 
@@ -76,7 +78,9 @@ thm:wn-tempered-all-N (chapters/theory/wn_tempered_closure_platonic.tex):
 W_N tempered UNCONDITIONALLY for all N >= 2 via β-independent Stirling
 dominance. The key insight (prop:beta-stirling-dominance): for any finite
 β_N, (|S_r|/r!)^(1/r) ≤ β_N · e/(r·|c|) → 0 as r → ∞. Stirling always
-wins. β_N conjectured (N+1)(N+2)/2 for all N; N=2, 3 proved.
+wins. The exact closed form is β_N = 12(H_N - 1) = Σ_{s=2}^{N} 12/s;
+β_2 = 6, β_3 = 10, β_4 = 13, β_5 = 77/5. The earlier triangular and
+quadratic extrapolations are ruled out at N = 4.
 
 thm:tempered-stratum-contains-wp (chapters/theory/logarithmic_wp_tempered_
 analysis_platonic.tex): W(p) triplet tempered for every p >= 2 via
@@ -297,8 +301,9 @@ Vol II closures propagate to:
     data for Kummer-absence computations.
   - Vol III super-Riccati inherits Vol II bosonic tempered-stratum
     structure at the |ell| = 0 reduction.
-  - Programme climax (3d QG = E_3-top of class M at generic c,
-    chain-level on original complex) now unconditional.
+  - Programme climax is class-dependent: G/L on the original complex;
+    class M on strict completed/pro or coderived surfaces. The raw
+    direct-sum original complex remains open.
 
 ## Open forward frontiers (Vol II side)
 
@@ -310,10 +315,10 @@ Vol II closures propagate to:
 
 ## Confidence intervals
 
-All inscribed theorems PROVED at stated scope. The programme climax
-(3d quantum gravity = chain-level E_3-topological at original complex
-for class M at generic parameter in C_2-cofinite standard landscape)
-is UNCONDITIONAL.
+The live manuscript scope is conditional and class-dependent. The
+programme climax is not an unconditional original-complex theorem for
+class M; it is a completed/pro or coderived statement, with the raw
+direct-sum original-complex problem still open.
 
 The remaining open frontiers are parameter-specific extensions and
 case-by-case classifications; they do not affect the unified climax

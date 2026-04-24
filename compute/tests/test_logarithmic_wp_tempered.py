@@ -1,34 +1,44 @@
-"""Independent verification for chapters/theory/logarithmic_wp_tempered_analysis_platonic.tex.
+"""Checks for chapters/theory/logarithmic_wp_tempered_analysis_platonic.tex.
 
-The chapter resolves the logarithmic W(p) triplet frontier on the
-analytic-tempering axis for the class M* locus:
+The chapter now separates the proved Virasoro T-line from the open
+regular-sector triplet problem:
 
   Conjecture conj:tempered-stratum-contains-wp (Conjectured):
     For every integer p >= 2,
         limsup_r (|S_r(W(p))| / r!)^{1/r} = 0,
     i.e. every logarithmic triplet algebra W(p) is analytically
-    tempered. The ordinary-generating convergence radius is
-    rho_*(W(p)) = |c(p)| / (4p - 3).
+    tempered. The exact ordinary-generating radius remains part of
+    the regular-sector amplitude problem.
 
   Lemma lem:wp-virasoro-subchannel-tempered (ProvedHere):
     The Virasoro sub-channel at c = c(p) is tempered because c(p) is
     not in the severe Kac-zero locus for any integer p >= 2.
 
-  Lemma lem:wp-tw-subchannel-tempered (ProvedHere):
+  Conjecture lem:wp-tw-subchannel-tempered (Conjectured):
     T-W cross-channel: |S_r^TW| <= 3 * (2p-1)^{r-2} * |S_r^TT|.
 
-  Lemma lem:wp-ww-subchannel-tempered (ProvedHere):
-    W-W channel bounded by finite Zhu algebra; Stirling gives
-    (|S_r^WW|/r!)^{1/r} -> 0.
+  Conjecture lem:wp-ww-subchannel-tempered (Conjectured):
+    W-W regular-sector amplitudes satisfy a polynomial-times-
+    exponential bound from Adamovic-Milas character data.
 
-  Lemma lem:wp-zhu-bounded-masseys (ProvedHere):
-    Massey products are bounded by (2p)^{k+1}.
+  Conjecture lem:wp-zhu-bounded-masseys (retracted from ProvedHere):
+    Massey products are bounded by (2p)^{k+1}. This is not verified
+    by the finite-dimensional Zhu algebra and must not be used as an
+    independent-verification source.
 
-  Proposition prop:wp-channel-upper-bounds (ProvedHere):
+  Conjecture prop:wp-channel-upper-bounds (Conjectured outside TT):
     rho_*^TT = |c(p)|/6, rho_*^TW = |c(p)|/(12p-6), rho_*^WW = |c(p)|/(4p-3).
 
-  Corollary cor:wp-dichotomy-healed (ProvedHere):
-    Non-tempered stratum on the C_2-cofinite landscape is empty.
+  Proposition prop:wp-c2-forbids-finite-free-strong-generation (ProvedHere):
+    C_2-cofiniteness rules out finite free strong generation for W(p).
+
+  Conjecture conj:wp-regular-sector-amplitude-bound (Conjectured):
+    The exact missing lemma is an exponential, not factorial, bound on
+    the regular TW/WW shadow coefficients.
+
+  Corollary cor:wp-dichotomy-healed:
+    Non-tempered stratum on the non-logarithmic C_2-cofinite landscape
+    is empty; the logarithmic extension is conjectural.
 
 Coverage (decorator-tagged tests):
 
@@ -43,25 +53,37 @@ Coverage (decorator-tagged tests):
 
   - test_wp_channel_rho_star_formulas
       Proposition prop:wp-channel-upper-bounds: analytic channel-wise
-      radii match |c(p)|/beta_channel.
+      radii match |c(p)|/beta_channel and the formal bottleneck is TW.
 
   - test_wp_zhu_dimension
-      Lemma lem:wp-zhu-bounded-masseys: dim A(W(p)) = 2p from
+      Proposition prop:wp-zhu-finite: dim A(W(p)) = 2p from
       Adamovic-Milas / Nagatomo-Tsuchiya.
 
-  - test_wp_tempering_universal
-      Conjecture conj:tempered-stratum-contains-wp: for p = 2..5,
+  - test_wp_tt_numerical_evidence_for_tempering_conjecture
+      Numerical evidence for Conjecture conj:tempered-stratum-contains-wp:
+      for p = 3..5,
       (|S_r^TT|/r!)^{1/r} at r = 8 is well below 1/e and strictly
       decreasing from r = 6 onwards.
 
-  - test_wp_p2_symplectic_fermion_truncation
+  - test_wp_p2_symplectic_fermion_constants_only
       Remark rem:p2-symplectic-fermion-truncation: W(2) is the
-      symplectic fermion VOA, c = -2, class C; shadow tower
-      truncates at r_max = 4.
+      symplectic fermion VOA, c = -2, with weight-three triplet
+      fields and dim A(W(2)) = 4. Full triplet shadow truncation is
+      not asserted by this test.
 
-  - test_wp_c2_cofinite_dichotomy_healed
-      Corollary cor:wp-dichotomy-healed: enumerated C_2-cofinite
-      families each verified tempered via the chapter's analysis.
+  - test_wp_c2_cofinite_status_separation
+      Corollary cor:wp-dichotomy-healed: non-logarithmic families are
+      verified tempered; triplet/singlet logarithmic entries are
+      recorded as conjectural.
+
+  - test_wp_c2_cofinite_forbids_finite_free_strong_generation
+      Proposition prop:wp-c2-forbids-finite-free-strong-generation:
+      finite free strong generation would force an infinite polynomial
+      C_2 quotient.
+
+  - test_wp_manuscript_overclaim_guards
+      Negative guard: the old free-generation, W(2)-truncation, and
+      full-radius assertions must not return.
 
 The @independent_verification decorators are mandatory per the Vol II
 HZ-IV protocol. Sources are DISJOINT: the chapter's proof uses the
@@ -95,15 +117,33 @@ import math
 import os
 import sys
 from fractions import Fraction
+from pathlib import Path
 
-# Make Vol I's compute engine importable.
+# Make Vol II's compute package dominant; Vol I is read by explicit path below.
+_VOL2_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
+if _VOL2_ROOT not in sys.path:
+    sys.path.insert(0, _VOL2_ROOT)
+
 _VOL1_ROOT = os.path.expanduser("~/chiral-bar-cobar")
 if _VOL1_ROOT not in sys.path:
-    sys.path.insert(0, _VOL1_ROOT)
+    sys.path.append(_VOL1_ROOT)
 
 import sympy as sp  # noqa: E402
 
 from compute.lib.independent_verification import independent_verification  # noqa: E402
+from compute.lib.logarithmic_wp_triplet_constants import (  # noqa: E402
+    finite_free_strong_generation_forbidden_by_c2_cofinite,
+    formal_radius_bottleneck,
+    free_c2_hilbert_coefficients,
+    triplet_constants,
+)
+from compute.lib.wp_triplet_regular_shadow import (  # noqa: E402
+    FiniteRegularShadowModel,
+    channel_weights,
+    finite_model_certificate,
+    finite_regular_shadow_bound,
+    regular_channel_envelopes,
+)
 
 
 # ---------------------------------------------------------------------------
@@ -241,8 +281,8 @@ def test_wp_central_charge_not_in_kac_zero():
 def test_wp_vir_subchannel_tempered():
     """(|S_r^TT(W(p))|/r!)^{1/r} at r = 8 is well below 1/e for p in {3,4,5}.
 
-    p=2 is the symplectic-fermion case where S_r^TT != 0 but the full
-    W(2) shadow truncates; test the Vir sub-channel directly.
+    The p=2 Virasoro sub-channel is tested directly. No full-triplet
+    truncation claim is made here.
     """
     for p in WP_TEST_P_VALUES:
         c_p = _triplet_central_charge(p)
@@ -279,9 +319,9 @@ def test_wp_vir_subchannel_tempered():
         "Derivation combines the prior chapter's Virasoro radius formula "
         "with the Adamovic-Milas OPE pole orders via AP19. Verification "
         "evaluates the three channel amplifiers arithmetically for "
-        "p = 2..5 and cross-checks that rho_*^WW is the bottleneck for "
-        "every integer p >= 2 (since 4p - 3 >= 5 > other channels for "
-        "p >= 3, and p = 2 is handled separately via truncation)."
+        "p = 2..5 and cross-checks that the formal TW radius, not the "
+        "WW radius, is the smallest candidate whenever the TW bound is "
+        "assumed."
     ),
 )
 def test_wp_channel_rho_star_formulas():
@@ -302,20 +342,26 @@ def test_wp_channel_rho_star_formulas():
             f"p={p}: rho_TW computation inconsistent"
         )
 
-        # Sanity: rho_*^WW bottleneck for p >= 3.
-        if p >= 3:
-            assert rho_ww < rho_tt, (
-                f"p={p}: WW channel should be tighter than TT for p >= 3"
-            )
+        constants = triplet_constants(p)
+        assert constants.rho_tt == rho_tt
+        assert constants.rho_tw == rho_tw
+        assert constants.rho_ww == rho_ww
+        assert constants.formal_bottleneck == "TW"
+        assert formal_radius_bottleneck(p) == "TW"
+        assert rho_tw < rho_ww, (
+            f"p={p}: TW formal radius should be smaller than WW"
+        )
 
-        # For p = 2: rho_ww = 2/5, rho_tt = 1/3; WW is actually tighter
-        # but W(2) truncates so effective radius is +infty.
+        # For p = 2: rho_tw = 1/9, rho_tt = 1/3, rho_ww = 2/5.
+        # No full-triplet truncation or infinite-radius claim is asserted.
         if p == 2:
+            assert rho_tw == Fraction(1, 9), f"p=2: rho_TW = {rho_tw} != 1/9"
             assert rho_ww == Fraction(2, 5), f"p=2: rho_WW = {rho_ww} != 2/5"
             assert rho_tt == Fraction(1, 3), f"p=2: rho_TT = {rho_tt} != 1/3"
 
-        # For p = 3: c(3) = -7, rho_ww = 7/9.
+        # For p = 3: c(3) = -7, rho_tw = 7/30, rho_ww = 7/9.
         if p == 3:
+            assert rho_tw == Fraction(7, 30), f"p=3: rho_TW = {rho_tw} != 7/30"
             assert rho_ww == Fraction(7, 9), f"p=3: rho_WW = {rho_ww} != 7/9"
 
 
@@ -325,7 +371,7 @@ def test_wp_channel_rho_star_formulas():
 
 
 @independent_verification(
-    claim="lem:wp-zhu-bounded-masseys",
+    claim="prop:wp-zhu-finite",
     derived_from=[
         "Adamovic-Milas 2008 Proposition 4.1: dim A(W(p)) = 2p",
         "Nagatomo-Tsuchiya 2009 Theorem 2.2: explicit Zhu algebra presentation",
@@ -354,44 +400,18 @@ def test_wp_zhu_dimension():
         "dim A(W(2)) = 4 (symplectic fermion 4 modules)"
     )
 
-    # Massey bound: (2p)^{k+1} for length-k Massey.
-    for p in [2, 3, 4]:
-        dim = _adamovic_milas_zhu_dimension(p)
-        for k in [1, 2, 3]:
-            bound = dim ** (k + 1)
-            # Sanity: finite, positive, and grows only exponentially in k.
-            assert bound > 0 and bound < 10 ** 9, (
-                f"p={p}, k={k}: Massey bound {bound} out of range"
-            )
-
 
 # ---------------------------------------------------------------------------
-# Test 5: Universal W(p) tempering.
+# Test 5: TT-line numerical evidence for the W(p) tempering conjecture.
 # ---------------------------------------------------------------------------
 
 
-@independent_verification(
-    claim="conj:tempered-stratum-contains-wp",
-    derived_from=[
-        "Proposition prop:wp-channel-upper-bounds (three-channel tempering)",
-        "Lemma lem:wp-zhu-bounded-masseys (Zhu-bounded Massey products)",
-        "Stirling r!^{1/r} ~ r/e",
-    ],
-    verified_against=[
-        "Direct numerical extraction of (|S_r^TT|/r!)^{1/r} at r = 8 from Vol I engine at c = c(p)",
-        "Monotone-decreasing certificate from r = 6 to r = 8 for p = 3, 4, 5",
-    ],
-    disjoint_rationale=(
-        "Theorem proof combines three-channel decomposition, Zhu-bounded "
-        "Masseys, and Stirling. Verification extracts the shadow "
-        "sequence numerically from the Vol I recurrence engine and "
-        "checks the quantitative tempering certificate (rate < 1/e, "
-        "monotone decrease) without re-deriving the three-channel "
-        "upper bounds."
-    ),
-)
-def test_wp_tempering_universal():
-    """Numerical tempering certificate for W(p), p = 3, 4, 5."""
+def test_wp_tt_numerical_evidence_for_tempering_conjecture():
+    """TT-line numerical evidence for W(p), p = 3, 4, 5.
+
+    This does not verify the full triplet conjecture: it computes only
+    the Virasoro sub-channel from the Vol I recurrence engine.
+    """
     for p in [3, 4, 5]:
         c_p = _triplet_central_charge(p)
         S_tt = _vol1_shadow_sequence(c_p, max_r=8)
@@ -421,8 +441,8 @@ def test_wp_tempering_universal():
 # ---------------------------------------------------------------------------
 
 
-def test_wp_p2_symplectic_fermion_truncation():
-    """W(2) at c = -2 is the symplectic fermion VOA (class C).
+def test_wp_p2_symplectic_fermion_constants_only():
+    """W(2) at c = -2 is the first full-triplet compute target.
 
     Not decorator-tagged because it verifies structural facts about
     the classical symplectic fermion / bc-ghost VOA, which are
@@ -440,54 +460,38 @@ def test_wp_p2_symplectic_fermion_truncation():
     # The Zhu algebra dimension is 4.
     assert _adamovic_milas_zhu_dimension(p) == 4
 
-    # Class C has r_max = 4, so shadow tower truncates at r = 4.
-    # The Virasoro sub-channel at c = -2 does not truncate
-    # (since Vir_{-2} is not class C by itself); the TRUNCATION
-    # is a property of the FULL W(2) algebra, which includes the
-    # symplectic fermion coupling killing S_r for r >= 5.
+    # This test intentionally does not assert full-triplet truncation.
+    # The Virasoro sub-channel at c = -2 does not truncate, and the
+    # full T-W / W-W shadow requires a dedicated logarithmic W(p)
+    # engine before any truncation claim can be promoted.
 
 
 # ---------------------------------------------------------------------------
-# Test 7: Dichotomy healed on C_2-cofinite landscape.
+# Test 7: C_2-cofinite landscape status separation.
 # ---------------------------------------------------------------------------
 
 
-@independent_verification(
-    claim="cor:wp-dichotomy-healed",
-    derived_from=[
-        "Theorem thm:tempered-stratum-contains-virasoro",
-        "Theorem thm:tempered-stratum-contains-w3",
-        "Conjecture conj:tempered-stratum-contains-wp (present chapter)",
-    ],
-    verified_against=[
-        "Enumeration of C_2-cofinite landscape (Arakawa 2012 Theorem 4.1): each family has tempering verified",
-        "Direct check that no non-tempered C_2-cofinite family exists in the six enumerated classes",
-    ],
-    disjoint_rationale=(
-        "The corollary is a logical combination of three tempering "
-        "theorems. Verification enumerates the known C_2-cofinite "
-        "families (generic Vir, principal W_3, W(p) and M(p), lattice, "
-        "affine V_k(g), minimal models) and confirms each has an "
-        "established tempering result; this is an enumeration, not a "
-        "re-proof of the individual tempering theorems."
-    ),
-)
-def test_wp_c2_cofinite_dichotomy_healed():
-    """Enumerate C_2-cofinite families and verify tempering status for each."""
+def test_wp_c2_cofinite_status_separation():
+    """Enumerate C_2-cofinite families with proved/conjectural status."""
     # The C_2-cofinite landscape (Arakawa 2012 Theorem 4.1):
     c2_cofinite_families = {
         "generic_virasoro": {"tempered": True, "source": "thm:tempered-stratum-contains-virasoro"},
         "principal_W3": {"tempered": True, "source": "thm:tempered-stratum-contains-w3"},
-        "triplet_Wp": {"tempered": True, "source": "conj:tempered-stratum-contains-wp"},
-        "singlet_Mp": {"tempered": True, "source": "cor:wp-dichotomy-healed (Vir-only subchannel)"},
+        "triplet_Wp": {"tempered": None, "source": "conj:tempered-stratum-contains-wp"},
+        "singlet_Mp": {"tempered": None, "source": "conjectural extension of W(p) regular-sector bound"},
         "lattice_VOA": {"tempered": True, "source": "class G shadow truncation"},
         "affine_Vk": {"tempered": True, "source": "class L shadow truncation at r_max=3"},
         "minimal_models": {"tempered": True, "source": "restricted Vir quotient at rational c"},
     }
     for family, status in c2_cofinite_families.items():
-        assert status["tempered"], (
-            f"{family} is not tempered; dichotomy healing incomplete"
-        )
+        if family in {"triplet_Wp", "singlet_Mp"}:
+            assert status["tempered"] is None, (
+                f"{family} must remain conjectural, not verified tempered"
+            )
+        else:
+            assert status["tempered"] is True, (
+                f"{family} should be proved tempered on the non-logarithmic surface"
+            )
     assert len(c2_cofinite_families) >= 6, (
         "At least 6 C_2-cofinite families should be enumerated"
     )
@@ -498,8 +502,8 @@ def test_wp_c2_cofinite_dichotomy_healed():
 # ---------------------------------------------------------------------------
 
 
-def test_wp_no_factorial_growth():
-    """Standalone refutation: if |S_r^TT(W(p))| grew factorially
+def test_wp_tt_no_factorial_growth():
+    """Standalone TT-line refutation: if |S_r^TT(W(p))| grew factorially
     (|S_r| ~ r! * const^r), then (|S_r|/r!)^{1/r} -> const > 0.
 
     Numerically, at p = 3 (c = -7), r = 4..8, the ratios
@@ -593,3 +597,142 @@ def test_wp_virasoro_initial_data_at_c_of_p():
         assert sp.simplify(S[4] - expected_s4) == 0, (
             f"p={p}: S_4 != 10/(c(5c+22)) at c = {c_p}"
         )
+
+
+# ---------------------------------------------------------------------------
+# Test 11: C2-cofiniteness forbids finite free strong generation.
+# ---------------------------------------------------------------------------
+
+
+@independent_verification(
+    claim="prop:wp-c2-forbids-finite-free-strong-generation",
+    derived_from=[
+        "Adamovic-Milas / Nagatomo-Tsuchiya: W(p) is C2-cofinite for p >= 2",
+        "Free finite strong generation gives polynomial C2 quotient on generator images",
+    ],
+    verified_against=[
+        "Direct Hilbert-series coefficients for C[x_T, x_W+, x_W0, x_W-]",
+        "Explicit p=2 degrees (2,3,3,3) have nonzero coefficients through weight 30",
+    ],
+    disjoint_rationale=(
+        "The manuscript proof uses the standard C2 quotient argument. "
+        "The test computes the polynomial Hilbert series forced by finite "
+        "free strong generation and observes its unbounded support; this "
+        "is incompatible with C2-cofiniteness without using the triplet "
+        "character formula or any shadow coefficient."
+    ),
+)
+def test_wp_c2_cofinite_forbids_finite_free_strong_generation():
+    """Finite free strong generation would force an infinite C2 quotient."""
+    for p in WP_TEST_P_VALUES:
+        constants = triplet_constants(p)
+        degrees = (2, constants.w_weight, constants.w_weight, constants.w_weight)
+        coeffs = free_c2_hilbert_coefficients(degrees, max_weight=30)
+
+        # Powers of the T-image alone give nonzero classes in all even weights.
+        for n in range(1, 16):
+            assert coeffs[2 * n] > 0, (
+                f"p={p}: free C2 polynomial quotient should have T^{n}"
+            )
+        assert finite_free_strong_generation_forbidden_by_c2_cofinite(p)
+
+
+# ---------------------------------------------------------------------------
+# Test 12: Manuscript guards against the retracted overclaims.
+# ---------------------------------------------------------------------------
+
+
+def test_wp_manuscript_overclaim_guards():
+    """The chapter must not reassert the old free/truncation/radius claims."""
+    chapter = (
+        Path(__file__).resolve().parents[2]
+        / "chapters"
+        / "theory"
+        / "logarithmic_wp_tempered_analysis_platonic.tex"
+    )
+    text = chapter.read_text()
+
+    forbidden = [
+        "freely strongly generated (the PBW character",
+        "shadow tower TRUNCATES",
+        "actual radius is $+\\infty$",
+        "the $WW$-channel is the bottleneck",
+        "$\\rho_*(\\cW(p)) = \\lvert c(p)\\rvert / (4p-3)$",
+    ]
+    for phrase in forbidden:
+        assert phrase not in text, f"retracted overclaim returned: {phrase}"
+
+    assert "\\label{conj:wp-regular-sector-amplitude-bound}" in text
+    assert "prop:wp-c2-forbids-finite-free-strong-generation" in text
+
+
+# ---------------------------------------------------------------------------
+# Test 13: Finite regular-sector pole-envelope model.
+# ---------------------------------------------------------------------------
+
+
+@independent_verification(
+    claim="prop:wp-finite-pole-envelope-reduction",
+    derived_from=[
+        "Guarded OPE constants: beta_TT = 6, TW primary weight 2p-1, WW bar pole order 4p-3",
+        "Finite planar collision trees are counted by Catalan numbers",
+    ],
+    verified_against=[
+        "Direct W(2) arithmetic: c=-2, TT=6, TW=9, WW=45, ambient=60",
+        "Exact envelope inequality Catalan_{r-1} A^{r-1} <= (4A)^r at r=2..12",
+    ],
+    disjoint_rationale=(
+        "The proposition is a conditional combinatorial reduction, not "
+        "a proof of the actual W(p) regular-sector factorisation. The "
+        "derivation uses pole constants and Catalan counting. The test "
+        "evaluates the W(2) finite pole-envelope model exactly and checks "
+        "the resulting exponential-polynomial certificate."
+    ),
+)
+def test_wp_p2_regular_pole_envelope_constants():
+    """W(2) finite pole-envelope constants: TT=6, TW=9, WW=45."""
+    model = FiniteRegularShadowModel.wp2_zhu_sized_pole_envelope()
+    weights = channel_weights(2)
+    bound = finite_regular_shadow_bound(model)
+
+    assert model.central_charge == Fraction(-2)
+    assert model.ww_bar_pole_order == 5
+    assert model.residue_state_bound == 4
+    assert model.polynomial_degree == 3
+    assert weights.tt == 6
+    assert weights.tw == 9
+    assert weights.ww == 45
+    assert weights.ambient == 60
+    assert bound.C == 4
+    assert bound.N == 3
+    assert bound.R == 240
+
+    for r in range(2, 9):
+        envelopes = regular_channel_envelopes(model, r)
+        assert envelopes["TW"] > 0
+        assert envelopes["WW"] > 0
+        assert envelopes["nonvir"] == envelopes["TW"] + envelopes["WW"]
+
+
+def test_wp_regular_pole_envelope_has_exponential_polynomial_certificate():
+    """The finite pole-envelope model satisfies |S_reg(r)| <= 4 r^3 240^r."""
+    model = FiniteRegularShadowModel.wp2_zhu_sized_pole_envelope()
+    certificate = finite_model_certificate(model, range(2, 13))
+    assert all(certificate.values())
+
+    bound = finite_regular_shadow_bound(model)
+    # The normalized logarithmic rate decreases at large r, as required
+    # by Stirling for any exponential-polynomial sequence.
+    assert bound.log_tempered_rate(2000) < bound.log_tempered_rate(1000)
+    assert bound.log_tempered_rate(4000) < 0
+
+
+def test_wp_regular_pole_envelope_rejects_factorial_growth():
+    """A factorial TW/WW sequence cannot satisfy the finite-envelope certificate."""
+    model = FiniteRegularShadowModel.wp2_zhu_sized_pole_envelope()
+    bound = finite_regular_shadow_bound(model)
+    witness = bound.first_factorial_violation(r_max=1200)
+
+    assert witness is not None
+    assert witness <= 800
+    assert bound.factorial_probe_violates(witness)

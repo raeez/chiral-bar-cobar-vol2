@@ -249,9 +249,12 @@ class TestModularHomotopyKoszulity:
     """Verify consequences of modular homotopy-Koszulity of SC_mod."""
 
     def test_bar_cobar_quillen_equivalence(self):
-        """Bar-cobar for SC_mod is a Quillen equivalence."""
+        """Bar-cobar for SC_mod has proved flat and conditional Quillen status."""
         from lib.factorization_modular_engine import bar_cobar_is_quillen_equivalence
-        assert bar_cobar_is_quillen_equivalence() is True
+        status = bar_cobar_is_quillen_equivalence()
+        assert status['flat_bicomplex'] == 'proved'
+        assert status['quillen_equivalence'] == 'conditional'
+        assert 'mixed-face perturbation control' in status['required_hypotheses']
 
     def test_feynman_involution_is_identity(self):
         """FT_mod^2 ~ id on closed-colour algebras."""
@@ -264,13 +267,14 @@ class TestModularHomotopyKoszulity:
         steps = modular_hkoszul_proof_steps()
         assert len(steps) == 4
 
-    def test_all_steps_proved(self):
-        """All four proof steps are established/proved."""
+    def test_all_steps_have_honest_status(self):
+        """Proof steps distinguish proved input from conditional assembly."""
         from lib.factorization_modular_engine import modular_hkoszul_proof_steps
         steps = modular_hkoszul_proof_steps()
-        for key, step in steps.items():
-            assert step['status'] in ('established', 'proved'), \
-                f"Step {key} has status {step['status']}"
+        assert steps['step_1']['status'] == 'established'
+        assert steps['step_2']['status'] == 'proved'
+        assert steps['step_3']['status'] == 'conditional'
+        assert steps['step_4']['status'] == 'conditional'
 
 
 # ===================================================================

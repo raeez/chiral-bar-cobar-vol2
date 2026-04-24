@@ -7,15 +7,16 @@ verification source sets. The @independent_verification decorator fires at
 import time if disjointness is violated.
 
 CLAIM 1: thm:chiral-higher-deligne
-  The derived chiral centre Z^{der}_{ch}(A) = ChirHoch^*(A, A) carries a
-  canonical E_3-chiral-algebra action by the closed colour of SC^{ch,top}
-  via the heptagon edges (3)<->(4)<->(5), after Drinfeld associator fix.
+  The pair (Z^{der}_{ch}(A), A), with
+  Z^{der}_{ch}(A) = ChirHoch^*(A, A), carries the mixed
+  chiral-topological SC^{ch,top} bulk-boundary datum via the heptagon
+  edges (3)<->(4)<->(5), after Drinfeld associator fix.
 
   Derivation source (the chapter proof route):
     (a) Chiral SC^{ch,top} pentagon edges (3)<->(4)<->(5) of the heptagon
         (Vol II Chapter sc_chtop_heptagon);
-    (b) Dunn additivity for chain-level factorisation algebras applied to
-        F^{Z^{der}_{ch}} on R x X.
+    (b) ordered bar-cobar action of the two-coloured SC^{ch,top}
+        cooperad on (Z^{der}_{ch}(A), A).
 
   Verification source (disjoint):
     (i)   Tamarkin 2003 "Another proof of Deligne's conjecture"
@@ -28,15 +29,14 @@ CLAIM 1: thm:chiral-higher-deligne
           E_n-rings" -- chiral Deligne at E_2 on a curve via tangent
           complex geometry, independent of SC^{ch,top} heptagon.
 
-  Disjoint rationale: the chapter obtains E_3 by promoting E_2 to E_3
-  through Dunn additivity plus the SC heptagon; the three verification
-  sources each produce the E_2 content (or a compatible Stokes/tangent
-  story) through genuinely different machinery -- Tamarkin via rational
-  associator on Hochschild, Kontsevich via logarithmic forms on
-  Fulton-MacPherson, Francis via E_n tangent complex. Agreement at the
-  E_2 level is non-tautological; the chain-level E_3 upgrade in the
-  chapter rests on Dunn+heptagon, which none of the verification sources
-  use.
+  Disjoint rationale: the chapter constructs the mixed datum from the
+  SC^{ch,top} heptagon and ordered bar-cobar action; the three
+  verification sources each produce the E_2 content (or a compatible
+  Stokes/tangent story) through genuinely different machinery --
+  Tamarkin via rational associator on Hochschild, Kontsevich via
+  logarithmic forms on Fulton-MacPherson, Francis via E_n tangent
+  complex. Agreement at the E_2 level is non-tautological; the
+  two-coloured SC^{ch,top} lift is the additional chapter content.
 
 
 CLAIM 2: thm:H-concentration-via-E3-rigidity
@@ -77,7 +77,7 @@ CLAIM 2: thm:H-concentration-via-E3-rigidity
 CLAIM 3: thm:chd-ds-hochschild
   At chain level, ChirHoch^*(W_k(g, f)) is quasi-isomorphic to the
   DS cohomology of ChirHoch^*(V_k(g)) as E_2-chiral Gerstenhaber
-  algebras; this lifts to E_3-chiral algebras.
+  algebras; this lifts to mixed chiral-topological SC^{ch,top} data.
 
   Derivation source (the chapter proof route):
     (a) Arakawa 2015 C_2-cofiniteness (Ann. Math., arXiv:1004.1554);
@@ -128,7 +128,7 @@ from compute.lib.independent_verification import independent_verification
     claim="thm:chiral-higher-deligne",
     derived_from=[
         "Chiral SC^{ch,top} pentagon edges (3)<->(4)<->(5) of the heptagon (Vol II Chapter sc_chtop_heptagon)",
-        "Dunn additivity for chain-level factorisation algebras on R x X",
+        "Ordered bar-cobar action of the two-coloured SC^{ch,top} cooperad on (Zder_ch(A), A)",
     ],
     verified_against=[
         "Tamarkin 2003 (Lett. Math. Phys. 66) E_2-brace on Hochschild at formal disc via rational Drinfeld associator",
@@ -136,21 +136,21 @@ from compute.lib.independent_verification import independent_verification
         "Francis 2012 chiral Deligne at E_2 on a curve via tangent complex for E_n-rings",
     ],
     disjoint_rationale=(
-        "The chapter obtains the E_3 action by combining the SC^{ch,top} "
-        "pentagon edges with Dunn additivity along the R-direction. The "
-        "three verification sources each reach the underlying E_2 content "
+        "The chapter obtains the mixed chiral-topological datum by combining "
+        "the SC^{ch,top} heptagon edges with the ordered bar-cobar action. "
+        "The three verification sources each reach the underlying E_2 content "
         "via genuinely different machinery: Tamarkin via a rational "
         "Drinfeld associator applied to Hochschild, Kontsevich via Stokes "
         "integrals of logarithmic forms on Fulton-MacPherson compactifications, "
         "Francis via the tangent complex of E_n-rings. None of the three "
-        "uses the SC^{ch,top} pentagon or Dunn additivity along R. "
+        "uses the SC^{ch,top} heptagon or the two-coloured ordered bar-cobar lift. "
         "Agreement at the E_2 level across the three verification sources "
         "plus the chapter route is the non-tautological cross-check; the "
-        "E_3 upgrade in the chapter is the new content."
+        "SC^{ch,top} lift in the chapter is the additional content."
     ),
 )
 def test_chd_e3_action_structural():
-    """Structural consistency test for the E_3-action construction.
+    """Structural consistency test for the mixed SC^{ch,top} construction.
 
     The claim: whichever route one uses (chapter / Tamarkin / Kontsevich /
     Francis), the output at E_2 level is an associative-up-to-homotopy

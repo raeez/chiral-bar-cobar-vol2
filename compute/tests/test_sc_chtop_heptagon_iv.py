@@ -3,12 +3,12 @@
 Target chapters: chapters/theory/sc_chtop_heptagon.tex and
 chapters/connections/spectral-braiding-core.tex.
 
-Covers four ProvedHere claims:
+Covers three ProvedHere claims and one conditional structural witness:
 
     thm:sc-heptagon           (spectral-braiding-core.tex)
     thm:heptagon-closed       (sc_chtop_heptagon.tex)
     thm:heptagon-collapse     (sc_chtop_heptagon.tex)
-    thm:drinfeld-centre-sc-face (sc_chtop_heptagon.tex)
+    thm:drinfeld-centre-sc-face (conditional; structural witness only)
 
 Each decorator pairs the chapter's internal operadic derivation
 against an independent algebraic source that computes the same
@@ -246,34 +246,6 @@ def test_heptagon_collapse_dunn_additivity_signature():
 # ---------------------------------------------------------------------------
 
 
-@independent_verification(
-    claim="thm:drinfeld-centre-sc-face",
-    derived_from=[
-        "Vol II derived chiral centre Z^{der}_{ch}(A) = "
-        "C^bullet_{ch}(A, A) computed via bar complex",
-        "SC^{ch,top} identification of (Z^{der}_{ch}(A), A) as the "
-        "bulk-boundary datum with closed colour = centre",
-    ],
-    verified_against=[
-        "Etingof-Nikshych-Ostrik 2005 categorical Drinfeld centre "
-        "of a fusion category via half-braidings "
-        "(arXiv:math/0301027) -- constructs the Drinfeld centre "
-        "without bar complex",
-        "Davydov-Muger-Nikshych-Ostrik 2013 Witt group of non-"
-        "degenerate braided fusion categories "
-        "(arXiv:1009.2117) -- independent centre-equivalence "
-        "framework on MTC quotients",
-    ],
-    disjoint_rationale=(
-        "Derivation builds the Drinfeld centre via bar complex + "
-        "chiral Hochschild cochains (our chapter). Verification "
-        "uses (a) ENO half-braidings, which define the categorical "
-        "Drinfeld centre by universal-property alone (no bar, no "
-        "chiral Hochschild), and (b) DMNO Witt-group framework "
-        "which treats the centre via MTC pairing. Both verification "
-        "paths realise the same Drinfeld centre object via "
-        "genuinely distinct mathematical primitives."),
-)
 def test_drinfeld_centre_category_structure():
     """The Drinfeld centre Z(C) of a monoidal category is braided
     monoidal; objects = pairs (X, sigma) with half-braiding

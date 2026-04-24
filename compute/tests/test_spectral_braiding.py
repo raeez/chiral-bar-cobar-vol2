@@ -1,13 +1,15 @@
 """
-Tests verifying R-matrix structures and Yang-Baxter equations.
+Tests verifying Laplace kernels, collision kernels, and Yang-Baxter equations.
 
 The spectral braiding data arises from the Laplace transform bridge:
-  r(z) = sum_{n>=0} c_n * n! / z^{n+1}
+  r^L(z) = sum_{n>=0} c_n * n! / z^{n+1}
 where {a_lambda b} = sum c_n lambda^n is the lambda-bracket.
+The collision/spectral r-kernel used in Yangian examples is the bar-residue
+kernel; for central current terms it has one pole fewer.
 
 For each example family, we verify:
-1. The Laplace transform bridge (BR3) correctly maps brackets to r-matrices
-2. The classical Yang-Baxter equation (CYBE) for the r-matrix
+1. The Laplace transform bridge (BR3) correctly maps brackets to r^L kernels
+2. The classical Yang-Baxter equation (CYBE) for the collision r-kernel
 3. The quantum Yang-Baxter equation (YBE) for the R-matrix (when applicable)
 
 Paper references: Vol II Section 18 (spectral-braiding.tex), BR3 axiom.
@@ -30,20 +32,21 @@ from sympy import (Symbol, Rational, simplify, expand, S, symbols,
 # ===================================================================
 
 class TestAbelianCSRMatrix:
-    """R-matrix for abelian CS: r(z) = k/z^2 (classical).
+    """Abelian CS Laplace kernel and collision r-kernel.
 
     The abelian current algebra {J_lambda J} = k*lambda has Laplace transform
-    r(z) = k * 1! / z^2 = k/z^2.
+    r^L(z) = k * 1! / z^2 = k/z^2.
 
-    This matches the classical r-matrix for U(1)_k.
+    The Yangian-style collision kernel used by the example library is the
+    bar-residue kernel r^{coll}(z)=k/z, with charge factors included.
     Vol II Section 18.
     """
 
     def test_laplace_transform(self):
-        """BR3: Laplace transform of {J_lam J} = k*lam gives r(z) = k/z^2.
+        """BR3: Laplace transform of {J_lam J} = k*lam gives r^L(z) = k/z^2.
 
         {J_lambda J} = k*lambda => bracket_coeffs = {1: k}
-        r(z) = k * 1! / z^2 = k/z^2.
+        r^L(z) = k * 1! / z^2 = k/z^2.
 
         Tier 3 (cross-check): independent Laplace computation.
         """
@@ -56,11 +59,11 @@ class TestAbelianCSRMatrix:
         assert simplify(r - expected) == 0
 
     def test_laplace_roundtrip(self):
-        """Verify Laplace bridge is consistent: OPE -> lambda -> r-matrix -> OPE.
+        """Verify Laplace bridge is consistent: OPE -> lambda -> r^L -> OPE.
 
         The OPE J(z)J(w) ~ k/(z-w)^2 has pole coefficient c_1 = k at order 2.
         lambda-bracket: {J_lam J} = c_1 * lam / 1! = k*lam.
-        r-matrix: r(z) = k * 1! / z^2 = k/z^2.
+        Laplace kernel: r^L(z) = k * 1! / z^2 = k/z^2.
         Back to OPE: k/z^2 matches the original.
 
         Tier 3 (cross-check).
@@ -93,11 +96,10 @@ class TestAbelianCSRMatrix:
         assert check_yang_baxter_abelian(z1, z2, hbar) == 0
 
     def test_classical_limit(self):
-        """Classical r-matrix: r(z) = k * Omega / z^2 where Omega is the Casimir.
+        """Collision r-kernel: r^{coll}(z) = k * Omega / z.
 
         For abelian case: Omega = J tensor J (one generator),
-        so r(z) = k/z^2 * (J tensor J). In our convention (working with
-        scalar brackets), this is just k/z^2.
+        so the bar-residue kernel is k/z times the charge pairing.
 
         Tier 2 (published).
         """
@@ -110,19 +112,19 @@ class TestAbelianCSRMatrix:
         assert simplify(r - hbar * q1 * q2 / z) == 0
 
     def test_antisymmetry(self):
-        """r-matrix antisymmetry: r_{12}(z) = -r_{21}(-z) for the classical r-matrix.
+        """Laplace central kernel is symmetric; collision kernels carry skewness.
 
-        For r(z) = k/z^2: r(-z) = k/z^2 = r(z).
+        For r^L(z) = k/z^2: r^L(-z) = k/z^2 = r^L(z).
         Under 12<->21 swap for abelian: r_{21}(z) = r_{12}(z).
         So r_{12}(z) + r_{21}(-z) = 2k/z^2 != 0.
 
-        Actually, for the LEVEL-1 pole (structure constant part):
-        r(z) = Omega/z has r_{12}(z) = -r_{21}(-z) = -Omega/(-z) = Omega/z. OK.
+        For the LEVEL-1 collision pole:
+        r^{coll}(z) = Omega/z has r_{12}(z) = -r_{21}(-z) = -Omega/(-z) = Omega/z.
 
-        For abelian CS with r(z) = k/z^2 (only level pole, no structure constants),
+        For the abelian Laplace kernel r^L(z) = k/z^2,
         the antisymmetry is r_{12}(z) = -r_{21}(-z) <=> k/z^2 = -k/z^2,
-        which FAILS. This is because the abelian r-matrix has only the
-        SYMMETRIC (Casimir) part and no antisymmetric (structure constant) part.
+        which fails. This is because the central Laplace kernel records the
+        symmetric OPE pole before bar-residue extraction.
 
         The correct statement is: the skew part r(z) - r_{21}(-z) = 2k/z^2
         equals the central extension term.
@@ -301,13 +303,13 @@ class TestGL2RMatrix:
 # ===================================================================
 
 class TestVirasoroRMatrix:
-    """Classical r-matrix for Virasoro from the lambda-bracket.
+    """Virasoro Laplace kernel from the lambda-bracket.
 
     {T_lambda T} = dT + 2T*lambda + (c/12)*lambda^3
 
     Via Laplace transform (BR3):
-    r(z) = dT * 0!/z + 2T * 1!/z^2 + (c/12) * 3!/z^4
-         = dT/z + 2T/z^2 + c/2 * 1/z^4
+    r^L(z) = dT * 0!/z + 2T * 1!/z^2 + (c/12) * 3!/z^4
+           = dT/z + 2T/z^2 + c/2 * 1/z^4
 
     This recovers the Virasoro OPE:
     T(z)T(w) ~ (c/2)/(z-w)^4 + 2T/(z-w)^2 + dT/(z-w)
@@ -382,14 +384,14 @@ class TestVirasoroRMatrix:
     def test_virasoro_r_laplace_inverse(self):
         """Check that the OPE -> lambda -> r roundtrip is consistent.
 
-        Start from OPE coefficients, convert to lambda-bracket, then to r-matrix.
+        Start from OPE coefficients, convert to lambda-bracket, then to r^L.
         The result should reproduce the original OPE coefficients.
 
         Virasoro OPE: T(z)T(w) ~ (c/2)/(z-w)^4 + 2T(w)/(z-w)^2 + dT(w)/(z-w)
         n-products: T_0 T = dT, T_1 T = 2T, T_2 T = 0, T_3 T = c/2
         lambda-bracket: {T_lam T} = dT + 2T*lam + (c/12)*lam^3
                         because (c/2)/3! = c/12
-        r-matrix: r(z) = dT/z + 2T/z^2 + (c/2)/z^4
+        Laplace kernel: r^L(z) = dT/z + 2T/z^2 + (c/2)/z^4
 
         The roundtrip reproduces the OPE pole structure.
         Tier 3 (cross-check).

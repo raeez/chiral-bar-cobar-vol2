@@ -11,6 +11,7 @@ chapters/theory/super_chiral_yangian.tex:
 Plus one ProvedHere proposition:
 
     prop:super-yangian-grt-orbit
+    prop:vol3-upgrade
 
 Each decorator names derived_from + verified_against sources that are
 genuinely disjoint (Nazarov 1991 super-RTT; Etingof-Kazhdan super-
@@ -644,6 +645,56 @@ def test_heisenberg_vs_symplectic_fermion_z2_character():
     ap107_symf = -1  # odd-odd, Koszul sign
     assert ap107_heis == 1
     assert ap107_symf == -1
+
+
+# ---------------------------------------------------------------------------
+# prop:vol3-upgrade
+# ---------------------------------------------------------------------------
+
+
+@independent_verification(
+    claim="prop:vol3-upgrade",
+    derived_from=[
+        "K3 Mukai lattice has rank 24 and orthogonal signature (4,20)",
+        "Forgetting the Mukai form but retaining Hodge parity gives a "
+        "4|20 super vector space",
+        "Nazarov/Gow-Molev super-Yangian existence for Y(gl(m|n))",
+    ],
+    verified_against=[
+        "Linear algebra: dim gl(4|20)=24^2 while dim so(4,20)=24*23/2",
+        "Mukai isometry group O(4,20) preserves the bilinear form, "
+        "whereas GL(4|20) preserves only parity",
+    ],
+    disjoint_rationale=(
+        "The proposition derives the comparison fibre by applying the "
+        "super-Yangian landscape theorem after forgetting the Mukai form. "
+        "The check below is independent linear algebra: it verifies that "
+        "the parity-preserving general-linear object and the K3 Mukai "
+        "orthogonal object have different automorphism data and different "
+        "Lie dimensions, so Y(gl(4|20)) cannot be the K3 envelope."
+    ),
+)
+def test_k3_general_linear_comparison_is_not_mukai_envelope():
+    """Forgetting the Mukai form changes the symmetry algebra.
+
+    The comparison fibre sees the 4|20 parity split. The K3 Yangian
+    envelope sees the Mukai form of signature (4,20). Their automorphism
+    algebras have dimensions 24^2 and 24*23/2, respectively, so the
+    comparison family cannot be identified with the orthogonal K3 target.
+    """
+    even_dim = 4
+    odd_dim = 20
+    total = even_dim + odd_dim
+    gl_super_total_dimension = total * total
+    gl_super_even_dimension = even_dim * even_dim + odd_dim * odd_dim
+    gl_super_odd_dimension = 2 * even_dim * odd_dim
+    so_mukai_dimension = total * (total - 1) // 2
+
+    assert gl_super_even_dimension == 416
+    assert gl_super_odd_dimension == 160
+    assert gl_super_total_dimension == 576
+    assert so_mukai_dimension == 276
+    assert gl_super_total_dimension != so_mukai_dimension
 
 
 if __name__ == "__main__":

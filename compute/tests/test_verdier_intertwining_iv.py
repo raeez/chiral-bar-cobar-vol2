@@ -1,5 +1,5 @@
 """
-Independent verification of thm:bar-cobar-adjunction (Verdier intertwining).
+Independent verification of thm:scchtop-bar-cobar-adjunction.
 
 Claim: in the factorisation ambient for chiral algebras on a smooth curve X,
 the bar-cobar pair (B̄^{ch}, Ω^{ch}) is an adjunction on conilpotent-complete
@@ -51,7 +51,7 @@ def _bar_cobar_commutes_with_verdier() -> bool:
 
 
 @independent_verification(
-    claim="thm:bar-cobar-adjunction",
+    claim="thm:scchtop-bar-cobar-adjunction",
     derived_from=[
         "Programme chiral bar B̄^{ch} in factorisation ambient",
         "Programme cobar Ω^{ch} with conilpotent completion",

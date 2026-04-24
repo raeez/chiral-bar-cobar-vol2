@@ -26,8 +26,10 @@ Key mathematical objects:
    has FM_k(Sigma_g) x E_1(m) dimension bookkeeping. Type III mixed faces
    belong to the full mixed geometry and are not captured by this shortcut.
 
-3. **Modular homotopy-Koszulity**: Bar-cobar is Quillen equivalence,
-   FT_mod^2 ~ id on closed-colour algebras.
+3. **Modular homotopy-Koszulity**: The flat bicomplex identity is
+   proved; the bar-cobar Quillen equivalence is conditional on
+   genus formality, mixed-face control, and completed-filtration
+   convergence. FT_mod^2 ~ id on closed-colour algebras.
 
 4. **Relative Feynman transform**: Bicomplex D_P^2 = 0, D_Mod^2 = 0,
    D_P D_Mod + D_Mod D_P = 0. Homotopy-involutive: FT_rel(FT_rel(A)) ~ A.
@@ -459,7 +461,7 @@ def swiss_cheese_directionality():
 # =========================================================================
 
 def bar_cobar_is_quillen_equivalence():
-    r"""Verify that bar-cobar for SC^{ch,top}_mod is a Quillen equivalence.
+    r"""Return the status of the SC^{ch,top}_mod bar-cobar comparison.
 
     This follows from modular homotopy-Koszulity (Theorem thm:modular-hkoszul-SC
     in modular_swiss_cheese_operad.tex):
@@ -479,9 +481,19 @@ def bar_cobar_is_quillen_equivalence():
 
     Returns
     -------
-    bool : True
+    dict
+        Status record. The flat bicomplex is proved; the Quillen
+        equivalence is conditional.
     """
-    return True
+    return {
+        'flat_bicomplex': 'proved',
+        'quillen_equivalence': 'conditional',
+        'required_hypotheses': [
+            'genus-g operadic formality compatible with clutching',
+            'mixed-face perturbation control',
+            'completed modular genus-filtration convergence',
+        ],
+    }
 
 
 def feynman_involution_squared():
@@ -507,8 +519,8 @@ def modular_hkoszul_proof_steps():
     From the proof of Theorem thm:modular-hkoszul-SC:
       Step 1: Genus-0 homotopy-Koszulity (established, thm:homotopy-Koszul)
       Step 2: Closed-colour modular Koszulity (Com_mod is modular Koszul)
-      Step 3: Inductive genus extension
-      Step 4: Mixed-colour compatibility
+      Step 3: Inductive genus extension (conditional)
+      Step 4: Mixed-colour compatibility (conditional)
 
     Returns
     -------
@@ -530,16 +542,17 @@ def modular_hkoszul_proof_steps():
         },
         'step_3': {
             'name': 'Inductive genus extension',
-            'status': 'proved',
+            'status': 'conditional',
             'inputs': ['genus spectral sequence', 'codim-2 cancellation'],
-            'output': 'Modular homotopy-Koszulity at all genera',
+            'output': 'Modular homotopy-Koszulity at all genera under convergence',
         },
         'step_4': {
             'name': 'Mixed-colour compatibility',
-            'status': 'proved',
-            'inputs': ['product decomposition FM_k x E_1',
+            'status': 'conditional',
+            'inputs': ['associated-graded product FM_k x E_1',
+                       'Type III mixed-face perturbation control',
                        'interchange law (Axiom A3)'],
-            'output': 'Full partially modular homotopy-Koszulity',
+            'output': 'Full partially modular homotopy-Koszulity under mixed-face control',
         },
     }
 

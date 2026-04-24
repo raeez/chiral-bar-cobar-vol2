@@ -3,11 +3,10 @@
 Coverage
 --------
   - thm:wn-tempered-all-N (ProvedHere): every generic W_N is tempered.
-  - prop:beta-N-closed-form (ProvedHere for N=2,3; CONJECTURED N >= 4):
-    beta_N = (N+1)(N+2)/2 closed form.
+  - prop:beta-N-closed-form (Conjectured): beta_N = 12(H_N - 1).
   - prop:wn-stirling-dominance (ProvedHere): Stirling factor dominates
     beta_N at large r, hence tempering.
-  - prop:rho-star-WN (ProvedHere): rho_*^{W_N}(c) = 2|c|/((N+1)(N+2)).
+  - prop:rho-star-WN (Conditional): rho_*^{W_N}(c) = |c|/[12(H_N - 1)].
 
 Independent-verification decorators are installed per the Vol II HZ-IV
 protocol. derived_from and verified_against sources are DISJOINT:
@@ -44,6 +43,8 @@ from compute.lib.wn_tempered_closure import (  # noqa: E402
     tempering_certificate,
     tempering_rate_bound,
 )
+from compute.lib.beta_N_closed_form import beta_N_from_kappa  # noqa: E402
+from compute.lib.w4_beta_direct import direct_w4_attack_report  # noqa: E402
 
 try:
     from compute.lib.independent_verification import independent_verification  # noqa: E402
@@ -83,48 +84,44 @@ def test_beta_3_is_ten():
 
 
 # ---------------------------------------------------------------------------
-# Closed-form check: candidate_A matches both data points
+# Harmonic-candidate check: matches proved data and conditionally falsifies candidates
 # ---------------------------------------------------------------------------
 
 
 @independent_verification(
     claim="prop:beta-N-closed-form",
     derived_from=[
-        "Fateev-Lukyanov structure constants for principal W_N",
-        "Riccati recursion from the Q_L shadow-metric identity (Vol I shadow_tower_recursive.py)",
+        "kappa-ratio scaling A_r(W_N)=(kappa(W_N)/kappa(Vir))^(r-3) A_r(Vir)",
+        "kappa(W_N)=c(H_N-1), kappa(Vir)=c/2, and Virasoro ratio -6(r-1)/r",
     ],
     verified_against=[
         "Direct numerical match at N=2 (beta=6 from Vir) and N=3 (beta=10 from W_3)",
-        "Triangular-number combinatorial identity (N+1)(N+2)/2 = binomial(N+2, 2)",
+        "N=4 discriminator: harmonic value 13, triangular 15, quadratic 16",
     ],
     disjoint_rationale=(
-        "Derivation invokes the Fateev-Lukyanov structure + Riccati recursion. "
-        "Verification compares against proved N=2/3 values (independent of the "
-        "general formula) and a combinatorial identity (independent of the "
-        "Riccati derivation). The two inputs are orthogonal: structure-constant "
-        "derivation does not use binomial identity, and binomial matching does "
-        "not use FL constants."
+        "Derivation uses the all-rank kappa-ratio law. Verification checks the "
+        "two low-rank Laurent values and the first unfixed rank N=4, where the "
+        "old candidates are conditionally separated under the harmonic ansatz."
     ),
 )
 def test_beta_N_candidates_match_N2_N3_only():
     """Both Candidate A and Candidate B match at N=2, 3 by coincidence.
 
-    The first-principles theorem (thm:beta-N-closed-form-proved-all-N in
-    beta_N_closed_form_all_platonic.tex) established beta_N = 12(H_N - 1),
+    The harmonic conjecture (thm:beta-N-closed-form-proved-all-N in
+    beta_N_closed_form_all_platonic.tex) predicts beta_N = 12(H_N - 1),
     which also matches N=2, 3. At N=4 all three formulas diverge:
-    Candidate A = 15, Candidate B = 16, first-principles = 13.
+    Candidate A = 15, Candidate B = 16, harmonic candidate = 13.
 
     This test is retained for historical documentation; the canonical
-    beta_N value in beta_N(.) now tracks one of the two prior candidate
-    forms (legacy module), but the PROVED value is in
-    compute/lib/beta_N_closed_form.py::beta_N_from_kappa.
+    beta_N value in beta_N(.) now tracks the harmonic
+    value from compute/lib/beta_N_closed_form.py::beta_N_from_kappa.
 
     # VERIFIED: [DC] formula evaluation N=2: both candidates give 6.
     # VERIFIED: [DC] formula evaluation N=3: both candidates give 10.
     # VERIFIED: [LT] beta_N_closed_form_all_platonic.tex
-    #              thm:beta-N-closed-form-proved-all-N retracts both.
+    #              thm:beta-N-closed-form-proved-all-N conditionally retracts both.
     """
-    # Both candidates (and first-principles) match at N=2 and N=3
+    # Both candidates (and the harmonic candidate) match at N=2 and N=3
     assert beta_N_candidate_A(2) == BETA_2
     assert beta_N_candidate_A(3) == BETA_3
     assert beta_N_candidate_B(2) == BETA_2
@@ -132,11 +129,11 @@ def test_beta_N_candidates_match_N2_N3_only():
     # At N=4 all three formulas diverge
     assert beta_N_candidate_A(4) == Fraction(15)
     assert beta_N_candidate_B(4) == Fraction(16)
-    # The canonical first-principles value (Theorem) is 13; see
+    # The harmonic candidate value is 13; see
     # compute/lib/beta_N_closed_form.py and
     # chapters/theory/beta_N_closed_form_all_platonic.tex
-    from lib.beta_N_closed_form import beta_N_from_kappa
     assert beta_N_from_kappa(4) == Fraction(13)
+    assert beta_N(4) == Fraction(13)
     assert beta_N_from_kappa(4) != beta_N_candidate_A(4)
     assert beta_N_from_kappa(4) != beta_N_candidate_B(4)
 
@@ -234,14 +231,14 @@ def test_stirling_dominates_beta_at_large_r():
 
 
 # ---------------------------------------------------------------------------
-# rho_* closed form
+# Conditional rho_* closed form
 # ---------------------------------------------------------------------------
 
 
 @independent_verification(
     claim="prop:rho-star-WN-closed-form",
     derived_from=[
-        "Closed form beta_N = (N+1)(N+2)/2 from prop:beta-N-closed-form",
+        "Conditional closed form beta_N = 12(H_N - 1) from prop:beta-N-closed-form",
         "Root test: rho_*(c) = (limsup |S_r|^{1/r})^{-1}",
     ],
     verified_against=[
@@ -249,14 +246,14 @@ def test_stirling_dominates_beta_at_large_r():
         "Inverse of |c| / beta_N at explicit c values",
     ],
     disjoint_rationale=(
-        "Derivation combines the beta_N closed form with Cauchy-Hadamard root "
+        "Derivation combines the conditional beta_N closed form with Cauchy-Hadamard root "
         "test. Verification checks the algebraic value rho_*(c) = |c|/beta_N "
         "at N=2 gives |c|/6 (matches Vol II Prop. prop:virasoro-rho-star-closed-form) "
         "and N=3 gives |c|/10 (matches Vol II thm:tempered-stratum-contains-w3)."
     ),
 )
 def test_rho_star_closed_form():
-    """rho_*^{W_N}(c) = 2|c| / ((N+1)(N+2)).
+    """Conditional rho_*^{W_N}(c) = |c| / [12(H_N - 1)].
 
     # VERIFIED: [LT] Vol II chapter Prop. prop:virasoro-rho-star-closed-form.
     # VERIFIED: [LT] Vol II chapter thm:tempered-stratum-contains-w3.
@@ -268,10 +265,10 @@ def test_rho_star_closed_form():
     # N=3: rho_*(c) = |c|/10
     assert rho_star_WN(3, Fraction(100)) == Fraction(10)
     assert rho_star_WN(3, Fraction(30)) == Fraction(3)
-    # N=4: rho_*(c) = |c|/15
-    assert rho_star_WN(4, Fraction(150)) == Fraction(10)
-    # N=5: rho_*(c) = |c|/21
-    assert rho_star_WN(5, Fraction(210)) == Fraction(10)
+    # N=4: rho_*(c) = |c|/13
+    assert rho_star_WN(4, Fraction(130)) == Fraction(10)
+    # N=5: rho_*(c) = 5|c|/77
+    assert rho_star_WN(5, Fraction(154)) == Fraction(10)
     # General: rho_*(c) * beta_N = |c|
     for N in range(2, 10):
         c = Fraction(1000)
@@ -373,27 +370,35 @@ def test_beta_N_monotone_increasing():
     larger Riccati ratio.
 
     # VERIFIED: [DC] Direct evaluation beta_N(N+1) - beta_N(N) > 0.
-    # VERIFIED: [DA] (N+1)(N+2)/2 is strictly increasing for N >= 1.
+    # VERIFIED: [DA] 12(H_N - 1) is strictly increasing for N >= 2.
     """
     for N in range(2, 20):
         assert beta_N(N) < beta_N(N + 1)
 
 
-def test_candidate_A_vs_B_discriminate_at_N4():
-    """Two candidate formulas agree at N=2,3 but disagree at N=4.
+def test_candidate_A_vs_B_miss_harmonic_N4():
+    """Two old candidate formulas agree at N=2,3 but miss harmonic N=4.
 
-    This discriminability is the frontier: an explicit W_4 shadow-tower
-    leading-Laurent computation will select between candidate_A (15)
-    and candidate_B (16). The manuscript commits to candidate_A.
+    The harmonic conjecture gives beta_4 = 13; candidate_A gives 15 and
+    candidate_B gives 16. The direct W4 lane witness supports 13 but
+    does not by itself prove the Riccati coefficient.
 
     # VERIFIED: [DC] Direct evaluation of both candidates at N = 2, 3, 4.
     """
     for N in (2, 3):
         assert beta_N_candidate_A(N) == beta_N_candidate_B(N)
     # Disagreement at N=4
+    assert beta_N(4) == Fraction(13)
     assert beta_N_candidate_A(4) == Fraction(15)
     assert beta_N_candidate_B(4) == Fraction(16)
-    assert beta_N_candidate_A(4) != beta_N_candidate_B(4)
+    assert beta_N_candidate_A(4) != beta_N(4)
+    assert beta_N_candidate_B(4) != beta_N(4)
+    report = direct_w4_attack_report()
+    assert report.lane_sum == Fraction(13)
+    assert report.required_bridge_ratio == Fraction(-52, 5)
+    assert report.required_A5_from_bridge == Fraction(-676, 15)
+    assert report.observed_full_miura_A5 is None
+    assert report.proves_beta4 is False
 
 
 # ---------------------------------------------------------------------------
@@ -462,14 +467,14 @@ def test_proved_constants():
 if __name__ == "__main__":
     test_beta_2_is_six()
     test_beta_3_is_ten()
-    test_beta_N_closed_form_matches_N2_N3()
+    test_beta_N_candidates_match_N2_N3_only()
     test_beta_N_is_finite_for_all_N()
     test_tempering_rate_tends_to_zero_every_N()
     test_stirling_dominates_beta_at_large_r()
     test_rho_star_closed_form()
     test_tempering_rate_bound_explicit_values()
     test_beta_N_monotone_increasing()
-    test_candidate_A_vs_B_discriminate_at_N4()
+    test_candidate_A_vs_B_miss_harmonic_N4()
     test_all_WN_tempered_at_generic_c()
     test_proved_constants()
     print("All tests passed.")

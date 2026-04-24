@@ -12,7 +12,7 @@ Cross-reference: `/Users/raeez/chiral-bar-cobar/notes/ATTACK_HEAL_FALSIFICATION_
 
 **Attack.** Vol II §VI climax `K3$\times E$' states the 6d-hCS pushforward on the Humbert-admissible Koszul locus without naming which admissibility convention (Humbert vs. Fourier). Vol II §VIII scope (`proved chain-level on K3$\times E$ via Gritsenko--Nikulin denominator + Borcherds + DVV heterotic-dual + Costello BV') is ambiguous on the admissibility stratum.
 
-**Heal.** Vol II §VI climax K3$\times E$ is scoped to `Humbert-admissible stratum $U^{\mathrm{adm}}=\overline{\mathcal A_2}\setminus\bigcup_{n\equiv 0,3\pmod 4}H_n$ (van der Geer 1988 §IX)'. Separately, the Fourier-polar-support condition $n\equiv 3,5\pmod 8$ (Eichler--Zagier 1985 Thm 9.1) is invoked when quoting $\phi_{0,1}^{K3}$-coefficients as inputs to the Borcherds lift. Every §VI climax invocation names which admissibility is operative.
+**Heal.** Vol II §VI climax K3$\times E$ is scoped to `Humbert-admissible stratum $U^{\mathrm{adm}}=\overline{\mathcal A_2}\setminus\bigcup_{n\ \mathrm{admissible}}H_n$ (admissible-Humbert convention; van der Geer 1988 §IX supplies the auxiliary congruence test)'. Separately, the Fourier-polar-support condition $n\equiv 3,5\pmod 8$ (Eichler--Zagier 1985 Thm 9.1) is invoked when quoting $\phi_{0,1}^{K3}$-coefficients as inputs to the Borcherds lift. Every §VI climax invocation names which admissibility is operative.
 
 ---
 

@@ -71,13 +71,13 @@ def verify_br3_abelian(k, z):
     """Verify BR3 for abelian current algebra.
 
     {J_λ J} = kλ, so bracket_coeffs = {1: k}.
-    r(z) = k · 1! / z^2 = k/z².
+    The pre-dlog Laplace/OPE kernel is r^L(z) = k · 1! / z^2 = k/z².
 
-    This matches the classical r-matrix for U(1)_k: r(z) = kΩ/z²
-    where Ω = J⊗J is the Casimir (trivially, since dim=1).
+    The collision kernel used for Yangian-style spectral braiding is obtained
+    after the bar-residue extraction and has one pole fewer.
 
     Returns:
-        (r_matrix, expected, difference) — difference should be 0.
+        (laplace_kernel, expected, difference) — difference should be 0.
     """
     bracket_coeffs = {1: k}  # {J_λ J} = kλ
     r = lambda_bracket_to_r_matrix(bracket_coeffs, z)
@@ -91,14 +91,15 @@ def verify_br3_virasoro(c, z):
     {T_λ T} = ∂T + 2Tλ + (c/12)λ³
     bracket_coeffs = {0: ∂T, 1: 2T, 3: c/12}
 
-    r(z) = ∂T · 0!/z¹ + 2T · 1!/z² + (c/12) · 3!/z⁴
-         = ∂T/z + 2T/z² + c/2 · 1/z⁴
+    The pre-dlog Laplace/OPE kernel is
+    r^L(z) = ∂T · 0!/z¹ + 2T · 1!/z² + (c/12) · 3!/z⁴
+           = ∂T/z + 2T/z² + c/2 · 1/z⁴
 
     This matches the Virasoro OPE:
       T(z)T(w) ~ (c/2)/(z-w)⁴ + 2T/(z-w)² + ∂T/(z-w)
 
     Returns:
-        (r_matrix, expected, difference) — difference should be 0.
+        (laplace_kernel, expected, difference) — difference should be 0.
     """
     dT = Symbol('dT')
     T = Symbol('T')
@@ -119,24 +120,25 @@ def verify_br3_su2(k, z):
     For a≠b (off-diagonal): {J^a_λ J^b} = ε^{abc}J^c
       r^{ab}(z) = ε^{abc}J^c/z
 
-    The full r-matrix: r(z) = Σ_{a,b} r^{ab}(z) · e_a ⊗ e_b
+    The full pre-dlog Laplace/OPE kernel:
+      r^L(z) = Σ_{a,b} r^{ab}(z) · e_a ⊗ e_b
     where e_a are the basis elements.
 
-    Classical r-matrix for ĝ_k:
+    Collision r-kernel for ĝ_k after the bar-residue extraction:
       r(z) = Ω/z  where Ω = Σ J^a ⊗ J^a (Casimir)
 
     Wait — this gives r^{ab} = δ^{ab}/z, but we got k/z² for diagonal
     and ε^{abc}J^c/z for off-diagonal. The discrepancy is because the
     full r-matrix involves BOTH the structure constant and level terms.
 
-    The correct classical r-matrix for ĝ_k from the λ-bracket:
+    The pre-dlog Laplace kernel for ĝ_k from the λ-bracket:
       r^{ab}(z) = ε^{abc}J^c · 0!/z + kδ^{ab} · 1!/z²
                 = ε^{abc}J^c/z + kδ^{ab}/z²
 
     This encodes the FULL KM OPE:
       J^a(z)J^b(w) ~ kδ^{ab}/(z-w)² + ε^{abc}J^c/(z-w)
 
-    Returns dict (a,b) -> (r_matrix, expected, difference).
+    Returns dict (a,b) -> (laplace_kernel, expected, difference).
     """
     from .examples.nonabelian_cs import levi_civita, killing_form
 

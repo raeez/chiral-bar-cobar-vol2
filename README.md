@@ -62,7 +62,7 @@ Following the HEAL + UPGRADE sweeps of the adversarial campaign, most of the 247
 |--------|------:|
 | Pages | ~1,949 |
 | Preface | 2,400+ lines (reconstituted Platonic form; seven-faces-as-torsor + universal holography + E_∞ ladder lead) |
-| Tagged claims | ~3,200+ (including the seven theorems reformulated Platonic targets) |
+| Tagged claims | 3,099 (PH=2,373; PE=277; CJ=221; H=44; CD=183; O=1) |
 | Source files | 35 theory + 14 examples + 85 connections = 134 chapter .tex + 3 appendices |
 | Compute files | 61 lib + 96 test files |
 | Independent-verification decorators (Vol II) | 11 ProvedHere decorated / 1134 total (~1%, up from 0 pre-session) |
@@ -161,7 +161,7 @@ revision:
   expressions agree at N = 2, 3 by coincidence and diverge at N ≥ 4
   (15 vs 13). The asymptotic would have widened the Banach radius
   `ρ_* = |c|/β_A` and forgiven spurious convergence in the W_N tempered-stratum
-  proof. Healed in the introduction Gate-1 fix.
+  proof. Healed in the introduction, tempered-stratum, and closure surfaces.
 
 - **V2-AP40 subclause taxonomy** (`CLAUDE.md` extension). The principal
   V2-AP40 (anti-pattern register leakage into the manuscript) gained four

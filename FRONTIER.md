@@ -16,7 +16,11 @@ For simply-laced $\mathfrak{g}$, non-abelian 5D holomorphic Chern-Simons on $\ma
 
 The Vol~III three-factor Universal Trace Identity
 \[ \mathrm{tr}_{\mathrm{ghost}}(Q_{\mathrm{BRST}}^2) \;=\; \mathrm{tr}_{\mathrm{Pentagon}} \;=\; \omega_{\mathrm{Borcherds}} \;=\; c_N(0)/2 \]
-places Vol~II's Pentagon trace --- the single-colour coherence trace of the $E_3$-algebra governing 3D HT QFT at $d=3$ --- as the middle factor of a three-factor identity. Verified at $N \in \{1,2,3,4,6\}$, the Pentagon trace yields $\{5,4,3,2,2\}$ row-by-row, agreeing with Vol~I's ghost trace on the left and Vol~III's Borcherds weight on the right. The Pentagon trace is now the Vol~II anchor of the identity; every Vol~II Theorem-C cross-reading ($\mathrm{SC}^{\mathrm{ch,top}}$ heptagon face~(2) quantum complementarity) reads through this middle factor.
+places Vol~II's Pentagon trace --- the single-colour coherence trace of the $E_3$-algebra governing 3D HT QFT at $d=3$ --- as the middle factor of a three-factor identity. On the CHL-averaged BKM-denominator scope $N \in \{1,2,3,4,6\}$, the value row is
+\[
+  c_N(0)=(10,8,6,4,2),\qquad c_N(0)/2=\{5,4,3,2,1\}.
+\]
+This is not the Gritsenko--Cl\'ery eight-form atlas, whose separate triple-indexed rows have weights $\{5,2,3,1,2,1/2,3/2,1\}$ and overlap the CHL scope only at $\Delta_5$. The stale row $\{5,4,3,2,2\}$ mixed scopes and is not a valid Borcherds-weight row. The Pentagon trace is now the Vol~II anchor of the scoped identity; every Vol~II Theorem-C cross-reading ($\mathrm{SC}^{\mathrm{ch,top}}$ heptagon face~(2) quantum complementarity) must name the CHL or Gritsenko--Cl\'ery scope before comparing constants.
 
 ### Pillar $\beta$ reading of Vol~II positive-geometry content (reading)
 

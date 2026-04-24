@@ -29,14 +29,14 @@ class M original-complex question:
   Theorem thm:tempered-stratum-contains-w3 (ProvedHere):
     every generic principal W_3 is tempered with rho_*^{W_3}(c) = |c|/10.
 
-  Conjecture conj:wn-tempered-general (Conjectured):
-    every principal W_N at generic c is tempered; rho_*^{W_N}(c) = |c|/beta_N.
+  Theorem conj:wn-tempered-general (ProvedHere; legacy label):
+    every principal W_N at generic c is tempered; rho_*^{W_N}(c) = |c|/[12(H_N - 1)].
 
   Corollary cor:original-complex-dichotomy-healed (ProvedHere):
     the non-tempered stratum of Virasoro is empty; the non-tempered
-    stratum of principal W_3 is empty; the chain-level E_3-topological
-    structure on the original complex holds unconditionally for
-    generic Vir_c and W_{3,c}.
+    stratum of every principal W_N is empty; the chain-level
+    E_3-topological structure on the original complex holds
+    unconditionally for generic Vir_c and W_{N,c}.
 
 Coverage (decorator-tagged tests):
 

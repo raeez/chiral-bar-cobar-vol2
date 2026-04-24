@@ -14846,6 +14846,97 @@ Audited the active Vol II dirty surface for local contradictions introduced by t
 - Targeted stale-scope greps over the UHF chapter, Part VI synthesis, chiral Higher Deligne, and touched compute tests returned no surviving old-form claims.
 - `git diff --check` passed.
 
+## 2026-04-24 - KZ/BV residual theorem-strengthening resolution
+
+- Target: `chapters/connections/affine_half_space_bv.tex`,
+  `compute/audit/kz_all_loop_bv_constructive_proof_20260424.md`,
+  and `compute/tests/test_kz_all_loop_bv_constructive.py`.
+- Status: `CONVERGED` for Agent A's residual worktree resolution.
+
+### Findings
+
+1. `2026-04-24-kz-bv-A001`
+   Severity: `CRITICAL`
+   Class: `residual conditional downgrade versus live ProvedHere theorem`
+   Issue: the residual worktree correctly named the analytic content
+   missing from the naive proof surface, but attempted to route that
+   content through a conditional KZ analytic SDR assumption.
+   Fix: did not import the downgrade. The live manuscript now closes
+   the package as `prop:kz-analytic-sdr-package` (`ProvedHere`), using
+   image-choice FM/raviolo compactification, field-parity reflected
+   propagators, self-image renormalization, finite jet--weight SDR
+   data, and harmonic obstruction vanishing.
+   Status: `CONVERGED`
+
+2. `2026-04-24-kz-bv-A002`
+   Severity: `SERIOUS`
+   Class: `reflected propagator convention`
+   Issue: the reflected image formula must keep the image summand with
+   an explicit plus sign; Dirichlet/odd reflected fields are encoded by
+   the parity sign, not by deleting the summand.
+   Fix: recorded
+   `K^{refl}_e=K(z-z',t-t')+\varepsilon_e K(z-z',t+t')` in the
+   manuscript and audit note, with self-image edges assigned to the
+   renormalized logarithmic compactification/subtraction scheme.
+   Status: `CONVERGED`
+
+3. `2026-04-24-kz-bv-A003`
+   Severity: `SERIOUS`
+   Class: `field/action and finite-quotient recursion precision`
+   Issue: the live construction conflated full classical action and
+   recursive interaction notation and did not state the De Sole--Kac
+   transpose convention.
+   Fix: split `S_{0,V}=I_{\mathrm{kin},V}+I_{\mathrm{int},V}`,
+   set `Q={I_{\mathrm{kin},V},-}`, stated
+   `\Pi^{ij}_V=\sum_r\Pi^{ji}_r\partial_z^r`, and rewrote
+   `prop:kz-all-loop-counterterm-recursion` on finite quotients
+   `C_{V,N,w}` with the pro-limit supplied by
+   `prop:kz-analytic-sdr-package`.
+   Status: `CONVERGED`
+
+### Verification
+
+- `PYTHONDONTWRITEBYTECODE=1 PYTEST_DISABLE_PLUGIN_AUTOLOAD=1 compute/.venv/bin/python -m pytest -q -p no:cacheprovider compute/tests/test_kz_all_loop_bv_constructive.py`
+  passed (`5 passed`).
+- `git diff --check -- chapters/connections/affine_half_space_bv.tex compute/audit/kz_all_loop_bv_constructive_proof_20260424.md compute/tests/test_kz_all_loop_bv_constructive.py compute/audit/linear_read_notes.md`
+  passed.
+- Direct multi-line check confirmed the signed pullback display contains
+  `ev_{ij}^{-*}\omega` followed by `+\epsilon_{ij}`.
+- `PYTHONDONTWRITEBYTECODE=1 compute/.venv/bin/python compute/scripts/audit_independent_verification.py --tex-root . --tests-dir compute/tests --show-orphans`
+  passed: no tautologies, no orphans; coverage gap `1422`.
+- Fixed-string greps for `ClaimStatusConditional`, `assum:kz`, and the
+  missing-image-plus signature on the repaired KZ/BV surfaces returned
+  no hits.
+- Metadata was intentionally not regenerated under the Agent A write-set
+  restriction; `metadata/claims.jsonl` still has stale pre-repair line
+  numbers/statuses for this surface until the metadata owner regenerates.
+
+## 2026-04-24 - Khan--Zeng all-loop BV rectification
+
+- Target: `chapters/connections/affine_half_space_bv.tex`,
+  `chapters/examples/w-algebras-virasoro.tex`,
+  `chapters/examples/w-algebras-stable.tex`, and
+  `chapters/connections/3d_gravity.tex`.
+- Status: `CONVERGED` in isolated worktree
+  `/Users/raeez/chiral-bar-cobar-vol2-kz-bv-20260424`.
+
+### Finding
+
+1. `2026-04-24-kz-bv-001`
+   Severity: `CRITICAL`
+   Class: `constructed BV package treated as external hypothesis`
+   Issue: the general Khan--Zeng half-space theorem was written as
+   conditional on a renormalized Costello package, all-order anomaly
+   vanishing, and a QME solution, even though the Vol II doubled
+   logarithmic `SC^{ch,top}` calculus, QME=convolution-MC theorem, and
+   relative-Feynman/harmonic homotopy provide a constructive chain-level
+   recursion for the polynomial/logarithmic KZ class.
+   Fix: replaced the external-hypothesis theorem by an explicit
+   construction: KZ shifted-cotangent BV fields, CME=PVA Jacobi,
+   reflected FM graph weights, and all-loop counterterms
+   `I_l=-h Ob_l` on finite jet/weight quotients with pro-limit.
+   Status: `CONVERGED`
+
 ## 2026-04-24 - T5 proof closure, propagation, and dirty-surface cleanup
 
 - Target: `chapters/connections/e_infinity_topologization.tex`,
@@ -15239,3 +15330,441 @@ Audited the active Vol II dirty surface for local contradictions introduced by t
 - `python3 scripts/generate_metadata.py` regenerated metadata:
   `PH=2392`, `CD=119`, `H=44`, total `3053`.
 - `git diff --check` passed.
+
+## 2026-04-24 - Topologisation, WN beta law, and THQG scope repair
+
+- Target: `chapters/theory/topologization_class_m_original_complex_platonic.tex`,
+  `chapters/theory/tempered_stratum_characterization_platonic.tex`,
+  `chapters/theory/wn_tempered_closure_platonic.tex`,
+  `chapters/theory/beta_N_closed_form_all_platonic.tex`,
+  `compute/tests/test_topologization_class_m_original_complex.py`,
+  `chapters/connections/thqg_holographic_reconstruction.tex`,
+  `chapters/connections/hochschild.tex`,
+  `chapters/connections/part_vi_platonic_introduction.tex`, and metadata.
+- Status: `CONVERGED` for the repaired analytic/topologisation and
+  WN harmonic-beta lanes; THQG downstream scope propagation converged
+  on the inspected targets.
+
+### Findings
+
+1. `2026-04-24-toporig-001`
+   Severity: `CRITICAL`
+   Class: `false Stirling obstruction`
+   Issue: the active original-complex lane still carried remnants of
+   the Virasoro `1/e` obstruction and determinant-based spectral-gap
+   reasoning.
+   Fix: replaced the obstruction with the proved factorial vanishing
+   `limsup_r (|S_r|/r!)^(1/r)=0`, separated Banach convergence from
+   raw direct-sum finite propagation, and strengthened tests with an
+   explicit finite-shift versus infinite-tail support predicate.
+   Status: `CONVERGED`
+
+2. `2026-04-24-wn-beta-001`
+   Severity: `SERIOUS`
+   Class: `stale beta_N and raw-descent scope`
+   Issue: the WN/beta surface still narrated polynomial interpolants
+   and in places implied that analytic tempering alone gave raw
+   direct-sum topologisation.
+   Fix: harmonised the harmonic law
+   `beta_N = 12(H_N-1)`, retained the `N=4` polynomial exclusion as a
+   mathematical discriminator, promoted proved analytic tempering
+   statuses, and routed raw direct-sum descent through the
+   finite-propagation theorem.
+   Status: `CONVERGED`
+
+3. `2026-04-24-thqg-prop-001`
+   Severity: `CRITICAL`
+   Class: `unqualified holography/DS closure`
+   Issue: THQG and Hochschild downstream text advertised universal
+   holography and class-M DS closure for arbitrary conformal chiral
+   algebras or unconditionally on the raw chain complex.
+   Fix: replaced the broad claims by proved implications on the
+   admissible boundary-linear, affine, or DS locus; class M is
+   cohomological or weight-completed/pro unless the bounded-shift HPL
+   criterion supplies raw original-complex descent.
+   Status: `CONVERGED`
+
+4. `2026-04-24-metadata-001`
+   Severity: `HIGH`
+   Class: `stale theorem registry`
+   Issue: metadata retained old topologisation titles, lines, and
+   statuses after the repair.
+   Fix: regenerated metadata after the mathematical status decisions.
+   Current generated census: `PH=2392`, `PE=266`, `CJ=226`, `H=44`,
+   `CD=190`, `O=1`, total `3119`.
+   Status: `CONVERGED`
+
+### Verification
+
+- `compute/.venv/bin/python -m pytest compute/tests/test_topologization_class_m_original_complex.py compute/tests/test_tempered_stratum.py compute/tests/test_wn_tempered_closure.py compute/tests/test_beta_N_closed_form.py compute/tests/test_independent_verification_infra.py -q`
+  passed (`52 passed`).
+- `PYTHONDONTWRITEBYTECODE=1 compute/.venv/bin/python compute/scripts/audit_independent_verification.py --tex-root . --tests-dir compute/tests --show-orphans`
+  passed: no tautologies and no orphan registry entries.
+- `PYTHONDONTWRITEBYTECODE=1 compute/.venv/bin/python scripts/generate_metadata.py`
+  regenerated `metadata/claims.jsonl`, `metadata/census.json`,
+  `metadata/dependency_graph.dot`, `metadata/label_index.json`, and
+  `metadata/theorem_registry.md`.
+- Hostile fixed-string greps for stale `1/e`, polynomial-candidate,
+  unconditional raw-descent, and broad holography phrases returned no
+  hits on the repaired surfaces.
+- `git diff --check` passed.
+
+## 2026-04-24 - Modular Swiss-cheese/KZB proof-strength repair
+
+- Target: `chapters/theory/modular_swiss_cheese_operad.tex`,
+  `compute/lib/factorization_modular_engine.py`,
+  `compute/tests/test_factorization_modular_engine.py`, and metadata.
+- Status: `CONVERGED` for the inspected modular/KZB proof-strength
+  lane.
+
+### Findings
+
+1. `2026-04-24-modsc-001`
+   Severity: `CRITICAL`
+   Class: `local operad treated as global modular/factorization theorem`
+   Issue: the mixed definition put open points on `\partial\Sigma_g`
+   although `\Sigma_g` is closed, and depth-zero product language
+   blurred the formal local screen with the full mixed HT Ran geometry.
+   Fix: rewrote mixed operations as
+   `FM^{HT}_{k|m}(\Sigma_g,I)`, with open points on the topological
+   interval in the HT boundary screen; the product formula is now only
+   the depth-zero associated graded.
+   Status: `CONVERGED`
+
+2. `2026-04-24-modsc-002`
+   Severity: `CRITICAL`
+   Class: `conditional modular Koszulity and Quillen comparison sold as proved`
+   Issue: modular homotopy-Koszulity, flat-model Quillen equivalence,
+   KZB flatness, irregular KZB composition, modular-bootstrap `H^2`
+   vanishing, and all-level composition were tagged or phrased as
+   unconditional.
+   Fix: changed the live claims to conditional statements with named
+   hypotheses: genus formality, mixed-face control, completed genus
+   filtration convergence, KZB normalisation comparison, nodal
+   rank-1 normal form, Stokes cocycle compatibility, and degree-2
+   boundary generation/detection.
+   Status: `CONVERGED`
+
+3. `2026-04-24-modsc-003`
+   Severity: `SERIOUS`
+   Class: `executable proof-status oracle mismatch`
+   Issue: `factorization_modular_engine.py` returned `True` for the
+   Quillen equivalence and marked conditional modular assembly steps as
+   `proved`.
+   Fix: changed the engine to return a status object: flat bicomplex
+   `proved`, Quillen equivalence `conditional`, with required
+   hypotheses; tests now require conditional statuses for genus
+   extension and mixed-face compatibility.
+   Status: `CONVERGED`
+
+### Verification
+
+- `PYTHONDONTWRITEBYTECODE=1 PYTEST_DISABLE_PLUGIN_AUTOLOAD=1 compute/.venv/bin/python -m pytest -p no:cacheprovider compute/tests/test_factorization_modular_engine.py compute/tests/test_dg_shifted_factorization_engine.py -q`
+  passed (`101 passed`).
+- Live metadata extraction reports the modular/KZB labels
+  `thm:modular-hkoszul-SC`, `cor:flat-model-equiv`,
+  `prop:kzb-flatness`, `thm:irregular-kzb-composition`,
+  `thm:irregular-kzb-composition-generic-level`,
+  `thm:mb-H2-vanishing`, `cor:modop-composition-all-levels`,
+  `cor:fm68-all-levels-resolved`,
+  `thm:concrete-operadic-composition`, and
+  `thm:abstract-implies-concrete` as `Conditional`.
+- `PYTHONDONTWRITEBYTECODE=1 compute/.venv/bin/python scripts/generate_metadata.py`
+  regenerated metadata: `PH=2371`, `PE=265`, `CJ=229`, `H=44`,
+  `CD=215`, `O=1`, total `3125`.
+- `PYTHONDONTWRITEBYTECODE=1 compute/.venv/bin/python compute/scripts/audit_independent_verification.py --tex-root . --tests-dir compute/tests --show-orphans`
+  passed: no tautologies and no orphan registry entries.
+- `git diff --check` passed.
+
+## 2026-04-24 - K3 Yangian and Heisenberg kernel convention repair
+
+- Target: `chapters/theory/super_chiral_yangian.tex`,
+  `chapters/theory/unified_chiral_quantum_group.tex`,
+  `chapters/theory/grt_parametrized_seven_faces.tex`,
+  `chapters/connections/dnp_identification_master.tex`,
+  `chapters/connections/thqg_spectral_braiding_extensions.tex`,
+  `chapters/connections/ht_bulk_boundary_line.tex`,
+  `chapters/connections/ht_bulk_boundary_line_frontier.tex`,
+  `chapters/theory/introduction.tex`,
+  `chapters/examples/examples-worked.tex`, and metadata.
+- Status: `CONVERGED` for the inspected cross-volume convention lane.
+
+### Findings
+
+1. `2026-04-24-k3conv-001`
+   Severity: `CRITICAL`
+   Class: `K3 Yangian envelope conflated with general-linear super-Yangian`
+   Issue: the live Vol II bridge stated that the K3 target was
+   `Y(\fgl(4|20))` and that Volume III's conjecture was upgraded to
+   `ProvedElsewhere`.
+   Fix: rewrote the bridge as a proved general-linear comparison
+   family. The K3 target is now the Mukai-orthogonal
+   `Y_\hbar(\mathfrak{so}(4,20))`; the Hodge-parity refinement is
+   explicitly conditional as `Y_\hbar(\mathfrak{so}(4|20))`; Kac
+   `\mathfrak{osp}(4|20)` and `\mathfrak{gl}(4|20)` are excluded as
+   K3 envelopes.
+   Status: `CONVERGED`
+
+2. `2026-04-24-k3conv-002`
+   Severity: `SERIOUS`
+   Class: `stale cross-volume consumers`
+   Issue: the seven-face, DNP, and unified-QG anchor remarks still
+   advertised K3 through the old `\fgl(4|20)` super-Yangian.
+   Fix: propagated the Mukai-orthogonal target and conditional
+   Hodge-parity refinement to each live consumer.
+   Status: `CONVERGED`
+
+3. `2026-04-24-k3conv-003`
+   Severity: `SERIOUS`
+   Class: `pre-dlog Laplace kernel conflated with bar collision kernel`
+   Issue: Heisenberg summaries used bare `r(z)=k/z^2` for both the
+   Laplace/OPE kernel and the bar collision residue.
+   Fix: split the convention everywhere inspected:
+   `r^L(z)=k/z^2` and `r^{coll}(z)=k/z`; the CYBE verification now
+   records that both abelian kernels solve CYBE, while the binary
+   Maurer--Cartan projection is the collision kernel.
+   Status: `CONVERGED`
+
+### Verification
+
+- `PYTHONDONTWRITEBYTECODE=1 PYTEST_DISABLE_PLUGIN_AUTOLOAD=1 compute/.venv/bin/python -m pytest -p no:cacheprovider compute/tests/test_collision_residue_rmatrix.py compute/tests/test_super_chiral_yangian.py compute/tests/test_spectral_braiding.py compute/tests/test_cross_volume_deep_bridge.py -q`
+  passed (`147 passed`).
+- `PYTHONDONTWRITEBYTECODE=1 compute/.venv/bin/python scripts/generate_metadata.py`
+  regenerated metadata: `PH=2362`, `PE=264`, `CJ=232`, `H=44`,
+  `CD=222`, `O=1`, total `3125`.
+- `PYTHONDONTWRITEBYTECODE=1 compute/.venv/bin/python compute/scripts/audit_independent_verification.py --tex-root . --tests-dir compute/tests --show-orphans`
+  passed: no tautologies and no orphan registry entries.
+- Hostile fixed-string greps for stale K3 `\fgl(4|20)` consumers and
+  bare Heisenberg `r(z)=k/z^2` on active `.tex` surfaces returned no
+  unrepaired live claims.
+- `git diff --check` passed on the touched convention surfaces.
+
+## 2026-04-24 - CY/K3 Hall bridge and gravity-line residual
+
+- Target: `chapters/connections/3d_gravity.tex`,
+  `chapters/connections/twisted_holography_quantum_gravity.tex`,
+  `main.tex`, and new `hall_borcherds_*` compute witnesses.
+- Status: `CONVERGED` for the scalar-vs-chain separation pass.
+
+### Findings
+
+1. `2026-04-24-cyk3-gravity-001`
+   Severity: `CRITICAL`
+   Class: `scalar automorphic identity promoted to chain-level gravity`
+   Issue: later 3d-gravity passages still read
+   `1/\Phi_{10}` as a 3d quantum-gravity partition function or as a
+   Virasoro/Hall trace, although the proved content is only the
+   Gritsenko--Nikulin/Borcherds/DVV scalar identity.
+   Fix: rewrote those passages as K3 scalar-shadow statements and
+   inserted Proposition `prop:3dg-k3-scalar-no-promotion`, which names
+   the missing positive-half, double/current, `\SCchtop`, and trace
+   compatibility data.
+   Status: `CONVERGED`
+
+2. `2026-04-24-cyk3-gravity-002`
+   Severity: `SERIOUS`
+   Class: `Stokes/Hall comparison overclaimed`
+   Issue: Stokes-integrality and the `c=24` master-gravity
+   specialization cited the scalar Borcherds theorem as though it
+   supplied the chain-level Virasoro trace comparison.
+   Fix: changed Stokes integrality to a conjecture conditional on the
+   Borel--Zwegers and Hall--Borcherds gravity-line comparisons; updated
+   master-bridge language to keep the automorphic scalar unconditional
+   and the chain-level equality conditional.
+   Status: `CONVERGED`
+
+### Verification
+
+- `compute/.venv/bin/python -m pytest compute/tests/test_hall_borcherds_gravity_residual.py -q`
+  added as the narrow executable witness.
+- Hostile fixed-string greps for `Z_{3dQG}`, `3d quantum gravity
+  partition function`, and stale `Proposition~\ref{prop:3dg-stokes...}`
+  were used to locate remaining overclaims on the assigned surface.
+
+## 2026-04-24 - SC/CHD/topologisation and cross-volume K3 convergence
+
+- Target: `chapters/theory/sc_chtop_heptagon.tex`,
+  `chapters/theory/factorization_swiss_cheese.tex`,
+  `chapters/theory/chiral_higher_deligne.tex`,
+  topologisation/W-infinity status surfaces, THQG admissible-scope
+  surfaces, kernel convention tests, IV decorators, and the live
+  Vol I/III K3 convention anchors.
+- Status: `CONVERGED` for the integrated six-agent batch.
+
+### Findings
+
+1. `2026-04-24-scchd-001`
+   Severity: `CRITICAL`
+   Class: `bicoloured SC datum conflated with single-colour E3`
+   Issue: CHD/heptagon/factorization prose applied Dunn additivity or
+   `E_3` language before topologisation and before passage to a
+   single-colour external product.
+   Fix: rewrote the live surfaces to distinguish mixed
+   `\mathsf{SC}^{ch,top}` data from post-topologisation
+   `E_3^{top}` data; Dunn is now used only after the closed colour is
+   locally constant and the external single-colour product is formed.
+   Status: `CONVERGED`
+
+2. `2026-04-24-scchd-002`
+   Severity: `SERIOUS`
+   Class: `global Ran object collapsed to local operadic shadow`
+   Issue: the heptagon/factorization comparison identified global
+   factorization data with the formal-disc operad without the
+   genus-zero translation-invariant/local-shadow restriction.
+   Fix: inserted the `Loc_x` global-to-local direction, mixed
+   open--closed Ran geometry, and positive-genus conditional recovery
+   scope; the product Ran model is now only the depth-zero associated
+   graded.
+   Status: `CONVERGED`
+
+3. `2026-04-24-top-001`
+   Severity: `SERIOUS`
+   Class: `conditional W_N/W_infty data advertised as theorem`
+   Issue: finite principal `\mathcal W_N` tempering was correct, but
+   the harmonic beta closed form and W-infinity inverse-limit endpoint
+   were advertised as unconditional in summaries.
+   Fix: separated unconditional finite-rank tempering from the
+   conditional harmonic radius law and W-infinity inverse-limit
+   hypotheses; class-M raw direct-sum closure is now stated only under
+   finite propagation, otherwise on weight-completed/pro ambients.
+   Status: `CONVERGED`
+
+4. `2026-04-24-thqg-001`
+   Severity: `SERIOUS`
+   Class: `admissible and DS scope overwide`
+   Issue: the universal holography functor and non-principal DS
+   theorem used boundary-linear/admissible and "any nilpotent" language
+   beyond the proof surface.
+   Fix: the functor source is the admissible boundary-linear
+   subcategory; non-principal DS is formulated for good-graded
+   nilpotent data with the relevant Costello--Gaiotto boundary theorem.
+   Status: `CONVERGED`
+
+5. `2026-04-24-test-001`
+   Severity: `SERIOUS`
+   Class: `test oracle convention drift`
+   Issue: compute docs called the pre-dlog Laplace/OPE kernel an
+   r-matrix, and one IV decorator still pointed to the stale
+   `thm:bar-cobar-adjunction` label.
+   Fix: test/docstrings now distinguish `r^L` from
+   `r^{coll}`; the IV decorator points to
+   `thm:scchtop-bar-cobar-adjunction`; new IV decorators cover
+   `prop:vol3-upgrade` and `thm:general-half-space-bv`.
+   Status: `CONVERGED`
+
+6. `2026-04-24-xvol-001`
+   Severity: `SERIOUS`
+   Class: `cross-volume K3 Yangian target drift`
+   Issue: Vol I and Vol III frontier/compute surfaces still advertised
+   `Y(gl(4|20))` or Kac `Y_{osp}(4|20)` as K3 envelopes.
+   Fix: Vol I outlook now names `Y_\hbar(so(4,20))` and conditional
+   non-Kac `Y_\hbar(so(4|20))`; Vol III frontier and compute docs keep
+   `gl(4|20)` only as comparison scaffolding and exclude Kac `osp`.
+   Status: `CONVERGED`
+
+### Verification
+
+- `PYTHONDONTWRITEBYTECODE=1 compute/.venv/bin/python scripts/generate_metadata.py`
+  regenerated metadata: `PH=2359`, `PE=264`, `CJ=256`, `H=19`,
+  `CD=243`, `O=0`, total `3141`.
+- `PYTHONDONTWRITEBYTECODE=1 PYTEST_DISABLE_PLUGIN_AUTOLOAD=1 compute/.venv/bin/python -m pytest -p no:cacheprovider compute/tests/test_topologization_class_m_original_complex.py compute/tests/test_tempered_stratum.py compute/tests/test_wn_tempered_closure.py compute/tests/test_beta_N_closed_form.py compute/tests/test_e_infinity_topologization.py compute/tests/test_w_infty_endpoint.py compute/tests/test_chiral_higher_deligne.py compute/tests/test_super_chiral_yangian.py compute/tests/test_collision_residue_rmatrix.py compute/tests/test_spectral_braiding.py compute/tests/test_verdier_intertwining_iv.py compute/tests/test_kz_all_loop_bv_constructive.py compute/tests/test_universal_holography_functor.py compute/tests/test_e3_topological_ds_general.py compute/tests/test_e3_topological_free_pva.py -q`
+  passed (`155 passed`).
+- `PYTHONDONTWRITEBYTECODE=1 compute/.venv/bin/python compute/scripts/audit_independent_verification.py --tex-root . --tests-dir compute/tests --show-orphans`
+  passed: `1660` ProvedHere labels, no tautologies, no orphans,
+  coverage gap `1422`.
+- `/Users/raeez/chiral-bar-cobar-vol2/compute/.venv/bin/python -m pytest -p no:cacheprovider compute/tests/test_k3_super_yangian.py -q`
+  in `~/calabi-yau-quantum-groups` passed (`73 passed`).
+- `git diff --check` passed on the touched Vol II, Vol I, and Vol III
+  surfaces.
+
+## 2026-04-24 Centre-Fibre Follow-Up Rectification
+
+Target: first concrete repairs propagated from
+`notes/centre_fibre_lattice_attack_heal_synthesis_20260424.md`.
+
+1. `2026-04-24-cf-001`
+   Severity: `CRITICAL`
+   Class: `bulk-Hochschild scope overclaim`
+   Location: `chapters/theory/foundations.tex:1151`,
+   `chapters/theory/foundations.tex:1329`
+   Issue: the categorical derived-centre/Hochschild identification was
+   titled as a bulk theorem, and the boundary-linear proof still called
+   `thm:bulk_hochschild` unconditional for any logarithmic
+   `\SCchtop`-algebra.
+   Fix: retitle the corollary as a categorical derived-centre result,
+   separate it from the physical bulk-Hochschild comparison, and scope
+   the theorem reference to the physical prefactorization model
+   specialised to the boundary-linear exact sector.
+   Status: `CONVERGED`
+
+2. `2026-04-24-cf-002`
+   Severity: `CRITICAL`
+   Class: `false lattice self-duality`
+   Location: `chapters/connections/ht_bulk_boundary_line.tex:3023`,
+   `chapters/connections/ht_bulk_boundary_line_frontier.tex:2946`
+   Issue: the A2 computation identified the root lattice with the
+   weight lattice, `A_2^*\cong A_2`, while simultaneously using the
+   nontrivial discriminant group `A_2^*/A_2\cong Z/3`.
+   Fix: distinguish self-duality of the Dynkin type from the failure of
+   integral/even lattice self-duality; describe the line side as the
+   pointed discriminant-sector category.
+   Status: `CONVERGED`
+
+3. `2026-04-24-cf-003`
+   Severity: `SERIOUS`
+   Class: `deformation-complex degree shift`
+   Location: `chapters/connections/brace.tex:785`,
+   `chapters/connections/hochschild.tex:953`
+   Issue: MC elements live in the shifted dg Lie algebra
+   `C^\bullet_{\mathrm{ch,top}}(A)[1]`, but the corollaries reported
+   infinitesimals and obstructions in the unshifted degrees.
+   Fix: state the controlling dg Lie algebra first; translate to
+   unshifted cochain degrees only after the shift.
+   Status: `CONVERGED`
+
+4. `2026-04-24-cf-004`
+   Severity: `SERIOUS`
+   Class: `bar-cobar covariance`
+   Location: `chapters/connections/bar-cobar-review.tex:1021`
+   Issue: the statement used a contravariant-looking
+   `\Omegach(f^*)` while the proof diagram and counit compatibility use
+   the covariant cobar map `\Omegach(\barB(f))`.
+   Fix: replace the displayed algebra morphism by the covariant
+   `\Omegach(\barB(f))` with source
+   `\Omegach(\barB(\cA))`.
+   Status: `CONVERGED`
+
+5. `2026-04-24-cf-005`
+   Severity: `SERIOUS`
+   Class: `Drinfeld-centre face overmarked`
+   Location: `chapters/theory/sc_chtop_heptagon.tex:1166`,
+   `compute/tests/test_sc_chtop_heptagon_iv.py:249`
+   Issue: the heptagon Drinfeld-centre face was marked
+   `ProvedHere` although the equality with factorization modules over
+   the chiral derived centre requires a centre-comparison theorem not
+   supplied by the cited categorical Drinfeld-centre sources alone.
+   Fix: mark the theorem conditional, add the local
+   factorization-module centre-comparison hypothesis, update local
+   references/table text, and remove the independent-verification
+   decorator for that now-conditional claim while retaining structural
+   sanity tests.
+   Status: `CONVERGED`
+
+### Verification
+
+- `PYTHONDONTWRITEBYTECODE=1 PYTEST_DISABLE_PLUGIN_AUTOLOAD=1 compute/.venv/bin/python -m pytest -p no:cacheprovider compute/tests/test_sc_chtop_heptagon_iv.py -q`
+  passed (`7 passed`).
+- `PYTHONDONTWRITEBYTECODE=1 compute/.venv/bin/python scripts/generate_metadata.py`
+  regenerated metadata: `PH=2358`, `PE=264`, `CJ=256`, `H=19`,
+  `CD=244`, `O=0`, total `3141`.
+- `PYTHONDONTWRITEBYTECODE=1 compute/.venv/bin/python compute/scripts/audit_independent_verification.py --tex-root . --tests-dir compute/tests --show-orphans`
+  passed: `1659` ProvedHere labels, no tautologies, no orphans,
+  coverage gap `1422`.
+- Fixed-string greps on active chapter surfaces found no remaining
+  `unconditional for any` bulk-Hochschild overclaim, no live
+  `A_2^*\cong A_2` assertion, no stale `Obstructions to first` degree
+  sentence, no `\Omegach(f^*)` covariance error, and no independent
+  verification decorator for `thm:drinfeld-centre-sc-face`.
+- Metadata now records `thm:drinfeld-centre-sc-face` as `Conditional`.
+- `git diff --check` passed on the touched manuscript, compute, notes,
+  and metadata surfaces.

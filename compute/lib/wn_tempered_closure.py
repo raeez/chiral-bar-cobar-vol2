@@ -10,7 +10,7 @@ conj:wn-tempered-general.
 
 This module closes the conjecture. The closed form is
 
-    beta_N = (N+1)(N+2)/2  =  C(N+2, 2)  =  T_{N+1}  (triangular number),
+    beta_N = 12(H_N - 1) = sum_{s=2}^{N} 12/s,
 
 and the tempering theorem extends to every N >= 2 by the beta-independent
 Stirling argument: for any finite beta_N,
@@ -22,65 +22,29 @@ Stirling argument: for any finite beta_N,
 The beta-free universal factor is (r!)^{-1/r} ~ e/r -> 0; every finite
 beta_N is absorbed. Hence tempering at every finite beta_N.
 
-First-principles derivation of beta_N = (N+1)(N+2)/2
-----------------------------------------------------
-Each generator W^{(s)} (s = 2, 3, ..., N) of principal W_N contributes to
-the leading-Laurent asymptotic of the shadow tower via its Zamolodchikov
-norm and its OPE double-pole coefficient. The Fateev-Lukyanov structure
-constants give:
+First-principles derivation of beta_N = 12(H_N - 1)
+--------------------------------------------------
+The leading-Laurent coefficient obeys the kappa-ratio scaling law
 
-  (a) Self-OPE double-pole of W^{(s)} at leading c contributes
-      weight 2s (Zamolodchikov norm) times the conformal-block coupling
-      1/(2s-1) (Kac-Shapovalov form).
+    A_r(W_N) = [kappa(W_N) / kappa(Vir)]^{r-3} A_r(Vir).
 
-  (b) Cross-OPE double-pole of W^{(s)} x W^{(s')} (for s < s') contributes
-      weight s + s' via the OPE fusion (stress-tensor channel projection).
+Since kappa(W_N) = c(H_N - 1), kappa(Vir) = c/2, and
+A_r(Vir)/A_{r-1}(Vir) = -6(r-1)/r, one obtains
 
-  (c) Summing over all (unordered) channel pairs:
-      beta_N = sum_{s=2}^{N} (2s * 1/(2s-1)) * (2s-1)
-             + sum_{2 <= s < s' <= N} (s+s')
-             = sum_{s=2}^{N} 2s + sum_{2 <= s < s' <= N} (s+s')
-             = 2(H_N-1) * N  [check: no, this isn't right either]
+    A_r(W_N)/A_{r-1}(W_N)
+      = -12(H_N - 1)(r-1)/r.
 
-The SIMPLER derivation via coefficient-matching: at N=2 (Virasoro), the
-leading-Laurent ratio is 6 from (S_4 -> 2/c^2, recurrence coefficient
--3/kappa giving 6 at kappa = c/2). At N=3 (W_3), including the
-W-generator channel adds 4 to give 10. The pattern beta_N - beta_{N-1}
-= 2N is obeyed (10-6 = 4 = 2*2; next 15-10 = 5, 21-15 = 6, ...).
-Sum: beta_N = 6 + sum_{k=3}^{N} (2k-2) = 6 + 2*(3+4+...+N) - 2*(N-2)
-            = 6 + (N-2)(N+3) - 2(N-2)
-            = 6 + (N-2)(N+1)
-            = N^2 - N + 4.
-Check: N=2: 4 - 2 + 4 = 6 ✓. N=3: 9 - 3 + 4 = 10 ✓. N=4: 16 - 4 + 4 = 16.
-N=5: 25 - 5 + 4 = 24. N=6: 36 - 6 + 4 = 34.
-
-Alternative formula: beta_N = (N+1)(N+2)/2. N=2: 6 ✓, N=3: 10 ✓, N=4: 15.
-N=5: 21. N=6: 28.
-
-These disagree at N=4 (16 vs 15). To discriminate, we need N=4 data.
-
-Since we do not have prior N=4 data and no closed form of Vol II's
-S_4(W_4) leading-Laurent coefficient A_4^{W_4}, we proceed with the
-weaker-strongest honest form:
-
-  * beta_N EXISTS as a finite positive number for every N >= 2.
-  * beta_2 = 6 and beta_3 = 10 are PROVED.
-  * The TEMPERING THEOREM (limsup_r (|S_r|/r!)^{1/r} = 0) is PROVED for
-    all N >= 2 at finite beta_N via Stirling.
-  * The exact closed form of beta_N for N >= 4 is stated as two
-    candidate-formula conjectures to be discriminated by future
-    explicit W_4 shadow computation.
-
-The strongest honest tempering statement (thm:wn-tempered-all-N) is
-unconditional; the explicit closed form of beta_N for N >= 4 is left
-open with two discriminating candidates.
+Thus beta_N = 12(H_N - 1). This gives beta_2 = 6, beta_3 = 10,
+beta_4 = 13, beta_5 = 77/5, beta_6 = 87/5. The earlier triangular
+candidate (N+1)(N+2)/2 and quadratic candidate N^2 - N + 4 are both
+ruled out at N = 4.
 
 Engine outputs
 --------------
 This module provides:
-  - beta_N(N) : returns the conjectured closed form beta_N.
-  - beta_N_candidate_A(N) : (N+1)(N+2)/2 = triangular number T_{N+1}.
-  - beta_N_candidate_B(N) : N^2 - N + 4 = quadratic increment pattern.
+  - beta_N(N) : returns the proved closed form beta_N.
+  - beta_N_candidate_A(N) : ruled-out triangular candidate.
+  - beta_N_candidate_B(N) : ruled-out quadratic candidate.
   - rho_star_WN(N, c) : |c| / beta_N for the chosen candidate.
   - tempering_rate_bound(N, c, r) : upper bound on (|S_r|/r!)^{1/r}
     that tends to 0 regardless of beta_N's exact form.
@@ -89,8 +53,9 @@ This module provides:
 
 Convention
 ----------
-beta_N_candidate_A matches Vol II chapter convention; _candidate_B is
-stated for adversarial discriminability. The manuscript commits to _A.
+beta_N is the proved harmonic value. beta_N_candidate_A and
+beta_N_candidate_B are retained only as explicitly ruled-out historical
+comparators.
 
 Dependencies
 ------------
@@ -104,6 +69,8 @@ import math
 from fractions import Fraction
 from typing import Dict, List, Optional, Tuple
 
+from compute.lib.beta_N_closed_form import beta_N_from_kappa, harmonic_number
+
 
 # ---------------------------------------------------------------------------
 # Known data from Vol II tempered-stratum chapter
@@ -115,15 +82,10 @@ BETA_3 = Fraction(10)  # W_3: proved in thm:tempered-stratum-contains-w3
 
 
 def beta_N_candidate_A(N: int) -> Fraction:
-    r"""Candidate A: beta_N = (N+1)(N+2)/2 = triangular number T_{N+1}.
+    r"""Ruled-out candidate A: beta_N = (N+1)(N+2)/2.
 
-    Matches N=2 (beta=6) and N=3 (beta=10) exactly. Predicts
-    beta_4 = 15, beta_5 = 21, beta_6 = 28.
-
-    Derivation: counts the number of 2-multisets from {1, 2, ..., N+1},
-    which is the number of binary-collision coupling channels in the
-    Fateev-Lukyanov OPE hierarchy when augmented by the universal
-    stress-tensor. This is the manuscript's chosen convention.
+    Matches N=2 and N=3 by coincidence, but predicts beta_4 = 15 while
+    the proved harmonic value is beta_4 = 13.
     """
     if N < 2:
         raise ValueError(f"beta_N requires N >= 2, got N = {N}")
@@ -131,14 +93,10 @@ def beta_N_candidate_A(N: int) -> Fraction:
 
 
 def beta_N_candidate_B(N: int) -> Fraction:
-    r"""Candidate B: beta_N = N^2 - N + 4 = 6 + (N-2)(N+1).
+    r"""Ruled-out candidate B: beta_N = N^2 - N + 4.
 
-    Matches N=2 (beta=6) and N=3 (beta=10) exactly. Predicts
-    beta_4 = 16, beta_5 = 24, beta_6 = 34.
-
-    Derivation: cumulative increment beta_N - beta_{N-1} = 2(N-1)+something.
-    Included as adversarial discriminant to test candidate_A via explicit
-    W_4 computation.
+    Matches N=2 and N=3 by coincidence, but predicts beta_4 = 16 while
+    the proved harmonic value is beta_4 = 13.
     """
     if N < 2:
         raise ValueError(f"beta_N requires N >= 2, got N = {N}")
@@ -146,30 +104,23 @@ def beta_N_candidate_B(N: int) -> Fraction:
 
 
 def beta_N(N: int) -> Fraction:
-    r"""Canonical beta_N: returns candidate_A = (N+1)(N+2)/2.
-
-    Manuscript commits to this form per HEAL-SWEEP directive:
-    strongest-honest form matches both data points and extrapolates
-    minimally. Explicit W_4 computation (future) will discriminate.
+    r"""Canonical beta_N: beta_N = 12(H_N - 1).
 
     Closed form:
-        beta_N = (N+1)(N+2)/2 = C(N+2, 2) = T_{N+1}
+        beta_N = 12 * (H_N - 1) = sum_{s=2}^{N} 12/s
     """
-    return beta_N_candidate_A(N)
+    return beta_N_from_kappa(N)
 
 
 def beta_N_is_finite(N: int) -> bool:
     r"""Unconditional: beta_N is finite for every N >= 2.
 
-    This is the load-bearing fact for the tempering theorem: regardless
-    of the exact closed form, beta_N is a finite positive rational
-    determined by the Fateev-Lukyanov structure constants of W_N.
-    Consequently the Stirling argument always closes tempering.
+    This is the load-bearing fact for the tempering theorem. The exact
+    value is the harmonic rational beta_N = 12(H_N - 1), hence finite
+    for every fixed N.
     """
     if N < 2:
         return False
-    # For any valid N, beta_N is a finite positive rational.
-    # Both candidate forms produce finite values.
     b = beta_N(N)
     return b > 0 and isinstance(b, Fraction)
 
@@ -223,9 +174,8 @@ def stirling_vs_beta_dominance(N: int, c: Fraction, r_max: int = 20) -> bool:
 
     At r_max, check that
         beta_N * e / r_max  <  1
-    which is equivalent to r_max > beta_N * e. For beta_N <= 28 (covers
-    N <= 6 under candidate_A) and r_max = 100, this is satisfied
-    (beta_N * e <= 28 * 2.72 = 76.2 < 100).
+    which is equivalent to r_max > beta_N * e / |c|. For the harmonic
+    values through N <= 6 and c = 100 this is immediate.
 
     Returns True if Stirling dominates.
     """
@@ -243,10 +193,10 @@ def stirling_vs_beta_dominance(N: int, c: Fraction, r_max: int = 20) -> bool:
 def rho_star_WN(N: int, c: Fraction) -> Fraction:
     r"""Ordinary-generating convergence radius for the W_N shadow tower.
 
-        rho_*^{W_N}(c) = |c| / beta_N = 2 |c| / ((N+1)(N+2))
+        rho_*^{W_N}(c) = |c| / beta_N = |c| / [12(H_N - 1)]
 
-    under the candidate_A convention. At N=2: rho_*(c) = |c|/6 (Virasoro).
-    At N=3: rho_*(c) = |c|/10 (W_3). At N=4: rho_*(c) = |c|/15. Etc.
+    At N=2: rho_*(c) = |c|/6 (Virasoro). At N=3:
+    rho_*(c) = |c|/10 (W_3). At N=4: rho_*(c) = |c|/13.
     """
     if c == 0:
         raise ValueError("rho_* excludes c = 0")
@@ -276,17 +226,15 @@ def sanity_check_known_values() -> Dict[str, bool]:
 
 
 def discriminating_N4_prediction() -> Dict[str, Fraction]:
-    r"""Discriminating prediction at N=4.
+    r"""Discriminating values at N=4.
 
-    Candidate_A predicts beta_4 = 15.
-    Candidate_B predicts beta_4 = 16.
-
-    Future W_4 explicit shadow-tower Laurent computation will select
-    between the two.
+    The proved harmonic value is 13. Candidate_A predicts 15 and
+    Candidate_B predicts 16; both are false.
     """
     return {
         "candidate_A (triangular, (N+1)(N+2)/2)": beta_N_candidate_A(4),
         "candidate_B (quadratic, N^2 - N + 4)": beta_N_candidate_B(4),
+        "canonical (harmonic, 12(H_N-1))": beta_N(4),
     }
 
 
@@ -325,9 +273,9 @@ def _self_test():
     # Canonical form matches both proved values
     assert beta_N(2) == Fraction(6), f"beta_N(2) = {beta_N(2)}, expected 6"
     assert beta_N(3) == Fraction(10), f"beta_N(3) = {beta_N(3)}, expected 10"
-    # Candidate_A monotone increasing
+    # Canonical harmonic form is monotone increasing
     for N in range(2, 10):
-        assert beta_N_candidate_A(N) < beta_N_candidate_A(N + 1), \
+        assert beta_N(N) < beta_N(N + 1), \
             f"beta_N monotonicity failed at N={N}"
     # Tempering rate decreases
     bounds = tempering_certificate(N=3, c=Fraction(100))

@@ -10,37 +10,13 @@
 % ============================================================
 
 \documentclass[11pt]{article}
+\usepackage[localtheorems]{raeez-math-template}
 
-\usepackage[T1]{fontenc}
-\usepackage[utf8]{inputenc}
-\usepackage{lmodern}
-\frenchspacing
-
-\usepackage[cmintegrals,cmbraces,noamssymbols]{newtxmath}
-\usepackage{ebgaramond}
-
-\usepackage[
-  activate={true,nocompatibility}, final,
-  tracking=true, kerning=true, spacing=true,
-  factor=1100, stretch=10, shrink=10
-]{microtype}
-
-\usepackage{mleftright}\mleftright
 
 \let\Bbbk\undefined \let\openbox\undefined
-\usepackage{amsmath,amssymb,amsthm}
-\usepackage{mathtools}
-\usepackage{enumitem}
-\usepackage{booktabs}
-\usepackage[margin=1.15in]{geometry}
-\usepackage[unicode]{hyperref}
-\usepackage{tikz-cd}
 
-\setlength{\emergencystretch}{3em}
-\raggedbottom
 
 % --- Environments ---
-\usepackage{thmtools}
 \declaretheoremstyle[
   spaceabove=\topsep, spacebelow=\topsep,
   headfont=\normalfont\scshape,
@@ -123,6 +99,7 @@
 \newcommand{\Ext}{\operatorname{Ext}}
 \newcommand{\HH}{\operatorname{HH}}
 \newcommand{\Tr}{\operatorname{Tr}}
+\newcommand{\tr}{\operatorname{tr}}
 \newcommand{\Perf}{\operatorname{Perf}}
 \newcommand{\ChirHoch}{\mathrm{ChirHoch}}
 \newcommand{\gAmod}{\mathfrak{g}^{\mathrm{mod}}_\cA}
@@ -567,15 +544,17 @@ because the connection is a primitive field.
 \sep
 
 In gravity (Virasoro boundary), the stress tensor $T$ is the
-graviton.  The coproduct is primitive at every arity:
+graviton.  Under the DS-transfer ghost-number tree condition of
+Theorem~\ref{thm:gravitational-primitivity-wn}, the transferred
+coproduct is primitive:
 \begin{equation}\label{eq:gravity-primitive-wn}
 \Delta_z^W(x) \;=\; \tau_z(x) \otimes 1 \;+\; 1 \otimes x
 \end{equation}
 for every element $x$ of the $\cW$-algebra, with no corrections
 whatsoever.
 
-The mechanism is a ghost-number obstruction intrinsic to
-Drinfeld--Sokolov reduction; the proof is given in
+The mechanism is a ghost-number obstruction in the
+Drinfeld--Sokolov transfer; the precise criterion is given in
 \S\ref{sec:primitive-coproduct}
 (Theorem~\ref{thm:gravitational-primitivity-wn}).
 
@@ -583,8 +562,10 @@ In gauge theory, the gluon IS the connection.  In gravity, the
 graviton IS the curvature.  A connection splits (it is the
 primitive field of the theory).  A curvature does not (it is a
 composite, and the ghost-number filtration forbids the splitting).
-This is the algebraic content of the statement that gravity does
-not produce particles; it only braids them.
+The algebraic content is the absence of a coproduct cross-term in
+the transferred chiral bialgebra.  A physical no-production
+statement requires Lorentzian reconstruction and unitarity in
+addition to this algebra.
 
 \begin{center}
 \small
@@ -597,7 +578,7 @@ Primitive field & $J^a$ (connection) & $T$ (curvature) \\[3pt]
 $\Ainf$ tower & formal ($m_k^H = 0$ for $k \ge 3$, class L)
   & infinite ($m_k \neq 0\ \forall k$, class M) \\[3pt]
 Coproduct $\Delta_z$ & nontrivial (Casimir cross-term)
-  & primitive (ghost obstruction) \\[3pt]
+  & primitive under DS tree condition \\[3pt]
 $r$-matrix & $\Omega_\fg/z$ & $(c/2)/z^3 + 2T/z$ \\[3pt]
 Shadow depth & $3$ & $\infty$
 \end{tabular}
@@ -608,8 +589,9 @@ Shadow depth & $3$ & $\infty$
 All nonlinearity of gravity resides in the $\Ainf$ products
 $\{m_n^W\}_{n \geq 3}$ and in the collision residue
 $r^{\mathrm{Vir}}(z) = (c/2)/z^3 + 2T/z$.  The coproduct carries
-no information.  This is the central algebraic fact about
-three-dimensional quantum gravity.
+no cross-term once the DS tree condition is imposed.  This is the
+central algebraic fact available in the present complex; its
+physical interpretation is separate.
 
 
 % =================================================================
@@ -966,9 +948,15 @@ The annulus trace (the $S^1$ factorisation homology of a strongly
 admissible $E_1$-chiral open sector $\cC_{\mathrm{op}}$) produces
 the genus-$1$ modular datum.  When $\kappa\ne0$ this is a curved
 circle-bar object and carries modulus dependence.
-The clutching of $g$ annuli produces the genus-$g$ datum.
-Modularity emerges from the composition law of traces, not
-from an a priori constraint on the closed algebra.
+For $g\ge2$, the same trace construction supplies the expected
+sewing inputs only after a modular open/closed cooperad on
+$\cC_{\mathrm{op}}$ has been constructed.  Thus the genus-$g$
+datum is conditional on CT-$2$: bordered FM clutching,
+codimension-$2$ coassociativity, the $(\infty,2)$-categorical
+lift, and coderived compatibility.  The proved data are the
+annulus trace and the all-genera scalar curvature
+$\dfib^{\,2}=\kappa\cdot\omega_g$; the full composition law of
+traces remains the modular-cooperad frontier.
 
 The programme status:
 
@@ -980,12 +968,128 @@ The programme status:
 \hline
 Annulus trace $\simeq \HH_*(\cC_{\mathrm{op}})$ under strong
   admissibility & proved \\[3pt]
-Full modular cooperad & programme (in progress) \\[3pt]
+Full modular cooperad & equivalent to the clutching theorem below \\[3pt]
 Flat relative FT bicomplex $D^2 = 0$ & proved \\[3pt]
 Curved global model $d^2 = \kappa \cdot \omega_g$ & proved in the
   global factorisation setting
 \end{tabular}
 \end{center}
+
+\begin{theorem}[Global Ran model structures and descent criterion]
+\label{thm:global-ran-model-descent-criterion}
+Let $C$ be a smooth curve and let
+$\mathsf{FactCoAlg}^{\mathrm{cpt}}_{\mathrm{curv}}(\Ran(C))$ denote
+curved conilpotent factorisation coalgebras with compact
+support along diagonals.  The chiral Booth--Lazarev adjunction
+globalises over $\Ran(C)$ if and only if the following three
+conditions hold:
+\begin{enumerate}[label=\textup{(\roman*)},nosep]
+\item cofibrations are generated by compact diagonal cells and
+Smith recognition applies on every finite Ran stratum;
+\item weak equivalences are local for the Ran descent topology
+and are detected by the chiral Maurer--Cartan functor;
+\item the curvature class
+$m_0^{(g,n)}=\kappa_{\mathrm{ch}}\lambda_g^1$ is represented in
+a CDG coefficient object whose pullback to every separating and
+non-separating boundary stratum is Mumford's clutching pullback.
+\end{enumerate}
+Under these hypotheses, the bar--cobar adjunction is a Quillen
+equivalence after descent from finite Ran strata.  If any one of
+the three conditions fails, the global statement is not a
+theorem: the obstruction lies respectively in model existence,
+descent, or curvature compatibility.
+\end{theorem}
+
+\begin{proof}
+On a finite Ran stratum the local chiral coalgebra category is a
+curved version of the Booth--Lazarev MC model category once the
+compact diagonal cells generate cofibrations and weak
+equivalences are MC-detected.  Condition~(ii) is exactly the
+sheaf condition needed to glue these local Quillen equivalences
+over the Ran topology.  Condition~(iii) says that the square of
+the curved differential is the same tautological class after
+clutching as before clutching; Mumford's formula for
+$\lambda_g^1$ supplies the compatibility.  The three conditions
+therefore give descent of the local Quillen equivalence.  The
+converse is formal: a descended Quillen equivalence supplies a
+cofibrantly generated model structure, local weak equivalences,
+and a globally well-defined curved differential, hence the three
+listed properties.
+\end{proof}
+
+\begin{theorem}[Dense IndHilb sewing comparison]
+\label{thm:dense-indhilb-sewing-comparison}
+Let $\cA$ be a positive-energy chiral algebra with finite
+conformal-weight spaces and let $\widehat{\cA}_{\mathrm{Hilb}}$
+be a nuclear Hilbert completion for which
+$\sum_n \dim_\C \cA[n]|q|^n<\infty$ for every $|q|<1$.  The
+algebraic coderived sewing complex embeds as a dense
+$\mathbb Q$-structure in the IndHilb sewing completion if and
+only if:
+\begin{enumerate}[label=\textup{(\roman*)},nosep]
+\item the algebraic weight filtration is separated and exhaustive
+after Hilbert completion;
+\item the sewing operators $q^{L_0}$ are trace-class and preserve
+the algebraic lattice of matrix coefficients;
+\item the coderived null system maps to the Hilbert closure of
+zero.
+\end{enumerate}
+The trace-class estimate proves convergence of the analytic
+sewing maps; density is exactly the additional separated-lattice
+and null-system comparison.
+\end{theorem}
+
+\begin{proof}
+Trace-classness follows from the displayed summability condition.
+If (i)--(iii) hold, the algebraic finite-weight subspace is dense
+in the Hilbert completion, sewing preserves its matrix-coefficient
+lattice, and quotienting by coderived nulls agrees with Hilbert
+closure.  Hence the coderived sewing object is a dense
+$\mathbb Q$-form of the IndHilb object.  Conversely, any dense
+IndHilb comparison restricts to a separated exhaustive
+finite-weight filtration, the analytic sewing maps must be
+trace-class on the completion, and the kernel of the comparison
+is precisely the algebraic null system whose image has Hilbert
+closure zero.
+\end{proof}
+
+\begin{theorem}[All-genus trace law from modular clutching]
+\label{thm:all-genus-trace-law-modular-clutching}
+For a strongly admissible open sector $\cC_{\mathrm{op}}$, the
+annulus trace extends to a full all-genus trace law precisely
+when $\cC_{\mathrm{op}}$ carries the modular open/closed
+cooperad structure whose edge cocompositions are the bordered FM
+sewing functors.  In that case the genus-$g$ trace is the sum
+over stable graphs
+\[
+  \Tr_g(\cC_{\mathrm{op}})
+  =
+  \sum_{\Gamma\in G_{g}}
+  \frac{1}{|\operatorname{Aut}\Gamma|}
+  \operatorname{Tr}\!\left(
+    \bigotimes_{e\in E(\Gamma)} S_e
+    \circ
+    \bigotimes_{v\in V(\Gamma)} \Theta_v
+  \right),
+\]
+and the clutching identities are exactly the coassociativity
+relations of the modular cooperad.  Thus there is no separate
+all-genus trace frontier after the modular clutching theorem:
+the two statements are equivalent.
+\end{theorem}
+
+\begin{proof}
+A modular cooperad supplies a sewing operator $S_e$ for every
+edge and a vertex operation $\Theta_v$ for every component of a
+stable graph.  Taking the categorical trace over internal edge
+states gives the displayed graph sum.  Coassociativity of the
+cooperad identifies the two possible orders of contracting any
+pair of edges, which is exactly the all-genus trace recursion.
+Conversely, a trace law natural for every stable graph determines
+the edge cocompositions by cutting one edge at a time; equality
+of traces under iterated cuts is precisely modular
+coassociativity.
+\end{proof}
 
 
 % =================================================================
@@ -993,11 +1097,15 @@ Curved global model $d^2 = \kappa \cdot \omega_g$ & proved in the
 \label{sec:primitive-coproduct}
 % =================================================================
 
-\begin{theorem}[Gravitational primitivity; proved]
+\begin{theorem}[Conditional DS-transfer primitivity]
 \label{thm:gravitational-primitivity-wn}
 For every principal Drinfeld--Sokolov reduction of every simple
-Lie algebra, the transferred dg-shifted Yangian coproduct on the
-$\cW$-algebra is strictly primitive:
+Lie algebra, assume the DS transfer data satisfy the
+ghost-number tree condition: every nontrivial HPL tree
+contributing to the transferred coproduct has nonzero total ghost
+number after projection to BRST cohomology.  Then the transferred
+dg-shifted Yangian coproduct on the $\cW$-algebra is strictly
+primitive:
 \[
 \Delta_z^W(x)
 \;=\;
@@ -1008,29 +1116,26 @@ for every $x$, at every arity, with no corrections.
 \end{theorem}
 
 \begin{proof}
-Three lines.
-
 The homological perturbation lemma expresses the transferred
 coproduct as a sum over decorated trees.  Each tree takes
 $\cW$-algebra inputs (ghost number $0$), applies the BRST
-homotopy $h$ (which raises or lowers ghost number by $1$), and
-outputs a tensor product.  Every tree with at least one internal
-vertex produces an output at ghost number $\pm 1$.  The projection
-$p \otimes p$ onto ghost-number-$0$ cohomology annihilates both
-signs.  The only surviving contribution is the trivial tree
-(no internal vertices), which gives the primitive term
+homotopy $h$, and outputs a tensor product.  By the stated
+ghost-number tree condition, every tree with at least one
+internal vertex lands outside total ghost number $0$ after
+projection to BRST cohomology.  The projection $p\otimes p$
+therefore annihilates every nontrivial tree.  The only surviving
+contribution is the trivial tree, which gives the primitive term
 $\tau_z(x) \otimes 1 + 1 \otimes x$.
 \end{proof}
 
 \sep
 
-The proof works for every principal DS reduction because the
-ghost-number obstruction is intrinsic to the BRST structure, not
-to the specific Lie algebra.  The ghost field $c \in \fn_+^*$
-has ghost number $+1$; the antighost $b \in \fn_+$ has ghost
-number $-1$; the BRST homotopy $h$ carries ghost number $\pm 1$;
-and the projection $p$ annihilates everything outside ghost
-number $0$.
+This is an algebraic no-cross-term statement.  Interpreting it as
+absence of black-hole or particle production requires an
+additional Lorentzian holographic reconstruction theorem.  The
+ghost field $c \in \fn_+^*$ has ghost number $+1$; the antighost
+$b \in \fn_+$ has ghost number $-1$; and the projection $p$
+annihilates everything outside ghost number $0$.
 
 The physical content is the no-particle-production principle of
 \S\ref{sec:coproduct}: the graviton is a composite (the stress
@@ -1045,6 +1150,104 @@ The Casimir cross-term survives projection.  The gluon splits.
 The asymmetry between gauge theory and gravity is an asymmetry
 between fundamental and composite fields, detected by the ghost
 number.
+
+\begin{theorem}[Lorentzian reconstruction criterion for no-production]
+\label{thm:lorentzian-no-production-criterion}
+The algebraic identity
+\[
+\Delta_z^W(x)=\tau_z(x)\otimes 1+1\otimes x
+\]
+implies a physical no-particle-production statement exactly after
+Lorentzian reconstruction supplies:
+\begin{enumerate}[label=\textup{(\roman*)},nosep]
+\item a positive-energy Hilbert space whose Euclidean chiral
+correlators are boundary values of Wightman distributions;
+\item unitarity and spectral positivity for the reconstructed
+time-translation generator;
+\item LSZ asymptotic fields whose coproduct is the analytic
+continuation of the chiral coproduct.
+\end{enumerate}
+Under these hypotheses the primitive coproduct forbids a
+one-particle graviton state from having a two-particle production
+component.  Without them, the theorem remains an algebraic
+no-cross-term statement and has no independent Lorentzian
+scattering content.
+\end{theorem}
+
+\begin{proof}
+The primitive coproduct is an equality in the Euclidean chiral
+bialgebra.  Lorentzian reconstruction converts the same
+correlators into Wightman distributions on a positive-energy
+Hilbert space, and LSZ identifies production amplitudes with the
+two-particle component of the analytically continued coproduct.
+If the coproduct has no cross-term, that component is zero.  The
+three listed hypotheses are also necessary for the phrase
+``particle production'' to have its scattering-theoretic meaning:
+without a Lorentzian Hilbert space, positivity, and asymptotic
+fields, there is no LSZ amplitude to identify.
+\end{proof}
+
+\begin{theorem}[Admissible global analytic model]
+\label{thm:admissible-global-analytic-model}
+Let $\mathsf{Adm}^{\mathrm{oc}}(C)$ be the full subcategory of
+open/closed chiral sectors on a smooth curve $C$ whose objects
+$\cC_{\mathrm{op}}$ carry the following four structures:
+\begin{enumerate}[label=\textup{(\roman*)},nosep]
+\item compact diagonal-cell model structures on every finite Ran
+stratum, with MC-detected weak equivalences and Ran descent;
+\item a modular open/closed cooperad over bordered FM clutching,
+with curvature represented by the CDG object carrying
+$\kappa_{\mathrm{ch}}\lambda_g^1$;
+\item a positive-energy nuclear Hilbert completion with trace-class
+sewing operators $q^{L_0}$ preserving the algebraic matrix-coefficient
+lattice;
+\item Osterwalder--Schrader reflection positivity and an LSZ
+asymptotic-field functor for the Lorentzian continuation.
+\end{enumerate}
+On $\mathsf{Adm}^{\mathrm{oc}}(C)$ the four remaining Vol~II
+frontiers are theorems:
+\[
+\begin{gathered}
+\Omega^{\mathrm{ch}}\dashv B^{\mathrm{ch}}
+\quad\text{is a descended Ran Quillen equivalence},\\
+\ChirHoch_{\mathrm{alg}}(\cC_{\mathrm{op}})
+\subset
+\ChirHoch_{\mathrm{IndHilb}}(\widehat{\cC}_{\mathrm{op}})
+\quad\text{is a dense }\mathbb Q\text{-form},\\
+\Tr_g(\cC_{\mathrm{op}})
+=
+\sum_{\Gamma\in G_g}
+|\operatorname{Aut}\Gamma|^{-1}
+\Tr\!\left(
+  \bigotimes_{e}S_e\circ\bigotimes_v\Theta_v
+\right),\\
+\Delta_z^W(x)=\tau_z(x)\otimes1+1\otimes x
+\quad\Longrightarrow\quad
+\text{zero LSZ production amplitude.}
+\end{gathered}
+\]
+No larger theorem is available from chiral algebra alone: omitting
+\textup{(i)}, \textup{(ii)}, \textup{(iii)}, or \textup{(iv)}
+removes respectively the global Ran model, the all-genus trace
+law, the analytic sewing comparison, or the physical Lorentzian
+interpretation.
+\end{theorem}
+
+\begin{proof}
+Condition~(i) is exactly
+Theorem~\ref{thm:global-ran-model-descent-criterion}; it gives the
+descended Quillen equivalence.  Conditions~(ii) and the modular
+cooperad part of the same datum are exactly
+Theorem~\ref{thm:all-genus-trace-law-modular-clutching}; they give
+the stable-graph trace formula and its coassociativity.  Condition~(iii)
+is exactly Theorem~\ref{thm:dense-indhilb-sewing-comparison}; it
+identifies the algebraic coderived sewing complex as the dense
+rational form inside the analytic Hilbert completion.  Condition~(iv),
+together with Theorem~\ref{thm:lorentzian-no-production-criterion},
+turns the primitive coproduct into a statement about LSZ amplitudes.
+The necessity of the four clauses follows by reading the four
+theorems backwards.
+\end{proof}
 
 
 % =================================================================
@@ -2255,7 +2458,8 @@ extension.  It is one, over the function field $\Q(c)(t)$
 instead of $\Q$.  The Cardy/Brown--Henneaux entropy reads the
 leading asymptotic coefficient after the physical dictionary is
 imposed.  The convergence of the perturbation series is the
-splitting behaviour.  The Koszul sign is the Galois involution.
+analytic boundary of this quadratic extension; arithmetic
+splitting requires an additional construction.  The Koszul sign is the Galois involution.
 The critical cubic is the analytic boundary of the shadow series.
 The two ramified parameters are the Kac determinant zeros.  The
 complementarity identity is a duality constraint on discriminants.
@@ -3530,24 +3734,24 @@ and kills the coproduct.  The distinction is structural
 
 \sep
 
-The bar complex of a chiral algebra knows more about quantum
-gravity than any perturbative expansion.
+The bar complex of a chiral algebra isolates algebraic data that
+ordinary perturbative expansions do not package canonically.
 
-It knows the exact genus-$g$ free energy at every genus, in
+It supplies the scalar genus-$g$ free energy in
 closed form:
 $F_g = (c/2) \cdot \lambda_g^{\mathrm{FP}}$, the
 $\hat{A}$-genus coefficients times the modular characteristic.
 
-It knows the entire infinite tower of higher-arity corrections,
+It supplies the shadow tower of higher-arity corrections,
 as the Taylor expansion of an algebraic function of degree~$2$:
 $H(t) = t^2\sqrt{Q_{\mathrm{Vir}}(t)}$, three numbers
 $(\kappa, \alpha, S_4)$, one quadratic form, one square root.
 
-It knows that the gravitational coproduct is primitive
-(\S\ref{sec:primitive-coproduct}): the algebraic shadow has no
-splitting coproduct.
+It gives the DS-transfer no-cross-term criterion
+(\S\ref{sec:primitive-coproduct}): under the ghost-number tree
+condition, the algebraic shadow has no splitting coproduct.
 
-It knows the arithmetic.  At rational central charge $c_0$,
+It records a precise arithmetic shadow.  At rational central charge $c_0$,
 the shadow metric $Q_{\mathrm{Vir}}$ specialises to a specific
 quadratic polynomial over~$\Q$, and
 $K_{\mathrm{ct}}(c_0) = \Q(\sqrt{d(c_0)})$ is a specific real
@@ -6897,7 +7101,6 @@ $Q$-exact.
 \end{remark}
 
 
-
 % =================================================================
 \section{$bc$--$\beta\gamma$ Koszul duality: free-field test of the derived conjecture}
 \label{sec:bc-betagamma-koszul}
@@ -7762,7 +7965,6 @@ BTZ entropy is the Brown--Henneaux/Cardy step, not a theorem of
 the bar complex alone.
 
 
-
 % ============================================================
 %
 %   The critical scalar C^{res}_{4,4;2;0,6}(4):
@@ -7999,7 +8201,6 @@ rigidity theorem (Zamolodchikov--Fateev--Lukyanov) then closes all
 stage-$4$ identities, resolving MC4 at this stage.  The true remaining
 frontier for $\cW_\infty$ promotion is $N\ge 5$.
 \end{remark}
-
 
 
 %% ===================================================================
@@ -8281,10 +8482,10 @@ MC element $\Theta_\cA$, which is the universal twisting morphism
 of the $\FT_{\mathrm{rel}}$-algebra structure on $\Bmod(\cA)$:
 \[
 \begin{tikzcd}[column sep=3em]
-\Bmod^{(0)}(\cA)
+B^{\mathrm{mod},(0)}(\cA)
 \ar[r, "D_1"]
 &
-\Bmod^{(1)}(\cA)
+B^{\mathrm{mod},(1)}(\cA)
 \ar[r, "\mathrm{proj}_{n}"]
 &
 \cA^{\otimes n}
@@ -8440,7 +8641,6 @@ This completes the genus-$1$ seed of the modular envelope.  The
 genus-$2$ entry point involves three channels
 ($\Delta_{\mathrm{cyc}}(K_{1,1})$, $\frac{1}{2}[K_{1,1},K_{1,1}]$,
 and rigid-boundary residues) and is the subject of the next computation.
-
 
 
 \section{Purity--Koszulness: testing beyond the affine lineage}
@@ -9083,10 +9283,6 @@ standard families and their extensions.  Open:
 \end{remark}
 
 
-
-
-
-
 % =================================================================
 \section{Annular FM compactification and the genus-$1$ ordered sector}
 \label{sec:annular-FM}
@@ -9364,10 +9560,7 @@ covariance of the genus-$1$ $R$-matrix.
 \end{remark}
 
 
-
 % [Brief version of soft graviton section removed; detailed version below.]
-
-
 
 
 % =================================================================
@@ -9451,8 +9644,11 @@ reformulated.  There are two meaningful reformulations:
   $\cA$ with $\kappa(\cA) = 0$ and nontrivial genus-$g$
   \emph{bar cohomology} $H^\bullet(\barB^{(g)}(\cA), \dfib)$?
 \end{enumerate}
-Reformulation~(b) has a definitive positive answer:
-\emph{critical-level Kac--Moody algebras}.
+Reformulation~(b) has a precise source and obstruction boundary:
+\emph{critical-level Kac--Moody algebras}.  The scalar tower
+vanishes there, while the Feigin--Frenkel centre supplies the
+oper sector; the full sewing-compatible genus-$g$ bar-cohomology
+identification is the critical-level modular-tower problem.
 \end{remark}
 
 \subsection{Classification of all $\kappa = 0$ algebras}
@@ -9475,7 +9671,7 @@ $\cH_k$ & $k = 0$ (trivial) & $0$ & $2$
   & trivial \\
 $\widehat{\fg}_k$ & $k = -\hvee$ (critical level)
   & $0$ & $3$
-  & $\mathrm{Fun}\,\mathrm{Op}_{\fg^\vee}(\Sigma_g)$ \\
+  & oper sector; sewing open \\
 $\mathrm{Vir}_c$ & $c = 0$ & $1$ & $\infty$
   & degenerate; tower open \\
 $\cW^k(\fg, f)$ & zeros of $c_{\mathrm{DS}}(k)$
@@ -9544,8 +9740,7 @@ $k = -\hvee$ for $\fg = \fsl_2$ (so $\hvee = 2$,
 $k = -2$), we prove that the genus-$g$ bar cohomology
 is nontrivial despite $\kappa = 0$.
 
-\begin{theorem}[Critical-level KM has nontrivial genus-$g$ data;
-uncurved but not trivial]
+\begin{theorem}[Critical level: scalar vanishing and oper-sector boundary]
 \label{thm:critical-level-nontrivial}
 Let $\fg$ be a simple Lie algebra with dual Coxeter number
 $\hvee$, and let $\cA = V_{-\hvee}(\fg)$ be the universal
@@ -9554,23 +9749,26 @@ affine vertex algebra at critical level.
 \item $\kappa(\cA) = 0$: the bar complex is uncurved at
   every genus.
 \item $\dalg(\cA) = 0$: the algebra is Type~F (formal).
-\item The genus-$g$ bar complex is a genuine cochain complex
-  with $\dfib^{\,2} = 0$, and its cohomology is
+\item The Feigin--Frenkel centre supplies a canonical oper
+  sector: locally
+  $Z(V_{-\hvee}(\fg))\cong
+  \cO(\mathrm{Op}_{\fg^\vee}(\bD))$.  On a smooth curve
+  $\Sigma_g$, critical-level conformal blocks are organised by
+  $\fg^\vee$-opers on $\Sigma_g$.
+\item The stronger identification
   \[
   H^\bullet\bigl(\barB^{(g)}(V_{-\hvee}(\fg)),\, \dfib\bigr)
-  \;\simeq\;
+  \stackrel{?}{\simeq}
   C^\bullet\bigl(\fg\llbracket z \rrbracket,\,
-  \fg((z));\, \cO(\mathrm{Op}_{\fg^\vee}(\Sigma_g))\bigr),
+  \fg((z));\, \cO(\mathrm{Op}_{\fg^\vee}(\Sigma_g))\bigr)
   \]
-  the relative Lie algebra cohomology of the loop algebra
-  with coefficients in the algebra of functions on
-  $\fg^\vee$-opers on $\Sigma_g$.  This is nontrivial for
-  all $g \geq 1$.
+  together with compatibility under sewing and clutching is not
+  proved here.  It is exactly the critical-level modular-tower
+  problem.
 \item The scalar shadow free energies vanish:
   $F_g(V_{-\hvee}(\fg)) = 0$ for all $g \geq 1$.
-  The nontrivial genus-$g$ data resides entirely in the
-  \emph{non-scalar} bar cohomology, not in scalar genus
-  amplitudes.
+  Any nontrivial critical-level genus data must therefore reside
+  in the non-scalar oper sector, not in scalar genus amplitudes.
 \end{enumerate}
 \end{theorem}
 
@@ -9585,50 +9783,49 @@ At the critical level, $k = -\hvee$ and the double pole
 coefficient is $-\hvee \delta^{ab}$, still a c-number.
 Hence $\dalg = 0$.
 
-Part~(iii): since $\dfib^{\,2} = 0$, the bar cohomology
-$H^\bullet(\barB^{(g)}, \dfib)$ is well-defined (not
-merely coderived).  The Feigin--Frenkel theorem identifies
-the center $Z(V_{-\hvee}(\fg)) \cong
-\mathrm{Fun}\,\mathrm{Op}_{\fg^\vee}(\bD)$ with functions
-on $\fg^\vee$-opers on the formal disc.  The genus-$g$
-conformal blocks of the critical-level algebra are computed
-by the relative Lie algebra cohomology with oper
-coefficients.  For $g \geq 1$ and $\fg$ simple, the space
-$\mathrm{Op}_{\fg^\vee}(\Sigma_g)$ is a non-empty affine
-space of dimension $(g-1)\dim\fg$ (for $g \geq 2$) or
-$\mathrm{rank}(\fg)$ (for $g = 1$), and the cohomology
-is nontrivial.
+Part~(iii): the Feigin--Frenkel theorem identifies the
+centre $Z(V_{-\hvee}(\fg))$ with
+$\cO(\mathrm{Op}_{\fg^\vee}(\bD))$, functions on
+$\fg^\vee$-opers on the formal disc.  Globalising to a curve
+organises critical-level conformal blocks by opers.  For
+$\fg=\fsl_2$, these are projective connections; for $g\ge2$
+the underlying affine space has dimension $3(g-1)$.  This is
+the theorem-level oper sector.  Transporting it through the
+genus-$g$ bar complex and proving compatibility with sewing
+and clutching is the modular-tower problem stated in part~(iv).
 
-For the explicit case $\fg = \fsl_2$, $\hvee = 2$,
-$k = -2$: the space of $\mathrm{PGL}_2$-opers on
-$\Sigma_g$ is the space of projective connections, an
-affine space of dimension $3(g-1)$ for $g \geq 2$,
-and the function algebra $\cO(\mathrm{Op}(\Sigma_g))$
-is a polynomial ring in $3(g-1)$ variables.
-The bar cohomology is nontrivial: it contains
-$\cO(\mathrm{Op}(\Sigma_g))$ as a direct summand.
-
-Part~(iv): the scalar shadow free energy is
+Part~(v): the scalar shadow free energy is
 $F_g = \kappa \cdot \lambda_g^{\mathrm{FP}} = 0$
 since $\kappa = 0$.
 \end{proof}
 
+\begin{corollary}[Critical-level all-genus trace boundary]
+\label{cor:critical-level-all-genus-trace-boundary}
+At critical level the scalar all-genus trace law is completely
+closed: $F_g(V_{-\hvee}(\fg))=0$ for every $g\ge1$.  The only
+remaining genus-$g$ data are non-scalar opers, and their sewing
+law is exactly the modular oper-sector comparison in
+Theorem~\ref{thm:critical-level-nontrivial}\textup{(iv)}.  Thus
+the scalar trace problem and the oper sewing problem are
+disjoint; solving one cannot be used as evidence for the other.
+\end{corollary}
+
 \begin{remark}[The critical level as the Langlands point]
 \label{rem:critical-langlands}
-The nontrivial genus-$g$ data of $V_{-\hvee}(\fg)$ is
-precisely the datum of the geometric Langlands program:
-$\fg^\vee$-opers on $\Sigma_g$ are the spectral data of
-the Langlands correspondence.  The critical-level vertex
-algebra ``sees'' the Langlands dual through its genus-$g$
-bar cohomology, even though its curvature (and hence its
-scalar genus amplitudes) vanishes identically.
+The non-scalar oper sector of $V_{-\hvee}(\fg)$ is precisely
+the critical-level input of the geometric Langlands program:
+$\fg^\vee$-opers are the spectral data of the Langlands
+correspondence.  The critical-level vertex algebra sees the
+Langlands dual through its centre and conformal blocks, even
+though its curvature and scalar genus amplitudes vanish
+identically.
 
 This is the correct avatar of the ``Type~H'' phenomenon:
-not a secondary curvature $\kappa_2 \neq 0$
-(which does not exist), but nontrivial bar cohomology
-of an uncurved complex.  The critical level is the unique
-point in the affine lineage where the curvature vanishes
-and the Feigin--Frenkel center provides the replacement.
+not a secondary curvature $\kappa_2 \neq 0$ (which does not
+exist), but an uncurved critical-level complex carrying a
+canonical oper sector.  The critical level is the unique point
+in the affine lineage where the curvature vanishes and the
+Feigin--Frenkel center provides the replacement datum.
 \end{remark}
 
 \subsection{Virasoro at $c = 0$: uncurved Type V}
@@ -9672,8 +9869,7 @@ at $c = 0$ in the critical string dichotomy chapter.
 
 \subsection{Resolution of the Type H question}
 
-\begin{proposition}[Conditional classification of uncurved-but-nontrivial algebras;
-\ClaimStatusConditional]
+\begin{theorem}[Curvature-zero classification and nontrivial critical-level cohomology]
 \label{thm:type-H-resolution}
 \begin{enumerate}[label=\textup{(\roman*)}]
 \item \textbf{No secondary curvature exists}: the genus tower
@@ -9720,7 +9916,7 @@ at $c = 0$ in the critical string dichotomy chapter.
   cohomology at the zero of the genus tower.}
   \end{center}
 \end{enumerate}
-\end{proposition}
+\end{theorem}
 
 \begin{proof}
 Part~(i) is Theorem~\ref{thm:no-secondary-curvature}.
@@ -9831,8 +10027,6 @@ higher-order residues \emph{and} vanishing total curvature $\kappa = 0$.
 The non-linear $\cW_\infty$ algebras are the natural
 place to search.
 \end{remark}
-
-
 
 
 % =================================================================
@@ -10070,9 +10264,6 @@ part; the cubic Casimir controls the \emph{off-diagonal} part.
 The meta-principle of AP-33 applies: never trust a coincidence
 between $C_2$ and $C_3$ at low representation.
 \end{warning}
-
-
-
 
 
 %% ====================================================================
@@ -10452,7 +10643,6 @@ complementarity.
 \end{remark}
 
 
-
 %% ============================================================
 %%  HOOK-TYPE ANOMALY COMPLETION FOR sl_4: THREE PATTERNS
 %% ============================================================
@@ -10683,8 +10873,6 @@ Level-independent ghost $\kappa$ & principal & $(3,1), (2,2)$, principal \\[2pt]
 \end{tabular}
 \end{center}
 \end{observation}
-
-
 
 
 %====================================================================
@@ -10969,8 +11157,6 @@ affine $\fsl_2$ $\lambda$-bracket with its double pole.
 The quartic pole of the Virasoro OPE is not put in by hand;
 it is the Wick-contraction consequence of Sugawara, itself
 forced by the DS constraint $J^e = 1$.
-
-
 
 
 % =================================================================
@@ -11371,8 +11557,6 @@ periodicity conjecture requires either:
 \end{remark}
 
 
-
-
 % =================================================================
 \section{Gravitational Yangian: explicit generators and relations}
 \label{sec:gravitational-yangian-explicit}
@@ -11704,7 +11888,6 @@ natural conjecture: $Y^{\mathrm{dg}}(\mathrm{Vir}_c)$ is the
 classical limit ($q \to 1$) of a quantized gravitational Yangian
 whose underlying algebra is $\mathrm{Vir}_{q,t}$.
 \end{question}
-
 
 
 \section{Kontsevich integral from the bar complex: trefoil checks}
@@ -12258,8 +12441,6 @@ identity relating FM boundary strata counts to chord diagram
 multiplicities.  Verifying this identity at $n = 4$ would
 provide strong evidence for the full conjecture.
 \end{question}
-
-
 
 
 %% ============================================================

@@ -1,8 +1,8 @@
-"""Independent verification decorators for the E_infty-topologization theorem.
+"""Evidence decorators for the E_infty-topologization chapter.
 
 Vol II, chapters/connections/e_infinity_topologization.tex. This test file
-decorates the ProvedHere labels of the E_infty-topologization chapter
-with HZ-IV-compliant independent-verification decorators. Each decorator
+decorates the proved and conditional labels of the E_infty-topologization
+chapter with HZ-IV-style independent-verification evidence. Each decorator
 supplies (derived_from, verified_against, disjoint_rationale) triples that
 are checked for disjointness at import time; any tautological decoration
 raises IndependentVerificationError immediately.
@@ -14,7 +14,7 @@ Claims decorated:
     thm:e-infinity-topologization-ladder -- E_{k+2}-top ladder up to N
     thm:e-infinity-specialisation-Vir    -- Virasoro N=2 -> E_3-top
     thm:e-infinity-specialisation-WN     -- W_N -> E_{N+1}-top
-    thm:e-infinity-specialisation-Winfty -- W_infty -> E_infty-top
+    thm:e-infinity-specialisation-Winfty -- conditional W_infty -> E_infty-top
 
 Plus one structural theorem:
     thm:operadic-spiral                  -- infinite E_n bar/center spiral
@@ -70,6 +70,7 @@ import sys
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
 
 from compute.lib.independent_verification import independent_verification
+from compute.lib.winfty_finite_window import spin4_window_diagnostic
 
 
 # ---------------------------------------------------------------------------
@@ -375,9 +376,9 @@ def test_e_infinity_specialisation_WN():
 @independent_verification(
     claim="thm:e-infinity-specialisation-Winfty",
     derived_from=[
-        "Iterated Sugawara ladder at N=infty via thm:e-infinity-topologization-ladder",
-        "Inverse limit of W_N truncations along W_infty[mu] ->> W_N[mu]",
-        "thm:casimir-antighost-commutativity on every bounded W_infty weight window",
+        "Iterated Sugawara ladder at N=infty via thm:e-infinity-topologization-ladder, conditional on inverse-limit compatibility",
+        "Inverse limit of W_N truncations along W_infty[mu] ->> W_N[mu], conditional on Yamada strong convergence",
+        "thm:casimir-antighost-commutativity on every bounded W_infty weight window, conditional on passage to the completed inverse limit",
     ],
     verified_against=[
         "Linshaw arXiv:1710.02275 explicit universal two-parameter W_infty[mu] with OPE structure constants",
@@ -387,8 +388,9 @@ def test_e_infinity_specialisation_WN():
     disjoint_rationale=(
         "Derivation: W_infty[mu] has stress tower of depth infinity; "
         "applying the ladder at N=infty plus the operadic inverse "
-        "limit gives E_infty. Verification via three genuinely "
-        "disjoint routes: "
+        "limit gives E_infty after the inverse-limit compatibility "
+        "and Yamada strong-convergence hypotheses are supplied. "
+        "Verification evidence uses three genuinely disjoint routes: "
         "(i) Linshaw's arXiv:1710.02275 constructs W_infty[mu] "
         "directly as a universal vertex algebra parametrised by "
         "(c, mu) with explicit OPE structure constants, independent "
@@ -401,16 +403,19 @@ def test_e_infinity_specialisation_WN():
         "as the quantisation of this Poisson structure. "
         "(iii) Fresse Theorem 14.1.1 establishes Koszul self-duality "
         "of E_infty as a purely operadic fact, independent of any "
-        "algebra. The three routes confirm: W_infty has an infinite "
-        "spin tower (Linshaw, Bakas), its classical Poisson brackets "
-        "truncate correctly (Bakas area-preserving), and E_infty is "
-        "the correct operadic limit (Fresse)."
+        "algebra. The three routes support the conditional theorem: "
+        "W_infty has an infinite spin tower (Linshaw, Bakas), its "
+        "classical Poisson brackets truncate correctly (Bakas "
+        "area-preserving), and E_infty is the correct operadic limit "
+        "(Fresse)."
     ),
 )
 def test_e_infinity_specialisation_Winfty():
-    """Cross-check: W_infty[mu] -> E_infty-top via four disjoint routes.
+    """Evidence: conditional W_infty[mu] -> E_infty-top.
 
-    Derivation: iterated Sugawara ladder at N=infty.
+    Derivation: iterated Sugawara ladder at N=infty, conditional on
+    compatible inverse limits of the finite-rung primitives and
+    antighost homotopies.
 
     Verification: (i) Linshaw's explicit universal W_infty[mu];
     (ii) Bakas's area-preserving-diffeo w_infty; (iii) Fresse's
@@ -418,6 +423,26 @@ def test_e_infinity_specialisation_Winfty():
     ingredient of the E_infty-top structure without invoking the others.
     """
     assert True  # agreement on E_infty across four disjoint paths
+
+
+def test_winfty_spin4_window_is_not_yamada_convergence():
+    """The spin <= 4 window checks E5 data, not the full Winfty endpoint."""
+    diagnostic = spin4_window_diagnostic()
+    assert diagnostic.e_top_depth == 5
+    assert diagnostic.yamada_threshold == 7
+    assert diagnostic.max_two_slot_spin == 7
+    assert diagnostic.checks_stress_dunn_input is True
+    assert diagnostic.meets_yamada_threshold is False
+    assert {
+        (term.left_spin, term.right_spin, term.required_spin_cutoff)
+        for term in diagnostic.missing_two_slot_terms
+    } == {
+        (2, 4, 5),
+        (3, 3, 5),
+        (3, 4, 6),
+        (4, 4, 7),
+    }
+    assert diagnostic.proves_einfty_endpoint is False
 
 
 # ---------------------------------------------------------------------------
@@ -473,7 +498,7 @@ def test_operadic_spiral():
 @independent_verification(
     claim="thm:climax-restatement-3d-infty",
     derived_from=[
-        "thm:e-infinity-specialisation-Winfty giving W_infty -> E_infty-top on Z^{der}_ch",
+        "conditional thm:e-infinity-specialisation-Winfty giving W_infty -> E_infty-top on Z^{der}_ch after inverse-limit hypotheses",
         "Part VI identification of 3d gravity with derived centre of boundary chiral algebra",
     ],
     verified_against=[
@@ -482,7 +507,7 @@ def test_operadic_spiral():
         "Vasiliev higher-spin gravity in AdS_4 with boundary W_infty structure (Vasiliev 1990 Phys.Lett. B243)",
     ],
     disjoint_rationale=(
-        "Derivation assembles the E_infty-top theorem with the "
+        "Derivation assembles the conditional E_infty-top theorem with the "
         "Part VI (\\ref{part:3d-gravity}) identification of 3d "
         "gravity as the derived centre; this is internal to the "
         "current manuscript. Verification is pan-physical: "
@@ -505,9 +530,9 @@ def test_operadic_spiral():
     ),
 )
 def test_climax_restatement_3d_infty():
-    """Cross-check: 3d gravity is Virasoro (N=2) rung of W_infty climax.
+    """Evidence: 3d gravity is Virasoro (N=2) rung of W_infty climax.
 
-    Derivation: specialisation of E_infty theorem at W_infty, combined
+    Derivation: conditional specialisation of E_infty theorem at W_infty, combined
     with Part VI (\\ref{part:3d-gravity}) identification of 3d gravity
     as the derived centre of Virasoro.
 
