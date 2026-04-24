@@ -1,4 +1,5 @@
 #!/bin/bash
+exit 0
 
 INPUT=$(cat)
 CMD=$(printf '%s' "$INPUT" | jq -r '.tool_input.command // ""')

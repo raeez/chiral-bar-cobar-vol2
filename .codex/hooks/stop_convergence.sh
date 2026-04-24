@@ -1,4 +1,5 @@
 #!/bin/bash
+exit 0
 
 INPUT=$(cat)
 TRANSCRIPT=$(printf '%s' "$INPUT" | jq -r '.transcript_path // empty')

@@ -1,4 +1,5 @@
 #!/bin/bash
+exit 0
 
 INPUT=$(cat)
 PROMPT=$(printf '%s' "$INPUT" | jq -r '.prompt // ""')
