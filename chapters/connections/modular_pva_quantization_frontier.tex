@@ -372,7 +372,7 @@ by Theorem~\ref{thm:central-charge-shift} (conditional on the
 physics-bridge hypotheses).
 Combined with the known Virasoro duality
 $\mathrm{Vir}_c^! \cong \mathrm{Vir}_{26-c}$, this gives the
-self-dual central charge $\mathrm{Vir}_{13}^! \cong
+self-dual central charge $c=13$, namely $\mathrm{Vir}_{13}^! \cong
 \mathrm{Vir}_{13}$. The coincidence is not accidental: it reflects
 the fact that at the self-dual point the BRST ghost contribution to
 the central charge exactly cancels the matter contribution, so that the
@@ -1067,47 +1067,251 @@ At genus~$g$, the bulk vacuum moduli acquires Hodge data:
 \cM_{\mathrm{vac}}(T) \times \ov{\M}_{g,n},
 \end{equation}
 equipped with the $(-2)$-shifted symplectic structure twisted by the
-Hodge bundle~$\omega_g$. The \emph{genus-$g$ Steinberg object} is the
+Hodge bundle~$\omega_g$. The \emph{genus-$(g,n)$ Steinberg object} is the
 fiber product
 \begin{equation}
 \label{eq:genus-g-steinberg}
-\fS_b^{g}
+\fS_b^{g,n}
 \;:=\;
 \cL_b \;\times_{\cM_{\mathrm{vac}}^{g}}\; \cL_b,
 \end{equation}
 where $\cL_b \to \cM_{\mathrm{vac}}^{g}$ is the boundary Lagrangian
-(the line-operator moduli). The \emph{modular Maurer--Cartan element}
-at genus~$g$ is the fundamental class
+(the line-operator moduli). Let
+$\pi_{g,n}\colon\fS_b^{g,n}\to\ov{\M}_{g,n}$ be the projection.
+The \emph{modular Maurer--Cartan element}
+at genus~$g$, when the derived fiber product carries an oriented
+Borel--Moore virtual fundamental class, is the class
 \begin{equation}
 \label{eq:modular-mc-steinberg}
-\Theta_g
+\Theta_{g,n}
 \;\in\;
 \mathrm{MC}\!\bigl(\mathfrak{g}^{\mathrm{SC}}_T
 \otimes C_\bullet(\ov{\M}_{g,n})\bigr),
 \qquad
-\Theta_g \;=\; [\fS_b^{g}].
+\Theta_{g,n} \;=\; \pi_{g,n,*}[\fS_b^{g,n}]^{\mathrm{vir}}.
 \end{equation}
 \end{construction}
 
-\begin{proposition}[Modular completion as Steinberg system; \ClaimStatusProvedHere]
+\begin{proposition}[Fixed-pair Steinberg cap action; \ClaimStatusConditional]
+\label{prop:fixed-pair-steinberg-cap-action}
+Fix a stable pair $(g,n)$. Assume that
+$\fS_b^{g,n}:=\cL_b\times_{\cM_{\mathrm{vac}}^g}\cL_b$
+is locally of finite type, quasi-smooth, and oriented, with virtual
+Borel--Moore class
+\[
+[\fS_b^{g,n}]^{\mathrm{vir}}
+\in
+H_*^{\mathrm{BM}}(\fS_b^{g,n}).
+\]
+Assume also that the correspondence pushforward below is defined
+(for instance by properness on the support of the virtual class), and
+that the universal correlator class is realised by the Steinberg
+cap-push formula
+\begin{equation}
+\label{eq:steinberg-cap-action}
+\Theta_{g,n}^{T;B}(\alpha)
+\;=\;
+p_{g,n,*}\!\left(
+\pi_{g,n}^{*}\alpha
+\cap
+[\fS_b^{g,n}]^{\mathrm{vir}}
+\right),
+\qquad
+\alpha\in H^\bullet(\ov{\M}_{g,n}),
+\end{equation}
+where
+$\pi_{g,n}\colon \fS_b^{g,n}\to \ov{\M}_{g,n}$ is the projection and
+$p_{g,n}$ is the Steinberg correspondence pushforward to
+$\End(H_{g,n}^{T;B})$. Then every cohomological relation
+$\sum_i c_i\alpha_i=0$ in $H^\bullet(\ov{\M}_{g,n})$ gives
+\begin{equation}
+\label{eq:fixed-pair-tautological-identity}
+\sum_i c_i\,\Theta_{g,n}^{T;B}(\alpha_i)=0.
+\end{equation}
+In particular, the identity holds for tautological relations after
+passing from $R^\bullet(\ov{\M}_{g,n})$ to cohomology.
+\end{proposition}
+
+\begin{proof}
+The pullback $\pi_{g,n}^*$ is a homomorphism on cohomology, hence
+$\sum_i c_i\pi_{g,n}^*\alpha_i=0$. Capping with the fixed
+Borel--Moore class $[\fS_b^{g,n}]^{\mathrm{vir}}$ and applying the
+proper correspondence pushforward $p_{g,n,*}$ preserves linear
+relations. This proves \eqref{eq:fixed-pair-tautological-identity}.
+No clutching compatibility is used; the statement is a fixed
+$(g,n)$ cap-product theorem.
+\end{proof}
+
+\begin{theorem}[Split finite Steinberg virtual class;
+\ClaimStatusProvedHere]
+\label{thm:split-finite-steinberg-virtual-class}
+Let $\Gamma$ be a stable clutching graph and set
+$\fS_v:=\fS_b^{g(v),n(v)}$ and
+$Y_\Gamma:=\prod_{v\in V(\Gamma)}\fS_v$.  Assume each
+$\fS_v$ is an oriented finite-type quasi-smooth model with virtual
+Borel--Moore class $[\fS_v]^{\mathrm{vir}}$.  Let
+$E_\Gamma\to Y_\Gamma$ be an oriented vector bundle, and model the
+pulled-back parent Steinberg correspondence by the split derived
+zero-section self-intersection
+\begin{equation}
+\label{eq:split-steinberg-model}
+\fS_\Gamma^{\mathrm{sp}}
+\;:=\;
+0_{Y_\Gamma}\times^{\mathbf R}_{E_\Gamma}0_{Y_\Gamma}.
+\end{equation}
+Let $\lambda_{\mathrm{par}}$ be the determinant line of the pulled-back
+parent virtual tangent complex and let
+\[
+\lambda_\Gamma
+\;:=\;
+\orline(\Gamma)\otimes \det(E_\Gamma)^{-1}
+\otimes
+\bigotimes_{v\in V(\Gamma)}
+\det(T^{\mathrm{vir}}\fS_v).
+\]
+The orientation comparison
+$\lambda_{\mathrm{par}}\simeq\lambda_\Gamma$ determines
+\[
+\epsilon_\Gamma
+\;:=\;
+\operatorname{sgn}(\lambda_{\mathrm{par}}\simeq\lambda_\Gamma)
+\in\{\pm1\}.
+\]
+Then $\fS_\Gamma^{\mathrm{sp}}$ carries the oriented virtual
+Borel--Moore class
+\begin{equation}
+\label{eq:split-steinberg-virtual-class}
+[\fS_\Gamma^{\mathrm{sp}}]^{\mathrm{vir}}
+\;=\;
+\epsilon_\Gamma\,
+e(E_\Gamma)\cap
+\mathop{\boxtimes}\limits_{v\in V(\Gamma)}
+[\fS_v]^{\mathrm{vir}}.
+\end{equation}
+After quotienting the stable graph stratum by its finite automorphism
+group, the class is divided by $|\Aut(\Gamma)|$.
+\end{theorem}
+
+\begin{proof}
+The derived intersection
+$0_{Y_\Gamma}\times^{\mathbf R}_{E_\Gamma}0_{Y_\Gamma}$ is locally
+represented by the Koszul commutative differential graded algebra
+$\Sym_{\cO_{Y_\Gamma}}(E_\Gamma^\vee[1])$.  Its perfect obstruction
+theory has virtual tangent complex
+$T^{\mathrm{vir}}Y_\Gamma-E_\Gamma$.  The Gysin self-intersection of
+the zero section is the Thom identity
+$0_{Y_\Gamma}^{!}0_{Y_\Gamma,*}(1)=e(E_\Gamma)$, hence the virtual
+Borel--Moore class is
+$e(E_\Gamma)\cap[Y_\Gamma]^{\mathrm{vir}}$.  The product orientation on
+$Y_\Gamma$ gives
+$[Y_\Gamma]^{\mathrm{vir}}=\boxtimes_v[\fS_v]^{\mathrm{vir}}$.
+Changing from this product-excess orientation to the pulled-back parent
+orientation multiplies the class by the sign
+$\epsilon_\Gamma$.  Passing to the quotient stack by the finite
+automorphism group multiplies Borel--Moore fundamental classes by the
+standard stack factor $1/|\Aut(\Gamma)|$.
+\end{proof}
+
+The scalar obstruction calculus extracted from
+\autoref{thm:split-finite-steinberg-virtual-class} is
+\begin{equation}
+\label{eq:steinberg-scalar-defect}
+\delta_\Gamma
+\;:=\;
+p_\Gamma
+-
+\frac{\epsilon_\Gamma\,e_\Gamma}{|\Aut(\Gamma)|}
+\prod_{v\in V(\Gamma)}w_v,
+\end{equation}
+where $p_\Gamma$ is the parent boundary weight, $w_v$ are the vertex
+weights, and $e_\Gamma$ is the scalar Euler evaluation of
+$E_\Gamma$.  For a boundary relation
+$\rho=\sum_\Gamma c_\Gamma[\Gamma]$, the exact scalar relation defect is
+$\sum_\Gamma c_\Gamma\delta_\Gamma$.  Thus the clean modular relation
+fails only by the Euler obstruction, the determinant-line sign, or the
+Getzler--Kapranov automorphism factor.
+
+\begin{proposition}[Clean pullback criterion for the Steinberg class;
+\ClaimStatusConditional]
+\label{prop:steinberg-clean-pullback-criterion}
+Let $\xi_\Gamma$ be a separating or non-separating
+Getzler--Kapranov clutching morphism with stable graph~$\Gamma$.
+Assume that the induced square of derived Steinberg correspondences is
+Cartesian, that the relative obstruction theory of the pulled-back
+parent correspondence has excess complex $E_\Gamma$, and that the
+orientation-line comparison contributes the sign $\epsilon_\Gamma$.
+Then virtual pullback gives
+\begin{equation}
+\label{eq:steinberg-excess-pullback}
+\xi_\Gamma^![\fS_b^{g,n}]^{\mathrm{vir}}
+\;=\;
+\frac{\epsilon_\Gamma}{|\Aut(\Gamma)|}\,
+e(E_\Gamma)\cap
+\mathop{\boxtimes}\limits_{v\in V(\Gamma)}
+[\fS_b^{g(v),n(v)}]^{\mathrm{vir}}.
+\end{equation}
+The clutching class is clean precisely when
+$e(E_\Gamma)=1$ and $\epsilon_\Gamma=1$ after the
+Getzler--Kapranov automorphism factor has been inserted.
+\end{proposition}
+
+\begin{proof}
+This is the Borel--Moore form of the virtual excess-intersection
+formula for a Cartesian square with perfect obstruction theories
+(Behrend--Fantechi~\cite{BF97}), applied to the PTVV derived
+Lagrangian intersection which supplies the Steinberg obstruction
+theory \cite{PTVV13}. The automorphism factor is the stack
+multiplicity of the stable graph in the modular operad of
+Getzler--Kapranov~\cite{GeK98}. When the excess complex has trivial
+Euler class and the orientations agree, the right hand side is the
+external product of the vertex virtual classes with the standard
+stack factor. A nontrivial $e(E_\Gamma)$ or $\epsilon_\Gamma=-1$
+is exactly the defect in clean clutching compatibility.
+\end{proof}
+
+\begin{conjecture}[Steinberg fundamental class and clutching compatibility]
+\label{conj:steinberg-fundamental-class-compatibility}
+\ClaimStatusConjectured
+For each stable pair \((g,n)\), the derived correspondence
+\(\fS_b^{g,n}=\cL_b\times_{\cM_{\mathrm{vac}}^g}\cL_b\)
+admits an oriented Borel--Moore virtual fundamental class
+\([\fS_b^{g,n}]^{\mathrm{vir}}\). For every modular clutching
+graph~\(\Gamma\), the clean-intersection pullback satisfies
+\[
+  \xi_\Gamma^![\fS_b^{g,n}]^{\mathrm{vir}}
+  =
+  \frac{1}{|\Aut(\Gamma)|}
+  \mathop{\boxtimes}\limits_{v\in V(\Gamma)}
+  [\fS_b^{g(v),n(v)}]^{\mathrm{vir}}
+\]
+equivalently, the excess class and orientation defect in
+\eqref{eq:steinberg-excess-pullback} are trivial for every boundary
+stratum.
+\end{conjecture}
+
+\begin{proposition}[Modular completion as Steinberg system; \ClaimStatusConditional]
 \label{prop:modular-completion-steinberg}
 The genus-zero package
 $G_0(T;B) = (\text{factorization algebra, line operators, $R$-matrix})$
 is the convolution data on~$\fS_b^{0}$.
-Modular completion to all genera is the completion of the Steinberg system:
+Assume
+\autoref{conj:steinberg-fundamental-class-compatibility}.  Then
+modular completion over stable pairs is the completion of the Steinberg system:
 \begin{equation}
 \label{eq:steinberg-system}
 G(T;B)
 \;=\;
-\bigl\{\fS_b^{g},\; [\fS_b^{g}]\bigr\}_{g \geq 0}.
+\bigl\{\fS_b^{g,n},\; [\fS_b^{g,n}]^{\mathrm{vir}}\bigr\}_{2g-2+n>0}.
 \end{equation}
-This system exists whenever the genus-$g$ Steinberg objects are
-\emph{compatible with the modular operad}: i.e.\ the gluing maps
+This system exists under precisely the modular-operad
+compatibility in
+\autoref{conj:steinberg-fundamental-class-compatibility}: the gluing maps
 $\xi\colon \ov{\M}_{g_1,n_1+1} \times \ov{\M}_{g_2,n_2+1}
 \to \ov{\M}_{g_1+g_2,n_1+n_2}$ (and self-gluing) lift to
 correspondence morphisms
-$\fS_b^{g_1} \times \fS_b^{g_2} \to \fS_b^{g_1+g_2}$
-respecting the fundamental classes.
+$\fS_b^{g_1,n_1+1} \times \fS_b^{g_2,n_2+1}
+\to \fS_b^{g_1+g_2,n_1+n_2}$
+respecting the virtual fundamental classes.
 \end{proposition}
 
 \begin{proof}
@@ -1118,30 +1322,36 @@ factorization/line-operator package of Part~\ref{part:bbl-core}
 (\S\ref*{sec:line-operators}, \S\ref*{sec:spectral-braiding}).
 This identifies $G_0(T;B)$ with the convolution data on~$\fS_b^{0}$.
 
-For the modular extension, one checks that the operadic
+For the modular extension, assume the compatibility in
+\autoref{conj:steinberg-fundamental-class-compatibility}.  Then the operadic
 composition maps of $\ov{\M}_{g,n}$ induce fiber-product
 diagrams
 \[
-\fS_b^{g_1} \times_{\cL_b} \fS_b^{g_2}
+\fS_b^{g_1,n_1+1} \times_{\cL_b} \fS_b^{g_2,n_2+1}
 \;\simeq\;
-\xi^*\!\fS_b^{g_1+g_2}
+\xi^*\!\fS_b^{g_1+g_2,n_1+n_2}
 \]
 by base change along the gluing morphism~$\xi$, using the
 fact that~$\cL_b$ is Lagrangian in the
 $(-2)$-shifted symplectic target.
-The fundamental classes are compatible because $[\fS_b^{g_1+g_2}]$
-restricts to $[\fS_b^{g_1}] \times [\fS_b^{g_2}]$
-on the boundary divisor, by the standard K\"unneth property
-of Borel--Moore fundamental classes under clean intersection.
+The fundamental classes are compatible by the conjectural
+clean-intersection identity
+\eqref{eq:steinberg-excess-pullback} with trivial excess and
+trivial orientation defect. That class-compatibility assertion is
+exactly the missing chain-level Steinberg input.
 \end{proof}
 
 \begin{proposition}[Tautological relations on the Steinberg correspondence;
-\ClaimStatusProvedHere]
+\ClaimStatusConditional]
 \label{prop:tautological-steinberg}
-Tautological relations act on the Steinberg correspondence.
+Assume the fixed-pair cap action
+\eqref{eq:steinberg-cap-action}. For boundary-generated modular
+relations, assume also
+\autoref{conj:steinberg-fundamental-class-compatibility}.
+Then tautological relations act on the Steinberg correspondence.
 If $\sum_i c_i \alpha_i = 0$ is a relation in
 $R^\bullet(\ov{\M}_{g,n})$, then it pulls back to a relation
-on~$\fS_b^{g}$, and the induced operator identity
+on~$\fS_b^{g,n}$, and the induced operator identity
 \begin{equation}
 \label{eq:tautological-steinberg-identity}
 \sum_i c_i\,\Theta_{g,n}^{T;B}(\alpha_i) \;=\; 0
@@ -1150,21 +1360,17 @@ holds in $\End(H_{g,n}^{T;B})$.
 \end{proposition}
 
 \begin{proof}
-The tautological class $\alpha \in R^\bullet(\ov{\M}_{g,n})$
-acts on the Hodge-twisted factor of~$\cM_{\mathrm{vac}}^{g}$ via
-pullback along the projection
-$\fS_b^{g} \to \ov{\M}_{g,n}$.
-A relation $\sum_i c_i \alpha_i = 0$ in the tautological
-ring therefore pulls back to
-$\sum_i c_i\,\pi^*\alpha_i = 0$ in
-$H^\bullet(\fS_b^{g})$. The operator
-$\Theta_{g,n}^{T;B}(\alpha_i)$ is obtained by capping
-$\pi^*\alpha_i$ against the Borel--Moore fundamental
-class~$[\fS_b^{g}]$ and pushing forward to~$\End(H_{g,n}^{T;B})$.
-Since the Borel--Moore/cohomology pairing is functorial,
-the vanishing $\sum_i c_i\,\pi^*\alpha_i = 0$ passes
-through the cap product and pushforward to give the
-stated identity.
+For a fixed stable pair $(g,n)$ this is
+\autoref{prop:fixed-pair-steinberg-cap-action}. A relation
+supported on a boundary stratum must also be compared with the
+operator obtained after clutching. The clean-intersection formula
+\eqref{eq:steinberg-excess-pullback} shows the only possible defect:
+an excess Euler class, an orientation sign, or a missing
+Getzler--Kapranov automorphism factor. Under
+\autoref{conj:steinberg-fundamental-class-compatibility} these defects
+vanish, so the fixed-pair cap identity is stable under modular
+composition. Hence the operator identity
+\eqref{eq:tautological-steinberg-identity} holds.
 \end{proof}
 
 \begin{remark}[Steinberg correspondence and the Hecke analogy]
@@ -1172,14 +1378,18 @@ stated identity.
 The tautological recursion (Conjecture~\ref{conj:tautological-recursion})
 is the chiral analog of how tautological relations on Schubert
 varieties produce relations in the Hecke algebra.
-The modular descendant potential~$F_{T;B}$ satisfies these
-relations order by order in the genus expansion because each
-genus-$g$ contribution is a projection of a single Steinberg
-fundamental class~$[\fS_b^{g}]$.
-The genus-$g$ Steinberg system presents the modular completion
-through the tautological ring acting on fundamental classes:
-each genus-$g$ contribution projects a single fundamental
-class~$[\fS_b^{g}]$.
+Under
+\autoref{conj:steinberg-fundamental-class-compatibility}, the
+modular descendant potential~$F_{T;B}$ satisfies these relations
+order by order in the genus expansion because each genus-$g$
+contribution is a projection of a single Steinberg fundamental
+class~$[\fS_b^{g,n}]^{\mathrm{vir}}$. Without that
+fundamental-class compatibility,
+Conjecture~\ref{conj:tautological-recursion} remains open: the
+unaccounted term is the cap-push of the excess factor
+$e(E_\Gamma)$, the orientation defect $\epsilon_\Gamma$, or the
+missing stack automorphism factor in
+\eqref{eq:steinberg-excess-pullback}.
 \end{remark}
 
 \begin{remark}[Non-renormalization and the PVA quantization programme]
@@ -1617,12 +1827,13 @@ form.
 
 The simplest setting in which all three stages are under control
 is $3$d abelian Chern--Simons at level $k$, whose boundary
-algebra is the Heisenberg vertex algebra $\Heis_k$$, collision residue $k/z$). Here the
+algebra is the Heisenberg vertex algebra $\Heis_k$ with
+collision residue $k/z$. Here the
 bulk theory is free, and the hemisphere partition function is
 the perturbative path integral around the Gaussian saddle.
 
 \begin{computation}[Heisenberg hemisphere pairing;
-\ClaimStatusHeuristic]
+\ClaimStatusConditional]
 \label{comp:heisenberg-hemisphere-pairing}
 \index{Heisenberg algebra!hemisphere pairing}
 \index{abelian Chern--Simons!hemisphere partition function}
@@ -1659,14 +1870,14 @@ charges), the hemisphere pairing gives
 \end{computation}
 
 \begin{computation}[Heisenberg cyclic pairing on bar evaluated
-on Koszul pair; \ClaimStatusProvedHere]
+on Koszul pair; \ClaimStatusConditional]
 \label{comp:heisenberg-bar-koszul-pairing}
 \index{Heisenberg algebra!bar-Koszul pairing}
 Apply Computation~\ref{comp:heisenberg-cyclic-pairing} to the
 Koszul pair $(\Heis_k, \Heis_k^!)$. The Heisenberg
 algebra is $E_\infty$ with $R$-matrix $\exp(k\hbar/z)$, and its
 Koszul dual is $\Heis_k^! = \mathrm{Sym}^{\mathrm{ch}}(V^*)$ (the commutative chiral algebra on the dual generator space),
-with $\kappa + \kappa' = 0$ for KM/free families (Volume~I,
+with $\kappa + \kappa' = 0$ for Kac--Moody/free families (Volume~I,
 Theorem~C). At degree $1$, the cyclic pairing on
 $B^{\mathrm{ord}}(\Heis_k)$ evaluated on the Koszul pair is
 \[
@@ -1806,14 +2017,12 @@ The genus-$g$ generalisation of the hemisphere cyclic pairing
 (Remark~\ref{rem:hemisphere-cyclic-scope}) is a special case of
 the irregular-singular KZB regularity question at the boundary
 divisors of $\overline{\mathcal{M}}_{g, n}$. The smooth-locus
-statement is closed by
-Theorem~\ref{thm:irregular-singular-kzb-regularity} (the
-Jimbo--Miwa irregular-singular framework, which gives chain-level
-regularity at generic non-integral level $\hbar$ on smooth
-genus-$g$ curves); the boundary-stratum extension for $g \ge 1$
-is the open frontier
-\cref{conj:f5-irregular-singular-genus-g} of
-the climax. The cyclic completion of class~$\mathbf{C}$ at
+KZB flatness input is closed by the Kohno--Felder framework; the
+boundary statement is the formal-type extension isolated in
+Theorem~\ref{thm:irregular-singular-kzb-regularity} and remains
+the open frontier
+\cref{conj:f5-irregular-singular-genus-g}. The cyclic completion
+of class~$\mathbf{C}$ at
 $g \ge 1$ is governed by the same conjectural extension via the
 Mok25 logarithmic Fulton--MacPherson compactification's snc
 structure plus Gauss--Manin uncurving across boundary strata.
@@ -1843,13 +2052,13 @@ lattice $\Lambda_{\mathrm{Muk}} = H^\star(K3, \mathbb{Z})$; on the
 heterotic side, it is the Narain lattice of the $T^{4}$ compactification
 carrying the $E_8 \times E_8$ (or $\mathrm{Spin}(32)/\mathbb{Z}_{2}$) left-moving
 gauge lattice. The K3 chiral bialgebra
-$\mathbf{H}_{\Delta_{5}}$ (Vol~III Chapter~\ref*{ch:k3-chiral-bialgebra-platonic},
-Definition~\ref*{def:k3-chiral-bialgebra}) maps under this duality to the
+$\mathbf{H}_{\Delta_{5}}$ (Vol~III Chapter~\ref*{V3-ch:k3-chiral-bialgebra-platonic},
+Definition~\ref*{V3-def:k3-chiral-bialgebra}) maps under this duality to the
 chiral sector of the worldsheet CFT on the heterotic side: specifically,
 to the left-moving chiral algebra of the $(E_{8} \times E_{8}) \times T^{4}$
 heterotic worldsheet. The rank-$24$ Heisenberg-at-Lie-algebra-level
 substructure of $\mathbf{H}_{\Delta_{5}}$ (Vol~III
-Theorem~\ref*{thm:k3-abelian-at-lie}) is exactly the lattice VOA
+Theorem~\ref*{V3-thm:k3-abelian-at-lie}) is exactly the lattice VOA
 $V_{\Lambda_{4,20}}$ in the Mukai-coordinate frame, and the non-abelian
 BKM $\mathfrak{g}_{\Delta_{5}}$ closure at vertex-operator level is
 exactly the Frenkel--Kac construction (Frenkel--Kac 1980) applied to the
@@ -1863,7 +2072,7 @@ the $T^{4}$ compactification with Wilson lines parameterising the moduli.
 \label{rem:witten-e8-e8-flavour-structure}
 \index{flavour symmetry!$E_{8} \times E_{8}$ heterotic}%
 The class-$\mathcal{S}$ $A_{1}$ on $\Sigma_{0,24}$ parent identified in
-Vol~III Theorem~\ref*{thm:k3-classS-4d-parent} carries flavour
+Vol~III Theorem~\ref*{V3-thm:k3-classS-4d-parent} carries flavour
 $\mathfrak{su}(2)^{24}$ at level $k_{4d}^{\mathrm{flav}} = 4$. Under the
 Het/IIA duality of Remark~\ref{rem:witten-het-iia-mukai-narain}, this
 flavour symmetry is the $M_{24}$-averaged (Mathieu-moonshine) projection
@@ -1876,12 +2085,12 @@ elliptic K3 threaded through the duality: each puncture contributes one
 $\mathfrak{su}(2)$ factor that arises from a rank-$1$ gauge-symmetry
 enhancement locus on the heterotic Narain moduli space. This identifies
 the ``non-abelian K3 chiral bialgebra'' naming (Vol~III
-Theorem~\ref*{thm:k3-abelian-at-lie}) with the heterotic gauge sector
+Theorem~\ref*{V3-thm:k3-abelian-at-lie}) with the heterotic gauge sector
 after Higgsing by the moduli: abelian-at-Lie-level = Cartan after
 maximal Higgsing; non-abelian-at-vertex-level = unbroken gauge group at
 enhancement loci. Primary: Hull--Townsend 1995; Witten 1995
 \texttt{hep-th/9503124}; Sen 1995 \texttt{hep-th/9504027}. Cross-volume
-bridge: Vol~III Chapter~\ref*{ch:k3-chiral-bialgebra-platonic}
+bridge: Vol~III Chapter~\ref*{V3-ch:k3-chiral-bialgebra-platonic}
 \S\ref*{sec:hall-drinfeld-double-k3}.
 \end{remark}
 
@@ -1897,5 +2106,5 @@ different universal identity specialisations ($II_{1,1}\oplus E_8$
 $r=9, \hbar^2=-1/18$; $II_{25,1}$ Monster $r=24, \hbar^2=-1/50$). The
 frontier is the analytic-continuation locus of $R_{\mathrm{Sieg,dyn}}$
 across BKM ranks \cite{PasolZagier2013,Borcherds1998}. Cross-ref
-Vol.~III Chapter~\ref{ch:k3-chiral-bialgebra-platonic}.
+Vol.~III Chapter~\ref{V3-ch:k3-chiral-bialgebra-platonic}.
 \end{remark}

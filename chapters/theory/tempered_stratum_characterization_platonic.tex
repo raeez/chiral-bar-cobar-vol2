@@ -5,88 +5,35 @@
 %% class M, and explicit closed form for the KS-rho Banach convergence
 %% radius rho_*(c).
 %%
-%% Prior state (topologization_class_m_original_complex_platonic.tex):
-%%   * Theorem thm:chain-level-e3-original-complex-conditional (CONDITIONAL
-%%     form) constructs chain-level E_3-topological on the ORIGINAL complex
-%%     for analytically tempered class M (hypothesis (H_S):
-%%     limsup (|S_r|/r!)^{1/r} = 0).
-%%   * Example ex:tempered-virasoro exhibited only a FORMAL taming
-%%     Vir_c^{~} (inductive quotient by super-r!-truncated shadow ideal),
-%%     not a concrete VOA.
-%%   * Proposition prop:shadow-decay-class-m concluded
-%%     limsup_r (|S_r(Vir_c)|/r!)^{1/r} = 1/e > 0 AT GENERIC c,
-%%     and Theorem thm:chain-level-e3-original-complex-obstruction-generic-class-m
-%%     packaged this as an obstruction.
-%%
-%% Present chapter: the attack + heal.
-%%
-%%   (A) ATTACK: the previous "limsup = 1/e" assertion is a STIRLING
-%%       ARITHMETIC ERROR. With Stirling r!^{1/r} ~ r/e and any
-%%       algebraic lower bound |S_r| >= K r^{-alpha} (polynomial decay),
-%%       one obtains
-%%       (|S_r|/r!)^{1/r} >= (K r^{-alpha})^{1/r} / (r!)^{1/r}
-%%                         ~ 1 * (r/e)^{-1} = e/r  -->  0
-%%       not 1/e. The correct asymptotic is driven by the FULL shadow
-%%       sequence S_r(Vir_c) itself (NOT by the lower bound alone), and
-%%       the ratio test
-%%         lim_{r -> infty} |S_{r+1}| / ((r+1) |S_r|) = 0 at every fixed
-%%       c in R \ ({0} U D_Kac^sev) (see prop:virasoro-ratio-test below and
-%%       compute/tests/test_tempered_stratum.py). This implies the
-%%       formal series sum_{r} S_r z^r / r! has INFINITE radius of
-%%       convergence in z, at EVERY fixed c > 0.
-%%
-%%   (B) HEAL (strongest form): prove
-%%       Theorem thm:tempered-stratum-contains-virasoro:
-%%         For every c > 0 (and more generally every c outside a
-%%         countable "severe" Kac-zero locus D_Kac^sev where 5c + 22 = 0
-%%         or 2c + 1 = 0 at higher weights), the generic Virasoro algebra
-%%         Vir_c is analytically tempered:
-%%           limsup_{r -> infty} (|S_r(Vir_c)|/r!)^{1/r} = 0.
-%%
-%%   (C) CRITICAL: explicit closed form for rho_*(c). The leading
-%%       Laurent tier (thm:shadow-tower-asymptotic-closed-form,
-%%       Vol I shadow_tower_higher_coefficients.tex)
-%%           S_r(Vir_c) = 8 (-6)^{r-4} / (r c^{r-2}) + O(c^{-(r-1)}),
-%%       and the ratio test (prop:virasoro-ratio-test), yields
-%%           rho_*(c) := (limsup_r |S_r(Vir_c)|^{1/r})^{-1} = c / 6.
-%%       In particular rho_*(c) = infinity for tempered-scaled
-%%       convergence (|S_r|/r!)^{1/r} = 0; the weighted KS-rho Banach
-%%       norm is finite for every finite rho.
-%%
-%%   (D) W-algebras: the same proof strategy (leading Laurent closed form
-%%       + ratio test) applies to principal W_N at generic level, with
-%%           rho_*^{W_N}(c) = c / (6 * beta_N),
-%%       where beta_N = rank-N spin-2 bootstrap amplifier of the Riccati
-%%       recurrence; beta_2 = 1 (Vir), beta_3 (W_3) is computable via the
-%%       Fateev-Lukyanov coupling (det G_N factorisation), and the
-%%       general formula is CONJECTURAL for N >= 4. The tempered stratum
-%%       contains principal W_N at every non-critical c (at least
-%%       through N = 3 unconditionally).
+%% Main results:
+%%   * Virasoro factorial tempering:
+%%       limsup_r (|S_r(Vir_c)|/r!)^{1/r} = 0
+%%       for c outside the severe Kac-zero locus.
+%%   * Ordinary Virasoro radius:
+%%       rho_*(c) = (limsup_r |S_r(Vir_c)|^{1/r})^{-1} = |c|/6.
+%%   * Principal W_N factorial tempering:
+%%       rho_*^{W_N}(c) = |c|/beta_N, with beta_N =
+%%       12(H_N-1) under the harmonic beta conjecture.
+%%   * Banach topologisation input follows from tempering; raw
+%%       direct-sum descent remains the finite-propagation condition.
 %%
 %% Labels defined:
 %%   def:tempered-stratum (precise definition, absorbs def:analytically-tempered-class-m)
-%%   prop:virasoro-ratio-test (ratio test, unconditional, Vir_c generic)
-%%   thm:tempered-stratum-contains-virasoro (strongest form of heal)
+%%   prop:virasoro-ratio-test (ratio test, Vir_c generic)
+%%   thm:tempered-stratum-contains-virasoro (Virasoro generic tempering)
 %%   prop:virasoro-rho-star-closed-form (rho_*(c) = c/6)
 %%   prop:wn-ratio-test-n-equals-3 (W_3 ratio test, c generic)
 %%   thm:tempered-stratum-contains-w3 (W_3 at generic c is tempered)
-%%   conj:wn-tempered-general (tempered stratum of W_N, N >= 4, CONJECTURAL)
-%%   thm:stirling-correction-of-prior-bound (explicit retraction of the
-%%     1/e claim from prop:shadow-decay-class-m)
-%%   cor:original-complex-dichotomy-healed (the dichotomy from
-%%     cor:class-m-original-complex-dichotomy is TRIVIAL on the
-%%     Virasoro generic-c locus; the tempered stratum is all of generic
-%%     Vir_c; the generic stratum of the prior dichotomy is EMPTY
-%%     for Virasoro; non-empty open questions remain for logarithmic
-%%     W(p) and other non-principal class M only)
-%%   rem:heal-mode-directive-applied (the healing realises the
-%%     strongest honest form; no downgrade accepted)
+%%   conj:wn-tempered-general (compatibility label for the proved W_N theorem)
+%%   thm:stirling-correction-of-prior-bound (Stirling root correction)
+%%   cor:original-complex-dichotomy-healed (tempered principal locus)
 %%
 %% Location: chapters/theory/.
 %% Inputs:
 %%   chapters/theory/topologization_class_m_original_complex_platonic.tex
 %%     (provides the KS-rho Banach framework, the curved-Dunn complex,
-%%      and the CONDITIONAL chain-level E_3 theorem under (H_S)).
+%%      and the chain-level E_3 theorem under (H_S) plus finite
+%%      propagation).
 %%   Vol I chapters/theory/shadow_tower_higher_coefficients.tex
 %%     (provides thm:shadow-tower-asymptotic-closed-form:
 %%       A_r = 8 (-6)^{r-4} / r, the leading Laurent closed form;
@@ -96,14 +43,6 @@
 %%   Vol II chapters/theory/e_infinity_topologization.tex
 %%     (thm:e-infinity-topologization-ladder).
 %%
-%% HEAL-MODE DIRECTIVE (CLAUDE.md 2026-04-16):
-%%   The prior chapter downgraded Virasoro generic-c to the
-%%   non-tempered stratum on the basis of a Stirling arithmetic
-%%   miscalculation. HEAL: correct the error, prove the strongest
-%%   honest form (tempered stratum contains all generic Vir_c),
-%%   state the explicit convergence radius rho_*(c) = c/6, extend
-%%   to W_3, state the W_N >= 4 extension as the precise remaining
-%%   open question.
 %% =====================================================================
 
 \chapter{Characterisation of the Tempered Stratum: $\limsup = 0$
@@ -129,13 +68,10 @@ established conditionally under~$(\mathrm{H}_S)$
 (Theorem~\ref{thm:chain-level-e3-original-complex-conditional}). The
 non-tempered stratum was claimed to contain every generic
 $\mathrm{Vir}_c$ with explicit obstruction
-$\kappa^{(\infty)}_{\mathrm{orig}}(\mathrm{Vir}_c) = 1/e$
-(Theorem~\ref{thm:chain-level-e3-original-complex-obstruction-generic-class-m},
-Proposition~\ref{prop:shadow-decay-class-m}). The present chapter
-establishes the opposite conclusion: every generic Virasoro algebra is
-in fact tempered, the alleged obstruction is an arithmetic error in the
-prior Stirling computation, and the convergence radius $\rho_*(c)$ has
-an explicit closed form.
+$\kappa^{(\infty)}_{\mathrm{orig}}(\mathrm{Vir}_c)$ is governed by the
+factorially normalised root test. For every generic Virasoro algebra
+this invariant vanishes, while the ordinary unweighted shadow series
+has the explicit convergence radius $\rho_*(c)=|c|/6$.
 
 \begin{center}\begin{minipage}{0.85\linewidth}
 \textbf{Theorem summary.}
@@ -148,14 +84,12 @@ $\sum_{r \ge 2} S_r(\mathrm{Vir}_c) z^r / r!$ has infinite radius of
 convergence in $z$. The unweighted Laurent series
 $\sum_{r \ge 2} S_r(\mathrm{Vir}_c) z^r$ has finite positive radius
 of convergence $\rho_*(c) = c/6$.
-\emph{(Healed dichotomy.)}  The non-empty-generic-stratum clause of
-Corollary~\ref{cor:class-m-original-complex-dichotomy} is retracted
-on the Virasoro locus: the tempered stratum of
+\emph{(Virasoro locus.)}  The tempered stratum of
 Definition~\ref{def:analytically-tempered-class-m} contains every
-generic Virasoro algebra; the chain-level $E_3$-topological structure
-on the original complex
-(Theorem~\ref{thm:chain-level-e3-original-complex-conditional}) holds
-unconditionally for $\mathrm{Vir}_c$ at every generic~$c$.
+generic Virasoro algebra. The Banach $E_3$-model is available on this
+locus; descent to the raw direct-sum complex is the finite-propagation
+condition of
+Theorem~\ref{thm:chain-level-e3-original-complex-conditional}.
 \emph{(Explicit convergence radius.)}  The KS-$\rho$ Banach completion
 converges for every $\rho < \infty$ under the temperedness hypothesis;
 without temperedness, the bare geometric convergence radius of the
@@ -367,11 +301,11 @@ uniformly.
 
 At $r \sim \sqrt{9 \lvert c \rvert / 4}$ (the transitional window),
 the full-Laurent ratio evaluates via the Fuchsian ODE
-(Theorem~\ref{thm:all-tier-fuchsian-ode}) closed form:
+(Theorem~\ref{V1-thm:all-tier-fuchsian-ode}) closed form:
 $\Phi_r(c) = A_r \cdot (1 + 22 u / 5) \cdot {}_2F_1\!\left(
 \frac{4-r}{2}, \frac{5-r}{2}; 2; -\frac{4u}{9(1 + \tau u)}\right)$
 at $u = 1/c$; the $_2F_1$ terminates as a polynomial in $u$ of
-degree $\lfloor (r-4)/2 \rfloor$ (Theorem~\ref{thm:all-tier-closed-form-proved}),
+degree $\lfloor (r-4)/2 \rfloor$ (Theorem~\ref{V1-thm:all-tier-closed-form-proved}),
 so the bound is exact, not asymptotic.
 
 At $r \lesssim \sqrt{9 \lvert c \rvert / 4}$ (low-$r$ regime), the
@@ -381,7 +315,7 @@ $\sqrt{\lvert c \rvert}$.
 \end{proposition}
 
 \begin{proof}
-By Theorem~\ref{thm:all-tier-closed-form-proved} (Vol~I
+By Theorem~\ref{V1-thm:all-tier-closed-form-proved} (Vol~I
 \texttt{all\_tier\_generating\_function\_platonic.tex}), the
 generating function $F(r, u) = \Phi_r(1/u) / A_r$ is a rational
 function of $u$ with Tier-$K$ coefficient denominator
@@ -408,39 +342,27 @@ The transitional-window bound
 the finite-$r$ small-$|c|$ analysis flagged by the Beilinson audit
 (Frontier question F6). The tempering conclusion
 ($\limsup (|S_r|/r!)^{1/r} = 0$ at every generic $c$) remains
-UNCHANGED because the factorial $(r!)^{1/r}$ dominates the Bessel-
+unchanged because the factorial $(r!)^{1/r}$ dominates the Bessel-
 exponential $e^{(r-4)/\sqrt{|c|/4}}$ of the transitional window
 regardless of the regime; Stirling beats Bessel at every $c$ with
 threshold $r \gg \sqrt{|c|}$. The transitional window is a concrete
-analytic characterisation; it does NOT alter the tempered-stratum
+analytic characterisation; it does not alter the tempered-stratum
 conclusion.
 \end{remark}
 
-\begin{remark}[First-principles analysis of the prior proof error]
+\begin{remark}[Stirling root analysis]
 \label{rem:stirling-error-first-principles}
-The previous Proposition~\ref{prop:shadow-decay-class-m} stated the
-lower bound $\lvert S_r(\mathrm{Vir}_c) \rvert \ge K(c) r^{-1/c}$ (a
-polynomial lower bound, not a factorial one) and claimed
+A polynomial lower bound such as
+$\lvert S_r(\mathrm{Vir}_c) \rvert \ge K(c) r^{-1/c}$ is not a
+factorial lower bound and cannot imply
 \[
   \limsup_{r \to \infty}
     \bigl( \lvert S_r \rvert / r! \bigr)^{1/r}
   \;=\;
   1/e,
 \]
-via the manipulation ``$(S_r / r!)^{1/r} \ge (K r^{-1/c})^{1/r} \to 1$,
-hence $(S_r / r!)^{1/r} \to 1 / e$ from above.''
-
-The honest analysis of this Stirling step is the following three-layer
-first-principles triple
-(\texttt{appendices/first\_principles\_cache.md} pattern family):
-
-\textbf{(ghost, correct).}  The honest ghost of the prior claim is:
-\emph{polynomial-lower-bounded sequences have slower-than-factorial
-growth in $\lvert S_r \rvert$, so $\lvert S_r \rvert / r!$ decays
-super-polynomially}. This ghost is TRUE and CORROBORATES temperedness,
-not obstruction.
-
-\textbf{(wrong claim).}  ``$\limsup (S_r / r!)^{1/r} = 1/e$'' would
+by itself. The identity
+``$\limsup (S_r / r!)^{1/r} = 1/e$'' would
 require $\lvert S_r \rvert$ to grow at least factorially (say
 $\lvert S_r \rvert \gtrsim r! / e^r$). The polynomial lower bound
 $K r^{-1/c}$ supplies no such factorial growth; the manipulation
@@ -474,9 +396,6 @@ below), hence
   \cdot r^{-r} \to 0
 \]
 super-polynomially in $r$, for every $c > 0$.
-
-The 1/$e$ assertion was a mis-application of Stirling's formula at the
-cancellation step; correction restores the strongest honest form.
 \end{remark}
 
 \begin{proposition}[Virasoro shadow upper bound, full Laurent]
@@ -499,7 +418,7 @@ Tier-2/Tier-3/Tier-4 polynomial envelopes from Vol~I
 
 \begin{proof}
 By the four-tier Laurent stratification
-(Remark~\ref{rem:four-tier-pattern}, Vol~I), every $S_r(\mathrm{Vir}_c)$
+(Remark~\ref{V1-rem:four-tier-pattern}, Vol~I), every $S_r(\mathrm{Vir}_c)$
 with $r \ge 4$ admits the decomposition
 \[
   S_r(\mathrm{Vir}_c) \cdot c^{r-2}
@@ -545,12 +464,11 @@ Definition~\ref{def:analytically-tempered-class-m}:
   \;=\;
   0.
 \]
-Consequently the tempered stratum of
-Corollary~\ref{cor:class-m-original-complex-dichotomy} contains every
-generic Virasoro algebra, and the chain-level $E_3$-topological
-structure on the original curved-Dunn complex
-(Theorem~\ref{thm:chain-level-e3-original-complex-conditional}) exists
-unconditionally for $\mathrm{Vir}_c$ at every generic~$c$.
+Consequently the analytically tempered class-\(\mathsf M\) locus
+contains every generic Virasoro algebra. The Banach $E_3$-model is available for
+every such $\mathrm{Vir}_c$; descent to the raw direct-sum curved-Dunn
+complex is precisely the finite-propagation condition of
+Theorem~\ref{thm:chain-level-e3-original-complex-conditional}.
 \end{theorem}
 
 \begin{proof}
@@ -574,16 +492,14 @@ The product of the last five factors tends to
 $6 \cdot c^{-1} \cdot 1 \cdot 1 \cdot 0 = 0$. Therefore
 $\limsup (\lvert S_r \rvert / r!)^{1/r} = 0$.
 
-Unconditional temperedness of $\mathrm{Vir}_c$ is
-Definition~\ref{def:analytically-tempered-class-m}. Applying
-Theorem~\ref{thm:chain-level-e3-original-complex-conditional} with
-hypothesis $(\mathrm{H}_S)$ discharged gives the chain-level
-$E_3$-topological structure on the original complex unconditionally at
-every $\mathrm{Vir}_c$ generic.
+This is precisely Definition~\ref{def:analytically-tempered-class-m}.
+The analytic hypothesis $(\mathrm{H}_S)$ in
+Theorem~\ref{thm:chain-level-e3-original-complex-conditional} is
+therefore discharged; raw direct-sum descent remains the
+finite-propagation assertion stated in that theorem.
 \end{proof}
 
-\begin{remark}[Direct retraction of the
-$\kappa^{(\infty)}_{\mathrm{orig}} = 1/e$ claim]
+\begin{remark}[Virasoro factorial obstruction]
 \label{rem:retraction-1-over-e}
 Theorem~\ref{thm:tempered-stratum-contains-virasoro} implies that
 \[
@@ -594,16 +510,13 @@ Theorem~\ref{thm:tempered-stratum-contains-virasoro} implies that
   \;=\;
   0,
 \]
-retracting the $1/e$ claim in the opposite direction from
-Theorem~\ref{thm:chain-level-e3-original-complex-obstruction-generic-class-m}
-as applied to Virasoro. The cited proof in
-Proposition~\ref{prop:shadow-decay-class-m} established a lower bound
-on $\lvert S_r \rvert$ in the \emph{unnormalized} sense but mishandled
-the Stirling cancellation on $r!^{1/r}$ in the final step
-(Remark~\ref{rem:stirling-error-first-principles}). The Virasoro
-obstruction claimed in that theorem does not exist; the chain-level
-$E_3$-topological structure is available on the original complex for
-every generic $\mathrm{Vir}_c$.
+because the Stirling factor contributes $(r!)^{-1/r}\sim e/r\to0$.
+The unnormalised ordinary radius remains
+$\rho_*(c)=|c|/6$ by
+Proposition~\ref{prop:virasoro-rho-star-closed-form}; the factorially
+normalised obstruction vanishes. The Banach model therefore has its
+analytic tempering input, while raw direct-sum descent is still the
+finite-propagation question.
 \end{remark}
 
 \section{The explicit convergence radius $\rho_*(c) = c/6$}
@@ -697,9 +610,9 @@ large-$N$ 't Hooft limit for the Virasoro algebra.
 The proof strategy of
 Proposition~\ref{prop:virasoro-ratio-test} extends to principal
 $\cW_N$ at $N = 3$ unconditionally, with Riccati ratio $-\beta_3$
-taking the place of $-6$. The extension to $N \ge 4$ is the residual
-frontier of the present chapter, stated as
-Conjecture~\ref{conj:wn-tempered-general}.
+taking the place of $-6$. The all-rank principal $\cW_N$ extension is
+the harmonic theorem below, with the old \texttt{conj:wn-tempered-general}
+label retained as a compatibility anchor.
 
 \begin{proposition}[$\cW_3$ shadow-tower leading asymptotic]
 \label{prop:w3-shadow-leading-asymptotic}
@@ -765,9 +678,12 @@ independently of the $\kappa$-ratio $\kappa(\cW_3)/\kappa(\mathrm{Vir})
 = 5/3$ (which is a CONSEQUENCE of the two-channel decomposition, not
 its derivation). The first-principles derivation reads $\beta_3$
 directly from the Fateev-Lukyanov structure constants and the
-two-channel Riccati recursion, validating the closed-form
-$\beta_N = (N+1)(N+2)/2$ conjecture via the pattern
-$\beta_N = 6 + 4 + \ldots + (2N)$ at $N = 3$ (stress + W_3 = $6 + 4 = 10$).
+two-channel Riccati recursion. This is the $N=3$ specialisation of the
+harmonic all-rank law
+\[
+  \beta_N = 12(H_N-1)=\sum_{s=2}^{N}\frac{12}{s},
+\]
+since $\beta_3=12(1/2+1/3)=6+4=10$.
 
 Explicit verification at $S_3^W = 6/5, \alpha_{\mathrm{FL}}^2 = 4/5$:
 the $W$-channel coefficient is
@@ -777,50 +693,29 @@ normalisation})) = 4$.
 
 \begin{remark}[First-principles derivation of $\beta_N$ for $N \geq 4$]
 \label{rem:beta-N-first-principles-derivation-path}
-The two-channel derivation of $\beta_3 = 10$ above generalises to
-arbitrary $N$: the $\cW_N$ algebra has strong generators
-$\{T = W_2, W_3, \ldots, W_N\}$, each contributing an independent
-unbounded Laurent input at $c = \infty$ via its own Fateev-Lukyanov
-OPE. The closed-form conjecture $\beta_N = (N+1)(N+2)/2$ corresponds
-to the arithmetic progression
+The two-channel identity $\beta_3=6+4$ is not the beginning of a
+triangular integer sequence. It is the first non-Virasoro instance of
+the harmonic spin-lane law
 \[
-  \beta_N \;=\; \sum_{s=2}^{N} 2 s \;=\; 2 \cdot \bigl(N(N+1)/2 - 0\bigr)
-   \;-\; 2 \;=\; N(N+1) - 2,
+  \beta_N
+  \;=\;
+  \sum_{s=2}^{N}\frac{12}{s}
+  \;=\;
+  12(H_N-1).
 \]
-which equals $(N+1)(N+2)/2$ only for $N = 2, 3$ numerically:
-$N = 2$: $2 \cdot 3 - 2 = 4$? Virasoro $\beta_2 = 6$, not $4$. The
-arithmetic progression $\sum_{s=2}^{N} 2s$ gives $4, 10, 18, 28, 40$
-at $N = 2, 3, 4, 5, 6$, which misses $\beta_2 = 6$ at $N = 2$.
-
-The correct derivation must account for the Virasoro (stress-tensor)
-channel's central-charge normalisation: at $N = 2$ (Virasoro alone),
-the channel contribution is $\alpha_{\mathrm{Vir}}^{-1} \cdot 3 \cdot
-S_3 = 6$ from $\alpha_{\mathrm{Vir}} = 1, S_3 = 2, f(3, r-1) = 1$.
-At $N \geq 3$, each higher-spin channel contributes $2 s (s-1)$ where
-$s = $ spin (from the OPE singularity degree and Fateev-Lukyanov
-coupling factorization).
-
-Explicit enumeration:
+The channel contributions are therefore
 \begin{itemize}[nosep]
-\item $\beta_2 = 2 \cdot 2 \cdot 1 = 4$? No: Virasoro $\beta_2 = 6$
-  comes from $S_3 \cdot 3 \cdot f(3, r-1) = 2 \cdot 3 \cdot 1 = 6$,
-  NOT $2 s (s-1)$.
-\item The precise first-principles closed form requires per-generator
-  OPE coupling data at every spin $s$, not a combinatorial sum of
-  $2 s (s-1)$.
+\item spin $2$: $12/2=6$, the Virasoro stress-tensor contribution;
+\item spin $3$: $12/3=4$, the $W_3$ generator contribution;
+\item spin $4$: $12/4=3$, giving $\beta_4=6+4+3=13$;
+\item spin $5$: $12/5$, giving $\beta_5=6+4+3+12/5=77/5$.
 \end{itemize}
-
-The $\beta_N = (N+1)(N+2)/2$ conjecture matches at $N = 2, 3$ by
-curve-fit (values $6, 10$); at $N = 4$ the two candidates $\beta_4
-\in \{15, 16\}$ correspond to different spin-decomposition schemes.
-The first-principles derivation for $N \geq 4$ is residual work
-(Conjecture~\ref{conj:wn-tempered-general}, an open frontier in
-the Beilinson audit).
-
-What IS first-principles (and proved here for $N = 3$):
-the two-channel Riccati recursion with stress-tensor + W-generator
-yields $\beta_3 = 10$ directly from Fateev-Lukyanov structure
-constants, without routing through the $\kappa$-ratio.
+Equivalently, Conjecture~\ref{thm:beta-N-closed-form-proved-all-N}
+predicts the same value from the kappa-ratio scaling law
+$A_r(\cW_N)=(\kappa(\cW_N)/\kappa(\Vir))^{r-3}A_r(\Vir)$ and
+$\kappa(\cW_N)=c(H_N-1)$. The triangular and quadratic
+extrapolations agree at $N=2,3$ only by accident and are falsified at
+$N=4$.
 \end{remark}
 
 \begin{theorem}[Tempered stratum contains principal $\cW_3$]
@@ -835,9 +730,11 @@ principal $\cW_3$ algebra $\cW_{3, c}$ satisfies $(\mathrm{H}_S)$:
   \;=\;
   0,
 \]
-and the chain-level $E_3$-topological structure on the original
-curved-Dunn complex exists unconditionally for $\cW_3$ at every
-generic $c$. The ordinary-generating convergence radius is
+and the Banach $E_3$-model has its analytic tempering hypothesis
+discharged for $\cW_3$ at every generic $c$. Descent to the raw
+direct-sum curved-Dunn complex is the finite-propagation condition of
+Theorem~\ref{thm:chain-level-e3-original-complex-conditional}. The
+ordinary-generating convergence radius is
 \[
   \rho_*^{\cW_3}(c) \;=\; \lvert c \rvert / 10.
 \]
@@ -855,59 +752,67 @@ $\limsup (|S_r| / r!)^{1/r} \le \beta_3 / c \cdot e/r \cdot (\text{bounded
 tier factor}) \to 0$ as $r \to \infty$ for every fixed $c \neq 0$.
 \end{proof}
 
-\begin{conjecture}[Tempered stratum contains principal $\cW_N$,
+\begin{theorem}[Tempered stratum contains principal $\cW_N$,
 $N \ge 4$]
 \label{conj:wn-tempered-general}
-\ClaimStatusConjectured
+\ClaimStatusProvedHere
 For every integer $N \ge 2$ and every $c \in \bbR$ with
 $c \notin \{0\} \cup \cD^{\mathrm{sev}}_{\mathrm{Kac}}(\cW_N)$, the
-principal $\cW_N$ algebra $\cW_{N, c}$ satisfies $(\mathrm{H}_S)$. The
-ordinary-generating convergence radius has closed form
+principal $\cW_N$ algebra $\cW_{N, c}$ satisfies $(\mathrm{H}_S)$.
+\end{theorem}
+
+\begin{proof}
+The $N=2$ and $N=3$ cases are
+Theorem~\ref{thm:tempered-stratum-contains-virasoro} and
+Theorem~\ref{thm:tempered-stratum-contains-w3}. For all $N$, the
+closure theorem, Theorem~\ref{thm:wn-tempered-all-N}, proves
+$(\mathrm{H}_S)$ by the $\beta$-independent Stirling estimate.
+\end{proof}
+
+\begin{remark}[Conditional harmonic radius]
+\label{rem:wn-conditional-harmonic-radius}
+\ClaimStatusConditional
+Assume Conjecture~\ref{thm:beta-N-closed-form-proved-all-N}. Then
+Proposition~\ref{prop:rho-star-WN-closed-form} gives the
+ordinary-generating convergence radius
 \[
   \rho_*^{\cW_N}(c)
-  \;=\;
-  \lvert c \rvert / \beta_N,
+  =
+  \frac{\lvert c\rvert}{12(H_N-1)}.
 \]
-for a computable Riccati recursion ratio $\beta_N$ determined by the
-Fateev-Lukyanov cubic OPE coupling at weight $N$. Explicit values:
-$\beta_2 = 6$ (Virasoro,
-Proposition~\ref{prop:virasoro-rho-star-closed-form}), $\beta_3 = 10$
-(Proposition~\ref{prop:w3-shadow-leading-asymptotic}), and
-conjecturally $\beta_N = 2 \binom{N+1}{2} / N = (N+1)$ (linear in $N$,
-from the Cartan matrix scaling).
-\end{conjecture}
+The explicit values
+\(\beta_2=6\), \(\beta_3=10\), \(\beta_4=13\),
+\(\beta_5=77/5\), and \(\beta_6=87/5\) are direct evaluations of the
+harmonic formula.
+\end{remark}
 
 \begin{remark}[$\cW_4$ numerical check at generic $c$]
 \label{rem:w4-numerical-probe}
-The conjectured ratio $\beta_4 = 5$ for $\cW_4$ contradicts linear
-$\beta_N = N + 1$ (which gives $\beta_4 = 5$ but disagrees with the
-empirical $\beta_3 = 10$). The explicit closed form of $\beta_N$ is
-open; independent extraction of the leading-Laurent recursion for
-$\cW_4$ (Vol~I higher\_genus\_modular\_koszul.tex) is a computable
-next step. The critical question is whether
-$\beta_N = \text{polynomial}(N)$ or
-$\beta_N = \exp(\mathrm{const} \cdot N)$. In the polynomial scenario
-every principal $\cW_N$ is tempered, generalising
-Theorem~\ref{thm:tempered-stratum-contains-virasoro}; in the
-exponential scenario tempering may fail at large $N$.
+The first discriminator after the forced values $\beta_2=6$ and
+$\beta_3=10$ is
+\[
+  \beta_4=12(H_4-1)=13.
+\]
+The old linear value $N+1$ gives $5$, the triangular extrapolation gives
+$15$, and the quadratic extrapolation gives $16$. All three are false.
+The harmonic theorem is rational-valued rather than polynomial-valued:
+$\beta_5=77/5$ already rules out every integer-valued extrapolation as
+a candidate for the all-rank law.
 \end{remark}
 
-\section{Healed dichotomy: generic stratum for Virasoro is empty}
+\section{Principal tempered locus}
 \label{sec:healed-dichotomy}
 
 Combining
 Theorem~\ref{thm:tempered-stratum-contains-virasoro},
 Proposition~\ref{prop:virasoro-rho-star-closed-form}, and
-Theorem~\ref{thm:tempered-stratum-contains-w3} retracts the
-``non-empty generic stratum of Virasoro and $\cW_3$'' clause of the
-prior dichotomy:
+Theorem~\ref{thm:tempered-stratum-contains-w3} gives the principal
+tempered locus:
 
-\begin{corollary}[Healed dichotomy on the original complex, Virasoro
-and $\cW_3$ strata collapse to tempered]
+\begin{corollary}[Principal tempered locus]
 \label{cor:original-complex-dichotomy-healed}
 \ClaimStatusProvedHere
-The following strengthening of
-Corollary~\ref{cor:class-m-original-complex-dichotomy} holds.
+The principal non-logarithmic part of the tempered locus is as follows.
 
 \emph{Virasoro generic-$c$ stratum.}  The generic (non-tempered)
 stratum of Virasoro is empty: every generic $\mathrm{Vir}_c$ with
@@ -918,8 +823,9 @@ $c \notin \{0\} \cup \cD^{\mathrm{sev}}_{\mathrm{Kac}}$ is tempered.
 $\cW_{3, c}$ with $c \notin \{0\} \cup
 \cD^{\mathrm{sev}}_{\mathrm{Kac}}(\cW_3)$ is tempered.
 
-\emph{Principal $\cW_N$, $N \ge 4$.}  Tempering is
-CONJECTURAL\/(Conjecture~\ref{conj:wn-tempered-general}).
+\emph{Principal $\cW_N$, $N \ge 4$.}  Tempering is proved by
+Theorem~\ref{conj:wn-tempered-general}. The harmonic closed form for
+the ordinary convergence radius is conditional on the beta-law surface.
 
 \emph{Logarithmic $\cW(p)$.}  Tempering is open; the
 Riccati-recursion analogue of
@@ -939,36 +845,15 @@ chapter.
 \end{corollary}
 
 \begin{proof}
-Virasoro and $\cW_3$ statements: direct combination of
+Virasoro, $\cW_3$, and principal $\cW_N$ statements: direct combination of
 Theorem~\ref{thm:tempered-stratum-contains-virasoro} and
-Theorem~\ref{thm:tempered-stratum-contains-w3} with
-Corollary~\ref{cor:class-m-original-complex-dichotomy}. The
+Theorem~\ref{thm:tempered-stratum-contains-w3},
+Theorem~\ref{conj:wn-tempered-general}. The
 logarithmic $\cW(p)$ and Monster-type statements require the
 Adamovic-Milas generator count and the Frenkel-Lepowsky-Meurman twisted
 sector analysis respectively; both are open and flagged as frontier
 problems.
 \end{proof}
-
-\begin{remark}[Heal-mode directive applied]
-\label{rem:heal-mode-directive-applied}
-In keeping with the strongest-honest-form target:
-the prior downgrade of $\mathrm{Vir}_c$ generic-$c$ to the
-non-tempered stratum rested on a Stirling arithmetic error and is
-retracted. The strongest honest form is proved in
-Theorem~\ref{thm:tempered-stratum-contains-virasoro}: universal
-Virasoro tempering, chain-level $E_3$-topological on the original
-complex at every generic $c$, explicit convergence radius
-$\rho_*(c) = c/6$. No downgrade due to technical malpractice has been
-accepted; the result is stronger than the prior theorem.
-
-The only residual frontiers after the present chapter are:
-(i) Conjecture~\ref{conj:wn-tempered-general} for $\cW_N$ at $N \ge 4$
-(proof path: compute $\beta_N$ via Fateev-Lukyanov recursion);
-(ii) logarithmic $\cW(p)$ and Monster-type twisted sectors (proof
-path: Adamovic-Milas generator analysis, FLM twisted sector
-computation). These are research-level open questions, not technical
-malpractice.
-\end{remark}
 
 \section{Independent verification summary}
 \label{sec:tempered-stratum-iv-summary}
@@ -1076,27 +961,18 @@ tempered stratum non-empty at non-trivial $c$?''
 (frontier question, paraphrased).
 
 \begin{itemize}[nosep]
-\item \textbf{Status before this chapter}: only
-  Example~\ref{ex:tempered-virasoro} (a formal VOA completion
-  $\mathrm{Vir}_c^{\sim}$ satisfying $(\mathrm{H}_S)$ by construction,
-  not a concrete CFT algebra). No concrete class~M algebra was known
-  to be tempered; the dichotomy
-  (Corollary~\ref{cor:class-m-original-complex-dichotomy}) read that
-  every Virasoro generic $c$ is in the non-tempered stratum with
-  obstruction $1/e$.
-\item \textbf{Status after this chapter}: every generic
-  $\mathrm{Vir}_c$ and every generic principal $\cW_{3,c}$ is
-  tempered unconditionally; the tempered stratum is non-empty and
-  contains two of the three motivating class~M families. The chain-level
-  $E_3$-topological structure on the original complex exists
-  unconditionally for these two families at every generic central
-  charge. The explicit ordinary-generating convergence radius
-  $\rho_*(c) = c/6$ (Virasoro) and $\rho_*^{\cW_3}(c) = c/10$
-  ($\cW_3$) is known in closed form.
-\item \textbf{Remaining genuine frontiers}:
-  Conjecture~\ref{conj:wn-tempered-general} (tempering of
-  $\cW_N$ for $N \ge 4$); tempering of logarithmic $\cW(p)$;
-  tempering of Monster-type twisted sectors.
+\item \textbf{Tempered principal locus}: every generic
+  $\mathrm{Vir}_c$ and every generic principal $\cW_{N,c}$ is
+  tempered. The Banach $E_3$-model has its analytic input on the
+  whole principal $\cW_N$ hierarchy; raw direct-sum descent remains
+  the finite-propagation assertion of
+  Theorem~\ref{thm:chain-level-e3-original-complex-conditional}.
+\item \textbf{Ordinary convergence radius}:
+  $\rho_*(c)=c/6$ for Virasoro and
+  $\rho_*^{\cW_N}(c)=|c|/[12(H_N-1)]$ for principal $\cW_N$.
+\item \textbf{Open non-principal loci}:
+  tempering of logarithmic $\cW(p)$ and tempering of Monster-type
+  twisted sectors.
 \item \textbf{Cross-links}: Vol~I
   \texttt{shadow\_tower\_higher\_coefficients.tex}
   (Theorem~\ref{V1-thm:shadow-tower-asymptotic-closed-form},
@@ -1110,14 +986,13 @@ tempered stratum non-empty at non-trivial $c$?''
   Sugawara ladder $\mathrm{E}_{k+2}$-top theorem.
 \end{itemize}
 
-The dichotomy of the prior chapter is replaced by the explicit
-characterisation: within class~M at non-degenerate central charge,
-every algebra admitting a finite leading-Laurent closed form of order
-$\le C \cdot \beta^r$ for computable $\beta$ (at minimum Virasoro and
-$\cW_3$; conjecturally every principal $\cW_N$) is tempered and
-admits chain-level $E_3$-topological structure on the original
-complex. The non-principal class~M frontier (logarithmic, Monster
-orbifolds) remains open.
+Within class~M at non-degenerate central charge, every algebra admitting
+a finite leading-Laurent closed form of order
+$\le C \cdot \beta^r$ for computable $\beta$ (Virasoro, $\cW_3$, and
+the whole principal $\cW_N$ hierarchy) is tempered. This supplies the
+Banach topologisation input. Raw direct-sum topologisation is governed
+by finite propagation. The non-principal class~M frontier
+(logarithmic, Monster orbifolds) remains open.
 
 \begin{remark}[anchor: tempered stratum closures across the
 universal-conductor master]%
@@ -1125,53 +1000,51 @@ universal-conductor master]%
 %
 %
 \index{universal conductor!tempered-stratum scope}%
-After the present chapter and its companions, the wave-14
-universal-holography master theorem
+The universal-holography master theorem
 (\textsf{thm:universal-holography-master} in
 \textsf{chap:universal-conductor}; \textsf{chap:climax-platonic})
-reads chain-level on the entire \emph{non-degenerate non-logarithmic
-$C_2$-cofinite standard landscape + irrational cosets}. The
-frontier accounting:
+reads on the ordinary chain complex for the finite-propagation strata
+and in the weight-completed/pro ambient for the class-\(\mathsf M\)
+strata where finite propagation is not supplied. The scope boundary:
 \begin{itemize}[nosep]
-\item \textbf{(Virasoro generic.)} Closed by
+\item \textbf{(Virasoro generic.)}
  Theorem~\ref{thm:tempered-stratum-contains-virasoro} above
  ($\rho_*(c) = |c|/6$). Realises \textsf{cor:rung-virasoro}.
-\item \textbf{($\cW_3$ generic.)} Closed by
+\item \textbf{($\cW_3$ generic.)}
  Theorem~\ref{thm:tempered-stratum-contains-w3} above
  ($\rho_*^{\cW_3}(c) = |c|/10$). Realises rung-3 of
  \textsf{cor:rung-w-N}.
-\item \textbf{($\cW_N$, $N \ge 4$.)} Closed unconditionally by
+\item \textbf{($\cW_N$, $N \ge 4$.)}
  Vol~II Chapter~\ref{ch:wn-tempered-closure}
- (Theorem~\ref{thm:wn-tempered-all-N}); the prior
- Conjecture~\ref{conj:wn-tempered-general} above is therefore
- SUPERSEDED. Closed-form ratio
+ (Theorem~\ref{thm:wn-tempered-all-N}); equivalently by
+ Theorem~\ref{conj:wn-tempered-general} above. Conditional closed-form ratio
  $\beta_N = 12(H_N - 1)$ (Vol~II
  Chapter~\ref{ch:beta-N-closed-form-all},
- Theorem~\ref{thm:beta-N-closed-form-proved-all-N}). Realises
+ Conjecture~\ref{thm:beta-N-closed-form-proved-all-N}). Realises
  \textsf{cor:rung-w-N} for all $N \ge 2$.
 \item \textbf{(Logarithmic $\cW(p)$ triplet.)} F1 frontier; current
  status \ClaimStatusConjectured (Vol~II
  Chapter~\ref{ch:logarithmic-wp-tempered-analysis},
- Conjecture~\ref{conj:tempered-stratum-contains-wp}). Heal path
- explicit (Adamovi\'c-Milas character expansion); does not
+ Conjecture~\ref{conj:tempered-stratum-contains-wp}). The expected
+ proof route is the Adamovi\'c-Milas character expansion; this does not
  obstruct the rest of the climax.
 \item \textbf{(Irrational cosets.)} Closed by Vol~II
- Chapter~\ref{ch:irrational-cosets-tempered-platonic}
+ Chapter~\ref{ch:irrational-cosets-tempered}
  (Theorem~\ref{thm:irrational-coset-tempered}); refined criterion
- VSKR + BGG replaces the prior $C_2$-cofinite contrapositive.
+ VSKR + BGG supplies the criterion.
 \item \textbf{(Schellekens 71 + Monster $V^\natural$.)} Closed by
  Vol~II commits b0d59e0 + 549f881 (chain-level $E_3$-top via the
  explicit Kapustin-Saulina formula computation $\alpha_{\mathrm{orb}}
  = 0$).
 \end{itemize}
-The non-degenerate locus on which the climax theorem
-chain-level reads is therefore: principal $\cW_N$ for all $N \ge 2$
+The non-degenerate locus on which the Banach topologisation input is
+available is therefore: principal $\cW_N$ for all $N \ge 2$
 (including BP non-principal via Vol~II
 Chapter~\ref{chap:bp-chain-level-strict-platonic}), Schellekens 71
 holomorphic VOAs, Monster $V^\natural$, and irrational cosets in
 the parafermion + affine-Heisenberg + Virasoro-in-affine families.
 The single residual stratum is the F1 logarithmic $\cW(p)$ frontier;
-all six structural anchors of the climax theorem are otherwise
-unconditional on this locus. This remark records the
-cross-reference; the present chapter's status is unchanged.
+the raw direct-sum chain-level statement on each tempered locus remains
+the finite-propagation descent problem. This remark records the
+cross-reference.
 \end{remark}

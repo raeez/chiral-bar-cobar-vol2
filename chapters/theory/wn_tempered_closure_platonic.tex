@@ -7,48 +7,45 @@
 %% principal W_N at every generic central charge c is analytically
 %% tempered, for every N >= 2.
 %%
-%% Prior state:
+%% Input theorems:
 %%   * thm:tempered-stratum-contains-virasoro: every generic Vir_c
 %%     tempered; rho_*(c) = |c|/6.
 %%   * thm:tempered-stratum-contains-w3: every generic W_{3,c}
 %%     tempered; rho_*^{W_3}(c) = |c|/10.
-%%   * conj:wn-tempered-general: same for N >= 4, with conjectural
-%%     rho_*^{W_N}(c) = |c|/beta_N and beta_N open.
+%%   * conj:wn-tempered-general: the N >= 4 target condition.
 %%
-%% Present chapter: two-stage resolution.
+%% Present chapter: two-stage theorem.
 %%
-%%   STAGE I (UNCONDITIONAL).  The tempering theorem holds for every
+%%   Stage I.  The tempering theorem holds for every
 %%   N >= 2 at every finite beta_N. The Stirling argument
 %%     (r!)^{-1/r} ~ e/r -> 0
-%%   is BETA-INDEPENDENT: regardless of the exact value of beta_N, the
+%%   is beta-independent: regardless of the exact value of beta_N, the
 %%   inequality
 %%     (|S_r(W_{N,c})|/r!)^{1/r}
 %%       <= C(N,c)^{1/r} * beta_N^{(r-4)/r} * r^{-1/r}
 %%          * |c|^{-(r-2)/r} * (r!)^{-1/r}
 %%       ~ beta_N / |c| * e/r  ->  0
-%%   holds uniformly. Hence thm:wn-tempered-all-N is UNCONDITIONAL.
+%%   holds uniformly. Hence thm:wn-tempered-all-N holds for every
+%%   finite principal W_N.
 %%
-%%   STAGE II (CANDIDATE-A CLOSED FORM, PROVED N=2,3, CONJECTURED N>=4).
-%%   The Riccati-ratio closed form
-%%     beta_N = (N+1)(N+2)/2 = C(N+2, 2) = T_{N+1}   (triangular number)
-%%   matches both proved data points (beta_2 = 6, beta_3 = 10) and is
-%%   the minimal-combinatorial extension. An alternative-candidate
-%%   formula beta_N = N^2 - N + 4 (also matching N=2,3) is recorded as
-%%   an adversarial discriminator at N=4 (15 vs 16). Explicit W_4
-%%   shadow-tower leading-Laurent computation selects Candidate A.
+%%   Stage II. The harmonic Riccati-ratio closed form
+%%     beta_N = 12(H_N - 1) = sum_{s=2}^{N} 12/s
+%%   is conditional on the kappa-ratio scaling law
+%%     A_r(W_N) = (kappa(W_N)/kappa(Vir))^{r-3} A_r(Vir).
+%%   It matches the proved data points beta_2 = 6 and beta_3 = 10,
+%%   gives beta_4 = 13, beta_5 = 77/5, beta_6 = 87/5, and excludes
+%%   the triangular and quadratic polynomial extrapolations.
 %%
 %% Labels defined:
-%%   thm:wn-tempered-all-N                   (ProvedHere, UNCONDITIONAL)
+%%   thm:wn-tempered-all-N                   (ProvedHere, all finite N)
 %%   prop:beta-stirling-dominance            (ProvedHere, Stirling-independent-of-beta)
-%%   prop:beta-N-closed-form                 (ProvedHere N=2,3; Conjectured N>=4)
-%%   prop:rho-star-WN-closed-form            (ProvedHere, conditional on prop:beta-N-closed-form)
+%%   prop:beta-N-closed-form                 (Conjectured, all N)
+%%   prop:rho-star-WN-closed-form            (Conditional)
 %%   cor:wn-original-complex-dichotomy-healed (ProvedHere)
 %%   rem:beta-candidate-discriminator         (N=4 discrimination)
 %%
-%% Closes conj:wn-tempered-general UNCONDITIONALLY for the tempering
-%% claim; the exact closed form of beta_N is proved at N=2,3 and
-%% stated with two candidate formulas for N >= 4, the preferred
-%% candidate A being committed to.
+%% Proves conj:wn-tempered-general for the tempering claim. The exact
+%% closed form of beta_N is conditional on the harmonic kappa-ratio law.
 %%
 %% Location: chapters/theory/.
 %% Inputs:
@@ -60,26 +57,24 @@
 %%   Vol I w3_shadow_tower_engine.py
 %%     (W_3 shadow-tower engine with T-line and W-line decomposition).
 %%
-%% The strongest honest form is established here:
-%% Tempering is proved for EVERY N >= 2 without downgrade; the exact
-%% closed-form of beta_N is proved where provable and stated
-%% explicitly as the minimal-combinatorial extension where not.
+%% The theorem established here:
+%% Tempering is proved for every N >= 2; the exact closed form of
+%% beta_N is conditional on the harmonic kappa-ratio law.
 %% =====================================================================
 
 \chapter{Closure of $\cW_N$ tempering for every $N \ge 2$:
-universal Stirling dominance and $\beta_N = (N+1)(N+2)/2$}
+universal Stirling dominance and the harmonic $\beta_N$ frontier}
 \label{ch:wn-tempered-closure}
 
 \section*{Statement of the closure}
 
-The preceding chapter
-(Chapter~\ref{ch:tempered-stratum-characterization})
+Chapter~\ref{ch:tempered-stratum-characterization}
 established universal Virasoro tempering and analogous $\cW_3$ tempering,
 leaving open whether the tempered stratum contains every principal
 $\cW_N$ at $N \ge 4$
 (Conjecture~\ref{conj:wn-tempered-general}). The present chapter
-settles the unconditional tempering claim and supplies the
-closed-form Riccati ratio.
+proves the tempering claim and isolates the conditional harmonic
+Riccati ratio.
 
 \begin{center}\begin{minipage}{0.86\linewidth}
 \textbf{Main theorem
@@ -95,30 +90,31 @@ tempered:
   \;=\;
   0.
 \]
-\emph{Convergence radius (candidate A, committed).}
+\emph{Convergence radius (conditional harmonic form).}
 The ordinary-generating convergence radius of
-$\sum_{r \ge 2} S_r(\cW_{N,c})\,\rho^r$ equals $\rho_*^{\cW_N}(c) =
-\lvert c\rvert / \beta_N$ with closed-form
+$\sum_{r \ge 2} S_r(\cW_{N,c})\,\rho^r$ equals
+$\rho_*^{\cW_N}(c) = \lvert c\rvert / \beta_N$ for the leading
+Riccati coefficient \(\beta_N\). Under
+Conjecture~\ref{prop:beta-N-closed-form}, this coefficient has
+harmonic closed form
 \[
-  \beta_N \;=\; \frac{(N+1)(N+2)}{2}
-           \;=\; \binom{N+2}{2}
-           \;=\; T_{N+1}
-           \quad(\text{triangular number}).
+  \beta_N \;=\; 12(H_N - 1)
+           \;=\; \sum_{s=2}^{N} \frac{12}{s}.
 \]
-\emph{Healed dichotomy.} The non-tempered stratum of every principal
+\emph{Principal hierarchy.} The non-tempered stratum of every principal
 $\cW_N$ is empty; the chain-level $E_3$-topological structure on the
-original curved-Dunn complex exists unconditionally for
-$\cW_{N,c}$ at every generic $c$.
+original curved-Dunn complex exists for $\cW_{N,c}$ at every generic
+$c$ whenever the finite-propagation hypotheses of
+Theorem~\ref{thm:chain-level-e3-original-complex-conditional} hold.
 \end{minipage}\end{center}
 
 The closure has two tiers. The tempering statement
-(Theorem~\ref{thm:wn-tempered-all-N}) is UNCONDITIONAL:
+(Theorem~\ref{thm:wn-tempered-all-N}) is proved:
 the Stirling cancellation $(r!)^{-1/r} \sim e/r \to 0$ dominates any
 finite $\beta_N$, so the closed-form of $\beta_N$ is IRRELEVANT to the
 tempering conclusion. The closed form of $\beta_N$ is a separate
-claim, proved for $N = 2, 3$ from explicit Laurent data in the
-preceding chapter, and extended to $N \ge 4$ via the
-minimal-combinatorial extension $\beta_N = (N+1)(N+2)/2$.
+claim, conditional on the harmonic kappa-ratio scaling law, with the
+$N = 2, 3$ Laurent data as the first two consistency checks.
 
 \section{Stirling dominance: tempering at every finite $\beta_N$}
 \label{sec:stirling-dominance}
@@ -197,13 +193,11 @@ tempering hypothesis $(\mathrm{H}_S)$:
   \;=\;
   0.
 \]
-Consequently the tempered stratum of
-Corollary~\ref{cor:class-m-original-complex-dichotomy} contains every
-generic principal $\cW_N$, and the chain-level $E_3$-topological
-structure on the original curved-Dunn complex
-(Theorem~\ref{thm:chain-level-e3-original-complex-conditional}) exists
-unconditionally for $\cW_{N,c}$ at every $N \ge 2$ and every
-generic $c$.
+Consequently the analytically tempered class-\(\mathsf M\) locus
+contains every generic principal $\cW_N$. The Banach $E_3$-model is therefore
+available for every such $\cW_{N,c}$; descent to the raw direct-sum
+curved-Dunn complex is precisely the finite-propagation condition of
+Theorem~\ref{thm:chain-level-e3-original-complex-conditional}.
 \end{theorem}
 
 \begin{proof}
@@ -259,101 +253,115 @@ $\beta = \beta_N$:
   \;=\;
   0.
 \]
-Tempering of $\cW_{N,c}$ follows unconditionally. Applying
-Theorem~\ref{thm:chain-level-e3-original-complex-conditional} with
-hypothesis $(\mathrm{H}_S)$ discharged yields the chain-level
-$E_3$-topological structure on the original complex.
+Tempering of $\cW_{N,c}$ follows. This discharges the analytic
+hypothesis $(\mathrm{H}_S)$ in
+Theorem~\ref{thm:chain-level-e3-original-complex-conditional}; the
+raw direct-sum descent remains exactly the finite-propagation
+hypothesis stated there.
 \end{proof}
 
-\begin{remark}[Why the tempering theorem is unconditional]
+\begin{remark}[Finite $\beta_N$ is enough for tempering]
 \label{rem:wn-tempering-scope}
-Conjecture~\ref{conj:wn-tempered-general} of the preceding chapter
-stated tempering for $\cW_N$, $N \ge 4$, conditional on the
-closed-form of $\beta_N$. The present theorem proves tempering
-\emph{without} specifying $\beta_N$: the Stirling cancellation in
+For every fixed $N$, tempering only needs finiteness of $\beta_N$, not
+its closed form. The Stirling cancellation in
 $(r!)^{-1/r} \sim e/r$ absorbs any finite $\beta_N$. Thus the
-tempering content is a theorem; the remaining question is only the
-\emph{exact closed form} of $\beta_N$ for $N \ge 4$
+tempering content is independent of the arithmetic discrimination of
+$\beta_N$; the exact closed form is the conditional harmonic formula
 (Proposition~\ref{prop:beta-N-closed-form}).
 \end{remark}
 
-\section{The closed form $\beta_N = (N+1)(N+2)/2$}
+\section{The harmonic candidate $\beta_N = 12(H_N - 1)$}
 \label{sec:beta-N-closed-form}
 
-The exact closed form of $\beta_N$ is the second tier of the closure.
-For $N = 2$ and $N = 3$ it is proved from explicit Laurent data. For
-$N \ge 4$ it is stated as the minimal-combinatorial extension, with
-an adversarial candidate recorded for future discrimination.
+The harmonic closed form of $\beta_N$ is the second tier of the frontier.
+The two low-rank Laurent computations determine $\beta_2=6$ and
+$\beta_3=10$; the all-rank proof obligation is not a curve fit through
+these two values. It is the kappa-ratio scaling law for the leading
+Laurent coefficient.
 
-\begin{proposition}[Closed form of $\beta_N$: candidate A]
+\begin{conjecture}[Closed form of $\beta_N$: harmonic kappa-ratio law]
 \label{prop:beta-N-closed-form}
-\ClaimStatusProvedHere
+\ClaimStatusConjectured
 The Riccati leading-Laurent ratio coefficient $\beta_N$ of the
 principal $\cW_N$ shadow tower satisfies
 \[
-  \beta_2 \;=\; 6, \qquad \beta_3 \;=\; 10
+  \beta_N \;=\; 12(H_N - 1)
+  \;=\; \sum_{s=2}^{N} \frac{12}{s}
 \]
-(unconditionally, Lemma~\ref{lem:leading-coefficient-ratio-identity}
-and Proposition~\ref{prop:w3-shadow-leading-asymptotic}). The closed
-form
+for every $N \ge 2$. In particular
 \[
-  \beta_N \;=\; \frac{(N+1)(N+2)}{2}
+  \beta_2 = 6,\qquad
+  \beta_3 = 10,\qquad
+  \beta_4 = 13,\qquad
+  \beta_5 = 77/5,\qquad
+  \beta_6 = 87/5.
 \]
-is the unique minimal-combinatorial extension consistent with these
-two data points. Predictions: $\beta_4 = 15$, $\beta_5 = 21$,
-$\beta_6 = 28$, $\beta_N = T_{N+1}$ (triangular number) in general.
+\end{conjecture}
 
-\emph{Status}: \ClaimStatusProvedHere at $N = 2, 3$;
-\ClaimStatusConjectured at $N \ge 4$. The tempering theorem of
-Section~\ref{sec:wn-tempering} is UNCONDITIONAL, independent of this
-candidate.
-\end{proposition}
+\begin{remark}[Conditional derivation from kappa-ratio scaling]
+Let $A_r^{\Vir}$ denote the Virasoro leading Laurent coefficient.
+Lemma~\ref{lem:leading-coefficient-ratio-identity} gives
+\[
+  \frac{A_r^{\Vir}}{A_{r-1}^{\Vir}}
+  \;=\; -6\,\frac{r-1}{r}.
+\]
+For the principal $\cW_N$ tower, the kappa-ratio scaling law conjectured in
+Conjecture~\ref{thm:beta-N-closed-form-proved-all-N} gives
+\[
+  A_r^{\cW_N}
+  \;=\;
+  \left(\frac{\kappa(\cW_N)}{\kappa(\Vir)}\right)^{r-3}
+  A_r^{\Vir}.
+\]
+The canonical conductor identity is
+\[
+  \kappa(\cW_N)=c(H_N-1),\qquad \kappa(\Vir)=c/2,
+\]
+hence $\kappa(\cW_N)/\kappa(\Vir)=2(H_N-1)$. Dividing the two
+successive scaled coefficients,
+\[
+  \frac{A_r^{\cW_N}}{A_{r-1}^{\cW_N}}
+  =
+  2(H_N-1)\,\frac{A_r^{\Vir}}{A_{r-1}^{\Vir}}
+  =
+  -12(H_N-1)\,\frac{r-1}{r}.
+\]
+By definition of the Riccati ratio coefficient, this coefficient is
+$-\beta_N(r-1)/r$. Therefore $\beta_N=12(H_N-1)$. The displayed
+specialisations follow by evaluating
+$H_2=3/2$, $H_3=11/6$, $H_4=25/12$, $H_5=137/60$, and $H_6=49/20$.
+\end{remark}
 
-\begin{proof}
-At $N = 2$: by Lemma~\ref{lem:leading-coefficient-ratio-identity},
-$A_{r+1}^{\mathrm{Vir}} / A_r^{\mathrm{Vir}} = -6r/(r+1)$, so $\beta_2
-= 6$. At $N = 3$: by
-Proposition~\ref{prop:w3-shadow-leading-asymptotic}(4),
-$A_r^{\cW_3} = -10(r-1)/r \cdot A_{r-1}^{\cW_3}$, so $\beta_3 = 10$.
-
-The candidate closed form $\beta_N = (N+1)(N+2)/2$ satisfies:
-$\beta_2 = 3 \cdot 4/2 = 6$ and
-$\beta_3 = 4 \cdot 5/2 = 10$, matching both proved values.
-
-For $N \ge 4$, the Fateev-Lukyanov structure-constant count in the
-principal $\cW_N$ algebra predicts $\binom{N+2}{2}$ independent
-binary-collision coupling channels (conformal-block channels of weight
-$\le 2N$ entering the double-pole OPE hierarchy). This combinatorial
-count matches both proved points exactly and is the minimal-rank
-extension.
-\end{proof}
-
-\begin{remark}[Adversarial candidate B: discrimination at $N = 4$]
+\begin{remark}[Polynomial candidates separated at $N = 4$]
 \label{rem:beta-candidate-discriminator}
-An alternative closed form also matching $\beta_2 = 6$ and $\beta_3 =
-10$ is
+The triangular extrapolation
+\[
+  \beta_N^{(A)}=\frac{(N+1)(N+2)}{2}
+\]
+and the quadratic extrapolation
 \[
   \beta_N^{(B)} \;=\; N^2 - N + 4 \;=\; 6 + (N-2)(N+1).
 \]
-Check: $\beta_2^{(B)} = 4 - 2 + 4 = 6$; $\beta_3^{(B)} = 9 - 3 + 4 =
-10$. Disagreement with candidate A at $N = 4$: $\beta_4^{(A)} = 15$
-vs $\beta_4^{(B)} = 16$.
-
-The manuscript commits to candidate A
-(Proposition~\ref{prop:beta-N-closed-form}). Explicit $\cW_4$
-shadow-tower leading-Laurent computation
-(an extension of
-\texttt{compute/lib/w3\_shadow\_tower\_engine.py} to $\cW_4$ via
-Bouwknegt-Schoutens structure constants) will discriminate.
-Independent of the choice, the tempering conclusion
-(Theorem~\ref{thm:wn-tempered-all-N}) is UNCONDITIONAL.
+both match $\beta_2=6$ and $\beta_3=10$ by coincidence. They are
+conditionally false under the harmonic law. At $N=4$ the harmonic candidate gives
+\[
+  \beta_4 = 12(H_4-1)=13,
+  \qquad
+  \beta_4^{(A)}=15,
+  \qquad
+  \beta_4^{(B)}=16.
+\]
+Thus, under the harmonic law, the first rank not already forced by the
+Virasoro and $\cW_3$ checks falsifies both extrapolations. The tempering conclusion of
+Theorem~\ref{thm:wn-tempered-all-N} remains independent of this
+falsification because it only uses finiteness of $\beta_N$.
 \end{remark}
 
 \begin{proposition}[Convergence radius closed form]
 \label{prop:rho-star-WN-closed-form}
-\ClaimStatusProvedHere
-Under candidate A (Proposition~\ref{prop:beta-N-closed-form}), for
-every $N \ge 2$ and $c \in \R \setminus (\{0\} \cup
+\ClaimStatusConditional
+Assume Conjecture~\ref{prop:beta-N-closed-form}. For every $N \ge 2$
+and $c \in \R \setminus (\{0\} \cup
 \cD^{\mathrm{sev}}_{\mathrm{Kac}}(\cW_N))$,
 \[
   \rho_*^{\cW_N}(c)
@@ -363,31 +371,31 @@ every $N \ge 2$ and $c \in \R \setminus (\{0\} \cup
   \;=\;
   \frac{\lvert c \rvert}{\beta_N}
   \;=\;
-  \frac{2\,\lvert c\rvert}{(N+1)(N+2)}.
+  \frac{\lvert c\rvert}{12(H_N - 1)}.
 \]
 Specialisations: $\rho_*^{\mathrm{Vir}}(c) = |c|/6$ (Virasoro,
-$N=2$); $\rho_*^{\cW_3}(c) = |c|/10$ ($N=3$); $\rho_*^{\cW_4}(c) =
-|c|/15$; $\rho_*^{\cW_5}(c) = |c|/21$.
+$N=2$); $\rho_*^{\cW_3}(c) = |c|/10$ ($N=3$);
+$\rho_*^{\cW_4}(c)=|c|/13$; $\rho_*^{\cW_5}(c)=5|c|/77$.
 \end{proposition}
 
 \begin{proof}
 Direct transcription of the proof of
 Proposition~\ref{prop:virasoro-rho-star-closed-form} with the
 Virasoro factor $6$ replaced by $\beta_N$, and applying
-Proposition~\ref{prop:beta-N-closed-form} for the closed form of
+Conjecture~\ref{prop:beta-N-closed-form} for the closed form of
 $\beta_N$.
 \end{proof}
 
-\section{Healed dichotomy: generic stratum of every $\cW_N$ is empty}
+\section{Principal $\cW_N$ tempered stratum}
 \label{sec:wn-dichotomy-healed}
 
-\begin{corollary}[Dichotomy healed for every principal $\cW_N$]
+\begin{corollary}[Tempering for every principal $\cW_N$]
 \label{cor:wn-original-complex-dichotomy-healed}
-\ClaimStatusProvedHere
+\ClaimStatusConditional
 Combining
 Theorem~\ref{thm:wn-tempered-all-N} with
 Corollary~\ref{cor:class-m-original-complex-dichotomy}, the non-tempered
-(generic) stratum of every principal $\cW_N$, $N \ge 2$, is empty:
+generic stratum of every principal $\cW_N$, $N \ge 2$, is empty:
 every generic $\cW_{N,c}$ with $c \notin \{0\} \cup
 \cD^{\mathrm{sev}}_{\mathrm{Kac}}(\cW_N)$ is tempered.
 
@@ -404,16 +412,17 @@ Direct combination of Theorem~\ref{thm:wn-tempered-all-N} at every
 $N \ge 2$ with Corollary~\ref{cor:class-m-original-complex-dichotomy}.
 \end{proof}
 
-\begin{remark}[Heal-sweep directive applied]
+\begin{remark}[Harmonic beta law]
 \label{rem:heal-sweep-applied-wn}
-At the strongest honest scope, the strongest-honest
-form is realised: Theorem~\ref{thm:wn-tempered-all-N} is
-UNCONDITIONAL for every $N \ge 2$ at every generic $c$. The
-closed-form $\beta_N = (N+1)(N+2)/2$ is proved at $N = 2, 3$; for
-$N \ge 4$ the extension is the minimal-combinatorial candidate, with
-an adversarial alternative recorded to enable future discrimination.
-The tempering conclusion itself is UNCONDITIONAL of this choice:
-Stirling dominates $\beta_N$ regardless of its exact value.
+Theorem~\ref{thm:wn-tempered-all-N} proves tempering for every
+$N \ge 2$ at every generic $c$. The closed-form
+$\beta_N = 12(H_N - 1)$ is conditional on
+Conjecture~\ref{prop:beta-N-closed-form}. Under that conjecture, the
+triangular and quadratic polynomial extrapolations are excluded at
+$N = 4$, where the harmonic value is $\beta_4=13$ and the polynomial
+values are $15$ and $16$. The tempering conclusion depends only on finite
+$\beta_N$: Stirling dominates every finite $\beta_N$ regardless of
+its exact arithmetic form.
 \end{remark}
 
 \section{Independent verification summary}
@@ -423,20 +432,23 @@ Tests at \texttt{compute/tests/test\_wn\_tempered\_closure.py}
 with \texttt{@independent\_verification} decorators per the Vol~II
 HZ-IV protocol.
 
-\textbf{1. $\beta_N$ closed form
+\textbf{1. Conditional $\beta_N$ closed form
 (Proposition~\ref{prop:beta-N-closed-form}).}
 \begin{itemize}[nosep]
-\item \emph{Derived from}: Fateev-Lukyanov structure constants for
-  principal $\cW_N$; Riccati recursion from the $Q_L$ shadow-metric
-  identity (Vol~I \texttt{shadow\_tower\_recursive.py}).
+\item \emph{Derived from}: the kappa-ratio scaling law
+  $A_r(\cW_N)=(\kappa(\cW_N)/\kappa(\Vir))^{r-3}A_r(\Vir)$, the
+  conductor identity $\kappa(\cW_N)=c(H_N-1)$, and the Virasoro ratio
+  $A_r^{\Vir}/A_{r-1}^{\Vir}=-6(r-1)/r$.
 \item \emph{Verified against}: Direct numerical match at $N = 2$
   ($\beta = 6$ from Virasoro leading Laurent) and $N = 3$ ($\beta =
-  10$ from $\cW_3$ leading Laurent); triangular-number combinatorial
-  identity $(N+1)(N+2)/2 = \binom{N+2}{2}$.
-\item \emph{Disjoint rationale}: The Riccati-based algebraic derivation
-  is independent of the numerical match against proved
-  $\beta_2$/$\beta_3$ values; the combinatorial identity check is
-  independent of the Fateev-Lukyanov derivation.
+  10$ from $\cW_3$ leading Laurent); the finite-rank $\cW_4$ spin-lane
+  attack gives the compatible lane sum $6+4+3=13$ against the polynomial
+  values $15$ and $16$.
+\item \emph{Disjoint rationale}: The kappa-ratio derivation computes
+  the whole family, while the low-rank Laurent checks and the
+  $\cW_4$ lane calculation are finite-rank tests.  They do not yet
+  compute $A_5^{\cW_4}/A_4^{\cW_4}$ from the full Miura OPE, so they are
+  evidence for the harmonic law, not a proof.
 \end{itemize}
 
 \textbf{2. $\beta$-Stirling dominance
@@ -456,58 +468,56 @@ HZ-IV protocol.
   $\beta_N$; Proposition~\ref{prop:beta-stirling-dominance}.
 \item \emph{Verified against}: Direct numerical evaluation of the rate
   bound at $r = 4, 10, 20, 30$ for $N = 2..8$ and $c = 100$; monotone
-  decreasing certificate; values $< 1/e$ at $r = 30$ for every $N \le
-  6$ (refuting the prior $1/e$ claim unconditionally across $\cW_N$).
+  decreasing certificate; values already below $0.2$ at $r = 30$ for
+  every $N \le 6$.
 \end{itemize}
 
-\textbf{4. Convergence radius closed form
+\textbf{4. Conditional convergence radius closed form
 (Proposition~\ref{prop:rho-star-WN-closed-form}).}
 \begin{itemize}[nosep]
-\item \emph{Derived from}: $\beta_N$ closed form plus Cauchy-Hadamard
-  root test.
+\item \emph{Derived from}: the conditional harmonic $\beta_N$ closed form plus
+  the Cauchy-Hadamard root test.
 \item \emph{Verified against}: Algebraic match at $N = 2$ ($|c|/6$
   from Vol~II Proposition~\ref{prop:virasoro-rho-star-closed-form}) and $N = 3$
   ($|c|/10$ from \texttt{thm:tempered-stratum-contains-w3}); direct
-  arithmetic at $N = 4, 5, 6$.
+  arithmetic at $N = 4, 5, 6$ gives $|c|/13$, $5|c|/77$, and
+  $5|c|/87$.
 \end{itemize}
 
-\textbf{5. Candidate-A vs candidate-B discrimination
+\textbf{5. Polynomial interpolation exclusion
 (Remark~\ref{rem:beta-candidate-discriminator}).}
 \begin{itemize}[nosep]
-\item \emph{Derived from}: Two explicit closed forms $(N+1)(N+2)/2$
-  and $N^2 - N + 4$.
+\item \emph{Derived from}: comparison of the harmonic conjecture
+  $12(H_N-1)$ with the two polynomial interpolants $(N+1)(N+2)/2$ and
+  $N^2 - N + 4$.
 \item \emph{Verified against}: Direct evaluation at $N = 2, 3, 4$;
-  both agree at $N = 2, 3$ (by construction), disagree at $N = 4$
-  (15 vs 16); discriminator at $\cW_4$ open.
+  all three agree at $N = 2, 3$ only by coincidence, while at $N = 4$
+  the harmonic value is $13$ and the polynomial interpolants give
+  $15$ and $16$.
 \end{itemize}
 
 \section{Location in the programme}
 \label{sec:wn-tempered-closure-location}
 
 \begin{itemize}[nosep]
-\item \textbf{Status before this chapter}: tempering proved only for
-  $\cW_2 = $ Virasoro and $\cW_3$
-  (Chapter~\ref{ch:tempered-stratum-characterization}). $N \ge 4$
-  conjectural.
-\item \textbf{Status after this chapter}:
+\item \textbf{Principal $\cW_N$ hierarchy}:
   \begin{itemize}[nosep]
     \item Theorem~\ref{thm:wn-tempered-all-N} proves tempering
-      UNCONDITIONALLY for every $N \ge 2$.
-    \item Proposition~\ref{prop:beta-N-closed-form} proves
-      $\beta_N = (N+1)(N+2)/2$ at $N = 2, 3$ and states as
-      minimal-combinatorial conjecture for $N \ge 4$.
-    \item Proposition~\ref{prop:rho-star-WN-closed-form} gives the
-      convergence radius closed form conditional on candidate A.
-    \item Corollary~\ref{cor:wn-original-complex-dichotomy-healed}
-      empties the non-tempered stratum of every $\cW_N$.
+      for every $N \ge 2$.
+    \item Conjecture~\ref{prop:beta-N-closed-form} predicts
+      $\beta_N = 12(H_N - 1)$ for every $N \ge 2$.
+    \item Proposition~\ref{prop:rho-star-WN-closed-form} gives the conditional
+      convergence radius closed form $|c|/[12(H_N-1)]$.
   \end{itemize}
 \item \textbf{Residual open questions}:
   \begin{itemize}[nosep]
-    \item Exact closed form of $\beta_N$ for $N \ge 4$: candidate A
-      $(N+1)(N+2)/2$ is the minimal-combinatorial extension;
-      candidate B $N^2 - N + 4$ is the adversarial discriminator.
-      An explicit $\cW_4$ leading-Laurent computation selects between
-      them. The tempering conclusion is UNCONDITIONAL of this choice.
+    \item The residual open question for the principal $\cW_N$ harmonic
+      beta law is the independent $\cW_4$ Riccati bridge:
+      compute $A_5^{\cW_4}/A_4^{\cW_4}$ from the full $\cW_4$ Miura OPE
+      without using the kappa-ratio scaling ansatz and verify the ratio
+      \(-52/5\).  Under the scaling prediction \(A_4^{\cW_4}=13/3\),
+      this would require \(A_5^{\cW_4}=-676/15\).  The direct spin-lane
+      attack supports the value $13$ but does not close this bridge.
     \item Tempering of logarithmic $\cW(p)$, Monster-type twisted
       sectors, and coset realisations at irrational central charge
       (outside the principal $\cW_N$ lineage).
@@ -520,45 +530,47 @@ HZ-IV protocol.
   and W-line decomposition.
 \end{itemize}
 
-Conjecture~\ref{conj:wn-tempered-general} is discharged
-unconditionally in its tempering content. The exact closed form of
-$\beta_N$ for $N \ge 4$ is open only as discrimination between two
-explicit candidates. The tempered stratum of the entire principal
-$\cW_N$ hierarchy is empty: every principal $\cW_{N,c}$ at every
-generic $c$ is analytically tempered, and the chain-level
-$E_3$-topological structure on the original complex exists
-unconditionally for the whole hierarchy.
+The principal $\cW_N$ hierarchy is analytically tempered at every
+finite rank and generic $c$.  Conditional on the harmonic beta law, its
+ordinary-generating radius is
+\[
+  \rho_*^{\cW_N}(c)=\frac{|c|}{12(H_N-1)}.
+\]
+The chain-level $E_3$-topological structure on the original complex
+therefore exists for the whole finite principal hierarchy under the
+finite-propagation hypotheses of
+Theorem~\ref{thm:chain-level-e3-original-complex-conditional}.
 
-\begin{remark}[anchor: $\beta_N$ first-principles closed form and
+\begin{remark}[anchor: conditional $\beta_N$ harmonic closed form and
 rung-$\cW_N$ realisation]%
 \label{rem:anchor-wn-closure-beta-exact}%
 %
 %
-The Candidate~A vs Candidate~B residual question above is settled by
 Vol~II Chapter~\ref{ch:beta-N-closed-form-all},
-Theorem~\ref{thm:beta-N-closed-form-proved-all-N}: the exact
-first-principles closed form
+Conjecture~\ref{thm:beta-N-closed-form-proved-all-N}, predicts the
+harmonic closed form
 \[
   \beta_N \;=\; 12 (H_N - 1) \;=\; 12 \sum_{j=2}^{N} 1/j
 \]
-is proved unconditionally for every $N \ge 2$ via the
+for every $N \ge 2$ via the conjectural
 $\kappa$-ratio scaling law $A_r(\cW_N) = (\kappa(\cW_N) /
-\kappa(\Vir))^{r-3} A_r(\Vir)$. Both Candidate~A
-$((N+1)(N+2)/2)$ and Candidate~B $(N^2 - N + 4)$ are RULED OUT at
-$N=4$ (true value $\beta_4 = 13$ vs $15$ vs $16$);
-$\beta_N$ is rational, not integer, for $N \ge 5$
-($\beta_5 = 77/5$). The convergence radius therefore upgrades
-unconditionally to
+\kappa(\Vir))^{r-3} A_r(\Vir)$. The triangular interpolant
+$((N+1)(N+2)/2)$ and the quadratic interpolant $(N^2 - N + 4)$ are
+conditionally excluded at $N=4$:
+$\beta_4 = 13$, whereas the two interpolants give $15$ and $16$.
+Conditional on the harmonic law, $\beta_N$ is rational, not integer, for $N \ge 5$
+($\beta_5 = 77/5$). The convergence radius is
 $\rho_*^{\cW_N}(c) = |c| / [12 (H_N - 1)]$.
 The universal-holography master theorem
 (\textsf{thm:universal-holography-master} in
 \textsf{chap:universal-conductor}; \textsf{chap:climax-platonic})
-realises \textsf{cor:rung-w-N} on the principal $\cW_N$ stratum
-unconditionally with this convergence radius, for all $N \ge 2$;
+realises \textsf{cor:rung-w-N} on the principal $\cW_N$ stratum; the
+displayed convergence radius is conditional on the harmonic law, for
+all $N \ge 2$;
 \textsf{cor:rung-w-infty} is the inverse-limit horizon
-($\beta_\infty = +\infty$, tower-limit sense, NOT uniform). The
-unconditional tempering theorem of the present chapter is unchanged
-by the $\beta_N$ closed-form supersession; only the discrimination
-``Candidate~A vs Candidate~B'' becomes obsolete. This remark
-records the structural anchor.
+($\beta_\infty = +\infty$, tower-limit sense, not uniform). The
+unconditional tempering theorem of the present chapter depends only on
+finite $\beta_N$ and Stirling dominance; the harmonic closed form
+supplies the exact radius conditionally. This remark records the
+structural anchor.
 \end{remark}

@@ -364,7 +364,7 @@ $D_0 D_1\,\xi = 0$.
 
 \smallskip\noindent
 \emph{Step~2: $D_1 D_0\,\xi$ (na\"ive tree-level
-computation.}
+computation).}
 From~\eqref{eq:D0-sl2}, $D_0\,\xi = -s\,h \otimes s\,h
 + 4\, s\,e \otimes s\,f$. These are degree-$2$ elements
 on trees with one internal edge. Applying $D_1$ to each
@@ -397,30 +397,32 @@ On the corolla~$C_3$, the differential $D_0$ acts by the
 Chevalley--Eilenberg differential $d_{CE}$ of
 $\mathfrak{g} = \mathfrak{sl}_2$, and $D_1$ acts by contracting
 two of the three flags via the level-$k$ Killing
-form~$\langle\,-\,,\,-\,\rangle_k$. The identity
-$D_0 D_1 + D_1 D_0 = 0$ on $C_3$ is then the standard
-anticommutation
+form~$\langle\,-\,,\,-\,\rangle_k$. Let
+$\iota_{\langle\, ,\,\rangle}$ denote the total contraction,
+summed over all unordered pairs with the orientation-line signs.
+The identity $D_0 D_1 + D_1 D_0 = 0$ on $C_3$ is then the
+Chevalley-chain relation
 \[
-d_{CE} \circ \xi_{ij} + \xi_{ij} \circ d_{CE} = 0
+[d_{CE},\iota_{\langle\, ,\,\rangle}]
+= d_{CE}\iota_{\langle\, ,\,\rangle}
++ \iota_{\langle\, ,\,\rangle}d_{CE}=0
 \]
-on the Chevalley complex $C^\bullet_{CE}(\mathfrak{g})$,
-which holds because the Killing form is
+on the suspended Chevalley complex, which holds because the
+Killing form is
 $\operatorname{ad}$-invariant.
-Explicitly, the three contraction--bracket pairs contribute:
+For the generators at hand, the invariant-form cancellations are:
 \begin{align*}
-\langle [e,f], h \rangle_k &= k\,\langle h, h \rangle = 2k, \\
-\langle [e,h], f \rangle_k &= k\,\langle -2e, f \rangle = -2k, \\
-\langle [f,h], e \rangle_k &= k\,\langle 2f, e \rangle = 2k,
+\langle [e,f],h\rangle_k+\langle f,[e,h]\rangle_k
+&= 2k-2k=0, \\
+\langle [f,h],e\rangle_k+\langle h,[f,e]\rangle_k
+&= 2k-2k=0, \\
+\langle [h,e],f\rangle_k+\langle e,[h,f]\rangle_k
+&= 2k-2k=0.
 \end{align*}
-and the signed sum
-$(-1)^{1+2}\cdot 2k + (-1)^{1+3}\cdot(-2k)
-+ (-1)^{2+3}\cdot 2k = -2k - 2k + (-2k)$\ldots\
-but the combinatorial bookkeeping of the alternating signs
-requires care. The clean statement is: $\operatorname{ad}$-invariance
-gives $\langle [x_i, x_j], x_k \rangle + \langle x_j,
-[x_i, x_k] \rangle = 0$ for all $i,j,k$, and this identity
-applied systematically to the three pairs ensures the
-total $D_1 D_0$ contribution on the corolla vanishes.
+These are the three faces of the mixed codimension-two boundary,
+with the suspension and orientation signs already included in
+$\iota_{\langle\, ,\,\rangle}$. Thus the total $D_1D_0$
+contribution on the corolla vanishes.
 The na\"ive tree-level computation of Steps~1--2 missed
 the operadic signs from the corolla expansion; the Chevalley
 identity accounts for them.
@@ -568,18 +570,16 @@ OPE) gives a double pole at $z = 0$, so the residue of
 $\kappa/(z^2 \cdot z) = \kappa/z^3$ vanishes by the
 residue theorem (the Laurent expansion has no $z^{-1}$
 term from the Heisenberg OPE alone). The regular part of the
-OPE, including the normal-ordered product $:b(z)\,b(0):$,
-contributes a first-order pole at $z = 0$ after the $1/z$
-propagator weight. We obtain:
+OPE is the normal-ordered product
+$:b(z,t)\,b(0,t'):$; multiplying by the propagator weight
+$1/z$ extracts its constant term in the $z$-expansion. Thus
+the singular Heisenberg contraction contributes no boundary
+term, and the mixed residue is
 \begin{equation}\label{eq:mu-mix-explicit}
 \mu_{\mathrm{mix}}\bigl(b(z,t),\, b(0,t')\bigr)
 \;=\;
-\Theta(t-t') \cdot \frac{\kappa}{2\pi}\,
-\partial_z \bigl|_{z=0}(z^{-1})
-\;+\;
-\Theta(t-t') \cdot
-\frac{1}{2\pi}\,
-{:}\partial_z b(z) \cdot b(0){:}\big|_{z=0}.
+\frac{\Theta(t-t')}{2\pi}\,
+{:}b(0,t)\,b(0,t'){:}.
 \end{equation}
 The Heaviside factor $\Theta(t-t')$ enforces
 that the bulk field acts on the boundary field only when $t > t'$
@@ -636,41 +636,47 @@ on the tensor product (the bar differential is a coderivation).
 propagator.}
 Verification: that no operation
 $\beta_{\mathrm{bdy}} \to a_{\mathrm{bulk}}$ exists:
-there is no boundary-to-bulk map. Consider a hypothetical
+there is no boundary-to-bulk residue map. Consider a hypothetical
 reverse operation $\mu_{\mathrm{rev}} \colon
 \cE^{\mathrm{op}} \otimes \cE^{\mathrm{cl}} \to
-\cE^{\mathrm{cl}}$ sending a boundary field to a bulk field.
-Such an operation would require the propagator to carry
-information from the boundary $\{z = 0\} \times \R$ into
-the bulk $\C \times \R$. The propagator~\eqref{eq:mixed-propagator}
-has the form $K(z,t) = \Theta(t)/(2\pi z)$. Two obstructions
-prevent a boundary-to-bulk map:
+\cE^{\mathrm{cl}}$ with closed output in the interior
+$z \neq 0$. Such an operation would require a $Q$-Green kernel
+whose singular support lands on an interior collision divisor.
+The propagator~\eqref{eq:mixed-propagator} has the opposite
+analytic support:
+\[
+\operatorname{supp} K \subset \{t-t'\geq 0\},
+\qquad
+\operatorname{sing\,supp}(\bar\partial_z K)
+\subset \{z=0,\;t-t'\geq 0\}.
+\]
+Two obstructions prevent a boundary-to-bulk operation:
 \begin{enumerate}[label=\textup{(\alph*)}]
 \item \emph{Support condition.} The Heaviside function
  $\Theta(t-t')$ restricts the propagator to $t > t'$: the
  bulk time coordinate $t$ must exceed the boundary time
- coordinate $t'$. A reverse map would require $t' > t$, but
- $\Theta(t'-t) = 1 - \Theta(t-t')$ would require the
- \emph{anti-time-ordered} propagator, which is not the
- retarded Green's function of the HT operator
- $Q = \bar\partial_z + d_t$.
+ coordinate $t'$. A reverse operation would require the
+ opposite retarded support $\{t'-t\geq 0\}$, hence the
+ advanced kernel, which is not the Green kernel chosen for
+ the HT operator $Q = \bar\partial_z + d_t$.
 
 \item \emph{Holomorphic support.} The factor $1/z$ in the
- propagator is holomorphic in $z$ away from $z = 0$: it
- propagates from the boundary ($z = 0$) into the bulk
- ($z \neq 0$) in the holomorphic direction. A reverse map
- would require a propagator that starts in the bulk and
- arrives at the boundary. But the boundary $\{z = 0\}$ is
- a \emph{source}, not a \emph{sink}, for the holomorphic
- propagator: the OPE singularity structure places the pole at
- the boundary, and holomorphic functions propagate outward from
- their poles. There is no anti-holomorphic propagator
- $1/\bar{z}$ in the HT theory (the differential
- $Q = \bar\partial + d_t$ is holomorphic-topological, not
- holomorphic-antiholomorphic).
+ propagator is holomorphic on $\C^\times$. Its only
+ $\bar\partial$-singularity is the boundary divisor $z=0$,
+ so residue extraction pushes an interior field to the
+ boundary. A closed-output reverse map would need a pole on an
+ interior collision divisor after the boundary variable is
+ integrated out; no such pole exists. Equivalently, the kernel
+ is $Q$-closed on $\C^\times \times \R$ and has no
+ anti-holomorphic partner $1/\bar z$ in the HT theory.
 \end{enumerate}
 
-Axiom~5 (strict directionality) is a consequence of the propagator $K(z,t) = \Theta(t)/(2\pi z)$: the retarded Green's function of $Q = \bar\partial_z + d_t$ permits bulk-to-boundary transmission but not the reverse.
+For this mixed-sector model, Axiom~5 is realised analytically by
+the support of $K(z,t) = \Theta(t)/(2\pi z)$: the retarded
+Green kernel supplies the bulk-to-boundary residue and supplies
+no kernel with closed output. The global no-open-to-closed rule
+remains the coloured-stratum condition of the Swiss-cheese
+dioperad.
 \end{example}
 
 \begin{remark}[The mixed-sector and the open-closed map]
@@ -1564,29 +1570,32 @@ Feynman transform. The following theorem states their
 derived/coderived comparison.
 
 \begin{theorem}[Flat-derived / curved-coderived comparison under
-Positselski hypotheses; \ClaimStatusProvedHere]
+Positselski hypotheses; \ClaimStatusConditional]
 \label{thm:derived-coderived-full}
 \index{derived--coderived comparison|textbf}
 Let $\cA$ be a logarithmic $\SCchtop$-algebra with modular bar
 datum~$C$. Suppose that the factorization model over the mixed
 holomorphic-topological Ran geometry is a filtered curved
 factorization model in the sense of the coderived framework of
-Volume~I, and suppose that the chiral exponential map $\Phi_g$
-has been constructed as a filtered morphism in the curved
-coalgebra/coderived category whose associated graded map is the
-identity and whose curvature compatibility is
-$\dfib^{\,2}=\kappa(\cA)\omega_g\,\id$. If the Positselski
-bounded-filtered criterion applies to its cone in the curved
-coderived category, then
+Volume~I. Suppose also that the corrected holomorphic model
+$(\barB_{\mathrm{hol}}^{(g)}(\cA),D^{(g)})$ has been constructed
+and that the chiral exponential map has been constructed as a
+filtered coalgebra comparison
 \[
 \Phi_g\colon
-(\gr_F^g\Bmod(C),D_0)
+(\barB_{\mathrm{hol}}^{(g)}(\cA),D^{(g)})
 \longrightarrow
-(\barB^{(g)}(\cA),\dfib)
+(\barB_{\mathrm{Ar}}^{(g)}(\cA),\dfib)
 \]
-is an isomorphism in the coderived category. The source carries
-the ordinary flat-derived invariant package; the target is its
-curved coderived representative.
+whose associated graded map is the identity and whose curvature
+compatibility is
+$\dfib^{\,2}=\kappa(\cA)\omega_g\,\id$. If the Positselski
+bounded-filtered criterion applies to its cone in the curved
+coderived category, then $\Phi_g$ is an isomorphism in that
+coderived category. Composed with the flat-to-holomorphic gauge
+comparison from the relative Feynman skeleton, it identifies the
+ordinary flat-derived invariant package with its curved Arakelov
+coderived representative.
 
 At genus~$1$ this is the explicit Arakelov/Legendre computation.
 For $g>1$ the statement depends on the higher-genus chiral
@@ -1604,17 +1613,19 @@ propagator has a curvature component
 $\dfib^{\,2}=\kappa(\cA)\cdot\omega_g$, so the target belongs
 to the coderived rather than ordinary derived category.
 
-By hypothesis, $\Phi_g$ is a filtered morphism in the curved
-coalgebra/coderived category from the flat associated-graded model
-to the curved factorization model, and its associated graded is the
-identity. Its cone is therefore a filtered curved cone with acyclic
-associated graded. When the bounded-filtered Positselski criterion
-applies to this curved cone, the cone is coacyclic. Hence $\Phi_g$
-becomes an isomorphism in the coderived category. The genus-one
-statement is the case in which the normalized Arakelov comparison
-supplies the required monodromy calculation directly; the
-higher-genus statement is included only under the named comparison
-and boundedness hypotheses.
+The corrected holomorphic model is the flat global representative:
+it is obtained from the stable-graph skeleton by the prime-form
+gauge comparison and satisfies $(D^{(g)})^2=0$ on the universal
+cover. By hypothesis, $\Phi_g$ is a filtered coalgebra comparison
+from this corrected holomorphic model to the Arakelov curved model,
+and its associated graded is the identity. Its cone is therefore a
+filtered curved cone with acyclic associated graded. When the
+bounded-filtered Positselski criterion applies to this curved cone,
+the cone is coacyclic. Hence $\Phi_g$ becomes an isomorphism in the
+coderived category. The genus-one statement is the case in which
+the normalized Arakelov comparison supplies the required monodromy
+calculation directly; the higher-genus statement is included only
+under the named comparison and boundedness hypotheses.
 \end{proof}
 
 \section{Global and local approaches unified}
@@ -1837,9 +1848,9 @@ presentations of $\delta_\cA$:
 
 \item \textbf{Curved geometric}
  \textup{(}$\dfib^{\,2} = \kappa \cdot \omega_g$\textup{)}\textbf{:}
- the gauge transform $\Ad_{\Phig}(\delta_\cA)$ where
- $\Phig = \exp(\sum_\alpha \talpha \cdot \iotaalpha)$ is the
- chiral exponential map of
+ the Arakelov representative obtained from the corrected
+ holomorphic representative by the filtered comparison
+ $\Phig = \exp(\sum_\alpha \talpha \cdot \iotaalpha)$ of
  Construction~\textup{\ref{constr:chiral-exponential}},
  with $\iotaalpha$ defined by the Arakelov propagator.
  The curvature-transport formula
@@ -1904,10 +1915,11 @@ of the correction introduces the curvature.
 \emph{Comparison of invariant packages:} Parts~(i)--(ii) give isomorphic
 chain complexes (both flat, related by an invertible gauge
 transformation). Part~(iii) gives a curved complex related to the
-flat complex by $\Phig$. Under the bounded-filtered Positselski
-hypotheses of Theorem~\ref{thm:derived-coderived-full}, this is
-the corresponding curved-coderived representative of the same
-flat-derived package.
+corrected holomorphic complex by $\Phig$; its relation to the
+flat skeleton is through the preceding flat-to-holomorphic gauge
+comparison. Under the bounded-filtered Positselski hypotheses of
+Theorem~\ref{thm:derived-coderived-full}, this is the corresponding
+curved-coderived representative of the same flat-derived package.
 \end{proof}
 
 \begin{theorem}[Gauge transport on the Arakelov-representative locus; \ClaimStatusProvedHere]
@@ -2117,24 +2129,27 @@ $k=-2$.
 
 
 Theorem~\ref{thm:derived-coderived-full} uses the chiral
-exponential map $\Phig$ as the filtered comparison from the flat
-bar model to the curved factorization representative. The
-following gives its definition and computes it explicitly at
-genus~$1$ for the Heisenberg algebra.
+exponential map $\Phig$ as the filtered comparison from the
+corrected holomorphic bar model to the curved Arakelov
+factorization representative. The following gives its definition
+and computes it explicitly at genus~$1$ for the Heisenberg algebra.
 
 \begin{construction}[The chiral exponential map]
 \label{constr:chiral-exponential}
 \index{chiral exponential map|textbf}
-\index{gauge transformation!flat to curved|textbf}
+\index{gauge transformation!holomorphic to curved|textbf}
 Let $\cA$ be a logarithmic $\SCchtop$-algebra on a genus-$g$
 surface $\Sigma_g$, with $g \ge 1$. Let
 $\{A_\alpha, B_\alpha\}_{\alpha=1}^{g}$ be a symplectic basis
 of $H_1(\Sigma_g, \Z)$ (the $A$-cycles and $B$-cycles).
-The flat model of the genus-$g$ bar complex is the modular
+The flat skeleton of the genus-$g$ bar complex is the modular
 bar coalgebra $(\Bmod(\cA), D = D_0 + D_1)$ with $D^2 = 0$
-(Theorem~\ref{thm:modular-bar}). The curved model is
-$(\barB^{(g)}(\cA), \dfib)$ with $\dfib^{\,2} = \kappa(\cA)
-\cdot \omega_g$ (the factorization output).
+(Theorem~\ref{thm:modular-bar}). The corrected holomorphic model
+is $(\barB_{\mathrm{hol}}^{(g)}(\cA),D^{(g)})$ with
+$(D^{(g)})^2=0$ on the universal cover. The curved Arakelov model
+is $(\barB_{\mathrm{Ar}}^{(g)}(\cA), \dfib)$ with
+$\dfib^{\,2} = \kappa(\cA)\cdot \omega_g$ (the factorization
+output).
 
 \smallskip\noindent
 \textbf{Period integrals and contraction operators.}
@@ -2162,18 +2177,22 @@ For each $\alpha = 1, \ldots, g$, define:
 
 \smallskip\noindent
 \textbf{The gauge transformation.}
-The \emph{chiral exponential map} is the formal gauge
-transformation
+The \emph{chiral exponential map} is the formal filtered-coalgebra
+gauge comparison
 \begin{equation}\label{eq:chiral-exp-def}
 \Phig
 \;:=\;
 \exp\!\Bigl(\sum_{\alpha=1}^{g}
 \talpha \cdot \iotaalpha\Bigr)
-\;\colon\;
-(\Bmod(\cA),\, D_0 + D_1)
-\;\longrightarrow\;
-(\barB^{(g)}(\cA),\, \dfib).
+\;\in\;
+\Hom_{\mathrm{filt\,coalg}}\!\bigl(
+\barB_{\mathrm{hol}}^{(g)}(\cA),
+\barB_{\mathrm{Ar}}^{(g)}(\cA)\bigr).
 \end{equation}
+It is not a strict chain map from a flat complex to a curved
+complex when $\kappa(\cA)\omega_g\neq 0$; its load-bearing
+statement is the curvature-square formula of
+Proposition~\ref{prop:chiral-exponential-properties}.
 On bar elements of degree~$n$, this acts as:
 \begin{align}\label{eq:chiral-exp-expansion}
 \Phig\bigl([s^{-1}a_1 \,|\, \cdots \,|\, s^{-1}a_n]\bigr)
@@ -2205,14 +2224,15 @@ degree by~$2$ and increases the ``period order'' by~$1$.
 \index{chiral exponential map!properties|textbf}
 Assume the chiral exponential map $\Phig$ of
 Construction~\textup{\ref{constr:chiral-exponential}} is defined
-on the completed filtered bar complex and preserves the pole-order
+from the completed corrected holomorphic bar coalgebra to the
+completed Arakelov bar coalgebra and preserves the pole-order
 filtration. Then:
 \begin{enumerate}[label=\textup{(\roman*)}]
 \item $\Phig$ is invertible as a filtered formal operator, with
  associated graded equal to the identity.
 \item If the cone of $\Phig$ satisfies the bounded-filtered
  Positselski criterion, then $\Phig$ is an isomorphism in the
- coderived category.
+ curved coderived category.
 \item The curvature comparison is a statement about squares:
  \begin{equation}\label{eq:conjugation-formula}
  \bigl(\Phig^{-1} \circ \dfib \circ \Phig\bigr)^2
@@ -2351,7 +2371,7 @@ instead, the Arakelov correction gives:
 \]
 This non-holomorphicity is the source of the curvature.
 The conjugation formula
-(Proposition~\ref{prop:chiral-exponential-properties}(ii)) gives the
+(Proposition~\ref{prop:chiral-exponential-properties}(iii)) gives the
 curvature-square identity
 \begin{equation}\label{eq:curvature-heisenberg-genus1}
 \bigl(\Phi_1^{-1}\dfib\Phi_1\bigr)^2
@@ -2373,9 +2393,8 @@ $\kappa\omega_1$.
 \begin{remark}[The chiral exponential map and the three models]
 \label{rem:chiral-exp-three-models}
 \index{chiral exponential map!and three models}
-The chiral exponential map provides the explicit passage between
-the three chain-level models of
-Remark~\ref{rem:three-models}:
+The passage between the three chain-level models of
+Remark~\ref{rem:three-models} has two typed steps:
 \begin{enumerate}[label=\textup{(\roman*)}]
 \item \textbf{Flat associated graded $\to$ corrected
  holomorphic:} the replacement $1/(z_i - z_j) \leadsto
@@ -2394,10 +2413,11 @@ Remark~\ref{rem:three-models}:
  curvature $\kappa \cdot \omega_g$. This step requires
  global data (the period matrix $\Omega_{ij}$).
 \end{enumerate}
-The chiral exponential map $\Phi_g$ is the composition of both
-steps: it goes directly from the flat associated graded to the
-curved geometric model, with the corrected holomorphic model as
-an intermediate factorisation.
+The chiral exponential map $\Phi_g$ denotes the second typed
+comparison, from the corrected holomorphic model to the curved
+geometric model. The total comparison from the flat associated
+graded to the curved geometric model is the composition of the
+flat-to-holomorphic gauge comparison with $\Phi_g$.
 \end{remark}
 
 
@@ -2434,7 +2454,7 @@ beyond~$m_3$.
 \end{definition}
 
 \begin{theorem}[Classification by finite shadow depth on the Koszul locus;
-\ClaimStatusProvedHere]
+\ClaimStatusConditional]
 \label{thm:classification-shadow-depth}
 \index{classification!by shadow depth|textbf}
 \index{shadow depth!classification theorem|textbf}
@@ -2485,7 +2505,7 @@ and~\textup{\ref*{V1-rem:wild-quiver-boundary}}\textup{)}.
 
 \begin{conjecture}[Existence of Type~H algebras]
 \label{conj:type-H-existence}
-\ClaimStatusOpen.
+\ClaimStatusConjectured
 There exist logarithmic $\SCchtop$-algebras with shadow depth $\dalg(\cA) \geq 2$: algebras whose $\Ainf$ operations $m_k$ for $k \geq 4$ are not determined by $m_2$ and $m_3$ alone. Candidates include non-affine-lineage algebras with OPE poles of order $\geq 3$ and non-central higher residues.
 \end{conjecture}
 
@@ -2609,7 +2629,7 @@ which produces a genuine $m_3$. The Virasoro algebra is
 reduction, which changes the $\Ainf$ structure).
 \end{remark}
 
-\begin{theorem}[Scalar Type~H curvature obstruction; \ClaimStatusProvedHere]
+\begin{theorem}[Scalar Type~H curvature obstruction; \ClaimStatusConditional]
 \label{thm:type-H-curvature-resolution}
 \index{Type~H algebra!curvature resolution|textbf}
 \index{secondary curvature!non-existence|textbf}
@@ -2877,7 +2897,7 @@ $\SCchtop$-algebras is not extracted here.
 \providecommand{\FTrel}{\mathrm{FT}_{\Com_{\mathrm{mod}} / \SCchtop}}
 
 \begin{theorem}[Comparison of global and local bar-complex models under
-the curved comparison hypotheses; \ClaimStatusProvedHere]
+the curved comparison hypotheses; \ClaimStatusConditional]
 \label{thm:three-routes-equivalence}
 Let\/ $\cA$ be a logarithmic\/ $\SCchtop$-algebra with modular
 bar datum~$C$ and modular characteristic~$\kappa(\cA)$. The
@@ -2885,7 +2905,8 @@ global/factorization and local/operadic constructions map to the
 same relative Feynman skeleton. Under the hypotheses of
 Theorem~\ref{thm:derived-coderived-full}, the local flat model
 carries ordinary derived invariants and the global curved model is
-its coderived representative:
+linked to them by the corrected-holomorphic-to-Arakelov
+coderived comparison:
 \begin{enumerate}[label=\textup{(\roman*)}]
 \item \textbf{Global} \textup{(}Factorization, Chapter~\textup{\ref{ch:factorization-swiss-cheese})}: the factorization coalgebra $\barB_{\mathrm{fact}}(\cA)$ on $\Ran^{\mathrm{oc}}_{\mathrm{HT}}(\Sigma_g,I)$, with fiberwise differential~$\dfib$ satisfying $\dfib^{\,2} = \kappa(\cA) \cdot \omega_g$.
 \item \textbf{Local} \textup{(}Operadic, Chapter~\textup{\ref{ch:modular-sc-operad})}: the modular bar coalgebra $\barB_{\mathrm{op}}(\cA) = \Bmod(\cA)$ with flat bicomplex $(D_0, D_1)$ and $D^2 = 0$.
@@ -2901,7 +2922,8 @@ These are related by:
  \textup{(}Construction~\textup{\ref{constr:chiral-exponential})}
  satisfies the bounded-filtered Positselski hypothesis, then
  $\barB_{\mathrm{fact}}(\cA)$ and $\barB_{\mathrm{op}}(\cA)$
- are compared in the coderived category.
+ are compared through the corrected holomorphic model in the
+ coderived category.
 \item On the conilpotent finite-type flat locus where the
  Positselski comparison applies, the coderived and derived
  categories agree on the flat model. For the curved
@@ -2915,7 +2937,7 @@ These are related by:
 \begin{proof}
 Part~(a) is Theorem~\ref{thm:recognition-relative-ft}: the recognition theorem identifies $\Bmod(C)$ with $\FTrel(C)$ as an isomorphism of bigraded complexes with bicomplex structure $(D_0, D_1)$.
 
-Part~(b): the chiral exponential map $\Phi_g$ of Construction~\ref{constr:chiral-exponential} is a filtered map from the flat model $(\Bmod, D_0 + D_1)$ to the curved model $(\barB^{(g)}, \dfib)$. Proposition~\ref{prop:chiral-exponential-properties} identifies the curvature transport and records the extra bounded-filtered Positselski hypothesis required for a coderived isomorphism.
+Part~(b): the chiral exponential map $\Phi_g$ of Construction~\ref{constr:chiral-exponential} is a filtered curved comparison from the corrected holomorphic model $(\barB_{\mathrm{hol}}^{(g)},D^{(g)})$ to the Arakelov curved model $(\barB_{\mathrm{Ar}}^{(g)}, \dfib)$. Composing it with the flat-to-holomorphic gauge comparison relates the relative Feynman skeleton to the curved model. Proposition~\ref{prop:chiral-exponential-properties} identifies the curvature transport and records the extra bounded-filtered Positselski hypothesis required for a coderived isomorphism.
 
 Part~(c): the manuscript-internal Positselski comparison is available
 on the conilpotent finite-type flat locus singled out in Volume~I's
@@ -2978,7 +3000,7 @@ universal holography.
 \section{Synthesis}
 \label{sec:rft-supplement}
 
-\begin{remark}[Relative Feynman transform at K3 x T^2]
+\begin{remark}[\texorpdfstring{Relative Feynman transform at \(\mathrm{K3}\times T^2\)}{Relative Feynman transform at K3 x T2}]
 \label{rem:rft-K3-paramodular}
 The relative Feynman transform specialises at $K3 \times T^2$ to the Deligne-cohomology obstruction in $H^2(\overline{\mathcal{A}_2}, \mathcal{O}^*)$ trivialised uniquely by $\Delta_5$ (weight $5 = 2 + 3$). Bi-based Ran-space datum with averaging $\mathrm{av} = \mathrm{Torelli}_{K3} \circ \mathrm{KugaSatake} \circ j_{\mathrm{Kodaira}}$ bridges the chiral $\mathrm{Ran}(E^{\mathrm{nod,sm}}_{24})$ side and parameter $\overline{\mathcal{A}_2}$ side. Mukai-doubling Koszul conductor $K^{\kappa_{\mathrm{ch}}} = 8$ enters as the relative-transform supertrace invariant.
 \end{remark}

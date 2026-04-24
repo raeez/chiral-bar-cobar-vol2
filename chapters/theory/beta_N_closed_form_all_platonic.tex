@@ -1,52 +1,44 @@
 %% =====================================================================
 %% beta_N_closed_form_all_platonic.tex
 %%
-%% Frontier closure: the exact closed form of the Riccati leading-Laurent
-%% ratio coefficient beta_N for principal W_N, for every N >= 2.
+%% Frontier reduction: the harmonic candidate for the Riccati
+%% leading-Laurent ratio coefficient beta_N for principal W_N.
 %%
-%% Prior state (wn_tempered_closure_platonic.tex):
-%%   * Theorem thm:wn-tempered-all-N: UNCONDITIONAL tempering at every
-%%     finite beta_N for every principal W_{N,c}.
-%%   * Proposition prop:beta-N-closed-form: beta_N = (N+1)(N+2)/2
-%%     (Candidate A, COMMITTED TO, proved for N = 2, 3, conjectured for
-%%     N >= 4).
-%%   * Remark rem:beta-candidate-discriminator: alternative Candidate B
-%%     (N^2 - N + 4) also matches N = 2, 3 but diverges at N = 4
-%%     (15 vs 16).
+%% Input data:
+%%   * Theorem thm:wn-tempered-all-N: tempering at every finite beta_N
+%%     for every principal W_{N,c}.
+%%   * The low-rank identities beta_2 = 6 and beta_3 = 10.
+%%   * Two polynomial interpolants through the low-rank identities:
+%%     (N+1)(N+2)/2 and N^2 - N + 4.
 %%
-%% Present chapter: discriminate between candidates by FIRST-PRINCIPLES
-%% derivation from the Vol II master equation and the Vol II datum
-%% A_4^{W_3} = 10/3 (proposition prop:w3-shadow-leading-asymptotic(3)).
+%% This chapter distinguishes the low-rank interpolants from the
+%% harmonic candidate using the Vol II master equation and
+%% the Vol II datum A_4^{W_3} = 10/3
+%% (proposition prop:w3-shadow-leading-asymptotic(3)).
 %%
-%%   ATTACK. Neither Candidate A nor Candidate B is correct. The
-%%   first-principles derivation yields
+%%   The kappa-ratio scaling conjecture predicts
 %%     beta_N = 12 * (H_N - 1),   where H_N = sum_{j=1}^{N} 1/j,
 %%   giving
 %%     beta_2 = 6    (agrees with both candidates)
 %%     beta_3 = 10   (agrees with both candidates)
-%%     beta_4 = 13   (rules out A = 15, B = 16)
-%%     beta_5 = 77/5 (rules out A = 21, B = 24; also proves beta_N is
-%%                    rational-valued, not integer-valued).
+%%     beta_4 = 13   (excludes A = 15, B = 16)
+%%     beta_5 = 77/5 (excludes A = 21, B = 24; also predicts that
+%%                    beta_N is rational-valued, not integer-valued).
 %%
-%%   HEAL. Candidate A is RETRACTED. The closed form
+%%   The closed form
 %%     beta_N = 12 * (H_N - 1)
-%%   is PROVED from first principles via the kappa-ratio scaling law
+%%   is conditional on the kappa-ratio scaling law
 %%     A_r(W_N) = (kappa(W_N)/kappa(Vir))^{r-3} * A_r(Vir).
-%%   The Vol II tempering theorem thm:wn-tempered-all-N is UNCHANGED
-%%   (beta-independent Stirling dominance applies regardless of the exact
-%%   closed form). The convergence radius closed form UPGRADES to
+%%   The Vol II tempering theorem thm:wn-tempered-all-N uses only
+%%   beta-independent Stirling dominance. The exact convergence radius is
 %%     rho_*^{W_N}(c) = |c| / [12 * (H_N - 1)].
 %%
 %% Labels defined:
-%%   thm:beta-N-closed-form-proved-all-N     (ProvedHere, all N >= 2)
-%%   prop:kappa-ratio-scaling-law             (ProvedHere, load-bearing)
-%%   prop:rho-star-WN-closed-form-upgrade     (ProvedHere, replaces prior)
-%%   cor:candidate-A-B-retracted              (ProvedHere)
-%%   cor:beta-N-rational-not-integer          (ProvedHere)
-%%
-%% Replaces:
-%%   prop:beta-N-closed-form of wn_tempered_closure_platonic.tex
-%%   (Candidate A, (N+1)(N+2)/2, N >= 4 conjectural -- RETRACTED)
+%%   thm:beta-N-closed-form-proved-all-N     (Conjectured, all N >= 2)
+%%   prop:kappa-ratio-scaling-law             (Conjectured, load-bearing)
+%%   prop:rho-star-WN-closed-form-upgrade     (Conditional)
+%%   cor:candidate-A-B-retracted              (Conditional)
+%%   cor:beta-N-rational-not-integer          (Conditional)
 %%
 %% Location: chapters/theory/.
 %% Inputs:
@@ -54,8 +46,8 @@
 %%     (supplies master equation, kappa(W_N), A_4^{W_3} = 10/3, ratio
 %%      identity lem:leading-coefficient-ratio-identity at beta_2 = 6).
 %%   chapters/theory/wn_tempered_closure_platonic.tex
-%%     (supplies thm:wn-tempered-all-N unconditional and prop:rho-star-WN
-%%      closed form at candidate A -- superseded here).
+%%     (supplies thm:wn-tempered-all-N and the finite-beta tempering
+%%      infrastructure).
 %%   Vol I shadow_tower_higher_coefficients.tex thm:shadow-tower-asymptotic-
 %%      closed-form (A_r(Vir) = 8(-6)^{r-4}/r closed form, disjoint
 %%      verification source).
@@ -65,33 +57,32 @@
 %%   compute/tests/test_beta_N_closed_form.py (17 tests, 3 HZ-IV
 %%                                              decorated paths)
 %%
-%% The STRONGEST honest form is proved here:
-%% The conjectural regime (N >= 4) is PROVED, not scope-restricted. The
-%% prior candidate (A) is RETRACTED without weakening the tempering theorem,
-%% whose unconditionality is independent of the closed form of beta_N.
+%% The finite-beta tempering theorem is independent of the exact closed
+%% form of beta_N; the harmonic formula is the current all-rank
+%% conjectural arithmetic refinement.
 %% =====================================================================
 
-\chapter{Closed form $\beta_N = 12(H_N - 1)$: first-principles derivation
+\chapter{Harmonic candidate $\beta_N = 12(H_N - 1)$: scaling-law frontier
 for every $N \ge 2$}
 \label{ch:beta-N-closed-form-all}
 
-\section*{Statement of the closure}
+\section*{Statement of the frontier}
 
 The preceding chapter
 (Chapter~\ref{ch:wn-tempered-closure}, Theorem~\ref{thm:wn-tempered-all-N})
-proved $\cW_N$ tempering unconditionally for every $N \ge 2$ at every
-finite $\beta_N$, and committed to the minimal-combinatorial extension
-$\beta_N = (N+1)(N+2)/2$ (Candidate A) for $N \ge 4$. A competing
-Candidate B ($\beta_N = N^2 - N + 4$) also matched both proved data
-points $\beta_2 = 6, \beta_3 = 10$.
+proved $\cW_N$ tempering for every $N \ge 2$ at every
+finite $\beta_N$. The low-rank data $\beta_2 = 6$ and $\beta_3 = 10$
+also admit two false extrapolations: the triangular formula
+$\beta_N = (N+1)(N+2)/2$ and the quadratic formula
+$\beta_N = N^2 - N + 4$.
 
-The present chapter settles the discrimination by \emph{first-principles}
-computation.
+The present chapter isolates the all-rank discrimination to a single
+scaling-law conjecture and records the consequences of that conjecture.
 
 \begin{center}\begin{minipage}{0.88\linewidth}
-\textbf{Main theorem
-(Theorem~\ref{thm:beta-N-closed-form-proved-all-N}).}
-\emph{First-principles closed form of $\beta_N$.} For every integer
+\textbf{Main conjecture
+(Conjecture~\ref{thm:beta-N-closed-form-proved-all-N}).}
+\emph{Harmonic closed-form candidate for $\beta_N$.} For every integer
 $N \ge 2$,
 \[
   \beta_N \;=\; 12 \cdot (H_N - 1)
@@ -104,12 +95,13 @@ particular,
   \beta_4 = 13, \qquad \beta_5 = \tfrac{77}{5}, \qquad
   \beta_6 = \tfrac{87}{5}, \qquad \ldots
 \]
-\emph{Consequence.} Candidate A $\bigl(\beta_N = (N+1)(N+2)/2\bigr)$ and
-Candidate B $\bigl(\beta_N = N^2 - N + 4\bigr)$ are \textbf{both} RULED
-OUT at $N = 4$ (where the true value $13$ differs from both
-$15$ and $16$). The true $\beta_N$ is RATIONAL, not integer, for
-$N \ge 5$.
-\emph{Upgraded convergence radius.}
+\emph{Conditional consequence.} If the harmonic law holds, the triangular formula
+$\beta_N = (N+1)(N+2)/2$ and the quadratic formula
+$\beta_N = N^2 - N + 4$ are both excluded at $N = 4$: the harmonic
+value is $13$, whereas the two polynomial values are $15$ and $16$.
+The resulting $\beta_N$ is rational, not integer, for
+$N \ge 5$ if the harmonic law holds.
+\emph{Conditional exact convergence radius.}
 \[
   \rho_*^{\cW_N}(c)
   \;=\;
@@ -119,34 +111,36 @@ $N \ge 5$.
   \;=\;
   \frac{\lvert c \rvert}{12 \sum_{j = 2}^{N} 1/j}.
 \]
-\emph{Tempering theorem unchanged.} Theorem~\ref{thm:wn-tempered-all-N}
-remains unconditional; the Stirling dominance is $\beta$-independent,
-and the new closed form only refines the convergence radius.
+\emph{Tempering theorem.} Theorem~\ref{thm:wn-tempered-all-N}
+uses only finite $\beta_N$ and Stirling dominance; the harmonic closed
+form supplies a conditional exact convergence radius.
 \end{minipage}\end{center}
 
-The derivation uses Vol II's explicit datum
+The evidence starts from Vol II's explicit datum
 $A_4^{\cW_3} = 10/3$
 (Proposition~\ref{prop:w3-shadow-leading-asymptotic}(3)) together with
 the Vol I Virasoro leading-Laurent closed form $A_r(\mathrm{Vir}) =
 8(-6)^{r-4}/r$ (Theorem thm:shadow-tower-asymptotic-closed-form of
 \texttt{shadow\_tower\_higher\_coefficients.tex}). These two disjoint
-inputs, combined through the master equation of
-Proposition~\ref{prop:w3-shadow-leading-asymptotic}, FORCE the scaling
-law $A_r(\cW_N) = (\kappa(\cW_N)/\kappa(\mathrm{Vir}))^{r-3} \cdot
-A_r(\mathrm{Vir})$, which in turn determines $\beta_N$ uniquely.
+inputs are consistent with the scaling law
+$A_r(\cW_N) = (\kappa(\cW_N)/\kappa(\mathrm{Vir}))^{r-3} \cdot
+A_r(\mathrm{Vir})$.  They do not prove it.  The missing finite-rank
+bridge is the direct computation of
+$A_5^{\cW_4}/A_4^{\cW_4}$ from the full $\cW_4$ Miura OPE.
 
 \section{The $\kappa$-ratio scaling law}
 \label{sec:kappa-ratio-scaling-law}
 
-The load-bearing structural fact is that the full-shadow leading-Laurent
+The load-bearing structural conjecture is that the full-shadow leading-Laurent
 coefficient at the $\cW_N$ level scales from the Virasoro level by the
-$\kappa$-ratio raised to the power $r-3$. This is the hidden content of
-Vol II's Proposition~\ref{prop:w3-shadow-leading-asymptotic}(3) datum
-$A_4^{\cW_3} = 10/3$, and it uniquely determines $\beta_N$ at all $N$.
+$\kappa$-ratio raised to the power $r-3$. Vol II's
+Proposition~\ref{prop:w3-shadow-leading-asymptotic}(3) datum
+$A_4^{\cW_3} = 10/3$ is its first non-Virasoro consistency check.  If
+the conjecture holds, it determines $\beta_N$ at all $N$.
 
-\begin{proposition}[$\kappa$-ratio scaling law]
+\begin{conjecture}[$\kappa$-ratio scaling law]
 \label{prop:kappa-ratio-scaling-law}
-\ClaimStatusProvedHere
+\ClaimStatusConjectured
 For every integer $N \ge 2$ and every $r \ge 3$ with $r \ne 4$ mod parity
 channels vanishing, the leading-Laurent coefficient of the full
 $\cW_N$ shadow tower satisfies
@@ -161,47 +155,38 @@ where $A_r(\mathrm{Vir}) = 8(-6)^{r-4}/r$ is the Virasoro value
 (Vol~I \texttt{shadow\_tower\_higher\_coefficients.tex}
 thm:shadow-tower-asymptotic-closed-form) and
 $\kappa(\cW_N)/\kappa(\mathrm{Vir}) = 2(H_N - 1)$.
-\end{proposition}
+\end{conjecture}
 
-\begin{proof}
-Two steps.
+\begin{remark}[Evidence and proof obligation for the scaling law]
+Two facts are proved; one bridge remains open.
 
-\emph{Step~1: base case $r = 4$.} By
+\emph{First proved datum.} By
 Proposition~\ref{prop:w3-shadow-leading-asymptotic}(3) of Vol~II,
-$A_4^{\cW_3} = 10/3$. The Virasoro value is $A_4(\mathrm{Vir}) = 2$
-(from $A_r(\mathrm{Vir}) = 8(-6)^{r-4}/r$ evaluated at $r = 4$:
-$8 \cdot 1 / 4 = 2$).
-
-The ratio is
+$A_4^{\cW_3} = 10/3$. The Virasoro value is
+$A_4(\mathrm{Vir}) = 2$, hence
 \[
   \frac{A_4^{\cW_3}}{A_4(\mathrm{Vir})}
-  \;=\;
+  =
   \frac{10/3}{2}
-  \;=\;
+  =
   \frac{5}{3}
-  \;=\;
-  \frac{\kappa(\cW_3)}{\kappa(\mathrm{Vir})}
-  \;=\;
-  2 (H_3 - 1)
-  \;=\;
-  \frac{5}{3},
+  =
+  \frac{\kappa(\cW_3)}{\kappa(\mathrm{Vir})}.
 \]
-verifying \eqref{eq:kappa-ratio-scaling} at $r = 4, N = 3$ exactly.
+This verifies \eqref{eq:kappa-ratio-scaling} at the single
+non-Virasoro point $(N,r)=(3,4)$.
 
-For general $N$ at $r = 4$, Vol I's
-Theorem thm:w3-t-line-s4-zamolodchikov
-(\texttt{shadow\_tower\_extended\_families.tex})
-gives the $\cW_N$ weight-4 Zamolodchikov norm on the $T$-line
-$S_4(\cW_N, T) = 10/(c(5c + 22))$, hence $A_4(\cW_N, T) = 2$ on the
-$T$-line. The full $\cW_N$ shadow at weight 4 incorporates the $\cW_N$
-line-decomposition weighting by $\kappa$-ratios on each generator line,
-producing $A_4(\cW_N) = (\kappa(\cW_N)/\kappa(\mathrm{Vir})) \cdot 2$
-(the $T$-line piece scaled by the total line-weighted $\kappa$
-normalisation).
+\emph{Second proved datum.} The direct finite-rank $\cW_4$ lane
+calculation uses the top OPE norms \(c/2,c/3,c/4\) for the spin
+\(2,3,4\) lanes.  Its lane contribution is
+\[
+  6+4+3=13,
+\]
+separating the harmonic value from the triangular value \(15\) and the
+quadratic value \(16\).  This is a spin-lane witness, not a Riccati
+bridge.
 
-\emph{Step~2: induction $r \ge 5$.} Given
-\eqref{eq:kappa-ratio-scaling} at $r - 1$, apply the master equation
-(proof of Proposition~\ref{prop:w3-shadow-leading-asymptotic}):
+The full shadow recursion still has the schematic master equation
 \begin{equation}
 \label{eq:master-eqn-class-m}
 S_r(\cW_N)
@@ -210,96 +195,37 @@ S_r(\cW_N)
 \sum_{\substack{j + k = r + 2 \\ 3 \le j \le k < r}}
   f(j, k) \cdot j \cdot k \cdot S_j(\cW_N) \cdot S_k(\cW_N).
 \end{equation}
-At leading order in $c$, the dominant channel is $(j, k) = (3, r-1)$
-with $S_3 = 2$ (universal) and $S_{r-1}(\cW_N) = A_{r-1}(\cW_N) \cdot
-c^{-(r-3)}$. Substituting:
-\[
-  S_r^{\mathrm{lead}}
-  \;=\;
-  -\frac{1}{2 r \cdot c(H_N - 1)}
-  \cdot f(3, r-1) \cdot 3 \cdot (r - 1) \cdot 2 \cdot A_{r-1}(\cW_N)
-  \cdot c^{-(r-3)}.
-\]
-Hence
-\[
-  A_r(\cW_N) \cdot c^{-(r-2)}
-  \;=\;
-  -\frac{6 (r - 1) \cdot f(3, r-1)}{2 r (H_N - 1)}
-  \cdot A_{r-1}(\cW_N)
-  \cdot c^{-(r-2)},
-\]
-i.e.
+To turn the \(\cW_4\) lane witness into a proof of
+\(\beta_4=13\), one must compute the leading coefficients
+\(A_4^{\cW_4}\) and \(A_5^{\cW_4}\) from the full Miura/OPE constants in
+\eqref{eq:master-eqn-class-m}, including the cross-channel and composite
+terms, and verify
 \begin{equation}
-\label{eq:ratio-identity-universal}
-\frac{A_r(\cW_N)}{A_{r-1}(\cW_N)}
-\;=\;
--\frac{6 (r - 1) \cdot f(3, r-1)}{2 r (H_N - 1)}
-\;=\;
--\frac{3 \cdot f(3, r-1)}{r \cdot (H_N - 1)} \cdot (r - 1).
+\label{eq:w4-missing-riccati-bridge}
+  \frac{A_5^{\cW_4}}{A_4^{\cW_4}}
+  =
+  -\frac{52}{5}.
 \end{equation}
-
-At the Virasoro base case $N = 2$, $H_2 - 1 = 1/2$ and
-$A_r(\mathrm{Vir}) / A_{r-1}(\mathrm{Vir}) = -6 (r-1) / r$ by
-Lemma~\ref{lem:leading-coefficient-ratio-identity}. Solving
-\eqref{eq:ratio-identity-universal} for $f(3, r-1)$ at $N = 2$:
+Equivalently, if one uses the \(\kappa\)-scaling prediction
+\(A_4^{\cW_4}= (13/6)\cdot 2=13/3\), the required next coefficient is
 \[
-  -6 (r - 1) / r
-  \;=\;
-  -3 \cdot f(3, r-1) \cdot (r - 1) / (r \cdot (1/2))
-  \;=\;
-  -6 \cdot f(3, r-1) \cdot (r - 1) / r,
+  A_5^{\cW_4}
+  =
+  -\frac{52}{5}\cdot \frac{13}{3}
+  =
+  -\frac{676}{15}.
 \]
-giving $f(3, r-1) = 1$ at $N = 2$. For general $N$, $f(3, r-1)$ is
-determined by the Fateev-Lukyanov cubic OPE coupling on the
-$\cW_N$-generator channels (explicit formula in
-Proposition~\ref{prop:fateev-lukyanov-alpha}); the precise value is
-\begin{equation}
-\label{eq:f-coeff-universal}
-f(3, r-1) \;=\; \bigl( \kappa(\cW_N) / \kappa(\mathrm{Vir}) \bigr)^2
-           \;=\; \bigl( 2(H_N - 1) \bigr)^2.
-\end{equation}
-This follows from the induction hypothesis
-\eqref{eq:kappa-ratio-scaling} at $r - 1$ combined with the
-self-consistency of the master equation: the cubic FL coupling scales
-quadratically in the $\kappa$-ratio because both $S_3$ channels (the
-$T$-channel and the $\cW$-generator channel) are mediated by the same
-$\kappa(\cW_N)$ normalisation, giving a $(\kappa(\cW_N)/\kappa(\mathrm{Vir}))^2$
-prefactor in the full master-equation coefficient.
-
-Substituting \eqref{eq:f-coeff-universal} into
-\eqref{eq:ratio-identity-universal}:
-\begin{align*}
-  \frac{A_r(\cW_N)}{A_{r-1}(\cW_N)}
-  &\;=\;
-  -\frac{3 \cdot (2(H_N-1))^2}{r \cdot (H_N-1)} \cdot (r - 1) \\
-  &\;=\;
-  -\frac{12 (H_N - 1) \cdot (r - 1)}{r}.
-\end{align*}
-This is the same form as the Virasoro case scaled by $2(H_N-1) =
-\kappa(\cW_N)/\kappa(\mathrm{Vir})$. Iterating from
-$A_r(\cW_N) = (\kappa_{\mathrm{ratio}})^{r-3} \cdot A_r(\mathrm{Vir})$
-at $r = 4$ (the base case) yields the claimed scaling
-\eqref{eq:kappa-ratio-scaling} at all $r \ge 4$.
-\end{proof}
-
-\begin{remark}[Why the $\kappa$-ratio enters quadratically]
-\label{rem:kappa-ratio-quadratic}
-The $\kappa$-ratio enters \emph{quadratically} in the effective $f(3, r-1)$
-coefficient of the master equation because the (3, r-1) binary-collision
-channel involves two independent $\cW_N$-shadow insertions, each
-separately normalised by $\kappa(\cW_N)$. The $\kappa(\cW_N)^{-1}$ in
-the master-equation prefactor thus cancels against $\kappa(\cW_N)$
-appearing in each $S$-factor, leaving one net factor of
-$\kappa(\cW_N)/\kappa(\mathrm{Vir})$ per channel insertion. Two
-insertions give $(\kappa_{\mathrm{ratio}})^2$.
+The file \texttt{compute/lib/w4\_beta\_direct.py} records this bridge as
+unverified: the lane computation supplies \(13\), while the full
+Miura/OPE computation of \(A_5^{\cW_4}\) is absent.
 \end{remark}
 
 \section{The closed form $\beta_N = 12(H_N - 1)$}
 \label{sec:beta-N-closed-form-theorem}
 
-\begin{theorem}[First-principles closed form of $\beta_N$]
+\begin{conjecture}[Harmonic closed form of $\beta_N$]
 \label{thm:beta-N-closed-form-proved-all-N}
-\ClaimStatusProvedHere
+\ClaimStatusConjectured
 For every integer $N \ge 2$, the Riccati leading-Laurent ratio coefficient
 $\beta_N$ of the principal $\cW_N$ shadow tower satisfies
 \begin{equation}
@@ -317,9 +243,9 @@ values:
   \beta_5 = \tfrac{77}{5},\quad \beta_6 = \tfrac{87}{5},\quad
   \beta_7 = \tfrac{669}{35}, \ldots
 \]
-\end{theorem}
+\end{conjecture}
 
-\begin{proof}
+\begin{remark}[Conditional derivation from the scaling law]
 By Proposition~\ref{prop:kappa-ratio-scaling-law},
 \[
   A_r(\cW_N) \;=\; \bigl(2(H_N - 1)\bigr)^{r-3} \cdot A_r(\mathrm{Vir}),
@@ -350,48 +276,46 @@ Verification at the proved data:
 \item $N = 3$: $H_3 - 1 = 5/6$, so $\beta_3 = 12 \cdot 5/6 = 10$,
   matching Proposition~\ref{prop:w3-shadow-leading-asymptotic}(4).
 \end{itemize}
-\end{proof}
+\end{remark}
 
-\begin{corollary}[Candidates A and B retracted]
+\begin{corollary}[Polynomial extrapolations excluded]
 \label{cor:candidate-A-B-retracted}
-\ClaimStatusProvedHere
-Both the triangular candidate $\beta_N^{(A)} = (N+1)(N+2)/2$ and the
-quadratic candidate $\beta_N^{(B)} = N^2 - N + 4$ of Chapter~\ref{ch:wn-tempered-closure}
+\ClaimStatusConditional
+Both the triangular formula $\beta_N^{(A)} = (N+1)(N+2)/2$ and the
+quadratic formula $\beta_N^{(B)} = N^2 - N + 4$ of Chapter~\ref{ch:wn-tempered-closure}
 (Proposition~\ref{prop:beta-N-closed-form} and
 Remark~\ref{rem:beta-candidate-discriminator})
-are RULED OUT. At $N = 4$ the correct value is $\beta_4 = 13$, whereas
-Candidate~A predicts $15$ and Candidate~B predicts $16$. The agreement
-at $N = 2, 3$ between Candidates A, B, and the true $\beta_N = 12(H_N-1)$
+are conditionally excluded. At $N = 4$ the harmonic value is $\beta_4 = 13$, whereas
+the triangular formula gives $15$ and the quadratic formula gives $16$.
+The agreement at $N = 2, 3$ between the two polynomial formulas and
+the harmonic candidate $\beta_N = 12(H_N-1)$
 is a \emph{coincidence}: both candidates are quadratic in $N$, and the
-true formula $12(H_N - 1)$ happens to equal a quadratic in $N$ at exactly
+harmonic formula $12(H_N - 1)$ happens to equal a quadratic in $N$ at exactly
 two data points before diverging.
 \end{corollary}
 
 \begin{proof}
-Direct evaluation at $N = 4$:
+Conditional on Conjecture~\ref{thm:beta-N-closed-form-proved-all-N},
+direct evaluation at $N = 4$ gives:
 \begin{align*}
   \beta_4^{(A)} &\;=\; \tfrac{5 \cdot 6}{2} = 15, \\
   \beta_4^{(B)} &\;=\; 16 - 4 + 4 = 16, \\
-  \beta_4^{\mathrm{true}} &\;=\; 12 \cdot (H_4 - 1)
+  \beta_4^{\mathrm{harm}} &\;=\; 12 \cdot (H_4 - 1)
                            = 12 \cdot \tfrac{13}{12}
                            = 13.
 \end{align*}
-All three values are pairwise distinct, and the first-principles
-derivation (Theorem~\ref{thm:beta-N-closed-form-proved-all-N}) selects
-the last. The agreement at $N = 2, 3$ can be traced explicitly: setting
-$12(H_N - 1) = p(N)$ for a quadratic polynomial $p$ with $p(2) = 6,
-p(3) = 10$, the unique interpolating quadratic is $p(N) = N^2 + N$ at
-$N = 2, 3$, whose value at $N = 4$ would be $20$, agreeing with neither
-Candidate A nor Candidate B. Both candidates individually match at two
-points by virtue of having two free coefficients (Candidate A is a
-specific triangular form, Candidate B is a specific quadratic form), but
-since $12(H_N - 1)$ is NOT polynomial in $N$, every quadratic
-interpolation diverges at $N \ge 4$.
+All three values are pairwise distinct, and the harmonic conjecture
+(Conjecture~\ref{thm:beta-N-closed-form-proved-all-N}) selects
+the last. The agreement at $N = 2, 3$ is interpolation without force:
+two values do not determine a quadratic polynomial.  The triangular and
+quadratic formulas are two different polynomial continuations through
+the same two low-rank points, and both miss the harmonic value at the
+first unfixed rank.
 \end{proof}
 
 \begin{corollary}[$\beta_N$ rational, not integer]
 \label{cor:beta-N-rational-not-integer}
-\ClaimStatusProvedHere
+\ClaimStatusConditional
 The closed form $\beta_N = 12(H_N - 1)$ is a rational-valued, not
 integer-valued, function of $N$. The first non-integer value is
 $\beta_5 = 77/5$, with denominator $5$ (since $H_5 = 137/60$ with
@@ -401,6 +325,7 @@ quotient is a non-unit rational.
 \end{corollary}
 
 \begin{proof}
+Conditional on Conjecture~\ref{thm:beta-N-closed-form-proved-all-N},
 $H_N - 1 = \sum_{j = 2}^{N} 1/j$ has denominator equal to
 $\mathrm{lcm}(2, 3, \ldots, N)$ after reduction; multiplying by $12$
 partially clears this denominator. At $N \le 4$, the denominator
@@ -411,10 +336,10 @@ non-integer rational $77/5$. Subsequent $N$ values follow the same
 pattern; see Table~\ref{tab:beta-N-values-extended}.
 \end{proof}
 
-\begin{proposition}[Convergence radius closed form, upgraded]
+\begin{proposition}[Convergence radius closed form]
 \label{prop:rho-star-WN-closed-form-upgrade}
-\ClaimStatusProvedHere
-Under Theorem~\ref{thm:beta-N-closed-form-proved-all-N}, for every
+\ClaimStatusConditional
+Under Conjecture~\ref{thm:beta-N-closed-form-proved-all-N}, for every
 $N \ge 2$ and $c \in \bbR \setminus (\{0\} \cup \cD^{\mathrm{sev}}_{\mathrm{Kac}}(\cW_N))$,
 \[
   \rho_*^{\cW_N}(c)
@@ -449,13 +374,13 @@ the kappa formula $\kappa(\cW_N) = c(H_N - 1)$.
 \begin{table}[h]
 \centering
 \caption{Closed form $\beta_N = 12(H_N - 1)$ across $N = 2, \ldots, 12$.
-Columns: $H_N$, $\beta_N$ (exact rational), $\beta_N$ (decimal).
-Candidate A and B predictions shown for comparison.}
+Columns: $H_N$, $\beta_N$ (exact rational), $\beta_N$ (decimal), and
+the triangular/quadratic polynomial interpolants.}
 \label{tab:beta-N-values-extended}
 \renewcommand{\arraystretch}{1.2}
 \begin{tabular}{|c|c|l|l|c|c|}
 \hline
-$N$ & $H_N$ & $\beta_N$ (exact) & $\beta_N$ (dec.) & Cand. A & Cand. B \\
+$N$ & $H_N$ & $\beta_N$ (exact) & $\beta_N$ (dec.) & Tri. & Quad. \\
 \hline
 $2$ & $3/2$       & $6$             & $6.000$  & $6$   & $6$  \\
 $3$ & $11/6$      & $10$            & $10.000$ & $10$  & $10$ \\
@@ -485,20 +410,21 @@ $\gamma \approx 0.5772$), one has
   \;\approx\;
   12 \log N - 5.07.
 \]
-This LOGARITHMIC growth in $N$ contrasts sharply with the QUADRATIC
-growth predicted by Candidates A ($\beta_N \sim N^2/2$) and B
-($\beta_N \sim N^2$). At $N = 100$: $\beta_{100} \approx 12 \cdot 4.61
-\approx 55.3$, whereas Candidate A would predict $\beta_{100}^{(A)} =
-5151$ (a factor $\sim 93$ larger). The true $\beta_N$ grows much more
-slowly than any polynomial guess.
+This logarithmic growth in $N$ contrasts sharply with the quadratic
+growth predicted by the triangular formula ($\beta_N \sim N^2/2$) and
+the quadratic formula ($\beta_N \sim N^2$). At $N = 100$,
+$\beta_{100} \approx 12 \cdot 4.61 \approx 55.3$, whereas the
+triangular formula gives $\beta_{100}^{(A)} =
+5151$ (a factor $\sim 93$ larger). If the harmonic law holds,
+$\beta_N$ grows much more slowly than any polynomial guess.
 \end{remark}
 
-\section{Tempering theorem: unchanged, now with exact radius}
+\section{Tempering theorem with conditional exact radius}
 \label{sec:tempering-theorem-healed}
 
-\begin{theorem}[Upgraded: Unconditional $\cW_N$ tempering with exact radius]
+\begin{theorem}[$\cW_N$ tempering with conditional exact radius]
 \label{thm:wn-tempered-exact-radius}
-\ClaimStatusProvedHere
+\ClaimStatusConditional
 For every integer $N \ge 2$ and every $c \in \bbR \setminus (\{0\} \cup
 \cD^{\mathrm{sev}}_{\mathrm{Kac}}(\cW_N))$, the principal $\cW_N$ algebra
 $\cW_{N,c}$ satisfies the analytic tempering hypothesis $(\mathrm{H}_S)$:
@@ -510,9 +436,10 @@ $\cW_{N,c}$ satisfies the analytic tempering hypothesis $(\mathrm{H}_S)$:
 \]
 and the chain-level $E_3$-topological structure on the original
 curved-Dunn complex
-(Theorem~\ref{thm:chain-level-e3-original-complex-conditional}) exists
-unconditionally for $\cW_{N,c}$. The ordinary-generating
-convergence radius has the closed form
+(Theorem~\ref{thm:chain-level-e3-original-complex-conditional}) has
+its analytic tempering hypothesis discharged for $\cW_{N,c}$. If
+Conjecture~\ref{thm:beta-N-closed-form-proved-all-N} holds, the
+ordinary-generating convergence radius has the closed form
 \[
   \rho_*^{\cW_N}(c)
   \;=\;
@@ -523,21 +450,24 @@ convergence radius has the closed form
 \end{theorem}
 
 \begin{proof}
-Combine Theorem~\ref{thm:wn-tempered-all-N} (unconditional tempering at
-every finite $\beta_N$ via Stirling dominance) with
-Theorem~\ref{thm:beta-N-closed-form-proved-all-N} (exact closed form
+Combine Theorem~\ref{thm:wn-tempered-all-N} (tempering at every finite
+$\beta_N$ via Stirling dominance) with
+Conjecture~\ref{thm:beta-N-closed-form-proved-all-N} (exact closed form
 $\beta_N = 12(H_N - 1)$). The Stirling argument is $\beta$-independent,
-so the tempering conclusion is unchanged; the closed form only
-refines the convergence radius, which upgrades from
-$|c|/\beta_N^{(\mathrm{candidate A})}$ to $|c|/(12(H_N - 1))$.
+so the tempering conclusion follows before the exact arithmetic of
+$\beta_N$ is used. Conditional on the harmonic closed form, substitution gives
+$|c|/(12(H_N - 1))$.
 \end{proof}
 
-\section{Independent verification (HZ-IV)}
+\section{Computational evidence}
 \label{sec:beta-N-independent-verification}
 
-Three INDEPENDENT verification paths are installed in
+Three scaling-ansatz evidence paths are installed in
 \texttt{compute/tests/test\_beta\_N\_closed\_form.py} with
-\texttt{@independent\_verification} decorators:
+\texttt{@independent\_verification} decorators, and a separate
+finite-rank $\cW_4$ attack is installed in
+\texttt{compute/tests/test\_w4\_beta\_direct.py}; together they test
+the harmonic scaling hypothesis rather than prove it:
 
 \begin{enumerate}[nosep]
 \item \emph{Path (A): Fateev-Lukyanov structure constants via
@@ -548,7 +478,7 @@ Three INDEPENDENT verification paths are installed in
   from \texttt{shadow\_tower\_higher\_coefficients.tex} (disjoint source
   established before and independently of the $\cW_N$ shadow tower).
 
-\item \emph{Path (B): Direct Laurent expansion of master equation.}
+\item \emph{Path (B): Laurent arithmetic under the kappa-scaling ansatz.}
   Derived from: Vol II master equation
   \eqref{eq:master-eqn-class-m}
   and Vol I universal-asymptotic-factor on $T$-line.
@@ -556,86 +486,98 @@ Three INDEPENDENT verification paths are installed in
   $A_r(\cW_N) = (\kappa_{\mathrm{ratio}})^{r-3} A_r(\mathrm{Vir})$
   matching $A_4^{\cW_3} = 10/3$ as the induction base.
 
-\item \emph{Path (C): Riccati-analog recurrence.}
-  Derived from: closed-form formulas for $\beta_N$ and $A_r$ from
-  this theorem.
+\item \emph{Path (C): Riccati-analog recurrence under the harmonic ansatz.}
+  Derived from: conditional formulas for $\beta_N$ and $A_r$ from
+  Conjecture~\ref{thm:beta-N-closed-form-proved-all-N}.
   Verified against: direct arithmetic of
   $A_r(\cW_N) / A_{r-1}(\cW_N)$ at explicit $(N, r)$ pairs
   $N \in \{2, 3, 4, 5, 6, 7\}, r \in \{5, 6, 7, 8, 9, 10, 11\}$.
-  A wrong scaling ansatz would produce INCONSISTENT ratios across $r$;
-  consistency at 42 pairs certifies the closed form.
+  A wrong scaling ansatz would produce inconsistent ratios across $r$;
+  consistency at 42 pairs is evidence for, not a proof of, the closed form.
+
+\item \emph{Path (D): Direct $\cW_4$ spin-lane attack.}
+  Derived from the finite-rank $\cW_4$ OPE normalisations
+  $c/2$, $c/3$, and $c/4$ of the spin-$2$, spin-$3$, and spin-$4$
+  primary lanes.  The lane sum gives $6+4+3=13$, separating the
+  harmonic value from the triangular value $15$ and the quadratic value
+  $16$.  This does not yet compute
+  $A_5^{\cW_4}/A_4^{\cW_4}$ from the full $\cW_4$ Miura OPE; the missing
+  bridge is precisely the independent Riccati proof obligation
+  \eqref{eq:w4-missing-riccati-bridge}. Under the scaling prediction
+  \(A_4^{\cW_4}=13/3\), that bridge would require
+  \(A_5^{\cW_4}=-676/15\).
 \end{enumerate}
 
-\emph{Test coverage.} 17 tests, all passing:
+\emph{Test coverage.} The beta and $\cW_4$ attack tests cover:
 \begin{itemize}[nosep]
 \item Basic unit tests for $H_N$, $\kappa$-ratio (3 tests).
 \item Path (A) tests: known data, $\cW_2 = \mathrm{Vir}$ collapse,
   $\beta_4$ prediction (3 tests, 1 HZ-IV decorated).
-\item Path (B) tests: $A_4^{\cW_3}$, $A_5^{\cW_3}$, $A_5^{\cW_4}$
+\item Path (B) tests: $A_4^{\cW_3}$, $A_5^{\cW_3}$, and the conditional
+  $A_5^{\cW_4}$ value under the kappa-scaling ansatz
   (3 tests, 1 HZ-IV decorated).
 \item Path (C) tests: ratio identity at all $(N, r)$, explicit $N=4$
   match (2 tests, 1 HZ-IV decorated).
-\item Discrimination tests: rule out Candidates A, B at $N=4$; prove
-  rational-not-integer at $N=5$ (4 tests).
+\item Discrimination tests: under the harmonic ansatz, exclude the
+  triangular and quadratic formulas at $N=4$ and detect the first
+  rational non-integer value at $N=5$ (4 tests).
 \item Extrapolation sanity: monotonicity, $\log N$ asymptotic (2 tests).
+\item Direct $\cW_4$ attack tests: spin-lane norms, lane sum
+  $13$, the required Riccati ratio \(-52/5\), and the explicit record
+  that the full-Miura \(A_5^{\cW_4}\) computation remains open.
 \end{itemize}
 
-\section{Closed-form retraction of prior state}
+\section{Polynomial extrapolations excluded}
 \label{sec:retraction-ledger}
 
-The following prior statements are RETRACTED and replaced by the
-first-principles form:
+The following polynomial extrapolations agree with the low-rank data
+only accidentally and are incompatible with the harmonic candidate
+conditional on Conjecture~\ref{thm:beta-N-closed-form-proved-all-N}:
 
 \begin{enumerate}[nosep]
-\item Proposition~\ref{prop:beta-N-closed-form} of
-  Chapter~\ref{ch:wn-tempered-closure} (Candidate A, $(N+1)(N+2)/2$,
-  proved for $N = 2, 3$, conjectured for $N \ge 4$):
-  RETRACTED at the conjectured regime; the proved cases $N = 2, 3$
-  remain correct and are consequences of
-  Theorem~\ref{thm:beta-N-closed-form-proved-all-N}.
+\item The triangular formula $(N+1)(N+2)/2$: conditionally excluded at
+  $N \ge 4$. The coincidences at $N = 2, 3$ remain correct because
+  they are also consequences of
+  Conjecture~\ref{thm:beta-N-closed-form-proved-all-N}.
 
-\item Remark~\ref{rem:beta-candidate-discriminator} of
-  Chapter~\ref{ch:wn-tempered-closure} (Candidate B, $N^2 - N + 4$,
-  adversarial discriminator):
-  Candidate B is also RULED OUT. Both candidates were coincidences of
-  quadratic interpolation at $N = 2, 3$.
+\item The quadratic formula $N^2 - N + 4$: conditionally excluded at
+  $N = 4$. Both candidates were coincidences of low-rank interpolation
+  through $N = 2, 3$.
 
-\item Proposition~\ref{prop:rho-star-WN-closed-form} of
-  Chapter~\ref{ch:wn-tempered-closure}
-  (convergence radius under Candidate A):
-  UPGRADED to Proposition~\ref{prop:rho-star-WN-closed-form-upgrade}
-  with the first-principles form $|c|/[12(H_N - 1)]$.
+\item Any convergence-radius formula using a polynomial denominator:
+  the harmonic candidate gives $|c|/[12(H_N - 1)]$.
 \end{enumerate}
 
 Theorem~\ref{thm:wn-tempered-all-N} of Chapter~\ref{ch:wn-tempered-closure}
-is UNCHANGED; its proof depended only on the $\beta$-independent
-Stirling dominance, not on the exact closed form of $\beta_N$.
+depends only on the $\beta$-independent Stirling dominance, not on the
+exact closed form of $\beta_N$.
 
 \section{Consequences for the platonic programme}
 \label{sec:beta-N-platonic-consequences}
 
-The first-principles closed form $\beta_N = 12(H_N - 1)$ has three
-programme-level consequences.
+The harmonic candidate $\beta_N = 12(H_N - 1)$ has three
+programme-level conditional consequences.
 
 \emph{(1) Harmonic numbers are the universal $\cW_N$ invariant.}
 The formula $\kappa(\cW_N) = c(H_N - 1)$ (Vol~I kappa formula) and the
-formula $\beta_N = 12(H_N - 1)$ (this theorem) differ only in the
+formula $\beta_N = 12(H_N - 1)$ (this conjecture) differ only in the
 scalar prefactor. Both invariants are controlled by the SAME harmonic
 sum $H_N - 1 = \sum_{j=2}^{N} 1/j$, which is the principal $\cW_N$
 line-decomposition data: the sum $1/j$ counts the curvature $\kappa_\ell =
 c/j$ of the $\cW^{(j)}$-line for $j = 2, \ldots, N$. The $\cW_N$
 shadow tower's analytic radius is the harmonic average of its line
-curvatures.
+curvatures, conditional on the scaling law.
 
 \emph{(2) The coincidence at $N = 2, 3$ is quadratic-interpolation
 generic.} Any polynomial-looking closed form that matches two data
 points has multiple candidates; the coincidence with $(N+1)(N+2)/2$
 and $N^2 - N + 4$ at $N = 2, 3$ is a consequence of both being
-quadratic in $N$ with appropriate offsets. The true formula
-$12(H_N - 1)$ is NOT polynomial in $N$, so every polynomial guess
+quadratic in $N$ with appropriate offsets. The harmonic formula
+$12(H_N - 1)$ is not polynomial in $N$, so every polynomial candidate
 eventually diverges.
 
-\emph{(3) The logarithmic $N$-growth is physically natural.}
+\emph{(3) The logarithmic $N$-growth is physically natural if the
+harmonic law holds.}
 $\beta_N \sim 12 \log N$ at large $N$ reflects the fact that higher-rank
 $\cW_N$ algebras have shadow radii $\rho_*(c) \sim |c|/(12 \log N)$
 that SLOWLY SHRINK as $N$ increases. This is consistent with the
@@ -644,7 +586,7 @@ $\beta_\infty = \lim_{N \to \infty} 12 (H_N - 1) = \infty$, so the
 convergence radius vanishes in the $N \to \infty$ limit at every fixed
 $c$. The shadow-tower analytic structure DEGENERATES at
 $\cW_\infty[\mu]$, consistent with
-Remark~\ref{rem:gaberdiel-gopakumar-truncation}
+Remark~\ref{V1-rem:gaberdiel-gopakumar-truncation}
 (Vol~I \texttt{shadow\_tower\_extended\_families.tex}) on the
 Gaberdiel-Gopakumar truncation loci.
 
@@ -654,7 +596,8 @@ rung-$\cW_\infty$ tempering rate]%
 %
 %
 \index{$\beta_N$!chain-level avatar at every rung}%
-The closed form $\beta_N = 12(H_N - 1)$ is the precise
+Conditional on Conjecture~\ref{thm:beta-N-closed-form-proved-all-N},
+the closed form $\beta_N = 12(H_N - 1)$ is the precise
 \emph{tempering rate} attached to the rung-$\cW_N$ corollary
 (\textsf{cor:rung-w-N}) of the universal-holography master theorem
 (\textsf{thm:universal-holography-master} in
@@ -682,37 +625,44 @@ linkage:
  single algebra at infinite rank with uniform Banach norm. The
  $E_\infty$-topological climax is therefore a \emph{tower limit}, not
  a chain-level identity at $\cW_\infty[\mu]$.
-\item The harmonic identity $\kappa(\cW_N) = c(H_N - 1)$ shared by
- the chiral central curvature and the tempering rate
+\item Conditional on the harmonic beta law, the identity
+ $\kappa(\cW_N) = c(H_N - 1)$ shared by the chiral central curvature
+ and the tempering rate
  ($\beta_N = 12(H_N - 1)$) collects the climactic
  $\cW_N$-line geometry into a SINGLE arithmetic invariant: the
  $H_N - 1$ harmonic sum is the \emph{universal $\cW_N$ conductor}
  of the climax (cf.\ \textsf{chap:universal-conductor}).
 \end{itemize}
-This remark records the structural anchor; the closed
-form theorem and tempering rate are unchanged in status.
+This remark records the structural anchor: conditional on the scaling
+law, the harmonic closed form
+sets the finite-rung convergence radius, while the infinite-rank
+horizon is a tower limit.
 \end{remark}
 
 \section{Summary}
 \label{sec:beta-N-summary}
 
 \begin{itemize}[nosep]
-\item Exact closed form proved for every $N \ge 2$:
+\item Harmonic closed form conjectured for every $N \ge 2$:
   $\beta_N = 12(H_N - 1) = 12 \sum_{j=2}^{N} 1/j$
-  (Theorem~\ref{thm:beta-N-closed-form-proved-all-N}).
-\item $\beta_4 = 13$ (NOT 15, NOT 16). Candidates A, B retracted
+  (Conjecture~\ref{thm:beta-N-closed-form-proved-all-N}).
+\item Conditional value $\beta_4 = 13$; the triangular and quadratic interpolants give
+  $15$ and $16$
   (Corollary~\ref{cor:candidate-A-B-retracted}).
-\item $\beta_N$ is rational, not integer, for $N \ge 5$ ($\beta_5 = 77/5$,
+\item Conditional on the harmonic law, $\beta_N$ is rational, not integer, for $N \ge 5$ ($\beta_5 = 77/5$,
   first non-integer).
-\item Convergence radius upgraded to
+\item Conditional convergence radius:
   $\rho_*^{\cW_N}(c) = |c|/[12(H_N - 1)]$
   (Proposition~\ref{prop:rho-star-WN-closed-form-upgrade}).
-\item Tempering theorem (unconditional at every finite $\beta_N$)
-  unchanged.
-\item Three HZ-IV decorated independent verification paths installed
-  at \texttt{compute/tests/test\_beta\_N\_closed\_form.py}.
+\item Tempering theorem: every finite $\beta_N$ is absorbed by
+  Stirling dominance.
+\item Three scaling-ansatz evidence paths are installed at
+  \texttt{compute/tests/test\_beta\_N\_closed\_form.py}; the direct
+  $\cW_4$ finite-rank attack is installed at
+  \texttt{compute/tests/test\_w4\_beta\_direct.py}.
 \end{itemize}
 
-The $\cW_N$ tempering programme is CLOSED: both the tempering statement
-(Chapter~\ref{ch:wn-tempered-closure}) and the exact convergence radius
-(this chapter) are now UNCONDITIONAL for every $N \ge 2$.
+For every finite principal $\cW_N$, the tempering statement
+(Chapter~\ref{ch:wn-tempered-closure}) is proved at every finite
+$\beta_N$; the exact harmonic convergence radius in this chapter is
+conditional on the $\kappa$-ratio scaling law.

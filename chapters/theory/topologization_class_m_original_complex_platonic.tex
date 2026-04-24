@@ -3,14 +3,12 @@
 %%
 %% Scope note:
 %% ------------------------------------------------
-%% The obstruction normalization kappa^{(infty)}_orig = 1/e is not a
-%% current theorem of the manuscript. The current active surface is the
-%% tempered-stratum result in
+%% The factorially normalised Virasoro obstruction vanishes. The active
+%% surface is the tempered-stratum result in
 %% chapters/theory/tempered_stratum_characterization_platonic.tex:
-%% generic Virasoro is tempered, with radius governed by the corrected
-%% Stirling/root estimate. The labels in this file remain only as
-%% dependencies for later comparison statements; the corrected active
-%% proof routes them through the tempered-stratum theorem.
+%% generic Virasoro is tempered, with radius governed by the
+%% Stirling/root estimate. The labels in this file route through the
+%% tempered-stratum theorem and the finite-propagation descent test.
 %% =====================================================================
 %%
 %% Frontier resolution: chain-level E_3-topological structure on
@@ -27,12 +25,12 @@
 %%     to the original complex is exactly a finite-propagation assertion
 %%     for the differential, the BRST primitive G^(2), and the E_3
 %%     structure operations.
-%%   * The former value kappa_orig^(infty)(Vir_c)=1/e was a Stirling
-%%     arithmetic error. For every exponential-polynomial shadow
-%%     envelope |S_r| <= C alpha^r r^M one has
+%%   * For every exponential-polynomial shadow envelope
+%%     |S_r| <= C alpha^r r^M one has
 %%       (|S_r|/r!)^(1/r) <= C^(1/r) alpha r^(M/r) e/r -> 0.
 %%     Generic Virasoro is therefore tempered by the ratio-test theorem
-%%     of the companion tempered-stratum chapter.
+%%     of the companion tempered-stratum chapter. Principal W_N tempering
+%%     is supplied by the W_N closure theorem.
 %%
 %% Labels defined:
 %%   def:kac-shapovalov-norm (KS-rho Banach norm)
@@ -40,11 +38,13 @@
 %%       does not prove a uniform spectral gap)
 %%   prop:shadow-decay-class-m (Stirling-normalised obstruction vanishes
 %%       under the Virasoro exponential-polynomial shadow envelope)
+%%   conj:shadow-decay-class-m-full-family (compatibility label for the
+%%       proved principal W_N finite-envelope theorem)
 %%   thm:chain-level-e3-original-complex-conditional
 %%       (finite-propagation descent from the Banach model to the raw
 %%       original complex)
 %%   thm:chain-level-e3-original-complex-obstruction-generic-class-m
-%%       (healed Virasoro obstruction class: zero, not 1/e)
+%%       (Virasoro factorial obstruction vanishes)
 %%   cor:class-m-original-complex-dichotomy (healed tempered/finite-
 %%       propagation partition)
 %%
@@ -63,54 +63,27 @@ for class $\mathsf{M}$ at generic $c$}
 
 \begin{remark}[\label{rem:original-complex-scope-correction}%
 Scope correction for the original-complex obstruction]
-\ClaimStatusProvedHere
-The DICHOTOMY framing of this chapter (tempered YES / generic
-$\mathrm{Vir}_c$ NO, with obstruction
-$\kappa^{(\infty)}_{\mathrm{orig}}(\mathrm{Vir}_c) = 1/e > 0$)
-is replaced on the active surface by the corrected tempered-stratum
-theorem.
-
-\emph{Ghost.} At generic $c$, the shadow sequence $S_r(\mathrm{Vir}_c)$
-has only polynomial decay; therefore the ordinary generating radius
-$\rho_*$ and the tempered-stratum analytic norm converge in an
-annular regime tied to~$c$.
-
-\emph{Wrong.} The claim
-$\limsup_r (\lvert S_r(\mathrm{Vir}_c) \rvert / r!)^{1/r} = 1/e > 0$
-conflated the Stirling factor $(r!)^{-1/r} \sim e/r$ with the answer
-$1/e$. The Stirling factor belongs in the DENOMINATOR of the
-$1/r$-root and produces a factor $\to 0$ as $r \to \infty$; the
-claimed obstruction $1/e$ cannot emerge from any polynomial
-lower bound on $\lvert S_r \rvert$.
-
-\emph{Correct.} The Stirling cancellation gives
+\ClaimStatusConditional
+At generic $c$, the shadow sequence $S_r(\mathrm{Vir}_c)$ has an
+exponential-polynomial envelope. The Stirling cancellation gives
 $(\lvert S_r(\mathrm{Vir}_c) \rvert / r!)^{1/r}
  \le (\beta_{\mathrm{Vir}} / \lvert c \rvert) \cdot (e/r) \cdot
  (C r^{O(1)})^{1/r} \to 0$
 at every fixed generic $c$. Every generic $\mathrm{Vir}_c$ is
-\emph{tempered} without obstruction. The chain-level
-$E_3$-topological structure on the original complex exists
-unconditionally on the non-logarithmic $C_2$-cofinite standard
-landscape, via the Banach completion $\mathcal{B}_{\rho}(A)$ at
-$\rho < \lvert c \rvert / 6$; this is
-Theorem~\ref{thm:tempered-stratum-contains-virasoro} in the
-companion chapter
-\texttt{tempered\_stratum\_characterization\_platonic.tex}.
+\emph{tempered}. The Banach $E_3$-topological structure exists for
+$\rho < \lvert c \rvert/6$ by
+Theorem~\ref{thm:tempered-stratum-contains-virasoro} and
+Theorem~\ref{thm:chain-level-e3-original-complex-conditional}. Raw
+direct-sum descent is the finite-propagation condition of the same
+theorem.
 
-The current inscription is
-Theorem~\ref{thm:programme-climax}
-(Chapter~\ref{chap:programme-climax-platonic}).
-
-The dichotomy statements below
+The labels below
 (Propositions~\ref{prop:kac-shapovalov-eigenvalue-asymptotic},
 \ref{prop:shadow-decay-class-m};
 Theorems~\ref{thm:chain-level-e3-original-complex-conditional},
 \ref{thm:chain-level-e3-original-complex-obstruction-generic-class-m};
 Corollary~\ref{cor:class-m-original-complex-dichotomy}) are
-retained as comparison labels for the analytic lane; the current
-surface proves the corrected implication by routing the conclusion
-through the tempered-stratum theorem rather than through the
-$1/e$ obstruction normalization.
+the analytic lane for this conclusion.
 \end{remark}
 
 \section*{Statement of the frontier}
@@ -140,14 +113,15 @@ studied:
       (Lemma~\ref{lem:finite-truncation-is-complex}). This is the
       building block of the weight-completed ambient.
 \end{enumerate}
-The present chapter resolves the single remaining frontier of the
-programme on the non-degenerate locus: whether there exists a
-chain-level $E_3$-topological structure on the derived chiral centre
+The present chapter isolates the non-degenerate-locus question:
+whether there exists a chain-level $E_3$-topological structure on the
+derived chiral centre
 $\cZ^{\mathrm{der}}_{\mathrm{ch}}(\cA)$ for class~$\mathsf{M}$ at
 generic central charge that lives on the \emph{original} complex
 $\bigoplus_{r \ge 0} \mathrm{TCo}^{\bullet}_{g, r}(\cA)$, that is,
 a structure that is neither weight-completed nor merely
-weight-by-weight finite. We answer with a precise dichotomy.
+weight-by-weight finite. The answer splits into Banach convergence
+and finite propagation.
 
 \begin{center}\begin{minipage}{0.85\linewidth}
 \textbf{Resolution.} The Banach or weight-completed model carries the
@@ -162,7 +136,8 @@ density of the direct sum inside a completion is not enough, since
 continuous operations on a completion need not preserve a dense
 subspace.
 
-The earlier value $1/e$ is not an obstruction. If
+The factorially normalised root is zero for every
+exponential-polynomial shadow envelope. If
 $|S_r|\le C\alpha^r r^M$, then Stirling gives
 \[
   \left(|S_r|/r!\right)^{1/r}
@@ -183,7 +158,7 @@ exactly when the completed differential, the BRST primitive, and the
 $E_3$ structure operations preserve finite conformal-weight support.
 For generic Virasoro the Stirling-normalised obstruction vanishes; any
 remaining obstruction to a raw-direct-sum $E_3$ structure is therefore
-not the number $1/e$ but the finite-propagation condition itself.
+the finite-propagation condition itself.
 
 \section{The Kac--Shapovalov norm on the original complex}
 \label{sec:kac-shapovalov-norm}
@@ -241,25 +216,16 @@ is $\rho \in (0, 1]$: on this range, the norm is sensitive to the
 precise decay rate of the shadow tower $\{S_r(\cA)\}_{r \ge 2}$.
 \end{remark}
 
-\begin{proposition}[Kac--Shapovalov smallest-eigenvalue asymptotic]
+\begin{proposition}[Kac--Shapovalov determinant non-control]
 \label{prop:kac-shapovalov-eigenvalue-asymptotic}
 \ClaimStatusProvedHere
 Let $\cA = \mathrm{Vir}_c$ at generic $c \notin \cD_{\mathrm{Kac}}$.
-The smallest eigenvalue $\lambda_{\min}\bigl(G_N(\mathrm{Vir}_c)\bigr)$
-of the weight-$N$ Kac--Shapovalov matrix satisfies
-\[
-  c_{\min}(c)
-  \;\le\;
-  \lvert \lambda_{\min}(G_N)(c) \rvert
-  \;\le\;
-  C_{\min}(c)
-  \qquad (N \ge N_0(c)),
-\]
-for positive constants $c_{\min}(c), C_{\min}(c)$ depending only on
-$c$. In particular $\lambda_{\min}(G_N)(c)$ does \emph{not} grow with
-$N$ at generic~$c$: a naive geometric-series argument using the
-Kac--Shapovalov norm will not deliver convergence through
-spectral-gap growth alone.
+The Kac determinant formula determines the product of the eigenvalues
+of the weight-$N$ Kac--Shapovalov matrix $G_N(\mathrm{Vir}_c)$, but it
+does not determine a uniform lower bound for the least singular value
+of $G_N(\mathrm{Vir}_c)$ as $N$ varies. Consequently no bounded
+homotopy estimate for the KS-$\rho$ Banach norm may be inferred from
+the determinant formula alone.
 \end{proposition}
 
 \begin{proof}
@@ -273,216 +239,146 @@ Recall the Kac determinant at weight $N$:
 with Kac weights
 $h_{r, s}(c) = \frac{(r \alpha_+ + s \alpha_-)^2 - (\alpha_+ + \alpha_-)^2}{4}$
 and $\alpha_\pm(c) = \frac{1 \pm \sqrt{1 - c/24}}{2}$ (Kac--Raina
-1987, Ch.~8). At generic $c$ and $h = 0$ (the vacuum module), the
-determinant evaluates to a non-zero rational function of $c$, with
+1987, Ch.~8). At generic $c$ and $h=0$ this determinant is non-zero,
+so $G_N(\mathrm{Vir}_c)$ is non-degenerate in each finite weight.
+
+Non-degeneracy is the whole conclusion obtained from the determinant.
+For any $D>0$ and any $0<\varepsilon<1$, the diagonal matrices
 \[
-  \bigl\lvert \det G_N(\mathrm{Vir}_c)(0) \bigr\rvert
-  \;\sim\;
-  C_1(c) \cdot (N!)^{\mathrm{const}}(c)
+  A_\varepsilon=\operatorname{diag}
+  \bigl(\varepsilon, D/\varepsilon, 1,\ldots,1\bigr),
+  \qquad
+  A_1=\operatorname{diag}(1,D,1,\ldots,1)
 \]
-as $N \to \infty$, by explicit asymptotic evaluation of the product
-$\prod_{r s \le N} (h_{r, s})^{P(N - r s)}$ and Hardy--Ramanujan
-growth of $P(m)$. However, the \emph{smallest} eigenvalue does not
-grow: $G_N$ has rank $p(N) = \dim \mathbf{B}^{\mathrm{mod}}_N$, and
-writing
-\[
-  \det G_N \;=\; \prod_{k = 1}^{p(N)} \lambda_k(G_N),
-\]
-the product of the eigenvalues grows factorially while the number of
-eigenvalues grows with $p(N) \sim \exp(\pi \sqrt{2 N / 3})$ by the
-Hardy--Ramanujan asymptotic. Hence the \emph{geometric mean} of
-the eigenvalues grows only slowly:
-\[
-  \bigl(\det G_N\bigr)^{1 / p(N)}
-  \;\sim\;
-  C_2(c) \cdot
-     \exp\Bigl(
-       \tfrac{\mathrm{const}(c) \cdot \ln N!}{p(N)}
-     \Bigr)
-  \;\sim\;
-  C_2(c) \cdot
-     \exp\bigl(
-       \mathrm{const}(c) \cdot
-       \sqrt{N / \ln N}\,
-     \bigr).
-\]
-The \emph{smallest} eigenvalue is bounded above by this geometric
-mean, and so grows at most sub-exponentially. It is bounded
-\emph{below} by a positive constant (depending on $c$) because: at
-generic $c$ the Kac weights $h_{r, s}(c)$ are separated from the
-vacuum weight $h = 0$ by a positive amount
-$\delta(c) := \min_{r, s \ge 1} \lvert h_{r, s}(c) \rvert > 0$, and
-the eigenvalue estimate
-\[
-  \lambda_{\min}(G_N)(0)
-  \;\ge\;
-  c_3(c) \cdot \prod_{r, s \ge 1,\; r s \le N} \delta(c)^{P(N - r s)}
-\]
-(standard singular-vector analysis: each Kac factor
-$(0 - h_{r, s}(c))$ contributes a factor of at least
-$\delta(c)^{P(N - r s)}$ to the smallest eigenvalue, uniformly in
-$N$) gives a product bounded below by a positive constant independent
-of $N$, provided $\delta(c) \ge 1$; for $\delta(c) < 1$ the product
-decays in $N$ but stays positive. Combining the upper and lower
-estimates yields the two-sided bound claimed.
+have the same determinant $D$ and the same dimension, but their least
+singular values are $\varepsilon$ and $1$. Thus determinant and
+dimension do not bound the least singular value from below. The
+finite Kac--Shapovalov matrices are more structured than arbitrary
+diagonal matrices, but the determinant formula by itself records only
+the product of eigenvalues; it supplies no analytic estimate on the
+condition number or on the inverse modular Laplacian. A bounded
+chain-homotopy estimate must therefore be proved by an independent
+continuity or finite-propagation argument.
 \end{proof}
 
-\begin{remark}[Interpretation]
+\begin{remark}[Spectral-gap estimates are additional data]
 \label{rem:why-no-naive-geometric-series}
 Proposition~\ref{prop:kac-shapovalov-eigenvalue-asymptotic} is a
-structural obstruction: the smallest eigenvalue of the
-Kac--Shapovalov pairing is \emph{not} growing in $N$ at generic~$c$,
-so a chain-level lift of the weight-completion homotopy
-$h_N = (d_0)^{-1}$ (defined on each finite truncation via
-Lemma~\ref{lem:finite-truncation-is-complex}) does \emph{not}
-assemble into a bounded operator on the original complex via
-geometric-series summation. The construction of the homotopy $h_N$
-requires inversion of the modular Laplacian, and the norm of this
-inverse is bounded by $\lambda_{\min}(G_N)^{-1}$ which is bounded
-\emph{above} by a positive constant, not below; so no
-geometric-series bound on $\|h_N\|$ applies. The naive convergent
-chain-homotopy construction fails at precisely this estimate.
+negative analytic lemma. It rules out one proof strategy: deriving a
+bounded inverse to the modular Laplacian from the Kac determinant
+alone. It does not assert the absence of a bounded inverse. The
+Banach construction below obtains continuity from the shadow-envelope
+radius and from the continuity of the transferred homotopy; descent to
+the raw direct sum is governed separately by finite propagation.
 \end{remark}
 
 \section{The shadow tower decay rate}
 \label{sec:shadow-tower-decay}
 
-The second ingredient is a decay estimate for the shadow coefficients
-$S_r(\cA)$ in the large-$r$ limit. We establish the lower bound that
-shows the geometric series is divergent at generic class~$\mathsf{M}$.
+The second ingredient is the Stirling-normalised shadow coefficient
+test. A polynomial or exponential-polynomial envelope is already
+factorially tempered.
 
-\begin{proposition}[Generic-$c$ shadow-tower decay, Virasoro]
+\begin{proposition}[Stirling-normalised Virasoro shadow tower]
 \label{prop:shadow-decay-class-m}
 \ClaimStatusProvedHere
 Let $\cA = \mathrm{Vir}_c$ at generic $c \notin \cD_{\mathrm{Kac}}$.
-For every $r \ge 4$ and $c \in \bbR$ with
-$c \notin \{0, -22/5\}$,
+The Virasoro shadow envelope of
+Theorem~\ref{thm:tempered-stratum-contains-virasoro} gives constants
+$C(c)>0$, $\alpha(c)>0$, and an integer $M\ge 0$ such that
 \[
   \bigl\lvert S_r(\mathrm{Vir}_c) \bigr\rvert
-  \;\ge\;
-  K(c) \cdot r^{-1/c}
-  \qquad (r \ge R_0(c)),
+  \;\le\;
+  C(c)\,\alpha(c)^r r^M
+  \qquad (r \ge 4).
 \]
-where $K(c) > 0$ depends only on $c$ and $R_0(c)$ is an
-$r$-independent cutoff. In particular
+Then
 \[
   \limsup_{r \to \infty}
     \bigl(\lvert S_r(\mathrm{Vir}_c) \rvert / r!\bigr)^{1/r}
   \;=\;
-  \frac{1}{e}
-  \;>\; 0,
+  0,
 \]
-so the analytic tempering hypothesis $(\mathrm{H}_S)$ FAILS for
-$\mathrm{Vir}_c$ at generic~$c$.
+so the analytic tempering hypothesis $(\mathrm{H}_S)$ holds for
+$\mathrm{Vir}_c$.
 \end{proposition}
 
 \begin{proof}
-By the BPZ four-point function derivation, $S_r(\mathrm{Vir}_c)$ is
-given by the inverse of the Kac inner product of the quasi-primary
-at weight $r$. Explicitly, at weight $r = 2 m$ the quasi-primary
-$\Lambda_{(m)}$ of weight $2m$ (generalising the $\Lambda$ of
-Remark~\ref{rem:zamolodchikov-weight-four-data}) has self-pairing
+The envelope gives
 \[
-  \bigl\langle \Lambda_{(m)}, \Lambda_{(m)} \bigr\rangle_{\mathrm{BPZ}}
-  \;=\;
-  \mu(c, m) \cdot
-    \prod_{k = 1}^{\lfloor m/2 \rfloor}
-      \bigl(c - c^{(m)}_k\bigr)
-\]
-where $\mu(c, m)$ is a polynomial in $c$ of degree $O(m)$ and
-$c^{(m)}_k$ are $m$-dependent Kac zeros (the zeros of the $m$-th
-truncation of the Kac determinant at level $2m$). At generic $c$
-(outside $\bigcup_{m, k} \{c^{(m)}_k\}$, a countable set), the
-product is a non-zero rational number of order
-\[
-  \bigl\lvert \bigl\langle \Lambda_{(m)}, \Lambda_{(m)} \bigr\rangle
-  \bigr\rvert
+  \bigl(\lvert S_r\rvert/r!\bigr)^{1/r}
   \;\le\;
-  C'(c) \cdot m^{O(1)} \cdot
-    \exp\bigl(O(m^{1/c})\bigr)
+  C(c)^{1/r}\,\alpha(c)\,r^{M/r}\,(r!)^{-1/r}.
 \]
-as $m \to \infty$, by standard Hardy--Ramanujan-style asymptotic
-analysis of the Kac-zero products.
-
-Inverting, $S_{2m} = \lvert \langle \Lambda_{(m)}, \Lambda_{(m)}
-\rangle \rvert^{-1}$, so
+Stirling's formula gives $(r!)^{1/r}\sim r/e$. Hence the right-hand
+side is asymptotic to
 \[
-  \bigl\lvert S_{2m}(\mathrm{Vir}_c) \bigr\rvert
-  \;\ge\;
-  C''(c) \cdot m^{O(1)} \cdot
-    \exp\bigl(-O(m^{1/c})\bigr)
-  \;\ge\;
-  K(c) \cdot m^{-1/c}
+  \alpha(c)\,\frac{e}{r}
 \]
-for $m$ larger than some $c$-dependent cutoff. This gives the lower
-bound claimed on the decay rate.
-
-The conclusion on the $\limsup$ quantity follows: Stirling gives
-$r!^{1/r} \sim r / e$, and
-$\lvert S_r \rvert^{1/r} \ge (K r^{-1/c})^{1/r} \to 1$, hence
-$(S_r / r!)^{1/r} \to 1 / e$ from above. So
-$\limsup_r (\lvert S_r \rvert / r!)^{1/r} = 1/e > 0$, falsifying
-$(\mathrm{H}_S)$.
+because $C(c)^{1/r}\to 1$ and $r^{M/r}\to 1$. The upper bound tends
+to zero, while the left-hand side is non-negative. The squeeze theorem
+gives the asserted limsup.
 \end{proof}
 
-\begin{remark}[Comparison with classical rigorous VA asymptotics;
-scope of Proposition~\ref{prop:shadow-decay-class-m}]
+\begin{remark}[Scope of Proposition~\ref{prop:shadow-decay-class-m}]
 \label{rem:comparison-classical-va-asymptotics}
-The BPZ-based lower bound of
-Proposition~\ref{prop:shadow-decay-class-m} coincides, up to
-$c$-dependent constants, with the ``$1/c$-decay'' regime established
-in the Feigin--Fuchs tempered Virasoro framework (Feigin--Fuchs
-1984, \S 4) for the principal minimal-model central charges, then
-extended to generic $c$ by Arakawa's C$_2$-cofiniteness analysis
-(Arakawa 2007, \S 5). The decay exponent $1/c$ is sharp at
-$c \to \infty$ (the semiclassical limit) and degrades at small $c$
-(the strongly-coupled Virasoro regime). In no regime does
-$\mathrm{Vir}_c$ at generic $c$ admit $r!$-decay of the shadow
-tower, ruling out $(\mathrm{H}_S)$ on the Virasoro generic locus.
-
-\emph{Scope of the proposition.} Proposition~\ref{prop:shadow-decay-class-m}
-is proved for $\cA = \mathrm{Vir}_c$. The analogous decay bound for
-principal $\cW_N$ at generic level (Fateev--Lukyanov 1988,
-Feigin--Frenkel coset realisation) is conjectural: the standard
-quasi-primary norms admit a Kac-like factorisation but the
-generalised determinant computation has not been carried out to full
-$r$-asymptotic level. For logarithmic $\cW(p)$ and other
-class~$\mathsf{M}$ algebras outside the principal-family axis, the
-decay bound is open in both directions. The dichotomy theorem below
-uses the Virasoro case as the proven witness of the generic-stratum
-obstruction; the broader class~$\mathsf{M}$ generic-stratum
-statement ($(\mathrm{H}_S)$ fails for every generic-level element of
-the principal family) is stated as
-Conjecture~\ref{conj:shadow-decay-class-m-full-family}.
+Proposition~\ref{prop:shadow-decay-class-m} is the elementary
+Stirling step. The representation-theoretic content is the envelope
+for $S_r$. For Virasoro this envelope is supplied by
+Theorem~\ref{thm:tempered-stratum-contains-virasoro}; for principal
+$\cW_N$ at $N\ge 4$ the corresponding finite envelope is supplied by
+Theorem~\ref{thm:wn-tempered-all-N}. A lower bound on
+$\lvert S_r\rvert$ cannot produce a positive
+value of
+\[
+  \limsup_r(\lvert S_r\rvert/r!)^{1/r};
+\]
+the factorial in the denominator drives every
+exponential-polynomial envelope to zero.
 \end{remark}
 
-\begin{conjecture}[Shadow-tower decay, full principal class~$\mathsf{M}$
-family; \ClaimStatusConjectured]
+\begin{theorem}[Finite envelope for principal class~$\mathsf{M}$
+families]
 \label{conj:shadow-decay-class-m-full-family}
+\ClaimStatusProvedHere
 For every principal $\cW_N$ at non-critical level $k$ with
 $\cW_N$-central charge $c_N(k) \notin \cD_{\mathrm{Kac}}^{(\cW_N)}$,
-there exists $K_N(c) > 0$ such that
+there exist $C_N(c)>0$, $\alpha_N(c)>0$, and $M_N\ge 0$ such that
 \[
   \bigl\lvert S_r(\cW_N) \bigr\rvert
-  \;\ge\;
-  K_N(c) \cdot r^{-N/c}
-  \qquad (r \ge R_N(c)),
+  \;\le\;
+  C_N(c)\,\alpha_N(c)^r r^{M_N}
+  \qquad (r \ge 2).
 \]
-generalising the Virasoro bound of
-Proposition~\ref{prop:shadow-decay-class-m} ($N = 2$ gives the
-$r^{-1/c}$ rate; $N = 3$ is expected to give $r^{-3/c}$ from the
-Bershadsky--Polyakov quartic-pole contribution, etc.). Consequently
-$(\mathrm{H}_S)$ fails at every generic principal class~$\mathsf{M}$
-algebra.
-\end{conjecture}
+Then $\cW_N$ satisfies $(\mathrm{H}_S)$ by
+Proposition~\ref{prop:shadow-decay-class-m}.
+\end{theorem}
+
+\begin{proof}
+Theorem~\ref{thm:wn-tempered-all-N} supplies the finite-$\beta_N$
+shadow bound
+\[
+  \lvert S_r(\cW_{N,c})\rvert
+  \le
+  C(N,c)\,\frac{\beta_N^{r-4}}{r\,|c|^{r-2}}
+  \qquad (r\ge 4)
+\]
+away from the severe Kac degeneracy locus. Since $N$ is fixed,
+$\beta_N$ is finite. Enlarging $C(N,c)$ to absorb the finitely many
+terms $r=2,3$, the factor $\beta_N^{-4}|c|^2$, and the inequality
+$r^{-1}\le 1$, gives the displayed envelope with
+$\alpha_N(c)=\beta_N/|c|$ and $M_N=0$.
+Proposition~\ref{prop:shadow-decay-class-m} then gives $(\mathrm{H}_S)$
+by Stirling's formula.
+\end{proof}
 
 \section{The dichotomy theorem on the original complex}
 \label{sec:original-complex-dichotomy}
 
-The main frontier theorem: the chain-level
-$E_3$-topological structure on the original complex is available
-precisely under the analytic tempering hypothesis $(\mathrm{H}_S)$,
-and blocked explicitly otherwise.
+The main frontier theorem separates the Banach model from the raw
+finite-weight direct sum. Analytic tempering gives convergence on the
+Banach model. Descent to the raw direct sum requires finite propagation
+of the differential, the homotopy primitive, and the $E_3$ operations.
 
 \begin{definition}[Analytically tempered class $\mathsf{M}$]
 \label{def:analytically-tempered-class-m}
@@ -500,39 +396,36 @@ $\sum_{r \ge 2} S_r(\cA) \cdot z^r / r!$ has infinite radius of
 convergence in $z$.
 \end{definition}
 
-\begin{example}[Tempered Virasoro $\mathrm{Vir}_c^{\sim}$]
+\begin{example}[Factorially damped Virasoro Banach model
+$\mathrm{Vir}_c^{\sim}$]
 \label{ex:tempered-virasoro}
-For every generic $c \in \bbR$ there is a unique
-\emph{analytic taming} $\mathrm{Vir}_c^{\sim}$ of Virasoro: the
-VOA-completed model
+For every generic $c \in \bbR$ the formal rescaling
 \[
-  \mathrm{Vir}_c^{\sim}
+  S_r(\mathrm{Vir}_c^{\sim})
   \;:=\;
-  \varinjlim_{N \to \infty}
-    \mathrm{Vir}_c \Big/ \bigl(\text{ideal of shadow-decay $\le N$}\bigr)
+  S_r(\mathrm{Vir}_c)/r!
 \]
-where the ideal of shadow-decay $\le N$ consists of all expressions
-built from at most $N$-fold normal-ordered products with
-$r !$-truncated shadow coefficients. In this tempered VOA the shadow
-tower decays super-exponentially: $\tilde{S}_r = O((r!)^{-1})$ by
-construction. $(\mathrm{H}_S)$ holds on the nose. The tempered VOA is
-not the Virasoro VOA: it is a proper completion containing the
-Virasoro VOA as a dense subspace under the $\rho = 0$ topology, but
-strictly smaller than the weight-completion of Virasoro under any
-$\rho > 0$.
+defines a factorially damped Banach shadow model. It is not used to
+replace the Virasoro VOA. It is a calibration object: if
+$\mathrm{Vir}_c$ satisfies $(\mathrm{H}_S)$, then the damped model
+satisfies it a fortiori, since
+\[
+  \bigl(\lvert S_r(\mathrm{Vir}_c^{\sim})\rvert/r!\bigr)^{1/r}
+  =
+  \bigl(\lvert S_r(\mathrm{Vir}_c)\rvert/(r!)^2\bigr)^{1/r}
+  \longrightarrow 0
+\]
+whenever $\lvert S_r(\mathrm{Vir}_c)\rvert$ has
+exponential-polynomial growth.
 \end{example}
 
-\begin{theorem}[Chain-level $E_3$-topological on the original complex,
-CONDITIONAL form]
+\begin{theorem}[Banach $E_3$ model and finite-propagation descent]
 \label{thm:chain-level-e3-original-complex-conditional}
 \ClaimStatusProvedHere
 Let $\cA$ be an analytically tempered class~$\mathsf{M}$ chirally
 Koszul algebra, at non-zero $\kappa(\cA)$, non-critical level, and
-genus $g \ge 2$. Then the original-complex curved-Dunn
-twisting-cochain complex
-$\mathrm{TCo}^{\bullet}_{g, \oplus}(\cA)$ carries a canonical
-chain-level $E_3$-topological structure, given by the Banach-space
-completion at radius $\rho \in (0, \rho_*(c))$ for
+genus $g \ge 2$. For every radius $\rho$ below the ordinary shadow
+radius
 \[
   \rho_*(c)
   \;:=\;
@@ -541,27 +434,27 @@ completion at radius $\rho \in (0, \rho_*(c))$ for
   \;\in\;
   (0, \infty],
 \]
-where the weight-weighted Kac--Shapovalov norm
-$\lvert\lvert\lvert \cdot \rvert\rvert\rvert_{\mathrm{KS}, \rho}$
-gives a continuous Banach-chain model on which
+the KS-$\rho$ completion
+$\mathrm{TCo}^{\bullet}_{g,\mathrm{KS},\rho}(\cA)$ is a Banach
+chain model on which the curved-Dunn discrepancy series
 \[
   d^2_{\mathrm{curved\text{-}Dunn}}
   \;=\;
   \sum_{r \ge 4} S_r(\cA) \cdot \omega_g^{\wedge \lfloor r/2 \rfloor}
 \]
-converges absolutely, hence vanishes modulo an explicit absolutely
-convergent homotopy
-$h_\rho \colon \mathrm{TCo}^{\bullet}_{g, \mathrm{KS}, \rho}(\cA)
-\to \mathrm{TCo}^{\bullet - 1}_{g, \mathrm{KS}, \rho}(\cA)$. The
-resulting Banach-complex model is quasi-isomorphic to the
+converges absolutely and is killed by a Banach-continuous homotopy
+$h_\rho$. This Banach model is continuously quasi-isomorphic to the
 weight-completed curved-Dunn complex of
-Proposition~\ref{prop:bv-bar-class-m-weight-completed}, and the
-quasi-isomorphism is continuous with respect to the
-$\lvert\lvert\lvert \cdot \rvert\rvert\rvert_{\mathrm{KS}, \rho}$
-topology. Therefore $\mathrm{TCo}^{\bullet}_{g, \oplus}(\cA)$
-(densely contained in its Banach completion) inherits the full
-chain-level $E_3$-topological structure as a dense subspace of a
-Banach $E_3$-topological chain model.
+Proposition~\ref{prop:bv-bar-class-m-weight-completed}.
+
+The raw direct sum
+$\mathrm{TCo}^{\bullet}_{g,\oplus}(\cA)$ carries the restricted
+chain-level $E_3$ structure precisely when the curved-Dunn
+differential, the chosen homotopy primitive $G^{(2)}$ (equivalently
+$h_\rho$), and the $E_3$ operadic structure maps preserve finite
+conformal-weight support. Without this finite-propagation condition
+the theorem asserts the Banach and weight-completed $E_3$ models, not
+descent to the raw direct sum.
 \end{theorem}
 
 \begin{proof}
@@ -581,7 +474,7 @@ $\mathrm{TCo}^{\bullet}_{g, \mathrm{KS}, \rho}(\cA)$ by the
 finiteness of each weight component.
 
 \emph{Step 2 (Convergence of the discrepancy series).}
-By hypothesis $(\mathrm{H}_S)$, for every $\rho < \rho_*(c) = \infty$
+By the definition of $\rho_*(c)$, for every $\rho < \rho_*(c)$
 we have
 \[
   \sum_{r \ge 4}
@@ -618,111 +511,80 @@ $E_\infty$-topologization
 (Theorem~\ref{thm:e-infinity-topologization-ladder}) at depth 2 for
 the Virasoro-type stress tensor in $\cA$ (which exists at
 non-critical level by the Sugawara construction) gives the
-$E_3$-topological promotion of the chain model. The resulting
-$E_3$-topological structure lives on the Banach completion, and the
-original direct sum $\mathrm{TCo}^{\bullet}_{g, \oplus}(\cA)$ is the
-dense subspace of finite-weight cochains. The quasi-isomorphism with
-the weight-completed model is continuous and identifies the
-$E_3$-topological structures.
+$E_3$-topological promotion of the chain model.
+
+The raw direct sum is the finite-weight subspace of the Banach model.
+A Banach-continuous multilinear operation need not preserve a dense
+subspace, so density supplies no descent. If the differential,
+$G^{(2)}$ (or $h_\rho$), and every $E_3$ structure map preserve finite
+conformal-weight support, then the restriction of each operation to
+$\mathrm{TCo}^{\bullet}_{g,\oplus}(\cA)$ is defined and the same
+operadic identities hold there because they hold in the Banach model
+and both sides are finite-weight operations. Conversely, if one of
+these maps sends some finite-weight cochain to an infinite-weight
+series, the raw direct sum is not closed under the corresponding
+operation; the Banach model remains valid but raw descent is not a
+statement.
 \end{proof}
 
-\begin{theorem}[Chain-level $E_3$-topological on the original
-complex, OBSTRUCTION form (generic class $\mathsf{M}$)]
+\begin{theorem}[Virasoro factorial obstruction vanishes]
 \label{thm:chain-level-e3-original-complex-obstruction-generic-class-m}
 \ClaimStatusProvedHere
 Let $\cA = \mathrm{Vir}_c$ at generic $c \notin \cD_{\mathrm{Kac}}$
-and $g \ge 2$. For every $\rho > 0$, the raw direct-sum complex
-$\mathrm{TCo}^{\bullet}_{g, \oplus}(\mathrm{Vir}_c)$ is NOT dense in
-the Banach space
-$\mathrm{TCo}^{\bullet}_{g, \mathrm{KS}, \rho}(\mathrm{Vir}_c)$ in
-any norm making $d^2_{\mathrm{curved\text{-}Dunn}}$ continuous, and
-the chain-level $E_3$-topological structure on the original complex
-does not exist. Explicitly, the obstruction is the cocycle class
+and $g \ge 2$. The factorially normalised obstruction class is
 \[
   \kappa^{(\infty)}_{\mathrm{orig}}(\mathrm{Vir}_c)
   \;:=\;
   \limsup_{r \to \infty}\,
     \bigl( \lvert S_r(\mathrm{Vir}_c) \rvert / r! \bigr)^{1/r}
   \;=\;
-  \frac{1}{e}
-  \;>\; 0,
+  0.
 \]
-which records the divergence of the convergent-geometric-series
-construction on the original complex. Equivalently: for every
-candidate $\rho > 0$ Banach norm making the original-complex curved
-Dunn differential continuous, the infinite shadow tower
-\[
-  \Theta^{(\infty)}_{\mathrm{orig}}(\mathrm{Vir}_c)
-  \;:=\;
-  \sum_{r \ge 2}
-    S_r(\mathrm{Vir}_c) \cdot \omega_g^{\wedge \lfloor r/2 \rfloor}
-\]
-fails to converge in norm, so no $E_3$-topological Maurer--Cartan
-element on the original complex can absorb its contribution.
+Thus the factorially normalised obstruction vanishes. The Banach
+$E_3$-topological model exists for every
+$0<\rho<\rho_*(c)=\lvert c\rvert/6$; descent to the raw direct sum is
+the finite-propagation question of
+Theorem~\ref{thm:chain-level-e3-original-complex-conditional}.
 \end{theorem}
 
 \begin{proof}
-By Proposition~\ref{prop:shadow-decay-class-m},
-$\lvert S_r(\mathrm{Vir}_c) \rvert \ge K(c) \cdot r^{-1/c}$ at
-generic~$c$. Hence
+Theorem~\ref{thm:tempered-stratum-contains-virasoro} gives the
+Virasoro envelope
 \[
-  \sum_{r \ge 4}
-    \lvert S_r(\mathrm{Vir}_c) \rvert \cdot \rho^r
-  \;\ge\;
-  K(c) \cdot \sum_{r \ge 4} r^{-1/c} \rho^r,
+  \lvert S_r(\mathrm{Vir}_c)\rvert
+  \le C(c)\,6^{r-4}\bigl(r\,\lvert c\rvert^{r-2}\bigr)^{-1}
 \]
-which diverges for every $\rho \ge 1$, and converges for $\rho < 1$
-only to a finite sum, not to the zero element. In particular at the
-only candidate $\rho$ for which the series converges
-($\rho < 1 / \limsup_r \lvert S_r \rvert^{1/r} \sim 1$), the sum is
-a non-zero cocycle.
-
-The non-zero cocycle $\Theta^{(\infty)}_{\mathrm{orig}}$ assembled in
-norm is a genuine non-trivial class in $H^2$ of the $\rho$-KS Banach
-completion: its vanishing would require an $\infty$-homotopy $h$
-with $\lvert\lvert\lvert h(\Theta^{(\infty)}) \rvert\rvert\rvert
-= \infty$, contradicting the Banach norm. Hence no chain-level
-$E_3$-topological structure on the original direct-sum complex with
-convergent chain homotopy exists at generic $\mathrm{Vir}_c$.
-
-The failure quantity is precisely the
-$\kappa^{(\infty)}_{\mathrm{orig}}$ of the theorem: it is the
-exponential-growth rate of the discrepancy series divided by $r!$,
-equal to $1/e$ by Proposition~\ref{prop:shadow-decay-class-m}.
+for $r\ge 4$ after enlarging $C(c)$ away from the severe Kac
+degeneracy locus. This is an exponential-polynomial envelope. Applying
+Proposition~\ref{prop:shadow-decay-class-m} gives
+$\kappa^{(\infty)}_{\mathrm{orig}}(\mathrm{Vir}_c)=0$. The ordinary
+radius statement is exactly
+Proposition~\ref{prop:virasoro-rho-star-closed-form}:
+$\rho_*(c)=\lvert c\rvert/6$. The Banach model follows from
+Theorem~\ref{thm:chain-level-e3-original-complex-conditional}.
 \end{proof}
 
-\begin{corollary}[Dichotomy on the original complex, Virasoro
-stratum proved, principal $\cW_N$ stratum conjectural]
+\begin{corollary}[Tempering and finite-propagation partition]
 \label{cor:class-m-original-complex-dichotomy}
 \ClaimStatusProvedHere
-The class~$\mathsf{M}$ chirally Koszul algebras are partitioned, at
-each fixed choice of non-zero $\kappa(\cA)$, non-critical level, and
-$g \ge 2$, by the hypothesis $(\mathrm{H}_S)$ into two strata
-\[
-  \text{Class $\mathsf{M}$}
-  \;=\;
-  \underbrace{\text{Tempered class $\mathsf{M}$}}_{(\mathrm{H}_S) \text{ holds}}
-  \;\sqcup\;
-  \underbrace{\text{Non-tempered class $\mathsf{M}$}}_{(\mathrm{H}_S) \text{ fails}}.
-\]
-\emph{Tempered stratum (unconditional).} Every $\cA$ satisfying
-$(\mathrm{H}_S)$ admits chain-level $E_3$-topological structure on
-the original complex
-(Theorem~\ref{thm:chain-level-e3-original-complex-conditional}); in
-particular the tempered Virasoro $\mathrm{Vir}_c^{\sim}$ of
-Example~\ref{ex:tempered-virasoro} is a member.
-\emph{Non-tempered Virasoro (unconditional).} Every
-$\cA = \mathrm{Vir}_c$ at generic $c \notin \cD_{\mathrm{Kac}}$ is
-non-tempered with explicit obstruction
-$\kappa^{(\infty)}_{\mathrm{orig}}(\mathrm{Vir}_c) = 1/e > 0$
-(Theorem~\ref{thm:chain-level-e3-original-complex-obstruction-generic-class-m}).
-\emph{Non-tempered principal $\cW_N$ (conjectural).} Conditional on
-Conjecture~\ref{conj:shadow-decay-class-m-full-family}, every
-generic-level principal $\cW_N$ at non-critical level is
-non-tempered with an explicit analogous obstruction. Both strata
-(tempered and non-tempered) admit the unconditional weight-completed
-$E_3$-topological structure of
-Proposition~\ref{prop:bv-bar-class-m-weight-completed}.
+At fixed non-zero $\kappa(\cA)$, non-critical level, and $g\ge 2$,
+the class~$\mathsf{M}$ original-complex problem has two independent
+tests.
+
+\emph{Tempering test.} If $(\mathrm{H}_S)$ holds, the KS-$\rho$
+Banach model carries the chain-level $E_3$-topological structure of
+Theorem~\ref{thm:chain-level-e3-original-complex-conditional}. Generic
+Virasoro passes this test by
+Theorem~\ref{thm:chain-level-e3-original-complex-obstruction-generic-class-m};
+principal $\cW_N$ passes it by the finite-envelope
+Theorem~\ref{conj:shadow-decay-class-m-full-family}.
+
+\emph{Finite-propagation test.} The same structure descends from the
+Banach model to the raw direct sum exactly when the curved-Dunn
+differential, the homotopy primitive, and the $E_3$ operadic maps
+preserve finite conformal-weight support. If this test fails, the
+Banach and weight-completed models remain valid and the raw direct sum
+is not closed under the attempted operations.
 \end{corollary}
 
 \begin{proof}
@@ -731,10 +593,12 @@ Theorem~\ref{thm:chain-level-e3-original-complex-conditional} and
 Theorem~\ref{thm:chain-level-e3-original-complex-obstruction-generic-class-m},
 using that the weight-completed result of
 Proposition~\ref{prop:bv-bar-class-m-weight-completed} is
-unconditional on both strata. The partition is the preimage of the
-two-point set $\{0, \text{non-zero}\}$ under the continuous
-$\limsup$ map
-$\cA \mapsto \kappa^{(\infty)}_{\mathrm{orig}}(\cA)$.
+unconditional. The first test is the root test defining
+$(\mathrm{H}_S)$. The second test is closure of the finite-weight
+subspace under the displayed operations. These are independent
+conditions: tempering is an analytic convergence condition on the
+Banach completion, while finite propagation is an algebraic support
+condition on the raw direct sum.
 \end{proof}
 
 \begin{remark}[Relation to the weight-completed and pro-ambient results]
@@ -744,71 +608,43 @@ gap between the raw direct-sum failure of
 Theorem~\ref{thm:curved-dunn-class-M-raw-direct-sum-fails} and the
 weight-completed success of
 Proposition~\ref{prop:bv-bar-class-m-weight-completed}. The
-dichotomy reveals that the original-complex regime is not a single
-location but a partition into two precisely characterised strata:
+dichotomy has two axes:
 \begin{itemize}
-\item The \emph{tempered} stratum is exactly where the
-      weight-completed construction descends to a Banach completion
-      of the original direct sum without passing to inverse limits.
-      On this stratum the chain-level $E_3$ lives genuinely on the
-      original complex.
-\item The \emph{generic} stratum carries an explicit cohomological
-      obstruction $\kappa^{(\infty)}_{\mathrm{orig}} > 0$ blocking
-      chain-level $E_3$ on the original complex. On this stratum,
-      passing to the weight-completion (or equivalently the
-      pro-$\mathrm{Ch}(\mathrm{Vect})$ or $J$-adic ambients) is
-      genuinely necessary, not cosmetic: the weight-completion
-      absorbs $\kappa^{(\infty)}_{\mathrm{orig}}$ via
-      Milnor--Mittag-Leffler applied to the projective system of
-      finite weight truncations.
+\item The \emph{tempering} axis decides whether the shadow tower
+      defines the Banach curved-Dunn model. Generic Virasoro lies on
+      the tempered side: $\kappa^{(\infty)}_{\mathrm{orig}}=0$.
+\item The \emph{finite-propagation} axis decides whether the Banach
+      operations restrict to the raw finite-weight direct sum. Density
+      is not enough; closure under the actual operations is the
+      descent datum.
 \end{itemize}
-Both strata are non-empty: the tempered stratum contains
-$\mathrm{Vir}_c^{\sim}$ and all analytic completions, while the
-generic stratum contains every generic $\mathrm{Vir}_c$ and every
-principal $\cW_N$ at generic level. The weight-completed result of
-Proposition~\ref{prop:bv-bar-class-m-weight-completed} covers both.
+The weight-completed result of
+Proposition~\ref{prop:bv-bar-class-m-weight-completed} covers both
+sides of the finite-propagation question.
 \end{remark}
 
 \begin{remark}[First-principles summary]
 \label{rem:first-principles-summary-original-complex}
 The first-principles investigation on this frontier yields the
-following three-layer analysis:
+following analysis:
 \begin{itemize}
-\item (\emph{Ghost, correct}): a chain-level $E_3$-topological
-      structure on the original complex IS possible under an
-      analytic hypothesis on shadow-tower decay. The honest form of
-      this is Theorem~\ref{thm:chain-level-e3-original-complex-conditional}
-      under hypothesis $(\mathrm{H}_S)$, which is a non-trivial
-      positive content on a non-empty stratum.
-\item (\emph{Wrong claim}): ``A convergent geometric series in the
-      Kac--Shapovalov Laplacian spectral gap gives a chain-level
-      $E_3$-topological structure unconditionally at generic
-      class~$\mathsf{M}$''. This is FALSE:
+\item The determinant of the Kac--Shapovalov form proves
+      finite-weight non-degeneracy, not a uniform inverse estimate.
       Proposition~\ref{prop:kac-shapovalov-eigenvalue-asymptotic}
-      shows that the smallest eigenvalue $\lambda_{\min}(G_N)(c)$ is
-      bounded above by a positive constant at generic~$c$ and does
-      not grow with $N$, killing any geometric-series bound on the
-      chain-homotopy norm. In addition
-      Proposition~\ref{prop:shadow-decay-class-m} shows that the
-      shadow decay rate is $O(r^{-1/c})$, only polynomial, not
-      super-polynomial, at generic~$c$.
-\item (\emph{Correct statement}): on generic class~$\mathsf{M}$, the
-      obstruction to a chain-level $E_3$ on the original complex is
-      the explicit limit
-      $\kappa^{(\infty)}_{\mathrm{orig}}(\cA) = 1/e > 0$ (for
-      generic $\mathrm{Vir}_c$). The weight-completed category is
-      the natural ambient for generic class~$\mathsf{M}$ because it
-      absorbs $\kappa^{(\infty)}_{\mathrm{orig}}$ through
-      Milnor--Mittag-Leffler. On the tempered stratum, the
-      original complex carries the chain-level $E_3$ by
-      Theorem~\ref{thm:chain-level-e3-original-complex-conditional}.
+      isolates the missing analytic datum.
+\item Exponential-polynomial shadow growth is factorially tempered.
+      Proposition~\ref{prop:shadow-decay-class-m} is the elementary
+      Stirling step; Theorem~\ref{thm:tempered-stratum-contains-virasoro}
+      supplies the Virasoro envelope and gives
+      $\kappa^{(\infty)}_{\mathrm{orig}}(\mathrm{Vir}_c)=0$.
+\item Analytic tempering gives the Banach $E_3$ model. Raw direct-sum
+      descent is an additional finite-propagation assertion for the
+      differential, the homotopy primitive, and the $E_3$ structure
+      operations.
 \end{itemize}
-The chapter therefore simultaneously realises the strongest honest
-form of the frontier (tempered-class construction) and identifies
-the precise obstruction on the generic stratum
-($\kappa^{(\infty)}_{\mathrm{orig}} = 1/e$ for generic
-Virasoro). No downgrade due to technical malpractice is accepted;
-the result is the precise dichotomy.
+The chapter therefore replaces the false numerical obstruction by the
+actual hidden structure: convergence is factorially benign, and the
+remaining original-complex issue is support preservation.
 \end{remark}
 
 \section{Independent verification summary}
@@ -819,37 +655,30 @@ independent-verification structure, implemented in
 \texttt{compute/tests/test\_topologization\_class\_m\_original\_complex.py}
 per the Vol I HZ-IV protocol.
 
-\textbf{1. Kac--Shapovalov eigenvalue bound
+\textbf{1. Kac--Shapovalov determinant non-control
 (Proposition~\ref{prop:kac-shapovalov-eigenvalue-asymptotic}).}
 \begin{itemize}[nosep]
 \item \emph{Derived from}: Kac determinant formula at weight $N$
-      (Kac--Raina 1987 Ch.~8), Hardy--Ramanujan partition asymptotic
-      $p(N) \sim \exp(\pi \sqrt{2 N / 3})$ (Hardy--Ramanujan 1918).
-\item \emph{Verified against}: di Francesco--Mathieu--S{\'e}n{\'e}chal
-      1997 Ch.~8 (independent computation of $\det G_N$ at low
-      $N \le 8$), and the numerical Virasoro Gram-matrix engine
-      (Kazhdan--Lusztig 1988 \S 2.4 Weyl-group extension to
-      Kac--Moody) which diagonalises $G_N$ at sampled central
-      charges $c \in \{1, 7, 13, 100\}$ to confirm the two-sided
-      eigenvalue bound.
+      (Kac--Raina 1987 Ch.~8), plus the elementary diagonal-matrix
+      counterexample showing determinant data do not control least
+      singular values.
+\item \emph{Verified against}: low-weight determinant computations
+      confirm finite-weight non-degeneracy; the independent linear
+      algebra example confirms that bounded inverse estimates require
+      data beyond the determinant.
 \end{itemize}
 
-\textbf{2. Shadow-tower decay rate
+\textbf{2. Stirling-normalised shadow tower
 (Proposition~\ref{prop:shadow-decay-class-m}).}
 \begin{itemize}[nosep]
-\item \emph{Derived from}: BPZ four-point function at weight $2m$
-      (BPZ 1984 Nucl. Phys. B~241 eq.~(5.41)), inverted to give
-      $S_{2m}$ from the Kac inner product.
-\item \emph{Verified against}: Feigin--Fuchs 1984 \S 4 asymptotic
-      decay of $\lvert \langle \Lambda_{(m)}, \Lambda_{(m)} \rangle
-      \rvert$ at minimal-model central charges (independent
-      representation-theoretic derivation), and Arakawa 2007 \S 5
-      C$_2$-cofiniteness controls extended to generic $c$
-      (independent derivation from associated-graded PVA rigidity).
-\item \emph{Cross-check}: Vol I shadow-tower archive through
-      $m_8$ (160 tests, $S_8 = 4144720/19683$,
-      $\lvert S_8(\mathrm{Vir}_1) \rvert \sim 1.4 \cdot 10^{-8}$)
-      consistent with the bound $K(c) \cdot r^{-1/c}$ for $c = 1$.
+\item \emph{Derived from}: the Virasoro exponential-polynomial
+      envelope of
+      Theorem~\ref{thm:tempered-stratum-contains-virasoro}.
+\item \emph{Verified against}: Stirling's formula and the root test:
+      $C^{1/r}\alpha r^{M/r}(r!)^{-1/r}\sim \alpha e/r\to 0$.
+\item \emph{Cross-check}: the companion tempered-stratum tests verify
+      the same zero-limsup conclusion and the ordinary radius
+      $\rho_*(c)=\lvert c\rvert/6$.
 \end{itemize}
 
 \textbf{3. Dichotomy theorem
@@ -861,59 +690,44 @@ Corollary~\ref{cor:class-m-original-complex-dichotomy}).}
       direct-sum bar complex using the KS-$\rho$ norm, combined with
       the weight-completed $E_3$-topological structure of
       Proposition~\ref{prop:bv-bar-class-m-weight-completed}.
-\item \emph{Verified against}: (a) Functional-analytic quantisation
-      theory: every Banach-continuous E$_\infty$-chain-complex on a
-      Banach space coincides with its weight-completed model on the
-      dense subspace of finite-weight cochains (standard Banach
-      completion theorem, Rudin 1991 Ch.~1); (b) Pro-$\mathrm{Ch}$
-      comparison with $\varprojlim_N \mathrm{TCo}^{\bullet}_{g, \le N}$
-      of the weight-completed construction
-      (Theorem~\ref{thm:curved-dunn-pro-ambient-H2-zero}), used as
-      baseline for the weight-completed side.
+\item \emph{Verified against}: (a) Banach completion theory for the
+      absolutely convergent shadow series; (b) the negative dense
+      subspace test, which shows that finite-weight descent requires
+      finite propagation; (c) pro-$\mathrm{Ch}$ comparison with
+      $\varprojlim_N \mathrm{TCo}^{\bullet}_{g,\le N}$ of the
+      weight-completed construction
+      (Theorem~\ref{thm:curved-dunn-pro-ambient-H2-zero}).
 \end{itemize}
 
 \section{Location in the programme}
 \label{sec:original-complex-location}
 
-This chapter closes the single remaining non-degenerate-locus
-frontier entry of the Modular Koszul Duality programme on Vol~II. The
-reconstitution roadmap indexed this frontier as ``the chain-level
-E$_3$-topological structure for class $\mathsf{M}$ on the original
-complex'' (CLAUDE.md irreducible open (2), paraphrased).
+This chapter isolates the analytic and support-theoretic content of
+the class~$\mathsf{M}$ original-complex problem.
 
 \begin{itemize}[nosep]
-\item \textbf{Status before this chapter}: only the weight-completed
+\item \textbf{Before this chapter}: only the weight-completed
       class~$\mathsf{M}$ chain-level
       (Proposition~\ref{prop:bv-bar-class-m-weight-completed}) and
       the direct-sum failure
       (Theorem~\ref{thm:curved-dunn-class-M-raw-direct-sum-fails},
       Proposition~\ref{prop:zamolodchikov-cocycle-direct-sum-witness})
       were established. The original-complex question was open.
-\item \textbf{Status after this chapter}: the frontier is CLOSED by
-      dichotomy. The tempered stratum admits chain-level $E_3$ on
-      the original complex
-      (Theorem~\ref{thm:chain-level-e3-original-complex-conditional});
-      the generic stratum admits an explicit obstruction
-      ($\kappa^{(\infty)}_{\mathrm{orig}} = 1/e$ for generic
-      $\mathrm{Vir}_c$;
-      Theorem~\ref{thm:chain-level-e3-original-complex-obstruction-generic-class-m});
-      the weight-completed structure is unconditional on both.
+\item \textbf{After this chapter}: generic Virasoro has
+      $\kappa^{(\infty)}_{\mathrm{orig}}=0$ and hence a Banach
+      $E_3$ model; principal $\cW_N$ has the finite envelope of
+      Theorem~\ref{conj:shadow-decay-class-m-full-family}; raw
+      direct-sum descent is exactly the finite-propagation condition.
 \item \textbf{Cross-links}: Vol I uses the shadow-decay result of
-      Proposition~\ref{prop:shadow-decay-class-m} (via BPZ 1984 and
-      Feigin--Fuchs 1984) which is cross-referenced in Vol I
-      \texttt{shadow\_tower\_higher\_coefficients.tex} and
-      \texttt{virasoro\_motivic\_purity\_all\_r\_platonic.tex}. The
-      Kac-determinant asymptotic of
+      Proposition~\ref{prop:shadow-decay-class-m} as the
+      Stirling-normalised consequence of an envelope. The
+      determinant non-control statement of
       Proposition~\ref{prop:kac-shapovalov-eigenvalue-asymptotic}
-      generalises the classical Kac--Raina determinant formula to
-      the smallest-eigenvalue regime required for Banach analysis.
+      prevents the Kac determinant from being used as a hidden
+      spectral-gap estimate.
 \end{itemize}
 
-The dichotomy is the Platonic form of the frontier: two honest
-strata, one with honest chain-level $E_3$ on the original complex,
-one with an explicit and quantified obstruction preventing the same.
-Both are compatible with the weight-completed unconditional result.
-The question ``is the original-complex chain-level $E_3$ available
-for generic class~$\mathsf{M}$?'' has the precise answer:
-\emph{no, with obstruction $\kappa^{(\infty)}_{\mathrm{orig}} = 1/e
-> 0$, cocycle-exact on the weight-completion via Milnor lim$^1$}.
+The surviving theorem is sharper than the discarded obstruction:
+factorial normalisation removes the Virasoro obstruction, and the
+remaining raw-direct-sum question is the concrete finite-propagation
+condition on the actual chain operations.

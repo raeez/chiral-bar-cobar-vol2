@@ -36,16 +36,24 @@ A chiral algebra is not an algebra over an operad.  It is a
 factorizable $D$-module on the Ran space.  The operad
 $\SCchtop$ is what remains after formal completion at collision
 points: it is the local shadow, not the governing structure.
-At genus~$0$ on~$\mathbb{P}^1$ the local shadow determines the
-global object, because $\mathbb{P}^1 \smallsetminus \{\mathrm{pt}\}
-\simeq \C$ and every factorizable $D$-module on $\Ran(\C)$ is
-determined by its formal-disc data.  At genus~$g \geq 1$ this is
-false: the periods of~$\Sigma_g$, the monodromy of the $D$-module
-connection around $B$-cycles, and the factorization pattern on
-$\Ran(\Sigma_g)$ carry genuinely more information than the local
-operadic data.  The curvature $\dfib^{\,2} = \kappa(\cA) \cdot
-\omega_g$ is the measure of this excess: global information
-invisible to the formal-disc model.
+Formal completion is a functor
+\[
+  \operatorname{Loc}_x\colon
+  \Fact_{\mathrm{BD}}(X)
+  \longrightarrow
+  \operatorname{Alg}_{C_\ast(\FM_\bullet(T_xX))}
+\]
+from global factorization data to the collision model at~$x$; it is
+not an inverse construction.  At genus~$0$ on the affine chart
+$\mathbb{P}^1\smallsetminus\{\infty\}\simeq\C$, it identifies the
+translation-invariant, unramified local subcategory with its
+formal-disc model.  Extending an arbitrary local object across
+$\infty$ is a separate descent problem.  At genus~$g \geq 1$ the
+forgetful nature of $\operatorname{Loc}_x$ is unavoidable: the periods
+of~$\Sigma_g$, the family monodromy, and the factorization pattern on
+$\Ran(\Sigma_g)$ carry information invisible to the local operad.  On
+the scalar bar lane this global excess is measured by the anomaly
+$\dfib^{\,2} = \kappa(\cA) \cdot \omega_g$.
 
 All results in this chapter apply to logarithmic $\SCchtop$-algebras (Definition~\ref{def:log-SC-algebra}).  Beyond the affine and $\cW$-algebra lineages, the question of which chiral algebras admit a logarithmic $\SCchtop$-algebra structure remains open.
 
@@ -109,20 +117,24 @@ $D$-modules on~$X$.
 \index{chiral operations!from factorization}
 Let $F$ be a factorizable $D$-module on $\Ran(X)$.  The
 \emph{chiral $n$-ary operations} are \emph{not} maps between
-fibers at points.  They are the restriction morphisms
+fibers at points.  They are diagonal cospecialisation morphisms.  For
+the collision of the $i$th and $j$th variables, write
+$j_{ij}\colon X^n\smallsetminus\Delta_{ij}\hookrightarrow X^n$ and
+$\Delta_{ij}\colon X^{n-1}\hookrightarrow X^n$.  The operation is a
+$D$-module morphism
 \begin{equation}\label{eq:chiral-op-diagonal}
   \mu_{ij}\colon
-  F^{\boxtimes n}\big|_{\Delta_{ij}}
+  j_{ij,*}j_{ij}^{*}\bigl(F^{\boxtimes n}\bigr)
   \;\longrightarrow\;
-  F^{\boxtimes(n-1)}
+  \Delta_{ij,*}\bigl(F^{\boxtimes(n-1)}\bigr)
 \end{equation}
-to the diagonal $\Delta_{ij} = \{z_i = z_j\} \subset X^n$, viewed
-as morphisms of $D$-modules supported on different diagonals of the
-Ran space.  The composition law arises from iterating diagonal
-restrictions (this is the factorization structure, not an operad
-composition).  Operadic composition composes
-operations between \emph{fibers}; factorization composition composes
-\emph{restriction maps between $D$-modules on configuration spaces}.
+from the complement of the diagonal to the diagonal stratum
+$\Delta_{ij}=\{z_i=z_j\}\subset X^n$.  The composition law arises from
+iterating such cospecialisations along nested diagonals together with
+the factorization isomorphisms on disjointness loci.  Operadic
+composition composes operations between \emph{fibers}; factorization
+composition composes \emph{$D$-module morphisms on configuration
+spaces}.
 \end{definition}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -230,14 +242,15 @@ structure by three steps:
 \item Identify the formal neighbourhood of the small diagonal in
   $X^n$ with $\FM_n(\C)$, the Fulton--MacPherson compactification.
 \end{enumerate}
-This extraction loses all global information: monodromy around
-cycles, the $D$-module connection, period integrals over homology
-classes.  At genus~$0$ on~$\mathbb{P}^1$ the loss is trivial
-($\mathbb{P}^1 \smallsetminus \{\mathrm{pt}\} \simeq \C$, so
-the formal disc covers the curve).  At genus~$g \geq 1$ the loss
-is precisely the curvature $\kappa(\cA) \cdot \omega_g$, which is
-the monodromy obstruction of the $D$-module connection around the
-$B$-cycles of~$\Sigma_g$.
+This extraction loses global information: monodromy around cycles,
+the extension data of the $D$-module connection, and period integrals
+over homology classes.  At genus~$0$ on the affine chart of
+$\mathbb{P}^1$ the loss vanishes only for the translation-invariant
+local subcategory that is already known to extend across the chosen
+point at infinity.  At genus~$g \geq 1$ the loss has a scalar
+projection measured in the bar construction by
+$\kappa(\cA)\cdot\omega_g$; this scalar is not visible in the
+formal-disc operad.
 
 Thus the local model $\SCchtop$
 (Definition~\ref{def:SC-operations}) is the genus-$0$ shadow of
@@ -1053,8 +1066,10 @@ $\Ran(X)$ Koszul-dual to $F_{\mathsf{cl}}$, constructed as follows:
   Corollary~\ref{cor:three-models-from-fact}.  The curvature
   $\kappa(\cA) \cdot \omega_g$ is the obstruction to
   single-valuedness of the bar differential on~$\Sigma_g$:
-  it is the $D$-module monodromy of $F_{\mathsf{cl}}$ around
-  the $B$-cycles, measured by the Arakelov normalisation.
+  it is the projective monodromy of the chosen propagator
+  trivialisation around the $B$-cycles, measured by the Arakelov
+  normalisation, not the curvature of the underlying BD
+  $D$-module on the fixed curve.
 \end{enumerate}
 The bar differential is built from holomorphic collision residues
 (the chiral product).
@@ -1487,7 +1502,7 @@ $\dfib^{\,2} = \kappa(\cA) \cdot \omega_g$.
 \begin{remark}[Comparison with Lurie HA \S5.5]
 \label{rem:lurie-comparison}
 \index{Lurie!factorization on stratified spaces}
-The product $\Sigma_g \times \R$ with boundary
+The half-space $\Sigma_g \times \R_{\geq 0}$ with boundary
 $\Sigma_g \times \{0\}$ is a stratified space in the sense of
 Lurie \cite{HA}, Chapter~5.5, with two strata: the open stratum
 $\Sigma_g \times \R_{>0}$ (the ``bulk'') and the closed stratum
@@ -1496,21 +1511,28 @@ factorization algebras on stratified spaces
 (\emph{loc.\ cit.}, Definition~5.5.2.9) assign to each stratum
 a factorization algebra, with compatibility data along the
 inclusion of strata.  Our BD factorization Swiss-cheese algebra
-(Definition~\ref{def:BD-SC}) is precisely such an object:
+(Definition~\ref{def:BD-SC}) is the product-split refinement of such
+an object:
 \begin{itemize}
 \item The open stratum carries $F_{\mathsf{cl}} \boxtimes
   F_{\mathsf{op}}$ (factorizable $D$-module on the bulk).
 \item The closed stratum carries $F_{\mathsf{op}}$ (the boundary
   algebra).
 \item The compatibility datum is the mixed sector
-  $F_{\mathsf{mix}}$, encoding how bulk observables restrict to
-  the boundary.
+  $F_{\mathsf{mix}}$, encoding how bulk observables approaching the
+  boundary act on boundary observables.
 \item The directionality (Definition~\ref{def:BD-SC}(iv)) is the
-  \emph{constructibility} condition: sections extend from closed
-  strata to open strata, not conversely.
+  choice of the open--closed exit indexing category: collar disks in
+  the bulk may limit to the boundary and give operations with boundary
+  output, while the category has no morphism with boundary input and
+  bulk output.
 \end{itemize}
-The content of this chapter beyond Lurie's general framework is
-the \emph{specific} product decomposition
+Lurie's constructibility supplies local constancy on strata and
+compatibility along the frontier; it does not by itself identify the
+two-coloured Swiss-cheese object with a single-colour $E_3$-algebra,
+nor does it reverse the bulk-to-boundary direction.  The content of
+this chapter beyond Lurie's general framework is the \emph{specific}
+product decomposition
 $\Sigma_g \times \R$, which splits the factorization structure
 into holomorphic ($\Sigma_g$) and topological ($\R$) colours.
 This splitting is \emph{not} part of Lurie's stratified
@@ -1564,8 +1586,9 @@ complexes, satisfying:
 
 \item \textbf{Directionality.}  The half-space
   $\Sigma_g \times \R_{\geq 0}$ carries a boundary condition at
-  $\Sigma_g \times \{0\}$.  Bulk observables restrict to the
-  boundary; boundary observables do not extend to the bulk.
+  $\Sigma_g \times \{0\}$.  Bulk observables approaching the
+  boundary act on boundary observables; there is no structure map
+  with boundary inputs and bulk output.
 \end{enumerate}
 \end{definition}
 
@@ -1726,21 +1749,24 @@ Theorem~\ref{thm:modular-bar}.
 \index{CG Koszul duality|textbf}
 The Ayala--Francis framework \cite{AF15} establishes Koszul duality
 for locally constant factorization algebras on~$\R^n$: it exchanges
-$E_n$-algebras and $E_n$-coalgebras.  For the HT product
-$\Sigma_g \times \R$, Koszul duality decomposes along the two
-factors:
+$E_n$-algebras and $E_n$-coalgebras.  In the HT product
+$\Sigma_g \times \R$, this theorem applies directly only to the
+locally constant topological factor.  The holomorphic factor is
+chiral, not locally constant, and is governed by Beilinson--Drinfeld
+factorization duality.  Thus the two inputs are:
 \begin{itemize}
 \item In the $\R$-direction: $\Eone$ Koszul duality (bar-cobar for
   associative algebras).
 \item In the $\Sigma_g$-direction: chiral Koszul duality
   (bar-cobar for chiral/factorization algebras, Volume~I
   Theorem~A).
-\item Combined: Swiss-cheese Koszul duality, the two-colored
-  adjunction of Theorem~\ref{thm:bar-cobar-adjunction}.
+\item Mixed direction: compatibility of these two dualities across
+  the bulk-to-boundary module is the mixed factorization convergence
+  hypothesis isolated in Theorem~\ref{thm:factorization-SC-koszul};
+  it is not a formal consequence of Lurie's locally constant theorem.
 \end{itemize}
 The bar construction of Construction~\ref{constr:bar-fact-coalgebra}
-is the factorization-level realization of this combined Koszul
-duality.
+is the factorization-level object on which these two dualities meet.
 \end{remark}
 
 
@@ -1774,16 +1800,19 @@ holomorphically translation-invariant (in the sense of
 \item \textbf{Local shadow.}  Formal completion at collision points
   defines a functor from the BD/CG factorization category to algebras
   over
-  $C_\ast(\FM_\bullet(X))$ in the symmetric monoidal dg category
-  of $D$-modules on~$X$ \textup{(}the closed-colour component of
+  $C_\ast(\FM_\bullet(T_xX))$ in the completed symmetric monoidal dg
+  category at~$x$ \textup{(}the closed-colour component of
   a $C_\ast(W(\SCchtop))$-algebra\textup{)}.
 
 \item \textbf{Scope of equivalence.}  The local-shadow functor is an
-  equivalence at genus~$0$ on $\mathbb P^1$ after choosing the affine
-  chart $\mathbb P^1\setminus\{\infty\}\simeq \mathbb C$.  At
-  genus~$g\ge 1$ it is not an equivalence: it forgets period data,
-  $D$-module monodromy, and the curvature
-  $\kappa(\cA)\cdot\omega_g$.
+  equivalence only on the formal-disc, translation-invariant
+  genus-$0$ subcategory obtained from the affine chart
+  $\mathbb P^1\setminus\{\infty\}\simeq \mathbb C$ with extension
+  across $\infty$ already supplied.  For arbitrary global
+  factorizable $D$-modules on $\mathbb P^1$, extension across
+  $\infty$ is additional descent data.  At genus~$g\ge 1$ the
+  functor is not an equivalence: it forgets period data, family
+  monodromy, and the scalar anomaly $\kappa(\cA)\cdot\omega_g$.
 \end{enumerate}
 \end{theorem}
 
@@ -1816,9 +1845,12 @@ the category of chiral algebras on~$X$ (as factorizable
 $D$-modules on $\Ran(X)$) is equivalent to the category of
 factorization algebras on~$X$ in the sense of \emph{loc.\ cit.},
 \S3.4.  Francis--Gaitsgory \cite{FG12} extend this to the
-derived/$\infty$-categorical setting, showing that algebras over
-$C_\ast(\FM_\bullet(X))$ in $D$-modules on~$X$ provide the same
-data.  The Costello--Gwilliam prefactorization algebra on~$X$, after
+derived/$\infty$-categorical setting.  This is a global Ran-space
+statement.  Passing from it to algebras over
+$C_\ast(\FM_\bullet(T_xX))$ is the separate formal-completion
+functor at~$x$; Francis--Gaitsgory do not identify arbitrary global
+factorization $D$-modules with their local operadic shadows.  The
+Costello--Gwilliam prefactorization algebra on~$X$, after
 passage to the cosheaf topology, is equivalent to the
 Francis--Gaitsgory factorization algebra by the comparison
 of~\cite{CG17}, \S5.5.  This establishes the BD--CG comparison on
@@ -1900,9 +1932,9 @@ commutes because $\Phi_{\mathsf{mix}}$ is defined component-wise on the two fact
 
 The no-open-to-closed constraint is preserved: the vanishing
 $F_{\mathsf{mix}}(\ldots,\mathsf{top},\ldots;\,\mathsf{cl}) = 0$
-on the BD side (the $!$-extension support argument of
-Definition~\ref{def:BD-SC}(iv)) corresponds to the vanishing of
-bulk-directed CG observables sourced from the boundary
+on the BD side (the empty output component in the open--closed
+indexing category of Definition~\ref{def:BD-SC}(iv)) corresponds to
+the absence of bulk-directed CG observables sourced from the boundary
 (Definition~\ref{def:CG-prefact}(iv)): $\Phi_{\mathsf{mix}}$
 sends the zero $D$-module to the zero observable.
 \end{proof}
@@ -1946,9 +1978,11 @@ $\FM_k(\C) \times \Conf_m(\R)$ with bulk-to-boundary structure, and
 $\mathsf P_3$ consists of BD D-modules on
 $\Ran(X)$ with boundary stratum along $\R \subset \C$, acting on the
 pair $(\Zderch(A), A)$, never on $A$ alone.  At genus~$0$ this
-comparison is an equivalence; at genus~$g\ge 1$ it forgets the global
-period data described above.  Three further presentations fit into a
-conjectural pentagon:
+comparison is an equivalence only on the same translation-invariant
+affine formal-disc subcategory as Theorem~\ref{thm:BD-CG-equivalence};
+for arbitrary global objects it is a local-shadow functor.  At
+genus~$g\ge 1$ it forgets the global period data described above.
+Three further presentations fit into a conjectural pentagon:
 \begin{enumerate}[label=(\roman*)]
 \item $\mathsf P_2$ (Koszul dual): $(\SCchtop)^!$ with
 $\mathsf P_2 \simeq E_2\{1\}$ (Gerstenhaber self-dual up to a shift);
@@ -1980,7 +2014,7 @@ underlies the q-convention bridge $q_{KL}^2 = q_{DK}$.
 % identity chain-level coherent; this remark records the specialisation
 % visible on the Swiss-cheese side. Upgrade to theorem when the dedicated
 % universal_trace_identity.tex chapter is installed.
-\begin{remark}[Pentagon substrate for the Universal Trace Identity; \ClaimStatusProvedElsewhere]
+\begin{remark}[Pentagon substrate for the Universal Trace Identity; \ClaimStatusConditional]
 \label{rem:pentagon-trace-identity}
 The Pentagon (Remark~\ref{rem:sc-chtop-pentagon}) is the operadic
 substrate of the cross-volume Universal Trace Identity (see the
@@ -2035,7 +2069,7 @@ inevitable rather than accidental.
 \end{example}
 
 \begin{remark}[Pentagon closed/open as stage-1/stage-2 of the
-Vol.~III two-stage factorisation; \ClaimStatusProvedElsewhere]
+Vol.~III two-stage factorisation; \ClaimStatusConditional]
 \label{rem:pentagon-two-stage}
 \index{Pentagon!closed/open as stage-1/stage-2}%
 \index{two-stage factorisation!Pentagon realisation}%
@@ -2043,7 +2077,7 @@ The closed and open colours of the Pentagon
 (Remark~\ref{rem:sc-chtop-pentagon}) are structurally the two stages
 of the Volume~III factorisation
 \[
- \Phi_d \;=\; \SpCh_{\Sigma_{d-1},\,C}\circ\PhiFA_d
+ \Phi_d \;=\; {\SpCh}_{\Sigma_{d-1},\,C}\circ\PhiFA_d
 \]
 at $d = 2, 3$. Stage~1 produces a canonical $E_d$-holomorphic
 factorisation algebra $\PhiFA_d(\cC)$ on the CY-$d$ target by
@@ -2053,7 +2087,7 @@ is the \emph{closed colour} $F_{\mathsf{cl}}$ of the Pentagon
 (Definition~\ref{def:BD-SC}(i)). Stage~2 is the
 factorisation-homology pushforward
 \[
- \SpCh_{\Sigma_{d-1},C}\bigl(\PhiFA_d(\cC)\bigr)
+ {\SpCh}_{\Sigma_{d-1},C}\bigl(\PhiFA_d(\cC)\bigr)
  \;=\; \int_{\Sigma_{d-1}} \PhiFA_d(\cC)\big|_{\Sigma_{d-1}\times C\times\R_{\geq 0}},
 \]
 landing on a reference curve $C$ and its boundary half-line
@@ -2071,7 +2105,7 @@ $\cC$ admits a \emph{family} of $E_1$-chiral shadows, parametrised
 by the choice of $(\Sigma_{d-1}, C)$: the Pentagon records the
 closed colour and one open-colour shadow; the family of open-colour
 shadows is the family of reference curves on which
-$\SpCh_{\Sigma_{d-1},C}$ may specialise. The $d = 2$ K3 case has
+${\SpCh}_{\Sigma_{d-1},C}$ may specialise. The $d = 2$ K3 case has
 $\Sigma_1 = \R$ canonically and the family collapses to a single
 pair $(\cA_\cC, \mathbf H_{\Delta_5})$; the $d = 3$ K3$\times E$
 case has $\Sigma_2$ varying over transverse complex surfaces,
@@ -2089,13 +2123,15 @@ never back.
 
 The local homotopy-Koszulity theorem
 (Theorem~\ref{thm:homotopy-Koszul}) ensures that the bar-cobar
-adjunction is a Quillen equivalence at genus~$0$.  The
-factorization framework extends this to all genera, where the bar
-complex is a \emph{curved} factorization coalgebra and the
-relevant category is the coderived category.
+adjunction is a Quillen equivalence on the genus-$0$ formal-disc
+model.  The factorization framework isolates the all-genus extension:
+the bar complex is then a \emph{curved} factorization coalgebra and
+the relevant category is the coderived category.
 
 \begin{theorem}[Factorization Swiss-cheese Koszul duality under mixed
-factorization convergence; \ClaimStatusProvedHere]
+factorization convergence; \ClaimStatusProvedHere{} for the local and
+categorical parts, \ClaimStatusConditional{} for positive-genus mixed
+recovery]
 \label{thm:factorization-SC-koszul}
 \index{factorization Koszul duality|textbf}
 Let $(F_{\mathsf{cl}}, F_{\mathsf{op}}, F_{\mathsf{mix}})$ be a
@@ -2119,7 +2155,8 @@ Theorem~\textup{\ref{thm:BD-CG-equivalence}}.  Then:
   $\Omegach(\barB(F))|_{g=0} \simeq F$.  This is the local
   homotopy-Koszulity of $\SCchtop$
   \textup{(}Theorem~\textup{\ref{thm:homotopy-Koszul})}, lifted to
-  the factorization level.
+  the factorization level on the translation-invariant affine
+  subcategory.
 
 \item \textbf{Positive-genus recovery.}  At genus~$g \geq 1$,
   closed-colour Getzler--Kapranov involutivity
@@ -2152,16 +2189,18 @@ and coproduct are assembled from the factorization data.
 \textbf{Part (ii).}  At genus~$0$, the bar complex is a genuine
 dg coalgebra ($d_{\barB}^2 = 0$), and the bar-cobar adjunction
 $\Omegach \dashv \barB$ restricts to the adjunction of
-Theorem~\ref{thm:bar-cobar-adjunction}.  The counit
+Theorem~\ref{thm:scchtop-bar-cobar-adjunction}.  The counit
 $\Omegach(\barB(F)) \to F$ is a quasi-isomorphism by the
 homotopy-Koszulity of $\SCchtop$
 (Theorem~\ref{thm:homotopy-Koszul}), which ensures that the
 bar-cobar resolution is a cofibrant replacement.  At the
 factorization level, this statement lifts from operations
 at formal discs to operations on $\Ran(\C)$, because the
-formal-disc data determines the factorization algebra on
-$\Ran(\C)$ at genus~$0$ (the local shadow is faithful at genus~$0$,
-Remark~\ref{rem:local-shadow-extraction}).
+formal-disc data determines the factorization algebra only on the
+translation-invariant affine subcategory of $\Ran(\C)$ used here.
+For a general factorization $D$-module on $\mathbb P^1$, extension
+across $\infty$ is additional descent data, exactly as in
+Remark~\ref{rem:local-shadow-extraction}.
 
 \smallskip\noindent
 \textbf{Part (iii).}  At genus~$g \geq 1$, the bar differential is
@@ -2341,12 +2380,13 @@ The three chain-level models of the genus-$g$ bar complex
   \omega_g$): the factorization coalgebra in \emph{single-valued
   gauge}: on $\Sigma_g$ itself, where the Arakelov propagator
   is single-valued but curved.  The curvature is the monodromy of
-  the gauge transformation from flat to single-valued gauge.
+  the propagator trivialisation from flat to single-valued gauge.
 \end{enumerate}
 The passage between gauges is the chiral Riemann--Hilbert
 correspondence: the gauge transformation from flat to single-valued
-gauge is the $D$-module monodromy representation, and its failure
-to be trivial is measured by $\kappa(\cA) \cdot \omega_g$.
+gauge is the monodromy representation of the chosen flat
+trivialisation, and its projective scalar defect is measured on the
+proved lane by $\kappa(\cA) \cdot \omega_g$.
 \end{corollary}
 
 \begin{proof}
@@ -2712,7 +2752,7 @@ an ambient symmetric monoidal structure (not on $\Dmod(X)$ but on
 $\Dmod(\Ran(X))$). The descent
 Proposition~\ref{prop:R-twisted-sigma-n-descent} is an identity
 between two factorization coalgebras on $\Ran(X)$, not on a single
-fibre. Hence the ``ordered E_1 primacy'' headline of Theorem~A
+fibre. Hence the ``ordered $E_1$ primacy'' headline of Theorem~A
 stands: the ordered bar is primary, the symmetric bar is its
 $R$-twisted $\Sigma_n$-coinvariant image, and at pole-free point
 the two coincide with the classical Loday--Vallette
@@ -2909,7 +2949,7 @@ of Latyntsev \cite{Latyntsev23} and the dg-shifted Yangians of
 Chapter~\ref{chap:dg-shifted-factorization}.  Both arise as colour
 projections of a single object.
 
-\begin{theorem}[Colour projections and factorization quantum groups; \ClaimStatusProvedHere]
+\begin{theorem}[Colour projections and factorization quantum groups; \ClaimStatusConditional]
 \label{thm:latyntsev-colour-projections}
 \index{Latyntsev factorization quantum groups|textbf}
 \index{factorization quantum groups!colour projections|textbf}
@@ -4148,13 +4188,13 @@ commutation relation, viewed from the coalgebra side.
 \index{SC operad@$\SCchtop$!pentagon and heptagon presentations}%
 The factorization apparatus assembled in this chapter (the BD
 formulation, \S\ref{sec:factorization-substrate}; the CG
-prefactorization formulation, \S\ref{sec:CG-Swiss-cheese-algebras},
+prefactorization formulation, \S\ref{sec:CG-factorization-SC},
 where present; the BD$\leftrightarrow$CG equivalence,
 \S\ref{sec:BD-CG-equivalence}, where present; the factorization
 properads and Theorem~A${}^{\infty,2}$,
-\S\ref{sec:factorization-properads-theorem-A-infinity-2}, where
+\S\ref{sec:factorization-properad}, where
 present; and the modular Steinberg correspondence,
-\S\ref{sec:modular-steinberg-correspondence}, where present) is
+\S\ref{sec:steinberg-hecke}, where present) is
 a finite atlas on the $\SCchtop$-pentagon of equivalent
 presentations: (1) operadic, (2) Koszul-dual, (3) factorization,
 (4) BV/BRST, (5) convolution. The pentagon extends to a heptagon
@@ -4205,6 +4245,10 @@ $\Obs^\partial(T_\cA) \simeq \cA$ as $\Eone$-chiral algebras and bulk
 observables
 $\Obs^{\mathrm{bulk}}(T_\cA) \simeq \cZ^{\mathrm{der}}_{\mathrm{ch}}(\cA)$
 as $E_3$-topological factorization algebras after topologization. The
+last clause is a post-topologization, single-colour statement: Dunn
+additivity enters only after the closed holomorphic colour has become
+locally constant on $Q_{\mathrm{tot}}$-cohomology, and it is not an
+identification of the bicoloured operad $\SCchtop$ with $E_3$. The
 class coverage is:
 \begin{enumerate}[label=(\roman*)]
 \item Class G/L (Heisenberg, affine KM at non-critical level) via
