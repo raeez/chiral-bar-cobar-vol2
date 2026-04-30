@@ -15786,3 +15786,1035 @@ Target: first concrete repairs propagated from
 - Metadata now records `thm:drinfeld-centre-sc-face` as `Conditional`.
 - `git diff --check` passed on the touched manuscript, compute, notes,
   and metadata surfaces.
+
+## 2026-04-30 A039 Monster VOA Orbifold E3 Attack-Heal
+
+Target: `standalone/monster_voa_orbifold_e3.tex`.
+
+1. `2026-04-30-a039-001`
+   Severity: `SERIOUS`
+   Class: `boundary-VOA-to-E3 overclaim`
+   Location: `standalone/monster_voa_orbifold_e3.tex:63`,
+   `standalone/monster_voa_orbifold_e3.tex:80`
+   Issue: the standalone still read as an unconditional original-complex
+   `E_3` theorem for the Moonshine boundary VOA rather than a descent
+   criterion for the orbifold HT factorisation algebra.
+   Fix: retitle and restate the theorem as a criterion requiring the
+   abelian Leech `E_3` model, vanishing finite-orbifold BV anomaly, and
+   finite-orbifold BV descent.
+   Status: `CONVERGED`
+
+2. `2026-04-30-a039-002`
+   Severity: `SERIOUS`
+   Class: `finite-group anomaly formula overuse`
+   Location: `standalone/monster_voa_orbifold_e3.tex:101`,
+   `main.tex:1390`, `chapters/theory/introduction.tex:1854`
+   Issue: the proof used a determinant/cocycle slogan as if it alone
+   proved the Leech `\mathbb Z/2` BV anomaly vanishing.
+   Fix: replace it by the invariant statement
+   `[\alpha]\in H^3(BG;\mathrm{U}(1))`; for `G=\mathbb Z/2` the
+   normalised class is detected by
+   `\alpha(\sigma,\sigma,\sigma)=\pm1`, and the `+1` value is an
+   explicit hypothesis/local input. The live `main.tex` summary now
+   says cyclic presentations supply VOA data, while `E_3` descent uses
+   separate anomaly and BV-descent inputs; the theory introduction has
+   the same finite-orbifold BV-descent scoping.
+   Status: `CONVERGED`
+
+3. `2026-04-30-a039-003`
+   Severity: `MODERATE`
+   Class: `Schellekens cyclic-orbifold scope`
+   Location: `standalone/monster_voa_orbifold_e3.tex:126`,
+   `standalone/monster_voa_orbifold_e3.tex:146`
+   Issue: EMS cyclic presentations were doing extra work as an
+   automatic `E_3`/BV descent theorem for all 71 rows.
+   Fix: separate VOA presentations from HT descent; the Schellekens
+   statement is now conditional on level matching, DW anomaly
+   vanishing, and finite-orbifold BV descent for the chosen lattice HT
+   model.
+   Status: `CONVERGED`
+
+4. `2026-04-30-a039-004`
+   Severity: `MODERATE`
+   Class: `standalone external-reference leakage`
+   Location: `standalone/monster_voa_orbifold_e3.tex:92`,
+   `standalone/monster_voa_orbifold_e3.tex:150`,
+   `standalone/monster_voa_orbifold_e3.tex:182`
+   Issue: the standalone depended on unresolved Vol II theorem labels
+   and ledger-style dependency prose.
+   Fix: remove external theorem-label references and replace the
+   dependency ledger by primary-source/local-hypothesis exposition.
+   Status: `CONVERGED`
+
+### Verification
+
+- `rg -n "ref\\*?\\{|Chapter~\\\\ref|Theorem~\\\\ref|Proposition~\\\\ref|Corollary~\\\\ref|ClaimStatus|Wave|round|batch|inscription|proved elsewhere|image of|universal holography functor|tmf|Witten genus|Drinfeld double|DPR" standalone/monster_voa_orbifold_e3.tex`
+  returned only the internal reference to
+  `thm:monster-e3-standalone` and one `half-spinor` source phrase.
+- Primary-source anchors checked: FLM 1988; Dijkgraaf--Witten 1990;
+  Dijkgraaf--Pasquier--Roche 1990/1991; Dong--Li--Mason 2000;
+  van Ekeren--Moller--Scheithauer 2020; van Ekeren--Lam--Moller--
+  Shimakura 2021; Hohn--Moller 2022/2026.
+
+## 2026-04-30 A043 Holographic Reconstruction Attack-Heal
+
+Target: `chapters/connections/thqg_holographic_reconstruction.tex`.
+
+1. `2026-04-30-a043-001`
+   Severity: `SERIOUS`
+   Class: `shadow-tower / convergence overclaim`
+   Location: `chapters/connections/thqg_holographic_reconstruction.tex`
+   Issue: the reconstruction band treated the finite-order scalar
+   recursion as an exact holographic reconstruction theorem and let the
+   Virasoro cubic-source formula stand for the full higher tower.
+   Fix: retitle the result as shadow-tower reconstruction; restrict
+   class-M infinite reconstruction to the completed inverse-limit
+   statement; state that analytic partition-function convergence needs
+   separate sewing/norm hypotheses; qualify the Virasoro recursion as
+   the cubic-source contribution inside the completed generic ambient.
+   Status: `CONVERGED`
+
+2. `2026-04-30-a043-002`
+   Severity: `SERIOUS`
+   Class: `K3 abelian branch / Borcherds normalization`
+   Location: `chapters/connections/thqg_holographic_reconstruction.tex`
+   Issue: the K3 surface advertised an unconditional harmonic
+   factorisation and Hall--Borcherds gravity package, while the repaired
+   doctrine only permits an abelian harmonic-branch comparison unless
+   the harmonic projector and Hall/Borcherds comparison data are assumed.
+   Fix: restate K3 reconstruction on the abelian harmonic branch with
+   explicit harmonic-projector and exact-bracket hypotheses; add the
+   K3 normalization
+   `\Phi_{10}^{\mathrm{un}}=\Delta_5^2` and
+   `\mathrm{wt}(\Delta_5)=c_{\phi_{0,1}^{K3}}(0)/2=5`; recast the
+   Hall--Borcherds paragraph as conditional comparison data rather than
+   a construction of the full Hall--Drinfeld double or 11D-SUGRA bulk.
+   Status: `CONVERGED`
+
+3. `2026-04-30-a043-003`
+   Severity: `SERIOUS`
+   Class: `state-sum to gravity overclaim`
+   Location: `chapters/connections/thqg_holographic_reconstruction.tex`
+   Issue: DGGPR/RT state sums were being read as gravitational partition
+   functions, and scalar finite-parameter towers were allowed to imply
+   BTZ/Cardy/Page-style physics without the required modular, vacuum,
+   saddle, and transseries inputs.
+   Fix: distinguish the Hopf-integral/modified-trace topological state
+   sum from any conditional HT-gravity reading; add the missing
+   boundary/asymptotic, exact-sector-functor, saddle, and transseries
+   hypotheses; explicitly say that the dictionary does not derive
+   Cardy, BTZ, or Page from the scalar/state-sum data alone.
+   Status: `CONVERGED`
+
+4. `2026-04-30-a043-004`
+   Severity: `MODERATE`
+   Class: `exact trace/formula overproof`
+   Location: `chapters/connections/thqg_holographic_reconstruction.tex`
+   Issue: the Fricke mapping-torus and Poincare-sphere passages
+   overproved explicit closed formulas from data that only supply
+   conditional block traces or semisimple comparison kernels.
+   Fix: recast Fricke as a conditional block-trace input and the
+   Poincare formula as a conditional non-semisimple Seifert expansion;
+   name the modified-trace Seifert kernel calculation as the remaining
+   proof obligation.
+   Status: `CONVERGED`
+
+### Verification
+
+- Grepped the target and the closely named global-triangle standalone
+  for retired narrative/status phrases, scalar-to-gravity overclaims,
+  K3 normalization, and class-M completion/harmonic-branch language.
+- Cross-checked local scope anchors in
+  `chapters/connections/hochschild.tex` and
+  `chapters/theory/chiral_higher_deligne.tex`.
+- Cross-checked Vol III K3 normalization in
+  `/Users/raeez/calabi-yau-quantum-groups/main.tex`.
+
+## 2026-04-30 A048 Finite-Orbifold BV/DW Obstruction Attack-Heal
+
+Target: finite-orbifold BV/Dijkgraaf-Witten obstruction surface for the
+Leech `\mathbb Z/2` Monster descent and Schellekens `c=24` criterion.
+
+1. `2026-04-30-a048-001`
+   Severity: `SERIOUS`
+   Class: `group-cohomology normalization / proof obligation`
+   Location: `compute/tests/test_monster_chain_level_e3_top.py`,
+   `chapters/connections/universal_holography_functor.tex`
+   Issue: the old compute/UHF surface treated determinant positivity,
+   even-unimodularity, and modular consistency checks as if they proved
+   the local finite-orbifold BV class.
+   Fix: add `compute/lib/z2_group_cohomology.py`, an exact normalized
+   sign-cochain checker for `H^3(B\mathbb Z/2;\mathrm{U}(1))`; rewrite
+   the Monster tests and UHF Monster subsection so
+   `\alpha(\sigma,\sigma,\sigma)=+1` means the supplied normalized
+   local BV class is trivial. The determinant `2^{24}>0` is retained
+   only as a compatibility check.
+   Status: `CONVERGED`
+
+2. `2026-04-30-a048-002`
+   Severity: `SERIOUS`
+   Class: `Schellekens scope / level-matching overclaim`
+   Location: `compute/tests/test_schellekens_71_alpha_classification.py`
+   Issue: the old test surface asserted that all Schellekens entries
+   automatically have `alpha_orb=0` by cyclic-orbifold level matching.
+   Fix: rewrite the test as a conditional criterion: the partition
+   `24+1+46=71` remains, Type A has vacuous obstruction, Type B uses
+   the supplied local `+1` sign, and Type C level matching is separated
+   from BV trivialization.
+   Status: `CONVERGED`
+
+3. `2026-04-30-a048-003`
+   Severity: `MODERATE`
+   Class: `cross-test stale wording`
+   Location: `compute/tests/test_part_vi_platonic_introduction.py`,
+   `compute/tests/test_climax_theorems_iv.py`
+   Issue: two older tests still said the Leech determinant or
+   even-unimodular lattice structure trivialized the DW class.
+   Fix: replace those assertions by the normalized supplied-sign
+   convention from the new checker.
+   Status: `CONVERGED`
+
+### Verification
+
+- `python3 -m pytest compute/tests/test_monster_chain_level_e3_top.py compute/tests/test_schellekens_71_alpha_classification.py compute/tests/test_part_vi_platonic_introduction.py compute/tests/test_climax_theorems_iv.py`
+  passed: `29 passed`.
+- `rg -n "alpha_orb = 0|Every case has alpha_orb = 0|defined on all 71|det\\(Leech\\) = 1 implies|even unimodular.*Dijkgraaf-Witten cocycle is trivialized|DW anomaly.*vanishes because|Borcherds.*implies DW|modular invariance.*alpha" compute/tests -g '*.py'`
+  returned no matches.
+
+## 2026-04-30 A046 PVA/D6/Sign Attack-Heal
+
+Target: `chapters/theory/pva-descent.tex`,
+`chapters/theory/axioms.tex`, `chapters/connections/conclusion.tex`,
+`chapters/examples/examples-complete-conditional.tex`, and the narrow
+PVA compute surface.
+
+1. `2026-04-30-a046-001`
+   Severity: `SERIOUS`
+   Class: `visible lambda-skew sign`
+   Location: `chapters/theory/pva-descent.tex:69`,
+   `chapters/theory/pva-descent.tex:562`
+   Issue: the legacy PVA descent surface still stated visible
+   skewsymmetry without the ordinary Koszul factor, while the repaired
+   doctrine is
+   `\{a_\lambda b\}=-(-1)^{|a||b|}\{b_{-\lambda-\partial}a\}`.
+   Fix: insert the ordinary Koszul factor in the axiom block and the
+   cohomological skewsymmetry proposition; keep shifted signs confined
+   to Jacobi and Leibniz through bar desuspension.
+   Status: `CONVERGED`
+
+2. `2026-04-30-a046-002`
+   Severity: `SERIOUS`
+   Class: `D6 / higher-formality overclaim`
+   Location: `chapters/theory/pva-descent.tex:119`,
+   `chapters/theory/pva-descent.tex:833`,
+   `chapters/examples/examples-complete-conditional.tex:4`,
+   `chapters/connections/conclusion.tex:349`
+   Issue: higher transferred vanishing was still presented as a
+   consequence of ordinary contractibility or as part of being a PVA.
+   Fix: separate binary PVA descent from D6; require compatible
+   topological nullhomotopies / relative bounding chains for higher
+   vanishing; scope class-L strictness and the SU(2) comparison tower
+   to certified comparison models.
+   Status: `CONVERGED`
+
+3. `2026-04-30-a046-003`
+   Severity: `SERIOUS`
+   Class: `compute predicate mismatch`
+   Location: `compute/lib/pva_descent_coefficients_engine.py:203`,
+   `compute/tests/test_pva_descent_coefficients_engine.py:232`
+   Issue: `DescentResult.is_pva()` incorrectly required the D6
+   higher-formality certificate, making an uncertified zero-bracket PVA
+   fail the PVA predicate.
+   Fix: make `is_pva()` check D2--D5 residues only and add
+   `is_higher_formal()` for the separate D6 flag; update the edge-case
+   test accordingly.
+   Status: `CONVERGED`
+
+4. `2026-04-30-a046-004`
+   Severity: `MODERATE`
+   Class: `vacuum/D6 naming and narrative prose`
+   Location: `compute/lib/pva_descent_chain_level.py:1`,
+   `compute/tests/test_pva_descent_chain_level.py:1`,
+   `chapters/theory/axioms.tex:528`,
+   `chapters/theory/axioms.tex:1806`
+   Issue: the chain-level PVA helper still named the vacuum axiom as
+   D6, and `axioms.tex` contained reader-facing status/retraction prose.
+   Fix: rename the checked chain-level surface to D2--D5 plus vacuum
+   while preserving legacy result keys, and replace the status/retraction
+   prose by standalone mathematical statements.
+   Status: `CONVERGED`
+
+### Verification
+
+- `pytest compute/tests/test_pva_descent_coefficients_engine.py compute/tests/test_pva_descent_chain_level.py -q`
+  passed: `69 passed`.
+- `python3 -m py_compile compute/lib/pva_descent_chain_level.py compute/lib/pva_descent_coefficients_engine.py compute/tests/test_pva_descent_chain_level.py compute/tests/test_pva_descent_coefficients_engine.py`
+  passed.
+- `git diff --check -- chapters/theory/pva-descent.tex chapters/theory/axioms.tex chapters/connections/conclusion.tex chapters/examples/examples-complete-conditional.tex compute/lib/pva_descent_chain_level.py compute/lib/pva_descent_coefficients_engine.py compute/tests/test_pva_descent_chain_level.py compute/tests/test_pva_descent_coefficients_engine.py compute/audit/linear_read_notes.md`
+  passed.
+
+## 2026-04-30 A054 Theorem H / Chiral Higher Deligne Attack-Heal
+
+Target: `chapters/theory/chiral_higher_deligne.tex`, root `main.tex`
+summary, `chapters/frame/preface.tex`, and the CHD scaffold test.
+
+1. `2026-04-30-a054-001`
+   Severity: `SERIOUS`
+   Class: `Theorem H / E3-rigidity status drift`
+   Location: `chapters/theory/chiral_higher_deligne.tex:597`,
+   `chapters/theory/chiral_higher_deligne.tex:644`
+   Issue: the rigidity section still read as if concentration followed
+   from pointwise `E_3`-rigidity plus ordinary chiral PBW, while the
+   route is conjectural without a derived-centre chiral-`E_3`-PBW
+   presentation.
+   Fix: retitle and restate the section and conjecture so Theorem H is
+   proved only by the Vol. I ordered-bar / Orlik-Solomon route, while
+   the `E_3` route explicitly assumes
+   `Z_ch^der(A|D_x)=U_{E_3}(W_x)` with polynomial growth and
+   local-to-global compatibility.
+   Status: `CONVERGED`
+
+2. `2026-04-30-a054-002`
+   Severity: `SERIOUS`
+   Class: `native-vs-derived E3 type error`
+   Location: `chapters/theory/chiral_higher_deligne.tex:672`,
+   `chapters/theory/chiral_higher_deligne.tex:729`
+   Issue: the partial-evidence route still let
+   Theorem `thm:chiral-higher-deligne` place the rigidity input too
+   close to `A|D_x`.
+   Fix: state that clause (1) gives only the `E_2` brace structure on
+   the derived centre, clause (2) gives the conditional mixed
+   `SC^{ch,top}` datum on the pair, and clause (3) gives the genuine
+   single-colour `E_3^{top}` input only after explicit topologisation.
+   Status: `CONVERGED`
+
+3. `2026-04-30-a054-003`
+   Severity: `MODERATE`
+   Class: `reader-facing draft-history prose`
+   Location: `chapters/theory/chiral_higher_deligne.tex:65`,
+   `chapters/theory/chiral_higher_deligne.tex:369`,
+   `chapters/theory/chiral_higher_deligne.tex:985`
+   Issue: the chapter still contained prose about earlier drafts,
+   theorem-like use of a conjecture, and update/refinement history.
+   Fix: replace those passages by standalone mathematical scope
+   statements: three separated inputs for holography, strictification
+   through a Drinfeld associator, and the class-M ambient statement.
+   Status: `CONVERGED`
+
+4. `2026-04-30-a054-004`
+   Severity: `MODERATE`
+   Class: `downstream live-reference drift`
+   Location: `main.tex:1405`, `chapters/frame/preface.tex:439`,
+   `compute/tests/test_chiral_higher_deligne.py:43`
+   Issue: live summaries/tests still advertised unconditional chiral
+   Higher Deligne or the old theorem label for the `E_3`-rigidity route.
+   Fix: make the root summary cohomological-unconditional but
+   chain-level mixed conditional; make the preface distinguish Vol. I
+   Theorem H from chiral Higher Deligne; register the scaffold test
+   against `conj:H-concentration-via-E3-rigidity` while preserving the
+   legacy theorem label in TeX as an alias for references.
+   Status: `CONVERGED`
+
+### Verification
+
+- `rg -n -F -e 'thm:H-concentration-via-E3-rigidity' -e 'conj:H-concentration-via-E3-rigidity' -e 'native-vs-derived' -e 'E_3-rigidity' -e 'E3-rigidity' -e 'H-concentration' ...`
+  checked the target, root summary, preface, Part VIII synthesis, and
+  CHD test scaffold.
+- Draft-history/prose grep on the touched CHD surfaces returned no
+  stale `formerly`, `retracted to`, downgrade-date, wave/agent/audit,
+  earlier-draft, `as written`, or inscription narrative in the target
+  chapter/test.
+- Cross-volume grep found stale advertising in
+  `/Users/raeez/chiral-bar-cobar/FRONTIER.md:108` and
+  `/Users/raeez/calabi-yau-quantum-groups/FRONTIER.md:147`. These are
+  outside the assigned Vol II live write surface and remain propagation
+  obligations for the main integration thread; legacy notes and swarm
+  logs also contain historical stale wording but are not live
+  manuscript surfaces.
+
+## 2026-04-30 -- A051 K3 BKM/conductor notation
+
+Target: residual `K^\kappa` and K3 BKM/conductor notation on the live
+Vol II surface.
+
+1. `2026-04-30-a051-001`
+   Severity: `SERIOUS`
+   Class: `notation / invariant conflation`
+   Location: `chapters/connections/chiral_ce_factalg_gen_rel.tex`,
+   K3/BKM remarks in `chapters/connections/**.tex`,
+   `chapters/frame/preface.tex`, `chapters/theory/introduction.tex`,
+   `chapters/examples/rosetta_stone.tex`,
+   `chapters/examples/w-algebras-stable.tex`,
+   `chapters/examples/w-algebras-conditional.tex`
+   Issue: residual `K^\kappa`, `K = 8`, `c_\Lambda(0)/2`, and
+   `c_1(0)/2=5` forms allowed the Mukai/Koszul conductor ceiling and
+   Borcherds weight to read as one invariant.
+   Fix: write the conductor ceiling as
+   `K^{\kappa_{\mathrm{ch}}}=8`; write the Borcherds weight as
+   `\kappa_{\mathrm{BKM}}(\mathfrak g_{\Delta_5})
+   =c_{\phi_{0,1}^{K3}}(0)/2=5`; make singular-theta pushforward
+   explicit where a centre trace maps to the BKM weight.
+   Status: `CONVERGED`
+
+### Verification
+
+- `rg -n -F 'K^\kappa' chapters standalone main.tex README.md`
+  returned no hits.
+- `rg -n -F 'K^{\kappa}' chapters standalone main.tex README.md`
+  returned no hits.
+- `rg -n 'c_\\Lambda|c_{\\Lambda}|c_1\(0\)/2=5' chapters standalone main.tex README.md`
+  returned no live hits.
+- `git diff --check -- <A051 changed files>`
+  passed.
+
+## 2026-04-30 A055 Finite-Orbifold BV Propagation Outside Monster
+
+Target: cyclic/type-C finite-orbifold BV and Dijkgraaf-Witten descent
+claims outside the Monster-only local computation.
+
+1. `2026-04-30-a055-001`
+   Severity: `SERIOUS`
+   Class: `cyclic-orbifold DW/BV overpropagation`
+   Location: `chapters/frame/preface.tex`,
+   `chapters/connections/programme_climax_platonic.tex`,
+   `chapters/theory/tempered_stratum_characterization_platonic.tex`,
+   `chapters/theory/irrational_cosets_tempered_platonic.tex`
+   Issue: high-level synthesis text still read cyclic level matching,
+   determinant positivity, or a Kapustin-Saulina comparison formula as
+   a uniform vanishing theorem for Schellekens/type-C orbifold BV
+   classes.
+   Fix: restate the surface as a conditional finite-orbifold criterion:
+   Type A is vacuous, Type B uses the supplied normalized Leech
+   `\mathbb Z/2` local sign plus BV descent, and Type C requires a
+   per-action trivialized `[\alpha_{\mathrm{orb}}]` and finite-orbifold
+   BV descent.
+   Status: `CONVERGED`
+
+2. `2026-04-30-a055-002`
+   Severity: `SERIOUS`
+   Class: `Z/2 group-cohomology normalization`
+   Location: `chapters/connections/part_vi_platonic_introduction.tex`,
+   `compute/tests/test_climax_theorems_iv.py`
+   Issue: the Part VI introduction and one independent-verification
+   test still said even-unimodularity/modular invariance forced the
+   Monster Dijkgraaf-Witten cocycle to be trivial.
+   Fix: state that `+1` is the supplied normalized local BV sign, while
+   determinant positivity, even-unimodularity, Borcherds modularity, and
+   DLM modular invariance are compatibility checks rather than BV-class
+   computations.
+   Status: `CONVERGED`
+
+3. `2026-04-30-a055-003`
+   Severity: `SERIOUS`
+   Class: `active-scope residual`
+   Location: `chapters/connections/3d_gravity.tex:7289`,
+   `chapters/connections/3d_gravity.tex:7341`,
+   `chapters/connections/3d_gravity.tex:7479`,
+   `chapters/connections/hochschild.tex:3600`
+   Issue: read-only sweep found the same doctrine risk inside active
+   gravity/Theorem-H write scopes: Arf/even-unimodular language still
+   overdecides the Monster class, the Schellekens theorem is described
+   as computing all relevant DW classes, and the logarithmic
+   `\mathcal W(p)` paragraph asserts an unconditional `p=2` vanishing
+   from rank-one/even-unimodular data.
+   Fix: not patched in this pass to keep the write set disjoint from
+   active workers; the needed repair is to require the normalized local
+   cocycle/coboundary computation or cite a type-specific theorem.
+   Status: `OPEN-ACTIVE-SCOPE`
+
+### Verification
+
+- `python3 -m pytest compute/tests/test_monster_chain_level_e3_top.py compute/tests/test_schellekens_71_alpha_classification.py compute/tests/test_part_vi_platonic_introduction.py compute/tests/test_climax_theorems_iv.py -q`
+  passed: `29 passed`.
+- `rg -n -i -e 'DW anomaly.*vanishes via' -e 'Dijkgraaf-Witten.*vanishes via' -e 'even unimodular.*Dijkgraaf-Witten' -e 'even unimodularity.*Dijkgraaf-Witten' -e 'forcing the Dijkgraaf-Witten cocycle' -e 'all with \\alpha = 0' -e 'Kapustin-Saulina vanishing' -e 'modular invariance.*DW-trivial' -e 'implies DW-trivial' <A055 changed files>`
+  returned no matches.
+- `git diff --check -- chapters/frame/preface.tex chapters/connections/programme_climax_platonic.tex chapters/theory/tempered_stratum_characterization_platonic.tex chapters/theory/irrational_cosets_tempered_platonic.tex chapters/connections/part_vi_platonic_introduction.tex compute/tests/test_climax_theorems_iv.py`
+  passed.
+
+## 2026-04-30 A056 Manuscript Hygiene And Native/Derived Typing
+
+Target: cache-pattern and draft-history language hiding mathematical
+typing issues outside active gravity, curved-Dunn, Theorem-H,
+finite-orbifold, PVA, and K/BKM write scopes.
+
+1. `2026-04-30-a056-001`
+   Severity: `MODERATE`
+   Class: `cache-pattern language / verification prose`
+   Location: `chapters/theory/wn_tempered_closure_platonic.tex:430`,
+   `chapters/theory/topologization_class_m_original_complex_platonic.tex:660`,
+   `chapters/theory/beta_N_closed_form_all_platonic.tex:519`
+   Issue: independent-verification summaries used reader-facing
+   `HZ-IV` bookkeeping language where the mathematical content is
+   simply disjoint verification sources for decorated claims.
+   Fix: replaced the protocol name by direct verification requirements:
+   disjoint `derived_from` and `verified_against` source families, and
+   independent-verification-decorated tests.
+   Status: `CONVERGED`
+
+2. `2026-04-30-a056-002`
+   Severity: `MODERATE`
+   Class: `cache-pattern language / class-M ambient`
+   Location: `standalone/class_m_global_triangle.tex:36`,
+   `standalone/class_m_global_triangle.tex:340`,
+   `standalone/bar_chain_models_chiral_quantum_groups.tex:491`
+   Issue: standalone summaries used `MC5 pattern` for the
+   weight-completed class-M lane, leaving the ambient distinction to
+   a process phrase.
+   Fix: restated the lane as the MC5 weight-completed mechanism via
+   the completed bar-cobar theorem and strong filtration proposition.
+   Status: `CONVERGED`
+
+3. `2026-04-30-a056-003`
+   Severity: `MODERATE`
+   Class: `draft-history wording / logarithmic W(p) obstruction`
+   Location: `chapters/theory/logarithmic_wp_tempered_analysis_platonic.tex:609`,
+   `chapters/theory/logarithmic_wp_tempered_analysis_platonic.tex:778`,
+   `chapters/theory/logarithmic_wp_tempered_analysis_platonic.tex:1078`
+   Issue: the logarithmic triplet chapter narrated the
+   Zhu-bounded-Massey route as a retraction history, although the
+   mathematics is the failure of a specific implication from
+   finite-dimensional Zhu algebra to uniform Massey bounds.
+   Fix: preserved labels and conjectural status, but retitled the
+   conjecture and remarks as a failed implication; rewrote the open
+   problem as the distinction between correlation-function Massey
+   boundedness and shadow-tower Massey boundedness; replaced `HZ-IV`
+   by direct disjoint-source verification language.
+   Status: `CONVERGED`
+
+4. `2026-04-30-a056-004`
+   Severity: `MODERATE`
+   Class: `coordination hold`
+   Location: `chapters/connections/ordered_associative_chiral_kd.tex:2708`,
+   `chapters/connections/ordered_associative_chiral_kd_frontier.tex:6769`,
+   `chapters/theory/sc_chtop_heptagon.tex:3316`,
+   `chapters/connections/e_infinity_topologization.tex` Stage-9 span,
+   `chapters/connections/brace.tex` recent span
+   Issue: read-only sweep found remaining cache/native-derived and
+   draft-history wording in just-patched coordination spans and in
+   K3/BKM-adjacent files already touched by the K-notation worker.
+   Fix: not patched in this pass to keep the write set disjoint; the
+   needed repair is direct typing language for native curve `E_1`,
+   derived-centre `E_2`, and K3-surface factorisation levels, plus
+   direct class-M stratum statements instead of retraction history.
+   Status: `OPEN-COORDINATION`
+
+## 2026-04-30 A053 Curved-Dunn Downstream Propagation
+
+Target: downstream echoes of the repaired raw direct-sum curved-Dunn
+surface, excluding active gravity/Page/BTZ/Cardy/Gevrey,
+K/BKM/conductor, Theorem-H/native-derived, finite-orbifold, PVA/D6,
+and the repaired raw direct-sum theorem file except for read-only
+checks.
+
+1. `2026-04-30-a053-001`
+   Severity: `SERIOUS`
+   Class: `KZB slope contradiction`
+   Location: `chapters/theory/curved_dunn_higher_genus.tex:1312`,
+   `chapters/theory/curved_dunn_higher_genus.tex:1370`
+   Issue: the KZB proof said a simple node had slope `0` and later
+   regular singular slope `1`, and the integral-level comparison
+   described generic non-integral KZB as irregular at boundary strata
+   without separating simple-node logarithmic strata from nonzero-slope
+   strata.
+   Fix: set simple-node slope to `0`, changed higher-codimension
+   irregularity to positive Newton slopes, and stated that Stokes data
+   enter only on nonzero-slope strata after compatible formal type.
+   Status: `CONVERGED`
+
+2. `2026-04-30-a053-002`
+   Severity: `SERIOUS`
+   Class: `conditionality propagation`
+   Location: `chapters/theory/modular_swiss_cheese_operad.tex:3964`,
+   `chapters/frame/part_viii_synthesis.tex:67`,
+   `chapters/theory/foundations.tex:924`,
+   `chapters/theory/theorems_C_D_native_vol2_platonic.tex:172`,
+   `chapters/theory/koszulness_moduli_M_kosz.tex:154`,
+   `chapters/theory/topologization_class_m_original_complex_platonic.tex:106`,
+   `chapters/theory/weight_completed_topologization_class_m_platonic.tex:106`,
+   `standalone/curved_dunn_two_complex_bridge.tex:415`
+   Issue: downstream summaries still treated curved-Dunn \(H^2=0\)
+   as all-genus, closed, proved, or unconditional; several also let
+   KZB/Stokes regularity appear as part of the proof of curved-Dunn
+   acyclicity.
+   Fix: restated genus \(1\) as the twisted tensor criterion and
+   \(g\ge2\) as conditional transport from modular-bootstrap
+   \(H^2\)-acyclicity plus degree-\(2\) comparison; separated
+   irregular-singular KZB as boundary composition under formal-type
+   and mixed Stokes hypotheses; narrowed weight-completed and
+   finite-truncation claims to their hypotheses.
+   Status: `CONVERGED`
+
+3. `2026-04-30-a053-003`
+   Severity: `MODERATE`
+   Class: `compute metadata / raw-direct-sum scope`
+   Location: `compute/tests/test_curved_dunn_higher_genus.py`,
+   `compute/tests/test_curved_dunn_raw_direct_sum.py`
+   Issue: the tests encoded the old all-genus/ProvedHere reading:
+   genus \(1\) was included in curved-Dunn \(H^2\)-vanishing, a
+   Gauss--Manin wedge-square surrogate was advertised as a higher-genus
+   proof, and completed pro/J-adic ambient tests omitted the comparison
+   and Mittag-Leffler hypotheses.
+   Fix: made the structural oracles conditional, excluded genus \(1\)
+   from the \(g\ge2\) transport theorem, added negative checks when
+   the degree-\(2\) comparison is absent, and rewrote raw-direct-sum
+   metadata to separate the obstruction witness from completed
+   conditional replacements.
+   Status: `CONVERGED`
+
+4. `2026-04-30-a053-004`
+   Severity: `MODERATE`
+   Class: `active-scope residual`
+   Location: `chapters/connections/programme_climax_platonic.tex:1457`,
+   `chapters/connections/dg_shifted_factorization_bridge.tex:2248`,
+  `chapters/theory/curved_dunn_higher_genus.tex:1709-1950`
+   Issue: read-only greps still find related status/closure language
+   inside active gravity, Theorem-H/native-derived, and K/BKM-conductor
+   coordination surfaces, plus BKM-supplement compute filenames with
+   old wave tokens.
+   Fix: not patched in this pass to keep the write set disjoint from
+   active workers; the needed repair is to reuse the same genus split,
+   comparison-hypothesis language, and nonzero-slope Stokes doctrine.
+   Status: `OPEN-ACTIVE-SCOPE`
+
+### Verification
+
+- `pytest -q compute/tests/test_curved_dunn_higher_genus.py compute/tests/test_curved_dunn_raw_direct_sum.py`
+  passed: `11 passed`.
+- `git diff --check -- metadata/label_index.json chapters/theory/curved_dunn_higher_genus.tex chapters/theory/modular_swiss_cheese_operad.tex chapters/theory/foundations.tex chapters/theory/theorems_C_D_native_vol2_platonic.tex chapters/theory/koszulness_moduli_M_kosz.tex chapters/theory/topologization_class_m_original_complex_platonic.tex chapters/theory/weight_completed_topologization_class_m_platonic.tex chapters/frame/part_viii_synthesis.tex standalone/curved_dunn_two_complex_bridge.tex compute/tests/test_curved_dunn_higher_genus.py compute/tests/test_curved_dunn_raw_direct_sum.py`
+  passed.
+- `python3 -m json.tool metadata/label_index.json >/dev/null`
+  passed after updating the two renamed non-mathematical labels.
+- Targeted `rg` for unconditional/all-genus curved-Dunn, simple-node
+  Stokes, `slope (1)`, raw-direct-sum completion, and KZB-proves-
+  curved-Dunn language returns only conditional or read-only active-scope
+  residuals recorded above.
+
+## 2026-04-30 -- A061 line-operator and global BBL reconstruction attack-heal
+
+1. `2026-04-30-a061-001`
+   Severity: `SERIOUS`
+   Class: `global reconstruction overclaim`
+   Location: `chapters/connections/ht_bulk_boundary_line_core.tex:79`,
+   `chapters/connections/ht_bulk_boundary_line_core.tex:247`
+   Issue: the slab fiber functor was stated as already reconstructing
+   the line category by the Drinfeld double
+   `\cA\bowtie\cA^!`, with Hopf pairing, antipode, coproduct, and
+   `R`-matrix treated as geometrically automatic.
+   Fix: replaced the blanket reconstruction with
+   `thm:slab-hopf-reconstruction`, a theorem under exact hypotheses:
+   completed compactly generated line category, exact conservative
+   monoidal fiber functor, completed wall Hopf algebras, nondegenerate
+   Hopf pairing, antipodes/coproducts, and a Drinfeld/KZ
+   quasi-triangular braiding. Named the obstruction
+   `o_{\mathrm{slab}}\in H^2(Cone(Def_Hopf -> Def_\otimes)[1])`
+   to record the missing chain-level Hopf/module-category comparison.
+   Status: `CONVERGED`
+
+2. `2026-04-30-a061-002`
+   Severity: `SERIOUS`
+   Class: `line-category scope`
+   Location: `chapters/connections/line-operators.tex:7`,
+   `chapters/connections/line-operators.tex:364`,
+   `chapters/connections/line-operators.tex:417`,
+   `chapters/connections/line-operators.tex:1887`
+   Issue: the line-module theorem and DNP comparison could still be
+   read as an all-HT-theories statement identifying physical global
+   line operators with modules for `\cA^!_{\mathrm{line}}`.
+   Fix: restated the theorem for the perturbative quasi-linear or
+   boundary-linear exact locus with a pointed boundary vacuum,
+   conilpotent completion, and compact generation; the proof now gives
+   essential surjectivity only inside the completed perturbative
+   category and explicitly separates the boundary algebra, open Koszul
+   dual, derived centre, and line category.
+   Status: `CONVERGED`
+
+3. `2026-04-30-a061-003`
+   Severity: `MODERATE`
+   Class: `duplicate global-triangle and Hall-double surface`
+   Location: `chapters/connections/ht_bulk_boundary_line.tex:124`,
+   `chapters/connections/ht_bulk_boundary_line.tex:1252`,
+   `chapters/connections/ht_bulk_boundary_line_frontier.tex:54`,
+   `chapters/connections/ht_bulk_boundary_line_core.tex:3116`
+   Issue: duplicate monolithic/frontier/core surfaces still phrased the
+   global theorem and K3 Hall--Drinfeld double as if the global
+   reconstruction target were already built.
+   Fix: rewrote them as theorem-shaped comparison statements:
+   compact generation, line-module comparison, derived-centre
+   quasi-isomorphism, and, for the Hall/Drinfeld-double target, compact
+   CoHA source, orientation system, Hopf pairing, and Hall bracket
+   comparison.
+   Status: `CONVERGED`
+
+### Verification
+
+- `rg -n -F -e "conjecturally presenting all" -e "presenting all line operators" -e "all line operators" -e "universal algebra of line operators" -e "line operators are modules" -e "identifies line operators" -e "Status summary" chapters/connections/line-operators.tex chapters/connections/ht_bulk_boundary_line.tex chapters/connections/ht_bulk_boundary_line_core.tex chapters/connections/ht_bulk_boundary_line_frontier.tex`
+  returned no hits.
+- `rg -n -F -e "global Drinfeld-double reconstruction" chapters/connections/line-operators.tex chapters/connections/ht_bulk_boundary_line.tex chapters/connections/ht_bulk_boundary_line_core.tex chapters/connections/ht_bulk_boundary_line_frontier.tex`
+  returns only the deliberate negative sentence in the `line-operators`
+  opening.
+- `rg -n -F -e "Drinfeld double" -e "Hopf" -e "bowtie" -e "o_{\\mathrm{slab}}" -e "slab-hopf" chapters/connections/ht_bulk_boundary_line_core.tex chapters/connections/line-operators.tex chapters/connections/ht_bulk_boundary_line.tex chapters/connections/ht_bulk_boundary_line_frontier.tex`
+  shows the Drinfeld/Hopf claims now occur either in the new
+  conditional reconstruction theorem, in negative/obstruction language,
+  or in the compact K3 Hall target with its required data named.
+- `pytest -q compute/tests/test_global_triangle_boundary_linear.py`
+  passed: `1 passed`.
+- `git diff --check -- chapters/connections/line-operators.tex chapters/connections/ht_bulk_boundary_line.tex chapters/connections/ht_bulk_boundary_line_core.tex chapters/connections/ht_bulk_boundary_line_frontier.tex compute/audit/linear_read_notes.md`
+  passed.
+
+## 2026-04-30 A060 RPT Convergence Shapovalov Standalone
+
+Target: `standalone/rpt_convergence_shapovalov.tex`.
+
+1. `2026-04-30-a060-001`
+   Severity: `SERIOUS`
+   Class: `PT-identification / conditional theorem scope`
+   Location: `standalone/rpt_convergence_shapovalov.tex`
+   Issue: the standalone had already removed the false smallest-
+   eigenvalue proof route, but the PT comparison still mixed a real
+   principal-series convergence input with a broad complex-\(c\)
+   conclusion and treated the conditional identification as status
+   prose rather than as a theorem with named hypotheses.
+   Fix: state the comparison as a conditional theorem on the real
+   Liouville chamber \(b>0\), \(b^2\notin\mathbb Q\), with fixed PT
+   four-point channel, contour, normalization, external momenta,
+   singular-hyperplane complement, summable level majorant, and full
+   \(b,b^{-1}\) shift system; prove the result from fixed-level
+   rationality, Weierstrass convergence, and Eberhardt uniqueness.
+   Status: `CONVERGED`
+
+2. `2026-04-30-a060-002`
+   Severity: `SERIOUS`
+   Class: `Shapovalov determinant / analytic overclaim`
+   Location: `standalone/rpt_convergence_shapovalov.tex`
+   Issue: the Kac determinant paragraph needed explicit normalization,
+   domain, and singular-hyperplane handling, and the numerator
+   paragraph still risked reading as a usable bound.
+   Fix: define \(Q=b+b^{-1}\), \(h=Q^2/4+P^2\),
+   \(P_{r,s}=(rb+s b^{-1})/2\), and the removed hyperplanes
+   \(P=\pm iP_{r,s}\); cite Kac--Raina and Feigin--Fuchs for the
+   finite-level product; state that the determinant gives
+   nonvanishing/product data only, and that the current Wick/tree
+   envelope is non-summable.
+   Status: `CONVERGED`
+
+3. `2026-04-30-a060-003`
+   Severity: `MODERATE`
+   Class: `five-family / Virasoro class-M status drift`
+   Location: `standalone/rpt_convergence_shapovalov.tex`
+   Issue: prose still suggested that the Virasoro class-\(M\) line sat
+   inside the Vol I five-family theorem, risking promotion to an
+   unconditional sixth row.
+   Fix: separate the five unconditional Vol I evaluation-generated
+   rows from the adjacent Virasoro class-\(M\) analogue; keep the
+   Virasoro row governed by the conditional PT theorem and the
+   summable-majorant conjecture; restate \(W(p)\), superconformal,
+   roots-of-unity, non-rational lattice, and general coset sectors as
+   silent non-coverage, with the Gurarie--Flohr obstruction to the
+   finite-Zhu-to-uniform-Massey route; replace unresolved standalone
+   Vol I `\ref*{V1-...}` dependencies by self-contained Vol I theorem
+   title references.
+   Status: `CONVERGED`
+
+## 2026-04-30 A059 -- BCFG chiral coproduct folding
+
+Target: `standalone/bcfg_chiral_coproduct_folding.tex`
+
+1. `2026-04-30-a059-001`
+   Severity: `SERIOUS`
+   Class: `fixed-point / landing obstruction`
+   Location: `standalone/bcfg_chiral_coproduct_folding.tex`
+   Issue: equivariance of the Yangian and chiral coproducts still risked
+   reading as landing in invariant tensor squares, and the type-\(C_2\)
+   comparison could be read as a fixed-point theorem.
+   Fix: introduced the landing obstruction
+   \(\mathcal L_\Gamma(\Delta)\) in the nontrivial neutral character
+   Hom-space, proved the iff descent criterion, and restated the
+   \(A_3\) Yangian calculation as coproduct equivariance plus the
+   explicit obstruction \(\mathcal L^Y_\sigma\).
+   Status: `CONVERGED`
+
+2. `2026-04-30-a059-002`
+   Severity: `SERIOUS`
+   Class: `normalisation / comparison scope`
+   Location: `standalone/bcfg_chiral_coproduct_folding.tex`
+   Issue: folded chiral coproducts suppressed the induced affine level,
+   spectral-parameter convention, and non-simply-laced root-length
+   normalisation needed for comparison with RTT presentations.
+   Fix: introduced \(k_\sigma\), made fixed-current algebras images of
+   \(V_{k_\sigma}(\fg)\) in the chosen affine quotient convention, and
+   required spectral and invariant-form normalisation for all RTT
+   comparisons.
+   Status: `CONVERGED`
+
+3. `2026-04-30-a059-003`
+   Severity: `MODERATE`
+   Class: `triality obstruction`
+   Location: `standalone/bcfg_chiral_coproduct_folding.tex`
+   Issue: the \(G_2\) section named obstructions but did not isolate the
+   order-three landing group as the mathematical object controlling
+   descent.
+   Fix: restated the \(G_2\) conjecture as vanishing of
+   \(\mathcal L_{\mathbb Z/3}(\Delta^v_{D_4})\in
+   \operatorname{Hom}(V^{\chi_0},V^{\chi_1}\otimes V^{\chi_2}\oplus
+   V^{\chi_2}\otimes V^{\chi_1})\), with cube-root spectral convention
+   and long-root normalisation explicit.
+   Status: `CONVERGED`
+
+## 2026-04-30 A062 K3/BKM Native-Derived Typing
+
+Target: `chapters/connections/ordered_associative_chiral_kd_frontier.tex`
+and `chapters/theory/sc_chtop_heptagon.tex`.
+
+1. `2026-04-30-a062-001`
+   Severity: `SERIOUS`
+   Class: `native / derived operadic typing`
+   Location:
+   `chapters/connections/ordered_associative_chiral_kd_frontier.tex:6769`,
+   `chapters/theory/sc_chtop_heptagon.tex:3140`
+   Issue: the K3 frontier still let the curve-level
+   `\mathbf H_{\Delta_5}` read as an `E_2` object, instead of
+   separating the native curve `E_1` algebra, the derived-centre
+   `E_2` algebra, and the surface-stage factorisation input.
+   Fix: introduced the curve object `\mathbf H_{\Delta_5,E}`, the
+   derived centre `Z_E = Z^{\mathrm{der}}_{\mathrm{ch}}(\mathbf
+   H_{\Delta_5,E})`, and the surface-stage
+   `\PhiFA_2(D^b\mathrm{Coh}(K3))`; restated the heptagon K3
+   realisation as a theorem under the three precise inputs: surface
+   factorisation, curve restriction, and chiral-brace centre action.
+   Status: `CONVERGED`
+
+2. `2026-04-30-a062-002`
+   Severity: `SERIOUS`
+   Class: `BKM weight / conductor distinction`
+   Location:
+   `chapters/connections/ordered_associative_chiral_kd_frontier.tex:5784`,
+   `chapters/connections/ordered_associative_chiral_kd_frontier.tex:6548`,
+   `chapters/theory/sc_chtop_heptagon.tex:748`
+   Issue: K3/BKM-adjacent language risked reading the Mukai conductor
+   `K^{\kappa_{\mathrm{ch}}}=8` and the Borcherds weight
+   `\kappa_{\mathrm{BKM}}(\mathfrak g_{\Delta_5})=5` as one
+   invariant.
+   Fix: retained the repaired notation
+   `K^{\kappa_{\mathrm{ch}}}=2c_+(\mu(K3))=8`, kept the BKM weight
+   as `c_{\phi_{0,1}^{K3}}(0)/2=5`, and stated their distinction in
+   the trace identity.
+   Status: `CONVERGED`
+
+3. `2026-04-30-a062-003`
+   Severity: `MODERATE`
+   Class: `reader-facing cache / draft-history vocabulary`
+   Location:
+   `chapters/connections/ordered_associative_chiral_kd_frontier.tex:5811`,
+   `chapters/connections/ordered_associative_chiral_kd_frontier.tex:6769`,
+   `chapters/theory/sc_chtop_heptagon.tex:74`,
+   `chapters/theory/sc_chtop_heptagon.tex:3334`
+   Issue: cache-pattern, reconstitution, and confusion-pattern wording
+   concealed the actual mathematical distinction between curve, centre,
+   and surface levels.
+   Fix: replaced those phrases by direct local-shadow rigidity,
+   curve/centre/surface typing, and CoHA-associative-vs-chiral
+   factorisation statements.
+   Status: `CONVERGED`
+
+### Verification
+
+- `rg` on the two assigned files found no residual `cache guard`,
+  `cached-confusion-pattern`, `cache confusion`, `reconstituted
+  architecture`, `AP~CY`, `strand-S*`, stale `c_\Lambda(0)/2`, or
+  stale `K^\kappa` forms.
+- `rg` on the active Vol II surface found two read-only native-derived
+  echoes outside this worker's write scope:
+  `chapters/theory/curved_dunn_higher_genus.tex:1657` and
+  `chapters/theory/foundations.tex:3986`.
+- Cross-volume read-only grep found K3-specific `c_\Lambda(0)/2`
+  wording in Vol I and Vol III live chapters; those remain propagation
+  obligations for the integration thread.
+- `git diff --check -- chapters/connections/ordered_associative_chiral_kd_frontier.tex chapters/theory/sc_chtop_heptagon.tex`
+  passed.
+
+## 2026-04-30 A066 WN/Winfty Endpoint Topologisation
+
+Target: `chapters/connections/e_infinity_topologization.tex`,
+`chapters/connections/w_infty_e_infty_endpoint_platonic.tex`, and the
+direct finite-window endpoint tests.
+
+1. `2026-04-30-a066-001`
+   Severity: `SERIOUS`
+   Class: `finite rung / inverse-limit separation`
+   Location:
+   `chapters/connections/e_infinity_topologization.tex`,
+   `chapters/connections/w_infty_e_infty_endpoint_platonic.tex`
+   Issue: the endpoint surface allowed the finite
+   `E_{N+1}^{\mathrm{top}}` rung theorem to read as a formal proof of
+   the `E_\infty` endpoint.
+   Fix: split the finite-rung ladder from the weightwise inverse-limit
+   theorem. The endpoint now requires weight-window stability,
+   translation and homotopy compatibility, Dunn stabilisation, and
+   vanishing of
+   `delta_{w,r} in lim_N^1 H^{-1}(End^{(r)}(B_N^{<=w}))`.
+   Status: `CONVERGED`
+
+2. `2026-04-30-a066-002`
+   Severity: `SERIOUS`
+   Class: `all-spin convergence / Dunn compatibility`
+   Location:
+   `chapters/connections/w_infty_e_infty_endpoint_platonic.tex`
+   Issue: the Prochazka, CKL, and PRS-Bakas routes were phrased as
+   unconditional all-spin GGL convergence proofs, and Dunn
+   compatibility at the inverse limit was treated as automatic.
+   Fix: repaired them as finite-window stabilisation theorems with
+   explicit window, normalisation, null-relation, finite-rank, and
+   hbar-order hypotheses. The endpoint theorem now assumes the
+   all-spin family of those finite-window hypotheses and uses the
+   obstruction classes above to glue finite homotopies.
+   Status: `CONVERGED`
+
+3. `2026-04-30-a066-003`
+   Severity: `MODERATE`
+   Class: `test/prose strength drift`
+   Location:
+   `chapters/connections/w_infty_e_infty_endpoint_platonic.tex`,
+   `compute/lib/winfty_finite_window.py`,
+   `compute/tests/test_winfty_finite_window.py`,
+   `compute/tests/test_w_infty_endpoint.py`,
+   `compute/tests/test_e_infinity_topologization.py`
+   Issue: executable prose implied all-spin structure-constant
+   computation and endpoint proof, while the tests only checked
+   finite threshold arithmetic and decorator consistency.
+   Fix: renamed the threshold to the weight-window threshold
+   `N_0(w)=2w-1`; kept the spin-4 witness as an `E_5` finite rung
+   which does not prove the endpoint; added the `lim^1`
+   obstruction-vanishing hypothesis to the endpoint test surface.
+   Status: `CONVERGED`
+
+4. `2026-04-30-a066-004`
+   Severity: `MODERATE`
+   Class: `WN beta / finite-envelope constants`
+   Location:
+   `chapters/theory/wn_tempered_closure_platonic.tex`,
+   `chapters/theory/beta_N_closed_form_all_platonic.tex`,
+   `compute/lib/wn_tempered_closure.py`
+   Issue: the endpoint audit had to ensure that harmonic
+   `beta_N=12(H_N-1)` was not promoted to an unconditional theorem.
+   Fix: inspected the local beta surfaces and preserved their current
+   distinction: `beta_2=6` and `beta_3=10` are proved finite data;
+   `beta_N=12(H_N-1)` remains conditional on the finite Riccati
+   envelope / kappa-ratio scaling hypotheses, with
+   `rho=|c|/beta_N` only under those hypotheses.
+   Status: `CONVERGED`
+
+### Verification
+
+- `python3 -m pytest compute/tests/test_winfty_finite_window.py
+  compute/tests/test_w_infty_endpoint.py
+  compute/tests/test_e_infinity_topologization.py
+  compute/tests/test_beta_N_closed_form.py
+  compute/tests/test_w4_beta_direct.py
+  compute/tests/test_wn_tempered_closure.py -q` passed (`60 passed`).
+- `git diff --check -- chapters/connections/w_infty_e_infty_endpoint_platonic.tex
+  chapters/connections/e_infinity_topologization.tex
+  compute/lib/winfty_finite_window.py
+  compute/tests/test_winfty_finite_window.py
+  compute/tests/test_w_infty_endpoint.py
+  compute/tests/test_e_infinity_topologization.py
+  compute/audit/linear_read_notes.md` passed.
+- Targeted retired-language grep on the owned endpoint and directly
+  associated test surfaces found no residual `Yamada`, `Stage~9`,
+  `original inscription`, `proof sketch`, `HZ-IV`, `certificate`,
+  `ledger`, `wave`, `downgrad`, or `reconstit` tokens.
+
+## 2026-04-30 A070 Modular SC and modular PVA attack-heal
+
+1. `2026-04-30-a070-001`
+   Severity: `SERIOUS`
+   Class: `genus-completed Heisenberg modular bar`
+   Location: `chapters/theory/modular_swiss_cheese_operad.tex`
+   Issue: the critical-level modular bar was described by a direct sum,
+   and the generic-level spectral sequence retained a genus-1 truncation
+   artifact for the positive-genus columns.
+   Fix: replaced the critical object by
+   `Bmod(Heis_0)=prod_{g>=0} B^{(g)}(Heis_0)` and made the generic
+   contraction uniform in `p`: the fixed-total-degree string
+   `E_1^{0,N}->E_1^{1,N-2}->...` has only `E_2^{0,0}` and
+   `E_2^{0,1}` surviving.
+   Resolution: `CONVERGED`
+
+2. `2026-04-30-a070-002`
+   Severity: `SERIOUS`
+   Class: `SCmod/E3 typing and K3 constants`
+   Location: `chapters/theory/modular_swiss_cheese_operad.tex`
+   Issue: the K3 surface could be read as identifying `SCmod` with a
+   single-coloured `E_3` target and as treating the 24 M5 insertions as
+   the open colour.
+   Fix: restated `SCmod` as the two-coloured interface between
+   `E_1^{chiral}`, derived-centre `E_2^{chiral}`, and a later
+   `E_3^{top}` cohomology action only after an explicit topological
+   homotopy. Inserted the obstruction class `phi^{(3)}` in the `SCmod`
+   deformation complex and the constants
+   `wt(Delta_5)=c_{phi_{0,1}^{K3}}(0)/2=10/2=5`,
+   `K^{kappa_ch}=2c_+(Mukai(K3))=8`,
+   `Phi_10^{un}=Delta_5^2`.
+   Resolution: `CONVERGED`
+
+3. `2026-04-30-a070-003`
+   Severity: `SERIOUS`
+   Class: `compact K3 versus Maulik--Okounkov local models`
+   Location: `chapters/theory/modular_swiss_cheese_operad.tex`
+   Issue: the compact K3 Hilbert tower was phrased as carrying a global
+   MO Yangian/stable-envelope action.
+   Fix: separated the global Nakajima--Grojnowski Fock module from
+   local/quiver MO chamber systems. The comparison now exists exactly
+   on the vanishing locus of
+   `o_{MO/SC} in H^1(Abar_2, Cone(Loc_MO -> Loc_SCmod))`; tower
+   stabilisation is controlled by the Hochschild obstruction
+   `o_n=[R_{n+1}^{loc}(u)(iota_n otimes iota_n)
+   -(iota_n otimes iota_n)R_n^{loc}(u)]`.
+   Resolution: `CONVERGED`
+
+4. `2026-04-30-a070-004`
+   Severity: `SERIOUS`
+   Class: `PVA all-genus quantization and K3 obstruction language`
+   Location:
+   `chapters/connections/modular_pva_quantization.tex`,
+   `chapters/connections/modular_pva_quantization_frontier.tex`
+   Issue: the Virasoro all-genus lift was stated more broadly than the
+   proof supported, and the K3 `c_{2d}=-214` line made the central scalar
+   look like a nonzero local PVA obstruction.
+   Fix: proved the all-genus lift on the central-parameter subcomplex by
+   the field-independent bivector
+   `Xi=partial_c P_c=(1/12) int theta_T partial^3 theta_T`, with
+   `[Xi,Xi]=0` and `Delta_cyc Xi=0`. Restated the first local PVA
+   obstruction as the class of `D_1P=Delta_cyc P`, vanishing in the
+   triangular Virasoro and `W_3` sectors; the K3 value is the scalar
+   `kappa(Vir_{-214})=c_{2d}/2=-107`.
+   Resolution: `CONVERGED`
+
+5. `2026-04-30-a070-005`
+   Severity: `MODERATE`
+   Class: `frontier source discipline and draft-language removal`
+   Location: `chapters/connections/modular_pva_quantization_frontier.tex`
+   Issue: the hemisphere pairing passage used flag/prose language and
+   could overstate the `D^3` analytic source.
+   Fix: made `DFPY16` only a methodological `S^3` analogue, retained the
+   missing primary `D^3` computation as an analytic-normalisation
+   obligation, and reduced the ambiguity on the defined comparison locus
+   to the scalar `mathfrak n(T;epsilon)`.
+   Resolution: `CONVERGED`
+
+### Verification
+
+- `git diff --check -- chapters/theory/modular_swiss_cheese_operad.tex
+  chapters/connections/modular_pva_quantization.tex
+  chapters/connections/modular_pva_quantization_frontier.tex
+  compute/audit/linear_read_notes.md` passed.
+- Targeted retired-language grep on the three owned files found no
+  residual `the K3 synthesis`, `The the K3`, `retraction`, `retracted`,
+  `withdrawn`, `residual item`, `Discipline:`, `Flag:`, `direct sum`,
+  `purely topological`, `kills the chiral`, `Status conventions`,
+  `Synthesizing the entire picture`, or genus-2 truncation artifact.
+- Targeted SC/E3 grep found the two-coloured interface statement and no
+  literal `SC^{ch,top}->E_3` collapse.
+- Targeted constant grep found `K^{kappa_ch}=8`,
+  `c_{phi_{0,1}^{K3}}(0)/2=10/2=5`, and `Phi_10^{un}=Delta_5^2`.
+- A lightweight begin/end environment count over the three owned TeX
+  files completed without imbalance.

@@ -1,22 +1,28 @@
-"""Tests for W_N tempered-stratum closure (wn_tempered_closure module).
+"""Convention guards for W_N tempered-stratum closure.
 
 Coverage
 --------
-  - thm:wn-tempered-all-N (ProvedHere): every generic W_N is tempered.
-  - prop:beta-N-closed-form (Conjectured): beta_N = 12(H_N - 1).
-  - prop:wn-stirling-dominance (ProvedHere): Stirling factor dominates
-    beta_N at large r, hence tempering.
-  - prop:rho-star-WN (Conditional): rho_*^{W_N}(c) = |c|/[12(H_N - 1)].
+  - prop:beta-stirling-dominance (ProvedHere): a finite Riccati-envelope
+    coefficient beta gives factorial tempering by Stirling dominance.
+  - prop:beta-N-closed-form (Conjectured): beta_N = 12(H_N - 1), conditional
+    on the kappa-ratio scaling law.
+  - prop:rho-star-WN (Conditional): rho_*^{W_N}(c) = |c|/[12(H_N - 1)]
+    under the harmonic beta law.
+  - W4 bridge guard: the spin-lane value 13 is evidence, not a proof of the
+    full Riccati coefficient beta_4.
 
 Independent-verification decorators are installed per the Vol II HZ-IV
 protocol. derived_from and verified_against sources are DISJOINT:
-  - Derivation uses Fateev-Lukyanov structure constants + Riccati
-    recursion (algebraic path).
-  - Verification uses Stirling's approximation + numerical W_3 tower
-    from Vol I engine (analytic path).
+  - Derivation uses the conditional finite-beta envelope or the harmonic
+    kappa-ratio ansatz.
+  - Verification uses direct arithmetic, Stirling estimates, and the W4
+    bridge sentinel.
 
 Each test has `# VERIFIED` comments (AP10) citing at least TWO
 independent sources.
+
+These tests deliberately do not certify global Class M closure or prove
+that every principal W_N has the required finite Riccati envelope.
 """
 
 from __future__ import annotations
@@ -34,6 +40,7 @@ if _VOL2_ROOT not in sys.path:
 from compute.lib.wn_tempered_closure import (  # noqa: E402
     BETA_2,
     BETA_3,
+    WN_TEMPERING_SCOPE,
     beta_N,
     beta_N_candidate_A,
     beta_N_candidate_B,
@@ -84,7 +91,7 @@ def test_beta_3_is_ten():
 
 
 # ---------------------------------------------------------------------------
-# Harmonic-candidate check: matches proved data and conditionally falsifies candidates
+# Harmonic-candidate check: matches proved data and separates candidates conditionally
 # ---------------------------------------------------------------------------
 
 
@@ -139,10 +146,10 @@ def test_beta_N_candidates_match_N2_N3_only():
 
 
 def test_beta_N_is_finite_for_all_N():
-    """beta_N is a finite positive rational for every N >= 2.
+    """The harmonic candidate beta_N is a finite positive rational.
 
-    This is the load-bearing fact for the tempering theorem: regardless
-    of the exact closed form, tempering holds at every finite beta_N.
+    This is an arithmetic guard for the candidate value. It does not prove
+    that the full W_N shadow tower has this beta_N as its Riccati envelope.
 
     # VERIFIED: [DC] Direct evaluation of beta_N(N) returns Fraction for N=2..20.
     # VERIFIED: [DA] Dimensional analysis: beta_N is ratio of structure
@@ -161,25 +168,24 @@ def test_beta_N_is_finite_for_all_N():
 
 
 @independent_verification(
-    claim="thm:wn-tempered-all-N",
+    claim="prop:beta-stirling-dominance",
     derived_from=[
         "Stirling approximation (r!)^{-1/r} ~ e/r",
-        "Riccati recursion upper bound |S_r| <= C * beta_N^{r-4} / (r * |c|^{r-2})",
+        "Conditional Riccati-envelope upper bound |S_r| <= C * beta_N^{r-4} / (r * |c|^{r-2})",
     ],
     verified_against=[
         "Direct numerical evaluation of the rate bound at r = 4, 10, 20, 100",
         "Monotone-decreasing certificate of the rate sequence (independent of Stirling step)",
     ],
     disjoint_rationale=(
-        "Derivation combines the Fateev-Lukyanov envelope with the Stirling "
-        "approximation. Verification evaluates the rate bound directly at "
+        "Derivation assumes a finite beta envelope and combines it with the "
+        "Stirling approximation. Verification evaluates the resulting bound at "
         "finite r-values, observing the sequence decreases monotonically to 0 "
-        "without invoking the analytic Stirling asymptotic. The two paths "
-        "compute the same quantity but via independent algorithms."
+        "without promoting the envelope to a global W_N theorem."
     ),
 )
 def test_tempering_rate_tends_to_zero_every_N():
-    """For every N = 2..8 and c = 100, the rate bound decreases to 0.
+    """For sampled N and c, the conditional finite-beta bound decreases to 0.
 
     # VERIFIED: [DC] Direct computation at multiple r-values for each N.
     # VERIFIED: [LC] Limiting case r -> infty: bound -> 0 by Stirling.
@@ -204,7 +210,7 @@ def test_tempering_rate_tends_to_zero_every_N():
 
 
 @independent_verification(
-    claim="prop:rho-star-WN-closed-form-upgrade",
+    claim="prop:beta-stirling-dominance",
     derived_from=[
         "Stirling factor (r!)^{-1/r} ~ e/r",
     ],
@@ -213,9 +219,9 @@ def test_tempering_rate_tends_to_zero_every_N():
         "Empirical check at r = 100 for N up to 6",
     ],
     disjoint_rationale=(
-        "Derivation uses asymptotic Stirling. Verification evaluates "
-        "beta_N * e / r_max at finite r_max = 100 and observes it is < 1 for "
-        "N = 2..6 and c = 100, a direct numerical certificate."
+        "Derivation uses asymptotic Stirling under a finite-beta hypothesis. "
+        "Verification evaluates beta_N * e / r_max at finite r_max = 100 and "
+        "observes it is < 1 for N = 2..6 and c = 100."
     ),
 )
 def test_stirling_dominates_beta_at_large_r():
@@ -402,33 +408,32 @@ def test_candidate_A_vs_B_miss_harmonic_N4():
 
 
 # ---------------------------------------------------------------------------
-# Full tempering certificate: every W_N is tempered at every generic c
+# Scope guard: finite-beta tests are not all-rank W_N proofs
 # ---------------------------------------------------------------------------
 
 
 @independent_verification(
-    claim="cor:wn-original-complex-dichotomy-healed",
+    claim="prop:beta-stirling-dominance",
     derived_from=[
-        "thm:wn-tempered-all-N (universal W_N tempering theorem)",
+        "Conditional finite-beta Riccati envelope",
     ],
     verified_against=[
         "Numerical certificate at large r for N = 2, 3, 4, 5, 6 and c = 100",
         "The certificate (|S_r|/r!)^(1/r) bound is < 1/e = 0.368 at r = 100",
     ],
     disjoint_rationale=(
-        "Theorem combines universal tempering with the original-complex "
-        "dichotomy. Verification directly evaluates the tempering rate bound "
-        "at r = 100 for every N = 2..6, observing the bound is well below "
-        "1/e (the prior buggy claim) for every N."
+        "The conditional theorem says finite beta plus Stirling gives "
+        "tempering. Verification evaluates the finite-beta bound for sampled "
+        "N without asserting that the full W_N envelope has been proved."
     ),
 )
-def test_all_WN_tempered_at_generic_c():
-    """Every W_N (N = 2..6) at c = 100 has rate bound < 1/e at r = 30.
+def test_finite_beta_bound_tempered_for_sampled_WN_candidates():
+    """Sampled harmonic beta candidates have rate bound < 1/e at r = 30.
 
-    This is the concrete certificate that the non-tempered stratum of
-    every principal W_N is empty at generic c. Float evaluation at
-    r = 100 may underflow (itself evidence of tempering, but we use
-    r = 30 for a non-degenerate numerical comparison against 1/e).
+    This is a finite-beta convention guard, not a proof that the non-tempered
+    stratum of every principal W_N is empty at generic c. Float evaluation at
+    r = 100 may underflow; r = 30 gives a non-degenerate numerical comparison
+    against 1/e.
 
     # VERIFIED: [DC] Direct evaluation at explicit (N, c, r).
     # VERIFIED: [LC] Asymptotic limit r -> infty gives 0 for every N.
@@ -446,6 +451,19 @@ def test_all_WN_tempered_at_generic_c():
         assert bound_large_r < 1e-3, (
             f"N={N}, c={c}, r=100: bound = {bound_large_r}, expected << 1"
         )
+
+
+def test_global_WN_closure_is_not_encoded_as_compute_proof():
+    """The compute surface records the missing all-rank Riccati bridge."""
+    assert WN_TEMPERING_SCOPE["finite_beta_stirling_implication"] == "proved"
+    assert WN_TEMPERING_SCOPE["finite_riccati_envelope_all_N"] == "not_encoded"
+    assert WN_TEMPERING_SCOPE["harmonic_beta_closed_form"] == (
+        "conditional_kappa_ratio_scaling"
+    )
+    assert WN_TEMPERING_SCOPE["w4_full_miura_A5_bridge"] == "absent"
+    report = direct_w4_attack_report()
+    assert report.observed_full_miura_A5 is None
+    assert report.proves_beta4 is False
 
 
 # ---------------------------------------------------------------------------
@@ -475,6 +493,7 @@ if __name__ == "__main__":
     test_tempering_rate_bound_explicit_values()
     test_beta_N_monotone_increasing()
     test_candidate_A_vs_B_miss_harmonic_N4()
-    test_all_WN_tempered_at_generic_c()
+    test_finite_beta_bound_tempered_for_sampled_WN_candidates()
+    test_global_WN_closure_is_not_encoded_as_compute_proof()
     test_proved_constants()
     print("All tests passed.")

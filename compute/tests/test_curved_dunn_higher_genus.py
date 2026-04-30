@@ -1,13 +1,14 @@
 """
 Independent-verification tests for curved_dunn_higher_genus.tex.
 
-Covers the two main theorems:
+Covers the two main curved-Dunn/KZB surfaces:
   (1) thm:curved-dunn-H2-vanishing-all-genera
   (2) thm:irregular-singular-kzb-regularity
 
-HZ-IV protocol: each ProvedHere theorem carries an
-@independent_verification decorator with disjoint
-derived_from vs verified_against sources.
+The curved-Dunn vanishing theorem is conditional: for g >= 2 it
+requires modular-bootstrap H^2 acyclicity plus the degree-2
+comparison map. Genus 1 is checked separately by the twisted tensor
+criterion.
 
 Author: Raeez Lorgat.
 """
@@ -32,47 +33,41 @@ from compute.lib.independent_verification import independent_verification
 # ---------------------------------------------------------------------------
 
 
-def bootstrap_h2_predicted(g: int) -> int:
+def bootstrap_h2_predicted(g: int, contracting_homotopy: bool) -> int | None:
     """
-    H^2(g^A_mod, d_Theta) predicted by modular-bootstrap MC recursion.
-    Every genus g >= 1: zero, by inductive solvability of the MC
-    equation once Theta^{<g}} is fixed.
+    H^2(g^A_mod, d_Theta) under the modular-bootstrap criterion.
+    The value is zero only when the degree-2 contracting homotopy is
+    supplied.
     """
-    if g < 1:
-        raise ValueError("genus must be >= 1")
+    if g < 2:
+        raise ValueError("higher-genus curved-Dunn transport starts at g >= 2")
+    return 0 if contracting_homotopy else None
+
+
+def curved_dunn_h2_predicted(
+    g: int,
+    modular_bootstrap_acyclic: bool,
+    degree_two_comparison: bool,
+) -> int | None:
+    """
+    H^2(TCo^{bullet}_g(A), d_0) under the bridge theorem.
+    Value is inherited from bootstrap only when both hypotheses hold.
+    """
+    if g < 2:
+        raise ValueError("genus 1 uses the twisted tensor criterion")
+    if not (modular_bootstrap_acyclic and degree_two_comparison):
+        return None
     return 0
 
 
-def curved_dunn_h2_predicted(g: int) -> int:
+def degree_two_transport(source_h2: int | None, h2_phi_is_iso: bool) -> int | None:
     """
-    H^2(TCo^{bullet}_g(A), d_0) predicted by the bridge theorem.
-    Value inherited from bootstrap via the chain map Phi.
+    Homological-algebra surrogate: a degree-2 cohomology isomorphism
+    transports a zero source group to a zero target group.
     """
-    if g < 1:
-        raise ValueError("genus must be >= 1")
-    # Same value as the bootstrap side, transported by Phi: see
-    # thm:curved-dunn-H2-vanishing-all-genera in the .tex.
-    return bootstrap_h2_predicted(g)
-
-
-def gauss_manin_h2_wedge_square(g: int = 1) -> int:
-    """
-    Independent computation (Katz-Oda 1968, fiberwise Gauss-Manin):
-    rank of H^2 of the Lambda^2 H^1 bundle on the universal elliptic
-    curve over Mbar_{1,1} is zero because the curvature kappa*omega_1
-    is exact on the wedge square of the Hodge bundle.
-
-    Extended to higher g by induction on the Arakelov class:
-    c_1(lambda_2^{(g)}) exact implies the curved differential
-    acts trivially on wedge^g of the Hodge bundle.
-    """
-    # Katz-Oda exactness is a topological fact about lambda_2, not
-    # a chain-level statement about the modular bar.  For the
-    # independent-verification protocol, this is a genuinely
-    # disjoint derivation.
-    if g < 1:
-        raise ValueError("genus must be >= 1")
-    return 0
+    if source_h2 is None or not h2_phi_is_iso:
+        return None
+    return source_h2
 
 
 def newton_polygon_slope_denominator(k: int, h_vee: int, depth: int = 1) -> int:
@@ -115,14 +110,11 @@ class TestCurvedDunnHigherGenus(unittest.TestCase):
     """
 
     # -------------------------------------------------------------------
-    # Theorem 1: curved-Dunn H^2 vanishing at all genera.
+    # Theorem 1: conditional curved-Dunn H^2 vanishing for g >= 2.
     #
-    # derived_from: modular-bootstrap MC recursion + bridge chain map Phi
-    # verified_against: Katz-Oda 1968 Gauss-Manin connection flatness
-    #                   on Lambda^2 of the Hodge bundle, which is a
-    #                   topological/geometric statement about the
-    #                   universal elliptic curve, extended to higher g
-    #                   via induction on the Arakelov class
+    # derived_from: modular-bootstrap acyclicity + bridge chain map Phi
+    # verified_against: elementary homological algebra for a chain map
+    #                   inducing a degree-2 cohomology isomorphism
     #
     # disjoint_rationale: the bootstrap MC recursion is an operadic /
     # L_infty argument internal to the chain complex of ribbon graphs;
@@ -133,44 +125,58 @@ class TestCurvedDunnHigherGenus(unittest.TestCase):
     @independent_verification(
         claim="thm:curved-dunn-H2-vanishing-all-genera",
         derived_from=[
-            "Modular-bootstrap MC recursion on the ribbon-graph "
-            "Feynman transform of MAss",
-            "Bridge chain map Phi from ribbon graphs to "
-            "Eilenberg-Zilber twisting cochains",
+            "Assumed modular-bootstrap degree-2 acyclicity on the "
+            "ribbon-graph Feynman transform of MAss",
+            "Assumed bridge chain map Phi from ribbon graphs to "
+            "Eilenberg-Zilber twisting cochains inducing H^2 iso",
         ],
         verified_against=[
-            "Katz-Oda 1968 Gauss-Manin connection flatness on the "
-            "wedge square of the Hodge bundle over Mbar_{g,n}",
-            "Arakelov class exactness induction on lambda_g "
-            "(topological, not bar-complex)",
+            "Weibel homological algebra: chain maps inducing an "
+            "isomorphism on cohomology transport vanishing groups",
+            "Standard exactness argument for degree-2 obstruction "
+            "classes under a cohomology isomorphism",
         ],
         disjoint_rationale=(
-            "Bootstrap MC recursion is an operadic / L_infty "
-            "argument on the ribbon-graph Feynman transform of "
-            "MAss, producing H^2 via chain homotopy; Katz-Oda "
-            "Gauss-Manin exactness is a topological fact about "
-            "Hodge bundles on the moduli of curves, derived from "
-            "fiberwise de Rham cohomology.  The two derivations "
-            "share no input: ribbon-graph bar chains vs Hodge-bundle "
-            "Chern classes."),
+            "The programme input names the source complex, the "
+            "target complex, and the comparison map Phi. The external "
+            "check uses only the formal fact that an isomorphism on "
+            "H^2 carries zero to zero; it does not use the ribbon-graph "
+            "construction, the curved-Dunn complex, or KZB data."),
     )
-    def test_curved_dunn_H2_vanishes_all_genera(self):
+    def test_curved_dunn_H2_vanishes_conditionally_for_g_ge_2(self):
         """
-        Surrogate: bootstrap predicts H^2 = 0 at every g >= 1;
-        Gauss-Manin flatness confirms the transported value on the
-        curved-Dunn side is also zero.
+        Surrogate: if modular-bootstrap H^2 acyclicity and the
+        degree-2 comparison are both supplied, the transported
+        curved-Dunn H^2 value is zero for g >= 2.
         """
-        for g in (1, 2, 3, 5, 10):
-            bootstrap = bootstrap_h2_predicted(g)
-            curved_dunn = curved_dunn_h2_predicted(g)
-            gauss_manin = gauss_manin_h2_wedge_square(g)
+        for g in (2, 3, 5, 10):
+            bootstrap = bootstrap_h2_predicted(g, contracting_homotopy=True)
+            transported = degree_two_transport(bootstrap, h2_phi_is_iso=True)
+            curved_dunn = curved_dunn_h2_predicted(
+                g,
+                modular_bootstrap_acyclic=True,
+                degree_two_comparison=True,
+            )
             self.assertEqual(bootstrap, 0,
                 msg=f"bootstrap H^2 at g={g} should be 0")
+            self.assertEqual(transported, 0,
+                msg=f"degree-2 transport at g={g} should be 0")
             self.assertEqual(curved_dunn, 0,
                 msg=f"curved-Dunn H^2 at g={g} should be 0")
-            self.assertEqual(curved_dunn, gauss_manin,
-                msg=f"bridge transport at g={g} should agree with "
-                    f"Katz-Oda Gauss-Manin")
+            self.assertIsNone(
+                curved_dunn_h2_predicted(
+                    g,
+                    modular_bootstrap_acyclic=True,
+                    degree_two_comparison=False,
+                ),
+                msg=f"missing comparison at g={g} must not imply vanishing")
+
+        with self.assertRaises(ValueError):
+            curved_dunn_h2_predicted(
+                1,
+                modular_bootstrap_acyclic=True,
+                degree_two_comparison=True,
+            )
 
     def test_genus_one_twisted_tensor_surrogate(self):
         """

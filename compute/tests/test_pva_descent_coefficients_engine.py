@@ -16,7 +16,7 @@ Paper references
     * Example comp:pva-descent-affine-sl2 (affine sl_2, lines 1320--1545)
     * Proposition prop:PVA1_proof (sesquilinearity descent)
     * Lemma lem:PVA2_proof (exchange-cylinder skew-symmetry)
-    * Proposition prop:m3_vanish (higher vanishing D_6)
+    * Proposition prop:m3_vanish (conditional higher-formality certificate)
 - Vol II CLAUDE.md:
     * V2-AP34 (divided-power lambda-bracket c/12 * lam^3)
     * V2-AP7  (Heisenberg R-matrix nontrivial at k != 0)
@@ -228,6 +228,29 @@ class TestEdgeCases:
         assert result.D5 == 0
         assert result.D6 is True
         assert result.is_pva()
+        assert result.is_higher_formal()
+
+    def test_uncertified_higher_formality_is_not_default_true(self):
+        """A PVA mode table does not certify m_k-vanishing by itself.
+
+        Path A: compute_D6 on a spec with no reserved certificate key.
+        Path B: the repaired manuscript separates binary PVA descent from
+            the nullhomotopy data needed for higher-formality.
+        """
+        spec = PVASpec(
+            name="Uncertified",
+            generators=["x"],
+            degrees={"x": 0},
+            modes={("x", "x"): [S.Zero]},
+            product=lambda a, b: a * b,
+            translate=lambda expr: S.Zero,
+            kappa=S.Zero,
+        )
+        assert compute_D6(spec, 3) is False
+        result = descent_coefficients(spec, ("x", "x", "x"), lam, mu)
+        assert result.D6 is False
+        assert result.is_pva()
+        assert not result.is_higher_formal()
 
     def test_nilpotent_e_squared_zero_in_bracket(self):
         """Nilpotent edge: {e_lam e} = 0 in affine sl_2 (e^2 = 0 on

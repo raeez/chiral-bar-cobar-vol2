@@ -5,8 +5,8 @@
 %% leading-Laurent ratio coefficient beta_N for principal W_N.
 %%
 %% Input data:
-%% * Theorem thm:wn-tempered-all-N: tempering at every finite beta_N
-%% for every principal W_{N,c}.
+%% * Theorem thm:wn-tempered-all-N: finite-beta tempering criterion
+%% for principal W_{N,c}.
 %% * The low-rank identities beta_2 = 6 and beta_3 = 10.
 %% * Two polynomial interpolants through the low-rank identities:
 %% (N+1)(N+2)/2 and N^2 - N + 4.
@@ -21,17 +21,18 @@
 %% giving
 %% beta_2 = 6 (agrees with both candidates)
 %% beta_3 = 10 (agrees with both candidates)
-%% beta_4 = 13 (excludes A = 15, B = 16)
-%% beta_5 = 77/5 (excludes A = 21, B = 24; also predicts that
+%% beta_4 = 13 (separates A = 15, B = 16)
+%% beta_5 = 77/5 (separates A = 21, B = 24; also predicts that
 %% beta_N is rational-valued, not integer-valued).
 %%
 %% The closed form
 %% beta_N = 12 * (H_N - 1)
 %% is conditional on the kappa-ratio scaling law
 %% A_r(W_N) = (kappa(W_N)/kappa(Vir))^{r-3} * A_r(Vir).
-%% The Vol II tempering theorem thm:wn-tempered-all-N uses only
-%% beta-independent Stirling dominance. The exact convergence radius is
-%% rho_*^{W_N}(c) = |c| / [12 * (H_N - 1)].
+%% The Vol II finite-beta criterion thm:wn-tempered-all-N uses only
+%% beta-independent Stirling dominance after the envelope is supplied.
+%% The exact convergence radius is rho_*^{W_N}(c) =
+%% |c| / [12 * (H_N - 1)] under the harmonic law.
 %%
 %% Labels defined:
 %% thm:beta-N-closed-form-proved-all-N (Conjectured, all N >= 2)
@@ -54,11 +55,12 @@
 %%
 %% Compute artefacts:
 %% compute/lib/beta_N_closed_form.py
-%% compute/tests/test_beta_N_closed_form.py (17 tests, 3 HZ-IV
-%% decorated paths)
+%% compute/tests/test_beta_N_closed_form.py (17 tests, 3 independent
+%% verification-decorated paths)
 %%
-%% The finite-beta tempering theorem is independent of the exact closed
-%% form of beta_N; the harmonic formula is the current all-rank
+%% The finite-beta tempering criterion is independent of the exact closed
+%% form of beta_N once the envelope is supplied; the harmonic formula is
+%% the current all-rank
 %% conjectural arithmetic refinement.
 %% =====================================================================
 
@@ -70,9 +72,9 @@ for every $N \ge 2$}
 
 The preceding chapter
 (Chapter~\ref{ch:wn-tempered-closure}, Theorem~\ref{thm:wn-tempered-all-N})
-proved $\cW_N$ tempering for every $N \ge 2$ at every
-finite $\beta_N$. The low-rank data $\beta_2 = 6$ and $\beta_3 = 10$
-also admit two false extrapolations: the triangular formula
+proved the finite-\(\beta_N\) criterion for $\cW_N$ tempering. The
+low-rank data $\beta_2 = 6$ and $\beta_3 = 10$
+also admit two polynomial extrapolations: the triangular formula
 $\beta_N = (N+1)(N+2)/2$ and the quadratic formula
 $\beta_N = N^2 - N + 4$.
 
@@ -112,8 +114,9 @@ $N \ge 5$ if the harmonic law holds.
  \frac{\lvert c \rvert}{12 \sum_{j = 2}^{N} 1/j}.
 \]
 \emph{Tempering theorem.} Theorem~\ref{thm:wn-tempered-all-N}
-uses only finite $\beta_N$ and Stirling dominance; the harmonic closed
-form supplies a conditional exact convergence radius.
+uses only finite $\beta_N$ and Stirling dominance after a Riccati
+envelope is supplied; the harmonic closed form supplies a conditional
+exact convergence radius.
 \end{minipage}\end{center}
 
 The evidence starts from Vol II's explicit datum
@@ -426,8 +429,10 @@ $\beta_N$ grows much more slowly than any polynomial guess.
 \label{thm:wn-tempered-exact-radius}
 \ClaimStatusConditional
 For every integer $N \ge 2$ and every $c \in \bbR \setminus (\{0\} \cup
-\cD^{\mathrm{sev}}_{\mathrm{Kac}}(\cW_N))$, the principal $\cW_N$ algebra
-$\cW_{N,c}$ satisfies the analytic tempering hypothesis $(\mathrm{H}_S)$:
+\cD^{\mathrm{sev}}_{\mathrm{Kac}}(\cW_N))$, assume the principal
+$\cW_N$ shadow tower has a finite Riccati envelope. Then the principal
+$\cW_N$ algebra $\cW_{N,c}$ satisfies the analytic tempering hypothesis
+$(\mathrm{H}_S)$:
 \[
  \limsup_{r \to \infty}
  \bigl( \lvert S_r(\cW_{N,c}) \rvert / r! \bigr)^{1/r}
@@ -437,9 +442,9 @@ $\cW_{N,c}$ satisfies the analytic tempering hypothesis $(\mathrm{H}_S)$:
 and the chain-level $E_3$-topological structure on the original
 curved-Dunn complex
 (Theorem~\ref{thm:chain-level-e3-original-complex-conditional}) has
-its analytic tempering hypothesis discharged for $\cW_{N,c}$. If
-Conjecture~\ref{thm:beta-N-closed-form-proved-all-N} holds, the
-ordinary-generating convergence radius has the closed form
+its analytic tempering hypothesis discharged for $\cW_{N,c}$ on this
+finite-envelope locus. If Conjecture~\ref{thm:beta-N-closed-form-proved-all-N}
+holds, the ordinary-generating convergence radius has the closed form
 \[
  \rho_*^{\cW_N}(c)
  \;=\;
@@ -450,13 +455,12 @@ ordinary-generating convergence radius has the closed form
 \end{theorem}
 
 \begin{proof}
-Combine Theorem~\ref{thm:wn-tempered-all-N} (tempering at every finite
-$\beta_N$ via Stirling dominance) with
-Conjecture~\ref{thm:beta-N-closed-form-proved-all-N} (exact closed form
-$\beta_N = 12(H_N - 1)$). The Stirling argument is $\beta$-independent,
-so the tempering conclusion follows before the exact arithmetic of
-$\beta_N$ is used. Conditional on the harmonic closed form, substitution gives
-$|c|/(12(H_N - 1))$.
+Combine Theorem~\ref{thm:wn-tempered-all-N} (finite envelope plus
+Stirling dominance) with Conjecture~\ref{thm:beta-N-closed-form-proved-all-N}
+(exact closed form $\beta_N = 12(H_N - 1)$). The Stirling argument is
+$\beta$-independent, so the tempering conclusion follows from the finite
+envelope before the exact arithmetic of $\beta_N$ is used. Conditional
+on the harmonic closed form, substitution gives $|c|/(12(H_N - 1))$.
 \end{proof}
 
 \section{Computational evidence}
@@ -512,12 +516,12 @@ the harmonic scaling hypothesis rather than prove it:
 \begin{itemize}[nosep]
 \item Basic unit tests for $H_N$, $\kappa$-ratio (3 tests).
 \item Path (A) tests: known data, $\cW_2 = \mathrm{Vir}$ collapse,
- $\beta_4$ prediction (3 tests, 1 HZ-IV decorated).
+ $\beta_4$ prediction (3 tests, 1 independent-verification decorated).
 \item Path (B) tests: $A_4^{\cW_3}$, $A_5^{\cW_3}$, and the conditional
  $A_5^{\cW_4}$ value under the kappa-scaling ansatz
- (3 tests, 1 HZ-IV decorated).
+ (3 tests, 1 independent-verification decorated).
 \item Path (C) tests: ratio identity at all $(N, r)$, explicit $N=4$
- match (2 tests, 1 HZ-IV decorated).
+ match (2 tests, 1 independent-verification decorated).
 \item Discrimination tests: under the harmonic ansatz, exclude the
  triangular and quadratic formulas at $N=4$ and detect the first
  rational non-integer value at $N=5$ (4 tests).
@@ -528,7 +532,7 @@ the harmonic scaling hypothesis rather than prove it:
 \end{itemize}
 
 \section{Polynomial extrapolations excluded}
-\label{sec:retraction-ledger}
+\label{sec:excluded-polynomial-extrapolations}
 
 The following polynomial extrapolations agree with the low-rank data
 only accidentally and are incompatible with the harmonic candidate
@@ -549,8 +553,8 @@ conditional on Conjecture~\ref{thm:beta-N-closed-form-proved-all-N}:
 \end{enumerate}
 
 Theorem~\ref{thm:wn-tempered-all-N} of Chapter~\ref{ch:wn-tempered-closure}
-depends only on the $\beta$-independent Stirling dominance, not on the
-exact closed form of $\beta_N$.
+depends only on the finite Riccati envelope and $\beta$-independent
+Stirling dominance, not on the exact closed form of $\beta_N$.
 
 \section{Consequences for the platonic programme}
 \label{sec:beta-N-platonic-consequences}

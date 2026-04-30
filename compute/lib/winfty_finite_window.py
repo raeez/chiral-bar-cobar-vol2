@@ -2,8 +2,8 @@
 
 The Winfty endpoint is a limit statement.  A finite spin cutoff can
 check a finite Dunn rung; it contributes to the chain-level Einfty
-endpoint only after the Yamada weight-window threshold and
-inverse-system compatibility hypotheses are supplied.
+endpoint only after the weight-window threshold, inverse-system
+compatibility, and obstruction-vanishing hypotheses are supplied.
 """
 
 from __future__ import annotations
@@ -18,11 +18,11 @@ class WindowDiagnostic:
 
     spin_cutoff: int
     weight_max: int
-    yamada_threshold: int
+    weight_window_threshold: int
     max_two_slot_spin: int
     e_top_depth: int
     checks_stress_dunn_input: bool
-    meets_yamada_threshold: bool
+    meets_weight_window_threshold: bool
     proves_einfty_endpoint: bool
     two_slot_terms: tuple["TwoSlotTerm", ...]
     missing_two_slot_terms: tuple["TwoSlotTerm", ...]
@@ -66,8 +66,8 @@ def max_two_slot_spin_for_window(weight_max: int) -> int:
     return max(term.required_spin_cutoff for term in two_slot_window_terms(weight_max))
 
 
-def yamada_threshold(weight_max: int) -> int:
-    """Uniform Yamada threshold N0(w_max) = 2*w_max - 1."""
+def weight_window_threshold(weight_max: int) -> int:
+    """Uniform weight-window threshold N0(w_max) = 2*w_max - 1."""
 
     if weight_max < 1:
         raise ValueError("weight_max must be positive")
@@ -88,7 +88,7 @@ def finite_window_diagnostic(spin_cutoff: int, weight_max: int) -> WindowDiagnos
     """Classify a finite Winfty window."""
 
     terms = two_slot_window_terms(weight_max)
-    threshold = yamada_threshold(weight_max)
+    threshold = weight_window_threshold(weight_max)
     meets_threshold = spin_cutoff >= threshold
     missing_terms = tuple(
         term for term in terms if term.required_spin_cutoff > spin_cutoff
@@ -96,11 +96,11 @@ def finite_window_diagnostic(spin_cutoff: int, weight_max: int) -> WindowDiagnos
     return WindowDiagnostic(
         spin_cutoff=spin_cutoff,
         weight_max=weight_max,
-        yamada_threshold=threshold,
+        weight_window_threshold=threshold,
         max_two_slot_spin=max_two_slot_spin_for_window(weight_max),
         e_top_depth=finite_rung_e_top_depth(spin_cutoff),
         checks_stress_dunn_input=spin_cutoff >= weight_max,
-        meets_yamada_threshold=meets_threshold,
+        meets_weight_window_threshold=meets_threshold,
         proves_einfty_endpoint=False,
         two_slot_terms=terms,
         missing_two_slot_terms=missing_terms,
@@ -114,6 +114,6 @@ def spin4_window_diagnostic() -> WindowDiagnostic:
 
 
 def minimal_spin_cutoff_for_window(weight_max: int) -> int:
-    """Smallest spin cutoff that meets the uniform Yamada threshold."""
+    """Smallest spin cutoff that meets the uniform weight-window threshold."""
 
-    return yamada_threshold(weight_max)
+    return weight_window_threshold(weight_max)

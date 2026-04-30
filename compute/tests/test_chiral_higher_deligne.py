@@ -2,15 +2,16 @@
 
 Target chapter: Vol II chapters/theory/chiral_higher_deligne.tex.
 
-Three ProvedHere claims are audited here, each with DISJOINT derivation and
+The theorem cluster is tracked here with disjoint derivation and
 verification source sets. The @independent_verification decorator fires at
-import time if disjointness is violated.
+import time if disjointness is violated. Conditional and conjectural entries
+are scaffolds; they do not upgrade the manuscript status.
 
 CLAIM 1: thm:chiral-higher-deligne
   The pair (Z^{der}_{ch}(A), A), with
   Z^{der}_{ch}(A) = ChirHoch^*(A, A), carries the mixed
-  chiral-topological SC^{ch,top} bulk-boundary datum via the heptagon
-  edges (3)<->(4)<->(5), after Drinfeld associator fix.
+  chiral-topological SC^{ch,top} bulk-boundary datum conditionally via
+  the heptagon edges (3)<->(4)<->(5), after Drinfeld associator fix.
 
   Derivation source (the chapter proof route):
     (a) Chiral SC^{ch,top} pentagon edges (3)<->(4)<->(5) of the heptagon
@@ -39,15 +40,15 @@ CLAIM 1: thm:chiral-higher-deligne
   two-coloured SC^{ch,top} lift is the additional chapter content.
 
 
-CLAIM 2: thm:H-concentration-via-E3-rigidity
-  Concentration of ChirHoch^* in degrees {0, 1, 2} follows from
-  E_3-rigidity at a point together with chiral PBW collapse.
+CLAIM 2: conj:H-concentration-via-E3-rigidity
+  Concentration of ChirHoch^* in degrees {0, 1, 2} would follow from
+  E_3-rigidity at a point only after the derived centre is presented as
+  a polynomial-growth E_3 envelope by a chiral-E_3-PBW theorem.
 
-  Derivation source (the chapter proof route):
+  Derivation source (the conjectural route):
     (a) Lemma chd-e3-rigidity-point via Fresse E_3-Koszul duality
         (Fresse, "Homotopy of Operads" Part II, section 13);
-    (b) Chiral PBW collapse in the Koszul locus
-        (Vol I thm:chiral-pbw-koszul);
+    (b) conjectural chiral-E_3-PBW presentation of the derived centre;
     (c) Gelfand-Fuchs-Beilinson-Drinfeld local-to-global principle for
         constructible sheaves.
 
@@ -63,21 +64,19 @@ CLAIM 2: thm:H-concentration-via-E3-rigidity
          vector-field cohomology, DISJOINT from E_3-Koszul and from
          braid Koszul.
 
-  Disjoint rationale: three genuinely different mechanisms produce the
-  same concentration statement. The chapter uses E_3-Koszul duality
-  (Fresse) on the derived centre; Shelton-Yuzvinsky use Koszulity of a
-  commutative-algebra (OS of braid arrangement); Fuks uses Lie-algebra
-  cohomology of W_1 on the formal disc. The three Koszulity theorems
-  live in three different operadic contexts (E_3, Com, Lie) and the
-  agreement of their output on the chiral Hochschild complex is a
-  non-trivial cross-verification. No verification source uses
-  E_3-Koszul duality.
+  Disjoint rationale: the conjectural route uses E_3-Koszul duality
+  (Fresse) plus the missing derived-centre chiral-E_3-PBW theorem;
+  Shelton-Yuzvinsky use Koszulity of a commutative algebra (OS of braid
+  arrangement); Fuks uses Lie-algebra cohomology of W_1 on the formal
+  disc. The latter two routes check the degree bound, not the missing
+  E_3-PBW presentation.
 
 
 CLAIM 3: thm:chd-ds-hochschild
   At chain level, ChirHoch^*(W_k(g, f)) is quasi-isomorphic to the
   DS cohomology of ChirHoch^*(V_k(g)) as E_2-chiral Gerstenhaber
-  algebras; this lifts to mixed chiral-topological SC^{ch,top} data.
+  algebras; the mixed chiral-topological SC^{ch,top} lift inherits the
+  conditional two-coloured cobar/topologisation hypotheses.
 
   Derivation source (the chapter proof route):
     (a) Arakawa 2015 C_2-cofiniteness (Ann. Math., arXiv:1004.1554);
@@ -166,10 +165,7 @@ def test_chd_e3_action_structural():
     differ by an element of GRT_1 but produce equivalent chain-level
     structures.
     """
-    # HZ-IV-W8-C heal (Wave 9 lint, 2026-04-17): previous body hardcoded
-    # four identical tuples (1, 1) as "route outputs"; tautological.
-    # Each route now computes the brace valences via its own structural
-    # invariant:
+    # Each route computes the brace valences via its own structural invariant:
     #   chapter: brace identity -> unary endomorphism -> (1 input, 1 output)
     #   tamarkin: rational Drinfeld associator -> arity given by the
     #       underlying Kontsevich graph with 0 internal vertices
@@ -232,13 +228,13 @@ def test_chd_e3_action_structural():
 
 
 # -----------------------------------------------------------------------------
-# Claim 2: thm:H-concentration-via-E3-rigidity
+# Claim 2: conj:H-concentration-via-E3-rigidity
 # -----------------------------------------------------------------------------
 @independent_verification(
-    claim="thm:H-concentration-via-E3-rigidity",
+    claim="conj:H-concentration-via-E3-rigidity",
     derived_from=[
         "Lemma chd-e3-rigidity-point via Fresse E_3-Koszul duality (Homotopy of Operads, Part II section 13)",
-        "Chiral PBW collapse in the Koszul locus (Vol I thm:chiral-pbw-koszul)",
+        "Conjectural chiral-E_3-PBW presentation of the derived centre as a polynomial-growth E_3 envelope",
         "Gelfand-Fuchs-Beilinson-Drinfeld local-to-global principle for constructible sheaves",
     ],
     verified_against=[
@@ -246,26 +242,21 @@ def test_chd_e3_action_structural():
         "Fuks 1986 Cohomology of Infinite Dimensional Lie Algebras, H^*(W_1) finite-degree restriction concentrated in {0,1,2}",
     ],
     disjoint_rationale=(
-        "Three mechanisms produce the same concentration statement through "
-        "genuinely different operadic contexts. The chapter uses E_3-Koszul "
-        "duality on the derived centre (Fresse); Shelton-Yuzvinsky uses "
-        "Com-Koszulity of the Orlik-Solomon commutative algebra on the "
-        "braid arrangement; Fuks uses Lie-cohomology of the formal "
-        "vector-field algebra W_1. The three live in three different "
-        "operadic contexts (E_3, Com, Lie) and agree on the numerical "
-        "invariant 'concentration in {0,1,2}'. None of the verification "
-        "sources uses E_3-Koszul duality; the cross-verification is genuine."
+        "The conjectural route uses E_3-Koszul duality on the derived centre "
+        "plus the missing chiral-E_3-PBW presentation. Shelton-Yuzvinsky uses "
+        "Com-Koszulity of the Orlik-Solomon commutative algebra on the braid "
+        "arrangement; Fuks uses Lie-cohomology of the formal vector-field "
+        "algebra W_1. These check the degree bound through different "
+        "operadic contexts without proving the missing E_3-PBW input."
     ),
 )
 def test_chd_concentration_rigidity():
-    """Concentration-in-{0,1,2} is an invariant that every proof route
-    must produce. Test structural agreement of the degree bounds."""
-    # HZ-IV-W8-C heal (Wave 9 lint, 2026-04-17): previous body hardcoded
-    # three identical `{0, 1, 2}` literals as distinct "routes".  The
-    # three routes now construct the support set via three disjoint
+    """Conjectural E_3 route and proved routes agree on the degree bound."""
+    # The three routes construct the support set via three disjoint
     # arithmetic/combinatorial recipes:
-    #   (A) chapter via E_3-rigidity: bar complex on a point collapses
-    #       at E_2-page of Koszul spectral sequence; nonzero rows are
+    #   (A) conjectural E_3-rigidity route: after the missing
+    #       chiral-E_3-PBW input, the pointwise bar complex collapses
+    #       at the E_2-page of the Koszul spectral sequence; nonzero rows are
     #       row 0 (bottom of tower) and rows 1, 2 (dual pair under
     #       E_3-Koszul involution).  Support = {0, 1, 2} computed as
     #       the union of the three rows.
@@ -299,7 +290,8 @@ def test_chd_concentration_rigidity():
     # Nonempty, bounded above by 2
     assert max(chapter_support) == 2
     assert min(chapter_support) == 0
-    assert 3 not in chapter_support  # degree 3 is exactly what rigidity kills
+    # Degree 3 is what the conjectural rigidity route would kill.
+    assert 3 not in chapter_support
 
 
 # -----------------------------------------------------------------------------
@@ -337,9 +329,8 @@ def test_chd_ds_hochschild():
     the Virasoro Hochschild dimensions (class M) match DS of affine sl_2
     Hochschild (class L) in degrees {0, 1, 2}.
     """
-    # HZ-IV-W8-C heal (Wave 9 lint, 2026-04-17): previous body hardcoded
-    # three identical dict literals.  The three routes now construct
-    # their degree-dimension maps via genuinely distinct combinatorics.
+    # The three routes construct their degree-dimension maps via genuinely
+    # distinct combinatorics.
 
     # Route A (chapter via HPL+HKR): HKR identifies ChirHoch^i(Vir_c) at
     # generic c with polyvector fields on the moduli of curves localized

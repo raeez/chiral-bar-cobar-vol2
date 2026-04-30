@@ -1,11 +1,11 @@
 """
-Independent verification for the Platonic reconstitution of the
-curved-Dunn H^2 = 0 statement at class M, g >= 2, on the raw
-direct-sum complex.
+Independent verification for the raw direct-sum curved-Dunn
+obstruction at class M and the conditional completed replacements.
 
 The new chapter
   chapters/theory/curved_dunn_raw_direct_sum_platonic.tex
-inscribes four ProvedHere statements:
+inscribes one raw obstruction witness and three conditional completed
+comparison statements:
 
   (1) thm:curved-dunn-class-M-raw-direct-sum-fails
       The raw direct-sum curved-Dunn complex for class M at g >= 2
@@ -14,26 +14,30 @@ inscribes four ProvedHere statements:
 
   (2) thm:curved-dunn-pro-ambient-H2-zero
       In pro-Ch(Vect), H^2 of the pro-curved-Dunn complex vanishes
-      for class M at g >= 2 and generic kappa.
+      for class M at g >= 2 under modular-bootstrap acyclicity,
+      the degree-2 comparison, and Mittag-Leffler.
 
   (3) thm:curved-dunn-J-adic-H2-zero
       In the J-adic topological chain complex with J the
-      positive-weight ideal, the same H^2 vanishes.
+      positive-weight ideal, the same H^2 vanishes under the
+      pro-ambient hypotheses and the J-adic/weight-truncation
+      identification.
 
   (4) prop:three-ambients-equivalent
       Pro-ambient, J-adic, and weight-completed curved-Dunn
-      complexes are quasi-isomorphic; all three have vanishing
-      H^2 at class M, g >= 2, kappa != 0.
+      complexes have the same degree-2 cohomology under the stated
+      comparison hypotheses. No hypothesis-free full quasi-isomorphism
+      is asserted.
 
-Together they close frontier item 20 (cor:platonic-reconstitution-
-of-item-20) by ambient upgrade.
+Together they separate the raw obstruction from the completed
+conditional theorem.
 
 DERIVED FROM (internal):
   - Programme curved-Dunn construction on the weight-completed
     chain category (Vol II curved_dunn_higher_genus.tex,
     thm:curved-dunn-H2-vanishing-all-genera).
-  - Jimbo-Miwa irregular-singular KZB bridge on the
-    curved-Dunn twisting-cochain complex (same chapter).
+  - Modular-bootstrap acyclicity and degree-2 comparison on the
+    curved-Dunn twisting-cochain complex.
   - Vol I shadow-tower engine output for S_4(Vir_c).
 
 VERIFIED AGAINST (external, independent):
@@ -67,7 +71,8 @@ purely arithmetic-geometric fact on the moduli space of curves,
 with no chiral algebra input. All four sources supply disjoint
 derivations of the four ingredients (pro-object framework,
 Mittag-Leffler lim^1 vanishing, the explicit S_4 formula, the
-Arakelov non-vanishing) needed to verify the four theorems.
+Arakelov non-vanishing, and the conditional bridge hypotheses)
+needed to verify the four statements.
 """
 
 from __future__ import annotations
@@ -129,44 +134,85 @@ def _raw_direct_sum_d_squared_nonzero(c: Fraction, g: int) -> bool:
     return coeff != 0 and wedge_ok
 
 
-def _pro_ambient_H2_zero(class_label: str, g: int, kappa_nonzero: bool) -> bool:
+def _pro_ambient_H2_zero(
+    class_label: str,
+    g: int,
+    kappa_nonzero: bool,
+    modular_bootstrap_acyclic: bool = True,
+    degree_two_comparison: bool = True,
+    mittag_leffler: bool = True,
+) -> bool:
     """Theorem thm:curved-dunn-pro-ambient-H2-zero structural oracle.
 
-    For class M at g >= 2 and kappa != 0, H^2 of pro-TCo vanishes by
-    the Milnor lim^1 sequence: each finite weight-<=N truncation has
-    H^2 = 0 via the bridge to the modular-bootstrap complex, and the
-    inverse system of H^1 has Mittag-Leffler by surjective transition
-    maps with finite-dim kernels.
+    For class M at g >= 2 and kappa != 0, H^2 of pro-TCo vanishes
+    only under the modular-bootstrap acyclicity, degree-2 comparison,
+    and Mittag-Leffler hypotheses.
     """
     if not kappa_nonzero:
         return False
     if g < 2:
         return False  # statement is about g >= 2
+    if not (modular_bootstrap_acyclic and degree_two_comparison and mittag_leffler):
+        return False
     return class_label in {"G", "L", "C", "M"}
 
 
-def _j_adic_H2_zero(class_label: str, g: int, kappa_nonzero: bool) -> bool:
+def _j_adic_H2_zero(
+    class_label: str,
+    g: int,
+    kappa_nonzero: bool,
+    j_adic_identifies_with_weight_truncations: bool = True,
+    **pro_hypotheses: bool,
+) -> bool:
     """Theorem thm:curved-dunn-J-adic-H2-zero structural oracle.
 
     The J-adic complex with J the positive-weight ideal agrees with
-    the pro-ambient under Mittag-Leffler (surjective weight
-    truncations), so H^2 = 0 transports.
+    the pro-ambient only after the J-adic quotients identify with the
+    weight truncations.
     """
-    return _pro_ambient_H2_zero(class_label, g, kappa_nonzero)
+    return (
+        j_adic_identifies_with_weight_truncations
+        and _pro_ambient_H2_zero(class_label, g, kappa_nonzero, **pro_hypotheses)
+    )
 
 
-def _three_ambients_equivalent(class_label: str, g: int, kappa_nonzero: bool) -> bool:
+def _three_ambients_equivalent(
+    class_label: str,
+    g: int,
+    kappa_nonzero: bool,
+    degree_two_comparison: bool = True,
+    modular_bootstrap_acyclic: bool = True,
+    mittag_leffler: bool = True,
+    finite_weight_identification: bool = True,
+) -> bool:
     """Prop prop:three-ambients-equivalent structural oracle.
 
-    Pro-ambient ≃ J-adic ambient ≃ weight-completed ambient by
-    the universal property of J-adic completion as left adjoint
-    to inclusion from weight-completed into pro-Ch(Vect). All
-    three carry the same H^2, which vanishes for class M at
-    g >= 2, kappa != 0.
+    Pro-ambient, J-adic ambient, and weight-completed ambient have
+    the same degree-2 cohomology under finite-weight identification
+    and the degree-2 comparison hypotheses.
     """
-    pro_ok = _pro_ambient_H2_zero(class_label, g, kappa_nonzero)
-    j_ok = _j_adic_H2_zero(class_label, g, kappa_nonzero)
-    wc_ok = True  # proved earlier: thm:curved-dunn-H2-vanishing-all-genera
+    pro_ok = _pro_ambient_H2_zero(
+        class_label,
+        g,
+        kappa_nonzero,
+        modular_bootstrap_acyclic=modular_bootstrap_acyclic,
+        degree_two_comparison=degree_two_comparison,
+        mittag_leffler=mittag_leffler,
+    )
+    j_ok = _j_adic_H2_zero(
+        class_label,
+        g,
+        kappa_nonzero,
+        j_adic_identifies_with_weight_truncations=finite_weight_identification,
+        modular_bootstrap_acyclic=modular_bootstrap_acyclic,
+        degree_two_comparison=degree_two_comparison,
+        mittag_leffler=mittag_leffler,
+    )
+    wc_ok = (
+        finite_weight_identification
+        and modular_bootstrap_acyclic
+        and degree_two_comparison
+    )
     return pro_ok and j_ok and wc_ok
 
 
@@ -180,7 +226,7 @@ def _three_ambients_equivalent(class_label: str, g: int, kappa_nonzero: bool) ->
     derived_from=[
         "Programme curved-Dunn construction on weight-completed chain category",
         "Programme shadow-tower engine output for S_4(Vir_c)",
-        "Jimbo-Miwa KZB bridge to modular-bootstrap complex (Vol II curved_dunn_higher_genus)",
+        "Raw curved-Dunn differential on the direct-sum complex",
     ],
     verified_against=[
         "Belavin-Polyakov-Zamolodchikov 1984 Nucl. Phys. B 241 "
@@ -246,20 +292,23 @@ def test_pro_ambient_H2_zero_class_M():
     assert _pro_ambient_H2_zero("M", 2, kappa_nonzero=True)
     assert _pro_ambient_H2_zero("M", 3, kappa_nonzero=True)
     assert _pro_ambient_H2_zero("M", 7, kappa_nonzero=True)
-    # Class G/L/C also obtain H^2 = 0 for completeness (direct-sum
-    # suffices there, so the pro-ambient does at least as well).
+    # Class G/L/C also obtain H^2 = 0 under the same completed
+    # comparison hypotheses.
     assert _pro_ambient_H2_zero("L", 2, kappa_nonzero=True)
     assert _pro_ambient_H2_zero("C", 3, kappa_nonzero=True)
     # Kappa = 0 (critical level) is outside the non-degenerate locus.
     assert not _pro_ambient_H2_zero("M", 2, kappa_nonzero=False)
-    # g <= 1 is not the scope (g=0 uncurved, g=1 handled by twisted Kunneth).
+    assert not _pro_ambient_H2_zero(
+        "M", 2, kappa_nonzero=True, degree_two_comparison=False)
+    # g <= 1 is not the scope (g=0 uncurved, g=1 handled by the
+    # twisted tensor criterion).
     assert not _pro_ambient_H2_zero("M", 1, kappa_nonzero=True)
 
 
 @independent_verification(
     claim="thm:curved-dunn-J-adic-H2-zero",
     derived_from=[
-        "Programme pro-ambient vanishing thm:curved-dunn-pro-ambient-H2-zero",
+        "Conditional programme pro-ambient vanishing thm:curved-dunn-pro-ambient-H2-zero",
         "Programme J-adic completion as topological chain complex of convolution dgLa",
     ],
     verified_against=[
@@ -295,7 +344,7 @@ def test_j_adic_H2_zero_class_M():
     derived_from=[
         "Programme pro-ambient theorem thm:curved-dunn-pro-ambient-H2-zero",
         "Programme J-adic theorem thm:curved-dunn-J-adic-H2-zero",
-        "Programme weight-completed theorem thm:curved-dunn-H2-vanishing-all-genera (Vol II curved_dunn_higher_genus)",
+        "Conditional programme weight-completed theorem thm:curved-dunn-H2-vanishing-all-genera (Vol II curved_dunn_higher_genus)",
     ],
     verified_against=[
         "Positselski 2011 Mem. AMS vol. 996 "
@@ -316,8 +365,8 @@ def test_j_adic_H2_zero_class_M():
         "filtrations with the J-adic completion; Positselski "
         "extends this to Ch(Vect) with weight-graded differential. "
         "Neither uses chiral algebra input. Composing with the "
-        "three programme-internal H^2 = 0 statements gives the "
-        "equivalence + vanishing conclusion disjointly."
+        "three conditional programme-internal H^2 statements gives "
+        "the degree-2 equivalence and vanishing conclusion disjointly."
     ),
 )
 def test_three_ambients_equivalent():

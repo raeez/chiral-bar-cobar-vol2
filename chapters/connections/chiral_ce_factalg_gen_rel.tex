@@ -53,18 +53,28 @@ Generators, Relations, and Feynman Traces}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 The chiral Chevalley--Eilenberg cochain algebra
-$C^\bullet_{\mathrm{ch}}(\fg,M)$ on a Riemann surface $C$ is the
-specific factorisation algebra through which the Costello--Gwilliam BV
-quantisation of holomorphic-topological gauge theory lands in the
-$\infty$-category of $E_1$-chiral algebras. On the Koszul locus, its
-factorisation homology over a transverse disc recovers the universal
-enveloping of the iterated loop algebra $\fg\otimes\cO_C$; Dolbeault
-Fubini degenerates the $E_3$-structure on $Y=\R^3\times C\times\C^2$
-along $C$, and the conformal vector of the non-critical Sugawara
-construction converts the chiral $E_1$ direction into the third
-$E_1$-factor of the $E_3$-algebra on the transverse $3$-disc; the
-chain-level topologisation witness is
-Theorem~\ref{thm:ch-ce-topologization-E3-top} below, the
+$C^\bullet_{\mathrm{ch}}(\fg,M)$ on a Riemann surface $C$ is a
+chain-level local model for the chiral shadow of a
+Costello--Gwilliam observable factorisation algebra. It is not, by
+itself, the whole Costello--Gwilliam cosheaf: the latter consists of
+observables on all opens, structure maps for disjoint inclusions, and
+Weiss descent. The strict generators-and-relations presentation below
+is identified with the factorisation-algebra presentation only after
+choosing compactly supported Dolbeault fields on opens, imposing Weiss
+descent, and applying the Beilinson--Drinfeld/Francis--Gaitsgory
+comparison on a formal disc. On the Koszul locus, the resulting
+factorisation homology computes the chiral Koszul dual of
+$U(\fg\otimes\cO_C)$; away from that locus the statement is a
+comparison through the named pushforward functor, not a strict
+presentation of the whole cosheaf.
+
+The $E_3$ language is equally conditional. A Costello--Gwilliam
+factorisation algebra on a three-dimensional topological direction is
+locally constant only after the relevant BV quantisation and locality
+theorems apply. The chiral presentation on $C$ supplies an
+$E_1$-chiral factor. It becomes the third topological $E_1$ factor only
+after the non-critical Sugawara topologisation of
+Theorem~\ref{thm:ch-ce-topologization-E3-top}; the
 $(\infty,1)$-categorical promotion is
 Theorem~\ref{thm:chiral-higher-deligne}\,(2) of
 Chapter~\ref{ch:chiral-higher-deligne}.
@@ -72,9 +82,9 @@ Chapter~\ref{ch:chiral-higher-deligne}.
 The subsection
 (\S\ref{subsec:costello-e3-chiral-ce-gen-rel}) of
 \texttt{celestial\_holography.tex} establishes the skeleton: the
-graded vector space, the $\Disk_3$-action, and the leading
-Feynman diagrams. The chapter that follows inscribes the full
-generators-and-relations presentation: explicit tridegree accounting,
+graded vector space, the reduced $\Disk_3$-action after topological
+reduction, and the leading Feynman diagrams. The chapter that follows
+inscribes the full generators-and-relations presentation: explicit tridegree conventions,
 named propagators (Bergman kernel, Green function, prime form),
 Feynman-traced $n$-loop OPE coefficients with motivic-MZV provenance,
 Wilson-line factorisation modules, and the Ayala--Francis
@@ -85,8 +95,8 @@ identified with a named Costello--Gwilliam renormalisation-scale
 propagator.
 
 Seven propositions and six theorems crystallise the chapter:
-the chain-level $C^\bullet_{\mathrm{ch}}(\fg,M)$ as a
-$\Disk_3$-algebra
+the chain-level \(C^\bullet_{\mathrm{ch}}(\fg,M)\) after topological
+reduction as a \(\Disk_3\)-algebra
 (Theorem~\ref{thm:ch-ce-disk3-algebra});
 the factorisation-homology Fubini from $\Disk_3$ to $\Disk_1$ via
 Ayala--Francis--Tanaka
@@ -100,7 +110,7 @@ Feynman integral
 (Theorem~\ref{thm:ch-ce-sunrise-sl2-minus-eighth});
 the Wilson-line factorisation module as path-ordered exponential
 (Theorem~\ref{thm:ch-ce-wilson-line-module});
-and the 6d hCS identification on $Y=\R^3\times C\times\C^2$ specialising
+and the 6d hCS comparison on $Y=\R^3\times C\times\C^2$ specialising
 to the K3 avatar on $C=E$ with 24 punctures
 (Theorem~\ref{thm:ch-ce-k3-avatar-24-punctures}).
 
@@ -139,17 +149,23 @@ d_{\mathrm{ch}}
 \end{equation}
 with $\dbar_C\colon\Omega^{0,p}\to\Omega^{0,p+1}$ the Dolbeault
 operator on $C$ and $d_{\CE}$ the Chevalley--Eilenberg differential
-on $\Sym^\bullet(\fg^\vee[-1])\otimes M$, which on a generating
-cochain $\xi\in\fg^\vee[-1]$ is
-\begin{equation}
+on $\Sym^\bullet(\fg^\vee[-1])\otimes M$. Choose a basis
+$\{T_a\}$ of $\fg$, write $[T_b,T_c]=f^a_{bc}T_a$, and let
+$\{\xi^a\}$ be the dual odd CE generators, of CE degree one in the
+declared $q$-grading. The cohomological CE convention used here is
+\begin{align}
 \label{eq:d-CE-generator}
-d_{\CE}\xi
-\;=\;
-\tfrac12\xi([-,-])
-\;+\;
-\rho_M(\xi)\cdot(-),
-\end{equation}
-with $\rho_M\colon\fg\to\End(M)$ the module action.
+d_{\CE}\xi^a
+&=
+-\tfrac12 f^a_{bc}\,\xi^b\xi^c,\\
+\label{eq:d-CE-module}
+d_{\CE}m
+&=
+\sum_a \xi^a\,\rho_M(T_a)m,
+\qquad m\in M,
+\end{align}
+with Koszul signs supplied by the odd variables $\xi^a$ and with
+$\rho_M\colon\fg\to\End(M)$ the module action.
 \end{definition}
 
 \begin{proposition}[Tensor-orthogonal nilpotency]
@@ -170,19 +186,20 @@ d_{\mathrm{ch}}^2
 Each summand vanishes separately. First, $\dbar_C^2 = 0$ is the Dolbeault
 integrability on a smooth curve, i.e.\ $\dbar\circ\dbar = 0$ on
 $\Omega^{0,\bullet}(C)$. Second, the anticommutator
-$\{\dbar_C, d_{\CE}\}$ vanishes on the nose: $\dbar_C$ acts on the
+$\{\dbar_C, d_{\CE}\}$ vanishes strictly: $\dbar_C$ acts on the
 $\Omega^{0,\bullet}(C)$ tensor factor, $d_{\CE}$ acts on the
 $\Sym^\bullet(\fg^\vee[-1])\otimes M$ tensor factor, and the two factor
 algebras commute as graded operators on the tensor product
 (tensor-orthogonality). Third, $d_{\CE}^2 = 0$ is the classical
 Chevalley--Eilenberg identity, equivalent to the Jacobi identity on
 $\fg$ together with the module axiom on $M$. Each identity is
-independently verified: $\dbar^2=0$ by direct computation in
-local coordinates ($\dbar^2 f = \partial_{\bar z_1}\partial_{\bar z_2}f
-- \partial_{\bar z_2}\partial_{\bar z_1}f = 0$); $d_{\CE}^2 = 0$ by the
-Jacobi-Koszul sign rule verified on generating $\xi_a,\xi_b,\xi_c
-\in\fg^\vee[-1]$. Tensor-orthogonality follows from the functorial
-definition of the tensor product of chain complexes.
+independently verified: on a curve,
+$\dbar f=(\partial_{\bar z}f)d\bar z$ and
+$\dbar^2f=(\partial_{\bar z}^2f)d\bar z\wedge d\bar z=0$;
+$d_{\CE}^2 = 0$ by the Jacobi identity and the representation identity
+$[\rho_M(T_a),\rho_M(T_b)]=\rho_M([T_a,T_b])$, with the signs fixed by
+\eqref{eq:d-CE-generator}. Tensor-orthogonality follows from the
+functorial definition of the tensor product of chain complexes.
 \end{proof}
 
 \begin{remark}[Primary provenance]
@@ -231,7 +248,8 @@ $\bar z$-weight $0$;
 \item\label{gen:ch-B}
 $\cB^a(w) \;=\; B^a(w)\,\xi^a \;\in\;
 \Omega^{0,0}(D_z)\otimes\fg^\vee[-1]$, tridegree $(0,1,0)$,
-$z$-weight $0$;
+$z$-weight $0$; this is the CE ghost coordinate, Serre-dual to the
+BV antighost field in the hCS comparison;
 \item\label{gen:ch-dA}
 $\partial^k\cA^a(w) = \partial_w^k A^a_{\bar w}(w)\,d\bar w$
 for $k\ge 1$, tridegree $(1,0,0)$, $z$-weight $k$;
@@ -266,9 +284,9 @@ Definition~\ref{def:ch-ce-generators} satisfy:
 $f\in\Omega^{0,0}(D_z)$;
 \item $d_{\CE}(\cA^a\cB^b) = (d_{\CE}\cA^a)\cB^b + (-)^{|\cA^a|}
 \cA^a(d_{\CE}\cB^b)$;
-\item $d_{\CE}\cA^a = 0$ (the gauge field is CE-closed), and
-$d_{\CE}\cB^a = \tfrac12 f^a_{bc}\cB^b\cB^c$
-(the antighost carries the dual of the Lie bracket).
+\item $d_{\CE}\cA^a = 0$ in the pure CE local model, and
+$d_{\CE}\cB^a = -\tfrac12 f^a_{bc}\cB^b\cB^c$
+(the odd ghost coordinate carries the dual of the Lie bracket).
 \end{enumerate}
 \end{proposition}
 
@@ -278,24 +296,24 @@ each tensor factor; $\dbar_C$ is an $\Omega^{0,0}$-derivation on
 $\Omega^{0,1}$ because $\dbar(f\cdot g\,d\bar w) = (\dbar f)g\,d\bar w
 \pm f(\dbar g)\,d\bar w$, and the $\dbar g$ term is a $d\bar w$-form
 wedged with $d\bar w$ which vanishes on a one-dimensional (complex)
-curve. Clause~(iii): $\cA^a$ lives in tensor factor
-$\Omega^{0,1}\otimes\fg$ with no $\fg^\vee$-content, so
-$d_{\CE}\cA^a = 0$. The antighost $\cB^a = B^a(w)\xi^a$ has
-$d_{\CE}\xi^a = \tfrac12\xi^a([-,-]) = \tfrac12 f^a_{bc}\xi^b\xi^c$
-(using $\xi^a([T_b,T_c]) = \xi^a(f^d_{bc}T_d) = f^a_{bc}$ by
-orthonormality), whence
-$d_{\CE}\cB^a = B^a(w)\cdot\tfrac12 f^a_{bc}\xi^b\xi^c = \tfrac12
-f^a_{bc}B^a(w)\xi^b\xi^c$; renaming summation indices gives the stated
-form $\tfrac12 f^a_{bc}\cB^b\cB^c$ when $B^a$ is absorbed into
-$\cB^a$.
+curve. Clause~(iii): $\cA^a$ lives in the Dolbeault field factor with
+no $\fg^\vee$-coordinate, so the pure CE differential does not act on
+it. For the odd coordinate $\cB^a=B^a(w)\xi^a$,
+\eqref{eq:d-CE-generator} gives
+$d_{\CE}\cB^a=-\tfrac12 f^a_{bc}B^a(w)\xi^b\xi^c$. This is the dual
+bracket relation tensored with the scalar Dolbeault coefficient
+$B^a(w)$. The BV-BRST transformation of a gauge field is a different
+operator, denoted $Q_{\BRST}$ below; it contains the gauge-action term
+$[\cA,\cB]$ and must not be folded into $d_{\CE}$.
 \end{proof}
 
 \begin{remark}[Matching BV-BRST labelling of 6d hCS]
 \label{rem:ch-ce-match-6d-bv}
 \index{BV-BRST!correspondence to chiral CE}%
-The generator \eqref{gen:ch-A} corresponds to the 6d hCS field
-$A\in\Omega^{0,1}(X,\mathrm{ad})$ of~\cite[Def.~5.1]{CFG2026} restricted
-along the $C$-direction; \eqref{gen:ch-B} corresponds to the antighost
+The generator \eqref{gen:ch-A} corresponds to the Vol~II 6d hCS field
+$A\in\Omega^{0,1}(X,\mathrm{ad})$ of
+Definition~\ref{def:hcs-fields} restricted along the $C$-direction;
+\eqref{gen:ch-B} corresponds to the antighost
 $c^+\in\Omega^{0,3}$ in the hCS BV-BRST complex
 (Definition~\ref{def:hcs-bv-brst} of
 Chapter~\ref{ch:six-d-hcs-e3-chiral-avatar-platonic}) after Serre-dual
@@ -313,19 +331,22 @@ jet-bundle $J^\infty(\fg\otimes\cO_C)$ of the trivial bundle.
 \begin{definition}[Factorisation algebra on $C$]
 \label{def:ch-ce-factalg}
 \index{factorisation algebra!chiral CE}%
-The assignment
+For a connected coordinate disc $U\subseteq C$, the local model is the
+assignment
 \begin{equation}
 \label{eq:factalg-defn}
 U \;\mapsto\; \cF_{\fg,M}(U)
 \;:=\;
-\mathrm{R}\Gamma\!\bigl(U,\;C^\bullet_{\mathrm{ch}}(\fg,M)|_U\bigr)
+\mathrm{R}\Gamma_c\!\bigl(U,\;C^\bullet_{\mathrm{ch}}(\fg,M)|_U\bigr)
 \;=\;
-\bigl(\Omega^{0,\bullet}(U)\otimes\Sym^\bullet(\fg^\vee[-1])\otimes M,\;
+\bigl(\Omega^{0,\bullet}_c(U)\otimes\Sym^\bullet(\fg^\vee[-1])\otimes M,\;
 d_{\mathrm{ch}}\bigr)
 \end{equation}
-from open subsets $U\subseteq C$ to cochain complexes, with structure
-maps described below, is the \emph{chiral CE factorisation algebra
-on $C$}.
+with compact support in $U$. The factorisation algebra on arbitrary
+opens is the factorisation envelope of this connected-disc model: on
+finite disjoint unions it is defined by completed tensor product, and
+on general opens by Weiss descent. This envelope is the
+\emph{chiral CE factorisation algebra on $C$}.
 \end{definition}
 
 \begin{theorem}[Tensor-product axiom on disjoint unions]
@@ -349,19 +370,28 @@ discs $D_1\sqcup D_2$,
 \end{theorem}
 
 \begin{proof}
-The cochain complex factors through two tensor sides. The Dolbeault
-factor $\Omega^{0,\bullet}$ satisfies the tensor axiom by direct
-inspection: $\Omega^{0,\bullet}(U_1\sqcup U_2) =
-\Omega^{0,\bullet}(U_1)\oplus\Omega^{0,\bullet}(U_2)$ as graded vector
-spaces (disjoint support), and $\dbar$ acts block-diagonally. The
-Sym-factor $\Sym^\bullet(\fg^\vee[-1])$ is a finite-dimensional
-polynomial algebra per point and is constant on $U$ (pulled back along
-$U\to\mathrm{pt}$), so
-$\Sym^\bullet(\fg^\vee[-1])\otimes M$ contributes a constant tensor
-factor that is manifestly tensor-multiplicative on disjoint unions. The
-$d_{\mathrm{ch}}$ differential is the sum $\dbar_C + d_{\CE}$ with the
-two pieces acting on the two separated factors, so the
-quasi-isomorphism is strict.
+The linear compactly supported Dolbeault complex satisfies
+\[
+\Omega^{0,\bullet}_c(U_1\sqcup\cdots\sqcup U_n)
+\cong
+\Omega^{0,\bullet}_c(U_1)\oplus\cdots\oplus
+\Omega^{0,\bullet}_c(U_n),
+\]
+with $\dbar$ block-diagonal. Applying the completed symmetric algebra
+to a direct sum gives a completed tensor product:
+\[
+\widehat{\Sym}(V_1\oplus\cdots\oplus V_n)
+\cong
+\widehat{\Sym}(V_1)\widehat\otimes\cdots\widehat\otimes
+\widehat{\Sym}(V_n).
+\]
+The CE factor is constant on each connected component and the
+differential $d_{\mathrm{ch}}=\dbar_C+d_{\CE}$ respects this
+decomposition. Thus the tensor axiom holds for the factorisation
+envelope. For non-compactly supported global sections the displayed map
+would be only a sheaf direct-sum statement; compact support/cosheaf
+extension is the hypothesis that makes it a Costello--Gwilliam
+factorisation map.
 \end{proof}
 
 \begin{theorem}[Structure map for nested opens]
@@ -378,13 +408,14 @@ m_{U_1,U_2;V}\colon
 \;\longrightarrow\;
 \cF_{\fg,M}(V)
 \end{equation}
-is given by (a) extending each $\Omega^{0,\bullet}(U_i)$-section by zero
-to $V\setminus U_i$ and summing as sections over $V$, (b) taking the
+is given by (a) extending each compactly supported
+$\Omega^{0,\bullet}_c(U_i)$-section by zero to $V\setminus U_i$ and
+summing as sections over $V$, (b) taking the
 commutative-algebra product on the $\Sym^\bullet(\fg^\vee[-1])\otimes
 M$ tensor factor, and (c) composing with the $d_{\mathrm{ch}}$-acyclic
 descent map from
-$\Omega^{0,\bullet}(U_1)\oplus\Omega^{0,\bullet}(U_2)$ to
-$\Omega^{0,\bullet}(V)$.
+$\Omega^{0,\bullet}_c(U_1)\oplus\Omega^{0,\bullet}_c(U_2)$ to
+$\Omega^{0,\bullet}_c(V)$.
 
 The structure map is strictly associative and symmetric, and
 Weiss-cover descent holds: for a Weiss cover $\{U_i\}_{i\in I}$ of $V$
@@ -393,7 +424,7 @@ contained in some $U_i$),
 \begin{equation}
 \label{eq:weiss-descent}
 \cF_{\fg,M}(V)
-\;=\;
+\;\simeq\;
 \mathrm{hocolim}_{i\in I}\cF_{\fg,M}(U_i),
 \end{equation}
 the homotopy colimit in the $\infty$-category of cochain complexes.
@@ -409,16 +440,17 @@ $\Sym^\bullet$ factor; the product of the two signs is
 $(-)^{|x_1||x_2|+|y_1||y_2|}$, which matches the graded-commutativity
 of the tensor product of two commutative dg algebras.
 
-Weiss-cover descent follows from the Dolbeault Mayer--Vietoris sequence
-on $V$: covering by discs $\{D_i\}$, the $\mathrm{\check{C}ech}$ complex
-$\check C^\bullet(\{D_i\},\Omega^{0,\bullet}|_V)$ computes
-$\Omega^{0,\bullet}(V)$ up to quasi-isomorphism
-(Costello--Gwilliam~\cite[Prop.\,4.3.4]{CG17}). The
-$\Sym^\bullet(\fg^\vee[-1])\otimes M$ factor is a constant sheaf and
-contributes the identity under Weiss descent. The homotopy colimit
-\eqref{eq:weiss-descent} is therefore the standard Dolbeault
-sheaf-cohomology of $\Omega^{0,\bullet}(V)$ tensored with the constant
-factor.
+Weiss-cover descent follows from the compactly supported Dolbeault
+Mayer--Vietoris sequence on $V$: covering by discs $\{D_i\}$, the
+$\mathrm{\check{C}ech}$ complex
+$\check C^\bullet(\{D_i\},\Omega^{0,\bullet}_c|_V)$ computes
+$\Omega^{0,\bullet}_c(V)$ up to quasi-isomorphism in the cosheaf
+direction (Costello--Gwilliam~\cite[Prop.\,4.3.4]{CG17}). The
+$\Sym^\bullet(\fg^\vee[-1])\otimes M$ factor is constant on each
+connected component and contributes the identity under Weiss descent.
+The homotopy colimit \eqref{eq:weiss-descent} is therefore the
+Dolbeault cosheaf cohomology of $\Omega^{0,\bullet}_c(V)$ tensored with
+the constant CE factor.
 \end{proof}
 
 \begin{proposition}[Explicit nilpotency on two-disc overlap]
@@ -475,67 +507,73 @@ witness of the prefactorisation axiom at $n=2$.
 \label{sec:ch-ce-disk3-fubini}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\begin{theorem}[$\Disk_3$-algebra on $Y = \R^3\times C\times\C^2$]
+\begin{theorem}[Topological reduction to a $\Disk_3$-algebra]
 \label{thm:ch-ce-disk3-algebra}
 \index{$\Disk_3$-algebra!chiral CE}%
 \ClaimStatusProvedElsewhere\,\cite[Thm.\,4.4.1]{CG17}
-Let $Y = \R^3\times C\times\C^2$ with the product holomorphic
-volume form
-$\Omega_Y = dt_1\wedge dt_2\wedge dt_3\wedge dz\wedge d\zeta_1\wedge d\zeta_2$
-(with $t_i$ real coordinates on $\R^3$, $z$ complex on $C$, $\zeta_i$
-complex on $\C^2$; interpret $dt_i$ formally as the topological direction
-and the holomorphic differentials as holomorphic).
-The assignment $U\mapsto \cF^Y_{\fg,M}(U) = \mathrm{R}\Gamma(U,\Omega^{0,\bullet}_Y\otimes\Sym^\bullet(\fg^\vee[-1])\otimes M)$
-for open $U\subseteq Y$ is a prefactorisation algebra on $Y$ and
-carries a canonical action of the little $3$-disks operad
-$\Disk_3$. The $\Disk_3$-structure decomposes as
+Let $Y=\R^3\times C\times\C^2$ carry three topological real
+directions and the Dolbeault complexes in the complex directions. Let
+$\cF^Y_{\fg,M}$ be the compactly supported Costello--Gwilliam
+observable prefactorisation algebra obtained from this
+holomorphic-topological BV theory, and assume:
+\begin{enumerate}[label=\textup{(\roman*)}]
+\item Weiss descent holds for $\cF^Y_{\fg,M}$;
+\item the chosen transverse propagator gives a quasi-isomorphic
+finite-dimensional pushforward of the $\C^2$ Dolbeault factor to the
+reference curve $C$;
+\item the chiral direction is topologised by the non-critical Sugawara
+homotopy of Theorem~\ref{thm:ch-ce-topologization-E3-top}.
+\end{enumerate}
+Then the reduced factorisation algebra on a transverse $3$-disc is
+locally constant and hence determines a $\Disk_3$-algebra. The reduced
+$\Disk_3$-structure decomposes as
 \begin{equation}
 \label{eq:disk3-decomp}
-\Disk_3^Y
+\Disk_3^{\mathrm{red}}
 \;=\;
 \Disk_1^{\R}\otimes_D \Disk_1^{\C}\otimes_D \Disk_1^{\C}
 \end{equation}
 via Dunn additivity, where the three Dunn factors correspond to
-the topological real-line direction in $\R^3$, the holomorphic
-$C$-direction, and the holomorphic $\C^2$-direction.
+the surviving topological real direction, the topologised chiral
+$C$-direction, and the topologised transverse holomorphic direction.
+Before this reduction the object is a holomorphic-topological
+factorisation algebra, not a strict $\Disk_3$-algebra on $Y$.
 \end{theorem}
 
 \begin{proof}
-The Costello--Gwilliam locally-constant factorisation
-theorem~\cite[Thm.\,4.4.1]{CG17} asserts that the classical observables
-of a BV theory on a product $X\times\R^n$ with $X$ complex-analytic and
-$\R^n$ topological carry a $\Disk_{n+2\dim_\C X}$-algebra structure,
-constructed as the Dunn-additive composite of the $\R^n$-topological
-$\Disk_n$ with $\Disk_{2\dim_\C X}$ induced by the
-Dolbeault-holomorphic factor. For our setup, $X = C\times\C^2$ has
-$\dim_\C = 3$ and $\R^n = \R^3$, giving
-$\Disk_{3+6}/(\text{Dolbeault contraction}) = \Disk_3$ after the three
-$\dbar$-cohomology contractions collapse each complex direction to a
-point. The Dunn decomposition
-\eqref{eq:disk3-decomp} identifies the three $E_1$-factors with the
-three independent complex-or-real coordinates; the real-line factor is
-genuinely topological ($\Disk_1^{\R}$-structure from translation on
-$\R$), and the two complex factors become $\Disk_1$ after contracting
-the Dolbeault direction.
+Costello--Gwilliam~\cite[Thm.\,4.4.1]{CG17} identifies locally
+constant factorisation algebras on a real $n$-manifold with
+$\Disk_n$-algebras. Thus the only point to verify is local constancy
+after the stated reductions. The real direction is already
+topological. The $\C^2$ factor contributes through the chosen
+Dolbeault pushforward, and the propagator hypothesis removes its
+non-constant modes up to chain homotopy. The $C$-factor is
+not topological until the Sugawara homotopy kills holomorphic
+translation in cohomology. After these three reductions the observable
+cosheaf is locally constant on a transverse real $3$-disc, so
+Lurie--Costello--Gwilliam recognition gives the $\Disk_3$-algebra.
+Dunn additivity supplies \eqref{eq:disk3-decomp} at this reduced
+topological level only.
 \end{proof}
 
-\begin{theorem}[Fubini from $\Disk_3$ to $\Disk_1$ on $C$]
+\begin{theorem}[Fubini comparison from $\Disk_3$ to $\Disk_1$ on $C$]
 \label{thm:ch-ce-fubini-disk3-to-disk1}
 \index{factorisation-homology Fubini}%
 \ClaimStatusProvedElsewhere\,\cite[Thm.\,4.1.3]{AyalaFrancisTanaka2017}
-Factorisation-homology of the $\Disk_3$-algebra
-$\cF^Y_{\fg,M}$ over the $(\R^3\times\C^2)$-direction produces a
-$\Disk_1$-algebra on $C$:
+Under the hypotheses of Theorem~\ref{thm:ch-ce-disk3-algebra},
+factorisation-homology pushforward of $\cF^Y_{\fg,M}$ over the
+$(\R^3\times\C^2)$-direction produces a $\Disk_1$-algebra on $C$
+equipped with a comparison quasi-isomorphism
 \begin{equation}
 \label{eq:fubini-R3-C2}
 \int_{\R^3\times\C^2}\cF^Y_{\fg,M}
-\;=\;
+\;\simeq\;
 \cF^{\mathrm{ch}}_{\fg,M;C},
 \end{equation}
 the chiral CE factorisation algebra on $C$ as
 \eqref{eq:factalg-defn}. The pushforward is the Fubini decomposition
 \begin{equation}
-\int_Y = \int_C \circ \int_{\R^3\times\C^2},
+\int_Y \simeq \int_C \circ \int_{\R^3\times\C^2},
 \end{equation}
 expressing factorisation homology over a product space as the iterated
 integral over each factor.
@@ -543,20 +581,14 @@ integral over each factor.
 
 \begin{proof}
 Ayala--Francis--Tanaka~\cite[Thm.\,4.1.3]{AyalaFrancisTanaka2017}
-establishes the Fubini identity $\int_{X\times Y}\cF = \int_X\int_Y\cF$
-for factorisation homology over a product of stratified
-$\infty$-topoi. The chiral CE factorisation algebra on $C$ is
-obtained by restricting $\cF^Y_{\fg,M}$ to the slice
-$\{(t,z,\zeta)\in Y : z\in C\}$ and integrating over the
-orthogonal $\R^3\times\C^2$-direction. The Dolbeault factor
-$\Omega^{0,\bullet}(\R^3\times\C^2) = \Omega^{0,\bullet}(\C^2)$ (with
-no Dolbeault content along the real $\R^3$-direction) contracts to a
-point in cohomology
-($H^{0,\bullet}(\C^2)$ is concentrated in degree zero with constant
-value $\C$), so the pushforward produces only the $C$-factor tensored
-with the CE algebra. Combining with the projection formula for the
-$\Sym^\bullet(\fg^\vee[-1])\otimes M$ tensor factor gives
-\eqref{eq:fubini-R3-C2}.
+establishes the Fubini equivalence for factorisation homology over a
+product of stratified $\infty$-topoi. Applying it to
+$Y=\R^3\times C\times\C^2$ gives the iterated pushforward. The output is
+identified with the chiral CE factorisation algebra only after the
+transverse Dolbeault pushforward and the CE projection formula are
+chosen as in Theorem~\ref{thm:ch-ce-disk3-algebra}. This is why
+\eqref{eq:fubini-R3-C2} is a quasi-isomorphism in the factorisation
+$\infty$-category, not an equality of strict presheaves on opens.
 \end{proof}
 
 \begin{theorem}[Topologisation produces $E_3^{\mathrm{top}}$ at
@@ -762,10 +794,10 @@ the leading-pole coefficient being $\hbar^2 = -1/8$.
 \end{theorem}
 
 \begin{proof}
-The proof proceeds in five attack-heal cycles to isolate the numerical
-coefficient.
+The proof isolates the numerical coefficient by five independent
+calculations.
 
-\textbf{Cycle 1 (group-theoretic contraction).}
+\textbf{Group-theoretic contraction.}
 For $\fsl_2$, the structure constants satisfy
 $f^{abc} = \epsilon^{abc}$ (up to normalisation) with
 $\sum_{b,c}\epsilon^{abc}\epsilon^{bcd} = 2\delta^{ad}$ (adjoint
@@ -785,7 +817,7 @@ trace on $\fsl_2$ yields $f^{abc}f^{cde}f^{efa} = -8$ summed over
 $a,b,c,d,e,f$; this $-8$ is the Clebsch-Gordan value of the Levi--Civita
 triple product on the adjoint of $\fsl_2$.
 
-\textbf{Cycle 2 (Feynman-integral evaluation).}
+\textbf{Feynman-integral evaluation.}
 The three-contour integral over
 $|u-z|=\epsilon, |v-z|=\epsilon', |u'-z|=\epsilon''$ is nested
 contour-ordered; evaluation by iterated residues at the three poles
@@ -795,11 +827,11 @@ $u = v, v = u', u' = u$ (nested at the common centre $z$) gives
 \,du\,dv\,du' = \frac{(2\pi i)^3}{3!}.
 \end{equation}
 Dividing by $(2\pi i)^3$ leaves $1/6$; combined with the triple-trace
-factor $-8$ from Cycle 1 gives $-8/6 = -4/3$. Incorporating the
-Sugawara tree-level normalisation $2$ on the connected three-point
-function leaves $-8/3$.
+factor $-8$ from the group-theoretic contraction gives $-8/6 = -4/3$.
+Incorporating the Sugawara tree-level normalisation $2$ on the
+connected three-point function leaves $-8/3$.
 
-\textbf{Cycle 3 ($\zeta$-regularisation of the coincident poles).}
+\textbf{\(\zeta\)-regularisation of the coincident poles.}
 Costello's $\zeta$-regularisation~\cite[\S10.5]{CostelloRenormalization}
 replaces each bare double pole $(u-v)^{-2}$ by its renormalised
 representative $\zeta(2)/(2\pi i)^2 = -1/24$
@@ -809,9 +841,9 @@ the Sugawara tree three-point correlator
 $\langle J^e J^f J^g\rangle_{\mathrm{tree}}$ contributes no extra pole
 (it is a rational function of the $u,v,u'$ contour coordinates,
 evaluated before regularisation). The two renormalised double poles
-give $(-1/24)^2 = 1/576$. Combined with the Cycle-2 contour value
+give $(-1/24)^2 = 1/576$. Combined with the contour value
 $(2\pi i)^3/6$ already divided by $(2\pi i)^3$ (factor $1/6$) and the
-Cycle-1 group-theoretic factor $-8$ on the Sugawara normalisation
+group-theoretic factor $-8$ on the Sugawara normalisation
 $2$, the bare sunrise residue is
 \[
 I^{\mathrm{sun,bare}}_{\fsl_2} \;=\; -\,\tfrac{1}{6}\cdot 8\cdot 2
@@ -822,36 +854,40 @@ The residual finite renormalisation ambiguity is a single overall
 scheme-dependent constant $\lambda_{\mathrm{sch}}\in\Q^\times$
 controlling the normalisation of the motivic weight-$3$ basis
 element $\zeta^\mathfrak m(3)/(2\pi i)^3$ against the bare integral.
-The remaining two cycles fix $\lambda_{\mathrm{sch}}$ from independent
+The remaining two calculations fix $\lambda_{\mathrm{sch}}$ from independent
 data, pinning $\hbar^2$ to a scheme-free value.
 
-\textbf{Cycle 4 (determination of $\lambda_{\mathrm{sch}}$ from the
-Gaiotto--Costello identity).}
-The universal $\mathsf{B}$-family normalisation
-$\hbar^n\cdot K^\kappa_n = (-1)^n$
+\textbf{Determination of $\lambda_{\mathrm{sch}}$ from the
+Gaiotto--Costello identity.}
+Under the Bruinier--Heegner normalisation used for the
+\(\mathsf{B}\)-family witness, the identity
+$\hbar^n\cdot K^{\kappa_{\mathrm{ch}}}_n = (-1)^n$
 (Proposition~\ref{prop:ch-ce-motivic-mzv-basis},
 Remark~\ref{rem:ch-ce-transcendence-bound}) is an identity of motivic
-weight on the Bruinier--Heegner locus. At $n = 2$ and $K^\kappa = 8$
-(the genus-one K3 rank,
-$K^\kappa = 2\,\mathrm{rank}\,\Lambda_{K3,\mathrm{transverse}}$,
+weight on the Bruinier--Heegner locus. At $n = 2$ and
+$K^{\kappa_{\mathrm{ch}}} = 8$
+(the K3 Mukai witness
+$K^{\kappa_{\mathrm{ch}}}
+= 2\,c_+(\mathrm{Mukai}(K3))=8$,
 \cite[Prop.~5.1]{Bruinier2002}; cross-volume consistency:
 Vol.~III \texttt{chapters/examples/cy\_d\_kappa\_stratification.tex},
-the K3 Heisenberg witness $K^\kappa=8$), this identity forces
-$\hbar^2 = -1/8$. Matching with the bare Cycle-3 residue fixes
+the K3 Heisenberg witness $K^{\kappa_{\mathrm{ch}}}=8$), this identity forces
+$\hbar^2 = -1/8$. Matching with the bare regularised residue fixes
 $\lambda_{\mathrm{sch}} = -27/8$ on the Costello scheme, i.e.\ the
 two-loop renormalisation counterterm on the motivic-$\zeta(3)$ basis
 element has rational coefficient $-27/8$ relative to the bare contour
 integral.
 
-\textbf{Cycle 5 (independent cross-check via Bruinier--Heegner
-reciprocity).}
+\textbf{Bruinier--Heegner reciprocity.}
 The Bruinier--Heegner Chern-class reciprocity on the type~II Shimura
-variety $\mathrm{Sh}_{\mathrm{II}_{2,1}}(\C)$ computes $K^\kappa = 8$
-directly from the transverse rank of the K3 lattice, independently of
+variety $\mathrm{Sh}_{\mathrm{II}_{2,1}}(\C)$ computes
+$K^{\kappa_{\mathrm{ch}}} = 8$
+from \(2c_+(\mathrm{Mukai}(K3))\), independently of
 the Feynman-integral route. The coincidence of the three values
---bare residue $-1/216$ (Cycles~1--3), motivic identity
-$\hbar^2 = -1/8$ (Cycle~4), Chern-class reciprocity $K^\kappa = 8$
-(Cycle~5)--pins $\hbar^2 = -1/8$ from three non-overlapping sources:
+--bare residue $-1/216$, motivic identity
+$\hbar^2 = -1/8$, Chern-class reciprocity
+$K^{\kappa_{\mathrm{ch}}} = 8$
+--pins $\hbar^2 = -1/8$ from three non-overlapping sources:
 diagrammatic, motivic, arithmetic. Matching the diagrammatic side to
 the motivic side is a theorem about $\lambda_{\mathrm{sch}}$, not
 about $\hbar^2$; matching the motivic side to the arithmetic side is
@@ -887,16 +923,19 @@ integral with Costello $\zeta$-regularisation gives the bare residue
 $-1/216$ at the $(z-w)^{-3}$ pole, up to a single scheme-dependent
 rational constant $\lambda_{\mathrm{sch}}$ on the motivic
 weight-$3$ basis element
-(Cycle~3 of Theorem~\ref{thm:ch-ce-sunrise-sl2-minus-eighth}).
-\item \emph{Motivic} (universal $\mathsf{B}$-family identity):
-$\hbar^n K^\kappa_n = (-1)^n$ at $n = 2, K^\kappa = 8$ forces
+(the regularisation step in
+Theorem~\ref{thm:ch-ce-sunrise-sl2-minus-eighth}).
+\item \emph{Motivic} (Bruinier--Heegner $\mathsf{B}$-family identity):
+$\hbar^n K^{\kappa_{\mathrm{ch}}}_n = (-1)^n$ at
+$n = 2, K^{\kappa_{\mathrm{ch}}} = 8$ forces
 $\hbar^2 = -1/8$, determining $\lambda_{\mathrm{sch}} = -27/8$ by
 match with source~(1).
 \item \emph{Arithmetic} (Bruinier--Heegner reciprocity): on the
 type~II Shimura variety $\mathrm{Sh}_{\mathrm{II}_{2,1}}(\C)$, the
-Chern-class reciprocity computes $K^\kappa = 8$ from the transverse
-K3 lattice rank, supplying the $K^\kappa$ input to~(2) from a
-non-Feynman, non-motivic route.
+Chern-class reciprocity computes
+\(K^{\kappa_{\mathrm{ch}}}=2c_+(\mathrm{Mukai}(K3))=8\), supplying the
+$K^{\kappa_{\mathrm{ch}}}$ input to~(2) from a non-Feynman,
+non-motivic route.
 \end{enumerate}
 Sources~(1)--(3) concur on $\hbar^2 = -1/8$; the coincidence is a
 theorem, not a tautology, because sources~(2) and~(3) meet~(1) through
@@ -1078,9 +1117,12 @@ Theorem~\ref{thm:ch-ce-sunrise-sl2-minus-eighth} at $n=2$).
 \index{transcendence bound!Feynman integrals}%
 At loop order $n$, the Feynman integral produces a motivic period of
 weight at most $n+1$ (Brown 2014). For $\fsl_2$ on $C = \P^1$, all
-$n$-loop OPE coefficients satisfy $\hbar^n\cdot K^\kappa_n = (-1)^n$
-for the universal $\mathsf{B}$-family; at $n = 2, K^\kappa = 8$, giving
-$\hbar^2 = -1/8$; at $n = 3, K^\kappa = 50$ (type
+$n$-loop OPE coefficients satisfy
+$\hbar^n\cdot K^{\kappa_{\mathrm{ch}}}_n = (-1)^n$
+under the Bruinier--Heegner normalisation of the \(\mathsf{B}\)-family
+witness; at
+$n = 2, K^{\kappa_{\mathrm{ch}}} = 8$, giving
+$\hbar^2 = -1/8$; at $n = 3, K^{\kappa_{\mathrm{ch}}}_3 = 50$ (type
 $\mathrm{II}_{25,1}$, the Fake Monster Lie algebra), giving
 $\hbar^3 = -1/50$.
 \end{remark}
@@ -1090,39 +1132,42 @@ $\hbar^3 = -1/50$.
 \label{sec:ch-ce-dict-6d-hcs}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\begin{theorem}[6d hCS factorisation algebra reduces to chiral CE on $C$]
+\begin{theorem}[Associated-graded 6d hCS observables reduce to chiral CE on $C$]
 \label{thm:ch-ce-6d-hcs-reduction}
 \index{6d hCS!reduction to chiral CE}%
 \ClaimStatusProvedHere
-Let $Y = \R^3\times C\times\C^2$ and let $\Fobs^q_{\hCS}$ denote the
-quantum observables of the 6d holomorphic Chern--Simons theory on $Y$
-(Definition~\ref{def:hcs-fields} of
-Chapter~\ref{ch:six-d-hcs-e3-chiral-avatar-platonic}). The
+Let $Y = \R^3\times C\times\C^2$ and let $\Fobs^q_{\hCS}$ denote a
+Costello--Gwilliam quantum observable factorisation algebra for 6d
+holomorphic Chern--Simons on $Y$ (Definition~\ref{def:hcs-fields} of
+Chapter~\ref{ch:six-d-hcs-e3-chiral-avatar-platonic}), with
+$\hbar$-adic filtration. Under the locality, Weiss-descent, and
+transverse-pushforward hypotheses of
+Theorem~\ref{thm:ch-ce-disk3-algebra}, the associated graded of the
 factorisation-homology pushforward along $\R^3\times\C^2$ is
 \begin{equation}
 \label{eq:6d-hcs-reduces-to-chiral-CE}
+\operatorname{gr}_{\hbar}
 \int_{\R^3\times\C^2}\Fobs^q_{\hCS}\bigr|_Y
-\;=\;
+\;\simeq\;
 \cF^{\mathrm{ch}}_{\fg,M;C},
 \end{equation}
 the chiral CE factorisation algebra on $C$ as in
-\eqref{eq:factalg-defn}.
+\eqref{eq:factalg-defn}. The quantum factorisation algebra itself is a
+renormalised $\hbar$-deformation of this associated-graded CE model.
 \end{theorem}
 
 \begin{proof}
-Combine
-Theorem~\ref{thm:ch-ce-disk3-algebra} ($\Disk_3$-algebra structure on
-the 6d observables on $Y$) with
-Theorem~\ref{thm:ch-ce-fubini-disk3-to-disk1}
-(factorisation-homology Fubini along $\R^3\times\C^2$) to reduce
-$\Fobs^q_{\hCS}$ to a $\Disk_1$-algebra on $C$. The reduced
-$\Disk_1$-algebra is the chiral CE factorisation algebra
-$\cF^{\mathrm{ch}}_{\fg,M;C}$ by the identification of
+Theorem~\ref{thm:ch-ce-disk3-algebra} supplies local constancy only
+after reduction, and Theorem~\ref{thm:ch-ce-fubini-disk3-to-disk1}
+supplies the factorisation-homology pushforward. Taking
+$\operatorname{gr}_{\hbar}$ removes the BV Laplacian and the
+renormalised quantum product, leaving the classical CE observable
+complex. The identification with
+$\cF^{\mathrm{ch}}_{\fg,M;C}$ is then the chiral-bar comparison of
 Theorem~\ref{thm:hcs-chiral-bar-differential} of
-Chapter~\ref{ch:six-d-hcs-e3-chiral-avatar-platonic}: the chiral bar
-differential on $B^{\mathrm{ch}}(\widehat\fg_k)$ is the restriction of
-the 6d Dolbeault $\dbar_Y$ to the chiral direction after the
-Fubini reduction kills the transverse $\R^3\times\C^2$ direction.
+Chapter~\ref{ch:six-d-hcs-e3-chiral-avatar-platonic}. Without the
+associated-graded passage, the right-hand side must be replaced by its
+Costello--Gwilliam quantum deformation.
 \end{proof}
 
 \begin{theorem}[K3 avatar: $C = E$ with 24 punctures, $\fg_{\Delta_5}$,
@@ -1131,31 +1176,54 @@ $\cV^{K3}_5$]
 \index{K3 avatar!24 punctures}%
 \index{$\fg_{\Delta_5}$!chiral CE specialisation}%
 \ClaimStatusProvedHere
-Specialising Theorem~\ref{thm:ch-ce-6d-hcs-reduction} to $C = E$ an
+Specialise the associated-graded comparison of
+Theorem~\ref{thm:ch-ce-6d-hcs-reduction} to $C = E$ an
 elliptic curve with $24$ punctures $\{p_1,\ldots,p_{24}\}$ (the K3
 avatar obtained from $\R^3\times\mathrm{K3}\times\C^2$ via the K3
 Euler characteristic $\chi(\mathrm{K3}) = 24$), $\fg = \fg_{\Delta_5}$
 the BKM rank-$3$ Lie algebra of the Gritsenko--Nikulin denominator
-$\Phi_{10}$, and $M = \cV^{K3}_5$ the K3-reduced 5-brane vertex
-algebra, produces
+$\Phi_{10}^{\mathrm{un}}$, and $M = \cV^{K3}_5$ the K3-reduced 5-brane vertex
+algebra. The strict CE model is
 \begin{equation}
 \label{eq:ch-ce-k3-avatar-factalg}
 \cF^{\mathrm{ch}}_{\fg_{\Delta_5}, \cV^{K3}_5; E\setminus\{p_1,\ldots,p_{24}\}}
-\;=\;
+\;:=\;
 \Omega^{0,\bullet}\bigl(E\setminus\{p_i\}\bigr)
 \otimes
 \Sym^\bullet\bigl(\fg_{\Delta_5}^\vee[-1]\bigr)
 \otimes
 \cV^{K3}_5.
 \end{equation}
-Factorisation homology over $E$ with the 24 punctures as marked
-insertions produces the K3 chiral bialgebra
+Let
+\[
+ q_{\mathrm{K3}}\colon
+ \operatorname{gr}_\hbar\int_{\R^3\times\C^2}\Fobs^q_{\hCS}
+ \longrightarrow
+ \cF^{\mathrm{ch}}_{\fg_{\Delta_5},\cV^{K3}_5;E\setminus\{p_i\}}
+\]
+be the transverse pushforward comparison, let \(\delta_{24}\) be the
+defect-insertion cocycle of the \(24\) marked Kodaira \(I_1\) fibres,
+and let
+\[
+ \psi_{\Delta_5}\colon
+ \int_E\cF^{\mathrm{ch}}_{\fg_{\Delta_5},\cV^{K3}_5;E\setminus\{p_i\}}
+ \otimes\prod_{i=1}^{24}[\mathrm{insertion\ at\ }p_i]
+ \longrightarrow \mathbf H_{\Delta_5}
+\]
+be the BKM comparison map. If the three obstruction classes
+\[
+ [\operatorname{Cone}(q_{\mathrm{K3}})],\qquad
+ [d\,\delta_{24}],\qquad
+ [\operatorname{Cone}(\psi_{\Delta_5})]
+\]
+vanish in their respective factorisation-homology derived categories,
+then factorisation homology over \(E\) produces the K3 chiral bialgebra
 $\mathbf H_{\Delta_5}$:
 \begin{equation}
 \label{eq:ch-ce-k3-avatar-homology}
 \int_E \cF^{\mathrm{ch}}_{\fg_{\Delta_5}, \cV^{K3}_5; E\setminus\{p_i\}}
 \;\otimes\; \prod_{i=1}^{24}[\mathrm{insertion\,at\,}p_i]
-\;=\;
+\;\simeq\;
 \mathbf H_{\Delta_5}.
 \end{equation}
 \end{theorem}
@@ -1163,20 +1231,26 @@ $\mathbf H_{\Delta_5}$:
 \begin{proof}
 Substitution of $C = E, \fg = \fg_{\Delta_5}, M = \cV^{K3}_5$ into
 Definition~\ref{def:ch-ce-cochains}
-gives~\eqref{eq:ch-ce-k3-avatar-factalg}. The 24 punctures parametrise
-the 24 M5-brane insertions of
+gives~\eqref{eq:ch-ce-k3-avatar-factalg}. Vanishing of
+\([\operatorname{Cone}(q_{\mathrm{K3}})]\) identifies the transverse
+pushforward with this CE model in the factorisation \(\infty\)-category.
+The 24 punctures parametrise the 24 M5-brane insertions of
 Definition~\ref{def:hcs-k3xE}, localised at the Kodaira $I_1$ fibres of
 a nodal elliptic surface $E^{\mathrm{nod}}_{24}$ (equivalently, the 24
 points of $E$ where the K3 elliptic fibration degenerates; Gaiotto
-$\Sigma_{0,24}$ data). The factorisation-homology integral combines
-the Dolbeault Fubini on $E\setminus\{p_i\}$ with the
+$\Sigma_{0,24}$ data). The condition \([d\,\delta_{24}]=0\) says that
+these insertions define a closed marked-point factorisation class. The
+condition \([\operatorname{Cone}(\psi_{\Delta_5})]=0\) is precisely the
+comparison with the BKM presentation. The factorisation-homology
+integral combines the Dolbeault Fubini on $E\setminus\{p_i\}$ with the
 Sym-part-CE closure, producing the K3 chiral bialgebra
 $\mathbf H_{\Delta_5}$ by
 Theorem~\ref{thm:g-delta5-chiral-ce-factalg-E} of
 \texttt{celestial\_holography.tex}. The 24 insertions provide the
-Jacobi-theta denominator $\eta^{24}$ on the partition function, which
-by Borcherds' theta-correspondence gives the full $1/\Phi_{10}$
-generating function.
+Jacobi-theta denominator $\eta^{24}$ in the automorphic normalisation;
+Borcherds' theta-correspondence then gives the
+\((\Phi_{10}^{\mathrm{un}})^{-1}\) generating series in that
+normalisation.
 \end{proof}
 
 \begin{remark}[Concordance with Vol III Stage-2 factorisation]
@@ -1200,107 +1274,97 @@ $E$.
 \label{sec:ch-ce-fifteen-identities}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-The following fifteen identities form the core presentation of
-$\cF^{\mathrm{ch}}_{\fg,M;C}$ as a $\Disk_1$-algebra with explicit
-generators and relations. Each identity is tagged by its claim-status
-and cross-referenced to the corresponding proposition/theorem/proof.
+The following fifteen identities form the local
+generators-and-relations surface of $\cF^{\mathrm{ch}}_{\fg,M;C}$ on a
+formal disc. They present the chain-level CE/BRST model. They present
+the Costello--Gwilliam factorisation algebra only after the comparison
+functor, compact-support convention, and Weiss descent hypotheses of
+Theorems~\ref{thm:ch-ce-disk3-algebra}--\ref{thm:ch-ce-6d-hcs-reduction}
+are imposed. Each parenthetical citation names the proof source.
 
 \begin{enumerate}[label=\textup{(I\arabic*)},ref=I\arabic*]
 \item\label{id:01}
-$d_{\mathrm{ch}}\cA^a = \dbar_C\cA^a + f^a_{bc}\normord{\cB^b\cA^c}$
-(gauge-field BRST; Proposition~\ref{prop:ch-ce-omega-linearity}\,(iii),
-matching the BV-BRST field of
-Definition~\ref{def:hcs-bv-brst}).
-\ClaimStatusProvedHere
+$Q_{\BRST}\cA^a = \dbar_C\cB^a + f^a_{bc}\cA^b\cB^c$
+(gauge-field BRST; Definition~\ref{def:hcs-bv-brst}; the pure CE
+differential has $d_{\CE}\cA^a=0$ by
+Proposition~\ref{prop:ch-ce-omega-linearity}\,(iii)).
 \item\label{id:02}
-$d_{\mathrm{ch}}\cB^a = \dbar_C\cB^a + \tfrac12 f^a_{bc}\cB^b\cB^c$
+$Q_{\BRST}\cB^a = -\tfrac12 f^a_{bc}\cB^b\cB^c$
 (antighost BRST; Proposition~\ref{prop:ch-ce-omega-linearity}\,(iii)).
-\ClaimStatusProvedHere
 \item\label{id:03}
 $\{\dbar_C, d_{\CE}\} = 0$ on
 $\Omega^{0,\bullet}(C)\otimes\Sym^\bullet(\fg^\vee[-1])\otimes M$
 (tensor-orthogonality; Proposition~\ref{prop:ch-ce-nilpotency}).
-\ClaimStatusProvedHere
 \item\label{id:04}
 $\cA^a(z)\cA^b(w)\sim\delta^{ab}/(z-w)^2 + f^{ab}_c\cA^c(w)/(z-w)
 + \mathrm{regular}$
 (tree-level OPE; Proposition~\ref{prop:classical-MC-relations}).
-\ClaimStatusProvedHere
 \item\label{id:05}
 $\normord{\cA^a\cA^b}(z)\cA^c(w)\sim\mathsf C_{\mathrm{ad}}(\fg)
 f^{ab}_d f^{dc}_e\cA^e(w)/(z-w)^2 + (\zeta(2)/(2\pi i)^2) f^{ab}_c
 \partial\cA^c(w)/(z-w)$
 (one-loop bubble; Theorem~\ref{thm:ch-ce-oneloop-motivic}).
-\ClaimStatusProvedHere
 \item\label{id:06}
 $I^{\mathrm{sun}}_{\fsl_2}(z,w) = -\tfrac18\cdot f^{ab}_d f^{cd}_e
 f^{ea}_f\cA^f(w)/(z-w)^3 + \mathrm{subleading}$
 (two-loop sunrise coefficient; Theorem~\ref{thm:ch-ce-sunrise-sl2-minus-eighth}).
-\ClaimStatusProvedHere
 \item\label{id:07}
 $\cF_{\fg,M}(D_1\sqcup D_2)\simeq\cF_{\fg,M}(D_1)\otimes\cF_{\fg,M}(D_2)$
 (tensor-product axiom on disjoint discs;
 Theorem~\ref{thm:ch-ce-tensor-axiom}).
-\ClaimStatusProvedHere
 \item\label{id:08}
-$\cF_{\fg,M}(V) = \mathrm{hocolim}_i\cF_{\fg,M}(U_i)$ for Weiss cover
+$\cF_{\fg,M}(V) \simeq \mathrm{hocolim}_i\cF_{\fg,M}(U_i)$ for Weiss cover
 $\{U_i\}$ of $V$
 (Weiss-cover descent; Theorem~\ref{thm:ch-ce-weiss-descent}).
-\ClaimStatusProvedHere
 \item\label{id:09}
-$\Disk_3^Y = \Disk_1^{\R}\otimes_D\Disk_1^{\C}\otimes_D\Disk_1^{\C}$
-(Dunn decomposition; Theorem~\ref{thm:ch-ce-disk3-algebra}).
-\ClaimStatusProvedElsewhere
-\cite[Thm.\,4.4.1]{CG17}
+$\Disk_3^{\mathrm{red}}\simeq
+\Disk_1^{\R}\otimes_D\Disk_1^{\C}\otimes_D\Disk_1^{\C}$
+(Dunn decomposition after topological reduction;
+Theorem~\ref{thm:ch-ce-disk3-algebra}; \cite[Thm.\,4.4.1]{CG17}).
 \item\label{id:10}
-$\int_{\R^3\times\C^2}\Fobs^q_{\hCS}\simeq\cF^{\mathrm{ch}}_{\fg,M;C}$
-(factorisation-homology Fubini; Theorem~\ref{thm:ch-ce-6d-hcs-reduction}).
-\ClaimStatusProvedHere
+$\operatorname{gr}_\hbar\int_{\R^3\times\C^2}\Fobs^q_{\hCS}
+\simeq\cF^{\mathrm{ch}}_{\fg,M;C}$
+(associated-graded factorisation-homology Fubini;
+Theorem~\ref{thm:ch-ce-6d-hcs-reduction}).
 \item\label{id:11}
 $\cF^{\mathrm{ch}}_{\fg_{\Delta_5},\cV^{K3}_5; E\setminus\{p_i\}}$,
 with $24$ punctures and factorisation-homology integral
-$\int_E\cdot\prod[p_i]$, equals
+$\int_E\cdot\prod[p_i]$, is comparison-quasi-isomorphic to
 $\mathbf H_{\Delta_5}$
 (K3 avatar; Theorem~\ref{thm:ch-ce-k3-avatar-24-punctures}).
-\ClaimStatusProvedHere
 \item\label{id:12}
 $\cA^a(z)\cdot W^V_\gamma = \int_\gamma\rho(T^a)W^V_{[\gamma_{\le z}]}
 W^V_{[\gamma_{>z}]}\,dz$
 (Wilson-line insertion; Theorem~\ref{thm:ch-ce-wilson-line-module}).
-\ClaimStatusProvedHere
 \item\label{id:13}
 $T(z) = \tfrac{1}{2(k+h^\vee)}\sum_a\normord{J^aJ^a}(z)$
 (Sugawara conformal vector at non-critical level;
-Theorem~\ref{thm:ch-ce-topologization-E3-top}).
-\ClaimStatusProvedElsewhere
-\cite[Prop.\,5.1]{FrenkelBenZvi2004}
+Theorem~\ref{thm:ch-ce-topologization-E3-top};
+\cite[Prop.\,5.1]{FrenkelBenZvi2004}).
 \item\label{id:14}
 $\{\dbar_C, L_{-1}\}\omega = \omega$ on $\Omega^{0,\bullet}(D_z)$
 (topologisation chain-homotopy witness;
 Theorem~\ref{thm:ch-ce-topologization-E3-top}).
-\ClaimStatusProvedHere
 \item\label{id:15}
-$\hbar^n\cdot K^\kappa_n = (-1)^n$ for the universal $\mathsf{B}$-family
-at loop order $n$ (Bruinier--Heegner reciprocity;
-Remark~\ref{rem:ch-ce-transcendence-bound}).
-\ClaimStatusProvedElsewhere
-\cite{Bruinier2002}
+$\hbar^n\cdot K^{\kappa_{\mathrm{ch}}}_n = (-1)^n$ under the
+Bruinier--Heegner normalisation of the $\mathsf{B}$-family witness at
+loop order $n$ (Remark~\ref{rem:ch-ce-transcendence-bound};
+\cite{Bruinier2002}).
 \end{enumerate}
 
-\begin{remark}[Status distribution]
-\label{rem:ch-ce-status-distribution}
-\index{claim-status distribution}%
-Of the fifteen core identities:
-\begin{itemize}
-\item \ClaimStatusProvedHere: identities~\eqref{id:01}--\eqref{id:08},
-\eqref{id:10}, \eqref{id:11}, \eqref{id:12}, \eqref{id:14}
-(eleven identities, with proofs in this chapter or referenced proofs in
-Chapter~\ref{ch:six-d-hcs-e3-chiral-avatar-platonic}).
-\item \ClaimStatusProvedElsewhere: identities~\eqref{id:09},
-\eqref{id:13}, \eqref{id:15} (four identities, proved in
-\cite{CG17,FrenkelBenZvi2004,Bruinier2002}).
-\item \ClaimStatusConjectured: none.
-\end{itemize}
+\begin{remark}[Proof sources for the fifteen identities]
+\label{rem:ch-ce-identity-proof-sources}
+\index{chiral CE factorisation algebra!proof sources}%
+Identities~\eqref{id:01}--\eqref{id:03} fix the CE/BRST
+conventions. Identities~\eqref{id:07}--\eqref{id:11} are statements in
+the factorisation $\infty$-category, with quasi-isomorphism rather than
+strict equality. Identity~\eqref{id:09} uses Dunn additivity only after
+topological reduction; it is not an assertion that the unreduced
+holomorphic-topological cosheaf on $Y$ is a strict $\Disk_3$-algebra.
+Identity~\eqref{id:13} is the Sugawara conformal-vector construction
+\cite[Prop.\,5.1]{FrenkelBenZvi2004}; identity~\eqref{id:15} is the
+normalised Bruinier--Heegner input used in the \(\mathsf{B}\)-family
+witness \cite{Bruinier2002}.
 \end{remark}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1320,7 +1384,7 @@ Construction here & Primary source \\
 \midrule
 $C^\bullet_{\mathrm{ch}}(\fg,M)$ tensor decomp.
 & Francis--Gaitsgory 2012, Thm~6.4.2~\cite{FG12}\\
-$\Disk_3$-action on $Y = \R^3\times C\times\C^2$
+$\Disk_3$-action after topological reduction
 & Costello--Gwilliam Vol.~I, Thm~4.4.1~\cite{CG17}\\
 Factorisation-homology Fubini
 & Ayala--Francis--Tanaka 2017, Thm~4.1.3~\cite{AyalaFrancisTanaka2017}\\
@@ -1328,8 +1392,9 @@ One-loop Feynman Wick contraction
 & Costello 2011, \S9--10~\cite{CostelloRenormalization}\\
 Motivic-MZV basis at weight $n+1$
 & Brown 2014, Thm~3.1~\cite{Brown2014}\\
-6d hCS $E_3$ gen-rel
-& Costello--Francis--Gwilliam 2026, \S3~\cite{CFG2026}\\
+Reduced hCS $E_3$ gen-rel
+& Costello--Gwilliam Vol.~I, Thm~4.4.1~\cite{CG17}, after the local
+topological reduction above\\
 Bruinier--Heegner reciprocity
 & Bruinier 2002, Prop~5.1~\cite{Bruinier2002}\\
 Sugawara conformal vector
@@ -1339,28 +1404,29 @@ Arnold relation on $\Conf_n(C)$
 \bottomrule
 \end{tabular}
 \end{center}
-Each row is an equivalence at the level of chain complexes or of
-$(\infty,1)$-operads. The cross-volume formula and object consistency
-is verified against Vol.~I
+Each row is a comparison at the level indicated in the left column:
+chain complex, factorisation $\infty$-category, or reduced operad.
+Equivalence is asserted only where the cited comparison theorem supplies
+the functor and its hypotheses. The cross-volume formula and object
+consistency is verified against Vol.~I
 \texttt{chapters/examples/landscape\_census.tex} and Vol.~III
 \texttt{chapters/examples/cy\_d\_kappa\_stratification.tex}.
 \end{remark}
 
-\begin{remark}[Synthesis]
-\label{rem:ch-ce-synthesis}
-\index{chiral CE factorisation algebra!synthesis}%
-The chiral CE factorisation algebra $\cF^{\mathrm{ch}}_{\fg,M;C}$ is
-the chain-level realisation of the Stage-2 specialisation of the
-Vol.~III CY-to-chiral functor $\Phi_d$ at $d = 2$, carrying fifteen
-explicit generator-relation identities with motivic-MZV coefficients
-and $\Disk_3$-structure via Dunn decomposition. Topologisation at
-non-critical level produces $E_3^{\mathrm{top}}$ at each generic
-bulk point, completing the $\mathsf{SC}^{\mathrm{ch,top}}$-to-$E_3$
-promotion of Chapter~\ref{V1-chap:climax-platonic} of Vol.~I. The
-K3 avatar on $C = E$ with 24 punctures produces the K3 chiral bialgebra
-$\mathbf H_{\Delta_5}$, establishing a chain-level equivalence between
-the 6d holomorphic Chern--Simons theory on
-$\R^3\times\mathrm{K3}\times\C^2$ and the Borcherds--Kac--Moody
-algebra $\fg_{\Delta_5}$ of the Gritsenko--Nikulin $\Phi_{10}$
-denominator.
+\begin{remark}[Chain-level comparison summary]
+\label{rem:ch-ce-comparison-summary}
+\index{chiral CE factorisation algebra!comparison summary}%
+The chiral CE factorisation algebra $\cF^{\mathrm{ch}}_{\fg,M;C}$ is a
+chain-level realisation of the \(d=2\) specialisation of the Vol.~III
+CY-to-chiral functor \(\Phi_d\), carrying fifteen explicit
+generator-relation identities with motivic-MZV coefficients. The
+$\Disk_3$-structure enters only after topological reduction and Dunn
+additivity; the unreduced holomorphic-topological object remains
+$\mathsf{SC}^{\mathrm{ch,top}}$-coloured. Topologisation at
+non-critical level produces $E_3^{\mathrm{top}}$ at each generic bulk
+point. The K3 avatar on $C = E$ with 24 punctures is
+comparison-quasi-isomorphic to the K3 chiral bialgebra
+$\mathbf H_{\Delta_5}$ under the stated pushforward hypotheses; it is
+not a strict equality between the 6d holomorphic Chern--Simons
+factorisation algebra and the Borcherds--Kac--Moody presentation.
 \end{remark}

@@ -35,6 +35,7 @@ import pytest
 # adversarial_swarm_20260417/wave10_hz_iv_w8b_primitive_tautology_scan.md.
 
 from compute.lib.independent_verification import independent_verification
+from compute.lib.z2_group_cohomology import h3_bz2_u1_class_from_triple_sign
 
 
 # ---------------------------------------------------------------------------
@@ -62,11 +63,9 @@ def h3_bz2_u1_order() -> int:
     return 2
 
 
-def dw_anomaly_on_leech() -> int:
-    """The Dijkgraaf-Witten anomaly class on V_Leech^+ vanishes
-    (even unimodular lattice has trivial cocycle).
-    """
-    return 0
+def local_bv_class_from_supplied_z2_sign(triple_sign: int = 1) -> int:
+    """Class of the supplied normalized local BV sign."""
+    return h3_bz2_u1_class_from_triple_sign(triple_sign)
 
 
 # ---------------------------------------------------------------------------
@@ -271,14 +270,12 @@ def test_monster_central_charge():
     assert leech_lattice_rank() == path_a_leech_rank
 
 
-def test_monster_dw_anomaly_vanishes_structurally():
-    """DW anomaly on V_Leech vanishes: det(Leech) = 1 implies
-    trivial cocycle in H^3(BZ/2; U(1)).
-    """
+def test_monster_local_bv_sign_convention():
+    """The supplied sign +1 is the trivial class in H^3(BZ/2; U(1))."""
     assert leech_lattice_determinant() == 1
-    assert dw_anomaly_on_leech() == 0
-    # H^3(BZ/2; U(1)) has order 2; trivial class is identity.
-    assert dw_anomaly_on_leech() % h3_bz2_u1_order() == 0
+    local_bv_class = local_bv_class_from_supplied_z2_sign(+1)
+    assert local_bv_class == 0
+    assert local_bv_class % h3_bz2_u1_order() == 0
 
 
 # ---------------------------------------------------------------------------
@@ -358,10 +355,12 @@ def test_universal_holography_boundary_restriction():
     verified_against=[
         "Borcherds 1992 Monster Lie algebra denominator identity "
         "(Invent Math 109:405-444) -- modular invariance of "
-        "J-function implies DW-trivial Z/2-cocycle",
+        "the J-function is a consistency check, not a BV-class "
+        "computation",
         "Dong-Li-Mason 2000 modular invariance of orbifold VOAs "
-        "(arXiv:q-alg/9703016) -- orbifold modular invariance "
-        "theorem independent of universal-holography framework",
+        "(arXiv:q-alg/9703016) -- orbifold modular invariance and "
+        "level matching are independent of universal-holography "
+        "framework",
     ],
     disjoint_rationale=(
         "Derivation combines universal-holography orbifold BV "
@@ -371,20 +370,17 @@ def test_universal_holography_boundary_restriction():
         "an automorphic-product side with no orbifold BV, and "
         "(b) Dong-Li-Mason orbifold modular invariance theorem "
         "proved by character-theoretic methods. Neither "
-        "verification source uses BV anomaly cancellation."),
+        "verification source computes the local finite-orbifold BV "
+        "class."),
 )
-def test_uhf_monster_anomaly_vanishing_via_leech():
-    """The Z/2 orbifold anomaly on V_Leech vanishes because
-    Leech is even unimodular.
-    """
+def test_uhf_monster_anomaly_requires_supplied_local_sign():
+    """The supplied ``+1`` sign, not unimodularity, selects zero."""
     assert leech_lattice_determinant() == 1
-    # Even lattice: all inner products in 2Z. For Leech, the
-    # discriminant group is trivial, so no non-trivial theta
-    # pairing appears in H^3(BZ/2; U(1)).
-    lattice_even = True
-    lattice_unimodular = (leech_lattice_determinant() == 1)
-    anomaly_class = 0 if (lattice_even and lattice_unimodular) else 1
-    assert anomaly_class == 0
+    supplied_local_sign = +1
+    alternate_local_sign = -1
+
+    assert local_bv_class_from_supplied_z2_sign(supplied_local_sign) == 0
+    assert local_bv_class_from_supplied_z2_sign(alternate_local_sign) == 1
 
 
 # ---------------------------------------------------------------------------

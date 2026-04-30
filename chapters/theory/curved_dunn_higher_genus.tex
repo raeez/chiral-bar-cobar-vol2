@@ -1,24 +1,21 @@
 %% =====================================================================
 %% curved_dunn_higher_genus.tex
 %%
-%% Closes the curved-Dunn H^2=0 at g>=2 gap at the cohomological
-%% level by bridging the modular-bootstrap complex (H^2=0 proved
-%% genus-by-genus, 2026-04 reconstitution) to the curved-Dunn
-%% twisting-cochain complex (previously open at g>=2) via an
-%% explicit chain map; the Jimbo-Miwa irregular-singular KZB
-%% framework then promotes modular operad composition from
-%% integral to generic non-integral level at every stable (g,n)
-%% with 2g - 2 + n > 0. Cohomological vanishing; chain-level
-%% m_k^{SC}=0 at k>=3 for g>=2 is not claimed here.
+%% Curved-Dunn H^2 vanishing at g>=2 is formulated as a
+%% conditional transport theorem: modular-bootstrap H^2 acyclicity
+%% plus a degree-2 comparison map imply curved-Dunn acyclicity.
+%% Generic non-integral KZB clutching is conditional on compatible
+%% boundary formal types and mixed Stokes data. Cohomological
+%% vanishing is separate from chain-level formality.
 %%
 %% Location: chapters/theory/ (Vol II, A_infty chiral algebras and HT QFT).
 %% Inputs: chapters/theory/modular_swiss_cheese_operad.tex
 %% chapters/connections/higher_genus_foundations.tex (Vol I)
 %% standalone/curved_dunn_two_complex_bridge.tex
-%% Provides: prop:genus1-twisted-tensor-product (previously phantom)
-%% thm:curved-dunn-H2-vanishing-all-genera (new)
-%% thm:irregular-singular-kzb-regularity (new)
-%% cor:modular-operad-composition-all-levels (new)
+%% Provides: prop:genus1-twisted-tensor-product
+%% thm:curved-dunn-H2-vanishing-all-genera
+%% thm:irregular-singular-kzb-regularity
+%% cor:modular-operad-composition-all-levels
 %% =====================================================================
 
 \chapter{Curved Dunn Additivity at Higher Genus}
@@ -39,22 +36,22 @@ first. For the SC\(^{\mathrm{ch,top}}\) genus tower of Chapter
 \]
 with the factorisation twisted by a cochain \(\tau\) built from
 \(R\)-matrix monodromy at each genus-raising clutching. Genus \(0\)
-is uncurved Dunn. Genus \(1\) admits the explicit Gauss--Manin
-uncurving of
+is uncurved Dunn. Genus \(1\) is governed by the twisted tensor
+criterion
 \autoref{prop:genus1-twisted-tensor-product}.
 Genus \(g \ge 2\) reduces to an obstruction class \(\mathrm{Ob}_{g}\)
-living in \(H^{2}\) of a twisting-cochain complex; whether this
-\(H^{2}\) vanishes is the frontier this chapter closes.
+living in \(H^{2}\) of a twisting-cochain complex; the comparison
+criterion below states the exact hypotheses under which this
+\(H^{2}\) vanishes.
 
 The two complexes in play are distinct. The modular-bootstrap complex
 controls the genus tower \(\{\Theta^{(g)}\}\); the curved-Dunn
 twisting-cochain complex controls the Eilenberg--Zilber extension of
 the twisted factorisation from genus \(g-1\) to genus \(g\). Both
 complexes host \(\mathrm{Ob}_{g}\), but via different differentials.
-Modular-bootstrap \(H^{2} = 0\) is proved all genera (twisted
-K\"unneth). Curved-Dunn \(H^{2} = 0\) has been open at \(g \ge 2\)
-because the two differentials have not been explicitly identified.
-We construct the bridge.
+The modular-bootstrap vanishing is an input supplied by a
+contracting homotopy; curved-Dunn vanishing follows only after a
+degree-\(2\) comparison identifies the two obstruction complexes.
 
 \section{The two complexes}
 \label{sec:two-complexes}
@@ -124,27 +121,20 @@ and \(d_{0}\) are \emph{a priori} different differentials on
 \label{rem:two-complex-fm67}
 Conflating the two complexes has been the main source of the
 long-standing confusion about curved-Dunn at higher genus. The
-modular-bootstrap complex has vanishing \(H^{2}\) at every genus by
-twisted K\"unneth on the Arakelov class of \(\overline{\cM}_{g,n}\)
-(\autoref{prop:genus1-twisted-tensor-product} below, globalised by
-induction on \(g\)). The curved-Dunn complex has no such direct
-argument: its differential is governed by the transverse \(E_{1}\)
-factor, not by the Arakelov class. The bridge map below identifies
-the two differentials on a common chain-level model, so the
-\(H^{2}\)-vanishing transports.
+modular-bootstrap complex records a stable-ribbon-graph
+Maurer--Cartan problem. The curved-Dunn complex records a transverse
+\(E_{1}\) twisting-cochain problem. There is no direct argument from
+the Arakelov class on \(\overline{\cM}_{g,n}\) to the
+curved-Dunn differential. Vanishing transports only after one supplies
+a low-degree comparison map identifying the two obstruction classes.
 \end{remark}
 
 \section{The bridge proposition}
 \label{sec:bridge}
 
-\begin{proposition}[Modular-bootstrap to curved-Dunn bridge]
+\begin{proposition}[Modular-bootstrap to curved-Dunn comparison criterion]
 \label{prop:modular-bootstrap-to-curved-dunn-bridge}
-% Cross-volume: this proposition is invoked by Vol I Theorem
-% thm:lagrangian-complementarity-global-upgrade clause (iv) as the
-% imported bridge whose local absence triggered the downgrade
-% of that clause from ProvedHere to Conditional (2026-04-17).
-\ClaimStatusProvedHere
-There exists a chain map
+Assume there is a chain map
 \[
  \Phi\;:\;
  \bigl(\fg^{A}_{\mathrm{mod}},\; d_{\Theta^{(0)}}\bigr)
@@ -166,109 +156,30 @@ implies \(H^{2}(\mathrm{TCo}^{\bullet}_{g}(A), d_{0}) = 0\).
 \end{proposition}
 
 \begin{proof}
-We construct \(\Phi\) in three layers: bracket structure, cocycle
-identification, and cohomology iso.
-
-\emph{Step 1 (generators and bracket structure).}
-The graded vector space \(\fg^{A}_{\mathrm{mod}}\) is the cyclic
-Feynman transform of \(M\mathrm{Ass}\), with generators indexed by
-stable ribbon graphs of type \((g,n)\). The graded vector space
-\(\mathrm{TCo}^{\bullet}_{g}(A)\) is \(\mathrm{Hom}\) out of the bar
-of the transverse \(E_{1}\)-factor, valued in the associated graded of
-the closed-colour modular bar. Both are right modules over the
-universal convolution dg Lie algebra of \(A\).
-
-Send a ribbon graph \(\Gamma\) of type \((g,n)\) with internal edges
-\(e_{1}, \dots, e_{k}\) decorated by \(R(z_{i})\) to the tensor
+Let \(\xi\) be a \(d_{0}\)-closed degree-\(2\) class in
+\(\mathrm{TCo}^{\bullet}_{g}(A)\). Surjectivity in degree \(\le 2\)
+lifts \(\xi\) to a degree-\(2\) class
+\(\tilde{\xi}\in \fg^{A}_{\mathrm{mod}}\). Since \(\Phi\) is a chain
+map, \(d_{\Theta^{(0)}}\tilde{\xi}\) maps to zero on the
+curved-Dunn side; the assumed degree-\(2\) cohomology comparison
+allows \(\tilde{\xi}\) to be changed by a coboundary so that it is
+\(d_{\Theta^{(0)}}\)-closed. If
 \[
- \Phi(\Gamma)
- \;=\;
- \bigl(\mathrm{Mon}(R)_{e_{1}} \otimes \cdots \otimes \mathrm{Mon}(R)_{e_{k}}\bigr)
- \cdot \mathrm{ev}_{\Gamma},
+H^{2}\bigl(\fg^{A}_{\mathrm{mod}}, d_{\Theta^{(0)}}\bigr)=0,
 \]
-where \(\mathrm{ev}_{\Gamma}\) is the evaluation of the graph into
-\(\mathrm{End}_{A}(n)\) along the bar-complex factorisation of each
-sewing annulus. This is well-defined by the annular bar theorem
-(\emph{cf.}\ Chapter~\ref{ch:modular-swiss-cheese-operad}, Rung~7)
-and is equivariant under the standard symmetric group action on
-both sides.
-
-\emph{Step 2 (bracket compatibility).}
-The bracket on \(\fg^{A}_{\mathrm{mod}}\) is induced by graph
-grafting along external legs. The differential
-\(d_{\Theta^{(0)}} = [\Theta^{(0)}, -]\) inserts
-the genus-\(0\) seed \(\Theta^{(0)}\) at each leg. On the
-curved-Dunn side, the differential \(d_{0}\) of the twisting-cochain
-complex is the convolution differential
-\(d_{0}(f) = \partial f - (-1)^{|f|} f \partial\), where \(\partial\)
-is the internal bar differential of
-\(\mathrm{gr}^{g}\mathbf{B}_{\mathrm{mod}}(\mathrm{SC}^{\mathrm{ch,top}})\).
-At an internal edge, contracting by \(\Theta^{(0)}\) produces the
-same cocycle as contracting by the \(R\)-matrix monodromy at the
-corresponding sewing circle: both incarnate the binary-collision
-residue formula \(\Theta^{(0)} = r(z)\,dz\) from the bar intrinsic
-definition. Hence
-\(\Phi \circ d_{\Theta^{(0)}} = d_{0} \circ \Phi\) on generators,
-and by graded Leibniz the chain-map property propagates to the full
-complex.
-
-\emph{Step 3 (cocycle identification and surjectivity in low degree).}
-The genus-\(g\) bootstrap datum
-\(\Theta^{(g)} \in \fg^{A,(2)}_{\mathrm{mod}}\) is encoded by the
-collection of stable ribbon graphs of type \((g,n)\) with total
-valence \(2\). Its image \(\Phi(\Theta^{(g)})\) is by construction
-the sewing cocycle built from \(\mathrm{Mon}(R)\) at each edge of
-the minimal genus-\(g\) ribbon graph, which is the curved-Dunn
-obstruction \(\mathrm{Ob}_{g}\) by the explicit Eilenberg--Zilber
-recursion:
-\[
- \mathrm{Ob}_{g}
- \;=\;
- d_{0}(\tau_{g-1}) \;+\;
- \tfrac{1}{2}[\tau_{g-1}, \tau_{g-1}]_{\mathrm{conv}},
-\]
-which matches the tree-twisted Maurer--Cartan equation
-\(d_{\Theta^{(0)}}(\Theta^{(g-1)}) + \tfrac{1}{2}[\Theta^{(g-1)},
-\Theta^{(g-1)}] = -\hbar\,\Theta^{(g)}\) after identifying \(\tau\)
-with the sum \(\sum_{h < g} \hbar^{h} \Theta^{(h)}\).
-
-For surjectivity in degrees \(\le 2\): an arbitrary degree-\(2\)
-cocycle of \(\mathrm{TCo}^{\bullet}_{g}\) decomposes along the
-Arakelov-class grading of \(\overline{\cM}_{g,n}\) into contributions
-from each stable-graph stratum; each stratum contribution is the
-image under \(\Phi\) of a corresponding ribbon-graph element in
-\(\fg^{A,(2)}_{\mathrm{mod}}\). The decomposition is finite because
-the number of stable graphs of fixed type is finite (Getzler--Kapranov
-stability).
-
-\emph{Step 4 (cohomology iso at degree 2).}
-The chain map \(\Phi\) is already surjective on \(H^{2}\) by Step~3.
-Injectivity follows from a finite filtered spectral sequence: the
-stable-graph stratification of \(\overline{\cM}_{g,n}\) is filtered by
-stratum codimension, bounded above by
-\(\dim \overline{\cM}_{g,n} = 3g - 3 + n\). Filter both complexes
-\(\fg^{A}_{\mathrm{mod}}\) and \(\mathrm{TCo}^{\bullet}_{g}(A)\) by
-stable-graph stratum depth; \(\Phi\) preserves the filtration by
-construction (ribbon-graph decoration is depth-preserving). The
-associated-graded chain map \(\mathrm{gr}\,\Phi\) is a K\"unneth
-decomposition of sewing-annulus cohomology across strata, iso by
-Step~3 on each stratum component. The induced spectral-sequence map
-\({}_{(\mathrm{mod})}E_{r}\to{}_{(\mathrm{TCo})}E_{r}\) is an iso on
-\(E_{1}\) and hence on \(E_{\infty}\); the spectral sequences converge
-strongly because the filtration is finite of length \(3g - 3 + n\).
-Hence \(H^{2}(\Phi)\) is an isomorphism.
+then \(\tilde{\xi}=d_{\Theta^{(0)}}\eta\), hence
+\(\xi=d_{0}\Phi(\eta)\). The second hypothesis identifies the
+bootstrap obstruction class with the curved-Dunn obstruction class,
+so the same argument transports obstruction vanishing.
 \end{proof}
 
 \begin{remark}[Cross-volume: consumer in Vol~I]
 \label{rem:bridge-vol1-consumer}
-\emph{Cross-volume.} This proposition is invoked by Vol~I
-Theorem~\textup{\ref{V1-thm:lagrangian-complementarity-global-upgrade}}
-clause~(iv) (Global assembly). The absence of a Vol~I-local
-inscription means clause~(iv) carries the
-\ClaimStatusConditional\ tag in Vol~I, with the present proposition
-serving as the external input that discharges the condition.
-Clauses~(i)--(iii) of the Vol~I theorem remain
-\ClaimStatusProvedHere.
+The Vol~I global-assembly statement uses this comparison as a
+criterion. Its conclusion is unconditional precisely on those loci
+where the low-degree chain map \(\Phi\) has been constructed and
+checked. Elsewhere it remains a named comparison obligation rather
+than a theorem.
 \end{remark}
 
 \begin{remark}[Why the bridge exists]
@@ -277,27 +188,23 @@ Both the bootstrap and curved-Dunn complexes are governed by the
 same underlying datum: \(R\)-matrix monodromy at sewing circles.
 The modular-bootstrap complex organises this datum by stable
 ribbon graph (Feynman transform); the curved-Dunn complex organises
-it by twisting cochain (Eilenberg--Zilber). The two organisations
-are equivalent because the Eilenberg--Zilber twisting cochain is the
-sum of the ribbon-graph bootstrap obstructions over all stable
-graphs of fixed type. No Quillen-equivalence argument on curved
-operads is needed; the bridge is a direct combinatorial
-identification.
+it by twisting cochain (Eilenberg--Zilber). The comparison map
+\(\Phi\), when constructed, is the assertion that these two
+organisations give the same degree-\(2\) obstruction class. That is
+the precise content needed for curved-Dunn vanishing.
 \end{remark}
 
-\section{Genus one: lifting the phantom label}
+\section{Genus one}
 \label{sec:genus-one-gauss-manin}
 
-The proposition previously referred to across the manuscript as
-\texttt{prop:genus1-twisted-tensor-product} was phantom. We state
-and prove it here.
-
-\begin{proposition}[Genus-one twisted K\"unneth, Gauss--Manin uncurving]
+\begin{proposition}[Genus-one twisted tensor criterion]
 \label{prop:genus1-twisted-tensor-product}
-\ClaimStatusProvedHere
 Let \(A\) be a chirally Koszul algebra on \(X\) with non-zero
-modular characteristic \(\kappa(A)\). The modular bar complex at
-genus \(1\) decomposes as a twisted K\"unneth tensor product
+modular characteristic \(\kappa(A)\). Assume there is a genus-one
+twisting cochain \(\tau_{1}=\mathrm{Mon}(R)\) satisfying the curved
+tensor-product Maurer--Cartan equation in the coderived curved
+ambient. Then the modular bar complex at genus \(1\) decomposes as a
+twisted tensor product
 \[
  \mathbf{B}_{\mathrm{mod}}\!\bigl(\cO^{A_{\infty}\text{-ch}}\bigr)\Big|_{g=1}
  \;\simeq\;
@@ -312,111 +219,60 @@ the A-cycle of the elliptic fibre.
 \end{proposition}
 
 \begin{proof}
-We give the proof by explicit Gauss--Manin uncurving followed by
-Arakelov pairing. The argument has three steps.
-
-\emph{Step 1 (Gauss--Manin connection on \(\Lambda^{2} H^{1}\)).}
-The universal elliptic curve \(\cE \to \overline{\cM}_{1,1}\) carries
-the Hodge bundle \(\lambda_{1} = \pi_{*}\Omega^{1}_{\cE/\overline{\cM}_{1,1}}\)
-and its second wedge \(\lambda_{2} = \Lambda^{2} R^{1}\pi_{*}\bQ\).
-The Gauss--Manin connection \(\nabla^{\mathrm{GM}}\) on
-\(R^{1}\pi_{*}\bQ\) descends to \(\lambda_{2}\) as a flat connection
-on a rank-\(1\) bundle. On the curve side, the bar-complex
-differential at genus \(1\) factorises through
-\(\nabla^{\mathrm{GM}}\) via the fibrewise Hochschild complex:
-\[
- d_{\mathbf{B}_{\mathrm{mod}},\,g=1}
- \;=\;
- d_{\mathrm{fib}} + \kappa(A)\cdot \omega_{1}\wedge(\cdot),
-\]
-with \(\omega_{1} = c_{1}(\lambda_{1})\) the first Chern class of
-the Hodge bundle. The curvature term is exact on
-\(\Lambda^{2} H^{1}\)
-because \(\omega_{1} = \tfrac{1}{2} c_{1}(\lambda_{2})\) there, and
-\(c_{1}(\lambda_{2})\) is a \(\nabla^{\mathrm{GM}}\)-exact form on
-the moduli stack. This is the \emph{uncurving} step: the curved
-differential at \(g=1\) becomes flat on the wedge square of the
-Hodge bundle.
-
-\emph{Step 2 (Arakelov pairing on \(\lambda_{1}\)).}
-The Arakelov form on \(\overline{\cM}_{1,1}\) is
-\(\omega_{1}^{\mathrm{Ar}} = -(\pi/\mathrm{Im}\tau)\,
-dz \wedge d\bar{z}\); the Faltings-Arakelov normalisation has
-\(\int_{\overline{\cM}_{1,1}} c_{1}(\lambda_{1}) = 1/12\). We
-adopt the scaled convention
-\(\omega_{1} := 12\, c_{1}(\lambda_{1})\) so that
-\(\int_{\overline{\cM}_{1,1}} \omega_{1} = 1\) in line with the
-normalisation fixed at \eqref{ch:curved-dunn-higher-genus}
-preceding; the rescaling factor is immaterial for the
-cohomological conclusions below since all identities we use are
-proportional in \(\omega_{1}\). The Arakelov pairing
-\(\langle\cdot, \cdot\rangle_{\mathrm{Ar}}\) on \(\lambda_{1}\) is
-\(\nabla^{\mathrm{GM}}\)-compatible, giving an isomorphism of flat
-bundles
-\(\lambda_{2} \otimes \lambda_{1} \simeq \lambda_{1}^{\vee}\)
-up to an integer twist (the canonical pairing on an elliptic
-curve). Pulling back to the bar complex, the genus-\(1\) twisted
-K\"unneth factorisation becomes
-\[
- \mathbf{B}_{\mathrm{mod}}^{(1)}(A)
- \;\simeq\;
- \mathbf{B}_{\mathrm{mod}}^{(1)}(\mathrm{SC}^{\mathrm{ch,top}})
- \otimes
- \mathbf{B}(E_{1}^{\mathrm{tr}})
- \quad
- \text{twisted by}\;
- \mathrm{Mon}(R)
- \;=\;
- \exp\!\bigl(\oint_{A\text{-cyc}}\! r(z)\,dz\bigr).
-\]
-The exponent is the A-cycle period of the classical \(r\)-matrix, a
-well-defined element of \(\mathrm{End}_{A}\otimes\mathrm{End}_{A}\)
-because the \(r\)-matrix satisfies the KZ integrability condition.
-
-\emph{Step 3 (compatibility with Eilenberg--Zilber).}
 The Eilenberg--Zilber twisted tensor product with twisting cochain
-\(\tau = \mathrm{Mon}(R)\) has the differential
-\(\partial_{\tau}(x\otimes y) = \partial x \otimes y +
-(-1)^{|x|}x\otimes\partial y + \tau\cdot(x\otimes y)\). Substituting
-\(\tau = \mathrm{Mon}(R)\) reproduces exactly the curved
-differential at genus \(1\) computed in Step~1, matching the
-Arakelov pairing of Step~2. The factorisation is therefore an
-isomorphism of complexes, not merely of graded vector spaces.
+\(\tau_{1}\) has the differential
+\[
+\partial_{\tau_{1}}(x\otimes y)=
+\partial x\otimes y+(-1)^{|x|}x\otimes\partial y+
+\tau_{1}\cdot(x\otimes y).
+\]
+The curved tensor-product Maurer--Cartan equation is exactly the
+condition \(\partial_{\tau_{1}}^{2}=0\) in the coderived curved
+ambient. Under the assumed identification
+\(\tau_{1}=\mathrm{Mon}(R)\), annular sewing gives the displayed
+tensor product. On the stack \(\overline{\cM}_{1,1}\) the standard
+normalisation is \(\int c_{1}(\lambda_{1})=1/24\); the coarse
+orbifold convention rescales this to \(1/12\). No exactness of
+\(c_{1}(\lambda_{1})\) or of a determinant local system is used.
 \end{proof}
 
 \begin{remark}[Relationship to \autoref{prop:modular-bootstrap-to-curved-dunn-bridge}]
 \label{rem:bridge-at-genus-1}
 At \(g = 1\), the bridge chain map \(\Phi\) of
-\autoref{prop:modular-bootstrap-to-curved-dunn-bridge} is the
-identity: the bootstrap datum \(\Theta^{(1)}\) is the annular bar
-insertion of \(\mathrm{Mon}(R)\), and the curved-Dunn twisting
-cochain \(\tau_{1}\) is the same insertion. The chain map
-identifies them as the same piece of data in two complexes. At
-\(g \ge 2\), the identification is non-trivial: it matches
-higher-genus stable-graph strata with higher Eilenberg--Zilber
-corrections.
+\autoref{prop:modular-bootstrap-to-curved-dunn-bridge} reduces to
+the assertion that the annular bootstrap insertion
+\(\Theta^{(1)}\) and the curved-Dunn twisting cochain \(\tau_{1}\)
+are the same monodromy class. At \(g \ge 2\), the comparison is no
+longer tautological: it must match stable-graph strata with the
+higher Eilenberg--Zilber corrections.
 \end{remark}
 
-\section{Curved-Dunn vanishing at all genera}
+\section{Conditional higher-genus curved-Dunn vanishing}
 \label{sec:curved-dunn-vanishing}
 
-\begin{theorem}[Curved-Dunn \(H^{2}\) vanishing, all genera]
+\begin{theorem}[Conditional curved-Dunn \(H^{2}\) vanishing]
 \label{thm:curved-dunn-H2-vanishing-all-genera}
-\ClaimStatusProvedHere
-For every \(g \ge 1\) and every chirally Koszul algebra \(A\) in
-the standard landscape at non-critical level,
+Let \(A\) be a chirally Koszul algebra in the standard landscape at
+non-critical level. Fix \(g \ge 2\). Assume:
+\begin{enumerate}
+ \item the modular-bootstrap complex satisfies
+ \(H^{2}(\fg^{A}_{\mathrm{mod}}, d_{\Theta^{(0)}})=0\) in genus
+ \(g\);
+ \item the comparison criterion
+ \autoref{prop:modular-bootstrap-to-curved-dunn-bridge} holds in
+ genus \(g\).
+\end{enumerate}
+Then
 \[
  H^{2}\bigl(\mathrm{TCo}^{\bullet}_{g}(A),\; d_{0}\bigr)
  \;=\;
  0.
 \]
-Consequently, the twisting cochain \(\tau_{g-1}\) extends to
-\(\tau_{g}\) for every \(g\) up to convolution-gauge equivalence
-(the cohomological vanishing determines the extension class in
-\(H^{2}\); the chain-level extension is fixed after a gauge
-choice), and the modular bar complex factorises as a twisted
-K\"unneth tensor product at every genus at the cohomological
-level:
+Consequently, under the same hypotheses the twisting cochain
+\(\tau_{g-1}\) extends to \(\tau_{g}\) up to convolution-gauge
+equivalence. If the genus-one twisting datum of
+\autoref{prop:genus1-twisted-tensor-product} is also supplied, the
+modular bar complex factorises genus by genus as
 \[
  \mathbf{B}_{\mathrm{mod}}\!\bigl(\cO^{A_{\infty}\text{-ch}}\bigr)
  \;\simeq\;
@@ -427,70 +283,49 @@ level:
 \end{theorem}
 
 \begin{proof}
-The modular-bootstrap complex has
-\(H^{2}(\fg^{A}_{\mathrm{mod}}, d_{\Theta^{(0)}}) = 0\) at every
-genus \(g \ge 1\). This is proved inductively: base case \(g=1\) by
-\autoref{prop:genus1-twisted-tensor-product} (Gauss--Manin
-uncurving on \(\Lambda^{2} H^{1}\) makes the curvature exact on the
-wedge square of the Hodge bundle); inductive step
-\(g \ge 2\) by the modular-bootstrap Maurer--Cartan recursion
-\(D\Theta + \tfrac{1}{2}[\Theta,\Theta] = 0\), which solves
-\(\Theta^{(g)}\) as an explicit cocycle in
-\(\fg^{A,(2)}_{\mathrm{mod}}\) given \(\Theta^{(<g)}\). This
-inductive solvability is equivalent to the \(H^{2}\) vanishing (the
-obstruction to extending the recursion is exactly the \(H^{2}\)
-class).
-
-Applying \autoref{prop:modular-bootstrap-to-curved-dunn-bridge}(iii),
-the isomorphism
-\(H^{2}(\fg^{A}_{\mathrm{mod}}) \simeq H^{2}(\mathrm{TCo}^{\bullet}_{g}(A))\)
-transports the vanishing to the curved-Dunn side. The extension
-of \(\tau_{g-1}\) to \(\tau_{g}\) is now automatic: the obstruction
-\(\mathrm{Ob}_{g}\) is the \(H^{2}\)-class of
-\(d_{0}(\tau_{g-1}) + \tfrac{1}{2}[\tau_{g-1},\tau_{g-1}]_{\mathrm{conv}}\),
-which vanishes by the \(H^{2}=0\) conclusion. Hence \(\tau\)
-extends to a twisting cochain on the full genus-tower, and the
-Eilenberg--Zilber twisted K\"unneth factorisation holds at all
-genera.
+The first hypothesis gives vanishing on the modular-bootstrap side.
+The comparison criterion transports that vanishing to
+\(\mathrm{TCo}^{\bullet}_{g}(A)\). The obstruction to extending
+\(\tau_{g-1}\) is the cohomology class of
+\[
+d_{0}(\tau_{g-1})
+\;+\;\tfrac{1}{2}[\tau_{g-1},\tau_{g-1}]_{\mathrm{conv}},
+\]
+so the transported vanishing kills precisely the extension
+obstruction. A choice of primitive fixes the chain-level extension
+up to convolution gauge.
 \end{proof}
 
 \begin{remark}[Relation to Beilinson-Mill\`es--Drummond-Cole]
 \label{rem:BMDC}
-An alternative approach uses the Bellier-Mill\`es--Drummond-Cole
-model structure on curved operads to show that both the
-modular-bootstrap and curved-Dunn complexes are cofibrant
-resolutions of the same curved modular operad, with Quillen
-equivalence giving the quasi-isomorphism. The present proof is
-more elementary: the chain map \(\Phi\) is explicit, constructed
-from ribbon graphs and Eilenberg--Zilber combinatorics, and the
-\(H^{2}\)-iso is verified directly without invoking the model
-structure machinery. The two approaches agree on cohomology.
+A model-categorical proof would require identifying both complexes
+as cofibrant resolutions of the same curved modular operad and then
+checking that the resulting Quillen equivalence induces the same
+degree-\(2\) obstruction class. The present criterion isolates the
+chain-level input: the map \(\Phi\) and its degree-\(2\)
+cohomological effect.
 \end{remark}
 
-\section{Modular-bootstrap \texorpdfstring{$H^{2}$}{H2} as a named lemma:
-discharging a phantom dependency}
+\section{Modular-bootstrap \texorpdfstring{$H^{2}$}{H2} criterion}
 \label{sec:modular-bootstrap-h2-named-lemma}
 
-The proof of
-\autoref{thm:curved-dunn-H2-vanishing-all-genera}
-above quotes the vanishing of
-\(H^{2}(\fg^{A}_{\mathrm{mod}}, d_{\Theta^{(0)}})\) at every
-\(g \ge 1\) as an internal step. The label
-\texttt{thm:modular-bootstrap-H2-vanishing} is referred to from
-\autoref{ch:curved-dunn-raw-direct-sum-platonic} (the class-\(\mathrm{M}\)
-ambient reconstitution) but was never stated as a standalone
-statement. We close that phantom dependency now: the bootstrap
-vanishing is genuinely a separate lemma, with a self-contained
-inductive Maurer--Cartan proof, used as a black box by both the
-weight-completed (this chapter) and the pro-/\(J\)-adic
-(\autoref{ch:curved-dunn-raw-direct-sum-platonic}) ambients.
+The curved-Dunn transport theorem needs a modular-bootstrap
+vanishing input. The honest input is a contracting homotopy for the
+positive-valence stable-ribbon-graph complex, not a formal
+consequence of the Maurer--Cartan recursion.
 
-\begin{lemma}[Modular-bootstrap \(H^{2}\) vanishing, every genus]
+\begin{lemma}[Modular-bootstrap \(H^{2}\) criterion]
 \label{lem:modular-bootstrap-H2-vanishing}
-\ClaimStatusProvedHere
-For every chirally Koszul algebra \(A\) on a smooth projective
-curve \(X\) at non-critical level with non-zero modular
-characteristic \(\kappa(A)\), and every genus \(g \ge 1\),
+Let \(A\) be a chirally Koszul algebra on a smooth projective curve
+\(X\) at non-critical level. Fix a genus \(g\). Suppose the
+positive-valence part of the stable-ribbon-graph complex
+\(\fg^{A}_{\mathrm{mod}}\) admits a degree-\((-1)\) contracting
+homotopy \(h\), compatible with the genus-\(0\) seed
+\(\Theta^{(0)}\), such that
+\[
+d_{\Theta^{(0)}}h+h d_{\Theta^{(0)}}=\id
+\]
+on cohomological degree \(2\). Then
 \[
  H^{2}\bigl(\fg^{A}_{\mathrm{mod}},\; d_{\Theta^{(0)}}\bigr)
  \;=\;
@@ -499,184 +334,56 @@ characteristic \(\kappa(A)\), and every genus \(g \ge 1\),
 \end{lemma}
 
 \begin{proof}
-We argue by induction on \(g\). Throughout, write
-\(\fg^{A,(\ell)}_{\mathrm{mod}}\) for the cohomological-degree-\(\ell\)
-component of the modular-bootstrap dg Lie algebra, generated by
-stable ribbon graphs of total internal valence \(\ell\) (one
-sewing edge contributes valence one).
-
-\emph{Base case} (\(g = 1\)). By
-\autoref{prop:genus1-twisted-tensor-product}, the genus-\(1\)
-modular bar complex factorises as a twisted Eilenberg--Zilber
-tensor product with twisting cochain
-\(\tau_{1} = \mathrm{Mon}(R)\). Step~1 of the proof of that
-proposition exhibits the genus-\(1\) bar differential as
-\(d_{\mathrm{fib}} + \kappa(A)\,\omega_{1}\wedge(\cdot)\), and the
-Gauss--Manin connection on \(\Lambda^{2}H^{1}\) of the universal
-elliptic curve provides an explicit primitive
-\(\sigma_{1}\) for \(\omega_{1}\) on the wedge square of the
-Hodge bundle (Katz--Oda, descended to
-\(\overline{\cM}_{1,1}\) via flatness of \(\nabla^{\mathrm{GM}}\) on
-\(\lambda_{2}\)). The corresponding ribbon-graph primitive of
-\(\Theta^{(1)}\) in \(\fg^{A,(1)}_{\mathrm{mod}}\) is the
-handle-insertion cochain
-\(P_{1} \;=\; \langle \sigma_{1},\, \mathrm{ev}_{\Gamma_{1}}\rangle\),
-where \(\Gamma_{1}\) is the unique stable ribbon graph of type
-\((1,0)\) (one self-loop on a single vertex; Getzler--Kapranov
-\cite{GeK98} stability table) and the pairing is integration of
-\(\sigma_{1}\) against the universal evaluation map
-\(\mathrm{ev}_{\Gamma_{1}}\colon \mathrm{Mon}(R) \to
-\mathrm{End}_{A}(0)\). One verifies
-\(d_{\Theta^{(0)}} P_{1} = \Theta^{(1)}\) by direct chain-level
-computation: the bracket \([\Theta^{(0)}, P_{1}]\) inserts the
-genus-\(0\) seed at the self-loop of \(\Gamma_{1}\), producing
-the binary-collision residue
-\(r(z)\,dz\big|_{A\text{-cyc}} = \mathrm{Mon}(R)\), which by the
-Step~2 normalisation of \autoref{prop:genus1-twisted-tensor-product}
-is precisely \(\Theta^{(1)}\). Hence every degree-\(2\) cocycle at
-genus \(1\) is exact, and \(H^{2}\) vanishes at the base case.
-
-\emph{Inductive step} (\(g \ge 2\)). Assume
-\(H^{2}(\fg^{A,(g-1)}_{\mathrm{mod}}) = 0\) and
-\(\Theta^{(<g)}\) has been chosen consistently as a sequence of
-genus-wise Maurer--Cartan elements. The Maurer--Cartan equation
-\(D\Theta + \tfrac{1}{2}[\Theta, \Theta] = 0\) at the
-\(\hbar^{g}\)-coefficient level reads
-\begin{equation}\label{eq:MC-recursion-genus-g}
- D\Theta^{(g)}
- \;=\;
- -\tfrac{1}{2}\sum_{\substack{g_{1} + g_{2} = g\\g_{i} \ge 1}}
- \bigl[\Theta^{(g_{1})}, \Theta^{(g_{2})}\bigr],
-\end{equation}
-with \(D\) the internal differential of \(\fg^{A}_{\mathrm{mod}}\).
-The right-hand side is automatically a \(D\)-cocycle (graded
-Jacobi for the bracket on \(\fg^{A}_{\mathrm{mod}}\) plus
-\(D\Theta^{(g_{i})} + \tfrac{1}{2}[\Theta^{(<g_{i})}, \Theta^{(<g_{i})}]
-= 0\) for each \(g_{i} < g\)), hence defines a class
-\(\bigl[\,\textup{RHS}\bigr] \in H^{2}(\fg^{A,(g-1)}_{\mathrm{mod}})\).
-By the inductive hypothesis this class is zero, so the right-hand
-side is \(D\)-exact, say
-\(\textup{RHS} = D \Xi\) for some
-\(\Xi \in \fg^{A,(2)}_{\mathrm{mod}}\) of internal valence two.
-Solving \(D\Theta^{(g)} = D\Xi\) by the standard transgression
-\(\Theta^{(g)} := \Xi + (\text{any closed correction})\) realises
-\(\Theta^{(g)}\) as an explicit cocycle.
-
-It remains to upgrade ``solvability of the MC recursion'' to
-``\(H^{2}\) vanishing''. Let \(\xi \in \fg^{A,(2)}_{\mathrm{mod}}\)
-be any \(D\)-cocycle at genus \(g\). Decompose \(\xi\) along the
-ribbon-graph valence filtration
-\(F^{p}\fg^{A}_{\mathrm{mod}} = \bigoplus_{|\Gamma| \ge p}
-\mathrm{Hom}_{\Sigma_{n}}(M\mathrm{Ass}(g, n)_{\Gamma},
-\mathrm{End}_{A}(n))\) (descending in graph valence,
-exhaustive, finite of length \(\le 6g - 6 + 2n\) by
-Getzler--Kapranov stability \cite{GeK98}). The associated graded
-\(\mathrm{gr}^{p}\xi\) is a sum over stable ribbon graphs of
-fixed valence \(p\); by graph-by-graph Poincar\'e duality on
-\(\mathrm{End}_{A}(n)^{\Sigma_{n}}\) (the module structure over
-the binary chiral product is rigid),
-\(\mathrm{gr}^{p}\xi\) is a coboundary in
-\(\fg^{A,(p, 1)}_{\mathrm{mod}}\) for every \(p\) iff the bracket
-\([\Theta^{(0)}, -]\) acts surjectively on the corresponding
-\(\Sigma_{n}\)-isotypic component. The bracket is surjective on
-each isotypic component because (i) at internal valence \(\ge 1\),
-the genus-\(0\) seed inserts as a binary residue in
-\(j_{*}j^{*}(\cA \boxtimes \cA) \to \Delta_{*}\cA[1]\), realising
-the chiral product (Step~1 of
-\autoref{thm:bar-diff-eq-holfact}); (ii) at internal valence \(0\)
-the cocycle condition \(D\xi = 0\) forces \(\xi = 0\) by the
-boundary-term cancellation of the cyclic Feynman transform
-(Getzler--Kapranov \cite{GeK98}, Theorem 5.4). Hence each
-\(\mathrm{gr}^{p}\xi\) is a coboundary, and lifting through the
-finite filtration yields \(\xi = D\eta\) for an explicit
-\(\eta \in \fg^{A,(1)}_{\mathrm{mod}}\). The lift terminates after
-\(\le 6g - 6 + 2n\) steps.
-
-Combining: every degree-\(2\) cocycle is exact, hence
-\(H^{2}(\fg^{A}_{\mathrm{mod}}, d_{\Theta^{(0)}}) = 0\) at
-genus \(g\). The induction closes.
+If \(x\) is a closed degree-\(2\) element, then
+\[
+x=(d_{\Theta^{(0)}}h+h d_{\Theta^{(0)}})x
+  =d_{\Theta^{(0)}}h(x).
+\]
+Thus every degree-\(2\) cocycle is exact.
 \end{proof}
 
-\begin{remark}[The phantom is now lifted]
-\label{rem:phantom-mb-h2-lifted}
-The label \texttt{thm:modular-bootstrap-H2-vanishing} appearing in
-\autoref{thm:curved-dunn-pro-ambient-H2-zero} of
-\autoref{ch:curved-dunn-raw-direct-sum-platonic} should be read as
-the present \autoref{lem:modular-bootstrap-H2-vanishing}
-(downgraded to lemma status, since the genuinely new mathematical
-content is the bridge of
-\autoref{prop:modular-bootstrap-to-curved-dunn-bridge}, not the
-bootstrap vanishing per se). The two valence-filtration steps
-(graph-by-graph Poincar\'e duality plus boundary cancellation) are
-the chain-level mechanism behind the inductive solvability;
-\(g \ge 2\) is the genuine starting genus because at \(g = 1\) the
-filtration is trivial (single ribbon graph). The same lemma is
-referenced from Vol~I
-\textup{thm:lagrangian-complementarity-global-upgrade} clause~(iv)
-under the temporary alias
-\textup{prop:modular-bootstrap-H2-vanishing}; both labels resolve
-to the present \autoref{lem:modular-bootstrap-H2-vanishing} via the
-Vol~I \(\mapsto\) Vol~II cross-reference table.
+\begin{remark}[Use of the modular-bootstrap criterion]
+\label{rem:modular-bootstrap-h2-criterion-use}
+The lemma is a vanishing criterion, not a proof that the required
+contracting homotopy exists in every landscape family. In concrete
+families the homotopy must be constructed from stable-ribbon-graph
+generators, boundary contraction, and the genus-\(0\) chiral product.
+Only after that construction does the curved-Dunn vanishing theorem
+above apply.
 \end{remark}
 
 \begin{remark}[Chain-level vs $(\infty, 1)$-categorical readings]
 \label{rem:lemma-two-lanes}
 \autoref{lem:modular-bootstrap-H2-vanishing} is stated in the
 chain-level lane: \(\fg^{A}_{\mathrm{mod}}\) is a strict dg Lie
-algebra (modulo the FM200 caveat that the ribbon Feynman transform
-of \(M\mathrm{Ass}\) is not literally Getzler--Kapranov's commutative
-Feynman transform; the bracket and differential are defined
-on the ribbon-graph generators by direct combinatorial recipe,
-not transferred from \cite{GeK98}). The equivalent
-\((\infty, 1)\)-categorical statement is that the
-\(\infty\)-functor
-\(\mathrm{MC}\colon \fg^{A}_{\mathrm{mod}} \to
-\mathrm{Spc}\) of Maurer--Cartan space (Costello--Gwilliam
-\cite{CG21}, Definition~3.4.1) is essentially surjective in
-\(\pi_{0}\) at every genus; this surjectivity is equivalent to
-\(\pi_{1}(\mathrm{MC}) = 0\), which in turn is
-\(H^{2}(\fg^{A}_{\mathrm{mod}}) = 0\) by the standard
-Maurer--Cartan tangent computation (Costello, \emph{Renormalization
-and Effective Field Theory}, AMS Math.\ Surveys Monogr.\ 170, 2011,
-Section~2). Both lanes give the same content; the chain-level
-proof above is more explicit, while the \((\infty, 1)\)-categorical
-reading is what enters the global-assembly statement of Vol~I
-\textup{thm:lagrangian-complementarity-global-upgrade} clause~(iv).
+algebra whose differential is the genus-\(0\) twisted bracket. The
+\((\infty,1)\)-categorical translation is the vanishing of the
+obstruction group controlling \(\pi_{1}\) of the Maurer--Cartan
+space. The two readings are equivalent after the usual
+Maurer--Cartan tangent-complex identification, but neither supplies
+the contracting homotopy by itself.
 \end{remark}
 
 \section{Chain-level coboundary witness at \texorpdfstring{$g = 2$}{g=2}:
 the handle-attachment primitive}
 \label{sec:chain-level-coboundary-g2}
 
-The proof of
-\autoref{thm:curved-dunn-H2-vanishing-all-genera} transports the
-abstract bootstrap-side vanishing across the bridge
-\(\Phi\) to obtain the curved-Dunn vanishing, but does not exhibit
-the resulting curved-Dunn obstruction \(\mathrm{Ob}_{g}\) as the
-\(d_{0}\)-coboundary of an explicit primitive at chain level. We
-now record that explicit primitive at the genuine starting genus
-\(g = 2\). The construction extends to every \(g \ge 2\),
-conditional on the boundary KZB formal-type input, by the clutching
-recursion of
-\autoref{cor:modular-operad-composition-all-levels}; we focus on
-\(g = 2\) because (i) \(\overline{\cM}_{2,0}\) is the first moduli
-space whose stable-graph stratification has codimension
-\(\ge 2\) strata, so the Eilenberg--Zilber twisting cochain
- acquires its first non-trivial higher correction there; and (ii)
-the curved-Dunn vanishing
-\(H^{2}(\text{curved-Dunn}) = 0\) at \(g \ge 2\) singles out
-\(g \ge 2\) as the canonical statement.
+The conditional transport theorem
+\autoref{thm:curved-dunn-H2-vanishing-all-genera} reduces
+curved-Dunn vanishing to two inputs: modular-bootstrap
+\(H^{2}\)-acyclicity and the degree-\(2\) comparison map
+\(\Phi\). A chain-level primitive is stronger data. We record the
+genus-\(2\) criterion for such a primitive. Its higher-genus
+clutching extension is conditional on the same comparison input and
+on the boundary KZB formal-type hypothesis of
+\autoref{cor:modular-operad-composition-all-levels}.
 
 \paragraph{Setup at \(g = 2\).}
 The moduli space \(\overline{\cM}_{2,0}\) has dimension
-\(3g - 3 = 3\). By Getzler--Kapranov stability \cite{GeK98} the
-stable-graph stratification of \(\overline{\cM}_{2,0}\) has
-\emph{seven} strata indexed by stable ribbon graphs of type
-\((2, 0)\); the open stratum is the smooth genus-\(2\) curve
-moduli, the codimension-\(1\) strata are non-separating and
-separating nodal degenerations (two graphs), and the
-codimension-\(2\) and codimension-\(3\) strata correspond to
-multi-nodal configurations (four graphs). Write
+\(3g - 3 = 3\). By Getzler--Kapranov stability \cite{GeK98} its
+boundary is indexed by a finite set of stable ribbon graphs of type
+\((2,0)\). The valence-one, arity-zero part used in the first
+curved-Dunn obstruction has two generators. Write
 \(\Gamma^{(2)}_{\flat}\) for the unique trivalent generator
 (``theta graph'': two vertices joined by three parallel edges)
 and \(\Gamma^{(2)}_{\sharp}\) for the unique
@@ -702,11 +409,11 @@ ribbon-graph element
  \fg^{A,(1)}_{\mathrm{mod}}\big|_{g = 2},
 \]
 where \(\sigma_{2}\) is the Katz--Oda primitive of
-\(\omega_{2} = c_{1}(\lambda_{1}|_{\overline{\cM}_{2,0}})\) on the
-wedge square of the Hodge bundle (existing because
-\(c_{1}(\lambda_{2}^{(2)}) = 2 c_{1}(\lambda_{1})\) is
-\(\nabla^{\mathrm{GM}}\)-exact on \(\Lambda^{2} H^{1}\) of the
-universal genus-\(2\) curve), and \(\mathrm{ev}_{\Gamma}\) is the
+\(\omega_{2} = c_{1}(\lambda_{1}|_{\overline{\cM}_{2,0}})\) in the
+chosen relative curved complex. Its existence is a hypothesis on
+the genus-\(2\) bootstrap model; it is not a consequence of
+ordinary Gauss--Manin flatness of a determinant local system.
+The map \(\mathrm{ev}_{\Gamma}\) is the
 universal evaluation
 \(\mathrm{Mon}(R)^{\otimes |E(\Gamma)|} \to \mathrm{End}_{A}(0)\)
 along the bar-complex factorisation of each sewing annulus. The
@@ -737,10 +444,18 @@ type \((g, n)\) contributes to a \(D\)-cocycle of
 ribbon-graph stratification of \(\overline{\cM}_{g, n}\).
 \end{definition}
 
-\begin{theorem}[Explicit chain-level coboundary witness at \(g = 2\)]
+\begin{theorem}[Conditional chain-level coboundary witness at \(g = 2\)]
 \label{thm:curved-dunn-H2-explicit-coboundary-g-geq-2}
-\ClaimStatusProvedHere
-At \(g = 2\), the curved-Dunn obstruction
+Assume the genus-\(2\) modular-bootstrap contracting homotopy of
+\autoref{lem:modular-bootstrap-H2-vanishing}, the comparison
+criterion of
+\autoref{prop:modular-bootstrap-to-curved-dunn-bridge}, and a
+relative primitive \(\sigma_{2}\) for the class used in
+\autoref{def:handle-attachment-primitive-g2}. If \(P_{2}\) satisfies
+\[
+d_{\Theta^{(0)}}P_{2}=\Theta^{(2)}
+\]
+in the modular-bootstrap complex, then the curved-Dunn obstruction
 \(\mathrm{Ob}_{2} \in H^{2}(\mathrm{TCo}^{\bullet}_{2}(A), d_{0})\)
 is the \(d_{0}\)-coboundary of the image under \(\Phi\) of the
 handle-attachment primitive of
@@ -754,105 +469,20 @@ handle-attachment primitive of
 \]
 Equivalently, \(\Phi(P_{2})\) is an explicit primitive in
 \(\mathrm{TCo}^{1}_{2}(A)\) for the genus-\(2\) curved-Dunn
-twisting-cochain extension obstruction. In particular,
-\autoref{thm:curved-dunn-H2-vanishing-all-genera} at \(g = 2\)
-holds with an explicit chain-level witness, not merely by abstract
-spectral-sequence transport.
+twisting-cochain extension obstruction.
 \end{theorem}
 
 \begin{proof}
-By
-\autoref{prop:modular-bootstrap-to-curved-dunn-bridge}(ii), the
-bridge \(\Phi\) sends \(\Theta^{(2)} \in \fg^{A,(2)}_{\mathrm{mod}}\)
-to a representative of \(\mathrm{Ob}_{2}\). The proof of
-\autoref{lem:modular-bootstrap-H2-vanishing} (inductive step at
-\(g = 2\)) constructs \(\Theta^{(2)} = D\Xi\) for an explicit
-\(\Xi \in \fg^{A,(2)}_{\mathrm{mod}}\). It remains to identify
-\(\Xi\) with \(d_{\Theta^{(0)}} P_{2}\) and to verify that \(\Phi\)
-intertwines the two differentials on the primitive.
-
-\emph{Identification of \(\Xi\) with \(d_{\Theta^{(0)}} P_{2}\).}
-At total genus \(g = 2\) and arity \(n = 0\), the Maurer--Cartan
-recursion reads
-\(D\Theta^{(2)}_{(2, 0)} = -\tfrac{1}{2}[\Theta^{(1)}_{(1, 2)},
-\Theta^{(1)}_{(1, 2)}]_{\mathrm{closing}}\), where
-\(\Theta^{(1)}_{(1, 2)} \in \mathrm{Hom}_{\Sigma_{2}}
-(M\mathrm{Ass}(1, 2), \mathrm{End}_{A}(2))^{\Sigma_{2}}\) is
-the \(n = 2\) component of the genus-\(1\) Maurer--Cartan element,
-and \([-, -]_{\mathrm{closing}}\) is the modular-operad
-self-bracket that grafts two copies of \(\Theta^{(1)}_{(1, 2)}\)
-along \emph{both} pairs of external legs, closing the resulting
-genus-\(2\) graph to arity \(n = 0\). The
-\(g_{1} = 0\) and \(g_{2} = 0\) terms vanish because
-\(\Theta^{(0)}\) is the seed used to define
-\(D = d_{\Theta^{(0)}}\); the only non-trivial contribution is
-\(g_{1} = g_{2} = 1\), which is the formula above.
-
-The two grafting topologies for closing two copies of
-\(\Theta^{(1)}_{(1, 2)}\) at \(n = 0\) yield exactly the two
-genus-\(2\) stable ribbon graphs of arity zero:
-\begin{itemize}
-\item Grafting both external-leg pairs across the same
- vertex pair gives the \emph{theta graph}
- \(\Gamma^{(2)}_{\flat}\) (two vertices, three parallel edges:
- one self-loop per copy of \(\Gamma_{1}\) becomes an internal
- edge of the theta after the two grafting closures).
-\item Grafting in the cross pattern that absorbs both vertices
- into one yields the \emph{bouquet}
- \(\Gamma^{(2)}_{\sharp}\) (one vertex, two self-loops:
- the two grafting closures collapse the two vertices, and the
- two self-loops of the original \(\Gamma_{1}\) copies become the
- two self-loops of the bouquet).
-\end{itemize}
-The combinatorial weights of the two grafting topologies are
-\(1/12\) and \(1/8\) respectively, equal to the inverses of
-the modular-operad automorphism orders
-(\(|\mathrm{Aut}(\Gamma^{(2)}_{\flat})| = 12\),
-\(|\mathrm{Aut}(\Gamma^{(2)}_{\sharp})| = 8\)) of
-\autoref{def:handle-attachment-primitive-g2}.
-
-The primitive \(P_{2}\) is constructed by integrating the
-Katz--Oda exact form \(\sigma_{2}\) against the universal
-evaluation. The bracket \([\Theta^{(0)}, P_{2}]\) at arity
-\(n = 0\) inserts the genus-\(0\) binary chiral residue at each
-internal edge of \(P_{2}\); summing over the three internal edges
-of \(\Gamma^{(2)}_{\flat}\) (theta) and the two self-loops of
-\(\Gamma^{(2)}_{\sharp}\) (bouquet), and using the
-Stokes-formula identity
-\(d \sigma_{2} = \omega_{2} = \kappa(A) \cdot c_{1}(\lambda_{1})\)
-on \(\overline{\cM}_{2, 0}\), one matches the term-by-term
-output of the closing bracket
-\([\Theta^{(1)}_{(1, 2)}, \Theta^{(1)}_{(1, 2)}]_{\mathrm{closing}}\)
-above. Hence
+The comparison criterion sends the modular-bootstrap obstruction
+\(\Theta^{(2)}\) to a representative of \(\mathrm{Ob}_{2}\), and
+\(\Phi\) intertwines \(d_{\Theta^{(0)}}\) with \(d_{0}\). The assumed
+identity \(d_{\Theta^{(0)}}P_{2}=\Theta^{(2)}\) therefore gives
 \[
- d_{\Theta^{(0)}} P_{2}
- \;=\;
- -\tfrac{1}{2}[\Theta^{(1)}_{(1, 2)}, \Theta^{(1)}_{(1, 2)}]_{\mathrm{closing}}
- \;=\;
- D\Theta^{(2)}_{(2, 0)}.
+\mathrm{Ob}_{2}
+=\Phi(\Theta^{(2)})
+=\Phi(d_{\Theta^{(0)}}P_{2})
+=d_{0}\Phi(P_{2}).
 \]
-Solving
-\(D\Xi = -\tfrac{1}{2}[\Theta^{(1)}_{(1, 2)},
-\Theta^{(1)}_{(1, 2)}]_{\mathrm{closing}}\) with
-the canonical transgression
-\(\Xi := d_{\Theta^{(0)}} P_{2}\) gives the desired identification.
-The primitive \(P_{2}\) is well-defined up to the kernel of
-\(d_{\Theta^{(0)}}\) on \(\fg^{A,(1)}_{\mathrm{mod}}\big|_{g = 2}\),
-i.e.\ up to a degree-\(1\) cocycle; the latter freedom corresponds
-to the convolution-gauge choice in
-\autoref{thm:curved-dunn-H2-vanishing-all-genera} for the
-twisting-cochain extension.
-
-\emph{Intertwining \(\Phi\) on the primitive.} By Step~2 of the
-proof of
-\autoref{prop:modular-bootstrap-to-curved-dunn-bridge}, the
-chain-map identity \(\Phi \circ d_{\Theta^{(0)}} = d_{0} \circ
-\Phi\) holds on ribbon-graph generators. The primitive \(P_{2}\) is
-a sum of ribbon-graph generators (with rational coefficients), so
-\(\Phi(d_{\Theta^{(0)}} P_{2}) = d_{0}(\Phi(P_{2}))\). Combining
-with the previous step:
-\(\mathrm{Ob}_{2} = \Phi(\Theta^{(2)}) = \Phi(d_{\Theta^{(0)}} P_{2})
-= d_{0}(\Phi(P_{2}))\). The witness is explicit.
 \end{proof}
 
 \begin{remark}[Why the witness uses \emph{both} stable graphs]
@@ -885,14 +515,12 @@ The curved-Dunn vanishing
 \item the bracket \([\Theta^{(1)}, \Theta^{(1)}]\) on the
  right-hand side of the Maurer--Cartan recursion vanishes
  identically (single ribbon graph, no grafting target), so
- \(D\Theta^{(1)} = 0\) and the primitive \(P_{1}\) of
- \autoref{lem:modular-bootstrap-H2-vanishing} (base case) is
- the only datum, with no higher correction;
+ \(D\Theta^{(1)} = 0\); the genus-one datum is the annular
+ monodromy class \(\tau_{1}\), not an all-genus vanishing theorem;
 \item the curved-Dunn twisting cochain \(\tau_{1} = \mathrm{Mon}(R)\)
- is fully determined by the genus-\(1\) Gauss--Manin uncurving of
- \autoref{prop:genus1-twisted-tensor-product}, with no choice
- modulo gauge (there is no \(\Theta^{(0)} \cdot \Theta^{(1)}\)
- cross-term to absorb).
+ is supplied by the genus-one twisted tensor criterion of
+ \autoref{prop:genus1-twisted-tensor-product}; there is no higher
+ Eilenberg--Zilber correction at this genus.
 \end{itemize}
 At \(g \ge 2\), both phenomena are non-trivial: the bracket
 \([\Theta^{(<g)}, \Theta^{(<g)}]\) has multiple grafting
@@ -908,12 +536,15 @@ via
 \autoref{cor:modular-operad-composition-all-levels}.
 \end{remark}
 
-\begin{corollary}[Curved-Dunn \(H^{2} = 0\) at \(g \ge 2\) with
-explicit chain-level primitive at every genus]
+\begin{corollary}[Conditional explicit primitive at \(g \ge 2\)]
 \label{cor:curved-dunn-H2-explicit-all-g}
 \ClaimStatusConditional
 For every \(g \ge 2\) and every chirally Koszul algebra \(A\) at
-non-zero \(\kappa(A)\), assume
+non-zero \(\kappa(A)\), assume the modular-bootstrap
+\(H^{2}\)-criterion of
+\autoref{lem:modular-bootstrap-H2-vanishing}, the comparison
+criterion of
+\autoref{prop:modular-bootstrap-to-curved-dunn-bridge}, and
 \autoref{conj:kzb-boundary-formal-type-extension} on the nodal
 boundary strata used in the clutching recursion. Then the
 curved-Dunn obstruction
@@ -924,20 +555,13 @@ constructed inductively from \(P_{2}\) and \(P_{1}\) by clutching
 across nodal divisors of \(\overline{\cM}_{g, 0}\) using the
 modular composition of
 \autoref{cor:modular-operad-composition-all-levels}.
-The vanishing
-\(H^{2}(\mathrm{TCo}^{\bullet}_{g}(A), d_{0}) = 0\) holds
-unconditionally by
-\autoref{thm:curved-dunn-H2-vanishing-all-genera}; the displayed
-primitive is the conditional chain-level clutching witness.
 \end{corollary}
 
 \begin{proof}
-Induction on \(g\), with base cases \(g = 1\)
-(\autoref{lem:modular-bootstrap-H2-vanishing}, base step, with
-primitive \(P_{1}\)) and \(g = 2\)
-(\autoref{thm:curved-dunn-H2-explicit-coboundary-g-geq-2}, with
-primitive \(P_{2}\)). For \(g \ge 3\), the Getzler--Kapranov
-clutching map
+The base data are the genus-one twisting cochain \(\tau_{1}\) and
+the conditional genus-two primitive
+\autoref{thm:curved-dunn-H2-explicit-coboundary-g-geq-2}. For
+\(g \ge 3\), the Getzler--Kapranov clutching map
 \(\mu_{(g_{1}, n_{1}), (g_{2}, n_{2})}^{(g, 0)}\colon
 \fg^{A,(1)}_{\mathrm{mod}}(g_{1}, n_{1}) \otimes
 \fg^{A,(1)}_{\mathrm{mod}}(g_{2}, n_{2}) \to
@@ -958,16 +582,12 @@ sum, finite by Getzler--Kapranov stability) defines
  \mu_{(g_{1}, 1), (g_{2}, 1)}^{(g, 0)}
  \bigl(P_{g_{1}}, P_{g_{2}}\bigr).
 \]
-That \(d_{\Theta^{(0)}} P_{g} = D\Theta^{(g)}\) follows by
-applying the Maurer--Cartan recursion
-\eqref{eq:MC-recursion-genus-g} term-by-term and using the
-inductive identity
-\(d_{\Theta^{(0)}} P_{g_{i}} = D\Theta^{(g_{i})}\) at each lower
-genus. By the chain-map property of \(\Phi\) on ribbon-graph
-generators (Step~2 of
-\autoref{prop:modular-bootstrap-to-curved-dunn-bridge}),
-\(\mathrm{Ob}_{g} = \Phi(D\Theta^{(g)}) =
-\Phi(d_{\Theta^{(0)}} P_{g}) = d_{0}(\Phi(P_{g}))\).
+The boundary formal-type hypothesis gives the clutching maps, and
+the comparison criterion identifies the resulting
+modular-bootstrap obstruction with the curved-Dunn obstruction in
+degree \(2\). Applying the same calculation as in
+\autoref{thm:curved-dunn-H2-explicit-coboundary-g-geq-2} gives
+\(\mathrm{Ob}_{g}=d_{0}\Phi(P_{g})\).
 \end{proof}
 
 \section{Canonical harmonic gauge for the twisting cochain
@@ -990,9 +610,9 @@ representatives produce different chain-level pairings that agree
 only up to homotopy; (iii) the Vol~I consumer
 (\textup{thm:lagrangian-complementarity-global-upgrade} clause~(iv))
 requires an \emph{equality} of chain-level objects, not a homotopy
-class. The present section closes the chain-level freedom by
-naming a canonical representative: the \emph{harmonic gauge}
-\(\tau_{g}^{\mathrm{harm}}\).
+class. A harmonic gauge names a representative
+\(\tau_{g}^{\mathrm{harm}}\), provided the conditional SDR data
+exist.
 
 At each finite weight truncation \(N\), the contracting homotopy
 \(h_{N}\) of
@@ -1078,13 +698,19 @@ subspace under the Kac inner product. We write
 gauge.
 \end{definition}
 
-\begin{theorem}[Existence and uniqueness of the harmonic-gauge
+\begin{theorem}[Conditional harmonic-gauge
 twisting cochain]
 \label{thm:harmonic-gauge-existence-uniqueness}
-\ClaimStatusProvedHere
+\ClaimStatusConditional
 Let \(A\) be a chirally Koszul algebra at non-critical non-integral
-level \(k\) with non-zero \(\kappa(A)\), and let \(g \ge 2\). In the
-pro-ambient
+level \(k\) with non-zero \(\kappa(A)\), and let \(g \ge 2\).
+Assume the hypotheses of
+\autoref{thm:curved-dunn-H2-vanishing-all-genera} in genus \(g\),
+and assume the pro-weight truncations carry a compatible SDR
+\[
+\mathrm{id}-H_{N}=d_{0}h_{N}+h_{N}d_{0}
+\]
+with Mittag--Leffler transition maps. Then in the pro-ambient
 \(\mathrm{pro}\text{-}\mathrm{TCo}^{\bullet}_{g}(A)\):
 \begin{enumerate}
  \item \textbf{Existence.} There exists a twisting cochain
@@ -1114,7 +740,8 @@ pro-ambient
 \end{theorem}
 
 \begin{proof}
-The argument is homological perturbation in the pro-ambient.
+Under the stated SDR and transport hypotheses, the argument is
+homological perturbation in the pro-ambient.
 
 \emph{Step 1 (SDR at each truncation).} Fix a truncation \(N\). By
 \autoref{lem:finite-truncation-is-complex}, the triple
@@ -1253,18 +880,17 @@ By \autoref{cor:curved-dunn-H2-explicit-all-g}, \(\Phi(P_{g})\) is
 a \(d_{0}\)-primitive of the obstruction \(\mathrm{Ob}_{g}\).
 Both are \(d_{0}\)-primitives of the same class; their difference
 is \(d_{0}\)-closed and hence, by
-\autoref{thm:harmonic-gauge-existence-uniqueness}(ii),
+\autoref{thm:harmonic-gauge-existence-uniqueness}(ii) under its
+hypotheses,
 \(h^{\mathrm{harm}}\)-exact. The harmonic-gauge condition
 \(h^{\mathrm{harm}}(\Phi(P_{g}))
 = h^{\mathrm{harm}}(\tau_{g}^{\mathrm{harm}}) = 0\) fixes the
 identification. For the \(g = 2\) specialisation, the
-Gauss--Manin primitive \(\sigma_{2}\) of
-\autoref{prop:genus1-twisted-tensor-product} (Step~1 proof,
-analogous construction at \(g = 2\)) is characterised by
-\(d\sigma_{2} = \omega_{2}\) modulo exact forms on
-\(\Lambda^{2} H^{1}\); the harmonic gauge fixes
-\(\sigma_{2} = h^{\mathrm{harm}}_{2}(\omega_{2})\) uniquely, which
-is the Katz--Oda primitive in harmonic gauge.
+relative primitive \(\sigma_{2}\) is the additional input of
+\autoref{def:handle-attachment-primitive-g2}. The harmonic gauge
+selects the representative
+\(\sigma_{2}=h^{\mathrm{harm}}_{2}(\omega_{2})\) when the harmonic
+SDR exists.
 \end{proof}
 
 \begin{proposition}[Clutching is harmonic-gauge covariant]
@@ -1378,8 +1004,8 @@ The harmonic gauge is the curved-Dunn analogue of the Siegel gauge
 Yang--Mills. In all three cases, the gauge-fixing condition reduces
 an unwieldy homotopy equivalence class to a single canonical
 representative via a Hodge-type projector, enabling chain-level
-equality where only cohomological equality was previously available.
-In our setting, the chain-level uniqueness
+equality from a cohomological class. In our setting, the
+conditional chain-level uniqueness
 (\autoref{thm:harmonic-gauge-existence-uniqueness}(ii)) is what
 discharges the Vol~I clause~(iv) dependency on an \emph{equality}
 rather than a homotopy class.
@@ -1401,7 +1027,7 @@ chain-level equivalence; the harmonic gauge gives the
 chain-level strictification within that equivalence class.
 \end{remark}
 
-\begin{remark}[Chain-level vs $(\infty, 1)$-categorical status,
+\begin{remark}[Chain-level vs $(\infty, 1)$-categorical readings,
 gauge-fixing scope]
 \label{rem:harmonic-gauge-two-lanes}
 \autoref{thm:harmonic-gauge-existence-uniqueness} is a
@@ -1634,13 +1260,15 @@ properties:
  \item all irregularity slopes at \(p\) are rational with
  denominators given by the finite ramification indices of the
  edgewise Newton polygon;
- \item the Stokes structure is determined by the formal type
- \((A_{1}, \dots, A_{d})\), where \(d\) is the maximal slope
- denominator;
+ \item the formal type \(\Lambda_{p}(t)=\sum_{m=1}^{d}A_{m}t^{-m}\)
+ after finite ramification, where \(d\) is the pole order in the
+ ramified coordinate, determines the Stokes directions and Stokes
+ groups;
  \item by the formal/Stokes theory of meromorphic connections,
  flat sections admit sectorial asymptotic expansions, canonical
- in each Stokes sector, with transitions given by the Stokes
- matrices \(\{S_{\sigma}\}\) of the formal type;
+ in each Stokes sector, with transitions given by Stokes matrices
+ \(\{S_{\sigma}\}\), which are additional monodromy data
+ constrained by the formal type;
  \item the Stokes matrices satisfy the Jimbo--Miwa functional
  relations of the isomonodromic deformation governed by the
  modular fibration
@@ -1671,16 +1299,17 @@ Stable-graph strata of \(\overline{\cM}_{g,n}\) are enumerated by
 dual graphs of nodal curves. The formal-type hypothesis supplies
 the endomorphisms \(A_j\) along such a stratum. Distinguish slope
 (Newton-polygon
-ratio, pure number) from characteristic exponent (residue
-eigenvalue, level-dependent). At a simple node the KZB connection
-has a first-order pole, giving Newton slope \(1\); the residue
-\(A_{1}\) equals the quadratic Casimir
+ratio, pure number) from pole order and characteristic exponent
+(residue eigenvalue, level-dependent). At a simple node the KZB
+connection has pole order \(1\), the singularity is regular, and
+the irregular slope is \(0\); the residue \(A_{1}\) equals the
+quadratic Casimir
 \(\Omega_{\mathrm{node}}/(k + h^{\vee})\), whose spectrum supplies
 the characteristic exponents. Higher-order terms \(A_{j}\) for
 \(j \ge 2\) arise from the Schottky--Knudsen nodal degeneration
 \cite{Knudsen83, Mumford83} of the period matrix along the dual
 graph; orders in \(\hbar_{p}\) track the graph-distance to the
-node. At a simple node the singularity is regular (slope \(1\))
+node. At a simple node the singularity is regular singular (slope \(0\))
 with characteristic exponents
 \(\mathrm{Spec}(\Omega_{\mathrm{node}}/(k + h^{\vee}))\) and
 resonance hyperplanes defined by integral differences of these
@@ -1689,19 +1318,23 @@ slopes after finite ramification of the plumbing coordinates; their
 denominators are ramification indices, not denominators of the
 complex number \(k+h^\vee\). At higher-codimension strata with
 multiple coalescing nodes the connection acquires genuine irregular
-slopes \(> 1\), controlled by the edgewise pole orders in
+positive slopes, controlled by the edgewise pole orders in
 \autoref{prop:kzb-boundary-formal-type-edge-corner-reduction}.
 
 \emph{Step 2 (Stokes structure from formal type).}
-The formal type at \(p\) is the matrix-valued polynomial
-\(\Lambda_{p}(\hbar) = \sum_{j \ge 1} A_{j}\,\hbar^{-j}\), extracted
-from Step~1. By the formal/Stokes classification of meromorphic
+After finite ramification \(q_{e}=t_{e}^{N_{e}}\), the formal type at
+\(p\) is the matrix-valued polynomial
+\(\Lambda_{p}(t) = \sum_{m = 1}^{d} A_{m}\,t^{-m}\), extracted
+from Step~1; \(d\) is pole order in the ramified coordinate. By the
+formal/Stokes classification of meromorphic
 connections \cite{Boalch2001,Boalch2014}, the Stokes filtration is
 determined by the multiplicative group generated by
-\(\{\exp(\Lambda_{p})\}\) along Stokes rays. For
-generic non-integral \(k\), the spectrum of \(A_{j}\) has no
-resonances (integer differences), so the Stokes matrices are
-unipotent and uniquely determined by the formal type.
+\(\{\exp(\Lambda_{p})\}\) along Stokes rays. For generic
+non-integral \(k\), the spectrum of \(A_{j}\) has no resonances
+(integer differences), so the Stokes groups are unipotent. The
+Stokes matrices are not determined by the formal type; they are
+additional monodromy/Stokes data constrained by those groups and by
+the Jimbo--Miwa deformation equations.
 
 \emph{Step 3 (Jimbo--Miwa functional relations).}
 The isomonodromic deformation of the KZB connection along the
@@ -1734,14 +1367,15 @@ that formal type for every stable-graph boundary stratum is exactly
 At integer level \(k \in \bZ_{\ge 0}\) (the integrable case), the
 KZB connection has regular singularities only, and
 Kazhdan--Lusztig regularity is sufficient to prove modular operad
-composition. At generic non-integral level, the KZB connection
-acquires irregular singularities at boundary strata, and
-Kazhdan--Lusztig regularity fails. The Jimbo--Miwa
-irregular-singular framework is the natural replacement:
-Stokes-sector composition of flat sections replaces Kazhdan--Lusztig
-regularisation, and formal/Stokes classification of meromorphic
-connections replaces direct convergence. The two frameworks agree on
-the integer-level overlap.
+composition. At generic non-integral level, Stokes data enter only
+on nonzero-slope boundary strata after a compatible formal type has
+been supplied; simple-node logarithmic strata remain regular
+singular. The Jimbo--Miwa irregular-singular framework is the
+replacement on those nonzero-slope strata: Stokes-sector composition
+of flat sections replaces Kazhdan--Lusztig regularisation, and
+formal/Stokes classification of meromorphic connections replaces
+direct convergence. The two frameworks agree on the integer-level
+overlap.
 \end{remark}
 
 \section{Conditional modular operad composition at generic non-integral level}
@@ -1773,9 +1407,9 @@ input.
 
 \begin{proof}
 Conditional well-definedness and associativity follow from
-\autoref{thm:curved-dunn-H2-vanishing-all-genera} (factorisation of
-the modular bar as twisted K\"unneth, controlling closed-colour
-sewing) combined with
+\autoref{thm:curved-dunn-H2-vanishing-all-genera} under its
+comparison and modular-bootstrap hypotheses (the closed-colour
+twisting-cochain obstruction) combined with
 \autoref{thm:irregular-singular-kzb-regularity} (Stokes-sector
 composition from the boundary formal type, controlling KZB
 clutching).
@@ -1784,10 +1418,11 @@ Specifically: at each boundary node, the modular composition is
 the pairing of flat sections via
 \autoref{thm:irregular-singular-kzb-regularity}, conditional on
 \autoref{conj:kzb-boundary-formal-type-extension}. Across the node,
-the twisted K\"unneth factorisation of
+the conditional twisted tensor factorisation supplied by
 \autoref{thm:curved-dunn-H2-vanishing-all-genera} ensures the
 pairing extends coherently through the interior of the stratum to
-the interior of the smooth locus. \(\Sigma_{n}\)-equivariance
+the interior of the smooth locus, whenever its hypotheses hold.
+\(\Sigma_{n}\)-equivariance
 follows from the equivariance of both ingredients: the bridge
 \(\Phi\) is natural, and the KZB connection is \(\Sigma_{n}\)-
 equivariant under simultaneous permutation of insertion points.
@@ -1812,13 +1447,12 @@ single boundary statement:
  \(D^{2}=0\) convolution theorem and the concrete KZB-clutching
  sewing are bridged by
  \autoref{prop:modular-bootstrap-to-curved-dunn-bridge}; the
- previous non-sequitur between the two is removed.
+ comparison is a hypothesis until the low-degree map is constructed
+ in the family under discussion.
  \item \emph{$R$-twisted clutching and curved-Dunn $H^2$.} The two
- algebraic inputs are closed by
- \autoref{thm:curved-dunn-H2-vanishing-all-genera} and the
- Eilenberg--Zilber twisting cochain \(\tau\) constructed in its
- proof; the analytic boundary input is
- \autoref{conj:kzb-boundary-formal-type-extension}.
+ algebraic inputs are the modular-bootstrap \(H^{2}\)-criterion and
+ the degree-\(2\) curved-Dunn comparison. The analytic boundary
+ input is \autoref{conj:kzb-boundary-formal-type-extension}.
 \end{itemize}
 \end{remark}
 
@@ -1989,12 +1623,11 @@ Vol~I's curvature-self-contraction theorem is the specialisation $A = A'$ of
 
 The chapter's single architectural move is the bridge
 (\autoref{prop:modular-bootstrap-to-curved-dunn-bridge}) between
-the modular-bootstrap complex (where \(H^{2}\) vanishing was
-already proved genus-by-genus) and the curved-Dunn twisting-cochain
-complex (where \(H^{2}\) vanishing was open at \(g \ge 2\)). The
-bridge is an explicit chain map, constructed from ribbon graphs and
-Eilenberg--Zilber combinatorics, inducing an isomorphism on
-\(H^{2}\). The transport of vanishing is then automatic
+the modular-bootstrap complex and the curved-Dunn twisting-cochain
+complex. The bridge is a low-degree comparison criterion: once the
+chain map is constructed, identifies obstruction classes, and is an
+isomorphism on \(H^{2}\), modular-bootstrap acyclicity transports
+to curved-Dunn acyclicity
 (\autoref{thm:curved-dunn-H2-vanishing-all-genera}).
 
 Separately, the Jimbo--Miwa irregular-singular framework gives a
@@ -2005,7 +1638,8 @@ boundary theorem is
 \autoref{conj:kzb-boundary-formal-type-extension}; under it,
 \autoref{cor:modular-operad-composition-all-levels} gives modular
 operad composition for every \((g, n)\) with
-\(2g - 2 + n > 0\) and every generic non-integral level.
+\(2g - 2 + n > 0\) and every generic non-integral level, subject to
+the same algebraic comparison hypotheses.
 
 At non-generic levels with resonances (e.g.\ minimal models,
 admissible levels) the Stokes matrices may fail to be unipotent and
@@ -2016,26 +1650,34 @@ analysis (not pursued here).
 \section{Synthesis}
 \label{sec:cdhg-supplement}
 
-\begin{remark}[Curved Dunn higher-genus at the K3 synthesis K3]
+\begin{remark}[Curved-Dunn higher-genus at the K3 base point]
 \label{rem:cdhg-1}
-The the K3 synthesis curved Dunn higher-genus operad at K3 pairs with the
-bi-based Ran $(\mathrm{Ran}(E^{\mathrm{nod,sm}}_{24}),\,\bar{\mathcal A}_2)$:
-the curved $E_2$-structure from Dunn's operad acts on $\mathbf H_{\Delta_5}$
-with curvature $\omega_{\Delta_5}$ the Gritsenko--Nikulin 2-cocycle
-of the BKM denominator identity. At genus $2$ the parameter base
-$\bar{\mathcal A}_2$ carries the Pasol--Zagier 2013 $\Phi_{10}$ universal
-cover on which Dunn's higher-genus extension resides
+The K3 curved-Dunn echo is the genus-$2$ paramodular instance of the
+twisting-cochain problem for the bi-based Ran datum
+$(\mathrm{Ran}(E^{\mathrm{nod,sm}}_{24}),\,\bar{\mathcal A}_2)$. The
+surface-stage object carries the $E_2$ factorisation data before
+restriction; after restriction the native curve object is the
+$E_1$-chiral algebra $\mathbf H_{\Delta_5,E}$. The BKM curvature is
+$\omega_{\Delta_5}$, the Gritsenko--Nikulin $2$-cocycle of the
+denominator identity. At genus $2$ the parameter base
+$\bar{\mathcal A}_2$ carries the Pasol--Zagier 2013 cover for the
+genuine unnormalised Igusa square
+$\Phi_{10}^{\mathrm{un}}=\Delta_5^2$; this is the weight-$10$
+Siegel modular-form convention, not the Oberdieck--Pixton reduced-DT
+scalar $\Phi_{10}^{\mathrm{OP}}=4096^{-1}\Delta_5^2$. The curved-Dunn
+comparison resides on that modular-form sheet
 \cite{GritsenkoNikulin1998,Borcherds1992,PasolZagier2013}. Cross-ref
 Vol.~III Chapter~\ref{V3-ch:k3-chiral-bialgebra-platonic}.
 \end{remark}
 
 \begin{remark}[Higher-genus Dunn stop at genus $2$]
 \label{rem:cdhg-2}
-The curved Dunn higher-genus at K3 base point stops at genus $2$: there
-is no paramodular structure beyond $g=2$, matching Vol~I's modular Koszul
-arithmetic stopping at genus $2$ for K3 input. At higher genus $g\geq 3$
-the curved Dunn extension continues only via CY-$3$ or CY-$\geq 4$
-inputs \cite{PiatetskiShapiroShafarevich1971,BailyBorel1966}. Cross-ref
+The Siegel-paramodular curved-Dunn construction at the K3 base point
+stops at genus~$2$: the Borcherds--Gritsenko--Nikulin denominator lives
+on the genus-$2$ paramodular base, matching Vol.~I's modular Koszul
+arithmetic for K3 input. Higher-genus curved-Dunn data require a
+different modular input, such as the CY-$3$ or CY-$\geq4$ constructions
+\cite{PiatetskiShapiroShafarevich1971,BailyBorel1966}. Cross-ref
 Chapter~\ref{V3-ch:k3-chiral-bialgebra-platonic}.
 \end{remark}
 
@@ -2044,10 +1686,12 @@ Chapter~\ref{V3-ch:k3-chiral-bialgebra-platonic}.
 
 \begin{remark}[Genus-$g$ Maurer--Cartan obstruction via higher coherences]
 \label{rem:cdhg-obs-g}
-The the K3 synthesis higher-coherences $\phi^{(n)}$ of the twisted
-Siegel--Borcherds associator (Remark~\ref{V1-rem:nc-phi3-4-5} of
-Vol.~I Chapter~\ref{app:nilpotent-completion}) factor through the
-curved Dunn--Lurie higher-genus $E_1$-chiral datum: at genus $g$, the
+Under the genus-$g$ modular-bootstrap acyclicity and degree-$2$
+comparison hypotheses, the K3 higher coherences $\phi^{(n)}$ of the
+twisted Siegel--Borcherds associator
+(Remark~\ref{V1-rem:nc-phi3-4-5} of Vol.~I
+Chapter~\ref{app:nilpotent-completion}) factor through the curved
+Dunn--Lurie higher-genus $E_1$-chiral datum: at genus $g$, the
 Maurer--Cartan obstruction $\mathrm{obs}_g$ on
 $\overline{\mathcal M}_{g,n}(K3)$ admits the coherence decomposition
 \[
@@ -2059,37 +1703,37 @@ $\lambda_g$ with the $n$-th Brauer divisor on $\overline{\mathcal M}_{g,n}$
 curves''). Specialising to Vol.~I Theorem~D (obstruction-tower
 universality)
 \[
-\mathrm{obs}_g \;=\; \kappa_{\mathrm{ch}}^{K3}\cdot\lambda_g
+\mathrm{obs}_g \;=\; \kappa_{\mathrm{fiber}}(K3)\cdot\lambda_g
 \]
-with $\kappa_{\mathrm{ch}}^{K3} = 24$ (the K3 elliptic-genus Euler
-characteristic), the Beilinson--Bloch height pairing implements
+with $\kappa_{\mathrm{fiber}}(K3) = 24$ (the Mukai-lattice fibre
+rank), the Beilinson--Bloch height pairing implements
 $\lambda_g = (1/12)\sum_{n}\phi^{(n)}\cdot c_{g,n}$ so that the
 coherence sum reduces to the universal formula. The
 $\phi^{(n)}$-contributions for $n \le g+1$ are the only ones that
-survive: higher coherences $\phi^{(n)}$ with $n > g+1$ are
-absorbed by the curved-Dunn $H^2$-vanishing at genus $g$
-(\autoref{thm:curved-dunn-H2-vanishing-all-genera}), because the
-pentagon face supporting them lies above the $(g+1)$-st twisting
-stratum. Cross-ref Vol.~I
-Remark~\ref{V1-rem:nc-Ainfty-open} and
-\texttt{compute/lib/k3\_yangian\_wave15\_pentagon\_coboundary\_hbar45.py}.
+survive under the comparison theorem: modular-bootstrap
+$H^2$-acyclicity together with the degree-$2$ curved-Dunn comparison at
+genus~$g$ sends every higher coherence $\phi^{(n)}$ with $n > g+1$ to
+zero in the curved-Dunn obstruction group, since its pentagon face lies
+above the $(g+1)$-st twisting stratum. Cross-ref Vol.~I
+Remark~\ref{V1-rem:nc-Ainfty-open}.
 \cite{Mumford1983,BeilinsonBloch2005,GritsenkoNikulin1998}.
 \end{remark}
 
-\begin{remark}[Tower bound $n \le g+1$ from curved-Dunn $H^2$-vanishing]
+\begin{remark}[Tower bound $n \le g+1$ from the curved-Dunn comparison]
 \label{rem:cdhg-tower-bound}
-The bound $n \le g+1$ in the coherence sum above is the genus-$g$ shadow
-of $H^2(\text{curved-Dunn}_g) = 0$
-(\autoref{thm:curved-dunn-H2-vanishing-all-genera}). Explicitly: the
+The bound $n \le g+1$ in the coherence sum above is the asserted bound
+on the loci where the genus-$g$ curved-Dunn comparison theorem applies.
+Explicitly: the
 pentagon face of depth $n$ lives in $H^2(\mathcal{O}_{g,n})$ where
 $\mathcal{O}_{g,n}$ is the $n$-th stratum of the curved Dunn operad at
 genus~$g$; the twisting cochain of depth $n > g+1$ is obstructed to
 $(g,n)$-transfer because the Mumford boundary of $\overline{\mathcal M}_{g,n}$
 has Chow dimension $3g - 3 + n - 1$, and the $\phi^{(n)}$-coboundary is
 a $(2n-3)$-form, so the pairing is non-trivial only when $2n - 3 \le 3g - 3 + n$,
-i.e., $n \le 3g$; the sharper bound $n \le g+1$ from Markl--Shnider--Stasheff
-2002 Theorem 3.42 accounts for the associator Jacobi identity
-reducing the effective tower depth to the Mumford dimension plus one.
+i.e., $n \le 3g$. The sharper bound $n \le g+1$ additionally uses
+Markl--Shnider--Stasheff 2002 Theorem 3.42: the associator Jacobi
+identity reduces the effective tower depth to the Mumford dimension
+plus one.
 \cite{Mumford1983,MarklShniderStasheff2002,BeilinsonBloch2005}.
 \end{remark}
 
@@ -2098,10 +1742,12 @@ reducing the effective tower depth to the Mumford dimension plus one.
 
 \begin{remark}[Genus-$9$ and genus-$10$ obstructions via $\phi^{(8,9,10)}$]
 \label{rem:cdhg-obs-9-10}
-The coherences $\phi^{(8)}, \phi^{(9)}, \phi^{(10)}$ of Vol.~I
+Under the same comparison hypotheses, the coherences
+$\phi^{(8)}, \phi^{(9)}, \phi^{(10)}$ of Vol.~I
 Remarks~\ref{V1-rem:nc-phi8}--\ref{V1-rem:nc-phi10}
-make the genus-$9$ and genus-$10$ Maurer--Cartan obstructions on
-$\overline{\mathcal M}_{g,n}(K3)$ fully explicit:
+give the following formal expressions for the genus-$9$ and genus-$10$
+Maurer--Cartan obstructions on
+$\overline{\mathcal M}_{g,n}(K3)$:
 \[
 \mathrm{obs}_{9} \;=\; \sum_{n=1}^{10}\phi^{(n)}\cdot c_{9,n},
 \qquad
@@ -2110,19 +1756,20 @@ $\overline{\mathcal M}_{g,n}(K3)$ fully explicit:
 At genus~$9$ the sum reaches $\phi^{(10)}$, decomposing into
 $d_{10} = 5$ motivic MZV legs (Deligne~$2013$ weight-$10$ basis
 $\{\zeta(3)^2\zeta(3,3),\zeta(3)\zeta(7),\zeta(5)^2,\zeta(3,7),\zeta(5,5)\}$)
-plus the Borcherds leg $\Phi_{10}^{5}/\eta^{120}$ of total in-tower
+plus the Borcherds leg
+$(\Phi_{10}^{\mathrm{un}})^{5}/\eta^{120}$ of total in-tower
 weight~$50$. At genus~$10$ the sum reaches $\phi^{(11)}$; the
 weight-$11$ MZV basis has $d_{11} = 7$ irreducibles (extension of
 the Padovan recurrence $d_{11} = d_9 + d_8 = 4 + 3 = 7$) plus a new
-Borcherds leg $\Phi_{10}^{11/2}/\eta^{132}$. The Arakelov
+Borcherds leg
+$(\Phi_{10}^{\mathrm{un}})^{11/2}/\eta^{132}$. The Arakelov
 intersection numbers $c_{g,n}$ are computed via the
 Beilinson--Bloch height pairing of the Hodge class $\lambda_g$
 against the $n$-th Brauer divisor on $\overline{\mathcal M}_{g,n}$
 (Mumford~$1983$; Beilinson--Bloch~$2005$), and Vol.~I Theorem~D
 specialises the total sum to
-$\mathrm{obs}_g = \kappa_{\mathrm{ch}}^{K3}\lambda_g = 24\lambda_g$.
-Cross-ref
-\texttt{compute/lib/k3\_yangian\_wave17\_pentagon\_coboundary\_hbar8\_9\_10.py}.
+$\mathrm{obs}_g = \kappa_{\mathrm{fiber}}(K3)\lambda_g = 24\lambda_g$.
+Cross-ref Vol.~I Remark~\ref{V1-rem:nc-obs9-10}.
 \cite{Mumford1983,BeilinsonBloch2005,Brown2011,Deligne2013,
  GritsenkoNikulin1998}.
 \end{remark}
@@ -2143,20 +1790,19 @@ transition maps are surjections (Brown~$2011$ motivic weight
 filtration exactness), so Mittag--Leffler holds and $\lim^1 = 0$.
 The curved-Dunn ambient of this chapter is the factorisation-$\infty$-category
 presentation of the pro-object limit: the higher-genus
-$H^2$-vanishing (\autoref{thm:curved-dunn-H2-vanishing-all-genera})
-gives the Mumford-dimension bound $n \le g+1$ per finite genus, and
-the pro-limit assembles them into a single well-defined
+$H^2$ comparison gives the Mumford-dimension bound $n \le g+1$ on the
+verified finite-genus loci, and the pro-limit assembles those finite
+truncations into a well-defined
 $\mathrm{obs}_\infty$ controlling the full-tower obstruction to the
 Maurer--Cartan equation on $\overline{\mathcal M}_{\infty,n}(K3)$.
-Pattern~$236$ ambient-qualifier discipline: the chain-level statement
-holds on the pro-object ambient, the $(\infty,1)$-categorical
-statement holds in the factorisation-$\infty$-category of curved-Dunn
-higher-genus $D$-modules (Pattern~$277$ scope declaration:
-$\mathsf{SC}^{\mathrm{ch,top}}$ does not promote to $E_3$ here
-because the Borcherds leg carries K3-specific curvature that
-obstructs Dunn additivity). Cross-ref Vol.~I
-Remark~\ref{V1-rem:nc-obs-infty} and
-\texttt{compute/lib/k3\_yangian\_wave17\_pentagon\_coboundary\_hbar8\_9\_10.py}.
+The chain-level statement holds on the pro-object ambient; the
+$(\infty,1)$-categorical statement holds in the
+factorisation-$\infty$-category of curved-Dunn higher-genus
+$D$-modules. The untopologized curved-Dunn ambient remains a
+two-coloured, directional $\mathsf{SC}^{\mathrm{ch,top}}$ ambient; an
+$E_3^{\mathrm{top}}$ structure requires a separate conformal-vector
+topologization input. Cross-ref Vol.~I
+Remark~\ref{V1-rem:nc-obs-infty}.
 \cite{Brown2011,Deligne2013,MarklShniderStasheff2002,
  HardyRamanujan1918,GritsenkoNikulin1998,BeilinsonBloch2005}.
 \end{remark}
@@ -2164,9 +1810,10 @@ Remark~\ref{V1-rem:nc-obs-infty} and
 \begin{remark}[Genus-$10$ and genus-$11$ obstructions with the first depth-$4$ motivic period]
 \label{rem:cdhg-obs-10-11}
 Combining the explicit weight-$11$ and weight-$12$ pentagon coboundaries
-(Vol.~I Chapter~\ref{V1-app:nilpotent-completion}) with the curved-Dunn
-$H^2$-vanishing (\autoref{thm:curved-dunn-H2-vanishing-all-genera})
-yields fully explicit Maurer--Cartan obstructions at higher genus:
+(Vol.~I Chapter~\ref{V1-app:nilpotent-completion}) with the
+modular-bootstrap acyclicity and curved-Dunn comparison hypotheses of
+\autoref{thm:curved-dunn-H2-vanishing-all-genera} yields the following
+Maurer--Cartan obstruction formulas at higher genus:
 \[
 \mathrm{obs}_{10} \;=\; \sum_{n = 1}^{11}\phi^{(n)}\cdot c_{10, n},
 \qquad
@@ -2176,7 +1823,8 @@ The genus-$10$ sum reaches $\phi^{(11)}$, adding the seven-element
 Brown $2011$ Ann.~Math.~$175$ Table basis
 $\{\zeta(11),\zeta(3)\zeta(3,5),\zeta(3)\zeta(5,3),\zeta(5)\zeta(3,3),
 \zeta(3,8),\zeta(5,6),\zeta(3,3,5)\}$ together with the half-integral
-Borcherds leg $\Phi_{10}^{11/2}/\eta^{132}$ of in-tower weight~$55$ on
+Borcherds leg
+$(\Phi_{10}^{\mathrm{un}})^{11/2}/\eta^{132}$ of in-tower weight~$55$ on
 the $\mathrm{Sp}_4(\mathbb{Z})$ double cover
 (Gritsenko--Nikulin $1998$ \S$4$; Borcherds $1998$ Thm~$10.1$). The
 genus-$11$ sum reaches $\phi^{(12)}$ and incorporates the
@@ -2195,14 +1843,13 @@ genus-$11$ $K3$-BKM obstruction}, inaccessible from any genus
 $g\le 10$ datum. The Borcherds leg at $n = 12$ has integer exponent
 and lives on the full $\operatorname{Sp}_4(\mathbb{Z})$ paramodular quotient, with
 in-tower weight~$60$. Vol.~I Theorem~D specialises both sums to
-$\mathrm{obs}_g = \kappa_{\mathrm{ch}}^{K3}\lambda_g = 24\lambda_g$
+$\mathrm{obs}_g = \kappa_{\mathrm{fiber}}(K3)\lambda_g = 24\lambda_g$
 via the Mumford Hodge class; the Arakelov intersection numbers
 $c_{g, n}$ are the Beilinson--Bloch heights of $\lambda_g$ against
 the $n$-th Brauer divisor (Mumford $1983$; Beilinson--Bloch $2005$).
 Cross-ref Vol.~I
 Remark~\ref{V1-rem:nc-phi12},
-Vol.~III Remark~\ref{rem:cycainf-depth-4},
-\texttt{compute/lib/k3\_yangian\_wave18\_pentagon\_coboundary\_hbar11\_12.py}.
+Vol.~III Remark~\ref{rem:cycainf-depth-4}.
 \cite{Brown2011,Brown2012,Deligne2013,GritsenkoNikulin1998,
  Borcherds1998,Mumford1983,BeilinsonBloch2005}.
 \end{remark}
@@ -2228,14 +1875,13 @@ conjecture (Brown $2012$ \texttt{arXiv:$1301.3053$}; partial progress
 in Brown $2017$ on the depth-$2$ slice); the curved-Dunn
 factorisation-$\infty$-category ambient continues to support a
 Mittag--Leffler pro-limit assuming that conjecture, with
-unconditional on-the-nose recovery at each weight where the
-conjecture is verified. The $E_3^{\mathrm{top}}$ promotion of
-$\mathsf{SC}^{\mathrm{ch,top}}$ remains obstructed here for the same
-reason the curved-Dunn chapter identifies at every weight: the
-Borcherds leg carries K$3$-specific curvature that forbids Dunn
-additivity (Pattern~$277$ scope declaration). Cross-ref Vol.~I
-Remark~\ref{V1-rem:nc-ML-prolimit-12},
-\texttt{compute/lib/k3\_yangian\_wave18\_pentagon\_coboundary\_hbar11\_12.py}.
+unconditional recovery at each weight where the
+conjecture is verified. No $E_3^{\mathrm{top}}$ promotion is asserted
+for this untopologized curved-Dunn ambient. The Borcherds leg supplies
+K$3$-specific curvature in the two-coloured obstruction complex; Dunn
+additivity enters only after a separate topologization input. Cross-ref
+Vol.~I
+Remark~\ref{V1-rem:nc-ML-prolimit-12}.
 \cite{Brown2011,Brown2012,Deligne2013,MarklShniderStasheff2002,
  HardyRamanujan1918,GritsenkoNikulin1998}.
 \end{remark}
@@ -2260,15 +1906,14 @@ $2007$ \texttt{arXiv:math/0412149}). This is the first weight at which
 the $A_\infty$-tower detects a depth-$4$ associator datum. At lower
 weights the Drinfeld associator's chain-level content collapses into
 depth-$\le 3$ MZVs (Bar-Natan~$1995$ Thm~$4$; Broadhurst--Kreimer
-$1997$ bigraded generating series), and the curved-Dunn chain homotopy
-for $H^2 = 0$ at $g\ge 2$
-(\autoref{thm:curved-dunn-H2-vanishing-all-genera}) admits an explicit
-polynomial-in-MZV description there. At weight~$12$ the chain
+$1997$ bigraded generating series), and the verified curved-Dunn
+comparison at weights $\le 11$ admits an explicit polynomial-in-MZV
+description. At weight~$12$ the chain
 homotopy acquires a new genuinely depth-$4$ term, inaccessible from
-polynomial combinations of weight-$\le 11$ data. Scope
-declaration holds: the $E_3^{\mathrm{top}}$ promotion is obstructed at
-weight~$12$ by the same K$3$-specific curvature, now with an explicit
-depth-$4$ witness. Cross-ref Vol.~I
+polynomial combinations of weight-$\le 11$ data. This is a witness in
+the two-coloured curved-Dunn obstruction complex; it is not a
+single-colour $E_3^{\mathrm{top}}$ statement without topologization.
+Cross-ref Vol.~I
 Remark~\ref{V1-rem:nc-grt1-weight-12}, Vol.~III
 Remark~\ref{rem:cycainf-depth-4}.
 \cite{Brown2011,Brown2017,BroadhurstKreimer1997,Drinfeld1990,
@@ -2277,7 +1922,8 @@ Remark~\ref{rem:cycainf-depth-4}.
 
 \begin{remark}[Fake-Monster non-interference at the $\hbar^{12}$ Borcherds leg]
 \label{rem:cdhg-fake-monster-non-interference}
-The weight-$12$ Borcherds leg $\Phi_{10}^{6}/\eta^{144}$ in
+The weight-$12$ Borcherds leg
+$(\Phi_{10}^{\mathrm{un}})^{6}/\eta^{144}$ in
 $\phi^{(12)}$ has integer exponent and lives on the full paramodular
 $\mathrm{Sp}_4(\mathbb Z)$ quotient. Its raw modular weight
 $-12 = 10\cdot 6 - 12\cdot 12\cdot \tfrac{1}{2}$ numerically coincides
@@ -2285,7 +1931,8 @@ with the weight of the Igusa cusp form $\Phi_{12}$; the Fake-Monster
 BKM denominator of Borcherds~$1998$ Thm~$13.1$. The two forms are,
 however, independent observables: $\Phi_{12}$ lives on the rank-$26$
 lattice $\mathrm{II}_{25, 1}$ of signature $(25, 1)$, while the K$3$
-Borcherds leg $\Phi_{10}^{6}/\eta^{144}$ lives on the rank-$3$ K$3$
+Borcherds leg
+$(\Phi_{10}^{\mathrm{un}})^{6}/\eta^{144}$ lives on the rank-$3$ K$3$
 lattice $\Lambda^{2, 1}_{\mathrm{II}}$ of signature $(2, 1)$. The
 signatures are incompatible and admit no signature-preserving embedding
 (Vol.~I \texttt{chapters/examples/lattice\_foundations.tex} three-BKM
@@ -2307,12 +1954,11 @@ via the KZ iterated integral over the ordered $12$-simplex with word
 $(\omega_1\omega_0^2)^4$ (Zagier $1994$~Prop~$1$; Brown $2013$~\S $2.3$).
 Under Costello's family-of-theories formalism (Costello $2007$),
 this coefficient enters the $\mathrm{obs}_{11}$ sum of this chapter
-through the $n = 12$ term $\phi^{(12)}\cdot c_{11, 12}$, now with
-the depth-$4$ entry numerically resolved. The curved-Dunn chain
-homotopy for $H^2 = 0$ at $g\ge 2$ acquires its first genuinely
-depth-$4$ contribution at this weight, whose explicit size in the
+through the $n = 12$ term $\phi^{(12)}\cdot c_{11, 12}$. The
+depth-$4$ entry is numerically resolved. The curved-Dunn chain
+comparison acquires its first genuinely depth-$4$ contribution at this
+weight, whose explicit size in the
 Beilinson--Bloch Arakelov pairing is fixed by the Vol.~I value above.
-Cross-ref
-\texttt{compute/lib/k3\_yangian\_wave19\_phi12\_zeta3333\_coefficient.py}.
+Cross-ref Vol.~I Remark~\ref{V1-rem:nc-c12-explicit}.
 \cite{Zagier1994,Brown2011,Brown2013,Costello2007}.
 \end{remark}

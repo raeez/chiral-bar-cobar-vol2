@@ -145,7 +145,22 @@ violations. Builds at session end on user opt-in.
 - `notes/agents_md_legacy_20260418.md` — 1762-line Vol II AGENTS.md,
   lossless.
 - `notes/first_principles_cache_comprehensive.md` — confusion-pattern
-  registry (if present locally).
+  registry (if present locally).  As of 2026-04-30, this live cache also
+  contains the appended Vol I import block
+  `VOL1_IMPORTED_FIRST_PRINCIPLES_CACHE_2026_04_30` and the
+  topological-strings 04:11 final-frontier patterns 501--509.
+- `notes/antipatterns_catalogue.md` — live Vol II antipattern registry.
+  As of 2026-04-30, this live registry also contains the appended Vol I
+  import block `VOL1_IMPORTED_ANTIPATTERN_REGISTRY_2026_04_30` and the
+  topological-strings 04:11 final-frontier AP2181--AP2189 block.
+- `notes/vol1_control_surface_import_manifest_2026_04_30.md` — provenance
+  and use rule for the two imported Vol I control surfaces.
+- `notes/vol1_imported_antipatterns_catalogue_2026_04_30.md` — exact Vol I
+  antipattern-registry mirror, SHA-256
+  `b954958f06dfe486fe052bb98ac29ad0ac374692ae02895bcefde412981b02ba`.
+- `notes/vol1_imported_first_principles_cache_comprehensive_2026_04_30.md`
+  — exact Vol I first-principles-cache mirror, SHA-256
+  `611c8c0db91d81bf1f3d2587db09713de5acc5b2f8bfcefd2a739557fa9e48f4`.
 - `~/chiral-bar-cobar/CLAUDE.md` — Vol I manifesto (shared five-theorem
   core, canonical κ/r(z)/S_r constants).
 - `~/chiral-bar-cobar/chapters/examples/landscape_census.tex` —

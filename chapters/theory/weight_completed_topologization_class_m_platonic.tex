@@ -17,62 +17,43 @@
 %% exponential character growth for a C_1-cofinite class M VOA with
 %% N=infty-gradable conformal weight filtration.
 %%
-%% Beilinson-voice attack-heal protocol (>=5 rounds):
-%% AH1 weight-completion category well-definedness. Attack: is the
-%% inverse limit a chain complex? Heal: yes; each truncation is
-%% a chain complex (V2 lem:finite-truncation-is-complex) and the
-%% bonding maps are strict chain morphisms (Vol I Prop strong
-%% filtration); Milnor short exact sequence controls the limit.
+%% Verification checkpoints:
+%% (1) Weight-completion category well-definedness: each truncation is
+%% a chain complex (V2 lem:finite-truncation-is-complex), the bonding
+%% maps are strict chain morphisms (Vol I Prop strong filtration), and
+%% Milnor's short exact sequence controls the limit.
 %%
-%% AH2 per-weight finite rank. Attack: does class M have finite per-
-%% weight dimension? Heal: yes, for Virasoro (p(N) partition),
-%% principal W_N (Cartan-matrix tensored partition generating
-%% function), lattice VOAs (FLM Ch.~8), Moonshine V^\natural
-%% (FLM Ch.~12), and every C_1-cofinite class M algebra
-%% (Dong-Li-Mason 1997 Thm 1.1). Universal bound exp(pi sqrt(2N/3))
-%% on dim A_n via Hardy-Ramanujan.
+%% (2) Per-weight finite rank: Virasoro (p(N) partition), principal W_N
+%% (Cartan-matrix tensored partition generating function), lattice VOAs
+%% (FLM Ch.~8), Moonshine V^\natural (FLM Ch.~12), and every
+%% C_1-cofinite class M algebra (Dong-Li-Mason 1997 Thm 1.1) have finite
+%% weight spaces. Hardy-Ramanujan gives the universal exponential bound.
 %%
-%% AH3 convergence of infinite sums. Attack: does the Sugawara
-%% expansion sum_n T^{(n)}_m converge weight-by-weight on the
-%% bar complex? Heal: each T^{(n)}_m increases weight by n-m; at
-%% fixed total weight the sum is finite. The weight-completion
-%% projection pi_{<=N}: \hat B -> B_{<=N} commutes with Sugawara
-%% up to operators of weight >N, which vanish in the limit.
-%% Abe-Buhl-Dong 2004 Cor 6.3 gives exponential character decay
-%% at non-critical level.
+%% (3) Sugawara convergence: each T^{(n)}_m increases weight by n-m; at
+%% fixed total weight the sum is finite. The projection
+%% pi_{<=N}: \hat B -> B_{<=N} commutes with Sugawara up to operators of
+%% weight >N, which vanish in the limit.
 %%
-%% AH4 Q_tot-cohomology in the completion. Attack: does
-%% [Q_tot, G^{(n)}] = T^{(n)} descend to chain level in the
-%% completion? Heal: Q_tot and each G^{(n)} are homogeneous of
+%% (4) Q_tot chain identity: Q_tot and each G^{(n)} are homogeneous of
 %% weight 0 on \hat B (bar degree counts, weight is separate);
-%% commutator computation is term-by-term per weight; limit is
+%% commutator computation is term-by-term per weight; the limit is
 %% continuous in the weight-completion topology.
 %%
-%% AH5 compatibility with E_{k+2}-operad structure. Attack: does the
-%% Dunn pairing E_k x E_1 -> E_{k+1} at each rung survive the
-%% completion? Heal: Dunn is a homotopy-theoretic statement on
-%% locally constant factorisation algebras; local constancy is
-%% preserved by filtered colimits / limits where the transition
-%% maps are quasi-isomorphisms (Lurie HA 5.5), and the bonding
-%% maps \hat B_{<=N+1} -> \hat B_{<=N} are strict chain-level
-%% qis by prop:bv-bar-class-m-weight-completed. Therefore the
-%% Dunn identification is continuous in N and descends to the
-%% limit.
+%% (5) E_{k+2}-operad compatibility: Dunn additivity is used rung by
+%% rung in filtered chain complexes; the E_\infty endpoint requires the
+%% separate obstruction o_infty to vanish.
 %%
-%% AH6 (bonus) absence of spurious Mittag-Leffler obstruction.
-%% Attack: does lim^1 obstruct passage from finite-stage qis to
-%% limit qis? Heal: each finite stage has surjective bonding
-%% maps (strong filtration, Vol I Prop), so lim^1 vanishes.
+%% (6) Mittag-Leffler control: finite-stage bonding maps are surjective
+%% by the strong filtration, so lim^1 vanishes for the finite-rung tower.
 %%
 %% Labels defined:
 %% thm:weight-completed-topologization-class-m (main theorem: for
 %% every class M chiral algebra with non-critical-level higher-spin
 %% stress tower of depth N, the weight-completed derived chiral
 %% centre \hat Z^{der}_{ch}(A) carries a chain-level
-%% E_{k+2}-topological algebra structure for every 0 <= k <= N-1,
-%% assembling to \hat Z^{der}_{ch}(A) in Alg_{E_\infty^{top}} in
-%% the N -> \infty limit for the principal W_\infty and lattice
-%% V^\natural cases)
+%% E_{k+2}-topological algebra structure for every 0 <= k <= N-1;
+%% an E_\infty endpoint requires a compatible infinite stress tower
+%% and o_infty=0)
 %% prop:per-weight-finite-rank-class-m (FLM / Dong-Li-Mason per-
 %% weight finiteness)
 %% prop:weight-completed-sugawara-convergence (termwise weight-graded
@@ -82,9 +63,9 @@
 %% prop:weight-completed-dunn-continuity (Dunn pairing commutes with
 %% weight-completed inverse limit)
 %% prop:weight-completed-mittag-leffler (vanishing of lim^1)
-%% cor:moonshine-chain-level-e-infinity-topological (V^\natural
-%% acquires chain-level E_\infty-topological structure in the
-%% weight-completed ambient)
+%% cor:moonshine-chain-level-e-infinity-topological (finite
+%% Monster-equivariant windows; E_\infty endpoint conditional on an
+%% infinite Monster-invariant stress tower and o_infty=0)
 %%
 %% Location: chapters/theory/. Between tempered_stratum and wn_tempered.
 %% Inputs:
@@ -103,8 +84,8 @@
 
 The class~$\mathsf{M}$ rung of the topologisation ladder requires an
 ambient in which three obstructions are absorbed simultaneously: the
-non-vanishing of the curved-Dunn square on the raw direct sum at every
-genus $g \ge 2$
+non-vanishing of the curved-Dunn square on the raw direct sum already
+at the Virasoro class-\(\mathsf M\), \(g=2\), weight-\(4\) witness
 (Theorem~\ref{thm:curved-dunn-class-M-raw-direct-sum-fails}), the
 polynomial-only decay of the shadow tower at generic central charge
 (Proposition~\ref{prop:shadow-decay-class-m}), and the non-termination of
@@ -344,10 +325,19 @@ is compatible with bar-degree truncation: the stabilisation morphisms
 $E_{(k+1)+2}^{\mathrm{top}} \to E_{k+2}^{\mathrm{top}}$ agree with the
 forgetful maps obtained by discarding the highest antighost
 $G^{(k+2)}$.
-\item In the limit $N \to \infty$ for class~$\mathsf{M}$ algebras
-admitting a $\cW_\infty$ extension \textup{(}Virasoro at every generic
-central charge, principal $\cW_N$ at all $N$, lattice $V_\Lambda$,
-Moonshine $V^{\natural}$\textup{)},
+\item If $\cA$ is equipped with a compatible infinite stress tower
+$\{T^{(n)},G^{(n)}\}_{n\ge2}$ whose finite truncations satisfy
+clauses \textup{(i)}--\textup{(ii)} and whose operadic transition tower
+has vanishing endpoint obstruction
+\[
+ \mathfrak{o}_{\infty}(\cA)
+ \in
+ \mathrm{lim}^{1}_{N}\,
+ \pi_0\operatorname{Map}_{\mathrm{Op}}
+ \bigl(E_{N+1}^{\mathrm{top}},
+ \operatorname{End}_{\widehat{Z}^{\,\mathrm{der}}_{\mathrm{ch}}(\cA)}\bigr),
+\]
+then
 \[
  \widehat{Z}^{\,\mathrm{der}}_{\mathrm{ch}}(\cA)
  \;\in\;
@@ -355,15 +345,18 @@ Moonshine $V^{\natural}$\textup{)},
  \;=\;
  \varprojlim_N \mathrm{Alg}_{E_{N+1}^{\mathrm{top}}}.
 \]
-\item The structure is strict at the chain level: no
-$A_\infty$-coherences are hidden in the weight-completion, and every
-higher Dunn homotopy is the honest inverse limit of its finite-truncation
-representatives.
+A finite principal $\cW_N$ supplies only the finite rung
+$E_{N+1}^{\mathrm{top}}$; it is not a $\cW_\infty$ endpoint by itself.
+\item At each finite rung the structure is strict at the chain level:
+no $A_\infty$-coherences are hidden in the weight-completion, and every
+higher Dunn homotopy is represented at finite truncation. The
+$E_\infty^{\mathrm{top}}$ endpoint is strict only after
+$\mathfrak{o}_{\infty}(\cA)=0$.
 \end{enumerate}
 \end{theorem}
 
 \begin{proof}
-Four steps, each invoking a previously established pillar and promoting
+Four steps, each invoking an established pillar and promoting
 it along the weight-completion filtration.
 
 \smallskip\noindent
@@ -374,8 +367,9 @@ strict chain-level quasi-isomorphism of completed curved complexes
 $\widehat{f}_g \colon \widehat{C}^{\bullet}_{\mathrm{BV}}(\cA, \Sigma_g)
 \to \widehat{B}^{(g)}(\cA)$. The Maurer--Cartan class
 $\widehat{\Theta}_\cA = \varprojlim_r \Theta_\cA^{\le r}$ controlling
-curved-Dunn $H^2 = 0$ (Theorem~\ref{thm:curved-dunn-H2-vanishing-all-genera}
-in the weight-completed ambient) is the inverse limit of its finite-stage
+the conditional curved-Dunn \(H^2\)-vanishing
+(Theorem~\ref{thm:curved-dunn-H2-vanishing-all-genera} in the
+weight-completed ambient) is the inverse limit of its finite-stage
 representatives. Every finite truncation
 $\widehat{f}_g / F^{R + 1}$ is a strict chain quasi-isomorphism by
 the Milnor--Mittag-Leffler mechanism in the standard strong filtration
@@ -420,79 +414,78 @@ weight-completion.
 
 \smallskip\noindent
 \textbf{Step~4 ($N \to \infty$ limit).}
-For class~$\mathsf{M}$ algebras admitting a $\cW_\infty$ extension,
-Theorem~\ref{thm:e-infinity-topologization-ladder} delivers
-$E_\infty^{\mathrm{top}}$ on the cohomological side as the limit
-of the ladder $\{E_{N+1}^{\mathrm{top}}\}_{N \ge 2}$. Applying step~3
-to this entire tower: the chain-level $E_\infty^{\mathrm{top}}$-structure
-on $\widehat{Z}^{\,\mathrm{der}}_{\mathrm{ch}}(\cA)$ is the inverse
-limit of chain-level $E_{N+1}^{\mathrm{top}}$-structures in
-$\mathrm{Alg}_{E_\infty}^{\mathrm{top}} = \varprojlim_N
-\mathrm{Alg}_{E_{N+1}^{\mathrm{top}}}$. Each stage is witnessed by an
-honest Sugawara--BRST primitive $G^{(n)}$, so no implicit
-$A_\infty$-coherences appear: strictness is preserved at every rung,
-and clause~(iv) follows.
+Finite principal $\cW_N$ data stop at the finite rung
+$E_{N+1}^{\mathrm{top}}$. To pass to an
+$E_\infty^{\mathrm{top}}$ endpoint one needs an actual compatible
+infinite stress tower and the vanishing of
+$\mathfrak{o}_{\infty}(\cA)$, the $\mathrm{lim}^1$ obstruction to
+gluing the finite operadic structures. When this obstruction vanishes,
+applying step~3 to the whole tower gives
+\[
+ \widehat{Z}^{\,\mathrm{der}}_{\mathrm{ch}}(\cA)
+ \in
+ \mathrm{Alg}_{E_\infty}^{\mathrm{top}}
+ =
+ \varprojlim_N\mathrm{Alg}_{E_{N+1}^{\mathrm{top}}}.
+\]
+Each finite stage is witnessed by a Sugawara--BRST primitive
+$G^{(n)}$, so strictness is preserved rung by rung; endpoint strictness
+is exactly the vanishing of the displayed obstruction.
 \end{proof}
 
-\begin{corollary}[Moonshine module acquires chain-level
-$E_\infty^{\mathrm{top}}$-structure]
+\begin{corollary}[Moonshine finite windows and conditional
+$E_\infty^{\mathrm{top}}$ endpoint]
 \label{cor:moonshine-chain-level-e-infinity-topological}
-\ClaimStatusProvedHere
+\ClaimStatusConditional
 The Frenkel--Lepowsky--Meurman Moonshine module $V^{\natural}$
-carries, in the weight-completed ambient, a chain-level
-$E_\infty^{\mathrm{top}}$-algebra structure on its derived chiral
-centre $\widehat{Z}^{\,\mathrm{der}}_{\mathrm{ch}}(V^{\natural})$.
-Every Monster-action-preserving Sugawara--BRST primitive $G^{(n)}$ is
-realised as a concrete chain-level operator on the weight-completed
-bar complex, with no residual coherence data required beyond the
-inverse-limit construction of
-Theorem~\ref{thm:weight-completed-topologization-class-m}.
+carries, in the weight-completed ambient, every finite
+$E_{k+2}^{\mathrm{top}}$ structure whose Monster-invariant
+higher-spin stress tower of depth $k+1$ is supplied at non-critical
+level. It carries a chain-level $E_\infty^{\mathrm{top}}$ structure
+on $\widehat{Z}^{\,\mathrm{der}}_{\mathrm{ch}}(V^{\natural})$ only
+after a compatible Monster-invariant infinite stress tower is supplied
+and
+$\mathfrak{o}_{\infty}(V^{\natural})=0$.
 \end{corollary}
 
 \begin{proof}
 $V^{\natural}$ is class~$\mathsf{M}$ (its character $J(\tau) =
 q^{-1} + 196884 q + \ldots$ gives $c_{\mathrm{eff}} = 24$ and
 exponential weight growth per
-Proposition~\ref{prop:per-weight-finite-rank-class-m}) and admits a
-$\cW_\infty$ extension by the Conway--Norton--Borcherds Monster
-vertex-algebra construction. Clauses (i)--(iv) of
-Theorem~\ref{thm:weight-completed-topologization-class-m} apply
-verbatim. The Monster action preserves the conformal-weight filtration
-(every automorphism is weight-zero), so the inverse limit
-intertwines the Monster action with the Sugawara--BRST primitives, and
-the chain-level $E_\infty^{\mathrm{top}}$-structure is Monster-equivariant.
+Proposition~\ref{prop:per-weight-finite-rank-class-m}). The Monster
+action preserves the conformal-weight filtration, so any
+Monster-invariant finite stress tower satisfies the equivariance
+requirements of Theorem~\ref{thm:weight-completed-topologization-class-m}
+at that finite rung. The endpoint assertion is not a consequence of
+finite windows alone; it is exactly the additional infinite-tower and
+$\mathrm{lim}^1$-vanishing condition stated above.
 \end{proof}
 
 \begin{remark}[Relation to the foundations hedge]
 \label{rem:foundations-hedge-resolved}
 The formulation ``chain-level may fail in class~$\mathsf{M}$ on the
-original complex but holds in the weight-completed category''
-previously recorded in
-Remark~\ref{rem:sc-not-e3-operadic-guard} is now a theorem: the
-``may fail on the original complex'' side is
+original complex but holds in the weight-completed category'' is a
+theorem: the ``may fail on the original complex'' side is
 Theorem~\ref{thm:curved-dunn-class-M-raw-direct-sum-fails} (explicit
 Zamolodchikov cocycle witness at weight~4, $g = 2$) and the ``holds in
 the weight-completed category'' side is
 Theorem~\ref{thm:weight-completed-topologization-class-m} of the
-present chapter. Both sides are unconditional, and the weight-completed
-ambient is the canonical passage between them.
+present chapter on its stated finite-rung hypotheses. The
+weight-completed ambient is the canonical passage between raw failure
+and completed finite-rung topologisation; an $E_\infty$ endpoint
+requires the separate obstruction
+$\mathfrak{o}_{\infty}(\cA)=0$.
 \end{remark}
 
-\section{Attack--heal dossier}
-\label{sec:weight-completed-topologization-attack-heal}
+\section{Obstruction Checks for the Inverse Limit}
+\label{sec:weight-completed-topologization-obstruction-checks}
 
-The six attack--heal rounds that produced
-Theorem~\ref{thm:weight-completed-topologization-class-m} are recorded
-as mathematical remarks, preserving the content of each counter-example
-and its resolution.
+The following checks isolate the obstruction classes used in
+Theorem~\ref{thm:weight-completed-topologization-class-m}.
 
-\begin{remark}[AH1: weight-completion well-definedness]
-\label{rem:AH1-weight-completion-well-defined}
-\emph{Attack.} Is $\widehat{B}^{(g)}(\cA) = \varprojlim_N B^{(g)}_{\le N}(\cA)$
-genuinely a chain complex, or merely a topological module without a
-well-defined differential?
-
-\emph{Heal.} Each finite truncation $B^{(g)}_{\le N}$ is a strict chain
+\begin{remark}[Weight-completion differential]
+\label{rem:weight-completion-differential}
+Each finite truncation $B^{(g)}_{\le N}$ is a strict chain
 complex by Lemma~\ref{lem:finite-truncation-is-complex}: the bar
 differential preserves the weight filtration because each $A_\infty$-operation
 is weight-homogeneous. The bonding maps
@@ -503,12 +496,9 @@ is a chain complex; the differential is the unique map compatible with
 every $\pi_{\le N}$.
 \end{remark}
 
-\begin{remark}[AH2: per-weight finite rank]
-\label{rem:AH2-per-weight-finite-rank}
-\emph{Attack.} For class~$\mathsf{M}$ the full complex is infinite-dimensional
-per bar degree; how is per-weight finiteness recovered?
-
-\emph{Heal.} The full bar complex is infinite-dimensional, but its
+\begin{remark}[Per-weight finite rank]
+\label{rem:weight-completed-per-weight-finite-rank}
+The full bar complex is infinite-dimensional, but its
 conformal-weight filtration has finite-dimensional successive
 quotients by Frenkel--Lepowsky--Meurman and Dong--Li--Mason. The
 universal bound of
@@ -518,12 +508,9 @@ applies. Hence each finite truncation is finite-dimensional, though
 the full algebra is not.
 \end{remark}
 
-\begin{remark}[AH3: convergence of the Sugawara expansion]
-\label{rem:AH3-sugawara-convergence}
-\emph{Attack.} The Sugawara stress tensor is a sum over all modes;
-does this sum converge on the weight-completion?
-
-\emph{Heal.} $T^{(n)}_m$ is a finite sum of normally-ordered products
+\begin{remark}[Sugawara convergence]
+\label{rem:weight-completed-sugawara-convergence-check}
+$T^{(n)}_m$ is a finite sum of normally-ordered products
 of $\le 2n$ strong-generator modes, each increasing total weight by a
 fixed amount ($n - m$ for $T^{(n)}_m$). On each finite truncation the
 operator is a finite-rank linear map; on the projective system it is
@@ -533,12 +520,10 @@ full Sugawara field is a sum over $m$, but on any weight-bounded
 input the sum is finite.
 \end{remark}
 
-\begin{remark}[AH4: $Q_{\mathrm{tot}}$-cohomology descent]
-\label{rem:AH4-Q-tot-cohomology-descent}
-\emph{Attack.} Does $[Q_{\mathrm{tot}}, G^{(n)}] = T^{(n)}$ hold on
-chain level or only on cohomology?
-
-\emph{Heal.} On each finite truncation, both sides are bounded operators
+\begin{remark}[$Q_{\mathrm{tot}}$ chain identity]
+\label{rem:weight-completed-Q-tot-chain-identity}
+On each finite truncation, both sides of
+$[Q_{\mathrm{tot}},G^{(n)}]=T^{(n)}$ are bounded operators
 that agree by the iterated Sugawara construction
 (Theorem~\ref{thm:iterated-sugawara-construction}). Continuity in the
 inverse-limit topology
@@ -547,12 +532,9 @@ the identity to the weight-completion on the nose; it is a
 chain-level identity, not merely a cohomological one.
 \end{remark}
 
-\begin{remark}[AH5: Dunn pairing preservation]
-\label{rem:AH5-dunn-pairing-preservation}
-\emph{Attack.} Does the Dunn pairing $E_k \otimes E_1 \simeq E_{k+1}$
-survive the passage to the inverse limit?
-
-\emph{Heal.} Dunn additivity is a statement about locally constant
+\begin{remark}[Dunn pairing preservation]
+\label{rem:weight-completed-dunn-pairing-preservation}
+Dunn additivity is a statement about locally constant
 factorisation algebras (Lurie HA 5.5.3.15), and local constancy is
 preserved under inverse limits along strict quasi-isomorphisms by
 Hinich's theorem on algebras over operads in filtered chain complexes.
@@ -561,18 +543,16 @@ Proposition~\ref{prop:bv-bar-class-m-weight-completed}, so Dunn
 commutes with $\varprojlim$ and every rung of the ladder descends.
 \end{remark}
 
-\begin{remark}[AH6: Mittag-Leffler obstruction vanishes]
-\label{rem:AH6-mittag-leffler}
-\emph{Attack.} Could $\mathrm{lim}^1$ of the tower of
-$E_{k+2}^{\mathrm{top}}$-structures obstruct the inverse-limit
-construction?
-
-\emph{Heal.} The bonding maps $\pi_{N + 1 \to N}$ are surjective
+\begin{remark}[Mittag-Leffler obstruction]
+\label{rem:weight-completed-mittag-leffler-obstruction}
+The bonding maps $\pi_{N + 1 \to N}$ are surjective
 (strong-filtration hypothesis of Vol~I
 Prop~\ref{V1-prop:standard-strong-filtration}). Surjective bonding
 maps in a tower of finite-dimensional vector spaces force $\mathrm{lim}^1
-= 0$ (Milnor's short exact sequence specialises). No phantom
-obstruction appears.
+= 0$ (Milnor's short exact sequence specialises). For an
+$E_\infty^{\mathrm{top}}$ endpoint the corresponding operadic
+transition tower must satisfy the same vanishing; this is the
+obstruction $\mathfrak{o}_{\infty}(\cA)$ in the main theorem.
 \end{remark}
 
 \section{Independent verification}
@@ -623,7 +603,7 @@ Remark~\ref{rem:sc-not-e3-operadic-guard}
 topologisation ``may fail on the original complex but holds in the
 weight-completed category''.
 Theorem~\ref{thm:weight-completed-topologization-class-m} upgrades
-that hedge to an unconditional theorem with an explicit proof via
+that hedge to a finite-rung theorem with an explicit proof via
 (i) weight-completed bar-BV quasi-isomorphism
 (Proposition~\ref{prop:bv-bar-class-m-weight-completed}), (ii)
 per-weight finiteness
@@ -634,9 +614,11 @@ chain-level $Q_{\mathrm{tot}}$-exactness
 (Proposition~\ref{prop:weight-completed-Q-tot-exactness}), (v)
 Hinich--Dunn continuity in filtered inverse limits, and (vi) surjective
 Mittag-Leffler control. The foundations hedge becomes
-Theorem~\ref{thm:weight-completed-topologization-class-m}: no
-conditional hypothesis remains on the class~$\mathsf{M}$ standard
-landscape, and the Moonshine corollary
+Theorem~\ref{thm:weight-completed-topologization-class-m}: finite
+principal $\cW_N$ reaches its finite $E_{N+1}^{\mathrm{top}}$ rung in
+the weight-completed ambient, while the $E_\infty^{\mathrm{top}}$
+endpoint requires a compatible infinite stress tower and
+$\mathfrak{o}_{\infty}=0$. The Moonshine corollary
 (Corollary~\ref{cor:moonshine-chain-level-e-infinity-topological})
-supplies the chain-level $E_\infty^{\mathrm{top}}$-structure on
-$V^{\natural}$ in the weight-completed ambient, Monster-equivariantly.
+records the same finite-window statement and the conditional
+Monster-equivariant endpoint.

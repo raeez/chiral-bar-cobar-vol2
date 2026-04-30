@@ -1,4 +1,4 @@
-r"""W_N tempered-stratum closure: explicit beta_N and tempering theorem.
+r"""W_N tempered-stratum convention guards.
 
 Context
 -------
@@ -8,21 +8,31 @@ tempered with ordinary-generating convergence radius rho_*(c) = |c| / beta_N
 for beta_2 = 6, beta_3 = 10. Extension to W_N for N >= 4 was stated as
 conj:wn-tempered-general.
 
-This module closes the conjecture. The closed form is
+This module does not prove the all-rank W_N Riccati envelope. It records
+the conditional arithmetic used by the manuscript:
+
+* if a finite Riccati-envelope coefficient beta_N is available for a fixed
+  principal W_N, Stirling dominance gives analytic tempering;
+* the harmonic value
 
     beta_N = 12(H_N - 1) = sum_{s=2}^{N} 12/s,
 
-and the tempering theorem extends to every N >= 2 by the beta-independent
-Stirling argument: for any finite beta_N,
+  is the kappa-ratio candidate, not an independently encoded proof of the
+  full W_N shadow recursion;
+* the W4 bridge from full Miura/OPE data to A_5(W4) is tracked separately
+  in compute/lib/w4_beta_direct.py and remains absent.
+
+The finite-beta Stirling implication is:
 
     limsup_r (|S_r(W_{N,c})|/r!)^{1/r}
       <= limsup_r (C(c) * beta_N^{r-4} / (r * |c|^{r-2} * r!))^{1/r}
       = beta_N/|c| * 1 * 0  =  0.
 
 The beta-free universal factor is (r!)^{-1/r} ~ e/r -> 0; every finite
-beta_N is absorbed. Hence tempering at every finite beta_N.
+beta_N is absorbed. This implication is a convention guard for the tests,
+not a proof that every principal W_N has the required envelope.
 
-First-principles derivation of beta_N = 12(H_N - 1)
+Conditional harmonic candidate beta_N = 12(H_N - 1)
 --------------------------------------------------
 The leading-Laurent coefficient obeys the kappa-ratio scaling law
 
@@ -36,15 +46,15 @@ A_r(Vir)/A_{r-1}(Vir) = -6(r-1)/r, one obtains
 
 Thus beta_N = 12(H_N - 1). This gives beta_2 = 6, beta_3 = 10,
 beta_4 = 13, beta_5 = 77/5, beta_6 = 87/5. The earlier triangular
-candidate (N+1)(N+2)/2 and quadratic candidate N^2 - N + 4 are both
-ruled out at N = 4.
+candidate (N+1)(N+2)/2 and quadratic candidate N^2 - N + 4 are separated
+at N = 4 conditional on the kappa-ratio scaling law.
 
 Engine outputs
 --------------
 This module provides:
-  - beta_N(N) : returns the proved closed form beta_N.
-  - beta_N_candidate_A(N) : ruled-out triangular candidate.
-  - beta_N_candidate_B(N) : ruled-out quadratic candidate.
+  - beta_N(N) : returns the harmonic candidate beta_N.
+  - beta_N_candidate_A(N) : triangular comparison candidate.
+  - beta_N_candidate_B(N) : quadratic comparison candidate.
   - rho_star_WN(N, c) : |c| / beta_N for the chosen candidate.
   - tempering_rate_bound(N, c, r) : upper bound on (|S_r|/r!)^{1/r}
     that tends to 0 regardless of beta_N's exact form.
@@ -53,9 +63,10 @@ This module provides:
 
 Convention
 ----------
-beta_N is the proved harmonic value. beta_N_candidate_A and
-beta_N_candidate_B are retained only as explicitly ruled-out historical
-comparators.
+beta_N is the harmonic candidate used for finite-beta convention tests.
+It is proved at N=2 and N=3, conditional for N>=4. beta_N_candidate_A and
+beta_N_candidate_B are retained as comparison formulas separated by the
+N=4 harmonic candidate.
 
 Dependencies
 ------------
@@ -72,6 +83,14 @@ from typing import Dict, List, Optional, Tuple
 from compute.lib.beta_N_closed_form import beta_N_from_kappa, harmonic_number
 
 
+WN_TEMPERING_SCOPE = {
+    "finite_beta_stirling_implication": "proved",
+    "finite_riccati_envelope_all_N": "not_encoded",
+    "harmonic_beta_closed_form": "conditional_kappa_ratio_scaling",
+    "w4_full_miura_A5_bridge": "absent",
+}
+
+
 # ---------------------------------------------------------------------------
 # Known data from Vol II tempered-stratum chapter
 # ---------------------------------------------------------------------------
@@ -82,10 +101,10 @@ BETA_3 = Fraction(10)  # W_3: proved in thm:tempered-stratum-contains-w3
 
 
 def beta_N_candidate_A(N: int) -> Fraction:
-    r"""Ruled-out candidate A: beta_N = (N+1)(N+2)/2.
+    r"""Comparison candidate A: beta_N = (N+1)(N+2)/2.
 
     Matches N=2 and N=3 by coincidence, but predicts beta_4 = 15 while
-    the proved harmonic value is beta_4 = 13.
+    the harmonic candidate gives beta_4 = 13.
     """
     if N < 2:
         raise ValueError(f"beta_N requires N >= 2, got N = {N}")
@@ -93,10 +112,10 @@ def beta_N_candidate_A(N: int) -> Fraction:
 
 
 def beta_N_candidate_B(N: int) -> Fraction:
-    r"""Ruled-out candidate B: beta_N = N^2 - N + 4.
+    r"""Comparison candidate B: beta_N = N^2 - N + 4.
 
     Matches N=2 and N=3 by coincidence, but predicts beta_4 = 16 while
-    the proved harmonic value is beta_4 = 13.
+    the harmonic candidate gives beta_4 = 13.
     """
     if N < 2:
         raise ValueError(f"beta_N requires N >= 2, got N = {N}")
@@ -104,20 +123,23 @@ def beta_N_candidate_B(N: int) -> Fraction:
 
 
 def beta_N(N: int) -> Fraction:
-    r"""Canonical beta_N: beta_N = 12(H_N - 1).
+    r"""Harmonic beta_N candidate: beta_N = 12(H_N - 1).
 
     Closed form:
         beta_N = 12 * (H_N - 1) = sum_{s=2}^{N} 12/s
+
+    This is a proved value at N=2,3 and a conditional kappa-ratio
+    candidate for N>=4.
     """
     return beta_N_from_kappa(N)
 
 
 def beta_N_is_finite(N: int) -> bool:
-    r"""Unconditional: beta_N is finite for every N >= 2.
+    r"""The harmonic candidate beta_N is finite for every N >= 2.
 
-    This is the load-bearing fact for the tempering theorem. The exact
-    value is the harmonic rational beta_N = 12(H_N - 1), hence finite
-    for every fixed N.
+    This checks the candidate arithmetic only. It does not prove that the
+    full W_N shadow tower has this Riccati coefficient or any other finite
+    envelope.
     """
     if N < 2:
         return False
@@ -131,9 +153,9 @@ def beta_N_is_finite(N: int) -> bool:
 
 
 def tempering_rate_bound(N: int, c: Fraction, r: int) -> float:
-    r"""Upper bound on (|S_r(W_N,c)|/r!)^{1/r}.
+    r"""Conditional upper bound on (|S_r(W_N,c)|/r!)^{1/r}.
 
-    Combining the Fateev-Lukyanov-style envelope
+    Assuming a finite Riccati-style envelope
 
         |S_r(W_N,c)| <= C(N,c) * beta_N^{r-4} / (r * |c|^{r-2})
 
@@ -146,8 +168,9 @@ def tempering_rate_bound(N: int, c: Fraction, r: int) -> float:
           = beta_N * e / (r * |c|).
 
     The ratio converges to 0 regardless of beta_N because (r!)^{-1/r} ~ e/r
-    decays faster than any polynomial in r. Hence tempering holds at every
-    finite beta_N.
+    decays faster than any polynomial in r. Hence tempering follows from
+    the finite-beta envelope. The envelope itself is not proved by this
+    function.
 
     Returns the upper-bound value at finite r.
     """
@@ -191,12 +214,15 @@ def stirling_vs_beta_dominance(N: int, c: Fraction, r_max: int = 20) -> bool:
 
 
 def rho_star_WN(N: int, c: Fraction) -> Fraction:
-    r"""Ordinary-generating convergence radius for the W_N shadow tower.
+    r"""Conditional ordinary-generating convergence radius.
 
         rho_*^{W_N}(c) = |c| / beta_N = |c| / [12(H_N - 1)]
 
     At N=2: rho_*(c) = |c|/6 (Virasoro). At N=3:
     rho_*(c) = |c|/10 (W_3). At N=4: rho_*(c) = |c|/13.
+
+    For N>=4 this is conditional on the harmonic kappa-ratio law and the
+    full Riccati bridge.
     """
     if c == 0:
         raise ValueError("rho_* excludes c = 0")
@@ -228,8 +254,8 @@ def sanity_check_known_values() -> Dict[str, bool]:
 def discriminating_N4_prediction() -> Dict[str, Fraction]:
     r"""Discriminating values at N=4.
 
-    The proved harmonic value is 13. Candidate_A predicts 15 and
-    Candidate_B predicts 16; both are false.
+    The harmonic candidate value is 13. Candidate_A predicts 15 and
+    Candidate_B predicts 16; the three values are distinct.
     """
     return {
         "candidate_A (triangular, (N+1)(N+2)/2)": beta_N_candidate_A(4),
@@ -244,10 +270,10 @@ def discriminating_N4_prediction() -> Dict[str, Fraction]:
 
 
 def tempering_certificate(N: int, c: Fraction, r_values: Optional[List[int]] = None) -> Dict[int, float]:
-    r"""Return the tempering rate bound at a sequence of r-values.
+    r"""Return the conditional tempering rate bound at a sequence of r-values.
 
-    Unconditional result: for every N >= 2 and every c != 0 outside the
-    severe Kac-zero locus D_Kac^sev(W_N), the W_N shadow tower obeys
+    Conditional statement: if the fixed W_N shadow tower obeys a finite
+    Riccati envelope outside the severe Kac-zero locus D_Kac^sev(W_N), then
 
         limsup_r (|S_r|/r!)^{1/r} = 0.
 

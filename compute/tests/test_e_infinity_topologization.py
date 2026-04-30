@@ -2,7 +2,7 @@
 
 Vol II, chapters/connections/e_infinity_topologization.tex. This test file
 decorates the proved and conditional labels of the E_infty-topologization
-chapter with HZ-IV-style independent-verification evidence. Each decorator
+chapter with independent-verification evidence. Each decorator
 supplies (derived_from, verified_against, disjoint_rationale) triples that
 are checked for disjointness at import time; any tautological decoration
 raises IndependentVerificationError immediately.
@@ -377,7 +377,7 @@ def test_e_infinity_specialisation_WN():
     claim="thm:e-infinity-specialisation-Winfty",
     derived_from=[
         "Iterated Sugawara ladder at N=infty via thm:e-infinity-topologization-ladder, conditional on inverse-limit compatibility",
-        "Inverse limit of W_N truncations along W_infty[mu] ->> W_N[mu], conditional on Yamada strong convergence",
+        "Inverse limit of W_N truncations along W_infty[mu] ->> W_N[mu], conditional on weight-window strong convergence and lim1 obstruction vanishing",
         "thm:casimir-antighost-commutativity on every bounded W_infty weight window, conditional on passage to the completed inverse limit",
     ],
     verified_against=[
@@ -389,7 +389,8 @@ def test_e_infinity_specialisation_WN():
         "Derivation: W_infty[mu] has stress tower of depth infinity; "
         "applying the ladder at N=infty plus the operadic inverse "
         "limit gives E_infty after the inverse-limit compatibility "
-        "and Yamada strong-convergence hypotheses are supplied. "
+        "weight-window strong-convergence and obstruction-vanishing "
+        "hypotheses are supplied. "
         "Verification evidence uses three genuinely disjoint routes: "
         "(i) Linshaw's arXiv:1710.02275 constructs W_infty[mu] "
         "directly as a universal vertex algebra parametrised by "
@@ -425,14 +426,14 @@ def test_e_infinity_specialisation_Winfty():
     assert True  # agreement on E_infty across four disjoint paths
 
 
-def test_winfty_spin4_window_is_not_yamada_convergence():
+def test_winfty_spin4_window_is_not_weight_window_convergence():
     """The spin <= 4 window checks E5 data, not the full Winfty endpoint."""
     diagnostic = spin4_window_diagnostic()
     assert diagnostic.e_top_depth == 5
-    assert diagnostic.yamada_threshold == 7
+    assert diagnostic.weight_window_threshold == 7
     assert diagnostic.max_two_slot_spin == 7
     assert diagnostic.checks_stress_dunn_input is True
-    assert diagnostic.meets_yamada_threshold is False
+    assert diagnostic.meets_weight_window_threshold is False
     assert {
         (term.left_spin, term.right_spin, term.required_spin_cutoff)
         for term in diagnostic.missing_two_slot_terms

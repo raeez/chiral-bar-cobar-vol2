@@ -13,6 +13,16 @@
 \providecommand{\mc}{\operatorname{MC}}
 \providecommand{\Res}{\operatorname{Res}}
 \providecommand{\RHom}{\operatorname{RHom}}
+\providecommand{\barB}{\bar{B}}
+\providecommand{\barBch}{\bar{B}^{\mathrm{ch}}}
+\providecommand{\SCchtop}{\mathsf{SC}^{\mathrm{ch,top}}}
+\providecommand{\FM}{\operatorname{FM}}
+\providecommand{\Conf}{\operatorname{Conf}}
+\providecommand{\id}{\operatorname{id}}
+\providecommand{\Ainf}{A_\infty}
+\providecommand{\Bbbk}{\mathbb{k}}
+\providecommand{\HH}{\operatorname{HH}}
+\providecommand{\Omegach}{\Omega^{\mathrm{ch}}}
 
 \chapter*{Preface}
 \addcontentsline{toc}{chapter}{Preface}
@@ -27,10 +37,10 @@ A chiral algebra is a point in the derived symplectic category: a Lagrangian
 $\cL_\cA \hookrightarrow \cM_{\mathrm{vac}}(\cA)$. The bar complex is the
 endomorphism algebra of this point. The Swiss-cheese operad is the local
 composition law. Koszul duality is the symplectic complement. The genus tower
-is the deformation of the point over the moduli of curves. The holographic
-principle is the theorem that a point determines its ambient. The entire content
-of both volumes is the local geometry of the derived symplectic category at this
-single point.
+is the deformation of the point over the moduli of curves. The boundary point
+determines the shifted-cotangent formal local model; the full ambient requires
+the Darboux datum. The entire content of both volumes is the local geometry of
+the derived symplectic category at this single point.
 
 The Heisenberg algebra is the simplest instance: every entry can be computed by hand. We begin there, then build the general machine.
 
@@ -49,7 +59,7 @@ d_{\barB}[s^{-1}a \,|\, s^{-1}b]
 \qquad
 \eta_{12} = d\log(z_1 - z_2),
 \]
-the Arnold relation ($\eta_{12} \wedge \eta_{23} + \eta_{23} \wedge \eta_{31} + \eta_{31} \wedge \eta_{12} = 0$) forcing $D_\cA^2 = 0$ at genus~$0$, the curvature $d_{\mathrm{fib}}^2 = \kappa(\cA) \cdot \omega_g$ at higher genus, and the universal Maurer--Cartan element $\Theta_\cA = D_\cA - d_0$ whose projections are the five theorems.
+the Arnold relation ($\eta_{12} \wedge \eta_{23} + \eta_{23} \wedge \eta_{31} + \eta_{31} \wedge \eta_{12} = 0$) forcing $D_\cA^2 = 0$ at genus~$0$, the genus-one curvature $d_{\mathrm{fib}}^2 = \kappa(\cA) \cdot \omega_1$, the conditional curved-Dunn continuation to $g \ge 2$, and the universal Maurer--Cartan element $\Theta_\cA = D_\cA - d_0$ whose projections are the five theorems.
 
 In the \emph{topological direction}, the operators separate: cut $\R$ at a point $t_*$ between $t_1$ and $t_2$. The observables on each half-line depend only on their own operators. The \emph{deconcatenation coproduct} records this separation:
 \begin{equation}\label{eq:preface2-delta}
@@ -72,29 +82,55 @@ The differential is a coderivation of the coproduct. Collisions in $\C$ commute 
 \noindent\textbf{The bar coalgebra and its three projections.}\enspace
 The E$_1$ bar complex $\barB(\cA)$ on $\FM_k(\C) \times \Conf_k^{<}(\R)$ is one coalgebra; three functors extract three objects: cobar $\Omega(\barBch(\cA)) \simeq \cA$ recovers the original algebra (bar-cobar inversion), Verdier duality $\mathbb{D}_{\mathrm{Ran}}(\barBch(\cA)) \simeq \barBch(\cA^!)$ produces the line-side Koszul dual, and chiral Hochschild cochains $C^\bullet_{\mathrm{ch}}(\cA,\cA)$ compute the bulk observables. The $\SCchtop$~structure is carried by the chiral derived center: the pair $(C^\bullet_{\mathrm{ch}}(\cA,\cA),\,\cA)$ is the bulk-acting-on-boundary datum. Every chapter of this volume is a different projection of the bar coalgebra.
 
-The projections of $\Theta_\cA$ through the Swiss-cheese window include the celestial OPE hierarchy (soft order~$p$ corresponds to shadow degree $r = p+2$; Remark~\ref{rem:celestial-ope-shadow-degree}) and the Page curve of black hole evaporation (the Page time $t_P = 3S_{\mathrm{BH}}/13$ is $c$-independent because $\kappa + \kappa' = 13$; \S\ref{subsec:gravity-page-curve}).
+The projections of $\Theta_\cA$ through the Swiss-cheese window include the celestial OPE hierarchy (soft order~$p$ corresponds to shadow degree $r = p+2$; Remark~\ref{rem:celestial-ope-shadow-degree}) and the conjectural Page-curve package for black hole evaporation. In the raw gravitational transseries model of \S\ref{subsec:gravity-page-curve}, the scalar identity $\kappa + \kappa' = 13$ only normalises the two Virasoro sectors; the Page time $t_P = 3S_{\mathrm{BH}}/13$ additionally requires the two-sector, Stokes, and entropy-extraction hypotheses.
 
 \medskip
 
 The independence is geometric. The bar complex is a formal Koszul model of the Lagrangian self-intersection $\cL \times_{\mathscr{M}}^h \cL$ in a $(-2)$-shifted symplectic stack~$\mathscr{M}$ (Theorem~\ref{thm:bar-is-self-intersection}). The holomorphic direction is the Koszul differential of the Lagrangian embedding; the topological direction is the groupoid diagonal. The coderivation property says the diagonal is a groupoid morphism. Both structures descend from the single fact that the bar complex computes a derived fiber product. The chiral algebra fixes a formal local bulk model: HKR for Lagrangian embeddings recovers $T^*[-1]\cL_\cA$ from boundary data; the actual ambient stack requires the Darboux $1$-form (Theorem~\ref{thm:holographic-reconstruction}).
 
-The open-colour dual $\cA^!_{\mathrm{line}}$ inherits an algebra structure from the topological direction (deconcatenation dualises to concatenation), and on the chirally Koszul locus this algebra is a dg-shifted Yangian: an $\Ainf$ algebra with spectral $R$-matrix, twisted coproduct, and Yang--Baxter equation (the last being $d^2 = 0$ on the degree-$3$ ordered bar complex). Strictification of the quasi-factorisation package to a spectral factorisation quantum group is controlled by a single coefficient: $1/n = \int_0^1(1-t)^{n-1}\,dt$ at filtration~$n$, the coefficient of the right-normed Lie monomial in the Dynkin projection $D_n(X_1\cdots X_n) = \tfrac{1}{n}\,[X_1,[X_2,\ldots,X_n]\cdots]$. Root multiplicity one forces every spectral Drinfeld obstruction into a one-dimensional space where this coefficient determines everything: inscribed for the simply-laced type~$A$ case (Theorem~\ref{thm:complete-strictification}); types $D$, $E$ and the non-simply-laced types $B$, $C$, $G_2$, $F_4$ are conjectural pending per-type verification along the lines of Hernandez 2006 and Nakajima 2001 for the $q$-character and quiver-variety inputs.
+The open-colour dual $\cA^!_{\mathrm{line}}$ inherits an algebra structure from the topological direction (deconcatenation dualises to concatenation), and on the chirally Koszul locus this algebra is a dg-shifted Yangian: an $\Ainf$ algebra with spectral $R$-matrix, twisted coproduct, and Yang--Baxter equation (the last being $d^2 = 0$ on the degree-$3$ ordered bar complex). Strictification of the quasi-factorisation package to a spectral factorisation quantum group is governed by the root-sector scalar obstruction classes
+$[\epsilon_{\alpha,n}]\in
+\mathscr K_n/\operatorname{im}(\delta_{\alpha,n})$ of
+Theorem~\ref{thm:complete-strictification}. Root multiplicity one
+scalarises finite root sectors; it does not kill the obstruction. The
+Dynkin coefficient $1/n=\int_0^1(1-t)^{n-1}\,dt$ proves vanishing for
+path sectors by the $n$-gon rigidity calculation. Finite non-path
+sectors strictify exactly on the scalar-vanishing locus; affine mixed
+real--imaginary sectors remain conjectural.
 
 \medskip
 \noindent\textbf{The Vol~I engine.}\enspace
-Volume~I is Koszul duality on a curve: the bar construction for chiral algebras on an algebraic curve~$X$, five main theorems proved at all genera. Three structure theorems organise the representation-theoretic content. \emph{Algebraicity}: $H(t)^2 = t^4 Q_L(t)$ for a computable quadratic~$Q_L$, so the shadow generating function is algebraic of degree~$2$. \emph{Formality identification}: the shadow obstruction tower agrees with the $L_\infty$ formality obstruction tower at all degrees (Theorem~\ref{V1-thm:shadow-formality-identification}), and the discriminant $\Delta = 8\kappa S_4$ classifies algebras into four depth classes~(G/L/C/M). \emph{Complementarity}: under perfectness and chain-level nondegeneracy (satisfied for all standard families; conditional in general), factorisation homology decomposes as $H^*(\overline{\mathcal{M}}_g, Z(A)) \simeq Q_g(A) \oplus Q_g(A^!)$, a Lagrangian splitting.
+Volume~I is Koszul duality on a curve: the bar construction for chiral algebras on an algebraic curve~$X$, with the five main theorems formulated uniformly in genus. Three structure theorems organise the representation-theoretic content. \emph{Algebraicity}: $H(t)^2 = t^4 Q_L(t)$ for a computable quadratic~$Q_L$, so the shadow generating function is algebraic of degree~$2$. \emph{Formality identification}: the shadow obstruction tower agrees with the $L_\infty$ formality obstruction tower at all degrees (Theorem~\ref{V1-thm:shadow-formality-identification}), and the discriminant $\Delta = 8\kappa S_4$ classifies algebras into four depth classes~(G/L/C/M). \emph{Complementarity}: under perfectness and chain-level nondegeneracy (satisfied for all standard families; conditional in general), factorisation homology decomposes as $H^*(\overline{\mathcal{M}}_g, Z(A)) \simeq Q_g(A) \oplus Q_g(A^!)$, a Lagrangian splitting.
 
-Volume~II lifts this from one to three dimensions. The bar differential~$D_\cA$ is holomorphic factorisation on~$\C$; the deconcatenation coproduct~$\Delta$ is topological factorisation on~$\R$; together they form an $E_1$ dg coassociative coalgebra on $\FM_k(\C) \times \Conf_k^<(\R)$. The $\mathrm{SC}^{\mathrm{ch,top}}$ structure emerges in the chiral derived center: the pair $(\cC^\bullet_{\mathrm{ch}}(\cA,\cA),\,\cA)$ is the bulk-boundary datum. The modular characteristic~$\kappa(\cA)$ determines the curved $A_\infty$ deformation at genus $g \ge 1$, complementarity lifts to the bulk-boundary-line triangle, and the discriminant~$\Delta$ classifies the complexity of bulk-boundary pairs. Classical Koszul duality is genus~$0$ on the formal disk; Volume~I is genus~$g$ on a curve; Volume~II is the dimensional lift to $\C \times \R$.
+Volume~II lifts this from one to three dimensions. The bar differential~$D_\cA$ is holomorphic factorisation on~$\C$; the deconcatenation coproduct~$\Delta$ is topological factorisation on~$\R$; together they form an $E_1$ dg coassociative coalgebra on $\FM_k(\C) \times \Conf_k^<(\R)$. The $\mathrm{SC}^{\mathrm{ch,top}}$ structure emerges in the chiral derived center: the pair $(\cC^\bullet_{\mathrm{ch}}(\cA,\cA),\,\cA)$ is the bulk-boundary datum. The modular characteristic~$\kappa(\cA)$ gives the genus-one curvature; its chain-level continuation to $g \ge 2$ is conditional on the modular-bootstrap $H^2$ acyclicity and curved-Dunn comparison hypotheses. Complementarity lifts to the bulk-boundary-line triangle, and the discriminant~$\Delta$ classifies the complexity of bulk-boundary pairs. Classical Koszul duality is genus~$0$ on the formal disk; Volume~I is genus~$g$ on a curve; Volume~II is the dimensional lift to $\C \times \R$.
 
 \medskip
 \noindent\textbf{The open primitive.}\enspace
-The bar complex is not the fundamental object. It is the coalgebraic shadow of a more primitive datum: the open/closed factorization dg-category~$\cC$ on the bordified curve $\widetilde{X}_D$ (\S\ref{subsec:categorical-open-sector}). This category's objects are boundary conditions; its morphisms are open-string states. A choice of vacuum boundary condition~$b$ produces a boundary algebra $A_b = \End_\cC(b)$ as a \emph{chart}; the bar complex $\barB(A_b)$ encodes how closed-sector operations twist the open-sector composition. The Morita class of~$\cC$, not the quasi-isomorphism class of~$A_b$, is the invariant. Three objects are independently constructed from~$\cC$ and must never be conflated:
+The primitive object is the open/closed factorization dg-category~$\cC$
+on the bordified curve $\widetilde{X}_D$
+(\S\ref{subsec:categorical-open-sector}); the bar complex is its
+coalgebraic shadow. This category's objects are boundary conditions;
+its morphisms are open-string states. A choice of vacuum boundary
+condition~$b$ produces a boundary algebra $A_b = \End_\cC(b)$ as a
+\emph{chart}; the bar complex $\barB(A_b)$ encodes how closed-sector
+operations twist the open-sector composition. The Morita class
+of~$\cC$ is the invariant. Three objects are independently constructed
+from~$\cC$ and must never be conflated:
 \begin{itemize}[nosep]
 \item the \emph{bar complex} $\barB(A_b)$ classifies twisting morphisms (couplings between~$A_b$ and its line-side/open-colour Koszul dual~$A^!_{\mathrm{line}}$);
 \item the \emph{chiral derived center} $\cZ^{\mathrm{der}}_{\mathrm{ch}}(\cC) = \RHom_{\operatorname{Fun}(\cC,\cC)}(\operatorname{Id}, \operatorname{Id})$ is the universal bulk;
 \item the \emph{line-side/open-colour Koszul dual algebra} $A^!_{\mathrm{line}} = D_{\operatorname{Ran}}(\barB(A_b))$, which later models the line side on the chirally Koszul locus.
 \end{itemize}
-Modularity is not an additional axiom. It is trace plus clutching on the open sector: the cyclic trace on $\End(b)$ seeds a Calabi--Yau structure; the annulus identification $\int_{S^1} \cC \simeq \HH_\bullet(\cC)$ is the first modular shadow; and clutching (composing along shared boundary circles via nodal degeneration) raises genus. The genus expansion of the modular Maurer--Cartan element $\Theta^{\mathrm{oc}}_\cA$ is the algebraic modular tower. The shadow archetypes~G/L/C/M classify the $A_\infty$ complexity of the boundary algebra; in the gravitational examples below, each archetype determines a distinct perturbative structure.
+Modularity is trace plus clutching on the open sector: the cyclic
+trace on $\End(b)$ seeds a Calabi--Yau structure; the annulus
+identification $\int_{S^1} \cC \simeq \HH_\bullet(\cC)$ is the first
+modular shadow; and clutching (composing along shared boundary circles
+via nodal degeneration) raises genus. The genus expansion of the
+modular Maurer--Cartan element $\Theta^{\mathrm{oc}}_\cA$ is the
+algebraic modular tower. The shadow archetypes~G/L/C/M classify the
+$A_\infty$ complexity of the boundary algebra; in the gravitational
+examples below, each archetype determines a distinct perturbative
+structure.
 
 \section*{II.\quad The Heisenberg on $\C \times \R$}
 
@@ -175,7 +211,8 @@ factors. The same decomposition holds at degree~$n$:
 The ordered configuration space $\Conf_n^<(\R) \cong
 \R^{n-1}_{> 0}$ is contractible; its $E_1$-coalgebra structure
 contracts to the strict coassociative coproduct: deconcatenation.
-No higher homotopies survive. The coproduct is the unique
+The topological coproduct alone introduces no higher homotopies. The
+coproduct is the unique
 coassociative coproduct on $T^c(V)$, determined by the
 cogenerators.
 
@@ -202,7 +239,7 @@ ${\gAmod}^{E_1} := \Hom_\Sigma(F\!\Ass,\,
 ($F\!\Ass$ is the Feynman transform of the associative modular operad, with ribbon graphs as summands)
 replaces stable graphs by \emph{ribbon graphs} (fatgraphs)
 and is the algebraic form of the 't~Hooft $1/N$ expansion:
-$\hbar = 1/N^2$, the MC element is
+$\hbar_{\mathrm{genus}} = 1/N^2$, the MC element is
 $\sum_g N^{2-2g}F_g(\lambda)$, planar diagrams dominate at
 large~$N$, and the coinvariant projection
 $\Theta^{E_1} \mapsto \Theta$ is the passage from
@@ -212,8 +249,8 @@ Volume~II promotes this to a two-coloured convolution algebra: $\SCchtop$ couple
 
 \section*{III.\quad The Swiss-cheese operad $\SCchtop$}
 
-The product $\FM_k(\C) \times \Conf_k^<(\R)$ is the space of
-operations of a two-coloured operad:
+The product $\FM_k(\C) \times \Conf_k^<(\R)$ is the local model for
+the operations of the directional two-coloured dioperad $\SCchtop$:
 \begin{alignat*}{2}
 &\text{closed-to-closed:}\quad
 &&\SCchtop(\mathsf{ch}^k;\,\mathsf{ch})
@@ -238,15 +275,15 @@ factorization, the coproduct encodes topological factorization.
 The $\SCchtop$ structure emerges in the chiral derived center:
 the pair $(C^\bullet_{\mathrm{ch}}(\cA,\cA),\, \cA)$ carries the
 two-coloured Swiss-cheese datum.
-Koszul duality for $\SCchtop$ exchanges the closed colour
+Dioperadic Koszul duality for $\SCchtop$ exchanges the closed colour
 ($\mathsf{Com} \leftrightarrow \mathsf{Lie}$) while preserving the
 open colour ($\mathsf{Ass}$)
-(Proposition~\ref{thm:SC-self-duality}); the duality functor on
+(Theorem~\ref{thm:SC-self-duality}); the duality functor on
 $\SCchtop$-algebras is an involution.  The open-colour dual
 $\cA^!_{\mathrm{line}}$ inherits an $(\SCchtop)^!$-algebra
 structure. The verification
 for the Heisenberg algebra is the four-step proof of
-Theorem~\ref{thm:rosetta-swiss-cheese}, carried out in the Rosetta
+Theorem~\ref{thm:rosetta-e1-coalgebra}, carried out in the Rosetta
 Stone chapter.
 
 The closed colour is the Koszul direction (holomorphic collisions on~$\C$); the open colour is the groupoid direction (topological cuts along~$\R$). Directionality (the empty open-to-closed component) reflects the Springer pattern: representations restrict from $G$ to $B$, not conversely.
@@ -254,14 +291,15 @@ The closed colour is the Koszul direction (holomorphic collisions on~$\C$); the 
 \medskip
 \noindent\textbf{Homotopy-Koszulity.}\enspace
 The classical Swiss-cheese operad $\mathsf{SC}$ ($E_2$ closed, $E_1$ open) is Koszul (Livernet).
-Kontsevich formality gives a quasi-isomorphism
-$\SCchtop \xrightarrow{\sim} \mathsf{SC}$. Bar-cobar transfer
-gives
+Kontsevich formality enters through an associator-dependent zigzag
+from the local $\mathsf{SC}$ model to the chiral-topological
+dioperadic model. Bar-cobar transfer gives the homotopy equivalence
 \[
 \Omega\mathbf{B}(\SCchtop) \;\xrightarrow{\;\sim\;}\; \SCchtop.
 \]
-The bar-cobar adjunction on $\SCchtop$-algebras is a Quillen
-equivalence (Theorem~\ref{thm:homotopy-Koszul}).
+The theorem is a homotopy-Koszulity statement in the coloured
+dioperadic/properadic ambient, with the stated product-decomposition
+and associator hypotheses (Theorem~\ref{thm:homotopy-Koszul}).
 
 
 \section*{IV.\quad The $\Ainf$ chiral operations}
@@ -301,9 +339,9 @@ the BRST condition.
 
 \subsection*{The $n = 2$ relation: the Leibniz rule}
 
-$\FM_2(\C) = \{(z_1, z_2) : z_1 \ne z_2\}/\text{translation}$
-is a point (after modding out translation, the single parameter
-$z_{12} = z_1 - z_2$ is fixed by scaling). The boundary
+$\FM_2(\C)$ modulo translations is $\C^\times$; after positive real
+scaling its reduced boundary direction is $S^1$.  The real ordered
+Stasheff locus for two inputs is a point. The boundary
 $\partial\FM_2(\C)$ is a single collision stratum $z_1 = z_2$.
 The Stasheff relation at $n = 2$ is
 \[
@@ -334,9 +372,12 @@ The operation $m_3$ is the integral over $K_3$:
 it interpolates between the two boundary contributions
 $D_{12}$ and $D_{23}$. When $m_3=0$ (Heisenberg, free
 fermion), the relation reduces to strict associativity.
-When $m_3\ne 0$ (Kac--Moody, Virasoro), the
-homotopy is the Jacobiator on $K_3$, and its nonvanishing is the failure of the OPE
-to be strictly associative.
+When the transferred operation $m_3$ is nonzero, the homotopy is the
+Jacobiator on $K_3$.  For affine Kac--Moody the transferred minimal
+operations vanish for $k \ge 3$ in the one-loop Koszul model; the
+non-central simple-pole SC class is a separate chiral operation, not a
+defect in the Lie Jacobi identity.  For Virasoro and class~M examples,
+nonzero higher transferred operations record non-formality.
 
 \subsection*{Higher $n$: the full Stasheff hierarchy}
 
@@ -361,24 +402,23 @@ affine: $\dim_\R = 2n{-}4$).
 The Stasheff associahedron $K_n$ is a real $(n{-}2)$-dimensional
 submanifold-with-corners inside $\FM_n(\C)/\mathrm{Aff}(\C)$,
 obtained by restricting to the real locus $\FM_n(\R)$.}
-Its boundary strata are
-indexed by all possible collision patterns (subsets
-$S \subset \{1, \ldots, n\}$ with $|S| \ge 2$). Each stratum
-$D_S$ contributes $m_{|S|}$ composed with $m_{n - |S| + 1}$ to
-the Stasheff relation, and $m_n$ itself is the integral over the
-top stratum of $\FM_n(\C)$. The identity $\partial^2 = 0$ on
-$\FM_n(\C)$ (every codimension-$2$ face is reached by exactly two
-codimension-$1$ faces with opposite orientations) is the
-combinatorial identity that makes $D_\cA^2 = 0$ hold, and hence
-that makes the $\Ainf$ Stasheff relations consistent.
+Its full boundary strata are indexed by complex collision patterns.
+The Stasheff relation uses the real ordered locus $K_n$, whose faces
+are consecutive nested planar blocks.  All-subset strata belong to the
+full $E_2$/FM relations; their restriction to the planar real locus
+gives the $A_\infty$ Stasheff faces.  The identity
+$\partial^2 = 0$ on the relevant compactified chain is the
+combinatorial identity that makes $D_\cA^2 = 0$ hold.
 
 
 \section*{IV$'$.\quad The resolvent principle}
 
-The $\Ainf$ operations $\{m_k\}_{k \ge 2}$ are determined by
-a single datum: the binary product~$m_2$. The higher
-operations are not independent; they are the unique solution
-of a fixed-point equation.
+For a strict binary chiral input equipped with a fixed deformation
+retract, the transferred $\Ainf$ operations are determined by the
+binary product~$m_2$ relative to that contraction.  A general
+$A_\infty$ algebra may have independent higher input vertices; the
+formula below is the homological perturbation formula in the binary
+case.
 
 Let $(H, p, \iota, h)$ be a deformation retract of $(\cA, m_1)$
 onto cohomology $H = H^\bullet(\cA, m_1)$, with $h^2 = h\iota =
@@ -404,12 +444,13 @@ with $k$~leaves ($|\mathrm{PRT}_k| = C_{k-1}$, the Catalan
 number), and $\mathfrak{m}(T)$ assigns $m_2$ to each internal
 vertex and~$h$ to each internal edge.
 
-One equation, one binary input, Catalan many trees. The
-Stasheff relations are the consistency of the iteration;
-the tree formula is the perturbative expansion of the Lagrangian self-intersection. Wheel diagrams in the Virasoro
-(Section~VII) are evaluations of this tree sum using the BRST
-homotopy of Drinfeld--Sokolov reduction
-(Theorem~\ref{thm:tree-wheel-bridge}).
+One equation, one binary input, Catalan many trees, all relative to
+the chosen contraction. The Stasheff relations are the consistency of
+the iteration; the tree formula is the perturbative expansion of the
+Lagrangian self-intersection. Under the hypotheses of
+Theorem~\ref{thm:tree-wheel-bridge}, wheel diagrams in the Virasoro
+case are evaluations of this tree sum using the BRST homotopy of
+Drinfeld--Sokolov reduction.
 
 
 \section*{V.\quad First computation: the Heisenberg}
@@ -481,11 +522,11 @@ The free energy $F_1 = -k\log\eta(\tau)$.
 $m_1 = 0$.
 $m_2(J^a, J^b;\lambda) = f^{ab}{}_c\,J^c + k\,\delta^{ab}\lambda$
 (the simple-pole bracket plus the double-pole metric).
-$m_3 \ne 0$: the Jacobiator homotopy on $\FM_3(\C)$. The three
-codimension-$1$ boundary strata of $\FM_3(\C)$ contribute the
-three terms $m_2(m_2(-,-),-)$ in the Stasheff identity; their
-failure to cancel is the Jacobi identity defect, corrected by
-$m_3$. Higher $m_k = 0$ by dimension counting on $\FM_k(\C)$.
+The transferred affine minimal model is one-loop Koszul:
+$m_k=0$ for $k\ge3$.  The Jacobi identity is enforced by the
+three-face Stokes identity on $\FM_3(\C)$ and the Lie-algebra Jacobi
+identity for $f^{ab}{}_c$; it is not repaired by a nonzero transferred
+$m_3$.
 
 \smallskip
 \noindent\textbf{PVA on cohomology.}\enspace
@@ -502,15 +543,13 @@ position-space OPE kernel:
 \;\otimes\; J_a \otimes J_b
 \;=\;
 \frac{f^{ab}{}_c\,J^c}{z}\,J_a\otimes J_b
- + \frac{k\,\delta^{ab}}{z^2}\,J_a\otimes J_b
-\;=\;
-\frac{\Omega}{z} + \frac{k\,K_{\fg}}{z^2},
+ + \frac{k\,\delta^{ab}}{z^2}\,J_a\otimes J_b ,
 \]
-where $\Omega = \sum_a J^a \otimes J_a$ is the split Casimir
-and $K_{\fg} = \sum_a J_a \otimes J^a$ is the Killing form
-tensor. The scalar term $k\,K_{\fg}/z^2$ is ad-invariant
-and contributes trivially to the CYBE; the collision residue
-r-matrix is $r(z) = k\,\Omega/z$.
+The simple pole is the current-valued Lie bracket and gives Jacobi.
+The double pole is the level pairing.  After the standard
+factorisation/KZ reduction this invariant form is packaged as the
+trace-form collision residue $r(z)=k\,\Omega/z$, where
+$\Omega=\sum_a J^a\otimes J_a$ is the split Casimir.
 The KZ connection $\nabla_{\mathrm{KZ}} = d - \frac{1}{k+h^\vee}\,\Omega\,d\log z$ is
 the flat connection on conformal blocks on the affine Kac--Moody
 comparison surface. Its monodromy is compared by the affine
@@ -575,8 +614,8 @@ m_2(W,W;\lambda) \;=\; \frac{c}{360}\lambda^5
 + \Bigl(\frac{3}{10}\partial^2 T + \frac{32}{22+5c}\,\Lambda\Bigr)\lambda
 + \frac{1}{15}\partial^3 T + \frac{16}{22+5c}\,\partial\Lambda,
 \]
-where $\Lambda = {}\!:(TT): - \tfrac{3}{10}\,\partial^2 T$ is the quasi-primary composite field (the first non-primitive operation). $m_3 \ne 0$: the Jacobiator
-homotopy, as for Kac--Moody, but now involving $\Lambda$.
+where $\Lambda = {}\!:(TT): - \tfrac{3}{10}\,\partial^2 T$ is the quasi-primary composite field (the first non-primitive operation). $m_3 \ne 0$: the first transferred Jacobi homotopy involves the
+nonlinear field~$\Lambda$.
 $m_4 \ne 0$: the quartic operation from the $\FM_4(\C)$ boundary
 decomposition, with the coefficient $32/(22+5c)$ entering through
 the $WW\Lambda$ channel. The $\Ainf$ structure does not terminate.
@@ -598,12 +637,14 @@ coproduct $\Delta(\Lambda^*) = T^* \otimes T^* -
 The completed dual is the cumulant coalgebra
 $\operatorname{Cum}_c(\mathcal{W}_3) =
 \hat{T}^c(sQ(\mathcal{W}_3)^\vee)$, with primitive generating
-series $G_{\mathcal{W}_3}(t) = (t + t^2 + t^3)/(1 - t)$ and
-completion entropy $h_K(\mathcal{W}_3) \approx 0.772$.
+series
+$G_{\mathcal{W}_3}^{\mathrm{prim}}(t) = (t + t^2 + t^3)/(1 - t)$.
 (The \emph{primitive generating series} $G_\cA(t) = \sum_n (\dim Q_n)\, t^n$
 counts cogenerators of the dual coalgebra by conformal weight;
 the \emph{completion entropy} $h_K = \lim_{n\to\infty} n^{-1}\log\dim Q_n$
-measures exponential growth.)
+measures exponential growth in the completed modular-PVA extension
+sequence. The displayed rational primitive series has zero
+exponential entropy.)
 This is
 the first family where kinematic complexity exceeds the Virasoro
 baseline.
@@ -611,7 +652,7 @@ baseline.
 \smallskip
 \noindent\textbf{Line operators.}\enspace
 Beyond the affine lineage, the line-side package for
-$\mathcal{W}_3$ remains conjectural on the live manuscript surface
+$\mathcal{W}_3$ remains conjectural in the stated theorem range
 \textup{(}Remark~\textup{\ref{comp:line-op-w3}}\textup{)}. One
 expects a nonabelian dg-shifted $\mathcal{W}_3$-Yangian package
 whose modules are expected to model the line category, with genuinely matrix-valued spectral
@@ -619,7 +660,13 @@ kernel and Yang--Baxter constraint. Correspondingly, the
 classical $r$-matrix $r(z)$ should encode the $\mathcal{W}_3$
 Knizhnik--Zamolodchikov system for three-point conformal blocks.
 
-The genus-$1$ Catalan correction $C_n^{\mathrm{eff}}(\tau) = C_n + \alpha_n G_2(\tau) + \beta_n G_4(\tau)$ is quasi-modular: the $G_2$ anomaly arises from the first-order OPE coefficient coupling to the quasi-periodic defect of the Weierstrass $\zeta$-function.
+In the gravitational genus-$1$ correction
+\textup{(}Remark~\ref{rem:genus-1-catalan-correction}\textup{)}, the
+effective Catalan number
+$C_n^{\mathrm{eff}}(\tau)=C_n+\alpha_nG_2(\tau)+\beta_nG_4(\tau)$ is
+quasi-modular. The $G_2$ anomaly comes from coupling the first-order
+OPE coefficient to the quasi-periodic defect of the Weierstrass
+$\zeta$-function.
 
 
 \section*{VIII.\quad The 3d MC element $\alpha_T$}
@@ -627,6 +674,9 @@ The genus-$1$ Catalan correction $C_n^{\mathrm{eff}}(\tau) = C_n + \alpha_n G_2(
 Volume~I has one MC element $\Theta_\cA$ in the modular
 convolution algebra $\gAmod$. Volume~II has one MC element
 $\alpha_T$ in the Swiss-cheese convolution algebra
+when $T=(\Bbound,\cC_{\mathrm{line}})$ is an
+$(\SCchtop)^!$-algebra satisfying the completion and boundedness
+hypotheses (H1)--(H4) of Theorem~\ref{thm:3d-universal-mc}:
 \[
 \gSC_T
 \;:=\;
@@ -647,14 +697,15 @@ $E_1(m)$-chains, mixed vertices by products. The MC element is
 \;\in\;
 \mc(\gSC_T).
 \]
-It exists because $\SCchtop$ is homotopy-Koszul
+It satisfies the MC equation because $\SCchtop$ is homotopy-Koszul
 (Theorem~\ref{thm:homotopy-Koszul}), hence
-$\mathbf{B}(\SCchtop)$ has $\partial^2 = 0$.
+$\mathbf{B}(\SCchtop)$ has $\partial^2 = 0$ after postcomposition
+with such a target~$T$.
 
 \medskip
 \noindent\textbf{Six direct faces.}\enspace
 The basic closed/open/mixed data of the volume are read directly
-from $\alpha_T$; the corrected triangle and line-side package are
+from $\alpha_T$; the bulk-boundary triangle and line-side package are
 assembled later from these projected data together with the scoped
 comparison theorems:
 \begin{center}
@@ -696,13 +747,25 @@ Two further consequences of this projected data are proved in the
 later chapters:
 the complete strictification theorem
 (Theorem~\ref{thm:complete-strictification}) shows that the open-face
-spectral quasi-factorization package strictifies once constructed
-(via root multiplicity one), and the general half-space BV
-theorem (Theorem~\ref{thm:general-half-space-bv}) shows every PVA
-with inner translation deformation-quantizes to a boundary vertex
-algebra (via the doubling construction).
+spectral quasi-factorization package strictifies exactly when its
+root-sector scalar classes
+$[\epsilon_{\alpha,n}]\in
+\mathscr K_n/\operatorname{im}(\delta_{\alpha,n})$ vanish, and the
+general half-space BV
+theorem (Theorem~\ref{thm:general-half-space-bv}) gives a boundary
+vertex algebra for finite-type PVA targets with inner translation,
+polynomial finite-jet dependence, and the analytic SDR needed for the
+doubling construction.
 
-The spectral Drinfeld strictification extends beyond simple Lie algebras to all untwisted affine Kac--Moody algebras via the abelianness mechanism: imaginary root spaces $\fg_{n\delta} \simeq \fh \cdot t^n$ are abelian, and the Cartan gauge-twist forces the spectral Drinfeld class to vanish. The boundary is sharp: for hyperbolic Kac--Moody algebras with non-abelian root spaces, strictification genuinely fails.
+The spectral Drinfeld strictification criterion is proved for finite
+simple types: strict output is the scalar-vanishing locus, with
+path-type sectors already zero by the $1/n$ BCH calculation.  For
+untwisted affine algebras, real sectors retain the scalar reduction.
+In the Cartan-diagonal imaginary sector, root spaces
+$\fg_{n\delta} \simeq \fh \cdot t^n$ are abelian and the Cartan
+gauge-twist kills the spectral Drinfeld class.  Mixed real/imaginary
+affine sectors and hyperbolic Kac--Moody algebras remain frontier:
+their obstruction may survive and must be computed sector by sector.
 
 \medskip
 \noindent\textbf{Colour decomposition.}\enspace
@@ -732,8 +795,8 @@ MC equation. The second says that the $r$-matrix and the PVA
 bracket are $\Theta_\cA$-twisted cocycles. The third is the full
 open MC equation; in the examples below (genus~$0$), $\alpha_T^{\mathrm{op}} = 0$
 and the equation reduces to $\tfrac{1}{2}[\alpha_T^{\mathrm{mix}},
-\alpha_T^{\mathrm{mix}}]_{\mathrm{op}} = 0$, which closes the
-line-category structure.
+\alpha_T^{\mathrm{mix}}]_{\mathrm{op}} = 0$, the line-category
+Maurer--Cartan relation.
 
 \medskip
 \noindent\textbf{Heisenberg.}\enspace
@@ -754,10 +817,9 @@ $\alpha_{\mathrm{grav}} \in \mc(\gSC_T)$ for $SL(2,\R)$ CS at
 $k = \ell/(4G)$ with $\Bbound = \mathrm{Vir}_{6k}$. Closed face:
 infinite-depth $\Ainf$ Virasoro. Open face:
 line-sector operations. $R$-matrix: line-side genus-$0$ braiding.
-Genus tower: after effective scalar specialization, the effective scalar genus tower,
-read in the gravitational interpretation as the effective scalar perturbation series,
-with $\kappa_{\mathrm{eff}} = 3k-13$ and quartic contact
-$\mathfrak{Q} = 10/[6k(30k+22)]$. Later expected realization:
+Genus tower: after effective scalar specialization, the scalar shadow
+has $\kappa_{\mathrm{eff}} = 3k-13$ and quartic contact
+$\mathfrak{Q} = 10/[6k(30k+22)]$. Expected line-side realization:
 the abstract line-side package modeled by modules for the
 dual-central-charge Virasoro algebra, with Virasoro fusion kernel as the expected
 braiding realization.
@@ -768,13 +830,14 @@ Virasoro bar-complex argument is conjectural for the BTZ states identified via
 this MC dictionary, and the BTZ
 Bekenstein--Hawking entropy formula would then follow from that
 two-sided Cardy asymptotic entropy formula
-(Theorems~\ref{conj:cardy-mc} and~\ref{conj:gravity-btz-entropy},
+(Conjectures~\ref{conj:cardy-mc} and~\ref{conj:gravity-btz-entropy},
 \S\ref{sec:3d-gravity}).
 At $k = 13/3$ (equivalently $c = 26$), the chiral dual
 $\mathrm{Vir}_{26-c} = \mathrm{Vir}_0$ is uncurved: the dual bar
 complex is a genuine cochain complex, $\kappa(\mathrm{Vir}_0) = 0$.
-This is the bosonic string critical dimension:
-the unique value at which the effective scalar genus tower vanishes.
+This is the bosonic string critical dimension in the scalar anomaly
+budget: the effective scalar genus contributions vanish, not the full
+gravitational transseries.
 
 
 \section*{IX.\quad Koszulness}
@@ -783,8 +846,8 @@ The prototype for Koszul duality as convolution is the Chriss--Ginzburg theorem:
 $H_*^{BM}(\widetilde{\mathcal{N}} \times_{\fg}
 \widetilde{\mathcal{N}}) \cong H_W$. The Hecke algebra is
 a convolution algebra. The bar complex $\barBch(\cA)$ on
-$\FM_n(\C) \times \Conf_n^{<}(\R)$ is the convolution algebra
-of chiral algebra: the bar differential is convolution on
+$\FM_n(\C) \times \Conf_n^{<}(\R)$ is the coalgebraic convolution
+shadow of the chiral algebra: the bar differential is convolution on
 $\FM_n(\C)$; the coproduct is restriction on $\Conf_n^{<}(\R)$;
 the six projections recover the algebra, the open-colour
 line-sector operations, the $R$-matrix, the genus tower, and the
@@ -808,7 +871,7 @@ Springer resolution $\widetilde{\cN} \to \fg$
 Steinberg $\widetilde{\cN} \times_{\fg} \widetilde{\cN}$
  & $\barBch(\cA)$ on $\FM_k(\C) \times \Conf_k^{<}(\R)$ \\[2pt]
 Convolution $\Rightarrow$ Hecke algebra $H_W$
- & Convolution $\Rightarrow$ $\SCchtop$-algebra \\[2pt]
+ & convolution shadow $\Rightarrow$ derived-centre $\SCchtop$ pair \\[2pt]
 Springer correspondence
  & bulk-boundary-line triangle \\[2pt]
 Kazhdan--Lusztig basis
@@ -854,35 +917,36 @@ single line:
 \[
 H^{p,q}\bigl(\barBch(\cA)\bigr) = 0 \quad \text{for } q \neq 0.
 \]
-This is a single condition. Eleven consequences follow from it,
+This is a single condition. Twelve consequences follow from it,
 each expressing a different face of the same concentration.
 
-\medskip\noindent\textbf{The eleven faces.}\enspace
+\medskip\noindent\textbf{The twelve faces.}\enspace
 The Koszul polytope of Volume~I:
 \begin{enumerate}[label=\textup{(\roman*)},leftmargin=2em,itemsep=2pt]
 \item \emph{Concentration}: bar cohomology in one degree.
 \item \emph{Spectral collapse}: the PBW spectral sequence degenerates
  at~$E_2$. The associated graded $\gr_F \cA$ is classically Koszul
  (Priddy--BGS), and the chiral deformation introduces no corrections.
-\item \emph{Formality}: $m_k = 0$ for $k \geq 3$. One-loop
- exactness: multi-particle collisions on $\FM_k(\C)$ contribute no
- new cohomology beyond what the pairwise OPE already sees.
+\item \emph{SC-formality, when present}: on the formal sublocus
+$m_k = 0$ for $k \geq 3$. One-loop exactness means multi-particle
+collisions on $\FM_k(\C)$ contribute no new cohomology beyond what
+the pairwise OPE already sees.  Class~M is chirally Koszul but not
+SC-formal.
 \item \emph{Small resolution}: the bar-cobar counit
  $\Omegach(\barBch(\cA)) \xrightarrow{\sim} \cA$ is a
  quasi-isomorphism. Verdier duality on the bar coalgebra gives
  $\mathbb{D}_{\operatorname{Ran}} \barBch(\cA) \simeq
  \barBch(\cA^!)$, identifying the Verdier dual with the bar of the
  Koszul dual algebra (Theorem~A intertwining).
- This identification exists unconditionally for every~$\cA$. On
- the Koszul locus, $\barBch(\cA^!)$ is formal and its
- cohomology is~$\cA^!$. Off the Koszul locus,
- $\barBch(\cA^!)$ carries genuinely higher operations.
+ This chain-level identification is restricted to the Koszul,
+ conilpotent, completed locus.  Outside that locus one has coderived
+ inversion, and $\barBch(\cA^!)$ carries genuinely higher operations.
 \item \emph{Ext diagonal}: $\Ext^{p,q}_\cA(\omega_X, \omega_X) = 0$
  for $p \neq q$ (the BGS criterion chiralized).
 \item \emph{Hochschild concentration}:
  $\mathrm{ChirHoch}^n(\cA) = 0$ for $n \notin \{0, 1, 2\}$.
 \item \emph{Factorization homology}: $\int_{\Sigma_g}\cA$ is
- concentrated in degree~$0$ for all genera.
+ concentrated in degree~$0$ in the theorem's genus range.
 \item \emph{Barr--Beck--Lurie}: the comparison functor for the
  bar-cobar monad is an equivalence on the fiber; abstract monadicity
  applies without correction.
@@ -904,8 +968,7 @@ When $X = \mathrm{pt}$, the chiral tensor product is the ordinary
 tensor product, the FM compactification is the Stasheff
 associahedron, and all twelve criteria collapse to the classical
 Koszul theory of Priddy--BGG--BGS--Loday--Vallette. The chiral theory
-is not a generalization that weakens these conditions; it is a
-\emph{lift} that reveals their geometric origin. Concentration of
+is a \emph{lift} that reveals their geometric origin. Concentration of
 bar cohomology, in the classical setting, is a combinatorial miracle.
 In the chiral setting, it is a consequence of Arnold cancellation on
 FM compactifications: the boundary strata produce exact sequences,
@@ -921,8 +984,10 @@ $\cH_k^! = \mathrm{Sym}^{\mathrm{ch}}(V^*)$ is the chiral symmetric algebra on t
 Kac--Moody $\widehat{\fg}_k$ is Koszul: the PBW spectral sequence
 degenerates at~$E_2$ because $\gr_F \widehat{\fg}_k$ is a polynomial
 algebra (classically Koszul by Priddy). The chiral Koszul dual is
-$\widehat{\fg}_{-k-2h^\vee}$ at the dual level. The big and small
-resolutions agree.
+$\mathrm{CE}^{\mathrm{ch}}(\widehat{\fg}_{-k-2h^\vee})$, or
+equivalently the same-family scalar partner at the dual level after
+passing to the scoped comparison surface. The big and small
+resolutions agree on the Koszul locus.
 
 Virasoro is chirally Koszul (the PBW spectral sequence concentrates),
 but its Swiss-cheese structure is \emph{non-formal}: the transferred
@@ -948,14 +1013,14 @@ of the shadow obstruction tower, not the existence of a small resolution.
 
 \medskip\noindent\textbf{Homotopy-Koszulity of the operad.}\enspace
 Individual algebras may have formal or non-formal
-Swiss-cheese structure; the \emph{operad} $\SCchtop$
-is always homotopy-Koszul. Homotopy-Koszulity
-(Theorem~\ref{thm:homotopy-Koszul}) means the bar-cobar adjunction
-on $\SCchtop$-algebras is a Quillen equivalence, a property of the
-categorical framework, not of any particular algebra. It is what
-makes the bar-cobar framework of the 3d MC element~$\alpha_T$ of
-Section~VIII available: $\mathbf{B}(\SCchtop)$ has $\partial^2 = 0$
-because the operad is homotopy-Koszul, while the six projections of
+Swiss-cheese structure; the \emph{dioperad} $\SCchtop$
+is homotopy-Koszul in the coloured dioperadic/properadic ambient.
+Homotopy-Koszulity (Theorem~\ref{thm:homotopy-Koszul}) is a property
+of the categorical framework, not of any particular algebra. It is
+what makes the bar-cobar framework of the 3d MC element~$\alpha_T$ of
+Section~VIII available for targets satisfying the theorem's
+completion hypotheses: $\mathbf{B}(\SCchtop)$ has $\partial^2 = 0$
+after the stated transfer, while the six projections of
 $\alpha_T$ are the closed/open/mixed/cohomological/genus components
 coming from the colour and degree decomposition of the Swiss-cheese
 convolution algebra
@@ -963,28 +1028,25 @@ convolution algebra
 Theorem~\textup{\ref{thm:3d-universal-mc}}\textup{)}.
 
 \medskip\noindent\textbf{Koszulness and PVA descent.}\enspace
-On the Koszul locus (formality, criterion~(iii)), the cohomological
-shadow of the bar complex is exact: the higher $m_k$ vanish on
-cohomology, and $m_2$ alone survives. The PVA structure of the
-next section is therefore the \emph{complete} invariant of a Koszul
-chiral algebra at the cohomological level. For algebras with
-non-formal Swiss-cheese structure
+On the SC-formal part of the Koszul locus, the cohomological shadow
+of the bar complex is exact: the higher $m_k$ vanish on cohomology,
+and $m_2$ alone survives. The PVA structure of the next section is
+therefore the complete invariant only on this formal sublocus. For
+algebras with non-formal Swiss-cheese structure
 (Virasoro, $\mathcal{W}_3$), the PVA is only the leading term of an
-infinite tower: the higher transferred $m_k$ carry information that the PVA does
-not see, and quantization must lift the entire tower, not just the
-PVA bracket.
+infinite tower: the higher transferred $m_k$ carry information beyond
+the PVA, and quantization must lift the entire tower.
 
 
 \section*{X.\quad PVA descent}
 \label{sec:preface-pva-descent}
 
-The $\Ainf$ operations $m_k$ are chain-level data. On cohomology
-$H^\bullet(A, Q)$, the higher operations $m_{k \ge 3}$ vanish (they
-are $Q$-exact by the homotopy-transfer argument: each $m_k$ for
-$k \ge 3$ arises from a chain of dimension $\ge 1$ on
-$\Conf_k^<(\R)$, which is contractible, so $m_k = Q(h_{k-1})$).
-The binary operation $m_2$ survives, because its topological chain
-is zero-dimensional (a point in a contractible space).
+The $\Ainf$ operations $m_k$ are chain-level data. On the formal
+affine-Heisenberg PVA descent locus, the transferred higher
+operations vanish on cohomology and $m_2$ alone survives.  For class-M
+objects such as Virasoro and principal $\mathcal W_N$, the PVA is the
+leading cohomological shadow; a higher transferred tower remains
+invisible to the PVA and must be tracked separately.
 
 \subsection*{Decomposition of $m_2$}
 
@@ -1069,13 +1131,15 @@ introduces $\partial$ from the Jacobian of the coordinate change.
 
 \subsection*{Heisenberg and Kac--Moody PVAs}
 
-For the Heisenberg: $m_2^{\mathrm{reg}} = 0$ (no regular part), so
-$\mu = 0$ and the product is trivial. The $\lambda$-bracket
-$\{J_\lambda J\} = k\lambda$ is the entire PVA\@. Jacobi is
+For the Heisenberg PVA the underlying commutative differential
+polynomial algebra is $\C[J,\partial J,\partial^2J,\ldots]$.  The
+singular bracket is
+$\{J_\lambda J\} = k\lambda$. Jacobi is
 vacuous (single generator).
 
-For Kac--Moody: $m_2^{\mathrm{reg}}(J^a, J^b; 0) = 0$
-(the structure constants are in the singular part). The
+For Kac--Moody the underlying product is the commutative
+differential-polynomial product on
+\(\operatorname{Sym}(\C[\partial]\otimes\fg)\). The
 $\lambda$-bracket $\{J^a_\lambda J^b\} = f^{ab}{}_c J^c +
 k\delta^{ab}\lambda$ recovers the affine PVA\@. Jacobi is the
 Lie-algebra Jacobi identity for $f^{ab}{}_c$, which is the
@@ -1175,16 +1239,18 @@ The obstruction vanishes: $\HH^3_{\mathrm{ch}}(\C[J]) = 0$
 \noindent\textbf{The Kac--Moody quantization.}\enspace
 The affine PVA $\{J^a_\lambda J^b\} = f^{ab}{}_c J^c +
 k\delta^{ab}\lambda$ lifts to $\widehat{\fg}_k$. The
-obstruction at $m_3$ is the Jacobiator, which is a coboundary:
-$m_3$ exists and equals the homotopy-transfer correction from
-$\FM_3(\C)$. Higher obstructions vanish by dimension.
+Lie Jacobi identity makes the first obstruction vanish.  In the
+one-loop Koszul affine model the transferred higher operations vanish;
+the non-central simple-pole SC class is a separate affine
+factorisation datum.
 
 \medskip
 \noindent\textbf{The Khan--Zeng 3d sigma model.}\enspace
-Khan--Zeng construct a 3d holomorphic--topological sigma model
-from any PVA target. The boundary algebra of this theory is the
-quantization of the PVA\@. The BV-BRST complex of the sigma model
-on $\C \times \R_{\ge 0}$, with the PVA as target space data,
+Khan--Zeng construct a 3d holomorphic--topological sigma model for
+finite-type PVA targets satisfying their analytic SDR hypotheses. The
+boundary algebra of this theory is the corresponding quantization of
+the PVA\@. The BV-BRST complex of the sigma model
+on $\C \times \R_{\ge 0}$, with the PVA target data,
 produces the $\Ainf$ operations $m_k$ by Feynman-diagram evaluation
 on $\FM_k(\C)$: each $k$-ary operation is a sum of tree Feynman
 diagrams with $k$ external legs and vertices weighted by the PVA
@@ -1192,13 +1258,13 @@ brackets. The Stasheff identity is Stokes' theorem on the boundary
 of the Feynman-integral compactification, the same boundary
 cancellation that gives the $\Ainf$ relations from $\FM_k(\C)$.
 
-This sigma-model construction gives the physical proof of the
-quantization theorem: the PVA data determine a consistent field
-theory, and the field theory produces the $\Ainf$ algebra. The
-mathematical proof is the bar-cobar correspondence of
-Theorem~\ref{thm:homotopy-Koszul}: the Quillen equivalence
-guarantees essential uniqueness of the $\SCchtop$-algebra structure,
-hence the quantization is unique up to contractible ambiguity.
+This sigma-model construction gives the physical construction of the
+quantization theorem in the stated analytic class: the PVA data
+determine a consistent field theory, and the field theory produces
+the $\Ainf$ algebra. The mathematical formulation is the bar-cobar
+correspondence of Theorem~\ref{thm:homotopy-Koszul}; uniqueness is
+the uniqueness inside the chosen homotopy class. Arbitrary
+PVA targets require a separate existence theorem.
 
 
 \section*{XIII.\quad The holographic construction}
@@ -1229,8 +1295,10 @@ $\R_+ \times \C$ has:
  $\Bbound$ on~$\C$. For pure CS: $\Bbound = \widehat{\fg}_k$.
 \item \emph{Bulk observables} ($t > 0$): the BRST cohomology
  $\Abulk = H^\bullet(C_{\mathrm{BV}}, Q)$.
- By Kontsevich's theorem on holomorphic factorisation of CS,
- $\Abulk \simeq \Zder(\Bbound)$.
+ In the physical HT comparison, bulk observables identify with
+ chiral Hochschild cochains of the boundary algebra; the stronger
+ derived-center form $\Abulk\simeq\Zder(\Bbound)$ holds in the
+ boundary-linear exact sector.
 \item \emph{Line operators} ($z = 0$, extended along~$\R_+$):
  modules for the open-colour Koszul dual
  $\cA^!_{\mathrm{line}}$. For pure CS at level~$k$, the
@@ -1289,8 +1357,10 @@ packages these faces with the scoped comparison identifications.
 
 \subsection*{Anomaly completion}
 
-At genus $g \ge 1$, the bar differential is curved:
-$d^2 = \kappa(\Bbound) \cdot \omega_g$ (Vol~I, Theorem~D).
+At genus $1$, the bar differential is curved:
+$d^2 = \kappa(\Bbound) \cdot \omega_1$ (Vol~I, Theorem~D).
+For $g \ge 2$, the chain-level curved-Dunn continuation requires the
+modular-bootstrap $H^2$ acyclicity and comparison hypotheses.
 The \emph{transgression algebra} absorbs this curvature: adjoin
 $\eta$ of degree~$1$ with
 $\eta b = (-1)^{|b|} b \eta$ and
@@ -1343,26 +1413,26 @@ $\cA^!_{\mathrm{ch}} = \mathrm{Vir}_{26-c}$ (Vol~I); no separate
 Yangian reduction. Self-duality at $c = 13$.
 The expected line category is $\mathrm{Vir}_{26-c}$-mod, with the
 Virasoro fusion kernel (the $6j$-symbol on $V_{h_1} \otimes
-V_{h_2}$) as the spectral braiding $R(z)$: semiclassically
-($c \to \infty$), it reduces to the Liouville reflection
-coefficient, encoding graviton exchange between conical
-defects, with YBE as three-graviton consistency.
+V_{h_2}$) as the conjectural spectral braiding realization.  The
+semiclassical Liouville/gravity reading is heuristic: it concerns
+boundary-graviton and conical-defect exchange, not local bulk graviton
+propagation in pure 3d gravity.
 For $c \gg 1$, $c' = 26 - c \ll 0$: the algebraic
 manifestation of UV/IR mixing in AdS$_3$/CFT$_2$.
 
 \medskip
 \noindent\textbf{The shadow obstruction tower.}\enspace
-The Virasoro shadow obstruction tower reads as the perturbative expansion of
-3d gravity. Degree~$2$:
+The Virasoro shadow obstruction tower is the bar-complex perturbative
+avatar of the boundary-gravity sector. Degree~$2$:
 $\kappa_{\mathrm{eff}} = (c-26)/2$ (one-loop anomaly).
 Degree~$4$: the quartic contact
 \[
 \mathfrak{Q}^{\mathrm{contact}}_{\mathrm{Vir}}
 \;=\; \frac{10}{c(5c+22)}
 \]
-(four-graviton interaction; poles at $c = 0$ and $c = -22/5$).
-The tower does not truncate ($o_5 \ne 0$): 3d gravity has
-infinitely many quantum corrections. Completion entropy
+(boundary Virasoro contact invariant; poles at $c = 0$ and
+$c = -22/5$).  The tower does not truncate ($o_5 \ne 0$): the
+boundary bar-complex correction tower is infinite. Completion entropy
 $h_K(\mathrm{Vir}) \approx 0.567$.
 
 \medskip
@@ -1381,11 +1451,16 @@ $\alpha_{\mathrm{grav}}|_{\text{closed}} =
 A BTZ black hole of mass~$M$, angular momentum~$J$ is an MC element
 $\alpha_{\mathrm{BTZ}} \in \mc(\gSC_T)$
 (Definition~\ref{def:btz-deformation}), with boundary data
-$|h,\bar h\rangle$, $h = (M\ell + J)/2$, $\bar h = (M\ell - J)/2$.
+$|h_+,\bar h_-\rangle$ and shifted energies
+\[
+\Delta_\pm=L_0^\pm-\frac{c}{24}=\frac{M\ell\pm J}{2},
+\qquad
+h_\pm=\Delta_\pm+\frac{c}{24}.
+\]
 The conjectured Cardy entropy
-$S_{\mathrm{Cardy}} = 2\pi\sqrt{ch/6} +
-2\pi\sqrt{c\bar h/6}$ yields the BTZ Bekenstein--Hawking formula
-(Theorems~\ref{conj:cardy-mc} and~\ref{conj:gravity-btz-entropy}).
+$S_{\mathrm{Cardy}} = 2\pi\sqrt{c\Delta_+/6} +
+2\pi\sqrt{c\Delta_-/6}$ yields the BTZ Bekenstein--Hawking formula
+(Conjectures~\ref{conj:cardy-mc} and~\ref{conj:gravity-btz-entropy}).
 
 
 \subsection*{The M2-brane example}
@@ -1428,9 +1503,10 @@ collision residue defining the bar differential.
 
 The deformation-quantization bridge
 $Q_{\mathrm{HT}}$ lifts the classical PVA on $H^\bullet(\Bbound)$
-to the quantum $\Ainf$ algebra via
-PVA $\to$ 3d HT sigma model (Khan--Zeng) $\to$ BV-BRST
-quantization $\to$ $\Ainf$ operations on $\FM_k(\C)$.
+to the quantum $\Ainf$ algebra when the Khan--Zeng finite-type
+analytic SDR and inner-translation hypotheses hold:
+PVA $\to$ 3d HT sigma model $\to$ BV-BRST quantization $\to$
+$\Ainf$ operations on $\FM_k(\C)$.
 For Virasoro, the first obstruction is the quartic contact class
 $\mathfrak{Q}^{\mathrm{contact}}_{\mathrm{Vir}} =
 10/[c(5c+22)]$: it diverges at $c = 0$ and $c = -22/5$, so the
@@ -1470,14 +1546,16 @@ restriction of the whole-space Stokes identity. The chain:
 \;\xRightarrow{\;\text{operadic Stokes}\;}
 \text{boundary vertex algebra}.
 \]
-Every logarithmic $\SCchtop$-algebra has a boundary vertex algebra
-(Theorem~\ref{thm:general-half-space-bv}). The affine PV sigma
-model is logarithmic $\SCchtop$
+Every finite-type logarithmic $\SCchtop$-algebra satisfying the
+analytic SDR, finite-jet, inner-translation, and reflected-weight
+hypotheses of Theorem~\ref{thm:general-half-space-bv} has a boundary
+vertex algebra. The affine PV sigma model is logarithmic $\SCchtop$
 (Proposition~\ref{prop:affine-is-log-SC}); DS reduction preserves
 the structure (Proposition~\ref{prop:ds-preserves-SC}), so
-Virasoro and $\mathcal{W}_N$ inherit it
+Virasoro and $\mathcal{W}_N$ inherit the logarithmic SC shadow
 (Corollary~\ref{cor:virasoro-wn-are-SC}). The standard landscape
-enters through these two gates: the affine bridge and DS transport.
+is covered in this argument only through the affine bridge and DS
+transport hypotheses.
 
 \subsection*{The modular bar complex as genus expansion}
 
@@ -1490,9 +1568,10 @@ operad $\{\overline{\cM}_{g,n}\}$
 element $\delta_\cA = D - D^{(0)}$ is the total positive-genus
 correction (Theorem~\ref{thm:coderivation-MC-synthesis}). The
 combinatorial structure (stable graphs, automorphism weights,
-genus bookkeeping) is identical to the 't~Hooft expansion; the
-identification $\hbar = 1/N$ for a specific holographic model
-is the principal open problem
+genus weights) is the same structure that appears in the 't~Hooft
+expansion. The precise identification between the genus parameter
+$\hbar_{\mathrm{genus}}$ and a power of $N$ is model-dependent; fixing
+it for a specific holographic model is the principal open problem
 (Conjecture~\ref{conj:thooft-gl-n}).
 
 \subsection*{The relative holographic deformation complex}
@@ -1520,7 +1599,7 @@ Theorem); a matrix realisation
 $O_N = \operatorname{Mat}_N \otimes O_0$ gives every face
 a factor of~$N$, yielding the literal 't~Hooft weight
 $N^{V-E+F} = N^{\chi(\Sigma_\Gamma)}$ (Vol~I, Exact
-$N^{\chi}$-Weighting Theorem). The correct language is
+$N^{\chi}$-Weighting Theorem). The resulting structure is
 \emph{ribbonised modular Swiss-cheese theory}
 $\mathrm{RSC}_{\mathrm{tr}}^{\mathrm{mod}}$.
 The \emph{Loop--Connes principle}
@@ -1548,7 +1627,8 @@ $\Rightarrow$ clutching identity.
 
 \begin{enumerate}[label=\textbf{(\Alph*$'$)},leftmargin=2.5em]
 \item \textbf{Swiss-cheese identification}
- (Theorem~\ref{thm:rosetta-swiss-cheese}).
+ (Theorem~\ref{thm:rosetta-e1-coalgebra} and
+ Theorem~\ref{thm:bar-swiss-cheese}).
  $(\barBch(\cA), D_\cA, \Delta)$ is an $E_1$ dg coassociative
  coalgebra: the bar differential is a coderivation encoding
  the $A_\infty$ chiral structure, the deconcatenation coproduct
@@ -1558,19 +1638,21 @@ $\Rightarrow$ clutching identity.
  chiral Hochschild cochains (defined via $\End^{\mathrm{ch}}_\cA$)
  carry bulk operations acting on the boundary algebra~$\cA$.
 
-\item \textbf{Homotopy-Koszulity and Quillen equivalence}
+\item \textbf{Homotopy-Koszulity}
  (Theorem~\ref{thm:homotopy-Koszul}).
  $\Omega\mathbf{B}(\SCchtop) \xrightarrow{\sim} \SCchtop$
- via Kontsevich formality + classical Swiss-cheese Koszulity
- + bar-cobar transfer. The bar-cobar adjunction on
- $\SCchtop$-algebras is a Quillen equivalence.
+ in the coloured dioperadic/properadic ambient, via the
+ associator-dependent formality zigzag, classical Swiss-cheese
+ Koszulity, and bar-cobar transfer.
 
 \item \textbf{PVA descent} (Theorem~\ref{thm:cohomology_PVA}).
  The regular/singular decomposition of $m_2$ on cohomology
  produces a $(-1)$-shifted PVA\@. Jacobi from three-face Stokes
  on $\FM_3(\C)$. Leibniz from regular-part factorisation.
- Skew-symmetry from the exchange automorphism. Axioms D2--D6
- proved unconditionally.
+ Skew-symmetry from the exchange automorphism. The D2--D5 PVA chain
+ and the vacuum axiom hold on the logarithmic $\SCchtop$ surface.
+ D6, understood as vanishing of higher transferred operations, is
+ conditional on the formal or compatibly nullhomotopic locus.
 
 \item \textbf{Yang--Baxter equation} (Theorem~\ref{thm:YBE}).
  The spectral braiding $R(z)$ on line operators satisfies YBE
@@ -1588,14 +1670,14 @@ $\Rightarrow$ clutching identity.
  (lines modeled by Koszul-dual modules). Explicit for Heisenberg
  (abelian Fock sector) and Kac--Moody (Feigin--Frenkel centre);
  for Virasoro, the corresponding dual-central-charge module
- realization remains a conjectural theorem surface.
+ realization remains conjectural.
 
 \item \textbf{3d universal MC element}
  (Theorem~\ref{thm:3d-universal-mc}).
  $\alpha_T \in \mc(\gSC_T)$ exists with two-coloured graph
  expansion. Six projections recover (A$'$)--(E$'$) and the
  PVA\@. Restriction:
- $\alpha_T|_{\text{closed, all genera}} = \Theta_\cA$ (Vol~I).
+ $\alpha_T|_{\text{closed genus tower}} = \Theta_\cA$ (Vol~I).
 
 \item \textbf{3d gravity}
  (Theorem~\ref{thm:gravity-mc}).
@@ -1606,7 +1688,7 @@ $\Rightarrow$ clutching identity.
  BTZ black holes are MC elements
  (Definition~\ref{def:btz-deformation});
  conjectured Cardy entropy yields BTZ Bekenstein--Hawking
- (Theorems~\ref{conj:cardy-mc}
+ (Conjectures~\ref{conj:cardy-mc}
  and~\ref{conj:gravity-btz-entropy}).
  Expected: line category modeled by
  $\mathrm{Vir}_{26-6k}$-modules with fusion-kernel braiding.
@@ -1639,7 +1721,7 @@ $\Rightarrow$ clutching identity.
  (Theorem~\ref{thm:modular-bar}).
  The stable-graph modular bar coalgebra carries a filtered
  deformation dg~Lie algebra whose MC elements lift the genus-$0$
- PVA to all genera. The genus expansion $D = \sum_g \hbar^g
+ PVA through the modular genus tower. The genus expansion $D = \sum_g \hbar^g
  D^{(g)}$ is the Feynman transform of the modular operad
  (Theorem~\ref{thm:formal-genus-expansion}); the canonical MC
  element $\delta_\cA = D - D^{(0)}$ lives in the positive-genus
@@ -1680,14 +1762,16 @@ $\Rightarrow$ clutching identity.
 \end{enumerate}
 
 \noindent
-Results (A$'$)--(F$'$) and (H$'$)--(L$'$) are unconditional at the level of the framework.
+Results (A$'$)--(F$'$) and (H$'$)--(L$'$) are framework statements under their stated hypotheses.
 Within (E$'$) and (I$'$), the stronger derived-center and line-module
 identifications carry internal scope: the derived-center identification in (I$'$) is proved
 in the boundary-linear exact sector; the line-module identification in (E$'$) holds on the
 chirally Koszul locus. The opening claims of both (bulk $\simeq$ chiral Hochschild cochains;
-$R(z)$ from the Laplace-transformed $\lambda$-bracket) are unconditional.
-Result (G$'$) applies the framework to $SL(2,\R)$ CS via the
-bridge theorem (Theorem~\ref{thm:physics-bridge}).
+$R(z)$ from the $\lambda$-bracket residue) are used only in those scoped regimes.
+Result (G$'$) is mixed: the Chern--Simons/MC bridge is proved
+under Theorem~\ref{thm:physics-bridge}, while the Cardy/BTZ entropy
+identification and the Virasoro-module line-category realization are
+conjectural.
 Results (M$'$) and (N$'$) contain conditional or conjectural components as noted in their entries.
 
 \medskip\noindent\textbf{Holographic reconstruction.}\enspace
@@ -1712,7 +1796,7 @@ $\mathcal D$-modules on $\operatorname{Ran}(\Sigma_g) \times
 The modular Swiss-cheese operad chapter
 (Chapter~\ref{ch:modular-sc-operad}) constructs the local operadic
 model $\mathsf{SC}^{\mathrm{ch,top}}_{\mathrm{mod}}$ and proves
-modular homotopy-Koszulity, honest about its scope: the curvature
+modular homotopy-Koszulity, with explicit scope: the curvature
 $\dfib^{\,2} = \kappa \cdot \omega_g$ is invisible to the local
 model. The relative Feynman transform chapter
 (Chapter~\ref{ch:relative-feynman}) identifies the algebraic
@@ -1720,11 +1804,11 @@ skeleton $\mathrm{FT}_{\mathsf{Com}_{\mathrm{mod}} /
 \mathsf{SC}^{\mathrm{ch,top}}}$ shared by both approaches and
 proves its homotopy-involutivity.
 
-\medskip\noindent\textbf{The single open problem.}\enspace
+\medskip\noindent\textbf{The central problem.}\enspace
 Everything proved in both volumes begins from finite-order projections
 of the universal MC element $\Theta_\cA$ (Volume~I) and its $3$d lift
 $\alpha_T$ (this volume), together with the later comparison theorems
-that assemble those projections into the corrected bulk-boundary-line
+that assemble those projections into the bulk-boundary-line
 and modular packages. Everything open is a question about the
 ambient geometry of the modular convolution algebra
 $\mathfrak{g}^{\mathrm{mod}}_\cA$: the $(-2)$-shifted symplectic
@@ -1736,12 +1820,14 @@ structure, the moduli of Lagrangians, and the higher-categorical
 descent. The completeness question (does the genus-$0$ Lagrangian
 $\cL_\cA^{(0)}$ extend over $\overline{\cM}_{g,n}$?) is the
 central problem, and the shadow depth classification (classes
-$\mathbf{G}$/$\mathbf{L}$/$\mathbf{C}$ extend automatically;
-class~$\mathbf{M}$ carries higher-Tor obstructions from non-formal
-Swiss-cheese structure) is the structural answer this volume provides.
+$\mathbf{G}$/$\mathbf{L}$/$\mathbf{C}$ extend on the proved scalar or
+chirally Koszul loci, with chain-level $g \ge 2$ continuation requiring
+the curved-Dunn comparison hypotheses; class~$\mathbf{M}$ carries
+higher-Tor obstructions from non-formal Swiss-cheese structure) is the
+structural answer this volume provides.
 
-\medskip\noindent\textbf{Recent theorem insertions.}\enspace
-Five theorem insertions are used below. The universal holography
+\medskip\noindent\textbf{Theorem interfaces.}\enspace
+Five theorem interfaces are used below. The universal holography
 functor $\Phi_{\mathrm{hol}}$
 (Theorem~\ref{thm:universal-holography-functor}) takes every
 chirally Koszul algebra with chain-level $E_3$-topological structure
@@ -1751,19 +1837,24 @@ chain-level SC$^{\mathrm{ch,top}}$-structure on the celestial OPE
 data with a chiral factorisation homology on $\mathbb{C}P^1_{\mathrm{cel}}$;
 the iterated Sugawara ladder
 (Theorem~\ref{thm:e-infinity-topologization-ladder}) gives
-$E_{k+2}$-topological structure from depth-$k$ inner stress towers, so
+$E_{k+2}$-topological structure from depth-$k$ inner stress towers
+under the stated coherence hypotheses, so
 that $\mathcal{W}_N$ is $E_{N+1}$-topological and
-$\mathcal{W}_\infty$ is $E_\infty$-topological; the chiral higher Deligne theorem
+$\mathcal{W}_\infty[\mu]$ has a conditional $E_\infty$-topological
+inverse-limit endpoint under the all-spin GGL, Dunn-compatibility,
+Yamada weight-window, and antighost-homotopy hypotheses; the chiral higher Deligne theorem
 (Theorem~\ref{thm:chiral-higher-deligne}) exhibits
-$Z^{\mathrm{der}}_{\mathrm{ch}}(\cA)$ as a universal $E_3$-chiral
-algebra acted on by SC$^{\mathrm{ch,top}}$; and the irregular-singular
+$Z^{\mathrm{der}}_{\mathrm{ch}}(\cA)$ as a universal $E_2$-chiral
+brace object, with the $E_3$ and SC$^{\mathrm{ch,top}}$ refinements
+under the theorem's two-coloured hypotheses; and the irregular-singular
 KZB regularity theorem
 (Theorem~\ref{thm:irregular-singular-kzb-regularity}) proves the
-modular-operad composition axiom at generic non-integral level by
-the Jimbo--Miwa Stokes-sector framework.
+modular-operad composition axiom at generic non-integral level under
+the boundary formal-type hypothesis by the Jimbo--Miwa Stokes-sector
+framework.
 
 \medskip\noindent\textbf{Open problems.}\enspace
-The corrected scope has five parts. First, $\mathcal{W}(p)$ triplet tempering is
+The open problem list has five parts. First, $\mathcal{W}(p)$ triplet tempering is
 \emph{conjectural}: the Zhu-bounded-Massey argument fails because
 Gurarie 1993 and Flohr 1996 construct logarithmic-CFT amplitudes with
 unbounded Massey products despite finite-dimensional Zhu algebra;
@@ -1776,10 +1867,10 @@ logarithmic $\mathcal{W}(p)$ remains outside this scope. Third, the
 CY-C pentagon stratification is by generator-lattice rank
 $\rho^{R_i} \in \{3, 12, 24\}$. The Hodge supertrace gives the
 route-independent value $\kappa_{\mathrm{ch}} = 0$. Fourth, the
-Kummer-irregular prime labels $\{1423, 3067, 23, 43, 419\}$ are
-invalid. The correct Tier-3 Bernoulli-witness set is
-$\{37, 691, 811\}$; the invalid primes still appear in $S_r$
-numerators as Riccati-arithmetic characteristic primes.
+Tier-3 Bernoulli-witness set is
+$\{37, 691, 811\}$; the primes
+$\{1423, 3067, 23, 43, 419\}$ occur instead as
+Riccati-arithmetic characteristic primes in $S_r$ numerators.
 Fifth, super-Yangian complementarity reads
 $\kappa^{\sBer} + \kappa^{\sBer,!} = \max(m, n)$ at the
 Sugawara-shifted dual level in the \emph{quantum-Berezinian}
@@ -1800,24 +1891,29 @@ Proposition~\ref{prop:bv-bar-class-m-weight-completed}); class-$L$
 original-complex chain-level strictification via explicit
 antighost-contact terms $\eta_1^{(\mathrm{i})}$,
 $\eta_1^{(\mathrm{ii})}$ making
-$[Q,\widetilde{G}_1] = T_{\mathrm{Sug}}$ strict at chain level; the closed form
-of $\beta_N$ for $N \ge 4$ (tempering is unconditional, the closed
-form is a parameter question); and the canonical pairing underlying
-super-complementarity.
+$[Q,\widetilde{G}_1] = T_{\mathrm{Sug}}$ strict at chain level; the
+finite Riccati envelope and closed form of $\beta_N$ for $N \ge 4$
+(Stirling gives tempering only after a finite envelope is supplied);
+and the canonical pairing underlying super-complementarity.
 
-\medskip\noindent\textbf{The monograph computes the local geometry at a point.}\enspace
-A chiral algebra is a point in the derived symplectic category: a Lagrangian
-$\cL_\cA \hookrightarrow \cM_{\mathrm{vac}}(\cA)$. The bar complex is the
-endomorphism algebra of this point. The Swiss-cheese operad is the local
-composition law. Koszul duality is the symplectic complement. The genus tower
-is the deformation of the point over the moduli of curves. The holographic
-principle is the theorem that a point determines its ambient. The entire content
-of both volumes is the local geometry of the derived symplectic category at this
-single point. Volume~III asks how this local geometry arises from
-Calabi--Yau categories: for $d = 2$ the cyclic $\Ainf$-structure of
+\medskip\noindent\textbf{Endpoint.}\enspace
+The two volumes compute the formal local package attached to a chiral
+boundary algebra: its bar coalgebra, its line-side Koszul dual, its
+bulk Hochschild object, and its genus tower. The full ambient
+derived-symplectic stack is recovered only after the compatible
+Darboux datum is supplied. Volume~III asks how this formal local
+package arises from Calabi--Yau categories: for $d = 2$ the cyclic
+$\Ainf$-structure of
 a CY category determines an $E_2$-chiral algebra whose shadow
 obstruction tower is the automorphic correction of a generalized
 Borcherds--Kac--Moody superalgebra; for $K3 \times E$ the
-denominator identity is the Igusa cusp form~$\Delta_5$, with modular
-characteristic $\kappa = 3 = \dim_\C$ and a shadow--Siegel gap
-theorem identifying four structural obstructions.
+denominator identity is the Igusa cusp form~$\Delta_5$. The relevant
+Vol~III invariants are distinct: the categorical Kodaira dimension is
+$\kappa_{\mathrm{cat}}=0$, the Heisenberg chiral scalar is
+$\kappa_{\mathrm{ch}}^{\mathrm{Heis}}=3$, the BKM denominator weight is
+$\kappa_{\mathrm{BKM}}(\mathfrak g_{\Delta_5})
+=c_{\phi_{0,1}^{K3}}(0)/2=5$, and the elliptic-fibre count is
+$\kappa_{\mathrm{fiber}}=24$. The shadow--Siegel gap theorem separates
+the chiral Heisenberg scalar from the Borcherds/Igusa weight and the
+Vol~III global-NCCR package carries the five structural obstructions
+relating these invariants.

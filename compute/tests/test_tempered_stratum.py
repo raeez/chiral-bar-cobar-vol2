@@ -29,14 +29,14 @@ class M original-complex question:
   Theorem thm:tempered-stratum-contains-w3 (ProvedHere):
     every generic principal W_3 is tempered with rho_*^{W_3}(c) = |c|/10.
 
-  Theorem conj:wn-tempered-general (ProvedHere; legacy label):
-    every principal W_N at generic c is tempered; rho_*^{W_N}(c) = |c|/[12(H_N - 1)].
+  Compatibility label conj:wn-tempered-general:
+    the all-rank W_N statement is conditional on a finite Riccati envelope;
+    the harmonic radius |c|/[12(H_N - 1)] is conditional on the beta law.
 
   Corollary cor:original-complex-dichotomy-healed (ProvedHere):
-    the non-tempered stratum of Virasoro is empty; the non-tempered
-    stratum of every principal W_N is empty; the chain-level
-    E_3-topological structure on the original complex holds
-    unconditionally for generic Vir_c and W_{N,c}.
+    the generic Virasoro and W_3 tested loci are tempered; higher W_N
+    closure is forwarded to the finite-beta criterion and does not follow
+    from this test module.
 
 Coverage (decorator-tagged tests):
 
@@ -69,7 +69,7 @@ Coverage (decorator-tagged tests):
       from the universal kappa(W_N) = c(H_N - 1) formula at N = 3.
 
   - test_dichotomy_healed_virasoro_tempered
-      Corollary cor:original-complex-dichotomy-healed: the numerical
+      Theorem thm:tempered-stratum-contains-virasoro: the numerical
       certificate kappa^{(infty)}_orig < eps holds at eps = 0.2 through
       r = 11 at sampled c in {7, 13, 100}, refuting the prior 1/e claim.
 
@@ -438,7 +438,7 @@ def test_w3_kappa_is_5c_over_6():
 
 
 @independent_verification(
-    claim="cor:original-complex-dichotomy-healed",
+    claim="thm:tempered-stratum-contains-virasoro",
     derived_from=[
         "Theorem thm:tempered-stratum-contains-virasoro (universal Virasoro tempering)",
     ],
@@ -458,7 +458,7 @@ def test_w3_kappa_is_5c_over_6():
 def test_dichotomy_healed_virasoro_tempered():
     """The numerical certificate kappa^{(infty)}_orig < 1/e is false;
     every sampled generic Vir_c at c >= 7 satisfies the STRONGER
-    kappa^{(infty)}_orig < 0.2."""
+    kappa^{(infty)}_orig < 0.2. This is a Virasoro guard only."""
     one_over_e = 1.0 / math.e  # ~ 0.3679
     for c_val in TEST_C_VALUES_LARGE:
         S = _vol1_shadow_sequence(c_val, max_r=11)

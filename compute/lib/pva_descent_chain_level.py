@@ -1,18 +1,19 @@
-"""PVA Descent D2-D6: chain-level verification of all five axioms.
+"""PVA descent: chain-level verification of D2-D5 plus the vacuum axiom.
 
 The Poisson Vertex Algebra structure on H^*(A) arises from the
-A-infinity chiral algebra A via descent. The five axioms D2-D6
-are ALL PROVED in Vol II via geometric arguments. This module
-provides independent chain-level verification.
+A-infinity chiral algebra A via descent. The binary identities D2-D5
+and the vacuum/unit axiom are checked here as symbolic identities on
+standard families. This module does not certify the separate D6
+higher-formality statement ``m_k = 0`` for k >= 3.
 
 The descent pipeline:
   A-infinity chiral algebra A on C x R
   => m_2(a, b; z) = binary operation with z-dependence
   => Regular part: commutative product mu(a, b)
   => Singular part: lambda-bracket {a_lam b}
-  => D2-D6 follow from the A-infinity identities via FM boundary
+  => D2-D5 plus vacuum follow from the A-infinity identities via FM boundary
 
-The five PVA axioms:
+The PVA checks:
 
 D2 (Sesquilinearity):
   {da_lam b} = -lam {a_lam b}
@@ -31,12 +32,12 @@ D5 (Commutativity / Skew-symmetry):
   {a_lam b} = -{b_{-lam-d} a}
   Proved via: monodromy of propagator around FM_2(C)
 
-D6 (Unit):
+Vacuum (Unit):
   {1_lam a} = 0
-  Proved via: H_3(a) factorization + topological contractibility
+  Proved via: vacuum factorization with the unit insertion
 
 References:
-  Vol II: pva-descent.tex, chapters on D2-D6
+  Vol II: pva-descent.tex, D2-D5 plus vacuum proofs
   Vol I: configuration_spaces.tex, fm_boundary.py
   De Sole-Kac (2006): PVA axiomatization
 """
@@ -815,21 +816,17 @@ def verify_d5_skew_symmetry(pva: PVAData, a: str, b: str,
 
 
 # =========================================================================
-# 8. D6: UNIT AXIOM VERIFICATION
+# 8. VACUUM UNIT AXIOM VERIFICATION
 # =========================================================================
 
 def verify_d6_unit(pva: PVAData, a: str, lam=None) -> Dict[str, Any]:
-    """Verify D6 (unit axiom) for a generator.
+    """Verify the vacuum unit axiom for a generator.
 
     {1_lam a} = 0 for all a.
 
-    This follows from the H_3(a) factorization argument:
-    the vacuum 1 is represented by a contractible configuration space,
-    so all positive-order n-products with 1 vanish:
+    This follows from vacuum factorization with the unit insertion:
+    all positive-order n-products with 1 vanish:
       1_{(n)} a = 0 for n >= 0.
-
-    The proof uses topological contractibility of the space of
-    configurations with the unit insertion.
     """
     if lam is None:
         lam = Symbol('lam')
@@ -843,13 +840,13 @@ def verify_d6_unit(pva: PVAData, a: str, lam=None) -> Dict[str, Any]:
         'generator': a,
         'bracket_unit_a': str(bracket_1a),
         'vanishes': simplify(bracket_1a) == 0,
-        'identity_type': 'D6 unit',
-        'geometric_source': 'H_3(a) factorization + contractibility',
+        'identity_type': 'vacuum unit',
+        'geometric_source': 'vacuum factorization with unit insertion',
     }
 
 
 # =========================================================================
-# 9. FULL D2-D6 SWEEP FOR AN ALGEBRA
+# 9. FULL D2-D5 PLUS VACUUM SWEEP FOR AN ALGEBRA
 # =========================================================================
 
 def full_pva_descent_verification(pva: PVAData) -> Dict[str, Any]:
@@ -914,7 +911,7 @@ def full_pva_descent_verification(pva: PVAData) -> Dict[str, Any]:
         'details': d5_results,
     }
 
-    # D6: Unit
+    # Vacuum/unit axiom.  The legacy result key is kept for callers.
     d6_results = []
     for a in gens:
         d6_results.append(verify_d6_unit(pva, a, lam))

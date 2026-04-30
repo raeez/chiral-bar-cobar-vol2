@@ -1,8 +1,10 @@
-r"""beta_N closed-form: first-principles derivation.
+r"""beta_N harmonic candidate under the kappa-ratio scaling ansatz.
 
-The Vol II tempered-stratum chapter (tempered_stratum_characterization_platonic.tex)
-proved tempering for W_N with beta_N defined via the leading-Laurent ratio
-identity
+The Vol II tempered-stratum chapters
+(tempered_stratum_characterization_platonic.tex and
+wn_tempered_closure_platonic.tex) prove the finite-beta Stirling
+implication for W_N after a finite Riccati envelope is supplied. The
+candidate beta_N is defined via the leading-Laurent ratio identity
 
     A_{r}(W_N) / A_{r-1}(W_N)  =  -beta_N * (r-1) / r    (r >= 5).
 
@@ -13,9 +15,10 @@ and two extrapolation candidates were stated:
     Candidate A:   beta_N = (N+1)(N+2)/2           -> beta_4 = 15
     Candidate B:   beta_N = N^2 - N + 4            -> beta_4 = 16
 
-FIRST-PRINCIPLES DERIVATION (this module).
+CONDITIONAL SCALING ANSATZ (this module).
 ----------------------------------------
-The leading-Laurent coefficient A_r(W_N) satisfies the kappa-ratio scaling
+The leading-Laurent coefficient A_r(W_N) is assumed to satisfy the
+kappa-ratio scaling
 
     A_r(W_N) = [kappa(W_N) / kappa(Vir)]^{r-3} . A_r(Vir) (T-line),
 
@@ -24,46 +27,49 @@ which is the UNIQUE scaling consistent with Vol II's A_4^{W_3} = 10/3 datum
 
     A_4(W_3) = (kappa(W_3)/kappa(Vir)) . A_4(Vir) = (5/3) . 2 = 10/3.
 
-Under the kappa-ratio scaling, the leading ratio becomes
+Under this kappa-ratio scaling ansatz, the leading ratio becomes
 
     A_r(W_N) / A_{r-1}(W_N)  =  -6 . (r-1) / r . [kappa(W_N)/kappa(Vir)]
                              =  -6 . (r-1) / r . [c(H_N-1) / (c/2)]
                              =  -12 (H_N - 1) . (r-1) / r.
 
-Therefore
+Therefore the harmonic candidate is
 
     beta_N  =  12 * (H_N - 1)                                          (C)
 
 where H_N = sum_{j=1}^{N} 1/j is the N-th harmonic number.
 
-Verification
-------------
+Arithmetic checks
+-----------------
     N=2:  beta_2  =  12 * (1/2)     =  6      PROVED DATUM
     N=3:  beta_3  =  12 * (5/6)     =  10     PROVED DATUM
-    N=4:  beta_4  =  12 * (13/12)   =  13     THEOREM (this module)
-    N=5:  beta_5  =  12 * (77/60)   =  77/5   THEOREM
-    N=6:  beta_6  =  12 * (29/20)   =  87/5   THEOREM
-    N=7:  beta_7  =  12 * (223/140) =  669/35 THEOREM
+    N=4:  beta_4  =  12 * (13/12)   =  13     CONDITIONAL CANDIDATE
+    N=5:  beta_5  =  12 * (77/60)   =  77/5   CONDITIONAL CANDIDATE
+    N=6:  beta_6  =  12 * (29/20)   =  87/5   CONDITIONAL CANDIDATE
+    N=7:  beta_7  =  12 * (223/140) =  669/35 CONDITIONAL CANDIDATE
 
 beta_N is RATIONAL, not necessarily integer (beta_5 = 77/5, beta_6 = 87/5).
-This rules out both Candidate A and Candidate B, which demand integer beta_N
-for all N.
+Under the harmonic ansatz this separates both Candidate A and Candidate B,
+which demand integer beta_N for all N.
 
 Relation to prior candidates
 ---------------------------
 Candidate A (beta_N = (N+1)(N+2)/2) predicts integer values, matches N=2,3
-by coincidence, predicts beta_4 = 15. RULED OUT: first-principles gives 13.
+by coincidence, predicts beta_4 = 15. CONDITIONALLY EXCLUDED by the
+harmonic candidate value 13.
 
 Candidate B (beta_N = N^2-N+4) predicts integer values, matches N=2,3
-by coincidence, predicts beta_4 = 16. RULED OUT.
+by coincidence, predicts beta_4 = 16. CONDITIONALLY EXCLUDED by the
+harmonic candidate value 13.
 
-Candidate C (this module, first-principles) gives beta_N = 12(H_N-1),
+Candidate C (this module, harmonic ansatz) gives beta_N = 12(H_N-1),
 a rational function of N through the harmonic number H_N. Matches N=2,3
-by derivation, predicts beta_4 = 13.
+by the proved low-rank data and predicts beta_4 = 13 if the scaling
+ansatz holds.
 
-Independent verification
-------------------------
-The kappa-ratio scaling is INDEPENDENTLY verified via:
+Evidence and missing bridge
+---------------------------
+The kappa-ratio scaling is checked via:
     (a) direct master equation evaluation for S_5(W_3) leading-c coefficient:
         A_5(W_3) = -80/3 = (5/3)^2 . (-48/5) = (kappa_ratio)^2 . A_5(Vir).
         Consistent with A_r(W_N) = (kappa_ratio)^{r-3} . A_r(Vir).
@@ -72,6 +78,9 @@ The kappa-ratio scaling is INDEPENDENTLY verified via:
         reflects the absorption of the W-generator channel into a kappa
         rescaling at the full-shadow level.
     (c) Consistency with Vol II A_4^{W_3} = 10/3 EXACTLY equals (5/3) * 2.
+
+These checks do not compute A_5(W4) from the full W4 Miura/OPE data.
+That bridge is recorded as absent in compute/lib/w4_beta_direct.py.
 
 Files
 -----
@@ -86,9 +95,9 @@ See @independent_verification use in test_beta_N_closed_form.py.
 Module API
 ----------
     harmonic_number(N)      -- H_N = sum_{j=1}^{N} 1/j
-    beta_N_from_kappa(N)    -- 12 * (H_N - 1)  (first-principles)
-    beta_N_candidate_A(N)   -- (N+1)(N+2)/2    (triangular, ruled out)
-    beta_N_candidate_B(N)   -- N^2 - N + 4     (quadratic, ruled out)
+    beta_N_from_kappa(N)    -- 12 * (H_N - 1)  (conditional candidate)
+    beta_N_candidate_A(N)   -- (N+1)(N+2)/2    (triangular comparison)
+    beta_N_candidate_B(N)   -- N^2 - N + 4     (quadratic comparison)
     A_r_W_N(N, r)           -- leading Laurent coefficient at the T-line level
     verify_scaling_law(N, r)        -- check A_r = kappa_ratio^{r-3} * A_r^Vir
     verify_ratio_identity(N, r)     -- check A_r/A_{r-1} = -beta_N (r-1)/r
@@ -146,16 +155,16 @@ def kappa_WN_ratio(N: int) -> Fraction:
 
 
 # -----------------------------------------------------------------------------
-# beta_N first-principles (Candidate C / Theorem)
+# beta_N harmonic candidate (Candidate C)
 # -----------------------------------------------------------------------------
 
 
 def beta_N_from_kappa(N: int) -> Fraction:
-    r"""beta_N = 12 * (H_N - 1)                                   (FIRST PRINCIPLES)
+    r"""Harmonic candidate beta_N = 12 * (H_N - 1).
 
-    Derived from the kappa-ratio scaling of the leading-Laurent
-    coefficient A_r(W_N) = (kappa_ratio)^{r-3} * A_r(Vir), confirmed by
-    Vol II's A_4^{W_3} = 10/3 datum.
+    Conditional on the kappa-ratio scaling of the leading-Laurent
+    coefficient A_r(W_N) = (kappa_ratio)^{r-3} * A_r(Vir), and checked
+    against Vol II's A_4^{W_3} = 10/3 datum.
 
     Values:
         beta_2 = 6
@@ -164,7 +173,8 @@ def beta_N_from_kappa(N: int) -> Fraction:
         beta_5 = 77/5
         beta_6 = 87/5
 
-    Rules out Candidate A (15 at N=4) and Candidate B (16 at N=4).
+    Separates Candidate A (15 at N=4) and Candidate B (16 at N=4) under
+    the harmonic ansatz.
 
     Raises ValueError for N < 2.
     """
@@ -174,14 +184,14 @@ def beta_N_from_kappa(N: int) -> Fraction:
 
 
 def beta_N_candidate_A(N: int) -> Fraction:
-    """(N+1)(N+2)/2 = T_{N+1} (triangular number). RULED OUT."""
+    """(N+1)(N+2)/2 = T_{N+1} (triangular comparison formula)."""
     if N < 2:
         raise ValueError(f"beta_N requires N >= 2, got N = {N}")
     return Fraction((N + 1) * (N + 2), 2)
 
 
 def beta_N_candidate_B(N: int) -> Fraction:
-    """N^2 - N + 4. RULED OUT."""
+    """N^2 - N + 4 (quadratic comparison formula)."""
     if N < 2:
         raise ValueError(f"beta_N requires N >= 2, got N = {N}")
     return Fraction(N * N - N + 4)
@@ -211,9 +221,9 @@ def A_r_Vir(r: int) -> Fraction:
 
 
 def A_r_WN(N: int, r: int) -> Fraction:
-    r"""Leading-Laurent coefficient A_r(W_N).
+    r"""Conditional leading-Laurent coefficient A_r(W_N).
 
-    By the kappa-ratio scaling law (Theorem, this module):
+    Under the kappa-ratio scaling ansatz:
 
         A_r(W_N) = [kappa(W_N) / kappa(Vir)]^{r-3} * A_r(Vir)
                   = [2 * (H_N - 1)]^{r-3} * 8 * (-6)^{r-4} / r
@@ -238,9 +248,11 @@ def A_r_WN(N: int, r: int) -> Fraction:
 
 
 def verify_ratio_identity(N: int, r: int) -> bool:
-    r"""Verify that A_r(W_N) / A_{r-1}(W_N) = -beta_N * (r-1) / r.
+    r"""Verify the candidate identity A_r(W_N) / A_{r-1}(W_N).
 
-    Returns True iff the identity holds. Raises ValueError for r < 4.
+    Returns True iff the harmonic-ansatz coefficients satisfy
+    A_r(W_N) / A_{r-1}(W_N) = -beta_N * (r-1) / r. Raises ValueError
+    for r < 4.
     """
     if r < 4:
         raise ValueError(f"ratio identity requires r >= 4, got r = {r}")
@@ -285,7 +297,7 @@ def beta_4_predictions() -> dict:
     return {
         "candidate_A (triangular)": beta_N_candidate_A(4),
         "candidate_B (quadratic)": beta_N_candidate_B(4),
-        "candidate_C (first-principles, kappa-ratio)": beta_N_from_kappa(4),
+        "candidate_C (harmonic kappa-ratio ansatz)": beta_N_from_kappa(4),
     }
 
 
@@ -312,15 +324,15 @@ def beta_table(N_max: int = 10) -> List[tuple]:
 
 def main():
     print("=" * 70)
-    print("beta_N CLOSED-FORM: FIRST-PRINCIPLES DERIVATION")
+    print("beta_N HARMONIC CANDIDATE: KAPPA-RATIO ANSATZ")
     print("=" * 70)
     print()
-    print("Theorem: beta_N = 12 * (H_N - 1)")
+    print("Candidate: beta_N = 12 * (H_N - 1)")
     print("    where H_N = sum_{j=1}^{N} 1/j")
     print()
 
     # Table
-    print("  N |  Cand A  |  Cand B  |  First-Principles (C)")
+    print("  N |  Cand A  |  Cand B  |  Harmonic ansatz (C)")
     print("----+----------+----------+----------------------")
     for N, bA, bB, bC in beta_table(10):
         print(f" {N:2d} | {str(bA):8s} | {str(bB):8s} | {str(bC)}")
@@ -361,9 +373,9 @@ def main():
     for cand, val in preds.items():
         print(f"  {cand}: beta_4 = {val}")
     print()
-    print("First-principles derivation gives beta_4 = 13.")
-    print("Candidate A prediction (15) RULED OUT.")
-    print("Candidate B prediction (16) RULED OUT.")
+    print("Harmonic ansatz gives beta_4 = 13.")
+    print("Candidate A prediction (15) conditionally excluded.")
+    print("Candidate B prediction (16) conditionally excluded.")
 
 
 if __name__ == "__main__":

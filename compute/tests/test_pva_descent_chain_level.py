@@ -1,11 +1,11 @@
-"""Tests for PVA Descent D2-D6 chain-level verification.
+"""Tests for PVA descent chain-level verification.
 
-Verifies all five PVA axioms at the chain level for all standard families:
+Verifies D2-D5 plus the vacuum axiom at the chain level for all standard families:
 1. D2 Sesquilinearity: {da_lam b} = -lam {a_lam b}
 2. D3 Jacobi: full Borcherds identity
 3. D4 Leibniz: derivation property of n-products
 4. D5 Skew-symmetry: {a_lam b} = -{b_{-lam-d} a}
-5. D6 Unit: {1_lam a} = 0
+5. Vacuum Unit: {1_lam a} = 0
 
 For each axiom, we test against ALL 7 standard families:
 Heisenberg, Virasoro, affine sl_2, beta-gamma, W_3, free multiplet, LG cubic.
@@ -13,7 +13,7 @@ Heisenberg, Virasoro, affine sl_2, beta-gamma, W_3, free multiplet, LG cubic.
 Each test performs ACTUAL symbolic computation.
 
 References:
-  Vol II: pva-descent.tex (D2-D6 proofs)
+  Vol II: pva-descent.tex (D2-D5 plus vacuum proofs)
   Vol I: configuration_spaces.tex, fm_boundary.py
   De Sole-Kac (2006): PVA axiomatization
 """
@@ -289,54 +289,54 @@ class TestD5SkewSymmetry:
 
 
 # ===================================================================
-# D6: UNIT AXIOM
+# VACUUM UNIT AXIOM
 # ===================================================================
 
 class TestD6Unit:
-    """D6 unit axiom for all families."""
+    """Vacuum unit axiom for all families."""
 
     def test_d6_heisenberg(self):
-        """D6 for Heisenberg: {1_lam J} = 0."""
+        """Vacuum for Heisenberg: {1_lam J} = 0."""
         pva = heisenberg_pva()
         result = verify_d6_unit(pva, 'J')
         assert result['vanishes']
 
     def test_d6_virasoro(self):
-        """D6 for Virasoro: {1_lam T} = 0."""
+        """Vacuum for Virasoro: {1_lam T} = 0."""
         pva = virasoro_pva()
         result = verify_d6_unit(pva, 'T')
         assert result['vanishes']
 
     def test_d6_sl2_all(self):
-        """D6 for sl_2: {1_lam J^a} = 0 for all a."""
+        """Vacuum for sl_2: {1_lam J^a} = 0 for all a."""
         pva = affine_sl2_pva()
         for a in pva.generators:
             result = verify_d6_unit(pva, a)
-            assert result['vanishes'], f"D6 fails for {a}"
+            assert result['vanishes'], f"vacuum unit fails for {a}"
 
     def test_d6_betagamma(self):
-        """D6 for beta-gamma."""
+        """Vacuum for beta-gamma."""
         pva = betagamma_pva()
         for a in pva.generators:
             result = verify_d6_unit(pva, a)
             assert result['vanishes']
 
     def test_d6_geometric_source(self):
-        """D6 proved via H_3(a) factorization + contractibility."""
+        """The unit follows from vacuum factorization."""
         pva = heisenberg_pva()
         result = verify_d6_unit(pva, 'J')
-        assert result['geometric_source'] == 'H_3(a) factorization + contractibility'
+        assert result['geometric_source'] == 'vacuum factorization with unit insertion'
 
 
 # ===================================================================
-# FULL D2-D6 SWEEPS
+# FULL D2-D5 PLUS VACUUM SWEEPS
 # ===================================================================
 
 class TestFullPVASweeps:
-    """Full D2-D6 verification sweeps for each family."""
+    """Full D2-D5 plus vacuum verification sweeps for each family."""
 
     def test_full_sweep_heisenberg(self):
-        """Full D2-D6 for Heisenberg."""
+        """Full D2-D5 plus vacuum for Heisenberg."""
         pva = heisenberg_pva()
         result = full_pva_descent_verification(pva)
         assert result['D2_sesquilinearity']['all_pass']
@@ -344,7 +344,7 @@ class TestFullPVASweeps:
         assert result['D6_unit']['all_pass']
 
     def test_full_sweep_virasoro(self):
-        """Full D2-D6 for Virasoro."""
+        """Full D2-D5 plus vacuum for Virasoro."""
         pva = virasoro_pva()
         result = full_pva_descent_verification(pva)
         assert result['D2_sesquilinearity']['all_pass']
@@ -352,7 +352,7 @@ class TestFullPVASweeps:
         assert result['D6_unit']['all_pass']
 
     def test_full_sweep_sl2(self):
-        """Full D2-D6 for affine sl_2."""
+        """Full D2-D5 plus vacuum for affine sl_2."""
         pva = affine_sl2_pva()
         result = full_pva_descent_verification(pva)
         assert result['D2_sesquilinearity']['all_pass']
@@ -360,7 +360,7 @@ class TestFullPVASweeps:
         assert result['D6_unit']['all_pass']
 
     def test_full_sweep_betagamma(self):
-        """Full D2-D6 for beta-gamma."""
+        """Full D2-D5 plus vacuum for beta-gamma."""
         pva = betagamma_pva()
         result = full_pva_descent_verification(pva)
         assert result['D2_sesquilinearity']['all_pass']
@@ -368,21 +368,21 @@ class TestFullPVASweeps:
         assert result['D6_unit']['all_pass']
 
     def test_full_sweep_free_multiplet(self):
-        """Full D2-D6 for free multiplet."""
+        """Full D2-D5 plus vacuum for free multiplet."""
         pva = free_multiplet_pva()
         result = full_pva_descent_verification(pva)
         assert result['D2_sesquilinearity']['all_pass']
         assert result['D6_unit']['all_pass']
 
     def test_full_sweep_lg_cubic(self):
-        """Full D2-D6 for LG cubic (same PVA as free at this level)."""
+        """Full D2-D5 plus vacuum for LG cubic (same PVA as free at this level)."""
         pva = lg_cubic_pva()
         result = full_pva_descent_verification(pva)
         assert result['D2_sesquilinearity']['all_pass']
         assert result['D6_unit']['all_pass']
 
     def test_full_sweep_w3(self):
-        """Full D2-D6 for W_3."""
+        """Full D2-D5 plus vacuum for W_3."""
         pva = w3_pva()
         result = full_pva_descent_verification(pva)
         assert result['D2_sesquilinearity']['all_pass']

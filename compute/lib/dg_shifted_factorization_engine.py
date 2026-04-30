@@ -7,27 +7,27 @@ The dg-shifted factorization bridge connects the factorization algebra
 bar complex on C x R. The key objects:
 
 1. **Root multiplicity**: For simple Lie algebras, all root spaces are
-   one-dimensional (root multiplicity = 1). This is the foundational
-   fact that makes strictification work.
+   one-dimensional (root multiplicity = 1). This is the fact that
+   reduces finite root-sector strictification obstructions to scalars.
 
-2. **BCH coefficient**: The Baker-Campbell-Hausdorff expansion at
-   filtration level n has coefficient beta_n = 1/n, arising from
-   the integral int_0^1 (1-t)^{n-1} dt = 1/n.
+2. **BCH coefficient**: The ordered path Baker-Campbell-Hausdorff
+   expansion at filtration level n has coefficient beta_n = 1/n,
+   arising from the integral int_0^1 (1-t)^{n-1} dt = 1/n.
 
-3. **Spectral Drinfeld obstruction**: The obstruction to strictifying
-   the spectral Drinfeld associator vanishes for all simple Lie
-   algebras because root multiplicity = 1 forces the obstruction
-   cocycle to be exact.
+3. **Spectral Drinfeld obstruction**: For finite simple Lie algebras,
+   root multiplicity one reduces each root-sector obstruction to a
+   scalar class. Vanishing is the separate condition that this scalar
+   class is zero.
 
 4. **Spectral Kohno relation**: The infinitesimal braid (IB) relation
    [Omega_12(u), Omega_13(u+v)] + [Omega_12(u), Omega_23(v)]
    + [Omega_13(u+v), Omega_23(v)] = 0
-   is verified for the rational r-matrix r(u) = Omega/u.
+   is checked for the rational kernel r(u) = Omega/u by reducing it to
+   the weighted numerator v*A + (u+v)*B + u*C.
 
-5. **Jacobi collapse**: For simple Lie algebras, the multilinear
-   space controlling each filtration level is one-dimensional
-   (root multiplicity = 1), so the Jacobi identity collapses to
-   a scalar relation at each level.
+5. **Jacobi collapse**: For finite root sectors in simple Lie algebras,
+   the multilinear target is one-dimensional; non-root sectors are zero.
+   This is a scalar reduction, not an automatic exactness statement.
 
 References:
   Vol II: dg_shifted_factorization_bridge.tex (Part VI)
@@ -38,11 +38,10 @@ References:
 from __future__ import annotations
 
 from fractions import Fraction
-from typing import Any, Dict, List, Optional, Tuple
+from typing import Any, Dict, Optional
 
 from sympy import (
-    Symbol, Rational, simplify, expand, S, symbols, factorial,
-    integrate,
+    Symbol, Rational, simplify, integrate,
 )
 
 
@@ -111,6 +110,17 @@ def _lie_dimension(lie_type: str, rank: int) -> int:
         raise ValueError(f"Unknown Lie algebra ({lie_type}, {rank})")
 
 
+def _zero_status(value: Optional[Any]) -> Optional[bool]:
+    """Return whether a supplied scalar obstruction is zero.
+
+    ``None`` means no scalar has been computed, so no vanishing conclusion
+    is available.
+    """
+    if value is None:
+        return None
+    return simplify(value) == 0
+
+
 # =========================================================================
 # 1. ROOT MULTIPLICITY
 # =========================================================================
@@ -164,15 +174,15 @@ def root_multiplicity(lie_type: str, rank: int) -> Dict[str, Any]:
 # =========================================================================
 
 def bch_coefficient(n: int) -> Fraction:
-    """The BCH coefficient at filtration level n: beta_n = 1/n.
+    """The ordered path BCH coefficient at filtration level n: beta_n = 1/n.
 
     In the Baker-Campbell-Hausdorff expansion, the coefficient at
     filtration level n arises from the integral:
 
         beta_n = int_0^1 (1-t)^{n-1} dt = 1/n
 
-    This is the coefficient of the n-th order term in the filtered
-    expansion of log(exp(X) exp(Y)).
+    This is the coefficient of the right-normed multilinear path word in
+    log(exp(X_1) ... exp(X_n)) under the path commutation relations.
 
     Parameters
     ----------
@@ -218,16 +228,16 @@ def bch_coefficient_integral(n: int) -> Rational:
 def spectral_drinfeld_obstruction_vanishes(
     lie_type: str,
     rank: int,
+    scalar_obstruction: Optional[Any] = None,
 ) -> Dict[str, Any]:
-    """Spectral Drinfeld obstruction vanishes for all simple Lie algebras.
+    """Root multiplicity one reduces the obstruction to a scalar criterion.
 
-    The obstruction to strictifying the spectral Drinfeld associator
-    at each filtration level is a cocycle in a certain Chevalley-Eilenberg
-    complex. For simple Lie algebras, root multiplicity = 1 forces
-    this cocycle to be exact (Theorem thm:complete-strictification),
-    because the root-space one-dimensionality (Theorem thm:root-space-one-dim)
-    combined with the Jacobi collapse lemma (Lemma lem:jacobi-collapse)
-    trivializes the obstruction at every filtration level.
+    The obstruction to strictifying the spectral Drinfeld associator is a
+    cocycle in the spectral complex. For finite simple Lie algebras, root
+    multiplicity one identifies each nonzero root-sector target with a
+    one-dimensional scalar module. The obstruction vanishes exactly when
+    the supplied scalar obstruction is zero. If no scalar is supplied, this
+    function reports the criterion without claiming vanishing.
 
     Parameters
     ----------
@@ -240,22 +250,28 @@ def spectral_drinfeld_obstruction_vanishes(
     -------
     dict
         Dictionary with keys:
-        - 'vanishes': True (always for simple Lie algebras)
-        - 'reason': 'root_multiplicity_one'
+        - 'vanishes': bool if scalar_obstruction is supplied, else None
+        - 'reason': 'root_multiplicity_one_reduces_to_scalar'
+        - 'criterion': 'scalar_obstruction_zero'
         - 'lie_type': lie_type
         - 'rank': rank
         - 'root_mult': 1
+        - 'obstruction_dim_bound': 1
         - 'dimension': dim(g)
     """
     _validate_lie_type(lie_type, rank)
     dim = _lie_dimension(lie_type, rank)
+    vanishes = _zero_status(scalar_obstruction)
 
     return {
-        'vanishes': True,
-        'reason': 'root_multiplicity_one',
+        'vanishes': vanishes,
+        'reason': 'root_multiplicity_one_reduces_to_scalar',
+        'criterion': 'scalar_obstruction_zero',
         'lie_type': lie_type,
         'rank': rank,
         'root_mult': 1,
+        'obstruction_dim_bound': 1,
+        'scalar_obstruction': scalar_obstruction,
         'dimension': dim,
     }
 
@@ -265,22 +281,23 @@ def spectral_drinfeld_obstruction_vanishes(
 # =========================================================================
 
 def spectral_kohno_check(dim: int) -> Dict[str, Any]:
-    """Verify the spectral Kohno (infinitesimal braid) relation for sl_2.
+    """Check the rational spectral Kohno reduction.
 
     The spectral Kohno relation (infinitesimal braid relation) is:
 
     [Omega_12(u), Omega_13(u+v)] + [Omega_12(u), Omega_23(v)]
     + [Omega_13(u+v), Omega_23(v)] = 0
 
-    For the rational r-matrix r(u) = Omega/u (where Omega is the
-    Casimir tensor), this reduces to the classical infinitesimal
-    braid (IB) relation:
+    For the rational kernel Omega_ij(u) = Omega_ij/u, set
 
-    [Omega_12, Omega_13] + [Omega_12, Omega_23] + [Omega_13, Omega_23] = 0
+        A = [Omega_12, Omega_13],
+        B = [Omega_12, Omega_23],
+        C = [Omega_13, Omega_23].
 
-    which is equivalent to the Jacobi identity for the Lie algebra.
-
-    We verify this for sl_2 (dim=3) by explicit matrix computation.
+    The spectral relation has numerator v*A + (u+v)*B + u*C over
+    u*v*(u+v). It follows from the infinitesimal braid identities
+    A + B = 0 and C - A = 0, which are the invariant-Casimir form of
+    Jacobi. It is not the unweighted relation A + B + C = 0.
 
     Parameters
     ----------
@@ -291,31 +308,22 @@ def spectral_kohno_check(dim: int) -> Dict[str, Any]:
     -------
     dict
         Dictionary with keys:
-        - 'ib_relation_holds': True if the IB relation is satisfied
-        - 'reduces_to_jacobi': True (always for rational r-matrix)
+        - 'holds_under_infinitesimal_braid': True
+        - 'reduces_to_jacobi': True
         - 'dim': dim
         - 'r_matrix_type': 'rational' (r(u) = Omega/u)
         - 'pole_order': 1 (simple pole at u=0)
     """
-    # For the rational r-matrix r(u) = Omega/u, the spectral Kohno
-    # relation reduces to the classical IB relation, which is equivalent
-    # to the Jacobi identity. The Jacobi identity holds for any Lie algebra.
-    #
-    # Verification: expand the spectral relation with Omega_ij(u) = Omega_ij/u:
-    # [O12/u, O13/(u+v)] + [O12/u, O23/v] + [O13/(u+v), O23/v]
-    # = (1/u(u+v))[O12,O13] + (1/uv)[O12,O23] + (1/(u+v)v)[O13,O23]
-    #
-    # For this to vanish for all u,v, we need [O12,O13]+[O12,O23]+[O13,O23]=0
-    # (the IB relation), which follows from the Jacobi identity.
-    #
-    # The general spectral relation also holds at higher poles via
-    # the Yang-Baxter equation.
-
-    ib_holds = True  # Jacobi identity always holds for Lie algebras
+    if dim < 1:
+        raise ValueError(f"Dimension must be >= 1, got {dim}")
 
     return {
-        'ib_relation_holds': ib_holds,
+        'holds_under_infinitesimal_braid': True,
+        'ib_relation_holds': True,
         'reduces_to_jacobi': True,
+        'numerator_coefficients': {'A': 'v', 'B': 'u+v', 'C': 'u'},
+        'required_relations': ('A + B = 0', 'C - A = 0'),
+        'unweighted_ib_sum_sufficient': False,
         'dim': dim,
         'r_matrix_type': 'rational',
         'pole_order': 1,
@@ -329,19 +337,19 @@ def spectral_kohno_check(dim: int) -> Dict[str, Any]:
 def jacobi_collapse_dimension(
     lie_type: str,
     rank: int,
+    is_root_sector: bool = True,
+    scalar_obstruction: Optional[Any] = None,
 ) -> Dict[str, Any]:
-    """Dimension of the multilinear space controlling filtration: = 1 for simple.
+    """Dimension of a finite simple root-sector obstruction target.
 
-    For simple Lie algebras, the multilinear component of the Chevalley-
-    Eilenberg complex that controls the spectral Drinfeld obstruction
-    at each filtration level is one-dimensional. This is because each
-    root space is one-dimensional, so the tensor product of root spaces
-    entering the obstruction cocycle is one-dimensional.
+    For simple Lie algebras, a nonzero finite root-sector target is
+    one-dimensional. A non-root sector is zero. This computes the target
+    dimension and, if a scalar obstruction is supplied, tests whether the
+    scalar vanishes.
 
-    The Jacobi collapse lemma (Lemma lem:jacobi-collapse) then implies
-    that the Jacobi identity determines the obstruction cocycle uniquely
-    (up to scalar), and this scalar is always zero by the Jacobi identity
-    itself. Hence the obstruction vanishes.
+    Root multiplicity one does not imply that the scalar obstruction is
+    exact; exactness is the condition that the scalar obstruction is zero
+    in the scalar quotient complex.
 
     For Kac-Moody algebras with imaginary root multiplicities > 1,
     this collapse fails: the multilinear space becomes higher-dimensional,
@@ -358,20 +366,24 @@ def jacobi_collapse_dimension(
     -------
     dict
         Dictionary with keys:
-        - 'collapse_dim': 1 (always for simple Lie algebras)
+        - 'collapse_dim': 1 for root sectors, 0 for non-root sectors
         - 'lie_type': lie_type
         - 'rank': rank
         - 'root_mult': 1
-        - 'collapses': True (the Jacobi collapse holds)
-        - 'obstruction_vanishes': True (consequence of collapse + Jacobi)
+        - 'collapses': True for root sectors
+        - 'obstruction_vanishes': bool if decidable, else None
     """
     _validate_lie_type(lie_type, rank)
+    collapse_dim = 1 if is_root_sector else 0
+    vanishes = True if not is_root_sector else _zero_status(scalar_obstruction)
 
     return {
-        'collapse_dim': 1,
+        'collapse_dim': collapse_dim,
         'lie_type': lie_type,
         'rank': rank,
         'root_mult': 1,
-        'collapses': True,
-        'obstruction_vanishes': True,
+        'collapses': is_root_sector,
+        'criterion': 'scalar_obstruction_zero',
+        'scalar_obstruction': scalar_obstruction,
+        'obstruction_vanishes': vanishes,
     }

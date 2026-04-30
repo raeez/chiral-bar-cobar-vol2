@@ -398,7 +398,19 @@ cache rows are `notes/first_principles_cache.md` rows 143--147.
 - **`notes/antipatterns_catalogue.md`** — the live Vol II AP catalogue
   (V2-AP* register plus Wave-23-26 additions V2-AP42--V2-AP55). Every
   `/chriss-ginzburg-rectify` invocation consults this at Gate 0
-  alongside the cache. Append new V2-APs here.
+  alongside the cache. Append new V2-APs here.  As of 2026-04-30, this
+  live registry also contains the appended Vol I import block
+  `VOL1_IMPORTED_ANTIPATTERN_REGISTRY_2026_04_30` and the
+  topological-strings 04:11 final-frontier AP2181--AP2189 block.
+- **`notes/vol1_control_surface_import_manifest_2026_04_30.md`** —
+  provenance and use rule for the two imported Vol I control surfaces:
+  the antipattern registry and the first-principles cache.
+- **`notes/vol1_imported_antipatterns_catalogue_2026_04_30.md`** —
+  exact Vol I antipattern-registry mirror, SHA-256
+  `b954958f06dfe486fe052bb98ac29ad0ac374692ae02895bcefde412981b02ba`.
+- **`notes/vol1_imported_first_principles_cache_comprehensive_2026_04_30.md`**
+  — exact Vol I first-principles-cache mirror, SHA-256
+  `611c8c0db91d81bf1f3d2587db09713de5acc5b2f8bfcefd2a739557fa9e48f4`.
 - **`notes/claude_md_legacy_20260418.md`** — full prior CLAUDE.md,
   1369 lines, lossless. Historical snapshot; the V2-AP catalogue has
   moved to `notes/antipatterns_catalogue.md`. Still contains the
@@ -407,7 +419,10 @@ cache rows are `notes/first_principles_cache.md` rows 143--147.
 - **`notes/agents_md_legacy_20260418.md`** — full prior AGENTS.md,
   lossless.
 - **`notes/first_principles_cache_comprehensive.md`** (if present) —
-  confusion-pattern registry.
+  confusion-pattern registry.  As of 2026-04-30, this live cache also
+  contains the appended Vol I import block
+  `VOL1_IMPORTED_FIRST_PRINCIPLES_CACHE_2026_04_30` and the
+  topological-strings 04:11 final-frontier patterns 501--509.
 - **`~/chiral-bar-cobar/CLAUDE.md`** — Vol I manifesto (mathematics
   here harmonises with Vol I's shared five-theorem core).
 - **`~/chiral-bar-cobar/chapters/examples/landscape_census.tex`** —

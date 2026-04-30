@@ -107,8 +107,13 @@ class TestLevelShift:
         """sl_2, k=5, hbar=1: K_eff = 5 - 2 = 3."""
         assert effective_level_shift(5, 1, 'A', 1) == Rational(3)
 
-    def test_sl2_critical(self):
-        """sl_2 at critical level k=2, hbar=1: K_eff = 2-2 = 0."""
+    def test_sl2_shifted_zero(self):
+        """sl_2, k=2, hbar=1: K_eff = 2-2 = 0.
+
+        This is the zero of the shifted effective level in the
+        half-space BV convention. It is not the affine critical level,
+        which is k=-h^vee=-2 for sl_2.
+        """
         assert effective_level_shift(2, 1, 'A', 1) == Rational(0)
 
     def test_sl3_k10_hbar1(self):
@@ -125,7 +130,11 @@ class TestLevelShift:
         assert result == Rational(9)
 
     def test_E8_k30_hbar1(self):
-        """E_8, k=30, hbar=1: K_eff = 30 - 30 = 0 (critical)."""
+        """E_8, k=30, hbar=1: K_eff = 30 - 30 = 0.
+
+        This is shifted-effective-level zero, not the affine critical
+        level k=-h^vee=-30.
+        """
         assert effective_level_shift(30, 1, 'E', 8) == Rational(0)
 
     def test_rational_level(self):

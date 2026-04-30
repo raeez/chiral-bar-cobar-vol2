@@ -53,4 +53,9 @@ Prefer:
 
 ## Stop rule
 
-Do not keep polishing a strong false sentence. Demote it, split it, or fence it.
+Do not keep polishing a strong false sentence. Under Supremum
+Discipline, first reconstruct the strongest true theorem by adding the
+missing habitat, topology, map, obstruction class, computation, source
+fixture, or explicit first-principles calculation.  If the mechanism is
+not yet constructed, fence the claim as a precise proof-ledger
+obligation rather than lowering the theory into a vague heuristic.

@@ -24,6 +24,7 @@ from __future__ import annotations
 from fractions import Fraction
 
 from compute.lib.independent_verification import independent_verification
+from compute.lib.z2_group_cohomology import h3_bz2_u1_class_from_triple_sign
 
 
 # ---------------------------------------------------------------------------
@@ -207,8 +208,8 @@ def test_holography_boundary_bulk_dimension_match() -> None:
 #
 # Verification path:
 #   Derivation source: universal holography functor Phi_hol applied to
-#     V^natural viewed as Z/2-orbifold of V_{Leech}; DW anomaly vanishing
-#     via orbifold BV (Vol II thm:uhf-monster-orbifold-bv-anomaly-vanishes).
+#     V^natural viewed as a conditional Z/2-orbifold descent of V_{Leech};
+#     the local BV trivialization is an input, not a determinant consequence.
 #   Independent source: Borcherds's original monstrous moonshine proof
 #     (1992 Invent Math 109:405) establishing the monster identity
 #     1/J(p) - 1/J(q) = prod_{m>0, n in Z} (1 - p^m q^n)^{c(mn)} directly
@@ -228,9 +229,8 @@ def test_holography_boundary_bulk_dimension_match() -> None:
 @independent_verification(
     claim="thm:part-vi-moonshine-recovery",
     derived_from=[
-        "Universal holography functor on V^natural = V_Leech^+ "
-        "(Vol II thm:uhf-monster-orbifold-bv-anomaly-vanishes)",
-        "Z/2 orbifold BV anomaly class in H^3(BZ/2, U(1))",
+        "Conditional universal holography functor on the Leech Z/2 orbifold",
+        "Local Z/2 orbifold BV trivialization input in H^3(BZ/2, U(1))",
     ],
     verified_against=[
         "Borcherds monstrous moonshine denominator identity "
@@ -238,13 +238,11 @@ def test_holography_boundary_bulk_dimension_match() -> None:
         "Conway-Norton moonshine conjecture Hauptmoduls (Bull LMS 11, 1979)",
     ],
     disjoint_rationale=(
-        "The orbifold-BV route to V^natural builds E_3-topological structure "
-        "via Phi_hol applied to the Leech lattice VOA modded by Z/2.  The "
-        "Borcherds denominator identity uses the Fake Monster Lie algebra's "
-        "root multiplicities (entirely lattice-theoretic); Conway-Norton "
-        "Hauptmoduls use genus-0 monodromy of the Monster group action on "
-        "the upper half-plane.  Neither external source uses Phi_hol or "
-        "orbifold BV.  Consistency check: central charge c = 24."
+        "The orbifold-BV route to V^natural is conditional on the local "
+        "Z/2 BV trivialization. The Borcherds denominator identity uses "
+        "the Fake Monster Lie algebra's root multiplicities; Conway-Norton "
+        "Hauptmoduls use genus-0 monodromy. Neither source computes the "
+        "local BV class. Consistency check: central charge c = 24."
     ),
 )
 def test_monster_central_charge_twofold_verification() -> None:
@@ -267,11 +265,11 @@ def test_monster_central_charge_twofold_verification() -> None:
     c_koszul_partner = 26 - c_Vnatural
     assert c_koszul_partner == 2
 
-    # Orbifold BV anomaly in H^3(BZ/2, U(1)) = Z/2: vanishes because
-    # Leech is even unimodular; the Dijkgraaf-Witten cocycle is trivialized
-    # by the cubic refinement of the Leech quadratic form (Z_2 value).
-    dw_anomaly_class = 0
-    assert dw_anomaly_class == 0
+    # Orbifold BV datum in H^3(BZ/2, U(1)) = Z/2: the local trivializing
+    # sign is an input to the descent criterion.
+    local_bv_triple_sign = +1
+    local_bv_class = h3_bz2_u1_class_from_triple_sign(local_bv_triple_sign)
+    assert local_bv_class == 0
 
 
 # ---------------------------------------------------------------------------

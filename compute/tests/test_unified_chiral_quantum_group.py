@@ -2,7 +2,10 @@
 
 Target chapter: Vol II chapters/theory/unified_chiral_quantum_group.tex.
 
-Covers five ProvedHere claims:
+Covers five structural probes for the unified chiral-bialgebra chapter.
+These tests are convention guards and independent sanity checks on
+verified fibres; they are not a proof of the full general existence
+theorem.
 
     thm:unified-chiral-QG
     thm:coproduct-via-miura
@@ -117,7 +120,7 @@ def sl2_TQ_residual(
 
 
 # ---------------------------------------------------------------------------
-# thm:unified-chiral-QG: existence + spectral-gauge uniqueness
+# thm:unified-chiral-QG: verified sl_2 fibre convention guard
 # ---------------------------------------------------------------------------
 
 
@@ -147,9 +150,12 @@ def sl2_TQ_residual(
         "structure approached from distinct primitive data."),
 )
 def test_unified_chiral_QG_existence():
-    """Sanity probe: at (g, f, k, mu) = (sl_2, 0, generic, 0) the unified
-    object reduces to the Yangian Y_hbar(sl_2), whose classical r-matrix
-    is Omega/z (KZ convention) with Omega the quadratic Casimir.
+    """Sanity probe for the verified sl_2 fibre.
+
+    At (g, f, k, mu) = (sl_2, 0, generic, 0), the spectral
+    chiral-bialgebra datum has KZ classical kernel
+    Omega/((k+h^vee)z). This checks the non-critical level convention
+    only; it does not prove the full general tuple.
     """
     # Non-abelian KZ-convention check: r(z) = Omega / ((k + h_v) z).
     # At k = 0, h_v(sl_2) = 2, so r evaluates to Omega/(2 z) != 0.

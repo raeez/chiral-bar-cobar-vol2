@@ -1,9 +1,9 @@
-"""HZ-IV independent-verification decorators for the W_infty E_infty-topologization endpoint.
+"""Independent-verification decorators for the W_infty E_infty endpoint.
 
 Vol II, chapters/connections/w_infty_e_infty_endpoint_platonic.tex.
 
-This test file supplies HZ-IV-compliant independent-verification decorators
-for the ProvedHere labels of the W_infty endpoint chapter. Each decorator
+This test file supplies independent-verification decorators for the
+W_infty endpoint chapter. Each decorator
 declares (derived_from, verified_against, disjoint_rationale); the
 decorator library checks disjointness at import time, raising
 IndependentVerificationError on any tautological decoration.
@@ -13,8 +13,8 @@ Claims decorated:
     thm:ggl-convergence-ckl                  Creutzig-Kanade-Linshaw parafermion
     thm:ggl-convergence-prs-bakas            Pope-Romans-Shen + Bakas
     prop:uniform-threshold-2wmax-minus-1     Uniform weight-window bound
-    thm:w-infty-e-infty-topological-convergence  Strong E_infty convergence
-    thm:w-infty-e-infty-topologization-endpoint  Platonic endpoint
+    thm:w-infty-e-infty-topological-convergence  Weightwise E_infty convergence
+    thm:w-infty-e-infty-topologization-endpoint  Conditional endpoint theorem
     thm:truncation-locus-companion           Rational-lambda scope
     prop:vol-ii-iii-coincidence              6d hCS cross-volume agreement
 
@@ -62,7 +62,7 @@ Disjoint source families used across decorators:
 All decorators are disjoint. Each claim has a derivation source from
 one group + verification from a strictly disjoint group.
 
-Invariant under HZ-IV: the decorator library validates
+Invariant: the decorator library validates
 (derived_from INTERSECT verified_against) == empty at import time; if
 any source string (case/whitespace insensitive) appears in both the
 decorated source list and the verified-against list, the module fails
@@ -126,7 +126,7 @@ def test_ggl_convergence_prochazka():
     This is a structural decoration: the engine-level check verifies
     that the three-route agreement on the threshold is implementable.
     """
-    # Structural certificate: Prochazka filtration implies threshold N = max(.)
+    # Structural check: Prochazka filtration implies threshold N = max(.)
     for n1 in [2, 3, 4]:
         for n2 in [2, 3, 4]:
             for n3 in [2, 3, 4, 5]:
@@ -183,7 +183,7 @@ def test_ggl_convergence_ckl():
     wedge, and Bakas-Moyal quantum all deliver the same threshold from
     disjoint constructions.
     """
-    # Structural certificate: Pieri at sl_N truncates for rank >= threshold.
+    # Structural check: Pieri at sl_N truncates for rank >= threshold.
     for n1 in [2, 3, 4]:
         for n2 in [2, 3, 4]:
             for n3 in [2, 3, 4, 5]:
@@ -241,7 +241,7 @@ def test_ggl_convergence_prs_bakas():
     Miura, CKL parafermion coset, and Prochazka-Rapcak triality-matching.
     All four routes deliver the same threshold.
     """
-    # Structural certificate: SU(N+1) wedge truncation threshold for
+    # Structural check: SU(N+1) wedge truncation threshold for
     # classical w_infty. Bakas Moyal preserves truncation at each hbar-order.
     hbar_orders = [0, 1, 2, 3]
     for n1 in [2, 3, 4]:
@@ -272,7 +272,7 @@ def test_ggl_convergence_prs_bakas():
     ],
     verified_against=[
         "Gaberdiel-Gopakumar simple-pole recursion from Feigin-Fuks screening at weight w",
-        "Yamada strong-convergence criterion for inverse limits of topological infty-operads",
+        "Weight-window strong-limit condition for inverse systems of topological infty-operads",
         "Eberhardt-Prochazka arXiv:1812.04710 explicit weight-window data through spin 5",
     ],
     disjoint_rationale=(
@@ -281,9 +281,9 @@ def test_ggl_convergence_prs_bakas():
         "argument in the ordered bar complex. Verification uses (i) the "
         "Gaberdiel-Gopakumar simple-pole recursion, which is derived from "
         "Feigin-Fuks screening at the VOA level and not from the bar "
-        "differential; (ii) the Yamada strong-convergence criterion, a "
-        "general theorem about inverse limits of topological infty-operads "
-        "in Op_infty; and (iii) the Eberhardt-Prochazka numerical tables "
+        "differential; (ii) the weight-window strong-limit condition for "
+        "inverse systems of topological infty-operads in Op_infty; and "
+        "(iii) the Eberhardt-Prochazka numerical tables "
         "supplied independently. The operadic bar-differential derivation "
         "and the VOA-level verification converge on the same threshold "
         "2w_max - 1."
@@ -296,12 +296,12 @@ def test_uniform_threshold_2wmax_minus_1():
     non-vacuum output/pole indices <= 2w - 1; GGL stabilisation threshold
     N >= max(.) implies N_0(w) = 2w - 1 is sufficient.
 
-    Verification: Gaberdiel-Gopakumar simple-pole recursion + Yamada
-    inverse limit + Eberhardt-Prochazka numerical tables confirm the
+    Verification: Gaberdiel-Gopakumar simple-pole recursion +
+    weight-window inverse-system control + Eberhardt-Prochazka tables confirm the
     threshold at w_max in {3, 4, 5} and extend to w_max in {6, 7, 8}
     via three-mechanism agreement.
     """
-    # Structural certificate: for each w_max, threshold is 2*w_max - 1.
+    # Structural check: for each w_max, threshold is 2*w_max - 1.
     for w_max in [3, 4, 5, 6, 7, 8]:
         n0_w_max = 2 * w_max - 1
         # Bar-weight-w_max element is computed in W_{n0_w_max}[lambda].
@@ -330,7 +330,7 @@ def test_uniform_threshold_2wmax_minus_1():
     verified_against=[
         "Ayala-Francis cofinality of little-disc stabilisation towers",
         "Lurie HA E_infty as inverse limit of E_n in Op_infty",
-        "Yamada strong inverse-limit criterion for topological infty-operads",
+        "lim1 obstruction-vanishing criterion for topological infty-operad inverse systems",
     ],
     disjoint_rationale=(
         "Derivation uses the VOA side: generic-lambda OPE "
@@ -338,9 +338,9 @@ def test_uniform_threshold_2wmax_minus_1():
         "screened antighost homotopies transported through finite W_N "
         "truncations. Verification uses only the operadic-topological "
         "side: little-disc cofinality, the definition of E_infty as an "
-        "inverse limit of E_n-operads, and Yamada's abstract strong "
-        "limit criterion. These sources share no W-algebra OPE or BV "
-        "antighost input."
+        "inverse limit of E_n-operads, and the lim1 obstruction-vanishing "
+        "criterion. These sources share no W-algebra OPE or BV "
+        "antighost hypothesis."
     ),
 )
 def test_w_infty_e_infty_topological_convergence():
@@ -374,13 +374,13 @@ def test_w_infty_e_infty_topological_convergence():
         "Derivation assembles: (i) the finite-N rungs of the iterated "
         "Sugawara ladder, (ii) the three-mechanism GGL stabilisation "
         "theorem at generic lambda, and (iii) the uniform weight-window "
-        "threshold. All four inputs live on the algebraic side: VOA "
+        "threshold. All four hypotheses live on the algebraic side: VOA "
         "OPE structure constants + Sugawara-BRST identities + BV bulk "
         "complex. Verification uses the purely operadic-topological side: "
         "(i) Ayala-Francis cofinality of little-disc operad stabilisation "
         "is a theorem about shapes of little-disc operads with no VOA "
-        "input; (ii) Lurie HA Notation 5.1.1.5 defines E_infty as the "
-        "inverse limit of little-disc operads, again no algebraic input; "
+        "hypothesis; (ii) Lurie HA Notation 5.1.1.5 defines E_infty as the "
+        "inverse limit of little-disc operads, again no algebraic hypothesis; "
         "(iii) Fresse Theorem 14.1.1 establishes Koszul self-duality of "
         "E_infty as a purely operadic fact. The algebraic derivation and "
         "the operadic verification meet at the E_infty endpoint but use "
@@ -388,7 +388,7 @@ def test_w_infty_e_infty_topological_convergence():
     ),
 )
 def test_w_infty_endpoint():
-    """Platonic endpoint: W_infty[lambda] -> E_infty-top at generic lambda.
+    """Endpoint theorem: W_infty[lambda] -> E_infty-top at generic lambda.
 
     Derivation path (algebraic): iterated Sugawara ladder at finite N +
     GGL stabilisation + uniform threshold + strong inverse limit.
@@ -397,16 +397,16 @@ def test_w_infty_endpoint():
     inverse limit + Fresse Koszul self-duality. No algebraic ingredients
     enter the verification path.
     """
-    # Structural certificate: the four ingredients assemble into the
-    # Platonic endpoint.
+    # Structural check: the hypotheses assemble into the endpoint theorem.
     ingredients = [
         "finite-N iterated Sugawara ladder",
         "all-spin screened antighost homotopies",
         "GGL stabilisation threshold",
         "uniform weight-window threshold N_0(w_max) = 2w_max - 1",
         "strong cofiltered inverse limit in Op_infty^{otimes}",
+        "lim1 obstruction-vanishing condition",
     ]
-    assert len(ingredients) == 5
+    assert len(ingredients) == 6
     for ingredient in ingredients:
         assert len(ingredient) > 0, f"missing ingredient: {ingredient!r}"
 
@@ -475,7 +475,7 @@ def test_truncation_locus_companion():
 @independent_verification(
     claim="prop:vol-ii-iii-coincidence",
     derived_from=[
-        "thm:w-infty-e-infty-topologization-endpoint Vol II Platonic endpoint",
+        "thm:w-infty-e-infty-topologization-endpoint Vol II endpoint theorem",
         "Iterated Dunn assembly E_2^ch tensor E_1^top^{infty} = E_infty-top",
         "Heisenberg coset reducing W_{1+infty} to W_infty[lambda] in Vol II framework",
     ],
@@ -485,7 +485,7 @@ def test_truncation_locus_companion():
         "Vol III Platonic functor Phi transporting E_infty-datum to CY quantum group side",
     ],
     disjoint_rationale=(
-        "Derivation is fully internal to Vol II: the Platonic endpoint "
+        "Derivation is fully internal to Vol II: the endpoint "
         "theorem assembled with the iterated Dunn structure + Heisenberg "
         "coset. Verification uses the Vol III / physics side: "
         "(i) Costello-Gaiotto's 6d holomorphic Chern-Simons on a Calabi-Yau "

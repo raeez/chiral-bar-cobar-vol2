@@ -3,9 +3,9 @@
 Verifies the dg-shifted factorization bridge computations:
 1. Root multiplicity = 1 for all simple Lie algebras
 2. BCH coefficients beta_n = 1/n via direct formula and integral
-3. Spectral Drinfeld obstruction vanishes for all simple types
-4. Spectral Kohno relation reduces to IB for rational r-matrix
-5. Jacobi collapse dimension = 1 for all simple types
+3. Spectral Drinfeld obstruction reduces to a scalar criterion
+4. Spectral Kohno relation has the correct rational numerator
+5. Root-sector collapse dimension is 1 for roots and 0 for non-roots
 
 References:
   Vol II: dg_shifted_factorization_bridge.tex (Part VI)
@@ -18,7 +18,7 @@ sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..'))
 
 import pytest
 from fractions import Fraction
-from sympy import Symbol, Rational, S, simplify
+from sympy import Rational
 
 from lib.dg_shifted_factorization_engine import (
     root_multiplicity,
@@ -165,42 +165,56 @@ class TestBCH:
 
 
 # ===================================================================
-# 3. SPECTRAL DRINFELD STRICTIFICATION
+# 3. SPECTRAL DRINFELD STRICTIFICATION CRITERION
 # ===================================================================
 
 class TestStrictification:
-    """Verify spectral Drinfeld obstruction vanishes for all simple types."""
+    """Verify root multiplicity gives a scalar obstruction criterion."""
 
-    def test_vanishes_type_A(self):
-        """Vanishes for sl_n (n=2..6)."""
+    def test_reduces_to_scalar_type_A(self):
+        """sl_n sectors reduce to scalar obstruction classes."""
         for rank in range(1, 6):
             result = spectral_drinfeld_obstruction_vanishes('A', rank)
-            assert result['vanishes'] is True
-            assert result['reason'] == 'root_multiplicity_one'
+            assert result['vanishes'] is None
+            assert result['reason'] == 'root_multiplicity_one_reduces_to_scalar'
+            assert result['criterion'] == 'scalar_obstruction_zero'
+            assert result['obstruction_dim_bound'] == 1
 
-    def test_vanishes_type_B(self):
-        """Vanishes for so_{2n+1}."""
+    def test_reduces_to_scalar_type_B(self):
+        """so_{2n+1} sectors reduce to scalar obstruction classes."""
         for rank in range(2, 5):
             result = spectral_drinfeld_obstruction_vanishes('B', rank)
-            assert result['vanishes'] is True
+            assert result['vanishes'] is None
+            assert result['obstruction_dim_bound'] == 1
 
-    def test_vanishes_type_C(self):
-        """Vanishes for sp_{2n}."""
+    def test_reduces_to_scalar_type_C(self):
+        """sp_{2n} sectors reduce to scalar obstruction classes."""
         for rank in range(2, 5):
             result = spectral_drinfeld_obstruction_vanishes('C', rank)
-            assert result['vanishes'] is True
+            assert result['vanishes'] is None
 
-    def test_vanishes_type_D(self):
-        """Vanishes for so_{2n}."""
+    def test_reduces_to_scalar_type_D(self):
+        """so_{2n} sectors reduce to scalar obstruction classes."""
         for rank in range(4, 7):
             result = spectral_drinfeld_obstruction_vanishes('D', rank)
-            assert result['vanishes'] is True
+            assert result['vanishes'] is None
 
-    def test_vanishes_exceptionals(self):
-        """Vanishes for all exceptional types."""
+    def test_reduces_to_scalar_exceptionals(self):
+        """Exceptional finite types reduce to scalar obstruction classes."""
         for lie_type, rank in [('G', 2), ('F', 4), ('E', 6), ('E', 7), ('E', 8)]:
             result = spectral_drinfeld_obstruction_vanishes(lie_type, rank)
-            assert result['vanishes'] is True
+            assert result['vanishes'] is None
+            assert result['obstruction_dim_bound'] == 1
+
+    def test_zero_scalar_obstruction_vanishes(self):
+        """A computed zero scalar obstruction gives vanishing."""
+        result = spectral_drinfeld_obstruction_vanishes('A', 2, scalar_obstruction=0)
+        assert result['vanishes'] is True
+
+    def test_nonzero_scalar_obstruction_does_not_vanish(self):
+        """One-dimensional target does not kill a nonzero scalar."""
+        result = spectral_drinfeld_obstruction_vanishes('A', 2, scalar_obstruction=Rational(1, 3))
+        assert result['vanishes'] is False
 
 
 # ===================================================================
@@ -214,11 +228,19 @@ class TestSpectralKohno:
         """IB relation holds for sl_2 (dim=3)."""
         result = spectral_kohno_check(3)
         assert result['ib_relation_holds'] is True
+        assert result['holds_under_infinitesimal_braid'] is True
 
     def test_reduces_to_jacobi(self):
         """Rational r-matrix r(u) = Omega/u reduces spectral Kohno to IB/Jacobi."""
         result = spectral_kohno_check(3)
         assert result['reduces_to_jacobi'] is True
+        assert result['required_relations'] == ('A + B = 0', 'C - A = 0')
+
+    def test_rational_numerator_coefficients(self):
+        """The spectral relation has numerator v*A + (u+v)*B + u*C."""
+        result = spectral_kohno_check(3)
+        assert result['numerator_coefficients'] == {'A': 'v', 'B': 'u+v', 'C': 'u'}
+        assert result['unweighted_ib_sum_sufficient'] is False
 
     def test_rational_r_matrix(self):
         """r-matrix type is rational."""
@@ -236,13 +258,18 @@ class TestSpectralKohno:
             result = spectral_kohno_check(dim)
             assert result['ib_relation_holds'] is True
 
+    def test_invalid_dimension(self):
+        """Dimension must be positive."""
+        with pytest.raises(ValueError):
+            spectral_kohno_check(0)
+
 
 # ===================================================================
 # 5. JACOBI COLLAPSE DIMENSION
 # ===================================================================
 
 class TestJacobiCollapse:
-    """Verify Jacobi collapse dimension = 1 for all simple types."""
+    """Verify root-sector scalar reduction for simple types."""
 
     def test_collapse_dim_type_A(self):
         """Collapse dimension = 1 for sl_n."""
@@ -250,6 +277,7 @@ class TestJacobiCollapse:
             result = jacobi_collapse_dimension('A', rank)
             assert result['collapse_dim'] == 1
             assert result['collapses'] is True
+            assert result['obstruction_vanishes'] is None
 
     def test_collapse_dim_type_B(self):
         """Collapse dimension = 1 for so_{2n+1}."""
@@ -276,10 +304,23 @@ class TestJacobiCollapse:
             assert result['collapse_dim'] == 1
 
     def test_obstruction_vanishes(self):
-        """Jacobi collapse implies obstruction vanishes."""
+        """A zero scalar obstruction vanishes after scalar reduction."""
         for lie_type, rank in [('A', 3), ('B', 3), ('C', 3), ('D', 4), ('E', 6)]:
-            result = jacobi_collapse_dimension(lie_type, rank)
+            result = jacobi_collapse_dimension(lie_type, rank, scalar_obstruction=0)
             assert result['obstruction_vanishes'] is True
+
+    def test_nonzero_scalar_obstruction_survives(self):
+        """One-dimensional collapse does not erase nonzero scalar classes."""
+        result = jacobi_collapse_dimension('A', 3, scalar_obstruction=1)
+        assert result['collapse_dim'] == 1
+        assert result['obstruction_vanishes'] is False
+
+    def test_nonroot_sector_is_zero(self):
+        """Non-root sectors have zero target and no obstruction."""
+        result = jacobi_collapse_dimension('D', 4, is_root_sector=False)
+        assert result['collapse_dim'] == 0
+        assert result['collapses'] is False
+        assert result['obstruction_vanishes'] is True
 
     def test_root_mult_stored(self):
         """Root multiplicity = 1 is stored for reference."""

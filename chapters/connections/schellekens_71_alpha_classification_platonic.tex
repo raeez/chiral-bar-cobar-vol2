@@ -1,54 +1,40 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Schellekens 71 DW anomaly classification.
+% Schellekens 71 DW anomaly and HT descent criterion.
 %
-% Records the non-Leech case-by-case analysis separated from
-% rem:schellekens-71-honest (monster_chain_level_e3_top_platonic.tex).
-% For each of the 71 strongly rational holomorphic c = 24 VOAs on
-% the Schellekens list, the Dijkgraaf-Witten anomaly alpha_orb of the
-% orbifold presentation is classified via
-% alpha_orb = sign(det(1 - sigma|_Lambda)) * [epsilon|_{Lambda^sigma}]_{H^3},
-% using the stratification of van Ekeren-Moeller-Scheithauer and
-% Moeller-Scheithauer 2023: Type A (24 pure Niemeier, trivial
-% orbifold), Type B (1 Leech Z/2, Lambda^sigma = 0 shortcut), Type C
-% (46 Leech Z/n, n >= 2, Lambda^sigma != 0, cyclic-orbifold level matching).
-%
-% Outcome: all 71 have alpha_orb = 0; hence chain-level
-% E_3-topological structure descends stratum by stratum. The three
-% mechanisms are genuinely distinct; the claim is not a uniform corollary of the
-% Leech Z/2 argument.
+% Records the stratified inputs needed after the VOA classification:
+% Type A (24 pure Niemeier, no finite orbifold), Type B (1 Leech Z/2),
+% Type C (46 Leech Z/n, cyclic-orbifold presentations). Cyclic
+% presentations are VOA input; HT descent also needs a trivialized
+% Dijkgraaf-Witten class and finite-orbifold BV descent.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\chapter[Schellekens 71 $\alpha = 0$ classification]{The Schellekens 71
-$\alpha$-classification: DW anomaly vanishing across the holomorphic
+\chapter[Schellekens 71 $\alpha$ criterion]{The Schellekens 71
+$\alpha$-criterion: finite-orbifold descent across the holomorphic
 $c = 24$ landscape}
 \label{ch:schellekens-71-alpha-classification-platonic}
 
 \paragraph{Orientation.}
-Chapter~\ref*{ch:monster-chain-level-e3-top-platonic} proved that the
-Moonshine module $V^\natural$ admits a chain-level
-$E_3$-topological structure via the explicit vanishing
-$\alpha_{\mathrm{orb}} = 0$ of the Dijkgraaf-Witten anomaly on the
-$\mathbb{Z}/2$-orbifold of the Leech lattice VOA $V_\Lambda$. The
-mechanism (FLM $\sigma$-equivariance combined with
-$\Lambda^\sigma = 0$) is structurally special to the Leech
-$\sigma=-1$ presentation. The equality $\Lambda^\sigma=0$ follows
-from torsion-freeness and $\sigma=-1$; Leech rootlessness identifies
-the weight-one-zero moonshine entry. This presentation does not extend
-verbatim to the remaining $70$ strongly rational holomorphic VOAs of
-central charge $c = 24$ on Schellekens's 1993 list (Case~0 of which is
-$V^\natural$).
+Chapter~\ref*{ch:monster-chain-level-e3-top-platonic} isolates the
+Moonshine module $V^\natural$ as a finite-orbifold boundary
+construction. The Leech $\mathbb{Z}/2$ presentation supplies a VOA;
+the descended HT model requires the abelian Leech HT theory,
+finite-orbifold BV descent, and the local datum
+$[\alpha_{\mathrm{orb}}]=0$ in
+$H^3(B\mathbb{Z}/2;\mathrm{U}(1))$. The equality
+$\Lambda^\sigma=0$ follows from torsion-freeness and $\sigma=-1$;
+Leech rootlessness identifies the weight-one-zero moonshine entry. It
+does not by itself trivialize a finite-orbifold BV associator.
 
-The present chapter carries out the case-by-case $\alpha_{\mathrm{orb}}$
-computation on the full Schellekens row surface using the cyclic
-orbifold construction of van Ekeren--M\"oller--Scheithauer, the
-Schellekens-list theorem of van Ekeren--Lam--M\"oller--Shimakura, and
-the generalised deep-hole classification of M\"oller--Scheithauer. The
-outcome is an unconditional stratified anomaly theorem: representatives
-of all $71$ Schellekens rows have $\alpha_{\mathrm{orb}} = 0$, with the
-vanishing mechanism divided into three disjoint routes (Types~A/B/C).
-Chain-level $E_3$-topological structure descends stratum by stratum
-across the holomorphic $c = 24$ landscape. The $\mathbb{Z}/3$
-Coxeter--Todd case is included as a concrete Type~C calculation.
+The cyclic-orbifold construction of van Ekeren--M\"oller--Scheithauer,
+the Schellekens-list theorem of van Ekeren--Lam--M\"oller--Shimakura,
+and the generalised deep-hole classification of
+M\"oller--Scheithauer supply the $71$ VOA presentations. They do not
+automatically produce original-complex $E_3$ or HT descent. This
+chapter records the stratum-by-stratum criterion: Type~A is the
+abelian lattice case; Types~B and~C require a trivialized
+Dijkgraaf-Witten class and finite-orbifold BV descent for the chosen
+cyclic action. The $\mathbb{Z}/3$ Coxeter--Todd case is a representative
+Type~C local datum, not a replacement for the general BV hypothesis.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Orbifold-type stratification recalled}
@@ -72,8 +58,9 @@ $70$ Schellekens entries with $V_1 \ne 0$.
 
 \begin{definition}[Orbifold-type stratification]
 \label{def:schellekens-orbifold-type}
-For a Schellekens VOA $W$ with presentation $W = V_\Lambda^{g}$ for
-some Niemeier lattice $\Lambda$ and some automorphism
+For a Schellekens VOA $W$ with a Niemeier or Leech cyclic-orbifold
+presentation from the cited classification theorems, with lattice
+$\Lambda$ and automorphism
 $g \in \mathrm{Aut}(V_\Lambda)$ of order $n$, the \emph{orbifold type}
 of $W$ is:
 \begin{itemize}
@@ -83,12 +70,10 @@ $n = 2$, and $\Lambda^\sigma = 0$;
 \item \textbf{Type C}: if $\Lambda = \Lambda_{\mathrm{Leech}}$,
 $n \ge 2$, and $\Lambda^\sigma \ne 0$.
 \end{itemize}
-The Kapustin-Saulina DW class is
-$\alpha_{\mathrm{DW}}(\sigma) = \mathrm{sign}(\det(1 - \sigma|_\Lambda))
- \cdot [\epsilon|_{\Lambda^\sigma}]_{H^3(B\mathbb{Z}/n;\mathrm{U}(1))}$,
-with the convention that Type~A yields the trivial class
-($\sigma = \mathrm{id}$ forces the formula to reduce to the vacuous
-cocycle on the whole lattice).
+For Types~B and~C the finite-orbifold BV obstruction is a
+Dijkgraaf-Witten class
+$[\alpha_{\mathrm{orb}}]\in H^3(B\mathbb{Z}/n;\mathrm{U}(1))$. Type~A
+has no finite group to gauge and hence no such obstruction.
 \end{definition}
 
 \begin{remark}[Stratum counts, following M\"oller-Scheithauer 2023]
@@ -115,56 +100,55 @@ VOA) or Type~C (when it is a true orbifold).
 \end{remark}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{The classification theorem}
+\section{The descent criterion}
 \label{sec:schellekens-71-main}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\begin{theorem}[Schellekens 71 $\alpha$-classification;
-\ClaimStatusProvedHere]
+\begin{theorem}[Schellekens 71 finite-orbifold descent criterion;
+\ClaimStatusConditional]
 \label{thm:schellekens-71-all-alpha-zero}
 Let $W$ be a chosen representative of one of the $71$ Schellekens rows
-at central charge $c = 24$, with orbifold presentation
-$W = V_\Lambda^g$ as in
-Definition~\ref{def:schellekens-orbifold-type}. Then:
+at central charge $c = 24$, with orbifold type as in
+Definition~\ref{def:schellekens-orbifold-type}. Assume:
 \begin{enumerate}[label=\textup{(\roman*)}]
-\item \textbf{Uniform DW vanishing.} The Kapustin-Saulina
-Dijkgraaf-Witten anomaly class
-$\alpha_{\mathrm{orb}}(W) \in H^3(B\mathbb{Z}/n; \mathrm{U}(1))
-= \mathbb{Z}/n$
-of the orbifold presentation equals $0$, for all $71$ row
-representatives.
-\item \textbf{Stratified mechanism.} The vanishing mechanism differs
-across strata:
+\item \textbf{VOA presentation.} $W$ is identified by the Niemeier,
+FLM, or cyclic-orbifold classification input in its stratum.
+\item \textbf{BV anomaly datum.} The finite-orbifold BV obstruction is
+trivialized in the non-vacuous strata:
  \begin{itemize}
- \item Type A ($24$): trivial orbifold, $\alpha = 0$ vacuously.
- \item Type B ($1$): $\Lambda^\sigma = 0$ shortcut
-(Chapter~\ref*{ch:monster-chain-level-e3-top-platonic}).
- \item Type C ($46$): cyclic-orbifold level matching +
-	Dong-Li-Mason modular-invariance of trace functions (2000).
+ \item Type A ($24$): no finite orbifold is gauged.
+ \item Type B ($1$): the Leech $\Z/2$ datum satisfies
+ $\alpha_{\mathrm{orb}}(\sigma,\sigma,\sigma)=+1$.
+ \item Type C ($46$): the chosen cyclic action is equipped with
+ $[\alpha_{\mathrm{orb}}]=0$ in
+ $H^3(B\mathbb{Z}/n;\mathrm{U}(1))$.
  \end{itemize}
-\item \textbf{Chain-level $E_3$-topological descent.} Every such
-representative $W$ admits a chain-level $E_3$-topological structure;
-hence lies
-in the chain-level image of the Universal Holography functor
-$\Phi_{\mathrm{hol}}$ of
-Theorem~\ref*{thm:universal-holography-functor}.
+\item \textbf{Finite-orbifold BV descent.} The corresponding
+finite-orbifold BV construction applies to the abelian lattice HT
+model and its boundary restriction identifies the descended boundary
+chiral algebra with $W$.
 \end{enumerate}
+Then the descended HT factorisation algebra carries a chain-level
+$E_3$-topological structure with boundary chiral algebra $W$. The
+Schellekens classification supplies the VOA presentations; it does not
+by itself supply the BV anomaly trivializations or the HT descent.
 \end{theorem}
 
-The proof is stratum-by-stratum.
-Section~\ref{sec:schellekens-typeA-pure-niemeier} gives Type~A,
-Section~\ref{sec:schellekens-typeB-leech-z2} gives Type~B (already
-proved in Chapter~\ref*{ch:monster-chain-level-e3-top-platonic} and
-quoted here), and Section~\ref{sec:schellekens-typeC-level-matching}
-gives Type~C.
+The verification is stratum-by-stratum.
+Section~\ref{sec:schellekens-typeA-pure-niemeier} gives the vacuous
+Type~A anomaly and abelian HT model,
+Section~\ref{sec:schellekens-typeB-leech-z2} records the Type~B local
+datum from Chapter~\ref*{ch:monster-chain-level-e3-top-platonic}, and
+Section~\ref{sec:schellekens-typeC-level-matching} records the Type~C
+cyclic-orbifold input and the remaining BV datum.
 
 \begin{remark}[Stratified scope]
 \label{rem:schellekens-stratified-scope}
-The theorem is a stratified $c=24$ statement: all $71$ entries have
-$\alpha_{\mathrm{orb}} = 0$, but the proof has three distinct
-mechanisms (Types~A/B/C). The total conclusion is not a corollary of
-the Monster argument, because the shortcut $\Lambda^\sigma = 0$ is
-available only in Type~B.
+The theorem is a stratified $c=24$ criterion. The partition
+$24_{\mathrm{Niemeier}} + 1_{V_1=0} + 46_{\mathrm{nonlat}} = 71$ is
+classification input; chain-level HT descent is obtained only after
+the anomaly and BV-descent data in the theorem are supplied. The
+Monster shortcut $\Lambda^\sigma = 0$ is available only in Type~B.
 \end{remark}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -231,24 +215,26 @@ level-specification of abelian CS).
 \label{sec:schellekens-typeB-leech-z2}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\begin{proposition}[Type B: $\Lambda^\sigma = 0$ shortcut;
-\ClaimStatusProvedElsewhere]
+\begin{proposition}[Type B: Leech $\Z/2$ anomaly datum;
+\ClaimStatusConditional]
 \label{prop:schellekens-typeB-alpha-zero}
 The Moonshine module $V^\natural = V_{\Lambda_{\mathrm{Leech}}}^{\mathbb{Z}/2}$
-at $\sigma = -1$ is the unique Type~B Schellekens entry. Its
-orbifold DW class satisfies $\alpha_{\mathrm{orb}}(V^\natural) = 0$ by
-the mechanism of
-Theorem~\ref*{thm:monster-chain-level-e3-top}: $\sigma$-equivariance
-of the FLM cocycle combined with $\Lambda^\sigma = 0$ makes the
-Kapustin-Saulina restriction
-$[\epsilon|_{\Lambda^\sigma}]_{H^3(B\mathbb{Z}/2;\mathrm{U}(1))}$
-canonically trivial. The sign factor is
-$\mathrm{sign}(\det(1 + 1|_\Lambda)) = \mathrm{sign}(2^{24}) = +1$.
+at $\sigma = -1$ is the unique Type~B Schellekens entry. Its HT
+descent requires the local finite-orbifold BV datum
+\[
+ \alpha_{\mathrm{orb}}(\sigma,\sigma,\sigma)=+1
+\]
+in $H^3(B\mathbb{Z}/2;\mathrm{U}(1))\cong\mathbb{Z}/2$, together with
+finite-orbifold BV descent for the Leech HT model. The determinant
+factor
+$\mathrm{sign}(\det(1 + 1|_\Lambda)) = \mathrm{sign}(2^{24}) = +1$
+is a compatibility check, not the whole anomaly computation.
 \end{proposition}
 
 \begin{proof}
 See Chapter~\ref*{ch:monster-chain-level-e3-top-platonic},
-Theorem~\ref*{thm:monster-chain-level-e3-top} Steps~1--2.
+Proposition~\ref*{prop:monster-alpha-explicit-zero} and
+Theorem~\ref*{thm:monster-chain-level-e3-top}.
 The Leech $\mathbb{Z}/2$ mechanism uses the simultaneous facts
 (i) $\sigma = -1$ is an even-unimodular automorphism ($\sigma$-invariance
 of the bilinear form is automatic because $\langle -\lambda, -\mu
@@ -256,7 +242,7 @@ of the bilinear form is automatic because $\langle -\lambda, -\mu
 (ii) the Leech lattice is torsion-free, so
 $\Lambda^\sigma=\{\lambda: \lambda=-\lambda\}=0$. Rootlessness is used
 to identify the resulting orbifold as the weight-one-zero moonshine
-entry, not to prove the fixed-lattice calculation.
+entry, not to prove a BV anomaly trivialization.
 \end{proof}
 
 \begin{remark}[What Type B does not generalise]
@@ -286,18 +272,19 @@ and non-trivial fixed sublattice.
 
 \subsection{Cyclic-orbifold level matching}
 
-\begin{proposition}[Cyclic-orbifold level matching;
+\begin{proposition}[Cyclic-orbifold presentation and level matching;
 \ClaimStatusProvedElsewhere]
 \label{prop:ems-level-matching}
 Let $g \in \mathrm{Co}_0$ be of order $n$, with fixed sublattice
 $\Lambda^\sigma \subseteq \Lambda_{\mathrm{Leech}}$ of rank $r$. The
-orbifold $V_{\Lambda_{\mathrm{Leech}}}^g$ is a strongly rational
-holomorphic VOA at $c = 24$ if and only if the conformal weight of
-the vacuum of the $g$-twisted sector
+cyclic-orbifold construction produces a strongly rational holomorphic
+VOA at $c = 24$ only under the level-matching condition that the
+conformal weight of the vacuum of the $g$-twisted sector
 $V_{\Lambda_{\mathrm{Leech}}}^{\mathrm{tw}(g)}$ lies in
-$\frac{1}{n}\mathbb{Z}$; equivalently, the DW class
-$\alpha_{\mathrm{orb}}(V_\Lambda^g)$ vanishes in
-$H^3(B\mathbb{Z}/n; \mathrm{U}(1)) = \mathbb{Z}/n$.
+$\frac{1}{n}\mathbb{Z}$. This is the VOA orbifold input. The HT
+descent theorem still requires a chosen trivialization of the
+finite-orbifold BV class
+$[\alpha_{\mathrm{orb}}]\in H^3(B\mathbb{Z}/n; \mathrm{U}(1))$.
 \end{proposition}
 
 \begin{proof}[Proof; cited]
@@ -315,27 +302,28 @@ $\mathrm{tr}_{V^{\mathrm{tw}(g)}}(g^i\, q^{L_0 - c/24})$; the
 backward implication uses Dong-Li-Mason 2000
 (\emph{Modular-invariance of trace functions in orbifold theory})
 combined with Dong-Lepowsky-Mason 1996 simple-current theory. The
-equivalence with $\alpha_{\mathrm{orb}} = 0$ is the standard
-identification of DW anomaly with modular-phase obstruction
-(Dijkgraaf-Witten 1990 + Dijkgraaf-Pasquier-Roche 1991).
+Dijkgraaf-Witten class is the finite-gauging obstruction of
+Dijkgraaf-Witten 1990 and Dijkgraaf-Pasquier-Roche 1991; the HT
+application uses its trivialization as a separate BV input.
 \end{proof}
 
-\begin{corollary}[Every Type C case has $\alpha_{\mathrm{orb}} = 0$;
-\ClaimStatusProvedHere]
+\begin{corollary}[Type C descent under local anomaly trivialization;
+\ClaimStatusConditional]
 \label{cor:schellekens-typeC-alpha-zero}
-Every Type~C Schellekens VOA has $\alpha_{\mathrm{orb}} = 0$ in
-$H^3(B\mathbb{Z}/n; \mathrm{U}(1))$.
+Every Type~C Schellekens VOA whose chosen cyclic action is equipped
+with $[\alpha_{\mathrm{orb}}]=0$ in
+$H^3(B\mathbb{Z}/n; \mathrm{U}(1))$ and finite-orbifold BV descent
+admits the descended chain-level HT $E_3$ model of
+Theorem~\ref{thm:schellekens-71-all-alpha-zero}.
 \end{corollary}
 
 \begin{proof}
 Each Type~C entry $W = V_{\Lambda_{\mathrm{Leech}}}^g$ is, by
 construction, a strongly rational holomorphic VOA of central charge
-$c = 24$. By
-Proposition~\ref{prop:ems-level-matching}, this forces
-$\alpha_{\mathrm{orb}}(W) = 0$. The classification theorem asserts
-the existence of all $46$ such entries as specific Schellekens
-$V_1$-types, and the cyclic-orbifold criterion verifies level matching
-for the corresponding deep-hole representatives.
+$c = 24$ with a cyclic-orbifold presentation satisfying the
+level-matching input of Proposition~\ref{prop:ems-level-matching}. The
+additional hypotheses are exactly the obstruction and descent
+hypotheses in Theorem~\ref{thm:schellekens-71-all-alpha-zero}.
 \end{proof}
 
 \subsection{The $\mathbb{Z}/3$ Coxeter--Todd orbifold}
@@ -363,24 +351,23 @@ determinant~$3^6 = 729$, and minimum norm~$4$) identifies it as the
 Coxeter-Todd lattice $K_{12}$ (Conway-Sloane 1988, \S 4.9). $\qed$
 \end{proof}
 
-\begin{proposition}[Explicit $\mathbb{Z}/3$ Coxeter-Todd DW vanishing;
-\ClaimStatusProvedHere]
+\begin{proposition}[Coxeter--Todd $\mathbb{Z}/3$ anomaly datum;
+\ClaimStatusConditional]
 \label{prop:z3-coxeter-todd-alpha-zero-explicit}
 For $g \in \mathrm{Co}_0$ of order~$3$ in class $3\mathrm{A}$
-(Coxeter-Todd fixed sublattice), the DW class
-$\alpha_{\mathrm{orb}}(V_{\Lambda_{\mathrm{Leech}}}^g) = 0$ in
-$H^3(B\mathbb{Z}/3; \mathrm{U}(1)) = \mathbb{Z}/3$. The mechanism is:
-(i) the sign factor $\mathrm{sign}(\det(1 - g|_\Lambda)) = +1$ because
+(Coxeter-Todd fixed sublattice), the cyclic-orbifold table gives the
+local level-matching datum
+$h_{\mathrm{tw}}=2\in\frac{1}{3}\mathbb{Z}$. If the local
+Dijkgraaf-Witten/BV comparison identifies this datum with the
+finite-orbifold associator, then $[\alpha_{\mathrm{orb}}]=0$ in
+$H^3(B\mathbb{Z}/3; \mathrm{U}(1)) = \mathbb{Z}/3$. The compatibility
+checks are: (i) the sign factor
+$\mathrm{sign}(\det(1 - g|_\Lambda)) = +1$ because
 the non-trivial eigenvalues come in complex-conjugate pairs
 $(\zeta_3, \bar{\zeta_3})$ contributing
 $|1 - \zeta_3|^2 = 3$ per pair, giving
-$\det(1 - g|_{\Lambda^{\sigma,\perp}})=3^6>0$; (ii) the FLM cocycle restricted to
-$\Lambda^\sigma = K_{12}$ is cohomologous to the Dong-Mason 3-cocycle
-representative, which vanishes in $H^3(B\mathbb{Z}/3; \mathrm{U}(1))$
-because the Coxeter-Todd lattice (even, determinant $729 = 3^6$, viewed
-as $3$-modular self-dual lattice in the sense of Quebbemann 1995) has
-twisted vacuum conformal weight
-$h_{\mathrm{tw}}=2\in\frac{1}{3}\mathbb{Z}$ in the cited cyclic-orbifold table.
+$\det(1 - g|_{\Lambda^{\sigma,\perp}})=3^6>0$; (ii) the fixed lattice
+is $K_{12}$, even of determinant $729=3^6$.
 \end{proposition}
 
 \begin{proof}
@@ -409,44 +396,43 @@ $H^3(B\mathbb{Z}/3; \mathrm{U}(1))$ is the Kapustin-Saulina
 anomaly representative.
 
 The Dong-Mason quantum Galois theorem (J.~Alg.~214, 1999) plus the
-DLM 2000 modular-invariance theorem show that this representative
-is trivial if and only if the twisted vacuum conformal weight lies
-in $\frac{1}{3}\mathbb{Z}$. For the specific $\sigma \in 3\mathrm{A}$
-class, Kac-Peterson-Wakimoto formulae (and the cited cyclic-orbifold
-table) compute
+DLM 2000 modular-invariance theorem supply the VOA modular constraint
+on the twisted vacuum conformal weight. For the specific
+$\sigma \in 3\mathrm{A}$ class, the cited cyclic-orbifold table records
 $h_{\mathrm{tw}}(V_{\Lambda_{\mathrm{Leech}}}^{\mathrm{tw}(g)}) = 2$.
-The integer~$2$ lies in $\frac{1}{3}\mathbb{Z}$, so level-matching
-holds and $\alpha_{\mathrm{orb}} = 0$ in $\mathbb{Z}/3$.
+The integer~$2$ lies in $\frac{1}{3}\mathbb{Z}$, so level matching
+holds. The equality $[\alpha_{\mathrm{orb}}]=0$ is the additional
+local BV comparison datum stated in the proposition.
 
 Chain-level: the orbifold Jacobi identity for $\mathbb{Z}/3$ is
 established in Dong-Lepowsky-Mason 1996 (\emph{Simple currents}) +
 Dong-Li-Mason 2000; combined with $\sigma$-equivariance of the lift
 $\widetilde{\sigma}$ (fixed by the Dong-Mason uniqueness up to
 $\mathrm{Hom}(\Lambda^\sigma / (1 - \sigma)\Lambda, \mathrm{U}(1))$,
-and the level-matching condition forces a canonical choice), the
-orbifold product is strictly associative as a chain identity. Chain-level
-$E_3$-topological structure descends by the CFG orbifold BV mechanism
-(Costello-Gwilliam 2021, Ch.~12) applied to abelian holomorphic CS
-on the Leech charge lattice with the order-$3$ orbifold action; the
-fixed lattice $K_{12}$ enters only the anomaly calculation.
+and the level-matching condition fixes the VOA extension), the
+orbifold product is a VOA chain identity. Chain-level
+$E_3$-topological structure descends only after the finite-orbifold BV
+descent and the local Dijkgraaf-Witten trivialization are supplied.
 \end{proof}
 
 \begin{remark}[Type C mechanism]
 \label{rem:schellekens-typeC-universal-mechanism}
 The Coxeter-Todd example of
 Proposition~\ref{prop:z3-coxeter-todd-alpha-zero-explicit} is
-representative: for every $g \in \mathrm{Co}_0$ corresponding to a
+representative of the local data one must supply: for every
+$g \in \mathrm{Co}_0$ corresponding to a
 generalised deep hole of the Leech lattice, the fixed sublattice
 $\Lambda^\sigma$ is a well-identified even lattice (M\"oller-Scheithauer
 2023 Table 3 enumerates all $46$), the sign factor
 $\mathrm{sign}(\det(1 - g|_{\Lambda^{\sigma,\perp}}))$ is positive
 (because non-trivial eigenvalues of $g$ on $\Lambda \otimes \mathbb{R}$
 come in complex-conjugate pairs contributing positive absolute
-values), and the $H^3$-cocycle restriction vanishes by level
-matching. The Type~C entries differ in which lattice
+values), and the $H^3$-cocycle restriction must be trivialized in the
+finite-orbifold BV model. The Type~C entries differ in which lattice
 $\Lambda^\sigma$ appears and what twisted-vacuum conformal weight
 $h_{\mathrm{tw}}$ materialises. The listed entries are precisely the
-level-matched cyclic orbifolds.
+level-matched cyclic orbifolds; the HT descent is the additional
+finite-orbifold BV step.
 \end{remark}
 
 \begin{remark}[Explicit enumeration of Type C cases]
@@ -472,74 +458,68 @@ $\frac{1}{n}\mathbb{Z}$ by construction).
 \end{remark}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Proof of the classification theorem}
+\section{Proof of the descent criterion}
 \label{sec:schellekens-71-proof-assembly}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{proof}[Proof of Theorem~\ref{thm:schellekens-71-all-alpha-zero}]
-(i) Uniform DW vanishing: every representative on the Schellekens
-row surface falls into exactly
-one of the three strata by
-Definition~\ref{def:schellekens-orbifold-type} and the
-van~Ekeren--M\"oller--Scheithauer construction theorem.
-Proposition~\ref{prop:schellekens-typeA-alpha-zero} gives
-$\alpha_{\mathrm{orb}} = 0$ for Type~A;
-Proposition~\ref{prop:schellekens-typeB-alpha-zero} gives Type~B;
-Corollary~\ref{cor:schellekens-typeC-alpha-zero} gives Type~C. Total
-coverage is
+(i) The Schellekens row surface falls into exactly one of the three
+strata by Definition~\ref{def:schellekens-orbifold-type} and the
+van~Ekeren--M\"oller--Scheithauer construction theorem. Total coverage is
 $24_{\mathrm{Niemeier}} + 1_{V_1=0} + 46_{\mathrm{nonlat}} = 71$
 as enumerated in
 Remark~\ref{rem:schellekens-strata-counts}.
 
-(ii) The stratified mechanism description is the content of the
-three supporting results above; the mechanisms are pairwise distinct
-(Type~A uses no orbifold; Type~B uses $\Lambda^\sigma = 0$; Type~C
-uses cyclic-orbifold level matching).
+(ii) The anomaly datum is stratum-dependent. Type~A has no finite
+orbifold to gauge, so Proposition~\ref{prop:schellekens-typeA-alpha-zero}
+gives the vacuous class. Type~B is the Leech $\Z/2$ local datum of
+Proposition~\ref{prop:schellekens-typeB-alpha-zero}. Type~C uses the
+cyclic-orbifold VOA input of Proposition~\ref{prop:ems-level-matching}
+plus the explicit local trivialization required in
+Corollary~\ref{cor:schellekens-typeC-alpha-zero}. These mechanisms are
+pairwise distinct.
 
 (iii) Chain-level $E_3$-topological descent: in Type~A, $V_\Lambda$ is
 the boundary of abelian holomorphic Chern-Simons with charge lattice
 $\Lambda$ (Theorem~\ref*{thm:E3-topological-km}, abelian case),
 so chain-level $E_3$-topological structure is immediate. In Type~B,
 Chapter~\ref*{ch:monster-chain-level-e3-top-platonic}
-Theorem~\ref*{thm:monster-chain-level-e3-top} supplies chain-level
-$E_3$-topological structure for $V^\natural$. In Type~C, the same
-template applies: the charge lattice is $\Lambda_{\mathrm{Leech}}$,
-abelian holomorphic CS on it is anomaly-free, and
-$\mathbb{Z}/n$-orbifolding with vanishing DW class preserves
-chain-level $E_n$ structure by the orbifold BV mechanism
-(Costello-Gwilliam 2021, Ch.~12, \emph{Factorization Algebras in
-Quantum Field Theory}, Vol.~II) applied to any anomaly-free finite
-gauge-group orbifold of a chain-level $E_3$-topological factorization
-algebra. The orbifold $\mathbb{Z}/n$-action commutes with the Sugawara
-topologization because lattice automorphisms preserve the abelian
-stress tensor $T = \frac{1}{2} :\sum J^a J^a:$; the orbifold inherits
-the chain-level $E_3$-topological structure.
+Theorem~\ref*{thm:monster-chain-level-e3-top} supplies the conditional
+finite-orbifold descent for $V^\natural$. In Type~C, the charge
+lattice is $\Lambda_{\mathrm{Leech}}$ and abelian holomorphic CS is
+the parent HT model; the finite cyclic quotient inherits the
+$E_3$ operations only after the BV anomaly has been trivialized and
+finite-orbifold BV descent applies. Lattice automorphisms preserve the
+abelian stress tensor $T = \frac{1}{2} :\sum J^a J^a:$, so the
+topologisation is compatible with the action once the descent datum is
+present.
 \end{proof}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Chain-level $E_3$-topological descent in the Universal
+\section{Conditional chain-level $E_3$-topological descent in the Universal
 Holography functor image}
 \label{sec:schellekens-e3-uhf-image}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{corollary}[Universal Holography functor on Schellekens $71$;
-\ClaimStatusProvedHere]
+\ClaimStatusConditional]
 \label{cor:schellekens-71-uhf-image}
 The Universal Holography functor
 $\Phi_{\mathrm{hol}}\colon \mathrm{ChirAlg}^{\omega,\mathrm{BL}}_X
 \to \mathrm{HT\text{-}QFT}_{X \times \mathbb{R}}$
-is defined on representatives of all $71$ Schellekens holomorphic
-$c = 24$ rows. For each such $W$, $\Phi_{\mathrm{hol}}(W)$ is a
-chain-level HT-QFT on
-$X \times \mathbb{R}$ for every smooth projective curve $X$, realising
-the boundary-algebra/bulk-factorisation-algebra correspondence of
-Theorem~\ref*{thm:universal-holography-functor}.
+is defined on a Schellekens representative $W$ only after the
+stratum-specific hypotheses of
+Theorem~\ref{thm:schellekens-71-all-alpha-zero} are supplied. Under
+those hypotheses, the descended HT factorisation algebra with boundary
+$W$ is a chain-level HT-QFT on $X \times \mathbb{R}$ for every smooth
+projective curve $X$.
 \end{corollary}
 
 \begin{proof}
-Theorem~\ref{thm:schellekens-71-all-alpha-zero}(iii) provides
-chain-level $E_3$-topological structure on each Schellekens-row
-representative. The Universal Holography functor is defined on
+Theorem~\ref{thm:schellekens-71-all-alpha-zero} provides chain-level
+$E_3$-topological structure after the VOA presentation, anomaly
+trivialization, and BV descent hypotheses are met. The Universal
+Holography functor is defined on
 chiral algebras with conformal vector at non-critical level
 admitting chain-level $E_3$-topological refinement
 (Theorem~\ref*{thm:universal-holography-functor}, hypotheses).
@@ -548,9 +528,9 @@ topologisation theorem), but the conformal-vector source is
 stratified: Type~A uses the lattice VOA conformal vector; Type~B uses
 the FLM Moonshine conformal vector inherited through the Leech
 $\mathbb Z/2$ orbifold; Type~C uses the conformal vector preserved by
-the cyclic orbifold construction. Thus the functor applies entry by
-entry. This is a $c=24$ finite-orbifold statement and does not alter
-the generic class-$M$ original-complex restriction.
+the cyclic orbifold construction. Thus the functor applies
+entry-by-entry only on the verified finite-orbifold descent locus. This
+does not alter the generic class-$M$ original-complex restriction.
 \end{proof}
 
 \begin{remark}[Schellekens scope in the holography image]
@@ -559,16 +539,15 @@ The Universal Holography functor has original-complex inputs on
 classes G, L, C (via Theorem~\ref*{thm:E3-topological-km},
 Theorem~\ref*{thm:E3-topological-DS-general}, and
 Theorem~\ref*{thm:E3-topological-free-PVA}) and on $V^\natural$ via
-the special Leech $\Z/2$ orbifold of
+the special Leech $\Z/2$ orbifold only under the local anomaly and BV
+descent hypotheses of
 Chapter~\ref*{ch:monster-chain-level-e3-top-platonic}. For the
-Schellekens surface, the present chapter supplies the remaining
-finite-cyclic-orbifold anomaly calculation: Type~A by the abelian
-lattice model, Type~B by the Monster argument, and Type~C by the
-cyclic-orbifold level matching. Thus the $71$ Schellekens entries have
-chain-level $E_3$-topological descent after the stratified theorem is
-invoked. This is a statement about the holomorphic $c=24$ orbifold
-landscape; it does not change the generic class-$M$ weight-completed
-ambient recorded in Corollary~\ref*{cor:universal-holography-class-M}.
+Schellekens surface, Type~A is abelian, Type~B is the Monster
+finite-orbifold criterion, and Type~C is cyclic-orbifold input plus a
+local BV anomaly trivialization. This is a statement about the
+holomorphic $c=24$ orbifold landscape; it does not change the generic
+class-$M$ weight-completed ambient recorded in
+Corollary~\ref*{cor:universal-holography-class-M}.
 \end{remark}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -577,11 +556,10 @@ ambient recorded in Corollary~\ref*{cor:universal-holography-class-M}.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 The Monster $V^\natural$ is a special case (Type~B) of the present
-classification, distinguished by the shortcut
-$\Lambda^\sigma = 0$. The Monster route proved chain-level $E_3$-top
-via a $\sigma$-equivariance mechanism with FLM cocycle
-trivialisation on the zero sublattice; the present classification
-generalises to Types~A and~C but via genuinely different mechanisms.
+criterion, distinguished by the shortcut
+$\Lambda^\sigma = 0$. The Monster route is a finite-orbifold
+criterion with a required local anomaly datum; Types~A and~C use
+different inputs.
 
 \begin{remark}[Three genuinely distinct mechanisms]
 \label{rem:schellekens-three-mechanisms}
@@ -590,20 +568,20 @@ there is nothing to compute; the underlying lattice is even
 unimodular and the VOA is already a boundary of abelian holomorphic
 CS.
 
-Type~B: $\Lambda^\sigma = 0$ trivialises the Kapustin-Saulina
-restriction on the zero sublattice. This is special to Leech +
-$\sigma = -1$.
+Type~B: $\Lambda^\sigma = 0$ is the lattice input for the Leech
+$\Z/2$ calculation. The HT descent still uses the local sign
+$\alpha_{\mathrm{orb}}(\sigma,\sigma,\sigma)=+1$ and finite-orbifold
+BV descent.
 
 Type~C: $\Lambda^\sigma \ne 0$, so the $H^3$-cocycle restriction is a
-genuine cohomology class; vanishing follows from cyclic-orbifold
-level-matching criterion, which is equivalent to the
-conformal-weight-in-$\frac{1}{n}\mathbb{Z}$ condition on the twisted
-vacuum.
+genuine cohomology class. The cyclic-orbifold level-matching criterion
+is the VOA condition; the HT claim requires the corresponding local
+BV trivialization.
 
-The three mechanisms are disjoint and each supplies full chain-level
-$E_3$-topological descent for its stratum. No universal
-``$\Lambda^\sigma$-triviality + even unimodularity'' argument covers
-the entire list.
+The three mechanisms are disjoint. No universal
+``$\Lambda^\sigma$-triviality + even unimodularity'' argument, and no
+Schellekens-list classification theorem alone, covers the HT descent
+for the entire list.
 \end{remark}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -633,13 +611,12 @@ An alternative construction of the Schellekens $71$ via
 framed-VOAs (Miyamoto 2004; Lam-Shimakura 2015) gives a different
 presentation of each entry as an extension of the Virasoro tensor
 product $\bigotimes L(c = 1/2, 0)^{\otimes 48}$. The framed-VOA
-presentation gives an alternative route to DW anomaly vanishing
+presentation gives an alternative VOA route toward anomaly analysis
 via the $\mathbb{Z}/2$-simple-current extension theory of
-Dong-Li-Mason 2000. Both routes yield the same classification
-$\alpha_{\mathrm{orb}} = 0$, providing an independent cross-check.
-This is not strictly needed for the proof of
-Theorem~\ref{thm:schellekens-71-all-alpha-zero} but confirms
-robustness.
+Dong-Li-Mason 2000. It is a cross-check for the cyclic presentation
+and simple-current phases; it does not replace the finite-orbifold BV
+trivialization required in
+Theorem~\ref{thm:schellekens-71-all-alpha-zero}.
 \end{remark}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -648,25 +625,25 @@ robustness.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{itemize}
-\item Representatives of all $71$ Schellekens holomorphic $c = 24$
-rows have
-$\alpha_{\mathrm{orb}} = 0$
-(Theorem~\ref{thm:schellekens-71-all-alpha-zero}).
-\item The vanishing mechanism stratifies as Type~A ($24$: trivial
-orbifold), Type~B ($1$: Leech $\mathbb{Z}/2$, $\Lambda^\sigma = 0$),
-Type~C ($46$: Leech $\mathbb{Z}/n$ with
-$\Lambda^\sigma \ne 0$, cyclic-orbifold level matching).
+\item The $71$ Schellekens holomorphic $c = 24$ rows enter the HT
+descent theorem through the conditional criterion
+Theorem~\ref{thm:schellekens-71-all-alpha-zero}.
+\item The inputs stratify as Type~A ($24$: trivial orbifold),
+Type~B ($1$: Leech $\mathbb{Z}/2$, $\Lambda^\sigma = 0$ plus
+local $\alpha_{\mathrm{orb}}=0$ datum), and Type~C ($46$: Leech
+$\mathbb{Z}/n$ with $\Lambda^\sigma \ne 0$, cyclic-orbifold level
+matching plus local BV trivialization).
 \item The $\mathbb{Z}/3$ Coxeter--Todd calculation appears in
 Proposition~\ref{prop:z3-coxeter-todd-alpha-zero-explicit}; every
-other Type~C case has the same formal structure with different
+other Type~C case has the same formal shape with different
 $\Lambda^\sigma$ and different twisted-vacuum conformal weight.
 \item Chain-level $E_3$-topological structure descends stratum by
-stratum; the Universal Holography functor is defined on every
-Schellekens entry
+stratum only after the abelian HT model, anomaly trivialization, and
+finite-orbifold BV descent are supplied
 (Corollary~\ref{cor:schellekens-71-uhf-image}).
 \item The three mechanisms are genuinely distinct; the
 $\Lambda^\sigma = 0$ shortcut of the Monster covers Type~B, not
 Types~A and~C.
-\item The stratified anomaly theorem accounts for all $71$ rows in
-Schellekens's list.
+\item The stratified criterion preserves
+$71 = 24_{\mathrm{Niemeier}} + 1_{V_1=0} + 46_{\mathrm{nonlat}}$.
 \end{itemize}

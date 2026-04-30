@@ -62,6 +62,22 @@ The axioms imposed on this data are stated in Definition~\ref{def:sesquilinearit
 The $A_\infty$ chiral algebra $A$ above is the endomorphism algebra $A_b = \RHom_{\cC(J)}(b,b)$ of a vacuum object $b$ in the open-sector factorization category $\cC(J)$ attached to a bulk chiral algebra $J$ (Definition~\ref{def:oc-factorization-category}). The multilinear operations $m_k$ come from restricting the factorization functors of $\cC(J)$ to iterated self-$\Hom$'s of~$b$ (Theorem~\ref{thm:boundary-algebra-from-vacuum}). The complete invariant of the open sector is the Morita class of~$\cC(J)$, not the quasi-isomorphism class of~$A_b$: different compact generators $b, b'$ produce Morita-equivalent algebras $A_b \sim_M A_{b'}$ with equivalent module categories.
 \end{remark}
 
+\begin{remark}[Five primitive objects]
+\label{rem:five-primitive-objects-axioms}
+The boundary chart $A=A_b$ is only one member of the primitive
+package. The reduced chiral bar coalgebra
+$\barB^{\mathrm{ch}}(A)=T^c(s^{-1}\bar A)$ is a coalgebra resolving
+twisting morphisms out of~$A$. The linear Koszul dual $A^!$ is the
+cobar algebra built from the dual cooperadic data; it is not
+$\barB^{\mathrm{ch}}(A)$ and is not the same object as the
+coaugmentation coideal $A^i$. The derived chiral centre
+$\cZ^{\mathrm{der}}_{\mathrm{ch}}(A)$ is the Hochschild object
+controlling bulk observables acting on the boundary. The operad
+$\SCchtop$ is none of these: it is the two-coloured governing
+dioperad whose open colour acts on~$A$ and whose closed colour acts
+on $\cZ^{\mathrm{der}}_{\mathrm{ch}}(A)$.
+\end{remark}
+
 Definition~\ref{def:ainfty_chiral} is the zero-curvature case: $A$ sits over a point. Families of algebras over a nontrivial base $S$ (genus-$g$ moduli $\overline{\cM}_g$, level space, coupling parameter) generically carry an obstruction to $m_1^2 = 0$, detected by a degree-$2$ section of $\cO_S$. The natural enlargement absorbs this obstruction as a curvature element $m_0$ of the $A_\infty$ structure.
 
 \begin{definition}[Curved $A_\infty$ chiral algebra]
@@ -83,7 +99,7 @@ where the $j=0$ terms contribute $m_0$ insertions. The first three cases are:
 When $m_0 = \kappa(\cA) \cdot \omega_g$ for a scalar $\kappa$ and a base class $\omega_g$, the $n=1$ relation reduces to $d_{\barB}^2 = \kappa \cdot \omega_g$ (Volume~I, Theorem~D): the bar differential fails to square to zero by exactly the curvature obstruction, and this failure IS the non-formality at genus $g \geq 1$. Setting $m_0 = 0$ recovers Definition~\ref{def:ainfty_chiral}.
 \end{definition}
 
-\begin{notation}[Spectral bookkeeping]
+\begin{notation}[Spectral convention]
 \label{not:spectral}
 For $n\ge1$ and ordered inputs $a_1,\dots,a_n$, we always write $m_n(a_1,\dots,a_n)$ as a formal Laurent series in $(\lambda_1,\dots,\lambda_{n-1})$ following the convention above. If $I=[p+1,\dots,p+r]$ is a consecutive block, we denote
 \[
@@ -461,21 +477,18 @@ Define for $[a],[b]\in H^\bullet(A,Q)$:
 \label{eq:prod-def}
 [a]\cdot[b] &:= \Bigl[\, \frac12\bigl(m_2^{\mathrm{reg}}(a,b) + (-1)^{|a||b|}m_2^{\mathrm{reg}}(b,a)\bigr)\,\Bigr],\\
 \label{eq:bracket-def}
-\{[a]{}_\lambda [b]\} &:= \Bigl[\, \frac12\bigl(m_2^{\mathrm{sing}}(a,b) - (-1)^{(|a|+1)(|b|+1)}\; \mathrm{e}^{-(\lambda+\partial)\partial_\lambda}\,m_2^{\mathrm{sing}}(b,a)\bigr)\,\Bigr].
+\{[a]{}_\lambda [b]\} &:= \Bigl[\, \frac12\bigl(m_2^{\mathrm{sing}}(a,b) - (-1)^{|a||b|}\; \mathrm{e}^{-(2\lambda+\partial)\partial_\lambda}\,m_2^{\mathrm{sing}}(b,a)\bigr)\,\Bigr].
 \end{align}
 The exponential operator encodes the transformation $\lambda\mapsto -\lambda-\partial$ required by vertex skewsymmetry. (It acts on formal series by the standard rule $\mathrm{e}^{\alpha\partial_\lambda}f(\lambda)=f(\lambda+\alpha)$.)
 
 \smallskip\noindent
 \emph{Verification of the exponential operator.}\;
 The operator $\mathrm{e}^{\alpha\partial_\lambda}$ acts on $f(\lambda)$ by
-$f(\lambda+\alpha)$. Setting $\alpha = -(\lambda+\partial)$ gives
-$f(\lambda) \mapsto f(\lambda - \lambda - \partial) = f(-\partial)$,
-which is precisely the vertex algebra skew-symmetry substitution
-$\lambda \to -\lambda - \partial$. The sign
-$(-1)^{(|a|+1)(|b|+1)}$ is the Koszul sign for the $(-1)$-shifted
-bracket: the shifted degrees are $|a|+1$ and $|b|+1$, and the bracket
-has degree $-1$, so the transposition sign is
-$(-1)^{(|a|+1)(|b|+1)}$.
+$f(\lambda+\alpha)$. Setting $\alpha = -(2\lambda+\partial)$ gives
+$f(\lambda) \mapsto f(-\lambda-\partial)$, which is precisely the
+vertex-algebra skew-symmetry substitution. The visible exchange sign
+is the ordinary Koszul sign $(-1)^{|a||b|}$; the shifted signs enter
+the Jacobi and Leibniz identities through the bar desuspension.
 
 \smallskip\noindent
 \emph{Symmetrisation in the product.}\;
@@ -496,7 +509,7 @@ Theorem~\ref{thm:cohomology_PVA}.
 
 The $A_\infty$ identities of Definition~\ref{def:ainfty-relations} were derived above as the Stasheff closure forced by Stokes' theorem on $\FM_k(\C)$. For an $A_\infty$ chiral algebra arising from a BV quantization of a 3d holomorphic-topological field theory, the same identities have a second life as the Feynman-diagram expansion of the quantum master equation (QME). The coincidence is not a coincidence: each $A_\infty$ relation is the QME at a fixed diagrammatic weight.
 
-\begin{lemma}[QME implies $A_\infty$ relations; \ClaimStatusConditional]
+\begin{lemma}[QME implies $A_\infty$ relations; \ClaimStatusProvedElsewhere]
 \label{lem:QME_to_Ainfty}
 For a physical realisation satisfying Theorem~\ref{thm:physics-bridge}:
 The quantum master equation $\frac{1}{2}\{S_{\mathrm{eff}},S_{\mathrm{eff}}\}_{\mathrm{BV}} + \hbar\Delta S_{\mathrm{eff}}=0$, expanded in Feynman diagrams, is equivalent to the $A_\infty$ identities \eqref{eq:ainfty-relation-raw} for the operations $m_k$ extracted from $S_{\mathrm{eff}}$.
@@ -507,7 +520,7 @@ Expand $S_{\mathrm{eff}} = \sum_k \frac{1}{k!} S_k$ where $S_k$ encodes $k$-ary 
 \end{proof}
 
 \begin{proposition}[Definition \ref{def:ainfty_chiral} captures the physical structure;
-\ClaimStatusConditional]
+\ClaimStatusProvedElsewhere]
 \label{prop:physical_justification}
 For physical realisations satisfying Theorem~\ref{thm:physics-bridge}, Definition~\ref{def:ainfty_chiral} formalizes the $A_\infty$ chiral algebra structure of Costello--Gwilliam--Gaiotto--Dimofte:
 
@@ -521,7 +534,9 @@ expanded in Feynman diagrams.
 \item The $\lambda$-bracket and form integrands match \cite{CDG20} and Khan--Zeng \cite{KZ25}: spectral parameters $\lambda_i$ encode derivatives via $e^{\lambda z}$ generating functions.
 
 \item The definition recovers known structures:
-$m_{k \geq 3} = 0$ gives ordinary PVAs (Example~\ref{rem:free_chiral});
+binary descent gives ordinary PVAs (Theorem~\ref{thm:cohomology_PVA});
+the additional condition $m_{k \geq 3}=0$ gives formal comparison
+models (Example~\ref{rem:free_chiral});
 one-loop-finite holomorphic theories give Gwilliam--Grady--Williams structures \cite{GGW21};
 cohomology $H^\bullet(\A,Q)$ yields PVAs matching \cite{CDG20} (Theorem~\ref{thm:cohomology_PVA}).
 
@@ -529,9 +544,14 @@ cohomology $H^\bullet(\A,Q)$ yields PVAs matching \cite{CDG20} (Theorem~\ref{thm
 \end{enumerate}
 \end{proposition}
 
-\begin{remark}[Status]
-\label{rem:status}
-Costello--Dimofte--Gaiotto \cite{CDG20} state that ``an $A_\infty$ analog of a vertex algebra\ldots is a structure that has yet to be fully defined mathematically.'' Definition~\ref{def:ainfty_chiral} fills this gap; Proposition~\ref{prop:physical_justification} verifies it against the physical sources.
+\begin{remark}[Comparison with the physical source]
+\label{rem:physical-source-comparison}
+Costello--Dimofte--Gaiotto \cite{CDG20} isolate the need for an
+$A_\infty$ analogue of a vertex algebra in holomorphic-topological
+field theory. Definition~\ref{def:ainfty_chiral} gives the Vol~II
+model: spectral $A_\infty$ operations, sesquilinearity, unit,
+Stasheff identities, and the logarithmic $\SCchtop$ factorisation
+needed for PVA descent.
 \end{remark}
 
 \subsection{Factorization axiom and cluster limits}
@@ -1794,33 +1814,47 @@ Remark~\textup{\ref{V1-rem:k3-koszul-structure-precise}}, valued in the
 Positselski curved CDG bar resolution.
 \end{remark}
 
-\section{Synthesis}
+\section{K3 base-point axioms}
 \label{sec:axioms-supplement}
 
-\begin{remark}[Vol~II axioms of $\mathsf{SC}^{\mathrm{ch,top}}$ at the K3 synthesis base]
+\begin{remark}[Vol~II axioms of $\mathsf{SC}^{\mathrm{ch,top}}$ at the K3 base point]
 \label{rem:axioms-1}
 The Vol~II axioms of $\mathsf{SC}^{\mathrm{ch,top}}$ ($3$D HT QFT)
-instantiate at the K3 synthesis base with: chiral algebra
+instantiate at the K3 base point with the boundary chart
 $\mathbf H_{\Delta_5}$ at the Schur sector of class-$\mathcal S$ $A_1$
-on $\Sigma_{0,24}$, central charges $c_{4d} = 107/6, c_{2d} = -214$
-(canonical Shapere--Tachikawa first-principles values;
-intermediate $(26, -312)$ retracted per Vol~I
-Chapter~\ref{V1-sec:thqg-open-closed-realization} line~1932),
-bi-based Ran $(\mathrm{Ran}(E^{\mathrm{nod,sm}}_{24}),\bar{\mathcal A}_2)$
-with averaging $\mathrm{av} = \mathrm{Torelli}_{K3}\circ\mathrm{KugaSatake}\circ j_{\mathrm{Kod}}$.
-The $3$D HT QFT's holomorphic-twist axiom matches Costello 1-loop output
-giving $\Delta_5$ as character \cite{CostelloHolomorphic,Gaiotto2009}.
+on $\Sigma_{0,24}$, with Shapere--Tachikawa central charges
+$c_{4d} = 107/6$ and $c_{2d} = -214$,
+the chiral base $\mathrm{Ran}(E^{\mathrm{nod,sm}}_{24})$, and the
+parameter base $\bar{\mathcal A}_2$. The averaging morphism is
+\[
+\mathrm{av}
+=\mathrm{Torelli}_{K3}\circ\mathrm{KugaSatake}\circ j_{\mathrm{Kod}}.
+\]
+The holomorphic-twist axiom gives the chiral boundary algebra; the
+Borcherds--Gritsenko lift gives the automorphic scalar
+$\Delta_5$. These are linked by $\mathrm{av}$, not identified as
+the same object \cite{CostelloHolomorphic,Gaiotto2009}.
 Cross-ref Vol.~III Chapter~\ref{V3-ch:k3-chiral-bialgebra-platonic}.
 \end{remark}
 
-\begin{remark}[axiomatic refinement]
+\begin{remark}[K3 base-point refinement]
 \label{rem:axioms-2}
-At the K3 synthesis base, the Vol~II axioms refine: (i) factorisation
-axiom restricts to bi-based Ran; (ii) holomorphic-twist axiom produces
-Igusa $\Phi_{10}$ denominator; (iii) Drinfeld-double axiom produces
+At the K3 base point, the Vol~II axioms refine as follows. The
+factorisation axiom is bi-based: Beilinson--Drinfeld factorisation
+lives on $\mathrm{Ran}(E^{\mathrm{nod,sm}}_{24})$, while the
+automorphic line $\mathcal L^{\Delta_5}$ lives over
+$\bar{\mathcal A}_2$. The Borcherds scalar is
+$\Delta_5$ on the Maass spin cover, with
+$\Phi_{10}^{\mathrm{un}}=\Delta_5^2$ on the untwisted Siegel
+cover. The Hall--Drinfeld-double axiom produces
 $\mathbf H_{\Delta_5} = \mathcal D_\hbar(\mathcal Y^{\mathrm{Hall}}_\hbar, \widetilde\Phi^{\mathrm{Sieg\text{-}Bor}}_{\mathrm{Sp}_4}, R_{\mathrm{Sieg,dyn}})$;
-(iv) $R$-matrix axiom produces $R_{\mathrm{Sieg,dyn}}$ via Pasol--Zagier
-2013. The universal identity is the axiom (v) that ties (i)-(iv)
-\cite{PasolZagier2013,EtingofKazhdan2007PartV}. Cross-ref
-Chapter~\ref{V3-ch:k3-chiral-bialgebra-platonic}.
+the $R$-matrix axiom produces $R_{\mathrm{Sieg,dyn}}$ via the
+Pasol--Zagier Kronecker--Eisenstein series. The conductor identity
+\[
+\hbar_{\mathrm{QG}}^2 K^{\kappa_{\mathrm{ch}}}=-1,\qquad
+K^{\kappa_{\mathrm{ch}}}=2c_+(\mathrm{Mukai}(K3))=8,
+\]
+fixes the quantum-group specialisation
+$\hbar_{\mathrm{QG}}^2=-1/8$ \cite{PasolZagier2013,EtingofKazhdan2007PartV}.
+Cross-ref Chapter~\ref{V3-ch:k3-chiral-bialgebra-platonic}.
 \end{remark}

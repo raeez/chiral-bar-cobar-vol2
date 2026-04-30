@@ -1,29 +1,28 @@
 %% Unified Chiral Quantum Group.
 %%
-%% States the Unified Chiral Quantum Group Theorem, the canonical
-%% Platonic-form statement that a four-parameter family
+%% States the Unified Chiral Quantum Group Theorem for the verified
+%% Koszul/evaluation-generated surface of the four-parameter family
 %%
-%% Q_{g}^{k,f,mu} = ( A_{g}^{k,f,mu}, Delta_z, R(z), epsilon, S,
+%% Q_{g}^{k,f,mu} = ( A_{g}^{k,f,mu}, Delta_z, R(z), Phi,
 %% (A_{g}^{k,f,mu})^{!} )
 %%
-%% is the unique (up to spectral gauge isomorphism) chiral quantum
-%% group with simple-Lie datum g, good Z-grading Gamma via
-%% sl_2-triple (e,h,f), non-critical level k != -h^v, and shift datum
+%% with simple-Lie datum g, good Z-grading Gamma via sl_2-triple
+%% (e,h,f), non-critical level k != -h^v, and shift datum
 %% mu in P(g)^+ cup {0}. Nine specialisation fibres -- Yangian
 %% Y_hbar(g), affine Yangian Y_hbar(ghat), shifted Yangian Y_mu(g),
 %% truncated shifted Y^{lambda}_{mu}(g) = BFN Coulomb branch, finite
 %% W-algebra W^{fin}(g,f), principal affine W W_k(g, f_prin),
 %% non-principal affine W W_k(g,f), Bershadsky-Polyakov
 %% W_k(sl_3, f_min), and orthogonal coideal Q^{theta} -- are collected
-%% into a single object with uniform Koszul, bar, and r-matrix data.
+%% into a single organizing datum with uniform Koszul, bar, and
+%% r-matrix data on the loci where the obstruction classes vanish.
 %%
 %% This chapter is the bosonic companion of super_chiral_yangian.tex;
-%% together they close Vol II FM130-FM135, FM161-FM170, FM176-FM181 and
-%% supply the target of the existential cross-references in the
-%% super-Yangian, GRT parametrised seven-faces, chiral higher Deligne,
-%% SC^{ch,top} heptagon, curved Dunn higher-genus, E_infinity
-%% topologisation, universal celestial holography, universal holography
-%% functor, and celestial moonshine bridge chapters.
+%% together they supply the bosonic and super targets for the GRT
+%% parametrised faces, chiral higher Deligne, SC^{ch,top} heptagon,
+%% curved Dunn higher-genus, E_infinity topologisation, universal
+%% celestial holography, universal holography functor, and celestial
+%% moonshine bridge chapters.
 %%
 %% Depends on:
 %% - chapters/theory/grt_parametrized_seven_faces.tex (GRT torsor)
@@ -50,6 +49,10 @@
 \providecommand{\Tor}{\mathrm{Tor}}
 \providecommand{\Sym}{\mathrm{Sym}}
 \providecommand{\Hom}{\mathrm{Hom}}
+\providecommand{\Cone}{\operatorname{Cone}}
+\providecommand{\Coker}{\operatorname{Coker}}
+\providecommand{\Ind}{\operatorname{Ind}}
+\providecommand{\Convstr}{\operatorname{Conv}_{\mathrm{str}}}
 \providecommand{\cA}{\mathcal{A}}
 \providecommand{\cB}{\mathcal{B}}
 \providecommand{\cC}{\mathcal{C}}
@@ -89,6 +92,7 @@
 \providecommand{\Lie}{\mathsf{Lie}}
 \providecommand{\PBW}{\mathrm{PBW}}
 \providecommand{\Res}{\operatorname{Res}}
+\providecommand{\Mod}{\mathrm{Mod}}
 \providecommand{\id}{\mathrm{id}}
 \providecommand{\coll}{\mathrm{coll}}
 \providecommand{\ChirAss}{\mathsf{ChirAss}}
@@ -100,7 +104,7 @@
 \label{ch:unified-chiral-quantum-group}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section*{Prologue: nine fibres, one object}
+\section*{Prologue: nine fibres, one construction datum}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 Nine classes of algebra are repeatedly called ``chiral quantum
@@ -120,44 +124,51 @@ coproduct, each has a chiral Koszul dual, and each contributes to the
 standard chiral landscape.
 
 The nine fibres have been studied by separate communities with separate
-conventions. The unified chiral quantum group is the single object
-from which every fibre is a specialisation, and the Unified Chiral
-Quantum Group Theorem is the assertion that the specialisation map is
-functorial, spectral-gauge-unique, and compatible with Koszul duality
-and Drinfeld--Sokolov reduction. The unifying data is a
+conventions. The unified chiral quantum group is the organising
+chiral-bialgebra datum whose verified fibres share the same
+spectral-coproduct, $R$-matrix, Koszul-dual, and Drinfeld--Sokolov
+transport mechanisms.  Functorial specialisation is proved on
+the Koszul and evaluation-generated loci named below; the remaining
+fibres are comparison problems with explicit construction obligations.
+The unifying data is a
 four-parameter tuple $(\fg, \Gamma, k, \mu)$: a simple Lie algebra
 $\fg$, a good $\mathbb{Z}$-grading $\Gamma$ given by an
 $\fsl_2$-triple $(e,h,f)$, a non-critical level $k\neq -h^{\vee}$, and
 a shift datum $\mu \in P(\fg)^{+}\cup\{0\}$. The object
 \[
  Q_{\fg}^{k,f,\mu}
- \;=\; \bigl(A_{\fg}^{k,f,\mu},\;\Delta_z,\;R(z),\;\epsilon,\;S,\;
+ \;=\; \bigl(A_{\fg}^{k,f,\mu},\;\Delta^{\mathrm{ch}}_z,\;R(z),\;\Phi,\;
  (A_{\fg}^{k,f,\mu})^{!}\bigr)
 \]
-packages the underlying chiral algebra, the spectral coproduct, the
-universal $R$-matrix, the counit, the antipode, and the Koszul dual
-into one sextuple.
+packages the underlying chiral algebra, the completed spectral chiral
+coproduct, the universal or representation-level $R$-matrix, the
+associator, and the Koszul dual.  A counit or antipode belongs only to
+additional topological Hopf fibres or Drinfeld-double completions; it
+is not part of the chiral bialgebra datum.
 
 The deficiency in the literature is a nine-fold fragmentation: nine
 communities, nine conventions, nine independent rigidity arguments,
 zero cross-specialisation proofs. No prior reference establishes
 that the Baxter $Q$-operator of the Yangian and the Feigin--Frenkel
-screening of the principal $W$-algebra are two fibres of one object.
-The present chapter supplies the missing unifier. $Q_{\fg}^{k,f,\mu}$
-exists and is spectral-gauge-unique by a three-leg argument
-(Maurer--Cartan on binary collisions, chiral Koszul rigidification,
-BRST transport); the nine specialisation fibres are propositions; the
-type-$A$ Baxter $Q$-operator, the Drinfeld--Sokolov
-class-$L$-to-class-$M$ escalation, the non-simply-laced Langlands
-duality, and the exceptional-type PBW extension follow as corollaries.
+screening of the principal $W$-algebra are two fibres of a common
+construction datum.
+The present chapter supplies the common construction language.
+$Q_{\fg}^{k,f,\mu}$ exists on the verified Koszul/evaluation-generated
+surface of Definition~\ref{def:ucqg-verified-surface} by a three-leg
+argument (Maurer--Cartan on binary collisions, chiral Koszul
+rigidification, BRST transport).  The specialisation fibres proved in
+the chapter are propositions; fibres outside that surface are governed
+by the obstruction classes displayed in
+Definition~\ref{def:ucqg-verified-surface}.
 Chapter~\ref{ch:super-chiral-yangian} extends the four-parameter
 family to the $\mathbb{Z}/2$-graded setting; the GRT-parametrised
 face chapter records the associated associator action; the chiral
 higher Deligne chapter identifies the derived chiral centre as the
-$E_3$ target.
+universal $E_2$-chiral brace object, with $E_3$ and
+$\SCchtop$ refinements only under the theorem's topologisation and
+two-coloured hypotheses.
 
-\begin{convention}[Yangian-type disambiguation;
-\ClaimStatusProvedElsewhere]
+\begin{convention}[Yangian-type disambiguation]
 \label{conv:ucqg-yangian-types}
 The symbol $\Yhbar(\fg)$ in the nine-fibre enumeration above denotes
 the \emph{classical} Drinfeld Yangian as an $E_1$-topological algebra
@@ -172,7 +183,7 @@ Chapter~\ref{chap:ordered-associative}
 a point, restriction to a formal disk, global $D$-module, and
 spectral-line transport. The Koszul-dual side
 $(A^{k,f,\mu}_\fg)^!$
-in the sextuple $Q^{k,f,\mu}_\fg$ is the ordered $\Cobar$
+in the datum $Q^{k,f,\mu}_\fg$ is the ordered $\Cobar$
 of~$\Barchord(A^{k,f,\mu}_\fg)$; it is therefore the chiral Yangian
 type when read globally and the dg-shifted Yangian type when
 restricted to the formal disk. The ordered-to-symmetric
@@ -194,20 +205,19 @@ Convention~\ref{conv:ordered-kd-core-five-notions}).
 
 \begin{remark}[Bialgebra, not Hopf, at the chiral level]
 \label{rem:ucqg-bialgebra-not-hopf}
-The sextuple $Q^{k,f,\mu}_\fg$ lists an antipode~$S$ as a separate
-datum because, on the classical fibre of $\Yhbar(\fg)$ (type~1, point
-value), $S$ is constructed from the quantum Berezinian /
-quasi-determinant of the $T$-matrix by Nazarov and Molev; at the
-chiral level (type~3, $D$-module on the curve~$X$), the coproduct
-$\Delta_z$ is a spectral Drinfeld coproduct and no chiral-level
-antipode is automatic. The chiral $Y(\fg)^{\mathrm{ch}}$ is a chiral
-bialgebra, not a chiral Hopf algebra; the antipode lives on the
-topological fibre and descends to the bar-cobar-completed
-$\widehat{\Cobar}|_D$ at the formal disk, but the obstructions
-enumerated in the PIRSA-style ``open'' direction (OPE obstruction
-at $\Psi\in\{1,2\}$ and universal Hopf-axiom obstruction) block a
-chain-level chiral antipode. The downstream chapters on the
-gravitational Yangian and line operators consistently treat the
+The datum $Q^{k,f,\mu}_\fg$ is chiral-bialgebraic.  On the classical
+fibre of $\Yhbar(\fg)$ (type~1, point value), an antipode is
+constructed from the quantum Berezinian or quasi-determinant of the
+$T$-matrix by Nazarov and Molev.  At the chiral level (type~3,
+$D$-module on the curve~$X$), the coproduct $\Delta_z$ is a spectral
+Drinfeld coproduct and no chiral-level antipode is automatic. The
+chiral $Y(\fg)^{\mathrm{ch}}$ is a chiral bialgebra, not a chiral Hopf
+algebra; the antipode lives on the topological fibre and descends to
+the bar-cobar-completed $\widehat{\Cobar}|_D$ at the formal disk only
+under the relevant Hopf-completion hypotheses. OPE obstructions at
+$\Psi\in\{1,2\}$ and the universal Hopf-axiom obstruction block a
+chain-level chiral antipode in the general datum. The downstream
+chapters on the gravitational Yangian and line operators treat the
 chiral object as a bialgebra; the antipode is invoked only at the
 classical Koszul-locus reduction.
 \end{remark}
@@ -325,14 +335,14 @@ and the orthogonal coideal to an involution-fixed subalgebra.
 \end{remark}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{The unified object $Q_{\fg}^{k,f,\mu}$}
+\section{The unified datum $Q_{\fg}^{k,f,\mu}$}
 \label{sec:ucqg-object}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 We construct $A_{\fg}^{k,f,\mu}$ in three steps: underlying chiral
 algebra (\S\ref{subsec:ucqg-underlying}), spectral coproduct and
 $R$-matrix (\S\ref{subsec:ucqg-coproduct}), Koszul dual and counit
-or antipode (\S\ref{subsec:ucqg-koszul-antipode}).
+with optional topological antipode (\S\ref{subsec:ucqg-koszul-antipode}).
 
 \subsection{Underlying $E_1$-chiral algebra}
 \label{subsec:ucqg-underlying}
@@ -500,14 +510,14 @@ $A_{\fg}^{k,f,\mu}$. Because the underlying algebra is chirally Koszul
 vanishing provide the 10 equivalent criteria), the chiral Koszul
 dual is well-defined. The counit
 $\epsilon\colon A_{\fg}^{k,f,\mu}\to \mathbb{C}$ is the projection onto
-the vacuum subspace; the antipode
-$S\colon A_{\fg}^{k,f,\mu}\to A_{\fg}^{k,f,\mu}$ is the Chevalley
-involution composed with the $\hbar\to -\hbar$ flip (or, for real
-$\Psi$, the trace-form dual map $T(u)\mapsto T^{-1,T}(u)$ when such a
-choice exists; the general construction is
-Theorem~\ref{thm:langlands-nonsimplylaced} below).
+the vacuum subspace when the chosen fibre has an augmentation.  An
+antipode is extra topological Hopf or Drinfeld-double structure:
+on classical Yangian fibres it is the Chevalley involution composed
+with the $\hbar\to -\hbar$ flip, or the trace-form dual map
+$T(u)\mapsto T^{-1,T}(u)$ when such a choice exists.  No chain-level
+chiral antipode is asserted for the general chiral bialgebra datum.
 
-\begin{remark}[Half-braiding construction, not narration]
+\begin{remark}[Half-braiding construction]
 \label{rem:half-braiding}
 The $R$-matrix acts as a half-braiding on the Drinfeld centre
 $Z(\mathrm{Rep}^{E_1}(A_{\fg}^{k,f,\mu}))$:
@@ -515,7 +525,7 @@ $Z(\mathrm{Rep}^{E_1}(A_{\fg}^{k,f,\mu}))$:
  \sigma_A(z)(a\otimes n)
  \;=\; \sum \Delta_z(a)_{(2)}\cdot n \otimes \Delta_z(a)_{(1)}.
 \]
-This is the \emph{constructed} half-braiding (not a narration); the
+This is the constructed half-braiding. The
 identity $R(z) = \sigma_A(z)\circ \tau$ on finite-dimensional
 $A$-modules, where $\tau$ is the flip, can be verified term-by-term in
 the Taylor expansion at $z=0$.
@@ -549,10 +559,12 @@ construction scope]
 Theorem~\ref{thm:unified-chiral-QG} asserts existence and
 spectral-gauge-uniqueness of $Q_{\fg}^{k,f,\mu}$ for every
 four-tuple $(\fg,\Gamma,k,\mu)$ on the chirally Koszul locus. The
-\emph{concrete} construction of all six pieces of structure
-$(\Delta_z, R(z), \epsilon, S, A^{!})$, with explicit generators and
+\emph{concrete} construction of the chiral-bialgebra pieces
+$(\Delta_z, R(z), \Phi, A^{!})$, with explicit generators and
 relations matching standard literature presentations, is presently
-verified for two anchor cases:
+verified for two anchor cases. A counit or antipode is concrete only
+after an augmentation, Hopf fibre, or Drinfeld-double completion is
+specified:
 \begin{itemize}
 \item[(i)] $\fsl_2$-Yangian: $(\fg,\Gamma,k,\mu) = (\fsl_2, 0, 0, 0)$
  in the rational limit, with $\Delta_z, R(z)$ matching
@@ -600,8 +612,8 @@ complementary statements coexist:
 \item[(b)] \textbf{Cochain-level structure = associator-DEPENDENT.}
  At the chain level on a specific resolution
  $(B(A_{\fg}^{k,f,\mu}), d_{B,\Phi})$, the spectral coproduct
- $\Delta_z$, the $R$-matrix $R(z)$, and the antipode $S$ all depend
- on the choice of associator $\Phi$. The transport between two
+ $\Delta_z$ and the $R$-matrix $R(z)$ depend on the choice of
+ associator $\Phi$. The transport between two
  presentations $\Phi_1$ and $\Phi_2$ is the Tamarkin associator
  transport described in
  Section~\ref{sec:f1-f4}.
@@ -620,13 +632,14 @@ the cobar/coproduct side is associator-dependent.
 \begin{remark}[Cross-references to the climax]
 \label{rem:ucqg-climax-anchors}
 The Unified Chiral Quantum Group Theorem~\ref{thm:unified-chiral-QG}
-sits at the bar-intrinsic apex of three reconstitution anchors:
+sits at the bar-intrinsic apex of three comparison maps:
 \begin{itemize}
 \item[(a)] \emph{Universal holography master.} Each fibre
- $Q_{\fg}^{k,f,\mu}$ at non-critical level supplies a chiral algebra
- $A = A_{\fg}^{k,f,\mu}$ to which the Universal Holography Theorem
- (Theorem~\ref{thm:universal-holography-master}) attaches a canonical
- 3d holomorphic-topological gauge theory $T_{A}$ with bulk
+ $Q_{\fg}^{k,f,\mu}$ on the verified surface and satisfying the
+ hypotheses of the Universal Holography Theorem
+ (Theorem~\ref{thm:universal-holography-master}) supplies a chiral
+ algebra $A = A_{\fg}^{k,f,\mu}$ and hence a canonical 3d
+ holomorphic-topological gauge theory $T_A$ with bulk
  $\cZ^{\mathrm{der}}_{\mathrm{ch}}(A)$ and boundary $A$. The five
  rung corollaries (Corollaries~\ref{cor:rung-heisenberg},
  \ref{cor:rung-affine-km}, \ref{cor:rung-virasoro},
@@ -657,8 +670,8 @@ sits at the bar-intrinsic apex of three reconstitution anchors:
  with the warning of Remark~\ref{rem:k3-yangian-is-hall-drinfeld-double}
  below that the K3 input produces a \emph{Hall--Drinfeld double},
  not a Drinfeld Yangian);
- $\bC^{3}$ (via affine Yangian
- $\Yhbar(\widehat{\fgl_{\infty}})$ and Schiffmann--Vasserot CoHA,
+ $\bC^{3}$ (via the Schiffmann--Vasserot positive-half CoHA and its
+ Drinfeld-double or vertex completion toward the affine Yangian,
  Remark~\ref{rem:drinfeld-double-chiral-interpretation}(iii));
  toric CY${}_{3}$ (via shifted Yangian fibre, scope $n=1$). The
  unified family thus assembles the cross-volume targets of $\Phi$
@@ -688,7 +701,7 @@ Hall--Drinfeld double}
  \mathbf{H}_{\Delta_5}
  \;=\;
  \Dhbar\bigl(\cY^{\mathrm{Hall}}_{\hbar}(\mathrm{CoHA}_{K3\times E}),\,
- \widetilde{\Phi}^{\mathrm{Sieg\text{-}Bor}}_{\mathrm{Sp}_4}[\Phi_{10}/\eta^{24}],\,
+ \widetilde{\Phi}^{\mathrm{Sieg\text{-}Bor}}_{\mathrm{Sp}_4}[\Phi_{10}^{\mathrm{un}}/\eta^{24}],\,
  R_{\mathrm{Sieg,dyn}}\bigr),
 \]
 hosted on the bi-based Ran datum
@@ -723,25 +736,115 @@ double with Siegel-elliptic dynamical $R$-matrix}.
 \label{sec:ucqg-main-theorem}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+\begin{definition}[Verified Koszul/evaluation-generated surface]
+\label{def:ucqg-verified-surface}
+Fix $(\fg,\Gamma,k,\mu)$ as in \S\ref{sec:ucqg-setup}, and let
+$A=A_{\fg}^{k,f,\mu}$ be the corresponding $E_1$-chiral algebra
+produced by the affine, DS, shifted, or coideal construction of
+\S\ref{sec:ucqg-object}.  The datum lies on the
+\emph{verified Koszul/evaluation-generated surface} when the following
+four obstruction classes vanish and the indicated choices are fixed.
+\begin{enumerate}[label=\textup{(\roman*)}]
+\item \emph{Koszul counit obstruction.}  The bar--cobar counit
+\[
+ \epsilon_A\colon
+ \Omega_{\mathrm{ch}}B_{\mathrm{ch}}(A)\longrightarrow A
+\]
+is a quasi-isomorphism in the completed $E_1$-chiral model category.
+Equivalently, the cone class
+\[
+ [\mathfrak k_A]\in
+ H^0\Cone\!\bigl(\Omega_{\mathrm{ch}}B_{\mathrm{ch}}(A)
+ \xrightarrow{\epsilon_A} A\bigr)
+\]
+vanishes.  This is the Vol.~I Theorem~A Koszul locus.
+\item \emph{Binary-collision Maurer--Cartan obstruction.}  The
+collision residue $r_A(z)$ of the binary OPE defines a degree-one
+element of
+\[
+ \mathfrak g_A^{(2)}
+ :=
+ \Convstr\bigl((A^!)^{\otimes 2},A^{\otimes 2}\bigr)\big|_{\Conf_2(X)}.
+\]
+Its Yang--Baxter obstruction
+\[
+ [\operatorname{CYB}(r_A)]
+ :=
+ \Bigl[D_0 r_A+\tfrac12[r_A,r_A]\Bigr]
+ \in
+ H^2\!\left(
+ \Convstr\bigl((A^!)^{\otimes 3},A^{\otimes 3}\bigr)
+ \big|_{\Conf_3(X)}
+ \right)
+\]
+vanishes, and a null-homotopy
+$\Theta_3\colon D_0 r_A+\frac12[r_A,r_A]\simeq 0$ is part of the
+construction data.
+\item \emph{Associator obstruction.}  After fixing
+$\Phi\in\GRT_1(\mathbb Q)$, the quasi-triangular associativity
+obstruction
+\[
+ [\operatorname{Assoc}_{\Phi}(R_A)]
+ \in H^3\!\left(
+ \Convstr\bigl((A^!)^{\otimes 4},A^{\otimes 4}\bigr)
+ \big|_{\Conf_4(X)}
+ \right)
+\]
+vanishes.  Changing $\Phi$ transports the resulting datum through the
+Tamarkin--Drinfeld $\GRT_1$-torsor; it does not change the
+cohomological derived-centre invariants.
+\item \emph{BRST/Koszul transport obstruction.}  For DS fibres, the
+canonical comparison map
+\[
+ \beta_{DS}\colon
+ B_{\mathrm{ch}}\bigl(H^0(C^\bullet(f),d_{DS})\bigr)
+ \longrightarrow
+ H^0\bigl(B_{\mathrm{ch}}(C^\bullet(f)),d_{DS}\bigr)
+\]
+has acyclic cone:
+\[
+ [\mathfrak b_{DS}]
+ \in H^1\Cone(\beta_{DS})=0.
+\]
+For non-DS affine and Yangian fibres this class is declared zero.  The
+shift map $T_\mu$ must commute with $\beta_{DS}$ in the completed
+spectral category.
+\item \emph{Evaluation generation.}  The canonical evaluation functor
+from finite evaluation modules to completed $A$-modules,
+\[
+ \operatorname{ev}_A\colon
+ \Ind\!\bigl(\Mod_{\mathrm{eval}}^{\mathrm{fin}}(A)\bigr)
+ \longrightarrow
+ \Mod_{\mathrm{comp}}(A),
+\]
+is dense on the subcategory on which $R(z)$ is evaluated; the
+obstruction is the completed cokernel
+$[\mathfrak e_A]\in H^0\Coker(\operatorname{ev}_A)$.
+\end{enumerate}
+\end{definition}
+
 \begin{theorem}[Unified Chiral Quantum Group]
 \label{thm:unified-chiral-QG}%
-\ClaimStatusProvedHere
 Let $(\fg, \Gamma, k, \mu)$ be as in
 \S\ref{sec:ucqg-setup}: simple Lie $\fg$ (finite or affine), good
 $\mathbb{Z}$-grading $\Gamma$ from an $\fsl_2$-triple $(e,h,f)$,
 non-critical level $k\neq -h^{\vee}$, and shift datum
-$\mu \in P(\fg)^{+}\cup\{0\}$. There exists a chiral quantum group
+$\mu \in P(\fg)^{+}\cup\{0\}$. Assume that the corresponding chiral
+algebra lies on the verified Koszul/evaluation-generated surface of
+Definition~\ref{def:ucqg-verified-surface}. Then there exists a
+chiral bialgebra datum
 \[
  Q_{\fg}^{k,f,\mu}
- \;=\; \bigl(A_{\fg}^{k,f,\mu},\;\Delta_z,\;R(z),\;\epsilon,\;S,\;
+ \;=\; \bigl(A_{\fg}^{k,f,\mu},\;\Delta^{\mathrm{ch}}_z,\;R(z),\;\Phi,\;
  (A_{\fg}^{k,f,\mu})^{!}\bigr),
 \]
-unique up to spectral gauge isomorphism, with the following properties.
+unique up to spectral gauge and associator transport, with the
+following properties.
 \begin{itemize}
 \item[(i)] \textbf{Chiral bialgebra.}
-$(A_{\fg}^{k,f,\mu}, \Delta_z)$ is a chiral bialgebra on the formal
-disk: $\Delta_z$ is coassociative in the shifted-parameter spectral
-sense (
+$(A_{\fg}^{k,f,\mu}, \Delta^{\mathrm{ch}}_z)$ is a completed chiral
+bialgebra on the formal disk: $\Delta^{\mathrm{ch}}_z$ is
+coassociative in the shifted-parameter spectral sense (
 $(\Delta_{z_1}\otimes \id)\circ \Delta_{z_1+z_2}
 = (\id\otimes \Delta_{z_2})\circ \Delta_{z_1}$) and is
 compatible with the vertex product.
@@ -752,7 +855,8 @@ satisfies the classical Yang--Baxter equation (CYBE) at order $\hbar$,
 the quantum Yang--Baxter equation (YBE) at all orders, and the
 quasi-triangularity axiom
 $R(z)\cdot \Delta_z^{\mathrm{op}}(a) = \Delta_z(a)\cdot R(z)$ for all
-$a\in A_{\fg}^{k,f,\mu}$.
+$a\in A_{\fg}^{k,f,\mu}$ in the chosen completion or on the verified
+module category.
 
 \item[(iii)] \textbf{Koszul dual.}
 $(A_{\fg}^{k,f,\mu})^{!}$ is the chiral Koszul dual of
@@ -761,19 +865,19 @@ $(A_{\fg}^{k,f,\mu}, (A_{\fg}^{k,f,\mu})^{!})$ realises the chiral
 bar-cobar duality.
 
 \item[(iv)] \textbf{DS compatibility and shadow-class escalation.}
-For $f = f_{\mathrm{prin}}$ the principal nilpotent and $\mu = 0$, the
-unified object specialises to the principal affine $W$-algebra:
-$Q_{\fg}^{k,0,f_{\mathrm{prin}}} = W_k(\fg, f_{\mathrm{prin}})$. For
-every good grading $\Gamma$, the DS reduction induces a
-shadow-class escalation $L\to M$: the affine parent $V_k(\fg)$ sits in
-Volume~I shadow class $L$, and every $W_k(\fg, f)$ (including
-non-principal) sits in class $M$. The escalation is realised by a
-universal shift of the Cartan stress tensor
-(Theorem~\ref{thm:DS-L-to-M-universal}).
+For $f = f_{\mathrm{prin}}$ and $\mu = 0$, the datum specialises to the
+principal affine $W$-algebra:
+$Q_{\fg}^{k,f_{\mathrm{prin}},0}=W_k(\fg, f_{\mathrm{prin}})$. The
+DS reduction induces the $L\to M$ shadow-class escalation in the
+principal and verified non-principal sectors where the BRST comparison,
+PBW filtration, and Arakawa cohomology hypotheses used below hold. The
+escalation is realised there by the Cartan stress-tensor shift of
+Theorem~\ref{thm:DS-L-to-M-universal}.
 \end{itemize}
 \end{theorem}
 
-The proof of Theorem~\ref{thm:unified-chiral-QG} is three-legged:
+The proof of Theorem~\ref{thm:unified-chiral-QG} is three-legged on
+the verified surface:
 Maurer--Cartan on the binary collision stratum; chiral Koszul duality
 rigidifying the coproduct; BRST transport showing that
 Drinfeld--Sokolov reduction commutes with the bar complex and the
@@ -785,15 +889,17 @@ statement is assembled from the three.
 
 \begin{proposition}[$r$-matrix is MC element]
 \label{thm:r-matrix-from-MC}
-\ClaimStatusProvedHere
-Let $A = A_{\fg}^{k,f,\mu}$. Let $r(z) \in A^{\otimes 2}[\![z^{-1}]\!]$
-be the collision residue of the binary OPE:
+Let $A = A_{\fg}^{k,f,\mu}$ on the affine/evaluation-generated core.
+Let $r(z) \in A^{\otimes 2}[\![z^{-1}]\!]$ be the collision residue of
+the binary OPE:
 \[
  r(z) \;=\; \Res^{\coll}_{0,2}\bigl(J^a(z)J^b(w)\bigr)
  \;=\; k\,\Omega/z + O(z^{-2}),
 \]
-where $\Omega\in \fg\otimes\fg$ is the trace-form Casimir. Then $r(z)$
-is a Maurer--Cartan element in the
+where $\Omega\in \fg\otimes\fg$ is the trace-form Casimir. On DS
+fibres this residue is replaced by its BRST/Miura image when the
+comparison hypotheses of the fibre are verified. Then $r(z)$ is a
+Maurer--Cartan element in the
 $L_{\infty}$-convolution algebra
 $\Convstr((A^{!})^{\otimes 2}, A^{\otimes 2})$ restricted to the binary
 collision stratum:
@@ -1080,38 +1186,63 @@ to the twisted case via Theorem~\ref{thm:langlands-nonsimplylaced}.
 The ``Baxter-Rees family'' of
 \cref{app:typeA-baxter-rees-theta} now carries a
 \emph{constructed} Baxter $Q$-operator (the prefundamental
-$Q_i(z)$) and a \emph{verified} $TQ$ functional relation, rather than
-a decorative name.
+$Q_i(z)$) and a \emph{verified} $TQ$ functional relation.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{DS $L$-to-$M$ universality}
+\section{DS $L$-to-$M$ obstruction}
 \label{sec:DS-L-to-M}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-The DS reduction produces a shadow-class escalation $L\to M$ through
-a \emph{universal} Cartan-only correction to the Sugawara stress
-tensor. The argument proves Cartan-only-correction as a theorem
-for every good-graded $(\fg, f)$ at non-critical level: the
-correction is not an assumption but a consequence of good-grading.
+The DS reduction produces its shadow-class jump through a universal
+Cartan-plus-graded-Cartan correction to the Sugawara stress tensor.
+The correction exists for every good-graded $(\fg,f)$ at non-critical
+level. The jump to class~$\mathsf M$ is controlled by a fourth-pole
+obstruction class; non-vanishing of that class is theorem data.
 
-\begin{theorem}[DS $L\to M$ universality]
+\begin{theorem}[DS Cartan correction and the $L\to M$ obstruction]
 \label{thm:DS-L-to-M-universal}
 \ClaimStatusProvedHere
 Let $\fg$ be simple, $\Gamma$ a good $\mathbb{Z}$-grading with
 nilpotent $f\in\fg_{-2}$, and $k$ non-critical. Let $T^{W}(z)$ be the
 $W$-algebra stress tensor on $W_k(\fg, f)$ and $T^{\mathrm{Sug}}(z)$
-the Sugawara stress tensor on $V_k(\fg)$. Then:
+the Sugawara stress tensor on $V_k(\fg)$. Put
+$\Delta T:=T^W-T^{\mathrm{Sug}}$, and define
+\[
+ \mathcal O^{(4)}_{DS}(\fg,f,k)
+ :=
+ H^0\!\left(
+ \frac{C^\bullet(f)_{\mathrm{wt}=4}}
+ {d_{DS}C^\bullet(f)_{\mathrm{wt}=4}
+  +\partial C^\bullet(f)_{\mathrm{wt}=3}}
+ \right)
+\]
+and
+\[
+ q_{DS}(\fg,f,k)
+ :=
+ \left[\operatorname{Coeff}_{(z-w)^{-4}}
+ \bigl(\Delta T(z)\Delta T(w)\bigr)\right]
+ \in \mathcal O^{(4)}_{DS}(\fg,f,k).
+\]
+Then:
 \begin{itemize}
 \item[(a)] The \emph{improvement} $\Delta T := T^{W} - T^{\mathrm{Sug}}$ lies in
 \[
  \fh \;\oplus\; \bigl[\fn_{+}, \fn_{-}\bigr]^{\Gamma}\cap \fg_0,
 \]
-i.e.\ the improvement is a Cartan-plus-graded-Cartan element. (This is
-the Cartan-only correction.)
+i.e.\ the improvement is a Cartan-plus-graded-Cartan element.
 
-\item[(b)] The shadow tower of $W_k(\fg, f)$ has $r_{\max} = \infty$ (class $M$ in Vol~I
-terminology), because the improvement introduces quartic OPE poles in
-$T^{W}\cdot T^{W}$ that persist through all iterated brackets.
+\item[(b)] If $q_{DS}(\fg,f,k)\neq 0$, then the shadow tower of
+$W_k(\fg, f)$ has $r_{\max}=\infty$ and lies in Vol.~I class
+$\mathsf M$. The obstruction class $q_{DS}$ is the exact fourth-pole
+class whose non-vanishing prevents a class-$\mathsf L$ collapse.
+
+\item[(c)] For the principal nilpotent in every simple $\fg$, and for
+the non-principal sectors whose KRW BRST comparison, PBW filtration,
+and Arakawa cohomology hypotheses are verified in
+\S\ref{sec:ucqg-fibres}, the class $q_{DS}(\fg,f,k)$ is non-zero at
+non-critical non-degenerate level. Hence those fibres undergo the
+$L\to M$ escalation.
 \end{itemize}
 \end{theorem}
 
@@ -1128,38 +1259,39 @@ equivalence class $[T^{W}]$ has a representative in $\fh\oplus
 $T^{W} - T^{\mathrm{Sug}}$, being the unique improvement making
 $T^{W}$ weight-2 in $W_k(\fg, f)$, lies in this direct sum.
 
-\textbf{Step 2 (class-$M$ escalation via quartic poles).} The
-Cartan-only improvement $\Delta T$ contains terms of the form
-$:J^{h}(z) J^{h}(z):\,\cdot z^{-2}$ where $J^{h}$ is a Cartan current
-(at weight 1). Computing $T^{W}(z)\cdot T^{W}(w)$ produces a
-fourth-order pole $\hbar^2 \langle \Delta T, \Delta T\rangle/(z-w)^4$
-from the OPE of the Cartan-current bilinears. The quartic pole is not
-cancelled by any counter-term, because any Cartan-only addition to
-$T^{W}$ produces its own quartic pole in squared OPEs. Iterating the
-MC shadow tower then produces infinitely many non-vanishing shadow
-coefficients $S_r(W_k(\fg, f))$ at every $r\ge 3$, placing
-$W_k(\fg, f)$ in Volume~I shadow class $M$.
+\textbf{Step 2 (the fourth-pole obstruction).} The
+Cartan-plus-graded-Cartan improvement $\Delta T$ contains Cartan
+current bilinears and their graded-Cartan BRST representatives. The
+coefficient of $(z-w)^{-4}$ in $\Delta T(z)\Delta T(w)$ is well-defined
+modulo DS-exact terms and total derivatives, precisely as the class
+$q_{DS}(\fg,f,k)\in\mathcal O^{(4)}_{DS}(\fg,f,k)$. If this class
+vanishes, the quartic pole can be killed in the BRST quotient and the
+argument gives no class-$\mathsf M$ conclusion. If it is non-zero, no
+Cartan counter-term cancels it: any further Cartan improvement changes
+the representative by a DS-exact or total-derivative term without
+changing $q_{DS}$. The Vol.~I shadow recursion then produces
+non-vanishing coefficients $S_r(W_k(\fg, f))$ for all $r\ge 3$, hence
+$r_{\max}=\infty$ and class~$\mathsf M$.
 
-\textbf{Step 3 (universality in $f$).} The argument of Steps 1--2 did
-not use any special structure of $f$ beyond the good-grading
-hypothesis. For $f = f_{\mathrm{prin}}$, the computation recovers the
-Feigin--Frenkel central-charge shift; for $f = f_{\mathrm{min}}$
-(Bershadsky--Polyakov), it recovers the cubic $G^{\pm}$ structure;
-for hook-type $f$, it recovers the parabolic-screening-level
-computations of \cite{Arakawa07}. The universality is because the
-KRW normal form (Step 1) applies to every good grading.
+\textbf{Step 3 (non-vanishing in the verified sectors).} For
+$f=f_{\mathrm{prin}}$, the class $q_{DS}$ is represented by the
+Feigin--Frenkel central-charge shift; at non-critical non-degenerate
+level its fourth-pole coefficient is non-zero. For
+$f=f_{\mathrm{min}}$ in $\fsl_3$ (Bershadsky--Polyakov), the same
+class is represented by the $G^+G^-$ cubic OPE contribution. For the
+hook-type and parabolic sectors used in \S\ref{sec:ucqg-fibres}, the
+non-vanishing is Arakawa's BRST/PBW comparison together with the
+screening-level computations of \cite{Arakawa07}. These are exactly
+the sectors named in part~(c).
 
-The Cartan-only-correction is a theorem for every good-graded $f$
-(not just principal), not a case-by-case computation.
-For every good-graded $(\fg, f)$ with $k$ non-critical, the
-shadow-class escalation $L\to M$ applies across the nine fibres of
-$Q_{\fg}^{k,f,\mu}$ satisfying these hypotheses, not only in type $A$;
-the critical level $k=-h^{\vee}$ and degenerate gradings lie outside
-the theorem's scope.
-The Gaiotto--Rapcak $Y$-algebra triality preserves the shadow-class
-escalation, because triality permutes the three good gradings of
-$\fgl_m\oplus \fgl_n\oplus \fgl_p$ without altering the Kazhdan-graded
-structure of the Cartan correction.
+The Cartan-plus-graded-Cartan correction is therefore universal in
+$f$; the class-$\mathsf M$ escalation is universal on the non-zero
+$q_{DS}$ locus. The critical level $k=-h^{\vee}$, bad gradings, and
+degenerate levels at which $q_{DS}$ vanishes lie outside the
+escalation clause. The Gaiotto--Rapcak $Y$-algebra triality preserves
+the shadow-class escalation, because triality permutes the three good
+gradings of $\fgl_m\oplus \fgl_n\oplus \fgl_p$ without altering the
+Kazhdan-graded structure of $q_{DS}$.
 \end{proof}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1381,14 +1513,17 @@ Theorem~\ref{thm:langlands-nonsimplylaced} a building block of the full
 quantum affine Hopf algebra.
 \item[(ii)]\emph{$E_1$-chiral bialgebra reading.} The $E_1$-chiral
 bialgebra structure on $\Yhbar(\fg)$ of
-\S\ref{subsec:ucqg-coproduct} -- spectral coproduct $\Delta_z$,
-antipode $S_z$, universal $R(z)$ with quasi-triangularity -- assembles
-into the \emph{chiral Drinfeld double}
+\S\ref{subsec:ucqg-coproduct} -- spectral coproduct $\Delta_z$ and
+universal or evaluated $R(z)$ with quasi-triangularity in the relevant
+completion -- assembles, when the Hopf pairing exists, into the
+\emph{chiral Drinfeld double}
 $D^{\mathrm{ch}}(\Yhbar(\fg)) = \Yhbar(\fg)\otimes \Yhbar(\fg)^{\mathrm{cop}}$
 glued by $R(z)$ as double cocycle in the $E_1$-chiral category
-(half-braiding). The open colour of $\SCchtop$ carries the Hopf
-data; the closed colour carries no independent Hopf structure and is
-recovered as the Drinfeld centre of the open category (cf.\ the
+(half-braiding). The open colour of $\SCchtop$ carries the bialgebra
+and line-module data.  The stronger statement that the bulk is the
+Drinfeld centre of the open category is a separate boundary-linear or
+Drinfeld-double comparison, not a formal consequence of the chiral
+bialgebra datum (cf.\ the
 unifying thesis of Remark~\ref{rem:drinfeld-programme-four-conditions}
 in the sibling ordered-associative-chiral-KD frontier chapter; this
 remark together with Remark~\ref{rem:drinfeld-double-programme} of the
@@ -1401,8 +1536,8 @@ Schiffmann--Vasserot positive-half CoHA on $\bC^3$ is
  \mathrm{CoHA}(\bC^{3})^{+} \;\simeq\; \Yhbar(\fgl_{\infty})^{+},
 \]
 the upper-triangular half of the affine Yangian of $\fgl_{\infty}$.
-Applying the Drinfeld double of part~(i) extends this to the full
-affine Yangian:
+Applying the Drinfeld double or vertex completion extends this
+positive-half object to the full affine-Yangian target:
 \[
  D\bigl(\mathrm{CoHA}(\bC^{3})\bigr)
  \;\simeq\; \Yhbar(\widehat{\fgl_{\infty}}),
@@ -1417,15 +1552,13 @@ double-cocycle data. The identification is a consistency check
 reproducing the Schiffmann--Vasserot construction, not a new
 construction of CoHA.
 \end{enumerate}
-The Drinfeld-double package closes the citation-gap identified by the
-adversarial sweep (Yangian presentations used without bridging) and
-supplies the precise relationship between the chiral $E_1$-bialgebra
+The Drinfeld-double package supplies the precise relationship between
+the chiral $E_1$-bialgebra
 $\Yhbar(\fg)$ of this chapter and both the quantum affine algebra
-$U_q(\widehat{\fg})$ and the CoHA on $\bC^{3}$. No downgrade of scope
-is introduced; the strongest-form two-presentations identification is
-recorded with attribution and the chiral reading of the double is
-stated as a remark consistent with the conjectural Drinfeld-double
-programme of the ht-bulk-boundary-line chapter.
+$U_q(\widehat{\fg})$ and the positive-half CoHA on $\bC^{3}$.
+The two-presentations identification is recorded with attribution; the
+chiral reading of the double remains scoped to the Hopf-pairing and
+completion hypotheses stated above.
 \end{remark}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1514,15 +1647,18 @@ factorisation--BV--convolution pentagon and extending to two
 further presentations (the heptagon).
 \item \textbf{Curved Dunn at higher genus.}
 The curved-Dunn higher-genus chapter
-(\cref{ch:curved-dunn-higher-genus}) proves the curved Dunn
-$H^2 = 0$ bridge for every class of $Q_{\fg}^{k,f,\mu}$ that has a
-conformal vector; this includes all nine fibres at non-critical
-level.
+(\cref{ch:curved-dunn-higher-genus}) proves the bridge only under the
+modular-bootstrap vanishing and low-degree comparison hypotheses
+stated there.  It applies to the verified fibres satisfying those
+hypotheses; it is not an automatic consequence of the existence of a
+conformal vector.
 \item \textbf{$E_{\infty}$-topologisation.}
-The $E_\infty$-topologisation chapter upgrades $E_3$-topological
-to $E_{\infty}$-topological via the higher-spin stress tensor tower.
+The topologisation chapter upgrades along an inner stress-tensor tower
+under the stated coherence and completion hypotheses.
 For $Q_{\fg}^{k,f_{\mathrm{prin}},\mu}$ with $\fg = \fsl_{N+1}$, the
-tower is the $W_N$ hierarchy and the topologisation reaches $E_{N+2}$.
+tower is the $W_N$ hierarchy and the topologisation reaches
+$E_{N+1}$; the $W_\infty$ endpoint is an inverse-limit statement under
+the chapter's completion hypotheses.
 \item \textbf{Universal celestial holography.}
 The celestial-holography core and universal-celestial-holography
 chapters realise the boundary-to-celestial dictionary on
@@ -1564,10 +1700,9 @@ clauses~(a),(c) \ClaimStatusProvedHere{}, clause~(b)
 Fix $\fg$ simple (finite or affine-type), good $\bZ$-grading
 $\Gamma$, non-critical level $k\neq -h^{\vee}$, shift
 $\mu\in P(\fg)^{+}\cup\{0\}$, and assume
-$A := A_{\fg}^{k,f,\mu}$ lies in the chiral Koszul locus of
-Volume~I (\emph{the locus on which bar--cobar
-$\Omega_{\mathrm{ch}}\circ B_{\mathrm{ch}}\to \id$ is a
-quasi-isomorphism, Vol.~I Theorem~A}). Adopt
+$A := A_{\fg}^{k,f,\mu}$ lies on the verified
+Koszul/evaluation-generated surface of
+Definition~\ref{def:ucqg-verified-surface}. Adopt
 Convention~\ref*{conv:chd-e3-chiral-meaning}: the scoped phrase
 ``$E_3$-chiral algebra'' below means the mixed chiral-topological
 datum carried by a factorisation algebra on $\R\times X$ with chiral
@@ -1605,9 +1740,9 @@ intertwining the boundary action).
  with specialisation in the $(\fg, k, f, \mu)$ datum. \emph{This
  clause is the source-category datum of the universal property
  and is proved at chain level for every fibre of
- $Q_{\fg}^{k,f,\mu}$ in the chiral Koszul locus at non-critical
- level, fixing a Drinfeld associator
- $\Phi\in\GRT_1(\bQ)$.}
+ $Q_{\fg}^{k,f,\mu}$ on that verified surface, fixing the null-homotopy
+ $\Theta_3$ of the binary-collision Maurer--Cartan obstruction and a
+ Drinfeld associator $\Phi\in\GRT_1(\bQ)$.}
 \item[(b)] \emph{Universality (uniqueness up to contractible
  choice).} For every such $(B,A)$, the homotopy class of the map
  $\eta_{(B,A)}$ is unique: the space of chain-level $E_3$-chiral
@@ -1695,22 +1830,22 @@ $(\infty,1)$-categorical cohomology unconditional).
 \cref{part:gravity} chain-level universality clause
 (Theorem~\ref*{thm:chiral-higher-deligne} clause~(2)); it only
 \emph{specialises} it to the unified family $Q_{\fg}^{k,f,\mu}$ at
-non-critical level in the Koszul locus, inheriting the
-conditional status verbatim. A strictly unconditional chain-level
+non-critical level on the verified surface of
+Definition~\ref{def:ucqg-verified-surface}, inheriting the conditional
+status verbatim. A strictly unconditional chain-level
 universality statement over $Q_{\fg}^{k,f,\mu}$ would require
 the $(\SCchtop)^!$-contracting-homotopy inscription in Vol.~I
 beyond its weight-completed form, which is a declared open item.
 \end{remark}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Independent verification decorators}
+\section{Independent checks}
 \label{sec:ucqg-independent-verification}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-The Independent Verification Protocol requires every ProvedHere
-theorem to declare a disjoint verification source. This chapter
-installs five decorators in the companion Volume~II compute test
-module for the unified chiral quantum group:
+The main constructions are checked against sources that do not use the
+same derivation. The companion Volume~II compute test module records
+five such comparisons:
 
 \begin{enumerate}
 \item Theorem~\ref{thm:unified-chiral-QG}: derived via the three-leg
@@ -1727,52 +1862,40 @@ module for the unified chiral quantum group:
  asymptotic Yangian (independent derivation of the $TQ$ relation from
  $q$-character combinatorics).
 \item Theorem~\ref{thm:DS-L-to-M-universal}: derived via KRW BRST
- normal-form; verified against the Kac--Wakimoto character formula
- for admissible representations and against the
- Feigin--Frenkel--Reshetikhin computation at the critical limit.
+ normal-form and the fourth-pole class $q_{DS}$; verified against the
+ Kac--Wakimoto character formula for admissible representations and
+ against the Feigin--Frenkel--Reshetikhin computation at the critical
+ limit.
 \item Theorem~\ref{thm:langlands-nonsimplylaced}: derived via
  Finkelberg--Tsymbaliuk rational $R$-matrix; verified against
  \cite{KamnitzerTappeWeekes14} shifted Yangian construction (no
  $R$-matrix computation; uses only Coulomb-branch geometry).
 \end{enumerate}
 
-Disjointness of the sources is argued in each test decorator's
-\texttt{disjoint\_rationale} field: the derivation uses spectral
-$r$-matrices and MC theory; the verification uses finite
-representation theory, Coulomb-branch geometry, or direct OPE
-tables. With these five decorators, the chapter contributes five
-ProvedHere claims to the Volume~II \texttt{make verify-independence}
-coverage.
+The derivation uses spectral $r$-matrices and Maurer--Cartan theory;
+the checks use finite representation theory, Coulomb-branch geometry,
+or direct OPE tables.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section*{Epilogue: one object, nine fibres, infinite faces}
+\section*{Epilogue: the datum and its faces}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-The unified object $Q_{\fg}^{k,f,\mu}$ is four-parameter; the fibres
-are nine; the GRT-parametrised face is infinite. The Vol~II synthesis
-turns the five-theorem spine, the seven-part decomposition, and the
-gravity climax into seven theorems
-on the infinite $E_n$ ladder with GRT-parametrised infinite
-seven-faces family, universal $\kappa$ class, properad-level
-bar-cobar, irregular-singular modular composition at all levels,
-chiral Higher Deligne on derived chiral centres, and universal
-holography as a theorem.'' The present chapter is the fifth of those
-seven theorems (\emph{Unified Chiral Quantum Group}); together with
-its super companion it supplies the object on which the GRT torsor,
-the SC$^{\mathrm{ch,top}}$ heptagon, the curved Dunn at higher genus,
-the $E_{\infty}$-topologisation, the universal celestial holography,
-and the universal holography functor act. The programme's
-$\mathbb{Z}$-refined (level and shadow-depth) and
-$\mathbb{Z}/2$-refined (parity, via
-\cref{ch:super-chiral-yangian}) layers of the $E_1$ primitive
-are now both mechanically verified and specialisation-complete.
+The unified datum $Q_{\fg}^{k,f,\mu}$ is four-parameter; the fibres
+are nine; the GRT-parametrised face is infinite. On the verified
+surface of Definition~\ref{def:ucqg-verified-surface}, the datum is
+the common target for the GRT torsor, the SC$^{\mathrm{ch,top}}$
+heptagon, curved Dunn at higher genus, $E_{\infty}$-topologisation,
+universal celestial holography, and the universal holography functor.
+The $\mathbb{Z}$-refinement records level and shadow depth; the
+$\mathbb{Z}/2$-refinement is supplied by the super companion
+\cref{ch:super-chiral-yangian}.
 
-\section{Synthesis}
+\section{K3 paramodular taxon}
 \label{sec:ucqg-supplement}
 
 \begin{remark}[Unified chiral quantum group as the fourth taxon]
 \label{rem:ucqg-1}
-The unified chiral quantum group at the K3 synthesis base is
+The unified chiral quantum group at the K3 paramodular base is
 $\mathbf H_{\Delta_5}$, the fourth taxon in the Etingof--Kazhdan
 classical/elliptic/rational trichotomy:
 \[
@@ -1780,7 +1903,7 @@ classical/elliptic/rational trichotomy:
  \;=\;
  \mathcal D_\hbar\!\left(
  \mathcal Y^{\mathrm{Hall}}_\hbar(\mathrm{CoHA}_{K3\times E}),\
- \widetilde\Phi^{\mathrm{Sieg\text{-}Bor}}_{\mathrm{Sp}_4}\!\!\left[\Phi_{10}/\eta^{24}\right],\
+ \widetilde\Phi^{\mathrm{Sieg\text{-}Bor}}_{\mathrm{Sp}_4}\!\!\left[\Phi_{10}^{\mathrm{un}}/\eta^{24}\right],\
  R_{\mathrm{Sieg,dyn}}
  \right).
 \]

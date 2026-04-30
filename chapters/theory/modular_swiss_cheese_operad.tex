@@ -360,9 +360,9 @@ Remark~\ref{rem:product-strictness}.
 \label{comp:heis-d1-differential}
 \index{Heisenberg algebra!spectral sequence!d1 differential@$d_1$ differential}
 The $d_1$-differential of the genus spectral sequence maps
-$E_1^{0,\ast} \to E_1^{1,\ast}$ and is induced by the
-genus-raising operator $D_1 = \kappa \cdot \Deltacyc$ on bar
-cohomology. We compute it explicitly.
+$E_1^{p,q} \to E_1^{p+1,q-2}$ and is induced by the genus-raising
+operator $D_1 = \kappa \cdot \Deltacyc$ on bar cohomology. We compute
+it explicitly.
 
 \medskip\noindent
 \emph{Action on generators.}
@@ -383,11 +383,11 @@ Passing to cohomology: $\xi_{\mathrm{nsep}}(\mathbf{1})$
 represents the unit $1 \in E_1^{1,0} = \Bbbk$. Hence
 $d_1(a^2) = \kappa \cdot 1 \in E_1^{1,0}$.
 
-More generally, $d_1(a^n)$ is computed by contracting all
-pairs in $s^{-1}a^{\otimes n}$, yielding
+More generally, on the genus-$p$ copy, $d_1(a^n)$ is computed by
+contracting all pairs in $s^{-1}a^{\otimes n}$, yielding
 \begin{equation}\label{eq:heis-d1-formula}
- d_1(a^n) = \binom{n}{2}\, \kappa \cdot a^{n-2}
- \;\in\; E_1^{1, n-2},
+ d_1^{p,n}(a^n) = \binom{n}{2}\, \kappa \cdot a^{n-2}
+ \;\in\; E_1^{p+1, n-2},
 \end{equation}
 since there are $\binom{n}{2}$ pairs to contract, each
 contributing $(a,a) = \kappa$. The factor
@@ -405,8 +405,8 @@ $d_1(a^n) = \binom{n}{2}\kappa \cdot a^{n-2}$, which
 is multiplication by $\binom{n}{2}\kappa$ composed with the
 degree-shift $a^n \mapsto a^{n-2}$. Since $\kappa \neq 0$,
 this map is an isomorphism in the appropriate degrees:
-$d_1 \colon E_1^{0,n} \to E_1^{1,n-2}$ is an isomorphism for
-all $n \ge 2$, and $d_1 = 0$ on $E_1^{0,0}$ and $E_1^{0,1}$.
+$d_1 \colon E_1^{p,n} \to E_1^{p+1,n-2}$ is an isomorphism for every
+$p\geq0$ and all $n \ge 2$, and $d_1 = 0$ on rows $n=0,1$.
 The $E_2$ page is:
 \begin{equation}\label{eq:heis-E2-generic}
  E_2^{p,q} = 0 \quad \text{for } p \ge 1 \text{ or } q \ge 2.
@@ -424,26 +424,24 @@ We verify each vanishing.
 \item \emph{Column $p = 0$, rows $q = 0,1$:}
  $d_1(1) = 0$ and $d_1(a) = 0$ (no pair to contract),
  so both survive: $E_2^{0,0} = \Bbbk$ and $E_2^{0,1} = \Bbbk \cdot a$.
-\item \emph{Column $p = 1$, all rows $q \ge 0$:}
- the map $d_1 \colon E_1^{0,q+2} \to E_1^{1,q}$ sends
- $a^{q+2} \mapsto \binom{q+2}{2}\kappa\, a^q$, which is
- surjective onto $E_1^{1,q} = \Bbbk \cdot a^q$ (since
- $\binom{q+2}{2} \ge 1$). Meanwhile $d_1 \colon E_1^{1,q} \to E_1^{2,q-2} = 0$
- (there is no genus-$2$ column in this truncation),
- so $\ker = E_1^{1,q}$ and
- $E_2^{1,q} = E_1^{1,q}/\im(d_1) = 0$.
-\item \emph{Columns $p \ge 2$:} these are the genus-$\ge 2$
- summands of the modular bar complex, which do not participate
- in the $d_1$-differential between columns $0$ and~$1$.
- The analysis at higher genus requires additional differentials
- $d_2, d_3, \ldots$ of the spectral sequence. For the
- Heisenberg algebra, these all vanish because the invariant form
- is $2$-step nilpotent (each contraction reduces degree by~$2$),
- and the spectral sequence collapses at $E_2$ in the complete
- modular bar complex.
+\item \emph{All columns $p \ge 1$:} fix the conserved total
+ degree $N=q+2p$. The $d_1$-string in total degree $N$ is
+ \[
+ E_1^{0,N}\longrightarrow E_1^{1,N-2}\longrightarrow
+ E_1^{2,N-4}\longrightarrow\cdots\longrightarrow
+ E_1^{\lfloor N/2\rfloor,\,N-2\lfloor N/2\rfloor}.
+ \]
+ Every displayed arrow before the terminal row $0$ or~$1$ is a
+ nonzero map between one-dimensional spaces and hence an isomorphism.
+ Therefore every positive-genus entry is either killed by the next
+ contraction or is the image of the previous one, and
+ $E_2^{p,q}=0$ for all $p\geq1$.
 \end{itemize}
 
-At $\kappa \neq 0$, the curvature $\kappa \cdot \omega_1$ kills genus-$1$ cohomology beyond the lowest degrees: $D_1$ provides the connecting differential, making $D = D_0 + D_1$ acyclic in high degrees.
+At $\kappa \neq 0$, the curvature $\kappa \cdot \omega_1$ gives the
+uniform genus-raising contraction. In this Heisenberg spectral sequence
+only $E_2^{0,0}$ and $E_2^{0,1}$ survive; no higher differential can
+hit them for bidegree reasons, and all other $E_2$ entries are zero.
 
 \medskip\noindent
 \textbf{Case 2: $\kappa = 0$ (critical level).}
@@ -459,10 +457,21 @@ isomorphic to the genus-$0$ cohomology $\Bbbk[a]$. The
 spectral sequence degenerates because there is no genus-raising
 differential to connect the filtration levels.
 
-At $\kappa = 0$, the OPE is trivial: the modular bar complex is a direct sum $\bigoplus_{g \ge 0} B^{(g)}$ with no inter-genus coupling, each summand having cohomology $\Bbbk[a]$.
+At $\kappa = 0$, the OPE pairing vanishes. With the genus-completed
+convention of Definition~\ref{def:genus-completion}, the modular bar
+complex decomposes as the completed product
+\[
+ \Bmod(\Heis_0)=\prod_{g\geq 0} B^{(g)}(\Heis_0),
+\]
+with no inter-genus differential, and each finite-genus summand has
+cohomology $\Bbbk[a]$.
 
-The dichotomy is the spectral-sequence shadow of curvature: $\kappa(\Heis_\kappa) = \kappa$, and $\kappa \cdot \omega_g$ obstructs degeneration. When $\kappa = 0$ the genus tower decouples; when $\kappa \neq 0$ it is connected by
-the curvature into an acyclic complex.
+The dichotomy is the spectral-sequence shadow of curvature:
+$\kappa(\Heis_\kappa) = \kappa$, and $\kappa \cdot \omega_g$
+is the class detected by the genus-raising contraction. When
+$\kappa = 0$ the completed genus tower decouples; when
+$\kappa \neq 0$ the contraction couples adjacent genus levels and
+removes the high-degree Heisenberg classes computed above.
 \end{computation}
 
 
@@ -3053,9 +3062,9 @@ Model~3 not at all.
 \end{remark}
 
 
-\section{Reconstituted infrastructure: irregular-singular KZB,
+\section{Irregular-singular KZB,
  curved-Dunn bridge, and cross-genus Maurer--Cartan}
-\label{sec:reconstituted-modular-infrastructure}
+\label{sec:irregular-kzb-curved-dunn-mc}
 
 This section tightens four interlocking points in the preceding
 modular infrastructure:
@@ -3066,23 +3075,25 @@ modular infrastructure:
  clutching maps; the two statements are now separated.
 \item The modular-bootstrap $H^2$ complex and the curved-Dunn
  twisting-cochain $H^2$ complex are two distinct obstruction
- theories. A chain map between them is constructed.
+ theories. Vanishing transports only through a low-degree
+ comparison criterion.
 \item The genus-1 twisted-tensor-product proposition
- (Proposition~\ref{prop:genus1-twisted-tensor-product}) is written
- with Gauss--Manin uncurving explicit.
-\item The cross-genus Maurer--Cartan equation is proved by a
- KZB-regularized propagator argument; Kan horn-filling alone does not
- control analytic Stokes data.
+ (Proposition~\ref{prop:genus1-twisted-tensor-product}) is a
+ twisted tensor criterion, not an exactness statement for the Hodge
+ class.
+\item The cross-genus Maurer--Cartan equation uses modular-bootstrap
+ acyclicity as an algebraic input; KZB controls boundary composition
+ only after compatible formal types and mixed Stokes data are supplied.
 \end{itemize}
 
 The required analytic input is the irregular-singular KZB framework of
-Jimbo--Miwa--Ueno~\cite{JMU81}, which supplies a
-Stokes-regularized propagator at generic non-integral level and
-eliminates the final gap of
-Remark~\ref{rem:modular-hkoszul-scope}.
+Jimbo--Miwa--Ueno~\cite{JMU81}. It supplies Stokes-sector composition
+at generic non-integral level once a compatible boundary formal type
+and the mixed Stokes clutching data have been constructed. It does not
+prove curved-Dunn \(H^2\)-vanishing.
 
 % =====================================
-\subsection{Section A: Irregular-singular KZB theorem}
+\subsection{Irregular-singular KZB composition}
 \label{subsec:irregular-kzb}
 
 Before stating the composition theorem, we fix the genus-$g$
@@ -3175,8 +3186,8 @@ connection has a nodal normal form compatible with the displayed
 normalisation, Stokes transport encodes the clutching composition of
 the cyclic Feynman transform.
 
-\begin{theorem}[Irregular-singular KZB composition under nodal
-normal-form hypotheses; \ClaimStatusConditional]
+\begin{theorem}[Irregular-singular KZB composition under boundary
+formal-type hypotheses; \ClaimStatusConditional]
 \label{thm:irregular-kzb-composition}
 Let $\cA$ be a logarithmic $\SCmod$-algebra of affine Kac--Moody
 type at level $k \in \mathbb{C} \setminus \mathbb{Q}_{\le 0}$
@@ -3187,9 +3198,11 @@ $\overline{\cM}_{g,n}$. Suppose:
 \begin{enumerate}[label=\textup{(K\arabic*)}]
 \item the connection is flat in the normalisation of
 Definition~\ref{def:kzb-genus-g};
-\item along each nodal divisor its formal normal form has Poincar\'e
-rank at most $1$ in the sewing parameter;
-\item the Stokes sectors satisfy the clutching cocycle compatibility.
+\item after finite ramification of each sewing parameter, every
+nodal divisor has a compatible boundary formal type of finite pole
+order;
+\item the associated Stokes sectors and Stokes matrices satisfy the
+mixed clutching cocycle compatibility at two-edge corners.
 \end{enumerate}
 Then:
 \begin{enumerate}[label=\textup{(\roman*)}]
@@ -3197,8 +3210,10 @@ Then:
  $\omega_{g,n}^{\mathrm{KZB}}$ extends to a meromorphic flat
  connection on the partial compactification
  $\overline{\cM}_{g,n}^{\mathrm{Arakelov}}$ whose polar part along
- each boundary divisor $\delta_\Gamma$ is irregular-singular of
- Poincar\'e rank $r(\Gamma) \le 1$ in the sewing parameter $q_e$.
+ each boundary divisor $\delta_\Gamma$ has the assumed formal type
+ after ramification. A simple logarithmic nodal pole is regular
+ singular; irregularity begins only from higher pole order in the
+ ramified coordinate.
 \item \emph{(Stokes-regularized propagator.)}
  Let $\Pi_{\gamma,k}$ be the JMU Stokes-regularized parallel
  transport along a path $\gamma$ through $\delta_\Gamma$. Then
@@ -3221,19 +3236,21 @@ Boalch~\cite{Boalch2001,Boalch2014}, then describes the Stokes data
 attached to $\omega_{g,n}^{\mathrm{KZB}}$ along $\delta_\Gamma$:
 \begin{itemize}\setlength\itemsep{1pt}
 \item \emph{Formal normal form.} A diagonal irregular part
- $Q_\Gamma(q_e) = \mathrm{diag}(\lambda_i)/q_e$ with
- $\lambda_i = \lambda_i(k)$ meromorphic in $k$.
+ $Q_\Gamma(t_e) = \sum_{m=1}^{d_e}
+ \mathrm{diag}(\lambda_{i,m})t_e^{-m}$ after finite ramification
+ $q_e=t_e^{N_e}$, with pole order $d_e$ in the ramified coordinate.
 \item \emph{Exponential torus.} $\mathbb{T}_\Gamma =
  (\mathbb{C}^\times)^r \subset \mathrm{GL}(V^{\otimes \#\mathrm{ins}})$
- where $r = \#\{\lambda_i - \lambda_j \ne 0\}/2$, acting by
- $\exp(2\pi i\, \mathrm{diag})$.
+ attached to the non-zero exponential differences of the formal
+ type.
 \item \emph{Formal monodromy.} $\hat M_\Gamma = \exp(2\pi i\,
  \Lambda_\Gamma)$ where $\Lambda_\Gamma$ is the regular residue
  part.
 \item \emph{Stokes matrices.} $S_\ell^\pm \in
- U_\ell^\pm \subset \mathrm{GL}$, one pair per Stokes ray
- $\ell$; the rays are the imaginary axes of the differences
- $\lambda_i - \lambda_j$.
+ U_\ell^\pm \subset \mathrm{GL}$ are analytic Stokes data lying in
+ the Stokes groups determined by the formal type. The formal type
+ determines the Stokes directions and groups, not the matrices
+ themselves.
 \end{itemize}
 Malgrange--Sibuya \cite[\S5]{JMU81} (sharpened by Boalch
 \cite{Boalch2001} Thm~A) gives a unique sectorial fundamental
@@ -3241,8 +3258,8 @@ solution $Y_\ell$ on each Stokes sector $\Sigma_\ell$ with
 prescribed asymptotic expansion $\hat Y \cdot \exp(Q_\Gamma)$;
 consecutive $Y_\ell$ differ by a Stokes matrix. The collection
 $(Q_\Gamma, \hat M_\Gamma, \{S_\ell^\pm\})$ is the wild monodromy
-datum and classifies $\omega_{g,n}^{\mathrm{KZB}}$ up to
-gauge~\cite{Boalch2014} Thm~2.1.
+datum; the Stokes matrices are additional analytic monodromy data,
+not consequences of the formal type alone.
 
 (iii) Composition associativity. The wild fundamental groupoid
 $\Pi_1^{\mathrm{wild}}(\overline{\cM}_{g,n}^{\mathrm{Arakelov}})$
@@ -3252,43 +3269,38 @@ factors at codimension-$2$ boundary crossings, hexagon for
 triple collisions). Parallel transport $\Pi_{\gamma,k}$ is a
 functor from $\Pi_1^{\mathrm{wild}}$ to the category of chiral
 endomorphisms; associativity of iterated $B^{\mathrm{ann}}$-sewing
-descends to the functoriality identity. Concretely:
+descends to the functoriality identity once the third hypothesis
+supplies the two-edge sector-crossing coherence. Concretely:
 \[
  \Pi_{\gamma_1 \cdot (\gamma_2 \cdot \gamma_3)} \;=\;
  \Pi_{\gamma_1} \circ \Pi_{\gamma_2} \circ \Pi_{\gamma_3} \;=\;
  \Pi_{(\gamma_1 \cdot \gamma_2) \cdot \gamma_3},
 \]
-with the Stokes cocycle condition ($S_{\ell+1} S_\ell = 1$ on
-consecutive rays, wild-cohomology trivial in degree $1$, Boalch
-\cite{Boalch2001} Thm~B) supplying the sector-crossing coherence.
-Neither step requires $k$ integral.
+with the assumed Stokes cocycle supplying the sector-crossing
+coherence. Neither step requires $k$ integral.
 \end{proof}
 
-\begin{remark}[Poincar\'e-rank scope]
+\begin{remark}[Formal-type scope]
 \label{rem:poincare-rank-scope}
 Theorem~\ref{thm:irregular-kzb-composition} is stated for
-$r(\Gamma) \le 1$. This covers \emph{all} boundary divisors of
-$\Mbar_{g,n}$ because the KZB connection has at most simple
-irregular poles in the sewing coordinate (one derivative of the
-energy-momentum tensor per collision). Higher Poincar\'e rank
-would arise only if one allowed simultaneous collision of
-$\ge 3$ insertions at a non-separating cycle; this is excluded
-by the stable-graph combinatorics of $\Mbar_{g,n}$. Multi-rank
-extensions would be needed for generalizations to irregular
-boundary data (Nekrasov partition functions at $\epsilon_2 \to 0$,
-five-dimensional gauge theory) and are flagged as Frontier
-item~\ref{frontier:multi-rank-kzb} below.
+finite boundary formal type after ramification, not for a universal
+Poincar\'e-rank formula. Pole order is part of the formal normal form.
+A simple nodal logarithmic pole is regular singular; a genuine Stokes
+problem requires higher pole order in the ramified coordinate and the
+analytic Stokes matrices attached to that formal type. Multi-rank
+extensions for irregular boundary data (Nekrasov partition functions
+at $\epsilon_2 \to 0$, five-dimensional gauge theory) remain the
+frontier item~\ref{frontier:multi-rank-kzb} below.
 \end{remark}
 
-\begin{remark}[Replacing the Stokes regularity gap]
+\begin{remark}[Boundary formal type for Stokes composition]
 \label{rem:stokes-gap-closed}
-The preceding literature (including earlier drafts of this volume)
-left open: ``composition at generic non-integral level, genus~$\ge 1$
-(Stokes regularity).'' Theorem~\ref{thm:irregular-kzb-composition}
-closes this gap by invoking the full JMU/Boalch wild-monodromy
-classification rather than assuming the connection remains
-regular-singular. The gap was not a failure of composition; it was
-a failure to use the correct asymptotic framework.
+Composition at generic non-integral level and genus~\(\ge 1\)
+requires boundary formal-type and mixed Stokes cocycle hypotheses.
+Theorem~\ref{thm:irregular-kzb-composition} states exactly that
+conditional input. The JMU/Boalch framework is the correct
+asymptotic language; it does not by itself construct the boundary
+formal type.
 \end{remark}
 
 \begin{corollary}[Modular-operad composition on covered level loci;
@@ -3312,8 +3324,8 @@ proved on the following covered level regimes:
 These cases do not exhaust all levels: rational nonintegral
 noncritical levels require an additional admissible-level comparison.
 The composition obstruction at generic nonrational level and
-genus $\ge 1$ is Stokes regularity, resolved only under the
-$r(\Gamma) \le 1$ normal-form hypothesis.
+genus $\ge 1$ is resolved only under the boundary formal-type and
+mixed Stokes cocycle hypotheses.
 \end{corollary}
 
 % =====================================
@@ -3330,14 +3342,15 @@ Denote the two obstruction complexes:
  \gr^g\,\Bmod(\SC^{\mathrm{ch,top}})\bigr), d_0\bigr).
 \end{align*}
 
-\begin{theorem}[The bridge is a quasi-isomorphism]
+\begin{theorem}[Low-degree curved-Dunn comparison criterion]
 \label{thm:curved-dunn-bridge}
-There is a chain map
+ \ClaimStatusConditional
+Fix a genus \(g\). Assume there is a chain map
 \[
  \Phi\colon (\mathfrak{g}^{\cA}_{\mathrm{mod}}, d_{\Theta^{(0)}})
  \longrightarrow (\mathfrak{h}^{\cA}_{\mathrm{Dunn}}, d_0)
 \]
-defined at genus $g$ by
+defined on the obstruction subcomplex by
 \[
  \Phi_g(\Theta^{(g)})
  = \tau_g := \bigl[\, b\ \mapsto\ \mathrm{Mon}^{(g)}_R(b) \cdot
@@ -3345,44 +3358,35 @@ defined at genus $g$ by
 \]
 where $\mathrm{Mon}^{(g)}_R\colon \mathbf{B}(E_1^{\mathrm{tr}})
 \to \End(\gr^g\Bmod(\SC))$ is the $R$-matrix monodromy at
-genus-$g$ sewing circles. Then:
+genus-$g$ sewing circles. Assume:
 \begin{enumerate}[label=\textup{(\roman*)}]
 \item $\Phi$ is a chain map: $d_0 \circ \Phi = \Phi \circ d_{\Theta^{(0)}}$.
-\item $\Phi$ is a quasi-isomorphism.
-\item Consequently $H^2(\mathfrak{h}^{\cA}_{\mathrm{Dunn}}) = 0$
- at all $g \ge 1$.
+\item $\Phi$ sends the modular-bootstrap obstruction class to the
+ curved-Dunn obstruction class.
+\item \(H^2(\Phi)\) is an isomorphism, with surjectivity represented
+ in cohomological degree \(\le 2\).
 \end{enumerate}
+If \(H^2(\mathfrak{g}^{\cA}_{\mathrm{mod}},d_{\Theta^{(0)}})=0\),
+then \(H^2(\mathfrak{h}^{\cA}_{\mathrm{Dunn}},d_0)=0\).
 \end{theorem}
 
 \begin{proof}
-(i) At the level of cocycles, $d_{\Theta^{(0)}}(\Theta^{(g)}) =
-\frac{1}{2} \sum_{g_1 + g_2 = g} [\Theta^{(g_1)}, \Theta^{(g_2)}]$
-is the sewing recursion. Applying $\mathrm{Mon}^{(g)}_R$ to both
-sides and using quasi-triangularity
-(Proposition~\ref{prop:qt-equivariance} of the affine case, and
-its irregular-singular extension via
-Theorem~\ref{thm:irregular-kzb-composition}(iii)), one obtains
-$d_0(\tau_g) = \frac{1}{2}[\tau_{g_1}, \tau_{g_2}]$, which is the
-Eilenberg--Zilber twisting-cochain equation.
-(ii) Direct combinatorial identification: the Eilenberg--Zilber
-twisting cochain $\tau_g$ equals the sum over stable ribbon graphs
-of type $(g,n)$ of the bootstrap obstruction $\Theta^{(g)}$, each
-ribbon graph contributing its $R$-matrix monodromy at internal
-edges. See
-Proposition~\ref{prop:modular-bootstrap-to-curved-dunn-bridge} and
-Remark~\ref{rem:bridge-provenance} in
-Chapter~\ref{ch:curved-dunn-higher-genus} for the stratum-by-stratum
-construction of $\Phi^{-1}$ on $H^2$ via Getzler--Kapranov
-stable-graph finiteness. No Quillen-equivalence argument on curved
-operads is used; the quasi-isomorphism is combinatorial.
-(iii) Theorem~\ref{thm:modular-bar} and the modular bootstrap give
-$H^2(\mathfrak{g}^{\cA}_{\mathrm{mod}}) = 0$. Transfer via~(ii).
+Let \([\xi]\in H^2(\mathfrak{h}^{\cA}_{\mathrm{Dunn}},d_0)\).
+By the degree-\(\le2\) surjectivity hypothesis, choose a
+degree-\(2\) modular-bootstrap representative \(\tilde\xi\) whose
+image represents \([\xi]\). The chain-map property and the
+assumed \(H^2\)-comparison allow \(\tilde\xi\) to be chosen
+\(d_{\Theta^{(0)}}\)-closed. If the modular-bootstrap \(H^2\)
+vanishes, then \(\tilde\xi=d_{\Theta^{(0)}}\eta\), and hence
+\(\xi=d_0\Phi(\eta)\). Thus \([\xi]=0\). The obstruction-class
+compatibility is exactly the statement that the same calculation
+annihilates the curved-Dunn obstruction, not merely an arbitrary
+degree-\(2\) class.
 \end{proof}
 
-\begin{remark}[Precise bridge: two complexes, explicit map, status]
+\begin{remark}[Precise bridge: two complexes and explicit map]
 \label{rem:curved-dunn-complex-bridge}
-For downstream-navigation clarity we record the bridge as a single
-datum. The two complexes are:
+The bridge is a single datum between two complexes:
 \begin{itemize}\setlength\itemsep{2pt}
 \item \textbf{Modular-bootstrap complex}
  $(C^\bullet_{\mathrm{MB}}(g), d_{\mathrm{MB}})
@@ -3409,39 +3413,44 @@ binary-collision residue identity $\Theta^{(0)} = r(z)\,dz$
 (Proposition~\ref{prop:modular-bootstrap-to-curved-dunn-bridge}
 Step~2).
 
-\emph{Status.} $\varphi$ is a quasi-isomorphism in cohomological
-degrees $\le 2$: surjective on $H^{\le 2}$ by stratum decomposition
-(Step~3 op.\ cit.), injective on $H^2$ by stable-graph finiteness
-(Step~4). This is proved combinatorially, not by appeal to a model
-structure on curved operads. Consequently
-$H^2(C^\bullet_{\mathrm{MB}}(g)) = 0$ transfers to
-$H^2(C^\bullet_{\mathrm{TC}}(g)) = 0$, i.e.\
-curved-Dunn $H^2$ vanishing at every $g \ge 1$
-(Theorem~\ref{thm:curved-dunn-H2-vanishing-all-genera}).
-Full quasi-isomorphism of $\varphi$ in cohomological degree $\ge 3$
-would require either a model-category argument (not supplied) or
-the stratum decomposition at higher arity; the present chapter
-needs only $H^{\le 2}$, which is unconditional.
+\emph{Degree-\(2\) scope.} $\varphi$ is required only as a
+degree-\(\le2\) comparison. Once it identifies the obstruction class and induces an
+isomorphism on \(H^2\), modular-bootstrap acyclicity transfers to
+the curved-Dunn twisting-cochain complex. The existence of this
+comparison is the hypothesis of
+Theorem~\ref{thm:curved-dunn-bridge} and
+Proposition~\ref{prop:modular-bootstrap-to-curved-dunn-bridge};
+it is not an unconditional full quasi-isomorphism, and no statement
+in cohomological degree \(\ge3\) is asserted here.
 \end{remark}
 
-\begin{corollary}[Curved Dunn at all genera]
+\begin{corollary}[Conditional curved Dunn at all genera]
 \label{cor:curved-dunn-all-genera}
-For every $g \ge 1$ there exists a twisting cochain $\tau_g$ such
-that $\Bmod(\mathcal{O}^{\Ainf\text{-ch}})|_g \simeq
+\ClaimStatusConditional
+For \(g=1\), assume the genus-one twisting datum of
+Proposition~\ref{prop:genus1-twisted-tensor-product}. For
+\(g\ge2\), assume modular-bootstrap \(H^2\)-vanishing and the
+degree-\(\le2\) comparison of
+Theorem~\ref{thm:curved-dunn-bridge}. Then there exists a twisting
+cochain $\tau_g$ such that
+\[
+\Bmod(\mathcal{O}^{\Ainf\text{-ch}})|_g \simeq
 \Bmod(\SC^{\mathrm{ch,top}})|_g \otimes^{\tau_g}
-\mathbf{B}(E_1^{\mathrm{tr}})$. The higher $H^2$ obstruction in
-the curved-Dunn complex vanishes identically.
+\mathbf{B}(E_1^{\mathrm{tr}}).
+\]
+Under these hypotheses the degree-\(2\) curved-Dunn obstruction
+vanishes. No full higher-degree formality statement is asserted.
 \end{corollary}
 
 % =====================================
 \subsection{Modular bootstrap complex and $H^2$ vanishing}
 \label{subsec:modular-bootstrap-complex}
 
-The bridge quasi-isomorphism
+The low-degree comparison map
 $\varphi \colon C^\bullet_{\mathrm{MB}}(g) \to
 C^\bullet_{\mathrm{TC}}(g)$ used throughout
 Section~B presupposes a precise definition of its source.
-We record it, and prove the $H^2$-vanishing theorem on which
+We record it, and isolate the $H^2$-vanishing hypothesis on which
 Theorem~\ref{thm:curved-dunn-H2-vanishing-all-genera} rests.
 
 The modular bootstrap complex
@@ -3452,7 +3461,7 @@ $d_{\mathrm{MB}} = [\Theta^{(0)}, -]$ built from the classical
 KZB connection via Calaque--Enriquez--Etingof / Bernard--Felder.
 The canonical inscription is \Cref{def:modular-bootstrap-complex}
 in the curved-Dunn higher-genus chapter; we consume it here as
-the source of the bridge quasi-isomorphism
+the source of the low-degree comparison map
 $\varphi \colon C^\bullet_{\mathrm{MB}}(g)
 \to C^\bullet_{\mathrm{TC}}(g)$.
 
@@ -3875,7 +3884,7 @@ chiral obstruction because the singular OPE is trivial by definition.
 \end{proof}
 
 \begin{theorem}[Irregular KZB composition at generic nonrational level
-under normal-form hypotheses]
+under boundary formal-type hypotheses]
 \label{thm:irregular-kzb-composition-generic-level}
 \ClaimStatusConditional
 Let $\cA$ be a logarithmic $\SCmod$-algebra of affine Kac--Moody
@@ -3884,8 +3893,8 @@ type at generic non-integral level $k \in \mathbb{C} \setminus
 Theorem~\ref{thm:irregular-kzb-composition}. The KZB connection
 $\omega_{g,n}^{\mathrm{KZB}}$ on
 $\overline{\cM}_{g,n}$ admits, along each nodal boundary divisor
-$\delta_\Gamma$, a rank-$1$ irregular-singular extension in the
-sewing coordinate $q_e$, with wild-monodromy datum
+$\delta_\Gamma$, the finite-pole boundary formal type and
+mixed Stokes clutching data assumed there, with wild-monodromy datum
 \[
  (Q_\Gamma,\; \mathbb{T}_\Gamma,\; \hat M_\Gamma,\;
  \{S_\ell^\pm\}_\ell)
@@ -3895,16 +3904,16 @@ Boalch~\cite{Boalch2001,Boalch2014}. Composition of the modular
 operad $\mathcal{O}^{\Ainf\text{-ch}}$ descends to the cohomology
 of the wild fundamental groupoid $\Pi_1^{\mathrm{wild}}$ with
 values in $\End^{\mathrm{ch}}_{\cA}$-module families; operadic
-associativity at $(g,n)$ follows from Stokes-cocycle triviality
-(Boalch \cite{Boalch2001} Thm~B, $H^1_{\mathrm{wild}} = 0$).
+associativity at $(g,n)$ follows from the assumed Stokes cocycle
+compatibility at the boundary corners.
 \end{theorem}
 
 \begin{proof}
 This is the specialisation of
 Theorem~\ref{thm:irregular-kzb-composition} to the generic nonrational
 stratum $k \in \mathbb{C} \setminus \mathbb{Q}$. The normal-form
-hypotheses supply the Poincar\'e-rank-$\le1$ extension and the Stokes
-cocycle compatibility. On the nonresonant generic locus, the
+hypotheses supply the finite-pole formal type and the Stokes cocycle
+compatibility. On the nonresonant generic locus, the
 exponential torus $\mathbb{T}_\Gamma$ is non-degenerate
 because the eigenvalue differences $\lambda_i(k) - \lambda_j(k)$
 are meromorphic in $k$ and vanish only on a Zariski-closed
@@ -3926,10 +3935,11 @@ loci:
  pentagon + Kazhdan--Lusztig regularity
  (Theorem~\ref{thm:affine-composition-associativity}).
 \item \emph{Generic nonrational level} $k \in \mathbb{C}
- \setminus \mathbb{Q}$, under the nodal normal-form hypotheses of
+ \setminus \mathbb{Q}$, under the boundary formal-type and mixed
+ Stokes cocycle hypotheses of
  Theorem~\ref{thm:irregular-kzb-composition}: via
  Theorem~\ref{thm:irregular-kzb-composition-generic-level}
- (rank-$1$ irregular KZB + Boalch wild groupoid).
+ (irregular KZB formal type + Boalch wild groupoid).
 \item \emph{Critical level} $k = -h^\vee$: via
  Feigin--Frenkel center
  (Theorem~\ref{thm:ff-chirhoch-critical}).
@@ -3937,8 +3947,9 @@ loci:
 Rational nonintegral noncritical levels are a separate proof
 obligation unless they are reached by an explicit admissible-level or
 Kazhdan--Lusztig comparison theorem. The Stokes regularity gap is
-resolved only under the rank-$1$ normal-form hypothesis. Residual
-frontier: Poincar\'e rank $\ge 2$ (Nekrasov
+resolved only under the boundary formal-type and mixed Stokes
+cocycle hypotheses. Residual frontier: higher-pole irregular type
+(Nekrasov
 $\varepsilon_2 \to 0$, irregular $5$d gauge), outside the
 $\Mbar_{g,n}$-stable-graph geometry.
 \end{corollary}
@@ -3952,21 +3963,22 @@ $\mathbb C$; rational nonintegral noncritical levels remain outside the
 corollary unless an additional comparison theorem is supplied.
 \end{proof}
 
-\begin{remark}[Consequence for curved-Dunn vanishing]
+\begin{remark}[Conditional consequence for curved-Dunn vanishing]
 \label{rem:mb-to-curved-dunn-consequence}
-Combined with the bridge quasi-isomorphism $\varphi$ of
-Remark~\ref{rem:curved-dunn-complex-bridge} (which is a
-quasi-isomorphism in cohomological degrees $\le 2$),
-Theorem~\ref{thm:mb-H2-vanishing} transfers to
+Combined with the degree-\(\le2\) comparison \(\varphi\) of
+Remark~\ref{rem:curved-dunn-complex-bridge},
+Theorem~\ref{thm:mb-H2-vanishing} transfers, under its hypotheses, to
 \[
  H^2_{\mathrm{curved\text{-}Dunn}}(g) \;=\; 0
- \qquad (g \ge 1),
+ \qquad (g \ge 2),
 \]
-at the cohomological level. This closes frontier item~(1) of
-the Vol.~II programme (curved-Dunn $H^2 = 0$ at all genera) at
-cohomological precision. Chain-level refinement in
-cohomological degrees $\ge 3$ remains open and is the residual
-research frontier.
+at the cohomological level. Thus curved-Dunn \(H^2\)-vanishing is a
+conditional transport theorem: modular-bootstrap acyclicity plus the
+degree-\(2\) comparison imply the curved-Dunn conclusion. KZB
+Stokes-sector composition is a separate analytic input for boundary
+composition and does not prove this \(H^2\)-vanishing. The genus-\(1\)
+case is the separate twisted tensor criterion of
+Proposition~\ref{prop:genus1-twisted-tensor-product}.
 \end{remark}
 
 % =====================================
@@ -3975,11 +3987,9 @@ research frontier.
 
 At genus $1$, the modular bar splits as a twisted tensor product
 of the topologised $\SC^{\mathrm{ch,top}}$-bar with the trace
-$E_1$-bar, with twisting cochain $\tau_1 = \langle \alpha, \beta
-\rangle_{\mathrm{Ar}} \cdot \kappa(\cA)\,\omega_1 \cdot \log
-\mathrm{Mon}(R)$ assembling the Arakelov pairing, the curvature
-$\kappa(\cA)\,\omega_1$, and the $B$-cycle $R$-matrix monodromy.
-The explicit chain isomorphism and its proof appear as
+$E_1$-bar once a genus-one twisting cochain
+\(\tau_1=\mathrm{Mon}(R)\) satisfying the curved tensor-product
+Maurer--Cartan equation is supplied. The criterion appears as
 \Cref{prop:genus1-twisted-tensor-product} in the curved-Dunn
 higher-genus chapter; we consume the statement here as the
 seed for the modular uncurving of the present section.
@@ -3988,11 +3998,14 @@ seed for the modular uncurving of the present section.
 \subsection{Section D: Cross-genus Maurer--Cartan equation}
 \label{subsec:cross-genus-mc}
 
-\begin{theorem}[Cross-genus Maurer--Cartan, unconditional]
+\begin{theorem}[Cross-genus Maurer--Cartan under bootstrap acyclicity]
 \label{thm:cross-genus-mc}
+\ClaimStatusConditional
 Let $\Theta = \sum_{g \ge 0} \hbar^{2g} \Theta^{(g)}
 \in \mathfrak{g}^{\cA}_{\mathrm{mod}}\llbracket \hbar \rrbracket$
-be the total modular datum assembled from the genus tower. Then
+be the total modular datum assembled from the genus tower. Assume the
+modular-bootstrap degree-\(2\) obstruction vanishes at every positive
+genus needed in the recursion. Then
 \[
  D\Theta + \tfrac{1}{2}[\Theta, \Theta] = 0
 \]
@@ -4009,9 +4022,9 @@ At $g=0$: genus-$0$ MC, proved (Getzler--Kapranov genus-$0$).
 At $g \ge 1$: $d_0\Theta^{(g)} = -D_1\Theta^{(g-1)}
 - \tfrac{1}{2}\sum[\Theta^{(g_1)},\Theta^{(g_2)}]$ is precisely the
 $g$-th bootstrap recursion, whose solvability is
-$H^2(\mathfrak{g}^{\cA}_{\mathrm{mod}}) = 0$ (proved via the Fay
-trisecant formality in Theorem~\ref{thm:modular-hkoszul-SC} and the
-Feynman involutivity of~\cite{GK98}).
+$H^2(\mathfrak{g}^{\cA}_{\mathrm{mod}}) = 0$ in the relevant
+degree. This is exactly the bootstrap acyclicity hypothesis; it is
+not supplied by the curved-Dunn comparison or by KZB Stokes data.
 \end{proof}
 
 \begin{remark}[Why Kan horn-filling is not the argument]
@@ -4021,8 +4034,8 @@ Kan horn-filling does not prove cross-genus MC coherence:
 every partial MC extends'' is a non-sequitur. Kan complexes supply
 horns for simplicial sets, not target coherence for operadic twisting
 cochains. Theorem~\ref{thm:cross-genus-mc} uses the bootstrap
-recursion, whose solvability is a theorem ($H^2 = 0$), not a Kan
-property.
+recursion, whose solvability is the stated modular-bootstrap
+\(H^2\)-acyclicity input, not a Kan property.
 \end{remark}
 
 % =====================================
@@ -4054,13 +4067,13 @@ Corollary~\ref{cor:fm68-all-levels-resolved}, iterated sewing
 (i) At integral level $k \in \mathbb{Z}_{\ge 0}$: KZ pentagon
 plus Kazhdan--Lusztig regularity (cited as
 Theorem~\ref{thm:affine-composition-associativity}). At generic
-nonrational level under the nodal normal-form hypotheses:
+nonrational level under the boundary formal-type and mixed Stokes
+hypotheses:
 Theorem~\ref{thm:irregular-kzb-composition}(iii).
 (ii) Proposition~\ref{prop:qt-equivariance}, extended by
 Theorem~\ref{thm:irregular-kzb-composition}(ii) to include Stokes
-multipliers; quasi-triangularity persists because Stokes matrices
-are block-upper-triangular in the Bruhat decomposition compatible
-with $R$.
+multipliers under the same Stokes cocycle compatibility hypothesis;
+quasi-triangularity is not inferred from the formal type alone.
 (iii) Proposition~\ref{prop:modular-operad-unitality} via the vacuum
 axiom; unaffected by the passage to irregular-singular data.
 \end{proof}
@@ -4092,10 +4105,13 @@ maps. Neither is a direct consequence of the other.
 \ClaimStatusConditional]
 \label{thm:abstract-implies-concrete}
 Under the JMU irregular-singular framework of
-Theorem~\ref{thm:irregular-kzb-composition}, (Abs) implies (Conc).
+Theorem~\ref{thm:irregular-kzb-composition} and the degree-\(2\)
+comparison of Theorem~\ref{thm:curved-dunn-bridge}, (Abs) implies
+(Conc).
 Explicitly: for any logarithmic $\SCmod$-algebra $\cA$ on a covered
-level locus satisfying the nodal normal-form hypotheses, \emph{if}
-$D^2 = 0$ on $\Bmod(\cA)$, \emph{then}
+level locus satisfying the boundary formal-type and mixed Stokes
+hypotheses, \emph{if} \(D^2 = 0\) on \(\Bmod(\cA)\) and the
+low-degree comparison identifies the obstruction class, \emph{then}
 $\mathcal{O}^{\Ainf\text{-ch}}$-composition associates at all genera.
 \end{theorem}
 
@@ -4105,29 +4121,33 @@ the abstract datum $\Theta^{(g)}$ (cocycle witnessing $D^2 = 0$
 at genus~$g$) to the twisting cochain $\tau_g$ governing the
 concrete composition. The JMU regularization of
 Theorem~\ref{thm:irregular-kzb-composition} provides the
-analytic data making $\tau_g$ well-defined at generic~$k$.
-Quasi-isomorphism of $\Phi$ transfers
-cocycle-level information to composition-level information:
+analytic data making $\tau_g$ well-defined at generic~$k$ under the
+boundary formal-type hypothesis. The degree-\(2\) comparison of
+\(\Phi\) transfers cocycle-level obstruction information to
+composition-level obstruction information:
 $D\Theta^{(g)} = 0 \Rightarrow d_0\tau_g +
 \tfrac{1}{2}[\tau_g, \tau_g] = 0 \Rightarrow$ pentagon for
 $B^{\mathrm{ann}}$-sewing.
 \end{proof}
 
-\begin{remark}[What this reconstitution achieves]
-\label{rem:reconstitution-summary}
+\begin{remark}[Infrastructure summary]
+\label{rem:modular-infrastructure-summary}
 Combining Sections~A--F:
 \begin{enumerate}
-\item Modular operad composition: proved at all genera on the covered
+\item Modular operad composition: conditional at all genera on the covered
  level loci of Corollary~\ref{cor:fm68-all-levels-resolved}
  (Theorem~\ref{thm:concrete-operadic-composition}).
-\item Curved Dunn additivity: proved at all genera
+\item Curved Dunn additivity: the genus-\(1\) twisted tensor
+ criterion and the \(g\ge2\) conditional transport theorem
  (Corollary~\ref{cor:curved-dunn-all-genera}).
-\item Genus-$1$ twisted Künneth: explicit proof with Gauss--Manin
- uncurving (Proposition~\ref{prop:genus1-twisted-tensor-product}).
-\item Cross-genus Maurer--Cartan: unconditional
+\item Genus-$1$ twisted tensor criterion
+ (Proposition~\ref{prop:genus1-twisted-tensor-product}).
+\item Cross-genus Maurer--Cartan: conditional on modular-bootstrap
+ acyclicity
  (Theorem~\ref{thm:cross-genus-mc}).
 \item Abstract $D^2 = 0$ and concrete composition: separated and
- reunified under irregular-singular regularization
+ reunified under irregular-singular regularization plus the
+ degree-\(2\) comparison
  (Theorems~\ref{thm:abstract-vs-concrete},
  \ref{thm:abstract-implies-concrete}).
 \item Prior Kan horn-filling non-sequitur replaced by direct
@@ -4148,16 +4168,18 @@ data for the global universal-holography master theorem
 (Theorem~\ref{thm:universal-holography-master}). The bridge to the
 climax has three legs.
 \begin{itemize}[nosep]
-\item \textbf{(Curved-Dunn $H^2 = 0$ at all genera.)}
+\item \textbf{(Genus-$1$ criterion and conditional \(g\ge2\)
+curved-Dunn \(H^2\).)}
  Theorem~\ref{thm:curved-dunn-bridge} +
- Corollary~\ref{cor:curved-dunn-all-genera} proved here are the
- \emph{operadic-side} witness; the \emph{factorization-side} witness
- is the explicit chain-map $\Phi$ of
+ Corollary~\ref{cor:curved-dunn-all-genera} are the
+ \emph{operadic-side} criterion; the \emph{factorization-side}
+ criterion is the explicit chain-map $\Phi$ of
  Theorem~\ref{thm:curved-dunn-H2-vanishing-all-genera} +
- Proposition~\ref{prop:modular-bootstrap-to-curved-dunn-bridge}. Both
- routes close the genus-$\ge 2$ frontier, the operadic route via
- Sections A--F above and the factorization route via the
- Jimbo--Miwa irregular-singular KZB framework.
+ Proposition~\ref{prop:modular-bootstrap-to-curved-dunn-bridge}.
+ Both routes require modular-bootstrap \(H^2\)-vanishing and a
+ degree-\(2\) comparison. The Jimbo--Miwa irregular-singular KZB
+ framework supplies boundary composition under formal-type and Stokes
+ hypotheses; it is not the proof of curved-Dunn \(H^2\)-vanishing.
 \item \textbf{(Rung-Virasoro climax.)} The Virasoro instance of the
  master theorem realizes 3D quantum gravity
  chain-level on the \emph{non-logarithmic $C_2$-cofinite standard
@@ -4172,21 +4194,22 @@ climax has three legs.
  The higher-spin stress tower drives the iterated Sugawara
  construction
  (Theorem~\ref{thm:iterated-sugawara-construction}), with universal
- ratio $\beta_N = 12(H_N - 1)$ proved unconditionally in
+ ratio $\beta_N = 12(H_N - 1)$ conjectural in
  Chapter~\ref{ch:beta-N-closed-form-all},
- Theorem~\ref{thm:beta-N-closed-form-proved-all-N}. The
- modular-operadic composition above (item~1) supplies the
- chain-level associativity required at every rung.
+ Conjecture~\ref{thm:beta-N-closed-form-proved-all-N}; the
+ finite-rank tempering statement uses the finite-envelope criterion of
+ Theorem~\ref{thm:wn-tempered-all-N}. The
+ modular-operadic composition above supplies the required
+ associativity on the covered formal-type loci.
 \end{itemize}
 The local model of this chapter is the universal disc-and-corner
-calculus on which the climax theorem applies. Without the
-chain-level composition + curved-Dunn package above, the master
-theorem statement at $g \ge 2$ would be modular-cohomological only;
-with it, the statement upgrades to chain-level on the
-non-degenerate locus identified in the Climax chapter.
+calculus on which the climax theorem applies. At $g \ge 2$ the
+upgrade from modular-cohomological to chain-level is conditional on
+the same bootstrap acyclicity, degree-\(2\) comparison, and boundary
+formal-type hypotheses.
 \end{remark}
 
-\begin{remark}[First-principles summary of what the reconstitution achieves]
+\begin{remark}[First-principles comparison of the repaired statements]
 \label{rem:first-principles-summary-modular}
 Each tightening of the preceding infrastructure is a triple of a
 correct observation, a prior overreach, and the precise mathematical
@@ -4200,20 +4223,24 @@ statement that replaces the overreach:
  bridge $\Phi$ (Theorem~\ref{thm:abstract-implies-concrete}).
 \item[\textbf{(Two $H^2$ obstructions, not one.)}] The modular-bootstrap
  $H^2$ and the curved-Dunn twisting-cochain $H^2$ are distinct
- complexes; they are now connected by a quasi-isomorphic chain map
+ complexes; when the low-degree comparison hypotheses hold, they are
+ connected by the degree-\(2\) chain map
  (Theorem~\ref{thm:curved-dunn-bridge}).
 \item[\textbf{(Generic non-integral level.)}] Modular operad axioms at
- integer level are classical; the generic-$k$ gap closes via the
- Jimbo--Miwa--Ueno Stokes data
+ integer level are classical; the generic-$k$ composition statement
+ is conditional on boundary formal type and analytic Stokes data in
+ the Jimbo--Miwa--Ueno framework
  (Theorem~\ref{thm:irregular-kzb-composition}).
-\item[\textbf{(Genus-$1$ twisted Künneth.)}] The genus-1
- twisted-tensor-product claim is an explicit proof
- (Proposition~\ref{prop:genus1-twisted-tensor-product}) using
- Arakelov pairing and curvature.
+\item[\textbf{(Genus-$1$ twisted tensor criterion.)}] The genus-1
+ twisted-tensor-product claim is a criterion
+ (Proposition~\ref{prop:genus1-twisted-tensor-product}) for a
+ supplied twisting cochain.
 \item[\textbf{(Cross-genus Maurer--Cartan.)}] Solvability is supplied by
- Theorem~\ref{thm:cross-genus-mc} with $H^2 = 0$ input.
+ Theorem~\ref{thm:cross-genus-mc} under modular-bootstrap
+ \(H^2\)-acyclicity.
 \item[\textbf{(Cross-genus coherence.)}] Kan horn-filling is
- insufficient; the replacement is KZB-regularized composition
+ insufficient; the replacement is conditional KZB-regularized
+ composition
  (Remark~\ref{rem:kan-replacement},
  Theorem~\ref{thm:concrete-operadic-composition}).
 \end{enumerate}
@@ -4235,34 +4262,52 @@ $\mathrm{av} = \mathrm{Torelli}_{K3} \circ \mathrm{KugaSatake} \circ j_{\mathrm{
 \colon \mathrm{Ran}(\mathbb{P}^1)_{M_{24}} \to \overline{\mathcal{A}_2}$.
 \end{remark}
 
-\begin{remark}[$24$ M5-brane insertions as Swiss-cheese open punctures]
+\begin{remark}[$24$ M5-brane insertions and the chiral boundary locus]
 \label{rem:msc-24-M5-punctures}
-The Vol~II the K3 synthesis realisation: twisted 11D supergravity on $K3 \times T^2$ with $24$
-M5-branes wrapping the $I_1$ Kodaira fibres realises the modular Swiss-cheese operad's
-open colour at $24$ puncture points. The $4d$ $\mathcal{N} = 2$ parent is class-$\mathcal{S}$
-$A_1$ on the $24$-punctured sphere $\Sigma_{0,24}$ with maximal regular $\mathfrak{su}(2)$
-punctures (Gaiotto $2008$; Chacaltana--Distler $2010$: $c_{4d} = 26$, $a_{4d} = 16$,
-Coulomb rank $21$, flavour $\mathfrak{su}(2)^{24}$). The Steiner system $S(5, 8, 24)$
-(Conway--Sloane $1988$) is the unique (up to M\"obius) $24$-point configuration on
-$\mathbb{P}^1$ with $M_{24}$ symmetry.
+Twisted $11$d supergravity on $K3 \times T^2$ with $24$ M5-branes
+wrapping the $I_1$ Kodaira fibres supplies the $24$ marked chiral
+insertions on $\Ran(E^{\mathrm{nod,sm}}_{24})$. These points are not
+the open colour of $\SCmod$: the open colour is the topological
+parameter direction over $\overline{\mathcal A_2}$. The $4d$
+$\mathcal{N}=2$ parent is class-$\mathcal S$ $A_1$ on the
+$24$-punctured sphere $\Sigma_{0,24}$ with maximal regular
+$\mathfrak{su}(2)$ punctures (Gaiotto $2008$; Chacaltana--Distler
+$2010$: $c_{4d}=26$, $a_{4d}=16$, Coulomb rank $21$, flavour
+$\mathfrak{su}(2)^{24}$). The Steiner system $S(5,8,24)$
+(Conway--Sloane $1988$) records the $M_{24}$-symmetric
+$24$-point configuration on $\mathbb{P}^1$.
 \end{remark}
 
-\section{Synthesis (continued)}
+\section{K3 topologisation interface}
 \label{sec:msco-deep}
 
-\begin{remark}[Modular Swiss-cheese operad as the K3 synthesis topologisation target]
+\begin{remark}[Modular Swiss-cheese as the K3 topologisation interface]
 \label{rem:msco-deep-1}
 The modular Swiss-cheese operad $\mathsf{SC}^{\mathrm{mod}}$ is the
-target of the topologisation chain
-$E_1^{\mathrm{chiral}}\to E_2^{\mathrm{chiral}}\to\mathsf{SC}^{\mathrm{ch,top}}\to E_3^{\mathrm{top}}$:
-the Siegel-modular deformation kills the chiral direction, leaving a
-purely topological modular Swiss-cheese algebra structure on
-$\mathbf H_{\Delta_5}$. The pentagon-heptagon closure at order $\hbar^3$
-lives in $\mathsf{SC}^{\mathrm{mod}}$, with coboundary
-$\phi^{(3)} = \zeta(3) c_{\mathrm{symm}} + \tfrac{25}{3} c_{\mathrm{timelike}} + (\Phi_{10}/\eta^{24}) c_{\Phi_{10}}$
-(Vol.~II, \S\ref{sec:schtop-heptagon-supplement}). Cross-ref Vol.~III,
-Chapter~\ref{V3-ch:k3-chiral-bialgebra-platonic},
-Remark~\ref{rem:schtop-heptagon-1}.
+two-coloured interface between the curve-level
+$E_1^{\mathrm{chiral}}$ algebra, its derived-centre
+$E_2^{\mathrm{chiral}}$ structure, and any later
+$E_3^{\mathrm{top}}$ structure obtained after an explicit
+topological homotopy. It is not itself a single-coloured
+$E_3$-operad, and the Siegel-modular deformation does not erase the
+chiral colour. At the K3 base the numerical data are
+\[
+ \operatorname{wt}(\Delta_5)
+ = c_{\phi_{0,1}^{K3}}(0)/2 = 10/2 = 5,\qquad
+ K^{\kappa_{\mathrm{ch}}}=2c_+(\mathrm{Mukai}(K3))=8,
+ \qquad
+ \Phi_{10}^{\mathrm{un}}=\Delta_5^2.
+\]
+The order-$\hbar^3$ pentagon-heptagon obstruction is the class of
+\[
+ \phi^{(3)}
+ = \zeta(3)c_{\mathrm{symm}}
+ + \tfrac{25}{3}c_{\mathrm{timelike}}
+ + (\Phi_{10}^{\mathrm{un}}/\eta^{24})c_{\Phi_{10}^{\mathrm{un}}}
+\]
+in the $\SCmod$ deformation complex. Vanishing of this class is the
+precise condition for passing from the two-coloured modular interface
+to an $E_3^{\mathrm{top}}$ cohomology action.
 \end{remark}
 
 \begin{remark}[$24$-fold configuration in modular Swiss-cheese]
@@ -4277,78 +4322,73 @@ configuration. Primary-lit: Voronov 1999 (Swiss-cheese operad),
 Francis-Gaitsgory 2012.
 \end{remark}
 
-\section{Maulik--Okounkov Yangian on \texorpdfstring{$\mathrm{Hilb}^n(\mathrm{K3})$}{Hilb(K3)}}
+\section{Nakajima K3 Hilbert tower and local Maulik--Okounkov comparison}
 \label{sec:msco-MO-yangian-K3-hilb}
 
-\begin{remark}[Symplectic resolution and stable envelopes; \ClaimStatusProvedElsewhere]
+\begin{remark}[Hilbert schemes of K3 and stable-envelope scope;
+\ClaimStatusProvedElsewhere]
 \label{rem:msco-K3-hilb-symplectic}
 The Hilbert scheme $\mathrm{Hilb}^n(\mathrm{K3})$ is a symplectic
 resolution (Beauville 1983, J.~Diff.~Geom.~18): it is a smooth
 hyperK\"ahler variety of complex dimension $2n$, with the symplectic
 form $\omega_n = \oplus_{i=1}^n \omega_{\mathrm K3}$ descended to the
 Hilbert scheme under the Hilbert--Chow resolution
-$\mathrm{Hilb}^n(\mathrm{K3}) \to \mathrm{Sym}^n(\mathrm{K3})$. The
-Maulik--Okounkov (MO) construction (Maulik--Okounkov 2019,
-Ast\'erisque 408, \S13) applies to any symplectic resolution
-$\pi\colon X \to X_0$ admitting a Hamiltonian torus action with
-isolated fixed points: stable envelopes
+$\mathrm{Hilb}^n(\mathrm{K3}) \to \mathrm{Sym}^n(\mathrm{K3})$.
+Nakajima and Grojnowski construct the Heisenberg action on
+$\bigoplus_n H^*(\mathrm{Hilb}^{[n]}(\mathrm K3))$.
+
+The Maulik--Okounkov (MO) stable-envelope construction
+(Maulik--Okounkov 2019, Ast\'erisque 408, \S13) applies to a
+symplectic resolution $\pi\colon X\to X_0$ equipped with a
+Hamiltonian torus action and suitable fixed-locus/polarisation data:
+stable envelopes
 $\mathrm{Stab}_\mathfrak{c}\colon H^*_T(X^A) \hookrightarrow H^*_T(X)$
 are defined by the MO chamber-dependent Lagrangian condition (stable
 support, polarisation, and axis-of-symmetry asymptotic constraints).
-For $X = \mathrm{Hilb}^n(\mathrm{K3})$ with the scaling torus
-$T = \mathbb{C}^\times_{\omega}$ on the symplectic form plus the
-maximal torus of the K3 automorphism group, the stable envelope is a
-well-defined cohomology-valued matrix whose entries are MO wall
-functions (Okounkov 2018 ICM Sec.~4).
+Compact $\mathrm{K3}$ does not provide the affine Hamiltonian torus
+geometry of $\mathbb A^2$ or a generic isolated-fixed-point chamber.
+Thus the global K3 Hilbert tower supplies a Nakajima--Grojnowski
+Heisenberg/Fock module, while MO $R$-matrices enter only after choosing
+an equivariant local/quiver model or another symplectic-resolution
+replacement with the MO hypotheses.
 \end{remark}
 
-\begin{remark}[MO-Yangian construction; \ClaimStatusProvedElsewhere]
+\begin{remark}[Local MO Yangian and compact K3 Fock module;
+\ClaimStatusProvedElsewhere]
 \label{rem:msco-K3-hilb-MO-yangian}
-Maulik--Okounkov construct the Yangian
-$Y^{\mathrm{MO}}_\hbar(\mathfrak{h}_{\mathrm{Muk}})$ acting on
-$\bigoplus_{n \ge 0} H^*_T(\mathrm{Hilb}^n(\mathrm{K3}))$ as follows.
-Fix two generic chambers
-$\mathfrak{c}_\pm \subset \mathrm{Lie}_{\mathbb R}(T)$. The MO
-$R$-matrix is
+For an equivariant symplectic-resolution model $X$ satisfying the MO
+hypotheses, two generic chambers
+$\mathfrak{c}_\pm \subset \mathrm{Lie}_{\mathbb R}(T)$ define the MO
+$R$-matrix
 \[
-R^{\mathrm{MO}}_{\mathrm{Hilb}}(u) \;=\;
+R^{\mathrm{MO}}_X(u) \;=\;
 \mathrm{Stab}_{\mathfrak{c}_-}^{-1} \circ
 \mathrm{Stab}_{\mathfrak{c}_+} \;\in\;
-\mathrm{End}\bigl(H^*_T(\mathrm{Hilb}^n(\mathrm K3))\bigr)(u)
+\mathrm{End}\bigl(H^*_T(X)\bigr)(u)
 \]
-where $u$ is the equivariant parameter for the scaling torus. The MO
-$R$-matrix satisfies the Yang--Baxter equation with spectral parameter
-by Maulik--Okounkov Thm.~13.1. The RTT construction applied to this
-$R$-matrix yields an associative algebra $Y^{\mathrm{MO}}_\hbar$ with
-a Hopf structure via the FRT coproduct
-$\Delta(T(u)) = T(u) \otimes T(u)$; the Lie bialgebra obtained from
-the semiclassical limit is
-$\mathfrak{h}_{\mathrm{Muk}}[t, t^{-1}]$ with Lie bracket governed by
-the residue of the semiclassical $r$-matrix
-$r_{\mathrm{sc}}(u) = (R^{\mathrm{MO}} - 1)/\hbar |_{\hbar = 0}$.
-Here $\mathfrak{h}_{\mathrm{Muk}}$ is the Heisenberg Lie algebra
-of the Mukai lattice
-$H^{2*}(\mathrm{K3}, \mathbb{Z}) = H^0 \oplus H^2 \oplus H^4$ of
-signature $(4, 20)$, with Heisenberg central extension determined by
-the Mukai pairing. Primary: Maulik--Okounkov 2019 Thm.~13.1;
-Okounkov 2018 ICM \S5; Nakajima 1997 (Duke~76) for the Heisenberg
-action on $\bigoplus_n H^*(\mathrm{Hilb}^n(\mathrm K3))$.
+where $u$ is the equivariant spectral parameter. Maulik--Okounkov
+Thm.~13.1 gives the Yang--Baxter equation and the associated RTT
+Yangian for this local/quiver model. Separately, the compact K3 tower
+carries the Nakajima--Grojnowski Heisenberg action attached to the
+Mukai lattice $H^{2*}(\mathrm{K3},\mathbb Z)$ of signature $(4,20)$.
+The comparison object for Vol~II is therefore not a global MO Yangian
+on $\mathrm{Hilb}^{[n]}(\mathrm K3)$; it is a comparison between local
+MO chamber systems and the compact Mukai Fock module.
 \end{remark}
 
-\begin{remark}[Distinction from Schiffmann--Vasserot $\mathrm{CoHA}(\mathbb{A}^2)$; \ClaimStatusProvedElsewhere]
+\begin{remark}[Distinction from Schiffmann--Vasserot $\mathrm{CoHA}(\mathbb{A}^2)$;
+\ClaimStatusProvedElsewhere]
 \label{rem:msco-K3-hilb-vs-A2}
-The MO-Yangian on $\mathrm{Hilb}^n(\mathrm{K3})$ is structurally
-distinct from the Schiffmann--Vasserot construction on
+The compact K3 Hilbert tower is structurally distinct from the
+Schiffmann--Vasserot construction on
 $\mathrm{Hilb}^n(\mathbb{A}^2)$ in three specific ways:
 \begin{itemize}
 \item \textbf{Ambient geometry.} $\mathbb A^2$ is non-compact affine
  and carries a $\mathbb C^\times \times \mathbb C^\times$ scaling
- action; $\mathrm{K3}$ is compact and carries only the discrete
- group of automorphisms plus the $\mathbb{C}^\times_\omega$ scaling
- on the symplectic form. Consequently the equivariant parameters
+ action; compact $\mathrm{K3}$ carries no such global affine scaling
+ action. Consequently the equivariant parameters
  $(\epsilon_1, \epsilon_2)$ on $\mathbb A^2$ have no direct analogue
- on compact $\mathrm{K3}$; the K3 side uses only a single equivariant
- parameter $\hbar$ (the symplectic scaling).
+ on compact $\mathrm{K3}$.
 \item \textbf{CoHA output.} Schiffmann--Vasserot 2013 (Publ.~Math.~IHES
  118) proved
  $\mathrm{CoHA}(\mathbb{A}^2) \;\cong\; Y^+_\hbar(\widehat{\widehat{\mathfrak{gl}}}_1)$
@@ -4361,12 +4401,10 @@ $\mathrm{Hilb}^n(\mathbb{A}^2)$ in three specific ways:
  \oplus H$. On $\mathrm K3$ the analogue is
  $\mathrm{CoHA}(\mathrm{K3} \times E) = Y^+_{\mathrm{Muk}}$ (positive
  half), doubled to the Hall--Drinfeld double
- $\mathcal{D}_\hbar(\mathrm{CoHA}_{\mathrm{K3} \times E})$ (the K3 synthesis §C.5
- retraction of plain "K3 Yangian" terminology). Discipline:
- $\mathrm{CoHA} \neq \mathrm{Yangian}$; $\mathrm{CoHA}$ is the
- positive shuffle half; the full quantum group is the doubled Hall
- object.
-\item \textbf{Lie-algebra underlying.} On $\mathbb A^2$ the MO Yangian
+ $\mathcal{D}_\hbar(\mathrm{CoHA}_{\mathrm{K3} \times E})$.
+ Thus $\mathrm{CoHA}$ is not a Yangian: it is the positive shuffle
+ half, while the full quantum group is the doubled Hall object.
+\item \textbf{Lie-algebra underlying.} On $\mathbb A^2$ the local MO Yangian
  is of type $\widehat{\widehat{\mathfrak{gl}}}_1$ (rank-$1$
  double-affine). On $\mathrm K3$ there is no Cartan matrix: the
  Mukai-lattice Heisenberg $\mathfrak{h}_{\mathrm{Muk}}$ plays the
@@ -4374,9 +4412,8 @@ $\mathrm{Hilb}^n(\mathbb{A}^2)$ in three specific ways:
  $\mathfrak{g}_{\Delta_5}$ (Borcherds--Kac--Moody with imaginary
  roots labelled by positive Mukai vectors) emerges only under
  Frenkel--Kac vertex-operator closure on the K3 Fock module. The
- MO-Yangian on $\mathrm{Hilb}^n(\mathrm{K3})$ is therefore not
- $Y_\hbar(\mathfrak{g}_{\Delta_5})$ (no J-presentation;
- the K3 synthesis Drinfeld Cycle~1 retraction); it is the Hall--Drinfeld
+ compact K3 comparison target is therefore not
+ $Y_\hbar(\mathfrak{g}_{\Delta_5})$ (no J-presentation); it is the Hall--Drinfeld
  double $\mathcal{D}_\hbar(\mathrm{CoHA}_{\mathrm{K3} \times E})$
  with Siegel--Borcherds associator and the dynamical $R$-matrix
  $R_{\mathrm{Sieg,dyn}}$.
@@ -4385,53 +4422,61 @@ Primary: Schiffmann--Vasserot 2013; Maulik--Okounkov 2019; Nakajima
 1997; Grojnowski 1996 (I.M.R.N.~1996).
 \end{remark}
 
-\begin{remark}[Modular Swiss-cheese as MO-compatibility witness; \ClaimStatusConjectured]
+\begin{remark}[Modular Swiss-cheese as local-MO compatibility witness;
+\ClaimStatusConditional]
 \label{rem:msco-K3-hilb-compatibility}
-The MO-Yangian action on
-$\bigoplus_n H^*_T(\mathrm{Hilb}^n(\mathrm{K3}))$ factors through the
-modular Swiss-cheese operad $\mathsf{SC}^{\mathrm{mod}}$ in the
-following sense: the $n$-point stable envelope
-$\mathrm{Stab}_\mathfrak{c}\colon H^*_T((\mathrm{Hilb}\mathrm K3)^A)
-\to H^*_T(\mathrm{Hilb}^n\mathrm K3)$ corresponds to an $n$-ary
-operation in the closed-colour (chiral) sector of
-$\mathsf{SC}^{\mathrm{mod}}$, evaluated at the base
-$\mathrm{Ran}(E^{\mathrm{nod,sm}}_{24})$: the $24$ Kodaira $I_1$-nodes
-parametrise the wall structure of the MO chamber decomposition. The
-open-colour (topological) sector on $\overline{\mathcal A_2}$ encodes
-the $R$-matrix dependence $R^{\mathrm{MO}}(u)$ as a function of the
-Siegel modular parameter $Z \in \mathbb H_2$. The averaging morphism
-$\mathrm{av} = \mathrm{Torelli}_{\mathrm K3} \circ
-\mathrm{KugaSatake} \circ j_{\mathrm{Kodaira}}$ identifies the two
-colourings. Primary-lit: Maulik--Okounkov 2019 \S13, Costello--Gaiotto
-2018 (arXiv:1812.09257); conjecture scope: the full bi-based identity
-is a the K3 synthesis residual item (Vol~II \S\ref{sec:msco-deep}
-cross-ref).
+Let $\mathrm{Loc}_{\mathrm{MO}}$ be a local/quiver MO chamber system
+attached to an equivariant symplectic-resolution model of a K3
+puncture chart. A comparison with $\SCmod$ is a morphism from this
+local chamber system to the two-coloured factorisation datum on
+$(\Ran(E^{\mathrm{nod,sm}}_{24}),\overline{\mathcal A_2})$: the
+closed colour records the $24$ chiral insertion loci, and the open
+colour records the topological Siegel-parameter direction. The
+averaging morphism
+$\mathrm{av}=\mathrm{Torelli}_{\mathrm K3}\circ
+\mathrm{KugaSatake}\circ j_{\mathrm{Kodaira}}$ supplies the candidate
+pullback between the two bases. The comparison is defined exactly on
+the locus where the following obstruction vanishes:
+\[
+ \mathfrak{o}_{\mathrm{MO/SC}}
+ \in
+ H^1\!\left(
+ \overline{\mathcal A_2},
+ \operatorname{Cone}\bigl(
+ \mathrm{Loc}_{\mathrm{MO}}\to
+ \mathrm{Loc}_{\SCmod}
+ \bigr)
+ \right),
+\]
+which measures failure of the averaging pullback to identify the MO
+chamber local systems with the two colours of $\SCmod$.
 \end{remark}
 
-\begin{remark}[Modular Swiss-cheese partition function on the
-$\overline{\mathcal A_2}$-face equals $1/\Phi_{10}$; \ClaimStatusConjectured]
+\begin{remark}[Reduced DT scalar on the $\overline{\mathcal A_2}$-face]
 \label{rem:msco-K3xE-DT-partition}
-The closed-colour sector of the modular Swiss-cheese operad
-$\mathsf{SC}^{\mathrm{mod}}$ evaluated on the factorisation base
-$\Ran(E^{\mathrm{nod,sm}}_{24})$ produces a partition function whose
-graded character, pulled back to the Siegel parameter
+The scalar character to be matched by the closed-colour sector of
+$\mathsf{SC}^{\mathrm{mod}}$ on the K3$\times E$ factorisation base is
+the reduced DT series pulled back to the Siegel parameter
 $\Omega = \left(\begin{smallmatrix} \tau & z \\ z & \sigma \end{smallmatrix}\right)
 \in \mathbb{H}_2$ dual to (K3-class, E-class, genus), equals
 \[
  Z^{\mathsf{SC}^{\mathrm{mod}}}_{\mathrm{closed}}(K3 \times E; \Omega)
  \;=\; Z^{\mathrm{red}, \prime}_{\mathrm{DT}}(K3 \times E)(\Omega)
- \;=\; \frac{1}{\Phi_{10}(\Omega)},
+ \;=\; -\bigl(\Phi_{10}^{\mathrm{OP}}(\Omega)\bigr)^{-1}
+ \;=\; -D_5(\Omega)^{-2}
+ \;=\; -4096\,\Delta_5(\Omega)^{-2},
 \]
 matching the reduced Donaldson--Thomas generating function of
 Oberdieck--Pandharipande 2015 (arXiv:1411.1514), established by
-Oberdieck--Pixton 2016 (arXiv:1706.10100). The identification reads
-$\mathsf{SC}^{\mathrm{mod}}$ as a geometric character-producing
-machine: the closed-colour operations at genus $g$ with $n$ marked
-points contribute Yau--Zaslow coefficients in the primitive
-K3-direction (Yau--Zaslow 1996, hep-th/9512121;
-Maulik--Pandharipande--Thomas 2010, arXiv:1001.2719) and
-elliptic-genus weights in the $E$-direction; the sum over
-$(g, n, \beta, n_E)$ is the Igusa denominator. Primary-lit:
+Oberdieck--Pixton 2016 (arXiv:1706.10100). Here
+$D_5=64^{-1}\Delta_5$ is the monic product and
+$\Phi_{10}^{\mathrm{OP}}=D_5^2$ is the
+Oberdieck--Pandharipande scalar square, while
+$\Phi_{10}^{\mathrm{un}}=\Delta_5^2$ is the unnormalised Igusa square.
+The equality is a scalar character theorem; it becomes an
+$\SCmod$ character statement only after the factorisation character map
+and the obstruction $\mathfrak{o}_{\mathrm{MO/SC}}$ above are fixed.
+Primary sources:
 Oberdieck--Pandharipande 2015 (arXiv:1411.1514);
 Oberdieck--Pixton 2016 (arXiv:1706.10100);
 Maulik--Nekrasov--Okounkov--Pandharipande~I, 2006 (arXiv:math/0312059);
@@ -4441,46 +4486,51 @@ Katz--Klemm--Vafa 1999 (hep-th/9910181).
 \section{Stabilisation of the Hilbert-scheme tower inside $\mathsf{SC}^{\mathrm{mod}}$}
 \label{sec:msco-HS-stabilisation}
 
-The MO-Yangian action on $\bigoplus_n H^*_T(\mathrm{Hilb}^{[n]}(\mathrm K3))$
-is strict at each fixed $n$ (honest Hopf, Drinfeld J-presentation;
-Maulik--Okounkov 2019 Thm.~13.1), but the modular Swiss-cheese
-factorisation base $\mathrm{Ran}(E^{\mathrm{nod,sm}}_{24})$ sees the
-whole tower: a $\mathsf{SC}^{\mathrm{mod}}$-operation of arity
-$(g, n)$ probes Hilbert schemes of every degree. To give the
-quasi-Hopf closed-colour sector a chain-level presentation, the tower
-must stabilise compatibly with the ``add a point at infinity'' direction
-of Grojnowski--Nakajima; this section records the chain-level witness
-and its consequence for the $\mathsf{SC}^{\mathrm{mod}}$-bar
-differential at $\mathrm K3\times E$.
+The compact K3 Hilbert tower has a strict Nakajima--Grojnowski
+Heisenberg action. A local MO model, when present, has strict
+Yangian $R$-matrices. The $\SCmod$ question is the compatibility of
+these two pieces with the genus-completed K3$\times E$ character.
 
-\begin{theorem}[Grojnowski--Nakajima stabilisation through $\mathsf{SC}^{\mathrm{mod}}$]
+\begin{theorem}[Nakajima stabilisation criterion through $\mathsf{SC}^{\mathrm{mod}}$]
 \label{thm:msco-GN-stabilisation-chain-level}
-\ClaimStatusProvedHere
+\ClaimStatusConditional
 For each $n\geq 0$, the ``add a point at infinity'' transition map
-$\iota_n\colon H^*_T(\mathrm{Hilb}^{[n]}(\mathrm K3))\to
-H^*_T(\mathrm{Hilb}^{[n+1]}(\mathrm K3))$ of Nakajima 1997
+$\iota_n\colon H^*(\mathrm{Hilb}^{[n]}(\mathrm K3))\to
+H^*(\mathrm{Hilb}^{[n+1]}(\mathrm K3))$ of Nakajima 1997
 \emph{Ann.\ Math.}~145 Thm.~3.10 (realised as the action of the
 Heisenberg creator $\alpha_{-1}[\omega_{\mathrm K3}]$) lifts to a
-chain-level map of $\mathsf{SC}^{\mathrm{mod}}$-modules
+chain-level map of $\mathsf{SC}^{\mathrm{mod}}$-modules exactly when
+the local-MO comparison obstruction
+\[
+ \mathfrak{o}_n
+ =
+ \left[
+ R_{n+1}^{\mathrm{loc}}(u)\circ(\iota_n\otimes\iota_n)
+ -(\iota_n\otimes\iota_n)\circ R_n^{\mathrm{loc}}(u)
+ \right]
+ \in
+ \operatorname{HH}^2(\mathcal P_n\otimes\mathcal P_n,
+ \mathcal P_{n+1}\otimes\mathcal P_{n+1})
+\]
+vanishes. When $\mathfrak{o}_n=0$, a lift
 \[
  \widetilde\iota_n\colon
  \mathrm{CH}^*_{\mathrm{Hoch}}(\mathcal P_n)
- \;\longrightarrow\;
+ \longrightarrow
  \mathrm{CH}^*_{\mathrm{Hoch}}(\mathcal P_{n+1}),
  \qquad
- \mathcal P_n := H^*_T(\mathrm{Hilb}^{[n]}(\mathrm K3)),
+ \mathcal P_n := H^*(\mathrm{Hilb}^{[n]}(\mathrm K3)),
 \]
-compatible with the MO stable-envelope $R$-matrix
-$R^{\mathrm{MO}}_n(u)$: the diagram
+can be chosen so that the square
 \[
 \begin{tikzcd}[column sep=1.5em]
 \mathcal P_n\otimes\mathcal P_n
-\arrow[r, "R^{\mathrm{MO}}_n(u)"]
+\arrow[r, "R^{\mathrm{loc}}_n(u)"]
 \arrow[d, "\iota_n\otimes\iota_n"'] &
 \mathcal P_n\otimes\mathcal P_n
 \arrow[d, "\iota_n\otimes\iota_n"] \\
 \mathcal P_{n+1}\otimes\mathcal P_{n+1}
-\arrow[r, "R^{\mathrm{MO}}_{n+1}(u)"'] &
+\arrow[r, "R^{\mathrm{loc}}_{n+1}(u)"'] &
 \mathcal P_{n+1}\otimes\mathcal P_{n+1}
 \end{tikzcd}
 \]
@@ -4494,48 +4544,40 @@ zero-mode Heisenberg derivation witness.
 The Grojnowski--Nakajima Heisenberg action realises
 $\mathcal P_\infty = \bigoplus_n\mathcal P_n$ as a Fock space on $24$
 generators per $H^2(\mathrm K3)$-direction (Nakajima 1997 Thm.~3.10).
-The creator $\alpha_{-1}$ is a chain-level endomorphism commuting with
-the scaling $T$-action up to an $\hbar$-multiplicative factor
-(Maulik--Okounkov 2019 \S 3.3.1). Compatibility with the stable
-envelope follows from the wall-crossing interpretation of
-$R^{\mathrm{MO}}$: adding a point at infinity is direct product with a
-new $T$-fixed point of tangent weights $(\hbar, -\hbar)$, and direct
-product commutes with the stable envelope by MO 2019 Thm.~3.5.4
-(K\"unneth factorisation of $\mathrm{Stab}$). The zero-mode
-Heisenberg contribution is Hochschild-exact because $\alpha_{-1}$ is a
-derivation of the Heisenberg algebra:
-$\alpha_{-1} = [d_{\mathrm{Hoch}}, \eta_n]$ for $\eta_n$ the quasi-free
-Fock generator, as in Frenkel--Ben-Zvi 2004 \emph{Vertex Algebras and
-Algebraic Curves} Ch.~3. This produces $\widetilde\iota_n$ at chain
-level and supplies the coboundary $\partial_{\mathrm{Hoch}}\eta_n$
-controlling the MO-compatibility square.
+The only additional datum needed for an $\SCmod$-module lift is
+compatibility with the local $R$-matrix system. That compatibility is
+precisely the displayed Hochschild class $\mathfrak{o}_n$: if it
+vanishes, the difference between the two paths around the square is a
+Hochschild coboundary $\partial_{\mathrm{Hoch}}\eta_n$, and
+$\eta_n$ supplies the chain homotopy defining $\widetilde\iota_n$.
+Conversely, any chain-level $\SCmod$ lift gives such a homotopy, hence
+annihilates $\mathfrak{o}_n$.
 
-\emph{Multi-path verification:}
-(i) Grojnowski 1996 \emph{I.M.R.N.}~1996 explicit chain-level formula;
-(ii) Nakajima 1997 Thm.~3.10 combined with MO 2019 Thm.~3.5.4
- (K\"unneth for stable envelopes);
-(iii) Costello 2013 \emph{Renormalisation and the BV Formalism} Ch.~5
- (chain-level factorisation for the pullback);
-(iv) Frenkel--Ben-Zvi 2004 Ch.~3 (Heisenberg derivation witness);
-(v) The spectral-parameter discipline $u$-on-the-elliptic-fibre keeps
- $\Omega$-background as the intermediary between MO finite-$n$
- action and the $\mathsf{SC}^{\mathrm{mod}}$ factorisation base.
+\emph{Verification paths:}
+(i) Nakajima 1997 Thm.~3.10 gives the Heisenberg transition operator;
+(ii) the local MO $R$-matrix is available only on a model satisfying
+the MO stable-envelope hypotheses;
+(iii) the obstruction class above is the Hochschild boundary of the
+commutator square and is therefore the exact chain-level criterion.
 \end{proof}
 
 \begin{theorem}[Hilbert-scheme colimit as $\mathsf{SC}^{\mathrm{mod}}$-module]
 \label{thm:msco-Hilbert-colimit-SCmod}
-\ClaimStatusProvedHere
+\ClaimStatusConditional
 The colimit
 $\mathcal P_\infty = \operatorname{colim}_n
 \bigl(\mathcal P_0\xrightarrow{\iota_0}\mathcal P_1\xrightarrow{\iota_1}\cdots\bigr)$
 carries the structure of a module over the closed-colour sector of
 $\mathsf{SC}^{\mathrm{mod}}$ evaluated at
-$\mathrm{Ran}(E^{\mathrm{nod,sm}}_{24})$, with the $A_\infty$-bialgebra
-tower $\{m_k, \Delta_k\}_{k\geq 2}$ governed by
+$\mathrm{Ran}(E^{\mathrm{nod,sm}}_{24})$ if all classes
+$\mathfrak{o}_n$ vanish and if the local dynamical associator data
+solve the $\SCmod$ pentagon. Under these hypotheses the
+$A_\infty$-bialgebra tower $\{m_k, \Delta_k\}_{k\geq 2}$ is governed by
 \begin{itemize}
-\item $m_2 = $ MO-product on the real-root Cartan block;
-\item $\Delta_2 = $ FRT-coproduct via
- $\mathrm{Stab}_{\mathfrak c_-}^{-1}\circ\mathrm{Stab}_{\mathfrak c_+}$;
+\item $m_2 =$ Nakajima--Grojnowski Heisenberg product on the compact
+ Mukai Fock block;
+\item $\Delta_2 =$ the local FRT coproduct transported through the
+ chosen local-MO comparison;
 \item $m_3, \Delta_3$ given by the dynamical Siegel-modular associator
  $\Phi^{\mathrm{Sieg,dyn}}\in\mathcal P_\infty^{\otimes 3}[[Z]]$
  produced by Etingof--Kazhdan 2000 \emph{Selecta}~6 Thm.~3.1 on
@@ -4545,67 +4587,53 @@ tower $\{m_k, \Delta_k\}_{k\geq 2}$ governed by
 \item $\{m_k, \Delta_k\}_{k\geq 4}$ given by the Etingof--Kazhdan
  quantisation of the dynamical classical $r$-matrix
  $r^{\mathrm{Sieg,dyn}}(u; Z) = \hbar\,\Omega_{\mathrm{Muk}}/u +
- \hbar^2\,\partial_Z\log\Phi_{10}(Z)$.
+ \hbar^2\,\partial_Z\log\Phi_{10}^{\mathrm{un}}(Z)$.
 \end{itemize}
-The closed-colour $\mathsf{SC}^{\mathrm{mod}}$-partition function
-agrees with the colimit-Fock-module graded character:
+Independently of this module-lift condition, the scalar character
+target is
 \[
  Z^{\mathsf{SC}^{\mathrm{mod}}}_{\mathrm{closed}}(\mathrm K3\times E;\Omega)
  \;=\;
  \sum_{n\geq 0}\chi_{\mathrm{Muk}}(\mathcal P_n)\,(q_\rho q_\tau)^n
  \;=\;
- \frac{1}{\Phi_{10}(\Omega)}.
+ \bigl(\Phi_{10}^{\mathrm{un}}(\Omega)\bigr)^{-1}.
 \]
 \end{theorem}
 
-\begin{proof}[Proof sketch]
-The colimit $\mathcal P_\infty$ is a filtered colimit of chain-level
-modules, and by
-Theorem~\ref{thm:msco-GN-stabilisation-chain-level} each transition
-$\widetilde\iota_n$ respects the MO product. The $m_2$-product on
-$\mathcal P_\infty$ is the colimit of MO products $m_2^{(n)}$; the
-$\Delta_2$-coproduct is the stable-envelope composite. Higher
-operations $\{m_k, \Delta_k\}_{k\geq 3}$ are assembled via the
-Etingof--Kazhdan 2000 order-by-order quantisation functor applied to
-the dynamical classical $r$-matrix $r^{\mathrm{Sieg,dyn}}$; the
-obstruction at each $\hbar^k$ order lies in $H^2$ of the
-super-quasi-Hopf deformation complex, which is rank one for this
-particular BKM character (Drinfeld 1990 \emph{Leningrad Math.\ J.}~2
-Thm.~1.4: $H^2 = \mathbb C\cdot[\partial_Z\log\Phi_{10}]$). Filtering
-colimits commute with tensor products in the
-$\mathsf{SC}^{\mathrm{mod}}$ two-coloured setting by Lurie
-\emph{HA}~\S 5.5.3 (pro-operadic colimits preserve bilinear structure),
-so the $A_\infty$-bialgebra tower lifts to $\mathcal P_\infty$.
+\begin{proof}
+If all $\mathfrak{o}_n$ vanish, Theorem~\ref{thm:msco-GN-stabilisation-chain-level}
+gives compatible transition maps through the local $R$-matrix system.
+The completed colimit then inherits the closed-colour operations by
+passage to the genus-completed tensor product. The higher operations
+are exactly the chosen local dynamical associator data; their remaining
+obstruction is the pentagon class of
+Remark~\ref{rem:msco-deep-1}. Thus the statement is a conditional
+module-lift theorem, not a consequence of the scalar character alone.
 
-Graded-character agreement with $1/\Phi_{10}$: the $T$-equivariant Euler
+Graded-character agreement with $(\Phi_{10}^{\mathrm{un}})^{-1}$: the $T$-equivariant Euler
 characteristic of the Nakajima Fock sums to G\"ottsche's product
 (G\"ottsche 1990 \emph{Math.\ Ann.}~286 Thm.~0.1,
 $\sum_n\chi(\mathrm{Hilb}^{[n]}\mathrm K3)q^n = \prod_k(1-q^k)^{-24}$),
 and the Borcherds 1992 \emph{Invent.}~109 Thm.~10.1 denominator identity
-identifies the full Mukai-equivariant product with $1/\Phi_{10}$, as
-summarised already in
+identifies the full Mukai-equivariant product with
+$(\Phi_{10}^{\mathrm{un}})^{-1}$. The OP/DT scalar conversion is the
+separate normalisation recorded in
 Remark~\ref{rem:msco-K3xE-DT-partition}.
 
-\emph{Multi-path verification:}
-(i) Maulik--Okounkov 2019 \emph{Ast\'erisque}~408 \S 13;
-(ii) Grojnowski 1996 combined with Nakajima 1997 Thm.~3.10;
-(iii) Etingof--Kazhdan 2000 \emph{Selecta}~6 Thm.~3.1;
-(iv) Drinfeld 1990 \emph{Leningrad Math.\ J.}~2 Thm.~1.4
- (quasi-Hopf rigidity $H^2$);
-(v) Lurie \emph{HA}~\S 5.5.3 (pro-operadic filtered colimits).
+\emph{Verification paths:}
+(i) Grojnowski--Nakajima Fock character;
+(ii) G\"ottsche's product for Hilbert schemes of points on K3;
+(iii) Borcherds--Gritsenko--Nikulin
+$\Phi_{10}^{\mathrm{un}}=\Delta_5^2$.
 \end{proof}
 
 \begin{remark}[Scope: BKM quasi-Hopf closure vs MO strict Yangian]
 \label{rem:msco-BKM-vs-MO-scope}
-The MO finite-$n$ action on $\mathcal P_n$ is a strict Yangian action
-(Drinfeld J-presentation, honest Hopf); the colimit $\mathcal P_\infty$
-carries only a quasi-Hopf action, with the dynamical Siegel-modular
-associator $\Phi^{\mathrm{Sieg,dyn}}$ obstructing strict coassociativity.
-This is a structural property of the BKM imaginary-root extension, not
-a failure of Maulik--Okounkov: the MO stable envelope already produces
-the real-root Cartan block strictly, but the imaginary-root super-root
-generators at heights $\Delta\in\{0, 3, 4, 7,\ldots\}$ refuse strict
-coassociativity and force the dynamical twist. Cross-ref
+The local MO finite-$n$ action, when its hypotheses are met, is a
+strict Yangian action. The compact K3 colimit is controlled by the
+Mukai Fock module and by the BKM imaginary-root extension; the dynamical
+Siegel-modular associator $\Phi^{\mathrm{Sieg,dyn}}$ is the obstruction
+to strict coassociativity in the comparison target. Cross-ref
 Vol~III Chapter~\ref{V3-ch:modular-trace}
 Remark~\texttt{rem:modtr-scope-super-quasi-Hopf}.
 \end{remark}
