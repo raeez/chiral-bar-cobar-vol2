@@ -463,3 +463,12 @@ programme on Vol II curved-coderived framework.
 | FR-HCS-8 | OPi labels every reduced DT theorem. | Use Oberdieck--Pandharipande or year-specific Oberdieck unless Pixton's component is used. |
 | FR-HCS-9 | OP/DT scalar is bare $-\Delta_5^{-2}$. | Use \(D_5=64^{-1}\Delta_5\), \(\chi_{10}^{\mathrm{OP}}=D_5^2\), and \(Z_{\mathrm{OP/DT}}=-D_5^{-2}=-4096\,\Delta_5^{-2}\). |
 | FR-HCS-10 | \(K3\times E\) spectrum is \(\{2,3,5,24\}\) or a single bare \(\kappa\). | Use \(\{0,3,5,24\}\): total-space \(\kappa_{\mathrm{cat}}=0\), chiral Künneth/CY value \(3\), primitive \(\Delta_5\) BKM weight \(5\), and Mukai/Heisenberg--Fock \(24\); \(2\) is only \(\chi(\mathcal O_{K3})\) on the fibre. |
+
+## Supremum failed-theorem cache (2026-04-30)
+
+| Code | False compression | Correct layer |
+|---|---|---|
+| SUP-THEOREM-1 | A broken theorem surface is healed by marking it conditional. | Conditional language is only a temporary ledger marker. The repair target is a stronger true theorem with the missing objects supplied, or a proved obstruction theorem naming the exact class, cokernel, Roos term, graph row, matrix equation, source-face table, or incidence datum. |
+| SUP-THEOREM-2 | Attack-heal convergence means no one found a better formulation. | Convergence requires ledger closure: every severity 1--3 theorem attack is healed, refuted, or moved outside the stable core, and every in-core residual is promoted to a construction or obstruction theorem target. |
+| SUP-THEOREM-3 | "External input" is an acceptable final theorem status. | External input must be replaced by a named source theorem with verified hypotheses, by an internal construction, or by an obstruction theorem explaining exactly which missing datum prevents internalization. |
+| SUP-THEOREM-4 | A finite certificate can be advertised as the all-window theorem. | A finite certificate is admissible only at its window. The all-window claim requires a natural homotopy, splitting, transport-compatible primitive, or left-cokernel vanishing theorem. |

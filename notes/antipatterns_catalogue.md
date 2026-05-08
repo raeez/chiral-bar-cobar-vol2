@@ -10124,3 +10124,34 @@ uses `~/chiral-bar-cobar-vol2/.agents/skills/chriss-ginzburg-rectify/SKILL.md`
 under Supremum Discipline, with the Vol II control surfaces loaded.
 **Counter**: every manuscript-proper edit records the Vol II
 rectify/Supremum path or remains a non-inscriptive report.
+
+**AP2190 -- \(\mathbf H_{\Delta_5}\) in Vol II is a gated K3 comparator, not native Vol II output (High).**
+Wrong: treating the Vol III K3 chiral Hall--Drinfeld double
+\(\mathbf H_{\Delta_5}\) as something produced by Vol II's generic
+\(A_\infty\)-chiral, Hochschild, \(W\)-algebra, spectral-braiding, or
+HT bulk-boundary machinery. Correct: Vol II may use
+\(\mathbf H_{\Delta_5}\) only as an external K3 boundary fibre,
+recognition target, deformation-chart comparator, or obstruction test
+after the finite Hall/CoHA source, compact support/orientation,
+positive half, opposite half, Cartan, completed coproduct,
+nondegenerate Hopf pairing, parity/root fixture, PBW/no-extra-relations,
+radical quotient, inverse-limit/completion, and Borcherds--Heegner
+comparison gates have been stated. The automorphic datum
+\(\Delta_5\) supplies the Borcherds denominator target; it does not
+construct the chiral bialgebra. **Counter**: every Vol II occurrence of
+\(\mathbf H_{\Delta_5}\) declares comparator/conditional K3 boundary
+status or is removed from theorem-source position.
+
+**AP2191 -- Failed theorem surfaces are not allowed to remain loose conditionals (High).**
+Wrong: when a theorem, lemma, or construction breaks under attack,
+lowering it to "conditional", "expected", "external input", or
+"future work" and then treating the manuscript as healed. Correct:
+Supremum Discipline requires reworking the failed surface until it is
+one of two precise objects: a proved theorem with the missing habitat,
+map, kernel, homotopy, counterterm, sign, finite-window row, incidence
+table, or source fixture supplied; or a proved obstruction theorem
+naming the exact cohomology class, cokernel functional, Roos class,
+matrix equation, graph row, or source-face table that blocks the
+original claim. **Counter**: every attack-heal report on theorem-level
+material either inscribes the stronger true theorem or names the exact
+obstruction theorem and the next construction target.

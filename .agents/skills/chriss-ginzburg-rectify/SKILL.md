@@ -59,3 +59,12 @@ missing habitat, topology, map, obstruction class, computation, source
 fixture, or explicit first-principles calculation.  If the mechanism is
 not yet constructed, fence the claim as a precise proof-ledger
 obligation rather than lowering the theory into a vague heuristic.
+
+A failed theorem surface is not a resting state.  Rewrite it until it is
+one of two precise objects: a proved theorem with the missing definitions,
+maps, kernels, homotopies, counterterms, signs, and source fixtures
+supplied, or a proved obstruction theorem identifying the exact
+cohomology class, cokernel functional, Roos class, finite-window matrix
+equation, source-face incidence table, or other load-bearing datum that
+prevents the original claim.  Do not use ``conditional'', ``expected'', or
+``external input'' as a substitute for this reconstitution.
