@@ -1,3 +1,5 @@
+> **ARCHIVAL — predates 2026-05-09 architectural cut.** Mathematics may still be valid; framing (Wave-N / session-dated / battle-hardened / round-K) is superseded. Do not steer current work from this file. Current canon: `./CLAUDE.md`, `notes/_METACOGNITIVE_CANON.md`, `notes/legacy/critique_2026_05_09_chiral_duality_master_consequence_map_v2.md`.
+
 # Conway $V^{s\natural}$ Row — Genuine Sign Ambiguity Inscription — 2026-04-22
 
 *Raeez Lorgat. Battle-hardened inscription isolating the Conway row as a structural boundary of the universal identity $\hbar^{2} K^{\kappa_{\mathrm{ch}}} = -1$. Companion to `NEKRASOV_R4_HBAR_SIGN_DERIVATION_BATTLE_HARDENED_2026_04_22.md`; seals AP-V2-20 scope and preamble row 41 placement.*

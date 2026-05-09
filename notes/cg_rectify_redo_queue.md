@@ -1,5 +1,7 @@
 # Chriss-Ginzburg rectification queue — Volume II
 
+> **STATUS: Archival reference (2026-04-17 queue, partial).** The chapter-by-chapter queue may have been advanced by subsequent CG-rectify runs; do not use this file as authoritative state. Current rectification queueing is captured by the v2 cut's per-chapter `chriss-ginzburg-rectify` invocation per `notes/_METACOGNITIVE_CANON.md`.
+
 One entry per `\input{}`'d chapter in `main.tex`, excluding abstract / preface / introduction.
 Mark `[x]` when a chapter completes all five phases; `[~]` if partial with a `RESUME-FROM` cursor.
 Order follows `main.tex` linear traversal (Part I $\to$ Part VIII $\to$ Conclusion).

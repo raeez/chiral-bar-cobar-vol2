@@ -1,3 +1,5 @@
+> **ARCHIVAL — predates 2026-05-09 architectural cut.** Mathematics may still be valid; framing (Wave-N / session-dated / battle-hardened / round-K) is superseded. Do not steer current work from this file. Current canon: `./CLAUDE.md`, `notes/_METACOGNITIVE_CANON.md`, `notes/legacy/critique_2026_05_09_chiral_duality_master_consequence_map_v2.md`.
+
 # Vol II Abstract/Preface — Platonic-Ideal Audit (adversarial agent #5 of 5)
 
 2026-04-17. Scope: the claimed identity of Vol II as expressed in `README.md`, `chapters/frame/preface.tex` (2274 lines), `chapters/theory/introduction.tex` (2714 lines), and the CLAUDE.md "Identity" block. Read-only audit; no commits.

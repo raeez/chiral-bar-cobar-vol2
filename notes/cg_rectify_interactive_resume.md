@@ -1,5 +1,7 @@
 # CG-Rectify Interactive Resume Prompt — paste verbatim into a fresh Claude session
 
+> **STATUS: Archival reference (2026-04-17 procedural).** Predates the 2026-05-09 architectural cut. The interactive-resume *pattern* may still be useful, but specific queue references / trigger IDs are stale. Current entry-point: `./CLAUDE.md`, then `notes/_METACOGNITIVE_CANON.md`.
+
 ## What this is
 
 A direct-session kickstart for the **chriss-ginzburg-rectify** rectification loop on this volume of the *Modular Koszul Duality* monograph. This is NOT the cron architecture (`cg_rectify_kickstart.md`); this is the interactive-session architecture. Paste the prompt below into a fresh Claude session and it will resume exactly where the previous session left off: pick the next pending queue entry, invoke the full five-phase skill with small chunks and parallel adversarial audits, register any new anti-patterns/cache entries as it finds them, commit and mark the entry on completion.

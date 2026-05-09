@@ -1,3 +1,5 @@
+> **ARCHIVAL — predates 2026-05-09 architectural cut.** Mathematics may still be valid; framing (Wave-N / session-dated / battle-hardened / round-K) is superseded. Do not steer current work from this file. Current canon: `./CLAUDE.md`, `notes/_METACOGNITIVE_CANON.md`, `notes/legacy/critique_2026_05_09_chiral_duality_master_consequence_map_v2.md`.
+
 # Six-Row Spine Closure — Drinfeld r5 Exhaustion, 2026-04-22
 
 *Raeez Lorgat. Exhaustion of $\mathsf G<\mathsf L<\mathsf C<\mathsf M<\mathsf M^{\mathrm{ext}}<\mathsf B$ for $E_1$-chiral algebras on smooth curve $C$ via OPE-pole-structure + DS-nilpotent stratification. Seventh-row candidates (log-$\mathcal W(p)$, topological VOA, $\widehat{\mathfrak{gl}}(m|n)$) reduce under averaging + complementarity $\kappa+\kappa^!\in\{0,8,13,250/3,98/3\}$. Companion: `VOL_II_PLATONIC_IDEAL`, `FOUR_ROUTE_CONVERGENCE_TABLE`, `CONWAY_ROW_SIGN_AMBIGUITY`, `NEKRASOV_R4_HBAR_SIGN_DERIVATION`.*

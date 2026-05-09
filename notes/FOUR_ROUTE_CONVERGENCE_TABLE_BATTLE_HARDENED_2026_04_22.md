@@ -1,3 +1,5 @@
+> **ARCHIVAL — predates 2026-05-09 architectural cut.** Mathematics may still be valid; framing (Wave-N / session-dated / battle-hardened / round-K) is superseded. Do not steer current work from this file. Current canon: `./CLAUDE.md`, `notes/_METACOGNITIVE_CANON.md`, `notes/legacy/critique_2026_05_09_chiral_duality_master_consequence_map_v2.md`.
+
 # Four-Route Convergence — $\hbar^2K=-1$ on Reflective Crown, 2026-04-22
 
 *Raeez Lorgat. $\hbar^2=-1/K$ across four routes and four BKM families. Companions: `NEKRASOV_R4_...`, `CONWAY_ROW_...`, `SIX_ROW_CLOSURE_...` ($\mathsf B$-row unique Borcherds-lattice stratum; rows $\mathsf G,\mathsf L,\mathsf C,\mathsf M,\mathsf M^{\mathrm{ext}}$ outside identity's domain).*

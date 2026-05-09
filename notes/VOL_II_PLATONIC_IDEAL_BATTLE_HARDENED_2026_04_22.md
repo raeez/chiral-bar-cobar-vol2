@@ -1,3 +1,5 @@
+> **ARCHIVAL — predates 2026-05-09 architectural cut.** Mathematics may still be valid; framing (Wave-N / session-dated / battle-hardened / round-K) is superseded. Do not steer current work from this file. Current canon: `./CLAUDE.md`, `notes/_METACOGNITIVE_CANON.md`, `notes/legacy/critique_2026_05_09_chiral_duality_master_consequence_map_v2.md`.
+
 # Volume II: $A_\infty$ Chiral Algebras and 3D HT QFT — Battle-Hardened Platonic Ideal, 2026-04-22
 
 *Witten r5 Heegner physical dictionary inscribed at §XXVII-bis (end of file): per-$d_K$ K3$_{d_K}\times E_{\tau_{d_K}}$ string compactification for 9 class-number-1 discriminants; Kuga--Satake $A^{\mathrm{KS}}_{d_K}\simeq E_{\tau_{d_K}}^{\otimes 4}$ at $\rho=20$; unit-group $|\mathcal O^\times_{d_K}| \in \{6,4,2,\ldots\}$ gives CM-centre enhancement at $d_K\in\{-3,-4\}$; Ramanujan $d_K=-163$ is Heegner infrared fixed point; 9 distinct $Z^{d_K}_{\mathrm{3dQG}} = 1/\Psi_{d_K}$ at paramodular level $|d_K|$; arithmetic DVV refines DVV 1997 at $|d_K|\to\infty$.*

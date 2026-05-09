@@ -1,3 +1,5 @@
+> **ARCHIVAL — predates 2026-05-09 architectural cut.** Mathematics may still be valid; framing (Wave-N / session-dated / battle-hardened / round-K) is superseded. Do not steer current work from this file. Current canon: `./CLAUDE.md`, `notes/_METACOGNITIVE_CANON.md`, `notes/legacy/critique_2026_05_09_chiral_duality_master_consequence_map_v2.md`.
+
 # Costello r5 — Gilkey audit of T-CL-K3-Extension — 2026-04-22
 
 *Raeez Lorgat. Opus 4.7 r5. Actual proof of T-CL-K3-Extension (Costello--Li 2016 flat-$\C^3$ Bochner--Martinelli BV parametrix extension to $K3 \times \C^2$) attempted via first-principles Gilkey analysis. Five-cycle audit exposes one load-bearing claim in the r4-redux attack plan as false, and replaces it with the correct route. The extension is still proved, by a different mechanism; the four Gilkey--Yau--AS--BGV pillars remain, but their role is not pointwise $a_k$-vanishing.*

@@ -1,594 +1,281 @@
-# CLAUDE.md
+# CLAUDE.md (Vol II)
 
-> **Inherits `~/ecosystem/INVARIANTS.md`.** That file holds the canonical ecosystem rules: destructive-git forbidden-command list, multi-agent worktree concurrency, standalone-documents discipline, Russian-school voice, every-file-into-the-repo rule, commits-carry-no-LLM-attribution, deep-semantic-merges, intelligence propagation. Read it first. Repo-local rules follow.
+> **Inheritance.** `~/ecosystem/INVARIANTS.md` — destructive-git forbidden list, multi-agent worktree concurrency, standalone-documents, Russian-school voice, every-file-into-the-repo, no-LLM-attribution, deep-semantic-merges, intelligence propagation.
+> **Writing standard (mandatory).** `./MATHEMATICAL_PHYSICS_NUMBER_THEORY_GEOMETRY_ALGEBRA_HOMOTOPY_THEORY_WRITING_STANDARDS.md`. Witten · Etingof · Polyakov · Dirac · Feynman · Costello · Gaiotto. The prose IS mathematics; it does not describe mathematics. A sentence that does not state mathematics or physics is a defect.
+> **Architecture.** `notes/legacy/critique_2026_05_09_chiral_duality_master_consequence_map_v2.md` (universal stage chain $\mathsf{P}\to\mathsf{C}\to\mathsf{S}\to\mathsf{Z}\to\mathsf{A}$ + five licensing types α/β/γ/δ/ε + four Construction Problems). `notes/legacy/vol2_platonic_architecture.md` (the seven-part form Vol II yearns to be).
+
+A mathematician's working manifesto. The mathematics follows.
 
 ---
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+## 1 What this repository is for
 
-This is Vol II. A mathematician's working manifesto, not a configuration
-manual. The mathematics follows.
+An instrument for advancing human mathematical knowledge: how $A_\infty$ chiral algebras underwrite 3D holomorphic-topological QFT through the two-coloured Swiss-cheese-chiral-topological operad $\mathsf{SC}^{\mathrm{ch,top}}$ on the curve-line pair $(C, \R)$. Every read, edit, and inscription serves one true theorem at a time. When the choice is between mathematics and bookkeeping, do mathematics. The PostToolUse hook reconciles bookkeeping at session end.
 
-## What this repository is for
+---
 
-This repository is an instrument for advancing human mathematical
-knowledge. Specifically, for understanding how **$A_\infty$ chiral
-algebras underwrite 3D holomorphic-topological quantum field theory**,
-and what the Swiss-cheese-chiral-topological operad
-$\mathsf{SC}^{\mathrm{ch,top}}$ implies about the bulk–boundary
-structure of the chiral (co)homology adjoint pair.
+## 2 The single thesis
 
-Every tool call, every edit, every agent decision made here has one
-purpose: to advance that understanding, one true theorem at a time.
+$\mathsf{SC}^{\mathrm{ch,top}}$ on $(C, \R)$ is the universal home for the bulk--boundary structure of 3D HT QFT. Iterated Sugawara topologisation reaches the $E_\infty^{\mathrm{top}}$ Platonic endpoint via $w_{1+\infty}$. Specialised at $A = \mathrm{Vir}_c$ in the Brown--Henneaux dictionary $c = 3\ell/(2G_N)$, the Universal Holography functor $\Phi_{\mathrm{hol}}$ delivers the holographic boundary-CFT reading of pure 3D quantum gravity.
 
-When a choice presents itself between doing mathematics and updating
-accounting, **do the mathematics.** Accounting is handled automatically
-by the PostToolUse hook and can always be reconciled at session end.
+Seven parts hold the structure: I Open primitive · II $E_1$ core · III Seven faces of $r(z)$ · IV Characteristic datum · V HT landscape · **VI 3D quantum gravity (CLIMAX)** · VII Frontier. One argument, told four times.
 
-## The mathematics
+---
 
-**One structure**: the two-coloured Swiss-cheese-chiral-topological
-operad $\mathsf{SC}^{\mathrm{ch,top}}$ governing $(\text{bulk},
-\text{boundary})$ pairs. On $A_\infty$ chiral algebras $\cA$, the bar
-differential is **holomorphic factorisation** on the curve $C$, and the
-coproduct is **topological factorisation** on $\R$. Their pairing over
-$C \times \R$ is the bulk–boundary datum of a 3D holomorphic-topological
-quantum field theory.
+## 3 The mathematics
 
-**One tower**: the iterated Sugawara ladder — $k$ inner stress tensors
-$T^{(n)} = [Q_{\mathrm{tot}}, G^{(n)}]$ promote the chiral direction to
-$E_{k+2}$-topological on $Q_{\mathrm{tot}}$-cohomology. Affine
-Kac–Moody ($N=2$) reaches $E_3^{\mathrm{top}}$; $\mathcal{W}_N$
-reaches $E_{N+1}^{\mathrm{top}}$; $\mathcal{W}_\infty$ reaches
-$E_\infty^{\mathrm{top}}$ — the Platonic endpoint.
+**One structure.** $\mathsf{SC}^{\mathrm{ch,top}}$ — 2-coloured dioperad with directional restriction $\mathsf{SC}^{\mathrm{ch,top}}(\ldots, \mathsf{top}, \ldots; \mathsf{cl}) = \varnothing$. Dunn additivity does NOT apply. Bar = holomorphic factorisation on $C$. Coproduct = topological factorisation on $\R$. Pairing over $C \times \R$ = bulk--boundary datum.
 
-**Seven parts** hold the Vol II structure:
+**One tower.** $T^{(n)} = [Q_{\mathrm{tot}}, G^{(n)}]$ promote chiral $\to E_{k+2}^{\mathrm{top}}$ on $Q$-cohomology. Affine KM at non-critical $\to E_3$. $\mathcal{W}_N \to E_{N+1}$. $\mathcal{W}_\infty[\lambda] \to E_\infty$ Platonic endpoint conditional on $\hypProchazka, \hypCKL, \hypPRSh, \hypYamada$.
 
-| Part | Content |
-|---|---|
-| I | Open primitive — $\mathsf{SC}^{\mathrm{ch,top}}$ foundations |
-| II | $E_1$ core — ordered chiral homology, Yangian-like structures |
-| III | Seven faces of $r(z)$ — Drinfeld–Kohno, Sklyanin, Gaudin |
-| IV | Characteristic datum — shadow tower, higher-genus, modular Koszul |
-| V | HT landscape — chiral / affine / W / lattice / Yangian families |
-| **VI** | **3D quantum gravity — the CLIMAX** (Virasoro + $w_{1+\infty}$, celestial holography, holographic codes) |
-| VII | Frontier |
+**Five theorems** (shared with Vol I; Vol II carries the chiral lane). **A** bar--cobar inversion. **B** chiral Positselski. **C** derived-centre complementarity $\rho_K = \kappaChHodge(A) + \kappaChHodge(A^!) \in \{0, 8, 13, 250/3, 98/3\}$ on $\mathsf{G/L/C/M/B}$. **D** obstruction-tower universality. **H** Hochschild concentration $\Zderch{A} \simeq \bulkChirHoch{A}$.
 
-**Five theorems** crystallise across the trilogy (shared with Vol I):
-A (bar–cobar), B (chiral Positselski), C (derived-centre complementarity
-$\kappa + \kappa^! \in \{0, 8, 13, 250/3, 98/3\}$ on the canonical
-five-archetype $\mathsf{G}/\mathsf{L}/\mathsf{C}/\mathsf{M}/\mathsf{B}$
-landmark ceiling; the classical four-element subset
-$\{0, 13, 250/3, 98/3\}$ restricts to $\mathsf{G}/\mathsf{L}/\mathsf{C}/\mathsf{M}$;
-the $\mathsf{B}$-row ceiling $K^\kappa = 8$ is the Vol III Mukai-enhanced
-K3 Heisenberg witness via Bruinier Heegner Chern-class reciprocity),
-D (obstruction-tower universality), H (Hochschild concentration).
-On CY$_d$-categories arising from Calabi–Yau $d$-folds, Theorem A's
-bar–cobar adjunction is the $E_1$-chiral shadow on the reference
-curve $C$ after Stage-2 specialisation of the Vol III two-stage
-factorisation $\Phi_d = \mathrm{Sp}^{\mathrm{ch}}_{\Sigma_{d-1},C}
-\circ \Phi^{\mathrm{FA}}_d$ (see ``Two-stage factorisation: Vol III
-alignment'' below).
+**Vol II contributions.** Curved-Dunn $H^2 = 0$ at $g \geq 2$; $\mathsf{SC}^{\mathrm{ch,top}}$ heptagon; chiral higher Deligne; universal celestial holography; periodic-CDG on admissible Kazhdan--Lusztig; unified $Q_g^{k, f, \mu}$ chiral quantum group.
 
-Everything in this repository is a concentric ring around those
-theorems, with Vol II-specific contributions: the topologisation tower,
-curved-Dunn $H^2 = 0$ at $g \geq 2$, the $\mathsf{SC}^{\mathrm{ch,top}}$
-heptagon, chiral higher Deligne, universal celestial holography,
-periodic-CDG on admissible Kazhdan–Lusztig, unified
-$Q_g^{k, f, \mu}$ chiral quantum group.
+**Five objects never conflated.** $A_b = \mathrm{End}_\cC(b)$, $\BarTwc{A_b}$, $A^i = H^\star \BarTwc{A_b}$, $A^!$, $\Zderch{A_b} \simeq \bulkChirHoch{A_b}$. $\Omega(\BarTwc{A_b}) = A_b$ is **inversion**, not Koszul duality. $A^!$ via **Verdier**. Bulk via **Hochschild**.
 
-## What counts as progress
+---
 
-- A new theorem precisely stated, rigorously proved, inscribed with a
-  proof body verifiable against primary literature.
-- A new example: compute the derived centre, SC heptagon faces, or
-  topologisation ladder for an algebra not yet tabulated.
-- A falsified claim repaired by a corrected statement, construction, or
-  proof obligation.
-- A healed statement: the natural hypothesis and proof on which the
-  intended theorem actually holds.
-- A first-principles computation replacing a citation-only black box.
+## 4 Beilinson's cut and the universal stage chain
 
-**Progress is *not*** updating a status-table row, renaming a label,
-counting strengthenings, propagating scope across ten files, editing
-FRONTIER to match CLAUDE.md, or editing AGENTS.md. Those are
-bookkeeping. The PostToolUse hook catches them. You do not have to.
+> What limits forward progress is not the lack of genius but the inability to dismiss false ideas. — Sasha Beilinson
 
-## Beilinson's dictum
+Every working object in the corpus (Vol I, Vol II, Vol III, Vol IV plus mixed-HT-strings + igusa satellites) sits on one stage of the universal chain
+$$
+\underbrace{\mathsf{P}}_{\text{primitive}}
+\xrightarrow{\;\alpha\;}
+\underbrace{\mathsf{C}}_{\text{chart}}
+\xrightarrow{\;\beta\;}
+\underbrace{\mathsf{S}}_{\text{shadow}}
+\xrightarrow{\;\gamma\;}
+\underbrace{\mathsf{Z}}_{\text{centre / bulk}}
+\xrightarrow{\;\delta\;}
+\underbrace{\mathsf{A}}_{\text{acting object}}.
+$$
 
-> What limits forward progress is not the lack of genius but the
-> inability to dismiss false ideas.
+Cross-stage collapse — identifying objects at different stages without naming the licensing arrow — is the master pattern **`shadow = object`**. Every false slogan is one such collapse.
 
-Every claim is false until independently verified from primary source.
-Prefer a smaller true theorem to a larger false one. Every numerical
-claim should have 3+ independent verification paths.
+**Licensing rule.** A statement is not allowed to be primitive if it is only true after choosing a boundary object, passing to a trace, averaging from ordered to symmetric, taking a protected index, completing a category, imposing endpoint hypotheses, or installing descent data. Stated positively: **primitive objects first, shadows second, scalar modular forms last.**
 
-**Epistemic hierarchy** (higher wins):
-1. Direct computation.
-2. `.tex` source ±100 lines.
-3. Build system / tests.
-4. `compute/tests/test_*_iv.py` independent-verification decorators
-   (executed disjoint-source witnesses for `\ClaimStatusProvedHere`).
-5. Published literature (primary).
-6. `chapters/connections/concordance.tex` (Vol II) or shared references.
-7. This file.
-8. Memory.
+Two structural lanes are parallel instances of the chain, unified at level $\mathsf{Z}$ by SC$^{\mathrm{ch,top}}$ heptagon face (6) Drinfeld-centre $=$ derived-centre identification:
 
-## The manuscript is self-complete, self-coherent, self-consistent
+| Stage | Open lane | CY lane (Vol III bridge) |
+|-------|-----------|-------------------------|
+| $\mathsf{P}$ | $\openFactCat$ on $\logCurve$ | CY$_d$-category |
+| $\mathsf{C}$ | $A_b = \mathrm{End}_\cC(b)$ | $\PhiFA_d(A)$ stage-1 $E_d$-FA |
+| $\mathsf{S}$ | $\BarTwc{A_b}$ twisting/coupling | $\SpCh = \int_{\Sigma_{d-1}}$ stage-2 specialisation |
+| $\mathsf{Z}$ | $\Zderch{A_b} \simeq \bulkChirHoch{A_b}$ | derived chiral centre on $C$ |
+| $\mathsf{A}$ | line operators on $A_b$ | $\Drinfdouble{\Yplus{X}}$ Drinfeld double |
 
-The current version stands for itself and only itself. All LaTeX
-mathematical writing is standalone, up-to-date, consistent, coherent.
-The manuscript does not reference its own previous versions. There is
-no place in this research programme for references to previous
-versions, intermediate ansätze, earlier drafts, retracted values,
-superseded formulas, or any other drafting-history commentary. If a
-formula used to be $X$ and now it is $Y$, the manuscript says $Y$;
-it does not say "$Y$ (previously $X$, now retracted)", does not say
-"$Y$ supersedes the earlier $X$", does not explain how the author
-arrived at $Y$.  The mathematical argument proves $Y$; the drafting
-trajectory is not part of the mathematics.
+A third **trace lane** carries $\mathrm{tr}_{\mathrm{ghost}}(Q_{\mathrm{BRST}}^2) = \mathrm{tr}_{\mathrm{Pentagon}} = \omega_{\mathrm{Borcherds}} = c_N(0)/2$ at $N \in \{1,2,3,4,6\}$. At $N = 1$: $\{5,5,5\}$ on the K3-Heisenberg witness.
 
-When a mathematical retraction is genuinely informative --- a proof
-that was attempted and failed, whose failure illuminates why the
-successful proof is forced --- state the failed argument and its
-flaw as mathematics: "the identity $[m_k, B^{(2)}] = 0$ fails
-per-$k$ because cyclic invariance controls adjacent contractions
-but not non-adjacent terms (Proposition~X)". Do not frame it as
-"the author initially attempted $X$ but retracted in favour of $Y$".
-The mathematics is the Gap/Flaw, not the drafting record.
+---
 
-## Writing standard: Chriss–Ginzburg north star
+## 5 The five licensing types
 
-The manuscript prose is written in the Chriss–Ginzburg voice,
-channelling simultaneously the Russian elite mathematical school ---
-Gelfand, Manin, Drinfeld, Arnold, Beilinson, Bernstein, Kapranov,
-Etingof, Kazhdan, Kontsevich, Soibelman, Bezrukavnikov --- and the
-mathematical physics elite --- Polyakov, Nekrasov, Witten, Costello,
-Gaiotto, Moore, Segal. **Show don't tell.** Do not narrate. Construct
-the mathematics directly and let the synthesis of disparate technical
-domains (algebra + geometry, physics + mathematics, operads +
-representation theory, Hodge theory + automorphic forms) bring out
-the inner music of the subject.
+Every theorem statement carries the relevant licensing tags **in the statement** (not the introduction).
 
-**Forbidden in manuscript prose** (reader-facing `.tex` in `chapters/`,
-`frame/`, `examples/`, `theory/`, `connections/`, `bibliography/`):
+- **α — chart / scope / log decoration.** Choice of $b$, scope label for $\kappa$, tangential log $(D, \tau)$, BRST nilpotent, Stokes / branch datum.
+- **β — comparison / functor / natural transformation.** Chiral Hochschild via Lurie HA.5.5, Drinfeld double $D$, protected Pfaffian $\protectedPfaff{\cdot}$, Hall--Borcherds residual, $\SpCh$ specialisation, MC injection.
+- **γ — ambient declaration.** Chain-level vs $(\infty,1)$-categorical (BOTH equally load-bearing; never substitutable). $\mathrm{Ch}(\mathrm{Vect})$ vs weight-completed vs pro-object vs $J$-adic. Topological / analytic / Schwartz / formal completion. **Ambient is the prerequisite for every other licensing type.**
+- **δ — endpoint / convergence.** $W_\infty \to E_\infty$ (Prochazka + CKL + PRSh + Yamada); PVA all-loop quantum (KZ SDR + Stokes + reflected weights + $T = [Q_{\mathrm{tot}}, G]$ lift); Universal Holography $\to$ dynamical metric (Brown--Henneaux + modular invariance + vacuum dominance + saddle dominance); Mittag--Leffler antighost-commutativity for iterated Sugawara.
+- **ε — effectiveness / orientation / non-degeneracy.** Koszul-effectiveness for MC bijection (Vol I Theorem B / Positselski); $H^1(X, \C_X)$ vanishing for HT global; Pfaffian orientation; 6d hCS quartic obstruction $\int_X \mathrm{Tr}_{\mathrm{ad}} A(F_A)^3$ vanishing on verified loci.
 
-- Bookkeeping vocabulary of any kind. No "Wave N", no "round M",
-  no "batch K", no "DNA strand S$x$", no "AP$n$", no "antipattern $n$",
-  no "Pattern $n$", no "cache entry $n$", no "CG-rectify pass $k$",
-  no "$\mathsf{HZ}$-$n$ inscription". These belong in `notes/`,
-  `FRONTIER.md`, commit messages, and the local `memory/` --- never
-  in the manuscript.
-- Meta-narration of the author's intent: "we now turn to",
-  "having established", "let us now", "this brings us to",
-  "it is worth noting", "notably", "crucially", "remarkably",
-  "furthermore", "moreover", "in the present work", "this preface's
-  role is to". Delete every instance; replace with direct mathematical
-  statements.
-- Hedging the mathematics does not earn. If the identification
-  $X = Y$ is proved, write "$X = Y$"; do not write "$X$ is closely
-  related to $Y$". Courage, after Drinfeld and Polyakov and Nekrasov:
-  the equals sign is a theorem, not a suggestion.
+The seven heptagon faces and the five licensing types are dual presentations: heptagon = operadic / categorical; types = epistemic / proof-discipline.
 
-**Required** (the CG standard):
+---
 
-- Every section and subsection title names a mathematical object,
-  construction, theorem, or question --- never a process, wave,
-  round, or meta-organising device.
-- Every definition is preceded within ten lines by the question
-  or obstruction it answers. The reader feels "of course" before
-  the definition arrives.
-- Every symbol is defined at or before first use, with a
-  parenthetical first-principles definition for standard concepts
-  (D-module, Ran space, FM compactification, Hodge bundle,
-  $L_\infty$-algebra, Kuga--Satake, Humbert divisor).
-- Every physical claim is labelled: theorem, heuristic, or
-  metaphor. When a physical identification can be stated as a
-  theorem, state it as a theorem; do not hide the content as an
-  "analogy".
-- **Economy.** Every word carries weight. A paragraph that can be
-  one sentence is one sentence.
-- At every section boundary, three sentences: (1) what was just
-  established; (2) the question or obstruction the next section
-  resolves; (3) the construction or theorem that resolves it.
-  These sentences are *mathematics*, not signposts.
+## 6 The bicoloured primitive package
 
-The reader is an equal who sees the force of the argument when it
-is stated with sufficient precision. The prose does not explain
-mathematics; it *is* mathematics, carrying the same logical force
-as the displayed equations.
+The primitive open object is **not** an algebra. It is the bicoloured nine-tuple
+$$
+\bigl(\openFactCat\big|_{\logCurve},\;\; \cD^{\mathrm{cl}}\big|_X;\;\; b,\;\; A_b,\;\; F^{\mathrm{cl}};\;\; \HalfBraid,\;\; \mathrm{tr}^{\mathrm{cl}}_X;\;\; \TraceC\bigr).
+$$
+$\openFactCat$ — open factorisation dg-cat on $\logCurve = (X, D, \tau)$. $\cD^{\mathrm{cl}}$ — closed factorisation $\infty$-cat (chain-level: factorisation D-modules on $\mathrm{Ran}(X)$). $b$ — boundary vacuum (chart, not invariant). $A_b = \mathrm{End}_\cC(b)$. $F^{\mathrm{cl}}$ — closed-colour vacuum FA. $\HalfBraid$ — half-braiding. $\mathrm{tr}^{\mathrm{cl}}_X$ — closed-colour trace, evaluating to $c_N(0)/2$ at the Pentagon endpoint. $\TraceC$ — open-colour cyclic trace.
 
-This rule is retroactive and forward-looking. Existing manuscript
-prose containing bookkeeping vocabulary is to be rectified chapter
-by chapter through the `chriss-ginzburg-rectify` skill; new prose
-is to be written in the CG voice from the first keystroke.
+Seven heptagon faces: (1) bicoloured operadic primitive · (2) quantum complementarity · (3) bar--cobar inversion · (4) brace / chiral Deligne--Tamarkin · (5) topologisation ladder · (6) Drinfeld centre = derived centre · (7) PTVV derived-AG.
 
-## How to work
+Modularity = open-colour cyclic trace + clutching, with closed-colour shadow $\mathrm{tr}^{\mathrm{cl}}_X$ carrying the modular consequences. Modularity is **never** a property of the closed algebra.
 
-**Formulas come from the Vol II landscape or primary literature** —
-never from memory. Cross-volume consistency: consult Vol I
-`chapters/examples/landscape_census.tex` for $\kappa$, $r(z)$, central
-charges.
+---
 
-**Proofs are inscribed in the chapter, not in notes.** A proof in
-`notes/` or a swarm log is a draft. Move it into `chapters/**.tex`
-with a `\label{thm:...}` and a `\begin{proof}...\end{proof}` body.
+## 7 The two-stage CY-chiral functor + κ-tuple
 
-**After every inscription** (theorem, proposition, lemma, corollary,
-definition, proof, remark), the PostToolUse hook
-(`.claude/hooks/beilinson-gate.sh`) scans the file for anti-pattern
-signatures and cached confusion patterns. Address what it flags;
-return to the mathematics.
+$$
+\Phi_d \;=\; \mathrm{Sp}^{\mathrm{ch}}_{\Sigma_{d-1}, C} \circ \Phi^{\mathrm{FA}}_d
+\;:\;
+\mathrm{CY}_d\text{-Cat} \to E_d\text{-HolFA}(X) \to \mathrm{ChirAlg}(C).
+$$
+Stage 1 ($\PhiFA_d$): canonical $E_d$-holomorphic FA on CY-$d$ via Kontsevich--Tamarkin + Costello--Gwilliam--Li BV. Stage 2 ($\SpCh$): $\int_{\Sigma_{d-1}}$ specialisation to reference curve $C$. Closed colour = stage 1; open colour = stage 2. The directional restriction expresses "stage 2 is specialisation of stage 1, never inversion."
 
-**Builds at session end only, by user opt-in**. No `make` after every
-edit. The hook does not nag about builds. See `## Build, test, audit`
-below for the Makefile surface.
+Hall side parallel two-stage. $\Yplus{X} = H^\bullet_{\mathrm{eq}}(\cM^+_{\mathrm{eff}}(X), \phi_W)$ is the positive half. $\Drinfdouble{\Yplus{X}} = G(X)$ is the full quantum group, requiring Hall pairing + completion + integral form + stable-envelope transport + descent. $\CoHA{\C^3} = \Yplus{\fgl_1}$, NOT $\Wonepinf$ — the latter is the Fock representation of the Drinfeld double.
 
-## Build, test, audit
+**κ-tuple.** $\kappa$ is a tuple, not a scalar:
+$$
+\kappaTuple{A} \;=\; \bigl(\kappaCat,\; \kappaChHodge,\; \kappaChHeis,\; \kappaBKM,\; \kappaFiber\bigr)(A).
+$$
+K3$\times E$ witness: $(0, 0, 3, 5, 24)$. The additive identity $\kappaBKM = \kappaChHodge + \chi(\cO_{\mathrm{fiber}})$ **fails** at every $N \in \{1,2,3,4,6\}$. Universal Borcherds weight $\kappaBKM(\Phi_N) = c_N(0)/2$ (Borcherds 1995, Gritsenko 1999). Vol II conductor $K^{\kappa_{\mathrm{ch}}} = 8 = \mathrm{ord}(H_1)$ on $\mathcal{B}$ is a *separate* invariant ($\hbar^2 \cdot K^{\kappa_{\mathrm{ch}}} = -1$). Bare $\kappa$ forbidden.
 
-All compiled output goes to `out/`. Each build runs in an isolated
-`/tmp/mkd-chiral-bar-cobar-vol2-<NS>/` directory, so parallel agents
-never clobber each other.
+Cross-volume preamble macros: `\PhiFA, \SpCh, \HolFA, \EdHolFA, \intSigma, \hCS, \Yplus, \Drinfdouble, \CoHA, \Wonepinf, \kappaCat, \kappaChHodge, \kappaChHeis, \kappaBKM, \kappaFiber, \Kkappa, \kappaTuple`. APs V2-AP25--V2-AP29 (mirror V2-AP128--V2-AP132) protect.
 
-```bash
-make fast                    # 4-pass build → out/main.pdf (rapid iteration)
-make                         # full 6-pass build + working notes → out/
-make release                 # full rebuild + copy PDFs to iCloud
-make check                   # halt-on-error validation (pre-commit gate)
-make test                    # compute/tests/ pytest suite, -m "not slow"
-make verify-independence     # audit ProvedHere vs @independent_verification
-make clean-builds            # purge /tmp/mkd-* from all volumes
-make count                   # manuscript statistics
+---
+
+## 8 The 17 forbidden slogans (voice table)
+
+Every false slogan is replaced by its allowed form. Caught by `scripts/hooks/beilinson-gate.sh` PostToolUse and `make verify-licensing`.
+
+| # | Forbidden | Allowed |
+|---|-----------|---------|
+| 1 | "Let $A$ be a chiral algebra" | $\primPkgBicolour$ + $A_b = \mathrm{End}_{\openFactCat}(b)$ |
+| 2 | "$\BarTwc{A}$ is the bulk" | $\bulkOf{A} = \bulkChirHoch{A}$; $\BarTwc{A}$ is twisting |
+| 3 | "$E_1$-bar explains $2d \to 3d$" | chiral Deligne--Tamarkin / Swiss-cheese |
+| 4 | "open sector on $X$" | "open sector on $\logCurve$" |
+| 5 | "the closed algebra is modular" | "open category carries cyclic trace + clutching" |
+| 6 | bare "$\kappa$" | $\kappaTuple{A}$ |
+| 7 | "$\Phi_d : \mathrm{CY}_d \to \mathrm{ChirAlg}$" | $\Phi_d^{(\Sigma_{d-1}, C)} = \SpCh \circ \PhiFA_d$ |
+| 8 | "$\CoHA{\C^3} = \Wonepinf$" | $\CoHA{\C^3} = \Yplus{\fgl_1}$; $\Wonepinf$ via Fock + Drinfeld double |
+| 9 | "6d hCS = 3d CS" | "6d hCS realises $\PhiFA_3$; quartic obstruction; 3d-CS = analogy" |
+| 10 | "formal local HT $\Rightarrow$ compact global" | "+ $\effHTGlobalDR$ + descent + QME + anomaly + locality" |
+| 11 | "$\Deltafive$ = Hilbert space" | "Borcherds shadow; $\protectedPfaff{\operatorPrim{X}} = \Deltafive$ is construction problem" |
+| 12 | "$\ZBPS$ = path integral" | "scalar shadow; gravity-line via Hall--Borcherds residual" |
+| 13 | "Universal Holography = QG" | "boundary-CFT reading of 3D gravity" |
+| 14 | "$W_\infty \Rightarrow E_\infty$" | conditional on $\hypProchazka, \hypCKL, \hypPRSh, \hypYamada$ |
+| 15 | "class M chain-level" | conditional on $\hypAmbientWtCpl$; fails in $\mathrm{Ch}(\mathrm{Vect})$ |
+| 16 | "PVA $\Rightarrow$ quantum theory" | classical only; quantum conditional on $\hypKZSDR, \hypStokes, \hypReflWts, \hypTLift$ |
+| 17 | "quadratic dual = Koszul" | injection in general; bijection conditional on $\effKoszul$ |
+
+---
+
+## 9 The four Construction Problems (Frontier)
+
+The cut creates space for four operator-level construction problems:
+
+1. **$\mathfrak{D}_X$ for K3$\times E$** with $\protectedPfaff{\mathfrak{D}_X} = \Deltafive$. Source: igusa `~/igusa-cusp-form/main.tex:94--118`.
+2. **Gravity-line operator algebra** with Pentagon-face scalar trace $= \Phitenun = \Deltafive^2$. Source: `chapters/connections/3d_gravity.tex:8429`.
+3. **Unified PVA-quantum HT theory** with classical $\lambda$-Jacobi limit and $E_3$-lift on $Q$-cohomology.
+4. **Chiral Positselski** extending Vol I Theorem B at chiral generality; specialisation to quadratic recovers Gui--Li--Zeng MC bijection.
+
+---
+
+## 10 Progress
+
+**Counts.** A new theorem proved with verifiable proof body. A new example (κ-tuple coordinates / heptagon face / topologisation height) for an algebra not yet tabulated. A falsified claim repaired. A healed hypothesis. A first-principles computation replacing a citation black box. An IV witness via disjoint-route proof for an existing $\ClaimStatusProvedHere$. An operator-level construction advancing one of the four Construction Problems.
+
+**Does not count.** Status-table rows. Label renames. Counting equivalences. Scope propagation across ten files. FRONTIER advertising retractions. CLAUDE.md ↔ AGENTS.md harmonisation. Bookkeeping. The hook catches these.
+
+**Epistemic hierarchy** (higher wins): direct computation > $.tex$ source ±100 lines > tests > IV decorators > primary literature > `concordance.tex` > this file > memory.
+
+---
+
+## 11 Self-coherence
+
+The manuscript stands for itself. Every $.tex$ chapter is standalone, up-to-date, consistent. No references to previous versions, intermediate ansätze, retracted values, drafting-history commentary. If a formula used to be $X$ and now it is $Y$, the manuscript says $Y$. When a retraction is informative — a proof attempted and failed whose failure illuminates why the successful proof is forced — state the failed argument and its flaw *as mathematics*, never as drafting record.
+
+CG voice: Russian elite (Gelfand, Drinfeld, Beilinson, Kapranov, Etingof, Kontsevich, Bezrukavnikov) + math-physics elite (Polyakov, Witten, Costello, Gaiotto, Nekrasov). Show don't tell. Forbidden in chapters: bookkeeping vocabulary (Wave / round / AP$n$ / Pattern); meta-narration ("we now turn to," "notably," "in the present work"); hedging proved identifications. Required: titles name objects; definitions preceded by the question; symbols defined at first use; physical claims labelled (theorem / heuristic / metaphor); economy. Full canon: `./MATHEMATICAL_PHYSICS_NUMBER_THEORY_GEOMETRY_ALGEBRA_HOMOTOPY_THEORY_WRITING_STANDARDS.md`.
+
+---
+
+## 12 Cross-volume coherence
+
+- **Vol I** `~/chiral-bar-cobar` — five-theorem core; $E_1$--$E_1$ operadic Koszul duality; canonical κ / r(z) / S_r in `chapters/examples/landscape_census.tex`.
+- **Vol II** `~/chiral-bar-cobar-vol2` — this volume.
+- **Vol III** `~/calabi-yau-quantum-groups` — CY-to-chiral functor, K3$\times E$ Hall--Borcherds, BKM, κ-stratification, 6d hCS quartic.
+- **Vol IV** `~/chiral-bar-cobar-vol4` — verification capstone; pairs every Vols I--III ProvedHere with disjoint-route IV.
+- **mixed-HT-strings** `~/mixed-holomorphic-topological-strings` — local model + global de Rham obstruction.
+- **igusa-cusp-form** `~/igusa-cusp-form` — $\Deltafive$ + Construction Problem 1.
+
+Load-bearing claims about $\mathsf{SC}^{\mathrm{ch,top}}$, the topologisation ladder, or the bulk--boundary pair must be consistent with Vol I theorems and Vol III κ-stratification. **Disagreement is the deliverable.**
+
+---
+
+## 13 Build, test, audit
+
+```
+make fast / make / make release / make check / make test
+make verify-independence  # @independent_verification audit for ProvedHere
+make verify-licensing     # whole-volume voice + licensing grep
+make clean-builds / make count
 ```
 
-Single test: `compute/.venv/bin/python -m pytest compute/tests/test_<name>.py -q -ra`.
-Warm rebuilds across invocations: `export MKD_BUILD_NS="agent-$$"` once per
-agent session (cold first, warm thereafter).
+Single test: `compute/.venv/bin/python -m pytest compute/tests/test_<name>.py -q -ra`. Warm rebuilds: `export MKD_BUILD_NS="agent-$$"` once per session. Builds in `/tmp/mkd-chiral-bar-cobar-vol2-<NS>/` (parallel-safe). Session-end only, user opt-in. Requires TeX Live 2024+ (memoir, EB Garamond, newtxmath); Python 3.10+; ~60 engines; ~5400 tests.
 
-Requires TeX Live 2024+ with `pdflatex` (memoir, EB Garamond, newtxmath)
-and Python 3.10+ for the compute suite.
+---
 
-## Essential constants (Vol II-relevant)
+## 14 Repository layout
 
-- Curved-Dunn vanishing: $H^2(\text{curved-Dunn}) = 0$ at $g \geq 2$.
-- $\mathsf{SC}^{\mathrm{ch,top}}$ is a 2-coloured dioperad with
-  directional restriction; Dunn additivity does **not** apply.
-- Topologisation: $E_{k+2}^{\mathrm{top}}$ from $k$ inner stress
-  tensors at non-critical level.
-- Shared with Vol I: $\kappa(\mathrm{Vir}_c) = c/2$;
-  $\kappa(V_k(\mathfrak{g})) = \dim(\mathfrak{g})(k+h^\vee)/(2h^\vee)$;
-  Zamolodchikov norm $c(5c+22)/10$.
+`main.tex` entry; preamble holds all macros; chapters use `\providecommand`. `chapters/frame/` preface + part intros. `chapters/theory/` Parts I--IV core. `chapters/examples/` landscape examples. `chapters/connections/` Parts II--III + V--VII (line operators, celestial holography, HT bulk-boundary, 3D gravity climax, Universal Holography, $w_{1+\infty}$, Vol I/III bridges). `appendices/` brace signs, orientations, FM proofs. `compute/lib/` Python engines + `independent_verification.py`. `compute/tests/` pytest; `test_*_iv.py` are IV witnesses. `scripts/hooks/beilinson-gate.sh` version-controlled hook (install: `cp scripts/hooks/beilinson-gate.sh .claude/hooks/`). `notes/` workshop floor, never reader-facing. `FRONTIER.md`, `ROADMAP_85_TO_100.md` live queues. `standalone/` extracted papers. `out/` build. Memoir + EB Garamond.
 
-**Five objects, never conflate**: $A$ (chiral algebra) — $B(A)$ (bar
-coalgebra) — $A^i = H^\star B(A)$ — $A^! = ((A^i)^\vee)$ —
-$Z^{\mathrm{der}}_{\mathrm{ch}}(A)$ (derived centre = bulk).
-$\Omega(B(A)) = A$ is **inversion**, not Koszul duality. $A^!$ via
-**Verdier**. Bulk via **Hochschild** cochains.
+---
 
-## Repository layout
+## 15 Git, authorship
 
-- `main.tex` — entry point; preamble holds all macros. Chapters mirror
-  them with `\providecommand` stubs (never `\newcommand`).
-- `chapters/frame/` — preface, part introductions.
-- `chapters/theory/` — Parts I–IV core: foundations, SC heptagon,
-  factorisation Swiss-cheese, curved-Dunn $g \geq 2$, chiral higher
-  Deligne, topologisation ladder, infinite fingerprint, unified
-  chiral QG, $\mathcal{W}_N$ / $\mathcal{W}_\infty$ tempered closure.
-- `chapters/examples/` — worked landscape examples, W-algebra tables,
-  rosetta stone.
-- `chapters/connections/` — Parts II–III + V–VII: line operators,
-  celestial holography, HT bulk–boundary, 3D gravity climax,
-  universal holography functor, $w_{1+\infty}$ endpoint, Vol I/III
-  bridges, THQG extensions.
-- `appendices/` — brace signs, orientations, FM proofs, q-conventions.
-- `compute/lib/` — ~60 Python engines (chiral computations, R-matrices,
-  $\kappa$ verification, celestial OPE, BV construction,
-  `independent_verification.py` decorator).
-- `compute/tests/` — pytest suite; `test_*_iv.py` modules are the
-  independent-verification witnesses for `\ClaimStatusProvedHere`
-  theorems.
-- `compute/scripts/audit_independent_verification.py` — audit driver
-  behind `make verify-independence`.
-- `scripts/build.sh` — Makefile build runner (parallel-safe via
-  `/tmp/mkd-*`).
-- `scripts/hooks/beilinson-gate.sh` — version-controlled PostToolUse
-  hook; install via `cp scripts/hooks/beilinson-gate.sh .claude/hooks/`.
-- `notes/` — workshop floor: antipatterns catalogue, first-principles
-  cache, attack–heal dossiers, Platonic reconstitutions, swarm audits.
-  Never reader-facing.
-- `FRONTIER.md`, `ROADMAP_85_TO_100.md` — live research queues.
-- `standalone/` — self-contained papers extracted from the manuscript.
-- `out/` — build output (PDFs, archives); regenerable.
+All commits by **Raeez Lorgat** only. **No AI attribution anywhere**: no `Claude` / `Anthropic` / `Co-Authored-By` / `Generated with` / robot-emoji — in commits, comments, docstrings, manuscripts. Pre-commit hook nudges. Two remotes (`origin`, `ainfinity`); both receive main on push. `git stash` forbidden — use `git diff > patch.diff && git apply`. Do not amend without explicit instruction.
 
-## Chain-level and $(\infty,1)$-categorical: equal status
+---
 
-Both **chain-level** mathematics (explicit complexes, named
-differentials, witnessed homotopies, $L_\infty$-formalism, Mittag–Leffler
-towers, ambient-qualified statements like the chain-level
-$\mathsf{SC}^{\mathrm{ch,top}}$ bar-differential) and
-**$(\infty,1)$-categorical** mathematics (factorisation
-$\infty$-categories, Lurie $\mathrm{HA}.5.5$ topological factorisation,
-$E_n$-operadic constructions a la Costello–Gwilliam, Francis–Gaitsgory)
-are **equally load-bearing** in this volume. Neither is "the better
-lane"; neither "replaces" or "subsumes" the other.
+## 16 Bookkeeping
 
-Vol II in particular owes its content to *both* lanes simultaneously:
+- `notes/legacy/critique_2026_05_09_chiral_duality_master_consequence_map_v2.md` — architectural reconstitution map.
+- `notes/legacy/vol2_platonic_architecture.md` — seven-part platonic form.
+- `notes/antipatterns_catalogue.md` — live AP registry (V2-AP25--132 + Vol I import + HT-strings AP2181--AP2189).
+- `notes/first_principles_cache_comprehensive.md` — confusion-pattern registry; Vol I import block.
+- `notes/claude_md_legacy_20260418.md` / `notes/agents_md_legacy_20260418.md` — prior manifestos (lossless). Grep by index; do not read whole.
+- `~/chiral-bar-cobar/CLAUDE.md` · `~/chiral-bar-cobar/chapters/examples/landscape_census.tex` · `~/calabi-yau-quantum-groups/CLAUDE.md`.
 
-- The chain-level $\mathsf{SC}^{\mathrm{ch,top}}$ bar-differential (as
-  the holomorphic factorisation map at coincident points) is what lets
-  you compute the OPE pole orders, the explicit Wick contractions, the
-  $\beta\gamma$ Heisenberg pairing, and the topologisation chain
-  homotopy from a non-critical-level conformal vector.
-- The $(\infty,1)$-categorical formulation (factorisation
-  $\infty$-categories, the topological-factorisation coproduct as a
-  Lurie $\mathrm{HA}.5.5$ structure, $E_n$ promotion via Dunn
-  additivity restated as an $\infty$-operadic equivalence) is what
-  lets you state the seven-faces-of-$r(z)$ as an
-  $\mathrm{GRT}$-torsor, the 3D HT QFT culmination as a
-  fully-extended TFT, and the bar–coproduct duality as an inversion
-  in an $\infty$-stable category.
+Claim-status tags (`\ClaimStatusProvedHere`, `\ClaimStatusConjectured`, `\ClaimStatusEvidence`, `\ClaimStatusRetracted`) are reader-facing bookkeeping. When uncertain, name the proof obligation; heal the proof, statement, or construction; do not downgrade.
 
-**Operating rule**: state every theorem in the lane in which its proof
-actually works. If chain-level: name the chain homotopy, the explicit
-Mittag–Leffler witness, the explicit MC element, the explicit OPE pole.
-If $(\infty,1)$-categorical: name the $(\infty,1)$-functor /
-adjunction / colimit / fibre sequence. If both lanes are needed:
-state both, label which lane each status applies to (Pattern 236
-ambient-qualifier discipline). **Never** write "this is just the
-chain-level / $(\infty,1)$-categorical shadow of the real theorem":
-both shadows are real, both are the theorem, viewed through different
-lenses.
+---
 
-Pattern 277 ($\mathsf{SC}^{\mathrm{ch,top}}$ vs $E_3$ conflation) is
-a *scope declaration*, not a hierarchy: the chain-level bicoloured
-operad and the $(\infty,1)$-categorical $E_3$-promotion under
-topologisation are **two different theorems** about two different
-mathematical objects, both proved, both load-bearing.
+## 17 Hooks
 
-## Two-stage factorisation: Vol III alignment
+`PreToolUse(Agent)` cache injection · `PreToolUse(Bash, git commit)` no-AI-attribution reminder · `PostToolUse(Edit|Write)` `beilinson-gate.sh` AP + cache + voice-table sweep · `Stop` session-end summary. The Beilinson gate silently enforces the cut: every edit triggers the licensing audit. Address what it flags; return to mathematics.
 
-Vol III has adopted a two-stage factorisation of its CY-to-chiral
-functor:
-$\Phi_d = \mathrm{Sp}_{\mathrm{Ch},\Sigma_{d-1},C}\circ\Phi^{\mathrm{FA}}_d$.
-Stage~1 produces a canonical $E_d$-homotopy factorisation algebra on
-the CY-$d$ target by Kontsevich--Tamarkin formality plus
-Costello--Gwilliam--Li factorisation-homology BV quantisation; stage~2
-specialises via factorisation-homology pushforward
-$\int_{\Sigma_{d-1}}$ to a reference curve $C$, yielding the
-$E_1$-chiral shadow. A CY-$d$ category admits a *family* of
-$E_1$-chiral shadows parametrised by $(\Sigma_{d-1}, C)$.
+---
 
-**Structural identification at $d = 2, 3$.** The two colours of
-$\mathsf{SC}^{\mathrm{ch,top}}$ are the two stages of $\Phi_d$:
-- **Closed colour** (holomorphic/braided, $E_2$ on $\mathrm{FM}_k(\C)$):
-  stage~1 $\Phi^{\mathrm{FA}}_d$ restricted to local observables of
-  an $E_d$-holomorphic factorisation algebra on a formal disc in
-  the CY target.
-- **Open colour** (topological/ordered, $E_1$ on $\R$,
-  Ayala--Francis): stage~2 $\mathrm{Sp}_{\mathrm{Ch},\Sigma_{d-1},C}$
-  landing on the reference curve $C$.
-- **Mixed operations** (closed acting on open, directional
-  restriction $\mathsf{SC}^{\mathrm{ch,top}}(\ldots,\mathsf{top},\ldots;
-  \mathsf{cl})=\varnothing$): the factorisation-homology
-  pushforward $\int_{\Sigma_{d-1}}$, with the directional asymmetry
-  expressing that stage~2 is a specialisation of stage~1, never an
-  inversion.
+## 18 Skills
 
-Inscribed as
-`chapters/theory/sc_chtop_heptagon.tex`
-Remark~\ref{rem:heptagon-two-stage-CY-to-chiral} and
-`chapters/theory/factorization_swiss_cheese.tex`
-Remark~\ref{rem:pentagon-two-stage}. The shadow arrow is from CY
-(stage~1) to chiral (stage~2), never back. Cross-volume macros
-(`\PhiFA`, `\SpCh`, `\HolFA`, `\EdHolFA`, `\EnHolFA`, `\intSigma`,
-`\hCS`) are declared in `main.tex` preamble and mirrored as
-`\providecommand` stubs in the chapters that reference them.
+Invoke via Skill tool when the task matches: `chriss-ginzburg-rectify` · `audit` · `propagate` · `verify` · `rectify` · `investigate` · `compute-engine` · `build` · `research-swarm` (30+ elite agents) · `attack-heal-swarm-loop` · `codex:rescue`.
 
-**Cross-volume antipatterns and cache entries.** The five
-2026-04-22 antipatterns enforcing this alignment live at
-`notes/antipatterns_catalogue.md` entries AP-V2-25 / V2-AP128
-(Swiss-cheese colours $=$ stage-1 / stage-2), AP-V2-26 / V2-AP129
-(single-stage $\Phi_d$ framing), AP-V2-27 / V2-AP130 (3D HT QFT
-anchor), AP-V2-28 / V2-AP131 (Vol III manifesto conflations), and
-AP-V2-29 / V2-AP132 (reader-facing voice discipline). The matching
-cache rows are `notes/first_principles_cache.md` rows 143--147.
+Skills are not automatically aware of the manuscript voice; the Skill prompt encodes it. Invoke with explicit licensing-type tags.
 
-## Where the bookkeeping lives
+---
 
-- **`notes/antipatterns_catalogue.md`** — the live Vol II AP catalogue
-  (V2-AP* register plus Wave-23-26 additions V2-AP42--V2-AP55). Every
-  `/chriss-ginzburg-rectify` invocation consults this at Gate 0
-  alongside the cache. Append new V2-APs here.  As of 2026-04-30, this
-  live registry also contains the appended Vol I import block
-  `VOL1_IMPORTED_ANTIPATTERN_REGISTRY_2026_04_30` and the
-  topological-strings 04:11 final-frontier AP2181--AP2189 block.
-- **`notes/vol1_control_surface_import_manifest_2026_04_30.md`** —
-  provenance and use rule for the two imported Vol I control surfaces:
-  the antipattern registry and the first-principles cache.
-- **`notes/vol1_imported_antipatterns_catalogue_2026_04_30.md`** —
-  exact Vol I antipattern-registry mirror, SHA-256
-  `b954958f06dfe486fe052bb98ac29ad0ac374692ae02895bcefde412981b02ba`.
-- **`notes/vol1_imported_first_principles_cache_comprehensive_2026_04_30.md`**
-  — exact Vol I first-principles-cache mirror, SHA-256
-  `611c8c0db91d81bf1f3d2587db09713de5acc5b2f8bfcefd2a739557fa9e48f4`.
-- **`notes/claude_md_legacy_20260418.md`** — full prior CLAUDE.md,
-  1369 lines, lossless. Historical snapshot; the V2-AP catalogue has
-  moved to `notes/antipatterns_catalogue.md`. Still contains the
-  detailed theorem status table, Vol II-specific cross-volume
-  awareness, prior reconstitution drafts. Grep by index when needed.
-- **`notes/agents_md_legacy_20260418.md`** — full prior AGENTS.md,
-  lossless.
-- **`notes/first_principles_cache_comprehensive.md`** (if present) —
-  confusion-pattern registry.  As of 2026-04-30, this live cache also
-  contains the appended Vol I import block
-  `VOL1_IMPORTED_FIRST_PRINCIPLES_CACHE_2026_04_30` and the
-  topological-strings 04:11 final-frontier patterns 501--509.
-- **`~/chiral-bar-cobar/CLAUDE.md`** — Vol I manifesto (mathematics
-  here harmonises with Vol I's shared five-theorem core).
-- **`~/chiral-bar-cobar/chapters/examples/landscape_census.tex`** —
-  canonical formulas per family. Source of truth for $\kappa$, $r(z)$.
-- **`~/calabi-yau-quantum-groups/CLAUDE.md`** — Vol III manifesto
-  (CY-to-chiral functor $\Phi$).
-- **`scripts/hooks/beilinson-gate.sh`** — version-controlled hook;
-  install via `cp scripts/hooks/beilinson-gate.sh .claude/hooks/`.
+## 19 Auto-memory
 
-## Git and authorship
+Persistent file-based memory at `~/.claude/projects/-Users-raeez-chiral-bar-cobar-vol2/memory/`; index in `MEMORY.md` (truncated past 200 lines; concise `- [Title](file.md) — hook`).
 
-All commits by **Raeez Lorgat** only. Never any AI attribution anywhere:
-no `Claude`, no `Anthropic`, no `Co-Authored-By`, no `Generated with`,
-no 🤖, in commits, comments, docstrings, or manuscripts. Pre-commit
-hook nudges; remove offending content.
+Four types: **user** (role / preferences), **feedback** (corrections AND validated approaches; rule + `**Why:**` + `**How to apply:**`), **project** (work / decisions; dates absolute), **reference** (external systems). Save on explicit user request; user correction; user validation of a non-obvious choice; reference to prior conversations. Do not save code patterns, file paths, git history, debugging fixes, ephemeral state. Before recommending from memory: verify against current code (point-in-time). If user says ignore memory, do not apply, cite, or compare.
 
-Two remotes: `origin` (GitHub primary) and `ainfinity` (mirror). Both
-receive main on push.
+---
 
-`git stash` forbidden (use `git diff > patch.diff && git apply`). Do
-not amend commits.
+## 20 Long-form proof harness
 
-## LaTeX
+Frontier mathematics runs in maximum-effort mode. Deepest available model + highest reasoning budget. For Claude Opus 4.7 (1M context), deliberation budget unbounded; 30--60 minute agent runs are normal for theorem repair, cross-volume synthesis, adversarial review, primary-source reconstruction.
 
-Macros in `main.tex` preamble. Inside chapters, `\providecommand`, not
-`\newcommand`. Memoir + EB Garamond.
+Load context: this file, `notes/critique_*_v2.md`, `notes/legacy/vol2_platonic_architecture.md`, target chapter, dependencies, bibliography, compute, cross-volume anchors. Build the internal outline before the first edit.
 
-Claim-status tags (`\ClaimStatusProvedHere`, etc.) are reader-facing
-bookkeeping, not repairs. When uncertain, name the exact proof obligation
-and heal the proof, statement, or construction; do not downgrade the
-manuscript to close.
+For any load-bearing identity, seek independent derivations by **multiple routes**: worked example, formal argument, primary literature, local computation, cross-volume consistency. **Disagreement is the deliverable.**
 
-## Ambient hooks
+After every proposed repair, run an **attack-heal loop**: strongest counterexample, sign / convention / ambient-category check, missing hypothesis, false functoriality, unproved equivalence, numerical constant. Heal and attack again until the theorem closes or the exact obstruction is named. Do not downgrade the manuscript to close. Subagents provide evidence, not authority; the main thread integrates by deep semantic merge.
 
-- **`PreToolUse(Agent)`** → cache-injection (if installed locally).
-- **`PreToolUse(Bash, git commit)`** → no AI attribution reminder.
-- **`PostToolUse(Edit|Write)`** → `beilinson-gate.sh` AP + cache sweep.
-- **`Stop`** → session-end summary (if installed).
+---
 
-## Long-form proof harness
+## 21 Subagent / swarm protocol
 
-For Claude Code, Codex CLI, and any GPT-5.5 / GPT-5-Codex-class agent,
-frontier mathematics runs in maximum-effort mode. Use the deepest
-host-exposed model and reasoning budget. If the host offers a
-GPT-5.5 Pro / Heavy or `xhigh` setting, use it for theorem repair,
-cross-volume synthesis, adversarial review, and primary-source
-reconstruction. The private ChatGPT Pro harness is not public; this is
-the open local analogue.
+Large user-authorized swarms permitted. When the user asks for adversarial / rescue / review / cross-volume sweeps, treat as authorization for the largest useful swarm. Do not downshift to historical 3 / 5 / 30-agent caution.
 
-Long runs are normal. A 30-60 minute agent run is acceptable when a
-proof obligation requires it. The agent first loads the relevant
-context (`CLAUDE.md`, `AGENTS.md`, target chapter, dependencies,
-bibliography, compute files, cross-volume anchors), builds an internal
-outline, then works through independent proof routes: worked example,
-formal argument, primary source, computation, and cross-volume
-consistency. Private scratch stays private; the deliverable is the
-checked proof trace and the exact remaining obstruction.
+Swarm design explicit before launch: partition by disjoint mathematical axes / files / proof obligations; name the integration owner; forbid agents from reverting work they did not make; require deep semantic merge across all five repos.
 
-After every proposed repair, run an attack-heal loop: strongest
-counterexample, sign/convention check, ambient-category check, missing
-hypothesis, false functoriality, unproved equivalence, numerical
-constant. Heal and attack again until the theorem closes or the exact
-obstruction is named for the next repair cycle. Do not downgrade the
-manuscript to close the loop. Subagents provide evidence, not authority;
-the main thread integrates by deep semantic merge.
+Every attack-heal agent returns a compact, checkable report: claim attacked · failure mode or proof · file anchors · primary anchors · exact formulas/constants · claim-status recommendation · files changed · tests/computations run · remaining obligations. Subagents do not vote truth into existence.
 
-## Do not
+---
 
-1. Do not block large user-authorized swarms. Partition work by
-   disjoint files or mathematical axes, require short verifiable
-   reports, and merge by deep semantic review across Vol I/II/III.
-2. Propagate status-label wording when mathematics is waiting.
-3. Invent formulas from memory.
-4. Run `make` after every edit.
-5. Add AI attribution anywhere.
-6. `git stash` or amend.
-7. Read `notes/claude_md_legacy_20260418.md` whole — grep by index.
-8. Confuse this file with a configuration manual. This is a
-   mathematician's working manifesto. Shrink if it grows.
+## 22 Branch / worktree reconciliation — DEEP SEMANTIC MERGES ONLY
 
-## 2026-04-22 cross-volume sharpenings
+Branches / worktrees differ → **always** deep semantic merge. Never discard one side without reading. Never `git reset --hard` / `git checkout --` / `git restore` to clobber work as a shortcut. Never force-push to obliterate upstream divergence. Read both sides in full; merge at the semantic level — stronger statement, tighter citation, more rigorous proof. Applies to `git pull`, `git merge`, worktree reconciliation, cherry-picks, rebase conflicts, push-rejection upstream divergence. Work loss is irrecoverable. **Never cut content.**
 
-Four load-bearing markers from the Vol III programme now anchor Vol II
-material. The single-colour MC5 Pentagon trace, the 3D HT QFT
-boundary-bulk output, and the modular PVA quantisation chapters each
-refactor through them.
+---
 
-**Eight-form spread.** The single-colour MC5 Pentagon takes values on
-a universal eight-form Gritsenko--Cl\'ery spread: weights
-$w(N) \in \{5, 2, 1, 1, 1/2, 1, 1/4, 0\}$, Fourier zero-coefficients
-$c_N(0) \in \{10, 4, 2, 2, 1, 2, 1/2, 0\}$. The Pentagon trace equals
-$c_N(0)/2 \in \{5, 2, 1, 1, 1/2, 1, 1/4, 0\}$ at the corresponding
-$N \in \{1, 2, 3, 4, 6\}$ and the half-integer / quarter-integer
-continuations. Cover assignment carries through: integer weight rides
-$\mathrm{Sp}_4(\Z)$, half-integer weight rides $\mathrm{Mp}_4$,
-quarter-integer weight rides $\widetilde{\mathrm{Mp}}_4$, weight-zero
-is the degenerate terminal fibre.
+## 23 Do not
 
-**Universal Borcherds weight identity.** The modular PVA quantisation
-chapters use $\kappa_{\mathrm{BKM}}(\Phi_N) = c_N(0)/2$ as the
-canonical form with the cover assignment above. Primary sources:
-Borcherds 1995, Gritsenko 1999. The additive split
-$\kappa_{\mathrm{BKM}} = \kappa_{\mathrm{ch}} +
-\chi(\mathcal{O}_{\mathrm{fiber}})$ is false at every
-$N \in \{1, 2, 3, 4, 6\}$ and must not appear in any Vol II chapter.
-
-**Three-factor Universal Trace Identity.** On the Koszul-self-dual
-subcategory whose objects admit a BRST resolution and a Calabi--Yau
-target supporting a Borcherds product,
-$$
-\mathrm{tr}_{\mathrm{ghost}}(Q_{\mathrm{BRST}}^2)
-= \mathrm{tr}_{\mathrm{Pentagon}}
-= \omega_{\mathrm{Borcherds}}
-= c_N(0)/2.
-$$
-Vol II supplies the Pentagon-scope reading: the trace is the
-pentagon-face evaluation of the single-colour closed
-$\mathsf{SC}^{\mathrm{ch,top}}$ substructure, identified via MC5
-sewing with the curve-side face of the two-stage factorisation. The
-ghost-scope reading (Vol I) and the Borcherds-weight reading (Vol III)
-agree with the Pentagon reading on the common subcategory. Convergence
-at $N = 1$ gives the coincidence $\{5, 5, 5\}$: ghost trace, Pentagon
-trace, Borcherds weight all equal $5$ on the K3 Heisenberg witness.
-
-**Universal positive-geometry grammar.** The 3D HT QFT output on a
-boundary compact Calabi--Yau $X$ lives in
-$Y^+(X) = H^\bullet_{\mathrm{eq}}(\mathcal{M}^+_{\mathrm{eff}}(X), \phi_W)$
-via the $E_3$-realisation: the holomorphic-topological action pulls
-back the potential $\phi_W$ to the boundary factorisation algebra,
-and the equivariant cohomology assembles from the four equivariance
-strata (toric $T^d$, reduced $\C^\times + \mathrm{Aut}$, orbifold
-inertia, lattice-polarised period domain). The MC5 sewing theorem is
-the curve-side (Stage-2) face of the Vol III two-stage factorisation
-$\Phi_d = \mathrm{Sp}^{\mathrm{ch}}_{\Sigma_{d-1}, C} \circ
-\Phi^{\mathrm{FA}}_d$: Stage-1 produces the $E_d$-holomorphic
-factorisation algebra on $X$; MC5 specialises it along $\Sigma_{d-1}$
-to the $E_1$-chiral shadow on $C$. The Drinfeld double
-$G(X) = D(Y^+(X))$ is the derived-centre output on which the Pentagon
-trace acts.
-
-## Branch and worktree reconciliation -- DEEP SEMANTIC MERGES ONLY
-
-When branches or worktrees differ, ALWAYS perform a **deep semantic
-merge** to reconcile them. **NO EXCEPTIONS.**
-
-- Never discard one side of a divergence without reading it.
-- Never `git reset --hard`, `git checkout --`, or `git restore` to
-  clobber work as a shortcut to resolve conflict.
-- Never force-push to obliterate upstream divergence.
-- Read both sides in full, understand what each side uniquely
-  contributes, and construct a merged result that preserves the
-  mathematical content, prose improvements, and structural refinements
-  from **both** sides. When a line-level conflict is semantic
-  (e.g., a theorem statement reworded), merge at the semantic level --
-  pick the stronger statement, the tighter citation, the more rigorous
-  proof -- not at the diff-hunk level.
-- When unclear which side is stronger on a given hunk, read both in
-  context. Do not guess.
-
-Applies to: `git pull`, `git merge`, worktree reconciliation, cherry-picks
-across branches, rebase conflicts, and any divergence between local and
-upstream (including push rejections where upstream has new commits).
-
-**Rationale:** work loss in this programme is irrecoverable -- chapters
-represent weeks of adversarial-swarm output, elite-voice synthesis, and
-primary-literature audit. A shallow "accept theirs" / "accept ours" is
-never the right answer. Deep semantic merges take longer but are the
-only operation consistent with Beilinson's dictum and the golden rule
-"NEVER CUT CONTENT".
+Block large user-authorized swarms. Propagate status-label wording when mathematics is waiting. Invent formulas from memory. `make` after every edit. AI attribution anywhere. `git stash` or amend. Read `notes/claude_md_legacy_20260418.md` whole (grep by index). Confuse this file with a configuration manual. Mathematician's manifesto. Shrink if it grows.

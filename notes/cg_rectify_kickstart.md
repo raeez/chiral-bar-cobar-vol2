@@ -1,5 +1,7 @@
 # Chriss-Ginzburg Rectification — Kickstart for Volume Instances
 
+> **STATUS: Archival reference (2026-04-17 cron architecture).** Specific trigger IDs and queue-file commits below predate the 2026-05-09 architectural cut; do not steer current work from them. Current canon: `./CLAUDE.md`, `notes/_METACOGNITIVE_CANON.md`, `notes/legacy/critique_2026_05_09_chiral_duality_master_consequence_map_v2.md`. The cron-architecture *idea* (one chapter per firing, fresh context) remains valid; the named triggers and queue commits are stale.
+
 > **Audience**: the Claude instance working on a Volume of the Modular Koszul Duality monograph (Vol I, Vol II, or Vol III). This file tells you how to stand up the same CG-rectify cron architecture Vol III set up on 2026-04-17.
 
 ## What this is

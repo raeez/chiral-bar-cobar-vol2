@@ -1,3 +1,5 @@
+> **ARCHIVAL — predates 2026-05-09 architectural cut.** Mathematics may still be valid; framing (Wave-N / session-dated / battle-hardened / round-K) is superseded. Do not steer current work from this file. Current canon: `./CLAUDE.md`, `notes/_METACOGNITIVE_CANON.md`, `notes/legacy/critique_2026_05_09_chiral_duality_master_consequence_map_v2.md`.
+
 # Vol II Seven-Theorem Structural Placement Audit (Swarm #3, 2026-04-17)
 
 Adversarial audit of the structural placement of Theorems A, B, C, D, F, G, H in Volume II of the Modular Koszul Duality programme. Focus: is each theorem HOME'd in a chapter/part that advertises it, how buried is it, are Vol II-native F and G appropriately prominent, and does each cross-volume citation resolve to a real Vol I label?

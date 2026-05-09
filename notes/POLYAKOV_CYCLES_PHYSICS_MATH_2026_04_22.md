@@ -1,3 +1,5 @@
+> **ARCHIVAL — predates 2026-05-09 architectural cut.** Mathematics may still be valid; framing (Wave-N / session-dated / battle-hardened / round-K) is superseded. Do not steer current work from this file. Current canon: `./CLAUDE.md`, `notes/_METACOGNITIVE_CANON.md`, `notes/legacy/critique_2026_05_09_chiral_duality_master_consequence_map_v2.md`.
+
 # Polyakov Cycles — Physics $=$ Mathematics as Theorems, Vol II, 2026-04-22
 
 *Raeez Lorgat. Companion inscription to `VOL_II_PLATONIC_IDEAL_BATTLE_HARDENED_2026_04_22.md`. Every physics↔mathematics identification in Vol II upgraded to a theorem across five sharpening cycles, with emphasis on the $\mathsf{SC}^{\mathrm{ch,top}}$ bulk-boundary structure and the 3d quantum gravity climax.*

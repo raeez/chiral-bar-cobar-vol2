@@ -1,3 +1,5 @@
+> **ARCHIVAL — predates 2026-05-09 architectural cut.** Mathematics may still be valid; framing (Wave-N / session-dated / battle-hardened / round-K) is superseded. Do not steer current work from this file. Current canon: `./CLAUDE.md`, `notes/_METACOGNITIVE_CANON.md`, `notes/legacy/critique_2026_05_09_chiral_duality_master_consequence_map_v2.md`.
+
 # Adversarial audit: Vol II connective tissue (swarm agent #4 of 5, 2026-04-17)
 
 Target: `/Users/raeez/chiral-bar-cobar-vol2/`. Hard no-touch constraint honoured (read-only of `main.tex`, `preface.tex`, `part_viii_synthesis.tex`, etc.). Mandate: transitions, signposts, framing between chapters and Parts.
