@@ -80,9 +80,26 @@ echo "Scanning: ${SCAN_PATHS[*]}"
 scan '^[^%]*Let \$A\$ be a chiral algebra' \
      'Slogan #1: "Let A be a chiral algebra" -- replace with bicoloured primitive package' B
 
-# 2. "Bar(A) is the bulk" pattern
-scan '\\(Bar|BarTwc|barB|Barch)[^=]*\$? *(is|=) *(the )?bulk\b' \
-     'Slogan #2: "Bar(A) = bulk" -- bulk is bulkChirHoch, not the bar' B
+# 2. "Bar(A) is the bulk" pattern -- tightened: require BAR{...} adjacent to "is the bulk",
+# exclude meta-references ("forbidden slogan", "voice table"), exclude physical "bulk
+# propagator", and exclude "is the bulk E_n" / "is the bulk factorisation algebra"
+# (where the subject is the chiral derived centre, not the bar).
+hits_bulk2="$(grep -RInE --include='*.tex' '\\(Bar|BarTwc|barB|Barch)\{[^}]*\}\$? +(is|=) +(the )?bulk\b' "${SCAN_PATHS[@]}" 2>/dev/null \
+        | awk -F: '{
+            line = $0
+            sub(/^[^:]+:[0-9]+:/, "", line)
+            if (line ~ /^[[:space:]]*%/) next
+            if (line ~ /forbidden slogan|voice table|is forbidden|slogan-being-rejected/) next
+            if (line ~ /bulk propagator|bulk \$E_|bulk factorisation/) next
+            print $0
+          }')"
+if [ -n "$hits_bulk2" ]; then
+  count="$(printf '%s\n' "$hits_bulk2" | wc -l | tr -d ' ')"
+  echo
+  echo "## [B] Slogan #2: \"Bar(A) = bulk\" -- bulk is bulkChirHoch, not the bar  ($count match(es))"
+  printf '%s\n' "$hits_bulk2" | head -25
+  VIOLATIONS=$((VIOLATIONS + count))
+fi
 
 # 3. "$E_1$-bar direction explains 2d -> 3d"
 scan 'E_1[^\\$]*bar.*(explains|gives|drives).*(2d|2-d|two-?dimensional).*(3d|3-d|three-?dimensional)' \
