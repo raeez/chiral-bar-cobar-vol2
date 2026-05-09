@@ -70,33 +70,53 @@ def degree_two_transport(source_h2: int | None, h2_phi_is_iso: bool) -> int | No
     return source_h2
 
 
-def newton_polygon_slope_denominator(k: int, h_vee: int, depth: int = 1) -> int:
+def nodal_kzb_slope(k: Fraction | int, h_vee: int) -> Fraction:
     """
-    Predicted denominator of Newton polygon slopes at a boundary
-    stratum of codimension 'depth' for KZB connection at level k
-    with dual Coxeter h_vee (theorem prediction).
+    Ordinary nodal KZB degeneration is Fuchsian.  Without an added
+    irregular formal type, the Newton slope at the node is zero.
     """
-    return (k + h_vee) ** depth
+    if Fraction(k) + h_vee == 0:
+        raise ValueError("critical level; Sugawara/KZB denominator vanishes")
+    return Fraction(0)
 
 
-def deligne_malgrange_stokes_unipotent(k: int, h_vee: int) -> bool:
+def ramified_formal_type_slopes(
+    N: int,
+    pole_orders: tuple[int, ...],
+) -> tuple[Fraction, ...]:
     """
-    Independent prediction (Deligne-Malgrange 1970/1991): Stokes
-    matrices are unipotent when the formal type has no integer
-    resonances.  For generic non-integer level k and dual Coxeter
-    h_vee, the spectrum of A_1 = Casimir/(k + h_vee) has no integer
-    differences iff k + h_vee is non-rational with bounded height,
-    i.e., for Zariski-generic k.
+    Slopes supplied by a good formal type after ramification q = t^N.
+    A term of pole order p contributes slope p/N.
     """
-    # Zariski-generic predicate: we probe at a specific irrational
-    # value by checking that k + h_vee is not a non-zero integer.
-    s = k + h_vee
-    if s == 0:
-        return False   # critical level; Sugawara undefined
-    if isinstance(s, int) and s != 0:
-        return False   # integer level can have resonances
-    # treat non-integer s as generic
-    return True
+    if N <= 0:
+        raise ValueError("ramification index must be positive")
+    if any(p <= 0 for p in pole_orders):
+        raise ValueError("pole orders must be positive")
+    return tuple(Fraction(p, N) for p in pole_orders)
+
+
+def residue_gap_ratio(
+    eigenvalue_gap: Fraction | int,
+    k: Fraction | int,
+    h_vee: int,
+) -> Fraction:
+    """
+    Resonance is governed by residue eigenvalue gaps divided by
+    k + h^\vee, not by integrality of the level itself.
+    """
+    denominator = Fraction(k) + h_vee
+    if denominator == 0:
+        raise ValueError("critical level; Sugawara/KZB denominator vanishes")
+    return Fraction(eigenvalue_gap) / denominator
+
+
+def residue_gap_is_resonant(
+    eigenvalue_gap: Fraction | int,
+    k: Fraction | int,
+    h_vee: int,
+) -> bool:
+    """Integer residue-gap ratio gives resonance."""
+    return residue_gap_ratio(eigenvalue_gap, k, h_vee).denominator == 1
 
 
 # ---------------------------------------------------------------------------
@@ -234,71 +254,49 @@ class TestCurvedDunnHigherGenus(unittest.TestCase):
     )
     def test_irregular_singular_kzb_regularity(self):
         """
-        Surrogate: probe at several non-integer levels that
-        (a) Newton polygon slopes have denominators dividing
-        (k + h_vee)^depth, (b) Stokes matrices are unipotent at
-        generic level.
+        Surrogate: ordinary nodal KZB remains Fuchsian, while
+        nonzero Newton slopes enter only after supplying a ramified
+        irregular formal type.
         """
-        # Virasoro-like: h_vee = 0 (no affine); use algebra with
-        # h_vee = 2 (sl_2 affine) as probe.
         h_vee = 2
         for k_frac in (Fraction(1, 3), Fraction(7, 5),
                        Fraction(-3, 7)):
-            s = k_frac + h_vee
-            # Slopes should be rational with denominator dividing
-            # a power of (k + h_vee); we probe that the sum is
-            # non-zero (non-critical) and non-integer (generic).
-            self.assertNotEqual(s, 0,
-                msg=f"critical level at k={k_frac}")
-            self.assertFalse(s.denominator == 1,
-                msg=f"k + h_vee at k={k_frac} should be non-integer "
-                    f"for generic Stokes unipotency")
+            self.assertEqual(nodal_kzb_slope(k_frac, h_vee), 0)
 
-            # Deligne-Malgrange: unipotent at generic level.
-            # For fractional k, k + h_vee is non-integer, so
-            # the Stokes filtration is unipotent.
-            self.assertTrue(
-                k_frac.denominator > 1,
-                msg=f"k={k_frac} should have denominator > 1 for "
-                    f"generic-level Stokes unipotency")
+        self.assertEqual(
+            ramified_formal_type_slopes(N=5, pole_orders=(2,)),
+            (Fraction(2, 5),),
+        )
+        self.assertEqual(
+            ramified_formal_type_slopes(N=6, pole_orders=(4,)),
+            (Fraction(2, 3),),
+        )
 
-    def test_newton_polygon_slope_denominator(self):
+    def test_nodal_kzb_has_slope_zero(self):
         """
-        Surrogate: slope denominator divides (k + h_vee)^depth at
-        each codimension stratum.  Integer case only (predictive
-        combinatorial check).
+        Ordinary nodal degeneration is regular singular.  Codimension
+        of the boundary stratum does not manufacture irregular slope.
         """
-        for (k, h_vee, depth, expected) in [
-            (1, 2, 1, 3),
-            (2, 2, 1, 4),
-            (0, 2, 2, 4),
-            (3, 3, 1, 6),
+        for k, h_vee in [
+            (1, 2),
+            (2, 2),
+            (0, 2),
+            (Fraction(7, 5), 3),
         ]:
-            got = newton_polygon_slope_denominator(k, h_vee, depth)
-            self.assertEqual(got, expected)
+            self.assertEqual(nodal_kzb_slope(k, h_vee), 0)
 
-    def test_stokes_unipotent_at_generic_level(self):
+    def test_residue_gap_resonance(self):
         """
-        Deligne-Malgrange criterion: Stokes matrices are unipotent
-        for generic (non-integer, non-critical) level.
+        Nonresonance is a residue-eigenvalue condition: eigenvalue
+        gaps divided by k+h^\vee must avoid integers.
         """
         h_vee = 2
-        # Critical level: excluded.
-        self.assertFalse(
-            deligne_malgrange_stokes_unipotent(-2, h_vee))
-        # Integer level: excluded (resonances possible).
-        self.assertFalse(
-            deligne_malgrange_stokes_unipotent(1, h_vee))
-        # Generic non-integer level: unipotent.  We probe at
-        # non-integer "level" by using a float-like surrogate
-        # marked by difference from integer.  For the test, we
-        # verify the predicate correctly returns False on integers
-        # and True on non-integer surrogates (we encode the latter
-        # via a wrapper below).
-        # (The actual Zariski-genericity is a measure-theoretic
-        # statement, not a finite test; the decorator's disjoint
-        # verification against Deligne-Malgrange is the substantive
-        # independent check.)
+        self.assertEqual(residue_gap_ratio(1, k=1, h_vee=h_vee), Fraction(1, 3))
+        self.assertFalse(residue_gap_is_resonant(1, k=1, h_vee=h_vee))
+        self.assertEqual(residue_gap_ratio(1, k=-1, h_vee=h_vee), Fraction(1))
+        self.assertTrue(residue_gap_is_resonant(1, k=-1, h_vee=h_vee))
+        with self.assertRaises(ValueError):
+            residue_gap_ratio(1, k=-2, h_vee=h_vee)
 
     def test_bridge_chain_map_surjective_degree_2(self):
         """

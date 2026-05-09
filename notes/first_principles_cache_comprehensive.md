@@ -11089,3 +11089,16 @@ a structural harness, not a proof source; the admitted text is the
 strongest true statement whose missing habitat, topology, map,
 obstruction class, calculation, or source fixture has actually been
 supplied.
+
+**Pattern 510 (AP2190).** Vol II can mention
+\(\mathbf H_{\Delta_5}\) only as a gated K3 comparator.  First
+principles: Vol II supplies chiral homology, Hochschild deformation
+charts, \(W\)-algebra deformation families, spectral braiding, and
+holomorphic-topological bulk-boundary grammar.  It does not supply the
+compact K3 Hall source, double, pairing, parity/root fixture,
+PBW/radical check, completion, or Borcherds--Heegner recognition needed
+to construct \(\mathbf H_{\Delta_5}\).  Therefore a legitimate Vol II
+use is a conditional K3 boundary example or recognition target; an
+illegitimate use is a native construction, classification invariant, or
+theorem source.  The repair is conditionalization plus explicit gates,
+not deletion of the K3 test case.

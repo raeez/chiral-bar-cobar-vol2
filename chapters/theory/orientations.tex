@@ -250,7 +250,7 @@ The sign is $-1$ from the outward-normal convention applied to the global radial
 
 \subsubsection{\texorpdfstring{Summary of orientation signs for $\FM_3(\C)$}{Summary of orientation signs for FM 3(C)}}
 
-\begin{proposition}[Orientation signs for $k=3$; \ClaimStatusProvedHere]
+\begin{proposition}[Orientation signs for $k=3$]
 \label{prop:orient-signs-k3}
 The orientation signs for the four codimension-1 boundary faces of $\FM_3(\C)$, relative to the standard complex orientation \eqref{eq:Omega3} and the outward-normal-first convention, are:
 \begin{center}
@@ -366,56 +366,62 @@ The Stokes identity $\sum_F \epsilon_F \int_F = 0$ is precisely the $n=3$ $A_\in
 \subsection{\texorpdfstring{General formula for $\epsilon_F$}{General formula for epsilon F}}
 \label{subsec:general-eps}
 
-The following gives the general formula for the orientation sign $\epsilon_F$ for an arbitrary collision divisor $D_S \subset \FM_k(\C)$.
+The following gives the exact local prescription for the orientation sign
+$\epsilon_F$ for an arbitrary collision divisor
+$D_S \subset \FM_k(\C)$.
 
-\begin{proposition}[General orientation sign; \ClaimStatusProvedHere]
+\begin{proposition}[General orientation sign]
 \label{prop:general-orient-sign}
 Let $S = \{s_1 < s_2 < \cdots < s_p\} \subset \{1,\ldots,k\}$ with $p = |S| \ge 2$. The collision divisor $D_S \subset \partial\FM_k(\C)$ is the locus where the points $z_{s_1},\ldots,z_{s_p}$ collide. In the difference coordinates $w_i = z_i - z_k$ for $i = 1,\ldots,k-1$, the FM blow-up replaces the collision by a radial parameter $\varepsilon_S \ge 0$ and angular/relative coordinates.
 
-The orientation sign is
+Choose a positively oriented chart
+$(y_1,\ldots,y_{2k-3})$ on the boundary stratum $D_S$ and write the
+ambient orientation form near $D_S$ as
 \begin{equation}
 \label{eq:general-eps-formula}
-\epsilon_{D_S} = (-1)^{\sigma(S)},
+\Omega_k
+=
+\varepsilon_S^{2p-3}\,
+d\varepsilon_S\wedge
+J_S(y)\,dy_1\wedge\cdots\wedge dy_{2k-3}
++O(\varepsilon_S^{2p-2}).
 \end{equation}
-\emph{Caveat:} This formula is valid for the standard FM coordinate system where the collision direction is the first coordinate; for other orderings, the Jacobian must be computed individually (see the explicit $k=3$ computations above for the definitive signs).
-
-\noindent Here $\sigma(S)$ is the number of transpositions required to move the pair $(d\varepsilon_S, d\theta_S)$ (the radial and first angular coordinate of the cluster $S$) from their natural position in the ordered basis
-\[
-dx_1,\, dy_1,\, dx_2,\, dy_2,\, \ldots,\, dx_{k-1},\, dy_{k-1}
-\]
-to the leftmost two positions, \emph{plus one} (for the outward-normal sign).
-
-Explicitly, let $q$ be the position of the first element of $S$ in the ordering $\{1,\ldots,k-1\}$ (if $k\in S$, adjust by using the coordinates relative to the cluster center). Then:
+Then, relative to the outward-normal-first convention
+\eqref{eq:outward-normal-rule}, the boundary sign is
 \begin{equation}
 \label{eq:sigma-S-formula}
-\sigma(S) = 2(q-1) + 1,
+\epsilon_{D_S}=-\operatorname{sgn}(J_S).
 \end{equation}
-where $2(q-1)$ counts the transpositions to move the radial pair past $q-1$ preceding coordinate pairs $(dx_j,dy_j)$, and the $+1$ accounts for the outward-normal sign flip.
-
-For the special cases:
-\begin{itemize}
-\item If $S = \{i,j\}$ with $i < j < k$: the collision coordinate is $w_i - w_j$, and $\sigma(S)$ depends on the position of the relative coordinate in the ordered basis. In the center-of-mass/relative decomposition, the relative coordinate replaces $w_i$, so $\sigma(S) = 2(i-1)+1$.
-\item If $S = \{i,k\}$ for some $i < k$: the collision coordinate is $w_i = z_i - z_k$ itself, so $\sigma(S) = 2(i-1)+1$.
-\item If $S = \{1,\ldots,k\}$ (total collision): $\sigma(S) = 1$ (the global radial is in the first position, with only the outward-normal sign).
-\end{itemize}
+Equivalently, the sign is the product of the Jacobian sign of the FM
+coordinate change, the parity of the transposition moving
+$d\varepsilon_S$ to the first slot, and the single outward-normal sign.
 \end{proposition}
 
 \begin{proof}
-The orientation sign is computed by expressing the ambient volume form $\Omega_k$ in terms of the radial coordinate $\varepsilon_S$, the angular coordinate $\theta_S$, and the remaining coordinates. The change of variables from $(w_{s_1},\ldots,w_{s_p})$ to $(\varepsilon_S,\theta_S, u_S, \text{relative angles})$ has positive Jacobian determinant (by the standard polar coordinate computation in $\R^{2p}$). The transposition count $2(q-1)$ moves the radial coordinate to the front, and the outward-normal convention introduces one additional sign.
+The FM chart expresses the ambient coordinates
+$(x_1,y_1,\ldots,x_{k-1},y_{k-1})$ as functions of
+$(\varepsilon_S,y_1,\ldots,y_{2k-3})$. Expanding the determinant of this
+change of variables gives \eqref{eq:general-eps-formula}; the power
+$\varepsilon_S^{2p-3}$ is the polar radial Jacobian for the relative
+configuration of the $p$ colliding points modulo scale. Since
+$\varepsilon_S$ is inward-pointing, the boundary convention is
+$\Omega_k=(-d\varepsilon_S)\wedge\Omega_{D_S}$, which contributes the
+minus sign in \eqref{eq:sigma-S-formula}. All remaining signs are
+therefore exactly the sign of the displayed Jacobian coefficient.
 \end{proof}
 
-\begin{corollary}[Pairwise collision signs for general $k$; \ClaimStatusProvedHere]
-For $k$ points in $\C$ and the pairwise collision $S = \{i,j\}$ with $1\le i < j \le k$:
-\begin{equation}
-\label{eq:pairwise-eps}
-\epsilon_{D_{\{i,j\}}} = \begin{cases}
-(-1)^{2(i-1)+1} & \text{if } j < k,\\
-(-1)^{2(i-1)+1} & \text{if } j = k,
-\end{cases}
-\end{equation}
-giving $\epsilon_{D_{\{i,j\}}} = -(-1)^{2(i-1)} = -1$ for $i$ odd and $+1$ for $i$ even... but this requires more care. The general formula depends on the specific coordinate change. In practice, one should compute the Jacobian sign for each face individually, as we did for $k=3$ above.
+\begin{corollary}[Pairwise collision signs for general $k$]
+For $k$ points in $\C$ and a pairwise collision
+$S=\{i,j\}$ with $1\le i<j\le k$, the sign
+$\epsilon_{D_{\{i,j\}}}$ is obtained by applying
+Proposition~\ref{prop:general-orient-sign} to the FM coordinate
+system in which the relative coordinate is $z_i-z_j$ and the remaining
+outer coordinates are ordered by the convention
+\ref{conv:coord-ordering}. Thus no parity formula depending only on
+$i$ is invariant under all admissible FM charts.
 
-For the $A_\infty$ applications, the relevant quantity is the \textbf{combined sign}
+For the $A_\infty$ applications, the relevant invariant is the
+\textbf{combined sign}
 \[
 \epsilon_{D_S}\cdot(-1)^{\varepsilon(s,|S|)},
 \]

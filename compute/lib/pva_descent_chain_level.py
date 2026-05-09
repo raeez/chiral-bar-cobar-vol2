@@ -279,10 +279,10 @@ def w3_pva(c_val=None):
       W_{(4)}W = 0
       W_{(3)}W = 2T
       W_{(2)}W = dT
-      W_{(1)}W = (3/10)d^2T + beta^2 * Lambda
-      W_{(0)}W = (1/15)d^3T + (beta^2/2) * dLambda
+      W_{(1)}W = (3/10)d^2T + 2 beta * Lambda
+      W_{(0)}W = (1/15)d^3T + beta * dLambda
 
-    where beta^2 = 16/(22+5c), Lambda = :TT: - (3/10)d^2T.
+    where beta = 16/(22+5c), Lambda = :TT: - (3/10)d^2T.
     """
     c = Symbol('c') if c_val is None else S(c_val)
     T = Symbol('T')
@@ -294,7 +294,9 @@ def w3_pva(c_val=None):
     Lambda = Symbol('Lambda')
     dLambda = Symbol('dLambda')
 
-    beta_sq = Rational(16, 1) / (22 + 5*c)
+    beta = Rational(16, 1) / (22 + 5*c)
+    beta_Lambda = 2 * beta
+    beta_partial_Lambda = beta
 
     brackets = {
         ('T', 'T'): LambdaBracket(
@@ -306,13 +308,13 @@ def w3_pva(c_val=None):
             source='T', target='W'
         ),
         ('W', 'T'): LambdaBracket(
-            coefficients={0: 2*W, 1: 3*W},
+            coefficients={0: 2*dW, 1: 3*W},
             source='W', target='T'
         ),
         ('W', 'W'): LambdaBracket(
             coefficients={
-                0: d3T / 15 + beta_sq * dLambda / 2,
-                1: Rational(3, 10) * d2T + beta_sq * Lambda,
+                0: d3T / 15 + beta_partial_Lambda * dLambda,
+                1: Rational(3, 10) * d2T + beta_Lambda * Lambda,
                 2: dT,
                 3: 2*T,
                 4: S.Zero,

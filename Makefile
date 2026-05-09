@@ -76,7 +76,7 @@ AUX_EXTS  := aux log out toc synctex.gz fdb_latexmk fls bbl blg \
 
 .DEFAULT_GOAL := all
 
-.PHONY: all fast clean veryclean clean-builds count check test dist release help working-notes standalone icloud verify-independence verify-independence-verbose
+.PHONY: all fast clean veryclean clean-builds count check test dist release help working-notes standalone icloud verify-independence verify-independence-verbose verify-licensing verify-licensing-report
 
 ## icloud: Copy latest PDFs to iCloud Drive (subject-organised)
 icloud: $(ICLOUD_MAIN_PREREQ) standalone
@@ -216,6 +216,14 @@ dist:
 		-x 'compute/.venv/*' \
 		>$(LOG_DIR)/dist.log 2>&1
 	@echo "  ✓  $(OUT_DIR)/Vol2Archive.zip ($$(du -h $(OUT_DIR)/Vol2Archive.zip | cut -f1))"
+
+## verify-licensing: Whole-volume Beilinson-cut sweep (17-line voice table + macro discipline + conditional-locus tags).  Exits non-zero on blocking violations.
+verify-licensing:
+	@bash scripts/verify_licensing.sh
+
+## verify-licensing-report: Same scan, report-only (always exit 0).
+verify-licensing-report:
+	@VERIFY_LICENSING_REPORT_ONLY=1 bash scripts/verify_licensing.sh
 
 ## check: Halt on first error -- use for CI or pre-commit validation.
 check:

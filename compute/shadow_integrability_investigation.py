@@ -427,12 +427,13 @@ def section_4_string_equation():
     # The shadow obstruction tower's string equation comes from the Stasheff identity
     # at arity 3 (the TERNARY operation):
     # m_2 o m_2 + m_1 o m_3 + m_3 o m_1 = 0
-    # In the scalar sector, this gives:
-    # S_3 = -S_2 o S_2 = -(c/12)^2 * ... = -c
+    # In the scalar lambda-bracket lane this constrains the c/12 divided-power
+    # coefficient.  In the Vol I shadow-Hessian lane the normalized invariants
+    # are S_2 = kappa(Vir_c) = c/2 and S_3 = 2.
 
     print(f"\nThe 'string equation' for the shadow obstruction tower:")
     print(f"  The Stasheff identity at arity 3 (the lowest nontrivial constraint)")
-    print(f"  determines S_3 = -c from S_2 = c/12.")
+    print(f"  constrains the c/12 lambda-bracket scalar; normalized shadows use S_2=c/2, S_3=2.")
     print(f"  This is the ANALOG of the L_{{-1}} Virasoro constraint (string eq).")
 
     # Compare with the matrix model spectral curve:
@@ -584,8 +585,8 @@ def section_6_isomonodromy():
     print(f"This MC equation IS the zero-curvature / integrability condition.")
 
     print(f"\nThe shadow obstruction tower coefficients S_r enter the MC element as:")
-    print(f"  r=2: S_2 = c/12  (the BPZ/KZ connection, Sugawara)")
-    print(f"  r=3: S_3 = -c    (the ternary shadow, first correction)")
+    print(f"  r=2: S_2 = c/2   (Virasoro kappa / shadow Hessian)")
+    print(f"  r=3: S_3 = 2     (normalized ternary shadow)")
     print(f"  r=4: S_4 = 10/(c(5c+22))  (quartic contact invariant)")
     print(f"  r>=5: S_r determined by the convolution recursion")
 

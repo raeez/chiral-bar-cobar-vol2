@@ -46,11 +46,13 @@ d3T = Symbol('d3T')
 # Part 1: The Virasoro m_k on the scalar lane
 # =============================================================================
 #
-# The scalar shadow coefficients S_r are the scalar parts of m_r(T,...,T)
-# evaluated at the symmetric point λ_i = λ. From the manuscript:
+# The lambda-bracket scalar coefficients are the scalar parts of
+# m_r(T,...,T) evaluated at the symmetric point λ_i = λ.  The c/12 below is
+# the divided-power coefficient T_(3)T/3!, not the Vol I shadow Hessian.
+# Normalized Virasoro shadows use S_2=kappa(Vir_c)=c/2 and S_3=2:
 #
-#   S_2 = c/12   (from {T_λ T} = ∂T + 2Tλ + (c/12)λ³)
-#   S_3 = -c     (from m_3(T,T,T) ∝ c·(spectral params))
+#   lambda scalar at r=2 = c/12   (from {T_λ T})
+#   normalized S_2 = c/2, normalized S_3 = 2
 #   S_4 = 10/[c(5c+22)]
 #   S_5 = -48/[c²(5c+22)]
 #

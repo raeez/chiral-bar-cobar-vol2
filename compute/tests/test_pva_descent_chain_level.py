@@ -510,12 +510,25 @@ class TestPVADataConsistency:
         f0e = pva.n_product('f', 'e', 0)
         assert simplify(e0f + f0e) == 0
 
-    def test_w3_beta_squared(self):
-        """W_3: beta^2 = 16/(22+5c), singular at c = -22/5."""
+    def test_w3_zamolodchikov_coefficients(self):
+        """W_3: Zamolodchikov Lambda coefficients in the WW products."""
         pva = w3_pva()
         c = Symbol('c')
         bracket_WW = pva.brackets[('W', 'W')]
-        # W_{(1)}W should involve beta^2
+        Lambda = Symbol('Lambda')
+        dLambda = Symbol('dLambda')
+        d2T = Symbol('d2T')
+        d3T = Symbol('d3T')
+        beta = Rational(16, 1) / (22 + 5*c)
+
         w1w = bracket_WW.n_product(1)
-        # This should contain 16/(22+5c) * Lambda
-        assert w1w != S.Zero
+        assert simplify(w1w - (Rational(3, 10)*d2T + 2*beta*Lambda)) == 0
+
+        w0w = bracket_WW.n_product(0)
+        assert simplify(w0w - (d3T/Rational(15, 1) + beta*dLambda)) == 0
+
+    def test_w3_skew_primary_product(self):
+        """W_3: skew symmetry gives W_{(0)}T = 2 partial W."""
+        pva = w3_pva()
+        dW = Symbol('dW')
+        assert simplify(pva.n_product('W', 'T', 0) - 2*dW) == 0

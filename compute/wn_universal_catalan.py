@@ -510,11 +510,11 @@ def three_parameter_universality():
     The Catalan structure follows from sqrt(Q) where Q is quadratic.
 
     SPECIALISATIONS:
-    (a) Virasoro: kappa = c/2, alpha = -c/6 (wait, S_3 = -c, so
-        Sh_3 = 3*S_3 = -3c, alpha_eff = Sh_3/(2*Sh_2) = -3c/(2c) = -3/2).
-        Hmm, let me re-derive.
-        Q(t) is determined by (Sh_2, Sh_3, Sh_4) = (c, -3c, 40/(c(5c+22))).
-        Wait: from the proof of thm:shadow-closed-form,
+    (a) Virasoro: kappa = S_2 = c/2 and S_3 = 2 in the Vol I
+        shadow-Hessian normalization.  The lambda-bracket coefficient c/12
+        is only T_(3)T/3!, not kappa.  The metric series is determined by
+        (Sh_2, Sh_3, Sh_4) = (c, 6, 40/(c(5c+22))).
+        From the proof of thm:shadow-closed-form,
         Sh_2 = [t^0]sqrt(Q) = sqrt(Q(0)) = c,
         Sh_3 = [t^1]sqrt(Q),
         Sh_4 = [t^2]sqrt(Q).
@@ -545,29 +545,17 @@ def three_parameter_universality():
     # Verify the reconstruction for Virasoro
     print("\n  VIRASORO RECONSTRUCTION:")
     Sh2 = c  # = 2*kappa = 2*(c/2) = c
-    Sh3 = Rational(6, 1)  # S_3 = 2, so Sh_3 = 3*S_3 = 6. Wait: S_3 = -c for Virasoro
-    # Hmm. Let me recheck.
-    # From the shadow table: S_2 = c/12, S_3 = -c. But in the shadow GENERATING
-    # FUNCTION H(t) = t^2 sqrt(Q(t)), we have [t^r]H = r*S_r for r >= 4.
-    # But S_2 = c/12 and S_3 = -c are the PHYSICAL shadows (from m_2 and m_3).
-    # The shadow metric is NOT built from S_2, S_3 directly.
-    # Instead: the shadow metric generates [t^r]H for r >= 4.
-    # The FIRST TWO terms of H are: [t^2]H = Sh_2, [t^3]H = Sh_3.
-    # From the series: H = ct^2 + 6t^3 + ...
-    # So Sh_2 = c and Sh_3 = 6.
-    # Note: S_2_phys = c/12 ≠ Sh_2/2 = c/2. The physical shadow S_2 is the
-    # HESSIAN which is c/2 for Virasoro (then S_2 in the rosetta table is c/2).
-    # Let me re-check rosetta: S_2 = c/2 (yes). And the shadow metric [t^2]H = c.
-    # So Sh_2 = 2*S_2 = c. Good.
-    # And S_3 = 2 in the rosetta table for Virasoro? No: S_3 = 2 in the rosetta
-    # (row r=3, S_3 = 2, sign +). So Sh_3 = 3*2 = 6. Good.
-    # But in 3d_gravity.tex, S_3 = -c. There's a DIFFERENT normalization!
-    # Actually in 3d_gravity, S_2 = c/12 and S_3 = -c. That's a different
-    # normalization from the rosetta S_2 = c/2 and S_3 = 2. The 3d_gravity
-    # uses the PHYSICAL normalisation (from m_2, m_3 with spectral parameters),
-    # while the rosetta uses the HESSIAN normalisation.
-    # For the shadow METRIC, the relevant data are:
-    # Sh_2 = c, Sh_3 = 6, Sh_4 = 40/(c(5c+22)).
+    Sh3 = Rational(6, 1)  # S_3 = 2, so Sh_3 = 3*S_3 = 6.
+    # Normalization lock.  The lambda-bracket coefficient is c/12 because
+    # {T_lambda T} uses divided powers: T_(3)T/3! = (c/2)/6.  The Vol I
+    # Virasoro modular characteristic and shadow Hessian are
+    # kappa(Vir_c)=S_2=c/2, not c/12.  Therefore the shadow-metric series
+    # H(t)=t^2 sqrt(Q(t)) has Sh_2=[t^2]H=c and Sh_3=[t^3]H=6.
+    # The c/12 scalar belongs to the PVA/lambda-bracket lane, not to the
+    # S_2/kappa lane.
+    # The first two terms of H are [t^2]H=Sh_2=c and [t^3]H=Sh_3=6.
+    # For the shadow metric, the relevant data are
+    # Sh_2=c, Sh_3=6, Sh_4=40/(c(5c+22)).
 
     Sh2_v = c
     Sh3_v = Rational(6, 1)

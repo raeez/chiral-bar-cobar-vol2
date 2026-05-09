@@ -1,34 +1,24 @@
-% =========================================================================
-% Vol II chapter: Gaiotto--Rapcak Y-algebras and triality as S_3-equivariance
-% of fingerprint slots, chiral QG datum, and Koszulness moduli.
-% Closes FM134: triality preserves shadow class (promoted from conjectural).
-% Created 2026-04-16.
-% =========================================================================
-
 \chapter{Gaiotto--Rapcak $Y$-algebras and the triality $S_3$}
 \label{ch:y-algebras-triality}
 
 Gaiotto--Rapcak's three-corner vertex algebras $Y_{L,M,N}^\Psi$ arise as
 boundary algebras of intersecting M5-brane corners in $\mathbb{C}^3$ with
 $\Omega$-background \cite{GaiottoRapcak2017}. Their defining feature is
-a \emph{triality} action of the symmetric group $S_3$ on the label
-$(L,M,N)$, corresponding to the Weyl symmetry of the three
+a \emph{triality} groupoid with symmetric group $S_3$ acting on the
+generic parameter space, corresponding to the Weyl symmetry of the three
 $\Omega$-background parameters $(q_1, q_2, q_3)$ subject to
-$q_1 q_2 q_3 = 1$. Metadata reports have repeatedly asserted that
-triality ``preserves the shadow class'' without a proof arrow; this
-chapter discharges that assertion at full strength. We construct an
-explicit $S_3$ action on each slot of the fingerprint
-$\varphi(A)$ (see Chapter~\ref{ch:infinite-fingerprint-classification}),
-prove its equivariance with respect to the chiral quantum group datum
-$\sQ_g^{k,f,\mu}$ (see \texttt{unified\_chiral\_quantum\_group.tex}, in
-preparation), and descend the action to a subgroup of the
-$\mathrm{GRT}_1$-torsor on the Koszulness moduli scheme
-$\mathcal{M}_{\mathrm{Kosz}}$ (see
-\texttt{koszulness\_moduli\_scheme.tex}, in preparation).
+$q_1 q_2 q_3 = 1$. We construct the induced $S_3$ action on each slot of
+the ordered-bar fingerprint $\varphi'(A)$
+(Chapter~\ref{chap:infinite-fingerprint}), prove equivariance of the
+chiral quantum group datum $\sQ_g^{k,f,\mu}$ from
+Theorem~\ref{thm:unified-chiral-QG}, and identify the induced finite
+symmetry of the Koszulness moduli scheme
+$M_{\mathrm{Kosz}}$ (Chapter~\ref{chap:koszulness-moduli}).
 
-Throughout we work with the universal $Y_{L,M,N}^\Psi$ at generic
-$\Psi$; the degenerate locus $L=M=N$ is treated as a caveat theorem at
-the end.
+Throughout we work on the generic locus of the universal
+$Y_{L,M,N}^{\Psi}$ family on which the Gaiotto--Rapcak triality
+isomorphisms are defined. Diagonal stabilisers and special
+$\Psi$-values are treated at the end.
 
 \section{Setup: $Y_{L,M,N}^\Psi$ from three-corner M5 branes}
 \label{sec:y-algebra-setup}
@@ -65,11 +55,21 @@ Gaiotto--Rapcak parametrisation (see
 
 \begin{definition}[Triality action]
 \label{def:triality-S3}
-The \emph{triality} action is the permutation action
-$\sigma \in S_3$ on the label $(L,M,N) \mapsto \sigma(L,M,N)$,
-accompanied by the Weyl-permutation
-$(q_1, q_2, q_3) \mapsto \sigma(q_1, q_2, q_3)$ of the
-$\Omega$-background torus.
+The \emph{triality} action is the Gaiotto--Rapcak--Creutzig--Linshaw
+$S_3$-action on the generic parameter space:
+\[
+  \sigma\cdot(L,M,N,\Psi)=(L_\sigma,M_\sigma,N_\sigma,\Psi_\sigma),
+  \qquad \sigma\in S_3 .
+\]
+It permutes the three corners and applies the corresponding birational
+change of level parameter, equivalently the Weyl permutation
+$(q_1,q_2,q_3)\mapsto\sigma(q_1,q_2,q_3)$ of the $\Omega$-background
+torus. We write
+\[
+  Y_{\sigma\cdot(L,M,N,\Psi)}
+  :=
+  Y_{L_\sigma,M_\sigma,N_\sigma}^{\Psi_\sigma}.
+\]
 \end{definition}
 
 \begin{remark}[$S_3$ is algebra-specific, not operadic]
@@ -93,7 +93,7 @@ Chapter~\ref{ch:chiral-higher-deligne}.
 
 Every appearance of ``triality preserves $X$'' below is backed by an
 explicit arrow $\sigma: X(Y_{L,M,N}^\Psi) \xrightarrow{\sim}
-X(Y_{\sigma(L,M,N)}^\Psi)$; the arrow is the content of the
+X(Y_{\sigma\cdot(L,M,N,\Psi)})$; the arrow is the content of the
 preservation claim.
 \end{remark}
 
@@ -148,33 +148,36 @@ boundary.
 \section{Triality preserves the fingerprint}
 \label{sec:triality-fingerprint}
 
-Chapter~\ref{ch:infinite-fingerprint-classification}
-(see \texttt{infinite\_fingerprint\_classification.tex}, Vol.~I, in
-preparation) defines the canonical fingerprint
-$\varphi(A) = (p_{\max}, r_{\max}, \chi_{\mathrm{VOA}}, n_{\mathrm{strong}}, \mathrm{coset})$
-for a chirally Koszul algebra $A$. The main theorem of this chapter
-is:
+Chapter~\ref{chap:infinite-fingerprint} defines the canonical
+ordered-bar fingerprint
+\[
+\varphi'(A) =
+(p_{\max}, r_{\max}, \chi_{\mathrm{VOA}},
+n_{\mathrm{strong}}, \mathrm{coset}, \kappa_{\mathrm{ch}})
+\]
+for a chirally Koszul algebra $A$. The main theorem of this chapter is:
 
 \begin{theorem}[Triality preserves the fingerprint]
 \label{thm:triality-preserves-fingerprint}
-\ClaimStatusProvedHere
 For all $\sigma \in S_3$ and all generic $(L,M,N,\Psi)$,
 \[
-\varphi\bigl(Y_{\sigma(L,M,N)}^\Psi\bigr)
+\varphi'\bigl(Y_{\sigma\cdot(L,M,N,\Psi)}\bigr)
 \;=\;
-\varphi\bigl(Y_{L,M,N}^\Psi\bigr).
+\varphi'\bigl(Y_{L,M,N}^\Psi\bigr).
 \]
 In particular, triality preserves every coordinate of the
 fingerprint:
 (a) pole order $p_{\max}$; (b) shadow depth $r_{\max}$ (hence
 shadow class $\in \{G, L, C, M, FF\}$); (c) VOA character
 $\chi_{\mathrm{VOA}}$; (d) minimal strong-generator count
-$n_{\mathrm{strong}}$; (e) commutant coset class.
+$n_{\mathrm{strong}}$; (e) commutant coset class;
+(f) $\kappa_{\mathrm{ch}}$.
 \end{theorem}
 
 \begin{proof}
 We prove each slot separately. Throughout, let
-$A = Y_{L,M,N}^\Psi$ and $A^\sigma = Y_{\sigma(L,M,N)}^\Psi$;
+$A = Y_{L,M,N}^\Psi$ and
+$A^\sigma = Y_{\sigma\cdot(L,M,N,\Psi)}$;
 by Proposition~\ref{prop:strong-generators-s3} there is an
 $S_3$-equivariant isomorphism of the underlying graded vector spaces
 $\sigma_*: A \to A^\sigma$ preserving conformal weight and PBW
@@ -198,7 +201,7 @@ $\{S_r\}_{r \ge 2}$ is extracted from the bar complex
 $B^{\mathrm{ord}}(A) = T^c(s^{-1}\bar A)$ with deconcatenation
 coproduct, via the Volume~I recursion
 $S_r = \operatorname{Res}^{\mathrm{coll}}_{0,r}(\Theta_A)$
-(Vol.~I, Theorem~\texttt{V1-thm:mc2-bar-intrinsic}). Since the bar
+(Vol.~I, Theorem~\ref*{V1-thm:mc2-bar-intrinsic}). Since the bar
 complex depends \emph{only} on the augmented vertex algebra
 structure (OPE data + vacuum + translation) and $\sigma_*$ is an
 OPE-preserving vertex algebra isomorphism by (a), we have
@@ -212,19 +215,11 @@ $r_{\max}(A^\sigma) = r_{\max}(A)$, and the shadow class
 \smallskip
 \emph{(c) VOA character.} The graded character
 $\chi_{\mathrm{VOA}}(q) = \tr_A q^{L_0 - c/24}$
-is determined by the $L_0$-grading, which is preserved by $\sigma_*$
-(Proposition~\ref{prop:strong-generators-s3}\,(i)). Central charge
-$c(Y_{L,M,N}^\Psi)$ is a symmetric function of $(L,M,N,\Psi)$ by
-Proposition~6.1 of \cite{GaiottoRapcak2017}:
-\begin{equation}
-\label{eq:y-algebra-central-charge}
-c(Y_{L,M,N}^\Psi) \;=\; -(L+M+N) \;-\; \frac{\bigl(L\Psi + M(\Psi-1) + N\bigr)
- \bigl(M\Psi + N(\Psi-1) + L\bigr)\bigl(N\Psi + L(\Psi-1) + M\bigr)}
- {\Psi(\Psi-1)} \cdot \frac{1}{\Psi(\Psi-1)}.
-\end{equation}
-(The prefactor is manifestly $S_3$-symmetric in the three
-bracketed linear forms.) Hence $c$ is invariant, and
-$\chi_{\mathrm{VOA}}(q)$ is preserved.
+is determined by the conformal vector and the $L_0$-grading, which are
+preserved by the triality isomorphism
+(Proposition~\ref{prop:strong-generators-s3}\,(i) and
+\cite{CreutzigLinshaw2019}). Hence the central charge is invariant
+and $\chi_{\mathrm{VOA}}(q)$ is preserved.
 
 \smallskip
 \emph{(d) Minimal strong-generator count $n_{\mathrm{strong}}$.}
@@ -242,23 +237,30 @@ the coset class in
 $\pi_0(\mathbf{Coset})$.
 
 \smallskip
-Combining (a)-(e) with
+\emph{(f) Chiral curvature $\kappa_{\mathrm{ch}}$.}
+On the affine branch $\{L=0\}$ and its triality images,
+$\kappa_{\mathrm{ch}}(Y)=c(Y)/2$ by the Vol.~I landscape formula for
+affine chiral algebras. On the interior, the Drinfeld--Sokolov
+construction transports this scalar through the same conformal vector
+and BRST complex. Since triality is an isomorphism of conformal vertex
+algebras, the central charge and the transported DS scalar agree on
+$A$ and $A^\sigma$.
+
+\smallskip
+Combining (a)-(f) with
 the product decomposition
-$\varphi(A) = (p_{\max}, r_{\max}, \chi_{\mathrm{VOA}},
-n_{\mathrm{strong}}, \mathrm{coset})$
+\[
+\varphi'(A) = (p_{\max}, r_{\max}, \chi_{\mathrm{VOA}},
+n_{\mathrm{strong}}, \mathrm{coset}, \kappa_{\mathrm{ch}})
+\]
 gives the theorem.
 \end{proof}
 
 \begin{corollary}[Triality preservation of shadow class]
-\label{cor:FM134-healed}
-\ClaimStatusProvedHere
+\label{cor:triality-shadow-class}
 The Gaiotto--Rapcak triality preserves shadow class for all
-generic $(L,M,N,\Psi)$, not merely for small $(L,M,N)$. The
-generic triality assertion is a theorem via
-Theorem~\ref{thm:triality-preserves-fingerprint}\,(b), and is
-recorded in
-$\texttt{compute/tests/test\_triality\_y\_algebra.py}$ with three
-HZ-IV disjoint verification sources.
+generic $(L,M,N,\Psi)$. This is exactly
+Theorem~\ref{thm:triality-preserves-fingerprint}\,(b).
 \end{corollary}
 
 \section{Triality equivariance of $\kappa_{\mathrm{ch}}$}
@@ -266,26 +268,17 @@ HZ-IV disjoint verification sources.
 
 \begin{theorem}[Triality preserves $\kappa_{\mathrm{ch}}$]
 \label{thm:triality-preserves-kappa}
-\ClaimStatusProvedHere
 For all $\sigma \in S_3$ and all generic $(L,M,N,\Psi)$,
 \[
-\kappa_{\mathrm{ch}}\bigl(Y_{\sigma(L,M,N)}^\Psi\bigr)
+\kappa_{\mathrm{ch}}\bigl(Y_{\sigma\cdot(L,M,N,\Psi)}\bigr)
 \;=\;
 \kappa_{\mathrm{ch}}\bigl(Y_{L,M,N}^\Psi\bigr).
 \]
 \end{theorem}
 
 \begin{proof}
-By Vol.~I landscape census (formula C3 for affine and its DS
-descent), $\kappa_{\mathrm{ch}}(Y_{L,M,N}^\Psi) = c(Y_{L,M,N}^\Psi)/2$
-on the affine branch $\{L=0\}$ or its $S_3$-images
-$\{M=0\}, \{N=0\}$, and equals the DS-image of this formula on the
-interior. In both cases $\kappa_{\mathrm{ch}}$ is a rational
-function of the central charge $c$. By
-Equation~\eqref{eq:y-algebra-central-charge} (Proposition~6.1 of
-\cite{GaiottoRapcak2017}, restated), $c$ is manifestly
-$S_3$-symmetric in $(L,M,N)$ at fixed $\Psi$. Hence
-$\kappa_{\mathrm{ch}}$ is $S_3$-invariant.
+This is the sixth coordinate of
+Theorem~\ref{thm:triality-preserves-fingerprint}.
 \end{proof}
 
 \begin{remark}[Subscript convention on $\kappa$]
@@ -301,10 +294,9 @@ enhancements (Volume~III Chapter~\texttt{V3-ch:cy-to-chiral-functor}).
 \section{Triality lifts to the chiral QG datum}
 \label{sec:triality-chiral-qg}
 
-The manuscript's unified chiral quantum group theorem (see
-\texttt{chapters/connections/unified\_chiral\_quantum\_group.tex},
-in preparation) constructs for each chiral Koszul algebra $A$ in
-the standard landscape a datum
+The unified chiral quantum group theorem
+(Theorem~\ref{thm:unified-chiral-QG}) constructs for each chiral
+Koszul algebra $A$ in the standard landscape a datum
 \(
 \sQ(A) \;=\; \bigl(A,\, \Delta_z,\, R(z),\, \epsilon,\, S\bigr).
 \)
@@ -313,16 +305,16 @@ $\sQ(Y_{L,M,N}^\Psi)$. Triality lifts:
 
 \begin{theorem}[$\sQ$ is $S_3$-equivariant]
 \label{thm:triality-lifts-to-chiral-qg}
-\ClaimStatusProvedHere
-The assignment $(L,M,N) \mapsto \sQ(Y_{L,M,N}^\Psi)$ is
+The assignment $(L,M,N,\Psi) \mapsto \sQ(Y_{L,M,N}^\Psi)$ is
 $S_3$-equivariant: for every $\sigma \in S_3$, the isomorphism
-$\sigma_*: Y_{L,M,N}^\Psi \xrightarrow{\sim} Y_{\sigma(L,M,N)}^\Psi$
+$\sigma_*: Y_{L,M,N}^\Psi \xrightarrow{\sim}
+Y_{\sigma\cdot(L,M,N,\Psi)}$
 from Proposition~\ref{prop:strong-generators-s3} extends uniquely
 to an isomorphism of chiral QG data,
 \[
 \sigma_*:\; \sQ\bigl(Y_{L,M,N}^\Psi\bigr)
 \;\xrightarrow{\sim}\;
-\sQ\bigl(Y_{\sigma(L,M,N)}^\Psi\bigr),
+\sQ\bigl(Y_{\sigma\cdot(L,M,N,\Psi)}\bigr),
 \]
 preserving spectral coproduct $\Delta_z$, spectral $R$-matrix
 $R(z)$, counit $\epsilon$, and antipode $S$.
@@ -378,37 +370,50 @@ $\mathfrak{gl}_{L+M+N}$ preserving the three-block partition.
 \section{Descent to Koszulness moduli and GRT$_1$}
 \label{sec:triality-koszulness-moduli}
 
-Chapter~\ref{ch:koszulness-moduli-scheme} (see
-\texttt{koszulness\_moduli\_scheme.tex}, in preparation)
-constructs a GRT$_1$-equivariant moduli scheme
-$\mathcal{M}_{\mathrm{Kosz}}(A)$ of Koszulness characterisations.
-Triality descends:
+Chapter~\ref{chap:koszulness-moduli} constructs a
+GRT$_1$-equivariant moduli scheme
+$M_{\mathrm{Kosz}}(A)$ of Koszulness characterisations. Triality
+acts on this scheme by functorial transport of Koszul-duality data.
 
-\begin{corollary}[triality as a finite subgroup of GRT$_1$]
-\label{cor:triality-sub-grt1}
-\ClaimStatusProvedHere
-Under the inclusion
-$\iota: S_3 \hookrightarrow \mathrm{GRT}_1(\bQ)$ realising the
-three-corner Weyl permutation as the cyclic-plus-transposition
-subgroup generated by the three three-torsion associator involutions
-\cite[\S11]{Willwacher2014}, the $S_3$-action on
-$Y_{L,M,N}^\Psi$ descends to a closed-subscheme action on
-$\mathcal{M}_{\mathrm{Kosz}}(Y_{L,M,N}^\Psi)$. The fixed-locus stratum
-$\mathcal{M}_{\mathrm{Kosz}}^{S_3}$ is the common chart on which
-triality is manifest, and contains the $\Phi_{\mathrm{KZ}}$ chart.
+\begin{corollary}[triality normalises the Koszulness moduli action]
+\label{cor:triality-normalizes-mkosz}
+For every generic $Y_{L,M,N}^{\Psi}$ and every $\sigma\in S_3$, the
+triality isomorphism
+\[
+\sigma_*:Y_{L,M,N}^{\Psi}\xrightarrow{\sim}
+Y_{\sigma\cdot(L,M,N,\Psi)}
+\]
+induces an isomorphism of GRT$_1$-torsors
+\[
+\sigma_*:
+M_{\mathrm{Kosz}}\!\bigl(Y_{L,M,N}^{\Psi}\bigr)
+\xrightarrow{\sim}
+M_{\mathrm{Kosz}}\!\bigl(Y_{\sigma\cdot(L,M,N,\Psi)}\bigr).
+\]
+On a stabiliser stratum, this gives an invariant-subscheme action of the
+finite stabiliser $S_3(L,M,N,\Psi)\subset S_3$ on
+$M_{\mathrm{Kosz}}(Y_{L,M,N}^{\Psi})$. This finite symmetry is external
+to $\mathrm{GRT}_1$: since $\mathrm{GRT}_1$ is prounipotent over
+$\mathbb Q$, every finite subgroup of $\mathrm{GRT}_1(\mathbb Q)$ is
+trivial.
 \end{corollary}
 
 \begin{proof}
-The embedding $\iota: S_3 \hookrightarrow \mathrm{GRT}_1(\bQ)$ is
-Willwacher's \cite[Prop.~11.3]{Willwacher2014}: three-torsion
-elements in $\mathrm{GRT}_1(\bQ)$ generate a copy of $S_3$ via the
-pentagon relation. Pulling back along
-$\mathrm{GRT}_1 \curvearrowright \mathcal{M}_{\mathrm{Kosz}}$
-(Chapter~\ref{ch:koszulness-moduli-scheme}) gives the $S_3$-action;
-equivariance with the triality on labels follows from the
-identification of the three-corner symmetry with the three-box
-partition of $\mathfrak{gl}_{L+M+N}$ (Corollary~\ref{cor:triality-unified-Q})
-and the $\mathrm{GRT}_1$-equivariance of the chart atlas.
+A point of $M_{\mathrm{Kosz}}(A)$ is a Koszul-duality datum
+$(A,A^!,\Phi)$ with an associator coordinate. Applying $\sigma_*$ to
+the algebra and the bar complex gives
+\[
+(A,A^!,\Phi)\longmapsto
+(A^\sigma,(A^\sigma)^!,\Phi).
+\]
+The associator coordinate is unchanged, so this transport commutes with
+the GRT$_1$ action on associators. If $\sigma$ fixes the parameter, the
+same construction is an automorphism of the fibre, and the stabiliser
+acts on the corresponding fixed subscheme. Finally, a finite subgroup
+of a prounipotent group over a characteristic-zero field is trivial:
+after embedding into a unipotent matrix group, every finite-order
+unipotent element has all eigenvalues equal to $1$ and logarithm zero,
+hence is the identity.
 \end{proof}
 
 \section{Caveat: degenerate loci}
@@ -416,11 +421,9 @@ and the $\mathrm{GRT}_1$-equivariance of the chart atlas.
 
 \begin{theorem}[accidental enhancements at degenerate loci]
 \label{thm:triality-obstruction-non-generic}
-\ClaimStatusProvedHere
 Let $\Delta \subset \bZ_{\ge 0}^3 \times \bC$ be the union of the
-three diagonals $\{L = M\}, \{M = N\}, \{L = N\}$ together with the
-special $\Psi$-values
-$\{\Psi = 1, \Psi = 0, \Psi \to \infty\}$. Then:
+three diagonals $\{L = M\}, \{M = N\}, \{L = N\}$ and the poles or
+cusps of the level parameter. Then:
 \begin{enumerate}
 \item[(i)] For $(L,M,N,\Psi) \notin \Delta$ (generic locus), the
  $S_3$-action on $\sQ(Y_{L,M,N}^\Psi)$ is \emph{free}: no
@@ -436,13 +439,12 @@ $\{\Psi = 1, \Psi = 0, \Psi \to \infty\}$. Then:
  outer $S_3$-automorphism; the invariant subalgebra
  $\bigl(Y_{L,L,L}^\Psi\bigr)^{S_3}$ is a diagonal coset and is a
  proper subalgebra.
-\item[(iv)] At $\Psi \in \{0, 1\}$ the algebra degenerates
- ($\Psi = 0$: infinite level; $\Psi = 1$: free-boson limit); the
+\item[(iv)] At a pole or cusp of $\Psi$ the algebra degenerates; the
  fingerprint still coincides across $S_3$-orbits (by
  Theorem~\ref{thm:triality-preserves-fingerprint}, which holds at
- every $\Psi$ where $Y_{L,M,N}^\Psi$ is defined), but the
- chiral QG datum $\sQ$ acquires extra isomorphisms that enlarge
- the stabiliser beyond $S_3$.
+ every parameter where $Y_{L,M,N}^\Psi$ is defined), and the
+ chiral QG datum $\sQ$ acquires the extra automorphisms of the
+ limiting free-field or infinite-level model.
 \end{enumerate}
 \end{theorem}
 
@@ -458,52 +460,28 @@ invariant-polynomial subalgebra under the corner-permutation action
 on three equal-size Young tableaux; the quotient is the corresponding
 diagonal coset (a known construction
 \cite{ProchazkRapcak2018}).
-(iv) at $\Psi = 1$ is the classical free-boson limit where
-three corners collapse to a single $U(1)^3$ lattice VOA with $S_3$
-symmetry enhancement; at $\Psi = 0$ the infinite-level limit has
-$S_3$ extended by a continuous-parameter automorphism group.
+(iv) follows from the standard free-field and infinite-level
+descriptions of the corner construction: in either limit the screening
+complex drops rank, so the automorphism group contains the corner
+permutation group and the automorphisms of the limiting free fields.
 \end{proof}
 
-\section{Summary and downstream}
+\section{Consequences}
 \label{sec:triality-summary}
 
-Triality preserves the fingerprint unconditionally on the generic locus,
-with degenerate-locus caveats made precise in
-Theorem~\ref{thm:triality-obstruction-non-generic}. The HZ-IV
-independent-verification decorator at
-$\texttt{compute/tests/test\_triality\_y\_algebra.py}$ cites three
-disjoint verification sources: Gaiotto--Rapcak (construction),
-Prochazka--Rapcak (corner decomposition), and Litvinov--Spodyneiko
-(OPE cross-check). The decorator is DISJOINT by
-construction: the central-charge formula (A) is derived from the
-M5-brane corner partition function; it is verified against (B) the
-Coulomb-branch decomposition under different screening charges and
-(C) a direct OPE computation in the screening realisation; three
-independently executable paths.
-
-In the sequel:
+Triality preserves the ordered-bar fingerprint on the generic locus,
+and the stabiliser stratification is governed by
+Theorem~\ref{thm:triality-obstruction-non-generic}. The same arrows
+give the following uses.
 \begin{itemize}
 \item Chapter~\ref{ch:dnp-identification-master} uses
  Theorem~\ref{thm:triality-preserves-fingerprint}\,(b) to
  $S_3$-orbit the seven-face star.
-\item Chapter~\ref{ch:chiral-higher-deligne} (in
- \texttt{hochschild.tex}) uses
+\item Chapter~\ref{ch:chiral-higher-deligne} uses
  Theorem~\ref{thm:triality-lifts-to-chiral-qg} to lift triality
  to $Z^{\mathrm{der}}_{\mathrm{ch}}(Y_{L,M,N}^\Psi)$ as an
  $S_3$-action on the $E_3$-topological bulk.
-\item Chapter~\ref{ch:koszulness-moduli-scheme}'s
- $\mathrm{GRT}_1$-torsor action restricts to the $S_3$
- three-torsion subgroup per Corollary~\ref{cor:triality-sub-grt1}.
+\item Chapter~\ref{chap:koszulness-moduli}'s
+ $\mathrm{GRT}_1$-torsor is normalised by the external triality
+ symmetry in Corollary~\ref{cor:triality-normalizes-mkosz}.
 \end{itemize}
-
-FM134 closed. The sketch ``CONJECTURAL: triality preserves shadow
-class'' is superseded.
-
-% =========================================================================
-% End of chapter. Bibliography entries required (append to main.bib if
-% missing): GaiottoRapcak2017 (arXiv:1703.00982); ProchazkRapcak2018
-% (arXiv:1711.06888); CreutzigLinshaw2019 (arXiv:1607.08517);
-% CostelloGaiotto2018 (arXiv:1810.01970); GaberdielGopakumar2012
-% (arXiv:1207.6646); Willwacher2014 (arXiv:1009.1654);
-% LitvinovSpodyneiko2019 (arXiv:1804.09293).
-% =========================================================================

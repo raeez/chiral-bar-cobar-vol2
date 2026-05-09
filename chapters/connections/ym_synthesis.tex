@@ -2,16 +2,11 @@
 \providecommand{\cB}{\mathcal{B}}
 \providecommand{\Barch}{\overline{B}^{\mathrm{ch}}}
 
-% Master synthesis package for the Yang--Mills / bar-cobar / W-boundary / instanton / IR program.
-% This file is designed as a single integration-ready module collecting and harmonizing all
-% theorem packages produced in the current thread.
-% Suggested insertion point: after Chapter 31 or as a dedicated appendix / research note.
 
-\section{Toward the platonic ideal: twisted and untwisted Yang--Mills through bar--cobar, higher operations, instantons, and the infrared}
-% label removed: sec:ym-platonic-ideal-synthesis
+\section{Yang--Mills boundary-to-infrared synthesis}
 
-\begin{summary}[Deep essential]
-The whole programme can be organized around a single chain of ideas:
+\begin{summary}[Boundary-to-infrared chain]
+The synthesis is the following chain of reductions and bridge data:
 \[
 \text{boundary chiral algebra}
 \longrightarrow
@@ -25,15 +20,14 @@ The whole programme can be organized around a single chain of ideas:
 \longrightarrow
 \text{screening Laplacian}
 \longrightarrow
-\text{conditional mass gap}.
+\text{mass-gap theorem under bridge data}.
 \]
-The first four arrows are internal to the mathematics below.
-The passage from the visible defect category to untwisted Yang--Mills dynamics remains conditional:
-it reduces to constructing a natural untwisting bridge datum and verifying a screening domination estimate.
+The arrows through the screening Laplacian are algebraic or Hilbert-theoretic constructions below.
+The last arrow is a theorem for an untwisting bridge datum whose Hamiltonian satisfies the stated
+quadratic-form domination estimate.
 \end{summary}
 
-\begin{theorem}[Grand synthesis principle; \ClaimStatusConditional]
-% label removed: thm:grand-synthesis-principle
+\begin{theorem}[Grand synthesis bridge theorem]
 Fix a smooth projective curve $X$ and a screened instanton-completed boundary simplex built from
 Koszul-admissible twisted Yang--Mills boundary data.
 Then:
@@ -42,47 +36,49 @@ Then:
 \item every genuine higher-body visible coupling is dual to a higher \v{C}ech class of visible centers;
 \item every screened asymptotic defect sector is killed by central localization, and only the vacuum sector
 survives whenever the visible center is scalar and all nontrivial simples are screened;
-\item every Hilbert-screening bridge datum upgrades the visible-center collapse to a concrete spectral-gap criterion,
-and a domination estimate for the untwisted Hamiltonian implies a positive mass gap.
+\item every untwisting bridge datum whose screening operators satisfy
+\[
+\sum_i S_i^*S_i\ge \mu^2(1-P_0)
+\]
+and whose Yang--Mills Hamiltonian satisfies
+\[
+H_{\mathrm{YM}}\ge \alpha L_{\mathrm{scr}}
+\]
+on the vacuum complement has
+\[
+\operatorname{Spec}(H_{\mathrm{YM}})\cap (0,\alpha\mu^2)=\varnothing.
+\]
 \end{enumerate}
 \end{theorem}
 
 \begin{proof}
-Item (i) is the instanton-completed and screened tangent-to-center package.
-Item (ii) is the screened higher-body \v{C}ech duality theorem.
-Item (iii) is the central localization criterion for confinement.
-Item (iv) is the screening Hodge theorem together with the conditional mass-gap transfer theorem.
+Item~(i) is the instanton-completed and screened tangent-to-center package.
+Item~(ii) is the screened higher-body \v{C}ech duality theorem.
+Item~(iii) is the central localization criterion for confinement.
+Item~(iv) is the screening Hodge theorem together with the mass-gap transfer theorem for bridge data.
 \end{proof}
 
-\begin{remark}[Status stratification]
-The mathematics in this synthesis splits into three strata.
+\begin{remark}[Boundary and bridge data]
+The synthesis separates three kinds of data.
 \begin{enumerate}[label=(\alph*)]
-\item \emph{Proved here:} boundary BRST recovery, tangent-to-center, central formality,
+\item \emph{Algebraic core:} boundary BRST recovery, tangent-to-center, central formality,
 relative derived centers, higher-body \v{C}ech duality, instanton completion, screening quotients,
 visible defect localization, screening Hodge theory, and bounded-error gap stability.
-\item \emph{Conditional:} the realization of the dual algebra as the full physical defect algebra,
-and the existence of a natural Hilbert-screening bridge for untwisted four-dimensional Yang--Mills.
-\item \emph{Conjectural frontier:} a canonical instanton-completed bulk dual, a full untwisting equivalence,
-and a proof that the untwisted Hamiltonian is dominated by the screening Laplacian with positive constant.
+\item \emph{Defect-realization data:} a functor from the localized dual-module category to the
+physical line-operator category, identifying the vacuum object and carrying screened modules to invisible sectors.
+\item \emph{Untwisting domination data:} a Hilbert-screening datum, a closed realization of the
+gauge-invariant Hilbert space, a nonnegative self-adjoint Hamiltonian $H_{\mathrm{YM}}$, and positive
+constants $\alpha,\mu$ satisfying the screening gap and domination inequalities.
 \end{enumerate}
 \end{remark}
 
 
-% ===== Begin twisted_ym_boundary_package_v2.tex =====
-% Insertion note.
-% Place this block immediately after Remark~\ref{rem:PW-connection}
-% in chapters/connections/holomorphic_topological.tex.
-% In the current build, the first new theorem-like item will compile as 31.1.11.
-%
-% A second optional insertion point for the frontier conjectures is after
-% Conjecture~\ref{conj:agt-bar-cobar}; if kept here, the cross-references still compile.
 
 \subsection{Twisted Yang--Mills boundary package}
-% label removed: subsec:twisted-ym-boundary-package
 
-\begin{summary}[Programme]
-The role of the present subsection is to isolate the mathematically controlled input from
-holomorphic-topological Yang--Mills theory that enters the bar-cobar framework.
+\begin{summary}[Boundary algebra input]
+Holomorphic-topological Yang--Mills theory enters the bar-cobar framework through a
+Koszul-admissible boundary chiral algebra.
 
 \begin{enumerate}[label=(\roman*)]
 \item \emph{Twisted Yang--Mills input.} Start with a holomorphic-topological twist whose
@@ -93,13 +89,12 @@ boundary envelope.
 envelope for geometric and derived statements.
 \item \emph{Line-operator category.} Interpret the Koszul dual as the algebra governing defects
 and line operators whenever such an identification is available.
-\item \emph{AGT/holography outputs.} Treat AGT and twisted holography as downstream outputs of
-the same boundary package, with precise algebraic content and clearly separated conjectural input.
+\item \emph{AGT/holography outputs.} Treat AGT and twisted holography as downstream comparison
+maps out of the same boundary package.
 \end{enumerate}
 \end{summary}
 
 \begin{definition}[Koszul-admissible twisted Yang--Mills boundary datum]
-% label removed: def:twisted-ym-boundary-datum
 Let $X$ be a smooth projective curve. A \emph{Koszul-admissible twisted Yang--Mills boundary datum}
 on $X$ consists of:
 \begin{enumerate}[label=(\roman*)]
@@ -114,7 +109,6 @@ Kac--Moody or principal $\mathcal{W}$-algebra boundary conditions.
 \end{definition}
 
 \begin{notation}[Open sector, bulk shadow, and tangent space]
-% label removed: not:twisted-ym-boundary-objects
 For a Koszul-admissible twisted Yang--Mills boundary datum $(X,\mathcal{T},\cB)$, set
 \[
 \mathsf{Open}_{\cB} := \barBch(\cA_{\cB}),
@@ -127,8 +121,7 @@ We call $\mathsf{Open}_{\cB}$ the \emph{open boundary complex}, $\mathsf{Bulk}^{
 \emph{dual bulk shadow}, and $T^1_X(\cB)$ the \emph{first-order boundary deformation space}.
 \end{notation}
 
-\begin{theorem}[Boundary BRST recovery for twisted Yang--Mills data; \ClaimStatusProvedHere]
-% label removed: thm:twisted-ym-boundary-brst
+\begin{theorem}[Boundary BRST recovery for twisted Yang--Mills data]
 Let $(X,\mathcal{T},\cB)$ be a Koszul-admissible twisted Yang--Mills boundary datum.
 Then:
 \begin{enumerate}[label=(\alph*)]
@@ -152,8 +145,7 @@ $\barBch(\cA_{\cB}) \simeq C^{\frac{\infty}{2}+\bullet}(\cA_{\cB})$. The Verdier
 Theorem~\ref*{V1-thm:verdier-bar-cobar} specialized to $\cA_{\cB}$.
 \end{proof}
 
-\begin{theorem}[Tangent-to-center principle; \ClaimStatusProvedHere]
-% label removed: thm:twisted-ym-tangent-center
+\begin{theorem}[Tangent-to-center principle]
 For every Koszul-admissible twisted Yang--Mills boundary datum on a smooth projective
 curve $X$, there is a canonical isomorphism
 \[
@@ -171,8 +163,7 @@ Apply Corollary~\ref*{V1-cor:def-obs-exchange-genus0} to the Koszul pair
 $(\cA_{\cB}, \cA_{\cB}^!)$.
 \end{proof}
 
-\begin{corollary}[Center-vanishing rigidity criterion; \ClaimStatusProvedHere]
-% label removed: cor:twisted-ym-center-rigidity
+\begin{corollary}[Center-vanishing rigidity criterion]
 If $Z(\cA_{\cB}^!) = 0$, then $HH^2_{\mathrm{chiral}}(\cA_{\cB}) = 0$.
 Hence the boundary condition $\cB$ is infinitesimally rigid.
 \end{corollary}
@@ -181,8 +172,7 @@ Hence the boundary condition $\cB$ is infinitesimally rigid.
 Immediate from Theorem~\ref{thm:twisted-ym-tangent-center}.
 \end{proof}
 
-\begin{corollary}[One-parameter criterion; \ClaimStatusProvedHere]
-% label removed: cor:twisted-ym-one-parameter
+\begin{corollary}[One-parameter criterion]
 If $\dim Z(\cA_{\cB}^!) = 1$, then $\dim HH^2_{\mathrm{chiral}}(\cA_{\cB}) = 1$.
 Thus the boundary theory has a unique first-order coupling up to scale.
 \end{corollary}
@@ -192,7 +182,6 @@ Again apply Theorem~\ref{thm:twisted-ym-tangent-center}.
 \end{proof}
 
 \begin{definition}[Boundary-changing morphism]
-% label removed: def:twisted-ym-boundary-morphism
 A \emph{boundary-changing morphism}
 $f \colon (X,\mathcal{T},\cB) \to (X,\mathcal{T},\cB')$
 is a morphism of boundary conditions that induces a morphism of chiral envelopes
@@ -203,8 +192,7 @@ Let $\mathsf{KBdy}_{\mathrm{YM}}(X)$ denote the resulting category of Koszul-adm
 boundary data on~$X$.
 \end{definition}
 
-\begin{theorem}[The tangent functor factors through the dual center; \ClaimStatusProvedHere]
-% label removed: thm:twisted-ym-tangent-factors-through-center
+\begin{theorem}[The tangent functor factors through the dual center]
 The assignment
 \[
 T^1_X \colon \mathsf{KBdy}_{\mathrm{YM}}(X) \longrightarrow \Vect,
@@ -233,8 +221,7 @@ twisted Yang--Mills boundary data are taken at generic level; the critical-level
 the scope of this functoriality argument.
 \end{proof}
 
-\begin{corollary}[Interface invariance of tangent data; \ClaimStatusProvedHere]
-% label removed: cor:twisted-ym-interface-invariance
+\begin{corollary}[Interface invariance of tangent data]
 Let $f \colon \cA_{\cB} \to \cA_{\cB'}$ be a boundary-changing morphism.
 If the induced map on dual centers
 \[
@@ -251,8 +238,7 @@ is an isomorphism as well.
 This is immediate from Theorem~\ref{thm:twisted-ym-tangent-factors-through-center}.
 \end{proof}
 
-\begin{corollary}[Comparison without full boundary equivalence; \ClaimStatusProvedHere]
-% label removed: cor:twisted-ym-center-comparison
+\begin{corollary}[Comparison without full boundary equivalence]
 If two Koszul-admissible twisted Yang--Mills boundary conditions $\cB_1$ and $\cB_2$ satisfy
 \[
 Z(\cA_{\cB_1}^!) \cong Z(\cA_{\cB_2}^!),
@@ -270,22 +256,16 @@ Apply Theorem~\ref{thm:twisted-ym-tangent-center} to each boundary condition.
 \end{proof}
 
 \begin{remark}[Mathematical content and physical content]
-% label removed: rem:twisted-ym-math-vs-physics
 Theorems~\ref{thm:twisted-ym-boundary-brst}--\ref{thm:twisted-ym-tangent-factors-through-center}
 and Corollaries~\ref{cor:twisted-ym-center-rigidity}--\ref{cor:twisted-ym-center-comparison}
 are entirely internal to the present manuscript once the boundary algebra is known to lie on
 the Koszul-admissible locus. The genuinely physical input is the production of such a
 boundary algebra from a holomorphic-topological Yang--Mills theory.
 \end{remark}
-% New frontier mathematics package: central formality and mixed couplings.
-% Suggested insertion point: immediately after the subsection
-% "Twisted Yang--Mills boundary package" in Chapter 31.
 
 \subsection{Central formality and mixed-coupling theorems}
-% label removed: subsec:twisted-ym-central-formality
 
 \begin{definition}[Boundary deformation dg Lie algebra]
-% label removed: def:twisted-ym-def-dglie
 Let $(X,\mathcal{T},\cB)$ be a Koszul-admissible twisted Yang--Mills boundary datum, with chiral envelope $\cA_{\cB}$. Define the \emph{boundary deformation dg Lie algebra}
 \[
 \mathfrak{g}^{\mathrm{def}}_{\cB}
@@ -295,8 +275,7 @@ Let $(X,\mathcal{T},\cB)$ be a Koszul-admissible twisted Yang--Mills boundary da
 where $RHH_{\mathrm{ch}}(\cA_{\cB})$ carries the standard shifted dg Lie structure of the chiral Hochschild complex. Its Maurer--Cartan functor governs formal boundary deformations of $\cA_{\cB}$.
 \end{definition}
 
-\begin{theorem}[Dual unobstructedness criterion; \ClaimStatusProvedHere]
-% label removed: thm:twisted-ym-dual-unobstructedness
+\begin{theorem}[Dual unobstructedness criterion]
 Let $(X,\mathcal{T},\cB)$ be a Koszul-admissible twisted Yang--Mills boundary datum on a smooth projective curve. If
 \[
 HH^{-1}_{\mathrm{chiral}}(\cA_{\cB}^{!}) = 0,
@@ -318,8 +297,7 @@ HH^{-1}_{\mathrm{chiral}}(\cA_{\cB}^{!})^{\vee}\otimes \omega_X.
 The assumed vanishing of $HH^{-1}_{\mathrm{chiral}}(\cA_{\cB}^{!})$ forces $HH^{3}_{\mathrm{chiral}}(\cA_{\cB})=0$, so the primary obstruction vanishes. The final sentence is the standard interpretation of $HH^3$ in deformation theory. The generic-level restriction propagates: the dual unobstructedness criterion is asserted for Koszul-admissible boundary data at generic level.
 \end{proof}
 
-\begin{theorem}[Central formality theorem; \ClaimStatusProvedHere]
-% label removed: thm:twisted-ym-central-formality
+\begin{theorem}[Central formality theorem]
 Let $(X,\mathcal{T},\cB)$ be a Koszul-admissible twisted Yang--Mills boundary datum. Assume
 \[
 HH^{1}_{\mathrm{chiral}}(\cA_{\cB}) = 0
@@ -359,12 +337,10 @@ The Maurer--Cartan equation in an abelian dg Lie algebra is empty, and the gauge
 \end{proof}
 
 \begin{remark}[Interpretation]
-% label removed: rem:twisted-ym-central-formality-meaning
 The theorem says that under vanishing of infinitesimal automorphisms and dual negative-degree Hochschild classes, the entire formal boundary moduli problem linearizes. The Koszul dual center is not merely the tangent space: it gives actual formal coordinates on the deformation space.
 \end{remark}
 
 \begin{definition}[Reduced dual center and reduced tangent space]
-% label removed: def:twisted-ym-reduced-center
 Assume that the boundary algebra is augmented, so that the vacuum defines a distinguished scalar subspace $\mathbb{C}\mathbf{1} \subset Z(\cA_{\cB}^{!})$. Define the \emph{reduced dual center}
 \[
 \widetilde Z(\cA_{\cB}^{!}) := Z(\cA_{\cB}^{!})/\mathbb{C}\mathbf{1}
@@ -375,8 +351,7 @@ and the \emph{reduced tangent space}
 \]
 \end{definition}
 
-\begin{lemma}[Center of a chiral tensor product; \ClaimStatusProvedHere]
-% label removed: lem:twisted-ym-center-tensor
+\begin{lemma}[Center of a chiral tensor product]
 Let $\cB_1,\cB_2$ be quadratic Koszul-admissible boundary data with chiral envelopes $\cA_1,\cA_2$, and assume that the chiral tensor product $\cA_1\otimes^{\mathrm{ch}}\cA_2$ has trivial mixed OPE \/in the sense of Proposition~\ref*{V1-prop:koszul-dual-tensor-product}. Then
 \[
 Z\bigl(\cA_1\otimes^{\mathrm{ch}}\cA_2\bigr)
@@ -413,8 +388,7 @@ U_1\otimes Z(\cA_2).
 Their intersection is exactly $Z(\cA_1)\otimes Z(\cA_2)$.
 \end{proof}
 
-\begin{theorem}[Binary mixed-coupling theorem; \ClaimStatusProvedHere]
-% label removed: thm:twisted-ym-binary-mixed-couplings
+\begin{theorem}[Binary mixed-coupling theorem]
 Let $\cB_1,\cB_2$ be quadratic Koszul-admissible twisted Yang--Mills boundary data on the same smooth projective curve $X$, with chiral envelopes $\cA_1,\cA_2$. Then the composite boundary datum with envelope
 \[
 \cA_{12}:=\cA_1\otimes^{\mathrm{ch}}\cA_2
@@ -478,8 +452,7 @@ Z(\cA_1^{!})\otimes Z(\cA_2^{!})
 Dualizing and tensoring with $\omega_X$ gives the asserted decomposition of reduced tangent spaces.
 \end{proof}
 
-\begin{corollary}[Multi-body coupling expansion; \ClaimStatusProvedHere]
-% label removed: cor:twisted-ym-multibody-couplings
+\begin{corollary}[Multi-body coupling expansion]
 Let $\cB_1,\dots,\cB_m$ be quadratic Koszul-admissible twisted Yang--Mills boundary data on $X$, and suppose each dual center splits as
 \[
 Z(\cA_i^{!}) \cong \mathbb{C}\mathbf{1}\oplus \widetilde Z_i.
@@ -512,8 +485,7 @@ Z(\cA_{1\cdots m}^{!})
 Expanding the tensor product yields a direct sum over subsets $S\subseteq \{1,\dots,m\}$. Removing the empty subset gives the reduced statement, and dualizing/tensoring with $\omega_X$ proves the formula.
 \end{proof}
 
-\begin{corollary}[Mixed rigidity criterion; \ClaimStatusProvedHere]
-% label removed: cor:twisted-ym-mixed-rigidity
+\begin{corollary}[Mixed rigidity criterion]
 Under the hypotheses of Corollary~\ref{cor:twisted-ym-multibody-couplings}:
 \begin{enumerate}[label=(\roman*)]
 \item if every $\widetilde Z_i=0$, then every composite boundary condition is reduced-infinitesimally rigid;
@@ -527,7 +499,6 @@ This is immediate from Corollary~\ref{cor:twisted-ym-multibody-couplings} by ins
 \end{proof}
 
 \begin{remark}[Why this is genuinely new]
-% label removed: rem:twisted-ym-why-new
 Theorems~\ref{thm:twisted-ym-dual-unobstructedness}--\ref{thm:twisted-ym-binary-mixed-couplings} do not merely repackage the tangent-to-center principle. They add three new pieces of structure:
 \begin{enumerate}[label=(\roman*)]
 \item a \emph{dual-side obstruction criterion} in negative Hochschild degree;
@@ -536,17 +507,11 @@ Theorems~\ref{thm:twisted-ym-dual-unobstructedness}--\ref{thm:twisted-ym-binary-
 \end{enumerate}
 These statements push the present framework from a static duality theorem to an actual local geometry of boundary moduli.
 \end{remark}
-% ===== End {fn} =====
-
-% [Duplicate block removed -- content consolidated above at line 279.]
 
 
-% ===== Begin w_sector_relative_frontier_package.tex =====
-% Frontier package: relative Hochschild duality and mixed Kodaira--Spencer class
-% Suggested insertion point: after the subsection on derived mixed couplings for non-quadratic W-boundaries.
+
 
 \subsection{Relative Hochschild duality and the mixed Kodaira--Spencer class}
-% label removed: subsec:relative-hochschild-mixed-ks
 
 Fix a smooth projective curve $X$ and a weakly composable pair of transferred $W$-dual data
 \[
@@ -555,7 +520,6 @@ M_1 \xrightarrow{\iota_1} M_{12} \xleftarrow{\iota_2} M_2,
 where each $M_i$ is a complete filtered minimal $A_\infty$-algebra quasi-isomorphic to the transferred dual of a principal $W$-boundary condition.
 
 \begin{definition}[Relative Hochschild cochains]
-% label removed: def:relative-hochschild-cochains
 Define the \emph{relative Hochschild cochain complex}
 \[
 CC^\bullet_{\mathrm{rel}}(M_{12};M_1,M_2)
@@ -575,7 +539,6 @@ The degree-zero group is called the \emph{relative derived center}.
 \end{definition}
 
 \begin{definition}[Mixed deformation $L_\infty$-algebra]
-% label removed: def:mixed-deformation-linfty-relative
 Let
 \[
 \mathfrak g_i:=\tau_{\ge 1}CC^\bullet(M_i)[1],
@@ -592,8 +555,7 @@ Define the \emph{mixed deformation $L_\infty$-algebra}
 \]
 \end{definition}
 
-\begin{theorem}[Relative duality theorem; \ClaimStatusProvedHere]
-% label removed: thm:relative-duality-theorem
+\begin{theorem}[Relative duality theorem]
 Assume the degreewise complementarity isomorphisms
 \[
 H^k(\mathfrak g_i)
@@ -642,8 +604,7 @@ and therefore a long exact sequence in Hochschild cohomology.
 By the assumed complementarity isomorphisms, the cohomology groups of the first triangle are dual, up to the twist by $\omega_X$, to the cohomology groups of the second triangle with the degree shift $k\mapsto 1-k$. Naturality of the restriction maps identifies the boundary morphisms in the two long exact sequences. Dualizing the second long exact sequence and comparing term-by-term with the first, the five-lemma yields the stated isomorphisms for all $k$.
 \end{proof}
 
-\begin{corollary}[Relative tangent-to-center principle; \ClaimStatusProvedHere]
-% label removed: cor:relative-tangent-center-principle
+\begin{corollary}[Relative tangent-to-center principle]
 The space of genuine mixed first-order couplings satisfies
 \[
 T^1_{X,\mathrm{mix}}(\cB_{12};\cB_1,\cB_2)
@@ -653,8 +614,7 @@ HH^{0}_{\mathrm{rel}}(M_{12};M_1,M_2)^\vee\otimes \omega_X.
 \]
 \end{corollary}
 
-\begin{corollary}[Relative dual unobstructedness; \ClaimStatusProvedHere]
-% label removed: cor:relative-dual-unobstructedness
+\begin{corollary}[Relative dual unobstructedness]
 If
 \[
 HH^{-1}_{\mathrm{rel}}(M_{12};M_1,M_2)=0,
@@ -672,8 +632,7 @@ HH^{-1}_{\mathrm{rel}}(M_{12};M_1,M_2)^\vee\otimes \omega_X.
 Thus the assumed vanishing forces the obstruction space to vanish.
 \end{proof}
 
-\begin{theorem}[Relative central formality; \ClaimStatusProvedHere]
-% label removed: thm:relative-central-formality
+\begin{theorem}[Relative central formality]
 Assume
 \[
 HH^{1}_{\mathrm{rel}}(M_{12};M_1,M_2)=0
@@ -706,7 +665,6 @@ Transfer the $L_\infty$ structure on $\mathfrak g_{\mathrm{mix}}$ to a minimal m
 \end{proof}
 
 \begin{definition}[Mixed Kodaira--Spencer class]
-% label removed: def:mixed-kodaira-spencer-class
 Suppose $M_{12}$ carries a complete descending filtration by mixed weight, and write its $A_\infty$ coderivation as
 \[
 m = m^{(0)} + m^{(1)} + m^{(2)} + \cdots,
@@ -722,8 +680,7 @@ The class of $m^{(1)}$ in the degree-one relative Hochschild cohomology,
 is called the \emph{mixed Kodaira--Spencer class}.
 \end{definition}
 
-\begin{lemma}[Well-definedness and invariance; \ClaimStatusProvedHere]
-% label removed: lem:mixed-ks-well-defined
+\begin{lemma}[Well-definedness and invariance]
 The mixed Kodaira--Spencer class is independent of the choice of filtered minimal model, up to the canonical identification of relative Hochschild cohomology under filtered $A_\infty$ quasi-isomorphism.
 \end{lemma}
 
@@ -731,8 +688,7 @@ The mixed Kodaira--Spencer class is independent of the choice of filtered minima
 A filtered $A_\infty$ quasi-isomorphism between two transferred models intertwines their coderivations up to gauge equivalence in the Hochschild dg Lie algebra. The weight-one component of a gauge-equivalent coderivation changes by a relative Hochschild coboundary. Hence the cohomology class of $m^{(1)}$ is invariant.
 \end{proof}
 
-\begin{theorem}[First-correction theorem; \ClaimStatusProvedHere]
-% label removed: thm:first-correction-theorem
+\begin{theorem}[First-correction theorem]
 Equip $CC^\bullet_{\mathrm{rel}}(M_{12};M_1,M_2)$ with the filtration induced by mixed weight. Then the associated spectral sequence has
 \[
 E_1^0 \cong HH^0\bigl(\operatorname{gr} CC^\bullet_{\mathrm{rel}}\bigr),
@@ -761,8 +717,7 @@ d = [m,-] = [m^{(0)},-] + [m^{(1)},-] + [m^{(2)},-] + \cdots.
 The zeroth differential on the associated graded is therefore $d_0=[m^{(0)},-]$, and the first derived differential is induced by the next term $[m^{(1)},-]$. By Definition~\ref{def:mixed-kodaira-spencer-class}, the cohomology class of $m^{(1)}$ is precisely $\kappa_{\mathrm{mix}}$, so on the $E_1$-page the first differential is the adjoint action of $\kappa_{\mathrm{mix}}$.
 \end{proof}
 
-\begin{corollary}[Persistence criterion for the quadratic law; \ClaimStatusProvedHere]
-% label removed: cor:persistence-criterion-quadratic-law
+\begin{corollary}[Persistence criterion for the quadratic law]
 The quadratic mixed-coupling law survives to first non-quadratic order if and only if
 \[
 \kappa_{\mathrm{mix}}(M_{12};M_1,M_2)=0.
@@ -774,8 +729,7 @@ More generally, if the mixed coderivation components $m^{(1)},\dots,m^{(r)}$ van
 The first statement is immediate from Theorem~\ref{thm:first-correction-theorem}. The second follows from the same filtered-complex argument: if all differential pieces up to mixed weight $r$ are cohomologically trivial, then all differentials $d_1,\dots,d_r$ vanish.
 \end{proof}
 
-\begin{theorem}[Universal interaction brackets on mixed couplings; \ClaimStatusProvedHere]
-% label removed: thm:universal-interaction-brackets
+\begin{theorem}[Universal interaction brackets on mixed couplings]
 Let
 \[
 \mathbb T_{\mathrm{mix}}:=H^1(\mathfrak g_{\mathrm{mix}}),
@@ -797,19 +751,12 @@ The first nonzero $\lambda_n$ is a derived invariant of the filtered $A_\infty$ 
 \begin{proof}
 This is the standard Maurer--Cartan description for the minimal $L_\infty$ model of the controlling deformation algebra $\mathfrak g_{\mathrm{mix}}$. Since every input has degree $1$ and $L_\infty$ brackets have degree $2-n$, the output lies in degree $2$, i.e. in $\mathrm{Obs}_{\mathrm{mix}}$. Invariance under filtered quasi-isomorphism follows from invariance of the minimal model up to $L_\infty$ isomorphism.
 \end{proof}
-% ===== End {fn} =====
 
 
-% ===== Begin twisted_ym_w_boundary_simplex.tex =====
-% New frontier package: higher-body Cech theory for non-quadratic W-boundaries.
-% This block is self-contained and assumes only the derived tangent-to-center input
-% for transferred W-duals.
 
 \subsection{Higher-body \v{C}ech theory for non-quadratic $\mathcal W$-boundaries}
-% label removed: subsec:w-boundary-cech-theory
 
 \begin{convention}[Derived tangent-to-center input]
-% label removed: conv:derived-tangent-center-input
 Throughout this subsection, let $X$ be a smooth projective curve and let
 \[
 \mathfrak N=\{M_S\}_{\emptyset\neq S\subseteq I},\qquad I=\{1,\dots,m\},
@@ -828,7 +775,6 @@ Z_S:=HH^0(M_S),\qquad T_S:=T^1_X(\cB_S).
 \end{convention}
 
 \begin{definition}[Boundary simplex]
-% label removed: def:w-boundary-simplex
 A \emph{boundary simplex of order $m$} consists of transferred $\mathcal W$-dual data
 \[
 \mathfrak N=\{M_S\}_{\emptyset\neq S\subseteq I}
@@ -843,7 +789,6 @@ $T\subseteq S\subseteq U$.
 \end{definition}
 
 \begin{definition}[Derived-center \v{C}ech complex]
-% label removed: def:w-derived-center-cech
 Fix the natural order on $I$. For a boundary simplex $\mathfrak N$, define the cochain complex
 \[
 C_Z^p(\mathfrak N):=\bigoplus_{|S|=p+1} Z_S,
@@ -860,7 +805,6 @@ We call $C_Z^\bullet(\mathfrak N)$ the \emph{derived-center \v{C}ech complex} of
 \end{definition}
 
 \begin{definition}[Tangent restriction complex and pure $m$-body couplings]
-% label removed: def:w-tangent-restriction-complex
 Define the cochain complex
 \[
 C_T^p(\mathfrak N):=\bigoplus_{|S|=m-p} T_S,
@@ -883,8 +827,7 @@ T^{1,[m]}_{X,\mathrm{pure}}(\mathfrak N):=H^0\bigl(C_T^\bullet(\mathfrak N)\bigr
 \]
 \end{definition}
 
-\begin{lemma}[Homotopy invariance; \ClaimStatusProvedHere]
-% label removed: lem:w-boundary-simplex-homotopy-invariance
+\begin{lemma}[Homotopy invariance]
 Let $F\colon \mathfrak N\to \mathfrak N'$ be a morphism of boundary simplices which is an
 $A_\infty$-quasi-isomorphism on every face and commutes with all face maps. Then the induced map
 \[
@@ -904,8 +847,7 @@ Degree-zero Hochschild cohomology is invariant under $A_\infty$-quasi-isomorphis
 $Z_S\cong Z'_S$ for every face $S$, compatibly with the induced maps on $HH^0$. Taking direct sums over all faces of a fixed cardinality yields an isomorphism in each cochain degree, and the compatibility with face maps makes this an isomorphism of complexes. The final statement follows from Theorem~\ref{thm:w-boundary-cech-duality} below.
 \end{proof}
 
-\begin{theorem}[Higher-body \v{C}ech duality; \ClaimStatusProvedHere]
-% label removed: thm:w-boundary-cech-duality
+\begin{theorem}[Higher-body \v{C}ech duality]
 For every boundary simplex $\mathfrak N$ of order $m$, there is a canonical isomorphism of cochain complexes
 \[
 C_T^p(\mathfrak N)
@@ -945,7 +887,6 @@ Taking cohomology yields the stated duality.
 \end{proof}
 
 \begin{remark}[Interpretation]
-% label removed: rem:w-boundary-cech-interpretation
 The groups $H^q(C_T^\bullet(\mathfrak N))$ form a complete tower of first-order descent obstructions.
 A degree-$q$ cochain assigns couplings to all faces of codimension $q$; the cocycle condition means
 that these assignments are compatible on codimension-$(q+1)$ faces. The cohomology class measures
@@ -955,7 +896,6 @@ facewise derived centers.
 \end{remark}
 
 \begin{definition}[Decoupled simplex]
-% label removed: def:w-decoupled-simplex
 A boundary simplex $\mathfrak N$ is called \emph{decoupled} if there exist complete vector spaces
 $\widetilde Z_1,\dots,\widetilde Z_m$ such that, for every nonempty subset $S\subseteq I$,
 \[
@@ -966,7 +906,6 @@ factor belonging to $S\setminus T$.
 \end{definition}
 
 \begin{definition}[Augmented center complex]
-% label removed: def:w-augmented-center-complex
 For a boundary simplex $\mathfrak N$ of order $m$, define the augmented cochain complex
 $\widetilde C_Z^\bullet(\mathfrak N)$ by
 \[
@@ -977,8 +916,7 @@ $\widetilde C_Z^\bullet(\mathfrak N)$ by
 with the augmentation map $\Bbbk\to \bigoplus_i Z_{\{i\}}$ given by the direct sum of unit inclusions.
 \end{definition}
 
-\begin{theorem}[Tensor-product model for the augmented center complex; \ClaimStatusProvedHere]
-% label removed: thm:w-augmented-center-tensor-model
+\begin{theorem}[Tensor-product model for the augmented center complex]
 Let $\mathfrak N$ be a decoupled boundary simplex, and for each $i\in I$ set
 \[
 K_i:=\bigl[\Bbbk\xrightarrow{\eta_i} \Bbbk\mathbf{1}\oplus \widetilde Z_i\bigr],
@@ -1034,8 +972,7 @@ Since $\widetilde C_Z^\bullet$ and $C_Z^\bullet$ agree in nonnegative degrees, t
 $C_Z^\bullet$.
 \end{proof}
 
-\begin{corollary}[Pure $m$-body coupling theorem; \ClaimStatusProvedHere]
-% label removed: cor:w-pure-mbody-coupling-theorem
+\begin{corollary}[Pure $m$-body coupling theorem]
 Let $\mathfrak N$ be a decoupled boundary simplex of order $m$. Then
 \[
 T^{1,[m]}_{X,\mathrm{pure}}(\mathfrak N)
@@ -1051,8 +988,7 @@ Combine Theorem~\ref{thm:w-boundary-cech-duality} with
 Theorem~\ref{thm:w-augmented-center-tensor-model}.
 \end{proof}
 
-\begin{theorem}[Higher Mayer--Vietoris descent for couplings; \ClaimStatusProvedHere]
-% label removed: thm:w-higher-mayer-vietoris-couplings
+\begin{theorem}[Higher Mayer--Vietoris descent for couplings]
 Let $\mathfrak N$ be any boundary simplex of order $m$.
 \begin{enumerate}[label=(\roman*)]
 \item The obstruction to descending a compatible family of codimension-$1$ couplings
@@ -1088,13 +1024,11 @@ The final statement is the same argument in degree $q$.
 \end{proof}
 
 \begin{definition}[Filtered boundary simplex]
-% label removed: def:w-filtered-boundary-simplex
 A boundary simplex $\mathfrak N$ is \emph{filtered} if each $Z_S$ carries a complete descending filtration
 $F^\bullet Z_S$ such that every face map $(\rho_{S,T})_*$ preserves filtration.
 \end{definition}
 
-\begin{theorem}[Filtered stability of pure $m$-body couplings; \ClaimStatusProvedHere]
-% label removed: thm:w-filtered-stability-pure-mbody
+\begin{theorem}[Filtered stability of pure $m$-body couplings]
 Let $\mathfrak N$ be a filtered boundary simplex. Assume its associated graded simplex
 $\operatorname{gr}\mathfrak N$ is decoupled in the sense of Definition~\ref{def:w-decoupled-simplex}, with reduced
 centers $\widetilde Z_1,\dots,\widetilde Z_m$. Then:
@@ -1138,42 +1072,31 @@ associated graded is the stated tensor product. The final assertion follows from
 \end{proof}
 
 \begin{remark}[Meaning of filtered stability]
-% label removed: rem:w-filtered-stability-meaning
 The theorem shows that, once the facewise derived centers admit a compatible filtration with decoupled associated
 graded, the entire first-order pure $m$-body coupling theory is a \emph{filtered deformation} of the quadratic tensor-product law.
 In particular, the non-quadratic $\mathcal W$-sector does not destroy pure higher-body couplings at first order; it refines them.
 \end{remark}
-% ===== End {fn} =====
 
 
-% ===== Begin ym_instanton_ir_extension.tex =====
-% New frontier package: instanton completion, screening, confinement, and mass-gap bridge.
-% Suggested insertion point: after the higher-body \v{C}ech package for non-quadratic W-boundaries,
-% or as a new subsection near the chapter's future-directions block.
 
 \subsection{Instanton completion, screening, confinement, and the untwisted infrared bridge}
-% label removed: subsec:instanton-screening-ir-bridge
 
-\begin{summary}[New first-principles ingredients]
+\begin{summary}[Instanton and screening data]
 The preceding boundary packages organize perturbative and twisted Yang--Mills sectors.
-To bring instantons, confinement, and the untwisted mass-gap problem into scope, three
-new ingredients are required:
+Instantons, confinement, and the untwisted infrared bridge require three additional data:
 \begin{enumerate}[label=(\roman*)]
 \item an \emph{instanton-completed} version of the bar/cobar and deformation packages, built from
 Novikov-type completions and compatible with Koszul duality;
 \item a \emph{central screening formalism} on the dual side, extracting the genuinely visible
 infrared center by quotienting by instanton-generated screening charges;
-\item a \emph{Hilbert-screening bridge} that translates visible-center collapse into a spectral-gap
-criterion for an untwisted Hamiltonian whenever one can dominate the Hamiltonian by the screening
-Laplacian.
+\item a \emph{Hilbert-screening bridge} consisting of screening operators, a vacuum projection,
+an untwisted Hamiltonian, and a domination estimate comparing that Hamiltonian with the screening Laplacian.
 \end{enumerate}
-The results of this subsection do \emph{not} solve the Yang--Mills mass-gap problem. Rather, they
-materially enlarge the framework so that instanton sectors, confinement criteria, and a conditional
-mass-gap mechanism become internal objects of the same formalism.
+With these data, instanton sectors, confinement criteria, and mass-gap transfer are internal
+objects of the same formalism.
 \end{summary}
 
 \begin{definition}[Instanton charge monoid and Novikov ring]
-% label removed: def:instanton-charge-monoid
 An \emph{instanton charge monoid} is a commutative, cancellative, pointed monoid
 $(\Gamma,+,0)$ equipped with a proper additive height function
 \[
@@ -1198,7 +1121,6 @@ F^{\ge N}\Lambda_{\Gamma}
 \end{definition}
 
 \begin{definition}[Instanton-graded homotopy algebra]
-% label removed: def:instanton-graded-homotopy-algebra
 Let $M=\bigoplus_{\beta\in\Gamma} M_{\beta}$ be a cohomologically graded vector space.
 A complete filtered $A_{\infty}$-structure on $M$ is called \emph{instanton-graded} if:
 \begin{enumerate}[label=(\alph*)]
@@ -1218,8 +1140,7 @@ M^{\Lambda}:=\prod_{\beta\in\Gamma} M_{\beta}\,q^{\beta}
 \]
 \end{definition}
 
-\begin{theorem}[Novikov completion theorem; \ClaimStatusProvedHere]
-% label removed: thm:novikov-completion-theorem
+\begin{theorem}[Novikov completion theorem]
 Let $M$ be an instanton-graded complete filtered $A_{\infty}$-algebra.
 Then:
 \begin{enumerate}[label=(\alph*)]
@@ -1260,7 +1181,6 @@ Part (c) is degree-zero cohomology of part~(b).
 \end{proof}
 
 \begin{definition}[Instanton-completed boundary datum]
-% label removed: def:instanton-completed-boundary-datum
 Let $(X,\mathcal T,\mathcal B)$ be a Koszul-admissible twisted Yang--Mills boundary datum in the sense of
 Definition~\ref{def:twisted-ym-boundary-datum}. An \emph{instanton-completed lift} of $(X,\mathcal T,\mathcal B)$
 is a choice of:
@@ -1279,8 +1199,7 @@ We then write
 \]
 \end{definition}
 
-\begin{theorem}[Instanton-completed tangent-to-center principle; \ClaimStatusProvedHere]
-% label removed: thm:instanton-completed-tangent-center
+\begin{theorem}[Instanton-completed tangent-to-center principle]
 Let $(X,\mathcal T,\mathcal B)$ be an instanton-completed boundary datum.
 Assume the ordinary tangent-to-center principle holds chargewise for the underlying dual pair.
 Then there is a canonical isomorphism
@@ -1305,7 +1224,6 @@ Taking the completed product over $\beta\in\Gamma$ yields the result.
 \end{proof}
 
 \begin{definition}[Central screening sequence]
-% label removed: def:central-screening-sequence
 Let $M$ be an instanton-completed transferred dual.
 A \emph{central screening sequence} on $M$ is a finite tuple
 \[
@@ -1322,7 +1240,6 @@ I_{\mathbf s}:=(s_1,\dots,s_r)\subset Z_{\infty}(M).
 \end{definition}
 
 \begin{definition}[Visible center and visible first-order couplings]
-% label removed: def:visible-center-and-couplings
 Let $(X,\mathcal T,\mathcal B;\mathbf s)$ be an instanton-completed boundary datum together with a central
 screening sequence on $\widehat M_{\mathcal B}$.
 Define the \emph{visible center}
@@ -1340,8 +1257,7 @@ T^1_{X,\mathrm{vis}}(\mathcal B;\mathbf s)
 \]
 \end{definition}
 
-\begin{theorem}[Screened tangent-to-center principle; \ClaimStatusProvedHere]
-% label removed: thm:screened-tangent-center
+\begin{theorem}[Screened tangent-to-center principle]
 For every instanton-completed boundary datum equipped with a central screening sequence,
 \[
 T^1_{X,\mathrm{vis}}(\mathcal B;\mathbf s)
@@ -1364,7 +1280,6 @@ produces the stated isomorphism.
 \end{proof}
 
 \begin{definition}[Central Koszul screening complex]
-% label removed: def:central-koszul-screening-complex
 For a commutative algebra $R$ and a sequence $\mathbf s=(s_1,\dots,s_r)\subset R$, define the
 \emph{central Koszul screening complex}
 \[
@@ -1381,8 +1296,7 @@ For an instanton-completed boundary datum we abbreviate
 \]
 \end{definition}
 
-\begin{proposition}[Koszul identification of the visible center; \ClaimStatusProvedHere]
-% label removed: prop:koszul-identification-visible-center
+\begin{proposition}[Koszul identification of the visible center]
 If $\mathbf s$ is a regular sequence on $Z_{\infty}(\widehat M_{\mathcal B})$, then
 \[
 H^0\bigl(\Koszul^{\bullet}_{\mathrm{vis}}(\mathcal B;\mathbf s)\bigr)
@@ -1398,7 +1312,6 @@ algebra $Z_{\infty}(\widehat M_{\mathcal B})$.
 \end{proof}
 
 \begin{definition}[Instanton filtration and initial screening system]
-% label removed: def:initial-screening-system
 Let $R=Z_{\infty}(\widehat M_{\mathcal B})$ with its $q$-adic filtration.
 For $x\in R$, write $\operatorname{in}(x)\in \operatorname{gr}R$ for the initial term with respect to the
 instanton valuation. For a central screening sequence $\mathbf s=(s_1,\dots,s_r)$, set
@@ -1407,8 +1320,7 @@ instanton valuation. For a central screening sequence $\mathbf s=(s_1,\dots,s_r)
 \]
 \end{definition}
 
-\begin{theorem}[Instanton-screening spectral sequence; \ClaimStatusProvedHere]
-% label removed: thm:instanton-screening-spectral-sequence
+\begin{theorem}[Instanton-screening spectral sequence]
 The $q$-adic filtration on $R$ induces a convergent spectral sequence
 \[
 E_1^{-p,*}
@@ -1437,7 +1349,6 @@ $E_1$-page together with collapse of the spectral sequence.
 \end{proof}
 
 \begin{definition}[Visible defect category]
-% label removed: def:visible-defect-category
 Let $\mathcal A_{\mathrm{def}}:=H^0(\widehat M_{\mathcal B})$, and let $S\subset Z(\mathcal A_{\mathrm{def}})$ be the
 multiplicative set generated by a central screening sequence $\mathbf s$.
 Assume $\mathcal A_{\mathrm{def}}$ is left noetherian.
@@ -1451,8 +1362,7 @@ A finitely generated $\mathcal A_{\mathrm{def}}$-module $N$ is called \emph{scre
 is annihilated by some element of $S$.
 \end{definition}
 
-\begin{theorem}[Central localization criterion for confinement; \ClaimStatusProvedHere]
-% label removed: thm:central-localization-confinement
+\begin{theorem}[Central localization criterion for confinement]
 Assume the hypotheses of Definition~\ref{def:visible-defect-category}.
 Then:
 \begin{enumerate}[label=(\alph*)]
@@ -1474,16 +1384,15 @@ simple object.
 \end{proof}
 
 \begin{remark}[Physical interpretation of Theorem~\ref{thm:central-localization-confinement}]
-% label removed: rem:physical-interpretation-confinement
 When line operators are modeled by modules over the dual algebra (as in the perturbative holomorphic-topological
 examples discussed in the surrounding literature), Theorem~\ref{thm:central-localization-confinement}
 provides a precise mathematical notion of \emph{confinement}: after inverting the instanton-induced screening
 charges, only the vacuum asymptotic sector remains visible.
-This interpretation is conditional on the physical realization of the defect category, but the localization theorem itself is purely algebraic.
+This physical reading requires a defect-realization functor from physical line operators to modules over the
+dual algebra. The localization theorem itself is purely algebraic.
 \end{remark}
 
 \begin{definition}[Screened boundary simplex]
-% label removed: def:screened-boundary-simplex
 Let $\mathfrak N=\{M_S\}_{\emptyset\neq S\subseteq I}$ be a boundary simplex in the sense of
 Definition~\ref{def:w-boundary-simplex}.
 A \emph{screened boundary simplex} consists of the data of central screening sequences
@@ -1504,8 +1413,7 @@ T_S^{\mathrm{vis}}:=(Z_S^{\mathrm{vis}})^{\vee}\otimes \omega_X.
 \]
 \end{definition}
 
-\begin{theorem}[Higher-body \v{C}ech duality after screening; \ClaimStatusProvedHere]
-% label removed: thm:screened-cech-duality
+\begin{theorem}[Higher-body \v{C}ech duality after screening]
 Let $\mathfrak N$ be a screened boundary simplex of order $m$.
 Define
 \[
@@ -1536,7 +1444,6 @@ The differentials are dual under the pairing because the screening quotients are
 \end{proof}
 
 \begin{definition}[Hilbert-screening datum]
-% label removed: def:hilbert-screening-datum
 A \emph{Hilbert-screening datum} consists of:
 \begin{enumerate}[label=(\roman*)]
 \item a Hilbert space $\mathcal H$ with vacuum projection $P_0$;
@@ -1563,8 +1470,7 @@ L_{\mathrm{scr}}:=\partial_{\mathrm{scr}}\partial_{\mathrm{scr}}^*+\partial_{\ma
 \]
 \end{definition}
 
-\begin{theorem}[Screening Hodge theorem; \ClaimStatusProvedHere]
-% label removed: thm:screening-hodge-theorem
+\begin{theorem}[Screening Hodge theorem]
 For a Hilbert-screening datum,
 \[
 L_{\mathrm{scr}}=\sum_{i=1}^r S_i^*S_i\otimes \mathrm{id}_{\Lambda^{\bullet}(\mathbb C^r)}.
@@ -1589,8 +1495,7 @@ Since each $S_i$ is normal, $S_iS_i^*=S_i^*S_i$, giving the stated formula. The 
 because a sum of nonnegative commuting operators vanishes exactly when each summand vanishes.
 \end{proof}
 
-\begin{corollary}[Screening spectral gap criterion; \ClaimStatusProvedHere]
-% label removed: cor:screening-spectral-gap-criterion
+\begin{corollary}[Screening spectral gap criterion]
 Assume there is a constant $\mu>0$ such that
 \[
 \sum_{i=1}^r S_i^*S_i\ \ge\ \mu^2(1-P_0)
@@ -1609,14 +1514,15 @@ nonzero spectrum of $\sum_i S_i^*S_i$, hence by $\mu^2$ on the orthogonal comple
 \end{proof}
 
 \begin{definition}[Untwisting bridge datum]
-% label removed: def:untwisting-bridge-datum
 An \emph{untwisting bridge datum} consists of a Hilbert-screening datum $(\mathcal H,P_0,\{S_i\})$
 together with a nonnegative self-adjoint Hamiltonian $H_{\mathrm{YM}}$ on $\mathcal H$ such that the vacuum
 is a zero-energy state and the gauge-invariant physical Hilbert space is realized as a closed subspace of $\mathcal H$.
+The datum is part of the hypothesis for the untwisted comparison; it is not produced by the screening
+construction alone.
 \end{definition}
 
-\begin{theorem}[Conditional mass-gap transfer via screening domination; \ClaimStatusConditional]
-% label removed: thm:conditional-mass-gap-transfer
+\begin{theorem}[Mass-gap transfer via screening domination]
+\label{thm:mass-gap-transfer-screening-domination}
 Let $(\mathcal H,P_0,\{S_i\},H_{\mathrm{YM}})$ be an untwisting bridge datum.
 Assume:
 \begin{enumerate}[label=(\alph*)]
@@ -1642,9 +1548,8 @@ H_{\mathrm{YM}}\ge \alpha L_{\mathrm{scr}} \ge \alpha\mu^2.
 The min--max principle therefore excludes spectrum in $(0,\alpha\mu^2)$.
 \end{proof}
 
-\begin{corollary}[Stable untwisting under bounded error; \ClaimStatusConditional]
-% label removed: cor:stable-untwisting-bounded-error
-Assume the setup of Theorem~\ref{thm:conditional-mass-gap-transfer}, except that
+\begin{corollary}[Stable untwisting under bounded error]
+Assume the setup of Theorem~\ref{thm:mass-gap-transfer-screening-domination}, except that
 \[
 H_{\mathrm{YM}} = \alpha L_{\mathrm{scr}} + K
 \]
@@ -1686,7 +1591,7 @@ to the super-Etingof--Kazhdan Manin-pair quantisation, this fixes a
 specific root of unity for the chiral quantum group.
 
 \begin{theorem}[Kazhdan--Lusztig equivalence at $\zeta_8$ for the
-K3-BKM chiral bialgebra; \ClaimStatusProvedElsewhere]
+K3-BKM chiral bialgebra]
 \label{thm:kl-k3-bkm-zeta8}
 \index{Kazhdan--Lusztig equivalence!K3 BKM}
 \index{Humbert divisor!$H_1$}
@@ -1779,22 +1684,18 @@ $S$-invariant (Gritsenko--Nikulin 1998). The self-duality is a genuine
 mathematical fact about this chiral bialgebra, not a tautology.
 \end{remark}
 
-\begin{remark}[What is proved, and what remains]
-% label removed: rem:what-is-proved-what-remains-inst
-Theorems~\ref{thm:novikov-completion-theorem}--\ref{cor:stable-untwisting-bounded-error} materially enlarge the
-mathematical framework.
-They do \emph{not} solve untwisted Yang--Mills. The new algebraic core now includes:
+\begin{remark}[Algebraic core and bridge obligations]
+Theorems~\ref{thm:novikov-completion-theorem}--\ref{cor:stable-untwisting-bounded-error} construct:
 \begin{enumerate}[label=(\roman*)]
 \item instanton-completed Hochschild and center theory;
 \item a precise quotient formalism for screening and confinement;
 \item higher-body visible couplings on boundary simplices after screening;
-\item a conditional route from screening positivity to an honest mass gap.
+\item a theorem-level transfer from screening positivity and Hamiltonian domination to a positive mass gap.
 \end{enumerate}
-What remains genuinely analytic and physical is the construction of a natural untwisting bridge datum
-for the actual untwisted four-dimensional Yang--Mills Hamiltonian, together with verification of the
-screening domination estimate in Theorem~\ref{thm:conditional-mass-gap-transfer}.
+The bridge obligations are analytic and physical: construct a natural untwisting bridge datum for the
+actual untwisted four-dimensional Yang--Mills Hamiltonian, and verify the screening domination estimate in
+Theorem~\ref{thm:mass-gap-transfer-screening-domination}.
 \end{remark}
-% ===== End {fn} =====
 
 \section{Synthesis}
 \label{sec:yms-supplement}
@@ -1808,8 +1709,7 @@ with flavour $\mathfrak{su}(2)^{24}$. The $4d$/$2d$ Schur-index chiral
 algebra is $\mathbf H_{\Delta_5}$-module category with
 $c_{4d} = 107/6, c_{2d} = -214$ (Shapere--Tachikawa $2008$ \S 3
 applied to Chacaltana--Distler $2010$ eq.~(5.14) count
-$(n_v, n_h) = (63, 88)$; the intermediate $(26, -312)$ retracted
-per Vol~I Chapter~\ref{V1-sec:thqg-open-closed-realization} line~1932)
+$(n_v, n_h) = (63, 88)$)
 \cite{Gaiotto2009,BeemRastelli2015,ChacaltanaDistler2010}.
 Cross-ref Vol.~III Chapter~\ref{V3-ch:k3-chiral-bialgebra-platonic}.
 \end{remark}
