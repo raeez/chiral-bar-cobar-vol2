@@ -15,6 +15,20 @@ tensor-Arakelov curvature}
 \providecommand{\ClaimStatusProvedHere}{\textsc{ProvedHere}}
 \providecommand{\ClaimStatusProvedElsewhere}{\textsc{ProvedElsewhere}}
 \providecommand{\ClaimStatusConjectured}{\textsc{Conjectured}}
+\providecommand{\ClaimStatusRetracted}{\textsc{Retracted}}
+
+%% Local macro safety for the kappa-tuple counterexample (the same
+%% macros are defined in main.tex preamble; providecommand lets the
+%% chapter compile standalone for review).
+\providecommand{\kappaCat}{\kappa_{\mathrm{cat}}}
+\providecommand{\kappaChHodge}{\kappa_{\mathrm{ch}}^{\mathrm{Hodge}}}
+\providecommand{\kappaChHeis}{\kappa_{\mathrm{ch}}^{\mathrm{Heis}}}
+\providecommand{\kappaBKM}{\kappa_{\mathrm{BKM}}}
+\providecommand{\kappaFiber}{\kappa_{\mathrm{fiber}}}
+\providecommand{\Kkappa}{K^{\kappa_{\mathrm{ch}}}}
+\providecommand{\kappaTuple}[1]{\bigl(\kappaCat,\, \kappaChHodge,\, \kappaChHeis,\, \kappaBKM,\, \kappaFiber\bigr)(#1)}
+\providecommand{\Deltafive}{\Delta_{5}}
+\providecommand{\Phihol}{\Phi_{\mathrm{hol}}}
 
 The characteristic bundle
 \[
@@ -62,6 +76,40 @@ of the characteristic functions. The genus-wise identity glues to
 a global section on the Deligne--Mumford modular stack
 $\overline{\cM}_{g,n}$, with clutching compatibility across
 boundary strata; this section is the content of Theorem~C here.
+
+\begin{remark}[Theorem~A vs.\ Theorem~B separation; signpost to the
+GLZ caveat; Type~$\varepsilon$]
+\label{rem:theoremC-A-vs-B-signpost}
+The hypothesis ``chirally Koszul $E_1$-chiral algebra'' load-bearing
+in Theorem~\ref{thm:theoremC-total-shifted-symplectic} and
+Theorem~\ref{thm:theoremD-tensor-arakelov} below is precisely the
+Koszul-effectiveness condition $\effKoszul$
+(Type~$\varepsilon$). It separates the two Vol~I anchors that the
+$E_1$-chiral lane carries:
+\emph{Vol~I Theorem~A} (bar--cobar inversion
+$\Omega(\barB(\cA)) \xrightarrow{\sim} \cA$ on the Koszul locus) is
+the structural input that gives a well-defined Koszul dual~$\cA^!$
+together with the Lagrangian complementarity
+$\kappa(\cA) + \kappa(\cA^!) = \rho_K$ exploited below; while
+\emph{Vol~I Theorem~B} (chiral Positselski coderived equivalence,
+extending~\cite{Positselski11}) is the comparison-functor input
+that promotes the quadratic Maurer--Cartan injection
+\eqref{eq:GLZ_MC_injection} of
+Theorem~\ref{thm:GLZ_MC} to a bijection on the Koszul-effective
+locus. The two theorems are not interchangeable: Theorem~A controls
+the underlying object~$\cA^!$ (whence the orthogonality and the
+shifted-symplectic structure of
+Theorem~\ref{thm:theoremC-total-shifted-symplectic}) and
+Theorem~B controls the comparison functor that makes the bar
+classifier surjective onto $\MC(\cA^! \otimes \cB)$. The
+chapter on bar--cobar review
+(Remark~\ref{rem:GLZ_MC_eff_caveat} of
+Section~\ref{sec:bar_cobar}) records the injection-vs-bijection
+caveat and frontier-references Construction Problem~4 (chiral
+Positselski) as the open chiral-generality analogue of Theorem~B.
+The C/D theorems below take ``chirally Koszul $E_1$-chiral'' as the
+joint hypothesis under which both anchors hold.
+\end{remark}
 
 \begin{theorem}[Total shifted-symplectic upgrade of Theorem~C;
 \ClaimStatusProvedHere]
@@ -211,6 +259,111 @@ $\cA$ alone. The shift magnitude is $-(3g{-}3{+}n)$, not
 $-(3g{-}3)$: the point markings contribute additively through the
 tangent bundle of
 $\overline{\cM}_{g,n}$, whose dimension is $3g-3+n$.
+\end{remark}
+
+\begin{remark}[K3$\times E$: Beilinson-cut witness for the
+ $\kappaChHodge$-row reading of Theorem~C]
+\label{rem:theoremC-K3E-kappa-tuple-witness}
+\index{Beilinson cut!K3 x E witness for Theorem C}%
+\index{kappa tuple!Theorem C row scope}%
+The Koszul conductor $\rho_K(\cA) = \kappa(\cA) + \kappa(\cA^!)$
+of \cref{thm:theoremC-total-shifted-symplectic} is read on the
+\emph{Hodge row}: $\rho_K(\cA) = \kappaChHodge(\cA) +
+\kappaChHodge(\cA^!) \in \{0,\, 8,\, 13,\, 250/3,\, 98/3\}$ on
+the five archetypes $\mathsf{G/L/C/M/B}$. The reading is forced,
+not a convention. The witness is the K3$\times E$ object: its
+modular characteristic is the five-row tuple
+\[
+ \kappaTuple{K3 \times E}
+ \;=\;
+ \bigl(\kappaCat,\, \kappaChHodge,\, \kappaChHeis,\, \kappaBKM,\, \kappaFiber\bigr)(K3 \times E)
+ \;=\;
+ (0,\, 0,\, 3,\, 5,\, 24),
+\]
+and only the second row enters
+\cref{thm:theoremC-total-shifted-symplectic}.
+
+The five rows arise from four distinct constructions on the same
+geometry. $\kappaCat = \chi(\cO_{K3}) \chi(\cO_E) = 2 \cdot 0 = 0$
+by K\"unneth multiplicativity (Hartshorne, Ch.~III, Prop.~8.5; the
+fibre value $\chi(\cO_{K3}) = 2$ is not a total-space invariant).
+$\kappaChHodge = 0$ is the chiral Hodge supertrace,
+route-independent on K3$\times E$ (Vol~III
+\texttt{calabi-yau-quantum-groups:chapters/examples/k3e\_cy3\_programme.tex},
+Rem.~\ref*{V3-rem:k3e-cy3-kappa-cat-zero}, lines~$4750$--$4762$).
+$\kappaChHeis = 3$ is the chiral Heisenberg lattice rank
+(Pope--Romans--Shen 1990, signature $(2, 1)$ on the K3
+transcendental sublattice).
+$\kappaBKM(\Delta_5) = c_1(0)/2 = 5$ is the
+Gritsenko--Borcherds paramodular weight (Gritsenko 1999
+\emph{Compositio Math.}~$116$, Thm.~$6.1$).
+$\kappaFiber = 24$ is the Mukai/Heisenberg--Fock $24$-trace on
+the K3 fibre (Mukai 1987; Conway--Sloane 1988 Steiner system
+$S(5, 8, 24)$).
+
+\emph{Falsified additive collapse.} The naive additive identity
+$\kappaBKM \stackrel{?}{=} \kappaChHodge +
+\chi(\cO_{\mathrm{fiber}})$ is \emph{retracted} at every
+Pentagon-admissible $N \in \{1, 2, 3, 4, 6\}$:
+\begin{center}
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{c|c|c|c}
+$N$ & predicted $\kappaChHodge + \chi(\cO_E) = 0$ & actual $c_N(0)/2$ & defect \\
+\hline
+$1$ & $0$ & $5$ & $5$ \\
+$2$ & $0$ & $2$ & $2$ \\
+$3$ & $0$ & $1$ & $1$ \\
+$4$ & $0$ & $1$ & $1$ \\
+$6$ & $0$ & $1/2$ & $1/2$ \\
+\end{tabular}
+\end{center}
+Even on the K3-fibre chart where $\chi(\cO_{K3}) = 2$, the
+prediction $0 + 2 = 2$ at $N = 1$ disagrees with the actual $5$;
+at $N \ge 2$ the elliptic-fibre chart returns $\chi(\cO_E) = 0$
+and the prediction collapses to $0$. The mnemonic
+``$5 = 3 + 2$'' at $N = 1$ reads
+$\kappaBKM = \kappaChHeis + \chi(\cO_{K3})$, mixing the
+rank-additive Heisenberg row with the categorical fibre Euler
+characteristic; this is not the proposed additive law and does
+not extend to any other $N$.
+
+\emph{Beilinson-cut witness.} The K3$\times E$ counterexample is
+the structural witness that
+\cref{thm:theoremC-total-shifted-symplectic} is stated on
+$\kappaChHodge$ alone. The Lagrangian complementarity equates the
+Hodge supertrace of $\cA$ and $\cA^!$, with
+$\rho_K(K3 \times E) = 0$ on the Borcherds archetype
+$\mathbf{B}$, \emph{not} the Borcherds weight $\kappaBKM = 5$,
+\emph{not} the Heisenberg rank $\kappaChHeis = 3$, \emph{not} the
+fibre trace $\kappaFiber = 24$. The Borcherds row is independent
+of the Theorem~C ceiling and is read off the paramodular
+denominator (Vol~III Rem.~\ref*{V3-rem:k3e-cy3-two-anchor}, the
+two-anchor identity); the Mukai conductor
+$\Kkappa = 2 c_+(\mathrm{Mukai}(K3)) = 8 = \mathrm{ord}(H_1)$ on
+the $\mathcal B$-family ($\hbar^2 \cdot \Kkappa = -1$;
+Vol~III Rem.~\ref*{V3-rem:k3e-cy3-mukai}) is a separate sixth
+invariant, again not a row of the κ-tuple.
+
+\emph{Status.} The five-row construction of $\kappaTuple{K3 \times E}$
+is \ClaimStatusProvedHere\ as a counterexample to the additive
+identity, with the additive collapse
+$\kappaBKM = \kappaChHodge + \chi(\cO_{\mathrm{fiber}})$ explicitly
+\emph{retracted} at every $N \in \{1, 2, 3, 4, 6\}$. The κ-tuple
+is genuinely primitive in the sense of the universal stage chain
+$\mathsf{P} \to \mathsf{C} \to \mathsf{S} \to \mathsf{Z} \to
+\mathsf{A}$; identifying any two rows without naming the
+licensing $\alpha$-arrow (chart / scope projection) is the master
+shadow-collapse pattern.
+\cref{thm:theoremC-total-shifted-symplectic} is on the
+$\kappaChHodge$-row;
+\cref{thm:theoremD-tensor-arakelov} below is the weight-graded
+refinement of the same row; the Borcherds row of K3$\times E$
+enters the universal trace identity through $\Phihol$ in the
+climax chapter
+(\texttt{chapters/connections/programme\_climax\_platonic.tex},
+Conj.~\ref*{conj:universal-trace-identity-volii-bridge};
+counterexample inscription
+Rem.~\ref*{rem:climax-kappa-tuple-K3xE-counterexample}).
 \end{remark}
 
 \section{Theorem D: tensor-Arakelov curvature $K \in \mathrm{Sym}^2(\cF^\vee) \otimes \Omega^2(\overline{\mathcal{M}}_{g,n})$}
