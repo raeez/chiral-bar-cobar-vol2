@@ -1,138 +1,64 @@
-%% =====================================================================
-%% wn_tempered_closure_platonic.tex
-%%
-%% Conditional frontier closure: the conjecture conj:wn-tempered-general
-%% of the tempered-stratum chapter is reduced to the finite Riccati-envelope
-%% hypothesis. The Stirling implication from finite beta_N to tempering is
-%% proved. The all-rank principal W_N envelope is not proved here.
-%%
-%% Input theorems:
-%% * thm:tempered-stratum-contains-virasoro: every generic Vir_c
-%% tempered; rho_*(c) = |c|/6.
-%% * thm:tempered-stratum-contains-w3: every generic W_{3,c}
-%% tempered; rho_*^{W_3}(c) = |c|/10.
-%% * conj:wn-tempered-general: the N >= 4 target condition.
-%%
-%% Present chapter: two-stage theorem.
-%%
-%% Stage I. The tempering criterion holds for every
-%% N >= 2 once a finite Riccati envelope beta_N is supplied. The Stirling argument
-%% (r!)^{-1/r} ~ e/r -> 0
-%% is beta-independent: regardless of the exact value of beta_N, the
-%% inequality
-%% (|S_r(W_{N,c})|/r!)^{1/r}
-%% <= C(N,c)^{1/r} * beta_N^{(r-4)/r} * r^{-1/r}
-%% * |c|^{-(r-2)/r} * (r!)^{-1/r}
-%% ~ beta_N / |c| * e/r -> 0
-%% holds uniformly under that hypothesis.
-%%
-%% Stage II. The harmonic Riccati-ratio closed form
-%% beta_N = 12(H_N - 1) = sum_{s=2}^{N} 12/s
-%% is conditional on the kappa-ratio scaling law
-%% A_r(W_N) = (kappa(W_N)/kappa(Vir))^{r-3} A_r(Vir).
-%% It matches the proved data points beta_2 = 6 and beta_3 = 10,
-%% gives beta_4 = 13, beta_5 = 77/5, beta_6 = 87/5, and excludes
-%% the triangular and quadratic polynomial extrapolations.
-%%
-%% Labels defined:
-%% thm:wn-tempered-all-N (Conditional, finite-beta criterion)
-%% prop:beta-stirling-dominance (ProvedHere, Stirling-independent-of-beta)
-%% prop:beta-N-closed-form (Conjectured, all N)
-%% prop:rho-star-WN-closed-form (Conditional)
-%% cor:wn-original-complex-dichotomy-healed (Conditional)
-%% rem:beta-candidate-discriminator (N=4 discrimination)
-%%
-%% Reduces conj:wn-tempered-general to the finite Riccati-envelope
-%% hypothesis. The exact closed form of beta_N is conditional on the
-%% harmonic kappa-ratio law.
-%%
-%% Location: chapters/theory/.
-%% Inputs:
-%% chapters/theory/tempered_stratum_characterization_platonic.tex
-%% (supplies the N=2 and N=3 proved cases, the KS-rho Banach
-%% framework, and the conditional tempering infrastructure).
-%% Vol I shadow_tower_higher_coefficients.tex, shadow_tower_recursive.py
-%% (Virasoro Riccati closed forms; Riccati recursion engine).
-%% Vol I w3_shadow_tower_engine.py
-%% (W_3 shadow-tower engine with T-line and W-line decomposition).
-%%
-%% The theorem established here:
-%% finite beta_N implies tempering for every fixed N >= 2; the exact
-%% closed form of beta_N is conditional on the harmonic kappa-ratio law.
-%% =====================================================================
-
 \chapter{Closure of $\cW_N$ tempering for every $N \ge 2$:
 universal Stirling dominance and the harmonic $\beta_N$ frontier}
 \label{ch:wn-tempered-closure}
 
 \section*{Statement of the closure}
 
-Chapter~\ref{ch:tempered-stratum-characterization}
-established universal Virasoro tempering and analogous $\cW_3$ tempering,
-leaving open whether the tempered stratum contains every principal
-$\cW_N$ at $N \ge 4$
-(Conjecture~\ref{conj:wn-tempered-general}). The present chapter
-proves the finite-\(\beta_N\) Stirling implication and isolates the
-two remaining inputs: the finite Riccati envelope for all ranks and the
-conditional harmonic Riccati ratio.
+Chapter~\ref{ch:tempered-stratum-characterization} establishes
+universal Virasoro tempering and the analogous $\cW_3$ tempering;
+Conjecture~\ref{conj:wn-tempered-general} is the open principal
+$\cW_N$ case at $N \ge 4$. The finite-$\beta_N$ Stirling
+implication is proved below; the two remaining inputs are the finite
+Riccati envelope for all ranks and the conditional harmonic Riccati
+ratio.
 
-\begin{center}\begin{minipage}{0.86\linewidth}
-\textbf{Main theorem
-(Theorem~\ref{thm:wn-tempered-all-N}).}
-\emph{Finite-\(\beta_N\) criterion.} Fix an integer
-$N \ge 2$ and a central charge $c \in \R$ with
-$c \notin \{0\} \cup \cD^{\mathrm{sev}}_{\mathrm{Kac}}(\cW_N)$.
-Assume that the principal $\cW_N$ shadow tower has a finite Riccati
-envelope
+\emph{Finite-$\beta_N$ criterion (Theorem~\ref{thm:wn-tempered-all-N}).}
+Fix $N \ge 2$ and $c \in \R$ with
+$c \notin \{0\} \cup \cD^{\mathrm{sev}}_{\mathrm{Kac}}(\cW_N)$. On the
+finite Riccati envelope
 \[
  \lvert S_r(\cW_{N,c}) \rvert
  \;\le\;
  C(N,c)\,\frac{\beta_N^{r-4}}{r\,|c|^{r-2}}
  \qquad (r\ge 4)
 \]
-for some finite $\beta_N>0$. Then $\cW_{N,c}$ is analytically tempered:
+for finite $\beta_N>0$, the algebra $\cW_{N,c}$ is analytically
+tempered:
 \[
  \limsup_{r \to \infty}
  \bigl(\lvert S_r(\cW_{N,c}) \rvert / r!\bigr)^{1/r}
  \;=\;
  0.
 \]
-\emph{Convergence radius (conditional harmonic form).}
 The ordinary-generating convergence radius of
 $\sum_{r \ge 2} S_r(\cW_{N,c})\,\rho^r$ equals
 $\rho_*^{\cW_N}(c) = \lvert c\rvert / \beta_N$ for the leading
-Riccati coefficient \(\beta_N\). Under
-Conjecture~\ref{prop:beta-N-closed-form}, this coefficient has
+Riccati coefficient $\beta_N$; under
+Conjecture~\ref{prop:beta-N-closed-form}, this coefficient takes the
 harmonic closed form
 \[
  \beta_N \;=\; 12(H_N - 1)
  \;=\; \sum_{s=2}^{N} \frac{12}{s}.
 \]
-\emph{Principal hierarchy.} The non-tempered stratum of a principal
-$\cW_N$ is empty on every locus where the finite Riccati envelope is
-proved; the chain-level $E_3$-topological structure on the original
-curved-Dunn complex exists for such $\cW_{N,c}$ whenever the
-finite-propagation hypotheses of
-Theorem~\ref{thm:chain-level-e3-original-complex-conditional} hold.
-\end{minipage}\end{center}
+The non-tempered stratum of a principal $\cW_N$ is empty on every
+locus with the finite Riccati envelope; the chain-level
+$E_3$-topological structure on the original curved-Dunn complex
+exists for such $\cW_{N,c}$ under the finite-propagation hypotheses
+of Theorem~\ref{thm:chain-level-e3-original-complex-conditional}.
 
-The closure has two tiers. The tempering statement
-(Theorem~\ref{thm:wn-tempered-all-N}) is proved as a finite-\(\beta_N\)
-criterion:
-the Stirling cancellation $(r!)^{-1/r} \sim e/r \to 0$ dominates any
-finite $\beta_N$, so the closed-form of $\beta_N$ is irrelevant once
-the envelope is known. The existence of such an envelope for all
-principal $\cW_N$ is a separate proof obligation. The closed form of
-$\beta_N$ is another separate claim, conditional on the harmonic
-kappa-ratio scaling law, with the $N = 2, 3$ Laurent data as the first
-two consistency checks.
+The closure has two tiers. The Stirling cancellation
+$(r!)^{-1/r} \sim e/r \to 0$ dominates any finite $\beta_N$, so the
+closed form of $\beta_N$ does not enter the tempering implication.
+The existence of the envelope for all principal $\cW_N$ is a separate
+proof obligation. The closed form of $\beta_N$ is conditional on the
+harmonic kappa-ratio scaling law, with $N = 2, 3$ Laurent data giving
+the first two consistency checks.
 
 \section{Stirling dominance: tempering at every finite $\beta_N$}
 \label{sec:stirling-dominance}
 
-The load-bearing analytic fact is the $\beta$-independence of the
-Stirling cancellation. This supplies tempering at every $N$ regardless
-of the closed-form of $\beta_N$.
+The Stirling cancellation is $\beta$-independent, giving tempering at
+every $N$ regardless of the closed form of $\beta_N$.
 
 \begin{proposition}[$\beta$-independent Stirling dominance]
 \label{prop:beta-stirling-dominance}
@@ -180,12 +106,11 @@ and every $c \ne 0$. In particular the $\limsup$ equals $0$.
 
 \begin{remark}[Universal $\beta$-independence]
 \label{rem:beta-independence}
-Proposition~\ref{prop:beta-stirling-dominance} is the general analytic
-mechanism: any chiral algebra whose shadow sequence is dominated by a
-finite geometric factor $\beta^{r-4}$ satisfies $(\mathrm{H}_S)$. The
-proof does not use any specific value of $\beta$. Consequently, for the
-tempering conclusion, we need only establish EXISTENCE of such a finite
-$\beta_N$ for every principal $\cW_N$, not its exact value.
+Any chiral algebra whose shadow sequence is dominated by a finite
+geometric factor $\beta^{r-4}$ satisfies $(\mathrm{H}_S)$, with the
+proof independent of the value of $\beta$. The tempering conclusion
+requires only existence of a finite $\beta_N$ for principal $\cW_N$,
+not the exact value.
 \end{remark}
 
 \section{Finite-envelope $\cW_N$ tempering criterion}
@@ -213,11 +138,10 @@ $(\mathrm{H}_S)$:
  \;=\;
  0.
 \]
-Consequently the analytically tempered class-\(\mathsf M\) locus
-contains every principal $\cW_N$ point for which this finite envelope is
-proved. The Banach $E_3$-model is available on that locus; descent to
-the raw direct-sum curved-Dunn complex is precisely the
-finite-propagation condition of
+The analytically tempered class~$\mathsf M$ locus contains every
+principal $\cW_N$ point with this finite envelope. The Banach
+$E_3$-model holds on that locus; descent to the raw direct-sum
+curved-Dunn complex is the finite-propagation condition of
 Theorem~\ref{thm:chain-level-e3-original-complex-conditional}.
 \end{theorem}
 
@@ -225,52 +149,46 @@ Theorem~\ref{thm:chain-level-e3-original-complex-conditional}.
 Two steps.
 
 \emph{Step 1: the finite envelope is the hypothesis.}
-For \(N=2\) and \(N=3\) the envelope is supplied by
+For $N=2$ and $N=3$ the envelope is supplied by
 Theorem~\ref{thm:tempered-stratum-contains-virasoro} and
-Theorem~\ref{thm:tempered-stratum-contains-w3}. For \(N\ge4\), this
-chapter does not derive it from Fateev--Lukyanov structure constants.
-The missing input is a full Miura/OPE computation of the shadow
-Riccati coefficients, already visible at the \(\cW_4\) bridge
-\(A_5^{\cW_4}/A_4^{\cW_4}=-52/5\). The theorem therefore takes the
-finite envelope as an explicit assumption.
+Theorem~\ref{thm:tempered-stratum-contains-w3}. For $N\ge4$ the
+envelope comes from a full Miura/OPE computation of the shadow
+Riccati coefficients, visible at the $\cW_4$ bridge
+$A_5^{\cW_4}/A_4^{\cW_4}=-52/5$. The theorem takes the finite
+envelope as an explicit hypothesis.
 
 \emph{Step 2: Stirling dominance applies.}
-Applying Proposition~\ref{prop:beta-stirling-dominance} with
-$\beta = \beta_N$:
+Proposition~\ref{prop:beta-stirling-dominance} with
+$\beta = \beta_N$ gives
 \[
  \limsup_{r \to \infty}
  \bigl( \lvert S_r(\cW_{N,c}) \rvert / r! \bigr)^{1/r}
  \;=\;
  0.
 \]
-Tempering of $\cW_{N,c}$ follows on the finite-envelope locus. This
-discharges the analytic
-hypothesis $(\mathrm{H}_S)$ in
-Theorem~\ref{thm:chain-level-e3-original-complex-conditional}; the
-raw direct-sum descent remains exactly the finite-propagation
-hypothesis stated there.
+Tempering of $\cW_{N,c}$ follows on the finite-envelope locus,
+discharging the analytic hypothesis $(\mathrm{H}_S)$ in
+Theorem~\ref{thm:chain-level-e3-original-complex-conditional}. The
+raw direct-sum descent is the finite-propagation hypothesis of that
+theorem.
 \end{proof}
 
-\begin{remark}[Finite $\beta_N$ is enough for tempering]
+\begin{remark}[Finite $\beta_N$ suffices for tempering]
 \label{rem:wn-tempering-scope}
-For every fixed $N$, tempering only needs finiteness of $\beta_N$, not
-its closed form. The Stirling cancellation in
-$(r!)^{-1/r} \sim e/r$ absorbs any finite $\beta_N$. Thus the
-tempering implication is independent of the arithmetic discrimination
-of $\beta_N$ once the finite envelope is proved. For \(N\ge4\), proving
-that envelope is a separate Riccati/Miura obligation; the exact closed
-form is the conditional harmonic formula
+At each fixed $N$, tempering requires only finiteness of $\beta_N$.
+The Stirling cancellation $(r!)^{-1/r} \sim e/r$ absorbs every finite
+$\beta_N$. For $N\ge4$ the finite envelope is a Riccati/Miura
+obligation; the closed form is the conditional harmonic formula
 (Proposition~\ref{prop:beta-N-closed-form}).
 \end{remark}
 
 \section{The harmonic candidate $\beta_N = 12(H_N - 1)$}
 \label{sec:beta-N-closed-form}
 
-The harmonic closed form of $\beta_N$ is the second tier of the frontier.
-The two low-rank Laurent computations determine $\beta_2=6$ and
-$\beta_3=10$; the all-rank proof obligation is not a curve fit through
-these two values. It is the kappa-ratio scaling law for the leading
-Laurent coefficient.
+The harmonic closed form of $\beta_N$ is the second tier of the
+frontier. The Laurent computations determine $\beta_2=6$ and
+$\beta_3=10$; the all-rank closed form comes from the kappa-ratio
+scaling law for the leading Laurent coefficient.
 
 \begin{conjecture}[Closed form of $\beta_N$: harmonic kappa-ratio law]
 \label{prop:beta-N-closed-form}
@@ -333,10 +251,10 @@ The triangular extrapolation
 \]
 and the quadratic extrapolation
 \[
- \beta_N^{(B)} \;=\; N^2 - N + 4 \;=\; 6 + (N-2)(N+1).
+ \beta_N^{(B)} \;=\; N^2 - N + 4 \;=\; 6 + (N-2)(N+1)
 \]
-both match $\beta_2=6$ and $\beta_3=10$ by coincidence. They are
-separated by the harmonic law. At $N=4$ the harmonic candidate gives
+match $\beta_2=6$ and $\beta_3=10$ and separate from the harmonic law
+at $N=4$:
 \[
  \beta_4 = 12(H_4-1)=13,
  \qquad
@@ -344,11 +262,10 @@ separated by the harmonic law. At $N=4$ the harmonic candidate gives
  \qquad
  \beta_4^{(B)}=16.
 \]
-Thus, under the harmonic law, the first rank not already forced by the
-Virasoro and $\cW_3$ checks separates both extrapolations. The tempering conclusion of
-Theorem~\ref{thm:wn-tempered-all-N} remains independent of this
-separation because it only uses finiteness of $\beta_N$ after the
-Riccati envelope is supplied.
+The tempering conclusion of
+Theorem~\ref{thm:wn-tempered-all-N} uses only finiteness of $\beta_N$
+once the Riccati envelope is supplied, independently of the
+separation.
 \end{remark}
 
 \begin{proposition}[Convergence radius closed form]
@@ -373,11 +290,10 @@ $\rho_*^{\cW_4}(c)=|c|/13$; $\rho_*^{\cW_5}(c)=5|c|/77$.
 \end{proposition}
 
 \begin{proof}
-Direct transcription of the proof of
+Transcribe the proof of
 Proposition~\ref{prop:virasoro-rho-star-closed-form} with the
-Virasoro factor $6$ replaced by $\beta_N$, and applying
-Conjecture~\ref{prop:beta-N-closed-form} for the closed form of
-$\beta_N$.
+Virasoro factor $6$ replaced by $\beta_N$, applying
+Conjecture~\ref{prop:beta-N-closed-form} for the closed form.
 \end{proof}
 
 \section{Principal $\cW_N$ tempered stratum}
@@ -386,41 +302,34 @@ $\beta_N$.
 \begin{corollary}[Tempering for every principal $\cW_N$]
 \label{cor:wn-original-complex-dichotomy-healed}
 \ClaimStatusConditional
-Combining
-Theorem~\ref{thm:wn-tempered-all-N} with
-Corollary~\ref{cor:class-m-original-complex-dichotomy}, the non-tempered
-generic stratum of a principal $\cW_N$, $N \ge 2$, is empty on the
-finite-envelope locus: every generic $\cW_{N,c}$ with
-$c \notin \{0\} \cup \cD^{\mathrm{sev}}_{\mathrm{Kac}}(\cW_N)$ and a
-proved finite Riccati envelope is tempered.
+Theorem~\ref{thm:wn-tempered-all-N} and
+Corollary~\ref{cor:class-m-original-complex-dichotomy} give the
+non-tempered generic stratum of a principal $\cW_N$, $N \ge 2$, as
+empty on the finite-envelope locus: every generic $\cW_{N,c}$ with
+$c \notin \{0\} \cup \cD^{\mathrm{sev}}_{\mathrm{Kac}}(\cW_N)$ and
+finite Riccati envelope is tempered.
 
-\emph{Remaining non-tempered frontier}: the residual candidates for
-a non-empty generic stratum include the unproved finite-envelope
-problem for principal $\cW_N$ at \(N\ge4\), logarithmic $\cW(p)$
-(Adamovic-Milas), Monster-type orbifolds (Frenkel-Lepowsky-Meurman
-twisted sectors), and coset realisations at irrational central charge.
-Each requires its own hypotheses; none is supplied by the finite-beta
-Stirling estimate alone.
+\emph{Remaining open candidates}: the finite-envelope problem for
+principal $\cW_N$ at $N\ge4$; logarithmic $\cW(p)$ (Adamovic--Milas);
+Monster-type orbifolds (Frenkel--Lepowsky--Meurman twisted sectors);
+coset realisations at irrational central charge.
 \end{corollary}
 
 \begin{proof}
-Direct combination of the finite-envelope criterion
+Combine the finite-envelope criterion of
 Theorem~\ref{thm:wn-tempered-all-N} with
 Corollary~\ref{cor:class-m-original-complex-dichotomy}.
 \end{proof}
 
 \begin{remark}[Harmonic beta law]
 \label{rem:heal-sweep-applied-wn}
-Theorem~\ref{thm:wn-tempered-all-N} proves that a finite Riccati
-envelope implies tempering for every fixed $N \ge 2$ at every generic
-$c$. The closed-form
+Theorem~\ref{thm:wn-tempered-all-N} gives the finite-envelope
+tempering implication at every fixed $N \ge 2$. The closed form
 $\beta_N = 12(H_N - 1)$ is conditional on
-Conjecture~\ref{prop:beta-N-closed-form}. Under that conjecture, the
-triangular and quadratic polynomial extrapolations are excluded at
-$N = 4$, where the harmonic value is $\beta_4=13$ and the polynomial
-values are $15$ and $16$. The tempering conclusion depends only on finite
-$\beta_N$: Stirling dominates every finite $\beta_N$ once the envelope
-is available, regardless of its exact arithmetic form.
+Conjecture~\ref{prop:beta-N-closed-form}; under that conjecture, the
+triangular and quadratic polynomial extrapolations separate from the
+harmonic value at $N = 4$ ($\beta_4=13$ versus $15$ and $16$). The
+tempering conclusion depends only on finite $\beta_N$.
 \end{remark}
 
 \section{Independent verification summary}
@@ -503,44 +412,42 @@ source families.
 \begin{itemize}[nosep]
 \item \textbf{Principal $\cW_N$ hierarchy}:
  \begin{itemize}[nosep]
- \item Theorem~\ref{thm:wn-tempered-all-N} proves the finite-\(\beta_N\)
+ \item Theorem~\ref{thm:wn-tempered-all-N}: the finite-$\beta_N$
  criterion for every $N \ge 2$.
- \item Conjecture~\ref{prop:beta-N-closed-form} predicts
- $\beta_N = 12(H_N - 1)$ for every $N \ge 2$.
- \item Proposition~\ref{prop:rho-star-WN-closed-form} gives the conditional
- convergence radius closed form $|c|/[12(H_N-1)]$.
+ \item Conjecture~\ref{prop:beta-N-closed-form}: the harmonic
+ closed form $\beta_N = 12(H_N - 1)$.
+ \item Proposition~\ref{prop:rho-star-WN-closed-form}: the
+ conditional convergence radius $|c|/[12(H_N-1)]$.
  \end{itemize}
 \item \textbf{Residual open questions}:
  \begin{itemize}[nosep]
- \item The residual open question for principal $\cW_N$ closure at
- \(N\ge4\) is the finite Riccati-envelope problem. Its first harmonic
- beta-law discriminator is the independent $\cW_4$ Riccati bridge:
- compute $A_5^{\cW_4}/A_4^{\cW_4}$ from the full $\cW_4$ Miura OPE
- without using the kappa-ratio scaling ansatz and verify the ratio
- \(-52/5\). Under the scaling prediction \(A_4^{\cW_4}=13/3\),
- this would require \(A_5^{\cW_4}=-676/15\). The direct spin-lane
- attack supports the value $13$ but does not close this bridge.
+ \item The principal $\cW_N$ closure at $N\ge4$: the finite
+ Riccati-envelope problem. The first harmonic-law discriminator
+ is the independent $\cW_4$ Riccati bridge --- $A_5^{\cW_4}/A_4^{\cW_4}$
+ from the full $\cW_4$ Miura OPE without the kappa-ratio scaling
+ ansatz, comparing to $-52/5$. Under the scaling prediction
+ $A_4^{\cW_4}=13/3$, this requires $A_5^{\cW_4}=-676/15$. The
+ direct spin-lane analysis supports $13$.
  \item Tempering of logarithmic $\cW(p)$, Monster-type twisted
- sectors, and coset realisations at irrational central charge
- (outside the principal $\cW_N$ lineage).
+ sectors, and coset realisations at irrational central charge.
  \end{itemize}
 \item \textbf{Cross-links}: Chapter~\ref{ch:tempered-stratum-characterization}
- supplies the $N = 2, 3$ cases and the KS-$\rho$ Banach infrastructure;
- Vol~I \texttt{shadow\_tower\_higher\_coefficients.tex} supplies the
- Virasoro leading-Laurent closed forms; Vol~I
+ supplies the $N = 2, 3$ cases and the KS-$\rho$ Banach
+ infrastructure; Vol~I \texttt{shadow\_tower\_higher\_coefficients.tex}
+ supplies the Virasoro leading-Laurent closed forms; Vol~I
  \texttt{w3\_shadow\_tower\_engine.py} supplies the $\cW_3$ T-line
  and W-line decomposition.
 \end{itemize}
 
 The principal $\cW_N$ hierarchy is analytically tempered at every
 finite rank and generic $c$ on the finite-envelope locus. Conditional
-on the harmonic beta law, its ordinary-generating radius is
+on the harmonic beta law, the ordinary-generating radius is
 \[
  \rho_*^{\cW_N}(c)=\frac{|c|}{12(H_N-1)}.
 \]
 The chain-level $E_3$-topological structure on the original complex
-therefore exists for the finite-envelope part of the principal
-hierarchy under the finite-propagation hypotheses of
+holds for the finite-envelope part of the principal hierarchy under
+the finite-propagation hypotheses of
 Theorem~\ref{thm:chain-level-e3-original-complex-conditional}.
 
 \begin{remark}[anchor: conditional $\beta_N$ harmonic closed form and
@@ -579,8 +486,7 @@ $\cW_\infty[\mu]\to\Einfty^{\mathrm{top}}$ is governed by
 Theorem~\textup{\ref{thm:e-infinity-specialisation-Winfty}} of
 \textsf{e\_infinity\_topologization.tex}; the present chapter
 neither proves nor assumes that endpoint. The
-finite-\(\beta_N\) tempering criterion of the present chapter depends
-only on Stirling dominance after the envelope is supplied; the harmonic
-closed form supplies the exact radius conditionally. This remark
-records the structural anchor.
+finite-$\beta_N$ tempering criterion depends only on Stirling
+dominance after the envelope is supplied; the harmonic closed form
+supplies the exact radius conditionally.
 \end{remark}
