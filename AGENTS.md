@@ -172,6 +172,25 @@ Proof cannot be discharged with honest rigor → **naming the open obligation is
 
 ---
 
+## Code-writing discipline — repo application
+
+Per `~/ecosystem/INVARIANTS.md §XIII`. Twelve rules instantiated for chiral-bar-cobar Vol II ($A_\infty$ chiral algebras; 3D HT QFT; Swiss-cheese / topologisation ladder; bicoloured primitive package; CP-1..4 Construction Problems):
+
+1. **Think Before Coding.** Every $A_\infty$-edit names the chiral / homotopical structure and the claim-status. Every Construction Problem (CP-1..4) edit names the bicoloured-primitive package affected and the licensing-type tag.
+2. **Simplicity First.** Single thesis (`CLAUDE.md §2`), four Construction Problems — the scope is fixed. No new licensing types beyond the five canonical ones. No additions outside the seventeen-forbidden-slogans constraint.
+3. **Surgical Changes.** An edit in §6 (bicoloured primitive package) does not touch §7 (two-stage CY-chiral functor). §17 (hooks), §18 (skills), §19 (auto-memory) are internal — edits there do not modify mathematical chapters.
+4. **Goal-Driven Execution.** Success = `pdflatex main.tex` clean; Construction Problem progress consistent with `CLAUDE.md §10`; four-part term-coining test passes; voice-scan clean; raeez-math-template symlink intact; Beilinson gate clean.
+5. **Use the model only for judgment calls.** Cross-references, theorem-numbering, bibliography are deterministic. Codex drafts proofs and selects worked computations; it does not invent licensing types or violate the seventeen-forbidden-slogans list.
+6. **Token budgets are not advisory.** Monograph; checkpoint between Construction Problems and between chapters. Long-form proof harness sessions are 30–60 minutes — load context first, build internal outline.
+7. **Surface conflicts, don't average them.** Single-thesis statement wins over neighbouring chapter formulations. The bicoloured-primitive package is canonical for primitives used downstream. Compute disagreement → computation wins.
+8. **Read before you write.** Read the affected Construction Problem and its hypothesis package. Read §6 before editing §7. Read the seventeen forbidden slogans before drafting prose. Grep `notes/claude_md_legacy_20260418.md` and `notes/agents_md_legacy_20260418.md` — never read whole.
+9. **Tests verify intent.** Claim-status macros are the load-bearing test; four-part term-coining test is non-vacuous; the seventeen-forbidden-slogans list is a positive constraint. For load-bearing identities, seek independent derivations by multiple routes — disagreement is the deliverable.
+10. **Checkpoint after every significant step.** Between Construction Problems, summarize hypothesis-package delta and progress. Between chapters, restate single-thesis impact. Subagents return evidence; main thread integrates via deep semantic merge.
+11. **Match the codebase's conventions, even if you disagree.** `raeez-math-template.sty` per `INVARIANTS.md §XII`. Theorem environments per template. Subagent protocol governs parallel agent dispatch.
+12. **Fail loud.** Announce every cross-ref break, dangling theorem, unhealed conjecture (`INVARIANTS.md §XI`). Honour the §16 "Do not" coda. Cross-volume / compute-vs-prose disagreements stop and report.
+
+---
+
 ## 16 Do not
 
 Block large user-authorized swarms. Propagate status-label wording when mathematics is waiting. Invent formulas from memory. `make` after every edit. AI attribution anywhere. `git stash` or amend. Read legacy files whole (grep by AP / V2-AP / FM index). Confuse this file with a configuration manual. Mathematician's manifesto. Shrink if it grows.
