@@ -158,6 +158,17 @@ Solving any one of (P1)–(P4) collapses one face of the universal chain into a 
 
 The companion structural discipline is `rem:cyclic-hochschild-four-objects` in `chapters/connections/hochschild.tex` (cyclic-Hochschild four-object discipline: bulk $\mathrm{ChirHoch}^\bullet$ vs. shadow $\mathrm{ChirHoch}_\bullet$ vs. cyclic $\mathrm{HC}^{\mathrm{cyc}}$ vs. negative cyclic $\mathrm{HC}^-$; licensing $\gamma + \epsilon$).
 
+**Status snapshot.** Per CP, the gap between the current proved face and the target acting-object construction is:
+
+| CP | Current face (proved) | Target face (open) | Gap |
+|:---:|----------------------|--------------------|-----|
+| **P1** | $\Delta_5(\Omega) \in M_5(\mathrm{Sp}_4(\mathbb Z))$ scalar Borcherds product (Borcherds 1995, Gritsenko 1999); chain-level cyclic complex $\mathrm{ChirHoch}^\bullet$ on $\Lambda^{2,1}_{\mathrm{II}}$ identified (Vol II `thm:chirhoch-virasoro-concentration`) | $\mathfrak{D}_X$ on $X = K3 \times E$ with $\mathrm{Pf}_{\mathrm{prot}}(\mathfrak{D}_X) = \Delta_5$ as chain-level identity | construct the protected-Pfaffian generator and exhibit the $\mathsf{S}\to\mathsf{Z}$ stage transport |
+| **P2** | $\Phi_{10}^{\mathrm{un}} = \Delta_5^{2}$ Borcherds product on $\mathrm{O}(2, 26)/\mathrm{O}(2)\times\mathrm{O}(26)$ (Gritsenko–Nikulin) carrying Pentagon-face scalar trace; six-route Hall–Borcherds bridge in Vol III | gravity-line operator algebra realising the bridge at chain level | construct the $\mathsf{SC}^{\mathrm{ch,top}}$-pair on K3$\times E$ and the explicit Hall–Borcherds intertwiner; verify $\effHCSQuartic$ |
+| **P3** | classical $\lambda$-Jacobi PVA limit (`pva-descent.tex`); $E_3$-lift on $Q_{\mathrm{tot}}$-cohomology proved for affine KM at non-critical level (`thm:e-infinity-topologization-ladder`); iterated-Sugawara $E_{k+2}^{\mathrm{top}}$ ladder | unified PVA-quantum HT theory with both limits realised on a single chain-level object | install $\hypKZSDR + \hypStokes + \hypReflWts + \hypTLift$; close the all-loop quantum lift |
+| **P4** | Vol I Theorem B on positive-energy / Koszul class (`thm:chiral-positselski-cross-volume`, listed above); MC bijection of Gui–Li–Zeng on quadratic specialisation | chiral Positselski on arbitrary chiral algebras with the open factorisation dg-category | refined $\hypAmbientWtCpl$ ambient covering non-positive-energy, log-decorated, non-rational chiral algebras |
+
+Each row inhabits a single stage transport in $\mathsf{P}\to\mathsf{C}\to\mathsf{S}\to\mathsf{Z}\to\mathsf{A}$: P1 is $\mathsf{S} \to \mathsf{Z}$ (trace + CY lane); P2 is $\mathsf{S} \to \mathsf{A}$ (open lane via Pentagon trace); P3 is $\mathsf{Z} \to \mathsf{Z}$ inside the open lane (classical to quantum); P4 is $\mathsf{S} \to \mathsf{Z}$ on the open lane outside the Vol~I positive-energy ambient. The stratification is `thm:construction-problem-stage-stratification` in `chapters/connections/programme_climax_platonic.tex`.
+
 ---
 
 ## Cross-volume cross-references
