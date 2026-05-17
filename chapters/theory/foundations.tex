@@ -310,6 +310,452 @@ centre, PTVV) and inherit their data from
 $\primPkgBicolour$ via the universal stage chain.
 \end{remark}
 
+% =====================================================================
+%  Source-side typed boundary-holographic functor  \Phihol.
+%  Six typed carriers; five-tuple is intrinsic; sixth carrier
+%  (physical bulk) requires an OCA open-closed quasi-isomorphism.
+%  Dual to \cref{thm:bicoloured-primitive-universality}: where that
+%  theorem reconstructs the nine-tuple primitive at level P from an
+%  \SCchtop-algebra, the present theorem extracts the typed level
+%  S -> Z data from a chirally Koszul boundary algebra.
+% =====================================================================
+
+The universality theorem~(\cref{thm:bicoloured-primitive-universality})
+runs from the $\SCchtop$-algebra to the nine-tuple primitive at level
+$\mathsf{P}$.  Its source-side companion --- the functor sending a
+chirally Koszul boundary algebra to the typed level
+$\mathsf{S} \to \mathsf{Z}$ data --- is recorded next.  Six carriers,
+never to be conflated.
+
+\begin{definition}[Six typed carriers of boundary-holographic data;
+licensing tag $\alpha$ for the source chart, $\gamma$ for each carrier's
+ambient]
+\label{def:six-typed-carriers}
+\index{six typed carriers|textbf}%
+\index{boundary-holographic data!six typed carriers}%
+On the chirally Koszul locus $\ChirAlg_{X}^{E_{1},\mathrm{Kosz}}$ over
+a smooth curve $X$, the data attached to a boundary algebra $A$ comprise
+six carriers, distinguished by function and never identified without
+a named comparison morphism:
+\begin{description}
+\item[\textup{(C1)}] $\BarTwc{A} = T_{c}(s^{-1}\bar{A})$ --- the
+conilpotent $E_{1}$-chiral bar coalgebra over the chiral coassociative
+cooperad $(\chirAss)^{!}$. \emph{Function:} classifies twisting
+morphisms $\tau : \BarTwc{A} \to A$. \emph{Not:} the bulk; not a
+Hochschild object.
+\item[\textup{(C2)}] $A^{!}$ --- the Verdier/Koszul dual algebra,
+obtained from $\BarTwc{A}$ by Verdier duality along the line direction.
+\emph{Function:} controls open dual modules and the perturbative line
+operator category. \emph{Not:} $\Zderch{A}$.
+\item[\textup{(C3)}] $\Zderch{A} = \bulkChirHoch{A} =
+\mathrm{C}^{\bullet}_{\mathrm{ch}}(A,A)$ --- the chiral Hochschild
+brace dg algebra of~\cref{thm:chain-level-bulk}. \emph{Function:} the
+universal closed sector internal to the boundary theory. \emph{Not:}
+automatically a physical bulk.
+\item[\textup{(C4)}] $\obsBulkPhys{A}$ --- the observable algebra of
+an actual $3d$ HT bulk theory $T_{A}$. \emph{Function:} the physical
+bulk \emph{when} realised. \emph{Not:} present without an open-closed
+comparison.
+\item[\textup{(C5)}] $\chi(A) \in \mathbb{Z}((q))$ --- the graded
+Euler character / protected automorphic index. \emph{Function:} shadow
+invariant. \emph{Not:} a chain-level operator algebra.
+\item[\textup{(C6)}] $\OpGrav{A}$ --- the gravity-line operator
+algebra, a filtered $\SCchtop$-object on the chosen boundary curve.
+\emph{Function:} the chain-level physical target. \emph{Not:} determined
+by $\chi(A)$.
+\end{description}
+A theorem asserting an identification across two of these carriers
+must \emph{name} the comparison morphism: Verdier duality
+(C1~$\to$~C2), Hochschild resolution (C2~$\to$~C3), the open-closed
+quasi-isomorphism $\OCA$ (C3~$\to$~C4), graded Euler character
+(C3 or C4~$\to$~C5), Hall--Borcherds residual (C5~$\to$~C6).
+Cross-carrier collapse without the named arrow is forbidden
+slogan~\#11 of the voice table~(CLAUDE.md~\S 8).
+\end{definition}
+
+\begin{theorem}[Typed boundary-holographic realisation; the functor
+$\Phihol$; \ClaimStatusProvedHere modulo $\OCA$ for the physical-bulk
+identification; licensing tags $\alpha + \beta + \gamma$]
+\label{thm:typed-boundary-holographic-realisation}
+\index{boundary-holographic realisation!typed master theorem|textbf}%
+\index{universal holography functor!source-side typed statement|textbf}%
+\index{Phihol@$\Phihol$!source-side typed functor|textbf}%
+
+\noindent\textbf{Status.}\enspace \ClaimStatusProvedHere on the chirally
+Koszul locus $\ChirAlg_{X}^{E_{1},\mathrm{Kosz}}$; the OCA
+quasi-isomorphism for the physical-bulk carrier~\textup{(C4)} is a
+separate construction.
+
+\noindent\textbf{Ambient.}\enspace chain-level $\mathrm{Ch}(\mathrm{Vect})$
+for class~$\mathsf{L}$ at non-critical level; weight-completed / pro /
+Banach (hypothesis $\hypAmbientWtCpl$) for class~$\mathsf{M}$.
+$\BarTwc{A}$ lives in conilpotent $E_{1}$-chiral coalgebras over
+$(\chirAss)^{!}$; $\Zderch{A}$ in the brace dg algebra category.
+
+\noindent\textbf{Source.}\enspace augmented complete chirally Koszul
+algebra $A \in \ChirAlg_{X}^{E_{1},\,\mathrm{Kosz}}$ on a smooth curve
+$X$.
+
+\noindent\textbf{Target.}\enspace the category $\HolBd_{X}$ of typed
+boundary-holographic data on $X$: objects are five-tuples
+$(\bar{B}, \Theta, r, Z, \nabla)$ subject to the consistency conditions
+\textup{(i)--(v)} below.
+
+\noindent\textbf{Map.}\enspace the functor
+\begin{equation}\label{eq:typed-hol-functor}
+\Phihol \;\colon\; \ChirAlg_{X}^{E_{1},\,\mathrm{Kosz}}
+\;\longrightarrow\; \HolBd_{X},
+\qquad
+A \;\longmapsto\;
+\bigl(\,\BarTwc{A},\;\Theta_{A},\;r_{A}(z),\;\Zderch{A},\;\nabla^{\mathrm{hol}}_{A}\,\bigr),
+\end{equation}
+the five projections:
+\begin{enumerate}[label=\textup{(\roman*)}]
+\item $\pi_{\mathrm{bar}}\bigl(\Phihol(A)\bigr) = \BarTwc{A} =
+T_{c}(s^{-1}\bar{A})$, the conilpotent $E_{1}$-chiral coalgebra with
+deconcatenation coproduct and differential
+\[
+ d_{B} \;=\; d_{\mathrm{int}} \;+\; d_{\mathrm{OPE}},
+\]
+where $d_{\mathrm{int}}$ extends the internal differential of $A$ and
+$d_{\mathrm{OPE}}$ is the sum of binary chiral contractions along
+codimension-one strata of the Fulton--MacPherson compactification
+$\overline{\FM}_{n}(C)$.
+\item $\pi_{\mathrm{MC}}\bigl(\Phihol(A)\bigr) = \Theta_{A}$, the
+universal twisting Maurer--Cartan element
+\[
+ \Theta_{A} \;\in\;
+ \mathrm{Hom}^{\,1}\bigl(\BarTwc{A},\,A\bigr)_{\mathrm{prim}},
+ \qquad
+ \delta_{\mathrm{conv}}\Theta_{A} \;+\; \tfrac{1}{2}[\Theta_{A},\Theta_{A}]
+ \;=\; 0,
+\]
+in the primitive part of the convolution complex.
+\item $\pi_{r}\bigl(\Phihol(A)\bigr) = r_{A}(z)$, the binary collision
+residue
+\[
+ r_{A}(z) \;=\;
+ \mathrm{Res}^{\mathrm{coll}}_{0,2}\bigl(\Theta_{A}\bigr)
+ \;\in\; (A \otimes A)((z))_{\mathrm{prim}},
+\]
+the classical $r$-matrix; on the chirally Koszul locus it satisfies
+the classical Yang--Baxter equation, with spectral quantum
+$R(z) = 1 + \hbar\,r_{A}(z) + O(\hbar^{2})$ obeying QYBE.
+\item $\pi_{Z}\bigl(\Phihol(A)\bigr) = \Zderch{A} =
+\mathrm{C}^{\bullet}_{\mathrm{ch}}(A,A)$, the chiral Hochschild brace
+dg algebra of \cref{thm:chain-level-bulk}.
+\item $\pi_{\nabla}\bigl(\Phihol(A)\bigr) = \nabla^{\mathrm{hol}}_{A}$,
+the flat Gauss--Manin connection on the family of bar fibres
+$\{\BarTwc{A_{x}}\}_{x \in X}$, compatible with $\Theta_{A}$,
+$r_{A}(z)$, and the brace dg algebra structure on $\Zderch{A}$.
+\end{enumerate}
+
+\noindent\textbf{Residuals.}\enspace
+\begin{enumerate}[label=\textup{(R\arabic*)}]
+\item the open-closed comparison $\OCA \colon \obsBulkPhys{A}
+\xrightarrow{\sim} \Zderch{A}$ for the physical-bulk identification
+\textup{(C4)} is a separate construction
+(\cref{cor:sixth-carrier-OCA});
+\item the $\SCchtop$-action on the pair $(\Zderch{A}, A)$ is the
+chiral Deligne--Tamarkin / Swiss-cheese theorem
+(\cref{thm:chd-ds-hochschild});
+\item topologisation $\Zderch{A} \rightsquigarrow E_{3}^{\mathrm{top}}$
+requires the conformal-vector null-homotopy $T = [Q, G]$ in the stated
+filtered ambient (hypothesis $\hypTLift$);
+\item the graded Euler character~\textup{(C5)} and the gravity-line
+operator algebra~\textup{(C6)} require additional data: a chosen trace,
+a chosen filtration, and a Hall--Borcherds residual.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+The five constructions below produce, term by term, the components of
+$\Phihol(A)$.  Functoriality follows from the cofree-conilpotent
+universal property of the bar.
+
+\emph{Step 1 \textup(bar construction\textup).}
+The cofree conilpotent graded coalgebra
+$T_{c}(s^{-1}\bar{A}) = \bigoplus_{n \ge 0} (s^{-1}\bar{A})^{\otimes n}$
+carries the deconcatenation coproduct
+$\Delta(a_{1} \otimes \cdots \otimes a_{n})
+ = \sum_{i=0}^{n} (a_{1} \otimes \cdots \otimes a_{i}) \otimes
+ (a_{i+1} \otimes \cdots \otimes a_{n})$.
+The chiral differential $d_{B} = d_{\mathrm{int}} + d_{\mathrm{OPE}}$
+is the extension of $d_{A}$ as a coderivation, together with, on
+$(s^{-1}\bar{A})^{\otimes n}$,
+\[
+ d_{\mathrm{OPE}}(a_{1} \otimes \cdots \otimes a_{n})
+ \;=\; \sum_{i < j} \pm\,
+ \mathrm{Res}_{z_{i}=z_{j}}^{\overline{\FM}_{n}(C)}\!
+ \bigl(\mu(a_{i}, a_{j})\bigr)
+ \,\otimes\, a_{1} \otimes \cdots
+ \widehat{a_{i}} \cdots \widehat{a_{j}} \cdots \otimes a_{n},
+\]
+the operadic sum of binary chiral contractions along the
+codimension-one strata $\{z_{i} = z_{j}\}$, applied to the chiral
+product $\mu : A \otimes A \to A((z))$ at arity $r = 2$
+(Beilinson--Drinfeld~\cite{BD04}~\S 3.4.6).
+
+\emph{Step 2 \textup($d_{B}^{2} = 0$ via the Arnold three-point
+relation\textup).}
+The square $d_{B}^{2}$ decomposes as $d_{\mathrm{int}}^{2} +
+\{d_{\mathrm{int}},\, d_{\mathrm{OPE}}\} + d_{\mathrm{OPE}}^{2}$.
+The first vanishes by $d_{A}^{2} = 0$, the second by chain-level
+compatibility of $\mu$ with $d_{A}$, and the third by the Arnold
+three-point relation on $\overline{\FM}_{3}(C)$,
+\[
+ \eta_{12} \wedge \eta_{23} \;+\; \eta_{23} \wedge \eta_{31}
+ \;+\; \eta_{31} \wedge \eta_{12} \;=\; 0,
+\qquad
+ \eta_{ij} \;=\; \mathrm{d}\log(z_{i} - z_{j}),
+\]
+which is the codimension-two cancellation along $\{z_{1} = z_{2} =
+z_{3}\}$ of $\overline{\FM}_{3}(C)$
+(Arnold; Fulton--MacPherson; Beilinson--Drinfeld~\cite{BD04}~\S 4.5).
+Higher arities propagate by operadic associativity.  Hence
+$d_{B}^{2} = 0$, and $\BarTwc{A}$ is a well-defined conilpotent
+$E_{1}$-chiral dg coalgebra.
+
+\emph{Step 3 \textup{(}twisting MC element and $r$-matrix\textup{)}.}
+The universal twisting morphism $\tau \in
+\mathrm{Hom}^{\,1}(\BarTwc{A}, A)$ is the desuspension of the identity
+on linear pieces, $\tau(s^{-1}\bar{a}) = a$.  Its convolution
+differential is the universal twisting Maurer--Cartan element
+$\Theta_{A} = \delta_{\mathrm{conv}}\tau$, satisfying
+$\delta_{\mathrm{conv}}\Theta_{A} + \tfrac{1}{2}[\Theta_{A},\Theta_{A}]
+ = 0$ in the convolution algebra
+(Volume~I, Theorem~\ref*{V1-thm:mc2-bar-intrinsic}).  The quadratic
+component, restricted to the boundary divisor of $\overline{\FM}_{2}(C)$,
+is the classical $r$-matrix
+$r_{A}(z) = \mathrm{Res}^{\mathrm{coll}}_{0,2}(\Theta_{A})
+ = \Theta_{A}^{(2)}|_{\overline{\FM}_{2}(C)}$.
+The cubic component of the MC equation, restricted to the
+codimension-two boundary of $\overline{\FM}_{3}(C)$, yields the
+classical Yang--Baxter equation
+\[
+ [r_{12}(z_{12}), r_{13}(z_{13})]
+ \;+\; [r_{12}(z_{12}), r_{23}(z_{23})]
+ \;+\; [r_{13}(z_{13}), r_{23}(z_{23})] \;=\; 0;
+\]
+the spectral $R(z) = 1 + \hbar\,r_{A}(z) + O(\hbar^{2})$ satisfies
+QYBE by formal deformation of the all-degree MC equation
+(\cref{thm:chain-level-bulk}\,(iii)).
+
+\emph{Step 4 \textup(derived chiral centre via the bar
+resolution\textup).}
+On the chirally Koszul locus, the bar coalgebra furnishes a free
+resolution of $A$ as a chiral $A$-bimodule:
+$\Omega^{\mathrm{ch}}\BarTwc{A} \xrightarrow{\;\sim\;} A$
+(Volume~I, Theorem~\ref*{V1-thm:A-infinity-2}).
+Hence
+\[
+ \Zderch{A}
+ \;=\; \mathrm{R}\mathrm{Hom}^{\,\mathrm{ch}}_{A \otimes A^{\mathrm{op}}}
+ \bigl(A,\, A\bigr)
+ \;\simeq\; \mathrm{Hom}\bigl(\BarTwc{A},\, A\bigr)
+ \;=\; \mathrm{C}^{\bullet}_{\mathrm{ch}}(A, A),
+\]
+the chiral Hochschild cochain complex.  The brace dg algebra structure
+is \cref{thm:chain-level-bulk}\,(i); the $L_{\infty}$-structure and
+Maurer--Cartan classification of deformations of the $\SCchtop$-action
+on $A_{b}$ are \cref{thm:chain-level-bulk}\,(ii)--(iii).
+
+\emph{Step 5 \textup{(}Gauss--Manin and $\SCchtop$-action\textup{)}.}
+The de~Rham Gauss--Manin connection on
+$H^{\bullet}\!\bigl(\overline{\FM}_{n}(X), \mathbb{C}\bigr)$,
+pulled back to the family of bar fibres $\{\BarTwc{A_{x}}\}_{x \in X}$
+over the moduli of $X$, defines the flat connection
+$\nabla^{\mathrm{hol}}_{A}$
+(Beilinson--Drinfeld~\cite{BD04}~\S 4.7).
+Its flatness is the integrability of the chiral OPE along the moduli;
+functoriality of the bar transports $\nabla^{\mathrm{hol}}_{A}$ to a
+flat connection on $\Zderch{A}$ compatible with the brace operations.
+The brace operations of \cref{thm:chain-level-bulk}\,(i) together
+with the half-braiding $\HalfBraid$ of
+\cref{thm:bicoloured-primitive-universality}, Step~3, realise the
+pair $(\Zderch{A}, A)$ as an algebra over the closed and open colours
+of $\SCchtop$ (chiral Deligne--Tamarkin;
+\cref{thm:chd-ds-hochschild}).
+
+\emph{Functoriality of $\Phihol$.}
+A chiral morphism $f : A \to A'$ in
+$\ChirAlg_{X}^{E_{1},\mathrm{Kosz}}$ induces the coalgebra morphism
+$\BarTwc{f} : \BarTwc{A} \to \BarTwc{A'}$ by the cofree-conilpotent
+universal property; the Maurer--Cartan element, $r$-matrix,
+Hochschild cochain, and Gauss--Manin connection all transport along
+$\BarTwc{f}$.  Composition is preserved on the nose, since each
+component is intrinsic to $A$.
+\end{proof}
+
+\begin{corollary}[The sixth carrier requires the open-closed
+comparison; \ClaimStatusConditional on $\OCA$; licensing tag $\gamma$]
+\label{cor:sixth-carrier-OCA}
+\index{open-closed comparison!OCA quasi-isomorphism|textbf}%
+\index{physical bulk!OCA licensing required}%
+A statement of the form ``$\obsBulkPhys{A} = \Zderch{A}$'' is not a
+theorem of $\Phihol$~(\cref{thm:typed-boundary-holographic-realisation}).
+It becomes a theorem only after the construction of a separate
+open-closed comparison quasi-isomorphism
+\begin{equation}\label{eq:OCA-quasi-iso}
+ \OCA \;\colon\; \obsBulkPhys{A} \;\xrightarrow{\;\sim\;}\; \Zderch{A}
+\end{equation}
+for the chosen $3d$ HT bulk theory $T_{A}$, compatible with the
+$\SCchtop$-action of
+\cref{thm:typed-boundary-holographic-realisation}, Step~5.  Without
+$\OCA$, $\Zderch{A}$ is an internal closed-sector algebraic object
+of the boundary theory --- the derived chiral centre --- and not the
+physical bulk.
+\end{corollary}
+
+\begin{proof}
+The functor $\Phihol$ extracts the five carriers~\textup{(i)}--%
+\textup{(v)} from $A$ by intrinsically algebraic constructions:
+tensor coalgebra, twisting MC, collision residue, Hochschild cochains,
+Gauss--Manin.  None invokes the observable algebra of a $3d$ HT bulk
+theory.  Identification of $\Zderch{A}$ with $\obsBulkPhys{A}$
+requires construction of $T_{A}$ as a $3d$ HT QFT and verification of
+a quasi-isomorphism on observables compatible with bulk-to-boundary
+OPE --- precisely the OCA datum.
+\end{proof}
+
+\begin{lemma}[Scalar non-faithfulness; licensing tags $\alpha +
+\gamma$]
+\label{lem:scalar-non-faithfulness}
+\index{scalar character!non-faithfulness lemma|textbf}%
+\index{filtered SCchtop-objects!not determined by graded Euler character}%
+The graded Euler-character functor
+\[
+ \chi \;\colon\;
+ \mathsf{FiltCh}\bigl(\SCchtop\bigr)
+ \;\longrightarrow\; \mathbb{Z}((q))
+\]
+from filtered chain complexes equipped with an $\SCchtop$-action to
+$\mathbb{Z}((q))$ is \emph{not} faithful.  Equality of graded Euler
+characters $\chi(C) = \chi(C')$ does not determine a quasi-isomorphism
+$C \simeq C'$, an $\SCchtop$-morphism, a Hall product, a Drinfeld
+pairing, a current-envelope locality structure, or a derived-centre
+trace.
+\end{lemma}
+
+\begin{proof}
+Let $K = (V \xrightarrow{\mathrm{id}} V)$ in degrees $0$ and $-1$,
+equipped with a two-step filtration $0 \subset F_{0}K \subset F_{1}K
+= K$ for which $F_{0}K = V$ in degree $-1$.  Then $K$ is acyclic with
+$\chi(K) = 0$, but $K \not\simeq 0$ as a filtered chain complex.
+Hence $\chi(C) = \chi(C \oplus K)$, while the filtered
+$\SCchtop$-actions on $C$ and $C \oplus K$ are inequivalent whenever
+$K$ enters non-trivially into a higher operadic component --- for
+instance, when the brace operation on $C \oplus K$ uses a non-zero
+entry in the $K$-direction.  Therefore $\chi$ forgets the differential,
+the product, the coproduct, the trace, the brace operations, and any
+open-closed quasi-isomorphism.
+
+In particular, the equality of scalar characters
+$\chi\bigl(\Zderch{A}\bigr) = \chi\bigl(\obsBulkPhys{A}\bigr)$ does
+not yield $\Zderch{A} \simeq \obsBulkPhys{A}$ as $\SCchtop$-algebras:
+the OCA quasi-isomorphism of \cref{cor:sixth-carrier-OCA} is a
+strictly finer datum than the graded character.
+\end{proof}
+
+\begin{remark}[Typed $\Phihol$ vs.\ the climax master and the bicoloured
+universality]
+\label{rem:typed-hol-vs-climax-vs-bicoloured-universality}
+The typed functor $\Phihol$
+\textup{(}\cref{thm:typed-boundary-holographic-realisation}\textup{)}
+is the source-side companion to two adjacent statements:
+\begin{enumerate}[label=\textup{(\arabic*)}]
+\item \cref{thm:bicoloured-primitive-universality} runs from the
+$\SCchtop$-algebra to the nine-tuple primitive (level $\mathsf{P}$);
+$\Phihol$ runs from a chirally Koszul $A$ to the typed five-tuple
+(levels $\mathsf{S} \to \mathsf{Z}$).
+\item The climax master
+$\bigl(\,\cref{thm:universal-holography-master}$ of
+Chapter~\ref{ch:programme-climax-platonic}$\bigr)$
+integrates $\Phihol$ into the full bulk-boundary holography on the
+climax landscape; it is \ClaimStatusConditional on
+class-dependent ambient ($\mathsf{L}$ chain-level versus $\mathsf{M}$
+weight-completed) and on Brown--Henneaux ($\hypBHdict$), modular
+invariance ($\hypModInv$), vacuum dominance ($\hypVacDom$), and
+saddle dominance ($\hypSadDom$).
+\end{enumerate}
+The bar--cobar inversion
+$\Omega^{\mathrm{ch}}\BarTwc{A} \xrightarrow{\sim} A$ on the Koszul
+locus is the (C1)~$\to$~boundary projection of $\Phihol$; it is
+\emph{not} a bulk statement (forbidden slogan~\#2 of the voice
+table).  The bulk identification $\Zderch{A} = \obsBulkPhys{A}$
+requires (C3)~$\to$~(C4) via the $\OCA$ quasi-isomorphism of
+\cref{cor:sixth-carrier-OCA}.
+\end{remark}
+
+\begin{definition}[Verification protocol for $\Phihol$;
+the eight minimal tests; licensing tag $\varepsilon$]%
+\label{def:realisation-verification-protocol-Phihol}%
+\index{realisation verification protocol!eight tests|textbf}%
+\index{Phihol@$\Phihol$!verification protocol}%
+A theorem $\mathsf{T}$ asserting a $\Phihol$-identification (an
+equality or quasi-isomorphism among the six carriers of
+\cref{def:six-typed-carriers}) carries a \emph{realisation datum}
+$\mathrm{Real}(X, \mathsf{T}) = (d_{\mathsf{T}}, e_{\mathsf{T}})$,
+with $d_{\mathsf{T}}$ a proof-disjoint verification source and
+$e_{\mathsf{T}}$ a computation whose expected value is not derived
+from the formula being tested.  The eight minimal tests are:
+\begin{enumerate}[label=\textup{(T\arabic*)}]
+\item \emph{Type test.}  Every claimed equality $X = Y$ names its
+source, target, ambient, and comparison morphism per the
+status-discipline header
+$\mathrm{Status} / \mathrm{Ambient} / \mathrm{Source} / \mathrm{Target}
+ / \mathrm{Map} / \mathrm{Residuals}$ of
+\cref{thm:typed-boundary-holographic-realisation}.
+\item \emph{Scalar non-faithfulness test.}  Add a filtered acyclic
+summand $K$ with $\chi(K) = 0$ and non-trivial filtration of step
+$\ge 2$; verify that $\mathsf{T}$ distinguishes $C$ from $C \oplus K$
+at chain level.  If the claimed equality survives the substitution,
+$\mathsf{T}$ is a scalar identity at carrier (C5), not a chain
+identity at carrier (C3), (C4), or (C6)
+(\cref{lem:scalar-non-faithfulness}).
+\item \emph{Maurer--Cartan test.}  Verify
+$\delta_{\mathrm{conv}}\Theta_{A} + \tfrac{1}{2}[\Theta_{A},\Theta_{A}]
+ = 0$ in the convolution complex
+(\cref{thm:typed-boundary-holographic-realisation}\,(ii)).
+\item \emph{Bar--cobar test.}  Verify
+$\Omega^{\mathrm{ch}}\BarTwc{A} \xrightarrow{\;\sim\;} A$ on the
+claimed Koszul locus (Vol~I~Theorem~\ref*{V1-thm:A-infinity-2};
+\cref{thm:typed-boundary-holographic-realisation}, Step~4).
+\item \emph{Derived-centre test.}  Compute
+$\mathrm{C}^{\bullet}_{\mathrm{ch}}(A, A)$ via the bar resolution
+\cref{thm:typed-boundary-holographic-realisation}, Step~4, and
+compare to any proposed physical bulk through the $\OCA$
+quasi-isomorphism $\OCA : \obsBulkPhys{A} \xrightarrow{\sim}
+\Zderch{A}$ (\cref{cor:sixth-carrier-OCA}).
+\item \emph{Topologisation test.}  Exhibit operators $(Q, G)$ with
+$T = [Q, G]$ at chain level in the stated filtered ambient
+$\mathsf{C}_{\rho}$, and verify the five obligations
+\textup{(T1)}--\textup{(T5)} of
+\cref{thm:topologisation-by-stress-tensor-null-homotopy}: BRST
+identity, filtration compatibility, finite-propagation or
+weight-completion, SDR-independence of transferred braces,
+convolution-anomaly vanishing in $H^{1} / H^{2}$.
+\item \emph{Hall--Borcherds test.}  On Hall-side targets, verify
+the eight finite-window checks (W1)--(W8) of
+\cref{conj:gravity-line-hall-borcherds-comparison}: finite Hall
+source, root multiplicities, PBW / no-extra-root, parity, Hall
+pairing non-degeneracy, Drinfeld-double current locality, mixed
+$\SCchtop$-trace commutativity, Mittag--Leffler inverse limit.
+\item \emph{Arithmetic test.}  On arithmetic targets, separate
+finite Euler skeleton, polar lines, BD/CG factorisation comparison
+$\Xi_{\mathrm{BD/CG}}$, and spectral-flow operator $\Theta_{\xi}$,
+per the three-object typed separation of FRONTIER~\textup{F15} and
+Vol~IV~\texttt{v4-arith-den:thm:triple-informal}.
+\end{enumerate}
+A claim that survives \textup{(T1)} but fails \textup{(T2)} is a
+scalar-only shadow; surviving \textup{(T2)} but failing
+\textup{(T3)}--\textup{(T5)} is a non-chain shadow; surviving
+\textup{(T3)}--\textup{(T5)} but failing the relevant
+\textup{(T6)}--\textup{(T8)} indicates a residual~(R$k$) of
+\cref{thm:typed-boundary-holographic-realisation} has not been
+discharged.
+\end{definition}
+
 \begin{example}[Bicoloured primitive package of the rank-$r$ Heisenberg
 chiral algebra; \ClaimStatusProvedHere]
 \label{ex:heisenberg-bicoloured-primitive-package}%

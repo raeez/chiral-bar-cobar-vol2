@@ -146,6 +146,32 @@ The logarithmic triplet $W(p)$ ($p \ge 2$) sits outside the $\mathsf{G} / \maths
 - **Reconstruction theorem**: replace Zhu-bounded-Massey with direct character-amplitude growth bound.
 - **Heal path**: inscribe the Adamović–Milas amplitude bound; verify $|S_r(W(3))|$ for $r \le 8$ via Adamović–Milas $\phi_{0, 1}$.
 
+### F15 — Arithmetic typed separation: $H^{\bullet}_{\mathrm{Den}}$ vs $H^{\bullet}_{\mathrm{ord}}(\operatorname{Spec}\mathbb{Z}, \mathcal{H}_{\mathrm{Ar}})$ vs $H^{\bullet}_{\partial}(\mathrm{ACS}_{\mathrm{qu}})$
+
+The arithmetic branch of the programme — the ordered-incidence chiral candidate over $\operatorname{Spec}\mathbb{Z}$, the conjectural Deninger cohomology of the Riemann zeta, and the boundary $\partial$-homology of arithmetic Chern–Simons — has been written informally as a single object. The platonic-ideal form distinguishes three carriers that must not be conflated without naming the comparison morphism:
+
+\begin{enumerate}[label=\textup{(\arabic*)}]
+\item $H^{\bullet}_{\mathrm{ord}}(\operatorname{Spec}\mathbb{Z}, \mathcal{H}_{\mathrm{Ar}}) = H^{\bullet}(B^{\mathrm{ord}}_{\bullet}(V_{\mathrm{prim}}))$ — the \emph{ordered-incidence bar homology} on $\operatorname{Spec}\mathbb{Z}$ with arithmetic primitive coefficient bundle $V_{\mathrm{prim}}$. Construction: the ordered Fulton–MacPherson tower over $\operatorname{Spec}\mathbb{Z}$ with Bost–Connes finite Euler terms. \emph{Status:} this is the only carrier that admits a Vol II-style chain-level construction.
+\item $H^{\bullet}_{\Delta, \chi}(\operatorname{Spec}\mathbb{Z}) = H^{\bullet}_{\mathrm{Den}, \chi}(\operatorname{Spec}\mathbb{Z})$ — the Deninger candidate cohomology obtained from (1) by adjoining completed continuous duals and formal Tate polar lines in degrees $0$ and $2$, then imposing the spectral-flow operator $\Theta_{\xi} = \tfrac{1}{2}\mathrm{id} + i H_{\mathrm{HP}}$ with determinant $\xi_{\mathbb{R}}$. \emph{Status:} target package; conditional on $\Xi_{\mathrm{BD/CG}}$ and $\Theta_{\xi}$.
+\item $H^{\bullet}_{\partial}(\mathrm{ACS}_{\mathrm{qu}})$ — the boundary $\partial$-homology of the arithmetic Chern–Simons quantum theory of Kim–Chung–Kim–Park–Yoo. \emph{Status:} the natural physical target; requires a Vol IV / arithmetic-CS comparison.
+\end{enumerate}
+
+The forbidden slogan ``Deninger cohomology is constructed'' replaces these three carriers with a single object. The allowed form is the conditional packaging below.
+
+- **Hypothesis package**: $\Xi_{\mathrm{BD/CG}}\colon H^{\bullet}_{\mathrm{ord}} \to \int^{\mathrm{arith\text{-}ch}}_{\operatorname{Spec}\mathbb{Z}} \mathcal{H}_{\mathrm{Ar}}$, the Beilinson–Drinfeld / Costello–Gwilliam factorization-homology comparison over $\operatorname{Spec}\mathbb{Z}$; $\Theta_{\xi} = \tfrac{1}{2}\mathrm{id} + i H_{\mathrm{HP}}$, the spectral-flow operator with determinant identity $\det \Theta_{\xi} = \xi_{\mathbb{R}}$; the Deninger trace formula $\sum_{\rho} h(\rho) = \mathrm{polar} + \mathrm{arch} - \sum_{p, k}(\log p)\, p^{-k/2}\, \hat{h}(k\log p)$.
+- **Reconstruction theorem** (\ClaimStatusConditional): under $\Xi_{\mathrm{BD/CG}}$ + $\Theta_{\xi}$ + the trace formula, the three carriers fit into the diagram
+\[
+ H^{\bullet}_{\mathrm{ord}}(\operatorname{Spec}\mathbb{Z}, \mathcal{H}_{\mathrm{Ar}})
+ \xrightarrow{\;\Xi_{\mathrm{BD/CG}}\;}
+ H^{\bullet}_{\Delta, \chi}(\operatorname{Spec}\mathbb{Z})
+ \xrightarrow{\;\partial\text{-comp}\;}
+ H^{\bullet}_{\partial}(\mathrm{ACS}_{\mathrm{qu}}),
+\]
+the Deninger package; without $\Xi_{\mathrm{BD/CG}}$ + $\Theta_{\xi}$ + trace, $H^{\bullet}_{\Delta, \chi}$ is an ordered-incidence candidate plus polar completion, not constructed Deninger cohomology.
+- **Heal path**: prove $\Xi_{\mathrm{BD/CG}}$ as a BD/CG quasi-isomorphism over $\operatorname{Spec}\mathbb{Z}$ using the chiral Hochschild local structure $\Zderch{A_{\mathrm{Ar}}}$ adapted to arithmetic factorization homology (typed master functor of `chapters/theory/foundations.tex` `thm:typed-boundary-holographic-realisation` applied to $A_{\mathrm{Ar}}$); construct $\Theta_{\xi}$ via the Connes–Deninger zero-side input on the boundary curve $\operatorname{Spec}\mathbb{Z}$. Cross-volume locus: Vol IV verification capstone or the dedicated arithmetic-chiral branch.
+
+The Vol II contribution is the typed-separation discipline itself, propagated from `def:six-typed-carriers` in `chapters/theory/foundations.tex`: arithmetic objects are mapped through the same six carriers (C1)–(C6), with $H^{\bullet}_{\mathrm{ord}}$ at (C3) (chiral Hochschild candidate over $\operatorname{Spec}\mathbb{Z}$), $H^{\bullet}_{\Delta, \chi}$ at (C5) (the L-function shadow), and $H^{\bullet}_{\partial}(\mathrm{ACS}_{\mathrm{qu}})$ at (C6) (the gravity-line analogue for the arithmetic curve).
+
 ---
 
 ## Open Construction Problems
