@@ -227,8 +227,9 @@ after expanding $\{W_\mu W\} = \sum_n P_n\,\mu^n$.
 The $P_n$ are elements of $\cW_3$, and $\{W_\ell\, P_n\}$ is needed for each $n$. Since $T$ has spin $2$ and
 $W$ has spin $3$, the primary bracket
 $\{W_\ell T\} = -\{T_{-\ell-\partial} W\}
- = 3(\ell+\partial)W + \partial W = 3\ell W + 4\partial W + \cdots$
-(by skew-symmetry).
+ = -\bigl[\partial W + 3(-\ell-\partial)W\bigr]
+ = 3\ell W + 2\partial W$
+(by skew-symmetry, with $\{T_\lambda W\} = \partial W + 3\lambda W$).
 For the composite fields $\partial^k T$ and $\Lambda$, the brackets
 are computed via the Leibniz rule (sesquilinearity).
 
@@ -251,8 +252,11 @@ The computation is organised by total degree
 $d = \deg_\ell + \deg_\mu$. Conformal weight conservation
 forces each monomial to have the form
 $(\text{field of weight } h) \cdot \ell^a \mu^b$ with
-$h + a + b = 6$ (the total weight of the operation, equal to
-$\mathrm{wt}(W) + \mathrm{wt}(W) = 3 + 3 = 6$).
+$h + a + b = 7$: the iterated bracket
+$\{W_\ell\{W_\mu W\}\}$ assigns the $\mu^b$ coefficient weight
+$3+3-1-b$ and the $\ell^a$ coefficient weight
+$3 + (5-b) - 1 - a = 7 - a - b$, so the total
+$3\,\mathrm{wt}(W) - (k-1) = 9 - 2 = 7$ at $k = 3$.
 
 \smallskip
 \emph{Explicit result for $m_3(W,W,W;\ell,\mu)$.}
@@ -292,6 +296,19 @@ m_3(W,W,W;\ell,\mu)
  \Bigr] \notag\\
 &\quad + \text{(terms with $T$, $\partial T$, $\Lambda$ as output)},
 \end{align}
+% RECTIFICATION-FLAG: [Gate 1 TRUTH] re-derive eq:m3-WWW from first
+% principles. Three independent issues:
+% (1) Skew-symmetry above corrected to {W_ell T} = 3 ell W + 2 dW (was
+%     4 dW); the dW coefficients (5 dW, 4 dW) used the old value.
+% (2) WEIGHT GRADE: every displayed monomial sits at field-weight + deg = 5
+%     (e.g. :TW: is wt 5; c/360 ell^3 mu^2 is 0+5), but a ternary operation
+%     on three weight-3 fields must sit at total 7 (corrected above). The
+%     displayed formula carries an m_2(W,W)-type weight, not an m_3 weight.
+% (3) The c/360 SCALAR block should not appear: the central term of
+%     {W_mu W} is proportional to 1, and {W_ell 1} = 0, so no scalar
+%     output survives in the associator A_3^{WW}.
+% The Z_2 parity cancellation of the T-sector output (below) is a clean
+% structural argument and is independent of these coefficient values.
 restricted to the $W$-sector output.
 The $T$-sector output terms (those producing $T$, $\partial T$, etc.\
 as output fields) arise from the non-linear $\Lambda$-dependent
@@ -675,13 +692,21 @@ in $\ell,\mu,\nu$ multiplied by $W$ and derivatives.
 
 \begin{remark}[Conformal weight count]
 \label{rem:m4-weight-count}
-Each term in~\eqref{eq:m4-WWWW-explicit} satisfies
+Each term in~\eqref{eq:m4-WWWW-explicit} must satisfy
 $h + a + b + c = 9$ (output weight plus polynomial degree),
 consistent with $|m_4| = 2 - 4 = -2$ in the bar complex
-and the total input weight $4 \times 3 = 12$.
-For instance: $\partial^3 W$ has $h = 6$, appearing at degree $3$;
-$\sigma_3 W$ has $h = 3$ at degree $6$; ${:}\Lambda W{:}$ has $h = 7$
-at degree $2$.
+and the total input weight $4 \times 3 = 12$ less $(k-1)=3$.
+% RECTIFICATION-FLAG: [Gate 1 TRUTH] eq:m4-WWWW-explicit is mis-graded.
+% The correct total is h + a + b + c = 9 (= 3k - (k-1) at k=4), as stated.
+% But the displayed 2/3-block sits uniformly at total weight 6 (e.g.
+% partial^3 W is h=6 at degree 0, sigma_3 W is h=3 at degree 3, both 6),
+% not 9; and sigma_3 has degree 3, not 6. The block reads as an m_2/m_3
+% weight, not an m_4 weight. Re-derive eq:m4-WWWW-explicit from the
+% degree-4 Stasheff relation with the corrected m_3 of eq:m3-WWW; the
+% h=0 scalar vanishing (eq:m4-scalar-vanishes) and the box-diagram
+% structure below are unaffected. The single consistent example is
+% {:}Lambda W{:} at h=7, degree 2 (total 9).
+For instance, ${:}\Lambda W{:}$ has $h = 7$ at degree $2$, totalling $9$.
 \end{remark}
 
 \medskip
@@ -1920,12 +1945,13 @@ $\{1, 2, 3, 5\}$ in $\lambda$ (with the $\lambda^4$
 term absent by
 Proposition~\ref{prop:vacuum-selection-WW}). The
 collision residue $r^{WW}(z)$ is obtained by Laplace
-transform:
+transform followed by $d\log$ pole absorption. The Laplace
+kernel $r^{L}(z) = \int_0^\infty e^{-\lambda z}\{W_\lambda W\}\,d\lambda$
+has pole orders one higher (leading term $\tfrac{c}{360}\cdot 5!\,z^{-6} = (c/3)\,z^{-6}$);
+absorbing one pole order through the $d\log$ bar kernel gives
 \begin{equation}
 \label{eq:ww-collision-residue}
 r^{WW}(z)
-\;=\; \int_0^\infty e^{-\lambda z}
-\{W_\lambda W\}\, d\lambda
 \;=\;
 \frac{c/3}{z^5}
 + \frac{2T}{z^3}
@@ -2394,13 +2420,18 @@ The gravitational chain has several distinctive features:
 \item \emph{Central charge dependence:} the coupling
  constant of the gravitational chain is the central
  charge~$c$. At the self-dual point $c = 13$
- ($\mathcal{W}_2^! = \mathcal{W}_{2,13}$),
- the chain is self-dual under Koszul duality.
- At $c = 26$ (the critical string), the effective
- curvature $\kappa_{\mathrm{eff}} = 0$ and the
- curved bar complex straightens: $d^2 = 0$.
- The gravitational chain at $c = 26$ is the
- \emph{free-string spin chain}; the non-vanishing
+ ($\mathrm{Vir}_c^! = \mathrm{Vir}_{26-c}$ equals
+ $\mathrm{Vir}_{13}$), the chain is self-dual under Koszul
+ duality. The bar-fibre curvature $\kappa_{\mathrm{ch}} = c/2$
+ vanishes at $c = 0$, where the curved bar complex straightens
+ ($d^2_{\mathrm{fib}} = \kappa_{\mathrm{ch}}\,\omega_g = 0$);
+ the Koszul dual $\mathrm{Vir}_{26}$ then carries all the
+ curvature, $\kappa^! = 13$. At $c = 26$ (the critical string)
+ it is the BRST anomaly $c_{\mathrm{matter}} + c_{\mathrm{ghost}}
+ = c - 26$ that vanishes, giving $Q_{\mathrm{BRST}}^2 = 0$;
+ the bar-fibre curvature $\kappa_{\mathrm{ch}} = 13$ is nonzero
+ there. The gravitational chain at $c = 26$ is the
+ \emph{critical-string spin chain}; the non-vanishing
  of $m_k$ for $k \ge 3$ is the gravitational
  self-interaction that prevents the chain from being
  a free model even at the critical string.
@@ -2466,7 +2497,8 @@ For the $\mathcal{W}_N$ algebra with generators
 $W_2 = T, W_3, \ldots, W_N$, the spectral $r$-matrix is an
 $(N-1) \times (N-1)$ matrix in the $\{W_2, W_3, \ldots, W_N\}$
 basis, with the $(s, s')$ component $r^{W_s W_{s'}}(z)$ having
-pole order $s + s' - 1$ (before $d\log$ absorption).
+pole order $s + s' - 1$ (the OPE pole order $s + s'$ less one,
+after $d\log$ absorption).
 The corresponding spin chain has $N - 1$ species of particles,
 the nested Bethe ansatz has $N - 1$ levels of roots, and the
 Gaudin limit gives the full Hitchin integrable system on

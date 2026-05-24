@@ -202,7 +202,7 @@ symplectic or Lagrangian framework.
 \end{remark}
 
 \begin{proof}
-Proof: the formula by a regularization argument and explicit sign computation.
+A regularization argument and an explicit sign computation establish the formula.
 
 \textbf{Step 1: Regularization.}
 For $\delta > 0$, define the truncated domain
@@ -279,11 +279,11 @@ All three points collide simultaneously. Writing $w_i = \varepsilon\,\hat{w}_i$ 
 These signs agree with those stated in the Example above and are verified by explicit Jacobian computation in Appendix~\ref{app:orientations}.
 
 \textbf{Step 4: General pattern for $\FM_n(\C)$.}
-The pattern observed for $n = 3$ extends to general $n$ via Proposition~\ref{prop:general-orient-sign} (Appendix~\ref{app:orientations}). In the quotient coordinates $w_i = z_i - z_n$ for $i = 1,\ldots,n-1$, with the orientation form $\Omega_n = \bigwedge_{i=1}^{n-1} dx_i \wedge dy_i$, the sign for a collision divisor $D_S$ is
+The pattern observed for $n = 3$ extends to general $n$ via Proposition~\ref{prop:general-orient-sign} (Appendix~\ref{app:orientations}). In the quotient coordinates $w_i = z_i - z_n$ for $i = 1,\ldots,n-1$, with the orientation form $\Omega_n = \bigwedge_{i=1}^{n-1} dx_i \wedge dy_i$, write the ambient form near $D_S$ as $\Omega_n = \varepsilon_S^{2|S|-3} J_S\, d\varepsilon_S \wedge dy_1\wedge\cdots\wedge dy_{2n-3} + O(\varepsilon_S^{2|S|-2})$ in a positively oriented boundary chart. The outward-normal-first convention then gives
 \[
-\epsilon_{D_S} = (-1)^{\sigma(S)},
+\epsilon_{D_S} = -\operatorname{sgn}(J_S),
 \]
-where $\sigma(S)$ counts the transpositions needed to move the radial coordinate $d\varepsilon_S$ to the first position in the ordered basis, plus one for the outward-normal sign. Explicitly, if the collision coordinate replaces the $q$-th pair $(dx_q, dy_q)$ in the ordered basis, then $\sigma(S) = 2(q-1) + 1$, giving $\epsilon_{D_S} = (-1)^{2(q-1)+1} = -1$ when $q$ is odd with no further transposition signs, and $\epsilon_{D_S} = +1$ when the transposition count is even.
+the single outward-normal sign times the Jacobian sign of the FM coordinate change (which already incorporates the transposition parity placing $d\varepsilon_S$ first). For a pairwise collision $S = \{i,j\}$ the collision coordinate is the relative variable $w_i - w_j$ when $j \neq n$ and $w_i$ itself when $j = n$; the two cases place the radial coordinate at different positions in the ordered basis, so no parity formula in $i$ alone is chart-independent. The worked $n=3$ computation yields $\epsilon_{D_{\{1,2\}}} = +1$, $\epsilon_{D_{\{1,3\}}} = -1$, $\epsilon_{D_{\{2,3\}}} = +1$, $\epsilon_{D_{\{1,2,3\}}} = -1$ (Proposition~\ref{prop:orient-signs-k3}).
 
 \textbf{Step 5: Corner cancellation.}
 Codimension-2 corners $D_S \cap D_T$ (for disjoint $S, T$) appear as limits $\varepsilon_S = \delta$, $\varepsilon_T = \delta$ simultaneously. Stokes' theorem on the manifold with corners $\FM_k^\delta(\C)$ automatically produces corner contributions with $\partial^2 = 0$ ensuring cancellation. The form-theoretic mechanism is the Arnold--Orlik--Solomon relation (Lemma~\ref{lem:Arnold_cancellation}), which guarantees that the two orderings of taking residues (first $D_S$ then $D_T$, or vice versa) cancel exactly.
@@ -305,7 +305,7 @@ the codimension-2 corner $D_S\cap D_T$ to the boundary integral cancel:
 where signs are determined by the orientation convention and shuffle permutations relating the two factorizations of $D_S \cap D_T$.
 \end{lemma}
 
-\begin{proof}[Proof]
+\begin{proof}
 The two terms correspond to different orderings of taking residues (first $T$ then $S$, versus first $S$ then $T$). These orderings are related by a shuffle permutation $\sigma \in S_k$ moving points in $S$ past points in $T$. The Koszul sign rule for graded forms yields
 \[
 \Res_{D_S}(\Res_{D_T}(\omega)) = (-1)^{\varepsilon(\sigma)} \Res_{D_T}(\Res_{D_S}(\omega)),
@@ -351,7 +351,7 @@ Conjecture~\ref{conj:arnold-shifted-poincare} explains why the Arnold relation g
 
 \subsection{\texorpdfstring{Proof of $A_\infty$ Identities}{Proof of A-infinity Identities}}
 
-The proof of the main structural theorem.
+The vanishing of the codimension-one boundary integral on $\FM_n(\C)$ is the Stasheff identity at arity $n$; closed weight forms with operadic boundary factorization carry it.
 
 \begin{theorem}[Stokes $\Rightarrow$ $A_\infty$ Identities]
 \label{thm:stokes_arnold}
@@ -399,7 +399,7 @@ This is the key \emph{residue-to-composition} identification.
 
 \medskip
 \textbf{Step 3 (Explicit verification for $k = 2$).}
-For $n = 2$, the identity is $m_1(m_2(a,b)) + m_2(m_1(a),b) + (-1)^{|a|}\,m_2(a,m_1(b)) = 0$. The space $\FM_2(\C)$ has a single boundary divisor $D_{\{1,2\}} \cong \FM_1(\C) \times \FM_2(\C) \cong \mathrm{pt} \times \FM_2(\C)$. Here $\FM_1(\C) = \mathrm{pt}$, so $D_{\{1,2\}}$ corresponds to the total collision of both points.
+For $n = 2$, the identity is $m_1(m_2(a,b)) + m_2(m_1(a),b) + (-1)^{|a|}\,m_2(a,m_1(b)) = 0$. The space $\FM_2(\C)$ has a single boundary divisor $D_{\{1,2\}} \cong \FM_1(\C) \times \FM_2^{\mathrm{red}}(\C) \cong \mathrm{pt} \times \FM_2^{\mathrm{red}}(\C)$ (Definition~\ref{def:boundary_divisors} with $r = k - |S| + 1 = 1$). Here $\FM_1(\C) = \mathrm{pt}$ and $\FM_2^{\mathrm{red}}(\C) \cong S^1$, so $D_{\{1,2\}}$ corresponds to the total collision of both points, recorded by the relative collision direction $\theta_{12} \in S^1$.
 
 The weight form $\omega_2 = d\log(z_1 - z_2) \wedge \beta + \alpha$ has residue
 \[
@@ -413,7 +413,7 @@ where the sign $(-1)^{|a|}$ is the Koszul sign for passing $Q$ (degree $+1$) pas
 
 \medskip
 \textbf{Step 4 (Explicit verification for $k = 3$: residues and signs).}
-For $n = 3$, the $A_\infty$ identity reads
+Write $\lambda_i = z_i - z_{i+1}$ for the spectral parameter of the $i$-th adjacent slot (Definition~\ref{def:ainfty_chiral}); a merged cluster $S$ carries the summed parameter $\Lambda_S = \sum_{i \in S,\, i+1 \in S} \lambda_i$. For $n = 3$, the $A_\infty$ identity reads
 \begin{align*}
 0 &= m_1(m_3(a,b,c)) + m_3(m_1(a),b,c) + (-1)^{|a|} m_3(a,m_1(b),c) + (-1)^{|a|+|b|} m_3(a,b,m_1(c)) \\
 &\quad + m_2(m_2(a,b),c;\,\Lambda_{\{1,2\}},\lambda_3) + (-1)^{|a|} m_2(a,m_2(b,c);\,\lambda_1,\Lambda_{\{2,3\}}).
@@ -591,22 +591,18 @@ Let $S \subseteq \{1,\ldots,n\}$ with $|S| \geq 2$. In the quotient coordinates 
 \label{eq:general_sign_fm_calculus}
 \epsilon_{D_S} = (-1)^{\sigma(S)},
 \end{equation}
-where $\sigma(S)$ is the number of transpositions required to move the outward normal covector $-d\varepsilon_S$ to the first position in the ambient orientation form. Explicitly:
-\begin{enumerate}[label=(\roman*)]
-\item Near $D_S$, perform the FM blow-up: replace the collision locus by a radial coordinate $\varepsilon_S \geq 0$ (with $D_S = \{\varepsilon_S = 0\}$), angular coordinates, and the remaining coordinates.
-\item Express $\Omega_n$ in the blown-up coordinates. The Jacobian is positive ($+\varepsilon_S^{2|S|-3}$ times a positive factor), so no sign arises from the coordinate change itself.
-\item Count the number $p$ of coordinate $1$-forms that $d\varepsilon_S$ must pass to reach the first position. Then $\sigma(S) = p + 1$, where the $+1$ accounts for the outward-normal sign (the outward covector is $-d\varepsilon_S$ while $d\varepsilon_S$ points inward).
-\end{enumerate}
+where $\sigma(S)$ is determined face-by-face by the rule of Proposition~\ref{prop:general-orient-sign}: write the ambient form near $D_S$ as $\Omega_n = \varepsilon_S^{2|S|-3} J_S\, d\varepsilon_S \wedge dy_1\wedge\cdots\wedge dy_{2n-3}$ in a positively oriented boundary chart and set $\epsilon_{D_S} = -\operatorname{sgn}(J_S)$, after the induced boundary orientation $\iota_{-\partial_{\varepsilon_S}}\Omega_n$ has been compared with the standard \emph{product} orientation on $D_S \cong \FM_{n-|S|+1}(\C) \times \FM_{|S|}^{\mathrm{red}}(\C)$ (outer factor first). The three ingredients are: the parity of transpositions moving $d\varepsilon_S$ to the first position, the single outward-normal flip, and the reordering of the angular factor past the outer factor in the product orientation.
+% RECTIFICATION-FLAG: [GATE 1] The earlier closed form "sigma(S) = p+1" (transpositions plus outward-normal only) does not reproduce the worked k=3 table: it predicts epsilon_{D_{2,3}} = -1, whereas the per-face Jacobian computation (Appendix, eq:eps-D23) and Proposition prop:orient-signs-k3 give +1. The omitted ingredient is the product-orientation comparison; the Appendix supplies it by hand only for D_{1,3} (lines comparing dtheta wedge dx2 dy2 to dx2 dy2 wedge dtheta) and is silent about it for the other faces, so no chart-independent closed form in p alone is correct. The load-bearing content is the per-face value (+,-,+,-); a uniform general-n closed form requires tracking the (2n-2|S|)(2|S|-3) reordering parity face-by-face, not yet carried out for all S here.
 For pairwise collisions $S = \{i,j\}$: if $j \neq n$, the collision coordinate is the relative variable $w_i - w_j$ (replacing one of $w_i, w_j$ in the center-of-mass/relative decomposition), while if $j = n$, it is $w_i$ itself. In both cases, the number of transpositions depends on the position of the replaced coordinate in the ordered basis.
 \end{proposition}
 
 \begin{proof}
-The proof is a direct computation of the Jacobian sign for each face, as carried out in detail for $n = 3$ in Appendix~\ref{app:orientations}, \S\ref{subsec:FM3-orientations}. The FM blow-up (replacing Cartesian coordinates by center-of-mass, radial, and angular coordinates near $D_S$) has \emph{positive} Jacobian determinant, so the sign comes entirely from the position of $d\varepsilon_S$ in the ambient orientation form and the outward-normal convention.
+The proof is a direct computation of the Jacobian sign for each face, as carried out in detail for $n = 3$ in Appendix~\ref{app:orientations}, \S\ref{subsec:FM3-orientations}. The FM blow-up (replacing Cartesian coordinates by center-of-mass, radial, and angular coordinates near $D_S$) has \emph{positive} Jacobian determinant, so the sign comes from the position of $d\varepsilon_S$ in the ambient orientation form, the single outward-normal flip, and the reordering of the induced boundary orientation into the standard product orientation on the two FM factors. At $n=3$ these give $\epsilon_{D_{\{1,2\}}} = +1$, $\epsilon_{D_{\{1,3\}}} = -1$, $\epsilon_{D_{\{2,3\}}} = +1$, $\epsilon_{D_{\{1,2,3\}}} = -1$, matching Proposition~\ref{prop:orient-signs-k3}.
 \end{proof}
 
 \subsubsection{\texorpdfstring{Verification for $n=4$}{Verification for n=4}}
 
-Verification: the sign formula for the next case, $\FM_4(\C)$, which has real dimension $2(4-1) = 6$ and quotient coordinates $w_i = z_i - z_4$ for $i = 1,2,3$, with orientation form $\Omega_4 = dx_1 \wedge dy_1 \wedge dx_2 \wedge dy_2 \wedge dx_3 \wedge dy_3$.
+The sign formula extends to the next case, $\FM_4(\C)$, which has real dimension $2(4-1) = 6$ and quotient coordinates $w_i = z_i - z_4$ for $i = 1,2,3$, with orientation form $\Omega_4 = dx_1 \wedge dy_1 \wedge dx_2 \wedge dy_2 \wedge dx_3 \wedge dy_3$.
 
 The boundary divisors of $\FM_4(\C)$ include pairwise collisions ($|S| = 2$), triple collisions ($|S| = 3$), and the total collision ($|S| = 4$). The orientation signs for the consecutive divisors (those contributing non-zero residues) are:
 
@@ -647,10 +643,10 @@ The pattern observed for $n = 3$ and $n = 4$ gives a general verification strate
 This strategy reduces each $A_\infty$ identity to a finite collection of sign checks, each a Jacobian computation.
 \end{remark}
 
-\subsection{Cluster Factorization: Complete Proof via Boundary Calculus}
+\subsection{Cluster factorization via boundary calculus}
 \label{sec:cluster_factorization_complete}
 
-Proof: the cluster factorization theorem using Fulton--MacPherson boundary calculus.
+The iterated logarithmic residue along a boundary stratum $D_\tau$ equals the operadic composite indexed by the tree $\tau$; this is the geometric source of every $A_\infty$ composition.
 
 \subsubsection{Setup: Weight Forms and Integration}
 
@@ -886,7 +882,7 @@ logarithmic conditions of Definition~\ref{def:log-SC-algebra}.
 \subsection{\texorpdfstring{Explicit Formulas for $m_2$ and $m_3$}{Explicit Formulas for m2 and m3}}
 \label{sec:explicit_m2_m3}
 
-Concrete formulas for $m_2$ (binary OPE) and $m_3$ (first higher operation), used in all subsequent examples.
+The configuration-space integrals for $m_2$ (binary OPE) and $m_3$ (the first higher operation) take explicit closed form, used in all subsequent examples.
 
 \subsubsection{\texorpdfstring{The Binary Operation $m_2$}{The Binary Operation m2}}
 \begin{proposition}[Explicit formula for $m_2$ in an FM-log realization]
@@ -1147,7 +1143,7 @@ The FM calculus (this chapter) constructs $\{m_k\}$ analytically
 by integration; the Eilenberg--Zilber operad \cite{MS24}
 constructs $\{F_n\}$ algebraically by the Moore functor. The
 two are connected by the \emph{Thom--Sullivan functor}
-$\mathrm{TS}$, which recall. Given a cosimplicial
+$\mathrm{TS}$. Given a cosimplicial
 cochain complex $C^\bullet$, the Thom--Sullivan functor produces
 the totalization
 \[
@@ -1356,7 +1352,7 @@ is the umbral Schur cocycle of order~$6$ of
 Vol.~III Theorem~\ref{thm:costello-m24-anomaly-h3}.
 \end{proposition}
 
-\begin{proof}[Proof]
+\begin{proof}
 Let $\sigma\in M_{24}$ of order 6 and let $m_\sigma$ be its
 umbral shift (Cheng--Duncan--Harvey 2014). On a disjoint-cluster
 corner $D_S\cap D_T$, the orientation reversal under
