@@ -1,3 +1,23 @@
+# Current integrated source — 2026-09-21
+
+The reviewed bounded repair is now adopted in `platonic/main.tex` and its source
+closure. The working reader has **497 pages**:
+[PDF](/Users/raeez/mathematics/papers/current/working/integrated-books-v9/chiral-bar-cobar-vol2-integrated-v8-922db4995342.pdf) · [editable sources](/Users/raeez/mathematics/papers/current/working/integrated-books-v9/chiral-bar-cobar-vol2-integrated-v8-source.tar.gz).
+
+The [adoption record](/Users/raeez/mathematics/reports/research/FRONTIER-AGENDA-20260920/shared-book-algebra-integration/principal-adoption-v9/PRINCIPAL-ADOPTION-RECEIPT.json)
+binds the source hashes, exact patches, mathematical and exposition review, and
+source/archive builds. The scaled Rees differential, oscillator Casimir quotient,
+bar/CE distinctions and counting formulas have their stated repairs. This is not
+whole-book acceptance. One inherited 1.77861pt overfull remains.
+
+These records concern the integrated input graph, not the separate native
+`main.tex` graph. `universal-chiral-bv` is an existing programme repository.
+The historical record below is preserved; its build counts, repository inventory,
+blanket construction claims and proof-status assertions are not current evidence.
+Use the programme's current repository context and exact source for a new claim.
+
+## Earlier record, preserved with its original scope
+
 # The integrated monograph
 
 `make` → `out/platonic.pdf` — **495 pages, 0 LaTeX errors, 0 undefined

@@ -1,10 +1,14 @@
 # Repository agent contract
 
+Read and inherit the [mathematics programme contract](/Users/raeez/mathematics/AGENTS.md) before local work.
+Local rules below specialize the programme contract and retain their proof, build, custody, and authority boundaries.
+Honor current explicit user model and effort choices through the programme runtime route.
+
 This repository inherits `~/ecosystem/INVARIANTS.md` and `~/ecosystem/AGENTS-HARNESS.md`.
 For Claude host controls or loading, consult `~/ecosystem/CLAUDE-HARNESS.md` when relevant.
 Universal safety and truth rules apply. Load domain references only when the task requires them.
 `AGENTS.md` is canonical locally. `CLAUDE.md` carries the same contract for its host.
-Read one root contract before code edits. Do not load both copies. System and developer instructions, then explicit user chat, precede local guidance.
+Read one local root contract before code edits. Do not load both local copies. System and developer instructions, then explicit user chat, precede local guidance.
 
 Volume II studies Mixed Holomorphic–Topological Theory: Hamiltonian jets, shifted cotangent fields, universal branes, Duflo quantization, and the all-arity open–closed map.
 The objective is correct, rigorous, complete mathematics. Preserve the requested theorem target.
@@ -81,6 +85,28 @@ Request the strongest available model and maximum supported effort for nontrivia
 Do not claim to control settings or capacity that the host does not expose.
 Workers return proofs, counterexamples, exact sources, computations, changed paths, and unresolved obligations.
 The owner verifies and integrates each result. Agent agreement is evidence to inspect, not mathematical authority.
+
+## Mathematical scope and source anchors
+
+Read this repository's entry in the programme's
+[current mathematical context](/Users/raeez/mathematics/coordination/registry/repositories.json).
+Its evidence limits apply to the statements below.
+
+The default `platonic/main.tex` and native `main.tex` are different input graphs. For the current Hamiltonian spine, start with
+`platonic/chapters/Volume_II_Mixed_HT_Deligne_Theory.tex`. Pointed Hamiltonians use the
+additive order filtration. Translations belong to the separately adjoined affine sector.
+Finite cotangent QME uses the adjoint-trace calculation. Preserve these finite constructions.
+An inverse limit, Hochschild/open–closed comparison, global descent, or quantum field-theory
+realization must retain its continuity, compatibility and analytic hypotheses. Do not identify
+the topological, holomorphic-chiral and mixed-HT E2 structures from their names or infer them
+from finite jet agreement.
+
+The integrated Volume II leaf now uses the scaled Lie bracket and commutator action
+in the Rees enveloping comparison. Under PBW its differential is hbar times the
+ordinary Chevalley differential. The finite-coefficient resolution and formal
+compatibility hypotheses are explicit. The 2026-09-21 bounded adoption record is
+linked in `platonic/PLATONIC_LEDGER.md`; it does not establish an unrestricted
+formality or physical open–closed comparison, nor accept the separate native graph.
 
 ## Required research exposition review
 
