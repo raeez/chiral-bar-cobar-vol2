@@ -839,11 +839,11 @@ Theorem~\ref{thm:period-2-parity}(i).
 \begin{proof}
 Let
 \[
-\mathrm{Obs}_4=
-m_2(m_3(T,T,T),T)-m_2(T,m_3(T,T,T))
-+m_3(m_2(T,T),T,T)
--m_3(T,m_2(T,T),T)
-+m_3(T,T,m_2(T,T)),
+\begin{aligned}
+\mathrm{Obs}_4={}&m_2(m_3(T,T,T),T)-m_2(T,m_3(T,T,T))\\
+&+m_3(m_2(T,T),T,T)-m_3(T,m_2(T,T),T)\\
+&+m_3(T,T,m_2(T,T)).
+\end{aligned}
 \]
 with the spectral substitutions
 \((\lambda_{12},\lambda_{23})\), \(\lambda_{12}\),
@@ -875,11 +875,7 @@ reduce every summand to a polynomial in
 \Bigr].
 \]
 Applying the chosen contraction \(h_{\mathrm{Vir}}\) with the Stasheff
-gauge convention gives~\eqref{eq:gravity-m4}.  The source-tree witness
-is `compute/lib/symbolic_stasheff.py`, functions
-`stasheff_rhs_arity4` and `m4_virasoro_symbolic`; the independent
-factorisation guard is
-`compute/field_sector_generating_function.py::m4_factorization_verify`.
+gauge convention gives~\eqref{eq:gravity-m4}.
 \end{proof}
 
 \noindent
@@ -1133,11 +1129,7 @@ The \(d^4T\)-coefficient is produced by the rightmost
 \(m_3(1,2,m_3(345))\) channel: the leading \(d^2T\)-term of the inner
 \(m_3\) applies \((\ell_1+\ell_2+\partial)^2\) to the leading
 \(d^2T\)-term of the outer \(m_3\), and the final gauge sign gives
-\(-1\).  The source-tree witness is
-`compute/lib/symbolic_stasheff.py`, functions `stasheff_rhs_arity5`
-and `m5_virasoro_symbolic`; the guard
-`compute/tests/test_gravity_m5_stasheff_gauge.py` checks the six
-coefficients and the symmetric specialization.
+\(-1\).
 \end{proof}
 
 \noindent
@@ -1363,12 +1355,10 @@ primary is $T$ at weight~$2$), this monomial does not exist.
 (\(\partial^2T\) with linear coefficient) both occur in individual
 Stasheff source terms, but their total coefficients cancel.  The
 surviving leading derivative in Proposition~\ref{prop:gravity-m4} is
-\(\partial T\) at depth~$2\).  At degree~$6$, the same cancellation is
-detected by the source-tree recursion in
-`compute/m7_m10_depth_frontier.py::StasheffEngine`: for generic
-spectral parameters the coefficients of \(d^5T\) and \(d^4T\) vanish,
-while \(d^3T,d^2T,dT,T\) and the scalar term are nonzero.  The focused
-guard is `compute/tests/test_gap_migration_m6.py`.
+\(\partial T\) at depth~$2\).  At degree~$6$, the Stasheff recursion gives the same cancellation:
+for generic spectral parameters the coefficients of \(d^5T\) and
+\(d^4T\) vanish, while \(d^3T,d^2T,dT,T\) and the scalar term are
+nonzero.
 
 (iv): In the T-propagated binding sector of the principal
 \(\mathcal W_N\), the degree-two collision \(W_N\)--\(W_N\) has
@@ -1504,10 +1494,8 @@ $5$ & $\{0, 1, 2, 3, 4\}$ & $d = 5$ absent \\
 $6$ & $\{2, 3, 4, 5\}$ & $d = 6$ absent; $d=0,1$ anomalous
 \end{tabular}
 \end{center}
-The executable witness is `compute/m7_m10_depth_frontier.py`,
-class `StasheffEngine`; the guard
-`compute/tests/test_gap_migration_m6.py` checks the absence of the
-depth-$0$ and depth-$1$ coefficients at generic spectral parameters.
+At generic spectral parameters, the depth-$0$ and depth-$1$
+coefficients vanish in degrees $4$ and $6$.
 \end{computation}
 
 \begin{theorem}[Symmetric-point period-$2$ parity and Catalan factorisation;
@@ -1597,7 +1585,7 @@ Then:
  where $r = n{+}1$, by the $c$-linearity theorem
  \textup{(}Theorem~\textup{\ref{thm:gravity-c-linearity})}.
 \end{enumerate}
-The source-tree guard verifies the rightmost-reduction consequences and
+The finite computation verifies the rightmost-reduction consequences and
 the scalar proportionality through $k = 13$; the displayed all-arity
 statement is conditional on~\eqref{eq:gravity-phi-recursion} and
 \eqref{eq:symmetric-scalar-t-proportionality}.
@@ -9436,7 +9424,7 @@ $\bigl(\openFactCat\big|_{\logCurve_{(E, p_\infty, \tau)}},\,
 \cD^{\mathrm{cl}}\big|_{K3 \times E},\,b_{\mathrm{BH}},\,
 A_g = \mathrm{End}_\cC(b_{\mathrm{BH}}),\,F^{\mathrm{cl}}_{K3 \times E},\,
 {\HalfBraid}_{E \times \R},\,\mathrm{tr}^{\mathrm{cl}}_{K3 \times E}
-= \Phi_{10}^{\mathrm{un}},\,\TraceC_{\mathrm{open}},\,
+= \Phi_{10}^{\mathrm{un}},\,{\TraceC}_{\mathrm{open}},\,
 \Zderch{A_g}\bigr)$
 on the boundary chart $b_{\mathrm{BH}}$ given by the Brown--Henneaux
 condition $A_z|_{t = 0} = J_- + T(z) J_+$. The gravity-line open
@@ -13002,7 +12990,7 @@ is the total-space lift followed by the CY3-to-chiral specialisation
  D^{b}\mathrm{Coh}(X)
  \xrightarrow{\ \PhiFA_{3}\ }
  E_{3}\text{-}\mathrm{FactAlg}(X)
- \xrightarrow{\ \SpCh_{E,C}\ }
+ \xrightarrow{\ \mathrm{Sp}_{\mathrm{Ch};E,C}\ }
  \mathrm{ChirAlg}_{C}
  \xrightarrow{\ \Zderch\ }
  \SCchtop\text{-}\mathrm{Alg}.
@@ -13045,7 +13033,7 @@ denominator character, of the operator square
 \[
 \begin{tikzcd}[column sep=4.2em,row sep=3em]
 \ChirHoch^\bullet(A_X)
-  \arrow[r,"\protectedPfaff"]
+  \arrow[r,"\mathrm{Pf}_{\mathrm{prot}}"]
   \arrow[d,"I_{\mathrm{Hall}}"']
 &
 H^0(\mathcal L^5)
@@ -13094,7 +13082,7 @@ parity data are fixed. The maps in
 stage-separated: the K3 Hall source is first lifted to the total
 Calabi--Yau threefold by \((-) \boxtimes \mathcal O_E\), \(\PhiFA_3\)
 is the CY3 factorisation-algebra functor on \(X=K3\times E\),
-\(\SpCh_{E,C}\) is the elliptic-to-reference-curve specialisation, and
+\(\mathrm{Sp}_{\mathrm{Ch};E,C}\) is the elliptic-to-reference-curve specialisation, and
 \(\Zderch\) is the derived chiral centre. The finite Hall gates are
 exactly the assertion that the two paths induce the same completed
 \(\SCchtop\)-action on \(A_X\).  Hence
@@ -13148,7 +13136,7 @@ Z_{\mathrm{BPS}}^{K3\times E}=\bigl(\Phi_{10}^{\mathrm{un}}\bigr)^{-1},\qquad
 are only the Borcherds coordinate of the fourfold \(K3\times E\)
 invariant tuple
 \[
-\{\kappa_{\mathrm{cat}},\kappaChHodge^{\mathrm{Heis}},
+\{\kappa_{\mathrm{cat}},{\kappaChHodge}^{\mathrm{Heis}},
 \kappa_{\mathrm{BKM}},\kappa_{\mathrm{fiber}}\}
 =\{0,3,5,24\}.
 \]
