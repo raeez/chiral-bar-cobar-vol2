@@ -4,7 +4,7 @@
 \chapter*{Book entrance: Calabi--Yau Quantum Groups}
 \addcontentsline{toc}{chapter}{Book entrance: Calabi--Yau Quantum Groups}
 \begin{summarybox}
-Calabi--Yau categories, geometric BV theories, Hall correspondences, quantum doubles, K3 symmetries, and compact-background comparison.
+An extension of geometric objects defines a correspondence. Its action on cohomology depends on the coefficient theory and the allowed pushforward. Tensor products and exchange require a coproduct and compatible intertwiners. A trace on a specified representation then produces an amplitude. The reconstruction problem is to retain these operations through the comparisons between Calabi--Yau categories, boundary fields, Hall algebras, and quantum groups.
 \end{summarybox}
 \part{Categorical and field-theoretic foundations}
 
@@ -47,15 +47,30 @@ The integer $d$ controls the shift of the moduli form. The Hochschild operation 
 \section{Cyclic elliptic local Lie algebras}
 Let $X$ be a complex manifold. A classical local field theory is specified by a sheaf $\Lcal$ of elliptic $L_\infty$ algebras, a local invariant pairing, and an action functional $S$ satisfying the classical master equation. For an open set $U\subset X$, the classical observables are
 \[
- \Obs^{\mathrm{cl}}(U)=C^*_{\CE}(\Lcal_c(U)).
+ \Obs^{\mathrm{cl}}(U)=C^*_{\CE,\mathrm{cont}}(\Lcal(U)).
 \]
-Disjoint union of supports gives the prefactorization product.
+Here $\Lcal(U)$ consists of unrestricted smooth fields with its
+nuclear smooth-section topology. Continuous cochains use the completed
+symmetric powers of its continuous dual, with the completed tensor
+products of the elliptic-observable construction \cite{CG1,CG2}.
+The dual consists of compactly supported distributions.
+For $U\subset V$, restriction of fields $\Lcal(V)\to\Lcal(U)$
+induces the covariant map on observables.
+For pairwise disjoint $U_i\subset V$, restrict to
+$\bigoplus_i\Lcal(U_i)$ and multiply the pulled-back cochains.
+These are the prefactorization maps.
 
 \begin{theorem}[Factorization observables]
 An elliptic classical BV theory produces a factorization algebra $\Obs^{\mathrm{cl}}$. A renormalized quantization satisfying the quantum master equation produces a factorization algebra $\Obs^{\mathrm{q}}$ over $\kfield[[\hbar]]$.
 \end{theorem}
 \begin{proof}
-The Chevalley cochains of a direct sum are the completed tensor product of the cochains, giving the disjoint-support multiplication. Elliptic descent supplies the Weiss cosheaf property. In the quantum theory, renormalized time-ordered products define the structure maps, and the quantum master equation makes their differential square-zero and compatible with nested ultraviolet contractions \cite{CG1,CG2}.
+Restriction is a morphism of local $L_\infty$ algebras, so its
+contravariant continuous Chevalley map commutes with the differential.
+For disjoint opens, the completed cochains of the finite direct sum
+are the completed tensor product of the cochains. This constructs
+the displayed maps and their composition identities.
+The elliptic descent theorem in this completed coefficient category
+supplies Weiss descent \cite{CG1,CG2}. In the quantum theory, renormalized time-ordered products define the structure maps, and the quantum master equation makes their differential square-zero and compatible with nested ultraviolet contractions \cite{CG1,CG2}.
 \end{proof}
 
 \section{Boundary and defect restriction}
@@ -300,22 +315,57 @@ write
 \[
  \Pi(Q,P)=\left(\frac{Q^2}{2},Q\cdot P,\frac{P^2}{2}\right).
 \]
-The polarized central extension of the companion volume makes the graph $c\mapsto(c,\Pi(c))$ additive.  Applying this graph to the reduced integration target defines the Gram-polarized character
+To compare sheaf charges with this lattice, choose an additive map
 \[
- I_{X,\Pi}^E:
- \Hcal_X^{E,\mathrm{mot}}
- \longrightarrow
- \widehat{\Q[\widetilde\Gamma_{\mathrm{phys}}]}[\epsilon]/(\epsilon^2).
+ c:\Gamma_X\longrightarrow\Gamma_{\mathrm{phys}}.
 \]
+Put $B_\Pi(a,b)=\Pi(a+b)-\Pi(a)-\Pi(b)$ and give
+$\widetilde\Gamma_{\mathrm{phys}}=\Gamma_{\mathrm{phys}}\times\mathbb Z^3$
+the group law
+\[
+ (a,u)(b,v)=(a+b,u+v+B_\Pi(a,b)).
+\]
+Then $j_\Pi(a)=(a,\Pi(a))$ is a homomorphism.
+Assume $j_\Pi c$ preserves the selected charge completions.
+On the regular subalgebra $\mathcal H_{\mathrm{reg}}$ of the reduced
+integration theorem, define
+\[
+ I_{X,\Pi,c}^E=(j_\Pi c)_*I_X^E:
+ \mathcal H_{\mathrm{reg}}\longrightarrow
+ \widehat{\mathbb Q[\widetilde\Gamma_{\mathrm{phys}}]}
+ [\epsilon]/(\epsilon^2).
+\]
+Write $I_{X,\Pi}^E$ for this map when $c$ has been fixed.
 
-\begin{theorem}[Exact geometric character map]
-The map $I_{X,\Pi}^E$ is multiplicative.  Its logarithm is primitive for the completed Hall coproduct whenever that coproduct is defined in the selected localization.  In every reduced Donaldson--Thomas sector covered by the equivariant integration theorem, its coefficients are the reduced invariants of $K3\times E$.  The primitive reduced Gromov--Witten theory supplies the independent automorphic character $-\chi_{10}^{-1}$ in classes primitive in the K3 factor.
-\end{theorem}
+\begin{proposition}[Polarized reduced character]\label{cyiv:polarized-character}
+The map $I_{X,\Pi,c}^E$ is multiplicative.
+Its coefficients are the reduced invariants supplied by $I_X^E$,
+regraded by $j_\Pi c$.
+If $g\in1+F^1H$ is group-like in a complete filtered Hall bialgebra
+and the logarithm converges, then $\log g$ is primitive.
+\end{proposition}
 \begin{proof}
-Multiplicativity of $I_X^E$ is the reduced integration theorem.  The cocycle identity for the polarization cross-term makes the graph of $\Pi$ multiplicative.  The logarithm of a group-like series is primitive.  The enumerative identifications are the reduced Hall calculations of Oberdieck--Shen and the primitive Igusa theorem of Oberdieck--Pixton \cite{OberdieckShen,OP}.
+Expanding $\Pi(a+b+d)$ gives
+\[
+ B_\Pi(a,b)+B_\Pi(a+b,d)=B_\Pi(b,d)+B_\Pi(a,b+d).
+\]
+This proves associativity of the group law.
+The definition gives $j_\Pi(a+b)=j_\Pi(a)j_\Pi(b)$.
+Composing its group-algebra map with reduced integration proves
+multiplicativity on $\mathcal H_{\mathrm{reg}}$.
+For the last assertion, the two factors in
+$\Delta g=(g\widehat\otimes1)(1\widehat\otimes g)$ commute.
+Taking the convergent logarithm gives
+$\Delta\log g=\log g\widehat\otimes1+1\widehat\otimes\log g$.
 \end{proof}
 
-The geometric Hall source and the universal Igusa avatar now occupy explicit objects.  A primitive root framing is a morphism from the simple BPS sheaves of $\Hcal_X^{E,\mathrm{coh}}$ to the simple-root spaces of $\mathfrak g_{\Delta_5}$ that preserves the Euler pairing, parity, and extension brackets.  The universal presentation theorem then extends this framing through Hall, current, quantum-double, and determinant constructions.
+The primitive reduced Gromov--Witten theorem supplies the separate
+character $-\chi_{10}^{-1}$ in classes primitive in the K3 factor
+\cite{OP}.
+Comparing this character with the Hall character requires the same
+charge map, sector, and normalization.
+A primitive root framing must also preserve the extension bracket
+and parity of the chosen BPS states.
 
 \chapter{BPS primitives}
 A connected graded bialgebra has primitive Lie algebra
@@ -390,14 +440,38 @@ The diagonal realization is
 \]
 \end{definition}
 
-\begin{theorem}[Universal comparison quotient]
-A Cartan-preserving primitive comparison is equivalent to a quotient of the integral amalgam that identifies the Borcherds generators with geometric BPS primitives.  If $\varphi$ is an isomorphism, the quotient is canonically isomorphic to both Borels.  In every case, the kernel $\mathcal J_\varphi$ measures the complete discrepancy between the geometric and automorphic primitive theories.  PBW carries the quotient to enveloping algebras, Chevalley chains, current envelopes, and Fock characters.
-\end{theorem}
+\begin{proposition}[Graph quotient of a primitive comparison]\label{cyiv:graph-quotient}
+Let $\varphi:\mathfrak b_\Delta\to\mathfrak b_X$ be a continuous Lie
+morphism restricting to the identity on $\mathfrak h_\Pi$.
+Use a completion in which the amalgam and closed quotient have
+their stated universal properties.
+Then
+\[
+ \mathfrak b_{X\boxtimes\Delta}/\mathcal J_\varphi
+ \cong\mathfrak b_X.
+\]
+The two factor maps become $\id$ and $\varphi$.
+If $\varphi$ is an isomorphism, the quotient is also isomorphic
+to $\mathfrak b_\Delta$.
+\end{proposition}
 \begin{proof}
-A quotient identifying $i_\Delta(x)$ with an element of $\mathfrak p_X^+$ defines $\varphi$, and the Lie relations in the quotient make it a Lie morphism.  Conversely, a Lie morphism makes the generators of $\mathcal J_\varphi$ compatible with every bracket, so the quotient exists.  An isomorphism $\varphi$ gives mutually inverse maps through the two retractions.  Functoriality of enveloping algebras, Chevalley chains, currents, and symmetric-superalgebra completion gives the final statement.
+The maps $\id$ and $\varphi$ agree on $\mathfrak h_\Pi$.
+They give $q_\varphi:\mathfrak b_{X\boxtimes\Delta}\to\mathfrak b_X$,
+which kills the generators of $\mathcal J_\varphi$.
+The inclusion of $\mathfrak b_X$ gives a map $s$ in the other direction.
+The composite $q_\varphi s$ is the identity.
+The other composite is the identity on the geometric factor.
+On the Borcherds factor, the defining relation identifies $x$ with
+$s\varphi(x)$, so it is also the identity there.
+The two factor images topologically generate the quotient.
+Continuity proves that the maps are inverse on the completion.
 \end{proof}
 
-This amalgam is the maximal theory that retains both sources before a duality identification is imposed.  The geometric Hall source and the automorphic Borcherds source are its two canonical retracts.  A microscopic duality is a diagonal quotient rather than an equality inferred from a scalar character.
+The graph quotient implements a specified primitive comparison.
+Constructing that comparison requires geometric simple states whose
+extension brackets satisfy the Borcherds relations.
+The quotient formula alone produces neither those states nor their
+orientation data.
 
 \chapter{Coproducts, pairings, and doubles}
 A positive Hall algebra becomes a quantum group after additional structure is supplied. Let $H^+$ be a complete graded bialgebra, let $H^0$ be a Cartan algebra, and let $H^-$ be the opposite or dual half. Let
@@ -440,18 +514,170 @@ The algebraic amalgamated free product exists because complete filtered algebras
 The deconcatenation coproduct on a bar complex and the representation-theoretic coproduct on a quantum group occupy different structures. A geometric comparison between them is a theorem about a selected model.
 
 \chapter{Ordered chiral bialgebras}
-Let $A$ be an ordered chiral algebra on a curve $C$. An ordered chiral bialgebra consists of a coproduct
+A tensor product of representations requires compatible actions on
+threefold products and the unit.
+Retain the factorization coefficient category
+$(\Fact_D(C),\tensor^!)$ on the smooth complex curve $C$.
+Fix a category $\widehat{\mathcal V}_C$ of complete filtered objects
+with specified presentations $F\simeq\varprojlim_r F_r$,
+where $F_r\in\Fact_D(C)$.
+Use derived limits in the fixed Ran enhancement and define
 \[
- \Delta:A\longrightarrow A\widehattensor A
+ F\widehat{\tensor}^{!}G
+ =\varprojlim_{r,s}(F_r\tensor^!G_s).
 \]
-that is a morphism of ordered chiral algebras, together with counit and the chosen completion. An antipode upgrades it to a Hopf object. A spectral coproduct may take values in Laurent series in a difference parameter.
+Assume these limits remain factorizing and give
+$\widehat{\mathcal V}_C$ a symmetric monoidal structure with unit $\mathbf1$.
+Its associativity, symmetry, and unit equivalences must preserve
+the presentations and the Ran structure.
+Morphisms are continuous maps compatible with these presentations.
+These are hypotheses on the chosen completion.
 
-\begin{theorem}[Representation fusion]
-A completed coproduct defines a tensor product of continuous $A$-modules by restriction of scalars. A universal $R$-matrix satisfying quasitriangularity defines a braid operator on that module category.
+\begin{definition}[Ordered chiral bialgebra]\label{def:vol4-ordered-chiral-bialgebra}
+An ordered chiral bialgebra is a counital $\Eone$-coalgebra object
+in complete ordered chiral algebras:
+\[
+ A\in\operatorname{CoAlg}_{\Eone}
+ \left(\Alg_{\Eone}
+ (\widehat{\mathcal V}_C,\widehat{\tensor}^{!})\right).
+\]
+It has continuous multiplication $m$ and unit $\eta$, and continuous
+morphisms of unital ordered chiral algebras
+\[
+ \Delta:A\longrightarrow A\widehat{\tensor}^{!}A,
+ \qquad \epsilon:A\longrightarrow\mathbf1.
+\]
+The counit is the chosen augmentation.
+Write $\tau$ for the coefficient symmetry, including Koszul signs.
+Suppressing ambient associativity and unit equivalences, compatibility reads
+\[
+\begin{aligned}
+ \Delta m&=(m\widehat{\tensor}^{!}m)
+  (\id\widehat{\tensor}^{!}\tau\widehat{\tensor}^{!}\id)
+  (\Delta\widehat{\tensor}^{!}\Delta),\\
+ \Delta\eta&=\eta\widehat{\tensor}^{!}\eta,
+ \qquad \epsilon m=\epsilon\widehat{\tensor}^{!}\epsilon,
+ \qquad \epsilon\eta=\id_{\mathbf1}.
+\end{aligned}
+\]
+Coassociativity and the counit identities read
+\[
+\begin{aligned}
+ (\Delta\widehat{\tensor}^{!}\id)\Delta
+   &=(\id\widehat{\tensor}^{!}\Delta)\Delta,\\
+ (\epsilon\widehat{\tensor}^{!}\id)\Delta
+   &=\id_A=(\id\widehat{\tensor}^{!}\epsilon)\Delta.
+\end{aligned}
+\]
+For a homotopy-coherent presentation, these identities include the
+higher coherences of the displayed coalgebra object.
+Every operation and coherence preserves diagonal transitions and
+disjoint-locus factorization maps.
+An antipode is a continuous convolution inverse $S:A\to A$ of $\id_A$:
+\[
+ m(S\widehat{\tensor}^{!}\id)\Delta
+ =\eta\epsilon
+ =m(\id\widehat{\tensor}^{!}S)\Delta.
+\]
+A bialgebra with an antipode is a Hopf object in this coefficient category.
+\end{definition}
+
+A continuous left $A$-module is an object $M\in\widehat{\mathcal V}_C$
+with a unital $\Eone$ action
+$\rho_M:A\widehat{\tensor}^{!}M\to M$.
+Its action and coherences are morphisms in these factorization coefficients.
+Write $\operatorname{Mod}_A(\widehat{\mathcal V}_C)$ for their category.
+
+\begin{theorem}[Representation fusion]\label{thm:vol4-representation-fusion}
+An ordered chiral bialgebra makes
+$\operatorname{Mod}_A(\widehat{\mathcal V}_C)$ monoidal.
+Its product is $M\widehat{\tensor}^{!}N$ with action
+\[
+\begin{aligned}
+ A\widehat{\tensor}^{!}(M\widehat{\tensor}^{!}N)
+ &\xrightarrow{\Delta\widehat{\tensor}^{!}\id}
+ (A\widehat{\tensor}^{!}A)\widehat{\tensor}^{!}
+ (M\widehat{\tensor}^{!}N)\\
+ &\xrightarrow{\id\widehat{\tensor}^{!}\tau_{A,M}
+                       \widehat{\tensor}^{!}\id}
+ (A\widehat{\tensor}^{!}M)\widehat{\tensor}^{!}
+ (A\widehat{\tensor}^{!}N)\\
+ &\xrightarrow{\rho_M\widehat{\tensor}^{!}\rho_N}
+ M\widehat{\tensor}^{!}N.
+\end{aligned}
+\]
+The unit is $\mathbf1$ with action induced by $\epsilon$.
+The ambient associator and unit equivalences are module equivalences.
+
+Suppose a continuous universal $R$-matrix is also given.
+It is an invertible morphism
+$R:\mathbf1\to A\widehat{\tensor}^{!}A$ for the tensor-product algebra,
+satisfying
+\[
+\begin{gathered}
+ R\Delta(a)=\Delta^{\op}(a)R,\qquad
+ \Delta^{\op}=\tau_{A,A}\Delta,\\
+ (\Delta\widehat{\tensor}^{!}\id)(R)=R_{13}R_{23},
+ \qquad
+ (\id\widehat{\tensor}^{!}\Delta)(R)=R_{13}R_{12},\\
+ (\epsilon\widehat{\tensor}^{!}\id)(R)=\eta
+ =(\id\widehat{\tensor}^{!}\epsilon)(R).
+\end{gathered}
+\]
+The first equation is an identity of morphisms from $A$ to its completed tensor square.
+Leg notation uses the unit and symmetry of $\widehat{\mathcal V}_C$.
+In a homotopy-coherent presentation, require compatible lifts of these identities.
+Then $c_{M,N}=\tau_{M,N}\circ R_{M,N}$ is a braiding,
+where $R_{M,N}$ acts through the external tensor-product module action.
 \end{theorem}
 \begin{proof}
-For modules $M,N$, pull back the $A\widehattensor A$ action on $M\widehattensor N$ along $\Delta$. Coassociativity supplies the associator. The relation $R\Delta(a)=\Delta^{\op}(a)R$ makes the flip composed with $R$ an intertwiner, and the Yang--Baxter equation gives the braid relation.
+The symmetry combines the independent module actions into an
+$A\widehat{\tensor}^{!}A$-action.
+Restriction along the unital algebra map $\Delta$ gives the displayed action.
+For three modules, the two actions use
+$(\Delta\widehat{\tensor}^{!}\id)\Delta$ and
+$(\id\widehat{\tensor}^{!}\Delta)\Delta$.
+Coassociativity makes the ambient associator $A$-linear.
+The counit identities make the ambient unit equivalences $A$-linear.
+The coalgebra coherences give the pentagon and triangle coherences.
+The completion hypotheses keep these maps continuous and factorizing.
+Quasitriangularity makes $c_{M,N}$ an intertwiner and invertibility makes it an equivalence.
+The two coproduct identities for $R$ give the hexagons.
+Its counit identities give compatibility with the unit.
 \end{proof}
+
+The tensor in this construction is the completed transverse tensor
+$\tensor^!$ on factorization coefficients.
+A chiral-convolution or Hall coproduct requires its own construction
+and a comparison in the specified category.
+A spectral version additionally requires a difference coordinate,
+a Laurent-series completion, and compatible domains for iterated expansions.
+Its identities must hold in those domains before defining module actions.
+
+\begin{example}[A counital algebra map without coassociativity]
+In ordinary complex vector spaces, let $A=\C[x]$ and put
+\[
+ \Delta(x)=x\tensor1+1\tensor x+x\tensor x^2,
+ \qquad \epsilon(x)=0.
+\]
+Polynomial substitution extends these assignments to unital algebra maps.
+Writing $F(u,v)=u+v+uv^2$, the equations
+$F(0,v)=v$ and $F(u,0)=u$ prove both counit identities.
+But
+\[
+\begin{split}
+ F(F(u,v),w)-F(u,F(v,w))
+ &=-uv^2w^4-uv^2w^2-2uvw^3-2uvw\\
+ &=-uvw(1+w^2)(vw+2)\ne0.
+\end{split}
+\]
+On three regular modules, the two actions differ already on
+$1\tensor1\tensor1$.
+Thus the canonical tensor associator is not $A$-linear.
+This ordinary example shows why multiplicativity and the counit identities
+must be supplemented by coassociativity.
+It makes no assertion about a geometric realization in factorization coefficients.
+\end{example}
 
 \part{Exact model cases}
 
@@ -580,131 +806,193 @@ Local ADE Yangian&curve-supported equivariant moduli&Hecke and current correspon
 \end{center}
 A global K3 quantum algebra is a system that contains these three actions with explicit comparison homomorphisms. The two-Calabi--Yau BPS theorem supplies a global generalized Kac--Moody positive algebra. A full Yangian or double is specified by a compatible coproduct, spectral parameter, negative half, Cartan part, pairing, and completion.
 
-\chapter{The K3 correspondence category}
-Let $S$ be a projective K3 surface.  Let $\mathscr M_S$ contain the smooth projective moduli spaces $M_\sigma(v)$ of stable objects for primitive Mukai vectors and generic stability conditions, the Hilbert schemes $S^{[n]}$, and the equivariant curve-supported moduli at every ADE enhancement.  Close this collection under finite products.
+\chapter{K3 correspondences on fixed coefficients}
+Fix rational cohomology and a collection $\mathscr M_S$ of smooth
+projective moduli spaces on a projective K3 surface $S$.
+Include the Hilbert schemes $S^{[n]}$ and close the collection under
+finite products.
+For $M,N\in\mathscr M_S$, define the graded kernel space
+\[
+ K(M,N)=H^*(M\times N,\mathbb Q)[2\dim_{\mathbb C}M].
+\]
+A kernel of degree $r$ acts from $H^j(M)$ to $H^{j+r}(N)$ by
+\[
+ T_\alpha(v)=(p_N)_*(p_M^*v\cup\alpha).
+\]
+The shift in $K(M,N)$ accounts for integration over $M$.
+All pushforwards in this construction are proper.
 
-\begin{definition}[K3 correspondence category]
-The category $\operatorname{Corr}_{K3}(S)$ has the spaces of $\mathscr M_S$ as objects and
+\begin{proposition}[Kernel composition]\label{cyiv:k3-kernels}
+The product
 \[
- \Hom(M,N)=H^{\mathrm{BM}}_*(M\times N)
+ \beta\circ\alpha=(p_{13})_*
+ (p_{12}^*\alpha\cup p_{23}^*\beta)
 \]
-for proper objects, with the corresponding localized equivariant Borel--Moore theory on ADE charts.  Composition is convolution:
-\[
- \beta\circ\alpha
- =(p_{13})_*
- \left(p_{12}^*\alpha\cap p_{23}^*\beta\right).
-\]
-The tensor product is Cartesian product of moduli spaces and external product of correspondences.
-\end{definition}
-
-\begin{theorem}[Associativity and monoidality]
-Transverse convolution makes $\operatorname{Corr}_{K3}(S)$ a graded monoidal category.  The cohomology functor
-\[
- \omega_S(M)=H^*(M)
-\]
-and its localized equivariant form on ADE charts is strong monoidal and carries convolution to composition of linear operators.
-\end{theorem}
+defines an associative graded category with diagonal identities.
+The kernel action identifies $K(M,N)$ with
+$\operatorname{Hom}^*(H^*(M),H^*(N))$.
+\end{proposition}
 \begin{proof}
-The two parenthesizations of three correspondences are the two push--pull descriptions on $M_1\times M_2\times M_3\times M_4$.  Proper base change and the projection formula identify them.  Cartesian products and external products satisfy the interchange law.  The standard action of a kernel on cohomology is compatible with both operations.
+The K\"unneth isomorphism and Poincar\'e duality identify
+$H^*(M\times N)[2\dim M]$ with $H^*(M)^\vee\otimes H^*(N)$.
+Under this identification, $T_\alpha$ is the associated linear map.
+Integration over the middle factor contracts its dual pair, so
+$T_{\beta\circ\alpha}=T_\beta T_\alpha$.
+Faithfulness then proves associativity and the diagonal identity.
+External products give tensor products with their Koszul signs.
 \end{proof}
 
-Nakajima incidence varieties are morphisms in this category.  Cup product and Lefschetz adjoints are diagonal kernels.  ADE Hecke correspondences are equivariant morphisms.  Thus the three K3 symmetry families occupy one correspondence category before passage to any enveloping algebra.
+A geometric symmetry is specified by selected kernels in this category.
+Nakajima incidence kernels connect different Hilbert schemes.
+Lefschetz multiplication and its adjoint act on each individual
+cohomology space.
+Using every cohomology kernel would instead give all linear maps;
+the selected geometric kernels carry the representation-theoretic content.
 
-\chapter{The common K3 action algebra}
-Define the completed state space
+\chapter{The algebra generated by geometric actions}
+Put $V_S=\bigoplus_{M\in\mathscr M_S}H^*(M,\mathbb Q)$.
+Choose a set of homogeneous operators $T_\lambda$ on $V_S$, each sending
+a vector with finite support to a vector with finite support.
+The Nakajima operators on the Hilbert-scheme summand satisfy this
+condition: each changes the point number by a fixed integer.
+Individual Lefschetz operators, extended by zero on other summands,
+also satisfy it.
+Let $F$ be the free unital graded algebra on symbols $t_\lambda$.
+
+\begin{proposition}[Geometric action algebra]\label{cyiv:k3-action}
+The map
 \[
- \Hcal_S=
- \widehat\bigoplus_{M\in\mathscr M_S}\omega_S(M),
+ \rho:F\longrightarrow\operatorname{End}_{\mathbb Q}(V_S),
+ \qquad t_\lambda\longmapsto T_\lambda
 \]
-completed by Mukai norm, instanton number, and cohomological degree.  Every correspondence acts continuously on $\Hcal_S$.
-
-\begin{definition}[K3 action algebra]
-The K3 action algebra is the image
-\[
- \Acal_{K3}(S)=
- \im\left(
- \bigoplus_{M,N}\Hom_{\operatorname{Corr}_{K3}(S)}(M,N)
- \longrightarrow\End_{\mathrm{cont}}(\Hcal_S)
- \right),
-\]
-closed in the operator topology.
-\end{definition}
-
-\begin{theorem}[Exact K3 symmetry envelope]
-The algebra $\Acal_{K3}(S)$ is separated and complete.  It contains the Nakajima Heisenberg, every LLV Lefschetz triple, monodromy transport, and every local ADE Yangian action.  The cross-relations are the intersection identities of their kernels.  This description is faithful by construction.
-\end{theorem}
+defines a faithful action of $A_S=F/\ker\rho$.
+For every algebra $B$, maps $A_S\to B$ are exactly maps $F\to B$
+that kill $\ker\rho$.
+Products and commutators of the selected kernels are their convolution
+products and commutators on the relevant moduli spaces.
+\end{proposition}
 \begin{proof}
-Each named operator is induced by a correspondence in $\operatorname{Corr}_{K3}(S)$.  Convolution gives their products.  The image quotient removes precisely the correspondences acting trivially on all selected cohomologies, and closure gives completeness.
+Finite words in the selected operators preserve finite support, so
+$\rho$ is defined by composition.
+The quotient acts faithfully by definition of its kernel.
+The factorization property is the universal property of an algebra
+quotient.
+The convolution assertion follows from Proposition~\ref{cyiv:k3-kernels}.
 \end{proof}
 
-The three symmetries retain their intrinsic forms inside one algebra.  Their interaction is calculated by intersections of the corresponding cycles.  On a Noether--Lefschetz locus, an LLV operator and an ADE Hecke operator meet in the same correspondence space; the resulting convolution is the geometric cross-relation.
+An equivariant ADE construction uses a separate coefficient field,
+for example $\operatorname{Frac}H_T^*(\mathrm{pt},\mathbb Q)$,
+and its prescribed localization and proper pushforwards.
+Joining it to $A_S$ requires maps between the actual state spaces that
+intertwine those operators and their coefficients.
+A completion of $A_S$ requires a specified topology and continuity of
+every generator.
+The indefinite Mukai norm alone supplies neither condition.
+The desired common K3 quantum algebra must construct these local-to-global
+actions and their mixed convolution relations.
 
-\chapter{Tannaka reconstruction from K3 correspondences}
-Let $\mathscr C_S^{\mathrm{geom}}$ be the rigid Karoubi envelope of the dualizable correspondence objects, modulo the tensor ideal of kernels acting trivially on cohomology, with Tate and parity shifts adjoined.  For a finite Mukai-norm truncation, let $\mathscr C_S$ be the exact rigid tensor envelope of its image under cohomology: it is closed inside $\operatorname{sVect}^{\mathrm{gr}}_{\mathrm{fd}}$ under finite sums, tensor products, duals, summands, kernels, and cokernels.  The induced functor
+\chapter{Tensor reconstruction and geometric kernels}
+Let $\mathscr C$ be an essentially small rigid linear monoidal category
+and let $\omega:\mathscr C\to\operatorname{Vect}_{\mathrm{fd}}(\mathbb Q)$
+be a strong monoidal functor.
+A choice of geometric kernels specifies the morphisms of $\mathscr C$;
+it is part of the input.
+Define
 \[
- \omega_S:\mathscr C_S\longrightarrow\operatorname{sVect}^{\mathrm{gr}}_{\mathrm{fd}}
+ H=\left(\bigoplus_{M\in\mathscr C}\omega(M)^*\otimes\omega(M)\right)
+ \big/\left\langle
+ [\lambda\circ\omega(f)\otimes v]_M
+ -[\lambda\otimes\omega(f)v]_N\right\rangle,
 \]
-is faithful, exact, and strong monoidal.
+where $f:M\to N$, $v\in\omega(M)$, and $\lambda\in\omega(N)^*$.
 
-\begin{definition}[K3 correspondence quantum group]
-The coordinate bialgebra is the coend
+\begin{proposition}[Matrix-coefficient coalgebra]\label{cyiv:k3-coend}
+For a basis $(e_i)$ with dual basis $(e^i)$, the formulas
 \[
- \Ocal(\mathbb G_{K3})
- =\int^{M\in\mathscr C_S}\omega_S(M)^*\tensor\omega_S(M).
+ \Delta[\lambda\otimes v]_M
+ =\sum_i[\lambda\otimes e_i]_M\otimes[e^i\otimes v]_M,
+ \qquad \epsilon[\lambda\otimes v]_M=\lambda(v)
 \]
-Its continuous dual is denoted $U(\mathbb G_{K3})$.
-\end{definition}
-
-\begin{theorem}[K3 Tannaka theorem]
-On every finite Mukai-norm truncation, $\mathscr C_S$ is equivalent to the rigid exact tensor subcategory of finite comodules over $\Ocal(\mathbb G_{K3})$ generated by the universal coactions on the fibres $\omega_S(M)$.  Every geometric K3 correspondence induces a comodule morphism.  The continuous dual acts naturally on every cohomology fibre and represents tensor-compatible natural endomorphisms of the fibre functor.  A braided transport on $\mathscr C_S$ produces a coquasitriangular structure on the coend.
-\end{theorem}
+are basis-independent and make $H$ a coalgebra.
+Tensor product gives its multiplication, and duals give its antipode.
+Each $\omega(M)$ is a comodule by
+\[
+ v\longmapsto\sum_i e_i\otimes[e^i\otimes v]_M.
+\]
+Every selected kernel is a comodule morphism.
+\end{proposition}
 \begin{proof}
-Exact rigid coend reconstruction applies to the faithful exact strong monoidal functor $\omega_S$.  The coend carries the universal coaction on each fibre.  The exact tensor envelope used to define $\mathscr C_S$ is precisely the subcategory generated from these comodules by the operations preserved by $\omega_S$, which gives the stated equivalence.  The quotient map from geometric correspondences makes each correspondence a comodule morphism.  Dualizing the universal coaction represents tensor-compatible natural endomorphisms.  A braiding supplies the bilinear form whose hexagon identities are the coquasitriangular axioms.
+The identity tensor $\sum_i e_i\otimes e^i$ is basis-independent.
+Inserting it twice proves coassociativity; evaluation proves both
+counit identities.
+The defining relations express naturality under $f$ and are preserved
+by these formulas.
+The strong monoidal constraints identify the coefficient of $M\otimes N$
+with the product of coefficients of $M$ and $N$.
+Their pentagon and unit identities give the bialgebra axioms.
+The evaluation and coevaluation identities for duals give the antipode
+identities.
+The same relations prove that $\omega(f)$ intertwines the coactions.
 \end{proof}
 
-The action algebra $\Acal_{K3}(S)$ and the Tannaka algebra $U(\mathbb G_{K3})$ are complementary.  The first is generated by geometric kernels.  The second consists of tensor symmetries compatible with every kernel.  Their commutants record two complementary aspects of the K3 correspondence geometry: geometric operators and tensor-compatible natural symmetries.
+The linear dual of $H$ represents linear natural endomorphisms of
+$\omega$.
+Tensor-compatible natural automorphisms are the corresponding
+multiplicative, unit-preserving families, not all elements of this dual.
+An equivalence with a comodule category requires the additional exactness
+and reconstruction hypotheses stated in the Tannaka theorem below.
+The action algebra $A_S$ acts by selected kernels; the coend records
+symmetries commuting with those kernels.
 
 \part{The exact \texorpdfstring{$K3\times E$}{K3 x E} protected completion}
 
 \chapter{The protected input}
-The K3 elliptic genus supplies the Jacobi form
-\[
- Z_{K3}=2\phi_{0,1}.
-\]
-Its Borcherds half determines the weight-five product $D_5$, the Gritsenko--Nikulin Borcherds superalgebra $\gDelta$, and its simple-root superdatum.  The companion volume constructs the Borcherds quiver $Q_{\Delta,H}$ in every proper-height window, its coordinate-framed Hall category, its formal three-Calabi--Yau Ginzburg completion, its colored elliptic Ran factorization algebra, its quantum double, and its virtual root Dirac operator.
+The K3 elliptic genus is $2\phi_{0,1}$.
+The Borcherds half determines the weight-five denominator $D_5$ and its
+Borcherds Lie superalgebra $\mathfrak g_\Delta$.
+Fix its positive root spaces with their parity and proper height.
+The positive algebra and its root Fock space are defined from this Lie
+superalgebra, independently of a compact Hall realization.
 
-\begin{definition}[Protected avatar]
-The protected avatar of $K3\times E$ is
+For each finite zero-potential quiver window $Q_{\Delta,H}$, form the
+Ginzburg algebra $\Gamma_{\Delta,H}$.
+Restriction to full subquivers gives the projections of
+Proposition~\ref{cyiv:ginzburg-projection}.
+Write $\Gamma_\Delta$ for this specified inverse system.
+A nondegenerate continuous Calabi--Yau structure on a completed limit
+is additional data.
+An ordinary Hall category $\mathcal B_\Delta$ must carry its chosen
+quiver coefficients and extension correspondences.
+Its identification with a root presentation requires the corresponding
+Hall theorem on that precise datum.
+
+\begin{definition}[Root-datum realizations]
+A protected root-datum realization records
 \[
  \mathfrak P(K3\times E)=
- \left(
- \Gamma_\Delta,
- \mathcal B_\Delta,
- \mathcal H_{\mathrm{1p}},
- \mathcal F^{\mathrm{hyb}}_{\Delta,E},
- \widehat U_q(\gDelta),
- \mathbb A_Z
- \right).
+ (\Gamma_\Delta,\mathcal B_\Delta,\mathcal H_{\mathrm{1p}},
+ \mathcal F^{\mathrm{hyb}}_{\Delta,E},\widehat U_q(\mathfrak g_\Delta),
+ \mathbb A_Z).
 \]
-Here $\mathcal B_\Delta$ is the ordinary quiver Hall category and $\mathcal H_{\mathrm{1p}}$ is the parity-refined Borcherds root superspace.
+Here $\mathcal H_{\mathrm{1p}}=\bigoplus_{\alpha>0}(\mathfrak g_\Delta)_\alpha$
+with its parity.
+The current-factorization, paired quantum-group, and Fredholm entries
+retain their own coefficient categories, completions, and defining
+hypotheses.
+Maps among these entries are specified realization maps, not consequences
+of using the same root labels.
 \end{definition}
 
-\begin{theorem}[Existence of the universal protected avatar]
-The protected avatar exists and has the following structures:
-\begin{enumerate}
-\item $\Gamma_\Delta$ is a locally finite three-Calabi--Yau dg category;
-\item $\mathcal B_\Delta$ is the quiver Hall category of the underlying even Borcherds--Cartan datum, while $\mathcal H_{\mathrm{1p}}$ carries the parity-refined root spaces of $\gDelta_+$;
-\item $\mathcal F^{\mathrm{hyb}}_{\Delta,E}$ is a local--wrapped factorization algebra with primitive current algebra $\Cur_E(\gDelta_+)$;
-\item $\widehat U_q(\gDelta)$ is a root-height-complete quasitriangular Hopf superalgebra;
-\item $\mathbb A_Z$ is an oriented virtual Fredholm family with Pfaffian $D_5(2Z)$ after the Weyl shift.
-\end{enumerate}
-\end{theorem}
-\begin{proof}
-The assertions are respectively the Calabi--Yau completion theorem, the quiver Hall theorem, the Borcherds root-space construction, the colored-Ran Chevalley theorem, Hong's quantization theorem, and the root-space Fredholm theorem of the companion volume.
-\end{proof}
+The enveloping and Chevalley constructions are functorial under the
+primitive maps of Theorem~\ref{cyiv:primitive-comparison}.
+The root Fock trace is computed from the actual graded root spaces.
+A Fredholm realization adds a family of operators on a specified domain
+and the convergence and orientation data identifying its Pfaffian with
+the denominator.
+These are the analytic inputs to the square-root comparison below.
 
-\begin{definition}[Integral protected avatar]
-Let $\mathfrak p_X^+$ be the BPS primitive Lie algebra of a selected strong-oriented cohomological lift of the geometric $E$-equivariant Hall source.  The integral protected avatar is
+\begin{definition}[Integral protected realization]
+Let $\mathfrak p_X^+$ be the BPS primitive Lie algebra of a selected strong-oriented cohomological lift of the geometric $E$-equivariant Hall source.  The integral protected realization is
 \[
  \mathfrak P_{\mathrm{int}}(X,\Delta)
  =\left(
@@ -718,56 +1006,169 @@ Let $\mathfrak p_X^+$ be the BPS primitive Lie algebra of a selected strong-orie
 At the motivic level the first, second, and character components are defined.  A strong orientation enhancement supplies $\mathfrak p_X^+$ and hence the amalgamated primitive component.
 \end{definition}
 
-\begin{theorem}[Integral source--target completion]
-The integral protected avatar retains the geometric extension theory, the universal Igusa root theory, and their common polarized charge lattice in one functorial system.  The retraction $r_X$ recovers the geometric BPS Borel, while $r_\Delta$ recovers the Borcherds Borel and its denominator.  The character morphism factors through the common Cartan grading.  Every primitive comparison $\varphi:\nDelta\to\mathfrak p_X^+$ produces a diagonal quotient of the integral avatar, and every diagonal quotient arises in this way.
-\end{theorem}
+\begin{proposition}[Primitive graph comparison]
+Suppose the two primitive Borels, their common Cartan action, and their
+completed amalgam are supplied as above.
+Their Cartan retractions induce retractions from the amalgam to each
+factor.
+For each specified primitive map $\varphi$ preserving Cartan action,
+its graph quotient is canonically the geometric Borel.
+\end{proposition}
 \begin{proof}
-The geometric Hall algebra and its character were constructed before the universal root avatar.  The polarized graph map identifies their Cartan gradings.  Hall--Borcherds amalgamation gives the common primitive object and its two retractions.  The universal comparison-quotient theorem identifies primitive comparisons with diagonal quotients.  Each step is natural under morphisms preserving the charge lattice, Hall correspondences, and root presentation.
+The identity on one Borel and the Cartan projection of the other agree
+on the common Cartan, so the amalgam gives the retraction.
+The quotient statement is Proposition~\ref{cyiv:graph-quotient}.
 \end{proof}
 
-\chapter{The noncommutative Calabi--Yau field theory}
-Every finite-height Ginzburg algebra $\Gamma_{\Delta,H}$ has a cyclic three-Calabi--Yau pairing.  Its open string field is a degree-one element $a$ in the completed endomorphism algebra.  The action is
-\[
- S_H(a)=
- \frac12\angles{a,m_1a}
- +\sum_{n\ge2}\frac1{n+1}\angles{a,m_n(a^{\tensor n})}.
-\]
+The motivic integration map and primitive comparison are different maps.
+Strong orientation gives the coefficient coherence of a cohomological
+Hall construction under its stated geometric hypotheses.
+Extracting a primitive Lie algebra additionally requires the appropriate
+BPS or coproduct construction.
 
-\begin{theorem}[Master equation of the universal Igusa open string]
-The cyclic $\Ainf$ identities imply
+\chapter{Cyclic open-string operations}
+Let $A$ be a finite-dimensional, uncurved cyclic $A_\infty$ algebra
+over $\mathbb C$, with a nondegenerate pairing of degree $-3$.
+Use the cohomological suspension $s:A\to A[1]$ of degree $-1$.
+The suspended operations $b_n:(A[1])^{\otimes n}\to A[1]$ have degree one.
+Our sign convention is the coderivation convention $b^2=0$ on the
+tensor coalgebra, with the Koszul rule for moving homogeneous inputs.
+Write $\omega$ for the resulting degree-$-1$ symplectic form on $A[1]$.
+Fix the Hamiltonian convention $\iota_{X_F}\omega=dF$ and
+$[X_F,X_G]=X_{\{F,G\}}$.
+
+For the universal degree-zero coordinate $x$ on $A[1]$, put
 \[
- \{S_H,S_H\}=0.
+ S(x)=\sum_{n\ge1}\frac1{n+1}\omega(x,b_n(x^{\otimes n})).
 \]
-The fixed root ordering and coordinate framing orient each finite Borcherds--Ginzburg representation chart and define its vanishing-cycle Hall theory.  The proper-height limit gives a complete noncommutative Calabi--Yau field theory whose ordinary boundary Hall algebra is the quiver Hall presentation, whose protected primitive superspace is $\gDelta_+$, and whose quantum symmetry is $\widehat U_q(\gDelta)$.
-\end{theorem}
+Cyclic invariance is read with the suspended Koszul signs.
+All functions are formal power series at the origin.
+An equivalent unsuspended convention writes this as
+$\frac12\langle a,m_1a\rangle+
+\sum_{n\ge2}\frac1{n+1}\langle a,m_n(a^{\otimes n})\rangle$.
+
+\begin{proposition}[Cyclic master equation]\label{cyiv:cyclic-master}
+The action satisfies $\{S,S\}=0$.
+\end{proposition}
 \begin{proof}
-The cyclic $\Ainf$ relations are the coefficients of the classical master equation.  The three-Calabi--Yau pairing gives the odd symplectic form.  The coordinate-framed orientation theorem of the companion volume defines the finite-chart Hall product.  Proper height makes every fixed coefficient finite, so the inverse limit preserves the master equation and the Hall operations.
+Cyclicity makes the $n+1$ derivatives of the arity-$n+1$ term equal,
+with the suspended Koszul signs.
+Thus $X_S(x)=\sum_{n\ge1}b_n(x^{\otimes n})$.
+The coderivation identity implies $X_S^2=0$.
+The Hamiltonian identity gives $X_{\{S,S\}}=2X_S^2=0$.
+Nondegeneracy of $\omega$ makes $\{S,S\}$ constant.
+Uncurvedness removes $b_0$, so $S$ starts in order two and its bracket
+has no constant term.
+The constant is therefore zero.
 \end{proof}
 
-\chapter{The mixed holomorphic--topological boundary theory}
-Apply cotangent BF theory to the finite positive Borcherds Lie superalgebras $\gDelta_+^{(H)}$ on $\R^2_{\mathrm{top}}\times E$.  The boundary polarization has algebra $U(\gDelta_+^{(H)})$ and derived centre
+A finite-height Ginzburg realization requires such a cyclic model on
+the selected proper objects before this scalar action is applied.
+A Hall realization additionally requires a moduli problem with
+critical coefficient complexes.
+For an extension $A_0\to F\to B_0$, put
+$L(A_0,B_0)=\det R\operatorname{Hom}(A_0,B_0)$.
+Three-Calabi--Yau duality gives
 \[
- C^\bullet_{\HH}
- \left(U(\gDelta_+^{(H)}),U(\gDelta_+^{(H)})\right).
+ R\operatorname{Hom}(B_0,A_0)
+ \simeq R\operatorname{Hom}(A_0,B_0)^\vee[-3].
 \]
-The shifted-cotangent bulk is
+Applying the determinant functor to the two derived Hom triangles gives
 \[
- C^*_{\CE}\bigl(T^*[-1]\gDelta_+^{(H)}\bigr).
+ \det R\operatorname{Hom}(F,F)
+ \cong \det R\operatorname{Hom}(A_0,A_0)
+ \otimes\det R\operatorname{Hom}(B_0,B_0)
+ \otimes L(A_0,B_0)^{\otimes2}.
 \]
+Indeed, the four subquotients are the two diagonal Hom complexes and
+the two cross complexes.
+Dualization and the odd shift cancel on their determinant lines,
+so the two cross determinants coincide.
+Orientation lines require square-root isomorphisms along this formula,
+compatible on triple flags and with any quotient descent.
+The cyclic master equation does not select these isomorphisms.
 
-\begin{theorem}[Finite-height mixed-HT open--closed equivalence]
-In every finite height window, linear Poisson formality gives a homotopy-$\Etwo$ equivalence
+\chapter{An algebraic open--closed comparison}
+A finite-dimensional ordinary Lie algebra $\mathfrak l$ gives a
+precise coefficient model for an enveloping-algebra centre.
+Let $U=U(\mathfrak l)$ over $\mathbb C$.
+The adjoint module $U^{\mathrm{ad}}$ has action
+$x\cdot u=xu-ux$.
+Its Chevalley cochains are
 \[
- C^*_{\CE}\bigl(T^*[-1]\gDelta_+^{(H)}\bigr)\llbracket\hbarq\rrbracket
- \xrightarrow{\sim}
- C^\bullet_{\HH}
- \left(U_\hbar(\gDelta_+^{(H)}),U_\hbar(\gDelta_+^{(H)})\right).
+ C^n(\mathfrak l,U^{\mathrm{ad}})
+ =\operatorname{Hom}_{\mathbb C}(\Lambda^n\mathfrak l,U),
 \]
-The maps are compatible with height truncation.  Their inverse limit identifies the completed algebraic bulk with the completed Hochschild centre, root degree by root degree.  Applying the current functor on $E$ and retaining the elliptic-degree colour produces compatible local--wrapped factorization objects; the open--closed map is defined on each current coefficient by the same universal formality graphs.
+with differential
+\[
+\begin{split}
+ (df)(x_1,\ldots,x_{n+1})
+ &=\sum_i(-1)^{i+1}[x_i,f(x_1,\widehat x_i,\ldots,x_{n+1})]\\
+ &\quad+\sum_{i<j}(-1)^{i+j}
+ f([x_i,x_j],x_1,\widehat x_i,\widehat x_j,\ldots,x_{n+1}).
+\end{split}
+\]
+The second line places the bracket first and retains the order of the
+remaining arguments.
+
+\begin{theorem}[Hochschild--Chevalley comparison]\label{cyiv:hh-ce}
+Restriction followed by antisymmetrization defines a quasi-isomorphism
+\[
+ C^\bullet_{\mathrm{HH}}(U,U)
+ \longrightarrow C^\bullet(\mathfrak l,U^{\mathrm{ad}}),
+ \qquad
+ \phi\longmapsto\left[(x_1,\ldots,x_n)\mapsto
+ \sum_{\sigma\in S_n}\operatorname{sgn}(\sigma)
+ \phi(x_{\sigma(1)},\ldots,x_{\sigma(n)})\right].
+\]
+This is a comparison of ordinary cochain complexes.
 \end{theorem}
 \begin{proof}
-Each finite algebra is finite-dimensional and nilpotent.  Kontsevich formality for its linear Poisson structure gives the first equivalence, and the brace refinement supplies the homotopy-$\Etwo$ structure.  Universal graph formulas commute with quotient maps.  Proper height makes the inverse limit exact in each root degree.  The current functor is applied after this algebraic equivalence; root-degree addition preserves the local--wrapped colour.
+The Chevalley bimodule resolution has terms
+$K_n=U\otimes\Lambda^n\mathfrak l\otimes U$.
+Its differential has the left-minus-right multiplication terms and
+the bracket terms with the signs dual to the displayed differential.
+Filter $K_n$ by total PBW degree, counting each exterior generator
+as degree one.
+The multiplication terms preserve this degree and bracket terms lower it.
+The associated graded is the Koszul resolution of the diagonal in
+$\operatorname{Sym}(\mathfrak l)\otimes\operatorname{Sym}(\mathfrak l)$,
+with regular sequence $x_i\otimes1-1\otimes x_i$.
+That Koszul complex is exact away from degree zero.
+The filtration is bounded below and exhaustive, and each element has
+finite filtration degree, so lifting a leading term proves exactness
+of $K_\bullet$ by induction.
+Its augmentation has image $U$.
+Thus $K_\bullet$ is a free bimodule resolution.
+
+Antisymmetrization gives a map from $K_\bullet$ to the ordinary bar
+resolution, lifting the identity of $U$.
+Adjacent products in its bar differential pair to commutators;
+$xy-yx=[x,y]$ gives exactly the bracket terms of $K_\bullet$.
+The outer products give its left-minus-right terms.
+A comparison between projective resolutions lifting the identity is
+a homotopy equivalence.
+Applying $\operatorname{Hom}_{U\otimes U^{\mathrm{op}}}(-,U)$ gives
+the stated formula and quasi-isomorphism.
 \end{proof}
+
+This is the classical Cartan--Eilenberg comparison.
+For a finite Lie superalgebra, the same construction uses the
+super-exterior powers and permutation Koszul signs.
+Odd generators produce symmetric exterior directions, so the resolution
+can be unbounded; its algebraic direct sums and cochain products remain
+part of the convention.
+The PBW and super-Koszul proof applies with those conventions.
+
+A physical mixed holomorphic--topological realization requires a map
+from its independently defined bulk observables to this cochain object.
+The theorem specifies the adjoint coefficients and the actual algebraic
+comparison.
+An $E_2$ refinement, a current-factorization realization, and compatibility
+with root-height transitions require maps preserving their additional
+operations.
+A quotient of Lie algebras alone does not provide a covariant map of
+Hochschild centres.
 
 \chapter{The exact scalar and first-order observables}
 Set
@@ -791,7 +1192,9 @@ The primitive reduced curve-counting theorem gives
 \]
 
 \begin{theorem}[Protected square-root theorem]
-Within $\mathfrak P(K3\times E)$, the denominator section $\DenIg$ is simultaneously:
+Assume the stated root-space Fredholm comparison with its orientation,
+Weyl shift, and convergence domain.
+Within that realization, the denominator section $\DenIg$ is simultaneously:
 \begin{enumerate}
 \item the Weyl denominator of $\gDelta$;
 \item the Euler character of the bar--Chevalley complex;
@@ -806,43 +1209,122 @@ The first two are the denominator and bar--Chevalley theorems.  The third is the
 \end{proof}
 
 \chapter{Physical meaning}
-The protected avatar is the complete universal algebraic model selected by the Igusa root datum.  The Ginzburg category supplies its noncommutative three-Calabi--Yau sector.  The quiver Hall category supplies its ordinary extension geometry.  The Borcherds root superspace supplies its protected one-particle states.  The colored Ran object supplies its local and wrapped current algebra on the elliptic curve.  Hong's quantum Borcherds algebra supplies its line-operator symmetry.  The root Dirac family supplies its first-order determinant, and the Fock construction supplies the scalar square.
+The root-datum realizations retain several distinct constructions.
+The finite Ginzburg algebras and their projections form an inverse system.
+A completed three-Calabi--Yau sector requires a continuous nondegenerate
+Calabi--Yau structure and compatible cyclic models on the selected proper objects.
+The quiver Hall category retains its chosen coefficients and extension
+correspondences. A Hall theorem on that datum must identify its root presentation.
+The Borcherds root superspace defines the root-graded Fock space and its
+supercharacter. Its identification with physical one-particle states
+requires a parity-preserving graded comparison intertwining the primitive actions.
 
-A compact string construction with specified simple-root states and extension amplitudes maps to the protected avatar through the presentation universal property.  The comparison is determined on primitives; PBW propagates it to multiparticle states, the Hall product, the current algebra, the quantum double, and the determinant.
+A realization on the elliptic curve must construct the current object
+with its local and wrapped supports, collision operations, and comparison maps.
+The quantum Borcherds algebra, with its specified pairing and completion,
+acts as a line-operator symmetry only through a representation preserving
+fusion and exchange. The root operator gives the Fredholm product on its
+specified convergence domain. A physical determinant interpretation requires
+an operator comparison and an orientation-preserving identification of the
+determinant lines and sections. The Fock character gives the scalar square.
+An operator trace additionally requires its state space and trace domain.
 
-\chapter{Universal property of the protected avatar}
-A presentation-preserving protected theory consists of a three-Calabi--Yau category, an oriented Hall boundary, a colored elliptic factorization algebra, a quasitriangular quantum symmetry, an oriented determinant, and comparison functors from the Borcherds generators-and-relations construction to these five objects.  The chosen simple-root states satisfy the Gritsenko--Nikulin Cartan, parity, and Serre relations.
+Simple-root states satisfying the defining relations give a primitive Lie map.
+The explicit enveloping and Chevalley extensions preserve products and brackets.
+A compact string realization must additionally construct its brane functor,
+Hall orientation maps, paired quantum coproduct, and trace-line comparison.
 
-\begin{theorem}[Presentation universal property]
-Every presentation-preserving protected theory carries a unique primitive Lie-superalgebra morphism
+\chapter{Primitive comparisons and their algebraic extensions}
+Let $\mathfrak n_\Delta$ be the positive Borcherds Lie superalgebra.
+Choose homogeneous parity-preserving images of its simple generators
+in a charge-graded Lie superalgebra $\mathfrak p$.
+Assume these images satisfy every defining relation.
+
+\begin{theorem}[Extension of a primitive comparison]\label{cyiv:primitive-comparison}
+The chosen images determine a unique Lie-superalgebra map
+$f:\mathfrak n_\Delta\to\mathfrak p$.
+It induces
 \[
- \nIg\longrightarrow\Prim(\mathfrak T)
+ U(f)(x_1\cdots x_r)=f(x_1)\cdots f(x_r),
+ \qquad C_*(f)=\operatorname{Sym}^c(f[1]).
 \]
-extending the chosen simple-root states.  The Hall, Ginzburg, current, quantum-group, and determinant functors extend this primitive morphism to the five selected comparison maps.  A primitive isomorphism together with equivalences of the selected functorial realizations gives an equivalence of protected data.
+These are respectively an enveloping-algebra map and a Chevalley
+chain-coalgebra map.
+Filtration-preserving maps extend to the specified inverse-limit
+completions.
+If $f$ is surjective and both algebras have finite charge components
+and proper positive height, equality of their parity-refined PBW
+characters implies that $f$ and $U(f)$ are isomorphisms.
 \end{theorem}
 \begin{proof}
-The Borcherds generators and relations give the unique primitive morphism.  Each remaining construction is functorial in a presentation map: quiver Hall convolution in the quiver map, Calabi--Yau completion in the dg-algebra map, chiral Chevalley theory in the Lie map, Hong quantization in the Cartan superdatum, and the diagonal Fredholm operator in the root-graded map.  PBW promotes the primitive isomorphism to the completed enveloping and Fock objects.
+The defining presentation gives $f$.
+Its tensor-algebra extension carries
+$xy-(-1)^{|x||y|}yx-[x,y]$ to the corresponding relation.
+It therefore descends to $U(f)$.
+The shifted symmetric-coalgebra map commutes with the Chevalley
+differential because $f$ preserves brackets.
+Compatible maps on filtration quotients give maps on their inverse limits.
+Surjectivity of $f$ gives surjectivity of $U(f)$.
+Character equality makes each finite charge component an isomorphism,
+separately in both parities.
+The PBW embeddings then imply injectivity of $f$.
 \end{proof}
 
-\chapter{The Borcherds-to-Calabi--Yau completion}
-\begin{theorem}[Exact root-datum construction]
-The sequence
+At level zero the current Lie conformal algebra is
+$\mathbb C[\partial]\otimes\mathfrak n_\Delta$ with
+$[x_\lambda y]=[x,y]$ on constant generators.
+The map $\partial^j x\mapsto\partial^j f(x)$ preserves this bracket
+and sesquilinearity.
+A nonzero central level additionally requires preservation of the
+specified invariant pairing.
+Hall convolution, Calabi--Yau structures, quantum coproducts, and
+determinant lines require their own comparison data.
+
+\chapter{Finite quivers and Calabi--Yau completions}
+For a finite quiver $Q$ with zero potential, let $\Gamma(Q,0)$ be its
+path-length-completed Ginzburg algebra.
+Path products are read from left to right: if $a:i\to j$ and
+$b:j\to k$, then $ab:i\to k$.
+For each arrow $a:i\to j$, add $a^*:j\to i$ of degree $-1$.
+At each vertex add a loop $t_i$ of degree $-2$.
+Original arrows have degree zero, and
 \[
-\begin{gathered}
- \set{\text{finite Borcherds simple-root superdatum}}
- \longmapsto Q_{\Delta,H}
- \longmapsto \Gamma_{\Delta,H},\\
- \Gamma_{\Delta,H}
- \longmapsto \mathcal B_{\Delta,H}
- \longmapsto U_q(\gDelta^{(H)}).
-\end{gathered}
+ da=da^*=0,\qquad
+ dt_i=e_i\left(\sum_a[a,a^*]\right)e_i.
 \]
-is functorial under full inclusions of finite root windows.  Proper-height passage gives a locally three-Calabi--Yau dg category, its Hall presentation, and a complete quantized Borcherds superalgebra.  The simple-root datum extracted from $\phi_{0,1}$ gives the universal Igusa protected avatar.
-\end{theorem}
+
+\begin{proposition}[Restriction to a full subquiver]\label{cyiv:ginzburg-projection}
+If $Q_0$ is a full subquiver, retaining its generators and killing all
+other vertices, arrows, reverse arrows, and loops defines a continuous
+dg-algebra projection
+\[
+ \Gamma(Q,0)\longrightarrow\Gamma(Q_0,0).
+\]
+The inclusion of retained graded generators need not commute with
+the differential.
+\end{proposition}
 \begin{proof}
-A full inclusion of root data adds vertices and arrows to the Borcherds quiver.  Keller completion and the quiver Hall functors preserve exact full subcategories.  The generator-and-relation map to Hong's quantized Borcherds superalgebra is compatible with root truncation.  Proper height makes each coefficient eventually constant.  The Gritsenko--Nikulin theorem identifies the resulting root datum with the Igusa denominator algebra.
+The projection respects source and target idempotents and extends
+multiplicatively.
+At a retained vertex, every term involving a discarded arrow vanishes.
+The other terms are precisely $dt_i$ in the smaller algebra.
+All arrow differentials vanish, so the projection is a chain map.
+It preserves the path-length filtration and is continuous.
+For the final assertion, start with one vertex $i$ and no arrows,
+where $dt_i=0$.
+Add a vertex $j$ and an arrow $a:i\to j$.
+In the larger algebra $dt_i=aa^*$, a nonzero length-two path.
+Thus the graded inclusion is not a dg map.
 \end{proof}
 
+Ginzburg completion supplies a three-Calabi--Yau algebra for each finite
+quiver in its stated setting.
+The displayed projections specify an inverse system for compatible
+zero-potential windows.
+A Calabi--Yau structure on a completed limit requires its own
+nondegeneracy and continuity argument.
+Comparisons with Hall categories and quantized Borcherds algebras must
+also preserve orientations, root relations, and the paired Hopf data.
 
 \part{Quantum groups, exchange, and representation theory}
 
@@ -877,7 +1359,7 @@ Braiding transports to the universal coquasitriangular form on $H$.
 Matrix coefficients define the universal $H$-coaction on every $\omega(M)$. Tensor product and duality give the bialgebra and antipode structures. The Barr--Beck comonadic theorem identifies $\mathcal L$ with coalgebras for the induced comonad, and the coend identifies that comonad with $H\tensor-$. The hexagon identities transport to the coquasitriangular identities.
 \end{proof}
 
-This reconstruction explains why a line-operator category, a fiber functor, and exchange together produce a quantum group. The ordered boundary algebra alone provides fusion; the plane of exchange supplies braiding.
+This reconstruction explains why a line-operator category, a fiber functor, and exchange together produce a quantum group. The ordered boundary algebra provides ordered composition.  A compatible bialgebra coproduct supplies tensor products of its modules, and exchange supplies additional braiding data.
 
 \chapter{KZ and rational exchange}
 For a simple Lie algebra $\mathfrak g$, the Knizhnik--Zamolodchikov connection is
@@ -894,10 +1376,35 @@ Rational difference exchange instead gives the Yangian $R$-matrix
 in the fundamental representation. The Yang--Baxter equation is the confluence identity for three exchanges. The KZ and Yangian constructions share the geometry of configuration spaces while using different flat connections.
 
 \chapter{The centre and the double}
-The Hochschild centre $Z_{\ord}(A)$ is the universal $\Etwo$ algebra acting centrally on an ordered algebra. The Drinfeld centre $Z(\Mod_A)$ is the braided category of modules equipped with half-braidings. Under dualizability hypotheses these are related by the passage from algebraic Hochschild cochains to categorical endomorphisms of the identity. Derived loop-space descriptions of centres provide the geometric form of this relation \cite{BenZviFrancisNadler}.
+The Hochschild centre $Z_{\ord}(A)$ controls central operations on the
+ordered algebra in its specified coefficient category.
+To form a Drinfeld centre of modules, first specify a monoidal module category.
+For an ordered chiral bialgebra satisfying
+Definition~\ref{def:vol4-ordered-chiral-bialgebra}, use
+\[
+ \mathcal M_A=\operatorname{Mod}_A(\widehat{\mathcal V}_C)
+\]
+with the monoidal product of Theorem~\ref{thm:vol4-representation-fusion}.
+An object of $Z(\mathcal M_A)$ is a module $M$ together with natural equivalences
+\[
+ c_{M,N}:M\widehat{\tensor}^{!}N
+ \xrightarrow{\sim}N\widehat{\tensor}^{!}M
+ \qquad(N\in\mathcal M_A)
+\]
+satisfying the half-braiding hexagon and unit identities, with their coherences.
+This categorical centre is braided.
+A comparison with the Hochschild centre must specify a realization functor,
+the source and target of the comparison, and the operations it preserves.
+Dualizability alone does not supply such a comparison.
+Derived loop-space descriptions apply in the geometric categories and
+under the hypotheses of their respective centre theorems
+\cite{BenZviFrancisNadler}.
 
-The centre and the double answer complementary questions. The centre classifies central bulk actions. The double reconstructs a full quantum group from paired positive and negative halves. A field theory can supply a comparison by realizing both as line and bulk operator constructions.
-
+The centre and the double answer complementary questions.
+The centre classifies central actions in the chosen category.
+The double reconstructs a quantum group from paired positive and negative halves.
+A field-theory comparison requires explicit realizations of the relevant
+line and bulk operations and a map compatible with both constructions.
 
 \part{A compact six-dimensional protected source}
 
@@ -941,58 +1448,84 @@ A graph with $V$ interaction vertices has exactly $V$ internal or external $B$-h
 
 The positive algebra is graded by strictly positive root height.  For homogeneous $x\in\nIg^{(H)}$, the operator $\ad_x$ raises height.  Its coadjoint operator lowers dual height.  A product of adjoint operators labelled by positive roots has total nonzero height shift and therefore has zero trace.
 
-\begin{theorem}[Perturbative exactness]
-Every one-loop Lie weight of the finite-height theory vanishes.  The renormalized quantum master equation holds with zero counterterm, and the perturbative effective action is represented by tree graphs.  The statement is compatible with the height maps $H\to H+1$.
-\end{theorem}
+\begin{proposition}[Vanishing of one-loop Lie weights]\label{cyiv:loop-weights}
+For every finite positive-height quotient, the Lie weight of each
+one-loop graph in the cotangent theory vanishes.
+\end{proposition}
 \begin{proof}
-The loop bound leaves tree graphs and one-loop graphs.  Their Lie factor is a cyclic trace of a product of adjoint or coadjoint operators.  Positive height makes each such product strictly triangular, so its trace is zero.  The anomaly and the one-loop effective vertex therefore vanish.  Tree graphs satisfy the classical master equation by the usual boundary-stratum argument.  Every map preserves root height.
+A one-loop graph has $E=V$.
+Every $B$-leg is consumed by an internal edge, so its external legs are
+$A$-legs.
+Its Lie weight is a cyclic trace of adjoint operators, or the dual
+trace with the conventionally equivalent signs.
+Each external label has positive root height.
+The product therefore strictly raises height on the finite-dimensional
+adjoint representation and has zero trace.
+The same argument applies to the dual representation.
 \end{proof}
 
-\begin{corollary}[Height-complete quantum source]
-The coefficientwise inverse limit
+This vanishing removes the one-loop Lie coefficients in a perturbative
+construction with the stated propagator and vertex types.
+A renormalized quantum factorization algebra still requires admissible
+analytic kernels, local extensions, the quantum master equation, and
+compatible height transitions on the chosen observable spaces.
+These are the remaining quantum realization data.
+
+\chapter{Classical reduction along K3}
+Choose a K\"ahler metric on $S$ and normalize a closed harmonic
+$(0,2)$-form $\eta$ by $\int_S\sigma_S\wedge\eta=1$.
+Let $K=\mathbb C[\eta]/(\eta^2)$ with $|\eta|=2$ and zero differential.
+There is a unital dg-algebra map
 \[
- \Obs_X^{\Delta}=\varprojlim_H\Obs_X^{(H)}
+ i:K\longrightarrow\Omega^{0,*}(S),\qquad \eta\longmapsto\eta.
 \]
-is a perturbative quantum factorization algebra on $K3\times E$.  Its primitive gauge algebra is the complete positive Igusa Borcherds algebra.
-\end{corollary}
-\begin{proof}
-Every fixed root height stabilizes in the finite tower.  The factorization maps and quantum differential are compatible with the truncations, so the separated inverse limit preserves the quantum master equation and the primitive Lie algebra.
-\end{proof}
+Its image is closed under multiplication because $(0,4)$-forms vanish.
+The Dolbeault cohomology of a K3 surface is one-dimensional in degrees
+zero and two and zero in degree one, so $i$ is a quasi-isomorphism.
+It preserves the trace defined by integration against $\sigma_S$.
 
-\chapter{Harmonic reduction along K3}
-The Dolbeault algebra of a K3 surface has the strict harmonic model
+Let $\mathfrak l$ be a finite-dimensional Lie algebra, and write
+$\mathfrak d=\mathfrak l\ltimes\mathfrak l^*$ for its cotangent Lie
+algebra, with invariant evaluation pairing.
+For an open $U\subset E$, tensor with $\Omega^{0,*}(U)$, using the
+completed smooth tensor product in the $S$ direction.
+The field comparison is
 \[
- H^{0,\bullet}(S,\Ocal_S)
- =\C\mathbf1\oplus\C\bar\sigma_S[-2],
- \qquad
- \bar\sigma_S^2=0.
+ K\otimes\Omega^{0,*}(U)\otimes\mathfrak d
+ \xrightarrow{i\otimes\id}
+ \Omega^{0,*}(S\times U)\otimes\mathfrak d.
 \]
-The trace pairs $\mathbf1$ with $\bar\sigma_S$.
+The bracket is multiplication of forms followed by the Lie bracket,
+with Koszul signs.
 
-\begin{theorem}[K3 harmonic reduction]
-Factorization pushforward along $p_E:S\times E\to E$, followed by the K3 harmonic deformation retract, gives a quasi-isomorphism
-\[
- p_{E,*}\Obs_X^{(H)}
- \simeq
- \Obs_E\!\left(
- T^*[-1]\bigl(\Cur_E(\nIg^{(H)})\bigr)
- \tensor H^{0,\bullet}(S,\Ocal_S)
- \right).
-\]
-The primitive degree-zero current sector is $\Cur_E(\nIg^{(H)})$.  The degree-two K3 class is its cotangent partner.
-\end{theorem}
+\begin{proposition}[Classical field comparison]\label{cyiv:k3-classical-reduction}
+The displayed map is a trace-preserving dg Lie quasi-isomorphism,
+compatible with restriction in $U$.
+Its induced minimal operations in the K3 factor have no higher products.
+\end{proposition}
 \begin{proof}
-Kähler Hodge theory gives a deformation retract of the Dolbeault complex onto harmonic forms.  The harmonic representatives $1$ and $\bar\sigma_S$ are closed under multiplication, so the retract is a cyclic dg-algebra quasi-isomorphism.  Tensoring the local cyclic Lie model with this retract and applying homological transfer gives the displayed cotangent current theory.  The product $\bar\sigma_S^2$ vanishes by complex dimension, so higher transferred products vanish.
+Multiplicativity of $i$ proves bracket compatibility.
+Hodge projection $p$ and $h=\bar\partial^*G$ on the compact surface satisfy
+$pi=\id$ and $\bar\partial h+h\bar\partial=\id-ip$.
+Tensoring these continuous operators with forms on $U$ gives the same
+contraction, with the tensor-product signs.
+Thus $i\otimes\id$ is a quasi-isomorphism.
+Restriction acts only on the $U$ factor and commutes with it.
+The normalized trace on $K$ is the restriction of the Dolbeault trace.
+Choose the contraction with $hi=0$.
+In every higher transferred tree, the first product of inputs from
+$i(K)$ remains in $i(K)$ and the next internal homotopy kills it.
+Thus every higher transferred product vanishes.
 \end{proof}
 
-\begin{corollary}[Exact curve shadow]
-The K3 harmonic reduction of the compact six-dimensional source is the cotangent current factorization algebra of the Igusa positive root algebra on $E$.  On a formal disc, its chiral enveloping mode algebra is $\widehat U_h(\nIg)$, and the associative chiral bar of this envelope is the completed Chevalley complex.  A topological collar supplies the corresponding transverse interval algebra by the boundary polarization of Volume~II.
-\end{corollary}
-\begin{proof}
-The harmonic reduction theorem identifies the finite-height curve theories.  Chiral PBW identifies the associative chiral bar of the current envelope with chiral Chevalley chains.  Proper height passes this statement to the complete limit.  Boundary polarization of the cotangent theory gives the transverse enveloping algebra on a collar.
-\end{proof}
-
-This construction gives a compact effective field-theoretic source whose gauge algebra is selected by the Igusa root datum.  The geometric $E$-equivariant Hall algebra constructed above gives an independent compact D-brane source.  A primitive root framing compares its extension algebra with the effective source.
+The coefficient algebra $K$ retains both the degree-zero and degree-two
+K3 modes.
+The proposition compares classical field complexes and their brackets.
+Constructing an equivalence of quantum observable factorization algebras
+requires compatible quantization, support conventions, and the induced
+maps on observable completions.
+The ordinary Hochschild comparison of Theorem~\ref{cyiv:hh-ce} is a
+separate algebraic calculation, not that quantum field map.
 
 \chapter{Protected states and the Igusa trace}
 Let
@@ -1021,25 +1554,35 @@ An even oscillator contributes $(1-e^{-\alpha})^{-1}$ and an odd oscillator cont
 \end{proof}
 
 \chapter{The compact-source comparison}
-Let $\mathfrak P_\Delta(X)$ denote the compact cotangent theory above, its K3 harmonic shadow, its Hall boundary category from the Borcherds quiver, and its root Dirac determinant.
+The compact threefold provides the classical cotangent field theory
+and the dg Lie comparison of Proposition~\ref{cyiv:k3-classical-reduction}.
+The root datum separately gives the Borcherds algebra, its enveloping
+algebra, and the root-graded Fock space.
+The latter has the trace computed above.
+Proposition~\ref{cyiv:loop-weights} supplies the finite one-loop Lie
+cancellation, while Theorem~\ref{cyiv:hh-ce} computes the ordinary
+algebraic centre model with adjoint coefficients.
 
-\begin{theorem}[Compact protected source theorem]
-The system $\mathfrak P_\Delta(K3\times E)$ contains, in one functorial construction:
-\begin{enumerate}
-\item a quantum factorization algebra on the compact Calabi--Yau threefold;
-\item a curve-level local--wrapped current algebra on $E$;
-\item an ordinary quiver Hall boundary, a parity-refined root superspace, and a three-Calabi--Yau Ginzburg completion;
-\item Hong's height-complete quantized Borcherds superalgebra;
-\item the Fredholm Pfaffian $\DenIg$ and the scalar trace $-(\jmath^*\DenIg)^{-2}=-\chi_{10}^{-1}$.
-\end{enumerate}
-Every arrow among these objects preserves root degree, parity, product, and completion.
-\end{theorem}
-\begin{proof}
-The compact BV theory and its quantum exactness were proved above.  Harmonic reduction gives the curve theory.  The Borcherds quiver and Ginzburg completion give the Hall boundary.  Hong's construction gives the quantum group.  The root Hamiltonian gives the determinant.  Each construction is functorial in finite root windows, and proper height gives the common limit.
-\end{proof}
+\begin{problem}[Geometric compact comparison]\label{cyiv:compact-comparison}
+Construct objects $E_i$ representing the simple branes and maps on their
+derived morphism complexes that preserve units, composition, and higher
+composition homotopies.
+Realize these maps on extension stacks with the reduced critical
+coefficients and orientation isomorphisms on triple flags.
+Construct compatible tensor and unit constraints on the resulting
+boundary functor.
+Compare the chosen quantum bulk action with the independently defined
+boundary centre, including support, collisions, and completion.
+Finally construct a trace and a map of its value line to the automorphic
+line in the same charge normalization.
+\end{problem}
 
-The theorem realizes the complete universal root-datum protected model over the $K3\times E$ background.  The geometric D-brane theory enters through a monoidal functor from its oriented extension category to the Hall boundary of $\mathfrak P_\Delta$.  Such a functor is determined by primitive branes and their extension amplitudes.
-
+A primitive map satisfying the root relations gives the enveloping and
+Chevalley maps of Theorem~\ref{cyiv:primitive-comparison}.
+A strong monoidal equivalence transports categorical centres.
+Neither construction determines the brane functor or its cyclic trace.
+These are the additional maps required for compact geometric
+reconstruction.
 
 \part[Physics]{Physics of the comparison maps}
 
@@ -1134,7 +1677,8 @@ Each arrow retains the quotient of structure displayed at its target. The first 
 
 \chapter{The foundational theorem}
 \begin{definition}[Complete Calabi--Yau quantum-group datum]
-A complete datum is a governing tuple $\mathfrak D$ together with:
+A complete comparison datum specifies independent categorical, field,
+boundary, Hall, Hopf, and trace objects together with:
 \begin{enumerate}
 \item PTVV-representable moduli for the smooth proper Calabi--Yau category;
 \item a renormalized BV quantization satisfying the quantum master equation and a local compact factorization generator $b$;
@@ -1169,7 +1713,8 @@ Then the datum determines functorially:
 Cyclic Deligne and shifted symplectic geometry give the first output \cite{BravRozenblyum,PTVV,BravDyckerhoff}.  Boundary factorization gives the curve faces, and Volume~I gives their bars and centres.  The Hall correspondence and its base-change theorem give the associative product; strong orientation supplies the coefficient coherence required in the $3$-Calabi--Yau setting \cite{KPS}.  The paired bialgebra data give the double and universal $R$-matrix.  The comparison maps commute by hypothesis.  PBW and Chevalley antisymmetrization give the final character.  Each construction is natural under a morphism preserving the displayed data.
 \end{proof}
 
-The local quiver, equivariant surface, K3 correspondence, and Igusa Borcherds chapters construct objects in their stated categories.  A geometric $K3\times E$ Hall theory determines a morphism from its primitive and determinant-line data to the universal Igusa objects.
+The local quiver, equivariant surface, K3 correspondence, and Igusa Borcherds constructions have the carriers stated above.
+A geometric $K3\times E$ comparison requires the primitive map and determinant-line map of Problem~\ref{cyiv:compact-comparison}.
 
 \chapter{Landscape of established realizations}
 \begin{center}
@@ -1182,58 +1727,67 @@ $A_2$ quiver&$U_v^+(\mathfrak{sl}_3)$&$U_v(\mathfrak{sl}_3)$&PBW root product\\
 $\C^3$&$Y^+(\widehat{\mathfrak{gl}}_1)$&$Y(\widehat{\mathfrak{gl}}_1)$&plane-partition and Fock traces\\
 $\widetilde{\C^2/\Gamma}$&$Y^+(\widehat{\mathfrak g}_\Gamma)$&paired completion when the negative half and coproduct are supplied&surface Fock traces\\
 $K3$&$U(\mathfrak g_{\BPS}^+)$&Heisenberg and LLV actions&K3 Hall characters\\
-$K3\times E$&Borcherds root envelope; geometric reduced character&$U_q(\gDelta)$ and the height-complete current/BF model&$-\ChiTen^{-1}$\\
+$K3\times E$&Borcherds root envelope; geometric reduced character&$U_q(\gDelta)$ and the root-current model and classical BF theory&$-\ChiTen^{-1}$\\
 \bottomrule
 \end{tabularx}
 \end{center}
-The $A_2$ and $\C^3$ rows provide complete standard quantum-group models. The ADE row provides an established completed positive half together with its geometric current actions; its paired full double is formed from the negative half, Cartan data, coproduct, continuous Hopf pairing, and triangular completion stated in the table. The K3 row provides global two-Calabi--Yau BPS and cohomological symmetries. The final row combines exact automorphic, Lie, bar, current, BF, Fredholm, and enumerative constructions; geometric Hall data enter through the primitive comparison morphism.
+The $A_2$ and $\C^3$ rows provide complete standard quantum-group models. The ADE row provides an established completed positive half together with its geometric current actions; its paired full double is formed from the negative half, Cartan data, coproduct, continuous Hopf pairing, and triangular completion stated in the table. The K3 row provides global two-Calabi--Yau BPS and cohomological symmetries. The final row records independently constructed root, character, and classical field objects.
+Their geometric Hall realization requires the comparison in Problem~\ref{cyiv:compact-comparison}.
 
-\chapter{Closure theorem for the established and universal layers}
-\begin{theorem}[Foundational closure]
-The following layers are complete mathematical constructions:
-\begin{enumerate}
-\item framed Hochschild and shifted-symplectic categorical data;
-\item perturbative factorization observables from a quantized cyclic elliptic BV theory;
-\item the three curve-level algebraic faces and their bars;
-\item Hall products in the established quiver, surface, $2$-Calabi--Yau, and strong-oriented $3$-Calabi--Yau settings;
-\item the K3 Heisenberg, LLV, and local ADE Yangian symmetry atlas;
-\item the Igusa Borcherds root algebra, its quantized Borcherds superalgebra, proper-height bar/current system, classical local BF theory, exact finite zero-mode BV theory, and analytic determinant;
-\item the primitive reduced $K3\times E$ scalar character.
-\end{enumerate}
-A compact $K3\times E$ quantum-group realization is exactly an instance of the compact comparison theorem with a constructed reduced Hall datum.
-\end{theorem}
-\begin{proof}
-Items (1)--(7) are the theorems cited and proved in the corresponding chapters.  The last sentence is the definition of a compact realization together with the preceding recognition theorem.
-\end{proof}
+\chapter{Constructed comparisons and their geometric extensions}
+The Hall flag argument constructs associativity once its coefficient
+and orientation maps are defined.
+The tensor-action formula constructs representation fusion from a
+coassociative counital coproduct.
+The matrix-coefficient formulas construct the coend of a supplied
+fibre functor.
+The primitive presentation gives enveloping and Chevalley maps.
+The classical cyclic and K3 field calculations retain their actual
+differentials, traces, and brackets.
 
-\chapter{Common diagram}
-The relationships are summarized by
+The quantum field realization requires admissible quantization and
+observable completions.
+The compact Hall realization requires the brane and orientation maps
+of Problem~\ref{cyiv:compact-comparison}.
+The Fredholm and automorphic comparisons require their analytic domains
+and value-line isomorphisms.
+These constructions preserve the full geometric reconstruction problem
+beyond its finite algebraic and classical calculations.
+
+\chapter{Actions and comparison maps}
+For a specified boundary algebra $A_b$, a coherent bulk action is a map
 \[
-\begin{tikzcd}[column sep=4.8em,row sep=3.4em]
-\Ccal_{\CY}
- \arrow[r,"CC^*"]
- \arrow[d,"\M_{(-)}"']&
-\Alg_{\Etwo}
- \arrow[ddr,bend left=12,"\text{bulk--centre comparison}"]&{}\\
-\M_{\Ccal}^{(2-d)\text{-symp}}
- \arrow[r,dashed,"\text{oriented Hall data}"]&
-H^+
- \arrow[r,"\widehat D"]
- \arrow[d,"\text{boundary comparison}"']&
-\qgroup\\
-{}&A_b^\perp
- \arrow[r,"Z_{\ord}"]&
-Z_{\ord}(A_b^\perp)
-\end{tikzcd}
+ \beta:\Obs_{\mathrm{bulk}}|_\partial\longrightarrow Z_{\ord}(A_b).
 \]
-Here $A_b^\perp\in\Alg_{\Eone}(\Fact_D(C),\tensor^!)$.  Every arrow is a construction or a supplied comparison morphism. The diagram separates universal categorical outputs, geometric field-theory outputs, Hall operations, and quantum-group assembly.
+The target is the derived endomorphism object of the diagonal bimodule
+in the chosen factorization coefficient category.
+A Hall construction instead starts with
+\[
+ \M_\alpha\times\M_\beta\xleftarrow{p}\mathcal E_{\alpha,\beta}
+ \xrightarrow{q}\M_{\alpha+\beta}.
+\]
+Critical coefficients, orientations, and admissible pull--push maps
+give its product.
+Framed moduli supply a representation after their action
+correspondences and triple-flag identities have been constructed.
+A paired Hopf structure gives $D(H^+,H^0,H^-)$.
+Its coproduct defines tensor products of continuous modules, and a
+convergent universal $R$-matrix gives exchange.
 
-\chapter{Concordance with the original Calabi--Yau volume}
-The reconstitution preserves the original vision of a bridge among Calabi--Yau categories, holomorphic field theory, chiral algebras, Hall algebras, quantum groups, and automorphic products. It realizes that vision through the following replacements:
+A strong monoidal equivalence between this module category and a
+boundary category transports categorical centres.
+It does not identify that categorical centre with the object
+$Z_{\ord}(A_b)$ without a realization theorem.
+A trace on a specified representation then gives an amplitude.
+Its comparison with an automorphic section requires a map of value
+lines with the same normalization.
+
+\chapter{Comparison data for Calabi--Yau constructions}
+Comparisons among Calabi--Yau categories, holomorphic field theory, chiral algebras, Hall algebras, quantum groups, and automorphic products require the following structures:
 \begin{enumerate}
-\item framed $\Etwo$ Hochschild cochains and $(2-d)$-shifted symplectic moduli replace a dimension-dependent Hochschild $\En$ assertion;
+\item for a smooth proper $d$-Calabi--Yau category with its nondegenerate negative-cyclic class, the categorical outputs are framed $\Etwo$ Hochschild cochains and, when the moduli stack of objects is representable in the PTVV setting, $(2-d)$-shifted symplectic moduli; the shift $d$ does not change the Hochschild operadic level to $\En$;
 \item a geometric BV theory and boundary category produce factorization observables and transverse ordered chiral algebras; associative chiral convolution is recorded as a separate supplied structure;
-\item pushforward along an actual map $p:X\to C$ replaces formal cycle-specialization notation;
+\item pushforward to a curve uses an actual map $p:X\to C$; formal cycle-specialization notation alone specifies no pushforward;
 \item extension stacks, coefficient sheaves, orientations, and completions define the Hall algebra;
 \item coproduct, Cartan, Hopf pairing, and topology define the double;
 \item K3 Heisenberg, LLV orthogonal symmetry, local ADE Yangians, and global BPS generalized Kac--Moody algebras occupy distinct strata joined by explicit comparison maps where constructed;
@@ -1242,7 +1796,7 @@ The reconstitution preserves the original vision of a bridge among Calabi--Yau c
 \item the Igusa form is the Weyl-shifted PBW/Chevalley character of $\gDelta$, and compact Hall geometry maps to it through the primitive comparison;
 \item anomaly identities are transported through explicit maps between deformation complexes.
 \end{enumerate}
-These constructions retain the scale of the original program while placing every operation in its natural category.
+The categorical, geometric, Hall, and automorphic operations thus have separate carriers and comparison maps.
 
 \part{Technical appendices to the preceding book}
 \chapter{Typed data table}
@@ -1257,7 +1811,7 @@ Factorization algebra&local observables and Weiss descent&disjoint-open product\
 Transversely ordered chiral algebra&factorization coefficient with an internal $\Eone$ structure for $\tensor^!$&ordered fusion\\
 Associative chiral algebra&an $\Eone$ structure for chiral convolution $\starCh$&nonlocal chiral composition\\
 $\CoHA$&extension correspondence and coefficient theory&pull--push product\\
-Bialgebra&product, coproduct, and counit&fusion of representations\\
+Bialgebra&compatible product and coassociative counital coproduct&fusion of representations\\
 Double&positive and negative halves, Cartan data, Hopf pairing&universal $R$-matrix\\
 Borcherds product&Jacobi or vector-valued modular input&graded character\\
 \bottomrule

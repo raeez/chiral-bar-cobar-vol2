@@ -52,7 +52,10 @@ For every $(n,\ell)$ choose a finite-dimensional super vector space $U_{n,\ell}$
 \[
  \sdim U_{n,\ell}=f(n,\ell).
 \]
-This choice represents the coefficient in $K_0(\mathrm{sVect}_{\mathrm{fd}})$. The determinant construction depends on the superdimension.
+The integer \(f(n,\ell)\) is its superdimension. In the ordinary
+Grothendieck group of finite-dimensional super vector spaces, the
+even and odd dimensions remain separate. The signed integer is their
+image under superdimension. The determinant depends only on that image.
 
 \begin{lemma}[Fock character and Berezinian]
 Let $V=\bigoplus_{\gamma}V_\gamma$ be a locally finite graded super vector space. Then
@@ -283,7 +286,11 @@ The Weyl vector is
 In the Gram-index variables, $e^{-\rho}=q^{1/2}r^{1/2}s^{1/2}$.
 
 \chapter[The denominator algebra]{The Gritsenko--Nikulin Lie superalgebra}
-The Borcherds product determines a generalized Kac--Moody Lie superalgebra $\gIg$ with real simple roots $\delta_1,\delta_2,\delta_3$ and an imaginary correction system determined by $\phiweak$.
+The Gritsenko--Nikulin construction specifies a generalized
+Kac--Moody Lie superalgebra \(\gIg\), with real simple roots
+\(\delta_1,\delta_2,\delta_3\) and the imaginary correction
+attached to \(\phiweak\). Its generators and relations supply the
+bracket whose denominator is compared with the Borcherds product.
 
 \begin{theorem}[Root supermultiplicities and denominator]
 On the active positive support,
@@ -452,7 +459,9 @@ Equivalently, in theta normalization,
 Oberdieck and Pixton identify the primitive reduced partition function with the Laurent expansion of $-\ChiTen^{-1}$ \cite{OP}; their normalization is the monic Borcherds product $\ChiTen$. The second formula is the identity $\ChiTen=2^{-12}\Dtheta^2$.
 \end{proof}
 
-The theorem is a scalar trace identity and fixes every primitive reduced invariant.  The Borcherds root algebra supplies the fixed algebraic target whose PBW character is the same product.
+The theorem identifies the numerical generating series in its stated
+primitive sector. The Borcherds root algebra supplies a separate
+algebraic character to compare with that series.
 
 \begin{corollary}[Exact character comparison]
 Let $\jmath:\HHtwo\to\HHtwo$ be the half-coordinate map $\jmath(Z)=Z/2$, and let
@@ -482,7 +491,109 @@ The denominator theorem gives $\den(\gIg)=e^{-\rho}P=\Dmon(2Z)$, while PBW gives
 Pullback by $\jmath$ sends $\den(\gIg)$ to $\Dmon(Z)$, whose square is $\ChiTen$.  The reduced incidence convention supplies the overall minus sign in the Oberdieck--Pixton theorem.
 \end{proof}
 
-The equality is an identity of completed protected characters.  The universal root algebra supplies the primitive bracket, and reduced curve counting supplies the geometric trace.
+The equality compares the completed root-Fock supercharacter with the
+numerical reduced generating series. Its proof uses the denominator
+identity and the half-coordinate pullback. A map from compact geometric
+states to this Fock space, preserving operators and their trace,
+is an additional comparison.
+
+\chapter{Extensions over the elliptic classifying stack}
+Work on locally noetherian complex schemes with the fppf topology.
+Let \(BE\) be the stack of right \(E\)-torsors. For a left
+\(E\)-stack \(M\), an object of \([M/E](T)\) is a right
+torsor \(P\to T\) and an equivariant map \(P\to M\).
+Forgetting the map gives \([M/E]\to BE\). All products of
+stacks below are two-fibre products.
+
+\begin{proposition}[The common translation torsor]
+\label{igusa:platonic-common-torsor}
+There is a natural equivalence
+\[
+ [(M\times N)/E_{\mathrm{diag}}]
+ \simeq[M/E]\times_{BE}[N/E].
+\]
+The equivalences for any finite number of factors commute with
+regrouping and insertion of the terminal \(E\)-stack.
+\end{proposition}
+\begin{proof}
+An object on the right is \((P,m),(Q,n)\) together with a
+torsor isomorphism \(\alpha:P\to Q\). Send it to
+\((P,m,n\alpha)\). Conversely, use a common torsor twice
+and its identity isomorphism. A pair of torsor maps \(a,b\)
+on the right satisfies \(b\alpha=\alpha'a\), so \(b\)
+is determined by \(a\). The same construction identifies the
+maps and their descent isomorphisms. It commutes with base change.
+For several factors, every regrouping gives one torsor with the
+same list of equivariant maps, proving all stated coherences.
+\end{proof}
+
+For \(M=N=E\) with translation, the diagonal quotient is
+\(E\), with coordinate \(y-x\). Both separate quotients
+are points. Their fibre product over \(BE\) retains the
+relative translation, while their ordinary product loses it.
+
+Let \(\mathfrak M\) be the stack of coherent sheaves on
+\(X=S\times E\), with families flat over the parameter
+scheme, and put \(\mathfrak Q=[\mathfrak M/E]\).
+An object of \(\mathfrak Q(T)\) is a torsor \(P\to T\)
+and a flat sheaf on \(S\times P\). Fix a polarization and
+write \(\mathfrak Q_\alpha\) for a Hilbert-polynomial component.
+Translation preserves these polynomials. Let
+\(\mathfrak H_{\alpha,\beta}\) classify short exact sequences
+\(0\to A\to F\to B\to0\) on a common \(S\times P\),
+with all terms flat over \(T\) and polynomials
+\(\alpha,\alpha+\beta,\beta\). Its span over \(BE\) is
+\[
+ \mathfrak Q_\alpha\times_{BE}\mathfrak Q_\beta
+ \xleftarrow{p}\mathfrak H_{\alpha,\beta}
+ \xrightarrow{q}\mathfrak Q_{\alpha+\beta}.
+\]
+The category of spans of fppf stacks over \(BE\) has composition
+by fibre product and tensor product \(\times_{BE}\). Its unit
+object is the identity map of \(BE\).
+
+\begin{theorem}[Geometric Hall correspondence]
+\label{igusa:platonic-common-torsor-hall}
+For fixed \(\alpha,\beta\), \(q\) is representable by
+algebraic spaces and proper. The spans form a coherently associative
+unital Hall object in the category of spans over \(BE\).
+Its unit is the zero-sheaf span
+\(BE\leftarrow BE\to\mathfrak Q\).
+\end{theorem}
+\begin{proof}
+Over a fixed \((P,F)\), the fibre of \(q\) classifies
+quotients \(F\twoheadrightarrow B\) of polynomial \(\beta\).
+Its kernel is flat, because \(F\) and \(B\) are flat.
+An automorphism fixing the quotient and \(F\) is the identity.
+Trivializing \(P\) fppf-locally identifies this fibre with the
+fixed-polynomial Quot scheme, projective over the parameter scheme
+by Grothendieck's theorem \cite[Theorem~3.2]{IgusaGrothendieckQuot1961}.
+The quotient functor descends to an algebraic space, and properness
+descends with it.
+
+Both composites of three Hall spans classify
+\(0\subset A\subset D\subset F\) on the same torsor.
+One bracketing concatenates inclusions. The other starts with
+\(A\subset F\) and a subobject \(B\subset F/A\), and sets
+\(D=F\times_{F/A}B\). These constructions are inverse on
+objects and isomorphisms. They preserve flatness and commute with
+base change. For longer flags all regroupings identify the same
+subobjects and quotients. Their comparison maps agree, proving the
+pentagon and higher coherences. Finally \(\mathfrak Q_0=BE\).
+The sequences with zero subobject or zero quotient give the unit
+and its coherences.
+\end{proof}
+
+Properness here concerns the full coherent-sheaf stack on a fixed
+pair of Hilbert-polynomial components. A stability restriction can
+replace its fibre by an open part of a Quot scheme, which need not
+be proper. A bounded charge window also needs closure under the
+extensions and flags used in its operations. A reduced critical-coefficient realization must supply pullback,
+pushforward, and orientation comparisons on these same flags. Its unit has
+stabilizer \(E\). A coefficient theory for this quotient must
+include that nonaffine stabilizer, or work relative to \(BE\),
+on the unit and every flag.
+
 
 \chapter{Additive physical charge and quadratic automorphic degree}
 Let
@@ -827,14 +938,22 @@ After choosing the standard polarization of $\Hcal_\Delta\oplus\Hcal_\Delta^*$ a
 \]
 \end{theorem}
 \begin{proof}
-The preceding convergence theorem gives the trace-class criterion for the diagonal operator.  The Fredholm determinant of $1-K_Z$ is the convergent product over eigenvalues; taking the even/odd ratio gives the superdeterminant.  On each finite root-height truncation the Pfaffian of the oriented skew doubling equals the determinant of $D_Z$.  Trace-norm convergence of the truncations passes this identity to the Fredholm limit.  The final equality is the Gritsenko--Nikulin denominator formula.
+The defining summability condition for \(\mathfrak C_{\mathrm{abs}}\)
+is precisely the trace norm of the diagonal operator, summed in both
+parities.  The Fredholm determinant of $1-K_Z$ is the convergent product over eigenvalues; taking the even/odd ratio gives the superdeterminant.  On each finite root-height truncation the Pfaffian of the oriented skew doubling equals the determinant of $D_Z$.  Trace-norm convergence of the truncations passes this identity to the Fredholm limit.  The final equality is the Gritsenko--Nikulin denominator formula.
 \end{proof}
 
 \begin{remark}
 The polarization and orientation in this theorem belong to the root Hilbert space.  A compact moduli-space orientation is a separate line bundle and is compared with this one by a specified intertwiner.
 \end{remark}
 
-This theorem constructs the square-root operator on the universal Borcherds root Hilbert superspace.  A geometric realization is a determinant-line intertwiner from a protected geometric Hilbert complex to this universal operator family.
+This constructs the square-root operator on the root Hilbert superspace
+where its stated summability condition holds. The nonemptiness estimate
+below concerns the minimal virtual superspace, whose dimensions are
+\(\lvert\sdim\gIg_\alpha\rvert\). Applying that estimate to the
+full root superspace requires a bound on both parity dimensions.
+A compact geometric realization requires an operator intertwiner and
+a compatible map of determinant lines.
 
 \chapter{What the automorphic character determines}
 \begin{theorem}[Denominator data and reconstruction data]
@@ -963,10 +1082,22 @@ At vertex $1$,
  +a_{13}^{(r)}(a_{13}^{(r)})^*
  \right).
 \]
-At vertex $3$ the same four terms occur with reverse order and negative sign.  Summing the three equations gives zero, as required by the trace of the moment map.
+At vertex $3$,
+\[
+ d t_3=-\sum_{r=1}^2\left(
+ (a_{13}^{(r)})^*a_{13}^{(r)}+
+ (a_{23}^{(r)})^*a_{23}^{(r)}\right).
+\]
+The sum over vertices is $\sum_a(aa^*-a^*a)$.
+It vanishes in the cyclic quotient and after matrix trace,
+but generally not in the path algebra.
 \end{calculation}
 \begin{proof}
-Vertex $1$ is the source of the four displayed arrows and the target of none, so the Ginzburg moment-map formula contains exactly the four positive terms.  Vertex $3$ is their terminal counterpart.  Every arrow--reverse-arrow pair occurs once with each sign in the sum over vertices.
+The outgoing arrows at vertex $1$ have targets $2$ and $3$.
+The incoming arrows at vertex $3$ have sources $1$ and $2$.
+The displayed formulas follow from these incidence lists.
+Each arrow contributes one commutator to the sum over vertices.
+The trace of a commutator vanishes, giving the asserted trace identity.
 \end{proof}
 
 
@@ -976,68 +1107,160 @@ Let $\mathcal A_H=\Rep_{\mathbb F_q}(Q_{\Delta,H})$.  Its twisted Hall product i
  [M]*[N]
  =v^{\angles{\dim M,\dim N}}
  \sum_{[L]}
- \frac{\abs{\set{N'\subset L:N'\cong N,\ L/N'\cong M}}}
-      {\abs{\Aut M}\abs{\Aut N}}
+ \abs{\set{N'\subset L:N'\cong N,\ L/N'\cong M}}
  [L],
  \qquad v^2=q.
 \]
 
-\begin{theorem}[Finite-window Hall theorem]
-The composition subalgebra generated by the simple representations of $Q_{\Delta,H}$ is the positive quantum generalized Kac--Moody algebra attached to the underlying even Borcherds--Cartan matrix $A_H$.  Semisimple perverse sheaves on the representation varieties give its canonical basis.  The semi-derived Hall algebra of two-periodic complexes realizes the corresponding full ordinary quantum generalized Kac--Moody algebra after Cartan reduction.
+The class $[0]$ is the unit: the required subobject is unique on either
+side. Associativity follows by counting flags $N_1\subset N_2\subset L$
+in two orders. The twist factors agree because the Euler form is
+bilinear:
+\[
+ \langle\alpha,\beta\rangle+\langle\alpha+\beta,\gamma\rangle
+ =\langle\beta,\gamma\rangle+\langle\alpha,\beta+\gamma\rangle.
+\]
+Thus this normalization defines the unital twisted Hall algebra on
+isomorphism classes.
+
+\begin{theorem}[Finite-window composition algebra]
+At each vertex $i$ of $Q_{\Delta,H}$, choose the one-dimensional
+representation $S_i$ supported at $i$, with every loop acting by zero.
+Use the generic composition algebra generated by these classes across
+finite fields, with the twisted subobject-count multiplication above.
+After extending coefficients from $\mathbb Z[v,v^{-1}]$ to
+$\mathbb C(v)$, this is the positive quantum generalized Kac--Moody
+algebra for the even Borcherds--Cartan matrix $A_H$.
+The parameter in Kang--Schiffmann is $v_{\mathrm{KS}}=v^{-1}$.
+Their specified semisimple perverse-sheaf construction on nilpotent
+representation varieties gives the corresponding canonical basis.
 \end{theorem}
 \begin{proof}
-The positive statement is the quiver-with-loops construction of Kang--Schiffmann.  Their perverse-sheaf category gives the canonical basis.  Lu's semi-derived Hall theorem realizes the full quantum generalized Kac--Moody algebra from the same quiver with loops; the Cartan reduction identifies the two torus copies \cite{KangSchiffmann,LuBorcherdsHall,AxtellLee}.
+This is the selected-simple composition construction of
+Kang--Schiffmann, Section~2.3 and Theorem~2.2, with one selected
+zero-loop simple at each vertex. Their geometric realization uses
+its split graded Grothendieck group over
+$\mathbb Z[v_{\mathrm{KS}},v_{\mathrm{KS}}^{-1}]$
+(Theorem~4.1), with the stated inversion of parameter
+\cite{KangSchiffmann}. The theorem does not use every simple object
+of the full representation category. A vertex with $c$ loops has
+$q^c$ one-dimensional simple representations over $\mathbb F_q$,
+whereas only the chosen zero-loop representation is the generator here.
 \end{proof}
 
+A semi-derived Hall realization of a full quantum group additionally
+specifies two-periodic complexes, the invertible acyclic classes and
+Cartan reduction \cite{LuBorcherdsHall,AxtellLee}.
+Its coproduct, pairing and completion are separate from the positive
+composition algebra used here.
+
 \section{Parity and the quantized superdatum}
-The Gritsenko--Nikulin denominator algebra carries a parity map on its simple-root multiset.  Extend it additively to the root lattice.  Hong's construction applied to this Borcherds superdatum gives the positive Borel
+The Gritsenko--Nikulin denominator algebra carries a parity map on its simple-root multiset.  It is additive on the free lattice of labelled simple generators.
+Projection to the Lorentzian degree can identify contributions of
+different parity. Both parity dimensions must therefore be retained
+in each projected root space.  Hong's construction applied to this Borcherds superdatum gives the positive Borel
 \[
  U_q^+(\gIg^{(H)})
 \]
 and the full quantized Borcherds superalgebra $U_q(\gIg^{(H)})$.
 
-\begin{theorem}[Parallel Hall and supergroup realizations]
-The quiver Hall algebra and Hong's quantum supergroup are two functorial realizations of the same finite Borcherds--Cartan window:
-\begin{enumerate}
-\item the quiver Hall algebra realizes the underlying ordinary generalized Kac--Moody presentation and its canonical basis;
-\item Hong's algebra realizes the parity-refined super presentation and its universal $R$-matrix;
-\item their root lattices, Cartan forms, height filtrations, and Weyl denominators agree after applying the parity supertrace.
-\end{enumerate}
+\begin{theorem}[Ordinary and super presentations]
+The ordinary quiver Hall presentation and Hong's quantum
+superalgebra use the same specified Cartan matrix and labelled
+simple generators. Their relation ideals and parity conventions
+are different inputs. Equality of their Cartan gradings alone does
+not identify their PBW characters.
 \end{theorem}
 \begin{proof}
-The first statement is the finite-window Hall theorem.  The second is Hong's quantized Borcherds-superalgebra theorem.  Both presentations use $A_H$ and the same simple-root lattice.  The parity map changes ordinary dimensions into superdimensions in the PBW character.  The denominator theorem identifies this signed PBW product with the Gritsenko--Nikulin product.
+The two presentations are those of the preceding Hall construction
+and Hong's superalgebra construction. The difference already occurs
+for a single isotropic generator. The enveloping algebra of a
+one-dimensional even abelian Lie algebra is \(\mathbb C[x]\).
+Declaring its generator odd only as a graded vector space leaves
+a nonzero vector \(x^2\) in degree two. The enveloping algebra
+of a one-dimensional odd abelian Lie superalgebra is
+\(\bigwedge(\xi)\), since its defining relation is
+\(2\xi^2=[\xi,\xi]=0\). Its degree-two component is zero.
+Thus parity assignment to an ordinary PBW basis does not produce
+the super relation ideal or its character. A comparison must
+respect these relations degree by degree.
 \end{proof}
 
 \chapter{The three-Calabi--Yau completion}
-Let $kQ_{\Delta,H}$ be the path algebra.  Its completed three-Calabi--Yau completion is
+Let $kQ_{\Delta,H}$ be the path algebra. Its algebraic
+three-Calabi--Yau completion is
 \[
  \Gamma_{\Delta,H}=\Pi_3(kQ_{\Delta,H}).
 \]
-Equivalently, it is the Ginzburg dg algebra of the doubled quiver with a degree $-1$ reverse arrow for every arrow and a degree $-2$ loop at every vertex, with differential determined by the canonical potential.
+Write $J$ for the ideal generated by all arrows in its graded quiver.
+Its completed version is the separate topological dg algebra
+$\widehat\Gamma_{\Delta,H}=\varprojlim_n\Gamma_{\Delta,H}/J^n$.
+The algebraic Calabi--Yau theorem is used for $\Gamma_{\Delta,H}$;
+a topological Calabi--Yau assertion for $\widehat\Gamma_{\Delta,H}$
+requires its completed bimodule category.
+This is the Ginzburg model with zero potential: a degree-minus-one
+reverse arrow for every arrow and a degree-minus-two loop at each
+vertex. The loop differential is the signed sum of incident
+arrow--reverse-arrow products.
 
-\begin{theorem}[Borcherds--Ginzburg tower]
-For every $H$:
-\begin{enumerate}
-\item $\Gamma_{\Delta,H}$ is a complete three-Calabi--Yau dg algebra;
-\item the degree-zero inclusion $kQ_{\Delta,H}\to\Gamma_{\Delta,H}$ is functorial in full-subquiver inclusions;
-\item the Hall composition algebra of $kQ_{\Delta,H}$ is the underlying ordinary positive quantum generalized Kac--Moody algebra;
-\item the inclusions $H\le H'$ form a compatible tower of dg categories and Hall algebras.
-\end{enumerate}
+\begin{theorem}[Borcherds--Ginzburg projections]
+For each finite quiver \(Q_{\Delta,H}\), its undeformed
+three-Calabi--Yau completion \(\Gamma_{\Delta,H}\) is the
+Ginzburg dg algebra with zero potential. If \(H\le H'\) and
+\(Q_{\Delta,H}\) is the full subquiver on a subset of vertices,
+there is a surjective dg algebra map
+\[
+ \pi_{H'H}:\Gamma_{\Delta,H'}\longrightarrow\Gamma_{\Delta,H}.
+\]
+It kills the added vertices, every arrow incident to them, the
+corresponding reverse arrows, and the added degree-minus-two loops.
+These maps compose strictly and extend continuously to the completed algebras.
 \end{theorem}
 \begin{proof}
-The Calabi--Yau assertion is Keller's theorem on deformed Calabi--Yau completions, in the Ginzburg model \cite{KellerCY,GinzburgCY}.  Full-subquiver inclusions extend to reverse arrows, loops, and differentials.  The Hall statement is the finite-window Hall theorem.
+The finite Calabi--Yau assertion is the Ginzburg model of Keller's
+completion theorem \cite{KellerCY,GinzburgCY}. We concatenate
+paths from left to right, so \(aa^*\) is based at the source
+of \(a\). Original and reverse arrows have zero differential.
+For the degree-minus-two loop \(t_i\), the differential is
+\[
+ d t_i=\sum_{s(a)=i}aa^*-\sum_{t(a)=i}a^*a.
+\]
+The projection deletes exactly the terms involving an added vertex,
+leaving the same sum for the full subquiver. It therefore commutes
+with the differential. It preserves path length and extends to the
+completed path algebra. Successive projections kill the union of
+their omitted vertices and arrows, proving strict composition.
 \end{proof}
 
-Define the proper-height objects
-\[
- \Gamma_\Delta=\varinjlim_H\Gamma_{\Delta,H},
- \qquad
- \widehat U_q(\gIg)=\varprojlim_H U_q(\gIg^{(H)}).
-\]
-The first is locally three-Calabi--Yau: every finite collection of objects lies in a finite three-Calabi--Yau window.  The second is Hong's root-height-complete quantum symmetry.
+The evident inclusion of graded quivers does not give the reverse
+dg map. A single old vertex has loop differential zero. Adding
+an arrow \(a:i\to j\) changes that differential to \(aa^*\)
+at \(i\). The map fixing the old loop therefore fails to commute
+with the differential.
+
+Write \(\Gamma_\Delta=(\Gamma_{\Delta,H},\pi_{H'H})_H\)
+for this pro-system of dg algebras. It is separate from the
+ordinary Hall embeddings obtained by extension by zero on
+representations of a full subquiver. A direct system of
+Calabi--Yau dg categories compatible with those Hall embeddings
+requires additional dg functors. It does not follow from the
+inclusion of the displayed Ginzburg generators.
+
+The quantum group retains its separately specified root-height
+completion. Its transition maps must preserve the Cartan generators,
+coproduct, and pairing. Quotienting the positive nilpotent Lie
+algebra by height and truncating a full quantum group are different
+operations.
 
 \chapter{Hall states and protected superstates}
-The representation varieties of $Q_{\Delta,H}$ carry the perverse-sheaf complexes used in the canonical-basis construction.  Their equivariant hypercohomology groups give finite Hall state spaces in every dimension vector.
+The representation varieties of $Q_{\Delta,H}$ carry the
+perverse-sheaf complexes used in the composition-algebra construction.
+The full equivariant derived category is a larger carrier.
+Already for one real vertex and dimension one, its quotient is
+$B\mathbb G_m$, with $H^*(B\mathbb G_m;\mathbb Q)=\mathbb Q[c_1]$,
+where $|c_1|=2$. Its total equivariant cohomology is infinite-dimensional.
+Finite root multiplicities therefore refer to the specified composition
+algebra, not to total equivariant cohomology of this stack.
 
 \begin{definition}[Igusa Hall category]
 For every dimension vector $\mathbf d$, let
@@ -1059,7 +1282,10 @@ Independently, the protected one-particle superspace is the root-graded superspa
 with the parity of the Borcherds superalgebra.  Its multiparticle completion is the PBW/Fock superspace of $U(\nIg^{(H)})$.
 
 \begin{theorem}[Hall and protected-state comparison]
-The Hall Grothendieck algebra is the finite-window ordinary positive quantum generalized Kac--Moody algebra.  The protected one-particle superspace has signed root multiplicities
+The composition subalgebra in the finite-window Hall theorem
+is the ordinary positive quantum generalized Kac--Moody algebra.
+This statement does not identify the Grothendieck group of the full
+category $\mathcal B_{\Delta,H}$ with that composition algebra.  The protected one-particle superspace has signed root multiplicities
 \[
  \sdim\mathcal H_{\mathrm{1p},H,\alpha}
  =\sdim\gIg^{(H)}_\alpha.
@@ -1069,28 +1295,107 @@ Its height-complete PBW character is
  \sch\Fock(\nIg)
  =\prod_{\alpha>0}(1-e^{-\alpha})^{-\sdim\gIg_\alpha},
 \]
-and its Weyl-shifted inverse is $\Dmon(2Z)$.  The Hall canonical basis and the protected superbasis share the simple-root indexing and the Cartan grading; the parity refinement belongs to the Borcherds superdatum.
+and its Weyl-shifted inverse is $\Dmon(2Z)$.  The composition canonical basis and the protected root presentation use the specified simple-root indexing and Cartan grading; the parity refinement belongs to the Borcherds superdatum.
 \end{theorem}
 \begin{proof}
-The Hall assertion is the finite-window theorem.  The protected assertion is PBW for the Borcherds Lie superalgebra.  Proper height passes both constructions to the limit.  The Gritsenko--Nikulin denominator theorem gives the final product identity.
+The composition-algebra assertion is the finite-window theorem. The protected assertion is PBW for the Borcherds Lie superalgebra.  Proper height passes both constructions to the limit.  The Gritsenko--Nikulin denominator theorem gives the final product identity.
 \end{proof}
 
-\chapter{Coordinate-framed orientation on finite critical charts}
-Fix $H$ and a dimension vector $\mathbf d$.  The representation space of the graded doubled quiver underlying $\Gamma_{\Delta,H}$ is affine.  Order its vertex, arrow, reverse-arrow, and degree-$2$ loop coordinates.  The corresponding volume line is trivial.  The derived moment-map equations form a symmetric three-Calabi--Yau deformation complex whose determinant is the square of this ordered coordinate line.
+\chapter{Extension determinants and critical orientations}
+Let \(\mathcal C\) be a three-Calabi--Yau dg category over
+\(\mathbb C\), with its chosen trace. For families of objects
+\(A,B\) over a base \(T\), let \(C(A,B)\) denote the relative
+derived Hom complex on \(T\). Suppose these complexes are perfect,
+and that the trace gives base-change-compatible duality
+\[
+ C(B,A)\simeq C(A,B)^\vee[-3].
+\]
+Put \(L(A,B)=\det C(A,B)\) and \(D(A)=L(A,A)\).
+The determinant convention is
+\(\det C=\bigotimes_i(\det C^i)^{(-1)^i}\), with symmetry sign
+specified by \(\chi(C)\bmod2\).
 
-\begin{theorem}[Multiplicative coordinate-framed orientation]
-A choice of order for the vertex, arrow, reverse-arrow, and loop coordinates trivializes the ambient canonical line and supplies an orientation of every finite-dimensional critical representation chart of $\Gamma_{\Delta,H}$.  Under direct sum and the Hall extension correspondence, the orientation line is the tensor product of the two diagonal orientation lines.  The construction is associative for three summands and compatible with full-subquiver inclusions.
+\begin{theorem}[Extension determinant]
+For an exact triangle \(A\to F\to B\to A[1]\), there is a
+base-change-compatible isomorphism
+\[
+ D(F)\simeq D(A)\otimes D(B)\otimes L(A,B)^{\otimes2}.
+\]
+The determinant comparisons obtained by refining a flag agree, with
+the stated determinant symmetry signs.
 \end{theorem}
 \begin{proof}
-On the extension chart, every arrow matrix is block upper triangular.  The tangent complex splits into two diagonal deformation complexes and two off-diagonal complexes exchanged by three-Calabi--Yau duality.  The paired off-diagonal part carries the standard determinant square root induced by the three-Calabi--Yau duality pairing.  The ordered diagonal coordinate lines therefore multiply.  A three-block decomposition gives the same tensor order in both parenthesizations.  Full-subquiver inclusion appends an ordered set of coordinates.
+Apply derived Hom to the triangle in each variable. Determinant
+additivity gives
+\[
+ D(F)\simeq L(B,A)\otimes D(A)\otimes D(B)\otimes L(A,B).
+\]
+Dualization and the odd shift each invert the determinant line.
+Thus Calabi--Yau duality identifies \(L(B,A)\) with \(L(A,B)\).
+Reorder by determinant symmetry to obtain the formula. For a full
+flag, all iterated decompositions identify with the same ordered
+tensor product of \(C(A_i,A_j)\), for its successive quotients
+\(A_i\). Determinant additivity for refined filtrations proves
+coherence. Each operation commutes with base change.
 \end{proof}
 
-\begin{corollary}[Oriented critical chart tower]
-The finite critical charts carry compatible coordinate-framed vanishing-cycle complexes.  Their Grothendieck groups refine the quiver Hall tower by the three-Calabi--Yau critical coefficients.
+A square-root orientation consists of lines \(o_A\) and
+isomorphisms \(o_A^{\otimes2}\simeq D(A)\). Extension
+compatibility requires maps
+\[
+ o_A\otimes o_B\otimes L(A,B)\longrightarrow o_F
+\]
+whose squares are the determinant comparisons. Choosing coordinates
+on a smooth critical chart trivializes its ambient canonical line.
+Hall convolution requires transition maps compatible with the cross
+line and the zero object. On three-step flags, the two orientation
+maps can differ by an element of \(\mu_2\), even when their
+squares agree. That sign must be trivialized coherently.
+
+\begin{example}[A nontrivial cross line]
+Let \(X\) be a smooth projective Calabi--Yau threefold, with a
+chosen volume form, and let \(x\in X\). On
+\(X\times T\), where \(T=\mathbb P^1\), take
+\[
+ A=\mathcal O_X\boxtimes\mathcal O_T(1),\qquad
+ B=\mathcal O_x\boxtimes\mathcal O_T.
+\]
+Then \(C(A,B)=\mathcal O_T(-1)[0]\), and relative Serre
+duality gives \(C(B,A)=\mathcal O_T(1)[-3]\).
+Thus \(L(A,B)=L(B,A)=\mathcal O_T(-1)\).
+The self-Hom complexes of \(A\) and \(B\) have constant
+determinant lines, since the factors \(\mathcal O_T(1)\)
+cancel in the first self-Hom. Nevertheless
+\[
+ D(A\oplus B)=D(A)\otimes D(B)\otimes\mathcal O_T(-2).
+\]
+The orientation cross factor is \(\mathcal O_T(-1)\).
+A sign change cannot replace this line of nonzero degree.
+\end{example}
+
+\begin{corollary}[Oriented critical coefficients]
+Suppose the chosen critical charts have square-root orientation
+maps on overlaps and extension flags, with unit and flag coherences.
+Suppose their vanishing-cycle comparison maps preserve these data.
+Then the local vanishing-cycle complexes descend to the specified
+oriented coefficient object. Their Hall convolution is associative
+whenever its pullback and pushforward maps are defined and satisfy
+base change on the flag diagrams.
 \end{corollary}
 \begin{proof}
-The chosen coordinate framings are compatible with direct sum, extension correspondences, and full-subquiver inclusions in the fixed root order.  Vanishing cycles are functorial for these oriented critical charts, so their convolution complexes and Grothendieck groups form the stated tower.
+The overlap cocycle identifies the local coefficient complexes by
+descent. On a three-step flag, orientation coherence identifies
+the two Thom--Sebastiani coefficient maps. Proper or compact-support
+base change, on the stipulated domain, identifies the two composites
+of convolution. The zero flag gives the unit equation.
 \end{proof}
+
+For the quiver charts, the remaining construction is an equivariant
+system of square roots and coefficient maps on the actual
+representation and extension stacks, compatible with changes of
+height. For compact \(S\times E\), the reduced complexes and
+the common elliptic torsor must also be retained. A coordinate
+volume on an affine chart specifies neither descent system by itself.
 
 \chapter{The colored elliptic Ran space}
 The elliptic degree is a global charge carried by the whole configuration.  Define
@@ -1128,7 +1433,12 @@ $\mathcal F^{\mathrm{hyb}}_{\Delta,E}$ is a graded factorization coalgebra on $\
 The chiral Chevalley construction is a factorization coalgebra for every chiral Lie algebra.  The bracket preserves elliptic-degree addition, so its differential and coproduct preserve the graded Ran placement.  The primitive theorem for the Chevalley coalgebra recovers the current Lie algebra.
 \end{proof}
 
-This colored Ran space is the exact carrier of the positive elliptic-degree direction.  The wrapped label survives when the point support is empty and interacts with local insertions through the same Hall bracket.
+This construction retains the nonnegative root-degree label on a
+point-supported current theory. It does not replace a sheaf projecting
+onto the whole elliptic curve by a point-supported sheaf. The compact
+wrapped comparison must map its common-torsor extension correspondences
+to these graded current operations, preserving support and charge.
+The bracket on the present carrier is the Borcherds bracket.
 
 \chapter{Physical charge and Gram degree}
 Let $\Gammphys$ be an additive physical charge lattice and let
@@ -1239,13 +1549,15 @@ The trace norm is the summable series of the preceding theorem, separated by par
 \end{proof}
 
 
-\chapter{The root Dirac operator}
+\chapter{The virtual root Fredholm operator}
 Let
 \[
- \Hcal_\Delta=
- \widehat\bigoplus_{\alpha>0}\gIg_\alpha
+ \mathcal H^{\mathrm{vir}}_\Delta
+ =\widehat\bigoplus_{\alpha>0}V_\alpha
 \]
-with Hilbert norm chosen root space by root space.  In the absolute-convergence chamber define
+with an orthonormal basis in each minimal parity realization.
+This is the virtual root Hilbert space used in the preceding
+absolute-convergence theorem.  In the absolute-convergence chamber define
 \[
  K_Z\big|_{V_\alpha}=e^{-\alpha(Z)}\id,
  \qquad
@@ -1299,14 +1611,16 @@ The protected completion selected by the K3 half-index is the quintuple
  \mathbb A_Z
  \right).
 \]
-Its components are the locally three-Calabi--Yau completion, the ordinary quiver Hall category, the Borcherds one-particle Lie superalgebra, the local--wrapped current factorization algebra, and the virtual root Dirac family.
+Its components are the pro-system of finite three-Calabi--Yau completions, the ordinary quiver Hall category, the Borcherds one-particle Lie superalgebra, the local--wrapped current factorization algebra, and the virtual root Dirac family.
 \end{definition}
 
 \begin{theorem}[Igusa protected completion]
 The quintuple $\mathfrak K_\Delta$ satisfies:
 \begin{enumerate}
 \item its one-particle Lie superalgebra is $\gIg$;
-\item its ordinary Hall presentation and Hong's parity-refined quantum supergroup share the Borcherds--Cartan grading and signed PBW denominator;
+\item its ordinary Hall presentation and Hong's quantum supergroup retain
+the stated Cartan grading; comparison of their relation ideals and
+parity-refined PBW spaces requires an additional map;
 \item its chiral primitive algebra on $E$ is the local--wrapped current algebra of $\gIg$;
 \item its raw multiparticle supercharacter is $P^{-1}$, where $e^{-\rho}P=\DenIg$; equivalently $e^{\rho}\sch\Fock(\nIg)=\DenIg^{-1}$;
 \item the half-coordinate pullback of the doubled Weyl-normalized character is $-\ChiTen^{-1}$ in the Oberdieck--Pixton normalization;
@@ -1317,21 +1631,65 @@ The quintuple $\mathfrak K_\Delta$ satisfies:
 The first three statements are the Borcherds root, quiver Hall, Hong quantum-supergroup, Ginzburg, and colored-Ran theorems.  PBW gives the fourth.  The identity $\ChiTen=\Dmon^2$ and the established reduced scalar theorem give the fifth.  The Fredholm theorem gives the sixth.
 \end{proof}
 
-This theorem constructs the protected effective theory selected by the Igusa denominator.  A geometric type-IIA or topological-string model determines a realization functor into this universal completion by its primitive states and extension amplitudes.  Equivalence of protected observables is equivalence of the oriented Hall and factorization objects carried by that functor.
+The tuple retains algebraic constructions associated with the Igusa
+presentation and their scalar characters. A geometric type-IIA or
+topological-string realization must construct compatible functors
+from its oriented extension category to these targets. Primitive
+states and extension amplitudes are inputs to those functors.
+Their action on morphisms, convolution, orientations, and chiral
+operations must also be specified and proved compatible.
 
-\chapter{Universal property}
-A presentation-preserving protected realization consists of an oriented root-graded theory $\mathfrak T$, a map from each Igusa simple-root space to its primitive states, and chosen comparison maps from the Hall, Ginzburg, current, quantum-double, and determinant functors applied to that simple-root map.
+\chapter{The primitive comparison and its extensions}
+Let \(\mathfrak p\) be a positive-root-graded Lie superalgebra
+with finite-dimensional homogeneous pieces and a proper positive
+height. A primitive realization of the Igusa presentation is a
+parity-preserving homogeneous map from its labelled simple-root
+spaces to \(\mathfrak p\), satisfying the defining relations.
 
 \begin{theorem}[Universal presentation map]
-Every presentation-preserving protected realization carries a unique Lie-superalgebra morphism
+\label{igusa:primitive-presentation-map}
+Let \(\mathfrak p\) be a positive-root-graded Lie superalgebra
+over \(\mathbb C\), with finite-dimensional homogeneous pieces.
+Suppose a homogeneous parity-preserving map from every simple-root
+generating space of \(\nIg\) to \(\mathfrak p\) satisfies
+the defining Borcherds--Serre relations. It extends uniquely to
+a graded Lie-superalgebra map
 \[
- \nIg\longrightarrow\Prim(\mathfrak T)
+ f:\nIg\longrightarrow\mathfrak p.
 \]
-extending the simple-root map.  Functoriality produces compatible morphisms from the Hall algebra, the Ginzburg completion, the local--wrapped current theory, the completed quantum group, and the virtual root determinant of $\mathfrak K_\Delta$ to their selected targets in $\mathfrak T$.  These morphisms are equivalences when the primitive map and the selected functorial comparison maps are equivalences.
+It induces continuous maps on height completions, enveloping
+algebras, Chevalley chains, and level-zero currents. The map \(f\)
+is an isomorphism if and only if it is surjective and the root-graded
+PBW series agree in each parity.
 \end{theorem}
 \begin{proof}
-The Borcherds generators and relations give the unique primitive Lie morphism.  Hall convolution, Calabi--Yau completion, chiral Chevalley chains, quantized doubling, and the diagonal Fredholm construction are functorial in the root presentation.  PBW promotes a primitive equivalence to the completed enveloping and Fock objects.  The remaining equivalences are exactly the selected comparison maps in the definition of a presentation-preserving realization.
+Extend the chosen maps to the free Lie superalgebra on the
+simple-root spaces. The relation hypothesis makes the defining
+ideal lie in its kernel, giving \(f\). The generators prove
+uniqueness. On enveloping algebras the map sends
+\(x_1\cdots x_j\) to \(f(x_1)\cdots f(x_j)\).
+On Chevalley chains it is the graded symmetric map on the shifted
+generators. It commutes with the Chevalley differential because
+\(f\) preserves brackets. The current map is
+\(\partial^j x\mapsto\partial^j f(x)\), preserving
+\([x_\lambda y]=[x,y]\). Root degree preservation gives
+compatible maps at each height and hence on the stated limits.
+
+If \(f\) is surjective, \(U(f)\) is surjective. Proper
+positive height makes each root-graded PBW component
+finite-dimensional. Equality of its even and odd dimensions makes
+\(U(f)\) bijective in every component. PBW embeds each Lie
+superalgebra into its enveloping algebra, so \(f\) is injective.
+The converse follows by applying the constructions to its inverse.
 \end{proof}
+
+
+A geometric comparison also requires functors on the actual Hall
+and critical categories, a compatible coproduct and Hopf pairing,
+and maps of determinant lines and operator domains. These categories
+and lines are not the domain of the primitive Lie map. The
+additional maps must be constructed and checked against that map.
+They are not consequences of its universal property.
 
 \chapter{The eight diagonal-divisor forms}
 Cl\'ery and Gritsenko classify eight genus-two modular forms whose divisor is the diagonal with order one \cite{GC}.  Gritsenko--Nikulin and the CHL denominator constructions give the sourced reflective presentations used for the corresponding rows \cite{GN97,GN98a,GN98b,GovindarajanKrishna2009,Govindarajan2011,GovindarajanSamanta2019}.  Every row has a minimal virtual product superspace obtained from its Fourier exponents, together with a Fock determinant and a diagonal Fredholm operator.  A sourced denominator presentation refines this product model by its Borcherds--Cartan bracket, Weyl group, and quantum supergroup.  The half-integral rows are formed on their multiplier covers.
@@ -1358,7 +1716,8 @@ Local finiteness of the product exponents gives the graded superspace and its pr
 
 \chapter{Algebraic and physical closure}
 \begin{theorem}[Universal Igusa realization theorem]
-The following objects are canonically connected by constructed morphisms:
+The constructions have the following inputs and outputs. An arrow
+labelled by a construction records its dependence on that input:
 \[
 \begin{gathered}
  \phiweak\xmapsto{\mathrm{Borch}}\Dmon,
@@ -1367,7 +1726,7 @@ The following objects are canonically connected by constructed morphisms:
  \qquad
  A_\Delta\xmapsto{\mathrm{quiver}}Q_{\Delta,H}
  \xmapsto{\mathrm{Hall}}\mathcal B_\Delta,\\
- \mathcal B_\Delta\xmapsto{\Pi_3}\Gamma_\Delta,
+ kQ_{\Delta,H}\xmapsto{\Pi_3}\Gamma_{\Delta,H},
  \qquad
  \gIg\xmapsto{\Cur_E}\mathcal F^{\mathrm{hyb}}_{\Delta,E},
  \qquad
@@ -1381,7 +1740,14 @@ The following objects are canonically connected by constructed morphisms:
 The system contains parity-refined one-particle spaces, an ordinary Hall extension product, the Borcherds root bracket, a local--wrapped collision law, a quantum supergroup, an automorphic orientation line, a first-order Fredholm determinant, and the reduced scalar square.
 \end{theorem}
 \begin{proof}
-Each arrow is one of the preceding constructions.  Compatibility follows from their common root grading and PBW filtration.  The final scalar identity is the primitive reduced curve-counting theorem.
+The Borcherds lift, Gritsenko--Nikulin presentation, and primitive
+reduced curve-counting theorem give the scalar identities. The
+enveloping and Chevalley maps are induced by the presentation.
+The quiver Hall algebra and finite Calabi--Yau completion have their
+respective quiver and path-algebra inputs. Their common grading
+specifies the degrees a comparison must preserve. A map between
+those constructions requires the additional functors, coefficient
+maps, and pairings described above.
 \end{proof}
 
 
@@ -1414,8 +1780,8 @@ Direct multiplication gives
  \qquad S_i^{\mathsf T}GS_i=G.
 \]
 
-\chapter{Concordance with the earlier Igusa draft}
-The reconstitution retains the half-index determinant, theta normalization, Borcherds denominator, reduced scalar theorem, charge Gram map, and geometric Hall comparison datum. It reorganizes their dependencies as follows:
+\chapter{Automorphic, homological, and Hall comparisons}
+The half-index determinant, theta normalization, Borcherds denominator, reduced scalar theorem, charge Gram map, and geometric Hall comparison datum belong to the following constructions:
 \begin{enumerate}
 \item the automorphic square root is completed entirely within the Borcherds product theorem;
 \item the BKM bracket comes from the Gritsenko--Nikulin algebra;

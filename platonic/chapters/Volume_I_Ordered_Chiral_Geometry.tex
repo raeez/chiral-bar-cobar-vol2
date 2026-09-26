@@ -396,41 +396,178 @@ The notation used in the remainder of this part is
 \]
 It always refers to transverse order.
 
+\section{Realization and factorization}
+
+Factorization compares the coefficient at a disjoint configuration with
+an external tensor product of its coefficients at the separate configurations.
+This condition is nonlinear. For example, suppose those coefficients are
+$k$ at one point and at two distinct points, where $k$ is a field.
+The componentwise sum of two copies has coefficient $k^2$ at both configurations.
+Factorization would instead require $k^2\otimes_k k^2\cong k^4$ at two points.
+A componentwise shift also fails: its two-point coefficient is $k[1]$,
+whereas the tensor product of its singleton coefficients is $k[2]$.
+Thus an ambient stable coefficient category does not make its
+factorization objects closed under componentwise sums or shifts.
+
+Geometric realization has a different colimit property.
+A small indexing $\infty$-category $J$ is \emph{sifted} when it is nonempty
+and its diagonal $J\to J\times J$ is cofinal.
+Here cofinal means that, for every diagram $D$ on $J\times J$,
+the canonical map $\operatorname*{colim}_{J}(D\circ\Delta)
+\to\operatorname*{colim}_{J\times J}D$ is an equivalence whenever these colimits exist.
+Iteration gives the same property for $J\to J^m$, for every finite $m\geq1$.
+The simplex category with arrows reversed is sifted, so simplicial
+geometric realization is a sifted colimit.
+
+\begin{proposition}
+Fix coefficient categories on configuration charts, with specified
+restriction and collision functors and their coherent identifications.
+Suppose the coefficient categories admit $J$-indexed colimits
+and these functors preserve them.
+Suppose external tensor products preserve colimits separately in each variable.
+Let $(F_j)_{j\in J}$ be a diagram of factorization objects and
+morphisms preserving their factorization equivalences.
+If $J$ is sifted, the componentwise colimit is a factorization object.
+\end{proposition}
+\begin{proof}
+Write $F_I=\operatorname*{colim}_{j\in J}(F_j)_I$ on a chart indexed by $I$.
+The collision maps and their coherences pass to the colimit by hypothesis.
+For a decomposition $I=I_1\sqcup\cdots\sqcup I_m$, let $u$ denote
+restriction to its disjointness locus.
+Restriction, factorization, cofinality, and separate preservation give
+\[
+\begin{aligned}
+ uF_I
+ &\simeq\operatorname*{colim}_{j\in J}u(F_j)_I\\
+ &\simeq\operatorname*{colim}_{j\in J}
+        \mathop{\boxtimes}_{a=1}^m(F_j)_{I_a}\\
+ &\simeq\operatorname*{colim}_{(j_1,\ldots,j_m)\in J^m}
+        \mathop{\boxtimes}_{a=1}^m(F_{j_a})_{I_a}
+ \simeq\mathop{\boxtimes}_{a=1}^m F_{I_a}.
+\end{aligned}
+\]
+Each comparison is natural in the diagram and the decomposition.
+Refinements and permutations therefore preserve the given coherence diagrams.
+If an empty-configuration unit is specified, its constant diagram also
+has that unit as colimit, since a sifted category has contractible groupoid completion.
+\end{proof}
+
+For a simplicial two-sided bar, this proposition applies when every
+simplicial term and every face and degeneracy are already in the
+specified factorization category.
+It also requires the actual restriction and collision functors to preserve realization.
+Normalization may then be computed in an ambient stable category.
+Its individual shifted summands need not be factorization objects.
+A coproduct on the normalized complex requires its own compatibility
+with the factorization equivalences.
+
 \chapter{The internal ordered bar}
-Let $A$ be an augmented ordered chiral algebra with augmentation ideal $\bar A$. The simplicial two-sided bar has
+Let $A$ be an augmented ordered chiral algebra.
+Assume the restriction and collision functors preserve geometric realizations,
+and the external and pointwise tensor products preserve them separately.
+The two-sided simplicial bar has
 \[
  B_r(\mathbbm1,A,\mathbbm1)=
  \mathbbm1\tensor^! A^{\tensor^!r}\tensor^!\mathbbm1.
 \]
-Its realization is
-\[
- \Barc_X^{\ord}(A)=\abs{B_\bullet(\mathbbm1,A,\mathbbm1)}.
-\]
+Every face and degeneracy is a factorization morphism by the algebra and augmentation axioms.
+The sifted-colimit proposition therefore constructs its realization
+$\Barc_X^{\ord}(A)$ as a factorization object.
 
 \begin{theorem}[Normalized bar]
-In the fixed stable dg enhancement, Dold--Kan normalization identifies the geometric realization with the reduced tensor coalgebra. Explicitly, there is a natural equivalence
+Choose a symmetric monoidal dg model for the ambient coefficients in which the displayed
+tensors compute derived tensors and direct-sum normalization computes realization.
+Write $\bar A$ for the augmentation ideal in that model.
+The underlying bar complex is
 \[
- \Barc_X^{\ord}(A)
- \simeq
- \bigl(T^c(s\bar A),d_{\mathrm{int}}+b_m\bigr),
+ \Barc_X^{\ord}(A)\simeq
+ \bigl(T^c(s\bar A),d_{\mathrm{int}}+b_m\bigr).
 \]
-where $b_m$ is the coderivation induced by the multiplication of $A$. The deconcatenation formula
+Here $s$ decreases cohomological degree by one.
+The direct sum and its individual shifted summands are formed in the ambient coefficient category.
+Deconcatenation makes this complex a conilpotent coassociative coalgebra there:
 \[
- \Delta_{\dec}[a_1|\cdots|a_n]
- =\sum_{i=0}^n[a_1|\cdots|a_i]\tensor[a_{i+1}|\cdots|a_n]
+ \Delta_{\mathrm{dec}}[a_1|\cdots|a_n]
+ =\sum_{i=0}^n[a_1|\cdots|a_i]\tensor[a_{i+1}|\cdots|a_n].
 \]
-makes the bar a conilpotent coassociative coalgebra in $\Fact_D(X)$.
 \end{theorem}
 \begin{proof}
-Normalization removes degeneracies containing the unit and leaves tensor powers of $s\bar A$. The simplicial faces give the internal differential and adjacent multiplication. Associativity is precisely the equality that makes the multiplication coderivation square to zero. Deconcatenation is coassociative because a word cut twice has the same three pieces in either order. The bar differential is local with respect to every cut.
+Normalization removes words containing a unit and leaves the shifted augmentation ideal in every slot.
+The faces give the internal differential and adjacent multiplication.
+The simplicial identities give a square-zero differential.
+Two successive cuts enumerate the same three subwords in either order.
+An internal differential or multiplication lies on one side of any surviving cut,
+with the tensor sign of its prefix. Thus the differential is a coderivation.
+Every element has finite word support, so sufficiently many reduced cuts give zero.
 \end{proof}
 
-\begin{theorem}[Double-coalgebra bar]
-In every Ran enhancement in which geometric realization preserves chiral commutative coalgebras, $\Barc_X^{\ord}(A)$ carries the deconcatenation coproduct and the chiral factorization coproduct. Deconcatenation is a morphism of chiral coalgebras.
-\end{theorem}
+\section{The bar comparison on separated configurations}
+The normalized word decomposition is not itself a decomposition in $\Fact_D(X)$.
+Its compatibility with factorization is expressed by a map between whole bar complexes.
+For augmented dg algebras $P,Q$ in the chosen model, define
+\[
+ \operatorname{sh}:BP\tensor BQ\longrightarrow B(P\tensor Q)
+\]
+by shuffling the letters $p_i\tensor1$ and $1\tensor q_j$,
+keeping their respective orders.
+The sign is the Koszul sign for the permutation of the suspended letters.
+For degree-zero letters,
+\[
+ \operatorname{sh}([p]\tensor[q])
+ =[p\tensor1|1\tensor q]-[1\tensor q|p\tensor1].
+\]
+
+\begin{proposition}[Shuffle and factorization]
+The shuffle is a natural quasi-isomorphism and a coalgebra map,
+where its source has the tensor-product coalgebra structure.
+For the geometric coefficient models above, suppose these maps commute with the specified
+restriction and collision functors.
+Then they give factorization equivalences for the whole bar and make
+deconcatenation a morphism of factorization objects in the derived category.
+\end{proposition}
 \begin{proof}
-Every simplicial operator is a morphism of factorization objects because the multiplication, unit, and augmentation satisfy the componentwise locality identity. The chiral coproduct therefore realizes levelwise. For a fixed decomposition $I=I_1\sqcup I_2$, deconcatenation cuts the transverse word and factorization separates each letter into its $I_1$- and $I_2$-components. These two operations act on independent indices, so their two composites agree after the canonical symmetry.
+In the bar differential of a shuffle, a merge of letters from different factors
+occurs twice with opposite suspended signs.
+The equality $(p\tensor1)(1\tensor q)=(-1)^{|p||q|}(1\tensor q)(p\tensor1)$ cancels these terms.
+Merges within one factor give the differential of that factor.
+Internal differentials commute with the same signed permutation.
+Thus the shuffle is a cochain map.
+
+A cut of a shuffled word determines one cut in each input word,
+a shuffle of their prefixes, and a shuffle of their suffixes.
+Conversely these four choices determine exactly that cut shuffle.
+The signs on both sides come from the same permutation of suspended letters.
+This proves the coalgebra identity with the tensor-product coproduct.
+
+To verify the quasi-isomorphism, form the bisimplicial object
+$B_p(k,P,k)\tensor B_q(k,Q,k)$, with $k$ denoting the tensor unit.
+Its iterated realization is $BP\tensor BQ$.
+Its diagonal is the simplicial bar of $P\tensor Q$.
+Cofinality of the simplicial diagonal identifies these realizations.
+On normalized chains the map from the iterated realization to the diagonal
+is the shuffle just defined: the monotone paths from $(0,0)$ to $(p,q)$
+triangulate the product of its two simplices.
+Each path inserts precisely the degeneracies of its shuffle.
+Adjacent paths have opposite orientations on a shared face,
+so their signed sum has exactly the product boundary.
+This is the realization comparison, hence an equivalence.
+
+For $I=I_1\sqcup I_2$ on the disjointness locus, the given algebra factorization
+identifies $A_I$ with $A_{I_1}\boxtimes A_{I_2}$.
+The shuffle therefore gives the comparison
+$BA_{I_1}\boxtimes BA_{I_2}\to BA_I$.
+Its inverse in the derived category is the bar factorization map.
+The coalgebra identity just proved gives compatibility with deconcatenation.
+For several blocks, iterated shuffles enumerate the same ordered multishuffles,
+with the same Koszul signs. This proves refinement coherence.
+Naturality and the stated functor compatibility give the collision coherence.
 \end{proof}
+
+The restriction and collision compatibility in this proposition is a hypothesis on the
+chosen geometric model. It does not follow from naming an ambient stable category.
+Conilpotence here refers to finite normalized words in that model.
+No word-length completion is implicit.
+
 
 \section{Three coproducts}
 The theorem system uses three coproducts with distinct geometric meanings:
@@ -459,12 +596,14 @@ For a right $A$-module $R$ and a left $A$-module $L$, factorization homology of 
 This statement holds internally in every presentable monoidal category supporting factorization homology \cite{AFT,LurieHA}. Taking $R=L=\mathbbm1$ identifies the interval amplitude with the ordered bar.
 
 \chapter{Cobar and twisting cochains}
-Let $C$ be a coaugmented conilpotent coalgebra in $\Fact_D(X)$. The cobar algebra is
+Let $C$ be a coaugmented conilpotent differential graded coalgebra in the ambient
+coefficient model. The ordinary, direct-sum tensor cobar algebra is
 \[
  \Cobarc_X^{\ord}(C)=
  \bigl(T(s^{-1}\bar C),d_{\mathrm{int}}+d_\Delta\bigr).
 \]
-A twisting cochain $\tau:C\to A$ has degree $1$ and satisfies
+A twisting cochain $\tau:C\to A$ has degree $1$, vanishes on the coaugmentation,
+and has zero composite with the augmentation of $A$. It satisfies
 \[
  d\tau+\tau d+m(\tau\tensor\tau)\bar\Delta=0.
 \]
@@ -476,35 +615,56 @@ The universal twisting cochains are
 \]
 
 \begin{theorem}[Bar--cobar adjunction]
-There is a natural adjunction
-\[
- \Cobarc_X^{\ord}:\Coalg_{\mathrm{conil}}(\Fact_D(X))
- \rightleftarrows
- \Alg_{\Eone}^{\mathrm{aug}}(\Fact_D(X)):\Barc_X^{\ord}.
-\]
-Its mapping space is the space of twisting cochains.
+For ordinary augmented dg algebras and coaugmented conilpotent dg coalgebras
+in the specified coefficient model, tensor cobar is left adjoint to tensor bar.
+Their mapping set is the set of twisting cochains.
+An internal adjunction on factorization objects additionally requires both constructions
+to produce factorization objects and their twisting maps to preserve the geometric data.
 \end{theorem}
 \begin{proof}
 An algebra map from the tensor algebra $T(s^{-1}\bar C)$ is determined by its restriction to $s^{-1}\bar C$. Compatibility with the cobar differential is the Maurer--Cartan equation above. The same equation describes coalgebra maps from $C$ to the cofree conilpotent coalgebra $T^c(s\bar A)$.
 \end{proof}
 
 \chapter{Complete bar--cobar reconstruction}
-Let $A=\prod_{w\ge0}A_w$ be complete for a positive weight grading, with $A_0=\mathbbm1$ and degreewise dualizable pieces. Let $F^pA=\prod_{w\ge p}A_w$. The invariant completion statement is the equivalence between nilcomplete algebras and conilcomplete Koszul-dual coalgebras; this is the maximal equivalence locus of operadic Koszul duality \cite{Heuts}. The positive weight hypotheses below give an explicit sufficient criterion in the present dg setting.
+Ordinary tensor cobar uses finite words. Completion changes that carrier.
+Let $k$ be a commutative ring and
+$A_{\mathrm{alg}}=\bigoplus_{w\ge0}A_w$ an augmented algebra in degree zero,
+with $A_0=k$, augmentation given by projection onto $A_0$, and multiplication adding weights.
+Put $D=\Omega B(A_{\mathrm{alg}})$ using ordinary direct-sum tensors,
+and let $D_w$ be its weight-$w$ subcomplex.
+The complete algebra and its complete resolution are
+\[
+ \widehat A=\prod_{w\ge0}A_w,\qquad
+ \widehat D=\prod_{w\ge0}D_w.
+\]
+Products of complexes are taken degreewise, with the weight topology.
 
 \begin{theorem}[Complete reconstruction]
-Let $A=\prod_{w\ge0}A_w$ be a positive complete augmented algebra with degreewise dualizable pieces. Assume products and inverse limits are exact on the weight towers used below. Let $C=\prod_{w\ge0}C_w$ be a complete coaugmented coalgebra whose reduced coproduct is locally conilpotent in every weight, whose coradical filtration is exhaustive, and whose completion map to the inverse limit of its finite coradical quotients is an equivalence. Then the counit
-\[
- \Cobarc_X^{\ord}\Barc_X^{\ord}(A)\longrightarrow A
-\]
-is an equivalence, and the unit
-\[
- C\longrightarrow \Barc_X^{\ord}\Cobarc_X^{\ord}(C)
-\]
-is an equivalence.
+The componentwise counit $\widehat D\to\widehat A$ is a quasi-isomorphism
+of complete differential graded algebras.
 \end{theorem}
 \begin{proof}
-Filter both objects by total weight. On associated graded objects, the bar--cobar composite is the standard tensor resolution. Its contracting homotopy inserts the coaugmentation at the first admissible cut. The filtration is complete, separated, and bounded below in every total weight. The comparison spectral sequence therefore converges strongly and lifts the associated-graded equivalence.
+A weight-$w$ block word has at most $w$ positive-weight entries.
+Filter by their number. Multiplication lowers this number and splitting preserves it.
+At a fixed list of $N\ge2$ entries, the splitting complex is the tensor product
+of the coefficient module with $N-1$ copies of $[k\xrightarrow{1}k]$ in degrees $-1,0$.
+Changing the first outer cut to an inner gap contracts it.
+The other differential terms cancel by their prefix signs.
+This identity survives tensoring with any coefficient module.
+Subtracting a primitive at the largest entry number terminates, so negative cohomology vanishes.
+In degree zero, the boundaries impose $c(a)c(b)=c(ab)$,
+leaving exactly $A_w$.
+Taking the degreewise product preserves kernels and images of these differentials,
+and therefore preserves the computed cohomology.
 \end{proof}
+
+For $k[x]$ with weight one on $x$, the ordinary counit recovers $k[x]$,
+whereas this weight completion recovers $k[[x]]$.
+A completed geometric bar--cobar equivalence needs a specified completed tensor product,
+coalgebra category, and comparison maps compatible with collision and inverse limits.
+An operadic nilcompletion or a boundary double centralizer is not identified
+with the ordinary tensor counit by this weight calculation.
+The coalgebra-unit and geometric duality statements require their own convergence and comparison arguments.
 
 \section{Quadratic recognition}
 Let $A=T(V)/(R)$ with $R\subset V\tensor V$. Its quadratic dual coalgebra $A^{\mathrm{q!}}$ is cogenerated by $sV$ with corelations $s^2R$. The canonical map $A^{\mathrm{q!}}\to\Barc(A)$ gives the Koszul complex.
@@ -523,28 +683,131 @@ The universal twisting morphism $A^{\mathrm{q!}}\to A$ is Koszul exactly when th
 \end{proof}
 
 \chapter{Modules, comodules, and Morita theory}
-A twisting cochain $\tau:C\to A$ defines twisted tensor functors between $A$-modules and $C$-comodules. Put $I=\ker(A\to\mathbbm1)$ and $F^pA=\prod_{w\ge p}A_w$. Write $\Mod_A^{\wedge_I}$ for the full derived category of left $A$-modules $M$ for which
-\[
- M\longrightarrow\varprojlim_p\bigl(M\tensor_A^{\mathbb L}A/F^pA\bigr)
-\]
-is an equivalence. Write
-\[
- D^{\mathrm{co}}_{\mathrm{conil,cpl}}(C\text{-}\mathrm{comod})
-\]
-for the coderived category of coaugmented $C$-comodules whose coradical filtration is exhaustive and complete. The coderived localization kills coacyclic totalizations and is the natural unbounded target for coalgebra modules \cite{Positselski}.
+The ordinary tensor counit reconstructs an algebra. Reconstruction of its
+modules requires the unit and counit of the twisted module functors as well.
+The following weight conditions make these maps finite in every component.
 
-\begin{theorem}[Koszul module equivalence]
-Let $C=\Barc(A)$ and let $A$ satisfy the positive completeness and exact-limit hypotheses of the complete reconstruction theorem. Assume the module and comodule weight towers are degreewise finite or satisfy the corresponding Mittag--Leffler exactness. Then the universal twisting cochain induces an equivalence
+Let $k$ be a field and let $A_{\mathrm{alg}}=\bigoplus_{w\ge0}A_w$
+be an associative algebra in cohomological degree zero.
+Assume $A_0=k$, multiplication adds weights, and augmentation projects onto $A_0$.
+Put $C_{\mathrm{alg}}=B(A_{\mathrm{alg}})$, with its bar weight grading, and set
 \[
- \Mod_A^{\wedge_I}
- \simeq
- D^{\mathrm{co}}_{\mathrm{conil,cpl}}(C\text{-}\mathrm{comod}).
+ A=\prod_{w\ge0}A_w,\qquad C=\prod_{w\ge0}(C_{\mathrm{alg}})_w.
 \]
-For complete right and left modules, relative tensor products correspond to derived cotensor products of the transformed comodules.
+Products are degreewise in complexes.
+The universal twisting map $\tau:C\to A$ has degree one,
+sends $[a]$ to $a$, and vanishes on the empty word and all longer words.
+The bar differential has the earlier convention $b_2[ a|b]=[ab]$.
+
+A complete weight-graded left $A$-module here means a product
+$M=\prod_{w\ge w_0}M_w$ of complexes, for some integer $w_0$,
+with differential preserving weight and actions $A_u\otimes M_v\to M_{u+v}$.
+A complete weight-graded left $C$-comodule means such a product $N$
+with a counital coassociative coaction
+$\rho:N\to C\widehat\otimes N$ preserving weight and differential.
+The completed tensor product is defined componentwise by
+\[
+ (C\widehat\otimes N)_w
+ =\bigoplus_{u+v=w}(C_{\mathrm{alg}})_u\otimes N_v.
+\]
+This sum is finite since $u\ge0$ and $v\ge w_0$.
+Each reduced coaction lowers the weight of its final $N$-component.
+It therefore vanishes after more than $w-w_0$ iterations on $N_w$.
+These comodules need no chosen coaugmentation.
+
+Write $D_{\mathrm{wt}}(A)$ and $D_{\mathrm{wt}}(C)$ for the categories
+obtained by inverting maps that are quasi-isomorphisms in every weight,
+respectively for these modules and comodules.
+This specifies the weak equivalences; no coderived localization is implicit.
+Define
+\[
+ F(M)=C\widehat\otimes_\tau M,\qquad
+ G(N)=A\widehat\otimes_\tau N.
+\]
+The first has the coaction induced by $\Delta_C$ and the second the left $A$-action.
+Writing $\Delta(c)=\sum c_{(1)}\otimes c_{(2)}$ and
+$\rho(n)=\sum n_{(-1)}\otimes n_{(0)}$, their differentials are
+\[
+\begin{aligned}
+ d_F(c\otimes m)={}&d_Cc\otimes m+(-1)^{|c|}c\otimes d_Mm
+  +\sum(-1)^{|c_{(1)}|}c_{(1)}\otimes\tau(c_{(2)})m,\\
+ d_G(a\otimes n)={}&a\otimes d_Nn
+  -\sum a\tau(n_{(-1)})\otimes n_{(0)}.
+\end{aligned}
+\]
+All sums are finite in each weight.
+The twisting equation, associativity, and coassociativity make both differentials square to zero.
+
+\begin{theorem}[Koszul module equivalence in positive weights]
+These functors induce inverse equivalences
+\[
+ D_{\mathrm{wt}}(A)\simeq D_{\mathrm{wt}}(C).
+\]
+Their counit and unit are
+\[
+ \epsilon_M(a\otimes c\otimes m)=a\epsilon_C(c)m,\qquad
+ \eta_N(n)=\sum n_{(-1)}\otimes1\otimes n_{(0)}.
+\]
 \end{theorem}
 \begin{proof}
-The unit and counit are represented by two-sided twisted bar complexes. Their complete weight filtrations have associated graded complexes equal to the ordinary tensor contractions. In each total weight the filtration is finite; the degreewise-finite or Mittag--Leffler hypothesis removes derived-limit terms, so the spectral sequences converge strongly. Coacyclic totalizations vanish in the coderived target. The two-sided transform sends the diagonal $A$-bimodule to the diagonal $C$-bicomodule, and applying it to a two-sided resolution identifies derived tensor with derived cotensor. This is the complete algebra--coalgebra form of Koszul duality \cite{Positselski,LurieHA}.
+The differential formulas show that these are cochain maps,
+respectively $A$-linear and $C$-colinear.
+The twisting terms cancel in the unit equation; the counit equation uses the module action.
+Coassociativity and the counit identities give the two triangle identities.
+
+The complex $GF(M)$ is the two-sided normalized bar resolution
+$A\widehat\otimes B(A_{\mathrm{alg}})\widehat\otimes M$.
+For its contraction, use the simplicial boundary convention
+$\partial=\sum_i(-1)^i d_i$.
+Multiplying a bar word of length $r$ by $(-1)^r$ translates this convention
+to the displayed twisting differentials.
+Writing $\bar a=a-\epsilon_A(a)1$, the extra degeneracy is
+\[
+ h\bigl(a_0[a_1|\cdots|a_r]m\bigr)
+ =1[\bar a_0|a_1|\cdots|a_r]m.
+\]
+The first face returns the original term minus its scalar first factor.
+The other faces cancel against applying $h$ after the boundary,
+including the module-action face.
+The internal differential of $M$ cancels by the suspension sign.
+Thus $\partial h+h\partial=1-i\epsilon_M$, with $i(m)=1[\,]m$.
+This is a linear contraction; $i$ need not be $A$-linear.
+It preserves total weight, so the counit is a quasi-isomorphism in every weight.
+
+At fixed total weight, filter $FG(N)$ by the weight of its final $N$-factor.
+This filtration is finite.
+The reduced-coaction term lowers that weight and disappears in the associated graded.
+The associated graded unit is therefore the inclusion into
+$B(k,A_{\mathrm{alg}},A_{\mathrm{alg}})\otimes N_v$.
+The rightmost extra degeneracy contracts this augmented bar onto $k$:
+\[
+ h\bigl([a_1|\cdots|a_r]a\bigr)
+ =(-1)^{r+1}[a_1|\cdots|a_r|\bar a]1
+\]
+in the same simplicial convention.
+The last face gives $1-i\epsilon$; all other faces cancel in pairs.
+Consequently the unit is a quasi-isomorphism on each associated graded component,
+and the finite filtration proves the same for each weight of $N$.
+
+Both functors preserve weightwise quasi-isomorphisms.
+Filter by the weight of the final module or comodule component.
+The twisting terms strictly change that weight in one direction.
+On associated graded components, the functors tensor complexes of $k$-vector spaces,
+which preserves quasi-isomorphisms.
+The filtration is finite at fixed total weight.
+Hence $F,G$ descend to the stated localizations, where their unit and counit are isomorphisms.
 \end{proof}
+
+This theorem uses an explicit weight decomposition and a lower weight bound on every module and comodule.
+Derived $I$-adic completion, with $I=\ker(A\to k)$, instead uses
+$M\to\varprojlim_p(A/I^p\otimes_A^{\mathbb L}M)$.
+The two completions require a comparison of their filtrations.
+A coderived category also has a separately specified class of coacyclic complexes.
+Neither identification follows from the algebra counit alone.
+For right and left modules, the two-sided bar computes their relative derived tensor product
+in the same finite weight components.
+An identification with a geometric derived cotensor product additionally requires
+the two-sided twisting comparison and its compatibility with the chosen completion and collision maps.
 
 Let $\Ccal$ be a presentable factorization category and let $b$ be a compact factorization generator. The internal endomorphism object
 \[
@@ -1541,12 +1804,12 @@ and its reversed product shows equality coefficientwise. The cubic coefficient u
 \]
 the quadratic coefficients use the symmetric-group relations, and the linear coefficients agree termwise.
 
-\chapter{Concordance with the July 2026 Volume I draft}
-The present volume preserves the draft's five-carrier geometry, transverse bar construction, mixed-forest signs, and noncommutative example ladder. It sharpens four interfaces:
+\chapter{Carriers and comparison maps}
+The five-carrier geometry, transverse bar construction, mixed-forest signs, and noncommutative examples use four kinds of categorical data:
 \begin{enumerate}
 \item a factorization carrier is paired explicitly with its operation;
 \item the Ran category is fixed before its tensor products are used;
 \item the block-ordered operad is introduced after a representing chiral operad is chosen;
 \item ribbon and stable-curve sewing are derived from nondegenerate Calabi--Yau and modular data.
 \end{enumerate}
-These refinements make every theorem a statement in a fixed category and every physical interpretation the image of a displayed comparison map.
+A comparison between these constructions therefore specifies its source and target categories and the operations preserved by its map.
