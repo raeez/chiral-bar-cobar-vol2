@@ -1,0 +1,679 @@
+\chapter{Local coefficients and ordered collisions}
+\label{ch:vol2-coefficients}
+
+When insertion points collide, an operation can acquire a pole or a
+term supported on the collision. Both depend on the normal coordinate,
+but they obey different multiplication rules. A pole permits division
+by that coordinate. A supported term can be annihilated by it.
+Their relation is an attachment between coefficient modules.
+To place the comparison homotopies of Chapter~\ref{ch:vol2-boundary-actions}
+on ordered configurations, we first construct these modules and their
+derived maps.
+
+\section{Principal parts and their residue currents}
+\label{sec:vol2-principal-parts}
+
+Work over $\C$, with one algebraic normal coordinate $z$. Put
+\[
+ A=\C[z],\qquad L=\C[z,z^{-1}],\qquad E=L/A.
+\]
+The quotient $E$ is the module of principal parts at the origin.
+It has basis $t_n=z^{-n}\bmod A$, $n\geq1$, over $\C$.
+Every element is a finite linear combination of these basis vectors.
+
+Multiplication and differentiation give
+\begin{equation}\label{eq:vol2-normal-jets}
+ zt_1=0,\qquad zt_n=t_{n-1}\quad(n>1),\qquad
+ \partial_z t_n=-nt_{n+1}.
+\end{equation}
+Thus $E$ retains derivatives of every normal order, even though each
+of its elements is killed by a power of $z$.
+
+Let $D=A\langle\partial_z\rangle$ be the algebra with relation
+$\partial_z z-z\partial_z=1$. A left $D$-module is an $A$-module
+with an operator $\nabla$ satisfying
+$\nabla(am)=a'm+a\nabla m$. Such an operator is its connection
+in the coordinate $z$. The usual derivative makes
+\begin{equation}\label{eq:vol2-localization-sequence}
+ 0\longrightarrow A\longrightarrow L\longrightarrow E\longrightarrow0
+\end{equation}
+an exact sequence of left $D$-modules.
+
+\begin{proposition}\label{prop:vol2-normal-module}
+The map $D/Dz\to E$ sending the class of $1$ to $t_1$ is an
+isomorphism of left $D$-modules. There is no unital associative algebra
+extending the multiplication on $L$ and containing a nonzero element
+$T$ with $zT=0$.
+\end{proposition}
+
+\begin{proof}
+Using $z\partial_z=\partial_z z-1$, every element of $D/Dz$
+has a representative that is a polynomial in $\partial_z$.
+Its monomials act on $t_1$ by
+$\partial_z^r t_1=(-1)^r r!t_{r+1}$. These images form a basis of $E$,
+so the map is both injective and surjective.
+In the proposed algebra, associativity and the inverse of $z$ give
+$T=z^{-1}(zT)=0$, a contradiction.
+\end{proof}
+
+The relation with an analytic contact term fixes the normalization.
+Write $z=x+iy$, orient the plane by $dx\wedge dy$, and set
+$\partial_z=\tfrac12(\partial_x-i\partial_y)$ and
+$\partial_{\bar z}=\tfrac12(\partial_x+i\partial_y)$.
+
+A distribution acts on compactly supported smooth test functions.
+Its derivatives are defined by integration by parts. Let $\delta_0$
+be the distribution $\langle\delta_0,\phi\rangle=\phi(0)$.
+The locally integrable function $1/z$ defines a distribution $P_1$.
+For $n\geq1$, define its higher principal values by
+\[
+ P_n=\frac{(-1)^{n-1}}{(n-1)!}\partial_z^{n-1}P_1.
+\]
+They agree with $z^{-n}$ off the origin.
+
+\begin{proposition}\label{prop:vol2-residue-current}
+With these conventions,
+\begin{equation}\label{eq:vol2-residue-normalization}
+ \bar\partial P_n
+ =\frac{\pi(-1)^{n-1}}{(n-1)!}
+       \partial_z^{n-1}\delta_0\,d\bar z.
+\end{equation}
+The assignment of the right-hand side to $t_n$ identifies $E$ with
+the left $D$-module spanned by these residue currents. The coefficient
+module is placed in cochain degree zero. Its currents have Dolbeault
+degree one when used in a Dolbeault complex.
+\end{proposition}
+
+\begin{proof}
+For a test function $\phi$, Stokes' formula on the complement of the
+disc of radius $\varepsilon$ gives
+\[
+ -\lim_{\varepsilon\to0}\int_{|z|>\varepsilon}
+       \frac{\partial_{\bar z}\phi}{z}\,dx\,dy
+ =\lim_{\varepsilon\to0}\frac1{2i}
+       \int_{|z|=\varepsilon}\frac{\phi(z)}z\,dz
+ =\pi\phi(0).
+\]
+The circle on the middle expression is counterclockwise. The outer
+boundary contributes zero because $\phi$ is compactly supported.
+This proves $\bar\partial P_1=\pi\delta_0d\bar z$.
+Distributional derivatives commute, giving
+\eqref{eq:vol2-residue-normalization} for every $n$.
+
+The identity $z\partial_z^r\delta_0=-r\partial_z^{r-1}\delta_0$
+follows by differentiating $z\delta_0=0$. It gives precisely the
+multiplication rule in \eqref{eq:vol2-normal-jets}. Differentiation
+gives its connection rule. The derivatives of $\delta_0$
+are linearly independent: test them against $z^r$ times a smooth
+function equal to one near the origin. Thus the assignment is an
+isomorphism onto the displayed span.
+\end{proof}
+
+The residue is therefore a map between specified coefficient objects.
+It supplies no multiplication of a principal value by an arbitrary
+supported distribution. To compare operations using these objects,
+we need resolutions that retain their connections.
+
+\section{Resolutions and derived coefficient maps}
+\label{sec:vol2-coefficient-resolutions}
+
+Complexes have cohomological grading, with $V[1]^j=V^{j+1}$.
+A complex of differential modules has a connection commuting with
+its differential.
+
+Define a free $A$-complex $Q_L$ by
+\begin{equation}\label{eq:vol2-coefficient-telescope}
+ Q_L^{-1}=\bigoplus_{n\geq0}A\alpha_n,\qquad
+ Q_L^0=\bigoplus_{n\geq0}Ae_n,\qquad
+ d\alpha_n=e_n-ze_{n+1}.
+\end{equation}
+Its augmentation sends $e_n$ to $z^{-n}$. Give it the connection
+\begin{equation}\label{eq:vol2-telescope-connection}
+ \nabla e_n=-ne_{n+1},\qquad
+ \nabla\alpha_n=-(n+1)\alpha_{n+1},
+\end{equation}
+extended by the Leibniz rule. Put $Q_A=A$ in degree zero, and let
+$r:Q_A\to Q_L$ send $1$ to $e_0$. Set $Q_E=\operatorname{Cone}(r)$,
+with the convention
+\begin{equation}\label{eq:vol2-coefficient-cone}
+ \operatorname{Cone}(r)^j=Q_L^j\oplus Q_A^{j+1},\qquad
+ d(\zeta,\xi)=(d_{Q_L}\zeta+r\xi,-d_{Q_A}\xi).
+\end{equation}
+
+\begin{lemma}\label{lem:vol2-coefficient-telescope}
+The augmentations $Q_L\to L$ and $Q_E\to E$ are
+quasi-isomorphisms of differential modules. All terms of $Q_A,Q_L,Q_E$
+are free over $A$.
+\end{lemma}
+
+\begin{proof}
+If a finite sum $\sum a_n(e_n-ze_{n+1})$ vanishes, its coefficient
+of $e_0$ gives $a_0=0$. The successive coefficients give $a_n=0$
+for every $n$. Thus the differential in
+\eqref{eq:vol2-coefficient-telescope} is injective.
+Its cokernel imposes $e_n=ze_{n+1}$ and is the direct limit
+of $A\xrightarrow{z}A\xrightarrow{z}\cdots$, identified with $L$
+by $e_n\mapsto z^{-n}$.
+
+The connection commutes with the differential because
+\[
+ \nabla(e_n-ze_{n+1})
+ =-(n+1)e_{n+1}+(n+1)ze_{n+2}
+ =d\bigl(-(n+1)\alpha_{n+1}\bigr).
+\]
+It also commutes with both augmentations and with $r$.
+The cone of the injection $A\to L$ has cohomology $E$ in degree
+zero and no other cohomology. The cone in
+\eqref{eq:vol2-coefficient-cone} consequently resolves $E$.
+Its terms are direct sums of the indicated free modules.
+\end{proof}
+
+These resolutions are free over $A$. To obtain derived maps of
+differential modules, we also resolve the derivative action.
+For any one of the three complexes $Q$, use the two Spencer columns
+\begin{equation}\label{eq:vol2-spencer}
+ D\otimes_A Q\xrightarrow{s}D\otimes_A Q,\qquad
+ s(P\otimes q)=P\partial_z\otimes q-P\otimes\nabla q,
+\end{equation}
+in degrees $-1,0$. In column degree $p$, the total differential is
+$s+(-1)^p d_Q$. Denote this total complex by $P_Q$.
+The Leibniz rule makes $s$ well defined under $A$-balancing.
+
+\begin{proposition}\label{prop:vol2-spencer-maps}
+The complexes $P_{Q_A},P_{Q_L},P_{Q_E}$ are bounded free
+$D$-resolutions of $A,L,E$. Their complexes of $D$-linear maps,
+with ordinary graded composition, form a differential graded category
+computing all derived maps among these three objects.
+
+For any complex $N$ of left $D$-modules, put
+$C=\Hom_A(Q,N)$, using product totalization, and define
+$\mathcal Df=\nabla_Nf-f\nabla_Q$. Then $\RHom_D(Q,N)$ is represented
+by the complex with degree-$j$ term $C^j\oplus C^{j-1}$ and differential
+\begin{equation}\label{eq:vol2-connection-hom}
+ d(a,b)=(d_Ca,\mathcal Da-d_Cb),\qquad
+ d_Cf=d_Nf-(-1)^{|f|}fd_Q.
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+For a differential module $M$, augment the second column of
+\eqref{eq:vol2-spencer} by $P\otimes m\mapsto Pm$.
+Write $D$ in its right $A$-basis $1,\partial_z,\partial_z^2,\ldots$.
+The highest derivative of a nonzero finite sum acquires a nonzero
+term of one higher order under $s$, so $s$ is injective.
+Its relations successively replace $\partial_z^r\otimes m$ by
+$1\otimes\nabla^r m$. Every class in its cokernel therefore has a
+unique representative $1\otimes m$, proving exactness.
+
+Apply this resolution in each degree of $Q$. The double complex
+is bounded in both degrees, so the total augmentation $P_Q\to Q$
+is a quasi-isomorphism. Its terms are free over $D$ because the
+terms of $Q$ are free over $A$. A bounded complex of projective
+modules computes derived Hom, including when its free terms have
+countably many generators.
+
+The adjunction
+$\Hom_D(D\otimes_AQ,N)=\Hom_A(Q,N)$ identifies the map induced by
+$s$ with $\mathcal D$. With the sign of the second summand chosen as
+in \eqref{eq:vol2-connection-hom}, the total Hom differential is
+the one displayed there. For every $A$-linear $f$, the map
+$\mathcal Df$ is again $A$-linear. The operator $\mathcal D$ is
+$\C$-linear, obeys $\mathcal D(af)=a'f+a\mathcal Df$ for $a\in A$,
+and commutes with $d_C$. Hence the displayed differential squares
+to zero.
+
+The direct sums in $Q$ give products in its Hom complexes.
+Using the free $D$-resolutions on both sides supplies associative
+composition and the graded Leibniz identity.
+\end{proof}
+
+The extra column in \eqref{eq:vol2-connection-hom} records compatibility
+with normal differentiation. The underlying $A$-linear Hom complex
+alone cannot express that compatibility. A second distinction appears
+when two supported coefficients meet: their tensor product must also
+be derived.
+
+\section{Supported tensors and redundant equations}
+\label{sec:vol2-supported-tensors}
+
+Write $D(A)$ for the derived category of $A$-modules. The symbol
+$\otimes_A^{\mathbb L}$ means the tensor computed after a flat
+resolution. All tensors in the next proposition are over $A$, rather
+than over $D$. Let $k_0=A/(z)$ be the coherent closed fibre.
+It has no left $D$-action extending its $A$-action: since $z$ acts
+by zero, the commutator $[\partial_z,z]$ could not act by one.
+The differential module supported at the origin is instead $E$,
+as in Proposition~\ref{prop:vol2-normal-module}.
+
+\begin{proposition}\label{prop:vol2-supported-self-tensor}
+In $D(A)$ one has
+\begin{equation}\label{eq:vol2-supported-self-tensor}
+ E\otimes_AE=0,\qquad E\otimes_A^{\mathbb L}E\simeq E[1],
+ \qquad
+ k_0\otimes_A^{\mathbb L}k_0\simeq k_0\otimes\Lambda(\epsilon),
+ \quad |\epsilon|=-1.
+\end{equation}
+The last expression has zero differential.
+\end{proposition}
+
+\begin{proof}
+Every element of $E$ is $z$-power torsion, whereas multiplication by
+$z$ on $E$ is surjective. For a simple tensor $e\otimes e'$,
+choose $m$ with $z^me=0$ and write $e'=z^mf$. Then
+$e\otimes e'=z^me\otimes f=0$.
+
+The flat resolution $[A\to L]$ of $E$ is in degrees $-1,0$.
+Since $L\otimes_AE=0$, its tensor with $E$ is $[E\to0]$,
+which is $E[1]$.
+
+For the closed fibre, tensor the free resolution
+$[A\xrightarrow{z}A]$ with $k_0$. Its differential becomes zero.
+The Koszul multiplication gives the exterior generator $\epsilon$.
+\end{proof}
+
+Several collision equations introduce a further choice. For a
+commutative ring $B$ and an element $f\in B$, let
+$B_f=B[f^{-1}]$ and define
+\[
+ C_f=[B\longrightarrow B_f]
+\]
+in degrees $0,1$. For a finite list $\mathbf f=(f_1,\ldots,f_s)$,
+its \emph{stable support complex} is
+\begin{equation}\label{eq:vol2-stable-support}
+ C_{\mathbf f}=C_{f_1}\otimes_B\cdots\otimes_B C_{f_s},
+\end{equation}
+with the usual tensor differential. Its terms are flat. The
+projection $C_f\to B$ is the identity in degree zero and zero
+in degree one.
+
+\begin{lemma}\label{lem:vol2-redundant-support}
+If $g$ lies in the radical of the ideal $(f_1,\ldots,f_s)$, then
+the projection
+\[
+ C_{\mathbf f}\otimes_B C_g\longrightarrow C_{\mathbf f}
+\]
+is a quasi-isomorphism.
+\end{lemma}
+
+\begin{proof}
+The complex $C_f$ is the filtered direct limit of
+$[B\xrightarrow{f^n}B]$, $n\geq1$. The transition is the identity
+in degree zero and multiplication by $f$ in degree one.
+Consequently $C_{\mathbf f}$ is the direct limit of
+$\bigotimes_i[B\xrightarrow{f_i^n}B]$.
+On the $i$th two-term factor, the identity from degree one to
+degree zero is a homotopy for multiplication by $f_i^n$.
+Its signed tensor with the identities on the other factors gives
+the same homotopy on the full tensor product.
+Filtered direct limits of modules are exact, so each cohomology
+class of $C_{\mathbf f}$ is annihilated by some common powers
+$f_1^n,\ldots,f_s^n$.
+
+Choose $N$ with $g^N\in(f_1,\ldots,f_s)$. The ideal
+$(f_1,\ldots,f_s)^{s(n-1)+1}$ is contained in
+$(f_1^n,\ldots,f_s^n)$, since each generating monomial contains
+one $f_i$ at least $n$ times. A power of $g$ therefore annihilates
+the given class. It follows that $C_{\mathbf f}\otimes_B B_g$
+is acyclic, since localization is exact. Tensoring the triangle
+$C_g\to B\to B_g$ with the flat complex $C_{\mathbf f}$ proves
+the assertion.
+\end{proof}
+
+The finite Koszul complex retains different information. Take
+$B=\C[u,v]$ and a third equation $w=u+v$. The finite complex
+$K(u,v,w)$ is the exterior algebra over $B$ on degree-$-1$
+generators $e_u,e_v,e_w$, with differential
+\[
+ de_u=u,\qquad de_v=v,\qquad de_w=u+v.
+\]
+The change of basis $\eta=e_w-e_u-e_v$ gives
+\begin{equation}\label{eq:vol2-triangle-excess}
+ K(u,v,u+v)=K(u,v)\otimes\Lambda(\eta),\qquad
+ d\eta=0,
+\end{equation}
+and hence $H^*K(u,v,u+v)=\C\otimes\Lambda(\eta)$.
+Indeed, $u,v$ is a regular sequence: multiplication by $u$ is
+injective in $B$, and multiplication by $v$ is injective in $B/(u)$.
+The two successive two-term resolutions prove that $K(u,v)$
+resolves $B/(u,v)=\C$.
+
+By contrast, $C_{u,v,u+v}\simeq C_{u,v}$ by
+Lemma~\ref{lem:vol2-redundant-support}. The latter has only
+degree-two cohomology,
+\begin{equation}\label{eq:vol2-two-normal-parts}
+ H^2C_{u,v}=
+ E_2=\frac{\C[u^{\pm1},v^{\pm1}]}
+              {\C[u^{\pm1},v]+\C[u,v^{\pm1}]},
+\end{equation}
+with basis $u^{-m}v^{-n}$, $m,n\geq1$.
+To see the concentration, write $C_{u,v}$ as the tensor over $\C$
+of the one-variable complexes for $u$ and $v$. Each has its
+principal-parts cohomology in degree one.
+
+The vanishing of $(E_2)_{u+v}$ also has a direct calculation:
+\[
+ \frac1{u^mv^n}=
+ \frac1{u+v}\left(\frac1{u^{m-1}v^n}
+                       +\frac1{u^mv^{n-1}}\right).
+\]
+Repeated application decreases $m+n$ until every term is a power
+of $(u+v)^{-1}$ times a fraction regular in one normal coordinate.
+That fraction represents zero in $E_2$, so the term vanishes in
+$(E_2)_{u+v}$.
+The odd class $\eta$ in \eqref{eq:vol2-triangle-excess} belongs
+to the finite closed-intersection complex. It does not supply an
+extra class in the stable support complex.
+
+\section{Differential modules on configuration spaces}
+\label{sec:vol2-geometric-coefficients}
+
+The coordinate calculations extend over a smooth separated complex
+algebraic curve $X$. For a smooth scheme $Y$, let $\Dcal_Y$ be its
+sheaf of differential operators. Let $\operatorname{DMod}(Y)$
+denote the stable enhancement of the unbounded derived category
+of right $\Dcal_Y$-modules with quasi-coherent underlying
+$\Ocal_Y$-modules. The enhancement retains mapping complexes
+and coherent homotopies. We use the enhanced differential-module
+formalism of Francis--Gaitsgory \cite{FG12}, \S1.4, including
+extraordinary inverse image, direct image and external product,
+with their composition coherences.
+
+Right modules give a coordinate-independent form of our local
+left modules. If $M$ is a left differential module, the associated
+right module is $\omega_Y\otimes_{\Ocal_Y}M$, where $\omega_Y$
+is the line of top forms. In one coordinate its action satisfies
+\[
+ (dz\otimes m)\partial_z=-dz\otimes\nabla m.
+\]
+For a nonconstant form, the derivative also acts on its coefficient.
+This is the transposition that fixes functions, negates coordinate
+derivatives and reverses products. It preserves the normal derivatives
+in $E$.
+
+Here are the functors and shifts used below. For a map $f:Z\to Y$
+of smooth schemes, with dimensions $d_Z,d_Y$, the transfer modules are
+\[
+ \Dcal_{Z\to Y}
+ =\Ocal_Z\otimes_{f^{-1}\Ocal_Y}f^{-1}\Dcal_Y,
+ \qquad
+ \Dcal_{Y\leftarrow Z}
+ =\omega_Z\otimes_{\Ocal_Z}\Dcal_{Z\to Y}
+       \otimes_{f^{-1}\Ocal_Y}f^{-1}\omega_Y^{-1}.
+\]
+The first has a left $\Dcal_Z$-action and a right
+$f^{-1}\Dcal_Y$-action. Transposition gives the second a left
+$f^{-1}\Dcal_Y$-action and a right $\Dcal_Z$-action.
+
+For right-module complexes $M$ on $Z$ and $N$ on $Y$, set
+\begin{align}
+ f_+M&=Rf_*^{\Ocal}
+       (M\otimes_{\Dcal_Z}^{\mathbb L}\Dcal_{Z\to Y}),
+       \label{eq:vol2-dmodule-direct}\\
+ f^!N&=(f^{-1}N\otimes_{f^{-1}\Dcal_Y}^{\mathbb L}
+                  \Dcal_{Y\leftarrow Z})[d_Z-d_Y].
+       \label{eq:vol2-dmodule-inverse}
+\end{align}
+Here $f^{-1}$ is inverse image of sheaves, and $Rf_*^{\Ocal}$
+is derived sheaf direct image. External product, denoted $\boxtimes$,
+places two differential modules on independent factors.
+
+For the structure map $p_Y:Y\to\Spec\C$, our normalization is
+\begin{equation}\label{eq:vol2-dualizing-shift}
+ J_Y=p_Y^!\C=\omega_Y[d_Y],\qquad
+ J_Y\boxtimes J_Z=J_{Y\times Z}.
+\end{equation}
+
+For an open immersion $j$, write $j_*$ for $j_+$. Its functor
+$j^!$ is restriction. For a closed immersion $i$, write $i_*=i_+$.
+The functor $i_*$ retains all normal derivatives along the closed
+subspace.
+
+Differential modules on a possibly singular reduced
+closed subspace are defined by the corresponding supported modules
+in smooth embeddings, using Kashiwara's equivalence. Thus the
+open--closed recollement identities apply to unions of diagonals:
+\begin{equation}\label{eq:vol2-open-recollement}
+ i_*i^!N\longrightarrow N\longrightarrow j_*j^!N,
+ \qquad i^!j_*=0,\qquad j^!j_*=\id.
+\end{equation}
+These identities, and the coherent composition laws of the functors,
+are part of the specified coefficient formalism.
+
+The cut product will first restrict to a disjoint locus and then
+apply $j_*$. Its compatibility with a collision rests on the
+following consequence of recollement.
+
+\begin{lemma}\label{lem:vol2-open-basechange}
+For a Cartesian square with $j$ an open immersion,
+\[
+ \begin{tikzcd}
+ U'\arrow[r,"f_U"]\arrow[d,"j'"']&U\arrow[d,"j"]\\
+ Y'\arrow[r,"f"']&Y,
+ \end{tikzcd}
+ \qquad
+ f^!j_*M\simeq j'_*f_U^!M.
+\]
+These equivalences are coherent under composition of $f$.
+\end{lemma}
+
+\begin{proof}
+Let $i:Z\hookrightarrow Y$ and $i':Z'\hookrightarrow Y'$
+be the reduced closed complements. The map $fi'$ factors as $ih$.
+Transitivity and \eqref{eq:vol2-open-recollement} give
+\[
+ i'^!f^!j_*M=h^!i^!j_*M=0.
+\]
+The recollement triangle on $Y'$ therefore identifies $f^!j_*M$
+with $j'_*j'^!f^!j_*M$. On the open set $U'$, transitivity
+identifies its restriction with $f_U^!M$.
+
+For a composite $f$, all such comparisons lie in the fully faithful
+image of $j'_*$. Their restrictions are the given coherent
+composition maps for extraordinary inverse image. Full faithfulness
+lifts those maps and all their higher homotopies uniquely.
+\end{proof}
+
+\section{Ordered words and consecutive cuts}
+\label{sec:vol2-word-coefficients}
+
+An ordered insertion retains its place even when its point coincides
+with another point. The word $(x,y,x)$, with $x\ne y$, is an elementary
+example. Its two consecutive cuts are $(x)\mid(y,x)$ and
+$(x,y)\mid(x)$. Neither separates disjoint sets of points.
+
+The intervening operation cannot be deleted. For the matrix units
+$E_{ij}$ on $\C^2$, which send the $j$th basis vector to the $i$th,
+\[
+ E_{12}E_{21}E_{12}=E_{12},\qquad E_{12}^2=0.
+\]
+We accordingly retain words and allow adjacent positions to collapse
+without identifying a word with its unordered set of values.
+
+Let $[n]=\{1,\ldots,n\}$ with its usual order, and let
+$\operatorname{OrdSurj}_+$ be the category of these nonempty ordered
+sets and monotone surjections. A surjection
+$\alpha:[n]\twoheadrightarrow[m]$ defines
+\[
+ d_\alpha:X^m\longrightarrow X^n,\qquad
+ d_\alpha(x_1,\ldots,x_m)_i=x_{\alpha(i)}.
+\]
+Write $D(\C)$ for complexes of complex vector spaces up to
+quasi-isomorphism, with their stable enhancement. The category of
+\emph{word coefficients} is
+\begin{equation}\label{eq:vol2-word-category}
+ \mathcal W_X=D(\C)\times
+   \varprojlim_{\operatorname{OrdSurj}_+}\operatorname{DMod}(X^n),
+\end{equation}
+where the transition from $n$ to $m$ is $d_\alpha^!$.
+An object $F$ consists of an empty coefficient $F_0$, coefficients
+$F_n$ on $X^n$, equivalences $d_\alpha^!F_n\simeq F_m$, and
+their coherent compatibility under composition. The empty
+coefficient has no collision arrow to a nonempty one.
+
+For $0<p<n$, define the cut open and its inclusion by
+\begin{equation}\label{eq:vol2-cut-open}
+ U_{p,n}=\{(x_1,\ldots,x_n):x_i\ne x_j
+                         \text{ whenever }i\leq p<j\},
+ \qquad j_{p,n}:U_{p,n}\hookrightarrow X^n.
+\end{equation}
+For $p=0,n$, put $U_{p,n}=X^n$ and let $j_{p,n}$ be the identity.
+Define
+\begin{equation}\label{eq:vol2-cut-product}
+ (F\star_{\mathrm{cut}}G)_n
+ =\bigoplus_{p=0}^n j_{p,n,*}j_{p,n}^!
+                  (F_p\boxtimes G_{n-p}).
+\end{equation}
+An empty factor means scalar tensoring. In particular,
+$(F\star_{\mathrm{cut}}G)_0=F_0\otimes_\C G_0$.
+
+\begin{theorem}\label{thm:vol2-cut-product}
+Formula~\eqref{eq:vol2-cut-product} defines an associative monoidal
+product on $\mathcal W_X$. Its unit $K$ has $K_0=\C$ and
+$K_n=0$ for $n>0$. Its associativity maps are the identifications
+of the iterated products with the sums over consecutive partitions
+whose blocks have pairwise disjoint values in $X$.
+\end{theorem}
+
+\begin{proof}
+First pull a summand of \eqref{eq:vol2-cut-product} back along
+$d_\alpha$. If its cut lies inside a fibre of $\alpha$, two
+positions on opposite sides of the cut are forced to have the same
+value. Its inverse-image open is empty, and
+Lemma~\ref{lem:vol2-open-basechange} makes the summand zero.
+Otherwise the cut lies between fibres, including either end, hence
+determines a unique cut $q$ of $[m]$. Its inverse-image open is
+$U_{q,m}$. External-product compatibility, the word equivalences
+of $F,G$, and the same lemma identify the pulled-back summand
+with the $q$th summand of $(F\star_{\mathrm{cut}}G)_m$.
+
+The coherence in the
+lemma supplies the coherence for composite surjections, so the
+product is a word coefficient system.
+
+For three factors, either parenthesization is a direct sum over
+$0\leq p\leq q\leq n$. Each summand starts with the external
+product on the three consecutive blocks. Restrict it to the locus
+where values in different blocks are distinct, then apply open
+direct image. Successive cut conditions impose precisely this
+common open. Base change and composition of open direct images
+identify the two expressions. Empty blocks impose no condition.
+
+The same description holds for any number of factors. All
+associativity diagrams, including the pentagon, restrict to the
+identity of this common expression. The functorial coherences
+therefore make them commute. With $K$, only the empty-block
+summand survives on the appropriate side, giving the unit maps
+and their compatibility.
+\end{proof}
+
+No permutation of the blocks has been introduced. In particular,
+this construction supplies an associative product without a chosen
+symmetry. The empty unit is distinct from a local unit field.
+A local vacuum in a boundary algebra is extra data on nonempty
+configurations, whereas $K_1=0$.
+
+\begin{example}\label{ex:vol2-outer-cut}
+At three positions,
+\[
+ U_{1,3}=X^3\setminus(\Delta_{12}\cup\Delta_{13}),\qquad
+ U_{2,3}=X^3\setminus(\Delta_{13}\cup\Delta_{23}),
+\]
+where $\Delta_{ij}$ is the locus $x_i=x_j$. Their union has
+complement exactly $\Delta_{13}$. If $x_1\ne x_3$ and the first
+cut fails, then $x_1=x_2$, so the second cut succeeds.
+Conversely, $x_1=x_3$ defeats both cuts. Thus every nonadjacent
+equality crossing a cut is required already in the first
+three-position calculation.
+
+On an affine coordinate chart,
+$u=z_1-z_2$ and $v=z_2-z_3$ give the outer equation $u+v=0$.
+The stable and finite complexes of
+Section~\ref{sec:vol2-supported-tensors} compute different
+coefficient constructions on this same arrangement.
+\end{example}
+
+Call $F$ \emph{reduced} if $F_0=0$.
+For reduced objects $F^{(1)},\ldots,F^{(r)}$, every nonzero
+summand of their iterated cut product at $n$ has $r$ nonempty
+consecutive blocks. Hence
+\begin{equation}\label{eq:vol2-positive-word-length}
+ (F^{(1)}\star_{\mathrm{cut}}\cdots
+          \star_{\mathrm{cut}}F^{(r)})_n=0\qquad(r>n).
+\end{equation}
+This bound concerns word length. It makes tensor-length constructions
+finite at a fixed configuration size. It does not bound the order
+of a pole or the normal derivatives in a supported coefficient.
+
+\section{Comparing attachments}
+\label{sec:vol2-coefficient-attachments}
+
+The localization sequence \eqref{eq:vol2-localization-sequence}
+ties regular, meromorphic and supported coefficients together.
+A comparison must respect this attachment in addition to the
+separate objects. Let $r:U\to Z$ and $r':U'\to Z'$ be cochain
+maps of complexes of left $D$-modules, and take $D$-linear Hom
+complexes. For derived maps among $A,L,E$, use the bounded free
+resolutions of Proposition~\ref{prop:vol2-spencer-maps}.
+
+Give each cone the two-step filtration
+$0\subset Z\subset\operatorname{Cone}(r)$, with the convention
+of \eqref{eq:vol2-coefficient-cone}. A degree-zero map preserving
+these filtrations has the form
+\begin{equation}\label{eq:vol2-attachment-map}
+ (\zeta,\xi)\longmapsto(g\zeta+H\xi,f\xi),\qquad
+ |f|=|g|=0,\quad |H|=-1.
+\end{equation}
+Here $f:U\to U'$, $g:Z\to Z'$ and $H:U\to Z'$.
+
+\begin{lemma}\label{lem:vol2-attachment-homotopy}
+The map \eqref{eq:vol2-attachment-map} is closed if and only if
+$f,g$ are cochain maps and
+\begin{equation}\label{eq:vol2-attachment-homotopy}
+ d_{\Hom}H=gr-r'f.
+\end{equation}
+The complex of filtration-preserving cone maps is isomorphic,
+with the shifted-coordinate signs, to the homotopy fibre of
+\[
+ \Hom(U,U')\oplus\Hom(Z,Z')\longrightarrow\Hom(U,Z'),
+ \qquad(f,g)\longmapsto gr-r'f.
+\]
+For closed degree-zero maps, composition is
+\begin{equation}\label{eq:vol2-attachment-composition}
+ (f_2,g_2,H_2)(f_1,g_1,H_1)
+ =(f_2f_1,g_2g_1,g_2H_1+H_2f_1).
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+Insert \eqref{eq:vol2-attachment-map} into the cone differential
+$(\zeta,\xi)\mapsto(d_Z\zeta+r\xi,-d_U\xi)$. The two diagonal entries in the
+chain-map equation say $df=dg=0$. The off-diagonal entry says
+$d_{Z'}H+Hd_U=gr-r'f$, which is
+\eqref{eq:vol2-attachment-homotopy}.
+
+In general degree $j$, put a factor $(-1)^j$ on the $U[1]\to U'[1]$
+entry and a factor $(-1)^j$ on the $U[1]\to Z'$ entry.
+In these coordinates the differential is
+\[
+ (f,g,H)\longmapsto
+ (df,dg,gr-r'f-dH).
+\]
+This is the homotopy-fibre differential, since
+$|H|=j-1$. Finally, multiplication of the degree-zero upper triangular
+block matrices gives \eqref{eq:vol2-attachment-composition} and
+its associativity.
+\end{proof}
+
+Equations~\eqref{eq:vol2-connection-hom} and
+\eqref{eq:vol2-attachment-homotopy} retain two kinds of compatibility:
+with differentiation and with the residue attachment. The cut product
+adds the geometry of ordered insertion. Together they specify
+coefficient objects and comparison complexes for local operations.
+
+An action on them must still give operations in every arity and
+homotopies compatible with substitution and collision restriction.
+The construction of a field theory must, independently, supply its
+fields, differential, interaction and quantum observables.
+It must also give a map from those observables to the geometric actions.
+The next calculation
+begins this theory-dependent part with finite Hamiltonian jets.

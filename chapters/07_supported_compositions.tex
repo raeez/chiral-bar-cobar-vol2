@@ -1,0 +1,2737 @@
+\chapter{Supported compositions and outer collision classes}
+\label{ch:vol2-supported-compositions}
+
+Three quadratic current fields have a connected Gaussian correlation
+with a pole on each pair diagonal. Its triangle of contractions already
+lies beyond a forest calculation. A second operator product must act on
+these poles and on their residue attachments, as well as on the states
+left by the first product. The coefficient modules of
+Chapter~\ref{ch:vol2-coefficients} provide the domains for those maps.
+
+We begin with the finite Wick formula and its triangle current. Mixed
+Green kernels give a second construction, in which each edge has a point
+source and a homotopy must retain contact terms. Ordered collision
+complexes then show which classes disappear when only consecutive
+cuts are kept. The final comparison concerns compositions on supported
+field coefficients, with the lower homotopies fixed.
+
+Unless another base is specified, $k$ is a field of characteristic
+zero. Polynomial states contain finitely many jets; infinite Taylor
+series occur only in the indicated formal variables. Analytic currents
+are taken over $\mathbb C$. Complexes are cohomological, with
+$K[1]^n=K^{n+1}$, and the differential of a homogeneous map is
+$\delta f=d_{\mathrm{out}}f-(-1)^{|f|}fd_{\mathrm{in}}$.
+
+\section{Finite fields and the Gaussian triangle}
+\label{sec:vol2-wick-fields}
+
+Allow the Heisenberg level to be the indeterminate $\lambda$. The
+polynomial representation of \eqref{eq:vol2-fock-currents} is then
+defined over $k[\lambda]$, including at $\lambda=0$:
+\[
+ V=k[\lambda][x_1,x_2,\ldots],\qquad
+ J_{-n}=L_{x_n},\quad J_n=\lambda n\partial_{x_n}\quad(n>0),
+ \qquad J_0=0.
+\]
+Set $J=x_1$, $T=\sum_{n\geq1}n x_{n+1}\partial_{x_n}$ and
+$j_r=T^rJ=r!x_{r+1}$. These are raw, undivided jets.
+Write $J(z)=\sum_{m\in\mathbb Z}J_mz^{-m-1}$.
+For a polynomial $F(j_0,j_1,\ldots)$, define its field $Y(F,z)$
+by replacing $j_r$ with $\partial_z^rJ(z)$ and putting every
+creation operator $J_{-n}$ to the left of every annihilation
+operator $J_n$. The vacuum field is $Y(1,z)=1$.
+
+The commutator of an annihilation part with a creation part is
+the expansion of $\lambda/(z-w)^2$ in nonnegative powers of $w/z$.
+Consequently the contraction between raw jets is
+\begin{equation}\label{eq:vol2-jet-contraction}
+ K_{rs}(z,w)
+ =\partial_z^r\partial_w^s\frac{\lambda}{(z-w)^2}
+ =\frac{\lambda(-1)^r(r+s+1)!}{(z-w)^{r+s+2}}.
+\end{equation}
+It is a meromorphic coefficient. A chosen ordering of the formal
+variables specifies its Laurent expansion.
+
+For polynomial inputs $F_i$ at distinct labels $i=1,\ldots,n$, let
+$j_r^{(i)}$ be independent copies of the jet variables and put
+\[
+ \Gamma_{ij}
+ =\sum_{r,s\geq0}K_{rs}(z_i,z_j)
+       \partial_{j_r^{(i)}}\partial_{j_s^{(j)}}\qquad(i<j).
+\]
+After these operators act, colons mean that the surviving variables
+are replaced by their fields at the stated positions and all resulting
+creation operators are moved to the left, without further contractions.
+
+\begin{proposition}[Polynomial Wick evaluator]
+\label{prop:vol2-wick-evaluator}
+On each state, use the formal recipient
+$V((z_1))\cdots((z_n))$ prescribed by
+$|z_1|>\cdots>|z_n|$. Then
+\begin{equation}\label{eq:vol2-wick-evaluator}
+ Y(F_1,z_1)\cdots Y(F_n,z_n)
+ ={:}\exp\left(\sum_{i<j}\Gamma_{ij}\right)
+                       \prod_iF_i(j^{(i)}){:}.
+\end{equation}
+The exponential is finite on each list of polynomial inputs. Before
+Laurent expansion, every coefficient is meromorphic with a finite pole
+order on each pair diagonal. The formula commutes with differentiation
+in the positions and with insertion of the vacuum. Grouping successive
+inputs gives the same operator product in a common iterated Laurent
+recipient.
+\end{proposition}
+
+\begin{proof}
+Move each annihilation operator past the creation operators to its
+right. Their commutators are scalars, so a term is specified by a set
+of disjoint pairs of field slots belonging to different inputs. Each
+pair contributes \eqref{eq:vol2-jet-contraction}; the unpaired slots
+remain normally ordered. A product of $q$ contraction operators counts
+the same unordered set of pairs $q!$ times, cancelled by the
+exponential coefficient. Repeated derivatives count the choices among
+identical slots. This proves the formula on monomials and hence on
+polynomials.
+
+Each contraction removes two slots. There are only finitely many
+slots, so the exponential terminates, and each scalar coefficient is
+a finite sum of products of the displayed rational functions.
+Differentiating the contraction identity differentiates the corresponding
+slot; the product rule accounts for all choices. A vacuum slot has no
+jet variables, so it has no contractions and contributes the identity.
+Finally, the operators $\Gamma_{ij}$ commute. Grouping the factors
+partitions the same set of pairs into internal and cross pairs, each
+used once. Their exponentials multiply to the single exponential in
+\eqref{eq:vol2-wick-evaluator}. Expanding every rational coefficient in
+one common order proves the last assertion.
+\end{proof}
+
+The meromorphic expression and its Laurent expansions have different
+roles. At a collision with separation $u$, the differential-module
+operation applied to a Laurent test $f(u)$ is
+$\operatorname{pp}_u(f(u)Y(F,u)G)$.
+A pole in the test can detect a regular field term. For example,
+$\operatorname{pp}_u(u^{-1}Y(1,u)G)=u^{-1}G$.
+Thus a vacuum insertion remains visible even though its field has no
+singular part before multiplication by the test.
+
+\begin{proposition}[All current modes]
+\label{prop:vol2-polynomial-current-modes}
+For every polynomial state $F$ and integer $m$,
+\begin{equation}\label{eq:vol2-polynomial-current-modes}
+ [J_m,Y(F,w)]
+ =\lambda\sum_{r\geq0}(m)_{r+1}w^{m-r-1}
+                 Y(\partial_{j_r}F,w),
+ \qquad (m)_{r+1}=m(m-1)\cdots(m-r).
+\end{equation}
+The sum is finite, also for negative $m$.
+\end{proposition}
+
+\begin{proof}
+A single current can contract with only one slot of $F$.
+The contraction with $j_r(w)$ is
+$\lambda(r+1)!(z-w)^{-r-2}$.
+The coefficient of $(z-w)^{r+1}$ in the formal expansion of
+$z^m$ about $w$ is $\binom m{r+1}w^{m-r-1}$, for every integer
+$m$. Taking the residue in $z$ therefore gives the displayed falling
+power. Only the finitely many jet variables occurring in $F$ contribute.
+\end{proof}
+
+Write $\langle-\rangle$ for the Gaussian vacuum functional, defined on a product of fields by
+applying the product to $1\in V$ and then taking its constant
+polynomial coefficient. In \eqref{eq:vol2-wick-evaluator} this retains
+exactly the complete pairings. For fields $A_1,\ldots,A_n$, their
+connected vacuum coefficient is
+\[
+ \kappa_n^{\mathrm{vac}}(A_1,\ldots,A_n)
+ =\sum_{\pi\in\operatorname{Part}([n])}
+   (-1)^{|\pi|-1}(|\pi|-1)!
+   \prod_{B\in\pi}\left\langle\prod_{i\in B}A_i\right\rangle.
+\]
+Products within a block use the inherited order. This definition
+specifies an algebraic vacuum functional; a numerical state or a
+field-theoretic preparation requires its own construction.
+
+Put $Q(z)={:}J(z)^2{:}$ and $K_{ij}=\lambda/(z_i-z_j)^2$.
+
+\begin{proposition}[Connected quadratic fields]
+\label{prop:vol2-wick-cycles}
+For $n\geq3$,
+\begin{equation}\label{eq:vol2-wick-cycles}
+ \kappa_n^{\mathrm{vac}}(Q(z_1),\ldots,Q(z_n))
+ =2^{n-1}\sum_{\sigma\in S_{\{2,\ldots,n\}}}
+   K_{1,\sigma(2)}K_{\sigma(2),\sigma(3)}\cdots K_{\sigma(n),1}.
+\end{equation}
+For $n=2$ it is $2K_{12}^2$. In particular,
+\begin{equation}\label{eq:vol2-wick-triangle}
+ \kappa_3^{\mathrm{vac}}(Q(z_1),Q(z_2),Q(z_3))
+ =\frac{8\lambda^3}{z_{12}^2z_{23}^2z_{13}^2},
+ \qquad z_{ij}=z_i-z_j.
+\end{equation}
+These identities hold as meromorphic coefficients.
+\end{proposition}
+
+\begin{proof}
+The partition formula cancels every disconnected pairing. Indeed,
+for a fixed graph with $c$ connected components, its coefficient is
+the sum of $(-1)^{|\pi|-1}(|\pi|-1)!$ over partitions of those
+components. This sum is $1$ for $c=1$ and $0$ for $c>1$, as follows
+by comparing coefficients in $\log(\exp t)=t$.
+
+Normal ordering forbids a contraction within one input. A connected
+pairing of two slots at each of at least three vertices is therefore
+a cycle. Each unoriented cycle has $2^n$ labelled matchings, since
+each vertex can assign its two slots to its neighbours in two ways.
+Fixing vertex $1$ and permuting the other vertices counts that cycle
+twice, once in each orientation. This gives the factor $2^{n-1}$.
+At two vertices there are two bijections between the slots. At three
+vertices there is one unoriented cycle and eight labelled matchings,
+giving \eqref{eq:vol2-wick-triangle}.
+\end{proof}
+
+This triangle has no interaction vertex. It is already a correlation
+of composite fields in a free theory. Its nonzero coefficient must be
+retained by any comparison covering all polynomial boundary fields.
+A calculation restricted to forests does not contain it.
+
+\subsection{Changing the covariance}
+
+The normal-order convention can itself be changed algebraically.
+Let $B$ be a commutative $\mathbb Q$-algebra and
+$A=B[q_1,\ldots,q_N]$. For symmetric matrices $K,R$ over $B$,
+independent of the variables $q_i$, set
+\[
+ \Gamma_K=\sum_{i,j}K_{ij}\partial_{q_i}\otimes\partial_{q_j},
+ \qquad m_K=m\exp(\Gamma_K),\qquad
+ \Delta_R=\sum_{i,j}R_{ij}\partial_{q_i}\partial_{q_j},
+ \qquad \alpha_R=\exp(\Delta_R/2),
+\]
+where $m$ is ordinary multiplication. All exponentials terminate on
+polynomials. The variables may include separate copies at several
+positions; the output operator then includes the cross derivatives
+between those copies.
+
+\begin{proposition}\label{prop:vol2-covariance-intertwiner}
+For another symmetric constant matrix $S$,
+\[
+ \alpha_Rm_K=m_{K+R}(\alpha_R\otimes\alpha_R),
+ \qquad \alpha_R\alpha_S=\alpha_{R+S}.
+\]
+\end{proposition}
+
+\begin{proof}
+The second-order product rule is
+\[
+ \tfrac12\Delta_Rm
+ =m\bigl(\tfrac12\Delta_R\otimes1+
+          1\otimes\tfrac12\Delta_R+\Gamma_R\bigr).
+\]
+All operators on the right commute. Exponentiating and composing
+with $\exp(\Gamma_K)$ proves the first formula. The second follows
+from $\Delta_R+\Delta_S=\Delta_{R+S}$.
+\end{proof}
+
+An intertwiner of these products does not specify a change of the
+vacuum functional. Comparing states requires the functional as well
+as the multiplication.
+
+\section{Residue attachments and closed coincidences}
+\label{sec:vol2-triangle-attachments}
+
+The triangle has three dependent differences. Nevertheless its
+meromorphic coefficient admits an explicit current extension using
+only products in independent normal coordinates.
+Work over $\mathbb C$, put $u=z_{12}$ and $v=z_{23}$, and use
+the distributions $P_j$ of Proposition~\ref{prop:vol2-residue-current}.
+Write $R_j=\bar\partial P_j$. Thus
+\[
+ P_j=\frac{(-1)^{j-1}}{(j-1)!}\partial_u^{j-1}P_1,
+ \qquad
+ R_j=\frac{\pi(-1)^{j-1}}{(j-1)!}
+              \partial_u^{j-1}\delta_0\,d\bar u.
+\]
+
+The rational identity
+\begin{equation}\label{eq:vol2-triangle-fractions}
+ \frac1{u^2v^2(u+v)^2}
+ =\frac1{v^4u^2}+\frac1{v^4(u+v)^2}
+   -\frac2{v^5u}+\frac2{v^5(u+v)}
+\end{equation}
+follows by multiplying by the common denominator. It defines the
+following extension of the triangle coefficient:
+\begin{equation}\label{eq:vol2-triangle-current}
+ \mathcal P_\triangle
+ =P_4(v)\bigl(P_2(u)+P_2(u+v)\bigr)
+       -2P_5(v)\bigl(P_1(u)-P_1(u+v)\bigr).
+\end{equation}
+Each summand is an external product in either $(u,v)$ or $(u+v,v)$.
+Both pairs are linear coordinates, so every product in this formula
+is defined.
+
+Every meromorphic Wick coefficient also has a uniform principal-value
+realization. For $F=G/Q$ on a smooth complex chart, it is
+$[F]=\left.|Q|^{2s}G/Q\right|_{s=0}$, defined by analytic
+continuation. This assignment is linear, independent of the
+holomorphic presentation, and compatible with holomorphic derivatives;
+see Andersson--Wulcan (2018)~\cite[\S2, Example~4.6, Corollary~4.26]{AnderssonWulcan2018}.
+It applies to the finite rational coefficients of
+Proposition~\ref{prop:vol2-wick-evaluator}, including cycles and
+repeated edges. In independent coordinates it agrees with the
+external products above, so $\mathcal P_\triangle$ is the
+principal value of \eqref{eq:vol2-triangle-fractions}.
+Restriction off the poles makes the assignment injective.
+On its image, $[F]\diamond[G]=[FG]$ transports associative
+meromorphic multiplication. This specified product does not extend
+to arbitrary supported currents.
+
+\begin{proposition}\label{prop:vol2-triangle-current}
+The current $8\lambda^3\mathcal P_\triangle$ extends
+\eqref{eq:vol2-wick-triangle}. Its complete Dolbeault attachment is
+\begin{align}\label{eq:vol2-triangle-attachment}
+ \bar\partial\mathcal P_\triangle
+ &=R_4(v)\bigl(P_2(u)+P_2(u+v)\bigr)
+   +P_4(v)\bigl(R_2(u)+R_2(u+v)\bigr)\notag\\
+ &\quad-2R_5(v)\bigl(P_1(u)-P_1(u+v)\bigr)
+   -2P_5(v)\bigl(R_1(u)-R_1(u+v)\bigr).
+\end{align}
+Holomorphic differentiation gives the attachments of its jets.
+\end{proposition}
+
+\begin{proof}
+Away from the three divisors, the principal values are their
+ordinary rational functions, so \eqref{eq:vol2-triangle-fractions}
+proves the extension assertion. The distributional differential
+satisfies the product rule on external products. Apply it separately
+in the two coordinate systems to obtain all eight terms in
+\eqref{eq:vol2-triangle-attachment}. Holomorphic derivatives commute
+with $\bar\partial$ on distributions.
+\end{proof}
+
+The displayed extension fixes its contact terms. The rational
+identity by itself would not exclude adding a current supported on
+the collision. Nor does this construction define the ordinary product
+of arbitrary singular distributions. The localization and contact
+objects remain separate, as required by
+Section~\ref{sec:vol2-supported-tensors}.
+
+\subsection{The finite Koszul complex of a graph}
+
+A closed coincidence gives a different complex. Let $\Gamma$ be
+a finite oriented multigraph with vertex set $I$ and edge set $E$;
+loops and repeated edges are allowed. Put
+\begin{equation}\label{eq:vol2-graph-koszul}
+ S=k[z_i:i\in I],\qquad
+ K_\Gamma=S\otimes\Lambda(e_a:a\in E),\qquad
+ |e_a|=-1,\quad de_{(i,j)}=z_i-z_j.
+\end{equation}
+No difference is inverted. A loop has zero differential.
+
+Choose a spanning forest $T$ and one root in each component.
+For each nonforest edge $a$, express its difference as a signed
+sum along the unique forest path and set
+\[
+ c_a=e_a-\sum_{t\in\operatorname{path}(a)}\epsilon_t e_t.
+\]
+For a loop the sum is empty. The vectors $c_a$ form a basis of the
+cycle space of the graph and satisfy $dc_a=0$.
+Root coordinates and the forest differences $w_t$ form a linear
+coordinate system: removing a leaf successively reconstructs every
+vertex coordinate. With $B=k[z_{\mathrm{roots}}]$, the complex is
+therefore
+\[
+ K_\Gamma=B[w_t:t\in T]\otimes\Lambda(e_t:t\in T)
+                          \otimes\Lambda(c_a:a\notin T),
+ \qquad d=\sum_tw_t\partial_{e_t}.
+\]
+Let $p$ set all $w_t,e_t$ to zero, and let $i$ include the resulting
+root-and-cycle algebra.
+
+\begin{proposition}[Forest contraction]
+\label{prop:vol2-graph-contraction}
+Let $N$ count total polynomial degree in the $w_t$ plus exterior
+degree in the $e_t$, excluding the $c_a$. Define
+\[
+ H=\frac1N\sum_te_t\partial_{w_t}\quad(N>0),
+ \qquad H=0\quad(N=0).
+\]
+Then
+\[
+ dH+Hd=1-ip,\qquad H^2=Hi=pH=0,
+ \qquad H^*(K_\Gamma)=B\otimes\Lambda(c_a:a\notin T).
+\]
+The homotopy and the chosen section are $B$-linear. The augmentation
+$p$ is $S$-linear for the quotient action on its target.
+\end{proposition}
+
+\begin{proof}
+The graded commutator of $\sum_tw_t\partial_{e_t}$ and
+$\sum_te_t\partial_{w_t}$ is the Euler operator in exactly the
+$w_t,e_t$ variables. Both preserve $N$. Dividing by $N$ proves the
+contraction identity on positive degree; on degree zero $ip$ is the
+identity. The numerator of $H$ squares to zero because the exterior
+multiplications anticommute and the ordinary derivatives commute.
+Evaluation gives $pH=0$, and $Hi=0$ follows from the absence of
+forest variables in the image of $i$. The target has zero
+differential, proving the cohomology formula.
+
+The formulas leave root coordinates unchanged. In contrast,
+$H(w_t)=e_t$ whereas $w_tH(1)=0$, so $H$ is generally not
+$S$-linear. The augmentation respects $S$ because setting all
+forest differences to zero is precisely its quotient action.
+\end{proof}
+
+For the triangle the surviving generator is
+$e_{13}-e_{12}-e_{23}$. Identifying the endpoints of the path
+$12,23$ instead gives the closed generator $e_{12}+e_{23}$.
+Keeping the original edge generators makes vertex identifications
+maps of Koszul complexes. The choice of spanning forest calculates
+their cohomology without removing those cycles.
+
+The stable support complex of
+Lemma~\ref{lem:vol2-redundant-support} is unchanged by a redundant
+support equation. The finite Koszul complex retains its excess
+cycle. Neither construction identifies that cycle with the
+meromorphic triangle current. A graph loop, for example, gives a
+closed exterior generator in \eqref{eq:vol2-graph-koszul}, but no
+rational function $1/(z_i-z_i)$.
+
+\section{Mixed kernels and their forest homotopies}
+\label{sec:vol2-mixed-forest-homotopies}
+
+To compare a mixed propagator with a boundary coefficient, its
+point source must remain in the differential. Work on
+$\mathbb R_t\times\mathbb C_z$, where $z=x+iy$, with orientation
+$dt\wedge dx\wedge dy$. Partial forms are generated by $dt,d\bar z$,
+and
+\[
+ D=dt\,\partial_t+d\bar z\,\partial_{\bar z},\qquad
+ \partial_{\bar z}=\tfrac12(\partial_x+i\partial_y).
+\]
+Distribution coefficients are measured against $dt\,dx\,dy$.
+Put $r=(t^2+|z|^2)^{1/2}$ and define
+\begin{equation}\label{eq:vol2-mixed-axial-kernels}
+ P=\frac{t\,d\bar z-2\bar z\,dt}{4\pi r^3},\qquad
+ A=-\frac{\delta(t)\,dt}{\pi z},\qquad
+ \Delta=\delta^{(3)}(t,z)\,dt\wedge d\bar z.
+\end{equation}
+The coefficients of $P$ are locally integrable. The coefficient of
+$A$ is the external product of the one-dimensional delta and the
+locally integrable Cauchy kernel.
+
+\begin{lemma}\label{lem:vol2-kernel-source}
+One has $DP=DA=\Delta$ as currents.
+\end{lemma}
+
+\begin{proof}
+The coefficient of $dt\wedge d\bar z$ in $DP$ is
+\[
+ \frac1{4\pi}\left(\partial_t\frac{t}{r^3}
+               +2\partial_{\bar z}\frac{\bar z}{r^3}\right).
+\]
+The imaginary angular terms cancel. The remainder is $1/(4\pi)$
+times the divergence of $(t,x,y)/r^3$, whose flux through a sphere
+is $4\pi$. It is therefore $\delta^{(3)}$ distributionally.
+For $A$, use $\partial_{\bar z}(1/(\pi z))=\delta^{(2)}(z)$.
+The minus sign in $A$ cancels the sign from moving $d\bar z$
+past $dt$.
+\end{proof}
+
+Let $H(t)$ be the Heaviside distribution. Its value at zero is
+irrelevant to the current. Define
+\begin{equation}\label{eq:vol2-kernel-primitive}
+ S(t,z)=\frac{H(t)-\tfrac12-\tfrac{t}{2r}}{\pi z}.
+\end{equation}
+
+\begin{proposition}\label{prop:vol2-kernel-primitive}
+The function $S$ is locally integrable and satisfies
+\[
+ DS=P-A,\qquad
+ \int_{\mathbb R}P=\int_{\mathbb R}A=-\frac1{\pi z}.
+\]
+At fixed $z$, its two tails are $O(|\bar z|/t^2)$.
+\end{proposition}
+
+\begin{proof}
+On $t>0$ and $t<0$ respectively,
+\[
+ S_+=\frac{1-t/r}{2\pi z},\qquad
+ S_-=\frac{-1-t/r}{2\pi z}.
+\]
+Both have derivatives
+$\partial_tS_\pm=-\bar z/(2\pi r^3)$ and
+$\partial_{\bar z}S_\pm=t/(4\pi r^3)$.
+Their jump across $t=0$ is $1/(\pi z)$, supplying the
+$\delta(t)/(\pi z)$ term in $P-A$. For fixed $t\ne0$ the
+numerator vanishes at $z=0$, so there is no further axial delta.
+The function is homogeneous of degree $-1$ with bounded angular
+factor near the origin. Its first derivatives have degree $-2$.
+A distribution supported only at the origin is a finite sum of
+delta derivatives, whose degrees are at most $-3$. Thus no
+additional point-supported term occurs, and the identity holds
+on the whole space.
+
+Integration of the $dt$ coefficient gives
+\[
+ -\frac{\bar z}{2\pi}\int_{-\infty}^{\infty}
+          (t^2+|z|^2)^{-3/2}\,dt=-\frac1{\pi z}.
+\]
+Its absolute integral is locally integrable in $z$, which justifies
+the distributional pushforward. The axial integral has the same
+value. Expanding $t/r$ at either end gives the tail estimate.
+\end{proof}
+
+Multiplication by $-\pi$ converts this pushforward to the Cauchy
+coefficient $1/z$, whose contour residue is one under
+$(2\pi i)^{-1}\oint dz$. A physical coupling or pairing must
+include that normalization. Every fixed finite holomorphic or
+normal derivative commutes with the current identity.
+
+\subsection{Cutoffs and boundary conditions}
+
+For a smooth cutoff $\chi$ equal to one near the origin,
+\begin{equation}\label{eq:vol2-kernel-cutoff}
+ D(\chi P)=\Delta+D\chi\wedge P,\qquad
+ D(\chi S)=\chi(P-A)+D\chi\,S.
+\end{equation}
+The annular terms belong to the supported comparison. If a
+composition needs a proper projection, choose cutoffs giving that
+property and retain these terms in its localization complex.
+
+A smooth regulator follows from
+$D^*=-\partial_t\iota_{dt}-4\partial_z\iota_{d\bar z}$.
+For $0<\varepsilon<L$, set
+\[
+ K_\ell=(4\pi\ell)^{-3/2}e^{-r^2/(4\ell)},\qquad
+ P_{\varepsilon,L}
+ =D^*\left(\int_\varepsilon^L K_\ell\,d\ell
+                           \;dt\wedge d\bar z\right).
+\]
+Since $DD^*+D^*D$ is the negative Euclidean Laplacian,
+the heat equation gives
+\[
+ DP_{\varepsilon,L}=(K_\varepsilon-K_L)\,dt\wedge d\bar z.
+\]
+Both heat endpoints occur in its differential.
+
+On a half-line the relative de Rham complex has Dirichlet
+zero-forms and Neumann one-forms. Writing
+$G_\ell(a)=(4\pi\ell)^{-1/2}e^{-a^2/(4\ell)}$, their kernels are
+\[
+ K^0_\ell(t,s)=G_\ell(t-s)-G_\ell(t+s),\qquad
+ K^1_\ell(t,s)=G_\ell(t-s)+G_\ell(t+s).
+\]
+Differentiation gives $\partial_tK^0_\ell=-\partial_sK^1_\ell$.
+Integration by parts, using the relative boundary value, proves
+cochain compatibility. Tensoring with the tangential Dolbeault
+complex preserves the identity. The polarization of a particular
+field theory determines whether its normal complex is relative
+or absolute.
+
+\subsection{Forest cubes and contact terms}
+
+Let $F$ be an oriented forest on a finite labelled set. For
+$e=(i,j)$ put $t_e=t_i-t_j$ and $z_e=z_i-z_j$.
+Choose one root per connected component. The root coordinates
+and edge differences are a linear coordinate system with
+determinant $\pm1$, by successive leaf deletion. Hence the
+pullbacks $P_e,A_e,S_e,\Delta_e$ for different forest edges
+have independent normal variables. Their ordered products,
+including any fixed finite normal derivatives, are external
+products of distributions in these coordinates.
+
+\begin{theorem}\label{thm:vol2-forest-cubes}
+On every labelled forest, the mixed and axial decorations are
+joined by homotopy cubes compatible with contact contraction,
+spectators, and products or graftings that remain forests.
+This includes the edge $13$ with spectator $2$ and the crossed
+pair of edges $13,24$.
+\end{theorem}
+
+\begin{proof}
+Introduce $s_e\in[0,1]$ for each edge, with parameter forms
+written before spatial forms, and set
+\[
+ \mathbb P_e=A_e+s_e(P_e-A_e)+ds_e\,S_e.
+\]
+Then $(D+d_s)\mathbb P_e=\Delta_e$: the term
+$ds_e(P_e-A_e)$ cancels $-ds_eDS_e$.
+Independence of the edge variables defines every forest product.
+Its differential is the signed sum replacing one edge by its
+contact current. At $s_e=0$ or $1$ the edge becomes $A_e$ or
+$P_e$. Restrictions to two faces commute, giving the higher
+face identities. The diagonal interval varies all edges together.
+
+Contact contraction identifies the two endpoints of an edge;
+the remaining differences are coordinates of the contracted
+forest. The distributional equations persist under finite normal
+differentiation and retain its contact jets. Adding an isolated
+vertex adds a spectator, and the empty product is the coefficient
+unit. Edge reorderings have the usual form signs.
+\end{proof}
+
+For two edges define $H_{e,f}=S_eP_f-A_eS_f$. Since
+$|P|=|A|=1$ and $|S|=0$, the product rule gives
+\begin{equation}\label{eq:vol2-two-edge-contact}
+ P_eP_f-A_eA_f
+ =DH_{e,f}+\Delta_eS_f-S_e\Delta_f.
+\end{equation}
+The last two terms express the common point sources of the
+kernels. They remain even though $P-A$ is exact.
+
+At three positions put $z_{12}=u$, $z_{23}=v$, $z_{13}=u+v$.
+The axial products have the same time delta and oriented time
+two-form. Their scalar coefficients satisfy
+\[
+ \frac1{uv}-\frac1{u(u+v)}-\frac1{v(u+v)}=0.
+\]
+Each term is locally integrable on $\mathbb C^2$ in its
+independent linear coordinates. Thus the rational identity is
+also a distributional identity. Define
+$\mathcal K=H_{12,23}-H_{12,13}-H_{13,23}$. Applying
+\eqref{eq:vol2-two-edge-contact} to the three pairs gives
+\begin{align}\label{eq:vol2-three-channel-current}
+ P_{12}P_{23}-P_{12}P_{13}-P_{13}P_{23}
+ &=D\mathcal K+\mathcal C,\notag\\
+ \mathcal C
+ &=\Delta_{12}S_{23}-S_{12}\Delta_{23}
+   -\Delta_{12}S_{13}+S_{12}\Delta_{13}\notag\\
+ &\quad-\Delta_{13}S_{23}+S_{13}\Delta_{23}.
+\end{align}
+Every product here has independent normal variables.
+
+These are scalar coefficient currents on the mixed space.
+Decorating them by fields requires a map preserving their
+contact terms, translations, partial vacua and supported
+attachments. A cycle has dependent edge differences, so its
+mixed current product needs an additional extension. The
+meromorphic triangle of \eqref{eq:vol2-triangle-current} supplies
+a specified boundary coefficient, without identifying it with
+such a mixed product.
+
+\section{Classes discarded by consecutive cuts}
+\label{sec:vol2-discarded-collisions}
+
+Consecutive cuts preserve an order on the labels. A collision can
+join labels that are separated in that order. To measure this
+difference, we compare two coefficient complexes before introducing
+a map from coefficients to fields.
+
+Let $R_n=k[z_1,\ldots,z_n]$ and
+$L_n=R_n[(\prod_{i<j}z_{ij})^{-1}]$.
+An ordered partition $P=(B_1|\cdots|B_r)$ has coefficient module
+\begin{equation}\label{eq:vol2-partition-coefficient}
+ M_P=R_n[z_{ij}^{-1}:i,j\text{ lie in different blocks of }P]
+       \subset L_n.
+\end{equation}
+Equal subrings attached to different ordered partitions remain
+different summands. Tensor every term with the common right
+density $\omega_n=\omega_{\mathbb A^n}$; for a constant density
+$\nu$, $(f\nu)\partial_i=-(\partial_i f)\nu$.
+We suppress this common factor in the coordinate formulas.
+
+Write $e_P=\xi_{B_1}\cdots\xi_{B_r}$, where
+$|\xi_B|=1-|B|$. The full complex $C_n^{\mathrm{all}}$ has
+term $M_Pe_P$ in degree $r-n$. Its differential splits a block
+$B_i=A\sqcup C$ into two nonempty ordered parts, with coefficient
+the localization inclusion and sign
+\begin{equation}\label{eq:vol2-partition-sign}
+ (-1)^{\sum_{j<i}(1-|B_j|)+|A|+1}\epsilon(A,C).
+\end{equation}
+Here $\epsilon(A,C)$ is the sign of the concatenated increasing
+lists of $A,C$ relative to the increasing list of $B_i$.
+A partition is \emph{consecutive} when its blocks are intervals
+in increasing order. Projection to those summands gives the
+consecutive-cut complex $C_n^{\mathrm{cut}}$. Its kernel is
+\begin{equation}\label{eq:vol2-discarded-complex}
+ F_n^{r-n}=\bigoplus_{\substack{P\text{ has }r\text{ blocks}\\
+                                  P\text{ is not consecutive}}}M_Pe_P.
+\end{equation}
+There is no one-block term in $F_n$.
+
+\begin{lemma}\label{lem:vol2-partition-complex}
+The discarded summands form a subcomplex and $d^2=0$.
+After extending every coefficient to $L_n$, the full complex is
+the oriented cellular chain complex of the permutahedron of
+dimension $n-1$, with chain degree negated. For $n\geq3$, the
+map from discarded two-block terms to three-block terms is
+injective, both after localization and on the actual modules.
+\end{lemma}
+
+\begin{proof}
+If a refinement is consecutive, merging its two adjacent new
+blocks recovers a consecutive partition. Thus a nonconsecutive
+partition has only nonconsecutive refinements. Two splits in
+different blocks cancel by the odd Leibniz sign. Two successive
+splits of the same block have the same density permutation and
+opposite cobar signs. Hence $d^2=0$.
+
+The permutahedron is the convex hull of the permutations of
+$(1,\ldots,n)$. A face is specified by an ordered partition;
+its dimension is $n-r$, and splitting one block gives a boundary
+face. Orient the block factor by the increasing labels, then
+orient the product in block order. Its boundary orientation is
+exactly \eqref{eq:vol2-partition-sign}. This identifies the
+fully localized incidence complex.
+
+The permutahedron is a ball. In its cellular complex the kernel
+on facets is the image of the unique top cell, spanned by
+$d\xi_{[n]}$. Every facet has coefficient $1$ or $-1$ in that
+boundary. The discarded facet space omits all $n-1$ consecutive
+facets, so it contains no nonzero multiple of the top boundary.
+This proves injectivity over $k$, hence over $L_n$. Each actual
+coefficient module embeds in $L_n$, giving the last assertion.
+\end{proof}
+
+\subsection{The outer principal-part module}
+
+Put $u=z_{1n}$. Retain in $d\xi_{[n]}$ only those facets which
+keep $1,n$ together:
+\begin{equation}\label{eq:vol2-outer-numerator}
+ T_n=\sum_{\substack{A\sqcup C=[n],\ A,C\ne\varnothing\\
+                        1,n\text{ lie in the same part}}}
+          (-1)^{|A|+1}\epsilon(A,C)\xi_A\xi_C,
+ \qquad b_n=dT_n.
+\end{equation}
+These facets are all discarded. The degrees of $T_n$ and $b_n$
+are $2-n$ and $3-n$, respectively.
+
+\begin{theorem}[Outer classes in every arity]
+\label{thm:vol2-outer-injection}
+For every $n\geq3$, the formula
+\begin{equation}\label{eq:vol2-outer-injection}
+ \omega_n\otimes_{R_n}(R_n[u^{-1}]/R_n)
+       \lhook\joinrel\longrightarrow H^{3-n}(F_n),
+ \qquad [f]\longmapsto[fb_n]
+\end{equation}
+defines an injective map of right differential modules.
+Thus no arity-independent lower bound exists for the degrees
+of nonzero cohomology of the discarded complexes.
+\end{theorem}
+
+\begin{proof}
+Consider a three-block partition which still keeps $1,n$
+together. Its two facet coarsenings both occur in $T_n$, so
+their contributions to $dT_n$ cancel. Every nonzero coordinate
+of $b_n$ therefore separates $1,n$ and has a coefficient module
+in which $u$ is invertible. Consequently $fb_n$ is an allowed
+cochain for every $f\in R_n[u^{-1}]$, and it is closed.
+If $f\in R_n$, the primitive $fT_n$ is allowed, so the formula
+factors through principal parts.
+
+Conversely, suppose $fb_n=dv$ for an actual discarded facet
+cochain $v$. Over $L_n$, the injectivity in
+Lemma~\ref{lem:vol2-partition-complex} forces $v=fT_n$.
+Choose a facet $P$ occurring in $T_n$. Its module does not
+invert $u$, and unique factorization gives
+$M_P\cap R_n[u^{-1}]=R_n$. The corresponding coordinate of
+$v$ is $\pm f$, so $f$ is regular. Such a facet exists for
+$n\geq3$, and the same injectivity shows $b_n\ne0$.
+
+The coefficients of $b_n$ are constants. Differentiating
+$fb_n$ therefore differentiates only $f$. Restoring the common
+right density proves differential-module linearity. Every normal
+derivative of the simple principal part is retained.
+\end{proof}
+
+For four positions the numerator is
+\begin{equation}\label{eq:vol2-outer-four-numerator}
+ \begin{split}
+ T_4={}&-\xi_{124}\xi_3+\xi_{134}\xi_2-\xi_{14}\xi_{23}\\
+       &-\xi_2\xi_{134}-\xi_{23}\xi_{14}+\xi_3\xi_{124}.
+ \end{split}
+\end{equation}
+Thus $z_{14}^{-1}dT_4$ is a nonzero class in $H^{-1}(F_4)$.
+Its fully localized primitive $z_{14}^{-1}T_4$ has a forbidden
+pole in each displayed facet coefficient. The obstruction is
+precisely that failure to lie in the specified module.
+
+The relation with the cut class also fixes a sign and a degree.
+The degreewise exact sequence is
+\[
+ 0\longrightarrow F_n\longrightarrow C_n^{\mathrm{all}}
+                  \longrightarrow C_n^{\mathrm{cut}}\longrightarrow0.
+\]
+Its cut top boundary is
+\[
+ U_n=d_{\mathrm{cut}}\xi_{[n]}
+    =\sum_{p=1}^{n-1}(-1)^{p+1}\xi_{[1,p]}\xi_{[p+1,n]}.
+\]
+Every term separates $1,n$, so $fU_n$ is an allowed cut
+cocycle for every $f\in R_n[u^{-1}]$.
+
+\begin{proposition}\label{prop:vol2-outer-connecting}
+The connecting homomorphism sends
+\[
+ H^{2-n}(C_n^{\mathrm{cut}})\longrightarrow H^{3-n}(F_n),
+ \qquad [fU_n]\longmapsto-[fb_n].
+\]
+\end{proposition}
+
+\begin{proof}
+Write $d\xi_{[n]}=U_n+T_n+V_n$, where $V_n$ consists of
+discarded facets separating $1,n$. Lift $fU_n$ to the same
+cochain in the full complex. Its differential is
+$d(fU_n)=-fb_n-d(fV_n)$. The latter term is a legal boundary
+in $F_n$, since every facet in $V_n$ inverts $u$.
+\end{proof}
+
+This comparison concerns restriction of all-subset cobar
+coefficients to a chosen order and cobar after restriction to
+cuts. Its kernel does not refute bar--cobar duality on either
+of its stated categories. A map from these coefficient classes
+to a field-action complex remains additional data.
+
+\subsection{Global cohomology at four positions}
+
+The full four-position permutahedron has $14$ facets, $36$
+edges and $24$ vertices. Removing consecutive partitions removes
+three facets, three edges and the ascending vertex. Hence
+\begin{equation}\label{eq:vol2-four-discarded-matrices}
+ F_4:\qquad \bigoplus_{11}M_P\xrightarrow{A}
+                 \bigoplus_{33}M_Q\xrightarrow{B}L^{23},
+ \qquad L=L_4,
+\end{equation}
+in degrees $-2,-1,0$. The fully localized ranks are $11,22$.
+For the second rank, the edges connect all remaining vertices:
+adjacent swaps increasing inversion number connect every
+nonascending permutation to the reverse permutation without
+passing through the removed vertex. Thus over $L$,
+$\ker B=\operatorname{im}A$ and $\ker A=0$.
+
+For an unordered pair $h$, write
+\[
+ L_h=R_4[z_{ab}^{-1}:\{a,b\}\ne h],\qquad W_h=L/L_h.
+\]
+A three-block term has a unique unsplit pair $h$ and coefficient
+$L_h$. Let $I_h$ be the discarded facets keeping $h$ together
+and $J_h$ the three-block terms keeping it together. Denote the
+corresponding submatrix of $A$ by $K_h$.
+
+\begin{lemma}\label{lem:vol2-four-pair-ranks}
+The sizes and ranks are
+\[
+ \begin{array}{c|rrrrrr}
+ h&12&13&14&23&24&34\\\hline
+ |I_h|&4&5&6&4&5&4\\
+ |J_h|&5&6&6&5&6&5\\
+ \operatorname{rank}K_h&4&5&5&4&5&4.
+ \end{array}
+\]
+Only $K_{14}$ has a kernel. In the order of the six terms in
+\eqref{eq:vol2-outer-four-numerator}, that kernel is generated by
+$(-1,1,-1,-1,-1,1)$.
+\end{lemma}
+
+\begin{proof}
+Use \eqref{eq:vol2-partition-sign}. In the displayed order,
+\[
+ K_{14}=\begin{pmatrix}
+ 1&0&-1&0&0&0\\0&1&1&0&0&0\\-1&0&0&1&0&0\\
+ 0&0&0&-1&1&0\\0&-1&0&0&0&1\\0&0&0&0&-1&-1
+ \end{pmatrix}.
+\]
+Its equations determine every coordinate from the first. For
+the other pairs, order the partitions lexicographically by
+their increasing block lists. The rows for $12,23,34$ give
+respectively
+\[
+ \begin{array}{c|ccccc}
+ 12&-v_1&-v_2&v_2+v_3&v_1-v_4&-v_3+v_4\\
+ 23&v_1&-v_2&v_2-v_3&-v_1+v_4&v_3-v_4\\
+ 34&v_1&v_2&-v_2+v_3&-v_1-v_4&-v_3+v_4.
+ \end{array}
+\]
+Each zero system forces all four coordinates to vanish. For
+$13$ the rows are
+$-v_1,v_1-v_2,-v_3,v_3+v_4,v_2+v_5,-v_4-v_5$;
+for $24$ they are
+$v_1,v_2,-v_1-v_4,v_3+v_4,-v_2+v_5,-v_3-v_5$.
+These force all five coordinates to vanish. Every elimination
+uses only $1,-1$, so the same conclusions hold with coefficients
+in $W_h$.
+\end{proof}
+
+\begin{theorem}\label{thm:vol2-four-outer-cohomology}
+Globally on the standard affine chart,
+\[
+ H^{-2}(F_4)=0,\qquad
+ H^{-1}(F_4)=\omega_4\otimes_{R_4}
+                    (R_4[z_{14}^{-1}]/R_4).
+\]
+The second identification sends $[f]$ to $[fdT_4]$.
+\end{theorem}
+
+\begin{proof}
+The first assertion follows from facet injectivity. Suppress
+the density for the second. A degree-minus-one cocycle $w$ has
+a unique fully localized primitive $v\in L^{11}$, with $Av=w$.
+Requiring the $J_h$ coordinates of $w$ to lie in $L_h$ gives
+\[
+ K_h(v_i\bmod L_h)_{i\in I_h}=0.
+\]
+For $h\ne14$, Lemma~\ref{lem:vol2-four-pair-ranks} forces each
+indicated coordinate of $v$ to be regular along $h$. Unique
+factorization gives, inside $L$,
+\[
+ M_P=\bigcap_{h\text{ internal to }P}L_h.
+\]
+Putting $u=z_{14}$, we obtain $v_P\in M_P[u^{-1}]$.
+If $P$ separates $1,4$, this is already $M_P$, and its
+coordinate is a legal boundary. The six remaining principal
+parts are proportional to the coefficients of $T_4$. Thus
+$H^{-1}$ is the intersection, inside $W_{14}$, of the images
+of $M_P[u^{-1}]/M_P$ for these six facets.
+
+To compute that intersection at the other collision divisors
+as well, use
+\[
+ u=z_{14},\quad a=z_{12},\quad b=z_{23},\quad
+ c=a+b=z_{13},\quad y=z_4,
+ \qquad D=k[y,a,b].
+\]
+The remaining differences are $z_{24}=u-a$, $z_{34}=u-c$.
+Finite negative Laurent expansion at $u=0$ identifies
+\[
+ W_{14}=\bigoplus_{j\geq1}D[(abc)^{-1}]u^{-j}.
+\]
+Indeed, expand $(u-a)^{-1},(u-c)^{-1}$ only to the finite
+order required by the pole in $u$. A zero negative part means
+that the numerator is divisible by that power of $u$, hence
+the original fraction belongs to $L_{14}$.
+
+The three distinct facet images, from $124|3$, $134|2$ and
+$14|23$, are respectively
+\[
+ \bigoplus_{j\geq1}D[(bc)^{-1}]u^{-j},\quad
+ \bigoplus_{j\geq1}D[(ab)^{-1}]u^{-j},\quad
+ \bigoplus_{j\geq1}D[(ac)^{-1}]u^{-j}.
+\]
+The reversed facets repeat them. For example, $M_{124|3}$
+inverts $b,c,u-c$, whose negative Laurent coefficients invert
+only $b,c$; all such coefficients occur. The irreducibles
+$a,b,c=a+b$ are pairwise nonassociated in $D$, so the
+intersection of the three coefficient rings is $D$.
+The principal-part intersection is therefore
+$\bigoplus_{j\geq1}Du^{-j}=R_4[u^{-1}]/R_4$.
+The identification is $[f]\mapsto[fdT_4]$, already proved
+differential-linear in Theorem~\ref{thm:vol2-outer-injection}.
+\end{proof}
+
+Degree zero has a finite global presentation. Let $G$ be the
+permutahedron graph on $S_4\setminus\{1234\}$ and choose
+$\sigma_0=4321$. Label each edge by its swapped pair $h$ and
+define
+\[
+ \mathcal G_{R_4}=
+ \frac{\displaystyle\bigoplus_{\sigma\ne\sigma_0}L e_\sigma}
+      {\displaystyle\sum_{\{\sigma,\tau\}\in E(G)}
+            L_{h(\sigma,\tau)}(e_\sigma-e_\tau)},
+ \qquad e_{\sigma_0}=0.
+\]
+Then
+\begin{equation}\label{eq:vol2-four-H0}
+ H^0(F_4)=\omega_4\otimes_{R_4}(L\oplus\mathcal G_{R_4}).
+\end{equation}
+To see this, orient the singleton density basis so that $B$
+is the graph incidence map. Its image lies in the kernel of
+the sum of vertex coordinates. Inclusion at $\sigma_0$ splits
+that sum. In its kernel, the basis
+$e_\sigma-e_{\sigma_0}$ gives exactly the displayed relations.
+All basis changes are constant and preserve the differential
+module structure. This presents the global module by $22$
+generator modules and $33$ relation modules; it does not
+decompose its extensions across all diagonal intersections.
+
+\subsection{The crossed four-position chart}
+
+On the open set separating $\{1,3\}$ from $\{2,4\}$, put
+\[
+ \begin{gathered}
+ u=z_{13},\quad v=z_{24},\quad
+ A=R_4[(z_{12}z_{14}z_{23}z_{34})^{-1}],\\
+ A_u=A[u^{-1}],\quad A_v=A[v^{-1}],\quad L=A[(uv)^{-1}].
+ \end{gathered}
+\]
+The two remaining collision coordinates $u,v$ are independent.
+The coefficient types in \eqref{eq:vol2-four-discarded-matrices}
+become
+\[
+ A^2\oplus A_u^3\oplus A_v^3\oplus L^3
+ \longrightarrow A_u^6\oplus A_v^6\oplus L^{21}
+ \longrightarrow L^{23}.
+\]
+
+A nonzero scalar entry $a$ between two identical coefficient
+modules can be cancelled. Isolating that entry by triangular
+row and column operations gives a contractible two-term
+summand with homotopy $a^{-1}$. The remaining differential is
+the Schur complement
+$D'_{rc}=D_{rc}-D_{rj}a^{-1}D_{ic}$.
+Every entry still composes allowed localization inclusions.
+These changes commute with differential operators.
+
+Order the partitions lexicographically by increasing block
+lists. Cancel the first available scalar between identical
+modules, using lower degree first, then row, then column.
+The nine cancellations from degree $-2$ have types
+\[
+ A_u,L,A_v,A_v,L,A_u,A_u,L,A_v
+\]
+and pivots $1,1,-1,-1,1,1,1,1,1$.
+The next eighteen cancellations, from degree $-1$, have type
+$L$ and pivot $1$. The remaining complex is
+\[
+ A^2\xrightarrow{M_0}A_u^3\oplus A_v^3
+                              \xrightarrow{M_1}L^5.
+\]
+In its retained middle order $(A_u,A_v,A_v,A_u,A_u,A_v)$,
+\[
+ M_0=\begin{pmatrix}1&0\\-1&0\\0&1\\0&-1\\-1&1\\1&-1\end{pmatrix},
+ \qquad
+ M_1=\begin{pmatrix}
+ 1&1&0&0&0&0\\0&0&1&1&0&0\\0&-1&-1&0&1&0\\
+ -1&0&0&-1&0&1\\0&0&0&0&-1&-1
+ \end{pmatrix}.
+\]
+Use the basis matrices
+\[
+ S=\begin{pmatrix}
+ 1&0&1&0&0&0\\0&0&0&1&0&1\\0&0&0&0&-1&0\\
+ 0&-1&0&0&0&0\\-1&1&0&0&0&0\\0&0&0&-1&1&0
+ \end{pmatrix},\qquad
+ W=\begin{pmatrix}
+ 1&0&1&1&1\\0&-1&0&0&0\\-1&1&0&-1&0\\
+ -1&1&-1&0&0\\1&-1&0&0&0
+ \end{pmatrix}.
+\]
+Both are invertible. The first three columns of $S$ have
+coefficient $A_u$, the last three $A_v$, so this basis change
+respects the modules. Matrix multiplication gives
+\begin{equation}\label{eq:vol2-crossed-canonical}
+ S^{-1}M_0=
+ \begin{pmatrix}1&0\\0&1\\0&0\\-1&0\\0&-1\\0&0\end{pmatrix},
+ \qquad
+ W^{-1}M_1S=
+ \begin{pmatrix}
+ 1&0&0&1&0&0\\0&1&0&0&1&0\\0&0&1&0&0&0\\
+ 0&0&0&0&0&1\\0&0&0&0&0&0
+ \end{pmatrix}.
+\end{equation}
+
+\begin{theorem}[Crossed local form]
+\label{thm:vol2-crossed-collision}
+On this open set, $F_4$ is chain-homotopy equivalent by right
+differential-module maps to
+\begin{equation}\label{eq:vol2-crossed-splitting}
+ L[0]\oplus[A_u\to L]\oplus[A_v\to L]
+       \oplus[A\to A_u\oplus A_v\to L]^{\oplus2}.
+\end{equation}
+The two-term complexes have degrees $-1,0$; the three-term
+complexes have degrees $-2,-1,0$. In particular,
+\[
+ H^{<0}(F_4)=0,\qquad
+ H^0(F_4)=\omega_4\otimes_A
+ \left(L\oplus L/A_u\oplus L/A_v
+              \oplus\bigl(L/(A_u+A_v)\bigr)^{\oplus2}\right).
+\]
+\end{theorem}
+
+\begin{proof}
+The first two columns and their fourth and fifth partners
+in \eqref{eq:vol2-crossed-canonical} give two complexes with
+maps $a\mapsto(a,-a)$ and $(f,g)\mapsto f+g$.
+Columns three and six give the two remaining two-term
+complexes. The last target row gives $L[0]$.
+All preceding cancellations were chain homotopy equivalences.
+
+The maps $A_u\to L$ and $A_v\to L$ are injective. In a
+three-term summand the middle kernel is $(f,-f)$ with
+$f\in A_u\cap A_v=A$. The last equality follows by unique
+factorization in the localization of $R_4$: the independent
+prime factors $u,v$ remain nonassociated and neither has been
+inverted in $A$. Only the displayed cokernels remain.
+\end{proof}
+
+The codimension-two module $L/(A_u+A_v)$ is nonzero. Near
+$u=v=0$, its class $1/(uv)$ has a negative power in both
+independent normals, which cannot occur in a sum of terms
+with poles in only one of them. The crossed chart has retained
+these two copies of the collision module. It has inverted
+$z_{14}$, so its vanishing negative cohomology agrees with the
+global outer class, whose support is $z_{14}=0$.
+
+At a generic point of that outer divisor, where all other
+differences are invertible, set
+$u=z_{14}$ and $A=R_4[(z_{12}z_{13}z_{23}z_{24}z_{34})^{-1}]$.
+The same cancellations give
+\[
+ [A\to A[u^{-1}]]_{[-2,-1]}
+ \oplus[A\xrightarrow{(1,-1)}A[u^{-1}]^2]_{[-1,0]}.
+\]
+Thus $H^{-1}=A[u^{-1}]/A$ and
+$H^0=A[u^{-1}]\oplus A[u^{-1}]/A$ there. These are full
+principal-part modules, including every normal derivative.
+
+\section{Independent normals and the full diagonal}
+\label{sec:vol2-full-diagonal-support}
+
+The crossed calculation retains proper collision strata. The
+full diagonal has a simpler normal calculation, whose shift
+depends on the number of independent equations. We compute it
+before imposing any identification with a field coefficient.
+
+Let $X=\mathbb A^b_k$ have coordinates $y_1,\ldots,y_b$, let
+$Y=X\times\mathbb A^c_k$ have normal coordinates
+$u_1,\ldots,u_c$, and let $i:X\hookrightarrow Y$ be the zero
+section. For a left $D_X$-module $L$, its normal direct image is
+\[
+ i_+L=L[\eta_1,\ldots,\eta_c],\qquad
+ \partial_{u_j}=\eta_j,\qquad u_j=-\partial_{\eta_j}.
+\]
+Tangential operators act on $L$. All polynomial normal jets are
+retained. Write $\operatorname{DR}_X(L)$ for the unshifted
+algebraic de Rham complex in degrees $0,\ldots,b$.
+
+\begin{proposition}\label{prop:vol2-independent-normal-support}
+There is an explicit contraction
+\[
+ R\operatorname{Hom}_{D_Y}(\mathcal O_Y,i_+L)
+       \simeq\operatorname{DR}_X(L)[-c].
+\]
+For right differential modules, put
+$L^r=\omega_X\otimes_{\mathcal O_X}L$ and
+$\mathbb J_Y=\omega_Y[b+c]$. Then
+\begin{equation}\label{eq:vol2-independent-density-shift}
+ R\operatorname{Hom}_{D_Y}
+       \bigl(\mathbb J_Y,i_*(L^r[b])\bigr)
+       \simeq\operatorname{DR}_X(L)[-2c],
+\end{equation}
+where $i_*$ denotes right differential-module direct image.
+\end{proposition}
+
+\begin{proof}
+Apply Hom from the Spencer resolution of $\mathcal O_Y$.
+One normal direction contributes the cochain complex
+\[
+ K_j=[k[\eta_j]\xrightarrow{\eta_j}k[\eta_j]]
+\]
+in degrees zero and one. Let $p_j$ extract the constant
+coefficient in degree one and let $i_j$ insert it. Let $h_j$
+vanish on degree zero and send $\eta_j^a$ in degree one to
+$\eta_j^{a-1}$ for $a>0$, and $1$ to zero. Then
+\[
+ dh_j+h_jd=1-i_jp_j,\qquad p_ji_j=1,
+ \qquad h_j^2=h_ji_j=p_jh_j=0.
+\]
+On the tensor product of the normal complexes set
+\[
+ H=\sum_{j=1}^c(i_1p_1)\otimes\cdots\otimes(i_{j-1}p_{j-1})
+                         \otimes h_j\otimes1\otimes\cdots\otimes1,
+\]
+using the Koszul signs for tensor products of graded maps.
+The identity follows by telescoping
+$1-q_1\cdots q_c=\sum_jq_1\cdots q_{j-1}(1-q_j)$, with
+$q_j=i_jp_j$. The cross terms in $H^2$ contain $h_ji_j$ or
+$p_jh_j$ and vanish. Tensoring with the tangential de Rham
+complex contracts the whole Spencer complex onto that complex
+in normal degree $c$. Every polynomial jet has finite degree;
+the argument also applies to an infinite-rank module $L$.
+
+Left-to-right conversion identifies the source and target of
+\eqref{eq:vol2-independent-density-shift} with
+$\mathcal O_Y[b+c]$ and $i_+L[b]$. Their relative shift is
+$-c$. Combining it with the normal Spencer degree gives
+$-2c$.
+\end{proof}
+
+For an ordered $n$-point affine chart, the first coordinate
+and its differences with the other points give one tangential
+coordinate and $n-1$ independent normals. Let
+$N=\operatorname{End}_{k[y]}(\mathcal V)$, with its commutator
+connection, be the polynomial-root endomorphism module of
+Theorem~\ref{thm:vol2-polynomial-operators}. Its de Rham
+complex is $G(N)$, with cohomology $B_0$ in degree zero and
+$W$ in degree one.
+
+Suppose a specified collision comparison identifies the actual
+full-diagonal coefficient of an ambient object with $N^r[1]$.
+The supported linear mapping complex from
+$\mathbb J_{\mathbb A^n}$ is then
+\begin{equation}\label{eq:vol2-full-diagonal-groups}
+ G(N)[-2(n-1)],\qquad
+ H^{2n-2}=B_0,\quad H^{2n-1}=W,
+\end{equation}
+and all other cohomology vanishes. This follows from
+Proposition~\ref{prop:vol2-independent-normal-support} with
+$b=1,c=n-1$ and the stated endomorphism contraction. Replacing
+the source by $\mathbb J_{\mathbb A^n}[-d]$ changes the complex
+to $G(N)[d-2(n-1)]$.
+
+The collision identification is a hypothesis about an actual
+coefficient object and its maps. Matching a rank does not supply
+it. For $n\geq3$, the complement of the full diagonal still
+contains proper collision strata; their simultaneous support
+requires their attachment maps. The localization triangle also
+controls the map from supported to ambient cohomology, which
+need not be injective. Finally, dependent graph equations have
+codimension equal to their rank, and this calculation concerns
+linear Hom. Coalgebra and substitution compatibility require
+their respective operation maps.
+
+\section{Heisenberg compositions on the pair support}
+\label{sec:vol2-supported-heisenberg}
+
+We now construct an outer operation on a complete pair-support
+complex. Its source includes poles in the remaining separation
+and the triple-diagonal term. A correction to the binary path
+will make the operation closed on this larger domain.
+
+Fix $\kappa\in k^\times$ and $X=\mathbb A^1_k$. The dg vertex
+algebra is $\mathcal Z=V_\kappa\otimes\Lambda[c]$, with
+$|J|=0$, $|c|=1$, $dJ=\kappa Tc$ and $dc=0$.
+Its state complex is
+\begin{equation}\label{eq:vol2-supported-state-complex}
+ C=k[u_0,u_1,\ldots]\otimes\Lambda(c_0,c_1,\ldots),
+ \quad u_n=T^nJ,\quad c_n=T^nc,\quad
+ du_n=\kappa c_{n+1},\quad dc_n=0.
+\end{equation}
+All states and state tensor products are algebraic. The current
+bracket is $[J_\nu J]=\kappa\nu\mathbf1$; brackets with $c$
+vanish. The Fourier variable $\nu$ records normal derivatives:
+the contact of $v^{-n-1}$ is the $n$th normal derivative divided
+by $n!$. On regular state inputs this is the usual bracket
+$[a_\nu b]=\operatorname{Res}_v e^{\nu v}Y(a,v)b\,dv$.
+
+\subsection{A common resolution and its state contraction}
+
+Let $E$ be the free quartet vertex algebra on fields of degrees
+$(0,0,1,-1)$. Form $\mathcal W=V_\kappa\otimes E^{\otimes3}$,
+with quartet generators $(t_s,p_s,\eta_s,\iota_s)$ and
+\[
+ Qt_s=\eta_s,\qquad Q\iota_s=p_s,
+ \qquad [p_s{}_\nu t_l]=[\iota_s{}_\nu\eta_l]=\delta_{sl}.
+\]
+The other generating brackets vanish, apart from those forced
+by graded skew symmetry and translation. In this ambient
+algebra take $QJ=0$; its current commutes with the quartets.
+Put
+\[
+ K_3=J+p_1+p_2+p_3,\qquad
+ \mathcal B=\operatorname{Com}(K_3,\mathcal W),\qquad
+ U_s=J+\sum_{l<s}p_l-\kappa Tt_s.
+\]
+The commutant means the common kernel of the nonnegative modes
+of $K_3$. There are vertex chain maps
+\begin{equation}\label{eq:vol2-supported-slots}
+ j_s:\mathcal Z\longrightarrow\mathcal B,
+ \qquad j_s(J)=U_s,\quad j_s(c)=-\eta_s.
+\end{equation}
+Distinct images $j_s(\mathcal Z)$ commute.
+Indeed $QU_s=-\kappa T\eta_s$ and
+$[U_r{}_\nu U_s]=\delta_{rs}\kappa\nu$.
+For $r<s$, the mixed contribution
+$[-\kappa Tt_r{}_\nu p_r]=-\kappa\nu$ cancels the
+current bracket. All current--ghost and ghost--ghost
+brackets are zero, and these images commute with $K_3$.
+The assignments therefore extend to the stated vertex maps.
+
+Here is a direct description of the state space of $\mathcal B$.
+Write $\tau^{(s)}_n=T^nt_s/n!$ for the divided quartet jets,
+with $n\geq0$, and use the current modes $x_n=J_{-n}1$.
+In these polynomial coordinates, the nonnegative modes of $K_3$
+are
+\[
+ \sum_s\partial_{\tau^{(s)}_0},\qquad
+ \kappa n\partial_{x_n}+\sum_s\partial_{\tau^{(s)}_n}\quad(n>0).
+\]
+Changing coordinates to
+$x_n-\kappa n\tau^{(1)}_n$ and
+$\tau^{(s)}_n-\tau^{(1)}_n$ for $s=2,3$ leaves these as
+derivatives in the remaining $\tau^{(1)}_n$ coordinates.
+Their common kernel is therefore freely spanned by the PBW
+monomials in the translates of
+\[
+ U_1,\eta_1;\qquad
+ a_2,a_3,e_2,e_3;\qquad
+ \iota_1,\iota_2,\iota_3,p_1,p_2,p_3,
+ \quad a_s=t_s-t_1,\quad e_s=\eta_s-\eta_1.
+\]
+Their differentials are
+$QU_1=-\kappa T\eta_1$, $Qa_s=e_s$, $Q\iota_s=p_s$,
+with the remaining images zero. The fields after the first
+semicolon are auxiliary.
+
+Let $r:\mathcal B\to C$ set every auxiliary coordinate to
+zero, send $U_1$ to $J$ and $\eta_1$ to $-c$. It is a map of
+state complexes. Let $N$ count total auxiliary number and let
+$s$ be the odd polynomial derivation with
+\[
+ s(T^me_j)=T^ma_j\quad(j=2,3),\qquad
+ s(T^mp_j)=T^m\iota_j\quad(j=1,2,3),
+\]
+zero on the other generators. For $q$ tensor factors use the
+graded sum $s_q$ and total number $N_q$, and put
+$h_q^{\mathrm{aux}}=s_q/N_q$ on positive auxiliary number,
+zero on number zero.
+
+\begin{lemma}\label{lem:vol2-supported-state-contraction}
+With $i=j_1$, these maps satisfy
+\[
+ dh_q^{\mathrm{aux}}+h_q^{\mathrm{aux}}d
+       =1-i^{\otimes q}r^{\otimes q},\qquad
+ r^{\otimes q}i^{\otimes q}=1,
+\]
+and $(h_q^{\mathrm{aux}})^2=r^{\otimes q}h_q^{\mathrm{aux}}
+=h_q^{\mathrm{aux}}i^{\otimes q}=0$.
+They commute with translation in each factor and with graded
+permutations. Moreover $rj_s=1$ for every slot.
+\end{lemma}
+
+\begin{proof}
+On generators, $Qs+sQ=N$ and $s^2=0$. The graded Leibniz
+rule extends both identities to all PBW polynomials. Their
+graded sums give the same identities on tensor powers, since
+cross terms cancel. Translation preserves each auxiliary pair
+and its number. Division by the positive integer $N_q$ gives
+the contraction; on number zero, $i^{\otimes q}r^{\otimes q}$
+is the identity. A nonzero value of $h_q^{\mathrm{aux}}$ has
+positive auxiliary number, proving the side conditions.
+The sums are invariant under graded permutations. Finally all
+$U_s$ project to $J$ and all $-\eta_s$ to $c$.
+\end{proof}
+
+Write $h=h_1^{\mathrm{aux}}$. The maps $r,h$ are polynomial
+state maps, not vertex morphisms. For example, auxiliary
+fields killed by $r$ can have a singular product equal to the
+vacuum. The collision-coefficient correction will account for
+that product.
+
+\subsection{Adjacent paths and all six pair lifts}
+
+Let $A_r\subset\mathcal B$, for $r=1,2$, be generated by
+\[
+ U_r,\quad D_r=t_{r+1}-t_r,\quad
+ p_r,p_{r+1},\eta_r,\eta_{r+1},\iota_r,\iota_{r+1}.
+\]
+Put $A=\operatorname{Com}(J+p_1+p_2,V_\kappa\otimes E^{\otimes2})$.
+Each $A_r$ is a copy of this two-quartet commutant. The first
+commutes with $j_3(\mathcal Z)$: it commutes with
+$J+p_1+p_2$ and with the third quartet. The second is obtained
+by sending $J$ to $J+p_1$ and shifting the two quartet indices;
+it commutes with $j_1(\mathcal Z)$. The substitutions preserve
+the generating brackets, the differential and the PBW basis.
+Thus multiplication gives vertex maps
+$A_1\otimes\mathcal Z\to\mathcal B$ and
+$\mathcal Z\otimes A_2\to\mathcal B$.
+
+Put polynomial forms $k[s,ds]$ before fields. In $A_r$ define
+two paths on the generating states by
+\begin{equation}\label{eq:vol2-supported-paths}
+ \begin{aligned}
+ F_r(J)&=U_r-s\kappa TD_r,&
+ F_r(c)&=-\eta_r-s(\eta_{r+1}-\eta_r)-ds\,D_r,\\
+ G_r(J)&=U_r-\kappa TD_r+sp_r+ds\,\iota_r,&
+ G_r(c)&=-\eta_{r+1}.
+ \end{aligned}
+\end{equation}
+Extend them by the vertex operations. Their images have current
+self-bracket $\kappa\nu$, zero current--ghost bracket, and
+closed ghost. The tensor differential gives
+$dF_r(J)=\kappa TF_r(c)$ and $dG_r(J)=\kappa TG_r(c)$;
+the parameter derivatives cancel the differentials of the
+$ds$ terms. Hence they are vertex chain maps. They commute
+with the fixed spectator throughout, by the commutant
+calculation above. Their concatenation runs from $j_r$ to
+$j_{r+1}$.
+
+Let $h_r$ be the sum of their integrated $ds$ coefficients.
+Each polynomial input has a finite polynomial integrand, so
+integration is defined over $k$. Stokes' formula gives
+\begin{equation}\label{eq:vol2-supported-path-integral}
+ Qh_r+h_rd=j_{r+1}-j_r,
+ \qquad h_r(J)=\iota_r,\quad h_r(c)=-D_r,\quad h_r(1)=0.
+\end{equation}
+The maps commute with translation and satisfy $rh_1=rh_2=0$.
+Indeed every form coefficient contains an auxiliary factor
+which survives the polynomial state projection until it is
+set to zero.
+
+Let $q_I:\mathscr R_I\to X^3$ be the ordered atlas of
+Section~\ref{sec:vol2-action-carrier}. Put
+$N_C=\omega_X\otimes C$ with
+$(fa\,dz)\partial_z=-(f'a+fTa)\,dz$, and let
+$P=q_I^!(N_C\boxtimes N_C\boxtimes N_C)$ be the regular
+singleton source. For a partition $\pi$, let $\mathcal A_\pi$
+be the external product of $\mathcal B^r=\omega_X\otimes\mathcal B$
+over its block roots, localized where distinct roots are
+separated and pushed onto the corresponding diagonal. This
+direct image retains every normal derivative. Order the blocks
+by their largest labels and transport their right densities
+with that order. The three-position coefficient is
+\begin{equation}\label{eq:vol2-supported-three-complex}
+ \begin{split}
+ \mathcal D_3&=\mathcal A_{1|2|3}
+       \oplus\bigoplus_{ab}\mathcal A_{ab|c}[-1]
+       \oplus\mathcal A_{123}[-2],\\
+ D(x,y,z)&=(dx,b_1x-dy,b_2y+dz).
+ \end{split}
+\end{equation}
+Here $b_1,b_2$ are full vertex contact maps, including
+normal transfers and the Koszul signs. On regular states,
+$b_1=\varrho_{12}+\varrho_{13}-\varrho_{23}$, where
+\[
+ \begin{aligned}
+ \varrho_{12}(X,Y,W)&=[X_\lambda Y]\boxtimes W,\\
+ \varrho_{13}(X,Y,W)&=(-1)^{|X||Y|}Y\boxtimes[X_\lambda W],\\
+ \varrho_{23}(X,Y,W)&=X\boxtimes[Y_\mu W].
+ \end{aligned}
+\]
+The second contacts are $[M_{\lambda+\mu}W]$ on $12|3$,
+$[Y_\mu M]$ on $13|2$, and $[X_\lambda M]$ on $23|1$.
+The vertex Jacobi identity gives
+\[
+ b_2b_1(X,Y,W)=[[X_\lambda Y]_{\lambda+\mu}W]
+ +(-1)^{|X||Y|}[Y_\mu[X_\lambda W]]-[X_\lambda[Y_\mu W]]=0.
+\]
+These contact formulas extend by the differential-module
+relations and retain their Laurent tests.
+
+For $D_{ab}=q_I^{-1}\Delta_{ab}$ and
+$D_{123}=q_I^{-1}\Delta_{123}$, including every ordered branch,
+the support complexes are
+\begin{equation}\label{eq:vol2-supported-pair-complexes}
+ M_{ab}=R\Gamma_{D_{ab}}\mathcal D_3
+       =\mathcal A_{ab|c}[-1]\oplus\mathcal A_{123}[-2],
+ \qquad T_3=R\Gamma_{D_{123}}\mathcal D_3
+       =\mathcal A_{123}[-2].
+\end{equation}
+To verify this description, apply the localization triangle to
+the finite filtration by number of blocks. The separated term
+is a direct image from the complement of $D_{ab}$ and has zero
+extraordinary restriction there. The other pair terms meet
+$D_{ab}$ only at the triple diagonal, away from which they are
+localized. Only the two displayed terms remain. Their
+inclusion is the support counit; localization agrees on chart
+overlaps, so the description holds on the atlas.
+
+An order $\sigma$ assigns its labels to slots $1,2,3$ and gives
+a singleton insertion $E_\sigma:P\to\mathcal D_3$ through
+$j_1,j_2,j_3$. The commuting slot algebras make its pair and
+triple components zero. For a binary pair set
+\[
+ H_r(a,b)=-h_r(a)\boxtimes j_{r+1}(b)
+                 +(-1)^{|a|}j_{r+1}(a)\boxtimes h_r(b).
+\]
+Its Hom differential is
+$j_r\boxtimes j_{r+1}-j_{r+1}\boxtimes j_r$.
+Use $H_1\boxtimes j_3$ for slots $1,2$ and
+$j_1\boxtimes H_2$ for slots $2,3$, with the graded tensor
+sign. Relabel source, target, coordinates and densities
+together; call the resulting map $H_{\sigma,r}$.
+The six edges are
+\begin{equation}\label{eq:vol2-supported-hexagon-edges}
+ \begin{array}{c|c|c|c}
+ \text{edge}&\text{pair}&r&(\text{spectator},\text{slot})\\\hline
+ 123\to213&12&1&(3,3)\\
+ 213\to231&13&2&(2,1)\\
+ 231\to321&23&1&(1,3)\\
+ 321\to312&12&2&(3,1)\\
+ 312\to132&13&1&(2,3)\\
+ 132\to123&23&2&(1,1).
+ \end{array}
+\end{equation}
+Both occurrences of $13$ exchange adjacent slots; neither
+moves directly through a fixed middle slot.
+
+\begin{proposition}\label{prop:vol2-supported-pair-lifts}
+For an edge $e=(\sigma,r)$ exchanging labels $a,b$, put
+\[
+ \beta_e=-(b_1H_{\sigma,r})_{ab|c},\qquad
+ \widehat\beta_e=(\beta_e,0):P\longrightarrow M_{ab}.
+\]
+This is a cochain map. Its composite with the support counit
+is homotopic to $E_\sigma-E_{\sigma s_r}$ by
+$(H_{\sigma,r},0,0)$. It retains the spectator and every normal
+derivative. It vanishes on a vacuum in a paired input and
+recovers the binary lift on a vacuum spectator.
+\end{proposition}
+
+\begin{proof}
+The path equation gives the separated component of the
+endpoint difference. The image of the paired homotopy lies
+in $A_r$, which commutes with the spectator. Thus the two
+unwanted first contacts vanish. The remaining contact is
+\begin{equation}\label{eq:vol2-supported-binary-lift}
+ \beta_r(a,b)=[h_r(a)_\nu j_{r+1}(b)]
+       -(-1)^{|a|}[j_{r+1}(a)_\nu h_r(b)],
+\end{equation}
+tensored with the spectator and the prescribed sign. Its
+image lies in $A_r$, so its second contact with that spectator
+also vanishes. In the total complex this says
+\[
+ (E_\sigma-E_{\sigma s_r})
+          -\delta(H_{\sigma,r},0,0)=(0,\beta_e,0).
+\]
+The right side is closed and factors through $M_{ab}$.
+
+All maps commute with translation and use full contacts, so
+their differential-module extensions retain the normal
+derivatives. Vertex locality bounds the normal order on each
+polynomial input. Relabelling transports the normal coordinate
+and density once; the same formulas therefore agree on chart
+overlaps and separation restrictions. Finally $h_r(1)=0$ and
+the regular singular bracket with $1$ is zero, giving the
+vacuum assertions.
+\end{proof}
+
+\subsection{The two-colour coefficient and its endpoints}
+
+For free dg vertex algebras $D,E$, put
+\[
+ V(D,E)=j_*j^!(D^r\boxtimes E^r),\qquad
+ W(D,E)=\Delta_*(D\otimes E)^r,
+\]
+where $j$ is the complement of the diagonal in the two-root
+space and $D^r=\omega_X\otimes D$. If $v$ is the first root
+minus the second, the tensor-product contact is
+\begin{equation}\label{eq:vol2-coloured-contact}
+ c_{DE}\bigl(f(v)(a\boxtimes b)\bigr)
+ =\operatorname{pp}_v\bigl(f(v)(e^{vT_D}a)\otimes b\bigr).
+\end{equation}
+Only finitely many Taylor terms meet any fixed principal part.
+The diagonal term retains the whole tensor $D\otimes E$.
+This gives the two-colour complex
+\[
+ \mathcal Q(D,E)=V(D,E)\oplus W(D,E)[-1],\qquad
+ D(x,z)=(dx,c_{DE}x-dz).
+\]
+Translation makes the contact differential-linear, and the
+internal differential commutes with it.
+
+For the resolving algebra itself let
+$W(\mathcal B)=\Delta_*\mathcal B^r$ and put
+\[
+ \mathcal F_{\mathcal B}
+   =V(\mathcal B,\mathcal B)\oplus W(\mathcal B)[-1],
+ \qquad D(x,z)=(dx,b_{\mathcal B}x-dz),
+\]
+with its full vertex contact. Denote the positive diagonal
+inclusion by $\iota$.
+
+There are two orientations: $R$ for $(A,\mathcal Z)$ and
+$L$ for $(\mathcal Z,A)$. Write $\alpha:A\to A_1$ and
+$\gamma:A\to A_2$ for the two embeddings. Their placements
+in the common resolution are
+\begin{equation}\label{eq:vol2-coloured-placements}
+ \begin{array}{c|cc}
+ &u_+|_V&u_-|_V\\\hline
+ R&\alpha\boxtimes j_3&\gamma\boxtimes j_1\\
+ L&j_1\boxtimes\gamma&j_3\boxtimes\alpha.
+ \end{array}
+\end{equation}
+On the diagonal use the corresponding normally ordered
+products. The images commute, so these are vertex morphisms
+and hence coefficient chain maps to $\mathcal F_{\mathcal B}$.
+
+To use them at a pair $ab$, apply right differential-module
+direct image along $i_{ab}:X^{\{ab,c\}}\hookrightarrow X^3$.
+It includes the entire inner normal transfer and its density.
+The subsequent diagonal direct image is $i_{123,+}$.
+After the pair-support suspension, the placements have target
+$M_{ab}$, and $\iota$ becomes the counit $T_3\to M_{ab}$.
+
+Let $r_A:A\to C$ be the two-quartet polynomial retraction.
+Projection in the $A$ factor gives maps $P_R=r_A\otimes1$
+and $P_L=1\otimes r_A$, with components $P_V,P_W$.
+Since $r_A$ commutes with translation,
+\begin{equation}\label{eq:vol2-coloured-projection}
+ P_Wc_\eta=c_{\mathcal Z\mathcal Z}P_V,
+ \qquad \eta=R,L.
+\end{equation}
+This uses the tensor-product contact, not multiplicativity
+of $r_A$ as a vertex map. The first-slot inclusion and the
+binary auxiliary homotopy give a contraction $I,P,H_A$ of
+these coloured complexes. The homotopy on the diagonal has
+the negative of its state sign; equation
+\eqref{eq:vol2-coloured-contact} makes the off-diagonal terms
+cancel, so $\delta H_A=1-IP$.
+
+On $V(\mathcal Z,\mathcal Z)$ define
+\[
+ H_1=-h_1\boxtimes j_2+j_2\boxtimes h_1,
+ \qquad K_R=H_1+j_1\boxtimes h_2,
+ \qquad K_L=H_1-h_2\boxtimes j_1.
+\]
+These tensor formulas include the graded signs. Extend them
+over every finite meromorphic coefficient and make them zero
+on the diagonal source. Their internal differentials are
+$j_1\boxtimes j_3-j_2\boxtimes j_1$ and
+$j_1\boxtimes j_2-j_3\boxtimes j_1$, respectively.
+With $f_{st}(a,b)={:}j_sa\,j_tb{:}$, put
+\begin{equation}\label{eq:vol2-coloured-defect}
+ F_R=f_{13}-f_{21},\qquad F_L=f_{12}-f_{31},\qquad
+ b_\eta=-b_{\mathcal B}K_\eta.
+\end{equation}
+Here $b_\eta$ has internal degree $-1$, while $F_\eta$ has
+degree zero on the diagonal coefficient.
+
+\begin{lemma}\label{lem:vol2-coloured-lift}
+The full supported map is
+\[
+ \mathbb B^0_\eta(x,z)=b_\eta P_Vx+F_\eta P_Wz:
+       \mathcal Q_\eta\longrightarrow W(\mathcal B)[-1].
+\]
+It is closed. If $E_A=u_+-u_-$, then
+\begin{equation}\label{eq:vol2-coloured-endpoint-homotopy}
+ E_A-\iota\mathbb B^0_\eta=\delta\mathbb K_A,
+ \qquad \mathbb K_A=K_\eta P+E_AH_A.
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+The path equation and the chain equations of the placements
+give, in unshifted state degrees,
+\begin{equation}\label{eq:vol2-coloured-chain-defect}
+ \delta b_\eta=-F_\eta c_{\mathcal Z\mathcal Z},
+ \qquad \delta F_\eta=0.
+\end{equation}
+Together with \eqref{eq:vol2-coloured-projection}, these are
+the two components of closure into $W(\mathcal B)[-1]$.
+On the two-singleton source, subtracting $\delta K_\eta$
+from the endpoint difference leaves exactly its supported
+components $b_\eta x+F_\eta z$. On arbitrary auxiliary
+states, use $E_AI$ for that singleton difference and
+$1-IP=\delta H_A$. This gives
+\eqref{eq:vol2-coloured-endpoint-homotopy}, including the
+term $E_AH_A$.
+\end{proof}
+
+The state projection has two useful identities:
+\begin{equation}\label{eq:vol2-coloured-endpoint-projection}
+ rF_R=rF_L=0,
+ \qquad (r\boxtimes r)u_+|_V=(r\boxtimes r)u_-|_V=P_V.
+\end{equation}
+Indeed each placement is linear on free generators, and the
+normally ordered product of its two commuting images is their
+concatenated PBW polynomial. Both endpoints have the same
+polynomial projection. This does not identify that polynomial
+product with the vertex $(-1)$-product in $C$.
+The second equality follows from $r\alpha=r\gamma=r_A$
+and $rj_s=1$. Translation extends both to the complete
+coefficient modules.
+
+Define
+\begin{equation}\label{eq:vol2-corrected-punctured-operation}
+ s_\eta=hF_\eta,\qquad
+ N_\eta=b_\eta+s_\eta c_{\mathcal Z\mathcal Z}.
+\end{equation}
+The auxiliary contraction and
+\eqref{eq:vol2-coloured-endpoint-projection} give
+$\delta s_\eta=F_\eta$; thus
+\eqref{eq:vol2-coloured-chain-defect} gives $\delta N_\eta=0$.
+On regular singleton inputs the tensor-product contact
+vanishes. The additional $h_2$ term in $K_\eta$ has zero
+regular contact with $j_1$, by the commutant property. Hence
+$N_R=N_L=\beta_1$ there. On pole coefficients those terms
+and the correction remain part of the operation.
+
+\subsection{The outer map on the actual support}
+
+Use the suspended coloured complex
+\begin{equation}\label{eq:vol2-suspended-colours}
+ \widetilde{\mathcal Q}_\eta
+   =V_\eta[-1]\oplus W_\eta[-2],\qquad
+ D(y,z)=(-dy,c_\eta y+dz).
+\end{equation}
+It is $\mathcal Q_\eta[-1]$ with its diagonal coordinate
+multiplied by $-1$. Under the positive support counit, the
+coloured lift becomes
+\[
+ \mathbb B_\eta(y,z)=-b_\eta P_Vy+F_\eta P_Wz.
+\]
+
+\begin{theorem}[Outer extension]
+\label{thm:vol2-supported-outer-extension}
+On the complete pair support define
+\begin{equation}\label{eq:vol2-supported-outer-map}
+ \mathcal C_\eta(y,z)=-N_\eta(r\boxtimes r)y,
+ \qquad L_\eta(y,z)=-s_\eta P_Wz.
+\end{equation}
+The first is a degree-zero map $M_{ab}\to T_3$ and the second
+has total degree $-1$ on the coloured source. Both placements
+satisfy
+\begin{equation}\label{eq:vol2-supported-placement-equation}
+ \delta\mathcal C_\eta=0,
+ \qquad \mathcal C_\eta u_\pm-\mathbb B_\eta=\delta L_\eta.
+\end{equation}
+Use $R$ for $12|3$ and $L$ for $23|1,13|2$, with the stated
+root orders and normal direct images. If
+$\mathbb K_A^{\mathrm{supp}}$ is the suspended homotopy of
+\eqref{eq:vol2-coloured-endpoint-homotopy}, then
+\[
+ E_A-\iota\mathcal C_\eta u_\pm
+ =\delta(\mathbb K_A^{\mathrm{supp}}-\iota L_\eta).
+\]
+Thus the extension retains the prescribed endpoint products.
+\end{theorem}
+
+\begin{proof}
+The internal degree of $N_\eta$ is $-1$; the difference
+between the pair and triple support shifts makes
+$\mathcal C_\eta$ degree zero. It kills the diagonal component
+of $M_{ab}$, so its chain equation is precisely
+$\delta N_\eta=0$. This proves closure on arbitrary
+polynomial auxiliary states and scalar poles.
+
+On either placement, equations
+\eqref{eq:vol2-coloured-projection} and
+\eqref{eq:vol2-coloured-endpoint-projection} give the difference
+\[
+ -s_\eta P_Wc_\eta y-F_\eta P_Wz.
+\]
+The signs $(-,+)$ in
+\eqref{eq:vol2-suspended-colours} and the odd degree of
+$L_\eta$ give
+\[
+ \delta L_\eta(y,z)
+ =-s_\eta P_Wc_\eta y-(Qs_\eta+s_\eta d)P_Wz,
+\]
+which is that difference. The final identity follows by
+subtracting $\iota\delta L_\eta$ from the suspended endpoint
+identity. Every equality is on the complete coloured source,
+including its diagonal term.
+\end{proof}
+
+Neither placement needs to be inverted. In fact it is not an
+equivalence. On diagonal state cohomology its map is
+\[
+ \Lambda(\alpha,\beta)\longrightarrow\Lambda(\varepsilon),
+ \qquad \alpha,\beta\longmapsto\varepsilon.
+\]
+To compute these groups, contract the pairs
+$(u_n,\kappa c_{n+1})$ in \eqref{eq:vol2-supported-state-complex};
+only $c_0$ remains. The auxiliary contraction gives the same
+cohomology for each resolving algebra. The displayed diagonal
+map has kernel containing $\alpha-\beta$ and $\alpha\beta$.
+Its separated part is a quasi-isomorphism, so the triangle of
+the two-term coefficients identifies its cone with the shifted
+cone of this diagonal map. Thus an inverse-placement method
+would fail, while \eqref{eq:vol2-supported-outer-map} supplies
+the outer extension directly.
+
+The pole correction has a small explicit diagnostic. In the
+$R$ orientation put
+\[
+ a=\iota_1+\iota_2,\quad p=p_1+p_2,\quad
+ t=T(t_3-t_1),\quad e=T(\eta_3-\eta_1).
+\]
+For $x_J=v^{-1}(1\boxtimes J)$ and
+$x_{Tc}=v^{-1}(1\boxtimes Tc)$, let $z_J,z_{Tc}$ denote the
+corresponding diagonal transfers. The defining formulas give
+\[
+ \begin{gathered}
+ Dx_J=\kappa x_{Tc}+z_J,\quad Dx_{Tc}=z_{Tc},\quad
+ Dz_J=-\kappa z_{Tc},\\
+ b_Rx_J=-a,\quad b_Rx_{Tc}=t,\quad
+ F_Rz_J=p-\kappa t,\quad F_Rz_{Tc}=-e.
+ \end{gathered}
+\]
+Since $h(p-\kappa t)=a$ and $h(-e)=-t$, the corrected
+values are $N_Rx_J=-a+a=0$ and $N_Rx_{Tc}=t-t=0$.
+Omitting the correction leaves chain defect $-(p-\kappa t)$
+on $x_J$; reversing its sign leaves $-2(p-\kappa t)$.
+These are nonzero states. They explain the correction on
+poles without asserting an obstruction to the corrected map.
+
+\section{The triple homotopy and its coefficient transfer}
+\label{sec:vol2-supported-triple-homotopy}
+
+The six pair lifts have two occurrences of each labelled pair.
+A cube filling compares these occurrences. Its triple contact
+currents sum to zero, whereas the actual iterated outer maps
+need a further comparison. We construct both maps before
+identifying their difference as a boundary.
+
+\subsection{The nine-square filling}
+
+Let $\mathsf I$ be the cellular chain complex of the interval
+$[1,3]$, with vertices $v_1,v_2,v_3$ in degree zero, edges
+$e_1,e_2$ in degree one and
+$\partial e_r=v_{r+1}-v_r$. A cell of $\mathsf I^{\otimes3}$
+assigns a height or a moving edge to each label, in label
+order. Define
+\[
+ \Gamma(c_1\otimes c_2\otimes c_3)
+ =\phi(c_1)\boxtimes\phi(c_2)\boxtimes\phi(c_3),
+ \qquad \phi(v_s)=j_s,\quad\phi(e_r)=h_r.
+\]
+Its target is the separated term of
+\eqref{eq:vol2-supported-three-complex}; a cell of dimension
+$d$ gives an operation of degree $-d$. The graded tensor
+formula and \eqref{eq:vol2-supported-path-integral} give
+$\delta\Gamma(c)=\Gamma(\partial c)$ for the internal
+differential.
+
+For an edge $\sigma\to\sigma s_r$, let $x,y$ be its two
+exchanged labels and $z$ the spectator at height $q$.
+The corresponding chain is
+\[
+ c_{\sigma,r}=-(x:e_r,y:v_{r+1},z:v_q)
+                  +(x:v_{r+1},y:e_r,z:v_q),
+\]
+with factors put in label order. Its boundary is the first
+permutation vertex minus the second, and
+$\Gamma(c_{\sigma,r})=H_{\sigma,r}$.
+The sum around the hexagon is the boundary of
+\begin{equation}\label{eq:vol2-nine-square-filling}
+ \Sigma=\sum_{i=1}^3(-1)^i
+       \bigl((e_1,e_2)_i+(e_2,e_1)_i+(e_2,e_2)_i\bigr),
+\end{equation}
+where $(c,c')_i$ fixes label $i$ at $v_3$ and assigns $c,c'$
+to the other two labels in increasing order. To verify this,
+the hexagon chain has twelve edges: it passes through the six
+permutation vertices and through
+\[
+ (2,2,3),(3,1,3),(3,2,2),(3,3,1),(2,3,2),(1,3,3).
+\]
+On each of the three faces through $(3,3,3)$, it removes the
+square at the opposite $(1,1)$ corner. The remaining three
+squares are those in \eqref{eq:vol2-nine-square-filling}.
+Their twelve interior edges cancel: two within each face and
+two along each of the three shared edges. The exterior twelve
+edges have precisely the hexagon orientation.
+
+Put $\Phi=\Gamma(\Sigma)$ and define its contact maps
+\begin{equation}\label{eq:vol2-cube-contacts}
+ K_{ab}=(b_1\Phi)_{ab|c},\qquad \gamma_{ab}=-b_2K_{ab}.
+\end{equation}
+Their internal state degree is $-2$. Thus $(0,K_{ab},0)$
+has total degree $-1$ and $(0,0,\gamma_{ab})$ has total
+degree zero in \eqref{eq:vol2-supported-three-complex}.
+
+\begin{proposition}\label{prop:vol2-cube-contacts}
+If $e_+,e_-$ are the two hexagon occurrences of the pair $ab$,
+then
+\begin{equation}\label{eq:vol2-cube-pair-identity}
+ \widehat\beta_{e_+}+\widehat\beta_{e_-}
+       =\delta(0,K_{ab},0)+(0,0,\gamma_{ab}),
+ \qquad \delta\gamma_{ab}=0,
+\end{equation}
+and $\gamma_{12}+\gamma_{23}+\gamma_{13}=0$.
+The whole supported hexagon bounds:
+\[
+ \sum_e(H_e,0,0)+\sum_{ab}(0,K_{ab},0)=\delta(\Phi,0,0).
+\]
+\end{proposition}
+
+\begin{proof}
+The cube boundary gives
+$\delta(\Phi,0,0)=(\sum_eH_e,b_1\Phi,0)$.
+Differentiate it. The endpoint differences telescope, and
+Proposition~\ref{prop:vol2-supported-pair-lifts} identifies
+the remaining terms as the six supported lifts. Comparing
+each pair component gives
+$\beta_{e_+}+\beta_{e_-}=-\delta K_{ab}$ internally.
+Its triple component gives the first identity with
+$\gamma_{ab}=-b_2K_{ab}$. Differentiating that identity shows
+$\gamma_{ab}$ is closed. Finally
+$\sum\gamma_{ab}=-b_2b_1\Phi=0$ by vertex Jacobi.
+\end{proof}
+
+For the comparison with iterated brackets, set $g=h_1+h_2$
+and define the merged-pair transport
+\[
+ k(a,b)=(-1)^{|a|}
+   \bigl([h_1a_\nu h_2b]+[h_2a_\nu h_1b]+[h_2a_\nu h_2b]\bigr).
+\]
+Its internal differential is $\delta k=\beta_1-\beta_2$.
+This follows by differentiating the two homotopies; the
+contacts of $h_1$ with $j_3$ and of $h_2$ with $j_1$
+vanish by the commutant property. Taking the contacts of the
+nine squares gives
+\begin{align}\label{eq:vol2-cube-pair-formulas}
+ K_{12}(a,b,c)&=-k(a,b)\boxtimes j_3c
+          +(-1)^{|a|+|b|}\beta_2(a,b)\boxtimes gc,\notag\\
+ K_{23}(a,b,c)&=(-1)^{|a|}ga\boxtimes\beta_2(b,c)
+                                      +j_3a\boxtimes k(b,c),\\
+ K_{13}(a,b,c)&=(-1)^{|b|(|a|+1)}gb\boxtimes\beta_2(a,c)
+                         +(-1)^{|a||b|}j_3b\boxtimes k(a,c).
+                         \notag
+\end{align}
+For the first formula, the face fixing the spectator at
+$v_3$ contributes the three terms of $-k$. On the other two
+faces the spectator moves along $g$; the $h_1$ contacts with
+$j_3$ vanish and the rest give $\beta_2$. The same calculation
+gives the second formula. Moving label $2$ in front of
+label $1$ gives the third formula and its Koszul signs.
+
+\subsection{The three actual compositions}
+
+Define the bracket on states by
+\[
+ B_\nu(a,b)=(-1)^{|a|}r\beta_1(a,b),
+ \qquad x(a,b)=r\beta_1(a,b).
+\]
+It has degree $-1$ and is the operation fixed by the two
+polynomial paths and the PBW retraction. Its three channels
+are
+\begin{equation}\label{eq:vol2-supported-three-channels}
+ \begin{split}
+ L(a,b,c)&=B_{\lambda+\mu}(B_\lambda(a,b),c),\\
+ R_B(a,b,c)&=B_\lambda(a,B_\mu(b,c)),\\
+ N_B(a,b,c)&=B_\mu(b,B_\lambda(a,c)),
+ \qquad \epsilon=(-1)^{(|a|+1)(|b|+1)}.
+ \end{split}
+\end{equation}
+The Fourier variables belong to positions $1,2$ relative to
+position $3$. Sesquilinearity sends their translations to
+$T_1=-\lambda$, $T_2=-\mu$, $T_3=T+\lambda+\mu$.
+
+Choose the edges
+$e_{12}:123\to213$, $e_{23}:231\to321$ and
+$e_{13}:213\to231$. Their placements are respectively
+$u_{R,+}$, $u_{L,-}$ and $u_{L,+}$. Define literal compositions
+through the pair supports by
+\begin{equation}\label{eq:vol2-supported-iterated-maps}
+ G_{12}=\mathcal C_R\widehat\beta_{e_{12}},\qquad
+ G_{23}=-\mathcal C_L\widehat\beta_{e_{23}},\qquad
+ G_{13}=\mathcal C_L\widehat\beta_{e_{13}}.
+\end{equation}
+Their source remains $P$. To compare with the coloured map,
+let $a_e:P\to\widetilde{\mathcal Q}_\eta$ have the indicated
+binary lift in $A$ tensored with the spectator, and zero
+diagonal component. Its outer scalar coefficient is regular,
+so $c_\eta a_e=0$, including after any inner normal transfer.
+It is therefore closed, $u_ea_e=\widehat\beta_e$ and
+$L_\eta a_e=0$. Equation
+\eqref{eq:vol2-supported-placement-equation} becomes
+\[
+ \mathcal C_\eta\widehat\beta_e=\mathbb B_\eta a_e.
+\]
+This is equality of operations on the whole regular singleton
+source.
+
+Projection of the preferred pair components gives
+\[
+ \begin{array}{c|c|c}
+ \text{pair}&(r\boxtimes r)\beta_e(a,b,c)&\text{outer variable}\\\hline
+ 12&x(a,b)\boxtimes c&\lambda+\mu\\
+ 23&-(-1)^{|a|}a\boxtimes x(b,c)&\lambda\\
+ 13&(-1)^{|a||b|+|b|}b\boxtimes x(a,c)&\mu.
+ \end{array}
+\]
+The minus sign in the second row is its first-contact sign;
+the third row includes moving the spectator to the first root.
+Since $N_R=N_L=\beta_1$ on a regular outer coefficient,
+\begin{align}\label{eq:vol2-supported-tree-formulas}
+ G_{12}(a,b,c)&=-\beta_1(x(a,b),c),\notag\\
+ G_{23}(a,b,c)&=-(-1)^{|a|}\beta_1(a,x(b,c)),\\
+ G_{13}(a,b,c)&=-(-1)^{|a||b|+|b|}\beta_1(b,x(a,c)).\notag
+\end{align}
+The degree of $x(a,b)$ is $|a|+|b|-1$, so
+\begin{equation}\label{eq:vol2-supported-channel-projections}
+ rG_{12}=(-1)^{|b|}L,
+ \qquad rG_{23}=-(-1)^{|b|}R_B,
+ \qquad rG_{13}=(-1)^{|b|}\epsilon N_B.
+\end{equation}
+For example, the first sign is
+$-(-1)^{|a|+|b|-1}(-1)^{|a|}=(-1)^{|b|}$;
+the third uses
+$-(-1)^{|a||b|+|a|}=(-1)^{|b|}\epsilon$.
+
+\subsection{Comparing cube contacts with the bracket}
+
+The comparison uses a polynomial projection $\pi$ retaining
+$U_1,\eta_1,p_1,\iota_1$ and killing every other auxiliary
+coordinate and its translates.
+
+\begin{lemma}\label{lem:vol2-supported-pbw-reduction}
+For $Z\in\mathcal B$ and $a,b,y\in C$,
+\begin{gather*}
+ r[Z_\nu j_1y]=r[\pi Z_\nu j_1y],\qquad
+ r[j_1y_\nu Z]=r[j_1y_\nu\pi Z],\\
+ \pi h=h\pi,\qquad \pi Y=\pi j_2(rY)\quad(Y\in A_2),
+ \qquad \pi hj_2=\pi h_1,\\
+ r[h_1a_\nu h_1b]=0,\\
+ r\beta_1(a,b)=r[h_1a_\nu j_1b]
+                   -(-1)^{|a|}r[j_1a_\nu h_1b].
+\end{gather*}
+\end{lemma}
+
+\begin{proof}
+Only $U_1,p_1$ contract with $U_1$, and only $\iota_1$
+contracts with $\eta_1$. A coordinate killed by $\pi$ thus
+survives every contraction with $j_1y$ and is killed by $r$.
+This proves the first two equalities. The auxiliary reverse
+derivation carries the killed coordinates among themselves,
+and their absence leaves auxiliary number unchanged, proving
+$\pi h=h\pi$. On the generators of $A_2$, both $\pi$ and
+$\pi j_2r$ send $U_2$ to $U_1+p_1$, send the ghosts to
+$\eta_1$, and kill the remaining auxiliary fields. Hence
+they agree on all PBW polynomials.
+
+For $\pi hj_2=\pi h_1$, the first path contributes a factor
+of $a_2$, which $\pi$ kills. In the second path, a monomial
+with $m$ current factors choosing $p_1$ has form coefficient
+obtained by replacing one of them by $\iota_1$ and weighting
+the other $m-1$ by $s^{m-1}$. Integration gives $1/m$,
+exactly the auxiliary contraction of the same monomial in
+$j_2$. The graded sign of the odd replacement is the same.
+
+To prove $r[h_1a_\nu h_1b]=0$, split $h_1=h^F+h^G$ by
+the two paths. Every monomial of $h^F$ contains one translate
+of $D=t_2-t_1$; every monomial of $h^G$ contains one translate
+of $\iota_1$. Two $F$ terms leave both $D$ factors uncontracted,
+and two $G$ terms leave both $\iota_1$ factors. Their
+projections vanish. For a mixed term, use the generating
+polynomials represented coefficientwise by
+\[
+ a=\exp\Bigl(\sum_n\alpha_nu_n+\sum_n\theta_nc_n\Bigr),
+ \quad
+ b=\exp\Bigl(\sum_n\alpha'_nu_n+\sum_n\theta'_nc_n\Bigr),
+\]
+where $\alpha,\alpha'$ are even and $\theta,\theta'$ odd.
+Only finitely many parameters are needed for any chosen
+coefficient. If $A_s,B_t$ are the zero-form exponents of the
+two paths, their form coefficients are
+\[
+ h^Fa=\int_0^1\Bigl(\sum_n\theta_nT^nD\Bigr)e^{A_s}ds,
+ \quad
+ h^Gb=\int_0^1\Bigl(\sum_m\alpha'_mT^m\iota_1\Bigr)e^{B_t}dt.
+\]
+For the projection to survive, $D$ must contract with a
+$tp_1$ factor of $B_t$ and $\iota_1$ with an
+$-(1-s)\eta_1$ factor of $A_s$. Since
+$[D_\nu p_1]=[\eta_1{}_\nu\iota_1]=1$, both contractions
+have jet kernel
+\[
+ P_{nm}(z-w)=(-1)^n(n+m)!(z-w)^{-n-m-1}.
+\]
+Their product is $-t(1-s)$ times the square of the odd
+element $\sum_{n,m}\theta_n\alpha'_mP_{nm}$, hence zero.
+All other contractions multiply this zero. Reversing the
+two paths gives the same argument with $\theta'$.
+Taking polynomial coefficients proves the identity on all
+states.
+
+Finally, the contact of $h_1\otimes h_1$ followed by $r$
+is zero. Its differential, using
+$\delta h_1=j_2-j_1$, is the difference between
+$r\beta_1$ and the last displayed bracket expression.
+That difference is therefore zero, proving the final formula.
+\end{proof}
+
+Put
+\begin{equation}\label{eq:vol2-cube-transfer-homotopy}
+ T_{ab}=-r b_2(h\text{ on the merged factor})K_{ab},
+ \qquad \widehat H=-(T_{12}+T_{23}+T_{13}).
+\end{equation}
+These maps have internal degree $-3$. The operation on the
+merged factor uses its graded tensor sign.
+
+\begin{proposition}\label{prop:vol2-cube-state-comparison}
+On all polynomial states,
+\[
+ r\gamma_{12}=(-1)^{|b|}L+\delta T_{12},\qquad
+ r\gamma_{23}=-(-1)^{|b|}R_B+\delta T_{23},\qquad
+ r\gamma_{13}=(-1)^{|b|}\epsilon N_B+\delta T_{13}.
+\]
+Thus $\delta\widehat H=(-1)^{|b|}(L-R_B+\epsilon N_B)$.
+\end{proposition}
+
+\begin{proof}
+For $12$, use $\delta(h\otimes1)=(1-j_1r)\otimes1$
+and the fact that $rb_2$ commutes with the internal
+differential. Equation \eqref{eq:vol2-cube-pair-identity}
+gives
+\[
+ r\gamma_{12}-\delta T_{12}
+ =-rb_2(j_1r\otimes1)K_{12}
+   +rb_2(h\otimes1)(\beta_{e_+}+\beta_{e_-}).
+\]
+Here $\beta_{e_+}+\beta_{e_-}=
+\beta_1\otimes j_3-\beta_2\otimes j_1$, and
+$r\beta_1=r\beta_2=x$, since the slot shift has the same
+polynomial projection in both binary copies. In the first
+term, the part with $j_3$ has zero contact with $j_1$;
+in the part with $g$, only $h_1$ remains. In the second term,
+$h\beta_1\in A_1$ commutes with $j_3$.
+Lemma~\ref{lem:vol2-supported-pbw-reduction} replaces the
+remaining contact of $h\beta_2$ with $j_1$ by that of
+$h_1x$. The result is
+\[
+ -rb_2(j_1x\otimes h_1+h_1x\otimes j_1)
+       =-r\beta_1\circ(x\otimes1)=(-1)^{|b|}L.
+\]
+
+For $23$, the tensor formulas are
+$K_{23}=g\otimes\beta_2+j_3\otimes k$ and
+$\beta_{e_+}+\beta_{e_-}=j_1\otimes\beta_2-j_3\otimes\beta_1$.
+Apply $1\otimes h$ to the merged factor. The same commutant
+vanishings and reduction give
+\[
+ r\gamma_{23}-\delta T_{23}
+ =rb_2(j_1\otimes h_1x-h_1\otimes j_1x)
+ =-r\beta_1\circ(1\otimes x)=-(-1)^{|b|}R_B.
+\]
+The tensor $1\otimes x$ contributes $(-1)^{|a|}$.
+For $13$, transpose $a,b$ and $\lambda,\mu$ with input sign
+$(-1)^{|a||b|}$. This is a chain map. The result is
+$-(-1)^{|a||b|+|a|}N_B=(-1)^{|b|}\epsilon N_B$.
+Summing the three identities and using $\sum\gamma_{ab}=0$
+proves the assertion about $\widehat H$.
+\end{proof}
+
+\begin{theorem}[Supported triple homotopy]
+\label{thm:vol2-supported-triple-homotopy}
+The maps
+\begin{equation}\label{eq:vol2-supported-comparison-primitive}
+ U_{ab}=j_1T_{ab}+h(\gamma_{ab}-G_{ab})
+\end{equation}
+satisfy $\delta U_{ab}=\gamma_{ab}-G_{ab}$. Consequently
+\begin{equation}\label{eq:vol2-supported-triple-primitive}
+ \mathcal H=-\sum_{ab}U_{ab}
+       =j_1\widehat H+h(G_{12}+G_{23}+G_{13})
+\end{equation}
+has total degree $-1$ and
+\[
+ \delta\mathcal H=G_{12}+G_{23}+G_{13},\qquad
+ r\mathcal H=\widehat H.
+\]
+These are maps into the full triple-supported coefficient
+on every ordered branch, with all normal derivatives retained.
+\end{theorem}
+
+\begin{proof}
+Both $\gamma_{ab}$ and $G_{ab}$ are closed. Their projection
+difference is $\delta T_{ab}$ by
+\eqref{eq:vol2-supported-channel-projections} and
+Proposition~\ref{prop:vol2-cube-state-comparison}. The
+auxiliary contraction gives
+\[
+ \delta\bigl(h(\gamma_{ab}-G_{ab})\bigr)
+ =\gamma_{ab}-G_{ab}-j_1\delta T_{ab}.
+\]
+Adding $\delta(j_1T_{ab})$ proves the first equation.
+The sum of the cube contacts is zero, so summation gives
+\eqref{eq:vol2-supported-triple-primitive} and its differential.
+The side condition $rh=0$ gives its projection.
+Every constituent commutes with translation and extends over
+the full normal transfer; all are polynomial on each input.
+Thus these are identities of supported differential-module
+operations, rather than only identities of state values.
+\end{proof}
+
+Changing a preferred occurrence of a pair changes its channel
+by a specified boundary. Applying the closed outer map to
+\eqref{eq:vol2-cube-pair-identity}, whose triple component it
+kills, gives
+\[
+ \mathcal C_{ab}\widehat\beta_{e_+}
+ +\mathcal C_{ab}\widehat\beta_{e_-}
+ =\delta\bigl(\mathcal C_{ab}(0,K_{ab},0)\bigr).
+\]
+Change $\mathcal H$ by the same signed map. Changes for
+different pairs add and therefore commute. This retains all
+eight choices of one occurrence per pair, including both
+$13|2$ edges.
+
+\subsection{Normal transfers, substitutions and vacua}
+
+The diagram just constructed has objects $P$, the coloured
+complexes $\widetilde{\mathcal Q}_\eta$, the three pair
+supports $M_{ab}$, the triple support $T_3$ and $\mathcal D_3$.
+Its arrows include the first lifts $a_e$, both placements,
+the outer maps and the support counits. Equation
+\eqref{eq:vol2-supported-placement-equation} supplies the
+placement homotopy, and
+Theorem~\ref{thm:vol2-supported-triple-homotopy} supplies its
+three-channel comparison.
+
+If a specified collision substitution gives a chain map
+$v:D'\to\widetilde{\mathcal Q}_\eta$, precomposition gives
+\[
+ \mathcal C_\eta u_\pm v-\mathbb B_\eta v
+          =\delta(L_\eta v).
+\]
+For a further substitution $w$, the homotopies agree
+literally: $(L_\eta v)w=L_\eta(vw)$. At three positions the
+maps in this diagram are the vertex placements and the first
+lifts already constructed. This statement does not assume
+an unspecified system of higher substitution maps.
+
+Normal differentiation acts on coefficients as well as
+states. With $\nu$ the first-root Fourier variable and $T$
+output translation, the corrected operation satisfies, for
+every integer pole order $m$,
+\begin{align}\label{eq:vol2-outer-normal-relations}
+ N_\eta(Ta,b;v^{-m})
+   &=-\nu N_\eta(a,b;v^{-m})
+                       +mN_\eta(a,b;v^{-m-1}),\notag\\
+ N_\eta(a,Tb;v^{-m})
+   &=(T+\nu)N_\eta(a,b;v^{-m})
+                       -mN_\eta(a,b;v^{-m-1}).
+\end{align}
+Differentiate $v^{-m}Y(a,v)b$ and then take principal parts
+to obtain these identities for the contact part. The same
+calculation with \eqref{eq:vol2-coloured-contact} gives them
+for the correction. The initial closed embedding retains
+the inner collision, the two-term coloured differential
+retains the outer one, and the triple comparison retains their
+intersection. Open restrictions localize these identities.
+Relabelling transports states, normals and densities together.
+Different ordered branches of the triple diagonal have no
+overlap, so the formulas glue branchwise.
+
+On a pole coefficient with either colour equal to the vacuum,
+$rb_\eta=0$: the contact is a principal part of a translate of
+$h_s(a)$, and $rh_s=0$. Also $rs_\eta=0$. Thus $N_\eta$
+is closed with zero projection on that face, and $hN_\eta$
+is its explicit null-homotopy. The canonical outer map has
+the negative of this homotopy. On the common all-vacuum face
+both are zero. The endpoint-relative homotopy remains the
+one of Theorem~\ref{thm:vol2-supported-outer-extension}.
+
+For the ternary maps, a vacuum in the paired inputs makes
+the first lift zero. A vacuum spectator makes the regular
+outer bracket zero. Hence every $G_{ab}$ vanishes on a
+vacuum input. The formulas for $K_{ab}$ show that each
+$\gamma_{ab}$ and $T_{ab}$ also vanishes there, so $U_{ab}$
+and $\mathcal H$ do as well. A vacuum spectator still leaves
+$K_{12}(a,b,1)=-k(a,b)\boxtimes1$; its outer contact is zero,
+while its lower binary transport is retained.
+
+\subsection{Removing the auxiliary fields on coefficients}
+
+The state retraction must be corrected before it acts on
+collision coefficients. For a finite set $I$ of $n$ positions,
+write $\mathcal D_{A,I}=C_{A,I}[-n]$, for $A=\mathcal B$
+or $\mathcal Z$. A partition with $q$ blocks has term
+$\mathcal A_\pi[q-n]$. Split its differential as
+\[
+ D_A=D_{0,A}+b_A,\qquad
+ D_{0,A}|_\pi=(-1)^{n-q}d_q,
+\]
+where $b_A$ merges blocks by full contacts.
+Extend $i^{\otimes q},r^{\otimes q},h_q^{\mathrm{aux}}$
+over the scalar coefficients and normal direct images.
+On that partition put
+\[
+ I_\pi=i^{\otimes q},\qquad P_\pi=r^{\otimes q},\qquad
+ H_\pi=(-1)^{n-q}h_q^{\mathrm{aux}}.
+\]
+Then $D_{0,\mathcal B}H+HD_{0,\mathcal B}=1-IP$.
+The inclusion is a vertex map, so $b_{\mathcal B}I=Ib_{\mathcal Z}$.
+Define finite operators
+\begin{equation}\label{eq:vol2-supported-coefficient-transfer}
+ R_I=\sum_{j=0}^{n-1}(-b_{\mathcal B}H)^j,
+ \qquad \Pi_I=PR_I,\qquad \mathcal H_I=HR_I.
+\end{equation}
+Every contact lowers the block number. Thus
+$(b_{\mathcal B}H)^n=0$ and $R_I=(1+b_{\mathcal B}H)^{-1}$.
+
+\begin{proposition}\label{prop:vol2-supported-coefficient-transfer}
+The maps in \eqref{eq:vol2-supported-coefficient-transfer}
+give a contraction of the actual coefficient complexes:
+\[
+ \Pi_ID_{\mathcal B}=D_{\mathcal Z}\Pi_I,\qquad
+ \Pi_II=1,\qquad
+ D_{\mathcal B}\mathcal H_I+\mathcal H_ID_{\mathcal B}=1-I\Pi_I,
+\]
+with $\mathcal H_I^2=\Pi_I\mathcal H_I=\mathcal H_II=0$.
+They preserve every fixed collision support and its counit,
+commute with relabelling and open restriction, and preserve
+the scalar vacuum maps. Their values have finite normal order
+on each polynomial input.
+\end{proposition}
+
+\begin{proof}
+Split the internal complex as $I\mathcal D_{\mathcal Z,I}
+\oplus K$, where $K=\ker P$. On $K$ let the internal
+differential be $d_K$ and the homotopy be $h_K$. Then
+$d_Kh_K+h_Kd_K=1$, $h_K^2=0$. Since $I$ preserves contacts,
+the full differential has the block form
+\[
+ D_{\mathcal B}=\begin{pmatrix}D_{\mathcal Z}&a\\0&D_K\end{pmatrix},
+ \qquad D_K=d_K+b_K,\qquad D_{\mathcal Z}a+aD_K=0.
+\]
+The contact identities give $b_K^2=0$ and
+$d_Kb_K+b_Kd_K=0$.
+Put $A_K=1+b_Kh_K$. Direct multiplication gives
+$D_KA_K=A_Kd_K$, since their difference is
+$b_K(1-d_Kh_K-h_Kd_K)=0$.
+Therefore $h'_K=h_KA_K^{-1}$ satisfies
+$D_Kh'_K+h'_KD_K=1$.
+Also $A_K^{-1}h_K=h_K$, so $(h'_K)^2=0$.
+
+The displayed finite formulas are exactly
+\[
+ \Pi_I(z,k)=z-ah'_Kk,\qquad
+ \mathcal H_I(z,k)=(0,h'_Kk).
+\]
+The asserted equations follow by matrix multiplication,
+using $D_{\mathcal Z}a+aD_K=0$. In particular the target
+differential is the original one with its vertex contacts.
+
+The state maps commute with translation in each block and
+are symmetric under graded permutations. The contacts have
+the same equivariance with their Chevalley signs. Thus every
+term agrees on ordered chart overlaps and open restrictions.
+A partition lies in a fixed collision support when it is
+coarser than its defining partition. State maps preserve
+partitions and contacts only coarsen them, proving support
+compatibility. The localization description of
+\eqref{eq:vol2-supported-pair-complexes} identifies its
+inclusion with the counit. The vacuum map factors through
+$I$, on which $H$ vanishes. Finally there are at most $n-1$
+contacts, each of finite normal order on a polynomial input.
+\end{proof}
+
+At three positions, $\Pi_3=P-PbH+PbHbH$.
+For $w=\iota_1\boxtimes\eta_1\boxtimes1$ and
+$x=p_1\boxtimes\eta_1\boxtimes1$, the differential is
+$D_{\mathcal B}w=x+v_{\mathcal B}$, where
+$v_{\mathcal B}$ is the simple pair-contact vacuum.
+One has $Hx=w$, $Hw=Hv_{\mathcal B}=0$, and
+$Pw=Px=0$, $Pv_{\mathcal B}=v_{\mathcal Z}$.
+Consequently $\Pi_3(x)=-v_{\mathcal Z}$ and
+$\Pi_3(v_{\mathcal B})=v_{\mathcal Z}$.
+The uncorrected projection has defect $v_{\mathcal Z}\ne0$
+on $w$.
+
+On a pair support the formula becomes
+\begin{equation}\label{eq:vol2-supported-pair-transfer}
+ \Pi_M(y,z)=\bigl((r\boxtimes r)y,
+                       rz+rb_2h_2^{\mathrm{aux}}y\bigr).
+\end{equation}
+There is at most one contact, and the pair homotopy has sign
+$-h_2^{\mathrm{aux}}$, giving the plus sign. On the triple
+support, $\Pi_T=r$ and $I_T=j_1$.
+Let $I_M$ be its pair inclusion and put
+\[
+ \beta_e^C=\Pi_M\widehat\beta_e,\qquad
+ \mathcal C_{ab}^C=\Pi_T\mathcal C_{ab}I_M.
+\]
+Then
+\begin{equation}\label{eq:vol2-supported-composition-transfer}
+ \Pi_T\mathcal C_{ab}\widehat\beta_e
+                  =\mathcal C_{ab}^C\beta_e^C,\qquad
+ \Pi_T\mathcal H=\widehat H.
+\end{equation}
+Indeed $\mathcal C_{ab}$ kills the triple component of the
+pair homotopy, and $(r\boxtimes r)h_2^{\mathrm{aux}}=0$.
+Hence $\mathcal C_{ab}\mathcal H_M=0$. Apply the closed
+$\mathcal C_{ab}$ to $1-I_M\Pi_M=\delta\mathcal H_M$ to
+obtain $\mathcal C_{ab}=\mathcal C_{ab}I_M\Pi_M$.
+This proves the strict composition identity. The pair-to-triple
+term of \eqref{eq:vol2-supported-pair-transfer} still occurs in
+each transferred first lift and its endpoint homotopy.
+
+\subsection{A nonzero state Jacobiator}
+
+The homotopy is necessary even though the cube-contact sum
+vanishes. Write $u=u_0$, $c=c_0$. The bracket fixed above
+satisfies
+\begin{align}\label{eq:vol2-composite-bracket-values}
+ B_\nu(u^2,cTc)&=-2uTc+2\nu uc+2(Tu)c,\notag\\
+ B_\nu(u^2,uc)&=-2u^2-\tfrac\kappa2\nu^2,\notag\\
+ B_\nu(u^2,uTc)&=-2\nu u^2-2uTu-\tfrac\kappa6\nu^3,\\
+ B_\nu(u^2,(Tu)c)&=-2uTu-\tfrac\kappa3\nu^3,\qquad
+ B_\nu(u^2,u^2)=0.\notag
+\end{align}
+For the scalar terms, the parts of $h_1(uc)$, $h_1(uTc)$
+and $h_1((Tu)c)$ without $\iota_1$ are respectively
+\[
+ -{:}U_1D_1{:}+\tfrac\kappa2{:}(TD_1)D_1{:},\quad
+ -{:}U_1TD_1{:}+\tfrac\kappa2{:}(TD_1)^2{:},\quad
+ -{:}(TU_1)D_1{:}+\tfrac\kappa2{:}(T^2D_1)D_1{:}.
+\]
+The factor $1/2$ is the integral of the first path parameter.
+Every omitted term contains $\iota_1$, which cannot contract
+with the second embedding and is killed by $r$.
+The contractions of $U_2$ with $D_1,TD_1,T^2D_1$ are
+$-v^{-1},-v^{-2},-2v^{-3}$. Their double contractions with
+$U_2^2$, before the bracket's minus sign, are
+$\kappa v^{-3},\kappa v^{-4},2\kappa v^{-4}$.
+Converting $v^{-m-1}$ to $\nu^m/m!$ gives the three scalar
+coefficients. Single contractions and the Taylor terms give
+the displayed state terms. The two ordered ghost contractions
+give the first line, and every term in the last bracket
+retains an auxiliary field.
+
+Substitution in the three channels gives
+\[
+ L(u^2,u^2,cTc)-R_B(u^2,u^2,cTc)
+                   +\epsilon N_B(u^2,u^2,cTc)
+                  =\frac\kappa3(\lambda+\mu)^3\mathbf1.
+\]
+The state terms cancel and $\epsilon=-1$.
+Set $H(a,b,c)=(-1)^{|b|}\widehat H(a,b,c)$.
+The ordinary Hom equation becomes
+\begin{align}\label{eq:vol2-state-jacobi-homotopy}
+ L-R_B+\epsilon N_B={}&dH(a,b,c)+H(da,b,c)\notag\\
+ &-(-1)^{|a|}H(a,db,c)
+             +(-1)^{|a|+|b|}H(a,b,dc).
+\end{align}
+Since $d(u^2)=2\kappa uTc$ and $d(cTc)=0$, degree and
+the displayed value force
+\[
+ H(uTc,u^2,cTc)-H(u^2,uTc,cTc)=\frac{(\lambda+\mu)^3}{6}.
+\]
+The scalar vacuum need not be exact in $C$: the input
+differential contributes the boundary in this operation
+complex. The noncocycle example therefore does not define
+an obstruction class from three cohomology classes.
+
+The construction supplies outer operations on the complete
+pair-support complexes and their triple homotopy for the
+regular singleton source. Extending these fixed maps to
+higher merged collision diagrams remains a further equation.
+It must preserve the endpoint homotopies, proper collision
+strata and vacuum faces already specified here.
+
+\section{Directed composition beyond the associator}
+\label{sec:vol2-directed-higher-composition}
+
+A finite directed category isolates the next coherence
+equation. Four arrows have five parenthesizations, so their
+associativity homotopies must satisfy a pentagon relation.
+This calculation fixes a carrier of rank one on every forward
+arrow. Its solution will not identify that carrier with a
+supported field-operation complex.
+
+Fix objects $0,\ldots,4$, degree-zero arrows $a_{ij}$ for
+$i<j$, scalar identities and no backward arrows. Products
+are written chronologically. Introduce ten degree-zero
+coefficients and their associativity equations:
+\[
+ a_{ij}a_{jk}=m_{ijk}a_{ik},\qquad
+ F_{ijkl}=m_{ijk}m_{ikl}-m_{jkl}m_{ijl}.
+\]
+The dg coefficient algebra
+\[
+ K=k[m_{ijk}]\otimes\Lambda(\chi_{ijkl}),\qquad
+ |\chi_{ijkl}|=-1,\quad d\chi_{ijkl}=F_{ijkl},\quad dm_{ijk}=0
+\]
+retains a chosen homotopy for each binary associativity
+equation. All index sequences are increasing.
+
+\begin{proposition}[The relative pentagon class]
+\label{prop:vol2-directed-pentagon}
+The element
+\begin{align}\label{eq:vol2-directed-pentagon}
+ S={}&m_{034}\chi_{0123}+m_{123}\chi_{0134}
+           +m_{014}\chi_{1234}\notag\\
+    &-m_{234}\chi_{0124}-m_{012}\chi_{0234}
+\end{align}
+is a nonzero class in $H^{-1}(K)$. Adjoining an even generator
+$\zeta$ of degree $-2$ with $d\zeta=S$ therefore fills a
+relation not already filled in $K$.
+\end{proposition}
+
+\begin{proof}
+The five parenthesizations of the four-arrow path have
+coefficients
+\[
+ \begin{array}{lll}
+ P_1=m_{012}m_{023}m_{034},&P_2=m_{123}m_{013}m_{034},&
+ P_3=m_{123}m_{134}m_{014},\\
+ P_4=m_{234}m_{124}m_{014},&P_5=m_{012}m_{234}m_{024}.&
+ \end{array}
+\]
+The differentials of the five displayed terms in $S$ are
+$P_1-P_2,P_2-P_3,P_3-P_4,P_4-P_5,P_5-P_1$, so $dS=0$.
+Every element of $K^{-2}$ is a polynomial combination of
+products $\chi_I\chi_J$. Its differential has coefficients
+of $m$-degree at least two. The nonzero coefficients of $S$
+have $m$-degree one, so $S$ cannot be a boundary.
+Finally $d^2\zeta=dS=0$; its even degree requires the
+polynomial algebra $k[\zeta]$.
+\end{proof}
+
+The obstruction fixes the lower homotopies. In
+$A=\Lambda(\varepsilon)$ with $|\varepsilon|=-1$ and $d=0$,
+set every $m_{ijk}=1$, set $\chi_{0123}=\varepsilon$ and
+all other $\chi$ to zero. All $F_{ijkl}$ vanish, giving a
+map $K\to A$. It cannot extend to $K[\zeta]$, since $S$
+maps to $\varepsilon$ and $A^{-2}=0$. Setting every $\chi$
+to zero would extend. Thus the example obstructs prescribed
+homotopies, not all coherent structures with those binary
+products.
+
+\subsection{The coefficient algebra in every arity}
+
+For $N$ ordered objects $0,\ldots,N-1$, introduce a variable
+$\beta_I$ of degree $2-n$ for every increasing sequence
+$I=(i_0<\cdots<i_n)$, $n\geq2$. Let $R_N$ be their free
+graded-commutative algebra, with
+\begin{equation}\label{eq:vol2-directed-all-arity}
+ d\beta_I=-\sum_{s=2}^{n-1}\sum_{r=0}^{n-s}
+ (-1)^{r+(r+1)(2-s)}
+ \beta_{(i_r,\ldots,i_{r+s})}
+ \beta_{(i_0,\ldots,i_r,i_{r+s},\ldots,i_n)}.
+\end{equation}
+The inner coefficient is written first, fixing the sign
+convention. The sum is empty on binary coefficients.
+There are $2^N-1-N-\binom N2$ generators.
+
+\begin{theorem}\label{thm:vol2-directed-all-arity}
+Equation \eqref{eq:vol2-directed-all-arity} defines a
+differential. For every commutative dg algebra $A$, maps
+$R_N\to A$ specify strictly unital directed $A_\infty$
+structures on the fixed labelled rank-one carrier, with
+unary differential that of $A$. For $N=5$, the substitutions
+\[
+ \beta_{ijk}=m_{ijk},\qquad
+ \beta_{ijkl}=-\chi_{ijkl},\qquad
+ \beta_{01234}=-\zeta
+\]
+identify it with the preceding pentagon algebra.
+\end{theorem}
+
+\begin{proof}
+Suspend each forward arrow to degree $-1$, denoting it by
+$\bar a_{ij}$. Define the degree-one operations
+\[
+ b_n(\bar a_{i_0i_1}|\cdots|\bar a_{i_{n-1}i_n})
+                  =\beta_I\bar a_{i_0i_n}.
+\]
+Keep coefficients on the left and extend them as a
+coderivation of the tensor coalgebra over the object
+idempotents. Its unary part differentiates coefficients.
+Inserting an $s$-ary operation after $r$ inputs contributes
+$(-1)^r$. Moving its coefficient of degree $2-s$ past those
+inputs and then through the outer degree-one operation
+contributes $(-1)^{(r+1)(2-s)}$. Thus the component of
+$b^2$ with output length one is $d\beta_I$ plus the
+insertion sum in \eqref{eq:vol2-directed-all-arity}.
+
+Apply the prescribed derivation once more. Each resulting
+term is a planar substitution with three operation vertices.
+Its two internal edges can be contracted in exactly two
+orders. For nested substitutions these are the two
+associative orders of composing graded maps; for disjoint
+substitutions they interchange two odd insertions. The
+graded Leibniz rule gives opposite signs and the same
+coefficient permutation in each pair. Hence every term
+cancels and $d^2\beta_I=0$.
+
+A map $R_N\to A$ therefore gives exactly the coefficients
+with $b^2=0$. No nonidentity composable string has length
+greater than $N-1$. Normalize away strings with an identity
+input and impose the ordinary unit products; these give
+the strictly unital structure. Conversely, its coefficients
+give the map. Substitution at arities three and four gives
+$d\chi=F$ and $d\zeta=S$ with the displayed signs.
+\end{proof}
+
+Polynomial differential forms on simplices can be used as
+test algebras to retain paths and higher simplices of these
+structures. The carrier and its bases stay fixed. Taking
+a quotient by changes of basis or by general $A_\infty$
+equivalences is a separate moduli problem. Nor does the
+presentation assert that $R_N$ resolves the ordinary
+associative-parameter ring at every singular point.
+
+\subsection{An algebraic contraction of the invertible chart}
+
+Assume $N\geq3$ and invert every binary coefficient:
+\[
+ R_N^\times=R_N[m_{ijk}^{-1}:i<j<k],\qquad
+ q_{ij}=m_{0ij},\qquad
+ L_N=k[q_{ij}^{\pm1}:1\leq i<j\leq N-1].
+\]
+These are algebraic localizations; no completion is used.
+The first object supplies a contracting partner for every
+coefficient on the other objects.
+
+\begin{theorem}\label{thm:vol2-directed-invertible-chart}
+There are dg algebra maps
+$L_N\xrightarrow{\iota}R_N^\times\xrightarrow{p}L_N$,
+with $p\iota=1$, and an $L_N$-linear degree-minus-one
+homotopy satisfying $dH+Hd=1-\iota p$.
+The inclusion sends $q_{ij}$ to $m_{0ij}$, and
+\begin{equation}\label{eq:vol2-directed-retraction}
+ p(m_{ijk})=\frac{q_{ij}q_{jk}}{q_{ik}}\quad(0<i<j<k),
+ \qquad p(\beta_I)=0\quad(|I|\geq4).
+\end{equation}
+Thus $H^0(R_N^\times)=L_N$ and all other cohomology
+vanishes, for every finite $N$.
+\end{theorem}
+
+\begin{proof}
+For each increasing $I=(i_1,\ldots,i_\ell)$ with $i_1>0$
+and $\ell\geq3$, set
+\begin{equation}\label{eq:vol2-directed-contracting-pairs}
+ \eta_I=q_{i_1i_\ell}^{-1}\beta_{0I},\qquad
+ z_I=q_{i_1i_\ell}^{-1}d\beta_{0I}.
+\end{equation}
+Then $d\eta_I=z_I$ and $dz_I=0$.
+In the insertion formula for $d\beta_{0I}$, the term
+$r=1,s=\ell-1$ is $+\beta_Iq_{i_1i_\ell}$: the exponent
+$1+2(3-\ell)$ is odd and the formula has an initial minus
+sign. Every other coefficient with no zero index has fewer
+than $\ell$ indices. Coefficients containing zero are
+already $q$'s or unit multiples of $\eta$'s. Thus
+$z_I=\beta_I+$ terms of smaller nonzero index size.
+Increasing induction on $\ell$ inverts this triangular
+polynomial change of generators.
+
+For $I=(i,j,k)$,
+$z_I=m_{ijk}-c_I$, with $c_I=q_{ij}q_{jk}/q_{ik}$ a
+unit of $L_N$. Consequently $R_N^\times$ is the tensor
+product over $L_N$ of the factors
+\[
+ A_I=
+ \begin{cases}
+ L_N[z_I,(z_I+c_I)^{-1}]\otimes\Lambda(\eta_I),&|I|=3,\\
+ \operatorname{Sym}_{L_N}(L_Nz_I\oplus L_N\eta_I),&|I|\geq4,
+ \end{cases}
+\]
+with $|z_I|=3-|I|$, $|\eta_I|=2-|I|$.
+Evaluation at both variables zero is defined in every
+factor, since each localized $c_I$ is a unit.
+
+For $|I|=3$, a contraction of evaluation is
+\[
+ h(f(z))=\frac{f(z)-f(0)}z\eta,\qquad h(f(z)\eta)=0.
+\]
+The quotient belongs to the same localized ring because
+the evaluation kernel is the ideal $(z)$.
+For odd $|I|\geq5$, use
+$h(z^a)=z^{a-1}\eta$ for $a\geq1$, $h(1)=0$ and
+$h(z^a\eta)=0$. For even $|I|\geq4$, use
+\[
+ h(\eta^az)=\frac{\eta^{a+1}}{a+1},\qquad
+ h(\eta^a)=0\quad(a\geq0).
+\]
+The graded Leibniz rule gives $dh+hd=1-\iota p$ in
+each case, with $h\iota=ph=h^2=0$.
+The denominators are invertible in characteristic zero.
+
+Order the finite set of factors and take the signed
+tensor homotopy
+$H=\sum_j(\iota_1p_1)\otimes\cdots\otimes
+(\iota_{j-1}p_{j-1})\otimes h_j\otimes1\otimes\cdots$.
+The contraction equation telescopes, as in
+Proposition~\ref{prop:vol2-independent-normal-support}.
+After the binary substitutions, induction through the
+triangular coordinates sends every higher coefficient
+to zero. Evaluation is therefore exactly
+\eqref{eq:vol2-directed-retraction}.
+\end{proof}
+
+The inclusion and projection are algebra maps; the
+displayed homotopy is a homotopy of complexes. It also
+determines the tangent complex before changes of arrow
+basis. At the point with every $m_{ijk}=1$ and every higher
+coefficient zero, let $T^\bullet$ be the dual of the
+coefficient cotangent complex. Then
+\begin{equation}\label{eq:vol2-directed-tangent-ranks}
+ \dim T^j=\binom N{j+3},\qquad
+ \operatorname{rank}(d:T^j\to T^{j+1})=\binom{N-1}{j+3}
+ \quad(j\geq0),
+\end{equation}
+with out-of-range binomial coefficients zero. Indeed the
+cotangent complex is obtained by differentiating the free
+localized presentation. Each pair
+\eqref{eq:vol2-directed-contracting-pairs} gives an identity
+from tangent degree $|I|-3$ to $|I|-2$, and the
+$\binom{N-1}{2}$ variables $q_{ij}$ remain unpaired.
+Thus its cohomology is $k^{\binom{N-1}{2}}$ in degree zero
+and zero otherwise. For $N=5$, the dimensions are
+$(10,5,1)$ and ranks $(4,1)$; for $N=6$, they are
+$(20,15,6,1)$ and $(10,5,1)$.
+
+\subsection{Ordinary centres on two loci}
+
+The tangent complex of the coefficient space differs from
+the ordinary Hochschild complex of a category at a chosen
+point. Let $C$ be the directed category on these $N$ objects,
+with scalar identities and a single degree-zero basis arrow
+$a_{ij}$ for each $i<j$.
+
+\begin{proposition}\label{prop:vol2-directed-centre-loci}
+At an associative point with every $m_{ijk}\ne0$,
+$HH^0(C)=k$ and $HH^{>0}(C)=0$.
+At the zero-product point,
+\[
+ \begin{gathered}
+ \dim HH^0(C)=1,\qquad \dim HH^1(C)=\binom{N-1}{2},\\
+ \dim HH^j(C)=\binom N{j+1}\quad(2\leq j\leq N-1),
+ \end{gathered}
+\]
+and the higher groups vanish.
+\end{proposition}
+
+\begin{proof}
+Associativity on $(0,i,j,k)$ gives
+$m_{ijk}=q_{ij}q_{jk}/q_{ik}$. Replace $a_{ij}$ by
+$q_{ij}^{-1}a_{ij}$ when $i>0$ and leave $a_{0i}$ unchanged.
+Every composable product then has coefficient one.
+The relative bar of Theorem~\ref{thm:vol2-directed-bar}
+identifies its normalized Hochschild cochains with the
+simplicial cochains of the ordered $(N-1)$-simplex.
+For a positive-degree cochain put
+\[
+ (hf)(i_0,\ldots,i_{n-1})=
+ \begin{cases}
+ f(0,i_0,\ldots,i_{n-1}),&i_0>0,\\
+ 0,&i_0=0.
+ \end{cases}
+\]
+In $dh+hd$, terms deleting any vertex other than the
+inserted zero cancel. The remaining term is $f$ in positive
+degree and $f-f(0)$ in degree zero. This contracts onto
+the constants.
+
+At zero products, every differential from degree one
+upward is zero: each merger and endpoint action multiplies
+two forward arrows. The degree-zero map is the difference
+of vertex values on every forward edge. Its kernel is
+$k$ and its rank $N-1$. Degree $j$ has one coordinate for
+each increasing $(j+1)$-tuple. Subtracting that rank in
+degree one gives the stated dimensions.
+\end{proof}
+
+At the zero-product point, the coefficient differential
+has no linear part, so its tangent complex retains every
+generator. Neither this tangent complex nor its ordinary
+centre is obtained by substituting zero into the localized
+contraction.
+
+\section{The four-input comparison}
+\label{sec:vol2-four-input-comparison}
+
+The preceding constructions solve different composition
+problems. The discarded coefficient complex retains outer
+and crossed collision classes. The Heisenberg construction
+gives actual pair-support outer maps and a triple homotopy
+on regular singleton inputs. The directed coefficient
+algebra retains all arities on its fixed rank-one carrier
+and contracts on its invertible chart. A comparison with
+field operations must supply the maps relating these
+domains.
+
+At four inputs, first construct a common operation complex
+which retains the local vacuum and every nonconsecutive
+collision channel. Transport the five parenthesizations
+and their chosen associativity homotopies into it, including
+the operations composing a homotopy with the remaining
+inputs. Their pentagon then gives a specified cycle.
+The unresolved equation is to construct a degree-minus-two
+primitive of that cycle, or to prove that its class is
+nonzero, with those lower homotopies fixed.
+
+The directed algebra includes its higher generators and
+their prescribed differentials. Theorem~\ref{thm:vol2-directed-invertible-chart}
+computes its localized cohomology; it does not assert that
+every choice of lower homotopies in another coefficient
+algebra extends. The common supported operation complex and
+the comparison into it remain to be constructed. Likewise
+the three-channel scalar
+current identity \eqref{eq:vol2-three-channel-current}
+retains the contact terms needed by a field comparison,
+but its residue relation alone is not that operation
+homotopy. These missing maps preserve the distinction
+between a coefficient calculation and a coherent action
+on fields.

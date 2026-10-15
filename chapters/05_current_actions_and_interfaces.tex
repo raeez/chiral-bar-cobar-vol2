@@ -1,0 +1,1988 @@
+\chapter{Current actions and derived interface centres}
+\label{ch:vol2-currents}
+
+A boundary action has to commute with fields inserted near the boundary.
+When this commutation holds up to homotopy, two fields require a
+compatibility between the two homotopies and their collision. The
+compatibility is additional data. We first recover its cochains from
+supported maps and construct them for a resolved current action.
+
+The Heisenberg algebra makes the resulting distinctions explicit. At a
+polynomial root, forgetting the current action retains many more
+operators than the current cohomology sees. Their derived composition
+has a nonzero Massey product. Over the level ring, the path in the
+forgetful fibre turns a torsion current class into a free class. Finite
+categories of interfaces then give centres in which cup products,
+insertion brackets and parameter fibres can all be computed. These
+calculations specify operations that a geometric bulk--boundary
+comparison must preserve.
+
+Throughout the chapter, $k$ is a field of characteristic zero. Complexes
+are cohomological, with $K[1]^n=K^{n+1}$. For a homogeneous map $f$ the
+Hom differential is $d_{\mathrm{Hom}}f=d f-(-1)^{|f|}f d$.
+Polynomial states have finite support in their variables. A completion
+will always be stated separately.
+
+\section{Current homotopies from a supported map}
+\label{sec:vol2-current-homotopies}
+
+Let $O=k[y]$ and $D_y=O\langle\partial_y\rangle$, with
+$[\partial_y,y]=1$. The Heisenberg vacuum at level $\kappa\in k^\times$
+is
+\begin{equation}\label{eq:vol2-fock-currents}
+ V_\kappa=k[x_1,x_2,\ldots],\qquad
+ J_{-n}=L_{x_n},\quad J_n=\kappa n\partial_{x_n}\quad(n>0),
+ \qquad J_0=0.
+\end{equation}
+Here $L_f$ denotes multiplication by $f$. Its vacuum is $1$, its
+current state is $J=x_1$, and its translation is
+\[
+ T=\sum_{n\geq1}n x_{n+1}\partial_{x_n},\qquad
+ \mathcal V=O\otimes_kV_\kappa,\qquad \nabla=\partial_y+T.
+\]
+For a formal variable $u$, the field
+$Y(J,u)=\sum_{m\in\mathbb Z}J_m u^{-m-1}$ determines the other
+fields by normal products and translation. Direct calculation
+gives $[J_m,J_n]=\kappa m\delta_{m+n,0}$ and
+$[\nabla,J_m]=-mJ_{m-1}$. Each field is lower truncated on each state.
+
+Take a second coordinate $z$ and put $u=z-y$. A map supported on $u=0$
+takes values in principal parts, with all finite normal derivatives
+retained as in Section~\ref{sec:vol2-principal-parts}. The current
+generates a free $D_y$-submodule: $T^nJ=n!x_{n+1}$. Denote it by
+$L_J=D_yJ$.
+
+A semi-free complex has an increasing filtration by subcomplexes,
+split on underlying graded modules, whose successive quotients
+are direct sums of shifts of $D_y$.
+
+\begin{lemma}[Laurent coefficients of supported maps]
+\label{lem:vol2-laurent-current}
+Let $Q$ be a semi-free complex of left $D_y$-modules. Let $j$ include
+the complement of the diagonal and let $\Delta$ include the diagonal.
+Then
+\[
+ R\operatorname{Hom}_{D_{z,y}}
+   \bigl(j_*j^*(L_J\boxtimes Q),\Delta_+\mathcal V\bigr)
+\]
+is computed by ordinary differential-module maps. Taking the residue
+identifies this complex with families of $O$-linear maps
+$H_m:Q\to\mathcal V$, $m\in\mathbb Z$, satisfying
+\begin{equation}\label{eq:vol2-laurent-horizontal}
+ [\nabla,H_m]+mH_{m-1}=0.
+\end{equation}
+For each input, only finitely many $H_m$ with $m\geq0$ are nonzero.
+There is no bound required uniformly over all inputs.
+\end{lemma}
+\begin{proof}
+For one free generator the localized source has the telescope
+presentation
+\[
+ D_{z,y}[u^{-1}]=\varinjlim_k D_{z,y}u^{-k},
+\]
+whose maps are right multiplication by $u$. The Ore localization
+exists because $\operatorname{ad}u$ is locally nilpotent. Applying
+Hom gives the inverse system of principal parts under multiplication
+by $u$. These maps are onto: $u^{-r}$ has preimage $u^{-r-1}$.
+Thus its ordinary limit computes its derived limit, by the product
+model in the proof of Theorem~\ref{thm:vol2-continuous-chevalley}. Direct sums of
+free generators become products of these exact calculations.
+
+Use the semi-free filtration of $Q$, split on underlying graded
+modules. At each finite stage the assertion follows by extensions.
+The restriction maps between the ordinary Hom complexes are
+degreewise onto, so the assertion passes to the entire filtration.
+The resulting totalization uses products.
+
+The map with residue family $(H_m)$ is reconstructed by
+\begin{equation}\label{eq:vol2-laurent-reconstruction}
+ \varphi(u^mJ\boxtimes q)
+   =\sum_{r\geq0}H_{m+r}(q)u^{-r-1}.
+\end{equation}
+The stated finiteness makes this a principal part for each $m,q$.
+Multiplication by $u$ shifts the formula. Linearity in $\partial_z$
+then determines the values on every $T^nJ$. Finally
+$\partial_y|_z=\partial_y|_u-\partial_u$ and
+$\operatorname{Res}_u\partial_u=0$ give
+\[
+ \nabla H_m(q)=-mH_{m-1}(q)+H_m(\partial_yq),
+\]
+which is precisely the remaining differential-module relation.
+These constructions are inverse and commute with the Hom differential.
+\end{proof}
+
+To extract these maps from a collision, retain its attaching map.
+Write a one-current Cousin complex as $A[1]\oplus B$, where $A$ is
+the open term, $B$ is the supported term, and $\mu:A\to B$ is the
+unshifted residue map. For the suspension $s:A\to A[1]$ of degree
+$-1$, its differential is
+\[
+ d(sa,b)=(-s\,d_Aa,\mu a+d_Bb).
+\]
+A map to a second such complex has open and closed components
+$f_U,f_\Delta$ and a degree $-1$ cross component $h$. Its equation is
+$d_{\mathrm{Hom}}h=f_\Delta\mu-\mu'f_U$.
+
+Suppose that the prescribed unary operation is
+$a:Q\to\mathcal V$, and that the open and closed restrictions are
+identified with $1\boxtimes a$ and $a$ by specified homotopies
+$\gamma,\delta$. Orient them by
+$d\gamma=f_U-1\boxtimes a$ and $d\delta=f_\Delta-a$.
+Writing $\partial_P,\partial_C$ for the source and target residue
+maps, set
+\begin{equation}\label{eq:vol2-corrected-current-face}
+ \widetilde h=h+\partial_C\gamma-\delta\partial_P,
+ \qquad
+ d\widetilde h=a\partial_P-\partial_C(1\boxtimes a).
+\end{equation}
+For a semi-free $P$, take $Q=P\otimes_O\mathcal V$ with its
+prescribed boundary current action. On a free $D_y$-summand,
+the change from $\partial_y\otimes1$ to the diagonal connection
+$\partial_y\otimes1+1\otimes\nabla$ is triangular in PBW degree.
+It identifies the tensor with the module induced from the
+$O$-free module $\mathcal V$, so the tensor is $D_y$-free.
+Applying this to the filtration quotients makes $Q$ semi-free.
+The residue map $\partial_P$
+acts on the factor $\mathcal V$. The identity
+\[
+ \operatorname{Res}_u\operatorname{pp}_u(u^mY(J,u)w)=J_mw
+\]
+therefore gives
+\begin{equation}\label{eq:vol2-current-first}
+ H_m=-\operatorname{Res}_u\widetilde h(u^mJ\boxtimes-),
+ \qquad d_{\mathrm{Hom}}H_m=J_ma-aJ_m.
+\end{equation}
+The source action is the rightmost $J_m$ in this formula. In particular,
+the zero and negative modes are part of the comparison. Equality of
+the restrictions in cohomology would not specify $\gamma,\delta$ or
+the corrected supported coordinate.
+
+\subsection{The second equation and all higher equations}
+
+Let $\mathfrak a$ be an ordinary Lie algebra and let $M,V$ be dg
+$\mathfrak a$-modules. Put $E=\operatorname{Hom}_k(M,V)$ and
+$T_xf=\rho_V(x)f-f\rho_M(x)$. For an alternating $p$-cochain set
+\begin{align}\label{eq:vol2-current-ce}
+ (\delta f)(x_0,\ldots,x_p)
+ ={}&\sum_i(-1)^iT_{x_i}f(x_0,\ldots,\widehat x_i,\ldots,x_p)
+ \notag\\
+ &+\sum_{i<j}(-1)^{i+j}
+ f([x_i,x_j],x_0,\ldots,\widehat x_i,\ldots,\widehat x_j,\ldots,x_p).
+\end{align}
+The bracket occupies the first slot. The representation identity and
+Jacobi identity give $\delta^2=0$; moreover $\delta d_E=d_E\delta$.
+Use the product totalization with differential
+$\delta+(-1)^p d_E$ on Chevalley degree $p$.
+
+A coherent current-linear map is a family
+$H_p:\Lambda^p\mathfrak a\to E^{-p}$ satisfying
+\begin{equation}\label{eq:vol2-current-hierarchy}
+ H_0=a,\qquad d_Ea=0,\qquad d_EH_p=\delta H_{p-1}\quad(p\geq1).
+\end{equation}
+Indeed, $\alpha_p=(-1)^{p(p-1)/2}H_p$ is then a total degree-zero
+cocycle. At two inputs the equation is
+\begin{equation}\label{eq:vol2-current-second}
+ d_EH_2(x,y)=T_xH_1(y)-T_yH_1(x)-H_1([x,y]).
+\end{equation}
+Its right side is closed once the first equation holds. Its class in
+$\operatorname{Hom}(\Lambda^2\mathfrak a,H^{-1}E)$ must vanish
+before this chosen first homotopy extends. The three terms keep the
+two orders of current--root collision and the current--current
+collision. The last is the third channel.
+
+\begin{theorem}[A resolved current action]\label{thm:vol2-resolved-current}
+Suppose $I$ is a dg $\mathfrak a$-module and $i:V\to I$ is equivariant.
+Let $(p,i,h)$ be a contraction of complexes with
+\[
+ pi=1,\qquad d_Ih+hd_I=1-ip,\qquad hi=ph=h^2=0.
+\]
+For every equivariant cochain map $j:M\to I$ there is a coherent
+current-linear map with unary part $pj$. It is given in all arities
+by a series finite in each output arity. Neither $p$ nor $h$ need
+be equivariant.
+\end{theorem}
+\begin{proof}
+Postcomposition gives the same contraction on the Hom complexes.
+On Chevalley degree $p$ its homotopy is $h_C=(-1)^ph$. Treat
+$\delta$ as a perturbation of $(-1)^pd_{\mathrm{Hom}}$ and define
+\begin{equation}\label{eq:vol2-current-transfer}
+ p'=p(1+\delta h_C)^{-1}
+    =\sum_{r\geq0}(-1)^rp(\delta h_C)^r.
+\end{equation}
+Each perturbation raises Chevalley degree, so this defines a map on
+the product totalization. Since $i$ is equivariant and $hi=0$,
+$h_C\delta i=0$. The transferred differential is consequently
+the ordinary total Chevalley differential on $E$.
+Multiplying the geometric series and using the contraction identity
+shows that $p'$ intertwines the total differentials. The map $j$ is
+a total cocycle in arity zero. Set
+$H_p=(-1)^{p(p-1)/2}(p'j)_p$ to obtain
+\eqref{eq:vol2-current-hierarchy}.
+
+For the first two coefficients the formulas reduce to
+\begin{align}\label{eq:vol2-current-transfer-first}
+ H_1(x)&=-p\rho_I(x)hj,\\
+ H_2(x,y)&=p\bigl(\rho_I(x)h\rho_I(y)h
+                      -\rho_I(y)h\rho_I(x)h\bigr)j.
+ \label{eq:vol2-current-transfer-second}
+\end{align}
+For example, applying $d_E$ to the first gives
+$-p\rho_I(x)(1-ip)j=\rho_V(x)pj-pj\rho_M(x)$.
+In the second, differentiation of the two copies of $h$ leaves
+the two action terms and their commutator, giving
+\eqref{eq:vol2-current-second}. The terms containing $ph$, $hi$
+or $h^2$ vanish by the side conditions.
+\end{proof}
+
+\begin{example}\label{ex:vol2-second-current}
+The second homotopy may be nonzero for commuting currents. Let $I$
+have basis $z,c$ in degree $-2$, $d,a$ in degree $-1$, and $b$ in
+degree zero, with $d_Ic=d$ and $d_Ia=b$. Put $V=kz$, let $p$ be
+projection, and take $h(d)=c$, $h(b)=a$. Define commuting cochain
+operators by $\rho_x(c)=z$, $\rho_y(a)=d$, with all other values
+zero. For $M=I$ and $j=1$ the formulas give
+\[
+ H_1(x)(d)=-z,\qquad H_1(y)=0,\qquad H_2(x,y)(b)=z.
+\]
+All other values vanish. Thus $d_EH_2(x,y)(a)=-z$, which is
+the nonzero right side of \eqref{eq:vol2-current-second} on $a$.
+\end{example}
+
+For an infinite current algebra the same construction requires either
+pointwise finiteness of the operations or a specified completed
+Chevalley domain. The theorem begins with an equivariant resolved
+presentation. Applying it to a geometric boundary action still
+requires a map from that action's supported collision complex to
+this presentation, preserving its unary path and all three channels.
+
+\section{Several roots and upward extensions}
+\label{sec:vol2-root-support}
+
+Return to the Heisenberg state space $V=V_\kappa$ of
+\eqref{eq:vol2-fock-currents}. The acting current adds a root to
+the source of a module cochain.
+This explains why a bound on the roots of the original module is not
+a bound on every output of its derived endomorphisms. We make the
+coefficient category explicit before proving the bound that does hold.
+
+For a finite set $I$, take a chart $X^I_\sigma$ for each total order
+$\sigma$ of $I$, where $X=\mathbb A^1_k$. Glue two charts along the
+open set obtained by removing $x_i=x_j$ whenever their orders of
+$i,j$ disagree. Denote the result by $\mathscr R_I$. The triple
+overlap condition holds: disagreement of two orders on a pair forces
+one of them to disagree with any third order on that pair. Thus these
+opens define a smooth, generally nonseparated scheme. At a tuple
+with equality blocks $B$, its fibre over $X^I$ has
+$\prod_B|B|!$ points, one order for each block.
+
+A surjection $\alpha:I\twoheadrightarrow J$ with an order on each
+fibre defines $\delta_\alpha:\mathscr R_J\to\mathscr R_I$ by
+$x_i=y_{\alpha(i)}$: expand every ordered label of $J$ into its
+ordered fibre. Composition concatenates these orders. The maps
+glue because the preimage of a chart overlap is the corresponding
+overlap on $J$. Let $\mathrm{OSurj}_+$ be the category of nonempty
+finite sets and these ordered-fibre surjections. Define
+\begin{equation}\label{eq:vol2-full-coefficient-category}
+ \mathcal C_+=\varprojlim_{\mathrm{OSurj}_+}
+                 D\operatorname{Mod}(\mathscr R_I),
+ \qquad \mathcal C=D(k)\times\mathcal C_+,
+\end{equation}
+using extraordinary inverse images $\delta_\alpha^!$ on right
+differential modules. Differential modules on the atlas are defined
+by descent from its charts. An object retains the equivalences
+$\delta_\alpha^!F_I\simeq F_J$ and all their coherences.
+The factor $D(k)$ is the empty coefficient; a positive object has
+zero empty coefficient.
+
+For a decomposition $I=A\sqcup B$ let $U_{A,B}$ be the locus on
+which every cross pair is distinct, and let $j_{A,B}$ be its open
+inclusion. Restriction of orders identifies this open with the
+disjoint locus in $\mathscr R_A\times\mathscr R_B$. Set
+\begin{equation}\label{eq:vol2-full-convolution}
+ (F\star G)_I=
+ \bigoplus_{I=A\sqcup B}j_{A,B,*}
+             (F_A\boxtimes G_B)|_{U_{A,B}}.
+\end{equation}
+An empty subset contributes scalar tensor product with its coefficient
+in $D(k)$; at $I=\varnothing$ the value is
+$F_\varnothing\otimes_kG_\varnothing$.
+Both subsets may be empty. This is the all-subset convolution; the
+cut product of Section~\ref{sec:vol2-word-coefficients} used only
+consecutive decompositions of a fixed word.
+
+\begin{proposition}\label{prop:vol2-full-convolution}
+The product \eqref{eq:vol2-full-convolution} is symmetric monoidal.
+Its unit $K$ is $k$ at the empty coefficient and zero elsewhere.
+Every parenthesized product of $r$ positive objects has the common
+formula
+\begin{equation}\label{eq:vol2-full-partitions}
+ (F_1\star\cdots\star F_r)_I
+ =\bigoplus_{I=I_1\sqcup\cdots\sqcup I_r}
+      j_{P,*}(F_{1,I_1}\boxtimes\cdots\boxtimes F_{r,I_r})|_{U_P},
+\end{equation}
+where $P=(I_1,\ldots,I_r)$ and $U_P$ removes all cross-block
+diagonals. In particular this coefficient is zero for $r>|I|$.
+\end{proposition}
+\begin{proof}
+Under an ordered collision, a summand whose blocks meet the same
+collapsed fibre has zero extraordinary inverse image: that fibre
+misses its open locus. Every remaining block is the inverse image
+of a unique block downstairs. Open base change
+(Lemma~\ref{lem:vol2-open-basechange}) identifies these remaining
+summands with the convolution downstairs. This also proves
+compatibility with composed collisions.
+
+Nested open conditions impose exactly the cross-block inequalities
+of $U_P$. Localization commutes with external products, so all
+parenthesizations have \eqref{eq:vol2-full-partitions} as their
+common expression. The coherent base-change identifications give
+the associativity diagrams. Permutation of the blocks gives the
+symmetry with the usual Koszul signs. Only an empty block can
+contribute the object $K$, proving the unit assertion. Positivity
+forces every $I_j$ to be nonempty, proving the last assertion.
+\end{proof}
+
+For a right differential module $M$ on $X$, its main-diagonal family
+$iM$ is $\Delta_{I,*}M$ on each ordered chart. The branch maps are
+the extraordinary restrictions of this diagonal direct image.
+Let $V^r=\omega_X\otimes_O\mathcal V$. The residue pairings of the
+Heisenberg fields give the degree-zero Lie object
+\[
+ \mathfrak g=L_{V_\kappa}=iV^r
+\]
+for $\star$. Explicitly, on a two-block summand its bracket is the
+principal part of $Y(v,z-y)w$, with its right transfer-module
+normal derivatives. The field skew symmetry and Jacobi identity
+are the antisymmetry and Jacobi identities of this pairing, on
+every ordered branch. The local vacuum is the state $1\in V$;
+it is distinct from the empty convolution unit $K$.
+
+Write
+\[
+ N_a=\operatorname{Sym}^a_\star\mathfrak g,\qquad
+ A=U_\star\mathfrak g.
+\]
+Symmetric powers use coinvariants, identified with invariants by
+averaging. We use the full derived category of $A$-modules and
+the adjoint action on $N_a$ and $A$, without imposing preservation
+of conformal weight. PBW symmetrization gives
+$A=\bigoplus_{a\geq0}N_a$ as adjoint modules. The usual multilinear
+PBW identities apply here: convolution preserves colimits, and
+finite symmetric-group coinvariants are exact in characteristic
+zero. Since $N_a(I)=0$ for $a>|I|$, this sum is also the product
+in compatible coefficient families. On each chart, localization
+and diagonal direct image are exact, so each $N_a$ has
+differential-module coefficients in degree zero.
+
+\begin{theorem}[The degree-dependent support bound]
+\label{thm:vol2-root-bound}
+For $w,a\geq1$,
+\begin{equation}\label{eq:vol2-root-bound}
+ \operatorname{Ext}^q_{\mathfrak g}(N_w,N_a)=0\qquad(q<a-w).
+\end{equation}
+Consequently, for $w\geq1$ and $q\geq0$,
+\begin{equation}\label{eq:vol2-root-window}
+ \tau_{\leq q}R\operatorname{Hom}_{\mathfrak g}(N_w,A)
+ \simeq\tau_{\leq q}\prod_{0\leq a\leq w+q}
+              R\operatorname{Hom}_{\mathfrak g}(N_w,N_a).
+\end{equation}
+The truncation is applied to the full complexes. In a connective
+coefficient resolution, degree-$q$ cycle equations retain Chevalley
+columns through $q+1$.
+\end{theorem}
+\begin{proof}
+The coefficient family $N_a$ is a sum of open direct images from
+exactly $a$ distinct roots, with diagonal support within each
+block. If a coefficient family $B$ is supported on at most
+$a-1$ roots, ordinary open adjunction gives
+$R\operatorname{Hom}_{\mathcal C}(B,N_a)=0$.
+This is an adjunction before imposing module equivariance.
+
+The module Chevalley resolution has columns
+\[
+ R\operatorname{Hom}_{\mathcal C}
+       (\Lambda^n_\star\mathfrak g\star N_w,N_a)[-n].
+\]
+Their sources have at most $n+w$ roots, so a column vanishes
+when $n+w<a$. Otherwise it is $n$-connective: its coefficient
+objects are differential modules in degree zero and their
+derived Homs have no negative cohomology. The compatible-family
+limits preserve this bound. In each total degree only finitely
+many columns contribute. This proves \eqref{eq:vol2-root-bound}.
+
+Derived Hom into $A$ is the product of derived Homs into the
+$N_a$. Every omitted factor in \eqref{eq:vol2-root-window} starts
+above degree $q$; products preserve that lower bound. Finally
+column $q+1$ can receive the outgoing differential of a
+degree-$q$ cochain, whereas later columns cannot enter its
+cycle equation.
+\end{proof}
+
+The boundary of this vanishing range is attained. Let
+$\mathsf D=\partial_{x_1}$ on polynomial states. It satisfies
+$\mathsf D1=0$, $\mathsf DJ=1$ and $[\mathsf D,T]=0$.
+Moreover $[\mathsf D,Y(J,u)]=1=Y(\mathsf DJ,u)$.
+Normal products and translation extend this derivation identity
+to every state. Thus $\phi_\tau=e^{\tau\mathsf D}$ is a
+vertex-algebra automorphism over $k[\tau]$, finite on each state,
+and induces a Lie derivation of $\mathfrak g$. This is the current
+translation subgroup described by Matsuo--Nagatomo
+\cite[\S3.3, Theorem 3.6]{MatsuoNagatomo1997}.
+
+\begin{proposition}\label{prop:vol2-upward-current}
+Let $m_w:\mathfrak g\star N_w\to N_{w+1}$ be symmetric
+multiplication. For every $w\geq1$,
+\[
+ \gamma_w(x;m)=m_w(\mathsf Dx,m)
+\]
+defines a nonsplit extension of $N_w$ by $N_{w+1}$ as
+$\mathfrak g$-modules, preserving the vacuum action.
+\end{proposition}
+\begin{proof}
+The Chevalley differential of $\gamma_w$ is
+\[
+ m_w([x,\mathsf Dy]+[\mathsf Dx,y]-\mathsf D[x,y],m)=0.
+\]
+Hence the action on $N_{w+1}\oplus N_w$ is
+$x(n,m)=(xn+\gamma_w(x;m),xm)$. Its off-diagonal vacuum action
+vanishes because $\mathsf D1=0$.
+
+Ordinary coefficient adjunction gives
+$\operatorname{Hom}_{\mathcal C}(N_w,N_{w+1})=0$, so the underlying
+split extension has exactly one coefficient splitting. This
+splitting is not equivariant: at $w+1$ distinct roots,
+$\gamma_w$ sends $J$ at the acting root and vacua at the other
+roots to a nonzero external vacuum. Degree-zero maps between
+these degree-zero modules are ordinary equivariant maps by the
+nonnegative Chevalley resolution. The extension therefore remains
+nonzero in the derived category.
+\end{proof}
+
+An unrestricted derived open-support adjunction for these modules
+would force this extension to vanish. Such an adjunction cannot be
+inferred from the corresponding adjunction for their underlying
+coefficient families. For instance, input weight two has a genuine
+degree-one output in $N_3$.
+
+\subsection{The extension integrates to an interface}
+
+For any degree-zero Lie object with a natural derivation $\mathsf D$,
+the formula
+\begin{equation}\label{eq:vol2-triangular-current-action}
+ \rho_{0,\tau}(x)m=\operatorname{ad}_x(m)+\tau(\mathsf Dx)m
+\end{equation}
+defines a module structure on $\operatorname{Sym}_\star\mathfrak g[\tau]$.
+Indeed, if $M_z$ is multiplication by $z$, then
+\[
+ [\operatorname{ad}_x,M_{\mathsf Dy}]=M_{[x,\mathsf Dy]},\qquad
+ [M_{\mathsf Dx},\operatorname{ad}_y]=M_{[\mathsf Dx,y]},\qquad
+ [M_{\mathsf Dx},M_{\mathsf Dy}]=0.
+\]
+Their sum is the representation identity. The added term raises
+symmetric degree by one. For $w\geq1$ and $r\geq0$, quotienting
+the degrees at least $w$ by
+those above $w+r$ therefore gives a flat family of modules on
+$\bigoplus_{a=w}^{w+r}N_a$. For $r=1$ its extension coordinate is
+$\tau\gamma_w$.
+
+Suppose $\mathsf D$ is locally nilpotent and the Rees envelope
+$A_\nu=U_{\nu,\star}\mathfrak g$, with
+$xy-yx=\nu[x,y]$, is PBW flat. Write $\phi_t=e^{t\mathsf D}$.
+PBW gives a unique integral operator $\operatorname{ad}_\nu(x)$
+with $\nu\operatorname{ad}_\nu(x)m=xm-mx$. Then
+\begin{equation}\label{eq:vol2-rees-current-action}
+ \rho_{\nu,\tau}(x)m
+ =\operatorname{ad}_\nu(x)m+
+   \sum_{j\geq1}\frac{\nu^{j-1}\tau^j}{j!}(\mathsf D^jx)m
+\end{equation}
+is integral over $k[\nu,\tau]$. After inverting $\nu$ it equals
+$\nu^{-1}(\phi_{\nu\tau}(x)m-mx)$.
+Commuting left and right multiplications gives
+\[
+ [L_{\phi x}-R_x,L_{\phi y}-R_y]
+   =\nu(L_{\phi[x,y]}-R_{[x,y]}).
+\]
+Torsion-freeness then proves the representation identity before
+inversion. At $\nu=0$ only the $j=1$ shifted term survives, giving
+\eqref{eq:vol2-triangular-current-action}.
+
+For an associative algebra $A$ and its automorphisms $\phi_\tau$,
+let $B_\tau={}_{\phi_\tau}A$ have ordinary right action and left
+action $x\cdot b=\phi_\tau(x)b$. These twisted regular bimodules
+compose by
+\begin{equation}\label{eq:vol2-interface-composition}
+ B_\sigma\otimes_A^L B_\tau\xrightarrow{\sim}B_{\sigma+\tau},
+ \qquad a\otimes b\longmapsto\phi_\tau(a)b.
+\end{equation}
+They are free on either side, so ordinary tensor computes the
+derived tensor. The formula is balanced and left equivariant;
+its inverse is $c\mapsto1\otimes c$. Both associations of three
+factors give $\phi_{\tau+\upsilon}(a)\phi_\upsilon(b)c$.
+Thus $B_0=A$ is the unit and $B_{-\tau}$ is inverse to $B_\tau$.
+Equation~\eqref{eq:vol2-rees-current-action} is the normalized
+left-minus-right action on $B_{\nu\tau}$. This constructs the
+algebraic interface underlying the upward extension. A field
+realization must also supply its collision and interchange maps.
+
+Choose semi-free resolutions $P_w\to N_w$ and form the dg category
+$\mathcal E(w,a)=\operatorname{Hom}_{\mathfrak g}(P_w,P_a)$.
+Composition is composition of resolution maps. The dg Yoneda
+functor identifies the subcategory generated by the $P_w$ under
+finite cones, shifts and retracts with $\operatorname{Perf}(\mathcal E)$:
+it is fully faithful on the generators, this property extends by
+those operations in each variable, and represented modules generate
+the perfect modules. This is the precise generated-sector conclusion
+of dg Morita theory \cite[Theorem 3.8(b)]{KellerDG2006}.
+It supplies no generation statement for all physical boundaries.
+
+\section{Operators at a polynomial root}
+\label{sec:vol2-polynomial-operators}
+
+Forgetting the current action leaves an endomorphism of the moving
+differential module. The allowed endomorphisms must be specified
+before this forgetful map can be computed. Put
+\begin{equation}\label{eq:vol2-affine-operators}
+ N=\operatorname{End}_O(\mathcal V),\qquad
+ \nabla_NA=\nabla A-A\nabla,\qquad
+ G(N)=[N\xrightarrow{\nabla_N}N],
+\end{equation}
+where $G(N)$ is a complex of $k$-vector spaces in degrees zero and
+one. The identity $\nabla_N(fA)=f'A+f\nabla_NA$ for $f\in O$
+makes $N$ a differential module. In a monomial
+state basis, $N$ consists of column-finite matrices over $O$: each
+input has a finite polynomial output, with no common bound on all
+outputs. For example, $v_j\mapsto y^jv_j$ lies in $N$ but not in
+$O\otimes_k\operatorname{End}_k(V)$.
+
+\begin{lemma}\label{lem:vol2-internal-operator}
+For an $O$-free left $D_y$-module $M$ in degree zero, the internal
+derived endomorphism for $\otimes_O^L$ is
+$\operatorname{End}_O(M)$ in degree zero, with its commutator
+connection. This holds without a finite-rank hypothesis.
+\end{lemma}
+\begin{proof}
+Evaluation gives
+\[
+ \operatorname{Hom}_{D_y}(P,\operatorname{Hom}_O(M,Q))
+ =\operatorname{Hom}_{D_y}(P\otimes_OM,Q).
+\]
+The connection on the Hom is forced by this equality. Tensoring
+with $M$ is exact. Its right adjoint is exact as well: after choosing
+an $O$-basis, its underlying module is a product of copies of $Q$,
+and products of modules are exact. Both functors preserve
+quasi-isomorphisms, so their adjunction descends to derived
+categories. Taking $Q=M$ proves the assertion.
+\end{proof}
+
+This affine internal Hom need not commute with localization of an
+infinite-rank source. The supported calculation below uses the
+restriction of a specified coefficient object, not a new internal
+Hom formed on the open set.
+
+\subsection{The supported degrees}
+
+Use right densities $dy$ on $X$ and $dy\wedge du$ on $Y=X^2$.
+The monoidal left-to-right normalization for the diagonal tensor is
+$M\mapsto M^r[1]$, with $M^r=\omega_X\otimes_OM$; its units are
+$J_X=\omega_X[1]$ and $J_Y=\omega_Y[2]$.
+Subscripts $\mathcal D$ on Hom denote right differential modules.
+For any left $D_y$-module $L$ with connection $\nabla_L$, write
+$G(L)=[L\xrightarrow{\nabla_L}L]$ in degrees zero and one.
+Its normal direct image has the model
+\[
+ \Delta_+L=L[\eta],\qquad \partial_u=\eta,\qquad
+ u=-\partial_\eta.
+\]
+Its normal Spencer complex is
+$[L[\eta]\xrightarrow{\eta}L[\eta]]$ in degrees zero and one.
+Project the degree-one term to its constant coefficient and include
+that coefficient back. The homotopy sends $\eta^m\ell$ in degree
+one to $\eta^{m-1}\ell$ for $m\geq1$ and to zero for $m=0$.
+It satisfies $dh+hd=1-ip$ on every monomial. In tangential form
+degree $a$, give both the normal differential and this homotopy
+the sign $(-1)^a$. The tangential terms then cancel, proving
+\begin{equation}\label{eq:vol2-affine-supported-hom}
+ R\operatorname{Hom}_{\mathcal D_Y}
+       (J_Y,\Delta_*(L^r[1]))\simeq G(L)[-2].
+\end{equation}
+One shift comes from the normal Spencer complex, and the other is
+the density shift $[1-2]$.
+
+In particular, suppose a coefficient object $E_2$ has
+$\Delta^!E_2=N^r[1]$. Recollement and open adjunction give
+\begin{equation}\label{eq:vol2-affine-restriction-fibre}
+ \operatorname{Fib}\left(
+ R\operatorname{Hom}_{\mathcal D_Y}(J_Y,E_2)
+ \longrightarrow R\operatorname{Hom}_{\mathcal D_U}(J_U,j^!E_2)
+ \right)\simeq G(N)[-2].
+\end{equation}
+The fibre has cohomology only in degrees two and three. Restriction
+therefore induces an equivalence on the unshifted mapping spaces.
+For a source $J_Y[-d]$, the fibre instead is $G(N)[d-2]$.
+Thus shifted sources detect supported operators invisible to the
+unshifted comparison.
+
+For example, let $P_0$ be projection to the constant state.
+Both $P_0$ and $\mathsf D=\partial_{x_1}$ commute with $T$ and are
+horizontal endomorphisms. Their commutator is nonzero, since
+$(P_0\mathsf D-\mathsf DP_0)J=1$. They give classes in the
+degree-zero supported fibre for $d=2$. The inclusion of that fibre
+need not be injective on cohomology; realizing the operators by
+full boundary actions is an additional question.
+
+\subsection{Translation towers}
+
+Give $x_n$ energy $n$ and let $V_+$ be the positive-energy states.
+If $x_N$ is the largest variable occurring in a polynomial $f$,
+the coefficient of $x_{N+1}$ in $Tf$ is
+$N\partial_{x_N}f$. Descent on $N$ proves $\ker T=k1$.
+Choose a graded complement $U$ of $TV_+$ in $V_+$, containing
+$J$ and $J^2$. Induction on energy gives
+\begin{equation}\label{eq:vol2-root-towers}
+ V=k1\oplus k[T]\otimes_kU,\qquad
+ \mathcal V\cong O\oplus P,\qquad P=D_y\otimes_kU.
+\end{equation}
+The second map sends $f(y)\partial_y^n\otimes u$ to $f(y)T^nu$;
+PBW and the connection identify the two sides. If $p(E)$ is the
+partition number, $\dim U_1=1$ and
+$\dim U_E=p(E)-p(E-1)$ for $E\geq2$.
+
+On one tower write $t$ for $T$, so its connection is
+$\partial_y+t$ on $k[y,t]$. Define
+\begin{align}\label{eq:vol2-tower-reduction}
+ \operatorname{red}\left(\sum_n f_n(y)t^n\right)
+    &=\sum_n(-1)^nf_n^{(n)}(y),\\
+ H_P(f(y)t^n)&=\sum_{j=0}^{n-1}(-1)^jf^{(j)}(y)t^{n-1-j},
+ \qquad H_P(f)=0.\label{eq:vol2-tower-homotopy}
+\end{align}
+If $j$ includes the constant tower coefficient, cancellation gives
+\[
+ \operatorname{red}\nabla=0,\qquad
+ \nabla H_P=1-j\operatorname{red},\qquad H_P\nabla=1.
+\]
+On the vacuum use evaluation at $y=0$ and
+$H_O(f)=\int_0^yf(s)\,ds$. Together these maps define a contraction
+\begin{equation}\label{eq:vol2-state-contraction}
+ G(\mathcal V)\rightleftarrows k\oplus W[-1],
+ \qquad W=k[y]\otimes_kU.
+\end{equation}
+Write $H_{\mathcal V}$ for its homotopy and
+$\operatorname{red}_+$ for reduction of its positive-state summand.
+
+Evaluation at the vacuum splits $N$ as differential modules:
+\[
+ N=\sigma(\mathcal V)\oplus N_0,
+ \qquad \sigma(v)=vP_0,\qquad N_0=\{A:A1=0\}.
+\]
+For $A\in N_0$ define an $O$-linear operator $R(A)$ by
+\begin{equation}\label{eq:vol2-column-recursion}
+ R(A)1=R(A)u=0,\qquad
+ R(A)(T^{n+1}u)=\nabla R(A)(T^nu)-A(T^nu).
+\end{equation}
+Every column requires finitely many operations, so $R(A)$ is an
+allowed endomorphism. If $F\in N_0$, let $\Phi(F)$ be the
+horizontal operator with $\Phi(F)(T^nu)=\nabla^nF(u)$ and
+$\Phi(F)1=0$. Recursion then gives
+\[
+ \nabla_NR(A)=A,\qquad R(\nabla_NF)=F-\Phi(F).
+\]
+
+\begin{theorem}\label{thm:vol2-polynomial-operators}
+The operator complex has a contraction
+\[
+ G(N)\rightleftarrows B_0\oplus W[-1],
+ \qquad B_0=\operatorname{End}_{D_y}(\mathcal V).
+\]
+Its degree-one projection is $A\mapsto\operatorname{red}_+(A1)$,
+and its homotopy is
+\begin{equation}\label{eq:vol2-operator-homotopy}
+ H_N(A)=\sigma(H_{\mathcal V}(A1))+R(A-\sigma(A1)).
+\end{equation}
+For a basis $\mathcal U$ of $U$, in the order $(O,P)$ one has
+\begin{equation}\label{eq:vol2-horizontal-operator-ring}
+ B_0=\begin{pmatrix}
+ k&\displaystyle\prod_{u\in\mathcal U}k[y]\\
+ 0&\operatorname{Mat}_{\mathrm{col},\mathcal U}(D_y^{\mathrm{op}})
+ \end{pmatrix}.
+\end{equation}
+The complex computes $R\operatorname{Hom}_{D_y}(\mathcal V,\mathcal V)$.
+\end{theorem}
+\begin{proof}
+The preceding contractions apply to the two summands of $N$.
+The degree-zero projection is the horizontal operator whose value
+on the vacuum is the constant-state coefficient of $A1$ at $y=0$
+and whose value on each primitive $u$ is $A(u)$. The degree-one
+section is $w\mapsto\sigma(jw)$. The displayed identities prove
+$dH_N+H_Nd=1-ip$, $pi=1$, $H_Ni=pH_N=H_N^2=0$.
+
+The free module $P$ has arbitrary images on its basis $U$.
+The connection $\partial_y+t$ is injective on a polynomial tower,
+so $\operatorname{Hom}_{D_y}(O,P)=0$. A map $O\to O$ is a
+scalar; a map $P\to O$ chooses a polynomial for each generator.
+Endomorphisms of the direct sum of copies of $D_y$ are the
+column-finite matrices over $D_y^{\mathrm{op}}$. This proves
+\eqref{eq:vol2-horizontal-operator-ring}.
+
+Finally $P$ is projective and
+$[D_y\xrightarrow{(-)\partial_y}D_y]$ resolves $O$ in degrees
+$-1,0$. Equivalently, the one-dimensional relative Spencer
+resolution for the $O$-free module $\mathcal V$ gives the
+commutator complex \eqref{eq:vol2-affine-operators}. Thus it is
+a model of the stated derived Hom.
+\end{proof}
+
+Its cohomology product has $W^2=0$. A matrix
+$b=\left(\begin{smallmatrix}a&v\\0&C\end{smallmatrix}\right)$
+acts on the left of $W$ through $C$ and on the right by $a$.
+On $D_y/\partial_yD_y=k[y]$, right multiplication by
+$\partial_y$ acts as $f\mapsto-f'$. This identifies the
+cohomology algebra. The contraction was a contraction of complexes;
+it has made no assertion about higher compositions.
+
+\subsection{The charge line and the comparison homotopy}
+
+Define the polynomial current cochain algebra
+\[
+ Q_\kappa=k[y,x_1,x_2,\ldots]\otimes
+                  \Lambda(\xi_0,\xi_1,\ldots),\qquad
+ dx_n=\kappa n\xi_n,\qquad d\xi_n=0.
+\]
+The ghosts $\xi_n$ have degree one. Translation extends by
+$T\xi_n=(n+1)\xi_{n+1}$. Take its root de Rham complex
+$\mathcal C_\kappa=Q_\kappa\oplus dy\,Q_\kappa$, with total
+differential $d+dy(\partial_y+T)$ and forms written on the left;
+in particular, $d(dy\,q)=-dy\,dq$. Ghost deletion and multiplication
+define the cochain map
+\begin{equation}\label{eq:vol2-current-forgetting}
+ \rho_\kappa:\mathcal C_\kappa\longrightarrow G(N),
+ \qquad f\longmapsto L_f,
+\end{equation}
+with every positive ghost monomial sent to zero. This is the
+coefficient map that forgets the regular-current equivariance.
+It keeps the differential-module connection.
+
+\begin{proposition}\label{prop:vol2-charge-image}
+The current complex has cohomology $k$ in degree zero and $k\gamma$
+in degree one, where
+\[
+ \gamma=\xi_0+dy\,J/\kappa.
+\]
+The maps induced by $\rho_\kappa$ are
+$k\hookrightarrow B_0$, $a\mapsto a\operatorname{id}$, and
+$k\gamma\hookrightarrow W$, $\gamma\mapsto J/\kappa$.
+\end{proposition}
+\begin{proof}
+Contract every Koszul pair $(x_n,\xi_n)$, $n>0$, by the Euler
+homotopy: on positive total polynomial-plus-ghost degree divide
+$\sum_{n>0}x_n(\kappa n)^{-1}\partial_{\xi_n}$ by that degree.
+The remaining complex is $k[y]\otimes\Lambda(\xi_0)$.
+Perturb by root translation. The perturbation series terminates
+after one root form, since $dy^2=0$, and the induced translation
+on the zero ghost vanishes because $T\xi_0=\xi_1$.
+The transferred differential is $dy\partial_y$, while the
+corrected ghost representative is $\gamma$. Directly, its two
+differentials are $dy\xi_1$ and $-dy\xi_1$.
+Polynomial integration in $y$ leaves the two stated classes.
+Finally $\rho_\kappa\gamma=dy\,L_J/\kappa$, whose normal form
+is $J/\kappa$ by Theorem~\ref{thm:vol2-polynomial-operators}.
+\end{proof}
+
+\begin{corollary}\label{cor:vol2-charge-lift}
+For $A\in N$, the class of $dy\,A$ lifts through
+$\rho_\kappa$ exactly when $\operatorname{red}_+(A1)\in kJ$.
+If this normal form is $cJ/\kappa$, a lift is $c\gamma$, with
+comparison homotopy $H_N(A-cL_J/\kappa)$. The fibre satisfies
+\[
+ H^1\operatorname{Fib}(\rho_\kappa)=B_0/k\operatorname{id},
+ \qquad H^2\operatorname{Fib}(\rho_\kappa)=W/kJ,
+\]
+and has no other cohomology.
+\end{corollary}
+\begin{proof}
+The image criterion follows from Proposition~\ref{prop:vol2-charge-image}.
+When it holds, the degree-one projection of $A-cL_J/\kappa$
+vanishes, so the contraction identity gives
+$\nabla_NH_N(A-cL_J/\kappa)=A-cL_J/\kappa$.
+The two injections in that proposition give the fibre groups.
+\end{proof}
+
+For example, $L_{J^2}$ and $yL_J$ do not lift: their normal forms
+are $J^2$ and $yJ$. A scalar charge $q$ does integrate, with
+$J_0=q\operatorname{id}$ and
+$\nabla_q=\partial_y+T+(q/\kappa)L_J$. Only the $n=1$ moving-mode
+equation changes, by
+$[(q/\kappa)L_J,\kappa\partial_{x_1}]=-q$.
+When $q\ne0$ the vector $1$ is no longer horizontal.
+
+There are two distinct completions. For a new parameter $g$,
+suppose $A(g)\in gN[[g]]$ kills $1$. The map
+\[
+ U_g1=1,\qquad U_g(T^nu)=(\partial_y+T+A(g))^nu
+\]
+extends $k[y][[g]]$-linearly and intertwines the two connections.
+It is the identity modulo $g$, so it has a $g$-adic inverse.
+Every coefficient of every column is a polynomial. This trivializes
+the connection with a chosen horizontal vacuum, but leaves its
+horizontal automorphisms as stabilizers.
+
+Completing the root instead gives $\widehat{\mathcal V}=V[[y]]$.
+The gauge $e^{-yT}$ turns its connection into $\partial_y$; on
+continuous endomorphisms it acts by conjugation. Formal integration
+is onto, hence
+\begin{equation}\label{eq:vol2-completed-root-operators}
+ H^0G(\widehat N)=\operatorname{End}_k(V),\qquad
+ H^1G(\widehat N)=0,
+ \qquad
+ \widehat N=\operatorname{End}_{k[[y]],\mathrm{cont}}(V[[y]]).
+\end{equation}
+In this category the charge has the primitive
+\[
+ g_\kappa(y)=\frac1\kappa\sum_{n\geq0}
+          \frac{(-1)^ny^{n+1}}{(n+1)!}T^nJ,
+ \qquad (\partial_y+T)g_\kappa=J/\kappa.
+\]
+Its infinitely many nonzero state coefficients prevent it from
+being a polynomial-root primitive. Completion has changed the
+coefficient category and the cohomology.
+
+\section{A nonformal derived operator algebra}
+\label{sec:vol2-root-composition}
+
+One free translation tower and the vacuum already detect the
+composition missing from the linear contraction. Write $D=D_y$
+and choose the tower generated by $J$. Let $P=D$ and
+$O=D/D\partial$. Resolve $O$ by
+\[
+ Q=[D\xrightarrow{R_\partial}D],\qquad
+ Q^{-1}=D,\quad Q^0=D,\quad R_\partial(a)=a\partial.
+\]
+The Weyl PBW basis proves injectivity of $R_\partial$ and identifies
+its cokernel with $O$. Put
+\[
+ B=D^{\mathrm{op}}=k\langle y,p\rangle/(py-yp+1),\qquad
+ \mathscr E=\operatorname{End}_D(P\oplus Q).
+\]
+Thus $p$ represents right multiplication by $\partial$, with
+$[p,y]=-1$. Products in $\mathscr E$ are matrix compositions, the
+rightmost map acting first. The free cells $P,Q^0,Q^{-1}$ have
+degrees $(0,0,-1)$; the only nonzero entry of their differential
+is $(Q^0,Q^{-1})=p$. Hence
+\[
+ \delta X=dX-(-1)^{|X|}Xd
+\]
+makes $\mathscr E$ a dg algebra of ranks $2,5,2$ over $B$ in
+degrees $-1,0,1$. It models the marked derived endomorphisms of
+$P\oplus O$. The splitting \eqref{eq:vol2-root-towers} embeds it
+as a corner in a projective model of the full Heisenberg module.
+
+\subsection{Polynomial division gives a contraction}
+
+Use normal monomials $y^ap^b$. Define
+\begin{align}\label{eq:vol2-weyl-remainders}
+ r_L(y^ap^b)&=\partial_y^b(y^a),&
+ \ell(y^ap^b)&=\sum_{j=0}^{\min(a,b-1)}
+                    \frac{a!}{(a-j)!}y^{a-j}p^{b-1-j},\\
+ r_R\left(\sum_bf_b(y)p^b\right)&=f_0(y),&
+ r\left(\sum_bf_b(y)p^b\right)&=\sum_{b\geq1}f_b(y)p^{b-1}.
+ \notag
+\end{align}
+Empty sums are zero. The relation $yp=py+1$ gives
+\begin{equation}\label{eq:vol2-weyl-divisions}
+ F=p\ell(F)+r_L(F)=r(F)p+r_R(F).
+\end{equation}
+In particular $pB=\ker r_L$ and $Bp=\ker r_R$, and neither
+contains $1$.
+
+The block $\operatorname{Hom}(P,Q)$ is
+$[B\xrightarrow{p(-)}B]$ in degrees $-1,0$. Its projection is
+$r_L$, its section includes polynomials, and its homotopy is
+$\ell$. The block $\operatorname{Hom}(Q,P)$ is
+$[B\xrightarrow{-(-)p}B]$ in degrees $0,1$; its maps are
+$r_R$, polynomial inclusion and $-r$.
+
+On $\operatorname{End}(Q)$ write a degree-zero map as $(a,c)$,
+acting on $Q^0,Q^{-1}$, and a degree-one map as $z:Q^{-1}\to Q^0$.
+Then
+\begin{equation}\label{eq:vol2-vacuum-block}
+ \delta h=(ph,hp),\qquad \delta(a,c)=pc-ap.
+\end{equation}
+With $I(f)=\int_0^yf(t)dt$, its projection to $k$ is
+$r_L(a)(0)$, the section is $s\mapsto(s,s)$, and its homotopy is
+\begin{equation}\label{eq:vol2-vacuum-block-homotopy}
+ H(a,c)=\ell(a),\qquad
+ H(z)=(-I(r_Lz),\ell(z)-I(r_Lz)).
+\end{equation}
+It is zero on degree $-1$.
+
+\begin{proposition}\label{prop:vol2-marked-contraction}
+These block maps, and the identity on $\operatorname{End}(P)=B$,
+form a contraction of $\mathscr E$ onto its cohomology with
+$\pi i=1$, $H^2=Hi=\pi H=0$. In the order $(P,O)$ the result is
+\[
+ H^0\mathscr E=\begin{pmatrix}B&0\\B/pB&k\end{pmatrix},
+ \qquad
+ H^1\mathscr E=\begin{pmatrix}0&B/Bp\\0&0\end{pmatrix},
+ \qquad H^{\ne0,1}\mathscr E=0.
+\]
+Every map in this contraction is polynomial on each input.
+\end{proposition}
+\begin{proof}
+The off-diagonal identities are the two divisions in
+\eqref{eq:vol2-weyl-divisions}. For the vacuum block, the maps
+$(a,c)\mapsto r_L(a)$ and $z\mapsto r_L(z)$ map the complex to
+$[k[y]\xrightarrow{-\partial_y}k[y]]$.
+A section sends $f$ to $(f,f)$ and $g$ to $g$, since
+$pf-fp=-f'$. In the kernel, write $a=pa_1$, $z=pz_1$.
+The differential becomes
+\[
+ B\longrightarrow B\oplus B\longrightarrow B,
+ \qquad h\longmapsto(h,hp),\quad(a_1,c)\longmapsto c-a_1p.
+\]
+The homotopy sends $(a_1,c)$ to $a_1$ and $z_1$ to $(0,z_1)$.
+Contract the remaining derivative by $-I$. Composition gives
+\eqref{eq:vol2-vacuum-block-homotopy} and
+$\delta H+H\delta=1-i\pi$. The identity
+$\ell(ap)=\ell(a)p+r_L(a)$ verifies the middle degree directly.
+Integration vanishes at zero and $\ell$ kills polynomials, giving
+the side conditions. All maps preserve the two object idempotents.
+\end{proof}
+
+\subsection{The full Massey coset}
+
+Consider the closed maps
+\[
+ a:P\to Q,\quad a^0=1;\qquad
+ b:Q\to P[1],\quad b^{-1}=1;\qquad
+ c:P\to P,\quad c=p.
+\]
+Their degrees are $0,1,0$, and $ba=0$, while
+$cb=\delta h$ for $h:Q^0\to P$, $h=-1$.
+For primitives $\delta h=cb$, $\delta k=ba$, use the defining
+Massey representative $ha-ck$. Taking $k=0$ gives $-1_P$.
+
+\begin{theorem}\label{thm:vol2-root-massey}
+The exact composable Massey coset is
+\begin{equation}\label{eq:vol2-root-massey}
+ \langle c,b,a\rangle=-1+pB\ \subset H^0\operatorname{End}(P)=B.
+\end{equation}
+It excludes zero. Both $\mathscr E$ and the full polynomial-root
+derived endomorphism algebra of $\mathcal V$ are nonformal.
+\end{theorem}
+\begin{proof}
+A second primitive of $cb$ differs by a degree-zero cocycle in
+$\operatorname{Hom}(Q,P)$. There are no such nonzero cocycles,
+since its differential is right multiplication by $-p$.
+A primitive of $ba=0$ can differ by any element of $B$.
+The indeterminacy is therefore exactly $pB$. The remainder map
+$r_L$ annihilates this ideal and sends $1$ to $1$, so zero is
+excluded.
+
+In a dg algebra with zero differential, a defined triple Massey
+product contains zero, by choosing zero primitives. A dg
+quasi-isomorphism preserves the Massey coset: it sends defining
+systems to defining systems, and surjectivity on cohomology
+recovers all changes of primitives, whose images are the two
+indeterminacy subspaces. Applying this in both directions along
+a quasi-isomorphism zigzag proves nonformality; equivalently one
+may use the minimal-model criterion of
+\cite[\S\S3.3--3.4]{KellerAInfinity2001}.
+
+For the full module, sandwich a defining system between the
+idempotents of the chosen $P\oplus O$ summand. Its $P\to P$
+projection is a defining system above. Additional matrix blocks
+do not change the projected indeterminacy: the degree-zero
+$O\to P$ cohomology is still zero, and the $P\to P$ corner
+is $B$. A zero total Massey class would thus give zero in
+\eqref{eq:vol2-root-massey}, which is impossible.
+\end{proof}
+
+Replacing $a$ by the representative $a_f=f(y)$ gives
+$\langle c,b,a_f\rangle=-f(y)+pB$, nonzero for every nonzero
+polynomial $f$. The obstruction concerns the whole coset, not a
+particular transferred ternary coefficient. At level $\kappa$,
+$a$ is the restriction of $J_1/\kappa=\partial_{x_1}$ to the
+$J$-tower, $b$ is its charge class $[J]$, and $c$ is its translation.
+Thus this composition uses three of the operators already present
+in the current comparison.
+
+\subsection{Higher compositions and the ordinary centre}
+
+The polynomial contraction gives all higher operations explicitly.
+Let $\mathcal H=H^*\mathscr E$, and let
+$s:\mathscr E\to\mathscr E[1]$ have degree $-1$. On the tensor
+coalgebra of suspended matrices use
+\[
+ b_1(sx)=-s\delta x,\qquad
+ b_2(sx,sy)=(-1)^{|x|}s(xy),\qquad h_s=-sHs^{-1}.
+\]
+Extend $b_1,b_2$ as coderivations, and write $i_s,\pi_s$ for
+the suspended inclusion and projection. The tensor contraction is
+\[
+ \mathbf H|_{\mathscr E[1]^{\otimes n}}
+ =\sum_{j=1}^n(i_s\pi_s)^{\otimes(j-1)}\otimes h_s
+                                \otimes1^{\otimes(n-j)},
+\]
+with graded tensor signs. Let $i_T,\pi_T$ be the tensor extensions
+of $i_s,\pi_s$.
+Homological perturbation gives
+\begin{align}\label{eq:vol2-root-ainfinity}
+ b_{\mathcal H}&=\pi_Tb_2(1+\mathbf Hb_2)^{-1}i_T,\notag\\
+ \mathbf I&=(1+\mathbf Hb_2)^{-1}i_T,&
+ \mathbf P&=\pi_T(1+b_2\mathbf H)^{-1},&
+ \mathbf H'&=\mathbf H(1+b_2\mathbf H)^{-1}.
+\end{align}
+Each binary merger lowers length, so at input length $n$ these
+inverse series have at most $n-1$ merger stages. Expanding the
+contraction identity yields $b_{\mathcal H}^2=0$,
+$(b_1+b_2)\mathbf I=\mathbf I b_{\mathcal H}$ and
+$\mathbf P\mathbf I=1$, with comparison homotopy $\mathbf H'$.
+Deconcatenation and the tensor homotopy give the coalgebra
+identities. Tensoring over the two scalar idempotents retains
+composable strings; the side conditions give strict units.
+This constructs a minimal $A_\infty$ category in every arity.
+Its deciding value is
+\[
+ (b_{\mathcal H})_3(sc,sb,sa)=-s1_P:
+\]
+the merger $ba$ vanishes, while the other merger has homotopy
+$h=-1$. The Massey coset prevents removal of all higher
+operations by a different minimal model.
+
+Its ordinary bimodule centre has a different answer. The free
+module $P=D$ generates $\operatorname{Perf}(D)$ and $Q$ is a
+two-term cone of free modules. Thus $P\oplus Q$ is another
+generator. The functors
+\[
+ R\operatorname{Hom}_D(P\oplus Q,-),\qquad
+ -\otimes_{\mathscr E}^L(P\oplus Q)
+\]
+are inverse on the generated perfect categories: evaluation
+is an equivalence on the generator and extends by cones,
+shifts and retracts. Derived Morita invariance of Hochschild
+cochains \cite[\S5.4]{KellerDG2006} gives
+\begin{equation}\label{eq:vol2-marked-root-centre}
+ \operatorname{HH}^*(\mathscr E)
+   \cong\operatorname{HH}^*(D^{\mathrm{op}})
+   \cong\operatorname{HH}^*(D)=k.
+\end{equation}
+For the last equality, resolve the Weyl algebra as a bimodule
+by its two-generator PBW Koszul complex. Its cochains have
+differential given by $[\partial,-]=\partial_y$ and
+$[y,-]=-\partial_\partial$, hence are the polynomial de Rham
+complex after a change of one exterior generator. Exactness of
+the bimodule resolution follows from its associated graded
+polynomial Koszul resolution and the bounded-below PBW filtration.
+Euler contraction, divided by positive polynomial-plus-form
+degree, leaves only the constant class. This proves
+\eqref{eq:vol2-marked-root-centre} without a root completion.
+
+Nonformality of a selected derived operator algebra is compatible
+with a scalar ordinary centre of its perfect module sector.
+The centre of the full geometric boundary theory requires its
+own category and its own action comparison.
+
+\section{The level ring and the forgetful fibre}
+\label{sec:vol2-integral-current-fibre}
+
+The nonzero-level calculation divided by $\kappa$. To retain the
+singular level, work over $R=k[\lambda]$ and use a separate symbol
+for the Koszul differential:
+\[
+ \mathcal Q=k[x_1,x_2,\ldots]\otimes\Lambda(\xi_0,\xi_1,\ldots),
+ \qquad d_0x_n=n\xi_n,\quad d_0\xi_n=0.
+\]
+Translation is $Tx_n=nx_{n+1}$ and
+$T\xi_n=(n+1)\xi_{n+1}$. It commutes with $d_0$ on generators
+and hence everywhere. With forms on the left define
+\begin{equation}\label{eq:vol2-integral-current-complex}
+ \begin{split}
+ \mathcal C_\lambda&=\mathcal Q_R[y]\oplus dy\,\mathcal Q_R[y],\qquad
+        \mathcal Q_R=R\otimes_k\mathcal Q,\\
+ \mathsf D_\lambda(q+dy\,r)
+   &=\lambda d_0q+dy\bigl((\partial_y+T)q-\lambda d_0r\bigr).
+ \end{split}
+\end{equation}
+This is the polynomial-root current complex at the universal level.
+There are only two root-form degrees, so its totalization needs
+no additional convention. The parameter $\lambda$ has degree zero.
+
+\subsection{Translation coinvariants before specialization}
+
+Let $\mathcal Q_+$ be the augmentation ideal. Translation is
+injective on each $\mathcal Q_+^q$. To see this, choose the largest
+occupied index of an even or an odd variable. Its translate
+introduces a new variable of that type, with coefficient its
+corresponding partial derivative. No other term can cancel that
+new variable. Descending on the occupied indices removes every
+variable, including $\xi_0$; only the unit in the full algebra
+can be translation-invariant.
+
+Put $K^q=k[y]\otimes\mathcal Q_+^q$. The operator
+$\nabla=\partial_y+T$ is also injective on $K^q$: the highest
+power of $y$ in a nonzero kernel element would have a nonzero
+coefficient killed by $T$. Define the vector spaces
+\begin{equation}\label{eq:vol2-integral-coinvariants}
+ \mathsf W^q=K^q/\nabla K^q,\qquad
+ \overline d[q]=[d_0q],\qquad
+ \mathsf B^q=\operatorname{im}(\overline d:
+                   \mathsf W^{q-1}\to\mathsf W^q)\quad(q\geq1).
+\end{equation}
+They are $k$-vector spaces. The quotient is not an $O$-module
+quotient, since $[\nabla,y]=1$.
+
+For computation, choose translation primitives in each state energy
+and exterior degree. These pieces are finite dimensional, including
+the energy-zero ghost. The same tower division as
+\eqref{eq:vol2-tower-reduction} gives the finite normal form
+\[
+ [f(y)T^nu]=(-1)^nf^{(n)}(y)[u].
+\]
+Apply $d_0$, decompose its result into towers, and reduce to compute
+$\overline d$. In degree zero $\mathsf W^0=W$ of
+\eqref{eq:vol2-state-contraction}, as vector spaces.
+
+\begin{lemma}\label{lem:vol2-coinvariant-cohomology}
+The cohomology of $(\mathsf W,\overline d)$ is the
+one-dimensional span $k\cdot[J]$ in degree zero and zero in
+positive degrees.
+\end{lemma}
+\begin{proof}
+The Euler homotopy for the positive Koszul pairs is
+$\sum_{n>0}(x_n/n)\partial_{\xi_n}$ divided by positive total
+degree. It leaves only $\xi_0$ in the augmentation ideal, so
+$H^*(K,d_0)=k[y]\xi_0$ in degree one. Translation acts trivially
+there, because $T\xi_0=\xi_1=d_0J$. Thus $\nabla$ acts on this
+cohomology as $\partial_y$, which is onto with kernel $k\xi_0$.
+The exact sequence of complexes
+\[
+ 0\longrightarrow K\xrightarrow{\nabla}K
+       \longrightarrow\mathsf W\longrightarrow0
+\]
+now proves the assertion. The connecting preimage of $\xi_0$ is
+$[J]$, since $d_0J=\nabla\xi_0$.
+\end{proof}
+
+\begin{theorem}\label{thm:vol2-integral-current}
+There is an integral quasi-isomorphism of complexes
+\begin{equation}\label{eq:vol2-integral-current-reduction}
+ \mathcal C_\lambda\simeq
+ R\oplus(\mathsf W\otimes_kR,\lambda\overline d)[-1].
+\end{equation}
+Consequently
+\begin{align}\label{eq:vol2-integral-current-cohomology}
+ H^0\mathcal C_\lambda&=R,&
+ H^1\mathcal C_\lambda&=R\Gamma_\lambda,
+       &\Gamma_\lambda&=\lambda\xi_0+dy\,J,\notag\\
+ H^{q+1}\mathcal C_\lambda&=\mathsf B^q\otimes_kR/(\lambda)
+       &&(q\geq1).
+\end{align}
+\end{theorem}
+\begin{proof}
+The constant-state root complex contracts to $R$. On the positive
+part the map $q+dy\,r\mapsto[r]$ has target differential
+$-\lambda\overline d$, the sign of the shift. In its kernel
+$r=\nabla s$ has a unique polynomial solution $s$. The homotopy
+sends $dy\nabla s$ to $s$ and the root-degree-zero part to zero.
+The terms $\lambda d_0s$ cancel in $\mathsf D_\lambda H+
+H\mathsf D_\lambda$, leaving the identity. This proves the
+quasi-isomorphism without inverting the level.
+
+Multiplication by $\lambda$ is injective on each extended vector
+space. Thus the cycles of $\lambda\overline d$ are the cycles of
+$\overline d$, and its boundaries are $\lambda\mathsf B^q$.
+Lemma~\ref{lem:vol2-coinvariant-cohomology} gives the groups.
+Finally $\Gamma_\lambda$ is closed, since its two nonzero
+differentials are $\lambda dy\xi_1$ and $-\lambda dy\xi_1$,
+and its image in the quotient is $[J]$.
+\end{proof}
+
+This is a linear quotient calculation. Multiplication by $y$ does
+not descend to $\mathsf W$, and no multiplicative quotient of
+$\mathcal C_\lambda$ has been asserted.
+
+\subsection{An equivalence of arrows}
+
+Over the level ring use the actual full operator modules
+\[
+ \mathcal N_R=\operatorname{End}_{R[y]}(R[y]\otimes_kV),
+ \qquad
+ \mathcal B_R=\operatorname{End}_{D_y\otimes R}(R[y]\otimes_kV).
+\]
+These permit different parameter degrees in different columns;
+they are not replaced by tensoring $N$ or $B_0$ with $R$.
+The tower and column recurrences work directly over $R$, giving
+\[
+ G(\mathcal N_R)\simeq
+ \mathcal B_R\oplus(\mathsf W^0\otimes_kR)[-1].
+\]
+Let $\rho:\mathcal C_\lambda\to G(\mathcal N_R)$ be ghost deletion
+followed by multiplication. Define its fibre by
+\begin{equation}\label{eq:vol2-integral-fibre-convention}
+ \mathcal F_\lambda^n=\mathcal C_\lambda^n\oplus
+                  G(\mathcal N_R)^{n-1},\qquad
+ d(q,A)=(\mathsf D_\lambda q,\rho q-d_GA).
+\end{equation}
+Its second coordinate is the retained comparison path.
+
+The contractions of source and target alone would not identify
+this fibre. We also need their comparison on the arrow $\rho$.
+Vacuum evaluation splits
+$\mathcal N_R=\sigma(\mathcal V_R)\oplus\mathcal N_{0,R}$,
+with $\sigma(v)=vP_0$ and $\mathcal N_{0,R}1=0$.
+On the first summand, evaluation of $\rho$ is exactly ghost
+deletion, so the translation quotients commute.
+
+On the second summand, column recursion contracts positive root
+degree. Its remaining horizontal component is homotopic to
+$a\mapsto a(1-P_0)$ on constants and zero on the positive
+quotient. Here is the homotopy. On $dy\,v$ with no ghosts, take
+the horizontal operator whose vacuum value is zero and whose
+primitive-column value on $u$ is $H_{\mathcal V}(v)u$; extend by
+$T^nu\mapsto\nabla^n(H_{\mathcal V}(v)u)$. On positive ghost
+inputs it is zero. The identity
+\[
+ H_{\mathcal V}\nabla f=f-\epsilon(f)(0)
+\]
+shows that its composite with $\mathsf D_\lambda$ is exactly
+the horizontal component of multiplication by $f$ minus
+$\epsilon(f)(0)(1-P_0)$. Here $\epsilon$ extracts the constant
+state. The first summand contributes $aP_0$. Thus the arrow is
+equivalent, with its homotopy supplied, to
+\begin{equation}\label{eq:vol2-integral-reduced-arrow}
+ R\oplus(\mathsf W_R,\lambda\overline d)[-1]
+   \longrightarrow\mathcal B_R\oplus\mathsf W_R^0[-1],
+ \qquad (a,w)\longmapsto(a\operatorname{id},\pi_0w),
+\end{equation}
+where $\mathsf W_R=\mathsf W\otimes_kR$ and $\pi_0$ is the
+brutal degree-zero quotient.
+
+\begin{theorem}\label{thm:vol2-integral-fibre}
+There is a constructed equivalence of complexes
+\begin{equation}\label{eq:vol2-integral-fibre-model}
+ \mathcal F_\lambda\simeq
+ (\mathcal B_R/R\operatorname{id})[-1]\oplus
+       (\mathsf W_R^{\geq1},\lambda\overline d)[-1],
+\end{equation}
+where $\mathsf W^{\geq1}$ is the brutal subcomplex. Its cohomology is
+\begin{align}\label{eq:vol2-integral-fibre-cohomology}
+ H^1\mathcal F_\lambda&=\mathcal B_R/R\operatorname{id},\notag\\
+ H^2\mathcal F_\lambda&=\mathsf B^1\otimes_kR,\notag\\
+ H^n\mathcal F_\lambda&=\mathsf B^{n-1}\otimes_kR/(\lambda)
+                              \quad(n\geq3),
+\end{align}
+and all other groups vanish.
+\end{theorem}
+\begin{proof}
+In \eqref{eq:vol2-integral-reduced-arrow}, the scalar inclusion
+splits by vacuum constant evaluation. The second map is
+degreewise onto, so its fibre is its kernel
+$\mathsf W_R^{\geq1}[-1]$. Explicitly, the redundant two terms
+in its cone are the graph
+$w\mapsto(-\lambda\overline dw,w)$.
+Projection $(v,u)\mapsto v+\lambda\overline du$ and homotopy
+$(v,u)\mapsto u$ cancel that graph without dividing by $\lambda$.
+This proves the equivalence. In degree two the incoming
+$\lambda\mathsf B^1$ disappeared with the cancelled term,
+leaving the free module $\mathsf B^1_R$. In higher degrees the
+boundaries remain $\lambda\mathsf B^{n-1}$, giving the formula.
+\end{proof}
+
+The exact sequence in degree two is therefore
+\begin{equation}\label{eq:vol2-integral-path-extension}
+ 0\longrightarrow(\mathsf W^0/(k\cdot[J]))\otimes_kR
+ \xrightarrow{\lambda\overline d}\mathsf B^1\otimes_kR
+ \longrightarrow\mathsf B^1\otimes_kR/(\lambda)
+ \longrightarrow0.
+\end{equation}
+Under the isomorphism
+$\overline d:\mathsf W^0/(k\cdot[J])\to\mathsf B^1$, the
+first map is multiplication by $\lambda$. A concrete instance
+uses $F=J^2/2$, for which $d_0F=x_1\xi_1$. The fibre differential
+gives
+\[
+ d(-dy\,F,0)=(\lambda dy\,x_1\xi_1,-dy\,L_F).
+\]
+Hence
+\begin{equation}\label{eq:vol2-integral-path-witness}
+ \boxed{\lambda[(dy\,x_1\xi_1,0)]
+                 =[(0,dy\,L_{J^2/2})].}
+\end{equation}
+After its path is forgotten, the current class on the left is
+$\lambda$-torsion. In the fibre its lift is a nonzero free class.
+Indeed, $J^2$ is a translation primitive independent of $J$,
+and the kernel of $\overline d$ in degree zero is only $k\cdot[J]$.
+
+The integral charge-lifting test follows from the same arrow:
+\begin{equation}\label{eq:vol2-integral-lift-test}
+ [dy\,A]\text{ lifts through }\rho
+ \quad\Longleftrightarrow\quad
+ \operatorname{red}_+(A1)\in RJ.
+\end{equation}
+If the normal form is $a(\lambda)J$, the lift is
+$a\Gamma_\lambda$ and the comparison homotopy is
+$H_N(A-aL_J)$. No inverse level is used. Once a base lift for
+a horizontal source shifted by $s$ has been chosen, its lift
+space has homotopy groups $H^{s-j}\mathcal F_\lambda$ in
+degrees $j\geq0$. Without a base lift the fibre may be empty.
+
+\subsection{The singular level}
+
+The terms of $\mathsf W_R$ are free over $R$.
+The quotient $\mathcal B_R/R\operatorname{id}$ is a direct
+summand of the torsion-free module $\mathcal B_R$ and hence is
+flat over the PID $R$. Derived specialization is therefore
+computed by reducing the displayed fibre complex. At $\lambda=0$
+its positive differential vanishes, giving
+\begin{equation}\label{eq:vol2-zero-level-fibre}
+ H^{q+1}(\mathcal F_\lambda\otimes_R^Lk)=\mathsf W^q
+                              \qquad(q\geq1).
+\end{equation}
+In degree two the new classes occur in
+\[
+ 0\longrightarrow\mathsf B^1\longrightarrow\mathsf W^1
+      \xrightarrow{\overline d}\mathsf B^2\longrightarrow0.
+\]
+They are the Tor contribution of integral $H^3$.
+
+For example, $[\xi_0\xi_1]\ne0$ in $\mathsf W^2$.
+A polynomial preimage under $\nabla$ would have root degree
+zero, by injectivity of $T$ on $\mathcal Q_+$. It would then
+give a two-ghost translation preimage in energy zero, where
+there is no such monomial. Since
+$d_0(x_1\xi_0)=-\xi_0\xi_1$, this is a nonzero element of
+$\mathsf B^2$. Thus $dy\,x_1\xi_0$ becomes a degree-two
+cocycle at zero level without being an integral cocycle.
+The same torsion prevents an $R$-linear deformation retraction
+of this fibre complex onto its cohomology: its nonzero
+$\lambda$-torsion could not have a cochain section into the
+torsion-free terms. This excludes that linear retraction,
+not every possible derived replacement.
+
+\subsection{The strict mode-preserving gauge groupoid}
+
+Complete only a new deformation parameter $g$. On
+$\mathcal V_R[[g]]$ fix
+\[
+ J_{-n}=L_{x_n},\qquad J_n=\lambda n\partial_{x_n}\quad(n>0),
+ \qquad J_0=q(g)\operatorname{id},\quad q(g)\in gR[[g]].
+\]
+Seek connections $\nabla+A(g)$ with
+$A\in g\mathcal N_R[[g]]$ satisfying
+$[\nabla+A,J_n]=-nJ_{n-1}$ for every integer $n$.
+A mode-preserving gauge is an element of
+$1+g\mathcal N_R[[g]]$ commuting with every nonzero mode.
+
+\begin{theorem}\label{thm:vol2-integral-gauge}
+Such a connection exists exactly when $q(g)=\lambda a(g)$
+for $a(g)\in gR[[g]]$. Every one is
+\begin{equation}\label{eq:vol2-integral-gauge-normal-form}
+ \partial_y+T+a(g)L_J+c(y,g)\operatorname{id},
+                 \qquad c(y,g)\in gR[y][[g]].
+\end{equation}
+It is mode-preserving gauge equivalent to $\partial_y+T+a(g)L_J$.
+The stabilizer of that normal form is $1+gR[[g]]$.
+Thus the strict formal groupoid is the disjoint union, indexed
+by $a(g)$, of the classifying groupoids of these scalar units.
+\end{theorem}
+\begin{proof}
+The negative-mode equations force $A$ to commute with all
+multiplications by $x_n$. These generate the state module
+from $1$, so $A=L_f$. The equations for $n\geq2$ give
+$\lambda\partial_{x_n}f=0$. Torsion-freeness makes $f$
+independent of those variables. The $n=1$ equation is
+$\lambda\partial_{x_1}f=q$. Polynomial coefficient comparison
+forces $q=\lambda a$ and $f=aJ+c$. Conversely this formula
+satisfies every mode relation.
+
+A gauge commuting with the negative modes is multiplication
+by a formal unit. Commutation with the positive modes and
+torsion-freeness make it independent of the states. The unit
+\[
+ U=\exp\left(-\int_0^yc(t,g)\,dt\right)
+\]
+has polynomial coefficients in every $g$-degree and satisfies
+$(\nabla+aL_J+c)U=U(\nabla+aL_J)$.
+Between two normal forms a state-independent gauge cannot
+change $a$, and its derivative must be zero. These are exactly
+the stated scalar stabilizers.
+\end{proof}
+
+This groupoid fixes all nonzero modes. It is not the full
+derived deformation groupoid, nor the quotient by gauges that
+change those modes. At zero level the positive modes vanish;
+then arbitrary multiplication corrections are permitted when
+$q=0$. Most are not specializations of
+\eqref{eq:vol2-integral-gauge-normal-form}.
+
+Root completion also changes this problem. The series
+$g_0=\sum_{n\geq0}(-1)^ny^{n+1}T^nJ/(n+1)!$ satisfies
+$\nabla g_0=J$, so the integral charge image $dy\,L_J$ becomes
+exact. In the completed $J$-tower the section
+$1\mapsto e^{-yT}J=J-Tg_0$ splits the quotient by state
+translation. This is the completion of the polynomial
+extension $0\to P\xrightarrow{R_\partial}P\to O\to0$.
+The polynomial projective model need not remain projective in
+the continuous category. Its nonzero Massey coset and its
+integral path relation therefore cannot be transported by
+an undeclared equivalence across this change of coefficients.
+
+\section{Finite categories of interfaces}
+\label{sec:vol2-finite-interface-centres}
+
+An invertible bimodule composes by derived tensor product, as in
+\eqref{eq:vol2-interface-composition}. A collection of interfaces
+with specified junction maps has more data: the centre must act
+compatibly with every composition of those maps. For two objects,
+Proposition~\ref{prop:vol2-dg-triangular} expresses this as the fibre
+of the difference between the two endpoint characteristic actions
+on the joining bimodule. With more objects, the longer composable
+strings contribute further terms.
+
+Let $R$ be a commutative $k$-algebra and let $\mathcal A$ be a dg
+category with ordered objects $0,\ldots,n-1$, scalar endomorphisms
+$\mathcal A(i,i)=R$, and $\mathcal A(i,j)=0$ for $i>j$.
+Suppose each forward complex $M_{ij}$ is bounded and finite
+projective over $R$, and all dg compositions are specified and
+associative. Let $A$ be the sum algebra, $S=\bigoplus_iRe_i$,
+and $\overline A=\ker(A\to S)$. The normalized relative bimodule
+bar is
+\begin{equation}\label{eq:vol2-directed-bar}
+ P_\ell=A\otimes_S(\overline A[1])^{\otimes_S\ell}\otimes_SA,
+                     \qquad0\leq\ell\leq n-1.
+\end{equation}
+For an unsuspended tensor of internal degree $q$ and bar length
+$\ell$, the total degree is $q-\ell$. One sign convention is
+$d_{\mathrm{int}}+(-1)^q\sum_{j=0}^{\ell}(-1)^jd_j$, where
+$d_j$ multiplies adjacent factors, including the two endpoint
+actions. Suspension translates this to
+\eqref{eq:vol2-directed-bar}.
+
+\begin{theorem}\label{thm:vol2-directed-bar}
+The total complex $P$ is a finite homotopically projective
+$A$-bimodule resolution of $A$. Thus the relative derived centre is
+\[
+ Z_R(A)=R\operatorname{Hom}_{A\otimes_RA^{\mathrm{op}}}(A,A)
+          \simeq\operatorname{Hom}_{A^e}(P,A).
+\]
+Its evaluation gives, for every complex $F$ of $R$-modules,
+\begin{equation}\label{eq:vol2-directed-evaluation}
+ R\operatorname{Hom}_R(F,Z_R(A))
+ \simeq R\operatorname{Hom}_{A^e}(F\otimes_R^LA,A).
+\end{equation}
+For every derived commutative scalar extension $R\to R'$,
+\begin{equation}\label{eq:vol2-directed-base-change}
+ Z_R(A)\otimes_R^LR'
+       \simeq Z_{R'}(A\otimes_R^LR'),
+\end{equation}
+compatibly with evaluation, cup products and Hochschild insertions.
+\end{theorem}
+\begin{proof}
+A nonzero string of $\ell$ forward arrows visits $\ell+1$
+strictly increasing objects, so $\ell\leq n-1$.
+The unit-insertion contraction of the augmented unnormalized
+bar proves its exactness after forgetting an outer action.
+The degenerate subcomplex splits off, leaving the normalized
+resolution.
+
+Each remaining term is induced from a tensor of bounded finite
+projective coefficient complexes and two representable
+idempotent modules. Hom into an acyclic bimodule reduces to
+Hom from that coefficient complex into an acyclic idempotent
+component, hence is acyclic. The finite totalization is therefore
+homotopically projective. Tensor--Hom adjunction applied to
+$F\otimes_RP$ proves \eqref{eq:vol2-directed-evaluation}.
+
+Every cochain coefficient is a Hom between bounded finite
+projective $R$-complexes. These Homs and the finite sums commute
+with derived scalar extension. The bar differential, cuts and
+insertions use the same composition maps after extension.
+This proves \eqref{eq:vol2-directed-base-change} with its operations.
+\end{proof}
+
+Strictly increasing object indices made the bar finite.
+With arbitrary dg endpoint algebras the repeated corner inputs
+of Proposition~\ref{prop:vol2-dg-triangular} instead require
+product totalization. We now use the finite case to see what
+the operations and the parameter fibres retain.
+
+\section{Koszul parameters and contraction brackets}
+\label{sec:vol2-koszul-interface}
+
+Let $r\geq1$, $R=k[h_1,\ldots,h_r]$, $I=(h_1,\ldots,h_r)$,
+and $S_0=R/I$. Let $U_0=k^r$ have degree-one basis
+$u_1,\ldots,u_r$, and write $L_i$ for exterior multiplication
+by $u_i$. Take the arrow complex
+\begin{equation}\label{eq:vol2-koszul-arrow}
+ \begin{gathered}
+ M=R\otimes_k\Lambda U_0,\qquad d_M=\sum_ih_iL_i,\\
+ T(M)=Re_0\oplus Re_1\oplus M,\qquad e_1Me_0=M,\quad M^2=0.
+ \end{gathered}
+\end{equation}
+The differential is a differential of the arrow module; it is
+not a derivation of the auxiliary exterior multiplication.
+Anticommutation gives $d_M^2=0$, and the Koszul complex has
+cohomology $S_0$ in degree $r$.
+
+Put $E=\operatorname{End}_R(M)$ with
+$\delta f=d_Mf-(-1)^{|f|}fd_M$. Reverse the one-arrow coordinate
+in Theorem~\ref{thm:vol2-triangular-cone}. The centre then has
+the finite model
+\begin{equation}\label{eq:vol2-koszul-centre}
+ Z^n=(R^2)^n\oplus E^{n-1},\qquad
+ d(a,b;f)=(0,0;(b-a)\operatorname{id}-\delta f).
+\end{equation}
+The endpoint terms occur only in degree zero. Use the
+source-first opposite-cup convention
+\begin{equation}\label{eq:vol2-koszul-cup}
+ (a,b;f)(a',b';f')=(aa',bb';fb'+af').
+\end{equation}
+In this convention, for $\sigma f=(0,0;f)$ of degree $|f|+1$,
+the insertion bracket is
+\begin{equation}\label{eq:vol2-koszul-bracket}
+ [\sigma f,\sigma g]
+       =\sigma\bigl(fg-(-1)^{|f||g|}gf\bigr).
+\end{equation}
+Endpoint scalars have zero bracket with the mixed terms. The
+bracket has degree $-1$.
+
+These operations follow directly from the one-arrow bar. Its
+two cuts give \eqref{eq:vol2-koszul-cup}, while insertion into
+the only arrow input is composition in $E$. Two mixed cup
+factors would require two composable forward arrows, which do
+not exist. The differential identity on endpoints is
+$bb'-aa'=(b-a)b'+a(b'-a')$; the other identities reduce to
+$R$-linearity of $\delta$. On $Z[1]$ the mixed differential
+is $\delta$, so the bracket differential and Jacobi identities
+are the graded-commutator identities. This fixes the signs
+of the comparison as well as its underlying complex.
+
+\subsection{The integral ring and its bracket}
+
+Let $\iota_i$ contract by the dual of $u_i$. The relations are
+\begin{equation}\label{eq:vol2-koszul-clifford}
+ \{L_i,L_j\}=0,\qquad \{\iota_i,\iota_j\}=0,
+ \qquad \{\iota_i,L_j\}=\delta_{ij}\operatorname{id}.
+\end{equation}
+The operators $L_A\iota_B$, with increasing subsets $A,B$,
+form a basis of $E$: for one generator $1,L,\iota,L\iota$
+span all matrices, and graded tensor products give the general
+case. Moreover $\delta L_i=0$ and
+$\delta\iota_i=h_i\operatorname{id}$. At fixed creation
+monomial $L_A$, the contraction variables are the Koszul
+resolution of $(h_i)$. Therefore
+\[
+ H^q(E)=S_0\otimes_k\Lambda^qU_0\quad(0\leq q\leq r),
+ \qquad H^q(E)=0\text{ otherwise}.
+\]
+
+\begin{theorem}\label{thm:vol2-koszul-centre-ring}
+The relative centre of \eqref{eq:vol2-koszul-arrow} has
+\begin{align*}
+ \operatorname{HH}_R^0(T)&=R\times_{S_0}R,&
+ \operatorname{HH}_R^1(T)&=0,\\
+ \operatorname{HH}_R^{q+1}(T)&=S_0\otimes_k\Lambda^qU_0
+                         &&(1\leq q\leq r),
+\end{align*}
+and no other cohomology. Its positive-degree cup ideal is
+square-zero; a pair in degree zero acts through its common
+residue in $S_0$. For $t_i=[(0,h_i;\iota_i)]$,
+\begin{equation}\label{eq:vol2-koszul-centre-presentation}
+ \operatorname{HH}_R^0(T)
+ =R[t_1,\ldots,t_r]/(h_it_j-h_jt_i,\ t_it_j-h_it_j)_{i,j}.
+\end{equation}
+\end{theorem}
+\begin{proof}
+The map $R^2\to H^0(E)=S_0$ is $(a,b)\mapsto b-a$.
+It is onto with kernel $R\times_{S_0}R$, so the fibre exact
+sequence gives the groups. The mixed cup product is zero;
+the endpoint residue gives its scalar action.
+
+The representative of $t_i$ is closed because
+$\delta\iota_i=h_i$. It maps to $(0,h_i)$ in the fibre product.
+Every pair is a diagonal scalar plus $(0,c)$ with $c\in I$,
+so these classes generate. The quadratic relations reduce
+each polynomial to $a+\sum_ib_it_i$. It maps to zero exactly
+when $a=0$ and $\sum_ib_ih_i=0$. The first Koszul syzygies
+$h_it_j-h_jt_i$ generate this kernel, proving the presentation.
+\end{proof}
+
+For $A=\{a_1<\cdots<a_q\}$ set
+$\alpha_A=[\sigma L_{a_1}\cdots L_{a_q}]$, of degree $q+1$.
+Then for $q\geq2$,
+\begin{equation}\label{eq:vol2-koszul-contraction-brackets}
+ [t_i,\alpha_A]=
+ \begin{cases}
+ (-1)^{j-1}\alpha_{A\setminus\{i\}},&i=a_j,\\
+ 0,&i\notin A.
+ \end{cases}
+\end{equation}
+Indeed, the graded commutator of $\iota_i$ with the creation
+product is precisely this contraction. When $q=1$ the result
+is the scalar identity, which is the boundary of an endpoint
+difference in \eqref{eq:vol2-koszul-centre}, so the bracket
+is zero. All brackets between two positive classes or two
+degree-zero classes vanish; the generators supercommute in
+their respective creation or contraction factors.
+
+For $r=2$, with $\omega=\alpha_{\{1,2\}}$, this gives
+\[
+ [t_1,\omega]=\alpha_{\{2\}},\qquad
+ [t_2,\omega]=-\alpha_{\{1\}}.
+\]
+The same $t_i$ annihilate every positive class under cup
+product. Thus the bracket detects a composition invisible
+to that product. The proof of the integral calculation also
+works for any regular sequence $(h_i)$ in a commutative
+$\mathbb Q$-algebra: regularity is used in the Koszul
+cohomology and in its first syzygies.
+
+\subsection{The full singular fibre}
+
+The finite bar commutes with derived scalar extension by
+Theorem~\ref{thm:vol2-directed-bar}. If some $h_i$ is invertible,
+$h_i^{-1}\iota_i$ contracts the arrow $M$ and the centre becomes
+the two scalar endpoint sectors. At the common zero, put
+$V_0=\Lambda U_0$. The arrow differential vanishes, and the
+only centre differential sends the endpoint difference to
+$\operatorname{id}\in E^0$, in centre degree one. Hence
+\begin{equation}\label{eq:vol2-koszul-singular-fibre}
+ \operatorname{HH}_k^*(T\otimes_Rk)
+   =k\ltimes(\operatorname{End}_k(V_0)/k\operatorname{id})[-1].
+\end{equation}
+Its displayed ideal has square-zero cup product and shifted
+graded-commutator bracket. The unit has zero bracket.
+Since
+\[
+ \dim_k\operatorname{End}^p(\Lambda U_0)
+    =\sum_j\binom rj\binom r{j+p}=\binom{2r}{r+p},
+\]
+the dimensions are
+\begin{equation}\label{eq:vol2-koszul-fibre-dimensions}
+ \dim_k\operatorname{HH}^n_k(T\otimes_Rk)=
+ \begin{cases}
+ 1+\binom{2r}{r-1},&n=0,\\
+ \binom{2r}{r}-1,&n=1,\\
+ \binom{2r}{r+n-1},&n\ne0,1.
+ \end{cases}
+\end{equation}
+Out-of-range binomial coefficients are zero. The total dimension
+is $4^r$. For $r=2$, degrees $-1,0,1,2,3$ have dimensions
+$1,5,5,4,1$. In contrast, ordinary specialization of integral
+degree-zero cohomology has basis $1,t_1,t_2$ and dimension three.
+Specializing the complex retains the missing extension data.
+
+There is no $R$-linear deformation retraction of
+\eqref{eq:vol2-koszul-centre} onto its integral cohomology.
+The nonzero $\operatorname{HH}_R^2(T)$ is annihilated by $h_1$,
+whereas multiplication by $h_1$ is injective on each free
+cochain term. A cochain section of this torsion group must be
+zero and cannot have a left inverse. This argument concerns
+a linear retraction over $R$; it is not a classification of
+all formality zigzags.
+
+\subsection{A second-order obstruction}
+
+At $r=2$ and zero parameters, use the basis
+$v_0=1,v_1=u_1,v_2=u_2,v_3=u_1u_2$ of $V_0$. Define the
+degree-one endomorphism $f$ by
+\[
+ f(v_0)=v_1,\qquad f(v_1)=v_3,\qquad f(v_2)=f(v_3)=0.
+\]
+Over $k[\epsilon]/(\epsilon^2)$, the arrow differential
+$\epsilon f$ defines a first-order deformation of $T_0$.
+But $f^2(v_0)=v_3$, and
+\begin{equation}\label{eq:vol2-koszul-obstruction}
+ \tfrac12[\sigma f,\sigma f]=\sigma f^2\ne0
+                         \quad\text{in }\operatorname{HH}^3_k(T_0).
+\end{equation}
+It is nonzero in \eqref{eq:vol2-koszul-singular-fibre} because
+an internal degree-two map is not a scalar identity.
+Thus the second-order Hochschild equation
+$d_{\mathrm{Hoch}}g+\tfrac12[\sigma f,\sigma f]=0$ has no
+solution. This excludes even curvature-free $A_\infty$
+corrections on the same graded module with the same
+first-order class, although the cup square of $\sigma f$
+is zero. By contrast, the original Koszul directions
+$xL_1+yL_2$ square to zero and integrate over $k[x,y]$.
+
+\section{Four composable objects}
+\label{sec:vol2-four-interfaces}
+
+The preceding category had one arrow direction and no composable
+pair of nonidentity arrows. Four ordered objects provide the
+first three-arrow string. Its two composition orders give an
+associativity equation, and the centre retains that equation
+in its own differential.
+
+Use chronological products in this section: $a_{ij}a_{jk}$ means
+first $i\to j$, then $j\to k$, so $e_ia_{ij}=a_{ij}=a_{ij}e_j$.
+Take objects $0<1<2<3$, scalar identities, and a degree-zero
+basis arrow $a_{ij}$ for each $i<j$. Set
+\begin{equation}\label{eq:vol2-four-products}
+ a_{01}a_{12}=pa_{02},\quad a_{12}a_{23}=qa_{13},\quad
+ a_{02}a_{23}=ra_{03},\quad a_{01}a_{13}=sa_{03}.
+\end{equation}
+All other products are forced by identities or are zero.
+The only associator of nonidentity arrows is
+\[
+ (a_{01}a_{12})a_{23}-a_{01}(a_{12}a_{23})
+       =Fa_{03},\qquad F=pr-qs.
+\]
+Thus the associative family is the rank-ten algebra $A_B$ over
+$B=k[p,q,r,s]/(pr-qs)$.
+
+\subsection{The centre differential and its operations}
+
+Order the edges as $01,02,03,12,13,23$ and the triangles as
+$012,123,023,013$. A normalized cochain assigns a scalar to
+each increasing string, multiplying its endpoint arrow.
+The finite bar gives
+\begin{equation}\label{eq:vol2-four-centre}
+ Z_B(A_B)\simeq
+ [B^4\xrightarrow{d_0}B^6\xrightarrow{d_1}B^4\xrightarrow{d_2}B]
+\end{equation}
+in degrees zero through three, with
+\begin{align}\label{eq:vol2-four-differentials}
+ (d_0\lambda)_{ij}&=\lambda_j-\lambda_i,\notag\\
+ d_1f&=\bigl(p(f_{01}+f_{12}-f_{02}),
+             q(f_{12}+f_{23}-f_{13}),\notag\\
+ &\hspace{20mm}r(f_{02}+f_{23}-f_{03}),
+             s(f_{01}+f_{13}-f_{03})\bigr),\notag\\
+ d_2(\alpha,\beta,\gamma,\delta)&=-r\alpha+s\beta-p\gamma+q\delta.
+\end{align}
+Indeed, in arity zero the two Hochschild endpoint terms give
+$d_0$. On a triangle the three faces have the same composition
+scalar, giving $d_1$. On $0123$ the four terms give $d_2$.
+Before imposing the relation, direct substitution gives
+\begin{equation}\label{eq:vol2-four-square}
+ d_1d_0=0,\qquad
+ d_2d_1f=-F(f_{01}+f_{12}+f_{23}-f_{03}).
+\end{equation}
+The square-zero condition remembers the original associator.
+
+Write $m_{012}=p,m_{123}=q,m_{023}=r,m_{013}=s$.
+For positive arities $n,m$, the cup product is
+\begin{equation}\label{eq:vol2-four-cup}
+ (f\smile g)_{i_0\cdots i_{n+m}}
+   =m_{i_0i_ni_{n+m}}f_{i_0\cdots i_n}g_{i_n\cdots i_{n+m}}.
+\end{equation}
+An arity-zero factor acts by the appropriate first or last
+endpoint scalar. A product with no increasing string is zero.
+The bar cut proves this formula; two successive cuts prove
+associativity using $pr=qs$, and the faces give the Leibniz
+identity. Its unit is $(1,1,1,1)$.
+
+For insertion, use
+$f\circ g=\sum_{j=0}^{n-1}(-1)^{j(m-1)}f\circ_jg$ and
+$[f,g]=f\circ g-(-1)^{(n-1)(m-1)}g\circ f$.
+For unary $f$ and binary $g$ this gives
+\[
+ [f,g]_{ijk}=(f_{ik}-f_{ij}-f_{jk})g_{ijk}.
+\]
+For binary cochains it gives
+\begin{equation}\label{eq:vol2-four-bracket}
+ [f,g]_{0123}=f_{023}g_{012}-f_{013}g_{123}
+                   +g_{023}f_{012}-g_{013}f_{123}.
+\end{equation}
+These are the two insertion slots on the unique three-arrow
+string. With the Hochschild signs of
+\eqref{eq:vol2-four-differentials}, a positive arity-$n$
+cochain has $df=(-1)^{n-1}[\mu,f]$, where $\mu$ is the binary
+product. Rephasing arities gives the dg Lie convention
+$[\mu,-]$. In particular $[\mu,\mu]/2=Fa_{03}$.
+
+\subsection{The parameter fibres and the integral module}
+
+Let $B\to K$ be a map to a field, and let $c$ count the nonzero
+parameters among $p,q,r,s$. Theorem~\ref{thm:vol2-directed-bar}
+makes the specialized complex the full centre over $K$.
+Its cohomology dimensions are
+\begin{equation}\label{eq:vol2-four-fibres}
+ \begin{array}{c|rrrr}
+ c&\operatorname{HH}^0&\operatorname{HH}^1&
+          \operatorname{HH}^2&\operatorname{HH}^3\\\hline
+ 0&1&3&4&1\\
+ 1&1&2&2&0\\
+ 2&1&1&1&0\\
+ 4&1&0&0&0
+ \end{array}
+\end{equation}
+The proof is a rank calculation. The incidence matrix $d_0$
+has rank three. The four unweighted triangle rows of $d_1$
+have one relation with all four coefficients nonzero, and
+any three are independent. Thus $\operatorname{rank}d_1$
+is $\min(c,3)$. The last row has rank one off the origin
+and zero at the origin. Subtracting adjacent ranks gives
+the table. The equation $pr=qs$ excludes $c=3$ and excludes
+the supports $\{p,r\}$ and $\{q,s\}$ when $c=2$.
+
+Integrally $B$ is a domain: $pr-qs$ is primitive and
+irreducible as a polynomial in $r$ over $k[p,q,s]$.
+The answer retains a module supported at the origin:
+\begin{align}\label{eq:vol2-four-integral}
+ \operatorname{HH}_B^0(A_B)&=B,\qquad
+ \operatorname{HH}_B^1(A_B)=0,\notag\\
+ \operatorname{HH}_B^3(A_B)&=B/(p,q,r,s),\notag\\
+ \operatorname{HH}_B^2(A_B)&=
+   \ker(-r,s,-p,q)/\operatorname{im}L.
+\end{align}
+Here $L(x,y,z)=(-px,-qy,r(x-z),s(y-z))$.
+For the degree-one assertion, nonzero parameters in the domain
+force all four triangle additivity equations. Setting
+$\lambda_0=0$ and $\lambda_i=f_{0i}$ gives
+$f_{ij}=\lambda_j-\lambda_i$. More generally, modulo a
+vertex coboundary an edge cochain has a unique representative
+with $f_{01}=f_{12}=f_{23}=0$. Its other coordinates
+$(f_{02},f_{13},f_{03})=(x,y,z)$ give the displayed image
+$L$. The cokernel of $d_2$ gives degree three.
+
+There is no $B$-linear deformation retraction onto these
+cohomology groups. Its nonzero degree-three group is killed
+by $p$, and therefore cannot have a section into the free
+degree-three cochain term. Scalar extension must act on
+\eqref{eq:vol2-four-centre}, not merely on
+\eqref{eq:vol2-four-integral}.
+
+At the origin, let the binary cochain $f$ have
+$f_{012}=f_{023}=1$ and $f_{123}=f_{013}=0$.
+The first-order product $\epsilon f$ is associative modulo
+$\epsilon^2$, but
+\[
+ \tfrac12[f,f]_{0123}=1\in\operatorname{HH}^3=k.
+\]
+The positive-arity differential is zero there, so no
+second-order correction removes this obstruction. Equivalently,
+$p=r=\epsilon$, $q=s=0$ gives $F=\epsilon^2$.
+A ternary operation cannot help on the unchanged degree-zero
+arrow module over an ordinary ring: it would have degree $-1$
+and no target. This is the deformation problem with the
+objects, arrow bases and units fixed.
+
+\subsection{A primitive and a finite coherent resolution}
+
+Introduce a coefficient of degree $-1$ with the required
+differential:
+\begin{equation}\label{eq:vol2-four-coherent-base}
+ R_{\mathrm{coh}}=k[p,q,r,s]\otimes\Lambda(\chi),
+                  \qquad d\chi=pr-qs.
+\end{equation}
+Its cohomology is $B$ in degree zero, since $F$ is a
+non-zero-divisor. A map to a derived test algebra nevertheless
+retains the image of $\chi$ as a specified primitive.
+On the rank-ten arrow module, the products
+\eqref{eq:vol2-four-products} and
+\begin{equation}\label{eq:vol2-four-ternary}
+ m_3(a_{01},a_{12},a_{23})=-\chi a_{03}
+\end{equation}
+define a strictly unital $A_\infty$ category, with convention
+$dm_3=-\operatorname{Assoc}(m_2)$ on closed degree-zero
+arrows. There is no increasing string of four nonidentity
+inputs, so all higher normalized identities vanish.
+
+The binary homotopies and their compatibility can also be
+retained in a strict dg algebra. Let $\mathcal Q$ be the
+free directed path algebra over $R_{\mathrm{coh}}$ on
+\[
+ X_{ij}:i\to j\ (|X_{ij}|=0),\qquad
+ H_{ijk}:i\to k\ (|H_{ijk}|=-1),\qquad
+ K_{03}:0\to3\ (|K_{03}|=-2),
+\]
+for increasing indices. Extend the coefficient differential
+by the graded Leibniz rule and
+\begin{align}\label{eq:vol2-four-resolution}
+ dX_{ij}&=0,\notag\\
+ dH_{ijk}&=X_{ij}X_{jk}-m_{ijk}X_{ik},\notag\\
+ dK_{03}&=H_{012}X_{23}-X_{01}H_{123}
+                 +pH_{023}-qH_{013}+\chi X_{03}.
+\end{align}
+Odd coefficients are moved to the left with their Koszul sign.
+In $d^2K_{03}$ the first four terms cancel all paths except
+$-FX_{03}$; the last gives $FX_{03}$. Thus $d^2=0$.
+The free basis has fifteen degree-zero paths (four identities,
+six arrows, four length-two paths and one length-three path),
+six degree-$-1$ paths (the four $H$ and their two composable
+extensions), and the single $K_{03}$. Its rank is $22$.
+
+Let $V_{\mathrm{ar}}$ be the submodule spanned by the identities
+and the six $X_{ij}$, with its coefficient differential.
+Let $i$ include it, and let $\pi$ be the identity there and
+zero on the $H_{ijk},K_{03}$. Specify its remaining values by
+\begin{align}\label{eq:vol2-four-projection}
+ \pi(X_{ij}X_{jk})&=m_{ijk}X_{ik},\notag\\
+ \pi(X_{01}X_{12}X_{23})&=prX_{03},&
+ \pi(X_{01}H_{123})&=\chi X_{03},&
+ \pi(H_{012}X_{23})&=0.
+\end{align}
+The degree-$-1$ homotopy is
+\begin{align}\label{eq:vol2-four-homotopy}
+ h(X_{ij}X_{jk})&=H_{ijk},\notag\\
+ h(X_{01}X_{12}X_{23})&=H_{012}X_{23}+pH_{023},&
+ h(X_{01}H_{123})&=-K_{03},
+\end{align}
+and is zero on all other basis paths. Extend $\pi$ linearly
+and $h$ graded-linearly, so $h(\chi a)=-\chi h(a)$.
+
+\begin{theorem}\label{thm:vol2-four-contraction}
+Over all of $R_{\mathrm{coh}}$ these maps satisfy
+\[
+ \pi i=1,\qquad dh+hd=1-i\pi,\qquad
+ h^2=hi=\pi h=0,\qquad d\pi=\pi d.
+\]
+The transferred product on $V_{\mathrm{ar}}$ is
+\eqref{eq:vol2-four-products}, with the ternary value
+\eqref{eq:vol2-four-ternary}; every normalized higher
+operation vanishes. No parameter is inverted.
+\end{theorem}
+\begin{proof}
+The intervals $0\to2$ and $1\to3$ contain the pairs
+$H_{012}\mapsto X_{01}X_{12}-pX_{02}$ and
+$H_{123}\mapsto X_{12}X_{23}-qX_{13}$.
+On $0\to3$ put
+\begin{align*}
+ v_1&=X_{02}X_{23}-rX_{03},& h_1&=H_{023},\\
+ v_2&=X_{01}X_{13}-sX_{03},& h_2&=H_{013},\\
+ v_3&=X_{01}X_{12}X_{23}-pX_{02}X_{23},& h_3&=H_{012}X_{23},\\
+ \ell&=H_{012}X_{23}-X_{01}H_{123}
+                   +pH_{023}-qH_{013}+\chi X_{03}.
+\end{align*}
+Together with $K_{03},X_{03}$ these are another free basis,
+obtained by a triangular change with constant invertible
+pivots. Its differential has $dh_j=v_j$, $dK_{03}=\ell$,
+$d\ell=0$, leaving $X_{03}$. Contracting these four pairs
+and returning to the original basis gives
+\eqref{eq:vol2-four-projection}--\eqref{eq:vol2-four-homotopy}.
+In particular $\pi(\ell)=0$ forces the nonzero value
+$\pi(X_{01}H_{123})=\chi X_{03}$. Graded linearity of $h$
+cancels the coefficient-differential terms.
+
+The transferred binary operation is $\pi\mu(i\otimes i)$.
+Its two ternary trees give
+\[
+ \pi\bigl(h(X_{01}X_{12})X_{23}
+                   -X_{01}h(X_{12}X_{23})\bigr)=-\chi X_{03}.
+\]
+There are no longer composable nonidentity strings, and the
+side conditions kill higher trees with an identity input.
+This proves the strictly unital structure.
+\end{proof}
+
+After an ordinary specialization $F=\chi=0$, the augmentation
+$X_{ij}\mapsto a_{ij}$, $H_{ijk},K_{03}\mapsto0$ is a strict
+dg algebra quasi-isomorphism, by this contraction. Over
+$R_{\mathrm{coh}}$ the projection is a cochain map to the
+$A_\infty$ category, not a strict algebra map.
+The primitive has not removed the ordinary obstruction:
+a dg map to $k[\epsilon]/(\epsilon^3)$ with $p=r=\epsilon$
+and $q=s=0$ would need a degree-$-1$ primitive of
+$\epsilon^2$, which that ring does not contain.
+
+The finite categories in this chapter specify algebraic
+compositions of interfaces. Their object labels alone supply
+no field-theoretic realization. Such a realization must
+identify the arrows, junctions, collision maps and local
+vacuum operations. Likewise, a native centre comparison must
+carry the full current hierarchy, the polynomial Massey
+coset and the integral path relation, together with derived
+specialization. These are tests on an actual evaluation map;
+they do not construct a common recipient for arbitrary
+geometric boundary actions.

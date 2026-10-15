@@ -1,0 +1,608 @@
+\chapter{Finite Hamiltonian jets and relative quantization}
+\label{ch:vol2-hamiltonian-jets}
+
+A Hamiltonian determines an infinitesimal motion of a symplectic space.
+To study a boundary fixed at a chosen point, we keep the Hamiltonians
+whose vector fields vanish there. Their finite jets give Lie algebras
+with an explicit quantization. The resulting associative algebras have
+relative Hochschild complexes, so they also give finite models of the
+coherent actions considered in Chapter~\ref{ch:vol2-boundary-actions}.
+
+The lowest nonzero jet is already instructive. Quadratic Hamiltonians form
+$\mathfrak{sl}_2$; cubic Hamiltonians supply its four-dimensional
+representation; the bracket of two cubics first survives at quartic
+order. We shall construct these algebras, their Poisson cochains and
+their finite Batalin--Vilkovisky actions before comparing the
+quantized algebra with its Hochschild cochains.
+
+\section{Hamiltonians fixing a point}
+
+Work over $\C$ on the formal plane with coordinates $z_1,z_2$ and
+symplectic form $\omega=dz_1\wedge dz_2$. Set
+$\mathfrak m=(z_1,z_2)\subset\C\llbracket z_1,z_2\rrbracket$.
+Our Poisson convention is
+\begin{equation}\label{eq:vol2-hamiltonian-bracket}
+ \{f,g\}=\partial_{z_1}f\,\partial_{z_2}g
+             -\partial_{z_2}f\,\partial_{z_1}g.
+\end{equation}
+Thus the vector field $X_f(g)=\{f,g\}$ vanishes at the origin
+exactly when the linear part of $f$ vanishes. Constants give the zero
+vector field. Choosing the representative with zero constant term
+identifies the pointed Hamiltonian Lie algebra with
+$\h=\mathfrak m^2$.
+
+For the quadratic polynomials
+\[
+ e=\tfrac12z_1^2,\qquad f=-\tfrac12z_2^2,\qquad h=-z_1z_2,
+\]
+direct differentiation gives
+\begin{equation}\label{eq:vol2-quadratic-brackets}
+ \{h,e\}=2e,\qquad \{h,f\}=-2f,\qquad \{e,f\}=h.
+\end{equation}
+They are the Chevalley generators of $\mathfrak{sl}_2$.
+
+Write $R_r$ for the homogeneous polynomials of degree $r$.
+Each derivative lowers degree by one, so
+$\{R_r,R_s\}\subset R_{r+s-2}$.
+The filtration
+\[
+ F^p\h=\mathfrak m^{p+2}\quad(p\geq0)
+\]
+is therefore additive:
+$\{F^p\h,F^q\h\}\subset F^{p+q}\h$.
+It is separated and complete in the formal power-series topology.
+For $d\geq2$, define
+\begin{equation}\label{eq:vol2-finite-jet}
+ \h_{\leq d}=\h/\mathfrak m^{d+1}
+             =\bigoplus_{r=2}^{d}R_r.
+\end{equation}
+The equality on the right specifies the polynomial representatives;
+their bracket is projected to degrees at most $d$.
+
+\begin{proposition}[Finite Hamiltonian jets]\label{prop:vol2-finite-jets}
+The bracket makes $\h_{\leq d}$ a Lie algebra of dimension
+\[
+ \dim\h_{\leq d}=\frac{d(d+3)}2-2.
+\]
+Its quadratic subalgebra is $\mathfrak{sl}_2$, and
+$R_r$ is its irreducible representation of highest weight $r$.
+\end{proposition}
+
+\begin{proof}
+The ideal $\mathfrak m^{d+1}$ is stable under bracketing with
+$\mathfrak m^2$. Hence Jacobi descends from the Poisson bracket.
+In coordinates, this bracket is induced by the constant bivector
+$\partial_{z_1}\wedge\partial_{z_2}$; commuting partial derivatives
+cancel the Jacobiator. Its monomial formula is
+\begin{equation}\label{eq:vol2-monomial-bracket}
+ \{z_1^az_2^b,z_1^cz_2^s\}
+ =(as-bc)z_1^{a+c-1}z_2^{b+s-1},
+\end{equation}
+where a term with zero coefficient is zero, including when a displayed
+exponent would be negative. For three exponent vectors
+$\alpha,\beta,\gamma$ and $\epsilon=(1,1)$, the Jacobi coefficient is
+\[
+ \det(\alpha,\beta)\det(\alpha+\beta-\epsilon,\gamma)
+ +\text{cyclic permutations}=0.
+\]
+The terms quadratic in the pairwise determinants cancel. The remaining
+terms vanish by the two-dimensional identity
+\[
+ \det(\alpha,\beta)\gamma+\det(\beta,\gamma)\alpha
+ +\det(\gamma,\alpha)\beta=0.
+\]
+The dimension is $\sum_{r=2}^d(r+1)=d(d+3)/2-2$.
+
+Put $u_j=z_1^{r-j}z_2^j$ for $0\leq j\leq r$. The quadratic action is
+\begin{equation}\label{eq:vol2-weight-action}
+ \{h,u_j\}=(r-2j)u_j,\qquad
+ \{e,u_j\}=ju_{j-1},\qquad
+ \{f,u_j\}=(r-j)u_{j+1}.
+\end{equation}
+Terms outside the index range are zero. A nonzero invariant subspace
+contains a weight vector because the eigenvalues of $h$ are distinct.
+Repeated application of $e$ reaches $u_0$, and repeated application of
+$f$ then reaches every $u_j$. This proves irreducibility.
+\end{proof}
+
+The pointed condition is needed for these quotients. The affine algebra
+\[
+ \h^{\mathrm{aff}}=\C\llbracket z_1,z_2\rrbracket/\C
+\]
+also contains linear Hamiltonians, which generate translations. In it,
+\[
+ \{z_1,z_2^{d+1}\}=(d+1)z_2^d.
+\]
+Consequently $\mathfrak m^{d+1}$ is no longer an ideal. A moving
+boundary or a centre-of-mass coordinate requires an affine construction
+in addition to the pointed jet quotient.
+
+\section{The first nonlinear brackets}
+
+For $d=2$ the quotient is $\mathfrak{sl}_2$ itself. For $d=3$, set
+$v_j=z_1^{3-j}z_2^j$ for $0\leq j\leq3$.
+Equation~\eqref{eq:vol2-weight-action} gives the quadratic action on
+their span.
+
+\begin{proposition}[The cubic jet]\label{prop:vol2-cubic-jet}
+The degree-three quotient is the semidirect product
+\[
+ \h_{\leq3}=\mathfrak{sl}_2\ltimes R_3,
+ \qquad [R_3,R_3]=0.
+\]
+\end{proposition}
+
+\begin{proof}
+A bracket of two cubics has degree four and vanishes in this quotient.
+The brackets with quadratics are exactly the action in
+\eqref{eq:vol2-weight-action}.
+\end{proof}
+
+At $d=4$, put $w_k=z_1^{4-k}z_2^k$ for $0\leq k\leq4$.
+The cubic bracket becomes
+\begin{equation}\label{eq:vol2-cubic-quartic}
+ \{v_i,v_j\}=3(j-i)w_{i+j-1}.
+\end{equation}
+When the index is outside $0,\ldots,4$, the coefficient is zero.
+In particular,
+\[
+ \{v_0,v_3\}=9w_2,\qquad \{v_1,v_2\}=3w_2.
+\]
+The first equality differentiates $z_1^3$ and $z_2^3$.
+The second is
+$4z_1^2z_2^2-z_1^2z_2^2=3z_1^2z_2^2$.
+The two cubic pairs reach the same quartic monomial with coefficients
+in the ratio $3:1$.
+
+\begin{proposition}[The quartic jet]\label{prop:vol2-quartic-jet}
+On the vector space $R_2\oplus R_3\oplus R_4$, all brackets are
+determined by \eqref{eq:vol2-quadratic-brackets},
+\eqref{eq:vol2-weight-action} for $r=3,4$,
+\eqref{eq:vol2-cubic-quartic}, and
+\[
+ [R_3,R_4]=0,\qquad [R_4,R_4]=0.
+\]
+This Lie algebra is $\h_{\leq4}$. Its quadratic and cubic elements
+generate it; its ideal $R_3\oplus R_4$ is two-step nilpotent with
+commutator subalgebra $R_4$.
+\end{proposition}
+
+\begin{proof}
+The omitted brackets have degrees five and six, so they vanish in the
+quotient. Every quartic is a cubic bracket: use the pairs
+$(i,j)=(0,1),(0,2),(0,3),(1,3),(2,3)$ to obtain
+$w_0,w_1,w_2,w_3,w_4$, respectively, with nonzero coefficients.
+These formulas exhaust the brackets of a basis. Jacobi follows from
+Proposition~\ref{prop:vol2-finite-jets}. They also give the stated
+commutator and its centrality inside the ideal.
+\end{proof}
+
+The adjoint trace will measure the divergence of the finite cotangent
+action. The homogeneous decomposition already determines this trace.
+
+\begin{proposition}[Unimodularity]\label{prop:vol2-jet-unimodular}
+For every $d\geq2$ and $x\in\h_{\leq d}$,
+$\operatorname{Tr}(\operatorname{ad}_x)=0$.
+\end{proposition}
+
+\begin{proof}
+A homogeneous Hamiltonian of degree greater than two strictly raises
+polynomial degree. Its adjoint matrix is strictly triangular in the
+decomposition \eqref{eq:vol2-finite-jet}. For a quadratic Hamiltonian,
+use the basis $e,f,h$. On each $R_r$, the matrices of $e$ and $f$ have
+zero diagonal, while the trace of $h$ is
+$\sum_{j=0}^r(r-2j)=0$. Linearity proves the assertion.
+\end{proof}
+
+\section{Chevalley cochains of the linear Poisson structure}
+
+Fix a finite-dimensional complex Lie algebra $\flie$, with basis
+$e_a$ and bracket $[e_a,e_b]=f^c{}_{ab}e_c$; repeated indices are
+summed. We shall apply the constructions to $\flie=\h_{\leq d}$.
+Use cohomological grading, with $(W[k])^n=W^{n+k}$.
+In particular, a vector of degree zero has degree one in $W[-1]$.
+
+Let $\flie^\vee$ carry the coadjoint action
+$(\operatorname{ad}_x^*\lambda)(y)=-\lambda([x,y])$.
+Define the graded Lie algebra
+\[
+ \mathfrak q(\flie)=\flie\ltimes\flie^\vee[-1]
+\]
+with zero internal differential and abelian second summand.
+Its elements in the second summand have degree one.
+For a finite graded Lie algebra $\mathfrak q$, we use polynomial
+Chevalley cochains
+$C^*_{\CE}(\mathfrak q)=\Sym(\mathfrak q^\vee[-1])$
+with differential dual to the bracket. Here $\Sym$ means the graded
+symmetric algebra, without completion in its even generators.
+
+\begin{proposition}[Chevalley--Poisson complex]\label{prop:vol2-ce-poisson}
+There is a natural isomorphism of commutative differential graded
+algebras
+\[
+ C^*_{\CE}(\mathfrak q(\flie))
+ \cong C^*(\flie,\Sym\flie)
+ =\Sym\flie\otimes\Lambda^*\flie^\vee.
+\]
+On the right the differential is the Chevalley differential for the
+adjoint action. It is also the linear Poisson differential on
+polynomial polyvector fields on $\flie^*$.
+\end{proposition}
+
+\begin{proof}
+Dualizing and shifting the degree-one summand gives
+$(\flie^\vee[-1])^\vee[-1]=\flie$ in degree zero.
+The degree-zero summand gives exterior generators $c^a$ of degree one.
+Let $x_a\in\Sym\flie$ denote the linear function
+$x_a(\lambda)=\lambda(e_a)$. Dualizing the semidirect bracket gives
+\begin{equation}\label{eq:vol2-ce-coordinate}
+ d_{\CE}c^c=-\tfrac12 f^c{}_{ab}c^ac^b,
+ \qquad d_{\CE}x_a=f^c{}_{ba}c^b x_c.
+\end{equation}
+These are precisely the bracket and action terms of the Chevalley
+differential. On a polynomial $F$ the second formula reads
+\[
+ d_{\CE}F=c^a\{x_a,F\}_{\mathrm{lin}},
+ \qquad \{x_a,x_b\}_{\mathrm{lin}}=f^c{}_{ab}x_c.
+\]
+Identify $c^a$ with the constant vector field $\partial_{x_a}$.
+Use the Schouten bracket extending $[X,F]=X(F)$ by graded
+skew-symmetry and the graded derivation rule.
+For the bivector
+$\pi=\tfrac12 f^c{}_{ab}x_c\partial_{x_a}\wedge\partial_{x_b}$,
+the Schouten differential $[\pi,-]$ gives both formulas in
+\eqref{eq:vol2-ce-coordinate}. Since both operators are derivations
+of the exterior product, they agree on all polyvectors. Jacobi is
+$[\pi,\pi]=0$, and hence $d_{\CE}^2=0$.
+\end{proof}
+
+\section{The finite BV action}
+
+The preceding complex has degree-zero polynomial coordinates $x_a$.
+The BV construction uses the different graded space
+$T^*[-1](\flie[1])$. Its polynomial functions are
+\[
+ \mathcal B(\flie)=\Lambda(c^1,\ldots,c^m)
+                  \otimes\C[b_1,\ldots,b_m],
+ \qquad |c^a|=1,\quad |b_a|=-2,
+\]
+where $m=\dim\flie$. Thus the cotangent coordinates $b_a$ are
+antifields of degree $-2$. Fix left derivatives in the odd variables
+and set
+\begin{equation}\label{eq:vol2-bv-conventions}
+ \Delta=\sum_a\partial_{b_a}\partial_{c^a},\qquad
+ \{F,G\}_{\mathrm{BV}}
+ =(-1)^{|F|}\bigl(\Delta(FG)-\Delta(F)G
+                    -(-1)^{|F|}F\Delta(G)\bigr).
+\end{equation}
+The bracket has degree one, with
+$\{b_a,c^b\}_{\mathrm{BV}}=\delta_a^b$ and
+$\{c^b,b_a\}_{\mathrm{BV}}=-\delta_a^b$.
+Commutation of the even derivatives and anticommutation of the odd
+ones give $\Delta^2=0$.
+These Darboux coordinates specify a constant Berezinian up to a
+nonzero scalar; its normalization does not change $\Delta$.
+The quantum master equation for this measure is proved in
+Theorem~\ref{thm:vol2-finite-qme}.
+
+With these conventions the degree-zero cotangent action is
+\begin{equation}\label{eq:vol2-bv-action}
+ S=-\tfrac12 b_c f^c{}_{ab}c^ac^b.
+\end{equation}
+In particular, $\{S,c^a\}_{\mathrm{BV}}=d_{\CE}c^a$.
+
+\begin{theorem}[Finite quantum master equation]\label{thm:vol2-finite-qme}
+For every finite-dimensional Lie algebra $\flie$, the action
+\eqref{eq:vol2-bv-action} satisfies
+\[
+ \tfrac12\{S,S\}_{\mathrm{BV}}=0,\qquad
+ \Delta S=\sum_b\operatorname{Tr}(\operatorname{ad}_{e_b})c^b.
+\]
+Consequently, for $\flie=\h_{\leq d}$ and a formal parameter
+$\hbarq$ of degree zero,
+\[
+ \tfrac12\{S,S\}_{\mathrm{BV}}+\hbarq\Delta S=0.
+\]
+This identity holds in $\mathcal B(\h_{\leq d})\llbracket\hbarq\rrbracket$.
+\end{theorem}
+
+\begin{proof}
+Put $Q^a=-\tfrac12 f^a{}_{bc}c^bc^c$, so that $S=b_aQ^a$.
+The coordinate bracket gives
+\[
+ \tfrac12\{S,S\}_{\mathrm{BV}}
+ =\sum_{a,k}b_kQ^a\partial_{c^a}Q^k.
+\]
+The coefficient of $b_k$ is $d_{\CE}^2c^k$, which vanishes by
+Jacobi. For the second identity, left differentiation gives
+\[
+ \Delta S=-\sum_{a,b}f^a{}_{ab}c^b
+          =\sum_{a,b}f^a{}_{ba}c^b.
+\]
+The last coefficient is the trace of $\operatorname{ad}_{e_b}$.
+Proposition~\ref{prop:vol2-jet-unimodular} makes it zero for every
+finite Hamiltonian jet.
+\end{proof}
+
+The trace condition is substantive. In the two-dimensional Lie algebra
+with basis $u,v$ and $[u,v]=v$, one has
+\[
+ S=-b_vc^uc^v,\qquad \Delta S=c^u.
+\]
+The classical master equation still holds, but this constant-measure
+action fails the quantum master equation. For Hamiltonian jets,
+unimodularity removes this finite-dimensional divergence.
+A local field theory has further analytic and renormalization data;
+the finite identity alone does not construct its quantum observables.
+
+\section{Rees multiplication and interval operations}
+
+Quantization replaces commuting linear functions on $\flie^*$ by
+generators whose commutator is $\hbarq$ times the Lie bracket.
+For $N\geq0$, let
+\[
+ R_N=\C[\hbarq]/(\hbarq^{N+1}),\qquad
+ \flie_N=R_N\otimes_\C\flie,
+ \qquad [x,y]_N=\hbarq[x,y].
+\]
+Here $N$ is the coefficient order, independent of the jet order $d$
+or a Chan--Paton rank. Define the augmented $R_N$-algebra
+\[
+ A_N=U_{R_N}(\flie_N)
+ =T_{R_N}(\flie_N)/(xy-yx-\hbarq[x,y]),
+\]
+whose augmentation sends every $x\in\flie$ to zero.
+The Poincar\'e--Birkhoff--Witt (PBW) theorem has the following form
+over this coefficient ring.
+
+\begin{proposition}[PBW over the finite coefficient ring]\label{prop:vol2-rees-pbw}
+Choose an ordered basis of $\flie$. Its ordered monomials form an
+$R_N$-basis of $A_N$. If $S_0=\Sym_\C\flie$, symmetrization is a
+filtered $R_N$-module isomorphism
+\[
+ \operatorname{sym}_N:S_0\otimes R_N\longrightarrow A_N,
+ \qquad x_1\cdots x_r\longmapsto
+ \frac1{r!}\sum_{\sigma\in S_r}x_{\sigma(1)}\cdots x_{\sigma(r)}.
+\]
+It intertwines the adjoint action through
+\begin{equation}\label{eq:vol2-scaled-pbw-action}
+ [x,\operatorname{sym}_N(F)]_{A_N}
+ =\hbarq\operatorname{sym}_N(\operatorname{ad}_xF).
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+Replace every inverted adjacent pair $yx$ by
+$xy+\hbarq[y,x]$. In the first term the number of inversions
+decreases; the second has shorter length. Induction on length and
+then inversions proves termination. Disjoint replacements commute.
+For an overlapping triple $z>y>x$, the difference between the two
+reductions, after the shorter words have been ordered, is
+$\hbarq^2$ times
+\[
+ [[z,y],x]+[[y,x],z]+[[x,z],y]=0.
+\]
+Induction therefore makes the ordered result independent of every
+choice of replacement. This defines a normal-form map killing the
+relations and equal to the identity on ordered monomials. Those
+monomials are consequently a basis, even though $R_N$ has nilpotents.
+
+Give generators PBW filtration degree one. Symmetrization induces
+the identity on the associated graded polynomial algebra. Subtracting
+the highest-degree symbol and descending in degree constructs its
+inverse. This uses only finite degrees and the invertibility of
+factorials in $R_N$. Finally, commuting $x$ past each factor of a
+symmetrized word gives one term $\hbarq[x,x_i]$ in each position.
+Their sum is \eqref{eq:vol2-scaled-pbw-action}.
+\end{proof}
+
+Transporting multiplication by $\operatorname{sym}_N$ gives the
+associative PBW product on $S_0\otimes R_N$. Its reduction modulo
+$\hbarq$ is the ordinary product. For $N\geq1$, the first commutator
+is the linear Poisson bracket. Indeed, the coefficient of $\hbarq$ in a
+commutator is a biderivation of the commutative reduction; its value
+on $x,y\in\flie$ is $[x,y]$. These values determine the biderivation
+on the polynomial algebra.
+
+For disjoint intervals $I_1<\cdots<I_r$ contained in an interval $J$,
+assign the operation
+\[
+ A_N^{\otimes_{R_N}r}\longrightarrow A_N,
+ \qquad a_1\otimes\cdots\otimes a_r\longmapsto a_1\cdots a_r.
+\]
+Use the unit for an empty collection and the identity for an inclusion
+of one interval. Associativity makes these operations compatible with
+nested collections, and their independence of interval lengths makes
+them locally constant. They supply the algebraic ordered interval
+operations expected of a boundary quantization.
+For a cotangent field theory on a half-plane, fix the cotangent field
+at the boundary and leave the Lie algebra field free. Identifying the
+resulting boundary observables with these interval operations requires
+a map from that theory's quantum
+observables, compatible with interval inclusions and fusion, and a
+proof that the map is a quasi-isomorphism. PBW constructs the target
+algebra, while this realization remains a separate comparison.
+
+\section{The relative Hochschild comparison}
+
+The coefficient ring affects the action complex. For the quadratic
+jet, $[h,e]=2e$, whereas $[h,e]_{A_N}=2\hbarq e$.
+Modulo $\hbarq$, the Hochschild differential of the zero-cochain $e$
+vanishes because the algebra is commutative. The ordinary Chevalley
+differential has $(d_{\CE}e)(h)=2e$. Thus it is the scaled differential
+$\hbarq d_{\CE}$ that can compare with relative Hochschild cochains.
+
+Write $\bar A_N$ for the augmentation ideal.
+Use normalized relative Hochschild cochains
+\[
+ C^n_{\HH}(A_N/R_N,A_N)
+ =\operatorname{Hom}_{R_N}(\bar A_N^{\tensor_{R_N}n},A_N)
+\]
+with differential
+\[
+\begin{split}
+ (bF)(a_1,\ldots,a_{n+1})
+ ={}&a_1F(a_2,\ldots,a_{n+1})\\
+ &+\sum_{i=1}^n(-1)^iF(a_1,\ldots,a_i a_{i+1},\ldots,a_{n+1})\\
+ &+(-1)^{n+1}F(a_1,\ldots,a_n)a_{n+1}.
+\end{split}
+\]
+Let $d_{\CE}$ act on
+$C^n(\flie,S_0)=\operatorname{Hom}_\C(\Lambda^n\flie,S_0)$
+by the adjoint Chevalley differential.
+
+\begin{theorem}[Relative Rees comparison]\label{thm:vol2-relative-rees}
+Antisymmetrization defines a quasi-isomorphism of $R_N$-complexes
+\[
+ \operatorname{Alt}_N:
+ C^\bullet_{\HH}(A_N/R_N,A_N)
+ \longrightarrow
+ \bigl(C^\bullet(\flie,S_0)\tensor R_N,\hbarq d_{\CE}\bigr),
+\]
+given by
+\[
+ (\operatorname{Alt}_NF)(x_1,\ldots,x_n)
+ =\operatorname{sym}_N^{-1}
+ \sum_{\sigma\in S_n}\operatorname{sgn}(\sigma)
+ F(x_{\sigma(1)},\ldots,x_{\sigma(n)}).
+\]
+These maps commute with coefficient reduction in $N$.
+\end{theorem}
+\begin{proof}
+Write $A=A_N$, $R=R_N$, and $A^e=A\tensor_R A^{\op}$.
+In homological degree $n$, set
+\[
+ K_n=A\tensor_R\Lambda_R^n\flie_N\tensor_R A.
+\]
+Its augmentation is multiplication.
+For $X=x_1\wedge\cdots\wedge x_n$, let $X_{\widehat i}$ and
+$X_{\widehat i\widehat j}$ omit the indicated entries without reordering.
+Define
+\[
+\begin{split}
+ \partial(a\tensor X\tensor b)
+ ={}&\sum_i(-1)^{i+1}
+ \bigl(ax_i\tensor X_{\widehat i}\tensor b
+       -a\tensor X_{\widehat i}\tensor x_i b\bigr)\\
+ &+\hbarq\sum_{i<j}(-1)^{i+j}
+ a\tensor[x_i,x_j]\wedge X_{\widehat i\widehat j}\tensor b.
+\end{split}
+\]
+The normalized relative bimodule bar has terms
+$\mathcal B_n=A\tensor_R\bar A^{\tensor_R n}\tensor_R A$.
+Define
+\[
+ \iota_n(a\tensor X\tensor b)
+ =\sum_{\sigma\in S_n}\operatorname{sgn}(\sigma)
+       a[x_{\sigma(1)}|\cdots|x_{\sigma(n)}]b.
+\]
+The outer bar faces give the first sum in $\partial$.
+Pair adjacent transpositions in the internal faces and use
+$xy-yx=\hbarq[x,y]$ to obtain the second sum.
+For two inputs this reads
+\[
+\begin{split}
+ b\bigl(1[x|y]1-1[y|x]1\bigr)
+ ={}&x[y]1-y[x]1+1[x]y-1[y]x\\
+ &-\hbarq\,1[[x,y]]1.
+\end{split}
+\]
+Thus $b\iota=\iota\partial$.
+PBW makes $\flie_N$ a free summand of $\bar A$.
+Since every factorial is invertible in $R$, $\iota$ is injective.
+The identity $b^2=0$ then gives $\partial^2=0$.
+
+Give $K_n$ filtration degree equal to its outer PBW degrees plus $n$.
+The associated graded is the diagonal Koszul complex of
+$\Sym_R(\flie_N)$.
+Its differential uses differences of left and right polynomial generators.
+A linear change of variables makes these independent polynomial variables.
+They form a regular sequence even when $R$ has nilpotents.
+For an augmented cycle, lift a primitive of its highest-degree symbol
+and subtract its differential.
+The filtration degree decreases, so this procedure terminates.
+Hence $K_\bullet\to A$ is a free bimodule resolution.
+
+The relative bar is also free over $A^e$, with its usual unit-insertion contraction.
+The map $\iota$ lifts the identity of $A$.
+To construct a reverse chain map, first lift the augmentation in
+degree zero. At each higher degree its required boundary is a cycle;
+exactness of $K_\bullet$ and projectivity of the bar term give a lift.
+Each composite and the identity induce the same augmentation.
+Their difference is therefore a boundary in degree zero, and the same
+lifting argument, degree by degree, constructs a chain homotopy.
+Applying $\operatorname{Hom}_{A^e}(-,A)$ gives a cochain homotopy equivalence.
+
+The induced differential on
+$\operatorname{Hom}_R(\Lambda_R^n\flie_N,A)$ is
+\[
+\begin{split}
+ (\delta_N\phi)(x_1,\ldots,x_{n+1})
+ ={}&\sum_i(-1)^{i+1}
+ [x_i,\phi(x_1,\ldots,\widehat{x_i},\ldots,x_{n+1})]_A\\
+ &+\hbarq\sum_{i<j}(-1)^{i+j}
+ \phi([x_i,x_j],x_1,\ldots,\widehat{x_i},
+                         \ldots,\widehat{x_j},\ldots,x_{n+1}).
+\end{split}
+\]
+By \eqref{eq:vol2-scaled-pbw-action}, the commutator term also carries
+one factor of $\hbarq$. Both sums therefore become $\hbarq$ times the
+ordinary Chevalley differential.
+Precomposition with $\iota$ gives $\operatorname{Alt}_N$.
+All formulas commute with coefficient reduction.
+\end{proof}
+
+\section{The formal coefficient limit}
+Put $R=\C\llbracket\hbarq\rrbracket$ and $A=\varprojlim_N A_N$.
+PBW identifies its underlying module with $S_0\llbracket\hbarq\rrbracket$.
+Each coefficient of $\hbarq$ is a polynomial.
+We also write $U_\hbar(\flie)=A$ and
+obtain the continuous module isomorphism
+\[
+ \operatorname{sym}_\hbar=\varprojlim_N\operatorname{sym}_N:
+ S_0\llbracket\hbarq\rrbracket\xrightarrow{\sim}U_\hbar(\flie).
+\]
+Define
+\[
+ A^{\widehat\tensor_R n}=\varprojlim_N A_N^{\tensor_{R_N}n},
+ \qquad
+ C^\bullet_{\HH,\mathrm{cont}}(A/R,A)
+ =\varprojlim_N C^\bullet_{\HH}(A_N/R_N,A_N).
+\]
+Equivalently, these are continuous $R$-multilinear normalized cochains
+on the completed relative tensors.
+
+\begin{corollary}[Formal relative Rees comparison]\label{cor:vol2-formal-relative-rees}
+The compatible antisymmetrizations induce a quasi-isomorphism
+\[
+ C^\bullet_{\HH,\mathrm{cont}}(A/R,A)
+ \longrightarrow
+ \bigl(C^\bullet(\flie,S_0)\llbracket\hbarq\rrbracket,
+                    \hbarq d_{\CE}\bigr).
+\]
+\end{corollary}
+\begin{proof}
+Coefficient reduction is surjective in each cochain degree.
+For Hochschild cochains, lift outputs on the PBW input basis.
+The Chevalley exterior input has finite rank, so its outputs also lift.
+The comparison cones are acyclic and their transition maps are degreewise surjective.
+The long exact sequence shows that every transition kernel is acyclic.
+Choose a primitive of a compatible cycle at level zero.
+Lift it one level and correct its differential by a primitive in the transition kernel.
+Iteration gives compatible primitives at every order.
+The inverse-limit cone is therefore acyclic.
+\end{proof}
+
+The coefficient ring is part of this result.
+Absolute $\C$-linear cochains also detect variations of the coefficient parameter.
+For $\flie=0$, the continuous absolute derivation $\partial_{\hbarq}$
+on $R$ has no relative counterpart.
+For nonabelian $\flie$, the associated graded for the $\hbarq$ filtration
+has zero differential, whereas $d_{\CE}$ need not vanish.
+The theorem asserts a quasi-isomorphism of complexes. A comparison of
+cup products, braces and their higher coherences requires additional
+maps and identities. The inverse
+limit above changes only the coefficient order $N$, at a fixed
+finite-dimensional Lie algebra. Passing to all Hamiltonian jets also
+requires compatible transition maps for the chosen cochain complexes
+and a proof that their limit computes the intended continuous carrier.

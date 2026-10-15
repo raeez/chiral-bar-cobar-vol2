@@ -1,0 +1,2072 @@
+\chapter{Gaussian elimination and higher state operations}
+\label{ch:vol2-gaussian-elimination}
+
+Let $p$ be expectation for a centred real Gaussian variable of
+variance $\sigma>0$. Then $p(x)=0$ and $p(x^2)=\sigma$.
+Eliminating $x$ therefore leaves information in products that its
+mean does not contain. The connected contractions of
+Chapter~\ref{ch:vol2-supported-compositions} exhibit the same effect
+for fields. A reduction that preserves their operations must retain
+these fluctuations together with the differential and the
+normalization of the state.
+
+In a finite polynomial model, an explicit homotopy identifies
+each observable with its expectation. The failure to preserve
+products becomes part of the comparison map. Formal interactions
+change both the expectation and the differential of the variables
+that remain. Successive integrations must preserve this changed
+differential and the state on every product. We construct these
+maps and compare them under changes of coordinates and of the
+integration data.
+
+The normal direction of a boundary comparison has an additional
+datum: its endpoint condition. We first isolate that elementary
+support question. The finite quantum construction that follows
+does not require a choice of continuum propagator.
+
+\section{A supported normal contraction}
+\label{sec:vol2-normal-contraction}
+
+Put $I=[0,\infty)$ and work over $\mathbb C$. The relative compactly
+supported de Rham complex
+\[
+ C=\Omega_c^\bullet(I,\{0\})
+\]
+has $C^0=\{f\in C_c^\infty(I):f(0)=0\}$ and
+$C^1=C_c^\infty(I)\,dt$, with $df=f'\,dt$.
+Thus the relative condition constrains functions at the endpoint;
+it imposes no restriction on the coefficient of a one-form there.
+Choose $\rho\in C_c^\infty(I)$ with
+$\int_0^\infty\rho(t)\,dt=1$.
+
+Define maps to and from $\mathbb C[-1]$, placed in cohomological
+degree one, by
+\begin{equation}\label{eq:vol2-normal-maps}
+ \begin{aligned}
+ p(\beta\,dt)&=\int_0^\infty\beta(t)\,dt,& p(f)&=0,\\
+ i(a)&=a\rho(t)\,dt,& H(f)&=0,\\
+ H(\beta\,dt)(t)
+   &=\int_0^t\left(\beta(s)-\rho(s)
+                    \int_0^\infty\beta(r)\,dr\right)ds.
+ \end{aligned}
+\end{equation}
+The subtraction in the primitive removes its constant tail.
+It is required to keep the homotopy in the stated support class.
+
+\begin{proposition}\label{prop:vol2-normal-retract}
+The maps in \eqref{eq:vol2-normal-maps} are continuous and satisfy
+\[
+ pi=1,\qquad dH+Hd=1-ip,\qquad
+ H^2=Hi=pH=0.
+\]
+The normal support of $H\beta$ lies in the compact interval spanned
+by $0$, $\operatorname{supp}\beta$ and $\operatorname{supp}\rho$.
+Tensoring this contraction with the full Dolbeault complex on an
+open set $U\subset\mathbb C^d$ retains every tangential form degree.
+\end{proposition}
+\begin{proof}
+The integrand defining $H\beta$ has total integral zero. Its
+primitive vanishes at zero and again beyond the stated interval.
+Differentiation gives $dH(\beta\,dt)=\beta\,dt-ip(\beta\,dt)$.
+For $f\in C^0$, compact support and $f(0)=0$ give
+\[
+ p(df)=f(\infty)-f(0)=0,\qquad H(df)=f.
+\]
+These are the homotopy identities in the two degrees. The equation
+$pi=1$ is the normalization of $\rho$; substituting $i(a)$ in $H$
+gives $Hi=0$. The remaining side identities follow from degrees.
+
+On functions or forms supported in a fixed compact interval,
+integration is bounded by a finite smooth seminorm. The same
+estimate for the primitive and its derivatives proves continuity
+into the enlarged compact interval. These estimates give
+continuity for the usual inductive-limit topology of compact
+supports. On
+$C\widehat\otimes_\pi\Omega^{0,\bullet}(U)$, the completed
+projective tensor product, the maps extend by continuity.
+The tensor differential is
+\[
+ d(\alpha\otimes\gamma)
+ =d\alpha\otimes\gamma+(-1)^{|\alpha|}
+                         \alpha\otimes\bar\partial\gamma.
+\]
+Its cross terms with $H\otimes1$ cancel. The resulting target is
+$\Omega^{0,\bullet}(U)[-1]$, with differential $-\bar\partial$,
+as required by the shift.
+\end{proof}
+
+Changing the endpoint condition changes the answer. In the
+absolute complex $\Omega_c^\bullet(I)$, the primitive
+\[
+ H_{\mathrm{abs}}(\beta\,dt)(t)
+   =-\int_t^\infty\beta(s)\,ds
+\]
+is allowed even when it is nonzero at $t=0$. It is compactly
+supported and satisfies $dH_{\mathrm{abs}}=1$ on one-forms and
+$H_{\mathrm{abs}}d=1$ on functions. The absolute complex is
+acyclic. In a field theory, the polarization must determine which
+normal complex occurs before either contraction is used.
+
+\section{The finite Gaussian Ward complex}
+\label{sec:vol2-gaussian-ward}
+
+Let $R_0$ be a nonzero commutative $\mathbb Q$-algebra and put
+$R=R_0[\hbar]$, where $\hbar$ has degree zero. Fix a symmetric
+invertible matrix $A\in\operatorname{Mat}_m(R_0)$ and write
+$C=A^{-1}$. Introduce even coordinates $q_1,\ldots,q_m$ of
+degree zero and odd coordinates $\eta_1,\ldots,\eta_m$ of
+degree $-1$. Our observable algebra is
+\[
+ \mathcal G_A=R[q_1,\ldots,q_m]\otimes
+                         \Lambda(\eta_1,\ldots,\eta_m).
+\]
+All odd derivatives act on the left. Tensor products and
+reorderings use the cohomological Koszul sign.
+
+The quadratic potential $S_0(q)=\tfrac12q^{\mathrm t}Aq$
+defines the \emph{Ward differential}
+\begin{equation}\label{eq:vol2-gaussian-ward}
+ D_A=\sum_i\bigl((Aq)_i-\hbar\partial_{q_i}\bigr)
+                                             \partial_{\eta_i}.
+\end{equation}
+This is the finite-dimensional homological form of Gaussian
+integration by parts; see Gwilliam--Johnson-Freyd
+\cite{GwilliamJohnsonFreyd2019}*{\S\S1--3}.
+The even operators $(Aq)_i-\hbar\partial_{q_i}$ commute, because
+$A$ is symmetric. The odd derivatives anticommute, so $D_A^2=0$.
+In one variable, with $A=(a)$,
+\begin{equation}\label{eq:vol2-ward-square}
+ D_A\eta=ax,\qquad
+ D_A(\eta x)=ax^2-\hbar.
+\end{equation}
+The second equality already records the fluctuation that survives
+elimination.
+
+We will construct a \emph{contraction} of this complex onto $R$:
+cochain maps $i:R\to\mathcal G_A$, $p:\mathcal G_A\to R$ and
+a degree-minus-one map $H$ satisfying
+\[
+ pi=1,\qquad D_AH+HD_A=1-ip,
+ \qquad H^2=Hi=pH=0.
+\]
+The last three equations are the side conditions of a strong
+deformation retract. The projection $p$, normalized by $p(1)=1$,
+will be the formal Gaussian state.
+
+\subsection{Heat conjugation and the Euler homotopy}
+
+Let
+\[
+ d_0=\sum_i(Aq)_i\partial_{\eta_i},\qquad
+ T_A=\exp\!\left(\frac{\hbar}{2}
+                 \sum_{i,j}C_{ij}\partial_{q_i}\partial_{q_j}\right).
+\]
+The heat series and its inverse terminate on every polynomial.
+The commutator of its exponent with $q_i$ is
+$\hbar\sum_jC_{ij}\partial_{q_j}$, and the next commutator is zero.
+Consequently
+\begin{equation}\label{eq:vol2-ward-conjugation}
+ T_A^{-1}q_iT_A=q_i-\hbar\sum_jC_{ij}\partial_{q_j},
+ \qquad D_A=T_A^{-1}d_0T_A.
+\end{equation}
+
+Let $N$ count total polynomial degree in the $q_i$ plus exterior
+degree in the $\eta_i$, and put
+\[
+ R_A=\sum_{i,j}\eta_iC_{ij}\partial_{q_j},\qquad
+ h_0=N^{-1}R_A\quad(N>0),\qquad h_0(1)=0.
+\]
+The notation $N^{-1}$ divides a homogeneous monomial by its
+positive integer degree. These divisions are valid over $R_0$.
+Let $\epsilon$ set every $q_i,\eta_i$ equal to zero, and let
+$i$ include constants.
+
+\begin{lemma}\label{lem:vol2-euler-contraction}
+The maps $(\epsilon,i,h_0)$ contract $(\mathcal G_A,d_0)$ onto $R$.
+\end{lemma}
+\begin{proof}
+The anticommutator of the odd derivations $d_0$ and $R_A$ is the
+Euler operator:
+\[
+ d_0R_A+R_Ad_0
+   =\sum_iq_i\partial_{q_i}
+      +\sum_i\eta_i\partial_{\eta_i}=N.
+\]
+Indeed, its value on each $q_i$ and $\eta_i$ is that generator;
+an even derivation is determined by these values. Both odd
+operators preserve $N$. Division by $N$ proves
+$d_0h_0+h_0d_0=1$ in positive total degree, while both sides of
+$1-i\epsilon$ vanish on constants. The constant-coefficient even
+derivatives in $R_A$ commute and its odd coefficients
+anticommute, giving $R_A^2=0$. Hence $h_0^2=0$.
+The equations $h_0i=\epsilon h_0=0$ follow from the same formulas.
+\end{proof}
+
+\begin{theorem}\label{thm:vol2-gaussian-retract}
+The maps
+\begin{equation}\label{eq:vol2-gaussian-retract}
+ p_A=\epsilon T_A,\qquad i(a)=a,\qquad
+ H_A=T_A^{-1}h_0T_A
+\end{equation}
+give a contraction of $(\mathcal G_A,D_A)$ onto $R$.
+On even polynomials, $p_A$ is the Wick functional of covariance
+$\hbar A^{-1}$; it kills every term of negative cohomological degree.
+All maps are defined over $R_0[\hbar]$.
+\end{theorem}
+\begin{proof}
+Conjugate every identity of Lemma~\ref{lem:vol2-euler-contraction}
+by $T_A$. Equation~\eqref{eq:vol2-ward-conjugation} gives the
+new differential, and $T_Ai=i$ keeps the inclusion fixed.
+Thus the homotopy and all side identities follow on every
+polynomial, without a convergence argument.
+
+To identify the state, introduce independent degree-zero formal
+variables $J_1,\ldots,J_m$. Applying $\epsilon T_A$
+coefficientwise gives
+\begin{equation}\label{eq:vol2-wick-generating}
+ p_A(e^{J^{\mathrm t}q})
+       =\exp\!\left(\frac{\hbar}{2}J^{\mathrm t}CJ\right).
+\end{equation}
+Differentiation in the $J_i$ pairs all input coordinates, with
+$\hbar C_{ij}$ for each pair. This proves Wick's formula and
+determines $p_A$ on every polynomial. Heat operators preserve
+exterior degree, so evaluation kills negative cohomological degrees.
+\end{proof}
+
+For $A=(a)$, the retract gives the concrete primitive
+\begin{equation}\label{eq:vol2-quadratic-primitive}
+ p_A(x^2)=\frac{\hbar}{a},\qquad
+ H_A(x^2)=\frac{\eta x}{a},\qquad
+ D_A\left(\frac{\eta x}{a}\right)=x^2-\frac{\hbar}{a}.
+\end{equation}
+At a positive real specialization $A>0$, $\hbar>0$,
+equation~\eqref{eq:vol2-wick-generating} is also the generating
+function of the normalized convergent Gaussian integral.
+Positivity is needed for that real integral, and is not a
+hypothesis of the algebraic contraction.
+
+\subsection{Ordinary and transported products}
+
+The ordinary product on $\mathcal G_A$ is not a cochain operation:
+\eqref{eq:vol2-ward-square} gives
+\[
+ D_A(\eta x)-(D_A\eta)x=-\hbar.
+\]
+One can transport a product along the heat isomorphism. It is
+useful to do this explicitly, since the transported square has a
+different expectation.
+
+\begin{proposition}\label{prop:vol2-transported-product}
+In one variable define
+\begin{equation}\label{eq:vol2-transported-product}
+ f\diamond g=T_A^{-1}\bigl((T_Af)(T_Ag)\bigr)
+ =\sum_{r\geq0}\frac{(-\hbar/a)^r}{r!}
+                  (\partial_x^rf)(\partial_x^rg).
+\end{equation}
+This is a unital graded-commutative associative product for which
+$D_A$ is a derivation. The map $p_A$ is an augmentation for
+$\diamond$ and a quasi-isomorphism. In particular,
+\[
+ x\diamond x=x^2-\hbar/a,\qquad
+ p_A(x\diamond x)=0,\qquad p_A(x^2)=\hbar/a.
+\]
+\end{proposition}
+\begin{proof}
+The differential $d_0=ax\partial_\eta$ is a derivation for the
+ordinary product. Transporting that differential and product by
+$T_A^{-1}$ proves the algebra and differential identities.
+Evaluation at zero is an augmentation of the classical Koszul
+complex, so its transported map is $p_A$.
+
+To obtain the sum in \eqref{eq:vol2-transported-product}, apply
+the heat operators to two independent variables $u,v$ before
+setting $u=v=x$. The second derivative of a product is induced
+by $(\partial_u+\partial_v)^2$. Its two individual square terms
+cancel those of $T_A$ on the factors, leaving
+$\exp(-\hbar\partial_u\partial_v/a)$. All these series terminate
+on polynomials. The displayed square follows at once, and the
+quasi-isomorphism follows from Theorem~\ref{thm:vol2-gaussian-retract}.
+\end{proof}
+
+For the ordinary observables, the variance in
+\eqref{eq:vol2-quadratic-primitive} still has to be retained.
+Its higher analogues give a comparison of products without
+changing which polynomial is being observed.
+
+\section{Cumulants as operation maps}
+\label{sec:vol2-state-cumulants}
+
+Let $B$ be a unital graded-commutative algebra over a commutative
+$\mathbb Q$-algebra. Write
+\[
+ S^c(B)=\bigoplus_{n\geq0}\operatorname{Sym}^n(B)
+\]
+for the coaugmented conilpotent symmetric coalgebra of its
+underlying graded module, with the unshuffle coproduct.
+A coaugmentation-preserving coalgebra map out of $S^c(B)$ is
+determined by its \emph{Taylor coefficients}: its composites
+from each symmetric length to the length-one component of the
+target. The scalar in length zero and the algebra unit
+$1_B\in B$, which lies in length one, are distinct.
+
+The products of $B$ determine a coalgebra automorphism $\tau_B$
+whose $n$th Taylor coefficient is
+\[
+ (\tau_B)_n(b_1\odot\cdots\odot b_n)=b_1\cdots b_n,
+ \qquad n\geq1.
+\]
+On an input of length $n$, it sums over partitions of
+$\{1,\ldots,n\}$: multiply within each block and take the
+symmetric tensor of the block products. Within a block the
+indices are increasing; blocks are ordered by their least
+indices. Reordering homogeneous inputs into this order gives
+the Koszul sign. The term with singleton blocks is the identity,
+and every other term lowers length. Thus the inverse is finite
+on each input.
+
+\begin{lemma}\label{lem:vol2-cumulant-inverse}
+The $n$th Taylor coefficient of $\tau_B^{-1}$ is
+\[
+ (\tau_B^{-1})_n=(-1)^{n-1}(n-1)!\,\mu_n,
+\]
+where $\mu_n$ is multiplication of $n$ elements.
+\end{lemma}
+\begin{proof}
+Corestrict the proposed composite $\tau_B^{-1}\tau_B$ to length
+one. All partitions into $k$ blocks have the same coefficient
+$(-1)^{k-1}(k-1)!$ after their products are multiplied.
+The resulting scalar is
+\[
+ \sum_{k=1}^n
+ \left\{\begin{matrix}n\\k\end{matrix}\right\}
+                       (-1)^{k-1}(k-1)! =
+ \begin{cases}1,&n=1,\\0,&n>1,\end{cases}
+\]
+where the braces count set partitions into $k$ nonempty blocks.
+This identity is the coefficient identity of
+$\log(e^z)=z$. The same regrouping supplies the Koszul signs
+of the graded products. A coalgebra map is determined by these
+corestrictions, proving the claimed inverse.
+\end{proof}
+
+\subsection{The deviations of a differential}
+
+Suppose $D:B\to B$ has degree one, $D^2=0$ and $D1_B=0$.
+It need not be a derivation. Let $\widetilde D$ be the unary
+coderivation on $S^c(B)$: it applies $D$ to one factor at a
+time, with the tensor signs. Put
+\begin{equation}\label{eq:vol2-deviation-coderivation}
+ \mathscr D_B=\tau_B^{-1}\widetilde D\tau_B.
+\end{equation}
+This is again a degree-one square-zero coderivation. Such a
+coderivation with zero constant Taylor coefficient is an
+$L_\infty[1]$ structure; its operations are graded symmetric
+and have degree one.
+
+\begin{proposition}\label{prop:vol2-multiplicative-deviations}
+The first Taylor coefficients of \eqref{eq:vol2-deviation-coderivation}
+are
+\[
+ q_1(b)=Db,\qquad
+ q_2(b,c)=D(bc)-(Db)c-(-1)^{|b|}b(Dc).
+\]
+If $D$ has differential-operator order at most two, all Taylor
+coefficients of arity at least three vanish.
+\end{proposition}
+\begin{proof}
+In length two, the product term in $\tau_B$ followed by $D$
+contributes $D(bc)$. The length-two part of $\tau_B^{-1}$
+subtracts the two unary terms, giving $q_2$.
+More generally, the Taylor coefficient is the iterated graded
+commutator of $D$ with the multiplication operators of the
+inputs, evaluated at $1_B$. By definition, an operator of order
+at most two has zero commutators with three or more
+multiplication operators. The square-zero identities for the
+remaining operations follow from conjugation in
+\eqref{eq:vol2-deviation-coderivation}.
+\end{proof}
+
+For $D_A$, the binary deviation is divisible by $\hbar$.
+Equation~\eqref{eq:vol2-ward-square} says
+$q_2(\eta,x)=-\hbar$ in one variable. This second-order
+operation is part of the Ward complex.
+
+\subsection{The higher components of a normalized map}
+
+Let $P:(B,D_B)\to(C,D_C)$ be a degree-zero cochain map between
+unital graded-commutative algebras, with $P1_B=1_C$.
+The linear map need not preserve products. Define
+\begin{equation}\label{eq:vol2-cumulant-coalgebra}
+ \mathscr K(P)=\tau_C^{-1}S^c(P)\tau_B.
+\end{equation}
+Its $n$th Taylor coefficient is the \emph{cumulant}
+\begin{equation}\label{eq:vol2-state-cumulant}
+ \kappa_n^P(b_1,\ldots,b_n)=
+ \sum_{\pi\in\Pi_n}(-1)^{|\pi|-1}(|\pi|-1)!
+ \epsilon(\pi;b)
+ \prod_{E\in\pi}P\!\left(\prod_{j\in E}b_j\right).
+\end{equation}
+Here $\Pi_n$ is the set of partitions into nonempty blocks and
+$\epsilon(\pi;b)$ is the sign of the grouping specified above.
+In particular,
+\[
+ \kappa_1^P=P,\qquad
+ \kappa_2^P(b,c)=P(bc)-P(b)P(c).
+\]
+This coalgebra construction and its compatibility with
+Koszul brackets are described by Bandiera
+\cite{Bandiera2020}*{\S1.2, Lemma 1.16 and Proposition 1.21}.
+
+\begin{theorem}\label{thm:vol2-cumulant-comparison}
+The map $\mathscr K(P)$ is an $L_\infty[1]$ morphism between
+the multiplicative deviations of $D_B$ and $D_C$:
+\[
+ \mathscr D_C\mathscr K(P)=\mathscr K(P)\mathscr D_B.
+\]
+If $P$ is a quasi-isomorphism, this is an $L_\infty[1]$
+quasi-isomorphism. Every cumulant of arity greater than one
+vanishes on an algebra-unit input. For a further normalized
+cochain map $Q:C\to E$,
+\begin{equation}\label{eq:vol2-cumulant-sewing}
+ \mathscr K(QP)=\mathscr K(Q)\mathscr K(P).
+\end{equation}
+\end{theorem}
+\begin{proof}
+Inserting \eqref{eq:vol2-cumulant-coalgebra} and cancelling
+$\tau_C\tau_C^{-1}$ reduces the morphism equation to
+$\widetilde D_CS^c(P)=S^c(P)\widetilde D_B$.
+This is precisely the cochain equation for $P$, applied to
+each tensor factor. The linear Taylor coefficient is $P$;
+being a quasi-isomorphism in that coefficient is the definition
+of an $L_\infty$ quasi-isomorphism.
+
+The unit assertion can be seen by adding independent marked
+variables of the degrees that make a sum $F$ of marked inputs
+have total degree zero. The cumulants are the coefficients of
+$\log P(e^F)$. Adding a scalar mark $z1_B$ changes this expression
+to $z+\log P(e^F)$ because $P1_B=1_C$.
+All mixed coefficients involving $z$ therefore vanish.
+This is a finite coefficient identity in any specified arity.
+
+Finally the two adjacent multiplication automorphisms in
+$\mathscr K(Q)\mathscr K(P)$ cancel. The remaining composite
+is \eqref{eq:vol2-cumulant-coalgebra} for $QP$, proving
+\eqref{eq:vol2-cumulant-sewing} in every arity.
+\end{proof}
+
+At arity two, \eqref{eq:vol2-cumulant-sewing} is the law of
+total covariance:
+\begin{equation}\label{eq:vol2-total-covariance}
+ \kappa_2^{QP}(b,c)
+   =Q\bigl(\kappa_2^P(b,c)\bigr)
+                       +\kappa_2^Q(Pb,Pc).
+\end{equation}
+The second term measures fluctuations of the variables left
+after the first elimination.
+
+\subsection{A Gaussian state has higher operations on composites}
+
+Take one variable of stiffness $a$ and write $p=p_A$.
+For even polynomials $f,g_2,\ldots,g_n$, the morphism equation
+of Theorem~\ref{thm:vol2-cumulant-comparison} on
+$\eta f,g_2,\ldots,g_n$ gives, for $n\geq2$,
+\begin{equation}\label{eq:vol2-higher-ward}
+ \begin{split}
+ \kappa_n^p(axf-\hbar f',g_2,\ldots,g_n)
+  =\hbar\sum_{j=2}^n
+    \kappa_{n-1}^p(fg_j',g_2,\ldots,\widehat g_j,\ldots,g_n).
+ \end{split}
+\end{equation}
+Indeed the only binary input terms are
+$q_2(\eta f,g_j)=-\hbar fg_j'$, and the target differential
+and its deviations are zero. For $n=2$, $f=1$, $g_2=x$,
+the equation forces $a\kappa_2^p(x,x)=\hbar$.
+The variance is required by the cochain equation itself.
+
+Although the higher cumulants of the linear variable vanish
+above arity two, those of its square do not.
+Wick's formula gives the formal generating function
+\[
+ p(e^{tx^2})=(1-2t\hbar/a)^{-1/2}.
+\]
+Taking its logarithm and comparing coefficients of $t^n/n!$
+proves
+\begin{equation}\label{eq:vol2-square-cumulants}
+ \kappa_n^p(x^2,\ldots,x^2)
+   =2^{n-1}(n-1)!\left(\frac{\hbar}{a}\right)^n,
+ \qquad n\geq1.
+\end{equation}
+Thus the state on the full polynomial algebra has nonzero
+components in arbitrarily high arity. Its Gaussian character
+does not truncate the operations of composite observables.
+
+\section{Formal interactions and conditional elimination}
+\label{sec:vol2-interacting-elimination}
+
+Introduce a degree-zero coupling parameter $g$. We work in
+\[
+ \bigl(R_0[\hbar,q]\otimes\Lambda\eta\bigr)[[g]].
+\]
+This means a polynomial in the even and odd coordinates at
+each coupling order. Polynomial degree may grow with that order;
+there is no completion in the field coordinates themselves.
+The positive $g$-adic filtration makes the following perturbation
+construction well defined.
+
+\subsection{A filtered perturbation identity}
+
+\begin{lemma}\label{lem:vol2-filtered-perturbation}
+Let $(i,p,h)$ be a contraction of a complex $(C,d)$, complete
+and separated for a descending filtration, onto $(B,d_B)$, with
+\[
+ dh+hd=1-ip,\qquad pi=1,\qquad h^2=hi=ph=0.
+\]
+Assume all these maps preserve filtration. Let $\delta$ have
+degree one, strictly raise filtration, and satisfy
+$(d+\delta)^2=0$. Put
+\[
+ F=(1+\delta h)^{-1}\delta=\delta(1+h\delta)^{-1}.
+\]
+Then a contraction for $d+\delta$ is given by
+\begin{equation}\label{eq:vol2-perturbation-formulas}
+ \begin{aligned}
+ d_B'&=d_B+pFi,&
+ i'&=i-hFi=(1+h\delta)^{-1}i,\\
+ p'&=p-pFh=p(1+\delta h)^{-1},&
+ h'&=h-hFh=h(1+\delta h)^{-1}.
+ \end{aligned}
+\end{equation}
+In particular, $(d_B')^2=0$, $p'i'=1$ and
+\[
+ (d+\delta)h'+h'(d+\delta)=1-i'p',\qquad
+ (h')^2=h'i'=p'h'=0.
+\]
+\end{lemma}
+\begin{proof}
+All inverses are geometric series. At any fixed filtration
+precision only finitely many perturbation factors occur.
+On endomorphisms write
+$\partial T=dT-(-1)^{|T|}Td$.
+The hypotheses give $\partial\delta=-\delta^2$ and
+$\partial h=1-ip$. Apply $\partial$ to
+$F=\delta-\delta hF$. The graded product rule gives
+\[
+ (1+\delta h)\partial F=-\delta ipF,
+ \qquad\text{hence}\qquad
+ dF+Fd=-FipF.
+\]
+
+It follows that
+\[
+ (d_B')^2=p(dF+Fd+FipF)i=0.
+\]
+Substitution in the inclusion equation gives
+\[
+ (d+\delta)i'-i'd_B'=h(dF+Fd+FipF)i=0.
+\]
+Using both $F=\delta-\delta hF$ and
+$F=\delta-Fh\delta$, the homotopy equation expands to
+\begin{align*}
+ (d+\delta)h'+h'(d+\delta)
+ &=1-ip+ipFh+hFip+h(dF+Fd)h\\
+ &=1-(i-hFi)(p-pFh).
+\end{align*}
+The original side conditions give $p'i'=1$ and
+$(h')^2=h'i'=p'h'=0$ directly. Commuting the homotopy
+equation with $d+\delta$ and using the inclusion equation
+gives $i'(d_B'p'-p'(d+\delta))=0$. Apply $p'$ to obtain
+the projection equation. This proves all the contraction
+identities.
+\end{proof}
+
+\subsection{An interacting state over the integral quantum ring}
+
+Let
+\[
+ S(q)=\tfrac12q^{\mathrm t}Aq+V(q),\qquad
+ V\in gR_0[\hbar,q][[g]].
+\]
+The potential is independent of the odd variables. Its Ward
+differential is
+\begin{equation}\label{eq:vol2-potential-ward}
+ D_S=\sum_i(S_i-\hbar\partial_{q_i})\partial_{\eta_i},
+ \qquad S_i=\partial_{q_i}S.
+\end{equation}
+The operators in parentheses commute, since
+\[
+ [S_i-\hbar\partial_{q_i},S_j-\hbar\partial_{q_j}]
+     =\hbar(\partial_{q_j}S_i-\partial_{q_i}S_j)=0.
+\]
+Thus $D_S^2=0$. The perturbation
+$\delta_V=\sum_iV_i\partial_{\eta_i}$ has positive coupling
+order and kills constants.
+
+\begin{theorem}\label{thm:vol2-formal-state-retract}
+The Gaussian maps of Theorem~\ref{thm:vol2-gaussian-retract}
+give an interacting contraction with
+\begin{equation}\label{eq:vol2-formal-state-retract}
+ p_V=p_A(1+\delta_VH_A)^{-1},\qquad
+ i_V=i,\qquad
+ H_V=H_A(1+\delta_VH_A)^{-1}.
+\end{equation}
+Its target is $R_0[\hbar][[g]]$ with zero differential.
+All coefficients are polynomial in $\hbar$ at each coupling
+order. The normalized exponential formula
+\begin{equation}\label{eq:vol2-interacting-expectation}
+ p_V(f)=\frac{p_A(fe^{-V/\hbar})}{p_A(e^{-V/\hbar})}
+\end{equation}
+agrees with this projection, with negative cohomological degrees
+sent to zero. The quotient is first interpreted in
+$R_0[\hbar,\hbar^{-1},q][[g]]$; its normalized value lies in
+the integral quantum ring.
+\end{theorem}
+\begin{proof}
+Apply Lemma~\ref{lem:vol2-filtered-perturbation} to the
+Gaussian contraction. Since $\delta_Vi=0$, the inclusion and
+target differential remain unchanged. The other formulas are
+\eqref{eq:vol2-formal-state-retract}. Each coupling coefficient
+contains finitely many operations on polynomials. None of these
+operations divides by $\hbar$.
+
+In the Laurent coefficient ring, the denominator of
+\eqref{eq:vol2-interacting-expectation} is $1+O(g)$ and
+therefore a unit. Gaussian integration by parts says
+\[
+ p_A\bigl((Aq)_if-\hbar\partial_{q_i}f\bigr)=0.
+\]
+Apply this identity to $fe^{-V/\hbar}$ at each coupling order.
+The normalized quotient $L$ then satisfies
+\[
+ L\bigl(S_if-\hbar\partial_{q_i}f\bigr)=0,
+ \qquad L(1)=1.
+\]
+These equations give the cochain identity on inputs with
+one odd generator. With two or more odd generators,
+the image under $D_S$ still has negative cohomological degree
+and is killed by $L$.
+
+The normalized cochain functional is unique. For an even
+polynomial $f$, the free contraction gives
+$f-ip_Af=D_AH_Af$. Hence any such functional satisfies
+\[
+ L(f)=p_Af-L(\delta_VH_Af).
+\]
+Solving recursively in coupling order gives
+$L=p_A(1+\delta_VH_A)^{-1}$. This identifies the quotient
+with the already integral projection.
+\end{proof}
+
+For the formal cubic potential $S=ax^2/2+gx^3/6$, the first
+moments are
+\begin{equation}\label{eq:vol2-cubic-state-moments}
+ \begin{aligned}
+ p_V(x)&=-\frac{g\hbar}{2a^2}
+             -\frac{5g^3\hbar^2}{8a^5}+O(g^5),\\
+ p_V(x^2)&=\frac{\hbar}{a}
+             +\frac{5g^2\hbar^2}{4a^4}+O(g^4).
+ \end{aligned}
+\end{equation}
+These follow by expanding \eqref{eq:vol2-interacting-expectation}
+and using $p_A(x^{2n})=(2n-1)!!(\hbar/a)^n$.
+They obey $a p_V(x)+(g/2)p_V(x^2)=0$, the Ward equation on
+the odd generator. All series in this example are formal in $g$.
+
+\subsection{The differential of the retained variables}
+
+Split the even variables into $x=(x_1,\ldots,x_r)$ and
+$y=(y_1,\ldots,y_s)$, with respective odd variables
+$\eta_x,\eta_y$. Fix symmetric invertible matrices $A_x,A_y$
+over $R_0$, and put
+\begin{equation}\label{eq:vol2-conditional-potential}
+ S(x,y)=\tfrac12x^{\mathrm t}A_xx
+             +\tfrac12y^{\mathrm t}A_yy+V(x,y),
+ \qquad V\in gR_0[\hbar,x,y][[g]].
+\end{equation}
+Write $P_x^0$ for the free Wick expectation in $x$. It kills
+every term containing an $\eta_x$ and preserves the
+$y,\eta_y$ variables. Define
+\begin{equation}\label{eq:vol2-conditional-expectation}
+ \begin{aligned}
+ Z_x(y)&=P_x^0(e^{-V/\hbar}),&
+ P_x(f)&=Z_x^{-1}P_x^0(fe^{-V/\hbar}),\\
+ S_{\mathrm{eff}}(y)&=\tfrac12y^{\mathrm t}A_yy
+                                      -\hbar\log Z_x(y).
+ \end{aligned}
+\end{equation}
+These exponential and logarithmic expressions initially have
+Laurent quantum coefficients and are complete in $g$.
+The odd-variable rule is the same as for $P_x^0$.
+
+For any potential $W$ in a tuple of even variables $q$, write
+\[
+ \mathcal B_W=
+       \bigl(R_0[\hbar,q]\otimes\Lambda\eta_q\bigr)[[g]]
+\]
+with differential \eqref{eq:vol2-potential-ward}.
+Its binary multiplicative deviation $q_2^W$ is divisible by
+$\hbar$; denote the quotient by $\overline q_2^W$.
+The operations $(D_W,\overline q_2^W)$ form an
+$L_\infty[1]$ structure. Indeed the original square-zero
+coderivation has only unary and binary components. Its
+differential identity for the binary operation has one
+factor of $\hbar$, and its Jacobi identity has two.
+Multiplication by $\hbar$ is injective in these polynomial
+coefficient modules, even if $R_0$ has zero divisors, so both
+identities can be divided.
+
+\begin{theorem}[Integral conditional elimination]
+\label{thm:vol2-integral-conditional}
+The effective potential belongs to $R_0[\hbar,y][[g]]$.
+The normalized map in \eqref{eq:vol2-conditional-expectation}
+is a unital cochain quasi-isomorphism
+\[
+ P_x:(\mathcal B_S,D_S)\longrightarrow
+                       (\mathcal B_{S_{\mathrm{eff}}},D_{S_{\mathrm{eff}}})
+\]
+over $R_0[\hbar][[g]]$. It is the projection in the
+filtered perturbation of the free Gaussian contraction.
+For every $n\geq1$, its cumulant is divisible by
+$\hbar^{n-1}$. The integral maps
+\begin{equation}\label{eq:vol2-divided-cumulants}
+ \Phi_n^{P_x}=\hbar^{1-n}\kappa_n^{P_x}
+\end{equation}
+give an $L_\infty[1]$ quasi-isomorphism for the divided
+operations $(D_S,\overline q_2^S)$ and
+$(D_{S_{\mathrm{eff}}},\overline q_2^{S_{\mathrm{eff}}})$.
+They are continuous in $g$, polynomial in $\hbar$ at each
+coupling order, and vanish on a unit input when $n>1$.
+\end{theorem}
+\begin{proof}
+First work in Laurent quantum coefficients. The hidden Ward
+equations are
+\[
+ P_x\bigl(S_{x_i}f-\hbar\partial_{x_i}f\bigr)=0.
+\]
+Differentiating the normalized quotient in a retained variable
+gives
+\begin{align}
+ \partial_{y_j}P_x(f)
+ &=P_x(\partial_{y_j}f)
+       -\hbar^{-1}\bigl(P_x(fV_{y_j})-P_x(f)P_x(V_{y_j})\bigr),
+       \label{eq:vol2-retained-covariance}\\
+ (S_{\mathrm{eff}})_{y_j}
+ &=(A_yy)_j+P_x(V_{y_j}).\notag
+\end{align}
+Combining these equations yields
+\begin{equation}\label{eq:vol2-retained-ward}
+ P_x(S_{y_j}f-\hbar\partial_{y_j}f)
+   =(S_{\mathrm{eff}})_{y_j}P_x(f)
+                           -\hbar\partial_{y_j}P_x(f).
+\end{equation}
+The hidden identity deals with the last eliminated odd
+generator; \eqref{eq:vol2-retained-ward} deals with every
+retained odd generator, with its left-exterior sign.
+Terms still containing an eliminated odd generator vanish.
+This proves the cochain equation in every exterior degree.
+
+Let $(i_0,P_x^0,H_0)$ be the Gaussian contraction in $x$
+tensored with the retained free Ward complex. Apply
+Lemma~\ref{lem:vol2-filtered-perturbation} with
+$\delta=\sum V_i\partial_{\eta_i}$. Its projection is
+$P_x^0(1+\delta H_0)^{-1}$. Each $H_0$ adds one hidden
+odd generator. A term surviving the final $P_x^0$ must
+start without a hidden odd generator, and each subsequent
+$\delta$ must remove the hidden generator just introduced.
+Thus this projection acts on retained coefficients by a
+normalized functional for the hidden Ward differential.
+The uniqueness recursion used in
+Theorem~\ref{thm:vol2-formal-state-retract}, now with $y$
+as coefficients, identifies it with $P_x$.
+
+In the transferred differential, one more $\delta$ occurs
+than $H_0$. A surviving correction therefore removes exactly
+one retained odd generator and otherwise only hidden ones.
+It has the form $\sum_jF_j(y)\partial_{\eta_{y_j}}$.
+Evaluating the cochain equation on $\eta_{y_j}$ identifies
+$F_j=\partial_{y_j}(S_{\mathrm{eff}}-\tfrac12y^{\mathrm t}A_yy)$.
+The retained second-order term is unchanged. The filtered
+lemma now gives the asserted contraction and quasi-isomorphism.
+Its projection, inclusion and homotopy are all integral in
+$\hbar$.
+
+It remains to prove integrality of the full effective potential
+and the stated powers in its cumulants. Expand Wick
+expectation with independent marked sources for the observables.
+The logarithm selects connected graphs. A graph with $n$
+marked vertices, $v$ interaction vertices and $E$ edges has
+\[
+ E\geq n+v-1.
+\]
+Every edge contributes a factor $\hbar A_x^{-1}$ and each
+interaction vertex contributes at worst $\hbar^{-1}$.
+The resulting power is at least $E-v\geq n-1$.
+At coupling order $g^k$, the positive coupling orders of
+the vertices sum to $k$, so $v\leq k$. For fixed polynomial
+inputs there are only finitely many graphs at that order.
+Retained variables are coefficients in this count, including
+their exterior signs. An eliminated odd input gives zero.
+
+Vacuum components cancel from normalized cumulants. For
+$\log Z_x$, a connected vacuum graph satisfies $E\geq v-1$;
+the factor $-\hbar$ in the effective potential removes its
+one possible negative quantum power. An interaction independent
+of $x$ contributes its original potential term, so this argument
+also includes zero-valent vertices. It proves both remaining
+integrality assertions.
+
+Finally apply Theorem~\ref{thm:vol2-cumulant-comparison} to
+$P_x$. In its arity-$n$ morphism equation, a unary term has
+the factor $\hbar^{n-1}$. A source binary term has
+$\hbar\hbar^{n-2}$, while a target binary term with input
+arities $r+s=n$ has
+$\hbar\hbar^{r-1}\hbar^{s-1}$. Dividing these common
+factors gives the equations for \eqref{eq:vol2-divided-cumulants}.
+The division is valid in the integral polynomial modules.
+The linear component remains $P_x$; the unit assertion
+follows from the corresponding assertion for cumulants.
+\end{proof}
+
+The quotients in \eqref{eq:vol2-divided-cumulants} are constructed
+before reducing modulo any power $\hbar^M$. This order gives
+maps at every finite quantum precision. Division by
+$\hbar^{n-1}$ would not be well defined on an arbitrary
+class in the truncated ring alone.
+
+\subsection{The determinant force}
+
+For units $a,b\in R_0$, take
+\[
+ S(x,y)=\tfrac12(a+gy)x^2+\tfrac12by^2.
+\]
+The conditional Gaussian formulas are
+\begin{equation}\label{eq:vol2-determinant-force}
+ \begin{aligned}
+ Z_x&=(1+gy/a)^{-1/2},\\
+ S_{\mathrm{eff}}&=\tfrac12by^2
+                         +\tfrac{\hbar}{2}\log(1+gy/a),\\
+ P_x(x^2)&=\frac{\hbar}{a+gy}.
+ \end{aligned}
+\end{equation}
+All inverses and the square root are their $g$-adic expansions
+with the displayed constant terms. The logarithmic determinant
+changes the retained force by $\hbar g/(2(a+gy))$.
+It is visible in a single cochain equation: on $\eta_yx^2$,
+both $P_xD_S$ and $D_{S_{\mathrm{eff}}}P_x$ have value
+\begin{equation}\label{eq:vol2-determinant-force-value}
+ \frac{by\hbar}{a+gy}
+                  +\frac{3g\hbar^2}{2(a+gy)^2}.
+\end{equation}
+On the source side use $P_x(x^4)=3\hbar^2/(a+gy)^2$.
+On the target side differentiate $\hbar/(a+gy)$ and include
+the determinant force. Omitting that force leaves the
+nonzero defect $g\hbar^2/(2(a+gy)^2)$.
+
+\subsection{A retained odd generator also changes}
+
+The projection is accompanied by the corrected inclusion
+$i'=(1+H_0\delta)^{-1}i_0$ from
+\eqref{eq:vol2-perturbation-formulas}. For the formal potential
+\[
+ S(x,y)=\tfrac12ax^2+\tfrac12by^2+g\,\frac{yx^3}{6},
+\]
+this correction is already nonzero on $\eta_y$:
+\begin{equation}\label{eq:vol2-cubic-antifield-lift}
+ \begin{split}
+ i'(\eta_y)={}&\eta_y
+  -g\eta_x\left(\frac{x^2}{6a}+\frac{\hbar}{3a^2}\right)\\
+ &+g^2y\eta_x\left(\frac{x^3}{12a^2}
+                          +\frac{5\hbar x}{12a^3}\right)+O(g^3).
+ \end{split}
+\end{equation}
+Indeed $\delta\eta_y=gx^3/6$, and the Gaussian homotopy
+sends $x^3$ to $\eta_x(x^2/a+2\hbar/a^2)$.
+Applying $H_0\delta$ a second time gives the displayed
+quadratic-coupling term.
+
+The same model has
+\begin{align}
+ Z_x&=1+\frac{5g^2\hbar y^2}{24a^3}
+             +\frac{385g^4\hbar^2y^4}{1152a^6}+O(g^6),
+             \label{eq:vol2-cubic-partition}\\
+ S_{\mathrm{eff}}
+ &=\tfrac12by^2-\frac{5g^2\hbar^2y^2}{24a^3}
+                       -\frac{5g^4\hbar^3y^4}{16a^6}+O(g^6).
+                       \notag
+\end{align}
+The Gaussian sixth and twelfth moments give $Z_x$.
+Subtracting half the square of its order-two term in
+$\log Z_x$ gives the fourth-order effective interaction.
+Thus the state, the retained force and the lift of an odd
+observable change together under elimination.
+
+\section{Sewing the state}
+\label{sec:vol2-state-sewing}
+
+Conditional elimination provides maps on observables and an
+effective weight for the next integration. Both enter sewing.
+The quadratic calculation separates the covariance that crosses
+the cut from the determinant that normalizes the result.
+
+\subsection{Covariance and determinant}
+
+Order the coordinates as retained $y$ followed by eliminated
+$x$, and let
+\[
+ A=\begin{pmatrix}B&L\\L^{\mathrm t}&D\end{pmatrix},
+ \qquad S=B-LD^{-1}L^{\mathrm t}.
+\]
+Assume that $D$ and $S$ are invertible. The matrix $S$ is the
+\emph{Schur complement} of the eliminated block. Completing
+the square gives
+\begin{equation}\label{eq:vol2-schur-square}
+ \begin{split}
+ \tfrac12(y,x)A(y,x)^{\mathrm t}
+   =\tfrac12y^{\mathrm t}Sy
+    +\tfrac12(x+D^{-1}L^{\mathrm t}y)^{\mathrm t}
+                         D(x+D^{-1}L^{\mathrm t}y).
+ \end{split}
+\end{equation}
+Put
+\[
+ E=\begin{pmatrix}1\\-D^{-1}L^{\mathrm t}\end{pmatrix},
+ \qquad
+ C_0=\begin{pmatrix}0&0\\0&D^{-1}\end{pmatrix}.
+\]
+The map $E$ extends a retained configuration to the critical
+point in its eliminated fibre.
+
+\begin{proposition}\label{prop:vol2-schur-sewing}
+One has
+\begin{equation}\label{eq:vol2-schur-covariance}
+ A^{-1}=C_0+ES^{-1}E^{\mathrm t},\qquad
+ \det A=\det D\det S.
+\end{equation}
+The normalized Wick functional of covariance $\hbar A^{-1}$
+equals successive Wick integration in
+$\xi=x+D^{-1}L^{\mathrm t}y$ and then in $y$, with
+covariances $\hbar D^{-1}$ and $\hbar S^{-1}$.
+Successive Schur complements agree with elimination of the
+combined block whenever the intermediate complements are
+invertible.
+\end{proposition}
+\begin{proof}
+The triangular matrix
+\[
+ M=\begin{pmatrix}1&0\\-D^{-1}L^{\mathrm t}&1\end{pmatrix}
+\]
+has determinant one and satisfies
+$M^{\mathrm t}AM=\operatorname{diag}(S,D)$.
+Taking inverses gives the first identity in
+\eqref{eq:vol2-schur-covariance}; taking determinants gives
+the second. The exponential generating function
+\eqref{eq:vol2-wick-generating} for two independent Gaussian
+blocks then becomes the generating function of covariance
+$\hbar(C_0+ES^{-1}E^{\mathrm t})$. Equality of its polynomial
+coefficients proves the state identity.
+
+To compare successive block eliminations, solve the linear
+critical-point equations in the eliminated variables. Solving
+them one block at a time and solving the combined system give
+the same solution. Substitution in the quadratic form therefore
+gives the same retained form. The determinant identity and
+the generating-function identity then compose in the same
+order. This proves the assertion for any finite number of
+admissible blocks.
+\end{proof}
+
+The change of odd generators is also fixed by this calculation.
+For the coordinates $(y,\xi)$, write the odd generators as
+$\vartheta_y,\vartheta_\xi$. The old ones become
+\[
+ \eta_{x_a}\longmapsto\vartheta_{\xi_a},\qquad
+ \eta_{y_i}\longmapsto\vartheta_{y_i}
+       +\sum_a(D^{-1}L^{\mathrm t})_{ai}\vartheta_{\xi_a}.
+\]
+These are the inverse-Jacobian transformations of coordinate
+vector fields. Substitution in the Ward differential gives
+the block-diagonal differential for
+\eqref{eq:vol2-schur-square}. Thus the conditional comparison
+also applies to all odd observables.
+
+At a positive real specialization, the unnormalized generating
+integral is
+\begin{equation}\label{eq:vol2-unnormalized-gaussian}
+ \begin{split}
+ Z_A(J)
+ &=\int_{\mathbb R^{r+s}}
+        e^{(-q^{\mathrm t}Aq/2+J^{\mathrm t}q)/\hbar}\,dq\\
+ &=(2\pi\hbar)^{(r+s)/2}(\det A)^{-1/2}
+                       e^{J^{\mathrm t}A^{-1}J/(2\hbar)}.
+ \end{split}
+\end{equation}
+The two identities in \eqref{eq:vol2-schur-covariance} preserve
+respectively its moments and its normalization. Over a general
+coefficient ring, an unnormalized state requires a specified
+square-root normalization in addition to the algebraic
+determinant identity. The normalized Wick functional itself
+needs no such choice.
+
+\subsection{The intermediate weight}
+
+Return to the block potential
+\eqref{eq:vol2-conditional-potential}. Let $P_y^0$ denote the
+free Wick expectation in the next block. Its effective
+conditional expectation is
+\[
+ P_y^{\mathrm{eff}}(b)
+      =\frac{P_y^0(Z_xb)}{P_y^0(Z_x)}.
+\]
+Thus the factor $Z_x$, which may depend on $y$, is part of
+the next integration.
+
+\begin{theorem}\label{thm:vol2-integral-sewing}
+Successive normalized elimination equals joint elimination:
+\begin{equation}\label{eq:vol2-normalized-fubini}
+ P_y^{\mathrm{eff}}P_x(f)
+  =\frac{P_y^0P_x^0(fe^{-V/\hbar})}
+         {P_y^0P_x^0(e^{-V/\hbar})}.
+\end{equation}
+For these maps, and for further admissible blocks, the divided
+cumulants of \eqref{eq:vol2-divided-cumulants} compose by
+\begin{equation}\label{eq:vol2-divided-sewing}
+ \Phi_n^{QP}(b_1,\ldots,b_n)
+   =\sum_{\pi\in\Pi_n}\epsilon(\pi;b)
+      \Phi_{|\pi|}^Q
+       \left(\Phi_{|E|}^P(b_j:j\in E):E\in\pi\right).
+\end{equation}
+These equalities hold over the integral quantum ring, and
+iterated sewing is associative in every arity.
+\end{theorem}
+\begin{proof}
+Insert the normalized numerator of $P_x$ into the next
+expectation. Its denominator $Z_x$ cancels the intermediate
+weight, giving \eqref{eq:vol2-normalized-fubini}.
+Free Wick operations on separate blocks commute. At each
+coupling order only finitely many polynomial contractions
+occur, so this cancellation and Gaussian Fubini are defined
+coefficientwise. Theorem~\ref{thm:vol2-integral-conditional}
+shows that the resulting normalized maps are integral.
+
+Equation~\eqref{eq:vol2-cumulant-sewing} gives the partition
+composition law before division. In the term indexed by
+$\pi$, the quantum exponents add to
+\[
+ (|\pi|-1)+\sum_{E\in\pi}(|E|-1)=n-1.
+\]
+Dividing that common power gives
+\eqref{eq:vol2-divided-sewing}. Composition of the underlying
+coalgebra maps is associative; the divided formula preserves
+that equality. This argument is also the composition mechanism
+for derived BV morphisms in Bandiera
+\cite{Bandiera2020}*{\S2.2, Proposition 2.8}.
+\end{proof}
+
+For example, let $X=Y+\xi$, where the first expectation
+eliminates a centred Gaussian $\xi$ of variance $\sigma$
+and leaves $Y$. Its generating function on the square is
+\[
+ P(e^{tX^2})=(1-2\sigma t)^{-1/2}
+                    \exp\!\left(\frac{tY^2}{1-2\sigma t}\right).
+\]
+The logarithm gives, in every arity,
+\begin{equation}\label{eq:vol2-conditional-square-cumulants}
+ \kappa_n^P(X^2,\ldots,X^2)
+  =2^{n-1}(n-1)!
+                    \bigl(\sigma^n+nY^2\sigma^{n-1}\bigr).
+\end{equation}
+If the next expectation eliminates an independent centred
+Gaussian $Y$ of variance $\tau$, the joint variable $X$ has
+variance $\sigma+\tau$. Equation~\eqref{eq:vol2-cumulant-sewing}
+therefore combines all the conditional terms into
+$2^{n-1}(n-1)!(\sigma+\tau)^n$.
+Keeping only the conditional mean of $X^2$ would lose these
+higher terms.
+
+\section{Coordinate descent of the whole Ward complex}
+\label{sec:vol2-ward-coordinates}
+
+A change of coordinates transforms the integration density
+and the odd observables at the same time. The logarithm of
+the Jacobian enters the potential, while the inverse Jacobian
+transforms the odd generators. Their two contributions are
+required by the cochain equation.
+
+Let $S(x)=\tfrac12x^{\mathrm t}Ax+V(x)$ be a finite potential
+as above. Take a formal change of variables
+$x=\phi(q)=q+O(g)$, polynomial in $q$ at each coupling order.
+Its Jacobian $J=D_q\phi$ is invertible $g$-adically. Define
+\begin{equation}\label{eq:vol2-coordinate-pullback}
+ \Phi_\phi(f)=f\circ\phi,\qquad
+ \Phi_\phi(\eta_i)=\sum_a(J^{-1})_{ai}\vartheta_a,
+ \qquad
+ S_\phi=S\circ\phi-\hbar\log\det J.
+\end{equation}
+Here $\vartheta_a$ are the new degree-minus-one generators.
+The logarithm is the unique formal logarithm with zero
+constant coupling term, since $\det J=1+O(g)$.
+
+\begin{theorem}\label{thm:vol2-ward-coordinate-descent}
+The map $\Phi_\phi$ is a unital graded-algebra and cochain
+isomorphism over $R_0[\hbar][[g]]$, and it preserves the
+normalized formal state:
+\begin{equation}\label{eq:vol2-coordinate-state}
+ D_{S_\phi}\Phi_\phi=\Phi_\phi D_S,
+ \qquad p_{S_\phi}\Phi_\phi=p_S.
+\end{equation}
+For a second formal change $q=\psi(r)$,
+\[
+ (S_\phi)_\psi=S_{\phi\circ\psi},\qquad
+ \Phi_{\phi\circ\psi}=\Phi_\psi\Phi_\phi.
+\]
+\end{theorem}
+\begin{proof}
+Regard the odd generators as coordinate vector fields and
+their products as polyvectors. For the weighted volume form
+$\rho=e^{-S/\hbar}dx_1\cdots dx_m$, divergence on polyvectors
+has the coordinate formula
+\[
+ \operatorname{Div}_\rho
+    =\sum_i\left(\partial_{x_i}-\hbar^{-1}S_i\right)
+                                                    \partial_{\eta_i}.
+\]
+Thus $D_S=-\hbar\operatorname{Div}_\rho$.
+This notation abbreviates the polynomial Ward operator; the
+displayed product has no negative quantum power.
+Contraction with a volume form identifies this divergence
+with the exterior differential, with the exterior signs fixed
+by left odd differentiation. It is therefore natural under
+coordinate changes. In the present coordinates,
+\[
+ \phi^*\rho=e^{-S(\phi(q))/\hbar}\det J\,dq
+                 =e^{-S_\phi(q)/\hbar}dq,
+\]
+and vector fields pull back by $J^{-1}$. These two facts
+give the first equation in \eqref{eq:vol2-coordinate-state}
+in every exterior degree.
+
+For the state, interpolate by
+$\phi_u(q)=q+u(\phi(q)-q)$, $0\leq u\leq1$.
+The derivative of its pulled-back density times any pulled-back
+observable is a total derivative in the integration variables.
+At each coupling order, it is a polynomial times the free
+Gaussian weight. Formal Gaussian integration by parts
+annihilates that derivative. Both the unnormalized numerator
+and denominator are consequently constant in $u$.
+Their quotient proves the state equation on even observables;
+negative cohomological degrees vanish on both sides.
+The argument is formal in $g$ and uses no global real
+invertibility of $\phi$.
+
+Finally the chain rule gives
+\[
+ \det D(\phi\circ\psi)
+       =((\det D\phi)\circ\psi)\det D\psi.
+\]
+The factors are commuting units with constant term one,
+so their formal logarithms add. The inverse-Jacobian rule
+has the same composition law on vector fields. This proves
+the two cocycle identities.
+\end{proof}
+
+For $S=ax^2/2$ and $\phi(q)=q+gq^2$,
+\begin{equation}\label{eq:vol2-nonlinear-jacobian}
+ S_\phi=\tfrac a2(q+gq^2)^2-\hbar\log(1+2gq),
+ \qquad
+ \Phi_\phi(\eta)=\frac{\vartheta}{1+2gq}.
+\end{equation}
+If the logarithmic term is omitted, the cochain defect on
+this odd observable is $2g\hbar/(1+2gq)^2$.
+The inverse coordinate begins
+$q=x-gx^2+2g^2x^3-5g^3x^4+\cdots$; its fifth-power term
+is $14g^4x^5$, which has zero Gaussian expectation.
+Consequently
+\[
+ p_{S_\phi}(q)=-\frac{g\hbar}{a}
+                 -\frac{15g^3\hbar^2}{a^2}+O(g^5),
+ \qquad p_{S_\phi}(\phi(q))=0.
+\]
+Without the Jacobian in the density, the last expectation
+instead begins with $-2g\hbar/a$. The same missing term
+is detected by a cochain and by an ordinary observable.
+
+\subsection{A flat family of state operations}
+
+Let $\phi_s$ depend on finitely many parameters $s_i$ with
+commuting derivatives $\partial_i$. Its coefficients may be
+formal, or smooth on a specified parameter domain; all
+identities remain coefficientwise in $g$. Put
+\[
+ S_s=S_{\phi_s},\qquad
+ w_i=(D_q\phi_s)^{-1}\partial_i\phi_s,
+ \qquad \Psi_i=\sum_a w_i^a\vartheta_a.
+\]
+For a vector field $w$, its Lie derivative on polyvectors
+acts by $\mathcal L_w f=w(f)$ on functions and
+$\mathcal L_w\vartheta_a=-\sum_b(\partial_{q_a}w^b)\vartheta_b$
+on coordinate vector fields. Extend it as a derivation.
+Define the connection
+\[
+ \nabla_i=\partial_i-\mathcal L_{w_i}.
+\]
+
+\begin{proposition}\label{prop:vol2-flat-state-family}
+The coordinate family satisfies
+\begin{equation}\label{eq:vol2-flat-state-family}
+ \begin{gathered}
+ \partial_iS_s=D_{S_s}\Psi_i
+                  =w_i(S_s)-\hbar\operatorname{div}w_i,\\
+ [\nabla_i,D_{S_s}]=0,
+ \qquad [\nabla_i,\nabla_j]=0,
+ \qquad \partial_i p_s(F)=p_s(\nabla_iF).
+ \end{gathered}
+\end{equation}
+Every cumulant is horizontal:
+\begin{equation}\label{eq:vol2-horizontal-cumulants}
+ \partial_i\kappa_n^{p_s}(F_1,\ldots,F_n)
+  =\sum_j\kappa_n^{p_s}
+       (F_1,\ldots,\nabla_iF_j,\ldots,F_n).
+\end{equation}
+The same statement holds for the integral divided cumulants.
+\end{proposition}
+\begin{proof}
+Differentiation of pullback gives
+$\partial_i\Phi_s=\mathcal L_{w_i}\Phi_s$.
+Differentiating the cochain equation in
+Theorem~\ref{thm:vol2-ward-coordinate-descent} proves
+$[\nabla_i,D_{S_s}]=0$.
+Commuting two parameter derivatives of $\Phi_s$ gives
+\[
+ \partial_iw_j-\partial_jw_i-[w_i,w_j]=0,
+\]
+which is the curvature equation for $\nabla$.
+Differentiating the pulled-back density gives the first
+identity in \eqref{eq:vol2-flat-state-family}.
+
+On a scalar polynomial $F$, the Ward equation gives
+\[
+ p_s(FD_{S_s}\Psi_i)=\hbar p_s(w_iF),
+ \qquad p_s(D_{S_s}\Psi_i)=0.
+\]
+Indeed $D_{S_s}(F\Psi_i)=F D_{S_s}\Psi_i-\hbar w_iF$,
+and its expectation is zero. The derivative of the
+normalized state is the covariance with $\partial_iS_s$
+divided by $-\hbar$, together with $p_s(\partial_iF)$.
+Substituting these Ward identities gives
+$p_s(\partial_iF-w_iF)$. The expression is integral;
+both sides vanish on negative cohomological degrees.
+
+Apply this state equation to every block of
+\eqref{eq:vol2-state-cumulant}. Since $\mathcal L_{w_i}$
+is a derivation, each input is differentiated once with
+the same partition sign. This proves
+\eqref{eq:vol2-horizontal-cumulants}. Dividing the already
+integral cumulants by their known quantum powers gives
+the final assertion.
+\end{proof}
+
+For example,
+\[
+ \phi_{u,v}(q)=q+ugq^2+vgq^3,
+ \qquad
+ w_u=\frac{gq^2}{1+2ugq+3vgq^2},\quad
+ w_v=\frac{gq^3}{1+2ugq+3vgq^2}
+\]
+satisfies the displayed curvature equation as a rational
+identity, before its $g$-adic expansion. On parameter forms
+of degree $p$, the total differential is
+$d_\nabla+(-1)^pD_{S_s}$. Flatness and the commutator
+equation make its square zero. Restriction to parameter
+faces preserves the cochain and cumulant equations.
+
+\subsection{Coordinate changes within an eliminated fibre}
+
+For a conditional reduction, take
+$(x,y)=(\phi(q,y),y)$ and write
+$J_x=D_q\phi$, $B=D_y\phi$.
+The full inverse Jacobian transforms the old odd generators as
+\begin{equation}\label{eq:vol2-fibre-antifields}
+ \begin{aligned}
+ \eta_{x_i}&\longmapsto
+                     \sum_a(J_x^{-1})_{ai}\vartheta_{q_a},\\
+ \eta_{y_j}&\longmapsto\vartheta_{y_j}
+                     -\sum_a(J_x^{-1}B)_{aj}\vartheta_{q_a}.
+ \end{aligned}
+\end{equation}
+The density changes by $\det J_x$.
+
+\begin{proposition}\label{prop:vol2-conditional-coordinate-square}
+The fibre substitution preserves the conditional partition
+factor $Z_x(y)$ and effective potential. If $P_q$ is the
+transformed conditional Ward map, then
+\[
+ P_q\Phi_\phi=P_x
+\]
+on the entire complex. The same square commutes on every
+cumulant and divided cumulant, and with subsequent eliminations.
+\end{proposition}
+\begin{proof}
+Apply the formal change-of-variables argument of
+Theorem~\ref{thm:vol2-ward-coordinate-descent}, with $y$
+held as coefficients. It preserves the conditional numerator
+and its normalization, hence also $S_{\mathrm{eff}}$.
+Projection kills every term containing a $\vartheta_q$.
+In the second line of \eqref{eq:vol2-fibre-antifields}, only
+$\vartheta_{y_j}$ survives; the same holds term by term in
+products of retained odd generators. This proves the cochain
+square in every exterior degree. Substitution in the
+partition formula proves its cumulant versions, and
+Theorem~\ref{thm:vol2-integral-sewing} proves compatibility
+with successive blocks.
+\end{proof}
+
+\section{Canonical families and their marked homotopies}
+\label{sec:vol2-gauge-state-homotopies}
+
+Coordinate descent transports a state by an algebra isomorphism.
+A canonical variation of a BV weight gives a more general
+comparison: the normalized elimination commutes with parallel
+transport up to a specified cochain homotopy. Its higher
+components have one additional marked insertion.
+
+\subsection{The integration domain and the master weight}
+
+Let $A,B$ be graded-commutative coefficient algebras over a
+characteristic-zero field with central parameter $\hbar$.
+Initially allow Laurent coefficients in $\hbar$; integral
+restrictions will be specified for the finite Gaussian sector.
+Let $\Delta_A,\Delta_B$ have degree one, square zero,
+differential-operator order at most two, and value zero on
+the unit. In the potential model our convention is
+\[
+ \Delta_A=-\sum_i\partial_{q_i}\partial_{\eta_i}.
+\]
+Choose a degree-zero linear integration map $\mathcal P$
+on a specified domain of weights in extensions of $A,B$, satisfying
+the Stokes equation
+\begin{equation}\label{eq:vol2-bv-stokes}
+ \Delta_B\mathcal P=\mathcal P\Delta_A.
+\end{equation}
+Multiplication by the weights and division by the effective
+weights below are required to be defined on this domain.
+
+In the finite potential model, the domain consists of Gaussian
+weights times polynomial observables, expanded coefficientwise
+in the positive coupling filtration. Integration means formal
+Wick integration in the eliminated variables. Gaussian
+integration by parts proves \eqref{eq:vol2-bv-stokes} there.
+For an analytic integral the integration cycle, decay and
+absence of boundary terms are hypotheses of the same equation.
+
+A weight $U_A$ of cohomological degree zero satisfying
+$\Delta_AU_A=0$ is a \emph{master weight}. Put
+$U_B=\mathcal P U_A$ and assume that $U_A$ and $U_B$
+are invertible on the chosen domain. Define
+\begin{equation}\label{eq:vol2-normalized-bv-map}
+ D_A=\hbar U_A^{-1}\Delta_AU_A,
+ \qquad D_B=\hbar U_B^{-1}\Delta_BU_B,
+ \qquad p(f)=U_B^{-1}\mathcal P(U_Af).
+\end{equation}
+Conjugation in the two differential formulas denotes
+operators: for example $D_Af=\hbar U_A^{-1}\Delta_A(U_Af)$.
+For $U_A=e^{-S/\hbar}$ with $S$ independent of odd variables,
+this is exactly the Ward differential
+\eqref{eq:vol2-potential-ward}.
+
+\begin{proposition}\label{prop:vol2-normalized-bv-map}
+The effective weight is a master weight, and $p$ is a unital
+cochain map. Successive normalized integrations compose when
+each integration uses the effective weight from the preceding
+one.
+\end{proposition}
+\begin{proof}
+Stokes gives $\Delta_BU_B=0$. Conjugation therefore gives
+$D_A1=D_B1=0$ and $D_A^2=D_B^2=0$. Moreover
+\[
+ D_Bp
+   =\hbar U_B^{-1}\Delta_B\mathcal P U_A
+   =\hbar U_B^{-1}\mathcal P\Delta_AU_A=pD_A,
+\]
+and $p1=1$ by definition. If $U_1=\mathcal P_1U_A$ and
+$U_2=\mathcal P_2U_1$, the composite normalized map is
+\[
+ U_2^{-1}\mathcal P_2
+        \bigl(U_1U_1^{-1}\mathcal P_1(U_Af)\bigr)
+       =U_2^{-1}\mathcal P_2\mathcal P_1(U_Af).
+\]
+This is normalization of the composite integration, with
+the entire intermediate weight retained.
+\end{proof}
+
+Theorem~\ref{thm:vol2-integral-conditional} supplies the
+quasi-isomorphism and integral formulas in the finite
+potential sector. Proposition~\ref{prop:vol2-normalized-bv-map}
+uses only Stokes and the stated weight domain; those
+hypotheses alone assert a cochain map.
+
+\subsection{Transporting a canonical variation}
+
+Let $t$ be a parameter and $R_t\in A$ have degree $-1$.
+Suppose
+\begin{equation}\label{eq:vol2-canonical-master-family}
+ \partial_tU_A=\Delta_A(R_tU_A),\qquad \Delta_AU_A=0.
+\end{equation}
+The integration map and the two BV operators remain fixed.
+A varying cycle can be treated in this form only after
+its pullback to a fixed domain has been specified.
+Write $m_R$ for multiplication by $R$ and put
+\[
+ L_R=[\Delta_A,m_R]=\Delta_Am_R+m_R\Delta_A,
+ \qquad r_t=p_t(R_t).
+\]
+By Stokes, the effective family obeys
+\begin{equation}\label{eq:vol2-effective-master-family}
+ \partial_tU_B=\Delta_B(r_tU_B).
+\end{equation}
+
+Set $w_A=U_A^{-1}\partial_tU_A$ and
+$w_B=U_B^{-1}\partial_tU_B$. Define the degree-zero transports
+\begin{equation}\label{eq:vol2-normalized-transports}
+ v_A=U_A^{-1}L_RU_A-m_{w_A},\qquad
+ v_B=U_B^{-1}[\Delta_B,m_r]U_B-m_{w_B}.
+\end{equation}
+A commutator of a second-order operator with multiplication
+has order at most one. Its value on the unit here is $w$.
+Subtracting that value therefore makes each $v$ a derivation.
+Since $[\Delta,L_R]=0$, differentiation gives
+\begin{equation}\label{eq:vol2-moving-differentials}
+ \partial_tD_A=[v_A,D_A],\qquad
+ \partial_tD_B=[v_B,D_B].
+\end{equation}
+Thus the connections $\partial_t-v_A$ and $\partial_t-v_B$
+commute with their respective differentials.
+
+\begin{theorem}\label{thm:vol2-canonical-state-homotopy}
+The degree-minus-one map
+\begin{equation}\label{eq:vol2-marked-linear-homotopy}
+ h_t(f)=\frac{p_t(R_tf)-p_t(R_t)p_t(f)}{\hbar}
+\end{equation}
+satisfies
+\begin{equation}\label{eq:vol2-state-gauge-equation}
+ \partial_tp_t+p_tv_A-v_Bp_t=D_Bh_t+h_tD_A,
+ \qquad h_t(1)=0.
+\end{equation}
+The formula holds on the declared integration domain.
+For polynomial marked inputs in a formal Gaussian
+presentation with no negative quantum powers, the quotient
+in \eqref{eq:vol2-marked-linear-homotopy} is integral.
+\end{theorem}
+\begin{proof}
+On unnormalized weights define the odd operator
+$K=\mathcal Pm_R-m_r\mathcal P$.
+Equation~\eqref{eq:vol2-bv-stokes} gives
+\begin{equation}\label{eq:vol2-unnormalized-gauge-equation}
+ \mathcal PL_R-L_r\mathcal P
+                      =\Delta_BK+K\Delta_A.
+\end{equation}
+Differentiate $p_t=U_B^{-1}\mathcal P U_A$ and add
+$p_tv_A-v_Bp_t$. The two logarithmic-derivative
+multiplication terms cancel, leaving
+\[
+ U_B^{-1}(\mathcal PL_R-L_r\mathcal P)U_A.
+\]
+Conjugating \eqref{eq:vol2-unnormalized-gauge-equation}
+by the weights and using
+$h_t=\hbar^{-1}U_B^{-1}KU_A$ proves
+\eqref{eq:vol2-state-gauge-equation}.
+Normalization gives $K(U_A)=0$, hence $h_t1=0$.
+In the formal Gaussian sector, the numerator is the
+two-input cumulant $\kappa_2^{p_t}(R_t,f)$.
+Its connected graphs have at least one quantum power by
+the argument of Theorem~\ref{thm:vol2-integral-conditional}.
+\end{proof}
+
+When parallel transports $T_A(t,0),T_B(t,0)$ for these
+connections exist in the specified parameter domain,
+\[
+ \widehat p_t=T_B(t,0)^{-1}p_tT_A(t,0)
+\]
+has derivative homotopic to zero. Its homotopy is
+$T_B(t,0)^{-1}h_tT_A(t,0)$.
+Integrating this expression along a defined interval gives
+an endpoint cochain homotopy. This may be an ordinary
+analytic interval or coefficientwise integration in a
+positive formal filtration; the evolution and endpoint
+evaluation are part of the chosen domain.
+
+\subsection{One marked input in every arity}
+
+Apply the coalgebra construction of
+\eqref{eq:vol2-cumulant-coalgebra} to $p_t$.
+Let $S^c(p_t;h_t)$ be its unary tangent map: it applies
+$h_t$ to exactly one symmetric factor and $p_t$ to every
+other factor, with the graded tensor signs. It is a
+degree-minus-one coderivation along $S^c(p_t)$.
+Define
+\[
+ \mathcal H_t=\tau_B^{-1}S^c(p_t;h_t)\tau_A.
+\]
+For a derivation $v$, write $\widetilde v$ for its unary
+coderivation. Derivations commute with multiplication
+in the sense $\widetilde v\tau=\tau\widetilde v$.
+
+\begin{theorem}\label{thm:vol2-marked-cumulant-homotopy}
+The full operation comparison satisfies
+\begin{equation}\label{eq:vol2-coalgebra-gauge-equation}
+ \partial_t\mathscr K(p_t)
+  +\mathscr K(p_t)\widetilde v_A
+  -\widetilde v_B\mathscr K(p_t)
+     =\mathscr D_B\mathcal H_t+\mathcal H_t\mathscr D_A.
+\end{equation}
+Its homotopy has Taylor coefficients
+\begin{equation}\label{eq:vol2-marked-cumulant-homotopy}
+ (\mathcal H_t)_n(b_1,\ldots,b_n)
+       =\hbar^{-1}\kappa_{n+1}^{p_t}(R_t,b_1,\ldots,b_n).
+\end{equation}
+The marked input $R_t$ is placed first; the partition
+sign convention in \eqref{eq:vol2-state-cumulant}
+determines all signs. In the formal Gaussian sector,
+$(\mathcal H_t)_n$ is divisible by $\hbar^{n-1}$.
+Dividing gives a homotopy for the divided state operations
+without inverting $\hbar$.
+\end{theorem}
+\begin{proof}
+Differentiation of $S^c(p_t)$ differentiates one factor
+at a time. Equation~\eqref{eq:vol2-state-gauge-equation}
+and the cochain equation for $p_t$ therefore give the
+unary-coderivation version of
+\eqref{eq:vol2-coalgebra-gauge-equation}.
+Conjugate it by $\tau_A,\tau_B$, and use the derivation
+identity for $v_A,v_B$. This proves the full equation.
+
+To compute its Taylor coefficient, differentiate the
+partition formula for $\kappa_n$ by replacing one factor
+$p(\prod_{j\in E}b_j)$ by
+\[
+ h\left(\prod_{j\in E}b_j\right)
+ =\hbar^{-1}\left[
+       p\left(R\prod_{j\in E}b_j\right)
+           -p(R)p\left(\prod_{j\in E}b_j\right)\right].
+\]
+The first terms enumerate partitions in which the block
+of $R$ is not a singleton. For a partition of the original
+inputs into $k$ blocks, the second term occurs $k$ times.
+Its coefficient is
+$-k(-1)^{k-1}(k-1)!=(-1)^k k!$, precisely the coefficient
+of the added singleton block. Moving $R$ to its block
+produces the Koszul sign prescribed by placing it first.
+This proves \eqref{eq:vol2-marked-cumulant-homotopy}.
+
+A connected graph with $n+1$ marked inputs, $v$ interaction
+vertices and $E$ edges has $E\geq n+v$.
+Its quantum power after the interaction factors is at
+least $n$. Division by the explicit $\hbar$ in
+\eqref{eq:vol2-marked-cumulant-homotopy} leaves
+$\hbar^{n-1}$. The same arity count as in
+Theorem~\ref{thm:vol2-integral-conditional} permits division
+of the entire homotopy equation.
+\end{proof}
+
+These homotopies also sew. For successive eliminations
+$p_t:A\to B$ and $q_t:B\to C$ with the same intermediate
+transport, differentiation gives
+\begin{equation}\label{eq:vol2-gauge-homotopy-sewing}
+ h_t^{\mathrm{tot}}=q_th_t^p+h_t^qp_t,
+ \qquad
+ \mathcal H^{\mathrm{tot}}
+    =\mathscr K(q)\mathcal H^p
+                         +\mathcal H^q\mathscr K(p).
+\end{equation}
+For normalized integration of the same master family,
+the intermediate generator is $r_t=p_t(R_t)$.
+The two covariance expressions in the first formula then
+cancel their intermediate $q_t(r_tp_t(f))$ term, leaving
+the marked covariance for $q_tp_t$ itself.
+Three eliminations give the same three homotopy terms
+in either parenthesization. Thus the path comparison
+and the state sewing have a common composition law.
+
+\subsection{The total master equation on parameter faces}
+
+Let $T$ be a finite-dimensional parameter simplex.
+Place parameter forms to the left of coefficient
+elements, and extend $\Delta_A$ by
+\[
+ \Delta_A(\alpha\otimes a)
+            =(-1)^{|\alpha|}\alpha\otimes\Delta_Aa.
+\]
+Suppose a total-degree-zero weight has been supplied with
+\begin{equation}\label{eq:vol2-total-master-weight}
+ \mathcal U_A\in\Omega^\bullet(T)\widehat\otimes A,
+ \qquad(d_T+\hbar\Delta_A)\mathcal U_A=0,
+\end{equation}
+and invertible zero-form weight on the integration domain.
+Its pushforward $\mathcal U_B=\mathcal P\mathcal U_A$
+satisfies the same total equation by Stokes. The full
+weights are invertible wherever their zero-form parts
+are, because positive form degree is nilpotent.
+
+\begin{proposition}\label{prop:vol2-master-family-faces}
+For a supplied family \eqref{eq:vol2-total-master-weight},
+the operators
+\[
+ \mathbb D_A=\mathcal U_A^{-1}(d_T+\hbar\Delta_A)\mathcal U_A,
+ \qquad
+ \mathbb D_B=\mathcal U_B^{-1}(d_T+\hbar\Delta_B)\mathcal U_B
+\]
+and the normalized map
+\[
+ \mathbb p(F)=\mathcal U_B^{-1}\mathcal P(\mathcal U_AF)
+\]
+are compatible with restriction to every parameter face.
+They give square-zero unital differentials and a cochain
+map. Their cumulants supply the higher parameter
+homotopies and their boundary equations.
+\end{proposition}
+\begin{proof}
+The form differential and the extended BV operator
+anticommute. Hence their sum squares to zero, and
+conjugation preserves that identity. The total master
+equation makes the conjugated differentials kill the unit.
+Stokes gives $\mathbb D_B\mathbb p=\mathbb p\mathbb D_A$
+by the calculation of
+Proposition~\ref{prop:vol2-normalized-bv-map}.
+All these operations commute with pullback to a face.
+Apply the finite-length cumulant conjugation to this
+cochain equation over the ground coefficient ring.
+Its coefficients in parameter form degree are the
+successive homotopy equations; integration of their
+exterior derivatives gives their face boundaries by
+Stokes on the parameter simplex.
+\end{proof}
+
+On an interval, \eqref{eq:vol2-canonical-master-family}
+gives the actual total weight
+\[
+ \mathcal U_A=U_A+dt\,R_tU_A/\hbar.
+\]
+The coefficient of $dt$ in its normalized map is $h_t$,
+and its total differential is
+$D_A+dt(\partial_t-v_A)$ on zero-form inputs.
+For two or more parameters, independently chosen
+one-parameter generators need not extend to a total
+master weight. If $\mathcal U_1$ is its proposed
+one-form part, a two-form part must solve the degree-two
+equation of \eqref{eq:vol2-total-master-weight}.
+The existence of that part is an additional mathematical
+condition. The flat coordinate families of
+Proposition~\ref{prop:vol2-flat-state-family} give one
+explicit class with all parameter compatibilities.
+
+\subsection{A canonical shear with nonzero homotopy}
+
+Take even variables $x,y$ and odd variables $\eta,\zeta$
+of degree $-1$, with
+\[
+ \Delta=-\partial_x\partial_\eta-\partial_y\partial_\zeta.
+\]
+For invertible stiffnesses $a,b$, set
+\begin{equation}\label{eq:vol2-shear-potential}
+ S_t(x,y)=\tfrac12ax^2+\tfrac12b(y-tx)^2,
+ \qquad d=a+bt^2,
+ \qquad k=bt/d.
+\end{equation}
+Work formally near $t=0$, or with real $a,b>0$ and real
+$t$. The odd generator $R=\zeta x$ satisfies
+\[
+ [\Delta,m_R]=-x\partial_y+\zeta\partial_\eta.
+\]
+Since $\partial_tS_t=-bx(y-tx)$, the weight
+$U_A=e^{-S_t/\hbar}$ obeys
+\eqref{eq:vol2-canonical-master-family}.
+
+Complete the square in $x$, and normalize the eliminated
+Gaussian relative to its value at $t=0$. This gives
+\begin{equation}\label{eq:vol2-shear-state}
+ \begin{aligned}
+ p_t(x)&=ky,&
+ \operatorname{Var}_{p_t}(x)&=\hbar/d,\\
+ S_t^{\mathrm{eff}}(y)
+   &=\frac{ab}{2d}y^2+\frac{\hbar}{2}\log(d/a),&
+ r_t&=\zeta ky.
+ \end{aligned}
+\end{equation}
+The effective differential and normalized transports are
+\begin{equation}\label{eq:vol2-shear-transports}
+ \begin{gathered}
+ D_B=\left(\frac{ab}{d}y-\hbar\partial_y\right)\partial_\zeta,\\
+ v_A=-x\partial_y+\zeta\partial_\eta,
+ \qquad v_B=-ky\partial_y+k\zeta\partial_\zeta.
+ \end{gathered}
+\end{equation}
+The determinant term is independent of $y$, so it does
+not appear in $D_B$. It is nevertheless required by the
+effective master-family equation
+\eqref{eq:vol2-effective-master-family}: differentiating
+the logarithmic determinant supplies its scalar term.
+
+The map $p_t$ kills $\eta$ and retains $\zeta$.
+For an even polynomial $f$, Gaussian integration by parts
+gives
+\begin{equation}\label{eq:vol2-shear-homotopy}
+ h_t(f)=\frac{\zeta}{\hbar}
+              \bigl(p_t(xf)-ky\,p_t(f)\bigr)
+                  =\frac{\zeta}{d}p_t(\partial_xf).
+\end{equation}
+The homotopy is zero on terms containing either odd
+generator. In particular $h_t(x)=\zeta/d$ is nonzero
+and integral in $\hbar$.
+
+On $x$, both sides of
+\eqref{eq:vol2-state-gauge-equation} are
+\[
+ \partial_t(ky)-v_B(ky)=\frac{ab}{d^2}y
+                       =D_B(\zeta/d).
+\]
+On the eliminated odd generator $\eta$, the left side
+is $p_t(v_A\eta)=\zeta$, and the right side is
+\[
+ h_t(D_A\eta)=h_t(dx-bty)=\zeta.
+\]
+This equation sees a component that cannot be tested on
+ordinary even observables alone.
+
+The higher homotopy also acts on composites. If
+$m=ky$ and $\sigma=\hbar/d$, then
+\[
+ \kappa_2(x^2,x^2)=4m^2\sigma+2\sigma^2,
+ \qquad
+ \kappa_3(x,x^2,x^2)=\sigma\partial_m\kappa_2(x^2,x^2)
+                              =8m\sigma^2.
+\]
+The derivative identity follows by differentiating
+the Gaussian generating function with respect to its mean.
+Equation~\eqref{eq:vol2-marked-cumulant-homotopy} therefore
+gives
+\begin{equation}\label{eq:vol2-shear-higher-component}
+ (\mathcal H_t)_2(x^2,x^2)
+                         =\frac{8\zeta\,ky\,\hbar}{d^2}.
+\end{equation}
+The linear homotopy and this higher component are parts
+of the same normalized comparison.
+
+\section{Comparing normalized Gaussian choices}
+\label{sec:vol2-gaussian-choices}
+
+A fixed projection onto retained variables does not determine
+Gaussian elimination. For linear observables $x,y$, the
+covariance remains in
+\[
+ R(xy)=p(x)p(y)+\hbar P(x,y).
+\]
+Two choices with the same projection therefore require a
+comparison on products. In a finite paired complex, a
+contraction of the discarded coefficients constructs that
+comparison and all its relative parameter extensions.
+
+\subsection{A contractible complex of choices}
+
+Let $(V,d)$ and $(H,d_H)$ be bounded complexes of finitely
+generated projective $R_0$-modules. Fix a contraction
+\[
+ H\mathrel{\mathop{\rightleftarrows}^{i}_{p}}V,
+ \qquad pi=1,\qquad dh+hd=1-ip,
+ \qquad hi=ph=h^2=0.
+\]
+The maps $i,p$ are cochain maps and $h$ has degree $-1$.
+Put $t=ip$ and $\mathsf E=t\otimes t$ on $V\otimes V$.
+Every tensor of maps uses the graded rule
+$(f\otimes g)(x\otimes y)=(-1)^{|g||x|}f(x)\otimes g(y)$.
+For a homogeneous endomorphism $M$ of $V\otimes V$, define
+\[
+ \delta M=d_{V\otimes V}M-(-1)^{|M|}Md_{V\otimes V}.
+\]
+
+The symmetrized tensor contraction is
+\begin{equation}\label{eq:vol2-reference-two-coefficients}
+ A_0=\frac12\bigl(h\otimes1+t\otimes h
+                         +1\otimes h+h\otimes t\bigr).
+\end{equation}
+The two unsymmetrized sums are exchanged by the graded
+interchange of the tensor factors. Each has differential
+$1-\mathsf E$, so
+\begin{equation}\label{eq:vol2-normalized-two-coefficients}
+ \delta A_0=1-\mathsf E,
+ \qquad \mathsf EA_0=A_0\mathsf E=0.
+\end{equation}
+Let $\mathcal B$ be the graded endomorphisms commuting
+with that interchange, with differential $\delta$, and set
+\[
+ \mathcal N=(1-\mathsf E)\mathcal B(1-\mathsf E).
+\]
+A \emph{normalized two-coefficient homotopy} is an element
+$A\in\mathcal N^{-1}$ with $\delta A=1-\mathsf E$.
+This condition imposes no equation on $A^2$.
+
+\begin{lemma}\label{lem:vol2-gaussian-choice-contraction}
+Left multiplication $S(M)=A_0M$ contracts
+$(\mathcal N,\delta)$:
+\[
+ \delta S+S\delta=1.
+\]
+In particular, two normalized homotopies $A,B$ have the
+specified comparison $L=A_0(B-A)$ with $\delta L=B-A$.
+\end{lemma}
+\begin{proof}
+The graded Leibniz rule gives
+\[
+ \delta(A_0M)=(1-\mathsf E)M-A_0\delta M
+                                      =M-A_0\delta M.
+\]
+Normalization is preserved: both
+$\mathsf EA_0M$ and $A_0M\mathsf E$ vanish.
+Composition also preserves commutation with the graded
+interchange. Thus $S$ takes values in $\mathcal N$ and
+the identity holds there. Apply it to the closed element
+$B-A$ to obtain the last assertion.
+\end{proof}
+
+\subsection{The covariance homotopy}
+
+Suppose a graded symmetric pairing
+$b:V\otimes V\to R_0$ of degree $1$ is closed in the
+Hom complex. Write $b_H=b(i\otimes i)$ for its retained
+pairing. For any graded symmetric pairing $P$, let
+$\partial_P$ denote unordered pair contraction on
+$\operatorname{Sym}(V)$, normalized by
+$\partial_P(xy)=P(x,y)$. On a product of homogeneous
+linear observables, select two factors and move them
+to the front with the Koszul sign. Apply $P$ to that pair
+and retain the other factors in their order, then sum
+over all selected pairs.
+
+Extend $d$ to $\operatorname{Sym}(V)$ as a derivation.
+The two paired differentials are
+\[
+ D_b=d+\hbar\partial_b,
+ \qquad D_H=d_H+\hbar\partial_{b_H}.
+\]
+Closedness of $b$ gives $[d,\partial_b]=0$; constant
+coefficient pair contractions supercommute, so
+$\partial_b^2=0$. Thus both displayed differentials
+square to zero. For a normalized homotopy $A$, put
+\begin{equation}\label{eq:vol2-choice-gaussian-map}
+ P_A=-bA,
+ \qquad R_A=\operatorname{Sym}(p)e^{\hbar\partial_{P_A}}.
+\end{equation}
+The covariance has degree zero. Its exponential is a
+finite sum on every polynomial: each contraction lowers
+the number of linear factors by two. These maps are
+defined over $R_0[\hbar]$ and extend by scalar extension to
+$R_0[[\hbar]]$ without completing polynomial degree.
+
+\begin{proposition}\label{prop:vol2-choice-gaussian-homotopy}
+Each $R_A$ is a cochain map from $D_b$ to $D_H$.
+For two normalized homotopies $A,B$, define
+\[
+ L=A_0(B-A),\qquad Q=bL,\qquad
+ P_u=(1-u)P_A+uP_B.
+\]
+Then the degree-minus-one map
+\begin{equation}\label{eq:vol2-choice-gaussian-homotopy}
+ K_{B,A}=\hbar\operatorname{Sym}(p)\partial_Q
+                         \int_0^1e^{\hbar\partial_{P_u}}\,du
+\end{equation}
+satisfies
+\[
+ D_HK_{B,A}+K_{B,A}D_b=R_B-R_A.
+\]
+It vanishes on constants and on polynomials whose
+coefficients all lie in $i(H)$.
+\end{proposition}
+\begin{proof}
+The Hom differential obeys the graded composition rule.
+Since $|b|=1$ and $\delta b=0$,
+\[
+ \delta P_A=b(1-\mathsf E)=b-p^*b_H.
+\]
+Here $p^*b_H=b_H(p\otimes p)$.
+The identity $[d,\partial_{P_A}]=\partial_{\delta P_A}$
+then gives
+\[
+ e^{\hbar\partial_{P_A}}D_b
+       =(d+\hbar\partial_{p^*b_H})
+                                      e^{\hbar\partial_{P_A}}.
+\]
+There are no further commutator terms, because the
+constant coefficient contractions commute with the
+degree-zero operator $\partial_{P_A}$.
+Application of $\operatorname{Sym}(p)$ proves the
+cochain equation for $R_A$.
+
+By Lemma~\ref{lem:vol2-gaussian-choice-contraction},
+$\delta L=B-A$. The same graded composition rule gives
+\[
+ \delta Q=-b(B-A)=P_B-P_A.
+\]
+Place parameter forms before coefficient maps. The
+total-degree-zero covariance $P_u+du\,Q$ therefore
+satisfies
+\[
+ (d_u+\delta)(P_u+du\,Q)=b-p^*b_H.
+\]
+Its exponential gives a total cochain map by the preceding
+calculation. Its coefficient of $du$ is the integrand
+in \eqref{eq:vol2-choice-gaussian-homotopy}. The
+coefficient cochain equation, integrated from $0$ to $1$,
+is the claimed homotopy identity. This integration is
+polynomial integration over the rational ground ring.
+Finally $L\mathsf E=0$, so $Q$ vanishes on two retained
+coefficients; pair contraction also kills constants.
+\end{proof}
+
+The factors left after contraction matter. A quadratic
+input has homotopy $\hbar Q(x,y)$; a cubic input has terms
+$\hbar Q(x,y)p(z)$ and the other two pairings, with their
+Koszul signs. A five-dimensional complex makes both
+values nonzero. Take a basis
+\[
+ |u|=-1,\quad |v|=|r|=|e|=0,\quad |s|=1,
+ \qquad du=v,\quad dr=s,
+\]
+with all other differentials zero. Retain $e$, and set
+$h(v)=u$, $h(s)=r$, with $h$ zero on the other basis
+vectors. Let $b(r,u)=b(u,r)=1$ and let its other basis
+values vanish. This is a closed degree-one pairing.
+
+Define the degree-minus-two endomorphism $J$ of
+$V\otimes V$ by
+\[
+ J(s\otimes v)=J(v\otimes s)
+                  =\tfrac12(r\otimes u+u\otimes r),
+\]
+and zero on other tensor basis vectors. It is normalized
+and commutes with graded interchange. Thus
+$A=A_0$ and $B=A_0+\delta J$ are normalized homotopies.
+Their covariance data are
+\begin{equation}\label{eq:vol2-choice-five-dimensional}
+ P_A(r,v)=-\tfrac12,
+ \qquad P_B(r,v)=\tfrac12,
+ \qquad Q(s,v)=1.
+\end{equation}
+Indeed \eqref{eq:vol2-reference-two-coefficients} gives
+$A_0(r\otimes v)=r\otimes u/2$, while
+$\delta J(r\otimes v)=-(r\otimes u+u\otimes r)/2$.
+Also $A_0\delta J(s\otimes v)
+=(r\otimes u+u\otimes r)/2$, proving the third value.
+Since $D_b(rv)=sv$ and $b_H=0$, the homotopy equation reads
+\[
+ R_B(rv)-R_A(rv)=\hbar=K_{B,A}(sv).
+\]
+After multiplication by the retained coefficient,
+$K_{B,A}(sve)=\hbar e$.
+
+\subsection{Prescribed parameter faces}
+
+For the cube $I^m$, use polynomial parameter forms
+\[
+ \Omega_{\mathrm{poly}}^\bullet(I^m)
+       =\mathbb Q[t_1,\ldots,t_m,dt_1,\ldots,dt_m],
+\]
+where the $dt_i$ are exterior generators of degree $1$.
+A parameter family of normalized homotopies is a
+total-degree-minus-one element $\mathcal A$ with
+coefficients in $\mathcal N$ satisfying
+\begin{equation}\label{eq:vol2-choice-total-equation}
+ (d_{\mathrm{par}}+\delta)\mathcal A=1-\mathsf E.
+\end{equation}
+At a vertex, it is an ordinary normalized homotopy.
+Restriction to a face sets its fixed coordinates to
+$0$ or $1$ and their differentials to zero.
+
+\begin{theorem}\label{thm:vol2-choice-relative-fillers}
+A family satisfying \eqref{eq:vol2-choice-total-equation}
+on a union of codimension-one faces, with agreeing
+restrictions on intersections, extends to the cube.
+Two extensions admit such a family between them
+relative to the prescribed faces. The same assertion
+holds after adjoining any finite number of parameters.
+\end{theorem}
+\begin{proof}
+First extend the forms without their differential
+equation. For a face $t_i=\varepsilon$, use its coordinate
+projection and the scalar factor $1-t_i$ if
+$\varepsilon=0$, or $t_i$ if $\varepsilon=1$.
+Sum these extensions and subtract repeated extensions
+from intersections by inclusion--exclusion. Opposite
+faces have disjoint restriction conditions, since the
+factor for one vanishes on the other. On each prescribed
+face, terms from every other compatible face cancel
+against their intersection terms. The resulting
+polynomial form $\widetilde{\mathcal A}$ has the given
+restrictions and coefficients in $\mathcal N$.
+
+Write $D=d_{\mathrm{par}}+\delta$ and set
+\[
+ Z=D\widetilde{\mathcal A}-(1-\mathsf E).
+\]
+This is closed and restricts to zero on the prescribed
+faces. Extend the contraction of
+Lemma~\ref{lem:vol2-gaussian-choice-contraction} by
+\[
+ S_{\mathrm{par}}(\alpha\otimes M)
+             =(-1)^{|\alpha|}\alpha\otimes A_0M.
+\]
+The parameter differential anticommutes with this
+degree-minus-one map, and the coefficient identity
+gives $DS_{\mathrm{par}}+S_{\mathrm{par}}D=1$.
+Consequently
+\begin{equation}\label{eq:vol2-choice-relative-correction}
+ \mathcal A=\widetilde{\mathcal A}-S_{\mathrm{par}}Z
+\end{equation}
+solves \eqref{eq:vol2-choice-total-equation} and keeps
+all the prescribed face values. To compare two
+extensions, prescribe them at the ends of one more
+interval and keep their common boundary family
+constant along that interval. Apply the same correction.
+Repeating this procedure gives the higher comparisons.
+\end{proof}
+
+Each family gives the total Gaussian map
+$\operatorname{Sym}(p)\exp(\hbar\partial_{-b\mathcal A})$.
+Composition with $b$ includes its sign past parameter
+forms. The covariance calculation in
+Proposition~\ref{prop:vol2-choice-gaussian-homotopy}
+proves its total cochain equation. Thus the construction
+supplies relative homotopies whenever the prescribed
+Gaussian comparisons have these normalized coefficient
+lifts. An arbitrary prescribed homotopy of observables
+need not come with such a lift.
+
+\section{From elimination to supported field operations}
+\label{sec:vol2-state-geometric-comparison}
+
+The finite constructions retain three kinds of data:
+the relative support class in the normal direction,
+the normalized state and all its cumulants, and the
+parameter homotopies transporting that state. Conditional
+elimination and coordinate changes construct these data
+over integral quantum coefficients. A supplied total
+master weight extends them over parameter faces, while
+the normalized Gaussian choices above provide an explicit
+class for which every relative extension exists.
+
+The corresponding field-theoretic comparison requires a
+common supported operation complex containing the
+regular, meromorphic and contact coefficients of the
+previous chapters. Its normal reduction must intertwine
+the differential and every allowed collision operation;
+its state map must carry the local vacuum and the
+prescribed sewing and parameter homotopies. A regulated
+master family must make its boundary terms and parameter
+face equations meaningful on that same coefficient
+domain. The finite endomorphism contraction above does
+not yet act on those distributional products. These are
+the missing constructions for a state-preserving
+geometric comparison.
+
+There is a second source of higher information when
+observables obey algebraic constraints. Before applying
+elimination to matrix observables, one must retain the
+relations among their constraint equations. The resulting
+complex is the starting point for Hamiltonian actions on
+derived matrix spaces.

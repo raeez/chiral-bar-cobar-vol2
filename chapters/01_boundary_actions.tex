@@ -1,0 +1,633 @@
+\chapter{Boundary actions and their comparison homotopies}
+\label{ch:vol2-boundary-actions}
+
+A bulk observable acts on boundary conditions and on the operators
+between them. Its action may vanish on each boundary while remaining
+nonzero on the category of boundaries. Two cubic boundaries exhibit
+this phenomenon. They lead to a complex that retains the actions,
+the homotopies comparing them, and the equations imposed by composition.
+The resulting ordinary derived centre gives an algebraic model of
+coherent actions. In a mixed holomorphic--topological field theory,
+which of these actions come from local bulk observables?
+
+\section{A relation detected between two boundaries}
+\label{sec:vol2-cubic-boundaries}
+
+Let $k$ be a field of characteristic zero and put $R=k[x]$.
+A \emph{matrix factorization} of $W\in R$ is a finite free
+parity-graded $R$-module $E=E^{\bar0}\oplus E^{\bar1}$ with an odd
+endomorphism $Q_E$ satisfying $Q_E^2=W\id_E$.
+
+For two factorizations of the same potential, set
+\begin{equation}\label{eq:vol2-mf-differential}
+ \delta f=Q_Ff-(-1)^{|f|}fQ_E,
+ \qquad f\in\Hom_R(E,F).
+\end{equation}
+Here $|f|\in\Z/2$ is its parity. Since $W$ is central,
+$\delta^2f=Wf-fW=0$. Composition satisfies the graded Leibniz rule.
+Thus the factorizations form a differential category with parity grading.
+
+For the cubic potential, take the factorizations on $R^{1|1}$
+\begin{equation}\label{eq:vol2-cubic-pair}
+ Q_X=\begin{pmatrix}0&x\\x^2&0\end{pmatrix},
+ \qquad
+ Q_Y=\begin{pmatrix}0&x^2\\x&0\end{pmatrix},
+ \qquad
+ f=\begin{pmatrix}x&0\\0&1\end{pmatrix}:X\longrightarrow Y.
+\end{equation}
+The map $f$ is even and closed. Multiplication by $x$ has an odd
+primitive on each object: there are $h_X,h_Y$ with
+$\delta h_X=x\id_X$ and $\delta h_Y=x\id_Y$.
+Their compatibility along $f$ is measured by
+\[
+ c(f)=h_Yf-fh_X.
+\]
+It is closed, because $\delta c(f)=xf-fx=0$.
+
+\begin{proposition}\label{prop:vol2-cubic-defect}
+For the objects and map in \eqref{eq:vol2-cubic-pair}, every choice
+of $h_X,h_Y$ gives the same nonzero class
+\[
+ [c(f)]=[J]\in H^{\bar1}\Hom_R(X,Y),
+ \qquad J=\begin{pmatrix}0&1\\-1&0\end{pmatrix}.
+\]
+In particular, the objectwise primitives cannot be extended to a
+nullhomotopy compatible with this morphism.
+\end{proposition}
+
+\begin{proof}
+The most general primitives are
+\[
+ h_X=\begin{pmatrix}0&b\\1-xb&0\end{pmatrix},
+ \qquad
+ h_Y=\begin{pmatrix}0&1-xc\\c&0\end{pmatrix},
+ \qquad b,c\in R.
+\]
+Indeed, an odd matrix with upper entry $u$ and lower entry $v$
+is a primitive on $X$ precisely when $xv+x^2u=x$, so
+$v=1-xu$. The equation on $Y$ is analogous.
+
+Multiplication gives
+\begin{equation}\label{eq:vol2-cubic-defect}
+ c(f)=(1-x(b+c))J.
+\end{equation}
+For an even morphism $a=\operatorname{diag}(a_0,a_1)$ and an odd
+morphism with entries $b_0,c_0$, the two differentials are
+\[
+ \delta a=x(xa_1-a_0)J,
+ \qquad
+ \delta\begin{pmatrix}0&b_0\\c_0&0\end{pmatrix}
+       =x(b_0+c_0)f.
+\]
+Consequently the even cycles and boundaries are $Rf$ and $xRf$,
+and the odd cycles and boundaries are $RJ$ and $xRJ$.
+The coefficient of $J$ in \eqref{eq:vol2-cubic-defect} is one
+modulo $x$, independently of $b,c$.
+\end{proof}
+
+For three objects with such primitives and closed even maps
+$f:X\to Y$, $g:Y\to Z$, the same definition gives
+\[
+ c(gf)=c(g)f+gc(f).
+\]
+Thus even a primitive for each $c(f)$ would leave a compatibility
+equation for composition. The complex of coherent actions must contain
+components on morphisms and on longer composable strings.
+
+\section{The ordinary derived centre}
+\label{sec:vol2-ordinary-centre}
+
+Let $\mathcal E$ be a small unital differential graded category
+over $k$. Complexes have cohomological grading,
+$V[1]^j=V^{j+1}$. The same constructions apply with degrees reduced
+modulo two to the preceding category of matrix factorizations.
+All tensors in this section are over $k$, and total Hom complexes
+use products. In particular, no boundedness in the cohomological
+degrees is implicit.
+Write $D(k)$ for the derived category of coefficient complexes.
+
+The \emph{diagonal bimodule} is
+$\Delta_{\mathcal E}(a,b)=\mathcal E(a,b)$, with the two actions
+given by composition. Write
+$\mathcal E^e=\mathcal E^{\mathrm{op}}\otimes_k^{\mathbb L}\mathcal E$
+for the derived enveloping category. The
+\emph{ordinary derived centre} and its cohomology are
+\begin{equation}\label{eq:vol2-ordinary-centre}
+ Z_k(\mathcal E)=
+ \RHom_{\mathcal E^e}(\Delta_{\mathcal E},\Delta_{\mathcal E}),
+ \qquad
+ \HH_k^*(\mathcal E)=H^*Z_k(\mathcal E).
+\end{equation}
+This definition fixes the coefficient tensor. Relative centres over
+a larger ring will use that ring's tensor and derived Hom instead.
+
+To compute \eqref{eq:vol2-ordinary-centre}, resolve the diagonal
+by its two-sided bar. After bimodule Hom, its cochains have factors
+\begin{equation}\label{eq:vol2-all-object-bar}
+ \prod_{n\ge0}\prod_{w_0,\ldots,w_n}
+ \Hom_k\!\left(
+ \mathcal E(w_{n-1},w_n)[1]\otimes\cdots\otimes
+ \mathcal E(w_0,w_1)[1],\mathcal E(w_0,w_n)\right).
+\end{equation}
+At $n=0$ the input is $k$. Every intermediate object is an index
+of the product. The normalized cochains vanish when an input is an
+identity. Denote their product totalization by
+$\CC_k^\bullet(\mathcal E)$.
+
+The differential has an internal part and a part that composes
+adjacent inputs or acts at an endpoint. An unsuspended convention
+makes their signs explicit. An arity-$n$ cochain $F$ of internal
+degree $r$ has total degree $r+n$. Put $\partial F=[\delta,F]$,
+the graded Hom differential.
+
+For homogeneous composable inputs,
+ordered so that the rightmost acts first, set
+\begin{align}\label{eq:vol2-hochschild-signs}
+ (b_HF)(a_1,\ldots,a_{n+1})
+ &=(-1)^{r|a_1|}a_1F(a_2,\ldots,a_{n+1})\notag\\
+ &\quad+\sum_{j=1}^n(-1)^j
+ F(a_1,\ldots,a_ja_{j+1},\ldots,a_{n+1})\notag\\
+ &\quad+(-1)^{n+1}F(a_1,\ldots,a_n)a_{n+1},\\
+ (\mathcal DF)_n&=(-1)^n\partial F_n+b_HF_{n-1},
+ \qquad F_{-1}=0.\label{eq:vol2-hochschild-total}
+\end{align}
+Associativity and the Leibniz rule give
+$b_H^2=\partial^2=0$ and $\partial b_H=b_H\partial$.
+Hence $\mathcal D^2=0$. Each component involves only two arities,
+so the differential is defined on the product totalization.
+
+\begin{proposition}[Bar representation and evaluation]
+\label{prop:vol2-centre-evaluation}
+The normalized complex $\CC_k^\bullet(\mathcal E)$ represents
+$Z_k(\mathcal E)$. For every coefficient complex $P\in D(k)$,
+evaluation induces a natural equivalence
+\begin{equation}\label{eq:vol2-centre-evaluation}
+ \RHom_k(P,Z_k(\mathcal E))
+ \simeq
+ \RHom_{\mathcal E^e}
+ (P\otimes_k^{\mathbb L}\Delta_{\mathcal E},\Delta_{\mathcal E}).
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+Use cofibrant models for the coefficient complexes. The augmented
+two-sided bar contracts by insertion of a unit at an outside end.
+
+Its filtration by word length has induced bimodules as successive
+quotients. Over the field $k$, their coefficient complexes are
+homotopically projective: Hom from them into an acyclic complex
+is acyclic. A finite length stage therefore has the same property.
+
+Hom out of the full direct-sum bar is the inverse limit of the
+Hom complexes of these stages. The transition maps are surjective
+in every degree, since the length filtration splits on graded
+modules. The kernels are acyclic by the same coefficient argument,
+so primitives can be lifted successively through the tower.
+Its inverse limit is therefore acyclic. Thus the bar is a
+homotopically projective resolution.
+
+The degeneracy contraction splits off the cochains containing an
+identity, leaving the normalized complex. Applying bimodule Hom
+to the remaining resolution gives \eqref{eq:vol2-all-object-bar}.
+For a projective model of $P$, the tensor--Hom adjunction on each
+bar term identifies the two sides of
+\eqref{eq:vol2-centre-evaluation}. Products commute with this
+adjunction, and the identifications commute with the differential.
+\end{proof}
+
+The identity action is the nullary family $\id_w$.
+The cup product composes outputs after cutting a composable word.
+The brace operations insert the output of one cochain into an input
+of another, with the Koszul signs of the suspended inputs.
+These are operations on the full cochain complex. Retaining only
+the cohomology of the endomorphisms of each object removes the
+positive-arity terms where Proposition~\ref{prop:vol2-cubic-defect}
+found its obstruction.
+
+\section{The scalar action on all cubic boundaries}
+\label{sec:vol2-cubic-scalar-centre}
+
+The cubic calculation extends to every finite free boundary.
+It distinguishes a relation in the category from a relation on each
+of its objects. Put $R=k[[x]]$. Let $\mathcal C$ be the
+parity differential category of all matrix factorizations of $x^3$
+on standard finite free parity-graded $R$-modules. Fixing standard
+modules makes the objects a set. Its morphisms are $R$-linear,
+with differential \eqref{eq:vol2-mf-differential}.
+
+Here the centre is \emph{absolute over $k$}: its cochains are
+$k$-multilinear, with no continuity condition on those maps.
+They are normalized and product-totalized as above. For $g\in R$,
+scalar multiplication defines a cocycle $\rho(g)$ whose nullary
+value is $g\id_E$ and whose higher values vanish.
+
+\begin{theorem}\label{thm:vol2-cubic-scalar-kernel}
+The kernel of the scalar action
+\[
+ R\longrightarrow\HH_k^{\bar0}(\mathcal C),
+ \qquad g\longmapsto[\rho(g)],
+\]
+is $(x^2)$. Nevertheless, multiplication by $x$ is nullhomotopic
+on every object of $\mathcal C$.
+\end{theorem}
+
+\begin{proof}
+For a cochain primitive with nullary component $h_E$ and unary
+component $u$, equations \eqref{eq:vol2-hochschild-signs} and
+\eqref{eq:vol2-hochschild-total} begin with
+\begin{align}
+ \delta h_E&=g\id_E,\label{eq:vol2-scalar-primitive-zero}\\
+ \delta u(f)-u(\delta f)
+ &=(-1)^{|f|}fh_E-h_Ff.
+ \label{eq:vol2-scalar-primitive-one}
+\end{align}
+The map $h_E$ is odd and $u$ preserves parity.
+If all later components vanish, the binary equation is
+$u(vf)=u(v)f+vu(f)$.
+
+Differentiate the matrices in their fixed bases and take
+\[
+ h_E=\frac13Q'_E,
+ \qquad u(f)=\frac13f',
+ \qquad F_n=0\quad(n\ge2).
+\]
+Differentiating $Q_E^2=x^3\id_E$ proves
+\eqref{eq:vol2-scalar-primitive-zero} for $g=x^2$.
+For a homogeneous morphism,
+\[
+ (\delta f)'=\delta(f')+Q'_Ff-(-1)^{|f|}fQ'_E,
+\]
+which proves \eqref{eq:vol2-scalar-primitive-one}.
+The derivative kills identities and satisfies the Leibniz rule,
+so every remaining component of $\mathcal DF$ vanishes.
+Multiplying the components by any $a\in R$ gives a primitive
+for $ax^2$, since both cochain differentials commute with the
+central scalar action on the output.
+
+Conversely, reduce $g$ modulo $(x^2)$ to $\alpha+\beta x$.
+On the object $X$ of \eqref{eq:vol2-cubic-pair}, every odd
+matrix has the form
+\[
+ h=\begin{pmatrix}0&b\\d&0\end{pmatrix},
+ \qquad \delta h=x(d+xb)\id_X.
+\]
+The nullary equation forces $\alpha=0$ and $d+xb=\beta$.
+
+The odd endomorphism
+\[
+ \psi=\begin{pmatrix}0&1\\-x&0\end{pmatrix}
+\]
+is closed. The unary equation on $\psi$ would give
+\[
+ \delta u(\psi)=-(\psi h+h\psi)=-(\beta-2xb)\id_X.
+\]
+Every matrix boundary on $X$ is divisible by $x$.
+Evaluation at $x=0$ forces $\beta=0$. Higher arities do not
+enter these two equations, so they cannot remove the obstruction.
+
+It remains to prove the objectwise assertion for arbitrary rank.
+Over the fraction field of $R$, the two odd blocks of $Q_E$
+are inverse up to $x^3$. The even and odd ranks therefore agree.
+Smith normal form over the discrete valuation ring $R$
+diagonalizes one block. The equation $Q_E^2=x^3\id_E$ forces
+the other block to be diagonal in the complementary bases.
+The factorization is consequently a direct sum of blocks
+$(x^a,x^{3-a})$, where $0\le a\le3$.
+
+For $a=0,3$ one block is invertible, so the object is contractible.
+For $a=1$ the matrix
+\[
+ H=\begin{pmatrix}0&0\\1&0\end{pmatrix}
+ \qquad\text{satisfies}\qquad \delta H=x\id.
+\]
+Exchanging the two parity summands gives a primitive for $a=2$.
+Direct sums and changes of basis preserve these homotopies.
+\end{proof}
+
+The scalar image in this absolute centre is therefore
+$k[[x]]/(x^2)$. This computes the scalar image, without asserting
+that it is the entire centre. The coefficient convention enters
+the proof at the unary map:
+\[
+ u(xf)=\frac13f+xu(f).
+\]
+It is $k$-linear and is not $R$-linear. A relative centre over
+$R$ asks a different question, since it excludes this primitive.
+
+\section{Two scalar endpoints joined by a complex}
+\label{sec:vol2-triangular-centre}
+
+The cubic example required an infinite bar of a category.
+There is also a finite model in which the entire relative centre,
+including its multiplication in a family, can be computed.
+
+Let $R$ be a commutative ring and $M$ a bounded complex of finite
+projective $R$-modules. Use integer cohomological degrees and set
+\begin{equation}\label{eq:vol2-triangular-algebra}
+ T(M)=Re_0\oplus Re_1\oplus M,
+ \qquad e_1Me_0=M,
+ \qquad M^2=0.
+\end{equation}
+
+The idempotents are orthogonal, closed, and sum to the unit.
+All other idempotent actions on $M$ vanish. The differential on
+$M$ is its given differential. Thus $M$ is the complex of arrows
+from object zero to object one, and the endpoint endomorphisms
+are scalar. All tensors in this section are over $R$ unless
+another ring is displayed.
+
+Put $T=T(M)$ and $T^e=T\otimes_R T^{\mathrm{op}}$, with graded
+opposite multiplication. The stated projectivity makes this a
+model of the derived enveloping algebra. Define
+\[
+ Z_R(T)=\RHom_{T^e}(T,T),
+ \qquad
+ E=\End_R(M),
+ \qquad d_EF=d_MF-(-1)^{|F|}Fd_M.
+\]
+The difference of the two scalar actions is the chain map
+\[
+ \chi:R^2\longrightarrow E,
+ \qquad \chi(a,b)=(a-b)\id_M,
+\]
+where $a$ acts at the source and $b$ at the target.
+Write $D(R)$ for the derived category of $R$-module complexes.
+
+\begin{theorem}\label{thm:vol2-triangular-cone}
+The relative centre is represented by the homotopy fibre
+\begin{equation}\label{eq:vol2-triangular-cone}
+ Z_R(T(M))\simeq\operatorname{Cone}(\chi)[-1].
+\end{equation}
+With the fibre sign convention, its terms and differential are
+\[
+ Z^n=(R^2)^n\oplus E^{n-1},
+ \qquad d_Z(a,b,F)=(da,db,\chi(a,b)-d_EF).
+\]
+For every $P\in D(R)$, evaluation gives
+\begin{equation}\label{eq:vol2-relative-evaluation}
+ \RHom_R(P,Z_R(T))
+ \simeq\RHom_{T^e}(P\otimes_R^{\mathbb L}T,T).
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+Let $S=Re_0\oplus Re_1$. The normalized relative bimodule bar
+of $T$ over $S$ stops at length one, since $M\otimes_SM=0$:
+\begin{equation}\label{eq:vol2-short-bar}
+ T\otimes_SM\otimes_ST
+\longrightarrow T\otimes_ST\longrightarrow T.
+\end{equation}
+
+The first term has the extra degree $-1$ of the bar suspension.
+Choose the boundary on an arrow to be
+$e_1\otimes m-m\otimes e_0$, with the corresponding suspended
+internal differential. Multiplication adds the two copies of
+$M$ in the middle term. Their difference is its kernel.
+On the idempotents, multiplication is the identity.
+This proves exactness of the augmented sequence of complexes.
+
+The terms are induced from the split idempotent bimodules of
+$S$, with bounded projective coefficients $R$ or $M$.
+They are therefore homotopically projective as $T$-bimodules.
+Applying bimodule Hom into $T$ yields $R^2$ at length zero
+and $\End_R(M)$ at length one. The two endpoint actions give
+$(a-b)\id_M$, and suspension gives $-d_E$.
+This is \eqref{eq:vol2-triangular-cone}.
+Tensoring the same bar with a projective model of $P$ and using
+tensor--Hom adjunction proves \eqref{eq:vol2-relative-evaluation}.
+\end{proof}
+
+\begin{example}[Parallel arrows]\label{ex:vol2-parallel-arrows}
+For $R=k$ and $M=k^m$ in degree zero, with $m>0$, the centre
+complex is
+\[
+ k^2\longrightarrow\operatorname{Mat}_m(k),
+ \qquad (a,b)\longmapsto(a-b)\id,
+\]
+in degrees zero and one. Hence
+\[
+ \HH_k^0(T)=k,
+ \qquad \HH_k^1(T)=\operatorname{Mat}_m(k)/k\id,
+ \qquad \HH_k^j(T)=0\quad(j\ne0,1).
+\]
+Insertion of one unary cochain into another is composition on
+$M$, so the degree-one Gerstenhaber bracket is the matrix
+commutator modulo scalars. The product of two positive-degree
+classes vanishes: a cup product would require two composable
+arrows, and there is no such word. Thus a single arrow has no
+positive centre cohomology, whereas three parallel arrows give
+eight independent degree-one classes.
+\end{example}
+
+\section{A differential varying with a parameter}
+\label{sec:vol2-varying-centre}
+
+The joining complex can change while both endpoint algebras
+remain fixed. Put $R=k[t]$ and take
+\[
+ M_t=[Ru\xrightarrow{\ t\ }Rv],
+ \qquad |u|=-1,
+ \qquad |v|=0.
+\]
+Its endomorphism complex is
+\[
+ E^{-1}=R\xrightarrow{s\mapsto(ts,ts)}E^0=R^2
+ \xrightarrow{(p,q)\mapsto t(p-q)}E^1=R.
+\]
+Here $s$ sends $v$ to $su$, the pair $(p,q)$ acts on $(u,v)$,
+and the last scalar sends $u$ to a multiple of $v$.
+The centre in Theorem~\ref{thm:vol2-triangular-cone} is therefore
+\begin{equation}\label{eq:vol2-varying-complex}
+ R^3\xrightarrow{D_0}R^2\xrightarrow{D_1}R,
+ \qquad
+ \begin{aligned}
+ D_0(a,b,s)&=(a-b-ts,a-b-ts),\\
+ D_1(p,q)&=-t(p-q),
+ \end{aligned}
+\end{equation}
+in degrees zero, one, and two.
+
+For a complex of free $R$-modules, its \emph{Bockstein}
+on cohomology modulo $t$ sends $[\bar c]$ to
+$[t^{-1}dc\bmod t]$, where $c$ lifts the cocycle $\bar c$.
+This is the connecting map for the first-order thickening
+$k[t]/(t^2)$, with the submodule $(t)$ identified with $k$.
+
+\begin{theorem}\label{thm:vol2-varying-centre}
+The full relative Hochschild cohomology algebra is
+\begin{equation}\label{eq:vol2-varying-ring}
+ \HH_R^*(T(M_t))
+ \cong\frac{R[z,\omega]}
+ {(z^2-tz,\ t\omega,\ z\omega,\ \omega^2)},
+ \qquad |z|=0,
+ \qquad |\omega|=2.
+\end{equation}
+After inverting $t$, it is $R[t^{-1}]\times R[t^{-1}]$ in
+degree zero. The derived fibre
+$Z_R(T(M_t))\otimes_R^{\mathbb L}k$ has degree-zero algebra
+$k[z]/(z^2)$, together with one class $\epsilon$ in degree one
+and one class $\omega$ in degree two. In that fibre,
+\[
+ z\epsilon=z\omega=\epsilon^2=\epsilon\omega=\omega^2=0.
+\]
+Its Bockstein is
+\begin{equation}\label{eq:vol2-centre-bockstein}
+ \beta(\epsilon)=-\omega,
+ \qquad \beta(z)=0.
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+A degree-zero cycle obeys $a-b=ts$, so its free coordinates
+are $(b,s)$. There are no incoming boundaries.
+The two cuts of a one-arrow word give the cup product
+\begin{equation}\label{eq:vol2-centre-cup}
+ (a,b,s)(a',b',s')=(aa',bb',bs'+sa').
+\end{equation}
+The unit is $(1,1,0)$, and $z=(t,0,1)$ satisfies $z^2=tz$.
+Every degree-zero cycle is uniquely $b\,1+s\,z$.
+
+Since $t$ is a non-zero-divisor, $\ker D_1$ is the diagonal
+copy of $R$, which equals $\im D_0$. Thus $H^1Z=0$.
+The last cokernel is $R/(t)$, generated by the one-arrow
+cochain $\omega:u\mapsto v$. Products of two one-arrow
+cochains vanish. The left product $z\omega$ uses the target
+scalar zero, while the right product uses the source scalar
+$t$ and vanishes in $R/(t)$. These are all relations in
+\eqref{eq:vol2-varying-ring}, by the computed cohomology groups.
+
+Every term of \eqref{eq:vol2-varying-complex} is free over $R$,
+so reduction modulo $t$ computes the derived fibre.
+The reduced differential is
+\[
+ D_0(a,b,s)=(a-b,a-b),
+ \qquad D_1=0.
+\]
+The cohomology dimensions are $2,1,1$ in degrees $0,1,2$.
+The degree-one class is represented by $(1,0)\in Z^1$.
+At $t=0$, the representative of $z$ has zero endpoint components,
+so its products with $\epsilon$ and $\omega$ contain two
+one-arrow cochains and vanish. Formula~\eqref{eq:vol2-centre-cup}
+also gives $z^2=0$.
+
+The lift $(1,0)$ of $\epsilon$ has differential $-t$.
+The lift $(t,0,1)$ of $z$ is already closed.
+This proves \eqref{eq:vol2-centre-bockstein}.
+After inverting $t$, the roots $0,t$ of $z(z-t)$ separate
+and the torsion class disappears.
+\end{proof}
+
+The map $b\,1+s\,z\mapsto(b+ts,b)$ identifies the degree-zero
+centre with
+\[
+ R\times_{R/(t)}R.
+\]
+Its spectrum consists of two affine lines joined at the origin.
+The degree-two torsion has a further effect: derived specialization
+produces $\epsilon$, which tensoring the cohomology groups alone
+with $k$ would omit. At the special fibre, $z$ itself is a nonzero
+central class with zero endpoint components. It is carried entirely
+by the homotopy on the joining complex.
+
+\section{Gluing endpoints with their own operations}
+\label{sec:vol2-dg-triangular-centre}
+
+For differential graded endpoint algebras, the derived centres
+act on the joining bimodule, and their difference gives the same
+compatibility problem. Work over the field $k$. Let $A_0,A_1$
+be unital differential graded algebras and let $M$ be an
+$A_1$--$A_0$ bimodule. Form the two-object category
+$\mathcal E_M$ with these endomorphism algebras,
+$\mathcal E_M(0,1)=M$, and $\mathcal E_M(1,0)=0$.
+Use derived coefficient models throughout.
+
+Tensoring an endomorphism of the diagonal $A_0$-bimodule with
+$M$ gives its right characteristic action on $M$.
+The left action is defined similarly using $A_1$.
+Write $\chi$ for right action minus left action.
+
+\begin{proposition}\label{prop:vol2-dg-triangular}
+There is a fibre triangle of complexes
+\begin{equation}\label{eq:vol2-dg-triangular}
+ \CC_k^\bullet(\mathcal E_M)\longrightarrow
+ \CC_k^\bullet(A_0)\oplus\CC_k^\bullet(A_1)
+ \xrightarrow{\ \chi\ }
+ \RHom_{A_1\otimes_k^{\mathbb L}A_0^{\mathrm{op}}}(M,M).
+\end{equation}
+The cochains use product totalization over all bar lengths.
+\end{proposition}
+
+\begin{proof}
+Normalize the two-sided bar relative to the object idempotents.
+A composable word stays in one corner or crosses once from
+zero to one. Put $\overline A_i=A_i/k1$.
+
+The crossing cochains have factors
+\[
+ \Hom_k\!\left(
+ (\overline A_1[1])^{\otimes p}\otimes M[1]\otimes
+ (\overline A_0[1])^{\otimes q},M\right),
+ \qquad p,q\ge0.
+\]
+The double bar resolving $M$ as an $A_1$--$A_0$ bimodule
+is the direct sum of
+\[
+ A_1\otimes(\overline A_1[1])^{\otimes p}\otimes M
+\otimes(\overline A_0[1])^{\otimes q}\otimes A_0.
+\]
+
+Its differential combines the internal differentials,
+adjacent products, and the two actions on $M$.
+Unit insertion contracts the augmented bar, first on one side
+and then on the other. Its length filtration has induced
+bimodules with homotopically projective coefficient complexes
+as successive quotients. The surjective inverse-tower argument
+of Proposition~\ref{prop:vol2-centre-evaluation} proves that
+the whole double bar is homotopically projective, including
+when the coefficient complexes are unbounded.
+
+Hom from this resolution into $M$ computes the right-hand term
+of \eqref{eq:vol2-dg-triangular}. The crossing factor has one
+additional suspension, so the kernel of restriction to the
+corners is this complex shifted by $-1$.
+The remaining endpoint mergers give the right and left
+characteristic actions with opposite signs. The resulting
+short exact sequence splits on graded cochains and gives the
+stated fibre triangle.
+\end{proof}
+
+This is a triangle of complexes. The cup products and braces
+remain on the Hochschild cochains and their composable strings.
+The last term can be replaced by an ordinary endomorphism
+complex only when the chosen bimodule model computes derived Hom.
+Likewise, selecting fewer boundary objects computes the centre
+of that selected category. Comparison with all boundaries is
+a further assertion.
+
+\section{From coefficient actions to local bulk observables}
+\label{sec:vol2-centre-geometric-comparison}
+
+The bar evaluation gives a precise universal property over the
+declared coefficient ring. In a mixed holomorphic--topological theory,
+operators vary on a curve and compose in an ordered topological
+direction. Their products may acquire terms supported on collision
+divisors. A comparison must preserve these operations and their
+coefficient modules as well as the ordinary composition of morphisms.
+
+The physical source must be defined independently. Its fields,
+action, boundary conditions, and quantization determine a complex
+of bulk observables and their action on boundary insertions.
+Identifying that complex with a geometric centre requires a geometric
+category of boundary probes and its coefficient tensor.
+The evaluation map must be compatible with the supported operations.
+The comparison must also retain homotopies on morphisms and their
+compatibility with composition, as the cubic example requires.
+
+The ordinary centres above supply complete algebraic models of that
+compatibility, with evaluation maps and explicit dependence on
+coefficients. Their identification with a native chiral centre
+remains a separate construction. A geometric issue is already visible
+before quantization. Coefficients with poles along a divisor and
+coefficients supported on it do not form one ordinary algebra of
+functions. Their respective modules and the operations between them
+must be specified.

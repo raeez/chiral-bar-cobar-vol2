@@ -1,0 +1,1562 @@
+\chapter{Hamiltonian actions on derived matrix spaces}
+\label{ch:vol2-derived-hamiltonian-actions}
+
+Imposing a matrix equation has two different effects on an action.
+A bracket defect can vanish on its zero set, while the complex
+that imposes the equation retains a homotopy for that defect.
+The homotopies must themselves satisfy identities. For the
+commuting-matrix equation, a calculation with cubic Hamiltonians
+exhibits the first of these identities. A contraction of a free
+associative resolution then solves them in every arity.
+
+The resulting action preserves a cyclic orientation coherently.
+Its matrix realization retains both the relation classes and the
+gauge stabilizers. Requiring the homotopies to be Hamiltonian adds
+a further condition: the scalar charges remember constants that
+their vector fields forget. Quantizing the coefficient plane
+introduces another distinction. Its finite-dimensional
+representations and the quantization of matrix coordinates have
+different equations, and consequently different recipients.
+
+\section{The cubic defect and the relation complex}
+\label{sec:vol2-matrix-cubic-defect}
+
+Work over $\mathbb C$, with cohomological differentials of degree
+one. All commutators are graded:
+$[a,b]=ab-(-1)^{|a||b|}ba$ for homogeneous elements.
+Put $A=\mathbb C[q,p]$ and give it the Poisson bracket
+\[
+ \{f,g\}=f_qg_p-f_pg_q.
+\]
+For a monomial $q^ap^b$, let $\sigma(q^ap^b)$ be the average of
+the distinct words with $a$ occurrences of $q$ and $b$ occurrences of $p$.
+Thus $\sigma(qp)=(qp+pq)/2$. The map $\sigma$ takes values in
+the free associative algebra; it is a linear section of
+abelianization.
+
+Fix a positive integer $N$. Let $X,Y$ be $N\times N$ matrices of
+independent commuting variables, with
+\[
+ \{X_{ij},Y_{kl}\}=\delta_{il}\delta_{jk},\qquad
+ \{X_{ij},X_{kl}\}=\{Y_{ij},Y_{kl}\}=0.
+\]
+The scalar charge associated to $f\in A$ is
+\begin{equation}\label{eq:vol2-matrix-charge}
+ J_N(f)=\operatorname{Tr}\sigma f(X,Y).
+\end{equation}
+In particular $J_N(1)=N$. Write $\mu=[X,Y]=XY-YX$ for the
+commuting-matrix equation. The brackets of cubic charges give
+\begin{equation}\label{eq:vol2-cubic-trace-defect}
+ \{J_N(q^3),J_N(p^3)\}-J_N(9q^2p^2)
+   =-\frac32\operatorname{Tr}(\mu^2).
+\end{equation}
+Indeed, the first term is $9\operatorname{Tr}(X^2Y^2)$.
+Of the six words in $\sigma(q^2p^2)$, four have cyclic trace
+$\operatorname{Tr}(X^2Y^2)$ and two have cyclic trace
+$\operatorname{Tr}(XYXY)$. Expanding $\operatorname{Tr}\mu^2$
+proves the formula. At rank two, take
+\[
+ X=\begin{pmatrix}1&0\\0&0\end{pmatrix},\qquad
+ Y=\begin{pmatrix}0&1\\1&0\end{pmatrix}.
+\]
+Then $\mu^2=-I_2$, so the defect is $3$.
+
+The defect vanishes after imposing $\mu=0$. To retain how it
+vanishes, introduce an odd matrix $\Psi$ of degree $-1$ and the
+commutative differential graded algebra
+\begin{equation}\label{eq:vol2-derived-matrix-algebra}
+ R_N=\mathbb C[X_{ij},Y_{ij}]\otimes\Lambda(\Psi_{ij}),
+ \qquad QX=QY=0,\qquad Q\Psi=[X,Y].
+\end{equation}
+Here and below, matrices with graded coefficients are multiplied
+in their displayed order. The entries of $\Psi$ impose the
+equations by a differential, including dependencies among them.
+For example $\operatorname{Tr}\Psi$ is a cycle. It is not a
+boundary: evaluation at $X=Y=0$ is a cochain map to
+$\Lambda(\Psi_{ij})$ with zero differential and sends this cycle
+to a nonzero element. At $N=1$ the differential vanishes entirely.
+Thus the relation complex contains information beyond the
+ordinary commuting scheme.
+
+\section{A free resolution of the plane}
+\label{sec:vol2-free-plane-resolution}
+
+The homotopies can be constructed before choosing the matrix rank.
+Consider the free differential graded associative algebra
+\begin{equation}\label{eq:vol2-plane-resolution}
+ R=\mathbb C\langle q,p,t\rangle,\qquad
+ |q|=|p|=0,\quad |t|=-1,
+ \qquad dq=dp=0,\quad dt=qp-pq.
+\end{equation}
+The projection $\pi:R\to A$ kills $t$ and makes $q,p$ commute.
+Its linear section $i$ sends $q^ap^b$ to the normal word $p^bq^a$.
+Both are cochain maps, but $i$ is not multiplicative:
+$i(q)i(p)-i(qp)=dt$.
+
+Replace the differential temporarily by $d_0t=qp$. Expand every
+$t$ in a word into $qp$, marking the occurrence from which it
+came. Two occurrences of $qp$ cannot overlap. For a fixed
+expanded word, its marked subsets form a tensor product of
+two-term complexes. The differential $d_0$ removes a mark, with
+sign $(-1)^a$ if $a$ marks precede it.
+
+Define $h_0$ by adding the first mark when that occurrence is
+unmarked, and by zero when it is already marked or no occurrence
+exists. Let $p_0$ send an unmarked normal word $p^bq^a$ to
+$q^ap^b\in A$ and every other word to zero. The two-term
+contraction gives
+\begin{equation}\label{eq:vol2-first-word-contraction}
+ d_0h_0+h_0d_0=1-ip_0,
+ \qquad h_0^2=h_0i=p_0h_0=0.
+\end{equation}
+To see the signs, removing a later mark anticommutes with adding
+the first. Removing the first mark contributes the identity.
+When no occurrence exists, the word is already $p^bq^a$.
+
+Write $d=d_0+\delta$, where $\delta t=-pq$. Exchanging an
+expanded $qp$ for $pq$ decreases the number of pairs in which a
+$q$ precedes a $p$. The operator $\delta h_0$ is therefore locally
+nilpotent. Define
+\begin{equation}\label{eq:vol2-word-contraction}
+ h=h_0\sum_{j\geq0}(-\delta h_0)^j,
+ \qquad p'=p_0\sum_{j\geq0}(-\delta h_0)^j.
+\end{equation}
+These are finite sums on every word.
+
+\begin{proposition}\label{prop:vol2-plane-word-resolution}
+The projection $p'$ equals $\pi$, and
+\[
+ \pi i=1,\qquad dh+hd=1-i\pi,
+ \qquad h^2=hi=\pi h=0.
+\]
+Consequently $R\to A$ is a quasi-isomorphism and $h$ contracts
+$J=\ker\pi$.
+\end{proposition}
+\begin{proof}
+Substitute $(1+\delta h_0)^{-1}$ in
+\eqref{eq:vol2-first-word-contraction}. Multiplying the finite
+series by $1+\delta h_0$ cancels consecutive perturbation terms.
+Since $\delta i=0$, the inclusion and the zero differential on
+normal words remain unchanged. This gives
+$dh+hd=1-ip'$ and the side identities.
+
+The surviving reductions replace $qp$ by $pq$. A degree-zero
+word therefore projects to its commutative monomial; a word
+containing $t$ has negative degree and projects to zero. Thus
+$p'=\pi$. On $J$ the homotopy identity becomes $dh+hd=1$.
+\end{proof}
+
+For a commutative differential graded algebra $B$, a morphism
+$R\to\operatorname{Mat}_N(B)$ amounts to matrices $X,Y,\Psi$
+with the differential in \eqref{eq:vol2-derived-matrix-algebra}.
+This is the universal property represented by $R_N$.
+The resolution of $A$ does not make $R_N$ acyclic in negative
+degrees; the trace class already distinguishes the two assertions.
+
+\section{The first action and its binary homotopy}
+\label{sec:vol2-first-derived-action}
+
+The Lie algebra of polynomial Hamiltonian vector fields is
+$\mathfrak l=A/\mathbb C1$, with the induced Poisson bracket.
+For a word $a_1\cdots a_m$ in $q,p$, define its cyclic derivative
+by
+\[
+ \partial_q^{\mathrm{cyc}}(a_1\cdots a_m)
+ =\sum_{a_j=q}a_{j+1}\cdots a_ma_1\cdots a_{j-1},
+\]
+and similarly for $p$. Removing an occurrence makes the remainder
+start just after that occurrence. Cyclic rotation therefore does not
+change the derivative.
+
+For $f\in\mathfrak l$, define a degree-zero derivation of $R$ by
+\begin{equation}\label{eq:vol2-hamiltonian-first-lift}
+ F_1(f)q=-\partial_p^{\mathrm{cyc}}\sigma f,
+ \qquad F_1(f)p=\partial_q^{\mathrm{cyc}}\sigma f,
+ \qquad F_1(f)t=0.
+\end{equation}
+A constant has zero cyclic derivatives, so this is well defined.
+The identity
+\begin{equation}\label{eq:vol2-cyclic-derivative-identity}
+ [q,\partial_q^{\mathrm{cyc}}W]
+   +[p,\partial_p^{\mathrm{cyc}}W]=0
+\end{equation}
+follows by cancelling consecutive cyclic rotations of $W$.
+It implies $[d,F_1(f)]=0$. Abelianization gives
+$\pi F_1(f)=X_f\pi$, where $X_f=\{f,-\}$.
+
+Set $\mu_R=qp-pq$. Cyclic differentiation gives
+\begin{equation}\label{eq:vol2-cubic-vector-defect}
+ \bigl([F_1(q^3),F_1(p^3)]-F_1(9q^2p^2)\bigr)(q,p,t)
+   =\bigl(3[\mu_R,q],3[\mu_R,p],0\bigr).
+\end{equation}
+The derivation
+\begin{equation}\label{eq:vol2-cubic-word-primitive}
+ F_2(q^3,p^3)(q,p,t)
+     =\bigl(3[t,q],3[t,p],3t^2\bigr)
+\end{equation}
+has degree $-1$ and has this defect as its differential
+$[d,F_2]$. On $q,p$ the assertion follows from $dt=\mu_R$.
+On $t$, the identity
+\[
+ d(t^2)=\mu_Rt-t\mu_R
+\]
+cancels the term $F_2(\mu_R)$. The value on $t$ is therefore
+necessary even though the original defect vanishes on $t$.
+
+The failure of strictness cannot be removed by another polynomial
+choice of cyclic words. Let
+\[
+ \mathcal N=
+ \mathbb C\langle q,p\rangle/
+ \bigl(\mathbb C1+[\mathbb C\langle q,p\rangle,
+                         \mathbb C\langle q,p\rangle]\bigr),
+\]
+where the commutators span a vector subspace. Its elements are
+cyclic words modulo constants. The necklace bracket is
+\[
+ \{[U],[V]\}_{\mathcal N}
+   =\bigl[\partial_q^{\mathrm{cyc}}U\,
+               \partial_p^{\mathrm{cyc}}V
+          -\partial_p^{\mathrm{cyc}}U\,
+               \partial_q^{\mathrm{cyc}}V\bigr].
+\]
+This bracket has a useful derivation description. Send a cyclic
+word $U$ to $D_Uq=-\partial_p^{\mathrm{cyc}}U$ and
+$D_Up=\partial_q^{\mathrm{cyc}}U$. Differentiating the displayed
+bracket gives
+$[D_U,D_V]=D_{\{[U],[V]\}_{\mathcal N}}$: terms selecting
+two positions in one cyclic word cancel in pairs, while terms
+selecting one position in each word give the two derivation
+composites. This also proves that the bracket is well defined
+under cyclic rotation. The map to derivations is injective
+modulo constants, since for a homogeneous word of length $r>0$,
+\[
+ [q\,\partial_q^{\mathrm{cyc}}U
+   +p\,\partial_p^{\mathrm{cyc}}U]=r[U].
+\]
+Jacobi follows from Jacobi for derivations and this injectivity.
+Abelianization is a Lie map $\mathcal N\to\mathfrak l$.
+
+\begin{proposition}\label{prop:vol2-necklace-no-section}
+The abelianization $\mathcal N\to\mathfrak l$ has no linear
+Lie section, including sections that do not preserve polynomial
+degree.
+\end{proposition}
+\begin{proof}
+In degrees at most three there is only one cyclic word for each
+commutative monomial. A lift of a cubic therefore differs from
+its cyclic cubic by terms of degree at least four. Bracketing
+such a correction with a cubic has degree at least five.
+
+Put $C=[q^2p^2]$ and $D=[qpqp]$. They are distinct cyclic words,
+and direct differentiation gives
+\[
+ \{[q^3],[p^3]\}_{\mathcal N}=9C,
+ \qquad \{[q^2p],[qp^2]\}_{\mathcal N}=C+2D.
+\]
+The commutative brackets are respectively $9q^2p^2$ and
+$3q^2p^2$. The degree-four part of a Lie section applied to
+$q^2p^2$ would have to equal both $C$ and $(C+2D)/3$.
+Higher-degree corrections cannot change this contradiction.
+\end{proof}
+
+This obstruction concerns a strict polynomial necklace section.
+The relation generator in \eqref{eq:vol2-plane-resolution}
+provides the larger differential graded carrier on which
+\eqref{eq:vol2-cubic-word-primitive} solves the first defect.
+
+\section{Solving the action equations in every arity}
+\label{sec:vol2-all-arity-derived-action}
+
+Give $\operatorname{Der}(R)$ its graded commutator and differential
+$\partial D=[d,D]$. The derivations with zero projection form
+a differential graded Lie algebra
+\[
+ K=\{D:\pi D=0\}.
+\]
+A degree-$j$ derivation in $K$ is specified by
+$U=Dq,V=Dp\in J^j$ and $W=Dt\in J^{j-1}$.
+Put $L(U,V)=[U,p]+[q,V]$. Then
+\begin{equation}\label{eq:vol2-derivation-differential}
+ (\partial D)(q,p,t)
+   =\bigl(dU,dV,dW-(-1)^jL(U,V)\bigr).
+\end{equation}
+The contraction of words yields a contraction of this entire
+derivation complex, including its nonclosed elements.
+
+\begin{lemma}\label{lem:vol2-derivation-kernel-contraction}
+The degree-minus-one map
+\begin{equation}\label{eq:vol2-derivation-kernel-homotopy}
+ (HD)(q,p,t)
+   =\bigl(hU,hV,h(W-(-1)^jL(hU,hV))\bigr)
+\end{equation}
+preserves $K$ and satisfies $\partial H+H\partial=1_K$.
+Every value of $H$ is a finite polynomial.
+\end{lemma}
+\begin{proof}
+The ideal $J$ contains all arguments of $h$ in the formula.
+Since $\pi h=0$, the resulting derivation again lies in $K$.
+On $q,p$ the contraction identity is $dh+hd=1_J$.
+Use $dL(U,V)=L(dU,dV)$ to substitute the formula on $t$.
+The sum of the third components is
+\[
+ (dh+hd)W+
+ (-1)^j hL\bigl((dh+hd-1)U,(dh+hd-1)V\bigr)=W.
+\]
+The word contraction is finite, so the formula has the stated
+polynomial meaning.
+\end{proof}
+
+We specify all higher signs by a coalgebra convention.
+For a differential graded Lie algebra $\mathfrak g$, let $s$
+be the degree-minus-one shift to $\mathfrak g[1]$.
+The cofree conilpotent symmetric coalgebra
+$S^c(\mathfrak g[1])=\bigoplus_{n\geq0}S^n(\mathfrak g[1])$
+has the unshuffle coproduct. Its Lie codifferential has
+corestrictions
+\begin{equation}\label{eq:vol2-lie-coalgebra-signs}
+ b_1(sa)=-s\partial a,
+ \qquad b_2(sa\,sb)=(-1)^{|a|}s[a,b].
+\end{equation}
+An $L_\infty$ morphism is a coaugmented coalgebra map commuting
+with these codifferentials. On degree-zero source inputs, its
+arity-$n$ corestriction is $sF_n$, where
+$F_n:\Lambda^n\mathfrak l\to\operatorname{Der}(R)$ has degree
+$1-n$.
+
+Suppose $F_1,\ldots,F_{n-1}$ are defined. Their corestrictions
+extend by set partitions to a coalgebra map $\mathcal F$ with
+arity-$n$ corestriction zero. Define $\Omega_n$ by
+\[
+ \operatorname{pr}_1(b\mathcal F-\mathcal F b)\big|_{S^n}
+     =s\Omega_n,
+ \qquad F_n=H\Omega_n.
+\]
+For the first two residuals this says
+\begin{align}
+ \Omega_2(f,g)
+    &=[F_1(f),F_1(g)]-F_1(\{f,g\}),
+       \label{eq:vol2-action-second-residual}\\
+ \Omega_3(f,g,k)
+    &=\sum_{\mathrm{cyc}}
+       \bigl([F_1(f),F_2(g,k)]-F_2(\{f,g\},k)\bigr).
+       \label{eq:vol2-action-third-residual}
+\end{align}
+At arity four, the brackets between two binary components contribute
+\begin{equation}\label{eq:vol2-action-fourth-binary-part}
+ \begin{aligned}
+ &-[F_2(f_1,f_2),F_2(f_3,f_4)]
+   +[F_2(f_1,f_3),F_2(f_2,f_4)]\\
+ &\hspace{3em}-[F_2(f_1,f_4),F_2(f_2,f_3)].
+ \end{aligned}
+\end{equation}
+They accompany the unary--ternary and source-bracket terms.
+
+\begin{theorem}\label{thm:vol2-all-arity-derived-action}
+The specified first action and the recursion $F_n=H\Omega_n$
+define an $L_\infty$ morphism
+\[
+ F:\mathfrak l\longrightarrow\operatorname{Der}(R).
+\]
+Every component has finite polynomial values on polynomial
+inputs. For every $N\geq1$, matrix substitution gives a
+$GL_N$-equivariant $L_\infty$ action on $R_N$, and hence on
+$R_N^{GL_N}$.
+\end{theorem}
+\begin{proof}
+The first component commutes with $d$ by
+\eqref{eq:vol2-cyclic-derivative-identity}. Let
+$E=b\mathcal F-\mathcal F b$. The identity
+$bE+Eb=0$ follows from the square-zero codifferentials.
+If $E$ vanishes below arity $n$, its arity-$n$ corestriction
+therefore satisfies $\partial\Omega_n=0$.
+
+The first action projects to the strict Hamiltonian action on
+$A$, so $\Omega_2$ projects to zero. Moreover $F_1$ normalizes
+$K$, and every constructed component of arity at least two
+belongs to $K$. The same is consequently true of each subsequent
+residual. Lemma~\ref{lem:vol2-derivation-kernel-contraction}
+gives $\partial H\Omega_n=\Omega_n$. In the coalgebra equation,
+the new term is $-s\partial F_n$, by
+\eqref{eq:vol2-lie-coalgebra-signs}; it cancels $s\Omega_n$.
+Induction proves all the identities.
+
+At each arity there are finitely many partitions. The word
+contraction terminates on every term, proving polynomial
+finiteness. A word derivation acts on matrix entries by
+substituting $X,Y,\Psi$ for $q,p,t$ in its generator values.
+The graded Leibniz rule makes this substitution preserve
+differentials and brackets. It also commutes with simultaneous
+conjugation, which proves the two matrix assertions.
+\end{proof}
+
+The contraction gives explicit higher terms beyond the binary
+homotopy. For
+$\mathbf f=(q^3,p^3,qp^3)$ and
+$\mathbf g=(q^3,p^3,qp^3,q^2p^2)$, one obtains
+\begin{equation}\label{eq:vol2-derived-higher-examples}
+ \begin{aligned}
+ F_3(\mathbf f)q&=-\frac92(tpt+pt^2),\\
+ F_4(\mathbf g)q&=\frac{33}{5}t^3p+\frac{39}{5}t^2pt
+                   +\frac{69}{5}tpt^2+\frac{99}{5}pt^3.
+ \end{aligned}
+\end{equation}
+The other generator values are
+$F_3(\mathbf f)p=F_3(\mathbf f)t=0$ and
+$F_4(\mathbf g)p=F_4(\mathbf g)t=0$.
+These formulas follow by applying
+\eqref{eq:vol2-derivation-kernel-homotopy} to the residuals.
+They can also be checked by substituting $dt=qp-pq$ in
+$\partial F_n=\Omega_n$ on each generator. The four-input
+identity uses \eqref{eq:vol2-action-fourth-binary-part}.
+Thus this action does not truncate at its binary term.
+The displayed values depend on the contraction; a nonzero
+chosen component alone does not establish an invariant
+obstruction to changing the action's presentation.
+
+\section{Choices and pointed formal Hamiltonians}
+\label{sec:vol2-derived-action-choices}
+
+Let $\operatorname{Der}_\pi(R)$ be the derivations preserving
+$J=\ker\pi$. Projection gives an exact sequence of differential
+graded Lie algebras
+\begin{equation}\label{eq:vol2-derived-action-fibration}
+ 0\longrightarrow K\longrightarrow\operatorname{Der}_\pi(R)
+   \xrightarrow{\pi_*}\operatorname{Der}(A)\longrightarrow0.
+\end{equation}
+Surjectivity is degreewise. A derivation of $A$, concentrated in
+degree zero, lifts by choosing words for its values on $q,p$
+and giving value zero on $t$. Such a lift preserves $J$, although
+it need not commute with $d$. The contracted kernel shows that
+$\pi_*$ is a quasi-isomorphism.
+
+For a differential graded Lie algebra $L$, retain homotopies
+between actions by using the arity-completed
+convolution differential graded Lie algebra
+\[
+ \mathcal G(L)=\prod_{n\geq1}
+    \operatorname{Hom}(S^n(\mathfrak l[1]),L),
+ \qquad
+ \mathcal F^r\mathcal G(L)=\prod_{n\geq r}
+    \operatorname{Hom}(S^n(\mathfrak l[1]),L).
+\]
+The differential combines the source Chevalley codifferential
+with that of $L$; the bracket uses the reduced coproduct.
+For a degree-one element $\alpha$, the Maurer--Cartan equation
+$\partial\alpha+[\alpha,\alpha]/2=0$ is the $L_\infty$
+morphism equation in the convention
+\eqref{eq:vol2-lie-coalgebra-signs}. Polynomial differential
+forms on a simplex give parameter families of such equations.
+Tensoring arity by arity defines their simplicial space.
+
+The \emph{derived space of lifts} is the homotopy fibre, over
+$f\mapsto X_f$, of the map of these spaces induced by $\pi_*$.
+This fixes the action on $A$ and the comparison to it; it does
+not yet impose a cyclic or Hamiltonian condition on the lifts.
+
+\begin{proposition}\label{prop:vol2-hamiltonian-lift-space}
+The derived space of lifts of $X$ to
+$\operatorname{Der}_\pi(R)$ is nonempty and contractible.
+The word contraction selects one point of this space.
+\end{proposition}
+\begin{proof}
+On the arity-$n$ associated graded, the kernel is
+\[
+ \operatorname{Hom}(S^n(\mathfrak l[1]),K),
+\]
+contracted by postcomposition with $H$, with the tensor sign
+when parameter forms are present. Polynomial forms on a simplex
+restrict degreewise onto compatible forms on a boundary or horn.
+One proves this by extending faces successively: coefficients
+vanishing on earlier faces lie in the corresponding ideals
+$(x_i,dx_i)$, and the barycentric relation $\sum x_i=1$
+handles the last face. No cochain primitive in the parameter
+direction is required.
+
+Suppose the lower arities and a compatible boundary family are
+already lifted. Choose an arity-$n$ component with that boundary
+and the prescribed projection. Its curvature lies in the kernel
+above, tensored with forms relative to the boundary. The
+arity-$n$ Bianchi identity makes the curvature closed. The
+contraction gives a relative primitive; subtracting it solves
+the equation without changing the boundary or projection.
+The same argument fills horns. Induction and arity completeness
+give a trivial fibration of simplicial spaces. Its nonempty
+fibre is contractible.
+\end{proof}
+
+There is also a completion in polynomial weight. Give $q,p$
+weight one and $t$ weight two; write $R_w$ for the homogeneous
+piece and put $\widehat R=\prod_{w\geq0}R_w$.
+The product topology has discrete homogeneous pieces. Assign
+the same weights to $X,Y,\Psi$ to define $\widehat R_N$.
+A pointed Hamiltonian has no constant or linear term.
+
+\begin{proposition}\label{prop:vol2-pointed-action-completion}
+On homogeneous inputs of degrees $d_1,\ldots,d_n$, the
+derivation $F_n$ shifts weight by
+\[
+ \sum_{i=1}^n(d_i-2).
+\]
+At each arity, the action therefore extends continuously from
+pointed polynomial Hamiltonians to
+\[
+ \widehat{\mathfrak l}_{\mathrm{pt}}
+   =\prod_{d\geq2}\operatorname{Sym}^d(\mathbb Cq\oplus\mathbb Cp)
+\]
+on $\widehat R$, and to the corresponding equivariant action
+on $\widehat R_N$.
+\end{proposition}
+\begin{proof}
+Both $d$ and $h$ preserve weight. Cyclic differentiation gives
+the claimed shift for $F_1$. Brackets add shifts, and the
+derivation contraction preserves them, so induction proves the
+formula for every component.
+
+For pointed inputs, each $d_i-2$ is nonnegative. At a fixed
+arity and output weight, only finitely many source weights
+and input degrees can contribute. Their homogeneous spaces
+are finite dimensional. The operation and each of its identities
+are thus finite in every output weight, giving the continuous
+extension. Matrix substitution preserves these weights.
+\end{proof}
+
+\section{Gauge ghosts and Hamiltonian primitives}
+\label{sec:vol2-derived-action-bfv}
+
+The matrices also carry simultaneous conjugation. Introduce
+an odd matrix $c$ of degree $1$ and the polynomial graded
+commutative algebra
+\[
+ \mathcal B_N=\mathbb C[X_{ij},Y_{ij}]
+                  \otimes\Lambda(c_{ij},\Psi_{ij}).
+\]
+Extend the even Poisson bracket by
+\[
+ \{c_{ij},\Psi_{kl}\}=\{\Psi_{kl},c_{ij}\}
+    =\delta_{il}\delta_{jk},
+\]
+with all other new generator brackets zero. The symmetry on
+these two odd generators is the graded skew-symmetry of an
+even Poisson bracket. The degree-one Hamiltonian
+\[
+ \Theta=\operatorname{Tr}(c[X,Y]-\Psi c^2)
+\]
+defines $Q=\{\Theta,-\}$, with
+\begin{equation}\label{eq:vol2-classical-bfv-differential}
+ QX=-[c,X],\quad QY=-[c,Y],\quad Qc=-c^2,
+ \quad Q\Psi=[X,Y]-[c,\Psi].
+\end{equation}
+Here $[c,\Psi]=c\Psi+\Psi c$. Applying the graded Leibniz
+rule once more to the four expressions gives $Q^2=0$.
+This is the classical BFV, or Hamiltonian BRST, complex.
+Equivalently it is the Chevalley--Eilenberg algebra
+$C^*_{\mathrm{CE}}(\mathfrak{gl}_N;R_N)$ with the displayed
+gauge sign. Its positive ghosts retain the infinitesimal gauge
+action in addition to the negative relation generators.
+
+\begin{proposition}\label{prop:vol2-action-bfv-extension}
+Every component of the matrix action extends to $\mathcal B_N$
+by giving value zero on $c$. These extensions define an
+$L_\infty$ action of $\mathfrak l$ on $\mathcal B_N$.
+\end{proposition}
+\begin{proof}
+Let $D$ be a word derivation of degree $j$ with $Dc=0$.
+For a homogeneous matrix word $M$, the graded Leibniz rule gives
+$D[c,M]=(-1)^j[c,DM]$. Thus the extended derivation commutes
+in the graded sense with the gauge part of
+\eqref{eq:vol2-classical-bfv-differential}. Extension preserves
+both the differential and the bracket of derivations, so it
+preserves every action identity.
+\end{proof}
+
+The first derivation is Hamiltonian: it equals
+$H_{J_N(f)}=\{J_N(f),-\}$. Each $J_N(f)$ is $Q$-closed by
+conjugation invariance. The cubic scalar defect has a
+Hamiltonian primitive
+\begin{equation}\label{eq:vol2-cubic-hamiltonian-primitive}
+ K_N=-\frac32\operatorname{Tr}(\Psi\mu),\qquad
+ QK_N=-\frac32\operatorname{Tr}(\mu^2).
+\end{equation}
+Graded cyclicity cancels the gauge terms in $QK_N$;
+\eqref{eq:vol2-cubic-trace-defect} identifies its remaining
+term with the bracket defect. Its Hamiltonian vector field is
+\begin{equation}\label{eq:vol2-cubic-hamiltonian-field}
+ \begin{aligned}
+ H_{K_N}X&=\tfrac32[\Psi,X],&
+ H_{K_N}Y&=\tfrac32[\Psi,Y],\\
+ H_{K_N}c&=-\tfrac32\mu,&H_{K_N}\Psi&=0.
+ \end{aligned}
+\end{equation}
+The extended word homotopy, in contrast, has
+\begin{equation}\label{eq:vol2-cubic-derived-field}
+ DX=3[\Psi,X],\quad DY=3[\Psi,Y],
+ \quad Dc=0,\quad D\Psi=3\Psi^2.
+\end{equation}
+Both satisfy
+\[
+ [Q,D]=[Q,H_{K_N}]
+   =[H_{J_N(q^3)},H_{J_N(p^3)}]-H_{J_N(9q^2p^2)}.
+\]
+The ghost component in \eqref{eq:vol2-cubic-hamiltonian-field}
+is part of its Hamiltonian solution.
+
+For $N\geq2$, $D$ is not Hamiltonian for the displayed bracket.
+Indeed, $Dc=0$ would force a polynomial Hamiltonian for $D$ to
+be independent of every $\Psi_{ij}$. Such a polynomial has no
+component of degree $-1$, while $D$ is a nonzero degree-minus-one
+derivation. A coherent derivation action therefore does not by
+itself supply Hamiltonian representatives for its homotopies.
+
+There is a prior scalar obstruction to a homotopy moment map
+on the quotient $\mathfrak l$. Choose representatives with
+constant term zero. Their bracket can acquire a constant:
+the scalar cocycle is $\kappa(f,g)=\{f,g\}(0)$.
+
+\begin{proposition}\label{prop:vol2-moment-central-obstruction}
+For $N>0$, no $L_\infty$ morphism
+$\mathfrak l\to(\mathcal B_N,Q,\{-,-\})$ has first component
+$f\mapsto J_N(f)$ on those representatives. The obstruction
+persists if the first components are changed by $Q$-boundaries.
+\end{proposition}
+\begin{proof}
+The classes of $q,p$ have zero bracket in $\mathfrak l$, whereas
+\[
+ \{\operatorname{Tr}X,\operatorname{Tr}Y\}=N.
+\]
+The binary morphism equation would make $N$ a $Q$-boundary.
+Evaluation of $X,Y,c,\Psi$ at zero is a cochain map to
+$\mathbb C$, since every value in
+\eqref{eq:vol2-classical-bfv-differential} is quadratic.
+It sends the alleged boundary to the nonzero scalar $N$.
+Exact changes of closed charges leave their cohomology bracket
+unchanged, so they cannot remove this obstruction.
+\end{proof}
+
+Retaining the central extension $A\to\mathfrak l$, with
+$J_N(1)=N$, removes this particular obstruction. The cocycle
+also vanishes on the classical pointed subalgebra $(q,p)^2$.
+On vector fields constants already act by zero, which explains
+why Theorem~\ref{thm:vol2-all-arity-derived-action} is consistent
+with the proposition.
+
+The central extension contains a strict finite sector. Write
+$e=q^2/2$, $f=p^2/2$ and $h_{\mathrm{quad}}=qp$.
+Besides skew versions, its
+nonzero brackets are
+\[
+ \{q,p\}=1,\quad\{e,p\}=q,\quad\{f,q\}=-p,
+ \quad\{e,f\}=h_{\mathrm{quad}},
+\]
+\[
+ \{h_{\mathrm{quad}},q\}=-q,\quad
+ \{h_{\mathrm{quad}},p\}=p,\quad
+ \{h_{\mathrm{quad}},e\}=-2e,\quad
+ \{h_{\mathrm{quad}},f\}=2f.
+\]
+The map $J_N$ sends $1,q,p,e,h_{\mathrm{quad}},f$ to
+$N,\operatorname{Tr}X,\operatorname{Tr}Y,
+\operatorname{Tr}(X^2)/2,\operatorname{Tr}(XY),
+\operatorname{Tr}(Y^2)/2$. Canonical matrix differentiation
+gives precisely the same list of brackets. Thus scalar
+quadratics act by a strict Hamiltonian Lie map of closed
+functions. Higher scalar Hamiltonians require the homotopies
+whose first instance is \eqref{eq:vol2-cubic-hamiltonian-primitive}.
+
+\section{A cyclic orientation of the resolution}
+\label{sec:vol2-derived-cyclic-orientation}
+
+The symplectic plane has the volume form $dq\wedge dp$.
+To preserve it on a resolution, the action must act on a complex
+that remembers cyclic order as well as the differential.
+Use normalized Hochschild chains
+\[
+ C_n(R)=R\otimes\overline R^{\otimes n},\qquad
+ \overline R=R/\mathbb C1,
+\]
+written $a_0[a_1|\cdots|a_n]$. A unit in any bar slot represents
+zero. A chain of internal degree $m=\sum_i|a_i|$ has total
+cohomological degree $m-n$. Let $d_\otimes$ be the tensor
+differential with its ordinary Koszul signs. In the raw-chain
+convention the Hochschild differential is
+\begin{equation}\label{eq:vol2-raw-hochschild-differential}
+ d_{\mathrm H}=(-1)^n d_\otimes+b,
+\end{equation}
+where
+\begin{align*}
+ b(a_0[a_1|\cdots|a_n])
+  ={}&a_0a_1[a_2|\cdots|a_n]\\
+    &+\sum_{j=1}^{n-1}(-1)^j
+        a_0[a_1|\cdots|a_ja_{j+1}|\cdots|a_n]\\
+    &+(-1)^{n+|a_n|\sum_{i<n}|a_i|}
+        a_na_0[a_1|\cdots|a_{n-1}].
+\end{align*}
+For $n=0$ set $b=0$. The normalized Connes operator is
+\begin{equation}\label{eq:vol2-raw-connes-operator}
+ B(a_0[a_1|\cdots|a_n])
+ =\sum_{j=0}^n
+ (-1)^{nj+(\sum_{i<j}|a_i|)(\sum_{i\geq j}|a_i|)}
+ 1[a_j|\cdots|a_n|a_0|\cdots|a_{j-1}].
+\end{equation}
+Adjacent face cancellations and cyclic rotation give
+$d_{\mathrm H}^2=B^2=d_{\mathrm H}B+Bd_{\mathrm H}=0$.
+Thus $(C_\bullet(R),d_{\mathrm H},B)$ is a mixed complex,
+with the second operator of degree $-1$.
+
+Let $\zeta$ have degree two. The negative-cyclic complex is
+\[
+ M_R=\bigl(C_\bullet(R)[[\zeta]],d_{\mathrm H}+\zeta B\bigr).
+\]
+Its degree-minus-two orientation is
+\begin{equation}\label{eq:vol2-raw-orientation-cycle}
+ \omega_0=1[q|p]-1[p|q]-1[t].
+\end{equation}
+The first two terms have Hochschild boundary $-1[qp-pq]$.
+The internal differential of the last term, with the sign in
+\eqref{eq:vol2-raw-hochschild-differential}, is $+1[qp-pq]$.
+Its remaining Hochschild boundary is zero. Every Connes term
+has a unit in a bar slot. Hence
+$d_{\mathrm H}\omega_0=B\omega_0=0$.
+
+The sign of $1[t]$ is tied to this totalization. Multiplication
+of a chain of bidegree $(m,n)$ by $(-1)^{mn}$ changes the
+differential to $d_\otimes+(-1)^m b$ and the Connes operator
+to $(-1)^mB$; in that convention the last sign is positive.
+The explicit formulas below use the raw convention throughout.
+
+Let $\Omega_A^a$ denote polynomial differential $a$-forms with
+de Rham differential $d_{\mathrm{dR}}$, and place it in
+cohomological degree $-a$. The normalized
+Hochschild--Kostant--Rosenberg projection is
+\begin{equation}\label{eq:vol2-plane-hkr-projection}
+ p_{\mathrm H}(a_0[a_1|\cdots|a_n])
+  =\frac1{n!}\pi(a_0)\,d_{\mathrm{dR}}\pi(a_1)
+                     \wedge\cdots\wedge d_{\mathrm{dR}}\pi(a_n).
+\end{equation}
+Substitution in the face and cyclic formulas gives
+\[
+ p_{\mathrm H}d_{\mathrm H}=0,
+ \qquad p_{\mathrm H}B=d_{\mathrm{dR}}p_{\mathrm H},
+ \qquad p_{\mathrm H}\omega_0=dq\wedge dp.
+\]
+The factorial is essential to the last normalization.
+
+\begin{proposition}\label{prop:vol2-mixed-plane-contraction}
+There is a weight-preserving contraction
+$(p_{\mathrm H},i_{\mathrm H},H_{\mathrm H})$ from
+$(C_\bullet(R),d_{\mathrm H})$ to $(\Omega_A^\bullet,0)$,
+with $i_{\mathrm H}(dq\wedge dp)=\omega_0$ and
+\[
+ H_{\mathrm H}^2=H_{\mathrm H}i_{\mathrm H}
+                =p_{\mathrm H}H_{\mathrm H}=0.
+\]
+Its negative-cyclic perturbation has unchanged projection and
+target differential $\zeta d_{\mathrm{dR}}$. More precisely,
+\begin{equation}\label{eq:vol2-mixed-plane-perturbation}
+ \begin{aligned}
+ i_\zeta&=(1+\zeta H_{\mathrm H}B)^{-1}i_{\mathrm H},\\
+ H_\zeta&=H_{\mathrm H}(1+\zeta BH_{\mathrm H})^{-1},
+       &p_\zeta&=p_{\mathrm H}.
+ \end{aligned}
+\end{equation}
+The choices can be made by finite rational linear algebra at
+each polynomial weight.
+\end{proposition}
+\begin{proof}
+Give $q,p,t$ weights $1,1,2$ and each bar chain the sum of its
+generator weights. Normalized bar slots have positive weight, so
+the bar-length filtration is finite in each fixed weight.
+The quasi-isomorphism $R\to A$ therefore gives a
+quasi-isomorphism of Hochschild chains weight by weight:
+on each associated-graded piece the comparison is a tensor
+product of quasi-isomorphisms over the field.
+
+Write $A^e=A\otimes A^{\mathrm{op}}$, and use subscripts $L,R$
+for its two factors. The diagonal of $A$ has the bimodule
+Koszul resolution
+\[
+ A^e\otimes\Lambda(e_q,e_p),\qquad
+ de_q=q_L-q_R,\qquad de_p=p_L-p_R.
+\]
+The two differences form a regular sequence, since they become
+independent polynomial variables after a linear change of
+coordinates. Tensoring with $A$ over $A^e$ kills this
+differential and identifies $e_q,e_p$ with $dq,dp$.
+The bar resolution is another free resolution of the diagonal;
+its augmented contraction inserts the unit. The comparison sends
+$e_q\wedge e_p$ to the antisymmetrized bar
+$1[q|p]-1[p|q]$. Consequently
+\eqref{eq:vol2-plane-hkr-projection} is a surjective
+quasi-isomorphism with the stated normalization.
+
+Choose lifts of a basis of forms to cycles, using $\omega_0$
+for the volume. These give $i_{\mathrm H}$. In the acyclic
+kernel, choose degreewise splittings
+\[
+ (\ker p_{\mathrm H})^r=B^r\oplus L^r,
+ \qquad d_{\mathrm H}:L^r\xrightarrow{\sim}B^{r+1}.
+\]
+Take $H_{\mathrm H}$ to be the inverse on $B^{r+1}$ and zero
+on $L$ and the chosen cycle lifts. This proves the contraction
+and side identities. Every space in a fixed weight is finite
+dimensional; lexicographic word bases and row reduction make
+the choices rational.
+
+Apply perturbation by $\zeta B$. Its series converge in the
+$\zeta$-adic topology. The relation
+\[
+ p_{\mathrm H}\zeta BH_{\mathrm H}
+      =\zeta d_{\mathrm{dR}}p_{\mathrm H}H_{\mathrm H}=0
+\]
+keeps the projection fixed. It also kills every higher term
+in the transferred differential
+$p_{\mathrm H}\zeta B(1+\zeta H_{\mathrm H}B)^{-1}i_{\mathrm H}$,
+leaving exactly $\zeta d_{\mathrm{dR}}$.
+Since $B\omega_0=0$, the perturbed inclusion still sends the
+volume to $\omega_0$.
+\end{proof}
+
+There is no unbounded filtration exchange in this comparison.
+At fixed weight the bar length and the negative internal degree
+are bounded. Fixing total degree then bounds the exponent of
+$\zeta$. The completed identities can therefore be checked in
+finite-dimensional pieces as well as in finite parameter quotients.
+
+\section{Coherent preservation of the volume}
+\label{sec:vol2-equivariant-cyclic-volume}
+
+A derivation $D$ of degree $r$ acts on raw chains by
+\begin{equation}\label{eq:vol2-raw-chain-lie-derivative}
+ \mathcal L_D(a_0[a_1|\cdots|a_n])
+  =\sum_{j=0}^n(-1)^{nr+r\sum_{i<j}|a_i|}
+       a_0[\cdots|D(a_j)|\cdots|a_n],
+\end{equation}
+where the $j=0$ term acts on the outer coefficient. The factor
+$(-1)^{nr}$ is required by the raw totalization. The tensor
+signs give
+\[
+ [d_{\mathrm H},\mathcal L_D]=\mathcal L_{[d,D]},
+ \qquad [B,\mathcal L_D]=0,
+ \qquad [\mathcal L_D,\mathcal L_E]=\mathcal L_{[D,E]}.
+\]
+Thus the action $F$ makes $M_R$ an $L_\infty$ module.
+
+For explicit totalization, write $C=S^c(\mathfrak l[1])$ and
+let $b_C$ be its Chevalley codifferential. The twisting cochain
+$\alpha:C\to\operatorname{Der}(R)$ has degree one and
+\[
+ \alpha_n(sf_1\cdots sf_n)=F_n(f_1,\ldots,f_n).
+\]
+Its equation is
+$\partial\alpha+\alpha b_C+[\alpha,\alpha]/2=0$,
+where convolution uses the tensor Koszul sign. On the completed
+coefficient complex
+\[
+ \mathcal C_R=\prod_{n\geq0}
+       \operatorname{Hom}(S^n(\mathfrak l[1]),M_R),
+\]
+the differential of a homogeneous map $a$ is
+\begin{equation}\label{eq:vol2-equivariant-cyclic-differential}
+ D_Fa=d_{M_R}a-(-1)^{|a|}a b_C+\mathcal L_\alpha\star a.
+\end{equation}
+Here $\star$ denotes action convolution with the unshuffle
+coproduct.
+The twisting-cochain equation implies $D_F^2=0$.
+
+The projection to forms intertwines the first action and kills
+the higher ones:
+\begin{equation}\label{eq:vol2-equivariant-hkr}
+ p_{\mathrm H}\mathcal L_{F_1(f)}
+      =\mathcal L_{X_f}p_{\mathrm H},
+ \qquad p_{\mathrm H}\mathcal L_{F_n}=0\quad(n\geq2).
+\end{equation}
+The first equation is naturality of the differential-form
+formula. For the second, a negative-degree value of a
+derivation contains $t$ and is killed by $\pi$.
+
+A coherent lift is a $D_F$-closed element of total degree
+$-2$ whose projection is the volume, regarded as a constant
+arity-zero cochain. Its arity-$n$ component is an alternating
+map $\omega_n:\Lambda^n\mathfrak l\to M_R^{-n-2}$.
+Polynomial parameter forms retain homotopies over this fixed
+projection and define the derived space of such lifts.
+
+\begin{theorem}\label{thm:vol2-coherent-cyclic-orientation}
+The orientation $\omega_0$ extends to a $D_F$-closed element
+$\omega_{\mathrm{eq}}$ of total degree $-2$.
+Over the fixed Hamiltonian action and fixed projection to
+$dq\wedge dp$, the derived space of coherent negative-cyclic
+lifts is contractible. The construction is continuous for
+pointed Hamiltonians in the positive-weight completion.
+\end{theorem}
+\begin{proof}
+Extend the contraction of
+Proposition~\ref{prop:vol2-mixed-plane-contraction} to the
+convolution complex, with its total signs. Let
+$\mathcal H_\zeta$ denote the extended homotopy and let
+$\delta_F$ denote the terms in
+\eqref{eq:vol2-equivariant-cyclic-differential} beyond the
+coefficient differential $d_{M_R}$. They raise arity.
+Perturbation in the arity filtration gives
+\begin{equation}\label{eq:vol2-equivariant-volume-formula}
+ \omega_{\mathrm{eq}}
+    =(1+\mathcal H_\zeta\delta_F)^{-1}
+          i_\zeta(dq\wedge dp).
+\end{equation}
+Equation~\eqref{eq:vol2-equivariant-hkr} and
+$p_{\mathrm H}\mathcal H_\zeta=0$ imply
+$p_{\mathrm H}\delta_F\mathcal H_\zeta=0$.
+The transferred differential is therefore precisely the strict
+Hamiltonian action on forms together with
+$\zeta d_{\mathrm{dR}}$. The volume is closed and its Lie
+derivative under $X_f$ is zero, since
+$\partial_q(-f_p)+\partial_p(f_q)=0$.
+Its perturbed inclusion is consequently closed. Its arity-zero
+component is $\omega_0$.
+
+The same perturbation contracts the kernel of the fixed
+projection. The homotopy fibre over the specified closed volume
+is an affine translate of this acyclic complex. Polynomial
+parameter forms and its contraction fill relative families,
+so its derived mapping space is contractible.
+
+At fixed arity only finitely many arity-raising factors occur.
+At fixed $\zeta$ precision the mixed perturbation is finite.
+Finally, the weight estimate in
+Proposition~\ref{prop:vol2-pointed-action-completion} makes
+every output weight a finite sum for pointed inputs. These
+three finiteness statements prove the completion assertion.
+\end{proof}
+
+Two coherence levels can be written without a matrix inversion.
+Abbreviate $1[a_1|\cdots|a_n]$ by
+$\langle a_1|\cdots|a_n\rangle$. The arity-one equation is
+\[
+ d_{\mathrm H}\omega_1(f)=-\mathcal L_{F_1(f)}\omega_0.
+\]
+Choose
+\begin{equation}\label{eq:vol2-cyclic-cubic-primitives}
+ \omega_1(q^3)=-3\langle q|q|q\rangle,
+ \qquad \omega_1(p^3)=-3\langle p|p|p\rangle.
+\end{equation}
+For instance,
+$d_{\mathrm H}\langle q|q|q\rangle
+=\langle q|q^2\rangle-\langle q^2|q\rangle$.
+A compatible quartic prescription is
+\begin{align}
+ \omega_1(q^2p^2)
+ ={}&-\tfrac23\langle tt\rangle
+       \label{eq:vol2-cyclic-quartic-primitive}\\
+ &+\tfrac23\bigl(
+       \langle q|pt\rangle-\langle q|tp\rangle
+      -\langle p|qt\rangle+\langle p|tq\rangle\bigr)\notag\\
+ &+\tfrac23\bigl(
+       \langle qt|p\rangle-\langle pt|q\rangle
+      -\langle tq|p\rangle+\langle tp|q\rangle\bigr)\notag\\
+ &-2\bigl(\langle q|p|qp\rangle
+           +\langle p|qp|q\rangle+\langle qp|q|p\rangle\bigr).
+       \notag
+\end{align}
+All three chains have zero Connes boundary and zero HKR
+projection. For $f=q^3,g=p^3$, the second equation in the same
+convention is
+\begin{align}
+ d_{\mathrm H}\omega_2(f,g)
+ ={}&\omega_1(\{f,g\})
+       -\mathcal L_{F_1(f)}\omega_1(g)
+       +\mathcal L_{F_1(g)}\omega_1(f)\notag\\
+    &-\mathcal L_{F_2(f,g)}\omega_0.
+       \label{eq:vol2-cyclic-second-equation}
+\end{align}
+Its solution
+\begin{align}
+ \tfrac19\omega_2(q^3,p^3)
+ ={}&\langle t|t\rangle
+      +\langle q|p|t\rangle-\langle p|q|t\rangle
+       \label{eq:vol2-cyclic-second-primitive}\\
+    &-\langle q|t|p\rangle+\langle p|t|q\rangle
+      +\langle t|q|p\rangle-\langle t|p|q\rangle\notag\\
+    &-\langle q|q|p|p\rangle+\langle q|p|q|p\rangle
+      +\langle q|p|p|q\rangle\notag\\
+    &+\langle p|q|q|p\rangle-\langle p|q|p|q\rangle
+      -\langle p|p|q|q\rangle\notag
+\end{align}
+also has zero Connes boundary and HKR projection.
+Substitution in the raw differential verifies these identities:
+internal terms replace $t$ by $qp-pq$, and adjacent mergers
+cancel the cyclic faces. In particular the
+$\langle t|t\rangle$ term is required in the second equation.
+The contracted projection kernel extends these prescribed
+lower components to all arities, even if a particular
+row-reduction rule chooses different representatives.
+
+\section{The finite matrix tangent pairing}
+\label{sec:vol2-matrix-tangent-pairing}
+
+The diagonal Koszul resolution also explains the nondegeneracy
+of the orientation. Its top exterior product pairs the
+resolution with its dual and gives
+\[
+ \operatorname{RHom}_{A^e}(A,A^e)\simeq A[-2].
+\]
+The volume $dq\wedge dp$ fixes this identification. Together
+with its negative-cyclic lift, this is the smooth
+$2$-Calabi--Yau orientation of the plane: the diagonal is a
+perfect bimodule, and its bimodule dual is the displayed shift.
+Extension and restriction along the quasi-isomorphism $R\to A$
+transport this duality to $R$. Properness would require finite
+total cohomology over $\mathbb C$, which $A$ does not have.
+The orientation is a bimodule duality, distinct from a
+nondegenerate scalar trace on a proper algebra.
+
+Take the quotient by $GL_N$ of the derived affine scheme
+represented by $R_N$. At a commuting pair $(X,Y)$ its tangent
+complex is
+\begin{equation}\label{eq:vol2-derived-matrix-tangent}
+ \underbrace{\mathfrak{gl}_N}_{-1}
+ \xrightarrow{\ d_0\ }
+ \underbrace{\operatorname{Mat}_N\oplus\operatorname{Mat}_N}_{0}
+ \xrightarrow{\ d_1\ }
+ \underbrace{\mathfrak{gl}_N}_{1},
+\end{equation}
+with
+\[
+ d_0(a)=([a,X],[a,Y]),\qquad
+ d_1(U,V)=[U,Y]+[X,V].
+\]
+The first arrow differentiates conjugation; the second
+differentiates the relation. Their composite is
+$[a,[X,Y]]=0$. Put
+\begin{equation}\label{eq:vol2-matrix-tangent-form}
+ \omega((U,V),(U',V'))=\operatorname{Tr}(UV'-VU')
+\end{equation}
+on the middle term. Pair the terms in degrees $-1$ and $1$
+by $\operatorname{Tr}(ab)$, symmetrically under reversal as
+required by graded skew-symmetry between two odd degrees.
+Trace invariance gives
+\[
+ \omega(d_0a,(U,V))=\operatorname{Tr}(a\,d_1(U,V)).
+\]
+Thus these pairings form a degree-zero cochain pairing.
+They are perfect term by term, including at points with
+stabilizers. Discarding either outer term would discard part
+of this self-dual tangent complex. This finite tangent
+calculation and coherent cyclic invariance do not require
+every chosen derivation homotopy to be Hamiltonian for one
+fixed chain-level symplectic form.
+
+\section{Deforming the coefficient relation}
+\label{sec:vol2-coefficient-weyl-action}
+
+Let $k_\varepsilon=\mathbb C[\varepsilon]$, with
+$|\varepsilon|=0$, and define
+\begin{equation}\label{eq:vol2-quantum-plane-resolution}
+ \begin{gathered}
+ W_\varepsilon=k_\varepsilon\langle q,p\rangle/
+                              (qp-pq-\varepsilon),\\
+ R_\varepsilon=k_\varepsilon\langle q,p,t\rangle,
+ \qquad |t|=-1,\qquad dt=qp-pq-\varepsilon,
+ \qquad dq=dp=0.
+ \end{gathered}
+\end{equation}
+The projection $\pi_\varepsilon$ kills $t$.
+Normal words $p^bq^a$ give a $k_\varepsilon$-basis of
+$W_\varepsilon$: the replacement $qp\mapsto pq+\varepsilon$
+terminates, and the leading pattern $qp$ has no overlap
+ambiguity. They define a linear section $i_\varepsilon$.
+
+Use the same marked-word contraction $h_0$ as before, with
+$d_0t=qp$, but now put $\delta t=-pq-\varepsilon$.
+Order expanded words first by length and then by the number
+of pairs in which $q$ precedes $p$. Exchanging $qp$ and $pq$
+decreases the second number; the constant term decreases the
+first. Every term of $\delta h_0$ therefore decreases this
+well-founded order.
+
+\begin{proposition}\label{prop:vol2-integral-weyl-resolution}
+The finite series
+\[
+ h_\varepsilon=h_0(1+\delta h_0)^{-1},\qquad
+ p'=p_0(1+\delta h_0)^{-1}
+\]
+satisfy
+\[
+ dh_\varepsilon+h_\varepsilon d=1-i_\varepsilon\pi_\varepsilon,
+ \quad h_\varepsilon^2=h_\varepsilon i_\varepsilon
+                      =\pi_\varepsilon h_\varepsilon=0,
+ \quad p'=\pi_\varepsilon.
+\]
+They extend continuously to the $\varepsilon$-adic completions,
+allowing word support to grow with parameter order.
+\end{proposition}
+\begin{proof}
+The marked-word proof of
+Proposition~\ref{prop:vol2-plane-word-resolution} applies with
+the decreasing order just described. Each surviving reduction
+is precisely the PBW rule $qp\mapsto pq+\varepsilon$, so the
+perturbed projection is $\pi_\varepsilon$. No division by
+$\varepsilon$ occurs.
+
+An element of the completed source is a series
+$\sum_{r\geq0}\varepsilon^r a_r$ with each $a_r$ a finite
+word polynomial. Every perturbation has nonnegative parameter
+order. At a fixed output order, only finitely many earlier
+coefficients contribute, and each has a terminating word
+calculation. This defines the continuous extensions. The
+identities hold modulo every power of $\varepsilon$, hence in
+the separated inverse limit.
+\end{proof}
+
+Let $m(f\otimes g)=fg$ be ordinary polynomial multiplication.
+On $k_\varepsilon[q,p]$, the Moyal product is
+\begin{equation}\label{eq:vol2-coefficient-moyal-product}
+ f\star_\varepsilon g
+ =m\exp\!\left[\frac\varepsilon2
+       (\partial_q\otimes\partial_p-\partial_p\otimes\partial_q)
+       \right](f\otimes g).
+\end{equation}
+It is finite on polynomial inputs. On three tensor factors,
+the three constant bidifferential operators commute; both
+parenthesizations are the exponential of their sum. This
+proves associativity. Symmetrization identifies this product
+with multiplication in $W_\varepsilon$. For linear forms $u,v$,
+centrality of their Weyl commutator gives
+\[
+ e^{\sigma u}e^{\sigma v}
+   =e^{\varepsilon\{u,v\}/2}e^{\sigma(u+v)}.
+\]
+Differentiation in a formal scalar parameter proves this
+exponential identity. Taking coefficients in $u,v$ gives the
+polynomial product identity.
+
+The commutator is divisible by $\varepsilon$ in the polynomial
+ring. Write
+\[
+ B_\varepsilon(f,g)=
+          (f\star_\varepsilon g-g\star_\varepsilon f)/\varepsilon,
+ \qquad
+ \mathfrak l_\varepsilon=k_\varepsilon[q,p]/k_\varepsilon1.
+\]
+Division here means the polynomial quotient; the parameter is
+not inverted. The quotient is a Lie algebra. The cyclic
+derivative formula \eqref{eq:vol2-hamiltonian-first-lift}
+still defines a closed derivation of $R_\varepsilon$.
+Under $\pi_\varepsilon$ it induces the strict Moyal
+derivation $B_\varepsilon(f,-)$. Indeed its values on $q,p$
+are the Weyl-ordered derivatives $-f_p,f_q$, and those
+generators determine a derivation of the Weyl algebra.
+
+\begin{theorem}\label{thm:vol2-coherent-coefficient-quantum-action}
+There is an $L_\infty$ morphism over $k_\varepsilon$
+\[
+ F^\varepsilon:\mathfrak l_\varepsilon
+       \longrightarrow\operatorname{Der}_{k_\varepsilon}
+                                   (R_\varepsilon)
+\]
+with the specified first component. Each Taylor component
+is polynomial and finite at fixed arity on polynomial inputs.
+The action extends continuously to the parameter completions
+and gives, by matrix substitution, a $GL_N$-equivariant action
+on the derived representation algebra for every $N$.
+\end{theorem}
+\begin{proof}
+Let $K_\varepsilon$ be the derivations whose generator values
+lie in $\ker\pi_\varepsilon$. The differential of a
+degree-$j$ derivation with values $(U,V,W)$ is still
+\eqref{eq:vol2-derivation-differential}: derivations over
+$k_\varepsilon$ kill the added scalar.
+Replacing $h$ by $h_\varepsilon$ in
+\eqref{eq:vol2-derivation-kernel-homotopy} therefore contracts
+$K_\varepsilon$ in every degree.
+
+Use the coalgebra signs
+\eqref{eq:vol2-lie-coalgebra-signs} and replace the source
+Poisson bracket by $B_\varepsilon$. The first action projects
+to a strict action on $W_\varepsilon$. Every higher residual
+is consequently closed and lies in $K_\varepsilon$.
+Applying its contraction supplies the next component, exactly
+as in Theorem~\ref{thm:vol2-all-arity-derived-action}.
+Finitely many partitions and the terminating word order prove
+polynomial finiteness. The maps never decrease parameter
+order, giving the continuous completed identities. Matrix
+substitution preserves differentials, brackets and
+conjugation over the same base ring.
+\end{proof}
+
+The first parameter-dependent correction is already visible
+on a cubic and a quartic:
+\begin{equation}\label{eq:vol2-first-quantum-hamiltonian-contact}
+ \begin{aligned}
+ B_\varepsilon(q^3,p^4)&=12q^2p^3+6\varepsilon^2p,\\
+ F^\varepsilon_2(q^3,p^4)q
+     &=6(-pqt+ptq-qtp+tpq-\varepsilon t),\\
+ F^\varepsilon_2(q^3,p^4)p&=6(-p^2t+tp^2),\\
+ F^\varepsilon_2(q^3,p^4)t&=6(pt^2+tpt).
+ \end{aligned}
+\end{equation}
+The first and third odd Moyal terms give the bracket in the
+first line. Applying $\partial=[d,-]$ to the remaining lines
+gives the binary defect on all three generators. In particular
+$d(-6\varepsilon t)$ contributes $+6\varepsilon^2$ to the
+$q$-component, matching the contribution of
+$-F_1(6\varepsilon^2p)$ to the defect.
+The third component on the ordered triple
+$(q^3,p^4,q^2p)$ is
+\begin{equation}\label{eq:vol2-quantum-ternary-action}
+ F^\varepsilon_3q=-12tqt+12t^2q,
+ \qquad F^\varepsilon_3p=-12pt^2,
+ \qquad F^\varepsilon_3t=-6t^3.
+\end{equation}
+Substitution of $dt=qp-pq-\varepsilon$ verifies its ternary
+equation with the binary terms in
+\eqref{eq:vol2-first-quantum-hamiltonian-contact}.
+
+The classical positive-weight completion and this parameter
+completion use different estimates. Higher Moyal terms can
+lower polynomial degree, as the term $\varepsilon^2p$ shows.
+The parameter-adic theorem does not assert that the classical
+pointed polynomial subspace remains closed under the deformed
+bracket.
+
+There is a relative negative-cyclic orientation over the
+parameter ring. Form normalized chains over $k_\varepsilon$,
+so that a parameter multiple of $1$ is zero in a bar slot.
+In the raw totalization,
+\begin{equation}\label{eq:vol2-relative-quantum-orientation}
+ \omega_\varepsilon=1[q|p]-1[p|q]-1[t]
+\end{equation}
+satisfies
+\[
+ d_{\mathrm H}\omega_\varepsilon=-\varepsilon1[1]=0,
+ \qquad B\omega_\varepsilon=0.
+\]
+This is a relative mixed-complex assertion. It uses the
+parameter in the base ring; an absolute de Rham variation
+of that parameter is additional data. The cycle itself also
+does not supply an equivariant cyclic comparison to a
+matrix-quantized recipient.
+
+\section{Matrix quantization and finite representations}
+\label{sec:vol2-two-quantizations}
+
+Matrix quantization starts with the canonical matrix coordinates,
+using an independent parameter $\hbar$. Its even Weyl algebra
+$W_{N,\hbar}$ over $\mathbb C[\hbar]$ has
+\[
+ [X_{ij},Y_{kl}]=\hbar\delta_{il}\delta_{jk},\qquad
+ [X_{ij},X_{kl}]=[Y_{ij},Y_{kl}]=0.
+\]
+Weyl ordering is symmetrization of all coordinate factors.
+The Moyal formula on this finite-dimensional symplectic vector
+space identifies its multiplication with the corresponding
+constant-tensor star product. The commutator of two scalar
+quadratic polynomials, divided by $\hbar$, is exactly their
+Poisson bracket: the third and higher odd Moyal terms
+differentiate each quadratic at least three times and vanish.
+Thus the strict scalar quadratic sector constructed above
+remains strict under matrix quantization.
+
+The ordering of the matrix moment is part of this assertion.
+As operator-valued matrices, set
+\begin{equation}\label{eq:vol2-ordered-matrix-moment}
+ \widehat\mu=XY-YX-N\hbar I_N.
+\end{equation}
+The Weyl symbols of $XY$ and $YX$ differ from their commuting
+symbols by $N\hbar I_N/2$ and $-N\hbar I_N/2$, respectively.
+Consequently $\widehat\mu$ has Weyl symbol $[X,Y]$ in
+commuting coordinates. In particular
+\[
+ \operatorname{Tr}(XY-YX)=N^2\hbar,
+ \qquad \operatorname{Tr}\widehat\mu=0.
+\]
+This scalar ordering correction is fixed by the coordinate
+commutators. A specified nonzero value of a moment map is a
+separate datum.
+
+The full quantum BRST algebra also retains both ghost degrees.
+Choose a basis $a_i$ of $\mathfrak{gl}_N$ with
+$[a_i,a_j]=\sum_k f_{ij}^ka_k$, and set
+$\ell_i=\operatorname{Tr}(a_i\widehat\mu)$.
+These are the Weyl-ordered quadratic comoments, with
+\[
+ [\ell_i,\ell_j]=\hbar\sum_k f_{ij}^k\ell_k.
+\]
+This follows either by canonical matrix differentiation and
+exact quadratic quantization, or by realizing
+$X_{ij}=x_{ij}$ and $Y_{ij}=-\hbar\partial_{x_{ji}}$:
+$\ell_a=\hbar\tau(a)$, where
+$\tau(a)X=[X,a]$ is the infinitesimal pullback action.
+
+Adjoin odd generators $c^i,b_i$ of degrees $1,-1$, commuting
+with the even matter generators and satisfying
+\[
+ c^ic^j+c^jc^i=0,\qquad b_ib_j+b_jb_i=0,\qquad
+ b_ic^j+c^jb_i=\hbar\delta_i^j.
+\]
+Write $\mathcal B_{N,\hbar}$ for the resulting graded tensor
+product with $W_{N,\hbar}$. Define
+\begin{equation}\label{eq:vol2-quantum-bfv-hamiltonian}
+ \Omega=\sum_i c^i\ell_i
+          -\frac12\sum_{i,j,k}f_{ij}^kc^ic^jb_k,
+ \qquad Q_\hbar=\hbar^{-1}[\Omega,-]_{\mathrm{gr}}.
+\end{equation}
+Modulo $\hbar$ the algebra is supercommutative, so the
+commutator is divisible by $\hbar$ and the formula is integral.
+Under the trace identification of the ghost and its dual,
+its classical limit is
+\eqref{eq:vol2-classical-bfv-differential}.
+
+\begin{proposition}\label{prop:vol2-integral-quantum-brst}
+The element $\Omega$ satisfies $\Omega^2=0$.
+Consequently $Q_\hbar$ is a degree-one derivation with
+$Q_\hbar^2=0$ over $\mathbb C[\hbar]$.
+\end{proposition}
+\begin{proof}
+Normal words, with all $c$ generators before all $b$ generators,
+span the ghost algebra. Represent $c^i$ by exterior
+multiplication and $b_i$ by $\hbar\partial_{c^i}$, with left
+odd derivatives. After inverting $\hbar$, their normal words
+form a basis of the endomorphisms of the exterior space.
+They are therefore linearly independent over
+$\mathbb C[\hbar]$ as well. Together with the Weyl basis this
+proves parameter-torsion freeness and faithfulness on the
+tensor product of the matter regular module and the ghost
+exterior module.
+
+In this representation,
+\[
+ \Omega=\sum_i c^i\ell_i+\hbar d_{\mathrm{CE}},\qquad
+ d_{\mathrm{CE}}c^k=-\frac12\sum_{i,j}f_{ij}^kc^ic^j.
+\]
+Jacobi gives $d_{\mathrm{CE}}^2=0$. The square of the first
+term is
+$\frac{\hbar}{2}\sum f_{ij}^kc^ic^j\ell_k$; its mixed term
+with $\hbar d_{\mathrm{CE}}$ is the negative of this expression.
+Thus $\Omega^2=0$ in a faithful representation and in the
+algebra. For odd $\Omega$, the double graded commutator with
+$\Omega$ is the commutator with $\Omega^2$.
+Hence $\hbar^2Q_\hbar^2=0$, and torsion freeness gives the result.
+\end{proof}
+
+The full gauge complex has extra states even at rank one.
+Scalar conjugation is trivial, so $\ell=0$, the Lie bracket
+vanishes and $Q_\hbar=0$. In its degree-zero ghost algebra,
+$1$ and $u=cb$ are independent and obey
+\[
+ u^2=\hbar u.
+\]
+Thus the full BRST cohomology is not obtained by simply
+replacing it with the ordinary one-pair Weyl reduction.
+Removing the ineffective gauge direction changes the input.
+
+In contrast, a finite-dimensional representation of the
+\emph{coefficient} Weyl algebra has commuting coordinate
+entries and the relation $[X,Y]=\varepsilon I_N$.
+Its derived representation algebra is
+\begin{equation}\label{eq:vol2-coefficient-derived-representations}
+ R_{N,\varepsilon}
+   =\mathbb C[X_{ij},Y_{ij},\varepsilon]\otimes\Lambda(\Psi_{ij}),
+ \qquad Q\Psi=[X,Y]-\varepsilon I_N,
+ \qquad QX=QY=Q\varepsilon=0.
+\end{equation}
+This is the recipient supplied by matrix substitution in
+Theorem~\ref{thm:vol2-coherent-coefficient-quantum-action}.
+
+\begin{proposition}\label{prop:vol2-finite-weyl-representations}
+For $N>0$, multiplication by $\varepsilon$ is null-homotopic
+on $R_{N,\varepsilon}$. Its cohomology is annihilated by
+$\varepsilon$, and its localization at $\varepsilon$ is
+contractible.
+\end{proposition}
+\begin{proof}
+Commuting entries give $\operatorname{Tr}[X,Y]=0$.
+The element $v=-\operatorname{Tr}\Psi/N$ has degree $-1$
+and satisfies $Qv=\varepsilon$. Multiplication by $v$ obeys
+\[
+ Q(va)+vQa=\varepsilon a
+\]
+for every homogeneous $a$. After inverting $\varepsilon$,
+multiplication by $v/\varepsilon$ contracts the complex.
+\end{proof}
+
+This contraction is integral before localization. It does not
+contract the special fibre. At rank one the complex is
+\[
+ \mathbb C[x,y,\varepsilon]\psi
+     \xrightarrow{-\varepsilon}
+ \mathbb C[x,y,\varepsilon],\qquad |\psi|=-1.
+\]
+Its cohomology is $\mathbb C[x,y]$ in degree zero, annihilated
+by $\varepsilon$. Derived specialization at $\varepsilon=0$
+is computed by the displayed free complex and retains the
+degree-minus-one class $\psi$. Simply specializing its
+degree-zero cohomology would miss that class.
+
+The equations \eqref{eq:vol2-ordered-matrix-moment} and
+\eqref{eq:vol2-coefficient-derived-representations} therefore
+cannot be interchanged by naming their parameters alike.
+One quantizes the matrix coordinate algebra; the other asks
+for matrix representations of a quantized coefficient algebra.
+A comparison between them must specify a map and its effect
+on relation classes.
+
+\section{Framed and infinite-dimensional recipients}
+\label{sec:vol2-weyl-action-recipients}
+
+Framing changes the finite-dimensional equation. Add a column
+$\mathbf i\in\mathbb C^N$ and a row
+$\mathbf j\in(\mathbb C^N)^*$, and use
+\begin{equation}\label{eq:vol2-framed-moment-equation}
+ [X,Y]+\mathbf i\mathbf j=\varepsilon I_N.
+\end{equation}
+Simultaneous conjugation extends by
+$\mathbf i\mapsto g\mathbf i$ and
+$\mathbf j\mapsto\mathbf jg^{-1}$. The extra rank-one
+term permits a nonzero trace of the prescribed moment value.
+
+\begin{proposition}\label{prop:vol2-framed-weyl-chart}
+On the ordered chart with pairwise distinct $x_i$, the formulas
+\begin{equation}\label{eq:vol2-framed-weyl-coordinates}
+ \begin{gathered}
+ X=\operatorname{diag}(x_i),\qquad
+ \mathbf i_i=1,\qquad\mathbf j_i=\varepsilon,\\
+ Y_{ii}=y_i,\qquad
+ Y_{ij}=-\frac{\varepsilon}{x_i-x_j}\quad(i\ne j)
+ \end{gathered}
+\end{equation}
+give a free framed orbit and a smooth local quotient of
+relative dimension $2N$ over the parameter. At fixed
+$\varepsilon$, the reduced symplectic form is
+$\sum_i dx_i\wedge dy_i$ on this ordered cover.
+\end{proposition}
+\begin{proof}
+The off-diagonal entries of the left side of
+\eqref{eq:vol2-framed-moment-equation} are
+$-\varepsilon+\varepsilon=0$; its diagonal entries are
+$\varepsilon$. A stabilizer commuting with $X$ is diagonal,
+and fixing the column with all entries one makes it the
+identity. The infinitesimal action is injective.
+
+On the open set with simple $X$ and nonzero components of
+$\mathbf i$ in its eigenbasis, diagonalize $X$ and use diagonal
+gauge transformations to set those components equal to one.
+The moment equation then forces the displayed values of
+$\mathbf j$ and the off-diagonal entries of $Y$.
+Thus $(x_i,y_i)$ actually parametrize the local quotient.
+
+With the canonical form
+$\operatorname{Tr}(dX\wedge dY)
+ +\sum_i d\mathbf i_i\wedge d\mathbf j_i$,
+the moment differential is the symplectic transpose of the
+infinitesimal action, so it is surjective. The quotient is
+therefore smooth of relative dimension
+$(2N^2+2N)-2N^2=2N$ near this orbit.
+On the slice, $d\mathbf i=d\mathbf j=0$ at fixed parameter,
+and $dX$ is diagonal. The pullback of the form is exactly
+$\sum_i dx_i\wedge dy_i$. Permuting the eigenvalues gives
+the remaining finite identification.
+\end{proof}
+
+An infinite-dimensional unframed recipient keeps the original
+coefficient equation. Complete $W_\varepsilon$ in the
+$\varepsilon$-adic topology and write it as
+$\widehat W_\varepsilon$. Use complete left modules with
+continuous maps and strict exact sequences, resolved by
+topologically free modules. The completed polynomial Fock module
+\[
+ \mathcal P=\mathbb C[p][[\varepsilon]],\qquad
+ q\cdot f=\varepsilon\partial_pf,\qquad p\cdot f=pf
+\]
+satisfies $[q,p]=\varepsilon$. A coefficient at each parameter
+order is a polynomial in $p$, with no uniform degree bound.
+
+\begin{proposition}\label{prop:vol2-integral-fock-self-extension}
+Continuous derived Hom in this exact category gives
+\[
+ \operatorname{Ext}^0_{\widehat W_\varepsilon}(\mathcal P,\mathcal P)
+     =\mathbb C[[\varepsilon]],
+ \qquad
+ \operatorname{Ext}^1_{\widehat W_\varepsilon}(\mathcal P,\mathcal P)
+     =\mathbb C[p],
+\]
+with all other degrees zero. Multiplication by $\varepsilon$
+annihilates the degree-one group.
+\end{proposition}
+\begin{proof}
+In the completed PBW basis $p^bq^a$, right multiplication by
+$q$ increases $a$ by one. It is injective with closed image,
+and its cokernel is $\mathcal P$. As a map of left modules
+it gives the strict topologically free resolution
+\[
+ 0\longrightarrow\widehat W_\varepsilon
+   \xrightarrow{R_q}\widehat W_\varepsilon
+   \longrightarrow\mathcal P\longrightarrow0.
+\]
+Continuous Hom into $\mathcal P$ is the two-term complex
+\[
+ \mathcal P\xrightarrow{\varepsilon\partial_p}\mathcal P
+\]
+in degrees zero and one. Coefficientwise polynomial
+integration is a continuous right inverse to $\partial_p$.
+The kernel is $\mathbb C[[\varepsilon]]$, the image is
+$\varepsilon\mathcal P$, and the cokernel is
+$\mathcal P/\varepsilon\mathcal P=\mathbb C[p]$.
+\end{proof}
+
+The degree-one self-extension disappears when the parameter
+is inverted. Its integral presence records information that
+generic specialization loses. The framed chart and the Fock
+module thus avoid the finite unframed contraction in different
+ways: the first changes the equation, and the second changes
+the dimension and completion of the module.
+
+\section{Hamiltonian and geometric comparison maps}
+\label{sec:vol2-derived-hamiltonian-comparison}
+
+The construction has produced an action on an associative
+resolution, an action on derived matrix representations,
+and a coherent classical negative-cyclic orientation.
+The quotient-by-constants obstruction fixes the source of
+the stronger Hamiltonian problem. Retain either the full
+classical Poisson algebra $A$ with $J_N(1)=N$, or its pointed
+Lie subalgebra, and keep the scalar quadratic map fixed.
+
+\begin{problem}\label{prob:vol2-derived-hamiltonian-moment-map}
+Construct a homotopy moment map to the full classical BFV
+algebra whose first component is $J_N$, whose cubic binary
+component is $-\tfrac32\operatorname{Tr}(\Psi[X,Y])$ up to
+specified homotopies, and whose choices respect block-diagonal
+sums of matrices. Compare its Hamiltonian derivation action
+with Theorem~\ref{thm:vol2-all-arity-derived-action}, retaining
+the cyclic orientation.
+
+For matrix quantization, construct a filtered derived
+comparison on the full quantum BRST complex that agrees
+with the ordinary quantum trace action in degree zero and
+preserves the relation classes, stabilizer states and cyclic
+operations. Require the prescribed classical limit and cubic
+primitive, and extend the comparison across the matrix
+discriminant. Determine whether the coefficient-Weyl action
+compares to this recipient, to a framed recipient, or to an
+infinite-dimensional module by maps preserving those data.
+\end{problem}
+
+The positive gauge ghosts in
+\eqref{eq:vol2-classical-bfv-differential} already belong to
+the action constructed here. Supplying them is not the
+missing Hamiltonian comparison. Likewise a contraction of
+one finite coefficient representation does not obstruct
+every framed, completed or quantum-reduced recipient.
+
+For mixed holomorphic--topological theory there is a further
+geometric map to construct. The polynomial cyclic operations
+must be realized by supported operations of the independently
+defined field theory. Such a comparison must preserve the
+boundary polarization, parameter normalization, descendant
+operations and sewing. At four inputs it must include the
+simultaneous collision support
+$\Delta_{13}\cap\Delta_{24}$ from
+Chapter~\ref{ch:vol2-supported-compositions}.
+The universal word contraction solves the algebraic action
+equations; the geometric comparison must carry their
+solutions to these specified supports and operations.

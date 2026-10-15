@@ -1,0 +1,1538 @@
+\chapter{Cyclic traces and wheel corrections}
+\label{chap:vol2-cyclic-traces-wheels}
+
+A matrix trace remembers the size of the matrix:
+$\operatorname{Tr}(I_N)=N$.
+Invariant quantization also remembers a scalar. For the quadratic
+$\mathfrak{sl}_2$ invariant, the Duflo operator adds
+$\hbar^2/2$ to the symmetrized Casimir.
+These scalars matter when matrices are stabilized or Lie algebras
+are completed. Removing them can destroy compatibility with
+brackets or continuity.
+
+We first construct trace maps on cyclic chains and specify the
+rank transitions they preserve. We then compute the finite wheel
+corrections and examine two different infinite-dimensional
+coefficient spaces. The cyclic orientation of
+Chapter~\ref{ch:vol2-derived-hamiltonian-actions} remains a
+chain-level structure throughout. A scalar state requires its own
+functional.
+
+\section{Matrix trace on the mixed complex}
+\label{sec:vol2-matrix-mixed-trace}
+
+Let $B$ be a unital associative complex algebra and put
+$\overline B=B/\mathbb C1$.
+Its normalized Hochschild chains are
+\[
+ C_n(B)=B\otimes\overline B^{\otimes n},
+ \qquad a_0[a_1|\cdots|a_n]\in C_n(B).
+\]
+Place $C_n(B)$ in cohomological degree $-n$.
+For $n>0$ the Hochschild boundary is
+\begin{align*}
+ b(a_0[a_1|\cdots|a_n])
+ ={}&a_0a_1[a_2|\cdots|a_n]\\
+ &+\sum_{j=1}^{n-1}(-1)^j
+      a_0[a_1|\cdots|a_ja_{j+1}|\cdots|a_n]\\
+ &+(-1)^na_na_0[a_1|\cdots|a_{n-1}],
+\end{align*}
+and $b=0$ on $C_0(B)$.
+The Connes operator is
+\[
+ \mathsf B(a_0[a_1|\cdots|a_n])
+ =\sum_{j=0}^n(-1)^{nj}
+       1[a_j|\cdots|a_n|a_0|\cdots|a_{j-1}].
+\]
+Units in bar slots are zero. The identities
+$b^2=\mathsf B^2=b\mathsf B+\mathsf Bb=0$ give the mixed
+complex. With $|\zeta|=2$, its negative-cyclic complex is
+\[
+ CC^-(B)=\bigl(C_\bullet(B)[[\zeta]],b+\zeta\mathsf B\bigr).
+\]
+Here the completion is in $\zeta$. In particular, it does not
+complete the coefficients of $B$.
+
+For a second unital algebra $D$, define
+\begin{equation}\label{eq:vol2-matrix-chain-trace}
+ \mathsf T_N\bigl(M_0[M_1|\cdots|M_n]\bigr)
+ =
+ \sum_{i_0,\ldots,i_n=1}^N
+ (M_0)_{i_0i_1}
+ [(M_1)_{i_1i_2}|\cdots|(M_n)_{i_ni_0}],
+\end{equation}
+from matrix chains to chains of $D$.
+For $n=0$ the formula is the ordinary matrix trace.
+The indices form a closed path, so a change of the first index
+does not change the sum.
+
+\begin{proposition}\label{prop:vol2-mixed-matrix-trace}
+The map $\mathsf T_N$ is a morphism of mixed complexes
+$C_\bullet(\operatorname{Mat}_N D)\to C_\bullet(D)$.
+It therefore extends continuously to negative-cyclic complexes.
+It is natural in $D$ and additive under block sums of
+representations. Its value on the unit in degree zero is $N1$.
+\end{proposition}
+\begin{proof}
+A scalar identity in a bar slot forces the two adjacent
+indices to agree. The corresponding output has a scalar unit
+in that bar slot and is zero. Thus the formula is defined on
+normalized chains.
+
+An internal Hochschild face multiplies two adjacent matrices.
+Expanding the product sums precisely over the shared index
+in \eqref{eq:vol2-matrix-chain-trace}.
+The first face has the same interpretation at the outer
+coefficient. For the last face, reindex the closed path
+cyclically. These identities prove
+$b\mathsf T_N=\mathsf T_Nb$, with the displayed face signs.
+
+In a Connes term the leading identity matrix forces its
+adjacent indices to coincide. After deleting that repeated
+index, the remaining sum is the cyclic rotation of the same
+closed path. The rotation has the same sign $(-1)^{nj}$ on
+both sides. Hence
+$\mathsf B\mathsf T_N=\mathsf T_N\mathsf B$.
+Coefficientwise application now commutes with
+$b+\zeta\mathsf B$ and with reduction modulo every power of
+$\zeta$.
+
+For block-diagonal matrices, a nonzero closed path lies
+entirely in one block. The trace of a block sum is consequently
+the sum of the two chain traces. Naturality follows by
+applying an algebra map to every matrix entry. Finally the
+ordinary trace of the identity is $N$.
+\end{proof}
+
+For dg algebras use the raw totalization and graded cyclic
+signs of
+\eqref{eq:vol2-raw-hochschild-differential} and
+\eqref{eq:vol2-raw-connes-operator}.
+The same formula is a mixed-complex map: matrix indices
+have degree zero, the internal differential acts entrywise,
+and every cyclic permutation has the same Koszul sign
+before and after the index sum.
+
+This gives a concrete image of the orientation already
+constructed on the free resolution.
+Let
+\[
+ Q=\mathbb C\langle q,p,t\rangle,\qquad
+ |t|=-1,\qquad dt=qp-pq,
+\]
+and let $R_N$ be its derived representation algebra:
+the graded-commutative algebra on the entries of $X,Y,\Psi$,
+with
+$dX=dY=0$ and $d\Psi=XY-YX$.
+Universal substitution is a dg algebra map
+$Q\to\operatorname{Mat}_N(R_N)$.
+The trace of its negative-cyclic orientation is
+\begin{equation}\label{eq:vol2-traced-orientation}
+ \omega_N=
+ \sum_{i,j}
+ \bigl(1[X_{ij}|Y_{ji}]-1[Y_{ij}|X_{ji}]\bigr)
+ -\sum_i1[\Psi_{ii}].
+\end{equation}
+It is closed for both mixed differentials, by
+Proposition~\ref{prop:vol2-mixed-matrix-trace}.
+The relation term has total degree $-2$, just as the
+two-bar terms do.
+The matrix trace also commutes with entrywise derivations,
+so it transports the coherent classical action and
+orientation of
+Theorem~\ref{thm:vol2-coherent-cyclic-orientation}.
+These are constructions on derived representation
+coefficients. The full quantum BRST and supported
+field-theoretic comparisons retain their additional maps.
+
+\section{Rank and scalar reduction}
+\label{sec:vol2-reduced-stable-trace}
+
+The degree-zero cyclic space of $B$ is
+\[
+ \mathfrak c_B=HC_0(B)=B/[B,B],
+\]
+where $[B,B]$ is the linear span of commutators.
+Let $\operatorname{Rep}_NB$ represent unital algebra maps
+$B\to\operatorname{Mat}_N(D)$ for commutative complex
+algebras $D$, and put
+\[
+ \mathcal R_N=\mathcal O(\operatorname{Rep}_NB)^{GL_N}.
+\]
+The ordinary trace is the linear map
+\[
+ \operatorname{Tr}_N:\mathfrak c_B\longrightarrow\mathcal R_N,
+ \qquad
+ \operatorname{Tr}_N([b])(\rho)=\operatorname{Tr}(\rho(b)).
+\]
+The trace of a commutator is zero and conjugation preserves
+the trace, proving that this map has the stated source
+and target. It is generally not multiplicative.
+Even on scalars, its value at $1$ is $N$.
+
+Choose an augmentation $\epsilon:B\to\mathbb C$.
+It specifies a rank transition
+\[
+ s_N:\operatorname{Rep}_NB\longrightarrow\operatorname{Rep}_{N+1}B,
+ \qquad \rho\longmapsto\rho\oplus\epsilon.
+\]
+Define
+\[
+ \overline{\mathfrak c}_B=B/(\mathbb C1+[B,B]),
+ \qquad
+ t_N(\overline b)(\rho)=\operatorname{Tr}(\rho(b))-N\epsilon(b).
+\]
+Let $\mathfrak m_N$ be the ideal in $\mathcal R_N$ of functions
+vanishing at $b\mapsto\epsilon(b)I_N$, and set
+\[
+ \widehat{\mathcal R}_N
+   =\varprojlim_{r\geq1}\mathcal R_N/\mathfrak m_N^r.
+\]
+If $J$ is the ideal generated by
+$\overline{\mathfrak c}_B$ in
+$\operatorname{Sym}_{\mathbb C}\overline{\mathfrak c}_B$,
+write
+\[
+ \widehat{\operatorname{Sym}}_J\overline{\mathfrak c}_B
+ =\varprojlim_{r\geq1}
+   \operatorname{Sym}_{\mathbb C}\overline{\mathfrak c}_B/J^r.
+\]
+
+\begin{proposition}\label{prop:vol2-reduced-trace-completion}
+The maps $t_N$ are well defined, have image in
+$\mathfrak m_N$, and satisfy $s_N^*t_{N+1}=t_N$.
+They extend to a continuous homomorphism of commutative algebras
+\[
+ \widehat{\operatorname{Sym}}_J\overline{\mathfrak c}_B
+ \longrightarrow \varprojlim_N\widehat{\mathcal R}_N.
+\]
+All maps are natural for augmentation-preserving algebra maps.
+\end{proposition}
+\begin{proof}
+Both terms defining $t_N$ vanish on commutators, and their
+values on a scalar multiple of $1$ cancel.
+Their values also cancel at the augmentation representation.
+Moreover,
+\[
+ s_N^*t_{N+1}(\overline b)
+ =\operatorname{Tr}_N([b])+\epsilon(b)-(N+1)\epsilon(b)
+ =t_N(\overline b).
+\]
+Since $s_N$ takes the augmentation representation to the
+augmentation representation,
+$s_N^*(\mathfrak m_{N+1}^r)\subseteq\mathfrak m_N^r$.
+The symmetric-algebra extension of $t_N$ sends $J^r$ into
+$\mathfrak m_N^r$. It therefore defines a map on each pair of
+quotients and hence on their inverse limits.
+The stabilization identity makes these completed maps
+compatible in $N$. These formulas also prove naturality.
+\end{proof}
+
+The subtraction exists on cyclic chains as well.
+For a representation $\rho:B\to\operatorname{Mat}_N(D)$,
+subtract $N$ times the map induced by
+$B\xrightarrow{\epsilon}\mathbb C\to D$ from
+$\mathsf T_N\rho_*$.
+Both summands are mixed-complex maps.
+Their difference vanishes on the scalar subcomplex and is
+unchanged by $\rho\mapsto\rho\oplus\epsilon$.
+This chain-level reduction has a chosen augmentation as
+part of its data.
+
+A Poisson comparison requires more.
+Suppose $\mathfrak c_B$ is supplied with a Lie bracket and
+$\mathcal R_N$ with Poisson brackets satisfying
+\begin{equation}\label{eq:vol2-trace-bracket-datum}
+ \{\operatorname{Tr}_N\beta,\operatorname{Tr}_N\gamma\}_N
+ =\operatorname{Tr}_N[\beta,\gamma]_{\mathrm{cyc}}.
+\end{equation}
+Then the ordinary trace is a Lie map.
+A Hamiltonian action through it also requires a Lie map
+$j:\mathfrak h\to\mathfrak c_B$.
+Neither datum is attached to an arbitrary associative
+algebra by its definition.
+For the free algebra on two generators, the necklace bracket
+and trace moment map provide
+\eqref{eq:vol2-trace-bracket-datum};
+the polynomial-to-necklace comparison still has the cubic
+defect discussed in Chapter~\ref{ch:vol2-derived-hamiltonian-actions}.
+
+Scalar reduction need not preserve this bracket.
+For $B=\mathbb C[x,y]$ with $\{x,y\}=1$ and augmentation
+at the origin, evaluation on $N$ points gives
+\[
+ \{\operatorname{Tr}_Nx,\operatorname{Tr}_Ny\}=N,
+ \qquad t_N(\overline1)=0.
+\]
+Thus Proposition~\ref{prop:vol2-reduced-trace-completion}
+asserts a commutative algebra map.
+A reduced Poisson map needs a bracket-compatible reduction,
+for example a selected Hamiltonian sector on which the
+augmentation of every bracket vanishes.
+
+\section{The stable multisymmetric algebra}
+\label{sec:vol2-stable-multisymmetric}
+
+The rank dependence can be retained explicitly.
+For $N$ points of the affine symplectic plane put
+\[
+ S_N=\mathbb C[x_1,y_1,\ldots,x_N,y_N]^{\mathfrak S_N},
+ \qquad
+ p_{ab}^{(N)}=\sum_{i=1}^Nx_i^ay_i^b.
+\]
+Give $x_i,y_i$ degree one and, for $a+b>0$, give the
+formal generator $p_{ab}$ degree $a+b$.
+Evaluation at an extra point $(0,0)$ defines
+$S_{N+1}\to S_N$.
+
+\begin{theorem}\label{thm:vol2-stable-multisymmetric-ring}
+In each fixed degree $d$, evaluation gives an isomorphism
+\[
+ \mathbb C[p_{ab}\mid a,b\geq0,\ a+b>0]_d
+   \xrightarrow{\ \sim\ }(S_N)_d
+ \qquad (N\geq d).
+\]
+Writing $P$ for this graded polynomial algebra, one has
+\[
+ \widehat P_{\mathrm{wt}}=\prod_{d\geq0}P_d
+ \cong
+ \varprojlim_N\prod_{d\geq0}(S_N)_d
+\]
+as complete commutative algebras.
+\end{theorem}
+\begin{proof}
+A monomial orbit is specified by a finite multiset
+$\lambda$ of nonzero pairs $(a,b)$, one pair for each
+occupied point. Let $m_\lambda^{(N)}$ be the sum of the
+distinct monomials in this orbit.
+These sums form a basis when $\lambda$ has at most $N$
+members. In total degree $d$, it has at most $d$ members.
+The basis is therefore unchanged for $N\geq d$, and
+evaluation at the added origin preserves every basis element.
+
+For $\lambda=\{\alpha_1,\ldots,\alpha_r\}$ expand
+$p_{\alpha_1}^{(N)}\cdots p_{\alpha_r}^{(N)}$.
+Terms using distinct point indices give
+\[
+ \left(\prod_\alpha m_\alpha!\right)m_\lambda^{(N)},
+\]
+where $m_\alpha$ is the multiplicity of $\alpha$ in
+$\lambda$. Every other term uses fewer than $r$ points,
+merging the pairs assigned to the same point.
+Ordering orbit sums by the number of occupied points
+gives a triangular change of basis with nonzero diagonal.
+It proves both generation and independence in degree $d$.
+
+Multiplication adds total degrees. Completing degreewise
+therefore gives $\widehat P_{\mathrm{wt}}$.
+A compatible family in the right-hand limit determines,
+in each degree, the unique stable coefficient just
+constructed. Conversely those coefficients determine the
+family. These inverse maps preserve multiplication and
+the inverse-limit topologies.
+\end{proof}
+
+The completion in this theorem is specified by total degree.
+It differs from the $J$-adic completion in which every
+$p_{ab}$ has filtration one.
+For example,
+$\sum_{a\geq1}p_{a0}$ belongs to
+$\widehat P_{\mathrm{wt}}$, but does not define an element
+of the $J$-adic completion: its reduction modulo $J^2$
+would be an infinite linear combination in a vector space
+whose elements are finite linear combinations.
+Nor does the theorem replace the target by the inverse
+limit of the uncompleted rings $S_N$.
+The series $\sum_{r\geq0}p_{10}^r$ already has a
+nonpolynomial image at $N=1$.
+
+These degree-zero trace functions do not record
+the relation and gauge cochain degrees of a
+derived matrix quotient. A comparison with a
+derived centre requires representation and trace
+maps on the specified complexes.
+
+For the Poisson bracket, retain a central generator
+$r=p_{00}$ and put
+\[
+ P^{\mathrm{rk}}=\mathbb C[r,p_{ab}\mid a+b>0].
+\]
+Define on generators
+\begin{equation}\label{eq:vol2-rank-poisson}
+ \{p_{ab},p_{cd}\}=(ad-bc)p_{a+c-1,b+d-1},
+ \qquad \{r,-\}=0.
+\end{equation}
+A term with a negative index is zero; in that case its
+coefficient is already zero.
+
+\begin{proposition}\label{prop:vol2-rank-poisson}
+Equation~\eqref{eq:vol2-rank-poisson} defines a Poisson
+bracket. The evaluations
+$P^{\mathrm{rk}}\to S_N$, with $r\mapsto N$, are Poisson.
+Block sum is described by the Poisson coproduct
+\[
+ \Delta p_{ab}=p_{ab}\otimes1+1\otimes p_{ab},
+ \qquad
+ \Delta r=r\otimes1+1\otimes r.
+\]
+Origin stabilization is not Poisson on the full $S_N$.
+On the subalgebras generated by $p_{ab}^{(N)}$ with
+$a+b\geq2$, it is Poisson, and their stable algebra is
+$\mathbb C[p_{ab}\mid a+b\geq2]$ with the same bracket.
+\end{proposition}
+\begin{proof}
+The polynomial Poisson algebra $\mathbb C[x,y]$, regarded
+only as a Lie algebra, has basis $x^ay^b$ including $1$.
+Its symmetric algebra is $P^{\mathrm{rk}}$, where the
+Lie element $1$ becomes the generator $r$, not the
+multiplicative unit. The Lie--Poisson construction extends
+its bracket by Leibniz and proves Jacobi.
+
+Direct differentiation in $S_N$ gives
+\[
+ \{p_{ab}^{(N)},p_{cd}^{(N)}\}
+ =(ad-bc)p_{a+c-1,b+d-1}^{(N)},\qquad
+ p_{00}^{(N)}=N.
+\]
+This proves the evaluation assertion.
+The primitive coproduct preserves a Lie bracket on
+generators, so its extension is Poisson.
+It also equals the power-sum formula for a block sum.
+
+In rank $N+1$ the bracket of $p_{10}$ and $p_{01}$ is
+$N+1$. Its pullback remains $N+1$, whereas the bracket
+of the pullbacks is $N$. This proves the failure.
+If both input degrees are at least two, the output
+degree is at least two. The central rank never occurs,
+and setting the last point to zero preserves every
+displayed bracket. The triangular basis argument of
+Theorem~\ref{thm:vol2-stable-multisymmetric-ring}, restricted
+to these generators, proves the final assertion.
+\end{proof}
+
+\section{Stable matrix Lie homology}
+\label{sec:vol2-stable-lie-homology}
+
+There is a second stabilization, with a different direction.
+Let
+\[
+ \mathfrak{gl}_\infty B=\varinjlim_N\mathfrak{gl}_N B
+\]
+under block-zero Lie embeddings, and use trivial
+coefficients $\mathbb C$ for its Chevalley homology.
+This construction requires no augmentation of $B$.
+For clarity, ordinary cyclic homology is the homology
+of the cyclic complex
+\[
+ CC(B)=
+ \bigl(C_\bullet(B)((\zeta))/\zeta C_\bullet(B)[[\zeta]],
+       b+\zeta\mathsf B\bigr),
+ \qquad HC_n(B)=H^{-n}CC(B).
+\]
+
+The Loday--Quillen--Tsygan theorem identifies its
+primitive part:
+\[
+ \operatorname{Prim}H_n^{\mathrm{CE}}(\mathfrak{gl}_\infty B;\mathbb C)
+ \cong HC_{n-1}(B).
+\]
+Equivalently, if $HC_{n-1}(B)$ is placed in homological
+degree $n$, it gives an isomorphism of graded Hopf algebras
+\begin{equation}\label{eq:vol2-lqt-hopf}
+ H_*^{\mathrm{CE}}(\mathfrak{gl}_\infty B;\mathbb C)
+ \cong
+ \operatorname{Sym}_{\mathrm{gr}}
+       \left(\bigoplus_{n\geq1}HC_{n-1}(B)\right).
+\end{equation}
+Here $\operatorname{Sym}_{\mathrm{gr}}$ uses the Koszul
+sign rule. This is the characteristic-zero theorem for
+unital associative algebras of Loday and Quillen
+\cite{LodayQuillen1984}*{Theorem~6.2 and Proposition~6.6}.
+The product comes from block sum and the coproduct
+from the diagonal Lie map.
+
+The matrix-chain trace in
+\eqref{eq:vol2-matrix-chain-trace} is also the trace
+appearing in this theorem. The invariant-theory
+description separates a permutation into its cycles:
+one cycle gives a primitive cyclic chain, and disjoint
+cycles give its graded symmetric products.
+The theorem concerns this stable Lie homology, not the
+inverse system of representation-coordinate rings.
+
+For $B=\mathbb C$, normalized Hochschild chains are
+concentrated in degree zero. Thus $HC_{2j}(\mathbb C)=\mathbb C$
+and $HC_{2j+1}(\mathbb C)=0$, and
+\[
+ H_*^{\mathrm{CE}}(\mathfrak{gl}_\infty\mathbb C;\mathbb C)
+ \cong\Lambda(u_1,u_3,u_5,\ldots),\qquad |u_{2j+1}|=2j+1.
+\]
+These classes remain although the scalar-reduced cyclic
+space in Proposition~\ref{prop:vol2-reduced-trace-completion}
+is zero.
+
+\section{Cyclic functionals on the Weyl algebra}
+\label{sec:vol2-weyl-cyclic-functional}
+
+Quantization further separates cyclic chains from a scalar
+trace. Let $R=\mathbb C[\hbar]$ and let $W_\hbar$ be the
+polynomial Weyl algebra generated by $x,y$ with
+$[x,y]=\hbar$.
+Denote by $[W_\hbar,W_\hbar]_R$ the $R$-linear span
+of commutators.
+
+\begin{proposition}\label{prop:vol2-weyl-cyclic-quotient}
+One has
+\[
+ [W_\hbar,W_\hbar]_R=\hbar W_\hbar,\qquad
+ HH_0^R(W_\hbar)=W_\hbar/\hbar W_\hbar.
+\]
+Every $R$-linear cyclic functional $W_\hbar\to R$ is zero.
+Every continuous $\mathbb C[[\hbar]]$-linear cyclic
+functional on its $\hbar$-adic completion with values
+in $\mathbb C[[\hbar]]$ is also zero.
+\end{proposition}
+\begin{proof}
+Reduction modulo $\hbar$ is commutative, so every
+commutator belongs to $\hbar W_\hbar$.
+For every normal monomial,
+\[
+ [x,x^ay^{b+1}]=\hbar(b+1)x^ay^b.
+\]
+Since $b+1$ is invertible in $\mathbb C$, these
+commutators span $\hbar W_\hbar$.
+The Hochschild boundary in degree one is a commutator,
+which gives the quotient formula.
+
+If $\tau$ is cyclic and $R$-linear, then
+$\hbar\tau(x^ay^b)=0$ for every $a,b$.
+The target has no $\hbar$-torsion, so all these values
+vanish. Continuity extends the same argument from
+the dense polynomial algebra to its completion.
+\end{proof}
+
+The quotient in the proposition is nonzero and has
+$\hbar$ acting as zero. It is the universal cyclic
+target in degree zero, rather than a torsion-free
+scalar ring. The negative-cyclic orientation of the
+resolved plane has a different degree and universal
+property. Neither it nor a prepared boundary state
+is removed by the proposition.
+
+\section{Finite formality and the Duflo map}
+\label{sec:vol2-finite-duflo}
+
+Let $\mathfrak g$ be a finite-dimensional complex Lie
+algebra. Its linear Poisson tensor on $\mathfrak g^*$ is
+$\pi_{\mathfrak g}$.
+The polynomial polyvector complex, in unshifted
+cochain degrees, is
+\[
+ \mathcal P_{\mathfrak g}
+ =
+ \left(
+   \bigl(\operatorname{Sym}\mathfrak g
+          \otimes\Lambda^\bullet\mathfrak g^*\bigr)[[\hbar]],
+   \hbar d_{\mathrm{CE}}
+ \right).
+\]
+The differential is
+$[\hbar\pi_{\mathfrak g},-]_{\mathrm{Sch}}$.
+Let $A_\hbar$ be the $\hbar$-adic completion of the
+Rees enveloping algebra with relations
+$xy-yx=\hbar[x,y]_{\mathfrak g}$.
+Coefficients remain polynomial at each parameter order.
+
+Fix the affine formality morphism $\mathcal U$ with
+first component the normalized
+Hochschild--Kostant--Rosenberg map:
+\[
+ X_1\wedge\cdots\wedge X_p
+ \longmapsto
+ \frac1{p!}\sum_{\sigma\in\mathfrak S_p}
+       \operatorname{sgn}(\sigma)
+       X_{\sigma(1)}\otimes\cdots\otimes X_{\sigma(p)}.
+\]
+We use Kontsevich's affine theorem
+\cite{KontsevichDQ}*{Section~6.4}.
+Twisting by $\hbar\pi_{\mathfrak g}$ gives a product
+$\star$ on $\operatorname{Sym}\mathfrak g[[\hbar]]$.
+There is an algebra isomorphism
+\[
+ T:(\operatorname{Sym}\mathfrak g[[\hbar]],\star)
+       \longrightarrow A_\hbar
+\]
+fixing the linear generators.
+Indeed their star commutator is
+$\hbar[-,-]_{\mathfrak g}$.
+The induced enveloping-algebra map has associated
+graded the identity, and its filtered inverse is $T$.
+This algebra map includes the change from the star
+product to the PBW product.
+Raw PBW symmetrization identifies the modules and
+does not by itself identify these products.
+
+The first component of the twisted comparison is
+\begin{equation}\label{eq:vol2-finite-formality-component}
+ \Phi_{\mathfrak g}(v)
+ =T_*\sum_{n\geq0}\frac1{n!}
+       \mathcal U_{n+1}
+       ((\hbar\pi_{\mathfrak g})^{\otimes n},v).
+\end{equation}
+It maps $\mathcal P_{\mathfrak g}$ to relative
+continuous Hochschild cochains of $A_\hbar$ over
+$\mathbb C[[\hbar]]$.
+The target differential is the Hochschild differential
+of the quantized product.
+All terms are defined at each parameter order.
+The affine theorem proves the twisted
+$L_\infty$ identities on the complexes shifted by $[1]$.
+
+The linear component is a quasi-isomorphism.
+Modulo $\hbar$ it is the polynomial HKR map, whose
+comparison with the full Hochschild complex is given
+by the polynomial diagonal Koszul resolution.
+Choose a contracting homotopy of its cone over
+$\mathbb C$ and extend it coefficientwise.
+The difference between the complete cone differential
+and this undeformed one raises $\hbar$ order.
+The convergent perturbation series of
+Lemma~\ref{lem:vol2-filtered-perturbation}
+therefore contracts the complete cone.
+This argument also explains why the scaled
+Chevalley differential cannot be omitted.
+
+Invariant polynomials have a more explicit comparison.
+For $x\in\mathfrak g$, define the formal power series
+\begin{equation}\label{eq:vol2-duflo-factor}
+ j_{\mathfrak g}^{1/2}(x)
+ =
+ \det_{\mathfrak g}^{1/2}
+ \left(
+   \frac{\sinh(\operatorname{ad}_x/2)}
+        {\operatorname{ad}_x/2}
+ \right),
+\end{equation}
+with constant term one.
+Interpret its Taylor coefficients as
+constant-coefficient differential operators on
+$\operatorname{Sym}\mathfrak g$.
+The Duflo theorem gives the algebra isomorphism
+\begin{equation}\label{eq:vol2-duflo-map}
+ \operatorname{Duf}_\hbar
+ =\operatorname{sym}_\hbar\circ
+       j_{\mathfrak g}^{1/2}(\hbar\partial):
+ (\operatorname{Sym}\mathfrak g)^{\mathfrak g}[[\hbar]]
+ \xrightarrow{\ \sim\ } Z(A_\hbar);
+\end{equation}
+see \cite{KontsevichDQ}*{Section~8.3.4}.
+On a polynomial, only finitely many differential
+orders act nontrivially.
+Its polynomial Rees formula may consequently be
+specialized at $\hbar=1$.
+This specialization is not defined on arbitrary
+formal power series in $\hbar$.
+
+For $\mathfrak g=\mathfrak h_{\leq d}$, these results
+apply to the finite Hamiltonian jets of
+Chapter~\ref{ch:vol2-hamiltonian-jets}.
+The relative bar--Chevalley comparison, the
+$L_\infty$ formality map and the invariant algebra
+isomorphism in \eqref{eq:vol2-duflo-map} preserve
+different specified operations.
+Their conclusions must be used with those operations.
+
+The Hochschild brace action on $(C^\bullet(A_\hbar),A_\hbar)$
+can be transported when the required operadic comparison
+is supplied. In detail, a homotopy-$E_2$ refinement is
+a quasi-isomorphism or a zigzag of quasi-isomorphisms
+from the selected complete homotopy-$E_2$ structure
+on $\mathcal P_{\mathfrak g}$ to the relative
+Hochschild complex, refining the cochain comparison.
+A mixed refinement also specifies the open operations
+and the coherences between the two colors.
+
+\begin{corollary}[Open--closed structure with a refinement]
+\label{cor:vol2-open-closed-refinement}
+Given these refinements, the pair
+$(\mathcal P_{\mathfrak g},A_\hbar)$ has the transported
+homotopy Swiss-cheese action.
+Its open product is the enveloping product.
+Its closed and mixed operations are those carried by
+the specified operadic comparison.
+\end{corollary}
+\begin{proof}
+Transport the two-colored operations through the
+supplied equivalence of complete operadic algebras.
+The comparison includes the homotopies expressing
+substitution and the open--closed identities, so
+those identities hold on the transported pair.
+\end{proof}
+
+\section{The quadratic and quartic corrections}
+\label{sec:vol2-quadratic-quartic-wheels}
+
+For $\mathfrak{sl}_2$, use generators $e,f,h$ with
+\[
+ [h,e]=2e,\qquad [h,f]=-2f,\qquad [e,f]=h.
+\]
+In the symmetric algebra set $q=2ef+h^2/2$.
+In the Rees enveloping algebra write the generators
+as $E,F,H$ and put
+$\Omega=EF+FE+H^2/2$.
+The relations have an additional factor $\hbar$.
+They imply that $\Omega$ is central:
+for example,
+$[E,EF+FE]=\hbar(EH+HE)$ and
+$[E,H^2/2]=-\hbar(EH+HE)$.
+
+\begin{proposition}\label{prop:vol2-duflo-quadratic}
+With these normalizations,
+\[
+ \operatorname{Duf}_\hbar(q)=\Omega+\frac{\hbar^2}{2}.
+\]
+At $\hbar=1$, its eigenvalue on the irreducible
+highest-weight-$n$ module is $(n+1)^2/2$.
+\end{proposition}
+\begin{proof}
+For $x=ue+vf+wh$, the adjoint matrices give
+\[
+ \operatorname{Tr}(\operatorname{ad}_x^2)=8uv+8w^2.
+\]
+The first nonconstant term of
+\eqref{eq:vol2-duflo-factor} is
+$\operatorname{Tr}(\operatorname{ad}_x^2)/48$.
+Thus its differential operator on $q$ contributes
+\[
+ \frac{\hbar^2}{6}
+       (\partial_e\partial_f+\partial_h^2)
+       (2ef+h^2/2)=\frac{\hbar^2}{2}.
+\]
+Higher differential orders annihilate $q$, and
+symmetrization sends $q$ to $\Omega$.
+On a highest-weight vector at $\hbar=1$, $EF$ acts
+by $n$, $FE$ by zero and $H^2/2$ by $n^2/2$.
+Adding $1/2$ gives $(n+1)^2/2$.
+Centrality gives this value on the full irreducible module.
+\end{proof}
+
+The next invariant distinguishes a multiplicative
+quantization from raw symmetrization.
+Use complexified Hermitian generators $J_i$ with
+\[
+ [J_i,J_j]=i\hbar\epsilon_{ijk}J_k,
+ \qquad
+ p=x_1^2+x_2^2+x_3^2,\qquad C=\sum_iJ_i^2.
+\]
+Here $x_i$ are commuting symbols.
+The change
+$E=J_1+iJ_2$, $F=J_1-iJ_2$, $H=2J_3$
+gives $q=2p$ and $\Omega=2C$.
+Write $\Delta=\sum_i\partial_{x_i}^2$.
+The adjoint eigenvalues are $0,\sqrt p,-\sqrt p$,
+so the differential factor becomes
+\[
+ \frac{\sinh(\hbar\sqrt\Delta/2)}
+      {\hbar\sqrt\Delta/2}
+ =1+\frac{\hbar^2}{24}\Delta
+     +\frac{\hbar^4}{1920}\Delta^2+\cdots.
+\]
+The square root denotes the displayed power series
+in $\Delta$.
+
+\begin{proposition}\label{prop:vol2-duflo-quartic}
+In the universal Rees algebra,
+\begin{align}
+ \operatorname{sym}(p^2)&=C^2-\frac{\hbar^2}{3}C,
+       \label{eq:vol2-pbw-quartic}\\
+ \operatorname{Duf}_\hbar(p)&=C+\frac{\hbar^2}{4},
+       \label{eq:vol2-duflo-compact-quadratic}\\
+ \operatorname{Duf}_\hbar(p^2)
+       &=\left(C+\frac{\hbar^2}{4}\right)^2.
+       \label{eq:vol2-duflo-compact-quartic}
+\end{align}
+\end{proposition}
+\begin{proof}
+Antisymmetry of $\epsilon_{ijk}$ proves that $C$ is
+central. The commutation relations give
+\[
+ \sum_j[J_j,[J_j,J_i]]=2\hbar^2J_i,
+ \qquad
+ \sum_jJ_jJ_iJ_j=(C-\hbar^2)J_i.
+\]
+The second identity follows by expanding the first.
+Symmetrizing the two repeated indices in $p^2$ gives
+\[
+ \operatorname{sym}(p^2)
+ =\frac13\sum_{i,j}
+ \bigl(J_i^2J_j^2+J_iJ_jJ_iJ_j+J_iJ_j^2J_i\bigr).
+\]
+The three sums are $C^2$, $C^2-\hbar^2C$ and $C^2$,
+respectively. This proves \eqref{eq:vol2-pbw-quartic}.
+
+Direct differentiation gives
+$\Delta p=6$, $\Delta p^2=20p$ and
+$\Delta^2p^2=120$.
+The quadratic correction is therefore $\hbar^2/4$.
+For $p^2$, the full expression is
+\[
+ C^2-\frac{\hbar^2}{3}C
+      +\frac{5\hbar^2}{6}C+\frac{\hbar^4}{16}
+ =\left(C+\frac{\hbar^2}{4}\right)^2.
+\]
+\end{proof}
+
+Thus the product of two operators assigned by $p\mapsto C$
+differs from raw symmetrization of $p^2$ by
+$\hbar^2C/3$.
+This is an operator identity before any state is chosen.
+In spin $j$, the eigenvalues of $C$ and
+$\operatorname{Duf}_\hbar(p)$ are
+$\hbar^2j(j+1)$ and $\hbar^2(j+1/2)^2$.
+At $\hbar=1$, evolution by the second operator divided
+by two differs from evolution by $C/2$ by $e^{-t/8}$.
+Both factors obey the semigroup law, so that law alone
+does not choose the vacuum energy.
+
+A multiplicative invariant map with $p\mapsto C$ is
+instead
+\[
+ Q(F(p))=
+ \operatorname{Duf}_\hbar
+       \bigl(F(p-\hbar^2/4)\bigr).
+\]
+The shift is an automorphism of the invariant polynomial
+algebra. This formula makes the ordering choice explicit;
+its relation to an independently prepared state requires
+the state comparison as well.
+
+\section{Half-densities and matrix wheels}
+\label{sec:vol2-half-density-wheels}
+
+The same formal determinant has a finite-dimensional
+geometric meaning. Let $G$ be a local complex Lie group
+with unimodular Lie algebra $\mathfrak g$.
+For a dimensionless exponential coordinate $X$ near zero,
+put $L=\operatorname{ad}_X$.
+Left trivialization gives
+\[
+ d\exp_X=\int_0^1e^{-tL}\,dt
+       =e^{-L/2}\frac{\sinh(L/2)}{L/2}.
+\]
+Normalize the tangent volume and left-invariant volume
+to agree at the identity.
+Since $\operatorname{Tr}L=0$, the exponential Jacobian
+and its normalized square root are
+\[
+ j(X)=\det\frac{\sinh(L/2)}{L/2},
+ \qquad
+ \mathfrak j(X)=
+ \exp\left(\frac12\operatorname{Tr}
+                  \log\frac{\sinh(L/2)}{L/2}\right).
+\]
+Expanding the scalar series yields
+\begin{equation}\label{eq:vol2-log-wheel-coefficients}
+ \log\mathfrak j(X)
+ =\frac{\operatorname{Tr}L^2}{48}
+  -\frac{\operatorname{Tr}L^4}{5760}
+  +\frac{\operatorname{Tr}L^6}{362880}
+  +O(X^8).
+\end{equation}
+Each trace is the finite contraction of the adjoint
+indices around a wheel.
+
+For $\mathfrak g=\mathfrak{gl}_N$, let
+$p_a=\operatorname{tr}(X^a)$, including $p_0=N$.
+
+\begin{proposition}\label{prop:vol2-matrix-wheel-traces}
+For every $m\geq0$,
+\[
+ \operatorname{Tr}_{\mathfrak{gl}_N}(\operatorname{ad}_X)^m
+ =\sum_{a=0}^m(-1)^a\binom ma p_{m-a}p_a.
+\]
+In particular,
+\[
+ \operatorname{Tr}L^2=2Np_2-2p_1^2,\qquad
+ \operatorname{Tr}L^4=2Np_4-8p_1p_3+6p_2^2.
+\]
+For matrices $X,Y$ of sizes $N,M$, the quadratic part of
+$\log\mathfrak j(X\oplus Y)-\log\mathfrak j(X)
+ -\log\mathfrak j(Y)$ is
+\[
+ \frac1{24}
+ \left(M\operatorname{tr}X^2+N\operatorname{tr}Y^2
+             -2\operatorname{tr}X\operatorname{tr}Y\right).
+\]
+\end{proposition}
+\begin{proof}
+On $\operatorname{End}(\mathbb C^N)$, left and right
+multiplication commute and their difference is
+$\operatorname{ad}_X$.
+The matrix-unit basis gives
+\[
+ \operatorname{Tr}(L_X^aR_X^b)
+    =\operatorname{tr}(X^a)\operatorname{tr}(X^b).
+\]
+Expand $(L_X-R_X)^m$ by the binomial theorem.
+The cases $m=2,4$ give the stated polynomials.
+Their derivation requires no diagonalizability.
+Finally the quadratic logarithm is
+$(N\operatorname{tr}X^2-(\operatorname{tr}X)^2)/24$;
+subtracting its two block values gives the last formula.
+\end{proof}
+
+The off-diagonal matrix blocks are responsible for
+this failure of additivity. An adjoint wheel density
+is therefore different from a primitive matrix trace.
+
+There is also a convergent product for this
+finite-dimensional half-density.
+On a sufficiently small neighborhood of zero,
+\begin{equation}\label{eq:vol2-half-density-mode-product}
+ \mathfrak j(X)=\lim_{K\to\infty}
+ \prod_{n=1}^K
+       \det\left(1+\frac{L^2}{4\pi^2n^2}\right)^{1/2},
+\end{equation}
+with branches equal to one at zero.
+The logarithms are locally bounded by a constant times
+$n^{-2}$, so the product converges locally uniformly.
+The Euler product for $\sinh(z/2)/(z/2)$, applied to
+the eigenvalues or its matrix power series, identifies
+the limit with the determinant above.
+If $L$ is real diagonalizable with real eigenvalues,
+the partial product $\mathfrak j_K$ satisfies
+\[
+ 0\leq\log\mathfrak j-\log\mathfrak j_K
+ \leq\frac{\operatorname{Tr}L^2}{8\pi^2K}.
+\]
+Indeed $0\leq\log(1+u)\leq u$ for $u\geq0$, and
+$\sum_{n>K}n^{-2}\leq1/K$.
+For imaginary eigenvalues the scalar factors are
+sine factors; the normalized local branch is taken
+before their first zeros.
+This product has a fixed finite-dimensional adjoint
+space. It does not sum traces over infinitely many
+independent Lie algebra blocks.
+
+\section{A two-step colour algebra}
+\label{sec:vol2-two-step-duflo}
+
+A family in which every wheel vanishes distinguishes
+the correction from the underlying comparison.
+Let $W$ be finite dimensional and let
+$C\in\Lambda^3W^*$.
+In dual bases define
+\[
+ \mathfrak n_C=W\oplus W^*,\qquad
+ [x_i,x_j]=\sum_kC_{ijk}y^k,\qquad
+ [x_i,y^j]=[y^i,y^j]=0.
+\]
+The image of every bracket is central, so Jacobi holds
+and $\operatorname{ad}_a\operatorname{ad}_b=0$.
+The pairing $\kappa(x_i,y^j)=\delta_i^j$, zero on
+the other two pairs of summands, is invariant because
+$C$ is alternating.
+
+Over $R=\mathbb C[\hbar]$, the Rees enveloping algebra
+$A_C$ has the symmetric PBW product
+\begin{equation}\label{eq:vol2-colour-pbw-product}
+ f*_Cg
+ =m\exp\left(
+       \frac{\hbar}{2}\sum_{i,j,k}
+          C_{ijk}Y^k\,\partial_{X_i}\otimes\partial_{X_j}
+       \right)(f\otimes g).
+\end{equation}
+Every polynomial pair gives a finite sum.
+The three bidifferential operators acting on pairs
+of slots in a triple tensor product commute, since
+their coefficients are central $Y$'s and their
+derivatives act only on $X$'s. Both bracketings are
+therefore the exponential of the same sum.
+The generator commutators are
+$[X_i,X_j]_{*_C}=\hbar C_{ijk}Y^k$, as required.
+
+The adjoint coefficient Chevalley complex is
+\[
+ P_C=R[X,Y]\otimes\Lambda(\xi,\eta),
+ \qquad |\xi_i|=|\eta^k|=1,
+\]
+with differential
+\[
+ Q\xi_i=QY^k=0,\qquad
+ Q\eta^k=-\frac12C_{ijk}\xi_i\xi_j,\qquad
+ QX_j=C_{ijk}Y^k\xi_i.
+\]
+Repeated indices are summed.
+These are the Chevalley formulas, and Jacobi gives
+$Q^2=0$.
+The relative Hochschild cohomology of $A_C$ is
+computed by
+\[
+ Z^p=\operatorname{Hom}_R
+       (\Lambda_R^p(\mathfrak n_C\otimes R),A_C).
+\]
+Its differential uses the commutator action and
+$\hbar$ times the bracket faces.
+The unnormalized alternating Chevalley-to-bar map
+of Chapter~\ref{ch:vol2-hamiltonian-jets}
+gives this comparison.
+
+Symmetrization is equivariant:
+$[T_a,\operatorname{sym}_\hbar f]
+  =\hbar\operatorname{sym}_\hbar(a\cdot f)$.
+Consequently
+\begin{equation}\label{eq:vol2-colour-beta}
+ \beta_p:P_C^p\longrightarrow Z^p,\qquad
+ \beta_p=\hbar^p\operatorname{sym}_\hbar
+\end{equation}
+is a cochain map.
+The target differential contributes the extra factor
+$\hbar$ needed to pass from degree $p$ to degree $p+1$.
+
+\begin{proposition}\label{prop:vol2-colour-duflo}
+Symmetrization identifies the invariant polynomial
+algebra with the centre of $A_C$ over $R$.
+After extending to $R[\hbar^{-1}]$, $\beta$ induces
+an isomorphism of graded cup-product algebras
+\[
+ H^*(P_C)[\hbar^{-1}]
+   \xrightarrow{\ \sim\ }HH_R^*(A_C)[\hbar^{-1}].
+\]
+The second assertion need not be an integral
+isomorphism in positive degree.
+\end{proposition}
+\begin{proof}
+If $f$ is invariant, then
+$\sum_{i,k}C_{jik}Y^k\partial_{X_i}f=0$ for every $j$.
+The bidifferential operator in
+\eqref{eq:vol2-colour-pbw-product} therefore kills
+$f\otimes g$ for every $g$, as do all its positive
+powers. Hence $f*_Cg=fg$.
+Conversely the PBW commutator of a linear generator
+with $f$ is $\hbar$ times its adjoint derivative.
+The PBW module has no $\hbar$-torsion, so centrality
+is equivalent to invariance. This proves the
+integral degree-zero assertion.
+
+After inverting $\hbar$, identify $A_C$ with
+$U(\mathfrak n_C)\otimes R[\hbar^{-1}]$ by
+$T_a\mapsto\hbar a$.
+Evaluate a degree-$p$ cochain on the rescaled
+arguments $\hbar^{-1}T_a$; this contributes
+$\hbar^{-p}$ and cancels the factor in $\beta_p$.
+The target becomes the ordinary adjoint Chevalley
+complex. Under these identifications, $\beta$ is
+symmetrization composed with the source automorphism
+$f(X,Y)\mapsto f(\hbar X,\hbar Y)$.
+This automorphism commutes with $Q$ and preserves
+the cup product.
+Every adjoint product of length at least two is
+zero, so the determinant
+\eqref{eq:vol2-duflo-factor} equals one.
+The cohomological Duflo theorem of Pevzner and
+Torossian \cite{PevznerTorossianDuflo}*{Theorem~2.5}
+then proves the cup-product assertion in every
+degree. The polynomial argument extends over the
+Laurent coefficient ring.
+
+For the last assertion take $C=0$.
+Both cochain differentials are zero, and $\beta_p$
+is multiplication by $\hbar^p$ on a nonzero free
+module whenever $0<p\leq\dim\mathfrak n_C$.
+Its cokernel has $\hbar$-torsion and its
+specialization at $\hbar=0$ is zero.
+\end{proof}
+
+There are algebraic product homotopies after this
+localization, although the theorem does not
+choose a field-theoretic one.
+Here is an explicit way to specify the first.
+Let $X=P_C\otimes P_C$ and $Y=Z$, now over
+$R[\hbar^{-1}]$, and write
+\[
+ D=\beta\,m_{P_C}-m_Z(\beta\otimes\beta):X\longrightarrow Y.
+\]
+The cup product on $Z$ uses the usual Chevalley
+shuffle diagonal and the coefficient product.
+Choose contractions $(i_X,p_X,h_X)$ and
+$(i_Y,p_Y,h_Y)$ onto cohomology.
+They exist here: the preceding rescalings identify
+the complexes with extensions of complexes of
+complex vector spaces, which split into cohomology
+and contractible pairs.
+Multiplicativity on cohomology says $p_YDi_X=0$.
+Then
+\begin{equation}\label{eq:vol2-colour-cup-homotopy}
+ H=h_YD+i_Yp_YDh_X
+ \quad\hbox{satisfies}\quad d_YH+Hd_X=D.
+\end{equation}
+To verify it, use that $D$ is a cochain map and
+expand the two contraction identities.
+The first summand gives $(1-i_Yp_Y)D$.
+The second gives $i_Yp_YD$, since
+$p_YDd_X=0$ and $p_YDi_X=0$.
+Their sum is $D$.
+This construction depends on the splittings.
+Compatibility with braces, geometric collisions
+and a prescribed two-point operation is further
+structure.
+
+\section{A mode completion that excludes the finite normalization}
+\label{sec:vol2-wheel-mode-obstruction}
+
+Finite Duflo maps do not automatically assemble along
+projections that discard Lie algebra blocks.
+For each $i\geq1$, let $\mathfrak g_i$ be a copy
+of $\mathfrak{sl}_2$ with generators $E_i,F_i,H_i$.
+Different blocks commute. Put
+$\mathfrak g_{\leq N}=\bigoplus_{i=1}^N\mathfrak g_i$
+and define
+\[
+ A_{\mathrm{mode}}=
+ \varprojlim_{N,M}
+       \operatorname{Sym}(\mathfrak g_{\leq N})
+                  \otimes\mathbb C[\hbar]/(\hbar^M),
+\]
+\[
+ U_{\mathrm{mode}}=
+ \varprojlim_{N,M}
+       U_\hbar(\mathfrak g_{\leq N})/(\hbar^M).
+\]
+The transition maps kill the omitted blocks.
+Each finite quotient has the discrete linear topology,
+and the limits have their inverse-limit topologies.
+
+\begin{proposition}\label{prop:vol2-mode-duflo-obstruction}
+There is no continuous linear map
+$A_{\mathrm{mode}}\to U_{\mathrm{mode}}$ whose
+restriction to invariant polynomials in every finite
+set of blocks is the Duflo map with the normalization
+of \eqref{eq:vol2-duflo-map}.
+\end{proposition}
+\begin{proof}
+The invariant
+$c_i=H_i^2/2+2E_iF_i$ tends to zero in
+$A_{\mathrm{mode}}$: every fixed block projection
+eventually kills it.
+Proposition~\ref{prop:vol2-duflo-quadratic} prescribes
+its image as
+\[
+ \operatorname{sym}_\hbar(c_i)+\frac{\hbar^2}{2}.
+\]
+Project to the first block and reduce modulo
+$\hbar^3$. For every $i>1$ the PBW term is zero,
+while $\hbar^2/2$ is nonzero.
+The proposed images do not tend to zero, contradicting
+continuity.
+\end{proof}
+
+The obstruction fixes both the topology and the
+normalization on every finite block.
+It does not exclude a different coefficient domain
+or a comparison with a specified renormalization.
+For example, using a parameter $q_i$ of increasing
+positive weight as the $i$th Rees parameter replaces
+the scalar correction by $q_i^2/2$.
+Only finitely many such corrections survive at any
+fixed weight. The next construction makes that
+coefficient domain precise.
+
+\section{Positive weights and mixed coefficients}
+\label{sec:vol2-weighted-mixed-formality}
+
+Let $A=\mathbb C[x_1,x_2,\ldots]$, where each polynomial
+uses finitely many variables.
+Write $T_{\mathrm{fin}}^{p-1}$ for finite sums of
+polynomial $p$-vectors and
+$D_{\mathrm{fin}}^{p-1}$ for finite sums of operators
+\[
+ (f_1,\ldots,f_p)\longmapsto
+ a(x)\,\partial^{\alpha_1}f_1\cdots\partial^{\alpha_p}f_p.
+\]
+Every multi-index has finite support.
+In degree $-1$, both spaces are $A$.
+These are the shifted deformation complexes:
+a $p$-vector or $p$-ary cochain has degree $p-1$.
+Use the Gerstenhaber insertion bracket on $D_{\mathrm{fin}}$.
+If $m$ is ordinary multiplication, its differential is
+$b_0=[m,-]_G$.
+For the Schouten bracket use
+\[
+ [X_1\wedge\cdots\wedge X_p,f]_{\mathrm{Sch}}
+ =\sum_i(-1)^{i-1}X_i(f)
+          X_1\wedge\cdots\widehat X_i\cdots\wedge X_p.
+\]
+
+Take a mixed coordinate domain $U=I^a\times D^b$,
+with $I$ an open real interval and $D$ a complex disk.
+Let $K(U)$ be the algebra of smooth real de Rham
+forms and complex $(0,*)$-forms on this product,
+with
+$d_K=d_{\mathbb R^a}+\bar\partial$
+and the total-complex signs.
+Its coefficients are arbitrary smooth functions
+on the product, not just finite sums of separated
+functions. Give it the compact-open $C^\infty$ topology.
+
+Give each finite polynomial operator space the fine
+bornology: a bounded set is contained and bounded
+in a finite-dimensional subspace.
+In $K(U)\widehat\otimes T_{\mathrm{fin}}$ and
+$K(U)\widehat\otimes D_{\mathrm{fin}}$, this means
+the direct sum of copies of $K(U)$ indexed by a
+polynomial operator basis; a bounded set uses only
+finitely many basis directions.
+Field derivatives act on the $x_i$ only.
+No spacetime differential operator or product of
+distributions is included in this definition.
+
+Choose degree-zero central parameters $q_i$ with
+positive integer weights $w_i$, only finitely many
+of which lie below any fixed bound.
+Set
+\[
+ \operatorname{wt}(q^\alpha)=\sum_iw_i\alpha_i,
+ \qquad
+ \mathscr R_{<M}
+   =\mathbb C[q_1,q_2,\ldots]/
+       (q^\alpha:\operatorname{wt}(q^\alpha)\geq M),
+ \qquad
+ \mathscr R=\varprojlim_M\mathscr R_{<M}.
+\]
+Each $\mathscr R_{<M}$ is finite dimensional.
+For the parameter-completed tensor define
+$V\widehat\otimes\mathscr R
+ =\varprojlim_M(V\otimes\mathscr R_{<M})$ and put
+\[
+ \widehat T(U)=
+   (K(U)\widehat\otimes T_{\mathrm{fin}})
+                 \widehat\otimes\mathscr R,\qquad
+ \widehat D(U)=
+   (K(U)\widehat\otimes D_{\mathrm{fin}})
+                 \widehat\otimes\mathscr R.
+\]
+The filtration $F^M$ is the kernel of projection
+to parameter precision $M$.
+Every coefficient has finite field support,
+although that support can increase with weight.
+
+Finite polynomial differential graphs act on these
+spaces. On a bounded input set, only finitely many
+coefficient and derivative directions occur.
+A graph consequently has finitely many index
+assignments. Its spacetime coefficients are products,
+and Leibniz's rule bounds their derivatives on each
+compact subset by finitely many products of input
+seminorms. Thus the graph map is bounded.
+A series whose $n$th term raises weight by at least
+$n$ has only finitely many terms at precision $M$,
+provided that each term has finitely many graphs.
+Its compatible finite-precision maps define a
+continuous map on the completion.
+
+Extend the affine Taylor maps over the mixed
+coefficients by
+\begin{equation}\label{eq:vol2-mixed-formality-sign}
+ \mathcal U_n^K(k_1\gamma_1,\ldots,k_n\gamma_n)
+ =
+ (-1)^{\sum_{i<j}|\gamma_i||k_j|
+              +(1-n)\sum_i|k_i|}
+ k_1\cdots k_n\,\mathcal U_n(\gamma_1,\ldots,\gamma_n).
+\end{equation}
+The first exponent moves the coefficients to the
+left. The second is the tensor sign for a map of
+degree $1-n$.
+After suspension, the Taylor maps have degree zero.
+Their coefficient extensions commute with the
+total coderivations because $d_K$ is a derivation.
+Undoing suspension proves all the extended
+$L_\infty$ identities with the displayed sign.
+The finite graph formulas are stable under
+adjoining unused field coordinates.
+
+Let $\Pi\in F^1\widehat T(U)$ be a bivector of
+mixed-form degree zero satisfying
+$d_K\Pi=0$ and $[\Pi,\Pi]_{\mathrm{Sch}}=0$.
+Independent finite Poisson blocks $\pi_i$ give the
+example $\Pi=\sum_iq_i\pi_i$.
+
+\begin{theorem}\label{thm:vol2-weighted-relative-formality}
+The formulas
+\begin{align}
+ B_\Pi&=\sum_{n\geq1}\frac1{n!}
+              \mathcal U_n^K(\Pi^{\otimes n}),
+       &m_\star&=m+B_\Pi,
+       \label{eq:vol2-weighted-star}\\
+ \mathcal F_r(v_1,\ldots,v_r)
+       &=\sum_{n\geq0}\frac1{n!}
+           \mathcal U_{n+r}^K
+                (\Pi^{\otimes n},v_1,\ldots,v_r),
+       &&r\geq1
+       \label{eq:vol2-weighted-twist}
+\end{align}
+define an associative product commuting with $d_K$
+and a filtered continuous $L_\infty$ quasi-isomorphism
+\[
+ (\widehat T(U),d_K+[\Pi,-]_{\mathrm{Sch}})
+ \longrightarrow
+ (\widehat D(U),d_K+[m_\star,-]_G).
+\]
+The maps commute with restriction in $U$.
+The assertion is about the unreduced mixed complexes.
+\end{theorem}
+\begin{proof}
+At precision $M$, the twisting sums have $n<M$.
+The input coefficients and the relevant coefficients
+of $\Pi$ use a common finite set of field variables.
+The calculation is therefore the finite affine
+formality calculation with coefficients in $K(U)$
+and signs \eqref{eq:vol2-mixed-formality-sign}.
+The Maurer--Cartan equation gives
+\[
+ (d_K+[m,-]_G)B_\Pi+\frac12[B_\Pi,B_\Pi]_G=0.
+\]
+Since $B_\Pi$ is binary and has mixed-form degree
+zero, this equation gives separately
+$d_KB_\Pi=0$ and $[m_\star,m_\star]_G=0$.
+
+For the higher maps, conjugate the source symmetric
+coalgebra codifferential by multiplication with
+$\exp(\Pi)$ and the target one by $\exp(B_\Pi)$.
+The coefficient with $r$ free inputs is
+\eqref{eq:vol2-weighted-twist}.
+All coefficients and identities are finite at
+the specified precision. Compatibility in $M$
+proves them on the inverse limit.
+
+The untwisted finite-direction HKR map is a
+quasi-isomorphism by the filtered colimit of the
+finite polynomial HKR comparisons.
+Its cone is an acyclic complex of complex vector
+spaces. Choose a square-zero contracting
+homotopy $H_0$ by splitting it into contractible
+pairs. Every linear map between fine bornological
+spaces is bounded.
+Extend $H_0$ over $K(U)$ with its degree-minus-one
+tensor sign. The two terms involving $d_K$ cancel,
+so this contracts the unreduced mixed cone.
+
+Write the cone differential of $\mathcal F_1$ as
+$d_0+\delta$. Every term of $\delta$ raises
+parameter weight.
+The homotopy
+\[
+ H=H_0(1+\delta H_0)^{-1}
+   =H_0\sum_{j\geq0}(-\delta H_0)^j
+\]
+is a finite sum at every precision.
+The perturbation identity gives
+$(d_0+\delta)H+H(d_0+\delta)=1$.
+This proves the quasi-isomorphism and continuity.
+Finally the graph maps use only field derivatives
+and pointwise products of mixed coefficients,
+which commute with restriction in $U$.
+\end{proof}
+
+Both sign contributions in
+\eqref{eq:vol2-mixed-formality-sign} can occur.
+On an interval with coordinate $t$, take
+$\pi=\partial_u\wedge\partial_v$ and $\Pi=h\pi$,
+where $h$ has weight one.
+The constant-bivector normalization gives
+$\mathcal U_2(\pi,\pi)(u^2,v^2)=1$.
+The order-$h$ term of $\mathcal F_1(t\pi)$ on
+these two functions is $ht$.
+Its mixed differential is $h\,dt$.
+In $\mathcal U_2^K(\pi,dt\,\pi)$, the input-crossing
+sign and the degree-minus-one map sign cancel,
+giving precisely this value.
+
+The target remains the completed finite-direction
+polydifferential complex.
+For example,
+$\sum_i x_i\partial_{x_i}$ acts on every polynomial
+and is bounded for the fine bornology.
+It is not a finite-direction derivation.
+It is not a Hochschild boundary either, since
+the nullary Hochschild differential of a
+commutative algebra is zero.
+Thus a comparison with the full bounded
+Hochschild complex requires a larger source.
+
+\section{A variable Poisson coefficient}
+\label{sec:vol2-variable-poisson-test}
+
+A small calculation shows why both the target differential
+and the derivative corrections matter.
+On $\mathbb C[x,y]$, take
+$\pi=x\partial_x\wedge\partial_y$ and use one
+parameter $h$.
+The first coefficient of the star product is
+\[
+ B_1(f,g)=\frac{x}{2}(f_xg_y-f_yg_x).
+\]
+The Schouten and Hochschild formulas give
+\[
+ [\pi,x]_{\mathrm{Sch}}=x\partial_y,\qquad
+ [\pi,\partial_x]_{\mathrm{Sch}}
+       =-\partial_x\wedge\partial_y,
+\]
+\[
+ [m_\star,x]_G(y)=hx+O(h^2),\qquad
+ [m_\star,\partial_x]_G(x,y)=-h/2+O(h^2).
+\]
+For the last expression, expand
+$(\partial_xx)\star y+x\star(\partial_xy)
+ -\partial_x(x\star y)$.
+The first-order term is $-h/2$.
+
+There cannot be a cochain map reducing to HKR from
+$(T_{\mathrm{fin}}[[h]],h[\pi,-]_{\mathrm{Sch}})$
+to the undeformed target
+$(D_{\mathrm{fin}}[[h]],b_0)$.
+Such a map sends $x$ to a nullary cochain, on which
+$b_0$ is identically zero.
+Its order-$h$ chain equation would be
+$0=h\,\operatorname{HKR}([\pi,x])=hx\partial_y$.
+Higher coefficients cannot change that equation.
+
+For the second product term, choose the affine gauge
+with
+\begin{equation}\label{eq:vol2-variable-poisson-second-term}
+ \begin{split}
+ B_2(f,g)={}&\frac{x^2}{8}
+       (f_{xx}g_{yy}-2f_{xy}g_{xy}+f_{yy}g_{xx})\\
+ &+\frac{x}{12}
+       (f_xg_{yy}+f_{yy}g_x-f_{xy}g_y-f_yg_{xy}).
+ \end{split}
+\end{equation}
+This is the second-order affine formula
+\cite{KontsevichDQ}*{Section~1.4.2}, normalized so
+that the first commutator is $h\{-,-\}$.
+
+\begin{proposition}\label{prop:vol2-variable-poisson-associator}
+The product $f\star g=fg+hB_1(f,g)+h^2B_2(f,g)$
+is associative modulo $h^3$.
+In particular,
+\[
+ (x\star y)\star y=x\star(y\star y)
+   =xy^2+hxy+\frac{h^2x}{6}\pmod{h^3}.
+\]
+Omitting the $x/12$ term in
+\eqref{eq:vol2-variable-poisson-second-term}
+leaves associator $h^2x/4$ on $(x,y,y)$.
+\end{proposition}
+\begin{proof}
+Leibniz's rule cancels the first-order associator.
+The second coefficient on $(f,g,k)$ is
+\[
+ \begin{split}
+ &B_2(f,g)k+B_1(B_1(f,g),k)+B_2(fg,k)\\
+ &\hspace{1cm}
+   -fB_2(g,k)-B_1(f,B_1(g,k))-B_2(f,gk).
+ \end{split}
+\]
+Using only the $x^2/8$ term and expanding each
+derivative by Leibniz gives
+$x(f_xk_y-f_yk_x)g_y/4$.
+The four terms with coefficient $x/12$ give its
+negative. This proves the assertion for arbitrary
+polynomials.
+For the displayed triple,
+$B_2(xy,y)=-x/12$ and $B_2(x,y^2)=x/6$.
+The iterated $B_1$ term adds $x/4$ on the left,
+giving $x/6$ on each side.
+Without the derivative correction, the left side
+has $x/4$ and the right side has zero in order two.
+\end{proof}
+
+The parameter also affects Lie compatibility.
+After inverting $h$, multiplication by $h^{p-1}$
+on $p$-vectors identifies the differentials
+$[\pi,-]$ and $h[\pi,-]$ and preserves the
+Schouten bracket: on a bracket of a $p$-vector and
+a $q$-vector both powers are $h^{p+q-2}$.
+It sends the function $1$ to $h^{-1}$.
+The unit-preserving scaling $h^p$ instead preserves
+the bracket if the source bracket is multiplied
+by $h$. The two rescalings answer different
+comparison questions.
+
+\section{Comparing quantizations and continuous operations}
+\label{sec:vol2-continuous-wheel-comparison}
+
+Two quantizations on the same coefficient module
+must be compared in their allowed operator space.
+Suppose associative products $\mu=m+O(h)$ and
+$\mu'=m+O(h)$ agree modulo $h^N$, for $N\geq1$.
+Assume their coefficient domains and differentials
+have been identified, and put
+$\Delta_N=h^{-N}(\mu'-\mu)\bmod h$.
+Subtracting associativity in order $h^N$ gives
+$b_0\Delta_N=0$.
+A permitted degree-zero unary operator $D$ gives
+\[
+ \mu'=(1+h^ND)^{-1}
+        \mu\bigl((1+h^ND)\otimes(1+h^ND)\bigr)
+                      \pmod{h^{N+1}}
+\]
+if and only if
+\begin{equation}\label{eq:vol2-unary-gauge-equation}
+ \Delta_N=b_0D.
+\end{equation}
+Indeed expansion of the right side gives
+\[
+ \mu+h^N\bigl(m(D\otimes1)+m(1\otimes D)-Dm\bigr).
+\]
+If the mixed differential $d_K$ is fixed, the
+same comparison also requires $[d_K,D]=0$.
+A primitive in a larger space of operators does
+not solve the equation in the prescribed domain.
+For a commutative product $b_0D$ is symmetric in
+its inputs, so a nonzero antisymmetric first-order
+difference cannot be removed this way.
+For example,
+$b_0(\partial_x^2)(f,g)=-2f_xg_x$.
+
+The Hamiltonian jet system has a different
+completion from the finite-direction weighted
+model. The two-index construction of
+Chapter~\ref{ch:vol2-continuous-cochains}
+gives $\mathcal P_{\mathrm{uc}}$ and its cochain
+comparison with $C^\bullet_{\mathrm{uc}}(A/R,A)$.
+A geometric polyvector realization must first be
+compared with that complex in its stated topology.
+The compatible-jet criterion of
+Theorem~\ref{thm:vol2-compatible-jets} records the
+additional transitions and limit identifications
+needed for a proposed $\mathcal P_\infty$.
+
+The further question is a continuous
+homotopy-$E_2$ quasi-isomorphism into this
+two-cutoff Hochschild recipient, with an invariant
+Duflo map and a specified renormalization of the
+wheels. A negative answer would require a brace
+obstruction that persists under every allowed
+renormalization. The fixed-normalization
+counterexample of
+Proposition~\ref{prop:vol2-mode-duflo-obstruction}
+does not have that quantifier.
+
+At the binary product level a proposed cochain
+map $\Phi$ already needs a homotopy satisfying
+\[
+ dH(u,v)+H(du,v)+(-1)^{|u|}H(u,dv)
+   =\Phi(uv)-\Phi(u)\smile\Phi(v).
+\]
+The brace substitutions require compatible higher
+homotopies on the same completed coefficient
+domain. A finite invariant algebra isomorphism
+does not specify them.
+The mixed-chain traces, cyclic orientation and
+finite wheel operators constructed above provide
+separate parts of such a comparison.
+To identify their action with an independently
+defined field theory, one must also preserve
+insertion supports, singular coefficients,
+collision substitutions and the chosen state.
+

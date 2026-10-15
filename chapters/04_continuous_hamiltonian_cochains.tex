@@ -1,0 +1,639 @@
+\chapter{Continuous Hamiltonian cochains}
+\label{ch:vol2-continuous-cochains}
+
+A formal Hamiltonian is determined by its finite jets. An operation on
+the quantized algebra need not return as many coefficients as it inspects.
+For example, extraction of a cubic coefficient can have a scalar
+output. A limit of self-valued cochains at equal input and output
+jet orders would miss this operation.
+
+We therefore keep the two orders separate. The resulting continuous
+Hochschild complex has braces and a relative bar resolution. Its
+Chevalley comparison is compatible with both jet orders and with
+the quantization parameter. This constructs a continuous algebraic
+centre. Relating it to geometric collision operations or to bulk
+observables requires maps preserving those additional operations.
+
+\section{Residue duality and opposite directions of variance}
+
+Let $k$ be a field of characteristic zero. The polynomial formulas of
+Chapter~\ref{ch:vol2-hamiltonian-jets} apply over $k$. Put
+\[
+ \mathfrak m=(z_1,z_2),\qquad
+ \h=\mathfrak m^2\subset k\llbracket z_1,z_2\rrbracket,
+ \qquad \h_{\leq d}=\h/\mathfrak m^{d+1}\quad(d\geq2).
+\]
+The bracket is \eqref{eq:vol2-hamiltonian-bracket}. Give $\h$ its
+order topology and $k$ the discrete topology. A continuous linear
+functional on $\h$ vanishes on $\mathfrak m^{d+1}$ for some $d$.
+Consequently
+\begin{equation}\label{eq:vol2-continuous-dual}
+ \h^\vee_{\mathrm{cont}}
+   =\varinjlim_d\h_{\leq d}^\vee
+   =\bigoplus_{a+b\geq2}k\rho_{ab},
+ \qquad
+ \rho_{ab}=z_1^{-a-1}z_2^{-b-1}\,dz_1\,dz_2.
+\end{equation}
+The notation on the right represents the iterated residue functional,
+normalized by
+\[
+ \operatorname{Res}_0(z_1^iz_2^j\rho_{ab})=\delta_{ia}\delta_{jb}.
+\]
+On the whole power-series ring, the same formula includes all
+$a,b\geq0$. The two degree-one modes pair with the translations in
+$\h^{\mathrm{aff}}$, whereas the pointed algebra starts in degree two.
+The continuous dual has the discrete topology.
+
+\begin{proposition}[Coadjoint currents]\label{prop:vol2-continuous-coadjoint}
+For $f=z_1^iz_2^j\in\h$,
+\begin{equation}\label{eq:vol2-residue-coadjoint}
+ \operatorname{ad}_f^*\rho_{ab}
+  =\bigl(j(a+1)-i(b+1)\bigr)\rho_{a-i+1,b-j+1}.
+\end{equation}
+A mode with a negative index or with total degree less than two is
+zero as a functional on $\h$. The formula extends to formal $f$,
+and the coadjoint action is continuous.
+\end{proposition}
+
+\begin{proof}
+By definition,
+$(\operatorname{ad}_f^*\rho_{ab})(g)=-\rho_{ab}(\{f,g\})$.
+For $g=z_1^pz_2^q$, the monomial bracket has coefficient $iq-jp$
+and exponent $(i+p-1,j+q-1)$. The residue can be nonzero only at
+$(p,q)=(a-i+1,b-j+1)$, where its negative coefficient is
+$j(a+1)-i(b+1)$. This proves the formula.
+If $a+b\leq d$, a Hamiltonian of order greater than $d$ acts by
+zero: the possible output mode would have degree at most one.
+Thus the action on any finite sum of residue modes uses only
+finitely many Taylor coefficients of $f$. Its output is again a
+finite sum. This also proves continuity for the stated topologies.
+\end{proof}
+
+The graded semidirect Lie algebra
+\[
+ \mathfrak q_{\mathrm{cont}}
+   =\h\ltimes\h^\vee_{\mathrm{cont}}[-1]
+\]
+has degree-zero Hamiltonians and degree-one covectors. The second
+summand is abelian. The order topology on the first summand and the
+discrete topology on the second make it separated and complete.
+Evaluation gives the invariant pairing between the two summands:
+its invariance is the defining negative-transpose identity above.
+
+The quotient $\h\to\h_{\leq d}$ induces an inclusion of duals.
+Its image is a coadjoint submodule, and there is a surjective Lie map
+\begin{equation}\label{eq:vol2-current-subquotient}
+ \h\ltimes\h_{\leq d}^\vee[-1]
+   \longrightarrow
+ \mathfrak q(\h_{\leq d})
+   =\h_{\leq d}\ltimes\h_{\leq d}^\vee[-1],
+ \qquad (x,\alpha)\longmapsto(x\bmod\mathfrak m^{d+1},\alpha).
+\end{equation}
+Its kernel is $\mathfrak m^{d+1}$ in the first summand. Indeed,
+that ideal acts trivially on the displayed finite dual, and the
+coadjoint formula descends to the finite quotient. Thus the finite
+current algebra is a quotient of a subalgebra of
+$\mathfrak q_{\mathrm{cont}}$.
+
+Simultaneous coordinate truncation on both full summands is not a
+Lie map. At $d=2$, it kills both $z_1^3$ and $\rho_{21}$, but
+\[
+ \operatorname{ad}_{z_1^3}^*\rho_{21}=-6\rho_{02}
+\]
+has a nonzero quadratic component. The quotient of Hamiltonians and
+the inclusion of covectors must retain their opposite directions.
+
+\section{The completed algebra and its continuous operations}
+
+Set $R=k\llbracket\hbarq\rrbracket$ and
+$R_N=R/(\hbarq^{N+1})$. For $d\geq2$ and $N\geq0$, define
+\begin{equation}\label{eq:vol2-continuous-algebra}
+ A_{d,N}=U_{R_N}(\h_{\leq d}\otimes_kR_N,\hbarq\{-,-\}),
+ \qquad A=\widehat U_\hbar(\h)=\varprojlim_{d,N}A_{d,N}.
+\end{equation}
+The defining relation is $xy-yx=\hbarq\{x,y\}$. Choose one ordering
+of the Hamiltonian monomials, compatible with the inclusions of
+their finite bases. The PBW theorem proved in
+Proposition~\ref{prop:vol2-rees-pbw} gives free $R_N$-modules with
+the corresponding ordered-monomial bases. Every quotient map in
+\eqref{eq:vol2-continuous-algebra} is onto.
+
+Give $A$ the inverse-limit topology with discrete quotients $A_{d,N}$.
+At each fixed $(d,N)$, PBW expressions are finite polynomials.
+In particular, this construction does not complete the polynomial
+degree in the enveloping generators. For $n\geq1$, put
+\begin{equation}\label{eq:vol2-quotient-tensor}
+ A^{\widehat\otimes_R n}
+  =\varprojlim_{d,N}A_{d,N}^{\otimes_{R_N}n},
+ \qquad A^{\widehat\otimes_R0}=R.
+\end{equation}
+Different cutoffs in the tensor factors give the same limit because
+a common larger cutoff is cofinal. All continuity statements below
+refer to this quotient tensor.
+
+Here is an operation requiring different jet orders. Let $X_{30}$
+be the enveloping generator represented by the Hamiltonian $z_1^3$.
+Projection to $A_{3,N}$ followed by extraction of the PBW coefficient
+of the single monomial $X_{30}$ is an $R_N$-linear scalar-valued map.
+The compatible maps in $N$, followed by the scalar inclusion into
+$A$, define a continuous $R$-linear map $\lambda_{30}:A\to A$.
+Its output in $A_{2,N}$ is nonzero on $X_{30}$, although the
+input projection to $A_{2,N}$ kills $X_{30}$. That output therefore
+cannot be computed from the quadratic input jet.
+
+\begin{definition}\label{def:vol2-uniform-cochains}
+The continuous Hochschild cochains for the quotient tensor are
+\begin{equation}\label{eq:vol2-two-index-cochains}
+ C^n_{\mathrm{uc}}(A/R,A)
+   =\varprojlim_{d,N}\varinjlim_{e\geq d}
+       \operatorname{Hom}_{R_N}
+       (A_{e,N}^{\otimes_{R_N}n},A_{d,N}).
+\end{equation}
+The direct maps precompose with input quotients. The inverse maps
+reduce the output and the parameter precision. Give each direct
+limit the discrete topology and each $C^n_{\mathrm{uc}}$ its
+inverse-limit topology. The subscript specifies uniform continuity
+for \eqref{eq:vol2-quotient-tensor}.
+\end{definition}
+
+\begin{lemma}[An input cutoff for each output]\label{lem:vol2-continuous-maps}
+The quotient projections in \eqref{eq:vol2-quotient-tensor} are onto,
+and there is a natural identification
+\begin{equation}\label{eq:vol2-continuous-hom}
+ C^n_{\mathrm{uc}}(A/R,A)
+  =\operatorname{Hom}_{R,\mathrm{cont}}
+       (A^{\widehat\otimes_R n},A).
+\end{equation}
+Both the tensor source and the cochain space are separated and complete.
+\end{lemma}
+
+\begin{proof}
+A finite PBW tensor lifts by the same ordered monomials to all
+larger cutoffs; hence every projection is onto. On underlying modules,
+symmetrization identifies the tensor source with
+\[
+ \left(\varprojlim_d
+      (\operatorname{Sym}_k\h_{\leq d})^{\otimes_k n}\right)
+       \llbracket\hbarq\rrbracket.
+\]
+Each parameter coefficient is a compatible system of finite
+polynomials. Coefficientwise division by $\hbarq^{N+1}$ therefore
+identifies its quotient by that parameter power with
+$\varprojlim_d A_{d,N}^{\otimes n}$. The inverse-limit description
+also gives separatedness and completeness.
+
+Let $f$ be a continuous map on the right of
+\eqref{eq:vol2-continuous-hom}. Its composite with the output
+$(d,N)$ kills the kernel of some input projection $(e,M)$.
+Increase that projection so that $e\geq d$ and $M\geq N$.
+Surjectivity makes the induced map $R$-linear. Since the target is
+killed by $\hbarq^{N+1}$, it factors through
+$A_{e,N}^{\otimes n}$. Two choices give the same map precisely
+after a common input refinement. The output compatibilities give
+\eqref{eq:vol2-two-index-cochains}.
+Conversely, its compatible families define a map into $A$, and their
+finite input factorizations at each output make it continuous.
+Finally, an inverse limit of discrete modules is a closed submodule
+of their product and is complete, proving the assertion for cochains.
+\end{proof}
+
+\section{Composition and the relative derived centre}
+
+All enveloping generators have cohomological degree zero, and an
+$n$-cochain has cohomological degree $n$. Its Hochschild differential is
+\begin{align*}
+ (bf)(a_1,\ldots,a_{n+1})={}&a_1f(a_2,\ldots,a_{n+1})\\
+ &+\sum_{i=1}^n(-1)^i
+       f(a_1,\ldots,a_i a_{i+1},\ldots,a_{n+1})\\
+ &+(-1)^{n+1}f(a_1,\ldots,a_n)a_{n+1}.
+\end{align*}
+For brace signs, use the reduced degree $|f|=n-1$.
+If $g_j$ has arity $q_j$, define
+\begin{equation}\label{eq:vol2-continuous-braces}
+ f\{g_1,\ldots,g_r\}
+   =\sum_{\text{ordered disjoint insertions}}
+       (-1)^{\sum_j(q_j-1)i_j}
+       f(\ldots,g_1(\ldots),\ldots,g_r(\ldots),\ldots),
+\end{equation}
+where $i_j$ is the number of arguments preceding the block of
+$g_j$ in the resulting argument list. Equivalently, these are the
+Koszul insertion signs on the suspended tensor coalgebra.
+For $f$ of arity $p$ and $g$ of arity $q$, the cup product is
+\[
+ (f\smile g)(a_1,\ldots,a_{p+q})
+   =f(a_1,\ldots,a_p)g(a_{p+1},\ldots,a_{p+q}).
+\]
+
+\begin{theorem}[Continuous braces]\label{thm:vol2-continuous-braces}
+The differential, cup product and every finite brace preserve
+$C^\bullet_{\mathrm{uc}}(A/R,A)$. They are continuous for the
+stated cochain topologies and obey the Hochschild brace identities.
+\end{theorem}
+
+\begin{proof}
+Fix an output quotient $(d,N)$ for the outer cochain $f$. It uses
+some input cutoff $e$. Each inner cochain $g_j$ is then needed only
+at output $(e,N)$, and that output uses some finite input cutoff
+$e_j$. Choose $E$ at least as large as $e,e_1,\ldots,e_r$.
+Every summand is now a map from a tensor power of $A_{E,N}$ to
+$A_{d,N}$. There are finitely many summands at fixed arities, and
+further refinement leaves their class unchanged. This constructs
+the brace. Multiplication is defined at each finite quotient, so
+the same argument constructs $b$ and the cup product.
+
+To prove continuity at a specified tuple of cochains, fix its outer
+component at $(d,N)$ and the finitely many inner components just
+used. These equalities describe open neighborhoods, and all outputs
+at $(d,N)$ agree throughout them. The argument applies to every
+output quotient.
+For a brace identity, choose one common quotient for all the
+intermediate outputs in its two sides. Both sides enumerate the
+same nested or disjoint insertions there. The Koszul sign is the
+sign of the same permutation of suspended inputs, so the terms
+agree. Thus the identity holds at every output and in the limit.
+Associativity of multiplication gives $b^2=0$.
+\end{proof}
+
+An individual rectangular complex with coefficients in $A_{d,N}$
+and inputs in $A_{e,N}$ is not a self-valued brace algebra when
+$e\ne d$. The total cochain space supplies the intermediate output
+needed by the next insertion.
+
+We now specify the derived category for this construction. Work with
+complete separated linearly topologized $R$-modules and quotient
+completed tensors. A map out of a tensor is continuous when each
+discrete output factors through discrete quotients of all its inputs.
+Use complete $A$-bimodules whose action is continuous for this tensor,
+and write $A^e=A\widehat\otimes_R A^{\mathrm{op}}$.
+A short exact sequence is \emph{relatively admissible} when it has
+a continuous $R$-linear splitting, which need not be $A$-bilinear.
+Relative resolutions and derived Hom refer to this exact structure.
+
+For a complete coefficient module $E$ and a complete $A$-bimodule $M$,
+restriction to
+$1\otimes E\otimes1$ gives the induction adjunction
+\begin{equation}\label{eq:vol2-continuous-induction}
+ \operatorname{Hom}_{A^e,\mathrm{cont}}
+       (A\widehat\otimes_R E\widehat\otimes_R A,M)
+   =\operatorname{Hom}_{R,\mathrm{cont}}(E,M).
+\end{equation}
+The inverse sends $f$ to $a\otimes e\otimes b\mapsto af(e)b$.
+First refining the output for the action and then the input for $f$
+proves its continuity. If $M'\to M$ has a continuous $R$-linear
+section, a map on the right lifts by composition with that section.
+The adjunction then lifts the bimodule map. Thus induced modules
+are relatively projective.
+
+\begin{theorem}[The completed relative bar]\label{thm:vol2-continuous-bar}
+The augmented complex
+\[
+ B_n(A)=A\widehat\otimes_R A^{\widehat\otimes_R n}
+                   \widehat\otimes_R A\quad(n\geq0),
+ \qquad B_0(A)\longrightarrow A,
+\]
+with alternating multiplication boundary and $B_n$ in degree $-n$,
+is a relative projective resolution. Hence
+\begin{equation}\label{eq:vol2-continuous-centre}
+ \operatorname{RHom}^{\mathrm{rel,cont}}_{A^e}(A,A)
+    \simeq C^\bullet_{\mathrm{uc}}(A/R,A).
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+Each term is induced, hence relatively projective by
+\eqref{eq:vol2-continuous-induction}. On the augmented bar, put
+\[
+ s_n(a_0\otimes\cdots\otimes a_{n+1})
+   =1\otimes a_0\otimes\cdots\otimes a_{n+1},
+ \qquad s_{-1}(a)=1\otimes a.
+\]
+These maps are continuous and $R$-linear. In $\partial s+s\partial$,
+every multiplication except the newly inserted first one occurs
+twice with opposite signs. The remaining term is the identity.
+On cycles, $s$ is therefore a continuous $R$-linear section of the
+boundary onto those cycles. This proves admissible exactness.
+Continuous bimodule Hom identifies the term in degree $n$ with
+\eqref{eq:vol2-continuous-hom}. Its induced differential is exactly
+$b$, proving \eqref{eq:vol2-continuous-centre}.
+\end{proof}
+
+This is the derived centre in the stated relative continuous theory.
+An absolute derived category of topological modules or an analytic
+tensor product requires a comparison with this resolution.
+
+\section{The Chevalley comparison and the inverse limit}
+
+For $e\geq d$, let $A_{d,N}$ be an $A_{e,N}$-bimodule through the
+quotient. Define
+\begin{equation}\label{eq:vol2-rectangular-chevalley}
+ P^n_{e,d,N}
+  =\operatorname{Hom}_k\bigl(\Lambda^n\h_{\leq e},
+                  \operatorname{Sym}_k\h_{\leq d}\bigr)\otimes_kR_N.
+\end{equation}
+The coefficient action of $\h_{\leq e}$ factors through
+$\h_{\leq d}$ and extends its adjoint action as a derivation of
+the symmetric algebra. Let $d_{\mathrm{CE}}$ be the Chevalley
+differential with this action and with the Poisson Lie bracket.
+For example,
+\[
+ (d_{\mathrm{CE}}f)(x,y)=x\cdot f(y)-y\cdot f(x)-f(\{x,y\})
+\]
+for a one-cochain. In general the action term indexed by $i$ has
+sign $(-1)^i$ on inputs $x_0,\ldots,x_n$, and the bracket term
+indexed by $i<j$ has sign $(-1)^{i+j}$, with $\{x_i,x_j\}$ put
+first and the remaining inputs in their original order.
+The differential on $P^\bullet_{e,d,N}$ is
+$\hbarq d_{\mathrm{CE}}$.
+
+\begin{theorem}[Chevalley comparison with two jet orders]
+\label{thm:vol2-continuous-chevalley}
+Output PBW symmetrization and input antisymmetrization define
+natural quasi-isomorphisms
+\begin{align}
+ C^\bullet_{\HH}(A_{e,N}/R_N,A_{d,N})
+   &\longrightarrow (P^\bullet_{e,d,N},\hbarq d_{\mathrm{CE}}),
+       \label{eq:vol2-rectangular-map}\\
+ f&\longmapsto\left[(x_1,\ldots,x_n)\longmapsto
+     \operatorname{PBW}^{-1}\sum_{\sigma\in S_n}
+       \operatorname{sgn}(\sigma)
+       f(x_{\sigma(1)},\ldots,x_{\sigma(n)})\right].\notag
+\end{align}
+They commute with input refinement, output quotient and parameter
+reduction. Consequently they induce a quasi-isomorphism
+\begin{equation}\label{eq:vol2-continuous-chevalley-map}
+ C^\bullet_{\mathrm{uc}}(A/R,A)
+   \longrightarrow
+ \mathcal P_{\mathrm{uc}}
+   :=\varprojlim_{d,N}\varinjlim_{e\geq d}
+                   (P^\bullet_{e,d,N},\hbarq d_{\mathrm{CE}}).
+\end{equation}
+For both systems in this formula, the ordinary inverse limit
+computes the derived inverse limit.
+\end{theorem}
+
+\begin{proof}
+Use the finite Chevalley bimodule resolution from the proof of
+Theorem~\ref{thm:vol2-relative-rees}, now for $A_{e,N}$ and with
+coefficient bimodule $A_{d,N}$. Its terms are
+\[
+ A_{e,N}\otimes_{R_N}\Lambda^n(\h_{\leq e}\otimes_kR_N)
+          \otimes_{R_N}A_{e,N}.
+\]
+They are free bimodules. Filtering by PBW degree plus exterior
+degree gives the Koszul resolution of the diagonal of a polynomial
+algebra over $R_N$. The diagonal differences form a regular sequence
+even over this nilpotent coefficient ring. A cycle has finite
+filtration degree, and lifting an associated-graded primitive lowers
+that degree. This proves exactness without a convergence assumption.
+
+Antisymmetrization of the exterior factors is a map into the bar
+resolution: internal bar products combine in pairs to give the
+scaled Lie commutator, and the two endpoint terms give the left and
+right actions. It is therefore a chain homotopy equivalence between
+projective resolutions. Applying bimodule Hom into $A_{d,N}$ gives
+\eqref{eq:vol2-rectangular-map}. Under PBW, the commutator action of
+$x$ on the coefficient algebra is $\hbarq$ times its adjoint Poisson
+action; the bracket term also carries $\hbarq$. This proves the
+stated differential. All formulas commute with the three quotient
+maps, proving naturality.
+
+Filtered direct limits of modules are exact. For the output inverse
+limit, use the countable cofinal sequence $(d,N)=(r+2,r)$.
+Every cochain at one output factors through a finite input order
+$e$. For the next output, increase $e$ if necessary and precompose
+with the input quotient. Lift the value of each PBW tensor basis
+element to the next output and parameter precision, then extend
+linearly over the new coefficient ring. Each value is a finite
+polynomial, so this defines an allowed cochain. The exterior basis
+gives the same construction on $P^n_{e,d,N}$. These are degreewise
+lifts, not chain sections; no $R_N$-linear section of
+$R_{N+1}\to R_N$ is used.
+
+Thus both cochain towers are degreewise surjective. For a countable
+tower of complexes with transitions $p_r:K_{r+1}\to K_r$, the
+derived inverse limit is the homotopy fibre of
+\[
+ 1-\mathrm{shift}:\prod_rK_r\longrightarrow\prod_rK_r.
+\]
+Degreewise surjectivity of the transition maps makes this product
+map degreewise onto: choose the next coordinate recursively to
+solve $x_r-p_rx_{r+1}=y_r$. Its kernel is $\varprojlim_rK_r$.
+The homotopy fibre is consequently quasi-isomorphic to that kernel.
+Applying the derived inverse limit to the levelwise comparisons
+therefore gives \eqref{eq:vol2-continuous-chevalley-map}.
+\end{proof}
+
+At $\hbarq=0$, the Chevalley differential vanishes, as required by
+the commutative polynomial special fibre. At positive parameter
+precision the two Chevalley terms remain scaled together.
+The theorem identifies complexes. It does not identify a chosen
+polyvector wedge with the Hochschild cup product or make
+antisymmetrization a strict brace map.
+
+Finite comparison homotopies can also be computed. At parameter
+zero, write $t_i=x_i-y_i$ for the diagonal differences in the
+Koszul resolution and $\epsilon_i$ for its exterior generators.
+On positive total $t,\epsilon$ degree, the operators
+\[
+ d_0=\sum_i t_i\partial_{\epsilon_i},\qquad
+ h_0=\frac{\sum_i\epsilon_i\partial_{t_i}}
+                    {\deg_t+\deg_\epsilon}
+\]
+satisfy $d_0h_0+h_0d_0=1$; on $t,\epsilon$-constant terms the
+homotopy is zero. Let $i_0$ include this constant summand and let
+$p_0$ project to it. The anticommutator before division is the
+total Euler operator, so
+\[
+ d_0h_0+h_0d_0=1-i_0p_0,\qquad
+ h_0^2=h_0i_0=p_0h_0=0.
+\]
+After PBW identification the quantum differential is
+$d_K=d_0+\delta$, where $\delta$ has order $\hbarq$.
+Modulo $\hbarq^{N+1}$, put
+\[
+ T=\sum_{j=0}^{N}(-\delta h_0)^j,\qquad
+ h_K=h_0T,\qquad p_K=p_0T,\qquad
+ i_K=\sum_{j=0}^{N}(-h_0\delta)^j i_0.
+\]
+These sums are finite. Multiplying them and using
+$d_K^2=0$ and the preceding identities gives
+\[
+ d_Kh_K+h_Kd_K=1-i_Kp_K,\qquad p_Ki_K=1.
+\]
+The differential transferred to the constant summand is zero by
+degree. That summand represents the diagonal quotient $A_{e,N}$,
+so $p_K$ is its augmentation in PBW coordinates. This supplies
+the contraction on the augmented resolution.
+
+Starting with the augmentation lift, define the bar-to-Chevalley
+comparison on a free middle generator by
+\[
+ \psi_n(1[a_1|\cdots|a_n]1)
+   =h_K\psi_{n-1}\partial(1[a_1|\cdots|a_n]1),
+\]
+and extend bimodule-linearly. Its argument is a cycle by the previous
+stage, so the contraction identity proves the chain-map equation.
+If $\alpha$ is the antisymmetrization map into the bar, define on
+its free middle generators
+\[
+ H_n=s_n\bigl((1-\alpha\psi)_n-H_{n-1}\partial\bigr),
+ \qquad H_{-1}=0,
+\]
+and again extend bimodule-linearly. The expression in parentheses
+is a cycle by induction, so $\partial H+H\partial=1-\alpha\psi$.
+These are finite algorithms at every fixed cutoff.
+Transporting higher operations through a simultaneous continuous
+choice requires the compatibility of those homotopies as well.
+
+\section{A localization test for limits and adjoints}
+
+The surjectivity used above is a substantive hypothesis. A scalar
+example shows both what can fail without it and why changing the
+completion changes the problem.
+
+Let $S=k[t]$, $L=k[t,t^{-1}]$, and write $D(S)$ and $D(L)$ for
+the derived categories of modules. Restriction of scalars
+$i:D(L)\to D(S)$ is fully faithful, since localization is flat and
+$L\otimes_S L=L$. Its left adjoint is
+$L\otimes_S^{\mathbb L}(-)$; its right adjoint is
+$\operatorname{RHom}_S(L,-)$. The right adjoint represents maps
+from localized objects into a given object, whereas the left
+adjoint represents maps out of that object into localized ones.
+
+\begin{proposition}[The two localization adjoints]
+\label{prop:vol2-localization-adjoints}
+Their values at $S$ are
+\[
+ L\otimes_S^{\mathbb L}S=L,
+ \qquad
+ \operatorname{RHom}_S(L,S)
+     \simeq(k\llbracket t\rrbracket/k[t])[-1].
+\]
+The latter equivalence is one of $S$-complexes. Multiplication by
+$t$ is invertible on its displayed cohomology and gives the
+$L$-module structure. For $\widehat S=k\llbracket t\rrbracket$
+and $\widehat L=k((t))$, the right adjoint takes $\widehat S$ to
+zero, while the left adjoint takes it to $\widehat L$.
+\end{proposition}
+
+\begin{proof}
+The direct system $S\xrightarrow{t}S\xrightarrow{t}\cdots$ has
+colimit $L$, where the $n$th copy maps by multiplication by $t^{-n}$.
+Its free telescope resolution has terms $\bigoplus_{n\geq0}S$
+and differential $e_n\mapsto e_n-te_{n+1}$. Injectivity follows
+by inspecting the least nonzero coordinate of a finitely supported
+vector. Its cokernel imposes exactly the relations of that colimit.
+Applying $\operatorname{Hom}_S(-,S)$ gives the complex in degrees
+zero and one
+\begin{equation}\label{eq:vol2-polynomial-telescope}
+ \prod_{n\geq0}S\xrightarrow{D}\prod_{n\geq0}S,
+ \qquad D(a)_n=a_n-ta_{n+1}.
+\end{equation}
+If $D(a)=0$, each $a_n$ is divisible by every power of $t$, so
+$a_n=0$. Define
+\[
+ \Theta(b)=\left[\sum_{n\geq0}t^nb_n\right]
+               \in k\llbracket t\rrbracket/k[t].
+\]
+The series converges coefficientwise. For $b=D(a)$ it telescopes
+to the polynomial $a_0$, so $\Theta$ annihilates the image of $D$.
+It is onto, by taking the $b_n$ to be scalar coefficients of a series.
+If its value is zero, the series equals a polynomial $c$. Put
+\[
+ a_n=t^{-n}\left(c-\sum_{j<n}t^jb_j\right).
+\]
+The expression in parentheses is a polynomial divisible by $t^n$,
+so $a_n\in S$, and $D(a)=b$. This proves the asserted cokernel.
+On that cokernel, the inverse of multiplication by $t$ sends
+$[f]$ to $[(f-f(0))/t]$.
+
+Over $\widehat S$, the same telescope differential has the inverse
+\[
+ a_n=\sum_{j\geq0}t^j b_{n+j}.
+\]
+Each series converges $t$-adically, and the homogeneous equation
+still has only the zero solution. Thus the derived right-adjoint
+value is zero. Flat localization computes both left-adjoint values.
+\end{proof}
+
+For $b_n=1$, the class $\Theta(b)=[(1-t)^{-1}]$ is nonzero.
+Every finite subsystem nevertheless has a polynomial solution:
+with $a_{M+1}=0$, take
+\[
+ a_n=1+t+\cdots+t^{M-n}\qquad(0\leq n\leq M).
+\]
+These degrees grow with $M$ and give no polynomial solution of the
+infinite system. Completion supplies such a solution by admitting
+a different class of coefficients. The continuous Hamiltonian
+comparison avoids this inference by proving surjectivity of its
+actual cochain transitions.
+
+\section{Compatible models and geometric actions}
+
+The algebra $A$ of \eqref{eq:vol2-continuous-algebra} is the formal
+Hamiltonian boundary algebra, and \eqref{eq:vol2-continuous-centre}
+constructs its relative continuous derived centre. The explicit
+model $\mathcal P_{\mathrm{uc}}$ records the corresponding
+Hamiltonian cochains with their two variances. A different
+polyvector realization must be compared with this complex in its
+own topology.
+
+To compare another realization obtained from finite models, one
+must also specify its transitions. At a fixed jet order let
+\[
+ A_d=\varprojlim_NA_{d,N},\qquad
+ \mathcal P_d=
+ \bigl(C^\bullet(\h_{\leq d},\operatorname{Sym}\h_{\leq d})
+              \llbracket\hbarq\rrbracket,\hbarq d_{\mathrm{CE}}\bigr).
+\]
+A \emph{compatible jet comparison} consists of complete $R$-linear
+cochain models $P_d,H_d$, continuous transition maps, levelwise comparisons
+$P_d\simeq\mathcal P_d$ and
+$H_d\simeq C^\bullet_{\HH,\mathrm{cont}}(A_d/R,A_d)$, and
+compatible quasi-isomorphisms $P_d\to H_d$. All comparison maps
+and limit identifications are continuous. Require degreewise
+surjective transitions or use derived inverse limits. Specify the
+identifications of their chosen limits with a proposed complex
+$\mathcal P_\infty$ and with $C^\bullet_{\mathrm{uc}}(A/R,A)$.
+An ordinary limit may be used only when its comparison with the
+derived limit is supplied. All identifications use the quotient
+topology fixed above.
+
+\begin{theorem}[Continuous comparison from compatible jets]
+\label{thm:vol2-compatible-jets}
+A compatible jet comparison induces a continuous quasi-isomorphism
+\[
+ \Phi_\infty:\mathcal P_\infty\xrightarrow{\sim}
+                C^\bullet_{\mathrm{uc}}(A/R,A).
+\]
+Compatible homotopy-$\Etwo$ and Swiss-cheese refinements, whose
+operations converge in the chosen topology, give the corresponding
+complete open--closed operations.
+\end{theorem}
+
+\begin{proof}
+The derived inverse limit preserves levelwise equivalences. For
+degreewise surjective towers it agrees with the ordinary limit by
+the product calculation in the proof of
+Theorem~\ref{thm:vol2-continuous-chevalley}. Apply the specified
+limit identifications. For the final assertion, the supplied
+operadic comparisons identify each operation and its coherence
+homotopies; convergence defines them on the limits.
+\end{proof}
+
+The two-index construction already gives the algebraic cochain
+comparison \eqref{eq:vol2-continuous-chevalley-map}. It supplies
+neither a chosen geometric polyvector product nor its equivalence
+with the brace operations. In particular, an invariant continuous
+Duflo map requires a multiplicative comparison and a specified
+prescription for its wheel coefficients.
+
+Finite matrix branes are representation-theoretic images of the
+formal Hamiltonian boundary algebra whenever their representations
+are continuous for this completion. Its relative derived centre is
+then an algebraic target for coherent bulk actions. A field-theory
+identification starts instead from that theory's observables and
+constructs their action map. It must preserve the insertion supports,
+collisions, vacuum and higher substitutions. The continuous algebraic
+resolution provides the target of this comparison; it does not
+construct its geometric or physical source.

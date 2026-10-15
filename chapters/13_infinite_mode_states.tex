@@ -1,0 +1,1199 @@
+\chapter{Infinite-mode states and local stabilization}
+\label{ch:vol2-infinite-mode-states}
+
+A current commutator does not determine a state. For one oscillator,
+\([a,a^*]=1\), the vacuum has expectation zero on \(a^*a\).
+A thermal state at inverse temperature \(T\) has expectation
+\((e^T-1)^{-1}\) on the same operator. Both give expectation one
+on the commutator. The singular current coefficient can therefore
+survive a change of preparation while its regular correlations change.
+
+Chapter~\ref{ch:vol2-gaussian-elimination} constructed finite Gaussian
+states and their higher operations. Passing to infinitely many modes
+requires a domain, an energy estimate and a normalization. We construct
+these data on a Heisenberg Fock space. A local cubic interaction then
+separates two possible conclusions: every perturbative coefficient
+exists and sews, although the numerical cubic heat operator is unbounded.
+A local quartic correction gives positive states. Its coefficient
+determines whether those states approach the free state continuously.
+
+\section{The common Hilbert space}
+
+Fix a numerical level \(\lambda>0\). Positivity in this chapter
+concerns complex Hilbert spaces with this fixed real parameter.
+It is separate from an identity over a formal quantum coefficient ring.
+Let
+\[
+ \mathcal H_1=\ell^2(\mathbb N_{>0}),\qquad
+ \mathcal F=\Gamma_s(\mathcal H_1)
+ =\widehat{\bigoplus}_{r\geq0}\operatorname{Sym}^r\mathcal H_1.
+\]
+The inner product is conjugate linear in its first argument.
+The occupation vectors \(\lvert\mathbf m\rangle\), indexed by
+finite-support sequences \(\mathbf m=(m_1,m_2,\ldots)\), form an
+orthonormal basis. Define
+\[
+ a_n\lvert\mathbf m\rangle
+ =\sqrt{m_n}\lvert\mathbf m-\mathbf e_n\rangle,\qquad
+ a_n^*\lvert\mathbf m\rangle
+ =\sqrt{m_n+1}\lvert\mathbf m+\mathbf e_n\rangle.
+\]
+Thus \([a_m,a_n^*]=\delta_{mn}\). Write
+\[
+ \alpha_n=\sqrt n\,a_n,\qquad
+ \alpha_{-n}=\sqrt n\,a_n^*,\qquad
+ J_n=\sqrt\lambda\,\alpha_n\quad(n\ne0),
+ \qquad\alpha_0=J_0=0.
+\]
+The current relations are
+\[
+ [\alpha_m,\alpha_n]=m\delta_{m+n,0},\qquad
+ J_n^*=J_{-n},\qquad
+ [J_m,J_n]=\lambda m\delta_{m+n,0}.
+\]
+
+The vacuum \(\Omega=\lvert\mathbf0\rangle\) has energy zero.
+The energy operator and particle-number operator are
+\[
+ H_0=\sum_{n\geq1}n a_n^*a_n
+     =\sum_{n\geq1}\alpha_{-n}\alpha_n,
+ \qquad N=\sum_{n\geq1}a_n^*a_n\leq H_0.
+\]
+These are diagonal self-adjoint operators on their maximal domains.
+For example,
+\[
+ \operatorname{Dom}(H_0)
+ =\left\{\sum_{\mathbf m}v_{\mathbf m}\lvert\mathbf m\rangle:
+   \sum_{\mathbf m}\left(\sum_n n m_n\right)^2
+              |v_{\mathbf m}|^2<\infty\right\}.
+\]
+Let \(\mathcal F_E\) be the energy-\(E\) eigenspace and \(P_E\)
+its orthogonal projection. Its dimension is the partition number
+\(p(E)\). The finite-energy space
+\(\mathcal F_{\mathrm{fin}}=\bigoplus_{E\geq0}\mathcal F_E\)
+is a common core for the finite-mode operators. Their closed extensions
+are used whenever an infinite vector is an input.
+
+For \(f\in\mathcal H_1\), the smeared oscillators are
+\[
+ a(f)=\sum_n\overline{f_n}a_n,\qquad
+ a^*(f)=\sum_n f_n a_n^*.
+\]
+They act on the algebraic direct sum of the particle-number spaces,
+which permits arbitrary square-summable one-particle vectors.
+On that domain,
+\[
+ \|a(f)v\|\leq\|f\|_2\|N^{1/2}v\|,
+ \qquad
+ \|a^*(f)v\|\leq\|f\|_2\|(N+1)^{1/2}v\|.
+\]
+Successive application bounds a polynomial of degree \(d\) in finitely
+many such oscillators by a constant times \((N+1)^{d/2}\).
+This estimate specifies the unbounded observables whose thermal
+expectations will be used below.
+
+\section{A prepared trace and its current kernel}
+
+Choose a cylinder length \(T>0\) and put \(q=e^{-T}\).
+Its evolution operator is \(K_T=e^{-TH_0}\). This choice supplies
+the preparation before any comparison with a bulk theory.
+
+\begin{theorem}\label{thm:vol2-fock-thermal-state}
+The operator \(K_T\) is positive and trace class. If
+\(E_1 e_n=n e_n\) on \(\mathcal H_1\), then
+\begin{equation}\label{eq:vol2-fock-partition}
+ Z_0(T)=\operatorname{Tr}_{\mathcal F}K_T
+ =\prod_{n\geq1}(1-e^{-Tn})^{-1}
+ =\det_{\mathcal H_1}(1-e^{-TE_1})^{-1}.
+\end{equation}
+The density \(\rho_T=K_T/Z_0(T)\) defines a positive normalized
+state on the bounded operators on \(\mathcal F\). Every polynomial
+in finitely many square-summably smeared oscillators also has a
+thermal expectation
+\[
+ \varphi_T(A)=Z_0(T)^{-1}\operatorname{Tr}(A K_T).
+\]
+For the radially ordered current \(J(z)=\sum_nJ_nz^{-n-1}\),
+\begin{equation}\label{eq:vol2-thermal-current}
+ \varphi_T(J(z)J(w))
+ =\frac{\lambda}{zw}\sum_{n\geq1}
+ \frac{n\bigl((w/z)^n+q^n(z/w)^n\bigr)}{1-q^n},
+ \qquad q<|w/z|<1.
+\end{equation}
+The series and every fixed holomorphic derivative converge normally
+on compact subannuli. Near \(z=w\ne0\), its singular part is
+\(\lambda/(z-w)^2\).
+\end{theorem}
+
+\begin{proof}
+At a mode cutoff \(M\), independent occupation sums give
+\(Z_{0,M}(T)=\prod_{n=1}^M(1-q^n)^{-1}\). Moreover,
+\begin{equation}\label{eq:vol2-partition-tail}
+ 0\leq\log\frac{Z_0(T)}{Z_{0,M}(T)}
+ \leq\frac{q^{M+1}}{(1-q)(1-q^{M+1})}.
+\end{equation}
+Indeed \(-\log(1-x)\leq x/(1-x)\), and summing the resulting
+geometric bound proves convergence of the logarithmic product.
+Monotone summation over all occupation vectors gives its equality
+with the trace. The eigenvalues \(q^n\) of \(e^{-TE_1}\) are
+summable, so its Fredholm determinant is this same convergent product.
+
+For every \(r\geq0\), the operator \((H_0+1)^r e^{-TH_0}\)
+is trace class: the polynomial factor is bounded by a constant
+times \(e^{TE/2}\) on energy \(E\), and the remaining trace is
+\(Z_0(T/2)\). The oscillator bounds therefore make \(A K_T\)
+trace class. They also make \(A K_{T/2}\) Hilbert--Schmidt.
+Consequently the expectation of \(A^*A\) is its squared
+Hilbert--Schmidt norm divided by \(Z_0(T)\), and is nonnegative.
+This extends the positive state to the stated polynomial domain.
+
+The one-mode geometric sums give
+\[
+ \varphi_T(J_nJ_{-n})=\frac{\lambda n}{1-q^n},\qquad
+ \varphi_T(J_{-n}J_n)=\frac{\lambda n q^n}{1-q^n}
+ \quad(n>0).
+\]
+They imply \eqref{eq:vol2-thermal-current}. On a compact subannulus,
+both \(|w/z|\) and \(q|z/w|\) are bounded strictly below one.
+The denominator is bounded below by \(1-q\), and derivatives add
+only polynomial factors in \(n\). Split the first numerator into
+its vacuum contribution and its \(q^n\)-weighted remainder.
+The vacuum sum \(\sum_{n\geq1}n(w/z)^n\) gives
+\(\lambda/(z-w)^2\); the two remaining sums extend across \(z=w\).
+\end{proof}
+
+At a cutoff, the normalized-oscillator contractions are bounded by
+\((1-q)^{-1}\|f\|_2\|h\|_2\). Wick expansion therefore gives
+the same polynomial expectations by a mode limit. The estimates
+prove convergence of an actual density and determinant, as well as
+convergence of its correlations.
+
+A fixed charge \(b\in\mathbb R\) can be retained by setting
+\(J_0=b\) and adding \(b^2/(2\lambda)\) to the energy.
+The partition function becomes \(e^{-Tb^2/(2\lambda)}Z_0(T)\),
+the mean current is \(b/z\), and the connected two-point function
+is unchanged. A sum over charges additionally requires a measure
+or lattice and a convergence domain.
+
+\section{Sewing before normalization}
+
+For \(z\in\mathcal H_1\), define the exponential vector
+\[
+ \mathrm e(z)=\bigoplus_{r\geq0}\frac{z^{\otimes r}}{\sqrt{r!}}.
+\]
+Its norm squared is \(e^{\|z\|_2^2}\). The cylinder matrix element is
+\begin{equation}\label{eq:vol2-coherent-cylinder}
+ K_T(z,\overline w)
+ =\langle\mathrm e(w),K_T\mathrm e(z)\rangle
+ =\exp\!\left(\sum_{n\geq1}e^{-Tn}z_n\overline{w_n}\right).
+\end{equation}
+Cauchy--Schwarz makes the exponent convergent.
+
+\begin{proposition}\label{prop:vol2-fock-sewing}
+For \(T_1,T_2>0\), coherent cylinder kernels sew by
+\(K_{T_1}\circ K_{T_2}=K_{T_1+T_2}\). Closing the composite by
+the trace gives \(Z_0(T_1+T_2)\).
+\end{proposition}
+
+\begin{proof}
+For a bounded one-particle contraction \(B\), second quantization is
+\(\Gamma(B)=\bigoplus_{r\geq0}\operatorname{Sym}^rB\). It gives
+\[
+ \Gamma(e^{-T_1E_1})\Gamma(e^{-T_2E_1})
+ =\Gamma(e^{-(T_1+T_2)E_1}).
+\]
+The finite-dimensional coherent Gaussian integral computes this
+identity at each mode cutoff. Its limit is Fock-space composition.
+The high-mode vacuum projections commute with the heat operators,
+and the omitted positive trace tends to zero by
+\eqref{eq:vol2-partition-tail}. Thus taking the trace of the
+composite gives the stated determinant. Associativity is already
+the associativity of operator composition.
+\end{proof}
+
+The infinite-mode pairing here is a limit of cylindrical Wick
+pairings. No translation-invariant measure on \(\ell^2\) is used.
+Normalization is performed after the required trace closure:
+\[
+ \rho_{T_1}\rho_{T_2}
+ =\frac{Z_0(T_1+T_2)}{Z_0(T_1)Z_0(T_2)}\rho_{T_1+T_2}.
+\]
+The scalar factor is part of sewing data.
+
+The thermal state also satisfies, for finite-mode oscillator
+polynomials \(A,B\),
+\begin{equation}\label{eq:vol2-fock-kms}
+ \varphi_T(AB)
+ =\varphi_T\bigl(B e^{-TH_0}A e^{TH_0}\bigr).
+\end{equation}
+This follows by cyclicity of the trace on the common domain, or
+directly from the occupation sums. The conjugation multiplies
+\(\alpha_n\) by \(e^{Tn}\). For general infinite smears it
+therefore requires a further domain condition.
+Equation~\eqref{eq:vol2-fock-kms} is the thermal, or KMS, identity.
+Ordinary traciality fails already on \(a_na_n^*\) and \(a_n^*a_n\).
+A cyclic chain class from Chapter~\ref{chap:vol2-cyclic-traces-wheels}
+and this scalar state are consequently different constructions.
+
+\section{The stress tensor and the cylinder constant}
+
+The vacuum has contraction
+\(\langle\Omega,J(z)J(w)\Omega\rangle=\lambda/(z-w)^2\)
+in \(|w|<|z|\). Subtract this contraction to define
+\[
+ T(z)=\frac1{2\lambda}{:}J(z)^2{:}
+     =\frac12{:}\alpha(z)^2{:}
+     =\sum_{m\in\mathbb Z}L_mz^{-m-2},
+ \qquad
+ L_m=\frac12\sum_{j\in\mathbb Z}{:}\alpha_j\alpha_{m-j}{:}.
+\]
+Normal ordering puts negative-index creators to the left.
+Terms of index zero vanish. Each sum is finite on a finite-energy
+vector, and \(L_0=H_0\).
+
+\begin{proposition}\label{prop:vol2-current-virasoro}
+On \(\mathcal F_{\mathrm{fin}}\),
+\[
+ [L_m,\alpha_n]=-n\alpha_{m+n},\qquad
+ [L_m,L_n]=(m-n)L_{m+n}
+       +\frac{m^3-m}{12}\delta_{m+n,0}.
+\]
+If \(z=f(u)\) is a local holomorphic coordinate change with
+\(f'\ne0\), the stress tensor defined by subtraction in the
+\(u\)-coordinate is
+\begin{equation}\label{eq:vol2-stress-schwarzian}
+ T_u(u)=f'(u)^2T_z(f(u))+\frac1{12}\{f,u\},
+ \qquad
+ \{f,u\}=\frac{f'''}{f'}-\frac32\left(\frac{f''}{f'}\right)^2.
+\end{equation}
+In particular \(f(u)=e^u\) gives cylinder Hamiltonian
+\(H_0-1/24\).
+\end{proposition}
+
+\begin{proof}
+Commuting a current through the two factors of \(L_m\) gives
+the first identity. The Jacobi identity then shows that
+\([L_m,L_n]-(m-n)L_{m+n}\) commutes with every current.
+An operator with this property is scalar: it preserves the common
+kernel of the positive modes, which is \(\mathbb C\Omega\), and
+then has the same scalar action on all created vectors.
+Its energy degree forces that scalar to vanish unless \(m+n=0\).
+For \(m>0\), its vacuum expectation is
+\[
+ \|L_{-m}\Omega\|^2
+ =\frac12\sum_{j=1}^{m-1}j(m-j)
+ =\frac{m^3-m}{12}.
+\]
+The two contractions retain the factor \(1/2\), including when
+\(j=m-j\). Antisymmetry gives the other signs of \(m\).
+
+The current transforms as a one-form, so its pulled-back vacuum
+contraction is \(\lambda f'(u)f'(v)/(f(u)-f(v))^2\).
+Taylor expansion at \(v=u\) gives
+\[
+ \frac{f'(u)f'(v)}{(f(u)-f(v))^2}
+ =\frac1{(u-v)^2}+\frac16\{f,u\}+O(v-u).
+\]
+For completeness, writing \(a=f''/f'\), \(b=f'''/f'\), the
+constant term is \(b/2-a^2+3a^2/4-b/3=b/6-a^2/4\).
+Subtracting the \(u\)-coordinate pole and dividing by \(2\lambda\)
+proves \eqref{eq:vol2-stress-schwarzian}.
+Since \(\{e^u,u\}=-1/2\), its constant is \(-1/24\).
+\end{proof}
+
+The conformal cylinder convention consequently has partition function
+\[
+ \operatorname{Tr}e^{-T(H_0-1/24)}=e^{T/24}Z_0(T).
+\]
+The scalar factor respects sewing and cancels from normalized
+expectations. It arises from the specified stress subtraction.
+Identifying it with a determinant in another field theory requires
+that theory's regulator, finite term, boundary condition and sewing
+normalization to be compared.
+
+\section{Formal interactions on two coefficient domains}
+
+Let \(V\) be a finite linear combination of normally ordered
+polynomials in \(a(f_j),a^*(f_j)\), for finitely many
+\(f_j\in\ell^2\). Define a formal coupling series by
+\begin{equation}\label{eq:vol2-state-dyson}
+ \begin{split}
+ U_T(g)&=\sum_{k\geq0}g^k U_T^{(k)},\qquad U_T^{(0)}=K_T,\\
+ U_T^{(k)}&=(-1)^k\int_{0\leq t_1\leq\cdots\leq t_k\leq T}
+ e^{-(T-t_k)H_0}V e^{-(t_k-t_{k-1})H_0}\cdots\\
+ &\hspace{24mm}\cdots V e^{-t_1H_0}\,dt_1\cdots dt_k.
+ \end{split}
+\end{equation}
+For this coefficient domain, the definition first uses Wick matrix
+elements and traces at a mode cutoff, followed by their limits.
+
+\begin{proposition}\label{prop:vol2-smeared-dyson}
+Every thermal trace and coherent-vector matrix element of each
+coefficient in \eqref{eq:vol2-state-dyson} has a mode-cutoff limit.
+The same holds with a fixed polynomial smeared insertion.
+In these coefficientwise sewn matrix elements,
+\begin{equation}\label{eq:vol2-formal-state-sewing}
+ U_{T_1}(g)U_{T_2}(g)=U_{T_1+T_2}(g).
+\end{equation}
+Dividing observable traces by \(\operatorname{Tr}U_T(g)\) defines
+a normalized formal functional.
+\end{proposition}
+
+\begin{proof}
+A time-ordered thermal contraction of normalized modes contains
+one of
+\[
+ \frac{e^{-n\tau}}{1-e^{-nT}},\qquad
+ \frac{e^{-n(T-\tau)}}{1-e^{-nT}},\qquad0\leq\tau\leq T.
+\]
+Both are bounded by \(C_T=(1-e^{-T})^{-1}\). A smeared contraction
+is therefore at most \(C_T\|f\|_2\|h\|_2\), uniformly in the
+mode cutoff and time. At fixed order there are finitely many monomial
+choices and Wick pairings. Their bounds, multiplied by the simplex
+volume \(T^k/k!\), are integrable. The contraction tails converge
+by Cauchy--Schwarz, so dominated convergence gives the mode limits.
+
+For coherent matrix elements, each external contraction contains
+a one-particle heat contraction \(e^{-sE_1}\), with \(s\geq0\).
+The free coherent factor is bounded by \(e^{\|z\|_2\|w\|_2}\).
+These bounds prove the same assertion with external vectors.
+A fixed insertion only adds finitely many contractions.
+
+At a cutoff, split the time simplex at \(T_2\). Its pieces are
+indexed by the number of insertions before the cut and give the
+coefficient of \(g^k\) in \eqref{eq:vol2-formal-state-sewing}.
+The bounds pass this identity to the limit. The denominator has
+constant term \(Z_0(T)>0\), and hence a formal inverse.
+\end{proof}
+
+This domain permits infinitely many oscillator modes in a smear,
+but only finitely many input directions. It does not permit a
+point-current smear: its regularized one-particle norm contains
+\[
+ \sum_{n\geq1}n e^{-2\varepsilon n}
+ =\frac{e^{-2\varepsilon}}{(1-e^{-2\varepsilon})^2}
+ \sim\frac1{4\varepsilon^2}.
+\]
+Local spatial Wick polynomials require a different estimate.
+
+For fixed \(n\in\mathbb Z\), \(d\geq1\) and polynomial \(P\),
+define the local mode
+\begin{equation}\label{eq:vol2-local-wick-mode}
+ W_n=\sum_{n_1+\cdots+n_d=n}
+ P(n_1,\ldots,n_d){:}\alpha_{n_1}\cdots\alpha_{n_d}{:}.
+\end{equation}
+Zero indices give zero terms. The polynomial \(P\) includes factors
+from angular derivatives. Finite Fourier combinations of these
+operators, together with the identity, form the second domain.
+
+\begin{lemma}\label{lem:vol2-local-mode-bound}
+The sum \eqref{eq:vol2-local-wick-mode} is finite on \(\mathcal F_E\),
+maps it to \(\mathcal F_{E-n}\), and satisfies
+\[
+ \|W_nP_E\|\leq C_{n,d,P}(1+E+|n|)^{3d/2-1+\deg P}.
+\]
+The same estimate holds after discarding any set of its summands.
+\end{lemma}
+
+\begin{proof}
+The annihilators act first. Their total index is at most \(E\)
+whenever the monomial is nonzero. The creators' total absolute index
+is that sum minus \(n\), hence at most \(E+|n|\).
+Each contributing index is bounded by \(E+|n|\), and the sum
+constraint determines the last from the first \(d-1\).
+There are at most \(C_d(1+E+|n|)^{d-1}\) tuples.
+
+Intermediate energies first decrease and then increase to \(E-n\).
+The norm of each oscillator factor is at most
+\((1+E+|n|)^{1/2}\): its square is bounded by the energy before
+annihilation or after creation. Multiply the \(d\) bounds and
+the polynomial bound for \(P\), then sum over tuples.
+The exponent is \((d-1)+d/2+\deg P\). Since this argument bounds
+each summand separately, it also bounds every partial sum.
+\end{proof}
+
+For example \(W_0=2H_0\) when \(d=2\) and \(P=1\).
+Its one-particle compression has eigenvalues \(2,4,6,\ldots\).
+A polynomial in finitely many square-summable smears instead has
+one-particle compression equal to a scalar plus a bounded finite-rank
+operator. The two domains therefore do not coincide.
+
+\begin{theorem}\label{thm:vol2-local-mode-dyson}
+Let \(V\) be a finite Fourier combination of local Wick modes.
+For every \(T>0\) and \(k\geq0\), the coefficient
+\(U_T^{(k)}\) has a unique trace-class extension from finite-energy
+vectors. Mode-cutoff coefficients, embedded by the high-mode vacuum,
+converge in trace norm. A fixed finite Fourier Wick-polynomial
+insertion \(A\) also makes \(A U_T^{(k)}\) trace class.
+The formal operators obey \eqref{eq:vol2-formal-state-sewing}, and
+their normalized observable traces are well defined.
+\end{theorem}
+
+\begin{proof}
+There are \(C,M,R\) such that
+\[
+ V\mathcal F_E\subset\bigoplus_{|r|\leq R}\mathcal F_{E+r},
+ \qquad\|VP_E\|\leq C(1+E)^M.
+\]
+At order \(k\), every intermediate energy lies between
+\(E-kR\) and \(E+kR\). For a fixed sequence of energy projections,
+the heat factors are bounded by \(e^{-TE+TkR}\), uniformly over
+the closed time simplex. The operator factors contribute at most
+\(C^k(1+E+kR)^{Mk}\). Absorb the finite number of energy-shift
+choices into \(C^k\). A block with source \(\mathcal F_E\)
+has rank at most \(p(E)\), so
+\begin{equation}\label{eq:vol2-local-dyson-tail}
+ \|U_T^{(k)}\|_1
+ \leq\frac{T^k}{k!}C^k e^{TkR}
+        \sum_{E\geq0}p(E)e^{-TE}(1+E+kR)^{Mk}<\infty.
+\end{equation}
+The sum is finite because a polynomial energy weight is dominated
+by \(e^{TE/2}\). Finite block sums are trace-norm continuous in
+the simplex variables; the uniform summable tail gives a trace-norm
+Bochner integral, including coincident-time faces.
+
+For fixed \(E,k\), all contributing oscillator indices occur
+below \(E+kR\), after enlarging this bound by the fixed finite
+shift if necessary. Those blocks stabilize at a mode cutoff.
+Lemma~\ref{lem:vol2-local-mode-bound} gives the same tail bound at
+every cutoff, proving trace-norm convergence. An insertion only adds
+fixed shifts and a polynomial factor to this estimate.
+
+Subdivision of the simplex proves sewing on finite blocks.
+The trace-norm convergence passes the identity to the full space,
+using \(\|BC\|_1\leq\|B\|_1\|C\|\) and boundedness of each
+trace-class coefficient. The free partition function is the
+nonzero constant denominator. Uniqueness follows from the density
+of finite-energy vectors.
+\end{proof}
+
+Both constructions are coefficientwise in \(g\). Neither estimate
+asserts convergence as the coupling order tends to infinity.
+The local-mode theorem concerns spatially local boundary operators
+on the stated Fock carrier. A local interacting half-space theory
+also requires its supported counterterms and quantum master equation.
+
+\section{The cubic mode and its spectral obstruction}
+
+Consider the self-adjoint finite-energy matrices of the cubic mode
+\begin{equation}\label{eq:vol2-cubic-mode}
+ \begin{split}
+ V&=\frac16\operatorname{Res}_{z=0}z^2{:}\alpha(z)^3{:}\,dz\\
+  &=\frac12\sum_{m,n\geq1}
+   \bigl(\alpha_{-m}\alpha_{-n}\alpha_{m+n}
+          +\alpha_{-(m+n)}\alpha_m\alpha_n\bigr).
+ \end{split}
+\end{equation}
+It commutes with \(H_0\). The factor \(1/2\) comes from the
+three placements of the uniquely signed mode in the residue.
+In the polynomial realization \(\alpha_{-n}=p_n\),
+\(\alpha_n=n\partial_{p_n}\), it becomes
+\begin{equation}\label{eq:vol2-cut-and-join}
+ V=\frac12\sum_{m,n\geq1}
+ \left((m+n)p_mp_n\partial_{p_{m+n}}
+       +mn p_{m+n}\partial_{p_m}\partial_{p_n}\right).
+\end{equation}
+This is the cut-and-join operator, with the normalization of
+Mironov--Morozov--Natanzon \cite{MironovMorozovNatanzon2009}*{equation (51)}.
+
+\begin{lemma}\label{lem:vol2-cubic-norm}
+On energy \(E\), the restriction \(V_E\) has norm
+\(E(E-1)/2\), and both extreme signs occur.
+\end{lemma}
+
+\begin{proof}
+For a partition \(\mu=(1^{m_1}2^{m_2}\cdots)\) of \(E\), put
+\(p_\mu=\prod_n p_n^{m_n}\) and
+\(z_\mu=\prod_n n^{m_n}m_n!\). The Fock pairing is
+\(\langle p_\mu,p_\nu\rangle=\delta_{\mu\nu}z_\mu\).
+The characteristic map on class functions of \(S_E\),
+\[
+ \operatorname{ch}(f)=\sum_{\mu\vdash E}\frac{f(\mu)}{z_\mu}p_\mu,
+\]
+is an isometry for normalized counting measure. Convolution by the
+sum of all transpositions preserves class functions. A transposition
+joins two cycles or splits one. Counting its marked entries gives
+the coefficients \(mn\) and \(m+n\) in
+\eqref{eq:vol2-cut-and-join}, with the factor \(1/2\) for the two
+orders. Thus this sum corresponds to \(V_E\).
+
+Every transposition acts unitarily and self-adjointly by translation
+on functions. The sum has norm at most \(\binom E2\).
+The trivial and sign characters attain the positive and negative
+values. Their characteristic images are the complete and elementary
+symmetric polynomials \(h_E,e_E\), defined by
+\[
+ \sum_{E\geq0}h_Et^E
+ =\exp\!\left(\sum_{n\geq1}\frac{p_nt^n}{n}\right),\qquad
+ \sum_{E\geq0}e_Et^E
+ =\exp\!\left(\sum_{n\geq1}\frac{(-1)^{n-1}p_nt^n}{n}\right).
+\]
+They give \(Vh_E=\binom E2h_E\) and
+\(Ve_E=-\binom E2e_E\), proving equality in the norm bound.
+\end{proof}
+
+For nonzero real \(g\), one of these families has energy
+\[
+ (H_0+gV)\big|_{\mathrm{extreme},E}
+ =E-\frac{|g|}{2}E(E-1)\longrightarrow-\infty.
+\]
+The self-adjoint direct sum \(H_0+gV\) is therefore unbounded
+below, and \(e^{-T(H_0+gV)}\) is unbounded for every \(T>0\).
+It cannot prepare a trace-class Gibbs state. The formal coefficients
+from Theorem~\ref{thm:vol2-local-mode-dyson} nevertheless exist.
+Since \([H_0,V]=0\), they are
+\(U_T^{(k)}=(-T)^k e^{-TH_0}V^k/k!\).
+
+The first response already sees the interaction. With
+\(\langle A\rangle_q=\varphi_T(A)\), one has
+\begin{equation}\label{eq:vol2-cubic-thermal-moment}
+ \langle V^2\rangle_q
+ =\sum_{m,n\geq1}
+ \frac{mn(m+n)q^{m+n}}
+      {(1-q^m)(1-q^n)(1-q^{m+n})}.
+\end{equation}
+To prove the formula, split \(V\) into its joining and splitting
+terms. Only a join followed by a split, or the reverse order,
+has complete thermal contractions. The two orders and the two
+pairings of the \(m,n\) legs cancel the factor \(1/4\).
+The same multiplicity remains when \(m=n\). Substitution of the
+one-mode expectations proves the formula. Its convergence follows
+from the exponential numerator and denominators bounded below by
+\(1-q\). Its first coefficients are
+\[
+ 2q^2+16q^3+60q^4+160q^5+360q^6+O(q^7).
+\]
+Oscillator parity sends \(V\) to \(-V\) and preserves the free
+density, so all odd moments vanish. Hence the formal partition
+function obeys
+\[
+ \log\frac{\operatorname{Tr}U_T(g)}{Z_0(T)}
+ =\frac{g^2T^2}{2}\langle V^2\rangle_q+O(g^4).
+\]
+
+\section{Stabilization by the total energy}
+
+A square of the total energy provides a first positive preparation.
+For real \(\varepsilon,g\), define the self-adjoint block operator
+\[
+ H_{\varepsilon,g}=H_0+\varepsilon H_0^2+gV.
+\]
+The term \(H_0^2\) is a prescribed nonlocal interaction on the
+circle. It changes the Hamiltonian whose state is being constructed.
+
+\begin{theorem}\label{thm:vol2-nonlocal-stability}
+For \(T>0\), the operator \(e^{-TH_{\varepsilon,g}}\) is positive
+and trace class exactly when
+\begin{equation}\label{eq:vol2-nonlocal-threshold}
+ \varepsilon\geq |g|/2.
+\end{equation}
+On this region it gives a positive normalized state on bounded
+operators, and its unnormalized heat kernels sew by addition of
+cylinder lengths. For fixed \(T>0\), the partition function is
+holomorphic in the complex tube
+\(\operatorname{Re}\varepsilon>|\operatorname{Re}g|/2\).
+\end{theorem}
+
+\begin{proof}
+Lemma~\ref{lem:vol2-cubic-norm} gives, on energy \(E\),
+\begin{equation}\label{eq:vol2-nonlocal-energy}
+ H_{\varepsilon,g}\geq
+ (\varepsilon-|g|/2)E^2+(1+|g|/2)E.
+\end{equation}
+At equality in \eqref{eq:vol2-nonlocal-threshold}, this is still
+a positive linear lower bound. Summation against \(p(E)\) proves
+trace class by \eqref{eq:vol2-fock-partition}. Below the threshold,
+choose the extreme eigenvector with the sign opposite to \(g\).
+If \(g=0\), either extreme vector suffices. Its energy equals the
+right side of \eqref{eq:vol2-nonlocal-energy} and tends to
+\(-\infty\), so the heat operator is unbounded.
+
+Spectral calculus gives positivity and sewing for the allowed
+parameters. In a common eigenbasis of \(H_0,V\), each exponential
+eigenvalue is entire in \((\varepsilon,g)\). On a compact subset
+of the tube, its absolute value is at most
+\(e^{-cE^2-TE}\) for some \(c>0\). Every parameter derivative
+adds only a polynomial energy factor. Uniform summability proves
+holomorphy of the trace.
+\end{proof}
+
+This convergence has an explicit tail. Put
+\(c=\varepsilon-|g|/2\geq0\). For an integer \(M\geq0\),
+\begin{equation}\label{eq:vol2-stabilized-tail}
+ \sum_{E>M}\operatorname{Tr}_{\mathcal F_E}e^{-TH_{\varepsilon,g}}
+ \leq Z_0(T/2)
+ \frac{e^{-T(M+1)/2-Tc(M+1)^2}}
+      {1-e^{-T/2-Tc(2M+3)}}.
+\end{equation}
+Indeed \(p(E)\leq Z_0(T/2)e^{TE/2}\). The remaining dominating
+series has first term as displayed and a decreasing ratio, bounded
+by its first ratio. The estimate includes the equality case \(c=0\).
+At fixed nonzero real \(g\), the stabilizer cannot be removed
+within this family while retaining trace class.
+
+\section{The unchanged cubic series and its Borel boundary}
+
+The original cubic formal trace has coefficients
+\begin{equation}\label{eq:vol2-cubic-formal-trace}
+ Z(T,g)=\sum_{n\geq0}a_n(T)g^n,
+ \qquad
+ a_n(T)=\frac{(-T)^n}{n!}\operatorname{Tr}(e^{-TH_0}V^n).
+\end{equation}
+Its odd coefficients vanish and its even coefficients are positive.
+Define its ordinary Borel transform by
+\[
+ \widehat Z_T(\zeta)=\sum_{n\geq0}\frac{a_n(T)}{n!}\zeta^n.
+\]
+The Borel variable \(\zeta\) is a complex scalar independent of
+the current coordinate and of the coupling.
+
+\begin{theorem}\label{thm:vol2-cubic-borel-radius}
+For every \(T>0\), \eqref{eq:vol2-cubic-formal-trace} has radius
+zero in \(g\). Its Borel transform has exact radius \(T/2\)
+and diverges at both real endpoints \(\zeta=\pm T/2\).
+\end{theorem}
+
+\begin{proof}
+Fix \(0<\nu<T\) and write \(t=T-\nu\). Since
+\(p(E)\leq Z_0(\nu)e^{\nu E}\), the norm bound gives
+\[
+ \frac{|a_n(T)|}{n!}
+ \leq Z_0(\nu)\frac{T^n}{2^n(n!)^2}
+          \sum_{E\geq0}E^{2n}e^{-tE}
+ \leq Z_0(\nu)e^t
+       \frac{T^n(2n)!}{2^n(n!)^2t^{2n+1}}.
+\]
+For the last step, integration over \([E,E+1]\) bounds the
+summand by \(e^t\int_E^{E+1}x^{2n}e^{-tx}\,dx\).
+The central binomial coefficient has \(n\)th root tending to four.
+Consequently
+\[
+ \limsup_n\left(\frac{|a_n(T)|}{n!}\right)^{1/n}
+ \leq\frac{2T}{(T-\nu)^2}.
+\]
+Letting \(\nu\) decrease to zero gives the upper bound \(2/T\).
+
+For even \(n\), retain one extreme eigenvector at energy
+\(E_n=\lfloor2n/T\rfloor\), with \(n\) sufficiently large.
+It contributes
+\[
+ \frac{a_n(T)}{n!}
+ \geq\frac{T^n e^{-TE_n}}{(n!)^2}
+          \left(\frac{E_n(E_n-1)}2\right)^n.
+\]
+Stirling's formula makes the \(n\)th root of this expression
+tend to \(2/T\). This proves the exact Borel radius.
+Multiplication by \(n!\) makes the corresponding coefficient
+roots unbounded, proving radius zero for the original series.
+
+For endpoint divergence, retain both extreme vectors at every
+energy \(E\geq2\). For \(\zeta>0\), their combined contribution
+to the Borel sum is
+\[
+ e^{-TE}\bigl(I_0(X_E)+J_0(X_E)\bigr),\qquad
+ X_E=2\sqrt{T\zeta E(E-1)/2},
+\]
+where
+\[
+ I_0(X)=\sum_{n\geq0}\frac{(X^2/4)^n}{(n!)^2},\qquad
+ J_0(X)=\sum_{n\geq0}\frac{(-1)^n(X^2/4)^n}{(n!)^2}.
+\]
+Their sum retains precisely the even powers. At \(\zeta=T/2\),
+\(X_E=TE-T/2+O(E^{-1})\). The elementary integral representation
+\[
+ I_0(X)=\frac1\pi\int_0^\pi e^{X\cos\theta}\,d\theta
+\]
+gives \(I_0(X)\geq c e^X/\sqrt X\) for large positive \(X\),
+by restricting to \(0\leq\theta\leq X^{-1/2}\).
+The oscillatory integral for \(J_0\) gives \(|J_0(X)|\leq1\).
+Thus the retained contribution is bounded below by a positive
+multiple of \(E^{-1/2}\) for large \(E\). Its sum diverges.
+All coefficients of the even Borel series are nonnegative, so
+this subseries comparison is valid. Evenness gives the other endpoint.
+\end{proof}
+
+A fixed vacuum-energy shift multiplies the entire scalar series by
+a nonzero constant and changes neither radius. Division by the
+free partition function has the same property. The theorem does not
+construct continuation outside the disk or choose a Laplace contour.
+A positive resummation requires a state functional on an observable
+star-algebra, with positivity and sewing for every admitted observable.
+Those requirements are stronger than a continuation of the partition
+function alone.
+
+\section{Fermionic charges and a local quartic density}
+
+The nonlocal square \(H_0^2\) stabilizes the spectrum, but it does
+not express the correction as the integral of a local circle density.
+For that purpose, a second realization of the same Fock space exposes
+a useful positive charge.
+
+Let \(r\) run over half-integers. A fermionic occupation set differs
+from the filled negative sea
+\(S_0=\{-1/2,-3/2,\ldots\}\) in finitely many places.
+The corresponding wedges form an orthonormal basis. Creation
+\(c_r^*\) inserts the mode \(r\), and annihilation \(c_r\)
+removes it, with the exterior signs. They satisfy
+\(\{c_r,c_s^*\}=\delta_{rs}\).
+Normal ordering subtracts the vacuum occupation:
+\[
+ {:}c_r^*c_s{:}=c_r^*c_s-\delta_{rs}\mathbf1_{r<0}.
+\]
+The charge is the number of added positive particles minus the
+number of holes in the negative sea. Charge-zero occupations are
+indexed by partitions \(\mu\), through
+\[
+ S_\mu=\{\mu_i-i+1/2:i\geq1\}.
+\]
+Their energy is \(|\mu|\). Write
+\(A(\theta)=\sum_{n\ne0}\alpha_n e^{-in\theta}\) for the angular
+current, with each Fourier coefficient acting on finite-energy vectors.
+
+\begin{proposition}\label{prop:vol2-boson-fermion-charge}
+The charge-zero wedge space is unitarily isomorphic to \(\mathcal F\),
+with vacuum sent to the filled sea and
+\begin{equation}\label{eq:vol2-fermion-current}
+ \alpha_n=\sum_{r\in\mathbb Z+1/2}{:}c_{r-n}^*c_r{:}
+ \qquad(n\ne0).
+\end{equation}
+Define diagonal operators on the partition basis by
+\begin{equation}\label{eq:vol2-partition-charges}
+ Q_j(\mu)=\sum_{i\geq1}
+ \left((\mu_i-i+1/2)^j-(-i+1/2)^j\right).
+\end{equation}
+Then \(Q_1=H_0\), \(Q_2=2V\), and
+\begin{equation}\label{eq:vol2-local-quartic-charge}
+ Q_3=\frac14\int_0^{2\pi}\frac{d\theta}{2\pi}
+ \left({:}A(\theta)^4{:}
+       +{:}(\partial_\theta A(\theta))^2{:}
+       -\frac12{:}A(\theta)^2{:}\right).
+\end{equation}
+All these identities hold on finite-energy vectors.
+\end{proposition}
+
+\begin{proof}
+For a fixed occupation set, only finitely many summands of
+\eqref{eq:vol2-fermion-current} act. The anticommutation relations
+give \([\alpha_m,\alpha_n]=m\delta_{m+n,0}\): off-diagonal
+matrix units cancel, and for \(m=-n>0\) the vacuum boundary
+contributes the \(m\) modes crossing zero. The positive modes
+kill the filled sea. The vectors obtained by applying products of
+negative modes therefore have the same orthogonal norms
+\(z_\mu\) as the bosonic occupation monomials. They are linearly
+independent. In energy \(E\), both spaces have dimension \(p(E)\),
+so they span. This proves the isometry and its extension to the
+Hilbert completions.
+
+The diagonal charges and their vacuum scalar can be calculated
+through a generating field. Put \(\varsigma(s)=2\sinh(s/2)\) and
+\[
+ \mathcal E_n(s)=\sum_r e^{s(r-n/2)}{:}c_{r-n}^*c_r{:}
+                   +\frac{\delta_{n0}}{\varsigma(s)}.
+\]
+Direct multiplication of the fermionic matrix units gives
+\begin{equation}\label{eq:vol2-bilocal-commutator}
+ [\alpha_m,\mathcal E_n(s)]
+       =\varsigma(ms)\mathcal E_{m+n}(s).
+\end{equation}
+When \(m+n=0\), the boundary sum is
+\(\varsigma(ms)/\varsigma(s)\), which accounts for the scalar
+in this equation. These are the charge and operator conventions
+of Okounkov--Pandharipande \cite{OkounkovPandharipande2002}*{Sections 2.1--2.2}.
+Here the vacuum scalar is subtracted from every \(Q_j\).
+
+The normally ordered exponential
+\[
+ \mathcal B(z,s)=\frac1{\varsigma(s)}
+ {:}\exp\!\left(\sum_{n\ne0}
+       \frac{\varsigma(ns)}n\alpha_nz^{-n}\right){:}
+\]
+has commutator
+\([\alpha_m,\mathcal B]=\varsigma(ms)z^m\mathcal B\).
+The field \(\sum_n\mathcal E_n(s)z^{-n}\) has the same
+commutators by \eqref{eq:vol2-bilocal-commutator}.
+Both have vacuum matrix element \(1/\varsigma(s)\).
+Commuting positive modes from the left and negative modes from the
+right reduces any matrix element between created vacuum vectors
+to that scalar matrix element. Induction on the total number of
+external modes therefore proves equality of the two fields.
+This is an identity of formal Laurent series in \(s\), evaluated
+between finite-energy vectors.
+
+Let \(\operatorname{CT}_z\) denote the angular constant term.
+Taking it in the field identity and subtracting the vacuum gives
+\begin{equation}\label{eq:vol2-charge-bilocal}
+ \sum_{j\geq0}\frac{s^j}{j!}Q_j
+ =\frac1{\varsigma(s)}
+ \left[\operatorname{CT}_z
+ {:}\exp\!\left(\sum_{n\ne0}
+       \frac{\varsigma(ns)}n\alpha_nz^{-n}\right){:}-1\right].
+\end{equation}
+The left side follows directly from the finite occupation difference
+in \eqref{eq:vol2-partition-charges}. In charge zero, \(Q_0=0\).
+
+Write \(A(z)=\sum_{n\ne0}\alpha_nz^{-n}\) and
+\(B(z)=\sum_{n\ne0}n^2\alpha_nz^{-n}\). The exponent is
+\(sA+s^3B/24+O(s^5)\), while
+\(\varsigma(s)^{-1}=s^{-1}-s/24+O(s^3)\).
+Since \(\operatorname{CT}A=0\), extraction gives
+\begin{align*}
+ Q_1&=\tfrac12\operatorname{CT}{:}A^2{:}=H_0,\\
+ Q_2&=\tfrac13\operatorname{CT}{:}A^3{:}=2V,\\
+ Q_3&=\tfrac14\operatorname{CT}{:}A^4{:}
+      +\tfrac14\operatorname{CT}{:}AB{:}
+      -\tfrac18\operatorname{CT}{:}A^2{:}.
+\end{align*}
+Finally,
+\[
+ \operatorname{CT}{:}AB{:}
+ =2\sum_{n>0}n^2\alpha_{-n}\alpha_n
+ =\operatorname{CT}{:}(\partial_\theta A)^2{:}.
+\]
+This proves \eqref{eq:vol2-local-quartic-charge}, including its
+derivative correction and quadratic subtraction.
+\end{proof}
+
+The isometry in the proof sends the orthonormal Schur basis
+\[
+ s_\mu(p)=\sum_{\nu\vdash |\mu|}
+                  \frac{\chi_\mu(\nu)}{z_\nu}p_\nu
+\]
+to \(S_\mu\). One can check this directly on finite alternants:
+multiplication by \(p_n\) raises an occupied exponent by \(n\),
+and reordering supplies the exterior sign. Character orthogonality
+gives the stated normalization. Formula~\eqref{eq:vol2-partition-charges}
+also gives \(V s_\mu=(\sum_{(i,j)\in\mu}(j-i))s_\mu\),
+consistent with the two extreme partitions above.
+
+\section{A positive local preparation}
+
+Let \(d\) be the number of diagonal boxes of \(\mu\), and put
+\[
+ p_i=\mu_i-i+\tfrac12,\qquad
+ h_i=\mu_i'-i+\tfrac12\qquad(1\leq i\leq d).
+\]
+These positive half-integers are the added particle energies and
+the absolute energies of the holes. Separating the two occupation
+differences in \eqref{eq:vol2-partition-charges} gives
+\begin{equation}\label{eq:vol2-particle-hole-charges}
+ E=\sum_i(p_i+h_i),\qquad
+ Q_2=\sum_i(p_i^2-h_i^2),\qquad
+ Q_3=\sum_i(p_i^3+h_i^3).
+\end{equation}
+In particular \(Q_3\geq0\), and Cauchy--Schwarz yields
+\begin{equation}\label{eq:vol2-charge-inequality}
+ Q_2^2\leq E Q_3.
+\end{equation}
+The two vectors used here have entries
+\((\sqrt{p_i},\sqrt{h_i})\) and
+\((p_i^{3/2},-h_i^{3/2})\).
+
+\begin{theorem}\label{thm:vol2-local-stable-state}
+For real \(g\), define
+\begin{equation}\label{eq:vol2-local-stable-hamiltonian}
+ H_g=H_0+gV+\frac{g^2}{8}Q_3.
+\end{equation}
+It is essentially self-adjoint on finite-energy vectors, with its
+real diagonal closure in the partition basis, and
+\(H_g\geq H_0/2\). For every \(T>0\),
+\[
+ 1\leq Z(T,g)=\operatorname{Tr}e^{-TH_g}\leq Z_0(T/2)<\infty.
+\]
+The normalized trace is a positive state on bounded operators.
+Finite Fourier Wick polynomials also have finite expectations.
+The unnormalized heat kernels sew exactly, and their dependence
+on real \(g\) is smooth in trace norm.
+\end{theorem}
+
+\begin{proof}
+All charges are real diagonal in an orthonormal basis. Their sum
+has maximal domain
+\[
+ \left\{(v_\mu):\sum_\mu|H_g(\mu)|^2|v_\mu|^2<\infty\right\}.
+\]
+Finite-support vectors are a core for this multiplication operator.
+By \eqref{eq:vol2-charge-inequality},
+\[
+ |gV|\leq\frac{|g|}{2}\sqrt{E Q_3}
+       \leq\frac E2+\frac{g^2Q_3}{8}.
+\]
+The last inequality is the nonnegativity of
+\((\sqrt{E/2}-|g|\sqrt{Q_3/8})^2\).
+It proves the lower bound and hence trace class by summing
+\(e^{-TH_g(\mu)}\leq e^{-T|\mu|/2}\).
+The vacuum contributes one. Polynomial energy bounds extend the
+trace domain to the stated unbounded insertions.
+
+The spectral calculus gives
+\(e^{-T_1H_g}e^{-T_2H_g}=e^{-(T_1+T_2)H_g}\).
+On compact real coupling intervals, each derivative of order \(k\)
+of a diagonal exponential is bounded by a constant times
+\((1+E)^{3k}e^{-TE/2}\). Indeed
+\(|Q_2|\leq E^2\) and \(Q_3\leq E^3\) follow from
+\eqref{eq:vol2-particle-hole-charges}. This dominating sequence is
+summable against \(p(E)\). Termwise differentiation is therefore
+valid in trace norm, at every order.
+\end{proof}
+
+The correction is the integral of the local density
+\eqref{eq:vol2-local-quartic-charge}. It first appears at order
+\(g^2\). The derivatives of the resulting state agree with the
+formal expansion of this modified Hamiltonian.
+
+The real smoothness does not imply a holomorphic trace-class family
+near \(g=0\). For \(g=i\gamma\ne0\), the real part of
+\(H_g\) is \(H_0-\gamma^2Q_3/8\). On a one-row partition
+of size \(E\),
+\(Q_3=(E-1/2)^3+1/8\), so the corresponding exponential is
+unbounded. Any holomorphic trace-class extension agreeing on a real
+interval would have these diagonal matrix entries, by uniqueness
+of scalar holomorphic continuation. Such an extension is impossible.
+
+There is also a convergent product expression for the positive trace.
+For \(r\in\mathbb Z_{\geq0}+1/2\), set
+\[
+ \varepsilon_+(r)=r+\frac g2r^2+\frac{g^2}{8}r^3,
+ \qquad
+ \varepsilon_-(r)=r-\frac g2r^2+\frac{g^2}{8}r^3.
+\]
+Each is at least \(r/2\). The grand-canonical product
+\begin{equation}\label{eq:vol2-local-grand-product}
+ \mathcal Z_{T,g}(y)=\prod_{r>0}
+ \bigl(1+y e^{-T\varepsilon_+(r)}\bigr)
+ \bigl(1+y^{-1}e^{-T\varepsilon_-(r)}\bigr)
+\end{equation}
+converges absolutely and uniformly on \(|y|=1\). The sum of
+the magnitudes of its nonconstant factors is bounded by
+\(2\sum_{r>0}e^{-Tr/2}\). Consequently
+\begin{equation}\label{eq:vol2-charge-projected-trace}
+ Z(T,g)=[y^0]\mathcal Z_{T,g}(y)
+       =\frac1{2\pi}\int_0^{2\pi}\mathcal Z_{T,g}(e^{i\theta})\,d\theta.
+\end{equation}
+Each factor records one particle or one hole. The exponent of \(y\)
+records their charge difference, so its zero coefficient retains
+exactly the partition basis of \(\mathcal F\). Termwise extraction
+is justified by absolute convergence and gives the spectral trace.
+At \(g=0\), the expression reduces to \(Z_0(T)\). Omitting the
+charge projection would change the Hilbert space.
+
+\section{The sharp coefficient and the critical state}
+
+To determine what the coefficient \(1/8\) achieves, consider
+the larger real family
+\[
+ H_{g,c}=H_0+\frac g2Q_2+c g^2Q_3.
+\]
+It is defined by the same diagonal closure and local density.
+
+\begin{proposition}\label{prop:vol2-sharp-stabilization}
+For \(c>0\), the largest constant \(a_c\) such that
+\(H_{g,c}\geq a_cH_0\) for every real \(g\) is
+\[
+ a_c=1-\frac1{16c}.
+\]
+Nonnegativity for every coupling holds exactly for \(c\geq1/16\).
+The uniform half-energy bound holds exactly for \(c\geq1/8\).
+For \(c>1/16\), the heat operators and normalized densities
+are continuous in \(g\) in trace norm.
+\end{proposition}
+
+\begin{proof}
+For a nonempty partition, complete the square:
+\[
+ H_{g,c}
+ =cQ_3\left(g+\frac{Q_2}{4cQ_3}\right)^2
+       +E-\frac{Q_2^2}{16cQ_3}
+ \geq\left(1-\frac1{16c}\right)E.
+\]
+The vacuum charges vanish. On the row partition \((N)\), put
+\(p=N-1/2\). Then
+\[
+ E=N,\qquad Q_2=p^2-\tfrac14=N(N-1),\qquad
+ Q_3=p^3+\tfrac18.
+\]
+The ratio \(Q_2^2/(EQ_3)\) tends to one. At
+\(g=-Q_2/(4cQ_3)\), the ratio \(H_{g,c}/E\) therefore tends
+to \(a_c\), proving optimality. For \(c<0\), the energy of
+a nonempty partition becomes negative at large \(|g|\).
+For \(c=0\), a row of length at least two has a nonzero cubic
+charge and becomes negative for one sign of \(g\).
+This proves both coefficient thresholds.
+
+If \(c>1/16\), the diagonal heat entries are bounded uniformly
+by \(e^{-Ta_cE}\). Their sum is \(Z_0(Ta_c)\).
+For \(g_j\to g\), differences converge entrywise and are
+dominated by twice this summable sequence. Their sum of absolute
+values is precisely the trace norm. The traces also converge and
+are at least one, so division gives continuity of the densities.
+\end{proof}
+
+At the critical value, fixed-coupling trace class survives but
+this continuity fails.
+
+\begin{theorem}\label{thm:vol2-critical-state-escape}
+Let \(c=1/16\), \(K_g(T)=e^{-TH_{g,c}}\), and
+\(\rho_g(T)=K_g(T)/\operatorname{Tr}K_g(T)\).
+For every real \(g\) and \(T>0\), the heat operator is positive
+and trace class. As \(g\to0\), it converges strongly to
+\(e^{-TH_0}\). Nevertheless, along
+\[
+ g_N=-\frac4{N-1/2},\qquad N\geq4,
+\]
+one has
+\begin{align*}
+ \operatorname{Tr}K_{g_N}(T)&\longrightarrow\infty,\\
+ \|K_{g_N}(T)-K_0(T)\|_1&\longrightarrow\infty,\\
+ \|\rho_{g_N}(T)-\rho_0(T)\|_1&\longrightarrow2.
+\end{align*}
+\end{theorem}
+
+\begin{proof}
+The particle and hole contributions are now
+\[
+ \varepsilon_\pm(r)=r\left(1\pm\frac{gr}{4}\right)^2\geq0.
+\]
+For fixed \(g\ne0\) and \(r\geq8/|g|\), both are at least
+\(r\). Each lower particle or hole mode can occur only once.
+Thus \(H_{g,c}\geq E-C_g\), where the finite constant is
+\[
+ C_g=\sum_{0<r<8/|g|}
+ \bigl((r-\varepsilon_+(r))_+
+       +(r-\varepsilon_-(r))_+\bigr),\qquad x_+=\max(x,0).
+\]
+It follows that \(\operatorname{Tr}K_g(T)\leq e^{TC_g}Z_0(T)\).
+At \(g=0\), trace class holds directly. Nonnegativity bounds
+\(\|K_g(T)\|\) by one. Its entries converge on every fixed
+partition vector, so density of their finite span proves strong
+convergence on the Hilbert space.
+
+Set \(p=N-1/2\). For the row partitions \((N+k)\), with
+\(0\leq k\leq\lfloor\sqrt p\rfloor\), the energy at \(g_N\) is
+\begin{equation}\label{eq:vol2-critical-row-energy}
+ H_{g_N,1/16}(N+k)
+ =\frac{(p+k)k^2}{p^2}
+       +\frac12\left(1+\frac1{2p}\right)^2<3.
+\end{equation}
+The first term is at most \(1+1/\sqrt p<2\), and the second
+is less than one for \(p\geq7/2\). These distinct states give
+\[
+ \operatorname{Tr}K_{g_N}(T)
+ \geq(1+\lfloor\sqrt p\rfloor)e^{-3T}\longrightarrow\infty.
+\]
+The trace difference is a lower bound on the trace-norm difference,
+which proves the second limit.
+
+For a fixed finite energy projection \(F\),
+\(\operatorname{Tr}(F\rho_{g_N}(T))\to0\), since its numerator
+is bounded by \(\operatorname{rank}F\) and the denominator diverges.
+Given \(\eta>0\), choose \(F\) with
+\(\operatorname{Tr}(F\rho_0(T))>1-\eta\).
+Both densities are diagonal and have trace one. Summing absolute
+differences on \(F\) and its complement gives
+\[
+ \|\rho_{g_N}(T)-\rho_0(T)\|_1
+ \geq2\left|\operatorname{Tr}(F\rho_{g_N}(T))
+              -\operatorname{Tr}(F\rho_0(T))\right|.
+\]
+The lower limit is at least \(2(1-\eta)\), and the norm is at
+most two. Let \(\eta\) decrease to zero.
+\end{proof}
+
+The critical example distinguishes strong convergence of heat
+operators from convergence of the prepared states. Above the
+critical coefficient, uniform energy decay prevents the mass
+from escaping to partitions of increasing size. The coefficient
+\(1/8\) gives the particularly simple bound \(H_g\geq H_0/2\).
+
+\section{The interacting current and the remaining state map}
+
+Return to the local Hamiltonian \eqref{eq:vol2-local-stable-hamiltonian}.
+Its state preserves energy, so a two-current expectation vanishes
+unless the two indices sum to zero. The fermionic occupations give
+its remaining coefficients explicitly. For \(r>0\), put
+\[
+ f_r(y)=\frac{y e^{-T\varepsilon_+(r)}}
+                   {1+y e^{-T\varepsilon_+(r)}},\qquad
+ f_{-r}(y)=\frac1{1+y^{-1}e^{-T\varepsilon_-(r)}}.
+\]
+These functions record occupancy of a positive mode and occupancy
+of a negative mode in the filled sea. Their denominators do not
+vanish on \(|y|=1\). Define, for \(n>0\),
+\begin{equation}\label{eq:vol2-interacting-current-coefficient}
+ A_n(T,g)=
+ \frac{[y^0]\left(\mathcal Z_{T,g}(y)
+       \sum_{r\in\mathbb Z+1/2}f_{r-n}(y)(1-f_r(y))\right)}{Z(T,g)}.
+\end{equation}
+For fixed \(n\), the tails decay exponentially and uniformly on
+the unit circle. The finitely many modes crossing the sea boundary
+are harmless.
+
+\begin{proposition}\label{prop:vol2-interacting-current-pole}
+The coefficient \(A_n(T,g)\) is
+\(\varphi_{T,g}(\alpha_n\alpha_{-n})\). If
+\(c_n=A_n-n\), then \(c_n\geq0\) and
+\begin{equation}\label{eq:vol2-interacting-current-bound}
+ c_n\leq C_T e^{-Tn/4},\qquad
+ C_T=\sum_{E\geq0}E p(E)e^{-TE/4}<\infty.
+\end{equation}
+The current two-point function is
+\begin{equation}\label{eq:vol2-stable-current-kernel}
+ \varphi_{T,g}(J(z)J(w))
+ =\frac{\lambda}{(z-w)^2}
+   +\frac{\lambda}{zw}\sum_{n\geq1}c_n(T,g)
+          \bigl((w/z)^n+(z/w)^n\bigr).
+\end{equation}
+Its radially ordered domain includes \(e^{-T/4}<|w/z|<1\).
+The remainder and all fixed holomorphic derivatives extend across
+\(z=w\ne0\).
+\end{proposition}
+
+\begin{proof}
+In the grand-canonical occupation measure, a raising move from
+\(r-n\) to \(r\) has weight \(f_{r-n}(1-f_r)\).
+By \eqref{eq:vol2-fermion-current}, the squared norm of this move
+is the corresponding contribution to \(\alpha_n\alpha_{-n}\).
+Different moves from a fixed occupation vector give orthogonal
+vectors. Summing their expectations therefore gives the numerator
+in \eqref{eq:vol2-interacting-current-coefficient}. The insertion
+is charge neutral, so taking the zero-charge coefficient commutes
+with it. Absolute convergence justifies the extraction.
+
+The commutator gives
+\(c_n=\varphi_{T,g}(\alpha_{-n}\alpha_n)\geq0\).
+This positive operator is at most \(H_0\), and it kills energy
+spaces below \(n\). The half-energy bound and \(Z(T,g)\geq1\)
+give
+\[
+ c_n\leq\sum_{E\geq n}E p(E)e^{-TE/2}
+       \leq e^{-Tn/4}\sum_{E\geq0}E p(E)e^{-TE/4}.
+\]
+The constant is finite by the free partition estimate.
+Inserting \(A_n=n+c_n\) into the current series yields
+\eqref{eq:vol2-stable-current-kernel}. The vacuum sum supplies
+the pole; the exponential bound makes the two remainder series
+normally convergent in a neighborhood of \(|w/z|=1\).
+\end{proof}
+
+The modified preparation retains the current pole while changing
+the regular coefficients. It need not be Gaussian as a state of
+the bosonic current algebra. Its operator sewing and scalar
+normalization are fixed by the spectral preparation, including
+the charge projection. A conformal shift \(-1/24\) multiplies
+its unnormalized kernels by \(e^{T/24}\) and leaves normalized
+correlations unchanged.
+
+For the unchanged cubic interaction, the outstanding construction
+is a state-valued Borel continuation with a specified Laplace
+prescription on a chosen observable star-algebra and sewing
+completion. It must give a normalized positive functional on every
+allowed observable and preserve the unnormalized cylinder
+composition. The scalar Borel boundary does not decide whether
+such a prescription exists. The positive states of the modified
+local Hamiltonian differ from that interaction at order \(g^2\).
+
+A bulk realization has a further requirement. It must construct
+the boundary preparation from independently defined bulk fields,
+counterterms and a boundary condition, then intertwine the current,
+collision and sewing operations on their declared domains.
+An equality of characters or a matching determinant alone does
+not supply that state map.
